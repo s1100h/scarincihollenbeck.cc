@@ -1,0 +1,18 @@
+@media (min-width:700px) and (max-width:1023px) {
+  .Featured-attorney__container {
+    width: 40%;
+  }
+}
+@media (min-width: 1023px) {
+  .Featured-attorney__image {
+    z-index: 1;
+    position: relative;
+    background-color: white;
+    padding: 5px;
+  }
+  .Featured-attorney__container span {
+    max-height: 400px;
+    overflow: hidden;
+    display: block;
+  }
+}

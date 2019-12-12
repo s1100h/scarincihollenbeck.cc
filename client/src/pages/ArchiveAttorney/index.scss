@@ -1,0 +1,76 @@
+.as-input {
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+  border-left: 10px solid red;
+  border-bottom: 2px solid white;  
+  font-size: 1.5rem;
+  color: white;
+  width: 100%;
+}
+.as-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+.as-input:active, .as-input:focus {
+  outline:0px !important;
+  -webkit-appearance:none;
+  box-shadow: none !important;
+}
+.w-60 {
+  width: 67%;
+}
+.mb--4 {
+  margin-bottom: -5em;
+}
+.mb--2 {
+  margin-bottom: -2em;
+}
+.mh-45 {
+  min-height: 45px;
+}
+.cursor-pointer:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.bck-red {
+  background-color: #bd2220 !important;
+}
+.css-0 {
+  display: block;
+  position: relative;
+  margin-left: 45%;
+  margin-right: 45%;
+  margin-bottom: 20%;
+}
+.p-25 {
+  padding: .7rem!important;
+}
+.filter input, .filter select {
+  background-color: white;
+  border-radius: 6px;
+}
+.super-remove {
+  display: none !important;
+}
+.mt-sm-6 {
+  margin-top: 4em;
+}
+@media (min-width: 768px) {
+  .offset-md-3 {
+      margin-left: 21%;
+  }
+}
+@media (max-width:992px) {
+  .mb--4  {
+    margin-bottom: 0;
+  }
+  .w-60 {
+    width: 100% !important;
+  }
+}
+
+@media (min-width:0px) and (max-width: 992px) {
+  .w-40 {
+    width: 100%;
+  }
+}
