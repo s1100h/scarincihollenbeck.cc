@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shDiamond from '../../../images/sh-mini-diamond.png';
-import './index.scss';
 
 const checkboxes = [
   {

@@ -61,4 +61,4 @@ FeaturedArticle.defaultProps = {
   main: []
 };
 
-export default FeaturedArticles;
+export default FeaturedArticle;

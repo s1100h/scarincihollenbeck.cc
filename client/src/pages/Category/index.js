@@ -1,14 +1,28 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import Slider from 'react-slick';
 import { PulseLoader } from 'react-spinners';
 import FullWidth from '../../layouts/FullWidth';
 import LargeSidebar from '../../layouts/LargeSidebar';
-import Breadcrumbs from './Breadcrumbs';
+import BreadCrumbs from './BreadCrumbs';
 import FeaturedArticle from './FeaturedArticle';
 import MainSidebarContent from './MainSidebarContent';
+import SliderContent from './SliderContent';
+import ColumnContent from './ColumnContent';
 import { makeTitle } from '../../utils/helpers';
+import noImg from '../../images/no-image-found-diamond.png';
 import './index.scss';
+
+const NextArrow = (props) => {
+  const { onClick } = props;
+  return <i className="fas fa-angle-double-right post-scroll post-scroll-right" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+};
+
+const PrevArrow = (props) => {
+  const { onClick } = props;
+  return <i className="fas fa-angle-double-left post-scroll post-scroll-left" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+};
 
 class CategoryBody extends Component {
   constructor(props) {
@@ -60,7 +74,20 @@ class CategoryBody extends Component {
       });
 
       if(categorySlug === 'firm-news' || categorySlug === 'firm-events') {
-
+        // get core practices
+        // get firm insights categories 
+        fetch(`${process.env.API_URL}/wp-json/practice-portal/page`)
+          .then(res => res.json())
+          .then((data) => {
+            const cPractices = data.filter(p => p.category === 'Core Practices');
+            const corePractices = cPractices.map(cp => {
+              return {
+                name: cp.title,
+                link: cp.slug
+              }
+            });
+            this.setState({ corePractices });
+          })
       }
   }
 
@@ -82,6 +109,17 @@ class CategoryBody extends Component {
       title: `${makeTitle(categorySlug)}`,
       metaDescription: `stuff`
     }
+
+    const firmSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: true,
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
+    };
 
     return (
       <div>
@@ -112,14 +150,17 @@ class CategoryBody extends Component {
           (!spinner) ? (
             <div>
               <FullWidth>
-                <BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />
+                <BreadCrumbs
+                  breadCrumb={breadCrumb}
+                  categorySlug={categorySlug}
+                />
               </FullWidth>
               <LargeSidebar
                 body={(<FeaturedArticle main={main} />)}
                 sidebar={(<MainSidebarContent latest={latest} />)}
                 />
                 <FullWidth>
-                  <SlideContent title="MOST RECENT" slides={archives} />
+                  <SliderContent title="MOST RECENT" slides={archives} />
                 </FullWidth>
                 <FullWidth>
                   <div className="line-header">

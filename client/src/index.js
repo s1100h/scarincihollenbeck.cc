@@ -32,6 +32,7 @@ import Page404 from './pages/page404';
 
 // vendor scss files 
 // main scss file
+import './index.scss';
 
 /**
  * Routes
@@ -65,8 +66,8 @@ import Page404 from './pages/page404';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  1. Update WP Rest Routes to pull SEO Yoast Data & remove get_home('/') -- Page
- *  2. Add React Helmet to each component w/ seo data &  fix  Pages to utilize standard components -- Left off on Category component
+ *  1. Refactor all API routes to have seo.title, seo.metaDescription, seo.canonicalLink
+ *  2. Refactor all pages to use common components and layouts -- Category
  *  3. Make Search a standard Component
  *  4. Update each Rest Route to have a Structured Data information & Add the Schema to Helmet Component
  *  5. Add AMP component to Posts

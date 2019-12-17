@@ -272,12 +272,6 @@ class Archives extends Component {
           </div>
           <div className="col-sm-12 col-md-4">
             <Sidebar
-              searchTerm={searchTerm}
-              onChange={this.onChange}
-              onSubmit={this.onSubmit}
-              allPractices={allPractices}
-              allAttorneys={allAttorneys}
-              allCategories={allCategories}
               trending={trending}
             />
           </div>

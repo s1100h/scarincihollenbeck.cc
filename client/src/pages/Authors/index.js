@@ -20,25 +20,13 @@ class Author extends Component {
       practices: [],
       pageNums: [],
       term: '',
-      currentPage: '',
-      searchTerm: '',
-      allPractices: [],
-      allAttorneys: [],
-      allCategories: [],
+      currentPage: '',     
       breadCrumb: [],
-      categorySlug: '',
-      t: {
-        keyword: '',
-        attorney: '',
-        practice: '',
-        category: '',
-      },
+      categorySlug: '',     
       spinner: false,
     };
 
-    this.onChange = this.onChange.bind(this);
     this.getPosts = this.getPosts.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   
@@ -55,18 +43,6 @@ class Author extends Component {
     this.setState({ breadCrumb, categorySlug: author, currentPage: page, spinner: true }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`, author);
     });
-  }
-
-  onChange(event) {
-    const { value, name } = event.target;
-    const { t } = this.state;
-    t[name] = value;
-    this.setState({ t });
-  }
-
-  onSubmit() {
-    const { t } = this.state;
-    window.location = sumbitSearchForm(t);
   }
 
   getPosts(url, authorName) {
@@ -221,12 +197,6 @@ class Author extends Component {
                 active={active}
                 /> )}
               sidebar={(<Sidebar
-                searchTerm={searchTerm}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
-                allPractices={allPractices}
-                allAttorneys={allAttorneys}
-                allCategories={allCategories}
                 bio={bio}
                 practices={practices}
               />)}

@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { makeTitle } from '../../utils/helpers';
 
 const BreadCrumbs = (props) => {
   const { breadCrumb, categorySlug } = props;
+
+  const firmInsightsBreadCrumbUrl = breadCrumb.map(bc => bc);
 
   return (
     <h6>
@@ -58,7 +61,7 @@ const BreadCrumbs = (props) => {
   );
 };
 
-BreadCrubms.propTypes = {
+BreadCrumbs.propTypes = {
   breadCrumbs: PropTypes.arrayOf( PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -71,4 +74,4 @@ BreadCrumbs.defaultProps = {
   categorySlug: '',
 };
 
-export default BreadCrumbs; 
+export default BreadCrumbs;
