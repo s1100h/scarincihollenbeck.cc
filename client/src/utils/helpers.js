@@ -126,19 +126,3 @@ export const filterByKey = (list, key) => {
 // make title
 export const makeTitle = string => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
-// create url for search query
-// handle complex search sidebar form
-export const sumbitSearchForm = (terms) => {
-  const {
-    keyword,
-    practice,
-    attorney,
-    category,
-  } = terms;
-
-  const formatUrl = str => str.toLowerCase().replace(/\s/g, '+');
-  const results = `${(keyword !== undefined) ? keyword : ''} ${(practice !== undefined) ? practice : ''} ${(attorney !== undefined) ? attorney : ''} ${(category !== undefined) ? category : ''}`;
-  const url = results.trim().replace(/[^\w\s]/gi, '');
-
-  return `/s?=${formatUrl(url)}`;
-};

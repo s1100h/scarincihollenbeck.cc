@@ -4,8 +4,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
-import SingleSubHeader from '../../components/SingleSubHeader';
-import FullWidth from '../../components/FullWidth';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
+import FullWidth from '../../layouts/FullWidth';
 import { createMarkup } from '../../utils/helpers';
 import Members from './Members';
 import foHeaderBckGround from './citybackground.jpg';

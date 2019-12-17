@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { Helmet } from 'react-helmet';
-import SingleSubHeader from '../../components/SingleSubHeader';
-import FullWidth from '../../components/FullWidth';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
+import FullWidth from '../../layouts/FullWidth';
 import AttorneyCard from '../../components/AttorneyCard';
 import adminArchiveBckGround from './attorney-archive-header.jpg';
 import './index.scss';

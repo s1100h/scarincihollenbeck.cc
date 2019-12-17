@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import { makeTitle, sumbitSearchForm } from '../../utils/helpers';
-import ArchiveLayout from '../../components/ArchiveLayout';
+import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
 import Body from './Body';

@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
-import FullWidth from '../../components/FullWidth';
-import SingleSubHeader from '../../components/SingleSubHeader';
-import styled from 'styled-components';
+import FullWidth from '../../layouts/FullWidth';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
 import './index.scss';
 import cityBckGroundImg from './citybackground.jpg';
 

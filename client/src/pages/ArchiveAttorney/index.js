@@ -8,8 +8,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
-import SingleSubHeader from '../../components/SingleSubHeader';
-import FullWidth from '../../components/FullWidth';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
+import FullWidth from '../../layouts/FullWidth';
 import Filters from './Filters';
 import Selected from './Selected';
 import Results from './Results';

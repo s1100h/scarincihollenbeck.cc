@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // template components
-import NavBar from './templates/NavBar';
-import Footer from './templates/Footer';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 // page components
 import FrontPage from './pages/FrontPage';

@@ -4,8 +4,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
-import SingleSubHeader from '../../components/SingleSubHeader';
-import LargeSidebar from '../../components/LargeSidebar';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
+import LargeSidebar from '../../layouts/LargeSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import { splitUrlPreview, createMarkup, splitUrl, sumbitSearchForm } from '../../utils/helpers';

@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import SingleSubHeader from '../../components/SingleSubHeader';
-import FullWidth from '../../components/FullWidth';
-import styled from 'styled-components';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
+import FullWidth from '../../layouts/FullWidth';
 import Form from './Form';
 import contactHeaderBckGround from './citybackground.jpg';
 import './index.scss';

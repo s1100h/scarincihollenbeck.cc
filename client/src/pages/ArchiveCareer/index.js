@@ -4,8 +4,8 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
 import Helmet from 'react-helmet';
-import FullWidth from '../../components/FullWidth';
-import SingleSubHeader from '../../components/SingleSubHeader';
+import FullWidth from '../../layouts/FullWidth';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
 import CareerSection from './CareerSection';
 import EEOpportunityContent from './EEOpportunityContent';
 import carArchiveBckGround from './citybackground.jpg';

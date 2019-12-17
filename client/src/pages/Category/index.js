@@ -2,12 +2,11 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
-import FullWidth from '../../components/FullWidth';
-import LargeSidebar from '../../components/LargeSidebar';
+import FullWidth from '../../layouts/FullWidth';
+import LargeSidebar from '../../layouts/LargeSidebar';
 import Breadcrumbs from './Breadcrumbs';
 import FeaturedArticle from './FeaturedArticle';
 import MainSidebarContent from './MainSidebarContent';
-import SubscriptionForm from './SubscriptionForm';
 import { makeTitle } from '../../utils/helpers';
 import './index.scss';
 
@@ -20,6 +19,8 @@ class CategoryBody extends Component {
       latest: [],
       main: [],
       practices: [],
+      corePractices:[],
+      fiCategories:[],
       breadCrumb: [],
       categorySlug: '',
       spinner: false,
@@ -57,6 +58,10 @@ class CategoryBody extends Component {
           spinner: false,
         });
       });
+
+      if(categorySlug === 'firm-news' || categorySlug === 'firm-events') {
+
+      }
   }
 
   render() {
@@ -69,6 +74,8 @@ class CategoryBody extends Component {
       breadCrumb,
       categorySlug,
       spinner,
+      corePractices,
+      fiCategories,
     } = this.state;
 
     const seo = {
@@ -119,191 +126,64 @@ class CategoryBody extends Component {
                     <h3>DISCOVER</h3>
                   </div>
                 </FullWidth>
-                {
-                  (categorySlug === 'firm-events' || categorySlug === 'firm-news' ) ? (
+                { (categorySlug === 'firm-events' || categorySlug === 'firm-news' ) ? (
                     <ColumnContent
-                      colOneTitle
-                      colOneContent
-                      colTwoTitle
-                      colTwoContent
+                      colOneTitle="Scarinci Hollenbeck Core Practices"
+                      colOneContent={corePractices}
+                      colTwoTitle="Firm Insight's Categories"
+                      colTwoContent={fiCategories}
                     />
                   ) : ''
                 }
-                <ColumnContent />
-                {
-                  /**
-                   * FullWidth -- Content Slider
-                   * Column Content
-                   * Practice Slider
-                   * FullWidth -- archive links
-                   */
+                { (categorySlug === 'law-firm-insights') ? (
+                    <ColumnContent
+                      colOneTitle="More from our attorneys"
+                      colOneContent={authors}
+                      colTwoTitle="More about our areas of law<"
+                      colTwoContent={practices}
+                    />
+                  ) : ''
                 }
+                { practices.map(val => (
+                  <FullWidth className="col-sm-12 mt-5" key={val.id}>
+                    <div className="line-header">
+                      <h3 className="text-uppercase">
+                        {val.name}
+                      </h3>
+                    </div>
+                    <Slider {...firmSettings}>
+                      {val.posts.map(v => (
+                        <div key={v.title} className="px-3 pt-5 pb-2">
+                          <a href={v.link}>
+                            <img src={v.image ? v.image : noImg} className="img-fluid" alt={v.title} />
+                            <h5 className="mt-3 mb-1">{v.title}</h5>
+                            <p className="text-muted small-excerpt">
+                              {v.excerpt}
+                            </p>
+                          </a>
+                        </div>
+                      ))
+                    }
+                    </Slider>
+                  </FullWidth>
+                ))
+              }
+              <FullWidth className="border-top mt-5">
+                <p className="text-center lead mt-4">
+                  <small>
+                    <em>Looking for something specific, feel free to search our archives.</em>
+                  </small>
+                </p>
+                <p className="text-center">
+                  <a href={`${window.location.origin}/archives/${categorySlug}`} className="red-title">
+                    <u>Site Archives &gt;&gt;</u>
+                  </a>
+                </p>
+              </FullWidth>
             </div>
 
           ) : <PulseLoader color="#D02422" loading={spinner} />
         }
-          {
-            (categorySlug === 'law-firm-insights') ? (
-              <div className="col-sm-12 col-md-3 mt-5 border-right">
-                <h5 className="red-title">More from our attorneys</h5>
-                <hr />
-                <ul className="ml-0 mh-75">
-                  {
-                    authors.map(val => (
-                      <li key={val.name} className="blue-title ml-3">
-                        <a href={val.link} className="blue-title proxima-bold mb-0">{val.name}</a>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-            ) : ''
-          }
-          {
-            (categorySlug === 'firm-events' || categorySlug === 'firm-news') ? (
-              <div className="col-sm-12 col-md-3 mt-5 border-right">
-                <h5 className="red-title">Scarinci Hollenbeck Core Practices</h5>
-                <hr />
-                <ul className="ml-0">
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/commercial-real-estate/`} className="blue-title proxima-bold mb-0">Commercial Real Estate</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/corporate-transactions-business/`} className="blue-title proxima-bold mb-0">Corporate Transactions & Business</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/environmental-and-land-use/`} className="blue-title proxima-bold mb-0">Environmental & Land Use</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/intellectual-property/`} className="blue-title proxima-bold mb-0">Intellectual Property</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/labor-employment/`} className="blue-title proxima-bold mb-0">Labor & Employment</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/litigation/`} className="blue-title proxima-bold mb-0">Litigation</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/tax-trusts-estates/`} className="blue-title proxima-bold mb-0">Tax, Trust & Estates</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/practices/public-law/`} className="blue-title proxima-bold mb-0">Government & Public Law</a>
-                  </li>
-                </ul>
-              </div>
-            ) : ''
-          }
-          {
-            (categorySlug === 'law-firm-insights') ? (
-              <div className="col-sm-12 col-md-4 mt-5 border-right">
-                <h5 className="red-title">More about our areas of law</h5>
-                <hr />
-                <ul className="ml-0">
-                  {
-                    practices.map(val => (
-                      <li key={val.name} className="blue-title ml-3">
-                        <a href={val.link} className="blue-title proxima-bold mb-0">{val.name}</a>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-            ) : ''
-          }
-          {
-            (categorySlug === 'firm-news' || categorySlug === 'firm-events') ? (
-              <div className="col-sm-12 col-md-4 mt-5 border-right">
-                <h5 className="red-title">Firm Insight's Categories</h5>
-                <hr />
-                <ul className="ml-0">
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/business-law/`} className="blue-title proxima-bold mb-0">Business Law</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/cannabis-law/`} className="blue-title proxima-bold mb-0">Cannabis Law</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/commercial-real-estate/`} className="blue-title proxima-bold mb-0">Commercial Real Estate</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/law-firm-insights/entertainment-and-media/`} className="blue-title proxima-bold mb-0">Entertainment and Media</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/law-firm-insights/environmental-land-use/`} className="blue-title proxima-bold mb-0">Environmental and Land Use</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/intellectual-property/`} className="blue-title proxima-bold mb-0">Intellectual Property</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/labor-employment/`} className="blue-title proxima-bold mb-0">Labor and Employment</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/litigation/`} className="blue-title proxima-bold mb-0">Litigation</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/litigation/`} className="blue-title proxima-bold mb-0">Public Law</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/public-law/`} className="blue-title proxima-bold mb-0">Public Law</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/tax/`} className="blue-title proxima-bold mb-0">Tax</a>
-                  </li>
-                  <li className="blue-title ml-3">
-                    <a href={`${process.env.API_URL}/category/law-firm-insights/technology/`} className="blue-title proxima-bold mb-0">Technology</a>
-                  </li>
-                </ul>
-              </div>
-            ) : ''
-          }
-          <div className="col-sm-12 col-md-5 mt-5">
-            <h5 className="red-title">Join our mailing list!</h5>
-            <hr />
-            <div className="ModalForm-main">
-              <p className="text-center text-muted small-excerpt">Enter your email and select a category(s) below.</p>
-              <SubscriptionForm />
-            </div>
-          </div>
-          {
-            practices.map(val => (
-              <div className="col-sm-12 mt-5" key={val.id}>
-                <div className="line-header">
-                  <h3 className="text-uppercase">
-                    {val.name}
-                  </h3>
-                </div>
-                <Slider {...firmSettings}>
-                  {
-                  val.posts.map(v => (
-                    <div key={v.title} className="px-3 pt-5 pb-2">
-                      <a href={v.link}>
-                        <img src={v.image ? v.image : noImg} className="img-fluid" alt={v.title} />
-                        <h5 className="mt-3 mb-1">{v.title}</h5>
-                        <p className="text-muted small-excerpt">
-                          {v.excerpt}
-                        </p>
-                      </a>
-                    </div>
-                  ))
-                }
-                </Slider>
-              </div>
-            ))
-          }
-          <div className="col-sm-12 border-top mt-5">
-            <p className="text-center lead mt-4">
-              <small>
-                <em>Looking for something specific, feel free to search our archives.</em>
-              </small>
-            </p>
-            <p className="text-center">
-              <a href={`${window.location.origin}/archives/${categorySlug}`} className="red-title">
-                <u>Site Archives &gt;&gt;</u>
-              </a>
-            </p>
-          </div>
-        </div>
-
       </div>
     );
   }
