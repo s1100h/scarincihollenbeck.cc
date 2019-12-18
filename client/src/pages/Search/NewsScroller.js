@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
-import { sortByKey, addRandomKey } from '../../utils/helpers';
+import { sortByKey } from '../../utils/helpers';
 import noImg from '../../images/no-image-found-diamond.png';
 import './index.scss';
 
@@ -66,7 +66,7 @@ const NewsScroller = (props) => {
       <Slider {...QuickNewsScrollerSettings}>
         {
           sortedPosts.map(v => (
-            <div key={addRandomKey(v.title)} className="px-3 pt-5 pb-2">
+            <div key={v.title} className="px-3 pt-5 pb-2">
               <a href={v.link}>
                 <img src={v.image ? v.image : noImg} className="img-thumbnail mx-auto d-block" alt={v.title} />
                 <h5 className="mt-3 mb-2 text-center small-excerpt proxima-bold">{v.title}</h5>                

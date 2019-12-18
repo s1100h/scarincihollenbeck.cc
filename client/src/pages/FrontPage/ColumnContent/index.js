@@ -6,7 +6,7 @@ import Categories from './Categories';
 
 
 const ColumnContent = (props) => {
-  const { onCategorySelection } = props;
+  const { onCategorySelectio, corePractices } = props;
   
   return (
     <div className="row">
@@ -17,7 +17,7 @@ const ColumnContent = (props) => {
         <About />  
       </div>
       <div className="col-sm-12 col-md-4 mt-5 border-right">
-        <Practices />
+        <Practices corePractices={corePractices} />
       </div>
       <div className="col-sm-12 col-md-4 mt-5">
         <Categories onCategorySelection={onCategorySelection} />        
@@ -28,10 +28,12 @@ const ColumnContent = (props) => {
 
 ColumnContent.propTypes = {
   onCategorySelection: PropTypes.func,
+  corePractices: PropTypes.arrayOf(PropTypes.object)
 };
 
 ColumnContent.default = {
   onCategorySelection: () => {},
+  corePractices: [],
 };
 
 export default ColumnContent;

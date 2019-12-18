@@ -2,6 +2,10 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
+import { PulseLoader } from 'react-spinners';
+import SingleHead from '../../../components/Head/single';
+import SingleSubHeader from '../../../layouts/SingleSubHeader';
+import MiniSidebar from '../../../layouts/MiniSidebar';
 import Header from './Header';
 import ArticleDetails from './ArticleDetails';
 import SocialShareSidebar from './SocialShareSidebar';
@@ -25,79 +29,26 @@ class Single extends Component {
       eventDetails: [],
       author: [],
       attorneys: [],
-      searchTerm: '',
-      t: {
-        keyword: '',
-        attorney: '',
-        practice: '',
-        category: '',
-      },
+      seo: [],
       show: false,
       triggerModal: true,
       eventCat: false,
-      allAttorneys: [],
-      allPractices: [],
-      allCategories: [],
     };
 
     this.fetchPostData = this.fetchPostData.bind(this);
     this.printScreen = this.printScreen.bind(this);
-    this.onChange = this.onChange.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.hideSubscription = this.hideSubscription.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
 
   componentDidMount() {
     const { parent, child, post } = this.props.match.params;
     this.fetchPostData(`${process.env.API_URL}/wp-json/single/post/${post}`);
-
-    // get practices
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/practices`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ allPractices: data });
-      });
-
-    // get attorneys
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/attorneys`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ allAttorneys: data });
-      });
-
-    // get categories
-    fetch(`${process.env.API_URL}/wp-json/wp/v2/categories?per_page=100`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ allCategories: data });
-      });
     // set timeout to trigger
     this.triggerSubscription();
   }
 
-  onChange(event) {
-    const { value, name } = event.target;
-    const { t } = this.state;
-    t[name] = value;
-    this.setState({ t });
-  }
-
-  onSubmit() {
-    const { t } = this.state;
-    const {
-      keyword,
-      practice,
-      attorney,
-      category,
-    } = t;
-
-    const formatUrl = str => str.toLowerCase().replace(/\s/g, '+');
-    const results = `${(keyword !== undefined) ? keyword : ''} ${(practice !== undefined) ? practice : ''} ${(attorney !== undefined) ? attorney : ''} ${(category !== undefined) ? category : ''}`;
-    const url = results.trim().replace(/[^\w\s]/gi, '');
-    window.location = `${process.env.API_URL}/?s=${formatUrl(url)}`;
-  }
 
   fetchPostData(url) {
     fetch(url)
@@ -180,7 +131,6 @@ class Single extends Component {
     const {
       title,
       content,
-      searchTerm,
       author,
       date,
       posts,
@@ -188,9 +138,7 @@ class Single extends Component {
       show,
       eventCat,
       eventDetails,
-      allPractices,
-      allAttorneys,
-      allCategories,
+      seo,
     } = this.state;
 
 
@@ -200,64 +148,43 @@ class Single extends Component {
     const bodyContent = content.replace(firstFeaturedImg, '').replace(subTitle, '');
 
     return (
-      <span>
-        <Header title={title} subTitle={subTitle} />
-        <div className="container">
-          <div className="row">
-            <SocialShareSidebar printScreen={this.printScreen} title={title} />
-            <div className="col-sm-12 col-md-7">
-              {/** Featured image */}
-              <div dangerouslySetInnerHTML={createMarkup(firstFeaturedImg)} className="f-image" />
-              {/** Author & date & Category */}
-              <ArticleDetails author={author} date={date} />
-              <hr />
-              <div className="post-content" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
-              <SocialShareFooter title={title} />
-              {/** Author bios */}
-              <AuthorBio author={author} />
-              {/** Contact form */}
-              <div className="w-100 mt-5 hide-print">
-                <h4 className="bg-light-gray">{(eventCat) ? 'Contact Us For More Information On This Event' : 'Contact Practice Representative'}</h4>
-                <div className="mt-5">
-                  <ContactForm />
-                </div>
-              </div>
-              {/** Related content */}
-            </div>
-            {
-              (eventCat) ? (
+      <div>
+        <SingleHead seo={seo} />
+        <SingleSubHeader
+          image={adminArchiveBckGround}
+          title={title}
+          subTitle={subTitle}
+          />
+          <SocialShareSidebar printScreen={this.printScreen} title={title} />
+          {(!spinner) ? (
+            <MiniSidebar
+              body={(<Body
+                firstFeaturedImg={firstFeaturedImg}
+                bodyContent={bodyContent}
+                author={author}
+                eventCat={eventCat}
+              />)}
+              sideBar={(eventCat) ? (
                 <EventSidebar
-                  searchTerm={searchTerm}
-                  onChange={this.onChange}
                   eventDetails={eventDetails}
                   attorneys={attorneys}
                   hideSubscription={this.hideSubscription}
                   show={show}
                   toggleModal={this.toggleModal}
-                  allPractices={allPractices}
-                  allAttorneys={allAttorneys}
-                  allCategories={allCategories}
-                  onSubmit={this.onSubmit}
                 />
               ) : (
                 <Sidebar
-                  searchTerm={searchTerm}
-                  onChange={this.onChange}
-                  onSubmit={this.onSubmit}
                   posts={posts}
                   attorneys={attorneys}
                   hideSubscription={this.hideSubscription}
                   show={show}
                   toggleModal={this.toggleModal}
-                  allPractices={allPractices}
-                  allAttorneys={allAttorneys}
-                  allCategories={allCategories}
                 />
-              )
-            }
-          </div>
-        </div>
-      </span>
+              )}
+            />
+            ) : <PulseLoader color="#D02422" loading={spinner} />
+          }
+      </div>
     );
   }
 }

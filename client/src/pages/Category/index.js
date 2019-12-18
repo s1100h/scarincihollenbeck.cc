@@ -75,7 +75,6 @@ class CategoryBody extends Component {
 
       if(categorySlug === 'firm-news' || categorySlug === 'firm-events') {
         // get core practices
-        // get firm insights categories 
         fetch(`${process.env.API_URL}/wp-json/practice-portal/page`)
           .then(res => res.json())
           .then((data) => {
@@ -87,7 +86,9 @@ class CategoryBody extends Component {
               }
             });
             this.setState({ corePractices });
-          })
+          });
+
+          // get firm insights categories
       }
   }
 

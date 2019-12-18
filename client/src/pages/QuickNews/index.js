@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { makeTitle, sumbitSearchForm } from '../../utils/helpers';
-import NewsScroller from './NewsScroller';
+import { PulseLoader } from 'react-spinners';
+import { makeTitle } from '../../utils/helpers';
+import ArchiveLayout from '../../layouts/ArchiveLayout';
+import ArchiveHead from '../../components/Head/archive';
+import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
+import Body from './Body';
 import './index.scss';
 
 class Archives extends Component {
@@ -15,22 +19,9 @@ class Archives extends Component {
       trending: [],
       pageNums: [],
       currentPage: '',
-      searchTerm: '',
-      allPractices: [],
-      allAttorneys: [],
-      allCategories: [],
       breadCrumb: [],
       categorySlug: '',
-      t: {
-        keyword: '',
-        attorney: '',
-        practice: '',
-        category: '',
-      },
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -101,30 +92,6 @@ class Archives extends Component {
             const insight = [...data.latest, ...data.archives];
             this.setState({ insight });
           });
-      })
-      .then(() => {
-        // practices
-        fetch(`${process.env.API_URL}/wp-json/attorney-search/practices`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allPractices: data });
-          });
-      })
-      .then(() => {
-        // attorneys
-        fetch(`${process.env.API_URL}/wp-json/attorney-search/attorneys`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allAttorneys: data });
-          });
-      })
-      .then(() => {
-        // categories
-        fetch(`${process.env.API_URL}/wp-json/wp/v2/categories?per_page=100`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allCategories: data });
-          });
       });
   }
 
@@ -136,10 +103,6 @@ class Archives extends Component {
       insight,
       trending,
       pageNums,
-      searchTerm,
-      allPractices,
-      allAttorneys,
-      allCategories,
       breadCrumb,
       categorySlug,
       currentPage,
@@ -152,130 +115,30 @@ class Archives extends Component {
     const active = (typeof cp[cp.length - 1] === 'number') ? cp[cp.length - 1] : 1;
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12 mt-0 mb-4">
-            <h6>
-              <span>
-                <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
-              </span>
-              <strong className="text-black mt-2 mx-2 proxima-bold">
-                <i className="fas fa-caret-right" />
-              </strong>
-              {
-                breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1)
-                  ? (
-                    <span key={val}>
-                      <span>
-                        <span className="red-title proxima-bold text-uppercase">
-                          {
-                            (val === categorySlug)
-                              ? (<u>{categorySlug}</u>)
-                              : `${categorySlug}`
-                          }
-                        </span>
-                      </span>
-                      <strong className="text-black mt-2 mx-2 proxima-bold">
-                        <i className="fas fa-caret-right" />
-                      </strong>
-                    </span>
-                  )
-                  : (
-                    <span key={val}>
-                      <span className="red-title proxima-bold">
-                        {
-                          (val === categorySlug)
-                            ? (<u>{val}</u>)
-                            : `${val}`
-                        }
-                      </span>
-                    </span>
-                  )))
-              }
-            </h6>
-          </div>
-          <div className="col-sm-12 col-lg-8">
-            <div className="row">
-              <div className="col-sm-12 col-md-6">
-                {
-                results.map((r, i) => ((i < 5) ? (
-                  <div className="p-2" key={r.id}>
-                    <a href={r.link} className="top-article">
-                      <h5 className="mb-0">{r.title}</h5>
-                      <p className="mt-0 mb-3 text-muted small-excerpt">{r.description}</p>
-                    </a>
-                  </div>
-                ) : ''))
-              }
-              </div>
-              <div className="col-sm-12 col-md-6">
-                {
-                results.map((r, i) => ((i > 5) ? (
-                  <div className="p-2" key={r.id}>
-                    <a href={r.link} className="top-article">
-                      <h5 className="mb-0">{r.title}</h5>
-                      <p className="mt-0 mb-3 text-muted small-excerpt">{r.description}</p>
-                    </a>
-                  </div>
-                ) : ''))
-              }
-              </div>
-
-            </div>
-            <div className="w-100 mt-0 ml--1">
-              {
-                (results !== undefined && pageNums.length > 1)
-                  ? (
-                    <nav aria-label="pagination">
-                      <ul className="d-flex flex-wrap no-dots lead">
-                        <li className="mr-2">
-                          <a className="text-dark" href={`${window.location.origin}/category/quick-news/page/${prev}/`} tabIndex="-1" aria-label="previous link">
-                            <i className="fas fa-angle-double-left" aria-hidden="true" />
-                          </a>
-                        </li>
-                        {/** Current / First Number */}
-                        {
-                          pageNums.map(val => ((active === val) ? (
-                            <li className={(active === val) ? 'active mr-2' : 'mr-2'} key={`page-${val}`}>
-                              <a className="text-dark mt-2" href={`${window.location.origin}/category/quick-news/page/${val}/`}>{val}</a>
-                            </li>
-                          ) : ''))
-                        }
-                        {/** ... */}
-                        <li className="mx-1">
-                          ...
-                        </li>
-                        {/** Last Number */}
-                        {
-                          pageNums.map(val => (((pageNums.length -1) === val) ? (
-                            <li className={(active === val) ? 'active mr-2' : 'mr-2'} key={`page-${val}`}>
-                              <a className="text-dark" href={`${window.location.origin}/category/quick-news/page/${val}/`}>{val}</a>
-                            </li>
-                          ) : ''))
-                        }
-                        <li className="ml-1">
-                          <a className="text-dark" href={`${window.location.origin}/category/quick-news/page/${next}/`} aria-label="next link">
-                            <i className="fas fa-angle-double-right" aria-hidden="true" />
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  )
-                  : ''
-              }
-            </div>
-            <div className="w-100 d-block">
-              <NewsScroller title="Firm News" articles={news} />
-              <NewsScroller title="Firm Events" articles={events} />
-              <NewsScroller title="Firm Insights" articles={insight} />
-            </div>
-          </div>
-          <div className="col-sm-12 col-md-4">
-            <Sidebar
-              trending={trending}
+      <div>
+        <ArchiveHead seo={seo} />
+        {
+          (!spinner) ? (
+            <ArchiveLayout
+              header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
+              body={(<Body
+                results={results}
+                categorySlug={categorySlug}
+                next={next}
+                prev={prev}
+                pageNums={pageNums}
+                news={news}
+                events={events}
+                insight={insight}
+                active={active}
+                /> )}
+              sidebar={(<Sidebar
+                bio={bio}
+                practices={practices}
+              />)}
             />
-          </div>
-        </div>
+          ) : <PulseLoader color="#D02422" loading={spinner} />
+        }      
       </div>
     );
   }

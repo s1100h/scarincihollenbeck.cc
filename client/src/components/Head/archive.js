@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
-const ArchiveHeader = (props) => {
+const ArchiveHead = (props) => {
   const { seo } = props;
 
   return <Helmet>

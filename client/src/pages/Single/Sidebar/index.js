@@ -1,35 +1,22 @@
 import React from 'react';
 import PropType from 'prop-types';
 import { addRandomKey } from '../../../utils/helpers';
-import Search from '../Search';
+import Search from '../../../components/Search';
 import SubscriptionForm from '../SubscriptionForm';
 import SHDiamond from '../../../images/sh-mini-diamond.png';
 
 const Sidebar = (props) => {
   const {
-    searchTerm,
-    onChange,
-    onSubmit,
     posts,
     attorneys,
     hideSubscription,
     show,
     toggleModal,
-    allPractices,
-    allAttorneys,
-    allCategories,
   } = props;
 
   return (
     <div className="col-sm-12 col-md-4 hide-print">
-      <Search
-        searchTerm={searchTerm}
-        onChange={onChange}
-        allPractices={allPractices}
-        allAttorneys={allAttorneys}
-        allCategories={allCategories}
-        onSubmit={onSubmit}
-      />
+      <Search />
       {/** TOP ARTICLES */}
       <div className="w-100 mt-4">
         <div className="sidebar-title">

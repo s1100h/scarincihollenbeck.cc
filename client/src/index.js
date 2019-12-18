@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// template components
+// layouts
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
-// page components
+// pages
 import FrontPage from './pages/FrontPage';
 import ArchiveAttorney from './pages/ArchiveAttorney';
 import ArchiveAdmin from './pages/ArchiveAdmin';
@@ -30,8 +30,18 @@ import QuickNews from './pages/QuickNews';
 import Search from './pages/Search';
 import Page404 from './pages/page404';
 
-// vendor scss files 
-// main scss file
+// vendor scss & js files
+/**
+*
+* Bootstrap
+* Font awesome
+* Slick Carousel
+*
+**/
+
+/**
+* Main Style Sheet
+**/
 import './index.scss';
 
 /**
@@ -67,16 +77,14 @@ import './index.scss';
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
  *  1. Refactor all API routes to have seo.title, seo.metaDescription, seo.canonicalLink
- *  2. Refactor all pages to use common components and layouts -- Category
- *  3. Make Search a standard Component
- *  4. Update each Rest Route to have a Structured Data information & Add the Schema to Helmet Component
+ *  2. Refactor all pages to use common components and layouts -- SingleAdmin
+ *  3. Add Head component to each Page with seo as props
+ *  4. Update each Rest Route to have a Structured Data information
  *  5. Add AMP component to Posts
  *  6. Set up sitemap xml
- *  7. Set up WP Rest Routes to used only published data
  *  8. Add feature to allow Google Analytics for pages to Footer 
  *  9. Add fadein class from animate.css to each class, so the content fades in when the page loads
  * 10. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
- * 11. Create a WP Rest Route that fetches Core Practices with links (Category Page & Front Page)
  * 
  * 
  * 
@@ -152,7 +160,7 @@ class SiteRoutes extends Component {
           <Route path ='/author/:author/page/:pageNum' exact component={Authors} />
           <Route path={`/s`} component={Search} />
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
-          <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} /> {/** test this route out */}
+          <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />
           <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/category/:category' exact component={Category} />
@@ -165,7 +173,7 @@ class SiteRoutes extends Component {
           {
             sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )
           }
-          <Route component={Page404} />
+          {(sitePages.length > 0 ) ?  <Route component={Page404} /> : ''}
         </Switch>
         <Footer />
       </Router>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import { Helmet } from 'react-helmet';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import Head from '../../components/Head/archive';

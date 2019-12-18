@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
-import { makeTitle, sumbitSearchForm } from '../../utils/helpers';
+import { makeTitle } from '../../utils/helpers';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
@@ -19,18 +19,8 @@ class Archives extends Component {
       trending: [],
       pageNums: [],
       currentPage: '',
-      searchTerm: '',
-      allPractices: [],
-      allAttorneys: [],
-      allCategories: [],
       breadCrumb: [],
       categorySlug: '',
-      t: {
-        keyword: '',
-        attorney: '',
-        practice: '',
-        category: '',
-      },
       spinner: false,
     };
 
@@ -105,30 +95,6 @@ class Archives extends Component {
             const insight = [...data.latest, ...data.archives];
             this.setState({ insight });
           });
-      })
-      .then(() => {
-        // practices
-        fetch(`${process.env.API_URL}/wp-json/attorney-search/practices`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allPractices: data });
-          });
-      })
-      .then(() => {
-        // attorneys
-        fetch(`${process.env.API_URL}/wp-json/attorney-search/attorneys`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allAttorneys: data });
-          });
-      })
-      .then(() => {
-        // categories
-        fetch(`${process.env.API_URL}/wp-json/wp/v2/categories?per_page=100`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allCategories: data });
-          });
       });
   }
 
@@ -140,10 +106,6 @@ class Archives extends Component {
       insight,
       trending,
       pageNums,
-      searchTerm,
-      allPractices,
-      allAttorneys,
-      allCategories,
       breadCrumb,
       categorySlug,
       currentPage,
@@ -200,12 +162,6 @@ class Archives extends Component {
                 active={active}
                 /> )}
               sidebar={(<Sidebar
-                searchTerm={searchTerm}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
-                allPractices={allPractices}
-                allAttorneys={allAttorneys}
-                allCategories={allCategories}
                 trending={trending}
               />)}
             />
