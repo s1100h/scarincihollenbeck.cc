@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
 const FrontPageHead = (props) => {
 	const { seo } = props;
@@ -31,11 +32,11 @@ const FrontPageHead = (props) => {
 
 
 FrontPageHead.propTypes = {
-  seo: PropTypes.arrayOf(PropTypes.object),
+  seo: PropTypes.objectOf(PropTypes.string),
 };
 
 FrontPageHead.defaultProps = {
-  seo: [],
+  seo: {},
 };
 
 export default FrontPageHead;

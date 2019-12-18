@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
 const ArchiveHead = (props) => {
   const { seo } = props;
@@ -30,11 +31,11 @@ const ArchiveHead = (props) => {
 };
 
 ArchiveHead.propTypes = {
-  seo: PropTypes.arrayOf(PropTypes.object),
+  seo: PropTypes.objectOf(PropTypes.string),
 };
 
 ArchiveHead.defaultProps = {
-  seo: [],
+  seo: {},
 };
 
 export default ArchiveHead;

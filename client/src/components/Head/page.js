@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
-const PageHeader = (props) => {
+const PageHead = (props) => {
   const { seo } = props;
 
   return <Helmet>
@@ -30,11 +31,11 @@ const PageHeader = (props) => {
 };
 
 PageHead.propTypes = {
-  seo: PropTypes.arrayOf(PropTypes.object),
+  seo: PropTypes.objectOf(PropTypes.string),
 };
 
 PageHead.defaultProps = {
-  seo: [],
+  seo: {},
 };
 
 export default PageHead;

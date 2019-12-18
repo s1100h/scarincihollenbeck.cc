@@ -3,9 +3,9 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import SingleHead from '../../../components/Head/single';
-import SingleSubHeader from '../../../layouts/SingleSubHeader';
-import MiniSidebar from '../../../layouts/MiniSidebar';
+import SingleHead from '../../components/Head/post';
+import SingleSubHeader from '../../layouts/SingleSubHeader';
+import MiniSidebar from '../../layouts/MiniSidebar';
 import Header from './Header';
 import ArticleDetails from './ArticleDetails';
 import SocialShareSidebar from './SocialShareSidebar';
@@ -64,8 +64,6 @@ class Single extends Component {
           categories,
           eventDetails,
         } = data;
-
-        console.log(data);
 
         // check if its an event category
         const eventCat = categories.map(a => a.id).indexOf(99) > -1;

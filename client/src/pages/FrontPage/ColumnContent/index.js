@@ -6,7 +6,7 @@ import Categories from './Categories';
 
 
 const ColumnContent = (props) => {
-  const { onCategorySelectio, corePractices } = props;
+  const { onCategorySelection, corePractices } = props;
   
   return (
     <div className="row">

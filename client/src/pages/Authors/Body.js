@@ -74,7 +74,7 @@ const Body = (props) => {
                   >
                     <a
                       className="text-dark mt-2"
-                      href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
+                      href={`${window.location.origin}/author/${categorySlug}/page/${val}/`}
                     >
                       {val}
                     </a>
@@ -94,7 +94,7 @@ const Body = (props) => {
                   >
                     <a
                       className="text-dark"
-                      href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
+                      href={`${window.location.origin}/author/${categorySlug}/page/${val}/`}
                     >
                       {val}
                     </a>
@@ -106,7 +106,7 @@ const Body = (props) => {
               <li className="ml-1">
                 <a
                   className="text-dark"
-                  href={`${window.location.origin}/archives/${categorySlug}/page/${next}/`}
+                  href={`${window.location.origin}/author/${categorySlug}/page/${next}/`}
                   aria-label="next link"
                 >
                   <i className="fas fa-angle-double-right" aria-hidden="true" />

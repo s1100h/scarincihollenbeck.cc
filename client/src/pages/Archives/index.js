@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import { makeTitle } from '../../utils/helpers';
+import ArchiveHead from '../../components/Head/archive';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
@@ -119,33 +120,12 @@ class Archives extends Component {
     const active = (typeof cp[cp.length - 1] === 'number') ? cp[cp.length - 1] : 1;
      const seo = {
        title : `Scarinci Hollenbeck - ${categorySlug} Content Archvies`,
-       metaDescription: `Scarinci Hollenbeck contains a comprehensive archive of legal articles of blogs containing information on ${categorySlug}, please feel free to search Scarinci Hollenbeck archives for more information.`
+       metaDescription: `Scarinci Hollenbeck contains a comprehensive archive of legal articles of blogs containing information on ${categorySlug}, please feel free to search Scarinci Hollenbeck archives for more information.`,
+       canonicalLink: window.location.href,
      };
     return (
       <div>
-        <Helmet>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.metaDescription}/>
-          <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
-          <link rel="canonical" href={window.location.href} />
-          <meta property="og:locale" content="en_US" />
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={seo.title} />
-          <meta property="og:description" content={seo.metaDescription} />
-          <meta property="og:url" content={window.location.href} />
-          <meta property="og:site_name" content={seo.title} />
-          <meta property="article:publisher" content="https://www.facebook.com/ScarinciHollenbeck/" />
-          <meta property="og:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-          <meta property="og:image:secure_url" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-          <meta property="og:image:width" content="750" />
-          <meta property="og:image:height" content="350" />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:description" content={seo.metaDescription} />
-          <meta name="twitter:title" content={seo.title} />
-          <meta name="twitter:site" content="@S_H_Law" />
-          <meta name="twitter:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-          <meta name="twitter:creator" content="@S_H_Law" /> 
-        </Helmet>
+        <ArchiveHead seo={seo} />
         {
           (!spinner) ? (
             <ArchiveLayout

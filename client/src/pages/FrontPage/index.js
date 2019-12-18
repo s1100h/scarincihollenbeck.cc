@@ -21,7 +21,7 @@ class FrontPage extends Component {
       searchTerm: '',
       posts: [],
       locations: [],
-      seo: [],
+      seo: {},
       corePractices: [],
     };
     this.onChange = this.onChange.bind(this);
@@ -95,12 +95,14 @@ class FrontPage extends Component {
       locations,
       seo,
       corePractices,
+      searchTerm,
     } = this.state;
     
     const sortedLocations = sortByKey(locations, 'id');
     const sortedPosts = sortByKey(posts, 'date');
 
     return (
+      <div>
         <FrontPageHead seo={seo}/>
          <Header
           searchTerm={searchTerm}

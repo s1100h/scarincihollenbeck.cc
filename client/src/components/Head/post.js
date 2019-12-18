@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
 const PostHead = (props) => {
   const { seo } = props;
@@ -30,11 +31,11 @@ const PostHead = (props) => {
 };
 
 PostHead.propTypes = {
-  seo: PropTypes.arrayOf(PropTypes.object),
+  seo: PropTypes.objectOf(PropTypes.string),
 };
 
 PostHead.defaultProps = {
-  seo: [],
+  seo: {},
 };
 
 export default PostHead;

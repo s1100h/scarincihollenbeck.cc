@@ -1,6 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
-import Search from '../../components/Search';
+import Search from '../../../components/Search';
 import AboutFirm from './AboutFirm';
 import TrendingStories from './TrendingStories';
 

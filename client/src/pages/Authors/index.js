@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import { makeTitle } from '../../utils/helpers';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
-import ArchiveHeader from '../../components/Head/archive';
+import ArchiveHead from '../../components/Head/archive';
 import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
 import Body from './Body';
@@ -40,7 +40,7 @@ class Author extends Component {
       page = pageNum;
       breadCrumb[1] = pageNum;
     };
-
+    console.log(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`)
     this.setState({ breadCrumb, categorySlug: author, currentPage: page, spinner: true }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`, author);
     });
@@ -90,7 +90,6 @@ class Author extends Component {
             this.setState({ events });
           });
       })
-
       .then(() => {
         // insights
         fetch(`${process.env.API_URL}/wp-json/category/posts/law-firm-insights`)
@@ -98,30 +97,6 @@ class Author extends Component {
           .then((data) => {
             const insight = [...data.latest, ...data.archives];
             this.setState({ insight });
-          });
-      })
-      .then(() => {
-        // practices
-        fetch(`${process.env.API_URL}/wp-json/attorney-search/practices`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allPractices: data });
-          });
-      })
-      .then(() => {
-        // attorneys
-        fetch(`${process.env.API_URL}/wp-json/attorney-search/attorneys`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allAttorneys: data });
-          });
-      })
-      .then(() => {
-        // categories
-        fetch(`${process.env.API_URL}/wp-json/wp/v2/categories?per_page=100`)
-          .then(res => res.json())
-          .then((data) => {
-            this.setState({ allCategories: data });
           });
       });
   }
@@ -133,10 +108,6 @@ class Author extends Component {
       events,
       insight,
       pageNums,
-      searchTerm,
-      allPractices,
-      allAttorneys,
-      allCategories,
       breadCrumb,
       categorySlug,
       currentPage,
@@ -155,7 +126,7 @@ class Author extends Component {
     const seo = {
       title: `Attorney ${(bio.length > 0) ? bio[0].name : ''} Blog Posts & Articles`,
       metaDescription: `Welcome to Scarinci Hollenbeck here you will find the latest articles from the author ${(bio.length > 0) ? bio[0].name : ''}. `,
-      canonicalLinks: window.location.href;
+      canonicalLinks: window.location.href,
     };
 
     return (
