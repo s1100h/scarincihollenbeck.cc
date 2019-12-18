@@ -76,28 +76,28 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  1. Refactor all API routes to have seo.title, seo.metaDescription, seo.canonicalLink
- *  2. Refactor all pages to use common components and layouts -- SingleAdmin
- *  3. Add Head component to each Page with seo as props
+ *  1. Refactor all pages to use common components and layouts -- SingleAdmin
+ *  2. Add Head component to each Page with seo as props
+ *  3. Set each page to pull seo data from updata WP Rest API routes
  *  4. Update each Rest Route to have a Structured Data information
  *  5. Add AMP component to Posts
- *  6. Set up sitemap xml
- *  8. Add feature to allow Google Analytics for pages to Footer 
- *  9. Add fadein class from animate.css to each class, so the content fades in when the page loads
- * 10. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
- * 
- * 
+ *  6. Add fadein class from animate.css to each class, so the content fades in when the page loads
+ *  7. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
+ *  8. Add new SEO-optimized components (Description Text, Search) to Category Page
  * 
  * To Do (Webpack, Express API & Web Worker)
  * ==========================================
  *  1. Refactor integrating PWA (webpack 4, react-router)
- *  2. Make sure that worker/api code is a solution to GT Metrix issues
- *  3. Enable webpack 4 to be a solution for GT Metrix & Google Page speed issues 
+ *  2. Enable webpack 4 to be a solution for GT Metrix & Google Page speed issues 
  * 
  *  Known Bugs:
  * ========================================
  *  1. Dropdown menu attorney sidebar messed up
- *  2. Front page news posts not appearing
+ * 
+ * To Do (Pre-Production Push)
+ * =======================================
+ *  1. Set up sitemap xml
+ *  2. Add feature to allow Google Analytics for pages to Footer 
  * 
  */
 
