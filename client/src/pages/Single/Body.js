@@ -1,4 +1,9 @@
 import React from 'react';
+import { createMarkup } from '../../utils/helpers';
+import ArticleDetails from './ArticleDetails';
+import SocialShareFooter from './SocialShareFooter';
+import AuthorBio from './AuthorBio';
+import ContactForm from './ContactForm';
 import PropTypes from 'prop-types';
 
 
@@ -7,7 +12,9 @@ const Body = (props) => {
 		firstFeaturedImg,
 		bodyContent,
 		author,
-		eventCat
+    eventCat,
+    date,
+    title
 	} = props;
 
 	return(

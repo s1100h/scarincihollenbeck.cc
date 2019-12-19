@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { makeTitle } from '../../utils/helpers';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
-import ArchiveHead from '../../components/Head/archive';
+import SearchHead from '../../components/Head/search';
 import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
 import Body from './Body';
@@ -13,7 +13,7 @@ class Search extends Component {
     super(props);
     this.state = {
       term: '',
-      results: [0],
+      results: [],
       news: [],
       events: [],
       insight: [],
@@ -22,6 +22,7 @@ class Search extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
+      spinner: false,
     };
 
     this.getPosts = this.getPosts.bind(this);
@@ -40,8 +41,8 @@ class Search extends Component {
       page = 1;
       breadCrumb = [categorySlug, page];
     }
-        
-    this.setState({ breadCrumb, categorySlug, currentPage: page }, () => {
+    console.log(`${process.env.API_URL}/wp-json/search/query/${categorySlug}/${page}`)
+    this.setState({ breadCrumb, categorySlug, currentPage: page, spinner: true }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/search/query/${categorySlug}/${page}`);
     });
   }
@@ -53,7 +54,7 @@ class Search extends Component {
         const {
           pages, results, posts, term,
         } = data;
-        this.setState({ results, trending: posts, term });
+        this.setState({ results, trending: posts, term, spinner: false });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);
@@ -102,6 +103,7 @@ class Search extends Component {
       categorySlug,
       currentPage,
       term,
+      spinner,
     } = this.state;
 
     // pagination set up
@@ -110,10 +112,14 @@ class Search extends Component {
     const cp = window.location.href.split('/').filter(a => a !== '');
     const active = (typeof cp[cp.length - 1] === 'number') ? cp[cp.length - 1] : 1;
 
+    const seo  = {
+      title: `You searched for ${categorySlug} | Scarinci Hollenbeck`,
+    }
+
 
     return (
       <div>
-        <ArchiveHead seo={seo} />
+        <SearchHead seo={seo} />
         {
           (!spinner) ? (
             <ArchiveLayout
@@ -130,8 +136,7 @@ class Search extends Component {
                 active={active}
                 /> )}
               sidebar={(<Sidebar
-                bio={bio}
-                practices={practices}
+                trending={trending}
               />)}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />

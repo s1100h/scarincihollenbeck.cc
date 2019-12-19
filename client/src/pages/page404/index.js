@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import FullWidth from '../../layouts/FullWidth';
+import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import './index.scss';
 import cityBckGroundImg from './citybackground.jpg';
@@ -33,8 +34,16 @@ class Page404 extends Component {
 
   render() {
     const { searchTerm } = this.state;
+
+    const seo = {
+      title: 'Page Not Found | Scarinci Hollenbeck',
+      metaDescription: 'Sorry, it looks this like this page no longer exists on scarincihollenbeck.com',
+      canonicalLink: '/'
+    };
+    
     return (
       <div>
+        <PageHead seo={seo} />
         <SingleSubHeader 
           title="404: Resource Not Found"
           subtitle="Sorry, the page you are looking for cannot be found."

@@ -21,6 +21,8 @@ class Archives extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
+      seo: {},
+      spinner: false
     };
   }
 
@@ -35,7 +37,7 @@ class Archives extends Component {
       breadCrumb[1] = pageNum;
     }
 
-    this.setState({ breadCrumb, categorySlug, currentPage: page }, () => {
+    this.setState({ breadCrumb, categorySlug, currentPage: page, spinner: true }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/quick-news/posts/${page}`);      
     });
   }
@@ -57,8 +59,8 @@ class Archives extends Component {
     fetch(url)
       .then(res => res.json())
       .then((data) => {
-        const { pages, results, posts } = data;
-        this.setState({ results, trending: posts });
+        const { pages, results, posts, seo } = data;
+        this.setState({ results, trending: posts, seo, spinner: false });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);
@@ -106,6 +108,8 @@ class Archives extends Component {
       breadCrumb,
       categorySlug,
       currentPage,
+      seo,
+      spinner
     } = this.state;
 
     // pagination set up
@@ -133,8 +137,7 @@ class Archives extends Component {
                 active={active}
                 /> )}
               sidebar={(<Sidebar
-                bio={bio}
-                practices={practices}
+                trending={trending}
               />)}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const PostHead = (props) => {
   const { seo } = props;
-
+  console.log(seo.tags);
   return <Helmet>
     <title>{seo.title}</title>
     <meta name="description" content={seo.metaDescription}/>
@@ -14,24 +14,32 @@ const PostHead = (props) => {
     <meta property="og:type" content="article" />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.metaDescription} />
-    <meta property="og:url" content={seo.canonicalLink} />
-    <meta property="og:site_name" content={seo.title} />
+    <meta property="og:url" content={`${window.location.href}/${seo.canonicalLink}`} />
+    <meta property="og:site_name" content="Scarinci Hollenbeck" />
     <meta property="article:publisher" content="https://www.facebook.com/ScarinciHollenbeck/" />
-    <meta property="og:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-    <meta property="og:image:secure_url" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-    <meta property="og:image:width" content="750" />
-    <meta property="og:image:height" content="350" />
+    {(seo.tags !== undefined && seo.tags.length > 0) ? seo.tags.map(t => <meta key={t} property="article:tag" content={t} />) : ''} 
+    <meta property="article:published_time" content={seo.publishedDate} />
+    <meta property="article:modified_time" content={seo.updatedDate} />
+     <meta property="og:updated_time" content={seo.updatedDate} />
+    <meta property="og:image" content={seo.featuredImg} />
+    <meta property="og:image:secure_url" content={`${window.location.href}/${seo.canonicalLink}`} />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="150" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content={seo.metaDescription} />
     <meta name="twitter:title" content={seo.title} />
     <meta name="twitter:site" content="@S_H_Law" />
     <meta name="twitter:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-    <meta name="twitter:creator" content="@S_H_Law" />
+    <meta name="twitter:creator" content="@S_H_Law" /> 
+
   </Helmet>
 };
 
 PostHead.propTypes = {
-  seo: PropTypes.objectOf(PropTypes.string),
+  seo: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])),
 };
 
 PostHead.defaultProps = {

@@ -3,19 +3,15 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import SingleHead from '../../components/Head/post';
+import PostHead from '../../components/Head/post';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
-import MiniSidebar from '../../layouts/MiniSidebar';
-import Header from './Header';
-import ArticleDetails from './ArticleDetails';
-import SocialShareSidebar from './SocialShareSidebar';
-import SocialShareFooter from './SocialShareFooter';
-import AuthorBio from './AuthorBio';
-import ContactForm from './ContactForm';
+import ThreeColMiniSidebar from '../../layouts/ThreeColMiniSidebar';
+import Body from './Body';
 import Sidebar from './Sidebar';
 import EventSidebar from './EventSidebar';
-import { createMarkup } from '../../utils/helpers';
+import SocialShareSidebar from './SocialShareSidebar';
 import { setUserCookie } from './usercookie';
+import BlogHeader from './blogheader.jpg';
 import './index.scss';
 
 class Single extends Component {
@@ -29,10 +25,11 @@ class Single extends Component {
       eventDetails: [],
       author: [],
       attorneys: [],
-      seo: [],
+      seo: {},
       show: false,
       triggerModal: true,
       eventCat: false,
+      spinner: false,
     };
 
     this.fetchPostData = this.fetchPostData.bind(this);
@@ -44,9 +41,12 @@ class Single extends Component {
 
   componentDidMount() {
     const { parent, child, post } = this.props.match.params;
-    this.fetchPostData(`${process.env.API_URL}/wp-json/single/post/${post}`);
-    // set timeout to trigger
-    this.triggerSubscription();
+    this.setState({ spinner:true }, () => {
+      this.fetchPostData(`${process.env.API_URL}/wp-json/single/post/${post}`);
+      // set timeout to trigger
+      this.triggerSubscription();
+    });
+   
   }
 
 
@@ -63,6 +63,7 @@ class Single extends Component {
           title,
           categories,
           eventDetails,
+          seo,
         } = data;
 
         // check if its an event category
@@ -78,6 +79,8 @@ class Single extends Component {
           title,
           eventCat,
           eventDetails,
+          seo,
+          spinner:false,
         });
       });
   }
@@ -137,32 +140,49 @@ class Single extends Component {
       eventCat,
       eventDetails,
       seo,
+      spinner,
     } = this.state;
 
 
-    const subTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
+    const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
+    const subTitle = (extractSubTitle !== null)  ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : ''
     const featuredImg = content.match(/<figure(.*?)>(.*?)<\/figure>/g);
     const firstFeaturedImg = (featuredImg !== null) ? featuredImg[0] : '';
     const bodyContent = content.replace(firstFeaturedImg, '').replace(subTitle, '');
 
+    console.log('eventCat');
+    console.log(eventCat);
+
     return (
       <div>
-        <SingleHead seo={seo} />
-        <SingleSubHeader
-          image={adminArchiveBckGround}
-          title={title}
-          subTitle={subTitle}
-          />
-          <SocialShareSidebar printScreen={this.printScreen} title={title} />
+        <PostHead seo={seo} />
+          { (subTitle !== null) ? (
+            <SingleSubHeader
+              image={BlogHeader}
+              title={title}
+              subtitle={subTitle}
+            />
+            ): ''
+          }
+          
           {(!spinner) ? (
-            <MiniSidebar
+            <ThreeColMiniSidebar
               body={(<Body
                 firstFeaturedImg={firstFeaturedImg}
                 bodyContent={bodyContent}
                 author={author}
                 eventCat={eventCat}
+                title={title}
+                author={author}
+                date={date}
               />)}
-              sideBar={(eventCat) ? (
+              OneSidebar={(
+                <SocialShareSidebar
+                  printScreen={this.printScreen}
+                  title={title}
+                />
+              )}
+              TwoSidebar={(eventCat === true) ? (
                 <EventSidebar
                   eventDetails={eventDetails}
                   attorneys={attorneys}

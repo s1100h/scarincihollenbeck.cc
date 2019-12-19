@@ -1,0 +1,24 @@
+.ft-18 {
+  font-size: 17px !important;
+}
+@media (min-width: 0px) and (max-width: 500px) {
+  .city-background {
+    height: 800px;
+  }
+  .bg-black {
+    min-height: 550px;
+  }
+}
+@media (min-width: 500px) and (max-width: 769px) {
+  .city-background {
+    height: 870px;
+  }
+  .bg-black {
+    min-height: 700px;
+  }
+}
+@media (min-width: 1200px) {
+  .max-width-container {
+    max-width: 920px;
+  }
+}
