@@ -6,7 +6,7 @@ import './index.scss';
 
 
 const MultiSubHeader = (props) => {
-  const { profile, infoCard, image } = props;
+  const { profile, infoCard, image, height } = props;
   
   const HeaderBackground = styled.div`
   background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${image}) no-repeat 50%;
@@ -23,6 +23,7 @@ const BgBlack = styled.div`
   border-radius: 4px;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
+  max-height: ${height};
 `;
 
   return (

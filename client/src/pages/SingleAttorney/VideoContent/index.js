@@ -12,7 +12,6 @@ const VideoContent = (props) => {
     content,
   } = props;
 
-  console.log(content);
 
   return (
     <div className={(currentTab === tabTitle) ? 'tab-pane active' : 'tab-pane'} id={tabTitle} role="tabpanel" aria-labelledby={`nav-${tabTitle}-tab`}>

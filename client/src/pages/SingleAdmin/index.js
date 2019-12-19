@@ -65,6 +65,7 @@ class AdminBiography extends Component {
               name={name}
             />
           )}
+          height={'325px'}
           infoCard={(
             <InfoCard
               name={name}

@@ -161,7 +161,7 @@ class Single extends Component {
               image={BlogHeader}
               title={title}
               subtitle={subTitle}
-            />
+           />
             ): ''
           }
           

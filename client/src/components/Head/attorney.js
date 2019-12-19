@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
-const AdminHead = (props) => {
+const AttorneyHead = (props) => {
   const { seo } = props;
 
   return <Helmet>
@@ -10,12 +10,12 @@ const AdminHead = (props) => {
     <meta name="description" content={seo.metaDescription}/>
     <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
     <link rel="canonical" href={`${window.location.origin}/${seo.canonicalLink}`}/>
-    <meta property="og:title" content={seo.title} />
-    <meta property="og:site_name" content="Scarinci Hollenbeck" />
+    <meta property="og:title" content={seo.title}/>
+    <meta property="og:site_name" content="Scarinci Hollenbeck"/>
     <meta property="og:type" content="profile"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:url" content={`${window.location.origin}/${seo.canonicalLink}`}/>
-    <meta property="og:image" content={seo.featuredImg} />
+    <meta property="og:image" content={seo.featuredImg}/>
     <meta property="og:image:secure_url" content={seo.featuredImg}/>
     <meta property="og:image:width" content={seo.imgWidth}/>
     <meta property="og:image:height" content={seo.imgHeight}/>
@@ -31,15 +31,15 @@ const AdminHead = (props) => {
   </Helmet>
 };
 
-AdminHead.propTypes = {
+AttorneyHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ])),
 };
 
-AdminHead.defaultProps = {
+AttorneyHead.defaultProps = {
   seo: {},
 };
 
-export default AdminHead ;
+export default AttorneyHead ;

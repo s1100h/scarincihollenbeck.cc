@@ -76,6 +76,7 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
+ *  .9 Finish Reactor components to use layouts / Head component -- SingleCareer
  *  1. Update each Rest Route to have a Structured Data information && proper OG information
  *  2. Add AMP component to Posts
  *  3. Add fadein class from animate.css to each class, so the content fades in when the page loads

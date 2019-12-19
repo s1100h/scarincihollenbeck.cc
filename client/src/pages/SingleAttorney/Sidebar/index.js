@@ -6,7 +6,6 @@ import './index.scss';
 
 const SidebarContent = (props) => {
   const { title, content, show } = props;
-  console.log(content);
 
   return (
     <div>
