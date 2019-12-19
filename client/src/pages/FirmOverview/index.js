@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
+import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
 import { createMarkup } from '../../utils/helpers';
 import Members from './Members';
@@ -19,6 +20,7 @@ class FirmOverview extends Component {
       mainTabs: [],
       additionalInfo: [],
       members: {},
+      seo: {},
       spinner:false,
     };
   }
@@ -33,9 +35,10 @@ class FirmOverview extends Component {
           additionalInfo,
           members,
           mainContent,
+          seo,
         } = data;
 
-        this.setState({ mainTabs, additionalInfo, members, mainContent, spinner: false  });
+        this.setState({ mainTabs, additionalInfo, members, seo, mainContent, spinner: false  });
       });
   }
 
@@ -47,41 +50,15 @@ class FirmOverview extends Component {
       members,
       mainContent,
       spinner,
+      seo,
     } = this.state;
 
     const subHeaderContent = mainContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
-    const bodyContent = mainContent.replace(subHeaderContent, '');
-
-    const seo = {
-      title: 'Firm Overview - Scarinci Hollenbeck',
-      metaDescription: 'With a growing practice of more than 65 experienced attorneys, Scarinci Hollenbeck is a regional alternative to a National 250 law firm.'
-    };
+    const bodyContent = mainContent.replace(subHeaderContent, '');   
 
     return (
       <div>
-        <Helmet>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.metaDescription}/>
-          <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
-          <link rel="canonical" href={window.location.href} />
-          <meta property="og:locale" content="en_US" />
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={seo.title} />
-          <meta property="og:description" content={seo.metaDescription} />
-          <meta property="og:url" content={window.location.href} />
-          <meta property="og:site_name" content={seo.title} />
-          <meta property="article:publisher" content="https://www.facebook.com/ScarinciHollenbeck/" />
-          <meta property="og:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-          <meta property="og:image:secure_url" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-          <meta property="og:image:width" content="750" />
-          <meta property="og:image:height" content="350" />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:description" content={seo.metaDescription} />
-          <meta name="twitter:title" content={seo.title} />
-          <meta name="twitter:site" content="@S_H_Law" />
-          <meta name="twitter:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-          <meta name="twitter:creator" content="@S_H_Law" /> 
-        </Helmet>
+        <PageHead seo={seo} />
         <SingleSubHeader
           title="Firm Overview"
           subtitle={subHeaderContent}
@@ -93,8 +70,7 @@ class FirmOverview extends Component {
           {
             (!spinner) ?  (
              <div>
-               {
-                  mainTabs.map(mt => (
+               { mainTabs.map((mt) => (
                     <div className="w-100 mt-4 px-0" key={mt.title}>
                       <div className="line-header">
                         <h3>{mt.subTitle}</h3>
@@ -108,8 +84,7 @@ class FirmOverview extends Component {
                 <Members title="Partners" members={members.partners} />
                 <Members title="Directors" members={members.admin} />
               </div>
-              {
-                additionalInfo.map(ai => (
+              { additionalInfo.map(ai => (
                   <div className="w-100 mt-4 px-0" key={ai.title}>
                     <h4 className="bg-light-gray">{ai.title}</h4>
                     <div className="lead mt-4 body-text" dangerouslySetInnerHTML={createMarkup(ai.content)} />

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import { makeTitle } from '../../utils/helpers';
 import ArchiveHead from '../../components/Head/archive';
@@ -61,8 +60,8 @@ class Archives extends Component {
     fetch(url)
       .then(res => res.json())
       .then((data) => {
-        const { pages, results, posts } = data;
-        this.setState({ results, trending: posts, spinner: false });
+        const { pages, results, posts, seo } = data;
+        this.setState({ results, trending: posts, seo, spinner: false });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);

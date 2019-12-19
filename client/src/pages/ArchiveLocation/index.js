@@ -20,7 +20,7 @@ class LocationPortal extends Component {
       currentOfficePractice: [],
       offices: [],
       posts: [],
-      seo: [],
+      seo: {},
       spinner: false, 
     };
     this.getLocationDirections = this.getLocationDirections.bind(this);
@@ -30,7 +30,11 @@ class LocationPortal extends Component {
     this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/location-portal/offices`)
       .then(res => res.json())
-      .then(offices => this.setState({ offices, spinner: false }))
+      .then((data) => {
+        const offices = data.offices;
+        const seo = data.seo;
+        this.setState({ offices, seo, spinner: false })
+      })
       .then(() => {
         const { currentOffice } = this.state;
             this.fetchOfficeData(currentOffice);

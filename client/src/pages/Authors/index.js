@@ -25,6 +25,7 @@ class Author extends Component {
       breadCrumb: [],
       categorySlug: '',     
       spinner: false,
+      seo: {},
     };
 
     this.getPosts = this.getPosts.bind(this);
@@ -40,7 +41,6 @@ class Author extends Component {
       page = pageNum;
       breadCrumb[1] = pageNum;
     };
-    console.log(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`)
     this.setState({ breadCrumb, categorySlug: author, currentPage: page, spinner: true }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`, author);
     });
@@ -50,7 +50,7 @@ class Author extends Component {
     fetch(url)
       .then(res => res.json())
       .then((data) => {
-        const { pages, results, term } = data;
+        const { pages, results, term, seo } = data;
         this.setState({ term, results, spinner: false });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
@@ -115,6 +115,7 @@ class Author extends Component {
       bio,
       practices,
       spinner,
+      seo
     } = this.state;
 
     // pagination set up
@@ -123,11 +124,6 @@ class Author extends Component {
     const cp = window.location.href.split('/').filter(a => a !== '');
     const active = (typeof cp[cp.length - 1] === 'number') ? cp[cp.length - 1] : 1;
 
-    const seo = {
-      title: `Attorney ${(bio.length > 0) ? bio[0].name : ''} Blog Posts & Articles`,
-      metaDescription: `Welcome to Scarinci Hollenbeck here you will find the latest articles from the author ${(bio.length > 0) ? bio[0].name : ''}. `,
-      canonicalLinks: window.location.href,
-    };
 
     return (
       <div>

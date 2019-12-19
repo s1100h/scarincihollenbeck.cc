@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
-import Head from '../../components/Head/archive';
+import ArchiveHead from '../../components/Head/archive';
 import AttorneyCard from '../../components/AttorneyCard';
 import adminArchiveBckGround from './attorney-archive-header.jpg';
 import './index.scss';
@@ -13,7 +13,7 @@ class AdminArchive extends Component {
     super(props);
     this.state = {
       admins: [],
-      seo:[],
+      seo:{},
       spinner: false,
     };
   }

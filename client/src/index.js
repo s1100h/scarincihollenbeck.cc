@@ -76,14 +76,12 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  1. Refactor all pages to use common components and layouts -- SingleAdmin
- *  2. Add Head component to each Page with seo as props
- *  3. Set each page to pull seo data from updata WP Rest API routes
- *  4. Update each Rest Route to have a Structured Data information
- *  5. Add AMP component to Posts
- *  6. Add fadein class from animate.css to each class, so the content fades in when the page loads
- *  7. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
- *  8. Add new SEO-optimized components (Description Text, Search) to Category Page
+ *  1. Refactor all pages to use common components and layouts -- SingleAdmin // Left off on Page404 for Helemt & seo props update
+ *  2. Update each Rest Route to have a Structured Data information
+ *  3. Add AMP component to Posts
+ *  4. Add fadein class from animate.css to each class, so the content fades in when the page loads
+ *  5. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
+ *  6. Add new SEO-optimized components (Description Text, Search) to Category Page
  * 
  * To Do (Webpack, Express API & Web Worker)
  * ==========================================

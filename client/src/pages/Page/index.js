@@ -2,11 +2,10 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
+import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
-import PageHead from '../../components/Head/page';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import { createMarkup } from '../../utils/helpers';
@@ -25,6 +24,7 @@ class Page extends Component {
       show: false,
       triggerModal: true,
       spinner:false,
+      seo: {},
     };
 
     this.fetchPostData = this.fetchPostData.bind(this);
@@ -51,8 +51,8 @@ class Page extends Component {
     fetch(url)
       .then(res => res.json())
       .then((data) => {
-        const { content, title } = data;
-        this.setState({ title, content, spinner: false });
+        const { content, title, seo } = data;
+        this.setState({ title, content, seo, spinner: false });
     });
   }
 
@@ -112,7 +112,9 @@ class Page extends Component {
       posts,
       show,
       spinner,
+      seo,
     } = this.state;
+
 
     return (
       <div>
@@ -128,16 +130,10 @@ class Page extends Component {
             <LargeSidebar
               body={(<Body content={content} />)}
               sidebar={(<Sidebar
-                searchTerm={searchTerm}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
                 posts={posts}
                 hideSubscription={this.hideSubscription}
                 show={show}
                 toggleModal={this.toggleModal}
-                allPractices={allPractices}
-                allAttorneys={allAttorneys}
-                allCategories={allCategories}
               /> )}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />

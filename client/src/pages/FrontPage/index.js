@@ -60,7 +60,7 @@ class FrontPage extends Component {
         fetch(`${process.env.API_URL}/wp-json/location-portal/offices`)
           .then(res => res.json())
           .then((data) => {
-            this.setState({ locations: data });
+            this.setState({ locations: data.offices });
           })
       })
       .then(() => {
