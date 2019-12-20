@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const AdminHead = (props) => {
   const { seo } = props;
+  console.log(seo.addressLocality);
 
   return <Helmet>
     <title>{seo.title}</title>
@@ -28,14 +29,50 @@ const AdminHead = (props) => {
     <meta name="twitter:site" content="@S_H_Law" />
     <meta name="twitter:image" content={seo.featuredImg} />
     <meta name="twitter:creator" content="@S_H_Law" />
-    {/** JSON-D content -- Person */}
+    <script type="application/ld+json">
+      {
+        `
+        {
+          "@context": "http://www.schema.org",
+          "@type": "Person",
+          "@id": ${window.location.origin}/${seo.canonicalLink},
+          "name": ${seo.name},
+          "alternateName": ${seo.title},
+          "nationality": "American",
+          "Description": ${seo.metaDescription},
+        "disambiguatingDescription": ${seo.metaDescription},
+        "jobTitle": ${seo.jobPosition},
+        "worksFor": [
+          {
+            "@type": "Organization",
+            "name": "Scarinci Hollenbeck, LLC",
+            "sameAs": [
+              "https://twitter.com/S_H_Law",
+              "https://www.facebook.com/ScarinciHollenbeck/",
+              "https://www.linkedin.com/company/scarinci-hollenbeck-llc/",
+            ]
+          }
+        ],
+        "url": ${window.location.origin}/${seo.canonicalLink},
+        "image": ${seo.featuredImg},
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": ${seo.addressLocality},
+          "addressRegion": "NJ",
+          "addressCountry": "United States"
+        }
+      }
+        `
+      }
+    </script>
   </Helmet>
 };
 
 AdminHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.string)
   ])),
 };
 

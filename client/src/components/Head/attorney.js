@@ -28,7 +28,40 @@ const AttorneyHead = (props) => {
     <meta name="twitter:site" content="@S_H_Law" />
     <meta name="twitter:image" content={seo.featuredImg} />
     <meta name="twitter:creator" content="@S_H_Law" />
-    {/** https://jurisdigital.com/tools/schema-generator/ -- Attorneys */}
+    <script type="application/ld+json">
+      {
+        `
+        {
+          "@context": "http://schema.org",
+          "@type": "LegalService",
+          "name": seo.fullName,
+          "description": ${seo.metaDescription},
+          "url": ${window.location.origin}/${seo.canonicalLink},
+          "image": ${seo.featuredImg},
+          "priceRange": "$$$",
+          "telephone": "seo.phone",
+          "email": "seo.email",
+          "hasMap": "seo.map",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "seo.town",
+            "addressRegion": "seo.state",
+            "postalCode": "seo.zip",
+            "streetAddress": "seo.address"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "seo.lat",
+            "longitude": ",seo.long"
+          },
+          "sameAs": [
+            "seo.socialMedia",
+          ],
+          "openingHours": "Mo,Tu,We,Th,Fr, 8:00-5:00"
+        }
+        `
+      }
+    </script>
   </Helmet>
 };
 
