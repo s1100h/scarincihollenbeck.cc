@@ -76,8 +76,7 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  .9 Finish Single Practice -- Change up Components & Add Helment (Service OG) & add Trending Stories to SingleCareer
- *  1. Update each Rest Route to have a Structured Data information && proper OG information
+ *  1. Update each Rest Route to have a Structured Data information -- Start w/ admin completed Practices
  *  2. Add AMP component to Posts
  *  3. Add fadein class from animate.css to each class, so the content fades in when the page loads
  *  4. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
@@ -95,6 +94,7 @@ import './index.scss';
  *  3. Fix News & Events Scroller front page (break out into own component)
  *  4. Fix dropdown menu style on all practices page
  *  5. Add +/- to location tabs 
+ *  6. Make Tending Stories own Component 
  * 
  * To Do (Pre-Production Push)
  * =======================================

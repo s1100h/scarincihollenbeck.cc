@@ -184,7 +184,7 @@ class Page extends Component {
 
             />
           </div>
-        ): ' '}
+        ): <PulseLoader color="#D02422" loading={spinner} />}
       </div>
     );
   }

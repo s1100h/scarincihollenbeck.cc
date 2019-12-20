@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import AttorneyCard from '../../../components/AttorneyCard';
+
 import './index.scss';
 
 
 const RelatedAttorneys = (props) => {
   const { members, chair, handleLink } = props;
-
+  const attorneySlug = string => string.split('/attorneys/').pop();
+  console.log(chair);
   return (
     <span>
       {
@@ -21,23 +24,16 @@ const RelatedAttorneys = (props) => {
                 {
                   chair.map(v => (
                     <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
-                      <div className="attorney-card">
-                        <a href={v.link}>
-                          <img src={v.image} alt={v.name} />
-                        </a>
-                        <div className="attorney-card-body">
-                          <a href={v.link}>
-                            <p className="text-uppercase red-title mb-0 mt-2 small-excerpt"><strong>{v.name}</strong></p>
-                            <p className="mb-3 small-excerpt"><strong>{v.designation}</strong></p>
-                            <i className="fas fa-phone d-block mt---5 small-excerpt">
-                              <span className="proxima-thin">{` ${v.contact}`}</span>
-                            </i>
-                            <i className="fas fa-envelope d-block small-excerpt">
-                              <span className="proxima-thin">{` ${v.email}`}</span>
-                            </i>
-                          </a>
-                        </div>
-                      </div>
+                      <AttorneyCard 
+                        link={`/attorneys/${attorneySlug(v.link)}`}
+                        image={v.image}
+                        name={v.name}
+                        title={v.designation}
+                        number={v.contact}
+                        email={v.email}
+                        height={'109px'}
+                        width={'75%'}
+                      />
                     </div>
                   ))
                 }
@@ -67,23 +63,16 @@ const RelatedAttorneys = (props) => {
                 {
                   members.map(v => (
                     <div key={v.ID} className="w-45 float-left mr-4 mb-3">
-                      <div className="attorney-card">
-                        <a href={v.link}>
-                          <img src={v.image} alt={v.name} />
-                        </a>
-                        <div className="attorney-card-body">
-                          <a href={v.link}>
-                            <p className="text-uppercase red-title mb-0 mt-2 small-excerpt"><strong>{v.name}</strong></p>
-                            <p className={(v.designation.length >= 27) ? 'mb-3 smaller-excerpt' : 'mb-3 small-excerpt'}><strong>{v.designation}</strong></p>
-                            <i className="fas fa-phone d-block mt---5">
-                              <span className="proxima-thin">{` ${v.contact}`}</span>
-                            </i>
-                            <i className="fas fa-envelope d-block">
-                              <span className="proxima-thin">{` ${v.email}`}</span>
-                            </i>
-                          </a>
-                        </div>
-                      </div>
+                      <AttorneyCard 
+                        link={`/attorneys/${attorneySlug(v.link)}`}
+                        image={v.image}
+                        name={v.name}
+                        title={v.designation}
+                        number={v.contact}
+                        email={v.email}
+                        height={'109px'}
+                        width={'75%'}
+                      />
                     </div>
                   ))
                 }
