@@ -93,6 +93,8 @@ import './index.scss';
  *  1. Dropdown menu attorney sidebar messed up
  *  2. Fix links in the footer
  *  3. Fix News & Events Scroller front page (break out into own component)
+ *  4. Fix dropdown menu style on all practices page
+ *  5. Add +/- to location tabs 
  * 
  * To Do (Pre-Production Push)
  * =======================================

@@ -24,7 +24,9 @@ const OfficeData = (props) => {
       </Link>
       <div id={`${locationUrl(title)}`} className={(locationUrl(title) === currentOffice.replace(' ', '-')) ? 'collapse show' : 'collapse'}>
         <div className="off-white p-3">
-          <p className="mb-2" dangerouslySetInnerHTML={createMarkup(address)} />
+          <ul className="no-dots ml-0">
+            {address.map(a => <li key={a} className="mb-1">{a}</li>)}
+          </ul>
           <p className="mb-0"><i className="fas fa-phone"><span className="proxima-thin ft-18">{`  ${phone}`}</span></i></p>
           <p className="mb-2"><i className="fas fa-fax"><span className="proxima-thin ft-18">{`  ${fax}`}</span></i></p>
           <button type="button" className="red-title proxima-bold btn bg-transparent ml--10" onClick={() => getLocationDirections(shortName)}>

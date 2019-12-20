@@ -31,7 +31,7 @@ const PostHead = (props) => {
     <meta name="twitter:site" content="@S_H_Law" />
     <meta name="twitter:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
     <meta name="twitter:creator" content="@S_H_Law" /> 
-
+    {/** https://jsonld.com/blog-post/ -- Blog Post */}
   </Helmet>
 };
 

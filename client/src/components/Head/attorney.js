@@ -28,6 +28,7 @@ const AttorneyHead = (props) => {
     <meta name="twitter:site" content="@S_H_Law" />
     <meta name="twitter:image" content={seo.featuredImg} />
     <meta name="twitter:creator" content="@S_H_Law" />
+    {/** https://jurisdigital.com/tools/schema-generator/ -- Attorneys */}
   </Helmet>
 };
 

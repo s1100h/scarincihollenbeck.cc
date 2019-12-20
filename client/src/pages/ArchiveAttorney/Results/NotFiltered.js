@@ -28,7 +28,7 @@ const NotFiltered = (props) => {
   return (
     <div className="row result-container">
       <div className="col-sm-12 my-4">
-        <h3 className="red-title text-uppercase border-bottom">Managing Partners</h3>
+        <h3 className="red-title text-uppercase border-bottom mb-0">Managing Partners</h3>
       </div>
       {
       managingPartners.map(m => (
@@ -47,8 +47,8 @@ const NotFiltered = (props) => {
       ))
     }
       <div className="col-sm-12 my-4">
-        <h3 className="red-title text-uppercase border-bottom">Partners</h3>
-        <hr />
+        <h3 className="red-title text-uppercase border-bottom mb-0">Partners</h3>
+        
       </div>
       {
         partners.map(m => (
@@ -67,8 +67,8 @@ const NotFiltered = (props) => {
         ))
       }
       <div className="col-sm-12 my-4">
-        <h3 className="red-title text-uppercase border-bottom">Counsel</h3>
-        <hr />
+        <h3 className="red-title text-uppercase border-bottom mb-0">Counsel</h3>
+        
       </div>
       {
         counsel.map(m => (
@@ -87,8 +87,8 @@ const NotFiltered = (props) => {
         ))
       }
       <div className="col-sm-12 my-4">
-        <h3 className="red-title text-uppercase border-bottom">Of Counsel & Of Counsel Emeritus</h3>
-        <hr />
+        <h3 className="red-title text-uppercase border-bottom mb-0">Of Counsel & Of Counsel Emeritus</h3>
+        
       </div>
       {
         ofCounsel.map(m => (
@@ -107,8 +107,8 @@ const NotFiltered = (props) => {
         ))
       }
       <div className="col-sm-12 my-4">
-        <h3 className="red-title text-uppercase border-bottom">Senior Associates</h3>
-        <hr />
+        <h3 className="red-title text-uppercase border-bottom mb-0">Senior Associates</h3>
+        
       </div>
       {
         seniorAssociates.map(m => (
@@ -127,8 +127,8 @@ const NotFiltered = (props) => {
         ))
       }
       <div className="col-sm-12 my-4">
-        <h3 className="red-title text-uppercase border-bottom">Associates</h3>
-        <hr />
+        <h3 className="red-title text-uppercase border-bottom mb-0">Associates</h3>
+        
       </div>
       {
         associates.map(m => (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
 import { makeTitle } from '../../utils/helpers';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
-import SearchHead from '../../components/Head/search';
+import ArchivehHead from '../../components/Head/archive';
 import BreadCrumbs from './BreadCrumbs';
 import Sidebar from './Sidebar/';
 import Body from './Body';
@@ -41,7 +41,6 @@ class Search extends Component {
       page = 1;
       breadCrumb = [categorySlug, page];
     }
-    console.log(`${process.env.API_URL}/wp-json/search/query/${categorySlug}/${page}`)
     this.setState({ breadCrumb, categorySlug, currentPage: page, spinner: true }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/search/query/${categorySlug}/${page}`);
     });
@@ -119,7 +118,7 @@ class Search extends Component {
 
     return (
       <div>
-        <SearchHead seo={seo} />
+        <ArchivehHead seo={seo} />
         {
           (!spinner) ? (
             <ArchiveLayout

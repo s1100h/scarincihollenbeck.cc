@@ -27,6 +27,7 @@ const FrontPageHead = (props) => {
 		<meta name="twitter:creator" content="@S_H_Law" />
 		<meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
 		<meta name="google-site-verification" content="googlee1788c62f584220b" />
+    {/** https://jsonld.com/website/ -- Website */}
 	</Helmet>
 	};
 
