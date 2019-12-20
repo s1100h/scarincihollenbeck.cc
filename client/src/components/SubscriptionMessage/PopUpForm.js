@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shDiamond from '../../../images/sh-mini-diamond.png';
+import shDiamond from '../../images/sh-mini-diamond.png';
 import './index.scss';
 
 const checkboxes = [
@@ -109,6 +109,7 @@ class SubscriptionForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.hideSubscription = this.hideSubscription.bind(this);
   }
 
   handleChange(e) {
@@ -178,15 +179,28 @@ class SubscriptionForm extends Component {
       });
   }
 
+  hideSubscription() {
+    this.setState({ triggerModal: false }, () => {
+      // remove custom modal
+      const modal = document.getElementById('subscriptionModal');
+      modal.classList.remove('show');
+      modal.setAttribute('style', 'display:none');
+
+      // remove custom modal background
+      const modalBckGround = document.querySelector('.modal-backdrop');
+      modalBckGround.setAttribute('style', 'display:none');
+    });
+  }
+
   render() {
     const {
       email,
       message,
       lastName,
       firstName,
+      hideSubscription,
     } = this.state;
 
-    const { hideSubscription } = this.props;
 
 
     return (
@@ -232,7 +246,7 @@ class SubscriptionForm extends Component {
                 }
               </ul>
               <div className="modal-footer">
-                <button type="button" onClick={() => hideSubscription()} className="btn btn-secondary proxima-bold" data-dismiss="modal">Close</button>
+                <button type="button" onClick={() => this.hideSubscription()} className="btn btn-secondary proxima-bold" data-dismiss="modal">Close</button>
                 <input type="submit" className="btn btn-danger" value="Submit" />
               </div>
             </form>

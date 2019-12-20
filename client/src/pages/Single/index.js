@@ -150,9 +150,6 @@ class Single extends Component {
     const firstFeaturedImg = (featuredImg !== null) ? featuredImg[0] : '';
     const bodyContent = content.replace(firstFeaturedImg, '').replace(subTitle, '');
 
-    console.log('eventCat');
-    console.log(eventCat);
-
     return (
       <div>
         <PostHead seo={seo} />

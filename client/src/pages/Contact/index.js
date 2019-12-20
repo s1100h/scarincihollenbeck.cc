@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
-import Form from './Form';
+import ContactForm from '../../components/ContactForm';
 import contactHeaderBckGround from './citybackground.jpg';
 import './index.scss';
 
@@ -53,7 +53,7 @@ const Contact = () => {
             <h3 className="proxima-bold text-center mt-4"></h3>
             <h4 className="bg-light-gray">All other inquires please fill out the form below.</h4>
             <div className="w-75 mt-6">
-              <Form />
+              <ContactForm />
             </div>
           </div>
         </FullWidth>

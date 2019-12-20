@@ -6,16 +6,10 @@ import SubscriptionContent from './SubscriptionContent';
 
 const Sidebar = (props) => {
   const {
-    searchTerm,
-    onChange,
-    onSubmit,
     posts,
     hideSubscription,
     show,
     toggleModal,
-    allPractices,
-    allAttorneys,
-    allCategories,
   } = props;
 
   return (

@@ -42,18 +42,18 @@ class FrontPage extends Component {
           .then(res => res.json())
           .then((data) => {
             const posts = data.latest;
-            this.setState({ posts });
+            return posts;
           })
-      })
-      .then(() => {
-        // fetch latests firm events data 
-        fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
-          .then(res => res.json())
-          .then((data) => {
-            const posts = data.latest;
-            this.setState(prevState => ({ posts: prevState.posts.concat(posts) }));
-          });
-
+          .then((results) => {
+            fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
+              .then(res => res.json())
+              .then((data) => {
+                const ePosts = data.latest;
+                const fPosts = results;
+                const posts = [...results, ...ePosts];
+                this.setState({posts});
+              });
+          })
       })
       .then(() => {
         // fetch office locations
@@ -67,7 +67,7 @@ class FrontPage extends Component {
         fetch(`${process.env.API_URL}/wp-json/practice-portal/page`)
           .then(res => res.json())
           .then((data) => {
-            const cPractices = data.filter(p => p.category === 'Core Practices');
+            const cPractices = data.practices.filter(p => p.category === 'Core Practices');
             const corePractices = cPractices.map(cp => {
               return {
                 name: cp.title,
@@ -97,9 +97,9 @@ class FrontPage extends Component {
       corePractices,
       searchTerm,
     } = this.state;
-    
+  
     const sortedLocations = sortByKey(locations, 'id');
-    const sortedPosts = sortByKey(posts, 'date');
+    const sortedPosts = sortByKey(posts, 'date'); 
 
     return (
       <div>

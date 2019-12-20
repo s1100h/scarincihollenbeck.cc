@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
-import ContactForm from './ContactForm';
+import ContactForm from '../../components/ContactForm';
 
 const Body = (props) => {
   const { content } = props;

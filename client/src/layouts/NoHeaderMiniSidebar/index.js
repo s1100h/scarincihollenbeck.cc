@@ -3,7 +3,7 @@ import './index.scss';
 
 
 const NoHeaderMiniSidebar = (props) => {
-  const { body, sidebar, header } = props;
+  const { body, sidebar } = props;
 
   return (
   <div className="container mt-3">

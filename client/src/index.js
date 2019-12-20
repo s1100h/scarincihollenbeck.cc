@@ -76,7 +76,7 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  .9 Finish Reactor components to use layouts / Head component -- SingleCareer
+ *  .9 Finish Single Practice -- Change up Components & Add Helment (Service OG) & add Trending Stories to SingleCareer
  *  1. Update each Rest Route to have a Structured Data information && proper OG information
  *  2. Add AMP component to Posts
  *  3. Add fadein class from animate.css to each class, so the content fades in when the page loads
@@ -91,6 +91,8 @@ import './index.scss';
  *  Known Bugs:
  * ========================================
  *  1. Dropdown menu attorney sidebar messed up
+ *  2. Fix links in the footer
+ *  3. Fix News & Events Scroller front page (break out into own component)
  * 
  * To Do (Pre-Production Push)
  * =======================================

@@ -84,8 +84,8 @@ class Search extends Component {
 					</select>
 					<span className="sr-only">Filtery by Category</span>
 				</label>
-				<button type="button" className="btn btn-secondary proxima-bold px-5 mr-2">Clear</button>
-				<button type="button" onClick={() => this.onSubmit()} className="btn btn-danger px-5">Search</button>
+				<button type="button" className="btn btn-secondary proxima-bold px-5 my-2 mr-2">Clear</button>
+				<button type="button" onClick={() => this.onSubmit()} className="btn btn-danger mb-2 px-5">Search</button>
 			</form>
 		</div>
   	)
