@@ -27,10 +27,31 @@ const FrontPageHead = (props) => {
 		<meta name="twitter:creator" content="@S_H_Law" />
 		<meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
 		<meta name="google-site-verification" content="googlee1788c62f584220b" />
-    {/** https://jsonld.com/website/ -- Website */}
+    <script type="application/ld+json">{
+      `
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "Scarinci Hollenbeck",
+        "url": https://scarincihollenbeck.com/,
+        sameAs": [
+          "https://www.facebook.com/ScarinciHollenbeck/",
+           "https://twitter.com/s_h_law",
+           "https://www.linkedin.com/company/scarinci-hollenbeck-llc"
+        ],
+           "potentialAction": {
+             "@type": "SearchAction",
+             "target": "https://scarincihollenbeck.com/s?={search_term}",
+             "query-input": "required name=search_term"
+           }
+
+      }
+      
+      `
+    }
+    </script>
 	</Helmet>
 	};
-
 
 FrontPageHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.string),

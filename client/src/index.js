@@ -76,7 +76,7 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  1. Update each Rest Route to have a Structured Data JSON LD information -- Finished attorneys (Just want to update description to pull 1st paragraph rather than meta desc for JSON LD)
+ *  1. Update each Rest Route to have a Structured Data JSON LD information -- Left off on location
  *  2. Add AMP component to Posts
  *  3. Add fadein class from animate.css to each class, so the content fades in when the page loads
  *  4. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules

@@ -35,7 +35,7 @@ const AttorneyHead = (props) => {
           "@context": "http://schema.org",
           "@type": "LegalService",
           "name": ${seo.fullName},
-          "description": ${seo.metaDescription},
+          "description": ${seo.schemaDescription},
           "url": ${window.location.origin}/${seo.canonicalLink},
           "image": ${seo.featuredImg},
           "priceRange": "$$$",
