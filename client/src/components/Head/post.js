@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const PostHead = (props) => {
   const { seo } = props;
-  console.log(seo.tags);
+  console.log(seo);
   return <Helmet>
     <title>{seo.title}</title>
     <meta name="description" content={seo.metaDescription}/>
@@ -31,7 +31,29 @@ const PostHead = (props) => {
     <meta name="twitter:site" content="@S_H_Law" />
     <meta name="twitter:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
     <meta name="twitter:creator" content="@S_H_Law" /> 
-    {/** https://jsonld.com/blog-post/ -- Blog Post */}
+    <script type="application/ld+json">
+    {`
+      "@context": "https://schema.org", 
+      "@type": "BlogPosting",
+      "headline": ${seo.title},
+      "image": ${seo.featuredImg}, 
+      "genre": "seo.primaryCategory", 
+      "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) ? JSON.stringify(seo.tags) : ''}, 
+      "publisher": "Scrarinci Hollenbeck, LLC",
+      "url": ${window.location.href}/${seo.canonicalLink},
+      "datePublished": ${seo.publishedDate},
+      "dateCreated": ${seo.updatedDate},
+      "dateModified": ${seo.updatedDate},
+      "description": ${seo.metaDescription},
+      "articleBody": ${seo.postContent},
+        "author": {
+         "@type": "Person",
+         "name": ${seo.author}
+       }
+    
+    ` 
+    }
+    </script>
   </Helmet>
 };
 

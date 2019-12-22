@@ -38,7 +38,7 @@ const AttorneyHead = (props) => {
           "description": ${seo.schemaDescription},
           "url": ${window.location.origin}/${seo.canonicalLink},
           "image": ${seo.featuredImg},
-          "priceRange": "$$$",
+          "priceRange": "$$$$",
           "telephone": ${seo.phone},
           "email": ${seo.email},
           "hasMap": ${seo.map},
