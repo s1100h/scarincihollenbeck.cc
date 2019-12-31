@@ -76,16 +76,17 @@ import './index.scss';
  * 
  * To Do (Pages & Components & WP Rest Route)
  * =======================================
- *  1. Update each Rest Route to have a Structured Data JSON LD information -- Left off on location
- *  2. Add AMP component to Posts
- *  3. Add fadein class from animate.css to each class, so the content fades in when the page loads
- *  4. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
- *  5. Add new SEO-optimized components (Description Text, Search) to Category Page
+ *
+ *  1. Add AMP component to Posts
+ *  2. Add fadein class from animate.css to each class, so the content fades in when the page loads
+ *  3. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
+ *  4. Add new SEO-optimized components (Description Text, Search) to Category Page
  * 
- * To Do (Webpack, Express API & Web Worker)
+ * To Do (Webpack)
  * ==========================================
  *  1. Refactor integrating PWA (webpack 4, react-router)
  *  2. Enable webpack 4 to be a solution for GT Metrix & Google Page speed issues 
+ *  3. Add a small express server to push to DO Spaces using AWS s3
  * 
  *  Known Bugs:
  * ========================================

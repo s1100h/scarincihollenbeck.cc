@@ -1,6 +1,9 @@
 /**
  * Fetch Urls
  * 
+ * CHRON Workers
+ * ======================================================
+ * 
  * https://scarincihollenbeck.com/wp-json/admin-search/admin/ -> /admin-archive(Archive Admin)
  * https://scarincihollenbeck.com/wp-json/attorney-search/office-locations -> /attorney-filters ( Archive Attorney, Page, QuickNews, Search, Single)
  * https://scarincihollenbeck.com/wp-json/attorney-search/designations -> /attorney-filters (Archive Attorney, Page, QuickNews, Search, Single)
@@ -11,6 +14,8 @@
  * https://scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100 -> /all-categories (use in Page, QuickNews, Search, Single)
  * NEW https://scarincihollenbeck.com/wp-json/core-practices/list -> /core-practices (Category, Front Page)
  * NEW https://scfarincihollenbeck.com/wp-json/firm-pages/list -> /firm-pages (Routes)
- 
+ * 
+ * 
+ *  
  * 
  */
