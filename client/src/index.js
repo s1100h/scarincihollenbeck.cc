@@ -87,6 +87,7 @@ import './index.scss';
  *  1. Refactor integrating PWA (webpack 4, react-router)
  *  2. Enable webpack 4 to be a solution for GT Metrix & Google Page speed issues 
  *  3. Add a small express server to push to DO Spaces using AWS s3
+ *  4. Set up Lazy Loading for common components -- React Sliders, Just In Carousels
  * 
  *  Known Bugs:
  * ========================================
