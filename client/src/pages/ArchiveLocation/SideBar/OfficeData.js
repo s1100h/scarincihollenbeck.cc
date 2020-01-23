@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaPhone, FaEnvelope, FaPlus, FaMinus } from "react-icons/fa";
 import PropTypes from 'prop-types';
-import { createMarkup, locationUrl } from '../../../utils/helpers';
+import { locationUrl } from '../../../utils/helpers';
 import './index.scss';
 
 const OfficeData = (props) => {
@@ -12,23 +13,22 @@ const OfficeData = (props) => {
     fax,
     shortName,
     address,
-    currentOffice,
-    setNewLocation,
+    currentOffice
   } = props;
 
-   return (
+  return (
     <div className="mb-2">
-      <Link to={{ pathname: `/location/${locationUrl(title)}`, state: "desiredState" }} className="sidebar-title">
+      <Link to={{ pathname: `/location/${locationUrl(title)}`, state: 'desiredState' }} className="sidebar-title">
         {title}
-        <i className="text-white fas float-right mt-1" />
+        {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FaMinus className="float-right" /> : <FaPlus className="float-right" /> }
       </Link>
       <div id={`${locationUrl(title)}`} className={(locationUrl(title) === currentOffice.replace(' ', '-')) ? 'collapse show' : 'collapse'}>
         <div className="off-white p-3">
           <ul className="no-dots ml-0">
-            {address.map(a => <li key={a} className="mb-1">{a}</li>)}
+            {address.map((a) => <li key={a} className="mb-1">{a}</li>)}
           </ul>
-          <p className="mb-0"><i className="fas fa-phone"><span className="proxima-thin ft-18">{`  ${phone}`}</span></i></p>
-          <p className="mb-2"><i className="fas fa-fax"><span className="proxima-thin ft-18">{`  ${fax}`}</span></i></p>
+          <p className="mb-0"><FaPhone /><span className="proxima-regular">{`  ${phone}`}</span></p>
+          <p className="mb-2"><FaEnvelope /><span className="proxima-regular">{`  ${fax}`}</span></p>
           <button type="button" className="red-title proxima-bold btn bg-transparent ml--10" onClick={() => getLocationDirections(shortName)}>
             Directions to
             {' '}
@@ -47,7 +47,7 @@ OfficeData.propTypes = {
   phone: PropTypes.string,
   fax: PropTypes.string,
   shortName: PropTypes.string,
-  address: PropTypes.string,
+  address: PropTypes.arrayOf(PropTypes.string),
   currentOffice: PropTypes.string,
   setNewLocation: PropTypes.func,
 };
@@ -59,7 +59,7 @@ OfficeData.defaultProps = {
   phone: '',
   fax: '',
   shortName: '',
-  address: '',
+  address: [],
   currentOffice: '',
 };
 

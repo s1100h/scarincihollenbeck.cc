@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import Slide from './Slide';
 import './index.scss';
 
+const headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};
+
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right just-in-toggles just-in-toggle-right" onClick={onClick} />;
+  return <FaAngleDoubleRight className="just-in-toggles just-in-toggle-right" onClick={onClick} />;
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left just-in-toggles just-in-toggle-left" onClick={onClick} />;
+  return <FaAngleDoubleLeft className="just-in-toggles just-in-toggle-left" onClick={onClick} />;
 };
 
 class JustInCarousel extends Component {
@@ -20,17 +27,13 @@ class JustInCarousel extends Component {
       posts: [],
     };
   }
-  componentDidMount() {
 
-    const headers = {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    };
-  
-    fetch(`http://localhost/shlaw.dev.cc/wp-json/just-in/posts`, {headers})
-      .then(res => res.json())
-      .then(posts => this.setState({ posts }));
+  componentDidMount() {
+    fetch('http://localhost/shlaw.dev.cc/wp-json/just-in/posts', { headers })
+      .then((res) => res.json())
+      .then((posts) => this.setState({ posts }));
   }
+
   render() {
     const settings = {
       dots: false,
@@ -67,11 +70,14 @@ class JustInCarousel extends Component {
         },
       ],
     };
+
+    const { posts } = this.state;
+    
     return (
       <div className="JustInCarousel d-block mx-auto">
         <Slider {...settings}>
           {
-              (this.state.posts) ? this.state.posts.map(val => (
+              (posts) && posts.map((val) => (
                 <Slide
                   key={val.id}
                   date={val.date}
@@ -81,7 +87,7 @@ class JustInCarousel extends Component {
                   location={val.location}
                   title={val.title}
                 />
-              )) : ''
+              )) 
           }
         </Slider>
       </div>
@@ -89,4 +95,19 @@ class JustInCarousel extends Component {
   }
 }
 
+NextArrow.propTypes = {
+  onClick: PropTypes.func,
+};
+
+PrevArrow.propTypes = {
+  onClick: PropTypes.func,
+};
+
+NextArrow.defaultProps = {
+  onClick: () => {},
+};
+
+PrevArrow.defaultProps = {
+  onClick: () => {},
+};
 export default JustInCarousel;

@@ -4,7 +4,7 @@ import Search from '../../../components/Search';
 import AboutFirm from './AboutFirm';
 import TrendingStories from './TrendingStories';
 
-const Sidebar = (props) => {
+const SideBar = (props) => {
   const {
     searchTerm,
     onChange,
@@ -24,12 +24,12 @@ const Sidebar = (props) => {
   );
 };
 
-Sidebar.propTypes = {
+SideBar.propTypes = {
   trending: PropType.arrayOf(PropType.object),
 };
 
-Sidebar.defaultProps = {
+SideBar.defaultProps = {
   trending: [],
 };
 
-export default Sidebar;
+export default SideBar;

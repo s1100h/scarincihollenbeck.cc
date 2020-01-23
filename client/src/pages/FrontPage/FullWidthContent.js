@@ -26,7 +26,6 @@ const LocationsPrevArrow = (props) => {
 
 const FullWidthContent = (props) => {
   const { sortedPosts, sortedLocations } = props;
-  console.log(sortedPosts);
 
   const postSettings = {
     dots: true,

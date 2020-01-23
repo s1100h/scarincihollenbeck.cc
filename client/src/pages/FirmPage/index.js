@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
+import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import MiniSidebar from '../../layouts/MiniSidebar';
 import Sidebar from './Sidebar';

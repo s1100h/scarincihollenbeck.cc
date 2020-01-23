@@ -38,6 +38,11 @@ import Page404 from './pages/page404';
 * Slick Carousel
 *
 **/
+// styling resources
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 /**
 * Main Style Sheet
@@ -79,7 +84,7 @@ import './index.scss';
  *
  *  1. Add AMP component to Posts
  *  2. Add fadein class from animate.css to each class, so the content fades in when the page loads
- *  3. Remove Bootstrap, Slick Carousel, Font Awesome from html file and import them as modules
+ *  3. Refactor i tags with react-icons & lint all pages, components, layouts
  *  4. Add new SEO-optimized components (Description Text, Search) to Category Page
  * 
  * To Do (Webpack)

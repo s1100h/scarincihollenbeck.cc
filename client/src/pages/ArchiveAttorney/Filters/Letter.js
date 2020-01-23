@@ -8,7 +8,7 @@ const Letter = (props) => {
   return (
     <div className="col-sm-12 col-md-10 mt-2">
       <ul className="list-inline ml-4 ">
-        {alphabet.map(val => (
+        {alphabet.map((val) => (
           <li
             onClick={letterClick}
             onKeyDown={letterClick}

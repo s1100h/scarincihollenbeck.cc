@@ -14,7 +14,7 @@ const FilterForms = (props) => {
     clearFilter,
   } = props;
 
-  const removeDuplicates = list => list.filter((v, i) => list.indexOf(v) === i);
+  const removeDuplicates = (list) => list.filter((v, i) => list.indexOf(v) === i);
 
   const locs = removeDuplicates(locations);
   const typs = removeDuplicates(positionType);
@@ -34,7 +34,7 @@ const FilterForms = (props) => {
               <select name="location" id="locForm" value={location} onChange={selectOption} className="p-25 w-100">
                 <option name="location" value="location">Locations</option>
                 {
-                    locs.map(loc => <option name="location" key={loc} value={loc}>{loc}</option>)
+                    locs.map((loc) => <option name="location" key={loc} value={loc}>{loc}</option>)
                 }
               </select>
               <span className="sr-only">Location</span>
@@ -48,7 +48,7 @@ const FilterForms = (props) => {
               <select name="type" id="typeForm" value={type} onChange={selectOption} className="p-25 w-100">
                 <option name="type" value="Position Type">Position Type</option>
                 {
-                    typs.map(typ => <option name="type" key={typ} value={typ}>{typ}</option>)
+                    typs.map((typ) => <option name="type" key={typ} value={typ}>{typ}</option>)
                 }
               </select>
             </label>

@@ -27,12 +27,12 @@ class PracticePortal extends Component {
   }
 
   componentDidMount() {
-    this.setState({ spinner:true });
+    this.setState({ spinner: true });
     getPracticePortalContent().then((data) => {
-      console.log(data);
       const results = sortPracticeCategorys(data.practices);
-      const seo = data.seo;
+      const { seo } = data;
       const { core, additional, business } = results;
+      
       this.setState({
         core,
         additional,
@@ -56,7 +56,7 @@ class PracticePortal extends Component {
     const sortedCore = sortByKey(core, 'title');
     const sortedAdditional = sortByKey(additional, 'title');
     const sortedBusiness = sortByKey(business, 'title');
-    console.log(seo);
+
     return (
       <div>
         <ArchiveHead seo={seo} />
@@ -66,32 +66,31 @@ class PracticePortal extends Component {
           image={pracArchiveBckGround}
         />
         <FullWidth>
-         {(!spinner) ? (
-           <div>
-             <p className="text-muted lead text-center w-100">
+          {(!spinner) ? (
+            <div>
+              <p className="text-muted lead text-center w-100">
               As you scroll through the law practices and locate the sub-practice groups that most closely identifies with your need, feel free to contact any of the attorneys identified within the sub-practice group. Feel free to contact any of the Section Chiefs identified under each of the named law practices. They will be happy to assist you and guide you to the appropriate attorney for resolution of your issue.
-            </p>
-            <div className="mt-4 px-0">
-              <div className="line-header">
-                <h3>CORE PRACTICES</h3>
+              </p>
+              <div className="mt-4 px-0">
+                <div className="line-header">
+                  <h3>CORE PRACTICES</h3>
+                </div>
               </div>
-            </div>
-            <BlockList list={sortedCore} id={28270}/>
-            <div className="mt-4 px-0">
-              <div className="line-header">
-                <h3>ADDITIONAL PRACTICES</h3>
+              <BlockList list={sortedCore} id={28270} />
+              <div className="mt-4 px-0">
+                <div className="line-header">
+                  <h3>ADDITIONAL PRACTICES</h3>
+                </div>
               </div>
+              <BlockList list={sortedAdditional} id={28270} />
+              <div className="mt-4 px-0">
+                <div className="line-header">
+                  <h3>BUSINESS RELATED LEGAL SERVICES</h3>
+                </div>
+              </div>
+              <SimpleList list={sortedBusiness} />
             </div>
-            <BlockList list={sortedAdditional} id={28270}/>
-          <div className="mt-4 px-0">
-            <div className="line-header">
-              <h3>BUSINESS RELATED LEGAL SERVICES</h3>
-            </div>
-          </div>
-          <SimpleList list={sortedBusiness} />
-        </div>
-         ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
+          ) : <PulseLoader color="#D02422" loading={spinner} />}
         </FullWidth>
       </div>
     );

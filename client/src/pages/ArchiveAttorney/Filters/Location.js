@@ -10,7 +10,7 @@ const Location = (props) => {
         <i className="ml-5 mt-1 fas fa-caret-down" />
       </span>
       <div className="dropdown-menu w-100" aria-labelledby="locationDropDown">
-        { locations.map(l => <button type="button" name="location" className="dropdown-item btn btn-link" key={l.ID} onClick={e => onSelect(e, l.title)}>{l.title}</button>) }
+        { locations.map((l) => <button type="button" name="location" className="dropdown-item btn btn-link" key={l.ID} onClick={(e) => onSelect(e, l.title)}>{l.title}</button>) }
       </div>
     </li>
   );

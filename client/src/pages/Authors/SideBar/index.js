@@ -4,7 +4,7 @@ import Search from '../../../components/Search';
 import AboutAuthor from './AboutAuthor';
 import AttorneyServices from './AttorneyServices';
 
-const Sidebar = (props) => {
+const SideBar = (props) => {
   const {
     searchTerm,
     onChange,
@@ -32,7 +32,7 @@ const Sidebar = (props) => {
   );
 };
 
-Sidebar.propTypes = {
+SideBar.propTypes = {
   searchTerm: PropType.string,
   onChange: PropType.func,
   onSubmit: PropType.func,
@@ -43,7 +43,7 @@ Sidebar.propTypes = {
   bio: PropType.arrayOf(PropType.object),
 };
 
-Sidebar.defaultProps = {
+SideBar.defaultProps = {
   searchTerm: '',
   onChange: () => {},
   onSubmit: () => {},
@@ -54,4 +54,4 @@ Sidebar.defaultProps = {
   practices: [],
 };
 
-export default Sidebar;
+export default SideBar;

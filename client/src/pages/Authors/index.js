@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
-import { makeTitle } from '../../utils/helpers';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchiveHead from '../../components/Head/archive';
 import BreadCrumbs from './BreadCrumbs';
-import Sidebar from './Sidebar/';
+import SideBar from './SideBar';
 import Body from './Body';
 import './index.scss';
 
@@ -20,10 +18,9 @@ class Author extends Component {
       bio: [],
       practices: [],
       pageNums: [],
-      term: '',
-      currentPage: '',     
+      currentPage: '',
       breadCrumb: [],
-      categorySlug: '',     
+      categorySlug: '',
       spinner: false,
       seo: {},
     };
@@ -31,27 +28,33 @@ class Author extends Component {
     this.getPosts = this.getPosts.bind(this);
   }
 
-  
+
   componentDidMount() {
     const { author, pageNum } = this.props.match.params;
     let page = 1;
-    let breadCrumb = [author, 1];
+    const breadCrumb = [author, 1];
 
-    if(pageNum !== undefined) {
+    if (pageNum !== undefined) {
       page = pageNum;
       breadCrumb[1] = pageNum;
-    };
-    this.setState({ breadCrumb, categorySlug: author, currentPage: page, spinner: true }, () => {
+    }
+    this.setState({
+      breadCrumb, categorySlug: author, currentPage: page, spinner: true,
+    }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`, author);
     });
   }
 
   getPosts(url, authorName) {
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        const { pages, results, term, seo } = data;
-        this.setState({ term, results, spinner: false });
+        const {
+          pages, results, term, seo,
+        } = data;
+        this.setState({
+         results, seo, spinner: false,
+        });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);
@@ -60,7 +63,7 @@ class Author extends Component {
       })
       .then(() => {
         fetch(`${process.env.API_URL}/wp-json/author/bio/${authorName}`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((results) => {
             const { bio, practices } = results;
 
@@ -75,7 +78,7 @@ class Author extends Component {
       .then(() => {
         // news
         fetch(`${process.env.API_URL}/wp-json/category/posts/firm-news`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const news = [...data.latest, ...data.archives];
             this.setState({ news });
@@ -84,7 +87,7 @@ class Author extends Component {
       .then(() => {
         // events
         fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const events = [...data.latest, ...data.archives];
             this.setState({ events });
@@ -93,7 +96,7 @@ class Author extends Component {
       .then(() => {
         // insights
         fetch(`${process.env.API_URL}/wp-json/category/posts/law-firm-insights`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const insight = [...data.latest, ...data.archives];
             this.setState({ insight });
@@ -111,17 +114,16 @@ class Author extends Component {
       breadCrumb,
       categorySlug,
       currentPage,
-      term,
       bio,
       practices,
       spinner,
-      seo
+      seo,
     } = this.state;
 
     // pagination set up
     const prev = (currentPage > 2) ? currentPage - 1 : 1;
     const next = (currentPage < pageNums.length) ? parseInt(currentPage, 10) + 1 : pageNums.length;
-    const cp = window.location.href.split('/').filter(a => a !== '');
+    const cp = window.location.href.split('/').filter((a) => a !== '');
     const active = (typeof cp[cp.length - 1] === 'number') ? cp[cp.length - 1] : 1;
 
 
@@ -132,24 +134,28 @@ class Author extends Component {
           (!spinner) ? (
             <ArchiveLayout
               header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
-              body={(<Body
-                results={results}
-                categorySlug={categorySlug}
-                next={next}
-                prev={prev}
-                pageNums={pageNums}
-                news={news}
-                events={events}
-                insight={insight}
-                active={active}
-                /> )}
-              sidebar={(<Sidebar
-                bio={bio}
-                practices={practices}
-              />)}
+              body={(
+                <Body
+                  results={results}
+                  categorySlug={categorySlug}
+                  next={next}
+                  prev={prev}
+                  pageNums={pageNums}
+                  news={news}
+                  events={events}
+                  insight={insight}
+                  active={active}
+                />
+ )}
+              sidebar={(
+                <SideBar
+                  bio={bio}
+                  practices={practices}
+                />
+)}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />
-        }      
+        }
       </div>
     );
   }

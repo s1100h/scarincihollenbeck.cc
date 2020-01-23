@@ -10,13 +10,13 @@ const headers = {
 
 // get list of all attorneys
 export const getPracticePortalContent = () => fetch(`${process.env.API_URL}/wp-json/practice-portal/page/`, { headers })
-  .then(res => res.json())
-  .then(data => data);
+  .then((res) => res.json())
+  .then((data) => data);
 
 export const getBlogCategories = () => fetch(`${process.env.API_URL}/wp-json/practice-portal/blog-categories`, { headers })
-  .then(res => res.json())
-  .then(data => data);
+  .then((res) => res.json())
+  .then((data) => data);
 
-export const getPosts = id => fetch(`${process.env.API_URL}/wp-json/wp/v2/posts?categories=${id}`, { headers })
-  .then(res => res.json())
-  .then(data => data);
+export const getPosts = (id) => fetch(`${process.env.API_URL}/wp-json/wp/v2/posts?categories=${id}`, { headers })
+  .then((res) => res.json())
+  .then((data) => data);

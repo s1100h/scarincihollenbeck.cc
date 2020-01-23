@@ -78,27 +78,27 @@ const Filtered = (props) => {
     .filter(filterLetter)
     .filter(filterQuery);
 
-    const attorneySlug = string => string.split('/attorneys/').pop();
+  const attorneySlug = (string) => string.split('/attorneys/').pop();
 
   return (
     <div className="row">
 
       {
-      aFiltered.map(m => (
+      aFiltered.map((m) => (
         <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
-          <AttorneyCard 
+          <AttorneyCard
             link={`/attorneys/${attorneySlug(m.link)}`}
             image={m.better_featured_image}
             name={m.title}
             title={m.designation}
             number={m.phone}
             email={m.email}
-            height={'148px'}
+            height="148px"
           />
         </div>
       ))
     }
-    {
+      {
       (aFiltered.length < 1) ? <h3 className="text-center red-title d-block mx-auto my-4">Sorry, no attorneys found according to this query.</h3> : ''
     }
     </div>

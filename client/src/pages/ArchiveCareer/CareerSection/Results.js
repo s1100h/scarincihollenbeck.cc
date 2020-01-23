@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { urlify } from '../../../utils/helpers';
 
 const Results = (props) => {
-   const { positions, career } = props;
+  const { positions } = props;
 
   return (
     <div className="w-100 border mt-0">
       <div className="container mt-2">
         <div className="row">
           {
-            positions.map(p => (
+            positions.map((p) => (
               <div key={p.title} className="col-sm-12 col-md-4 mt-3 mb-2">
                 <Link to={`/career/${urlify(p.title)}`}>
                   <div className="card d-flex flex-row">
@@ -30,9 +30,9 @@ const Results = (props) => {
                         <strong>Start: </strong>
                         {p.startDate}
                       </p>
-                    </div>                
-                  </div>    
-                </Link>             
+                    </div>
+                  </div>
+                </Link>
               </div>
             ))
           }
@@ -49,7 +49,7 @@ Results.propTypes = {
 
 Results.defaultProps = {
   positions: [],
- career: '',
+  career: '',
 };
 
 export default Results;

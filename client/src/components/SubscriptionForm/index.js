@@ -140,7 +140,7 @@ class SubscriptionForm extends Component {
     }
 
     if (isChecked === false) {
-      this.setState({ categories: categories.filter(a => a.value !== value) });
+      this.setState({ categories: categories.filter((a) => a.value !== value) });
     }
   }
 
@@ -152,7 +152,7 @@ class SubscriptionForm extends Component {
       email,
       categories,
     } = this.state;
-    const categoryValues = categories.map(c => c.value);
+    const categoryValues = categories.map((c) => c.value);
 
     const subscriberData = {
       firstName,
@@ -220,7 +220,7 @@ class SubscriptionForm extends Component {
               </div>
               <ul className="no-dots two-column">
                 {
-                  checkboxes.map(item => (
+                  checkboxes.map((item) => (
                     <li key={item.key}>
                       <label htmlFor={item.name}>
                         <Checkbox id={item.name} className="d-block" name={item.name} property={item.property} onChange={this.handleCategoryChange} />

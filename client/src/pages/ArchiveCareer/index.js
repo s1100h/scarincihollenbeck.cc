@@ -32,11 +32,11 @@ class CareerBody extends Component {
   componentDidMount() {
     this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/career-portal/careers`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const positions = data.careers;
-        const seo = data.seo;
-        this.setState({ positions, seo, spinner:false });
+        const { seo } = data;
+        this.setState({ positions, seo, spinner: false });
       });
   }
 
@@ -88,16 +88,16 @@ class CareerBody extends Component {
           {
             (!spinner) ? (
               <CareerSection
-            sort={sort}
-            positions={positions}
-            keyword={keyword}
-            type={type}
-            career={career}
-            location={location}
-            selectOption={this.selectOption}
-            filterTerm={this.filterTerm}
-            clearFilter={this.clearFilter}
-          />
+                sort={sort}
+                positions={positions}
+                keyword={keyword}
+                type={type}
+                career={career}
+                location={location}
+                selectOption={this.selectOption}
+                filterTerm={this.filterTerm}
+                clearFilter={this.clearFilter}
+              />
             ) : <PulseLoader color="#D02422" loading={spinner} />
           }
           <EEOpportunityContent content="EE content will og here" />

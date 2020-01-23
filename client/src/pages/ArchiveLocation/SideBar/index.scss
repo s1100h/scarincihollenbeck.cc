@@ -12,17 +12,6 @@
   color: white !important;
   text-decoration: underline !important;
 }
-[data-toggle="collapse"] .fas:before {  
-  content: "\f067";
-}
-
-[aria-expanded="true"] .fas:before {  
-  content: "\f068";
-}
-
-[data-toggle="collapse"].collapsed .fas:before {
-  content: "\f067";
-}
 .off-white { 
   background-color: #fcfaff;
 }

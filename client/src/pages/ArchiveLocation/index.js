@@ -22,7 +22,7 @@ class LocationPortal extends Component {
       offices: [],
       posts: [],
       seo: {},
-      spinner: false, 
+      spinner: false,
     };
     this.getLocationDirections = this.getLocationDirections.bind(this);
   }
@@ -30,34 +30,30 @@ class LocationPortal extends Component {
   componentDidMount() {
     this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/location-portal/offices`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        const offices = data.offices;
-        const seo = data.seo;
-        this.setState({ offices, seo, spinner: false })
+        const { offices } = data;
+        const { seo } = data;
+        this.setState({ offices, seo, spinner: false });
       })
       .then(() => {
         const { currentOffice } = this.state;
-            this.fetchOfficeData(currentOffice);
+        this.fetchOfficeData(currentOffice);
         // get location params
         const { location } = this.props.match.params;
 
-        if(location !== undefined) {
-          const currentOffice = location.replace('-',' ');
-          this.setState({currentOffice}, () => this.fetchOfficeData(location));
-
-        }else {
-          
-        }
-      
+        if (location !== undefined) {
+          const currentOffice = location.replace('-', ' ');
+          this.setState({ currentOffice }, () => this.fetchOfficeData(location));
+        } 
       });
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps){
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.location.state === 'desiredState') {
-     const { location } = nextProps.match.params;
-     const currentOffice = location.replace('-',' ');
-     this.setState({currentOffice}, () => this.fetchOfficeData(location));
+      const { location } = nextProps.match.params;
+      const currentOffice = location.replace('-', ' ');
+      this.setState({ currentOffice }, () => this.fetchOfficeData(location));
     }
   }
 
@@ -69,7 +65,7 @@ class LocationPortal extends Component {
     const url = `${process.env.API_URL}/wp-json/individual-location/office/${location}`;
 
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const {
           mapLink,
@@ -88,8 +84,8 @@ class LocationPortal extends Component {
       });
 
     fetch(`${process.env.API_URL}/wp-json/individual-location/posts/${location}`)
-      .then(res => res.json())
-      .then(posts => this.setState({ posts }));
+      .then((res) => res.json())
+      .then((posts) => this.setState({ posts }));
   }
 
   render() {
@@ -113,14 +109,16 @@ class LocationPortal extends Component {
           image={locArchiveBckGround}
         />
         {(!spinner) ? (
-            <LargeSidebar
-              body={<BodyContent
-              attorneys={currentOfficeAttorneys}
-              practices={currentOfficePractice}
-              map={currentOfficeMap}
-              title={currentOffice}
-            />}
-            sidebar={
+          <LargeSidebar
+            body={(
+              <BodyContent
+                attorneys={currentOfficeAttorneys}
+                practices={currentOfficePractice}
+                map={currentOfficeMap}
+                title={currentOffice}
+              />
+)}
+            sidebar={(
               <SideBar
                 title={currentOffice}
                 posts={posts}
@@ -128,10 +126,9 @@ class LocationPortal extends Component {
                 getLocationDirections={this.getLocationDirections}
                 setNewLocation={this.setNewLocation}
               />
-            }
+            )}
           />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-       }
+        ) : <PulseLoader color="#D02422" loading={spinner} />}
       </div>
     );
   }

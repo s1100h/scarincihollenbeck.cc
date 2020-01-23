@@ -20,8 +20,8 @@ const CareerSection = (props) => {
   } = props;
 
   const sortPositions = sortByKey(positions, 'title');
-  const locations = positions.map(p => p.positionLocation);
-  const positionType = positions.map(p => p.positionType);
+  const locations = positions.map((p) => p.positionLocation);
+  const positionType = positions.map((p) => p.positionType);
 
 
   // add location filter to sortPostions

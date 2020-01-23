@@ -1,19 +1,19 @@
 import React from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import { sortByKey } from '../../utils/helpers';
 import noImg from '../../images/no-image-found-diamond.png';
 import './index.scss';
 
-
 const PostsNextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right quick-news-scroll right" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+  return <FaAngleDoubleRight className="quick-news-scroll right" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
 };
 
 const PostsPrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left quick-news-scroll left" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+  return <FaAngleDoubleLeft className="quick-news-scroll left" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
 };
 
 
@@ -65,17 +65,17 @@ const NewsScroller = (props) => {
       </div>
       <Slider {...QuickNewsScrollerSettings}>
         {
-          sortedPosts.map(v => (
+          sortedPosts.map((v) => (
             <div key={v.title} className="px-3 pt-5 pb-2">
               <a href={v.link}>
                 <img src={v.image ? v.image : noImg} className="img-thumbnail mx-auto d-block" alt={v.title} />
-                <h5 className="mt-3 mb-2 text-center small-excerpt proxima-bold">{v.title}</h5>                
+                <h5 className="mt-3 mb-2 text-center small-excerpt proxima-bold">{v.title}</h5>
               </a>
             </div>
           ))
         }
       </Slider>
-    </div>    
+    </div>
   );
 };
 
@@ -84,7 +84,7 @@ NewsScroller.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object),
   PostsNextArrow: PropTypes.func,
   PostsPrevArrow: PropTypes.func,
-  
+
 };
 
 NewsScroller.defaultProps = {
@@ -111,4 +111,3 @@ PostsNextArrow.defaultProps = {
 };
 
 export default NewsScroller;
-

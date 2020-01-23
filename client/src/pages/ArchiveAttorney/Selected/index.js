@@ -10,7 +10,7 @@ const Selected = (props) => {
     clearQuery,
   } = props;
 
-  const nonUserInputResults = select.filter(a => a.key !== 'query');
+  const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
   return (
     <ul className="no-dots list-inline my-2 mx-0">
@@ -32,7 +32,7 @@ const Selected = (props) => {
         ) : ''
       }
       {
-       nonUserInputResults.map(s => (
+       nonUserInputResults.map((s) => (
          <li className=" list-inline-item" key={s.key}>
            <button
              type="button"

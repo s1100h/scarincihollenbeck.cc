@@ -4,12 +4,12 @@ import './index.scss';
 
 
 const BlockList = (props) => {
-  const { list, id } = props;
+  const { list } = props;
   return (
     <div className="mt-5">
       <ul className="practices row no-dots">
         {
-          list.map(v => (
+          list.map((v) => (
             <li className="col-sm-12 col-md-4 text-center m-0 mt-2" key={v.ID}>
               <div className="dropdown-toggle practice-menu-box" id={`menu-item-dropdown-${v.ID}`}>
                 <a href={v.slug} className="practice-link">
@@ -19,7 +19,7 @@ const BlockList = (props) => {
                 (v.children.length > 0) ? (
                   <ul className="practice-dropdown dropdown-menu mx-0 w-100 px-0 no-dots mt-2">
                     {
-                      v.children.map(vc => (
+                      v.children.map((vc) => (
                         <li key={vc.ID}>
                           <a href={vc.slug} className="practice-dropdown-child dropdown-item">
                             {vc.title}
@@ -46,7 +46,7 @@ BlockList.propTypes = {
 
 BlockList.defaultProps = {
   list: [],
-  id: 0
+  id: 0,
 };
 
 export default BlockList;

@@ -13,7 +13,7 @@ class AdminArchive extends Component {
     super(props);
     this.state = {
       admins: [],
-      seo:{},
+      seo: {},
       spinner: false,
     };
   }
@@ -23,10 +23,10 @@ class AdminArchive extends Component {
     // fetch admin list
     this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/admin-search/admin/`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        const admins = data.admins
-        const seo = data.seo;
+        const { admins } = data;
+        const { seo } = data;
         this.setState({ admins, seo, spinner: false });
       });
   }
@@ -35,7 +35,7 @@ class AdminArchive extends Component {
     const {
       admins,
       seo,
-      spinner
+      spinner,
     } = this.state;
 
     return (
@@ -44,13 +44,13 @@ class AdminArchive extends Component {
         <SingleSubHeader
           image={adminArchiveBckGround}
           title="Administration"
-          subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group." 
-          />
-          <FullWidth>
-            <div className="container p-3 pt-4 border">
-              <div className="row">
-                {
-                  (!spinner) ? admins.map(a => (
+          subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
+        />
+        <FullWidth>
+          <div className="container p-3 pt-4 border">
+            <div className="row">
+              {
+                  (!spinner) ? admins.map((a) => (
                     <div key={a.ID} className="col-sm-12 col-md-6 col-lg-4 mb-2">
                       <AttorneyCard
                         image={a.image.url}
@@ -59,15 +59,15 @@ class AdminArchive extends Component {
                         title={a.Title}
                         number={`201-896-4100 ${a.phone_extension}`}
                         email={a.email}
-                        height={'112px'}
-                        width={'107px'}
+                        height="112px"
+                        width="107px"
                       />
                     </div>
                   )) : <PulseLoader color="#D02422" loading={spinner} />
                 }
-              </div>
-            </div>              
-          </FullWidth>
+            </div>
+          </div>
+        </FullWidth>
       </div>
     );
   }

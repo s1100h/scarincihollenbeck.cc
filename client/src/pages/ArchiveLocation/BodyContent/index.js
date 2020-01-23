@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AttorneyCard from '../../../components/AttorneyCard';
 import { sortByKey } from '../../../utils/helpers';
 import './index.scss';
+
+const attorneySlug = (string) => string.split('/attorneys/').pop();
 
 const BodyContent = (props) => {
   const {
@@ -28,28 +31,22 @@ const BodyContent = (props) => {
         {' '}
         Attorneys
       </h4>
-      <div className="container article-container">
+      <div className="container limit-location-container">
         <div className="row">
           {
-          sortedAttorneys.map(v => (
-            <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
-              <div className="attorney-card mb-2">
-                <a href={v.link}>
-                  <img src={v.image} alt={v.name} />
-                </a>
-                <div className="attorney-card-body">
-                  <a href={v.link}>
-                    <p className="text-uppercase red-title mb-0 mt-2 small-excerpt"><strong>{v.name}</strong></p>
-                    <p className="mb-2 small-excerpt"><strong>{v.designation}</strong></p>
-                    <i className="fas fa-phone d-block mt---5 small-excerpt">
-                      <span className="proxima-thin">{` ${v.contact}`}</span>
-                    </i>
-                    <i className="fas fa-envelope d-block small-excerpt">
-                      <span className="proxima-thin">{` ${v.email}`}</span>
-                    </i>
-                  </a>
-                </div>
-              </div>
+          sortedAttorneys.map((m) => (
+            <div key={m.ID} className="col-sm-12 col-md-6 mb-2">             
+              <AttorneyCard
+                link={`/attorneys/${attorneySlug(m.link)}`}
+                image={m.image}
+                name={m.name}
+                title={m.designation}
+                number={m.contact}
+                email={m.email}
+                height="112px"
+                width="81px"
+              /> 
+
             </div>
           ))
         }

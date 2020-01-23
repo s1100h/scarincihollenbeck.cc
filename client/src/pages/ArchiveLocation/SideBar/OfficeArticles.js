@@ -14,7 +14,7 @@ const OfficeArticles = (props) => {
       </div>
       <div className="off-white">
         {
-          (posts.length > 0) ? posts.map(p => (
+          (posts.length > 0) ? posts.map((p) => (
             <div className="p-2 pt-3" key={addRandomKey(p.title)}>
               <a href={p.link}>
                 <h5 className="mb-0 article-link">

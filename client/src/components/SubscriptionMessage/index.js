@@ -25,7 +25,7 @@ const SubscriptionMessage = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 SubscriptionMessage.propTypes = {
@@ -35,7 +35,7 @@ SubscriptionMessage.propTypes = {
 
 SubscriptionMessage.defaultProps = {
   show: false,
-  toggleModal: () => {}
+  toggleModal: () => {},
 };
 
 export default SubscriptionMessage;

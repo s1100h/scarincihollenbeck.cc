@@ -14,7 +14,7 @@ const MobileMenu = (props) => {
       <select name={name} onChange={onMobileSelect} className="mobile-select">
         <option value="">{title}</option>
         {
-          content.map(p => (
+          content.map((p) => (
             <option key={p.ID} value={p.title} name="practices" className="mobile-option">{p.title}</option>
           ))
         }

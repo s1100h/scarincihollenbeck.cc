@@ -5,25 +5,25 @@ import AttorneyCard from '../../../components/AttorneyCard';
 const NotFiltered = (props) => {
   const { attorneys } = props;
 
-  // managing partners  
-  const managingPartners = attorneys.filter(a => a.designation === 'Managing Partner');
+  // managing partners
+  const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
 
   // partners
-  const partners = attorneys.filter(a => a.designation === 'Partner');
+  const partners = attorneys.filter((a) => a.designation === 'Partner');
 
   // counsel
-  const counsel = attorneys.filter(a => a.designation === 'Counsel');
+  const counsel = attorneys.filter((a) => a.designation === 'Counsel');
 
   // of counsel & counsel emeritus
-  const ofCounsel = attorneys.filter(a => a.designation.indexOf('Of Counsel') > -1);
+  const ofCounsel = attorneys.filter((a) => a.designation.indexOf('Of Counsel') > -1);
 
   // senior associates
-  const seniorAssociates = attorneys.filter(a => a.designation === 'Senior Associate');
+  const seniorAssociates = attorneys.filter((a) => a.designation === 'Senior Associate');
 
   // associates
-  const associates = attorneys.filter(a => a.designation === 'Associate');
+  const associates = attorneys.filter((a) => a.designation === 'Associate');
 
-  const attorneySlug = string => string.split('/attorneys/').pop();
+  const attorneySlug = (string) => string.split('/attorneys/').pop();
 
   return (
     <div className="row result-container">
@@ -31,7 +31,7 @@ const NotFiltered = (props) => {
         <h3 className="red-title text-uppercase border-bottom mb-0">Managing Partners</h3>
       </div>
       {
-      managingPartners.map(m => (
+      managingPartners.map((m) => (
         <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
           <AttorneyCard
             link={`/attorneys/${attorneySlug(m.link)}`}
@@ -40,18 +40,18 @@ const NotFiltered = (props) => {
             title={m.designation}
             number={m.phone}
             email={m.email}
-            height={'112px'}
-            width={'81px'}
+            height="112px"
+            width="81px"
           />
         </div>
       ))
     }
       <div className="col-sm-12 my-4">
         <h3 className="red-title text-uppercase border-bottom mb-0">Partners</h3>
-        
+
       </div>
       {
-        partners.map(m => (
+        partners.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
               link={`/attorneys/${attorneySlug(m.link)}`}
@@ -60,18 +60,18 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
-              height={'112px'}
-              width={'81px'}
+              height="112px"
+              width="81px"
             />
           </div>
         ))
       }
       <div className="col-sm-12 my-4">
         <h3 className="red-title text-uppercase border-bottom mb-0">Counsel</h3>
-        
+
       </div>
       {
-        counsel.map(m => (
+        counsel.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
               link={`/attorneys/${attorneySlug(m.link)}`}
@@ -80,18 +80,18 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
-              height={'112px'}
-              width={'81px'}
+              height="112px"
+              width="81px"
             />
           </div>
         ))
       }
       <div className="col-sm-12 my-4">
         <h3 className="red-title text-uppercase border-bottom mb-0">Of Counsel & Of Counsel Emeritus</h3>
-        
+
       </div>
       {
-        ofCounsel.map(m => (
+        ofCounsel.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
               link={`/attorneys/${attorneySlug(m.link)}`}
@@ -100,18 +100,18 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
-              height={'112px'}
-              width={'81px'}
+              height="112px"
+              width="81px"
             />
           </div>
         ))
       }
       <div className="col-sm-12 my-4">
         <h3 className="red-title text-uppercase border-bottom mb-0">Senior Associates</h3>
-        
+
       </div>
       {
-        seniorAssociates.map(m => (
+        seniorAssociates.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
               link={`/attorneys/${attorneySlug(m.link)}`}
@@ -120,18 +120,18 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
-              height={'112px'}
-              width={'81px'}
+              height="112px"
+              width="81px"
             />
           </div>
         ))
       }
       <div className="col-sm-12 my-4">
         <h3 className="red-title text-uppercase border-bottom mb-0">Associates</h3>
-        
+
       </div>
       {
-        associates.map(m => (
+        associates.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
               link={`/attorneys/${attorneySlug(m.link)}`}
@@ -140,8 +140,8 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
-              height={'112px'}
-              width={'81px'}
+              height="112px"
+              width="81px"
             />
           </div>
         ))

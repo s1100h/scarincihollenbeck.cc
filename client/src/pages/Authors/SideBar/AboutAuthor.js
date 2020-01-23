@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaEnvelope, FaPhone } from "react-icons/fa";
 import { createMarkup } from '../../../utils/helpers';
 import './index.scss';
 
@@ -19,9 +20,13 @@ const AboutAuthor = (props) => {
             <span className="py-2 mx-3 d-block" key={b.name}>
               <img src={b.image} alt={b.name} className="img-thumbnail" />
               <p className="mt-1 mb-0">
-                <a href={`mailto:${b.email}`} className="red-title proxima-bold">{b.email}</a>
+                <FaEnvelope />
+                {' '}
+                <a href={`mailto:${b.email}`} className="proxima-bold text-dark">{b.email}</a>
               </p>
               <p className="my-0">
+                <FaPhone />
+                {' '}
                 {b.phone}
               </p>              
               <div dangerouslySetInnerHTML={createMarkup(b.bioContent)} className="mt-2" />

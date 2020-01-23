@@ -41,6 +41,7 @@ class Single extends Component {
 
   componentDidMount() {
     const { parent, child, post } = this.props.match.params;
+    console.log(post);
     this.setState({ spinner:true }, () => {
       this.fetchPostData(`${process.env.API_URL}/wp-json/single/post/${post}`);
       // set timeout to trigger

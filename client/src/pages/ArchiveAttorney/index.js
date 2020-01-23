@@ -6,7 +6,6 @@
 /* eslint-disable no-else-return */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
@@ -28,7 +27,7 @@ class AttorneyArchive extends Component {
       designation: [],
       practice: [],
       attorneys: [],
-      seo:{},
+      seo: {},
       spinner: false,
     };
     this.letterClick = this.letterClick.bind(this);
@@ -43,32 +42,32 @@ class AttorneyArchive extends Component {
   /* Fetch data events */
   componentDidMount() {
     // fetch attorney list
-    this.setState({ spinner:true });
+    this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/attorney-search/attorneys/`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((attorneys) => {
-        this.setState({ attorneys, spinner:false });
+        this.setState({ attorneys, spinner: false });
       });
 
     // fetch locations
     fetch(`${process.env.API_URL}/wp-json/attorney-search/office-locations`)
-      .then(res => res.json())
-      .then(location => this.setState({ location }));
+      .then((res) => res.json())
+      .then((location) => this.setState({ location }));
 
     // get list of available designations
     fetch(`${process.env.API_URL}/wp-json/attorney-search/designations`)
-      .then(res => res.json())
-      .then(designation => this.setState({ designation }));
+      .then((res) => res.json())
+      .then((designation) => this.setState({ designation }));
 
     // get list of available practices and their children
     fetch(`${process.env.API_URL}/wp-json/attorney-search/practices`)
-      .then(res => res.json())
-      .then(practice => this.setState({ practice }));
+      .then((res) => res.json())
+      .then((practice) => this.setState({ practice }));
 
     // get page seo data
     fetch(`${process.env.API_URL}/wp-json/attorney-search/meta`)
-      .then(res => res.json())
-      .then(seo => this.setState({ seo }));
+      .then((res) => res.json())
+      .then((seo) => this.setState({ seo }));
   }
 
   /* Click Events */
@@ -78,7 +77,7 @@ class AttorneyArchive extends Component {
     const selected = input;
     const key = e.target.name;
     const results = { selected, key };
-    const s = select.filter(a => a.key !== key);
+    const s = select.filter((a) => a.key !== key);
     const concatResults = s.concat(results);
 
     // set new results[] to state select
@@ -106,7 +105,7 @@ class AttorneyArchive extends Component {
     const selected = e.target.value;
     const key = e.target.name;
     const results = { selected, key };
-    const s = select.filter(a => a.key !== key);
+    const s = select.filter((a) => a.key !== key);
     const concatResults = s.concat(results);
 
     // set new results[] to state select
@@ -117,14 +116,14 @@ class AttorneyArchive extends Component {
     const pElm = document.querySelector('.megamenu-container');
     pElm.classList.remove('super-hide');
   }
-  
+
   /* Letter Click Event */
   letterClick(e) {
     const { select } = this.state;
     const selected = e.target.innerHTML;
     const key = 'letter';
     const results = { selected, key };
-    const s = select.filter(a => a.key !== key);
+    const s = select.filter((a) => a.key !== key);
     const concatResults = s.concat(results);
     this.setState({ select: concatResults });
   }
@@ -132,7 +131,7 @@ class AttorneyArchive extends Component {
   /* Handle User Input Event */
   handleChange(e) {
     const { select } = this.state;
-    const userInput = e.target.value.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    const userInput = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
     const results = { selected: userInput, key: 'query' };
     const concatResults = select.concat(results);
     this.setState({
@@ -144,7 +143,7 @@ class AttorneyArchive extends Component {
   /** Clear user query */
   clearQuery(key) {
     const { select } = this.state;
-    const rQuery = select.filter(a => a.key !== key);
+    const rQuery = select.filter((a) => a.key !== key);
 
     this.setState({
       select: rQuery,
@@ -183,33 +182,33 @@ class AttorneyArchive extends Component {
           title="Attorneys"
           image={attArchiveBckGround}
           subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
-          height={'330px'}
+          height="330px"
         />
         <FullWidth>
-        <div className="mb-5">
-                {/** Filters */}
-                <Filters
-                  practices={sPractices}
-                  alphabet={alphabet}
-                  location={location}
-                  designation={designation}
-                  userInput={userInput}
-                  handleChange={this.handleChange}
-                  onSelect={this.onSelect}
-                  letterClick={this.letterClick}
-                  clearAll={this.clearAll}
-                  onMobileSelect={this.onMobileSelect}
-                  removeVisibilityClass={this.removeVisibilityClass}
-                />
-                {/** End of Filters */}
-                {/** Results */}
-                <div className="w-100 border mt-sm-6 mt-md-0">
-                  <Selected
-                    select={select}
-                    clearQuery={this.clearQuery}
-                    userInput={userInput}
-                  />
-                  {
+          <div className="mb-5">
+            {/** Filters */}
+            <Filters
+              practices={sPractices}
+              alphabet={alphabet}
+              location={location}
+              designation={designation}
+              userInput={userInput}
+              handleChange={this.handleChange}
+              onSelect={this.onSelect}
+              letterClick={this.letterClick}
+              clearAll={this.clearAll}
+              onMobileSelect={this.onMobileSelect}
+              removeVisibilityClass={this.removeVisibilityClass}
+            />
+            {/** End of Filters */}
+            {/** Results */}
+            <div className="w-100 border mt-sm-6 mt-md-0">
+              <Selected
+                select={select}
+                clearQuery={this.clearQuery}
+                userInput={userInput}
+              />
+              {
                     (!spinner) ? (
                       <Results
                         attorneys={attorneys}
@@ -218,9 +217,9 @@ class AttorneyArchive extends Component {
                       />
                     ) : <PulseLoader color="#D02422" loading={spinner} />
                   }
-                </div>
-                {/** End of Results */}
-              </div>
+            </div>
+            {/** End of Results */}
+          </div>
         </FullWidth>
       </div>
     );

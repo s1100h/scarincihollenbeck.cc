@@ -21,7 +21,7 @@ const SideBar = (props) => {
   return (
     <div>
       {
-        officeList.map(o => (
+        officeList.map((o) => (
           <OfficeData
             key={addRandomKey(o.title)}
             setNewLocation={setNewLocation}

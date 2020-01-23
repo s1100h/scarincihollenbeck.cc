@@ -11,10 +11,10 @@ const AttorneyServices = (props) => {
         {' '}
         Services
       </div>
-      <div className="off-white">
+      <div className="off-white p-3">
         {
           (practices) ? practices.map(p => (
-            <div key={p.title} className="p-2">
+            <div key={p.title} className="mb-3">
               <a href={p.link} className="top-article">
                 <h5 className="mb-0">{p.title}</h5>                
               </a>

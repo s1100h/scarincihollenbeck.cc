@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import SHLogo from '../../images/sh-logo-2017.png';
 import './index.scss';
 
@@ -10,40 +10,40 @@ const NavBar = () => (
       <div className="row border-bottom pb-2">
         <div className="col-12 mt-3">
           <nav className="navbar navbar-expand-md navbar-light">
-            <Link className="navbar-brand mb-3" to='/'>
+            <Link className="navbar-brand mb-3" to="/">
               <img src={SHLogo} alt="Scarinci Hollenbeck Regional Business law firm" />
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon" />
             </button>
             {/** Dropdown Menu */}
             <div id="navbarSupportedContent" className="navbar-collapse collapse show">
               <ul id="menu-main-menu" className="navbar-nav ml-auto py-4 py-md-0">
                 <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" className="dropdown nav-item">
-                  <Link title="The Firm" to='#' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle nav-link" id="menu-item-dropdown-29112">
+                  <div title="The Firm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle nav-link span-hover">
                   The Firm
-                  </Link>
+                  </div>
                   <ul className="dropdown-menu" aria-labelledby="menu-item-dropdown-29112" role="menu">
                     <li className="nav-item">
-                        <Link title="Administration" to="/administration" className="dropdown-item">Administration</Link>
+                      <Link title="Administration" to="/administration" className="dropdown-item">Administration</Link>
                     </li>
                     <li className="nav-item">
-                        <Link title="Careers" to="/careers/" className="dropdown-item">Careers</Link>
+                      <Link title="Careers" to="/careers/" className="dropdown-item">Careers</Link>
                     </li>
                     <li className="nav-item">
-                        <Link title="Community Involvement" to="/community-involvement/" className="dropdown-item">Community Involvement</Link>
+                      <Link title="Community Involvement" to="/community-involvement/" className="dropdown-item">Community Involvement</Link>
                     </li>
                     <li className="nav-item">
-                        <Link title="Diversity Group" to="/diversity-group/" className="dropdown-item">Diversity Group</Link>
+                      <Link title="Diversity Group" to="/diversity-group/" className="dropdown-item">Diversity Group</Link>
                     </li>
                     <li className="nav-item">
-                        <Link title="Firm Overview" to="/firm-overview/" className="dropdown-item">Firm Overview</Link>
+                      <Link title="Firm Overview" to="/firm-overview/" className="dropdown-item">Firm Overview</Link>
                     </li>
                     <li className="nav-item">
-                        <Link title="Pro Bono" to="/pro-bono/" className="dropdown-item">Pro Bono</Link>
+                      <Link title="Pro Bono" to="/pro-bono/" className="dropdown-item">Pro Bono</Link>
                     </li>
                     <li className="nav-item">
-                        <Link title="Women LEAD" to="/women-lead/" className="dropdown-item">Women LEAD</Link>
+                      <Link title="Women LEAD" to="/women-lead/" className="dropdown-item">Women LEAD</Link>
                     </li>
                   </ul>
                 </li>
@@ -54,7 +54,7 @@ const NavBar = () => (
                   <Link title="Practices" to="/practices/" className="nav-link">Practices</Link>
                 </li>
                 <li className="dropdown nav-item">
-                  <Link title="Library" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle nav-link">Library</Link>
+                  <div title="Library" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle nav-link span-hover">Library</div>
                   <ul className="dropdown-menu" aria-labelledby="menu-item-dropdown-29122" role="menu">
                     <li className="nav-item">
                       <a title="Firm News" href="/category/firm-news/" className="dropdown-item">Firm News</a>
@@ -77,12 +77,16 @@ const NavBar = () => (
                   <Link title="Contact" to="/contact/" className="nav-link">Contact</Link>
                 </li>
                 <li className="nav-item">
-                  <Link title="Phone: 201-896-4100" to="#" className="nav-link"><strong className="not-link">Phone:</strong> 201-896-4100</Link>
+                  <span title="Phone: 201-896-4100" className="nav-link">
+                    <strong className="not-link">Phone:</strong>
+                    {' '}
+                    201-896-4100
+                  </span>
                 </li>
               </ul>
-            </div>           
+            </div>
             {/** End of Dropdown Menu */}
-          </nav>		
+          </nav>
         </div>
       </div>
     </div>

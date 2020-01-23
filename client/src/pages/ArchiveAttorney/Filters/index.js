@@ -23,7 +23,7 @@ const Filters = (props) => {
     onMobileSelect,
     removeVisibilityClass,
   } = props;
-  
+
   return (
     <span>
       {
@@ -32,7 +32,11 @@ const Filters = (props) => {
            <Keyword userInput={userInput} handleChange={handleChange} />
            <div className="collapse navbar-collapse" id="navbarSupportedContent">
              <ul className="navbar-nav nav-fill w-100">
-               <Practices practices={practices} onSelect={onSelect} removeVisibilityClass={removeVisibilityClass} />
+               <Practices
+                 practices={practices}
+                 onSelect={onSelect}
+                 removeVisibilityClass={removeVisibilityClass}
+               />
                <Location locations={location} onSelect={onSelect} />
                <Title designation={designation} onSelect={onSelect} />
              </ul>
