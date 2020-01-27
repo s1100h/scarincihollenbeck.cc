@@ -13,7 +13,7 @@ const TabContent = (props) => {
     currentTab,
     attorneysMentioned,
     title,
-   } = props;
+  } = props;
 
   return (
     <div>
@@ -43,15 +43,15 @@ const TabContent = (props) => {
           </div>
         ) : ''
       }
-     <NewsScroller attorneysMentioned={attorneysMentioned} title={title} />      
+      <NewsScroller attorneysMentioned={attorneysMentioned} title={title} />
     </div>
-  )  
+  );
 };
 
-TabContent.propTypes = { 
+TabContent.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),
   sortedMembers: PropTypes.arrayOf(PropTypes.object),
-  chair: PropTypes.string,
+  chair: PropTypes.arrayOf(PropTypes.object),
   handleLink: PropTypes.func,
   currentTab: PropTypes.string,
   attorneysMentioned: PropTypes.arrayOf(PropTypes.object),
@@ -61,11 +61,11 @@ TabContent.propTypes = {
 TabContent.defaultProps = {
   content: [],
   sortedMembers: [],
-  chair: '',
+  chair: [],
   handleLink: () => {},
   currentTab: '',
   attorneysMentioned: [],
-  title: ''
+  title: '',
 };
 
 export default TabContent;

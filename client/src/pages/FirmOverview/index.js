@@ -2,7 +2,6 @@
 /* eslint class-methods-use-this: "error" */
 
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import PageHead from '../../components/Head/page';
@@ -21,14 +20,14 @@ class FirmOverview extends Component {
       additionalInfo: [],
       members: {},
       seo: {},
-      spinner:false,
+      spinner: false,
     };
   }
 
   componentDidMount() {
-    this.setState({spinner: true });
+    this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/firm-overview/content`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const {
           mainTabs,
@@ -38,7 +37,9 @@ class FirmOverview extends Component {
           seo,
         } = data;
 
-        this.setState({ mainTabs, additionalInfo, members, seo, mainContent, spinner: false  });
+        this.setState({
+          mainTabs, additionalInfo, members, seo, mainContent, spinner: false,
+        });
       });
   }
 
@@ -54,7 +55,7 @@ class FirmOverview extends Component {
     } = this.state;
 
     const subHeaderContent = mainContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
-    const bodyContent = mainContent.replace(subHeaderContent, '');   
+    const bodyContent = mainContent.replace(subHeaderContent, '');
 
     return (
       <div>
@@ -64,37 +65,35 @@ class FirmOverview extends Component {
           subtitle={subHeaderContent}
           image={foHeaderBckGround}
           height="325px"
-        />   
+        />
         <FullWidth>
           <div className="text-muted lead text-center" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
           {
-            (!spinner) ?  (
-             <div>
-               { mainTabs.map((mt) => (
-                    <div className="w-100 mt-4 px-0" key={mt.title}>
-                      <div className="line-header">
-                        <h3>{mt.subTitle}</h3>
-                      </div>
-                      <div className="lead mt-4 text-center body-text" dangerouslySetInnerHTML={createMarkup(mt.content)} />
+            (!spinner) ? (
+              <div>
+                { mainTabs.map((mt) => (
+                  <div className="w-100 mt-4 px-0" key={mt.title}>
+                    <div className="line-header">
+                      <h3>{mt.subTitle}</h3>
                     </div>
-                  ))
-               }
-               <div className="border">
-                <Members title="Managing Partners" members={members.managingPartners} />
-                <Members title="Partners" members={members.partners} />
-                <Members title="Directors" members={members.admin} />
-              </div>
-              { additionalInfo.map(ai => (
+                    <div className="lead mt-4 text-center body-text" dangerouslySetInnerHTML={createMarkup(mt.content)} />
+                  </div>
+                ))}
+                <div className="border">
+                  <Members title="Managing Partners" members={members.managingPartners} />
+                  <Members title="Partners" members={members.partners} />
+                  <Members title="Directors" members={members.admin} />
+                </div>
+                { additionalInfo.map((ai) => (
                   <div className="w-100 mt-4 px-0" key={ai.title}>
                     <h4 className="bg-light-gray">{ai.title}</h4>
                     <div className="lead mt-4 body-text" dangerouslySetInnerHTML={createMarkup(ai.content)} />
                   </div>
-                ))
-              }
-             </div>
+                ))}
+              </div>
             ) : <PulseLoader color="#D02422" loading={spinner} />
 
-        }          
+        }
         </FullWidth>
       </div>
     );

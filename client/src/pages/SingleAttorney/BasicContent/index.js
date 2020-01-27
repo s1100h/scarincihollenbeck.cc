@@ -19,7 +19,7 @@ const BasicContent = (props) => {
         <div className="row">
           <div id={`nav-${tabTitle}-tab`} dangerouslySetInnerHTML={createMarkup(content)} />
         </div>
-      </div>      
+      </div>
     </div>
   );
 };

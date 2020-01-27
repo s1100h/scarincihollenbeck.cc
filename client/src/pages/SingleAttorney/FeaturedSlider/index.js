@@ -1,16 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import './index.scss';
 
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right featured-slider-arrow right" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleRight
+      className="featured-slider-arrow right"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left featured-slider-arrow left" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleLeft
+      className="featured-slider-arrow left"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 
@@ -22,7 +39,7 @@ const FeaturedSlider = (props) => {
     infinite: true,
     slidesToShow: 3,
     dots: true,
-    adaptiveHeight: true,  
+    adaptiveHeight: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     className: 'fs-container',
@@ -50,7 +67,7 @@ const FeaturedSlider = (props) => {
           slidesToScroll: 1,
           dots: false,
           arrows: false,
-          autoplay: true, 
+          autoplay: true,
         },
       },
     ],
@@ -77,13 +94,13 @@ const FeaturedSlider = (props) => {
         (content.length > 3) ? (
           <Slider {...settings}>
             {
-              content.map(c => <a href={c.link} key={c.title} className="mx-3"><img src={c.featuredImg} width="230" alt={c.title} className="img-fluid" /></a>)
+              content.map((c) => <a href={c.link} key={c.title} className="mx-3"><img src={c.featuredImg} width="230" alt={c.title} className="img-fluid" /></a>)
             }
           </Slider>
         ) : (
           <div className="d-flex flex-row">
             {
-              content.map(c => <a href={c.link} key={c.title} className="mx-3"><img src={c.featuredImg} width="230" alt={c.title} className="img-fluid" /></a>)
+              content.map((c) => <a href={c.link} key={c.title} className="mx-3"><img src={c.featuredImg} width="230" alt={c.title} className="img-fluid" /></a>)
             }
           </div>
         )

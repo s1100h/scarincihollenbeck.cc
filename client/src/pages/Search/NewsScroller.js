@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import { sortByKey } from '../../utils/helpers';
 import noImg from '../../images/no-image-found-diamond.png';
 import './index.scss';
@@ -8,12 +9,23 @@ import './index.scss';
 
 const PostsNextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right quick-news-scroll right" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+  return <FaAngleDoubleRight
+    className="quick-news-scroll right"
+    role="button"
+    tabIndex={0}
+    onKeyDown={onClick}
+    onClick={onClick}
+  />
 };
-
 const PostsPrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left quick-news-scroll left" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+  return <FaAngleDoubleLeft
+    className="quick-news-scroll left"
+    role="button"
+    tabIndex={0}
+    onKeyDown={onClick}
+    onClick={onClick}
+  />
 };
 
 

@@ -23,6 +23,6 @@ Sidebar.propTypes = {
 Sidebar.defaultProps = {
   show: false,
   toggleModal: () => {},
-}
+};
 
 export default Sidebar;

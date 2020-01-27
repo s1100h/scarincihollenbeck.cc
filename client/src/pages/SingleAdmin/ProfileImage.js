@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ProfileImage = (props) => {
   const { image, name } = props;
-  return  <img src={image.url} alt={name} className="img-fluid white-transparent-border" />
+  return <img src={image.url} alt={name} className="img-fluid white-transparent-border" />;
 };
 
 ProfileImage.propTypes = {
@@ -13,7 +13,7 @@ ProfileImage.propTypes = {
 
 ProfileImage.defaultProps = {
   image: {},
-  name: ''
+  name: '',
 };
 
 export default ProfileImage;

@@ -19,13 +19,13 @@ const Table = (props) => {
           <thead className="thead-dark">
             <tr>
               {
-                content.header.map(h => <th key={h.c} className="text-uppercase">{h.c}</th>)
+                content.header.map((h) => <th key={h.c} className="text-uppercase">{h.c}</th>)
               }
             </tr>
           </thead>
           <tbody>
             {
-              content.body.map(b => (
+              content.body.map((b) => (
                 <tr key={addRandomKey(b[0].c)}>
                   <td dangerouslySetInnerHTML={createMarkup(b[0].c)} />
                   <td dangerouslySetInnerHTML={createMarkup(b[1].c)} />
@@ -37,7 +37,7 @@ const Table = (props) => {
             }
           </tbody>
         </table>
-      </div>      
+      </div>
     </div>
   );
 };

@@ -7,21 +7,21 @@ const Practices = (props) => {
   return (
     <div>
       <h5 className="red-title">Core Practices</h5>
-        <hr />
-        <ul className="ml-4">
-          { corePractices.map(p => <li key={p.name} className="blue-title"><a href={p.link} className="blue-title proxima-bold">{p.name}</a></li>) }
-        </ul>
-        <a href={`/practices`} className="red-title proxima-bold">
-          <u>
+      <hr />
+      <ul className="ml-4">
+        { corePractices.map((p) => <li key={p.name} className="blue-title"><a href={p.link} className="blue-title proxima-bold">{p.name}</a></li>) }
+      </ul>
+      <a href="/practices" className="red-title proxima-bold">
+        <u>
             All Practices &gt;&gt;
-          </u>
-        </a>
-      </div>
-    )
+        </u>
+      </a>
+    </div>
+  );
 };
 
-Practices.propTypes = { 
- corePractices: PropTypes.arrayOf(PropTypes.object),
+Practices.propTypes = {
+  corePractices: PropTypes.arrayOf(PropTypes.object),
 };
 
 Practices.defaultProps = {

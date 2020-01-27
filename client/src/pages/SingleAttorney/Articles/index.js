@@ -31,7 +31,7 @@ const Articles = (props) => {
       <div id={`nav-${tabTitle}-tab`} className="article-container container">
         <div className="row">
           {
-            content.map(a => <Post key={addRandomKey(a.title)} link={a.link} title={a.title} img={a.featuredImg} />)
+            content.map((a) => <Post key={addRandomKey(a.title)} link={a.link} title={a.title} img={a.featuredImg} />)
           }
         </div>
       </div>

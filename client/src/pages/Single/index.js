@@ -42,18 +42,17 @@ class Single extends Component {
   componentDidMount() {
     const { parent, child, post } = this.props.match.params;
     console.log(post);
-    this.setState({ spinner:true }, () => {
+    this.setState({ spinner: true }, () => {
       this.fetchPostData(`${process.env.API_URL}/wp-json/single/post/${post}`);
       // set timeout to trigger
       this.triggerSubscription();
     });
-   
   }
 
 
   fetchPostData(url) {
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const {
           attorneys,
@@ -68,7 +67,7 @@ class Single extends Component {
         } = data;
 
         // check if its an event category
-        const eventCat = categories.map(a => a.id).indexOf(99) > -1;
+        const eventCat = categories.map((a) => a.id).indexOf(99) > -1;
 
         // set data from fetch requst to state
         this.setState({
@@ -81,7 +80,7 @@ class Single extends Component {
           eventCat,
           eventDetails,
           seo,
-          spinner:false,
+          spinner: false,
         });
       });
   }
@@ -92,7 +91,7 @@ class Single extends Component {
   }
 
   toggleModal() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       show: !prevState.show,
     }));
   }
@@ -146,7 +145,7 @@ class Single extends Component {
 
 
     const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-    const subTitle = (extractSubTitle !== null)  ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : ''
+    const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
     const featuredImg = content.match(/<figure(.*?)>(.*?)<\/figure>/g);
     const firstFeaturedImg = (featuredImg !== null) ? featuredImg[0] : '';
     const bodyContent = content.replace(firstFeaturedImg, '').replace(subTitle, '');
@@ -154,18 +153,18 @@ class Single extends Component {
     return (
       <div>
         <PostHead seo={seo} />
-          { (subTitle !== null) ? (
-            <SingleSubHeader
-              image={BlogHeader}
-              title={title}
-              subtitle={subTitle}
-           />
-            ): ''
-          }
-          
-          {(!spinner) ? (
-            <ThreeColMiniSidebar
-              body={(<Body
+        { (subTitle !== null) ? (
+          <SingleSubHeader
+            image={BlogHeader}
+            title={title}
+            subtitle={subTitle}
+          />
+        ) : ''}
+
+        {(!spinner) ? (
+          <ThreeColMiniSidebar
+            body={(
+              <Body
                 firstFeaturedImg={firstFeaturedImg}
                 bodyContent={bodyContent}
                 author={author}
@@ -173,33 +172,33 @@ class Single extends Component {
                 title={title}
                 author={author}
                 date={date}
-              />)}
-              OneSidebar={(
-                <SocialShareSidebar
-                  printScreen={this.printScreen}
-                  title={title}
-                />
+              />
+)}
+            OneSidebar={(
+              <SocialShareSidebar
+                printScreen={this.printScreen}
+                title={title}
+              />
               )}
-              TwoSidebar={(eventCat === true) ? (
-                <EventSidebar
-                  eventDetails={eventDetails}
-                  attorneys={attorneys}
-                  hideSubscription={this.hideSubscription}
-                  show={show}
-                  toggleModal={this.toggleModal}
-                />
-              ) : (
-                <Sidebar
-                  posts={posts}
-                  attorneys={attorneys}
-                  hideSubscription={this.hideSubscription}
-                  show={show}
-                  toggleModal={this.toggleModal}
-                />
-              )}
-            />
-            ) : <PulseLoader color="#D02422" loading={spinner} />
-          }
+            TwoSidebar={(eventCat === true) ? (
+              <EventSidebar
+                eventDetails={eventDetails}
+                attorneys={attorneys}
+                hideSubscription={this.hideSubscription}
+                show={show}
+                toggleModal={this.toggleModal}
+              />
+            ) : (
+              <Sidebar
+                posts={posts}
+                attorneys={attorneys}
+                hideSubscription={this.hideSubscription}
+                show={show}
+                toggleModal={this.toggleModal}
+              />
+            )}
+          />
+        ) : <PulseLoader color="#D02422" loading={spinner} />}
       </div>
     );
   }

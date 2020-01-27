@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Biography from './Biography';
@@ -26,15 +27,14 @@ const Body = (props) => {
     blogPosts,
     newsEventArticles,
     videos,
-    tabs,
     clients,
     awards,
     filterBody,
+    tabs,
   } = props;
 
   // combine and sort blog articles
   const sortedBlogArticles = sortByDateKey(blogPosts, 'date');
-  console.log(typeof presentations)
 
   return (
     <div>
@@ -48,60 +48,15 @@ const Body = (props) => {
         { (blogPosts) ? <Articles currentTab={currentTab} tabTitle="blogs" title="Articles" content={sortedBlogArticles} /> : '' }
         { (newsEventArticles.length > 0) ? (newsEventArticles !== undefined) ? <Articles currentTab={currentTab} tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} /> : '' : '' }
         { (videos) ? <VideoContent title="Videos" content={videos} currentTab={currentTab} tabTitle="videos" /> : '' }
-        { (tabs) ? filterBody.map(b => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} currentTab={currentTab} tabTitle={urlify(b[1])} />) : '' }
+        { (tabs) ? filterBody.map((b) => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} currentTab={currentTab} tabTitle={urlify(b[1])} />) : '' }
       </div>
       { (clients) ? (clients.length > 0) ? <FeaturedSlider content={clients} title="Clients" /> : '' : '' }
       { (awards) ? (awards.length > 0) ? <FeaturedSlider content={awards} title="Awards" /> : '' : '' }
       { (newsEventArticles.length > 0) ? <RelatedArticles title="News & Events" content={newsEventArticles} /> : '' }
-      { (blogPosts) ? <RelatedArticles title="Recent Articles" content={sortedBlogArticles} /> : '' }      
+      { (blogPosts) ? <RelatedArticles title="Recent Articles" content={sortedBlogArticles} /> : '' }
     </div>
   );
 };
 
-Body.propTypes = {
-  biography: PropTypes.string,
-  currentTab: PropTypes.string,
-  readMore: PropTypes.bool,
-  toggleReadMore: PropTypes.func,
-  representativeMatters: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.object)
-  ]),
-  matterClick: PropTypes.func,
-  matterTab: PropTypes.string,
-  representativeClients: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.object)
-  ]),
-  presentations: PropTypes.objectOf(PropTypes.string),
-  publications: PropTypes.objectOf(PropTypes.string),
-  // media,
-  // blogPosts,
-  // newsEventArticles,
-  // videos,
-  // tabs,
-  // clients,
-  // awards,
-};
-
-Body.defaultProps = {
-  biography: '',
-  currentTab : '',
-  readMore: false,
-  toggleReadMore: () => {},
-  representativeMatters: false,
-  matterClick: () => {},
-  matterTab: '',
-  representativeClients: false,
-  presentations: '',
-  // publications,
-  // media,
-  // blogPosts,
-  // newsEventArticles,
-  // videos,
-  // tabs,
-  // clients,
-  // awards,
-}
 
 export default Body;

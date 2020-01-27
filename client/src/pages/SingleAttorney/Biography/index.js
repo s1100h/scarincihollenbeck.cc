@@ -13,7 +13,7 @@ const Biography = (props) => {
     readMore,
   } = props;
 
-  const c = content.split(/<p[^>]*>/).filter(a => a !== '');
+  const c = content.split(/<p[^>]*>/).filter((a) => a !== '');
   const excerpt = c[0].replace('</p>', '');
   const excerptTwo = c[1];
 

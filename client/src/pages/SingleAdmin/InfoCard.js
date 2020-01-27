@@ -9,7 +9,7 @@ const InfoCard = (props) => {
     social_media_links,
     vizibility,
     name,
-  } = props; 
+  } = props;
 
   return (
     <div className="container">
@@ -55,7 +55,7 @@ const InfoCard = (props) => {
               <span>
                 <ul className="ml-0 mt-2">
                   {
-                    social_media_links.map(v => (
+                    social_media_links.map((v) => (
                       <li key={v.channel} className="mb-0 lh-1">
                         <h5>
                           <i className={`fab text-white fa-${v.channel.toLowerCase()}`}>
@@ -88,8 +88,8 @@ const InfoCard = (props) => {
           }
         </div>
       </div>
-    </div>              
-  )
+    </div>
+  );
 };
 
 InfoCard.propTypes = {

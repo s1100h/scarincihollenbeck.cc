@@ -2,10 +2,10 @@
 /* eslint-disable no-else-return */
 
 // fetch image and convert to blob
-export const fetchAsBlob = url => fetch(url).then(response => response.blob());
+export const fetchAsBlob = (url) => fetch(url).then((response) => response.blob());
 
 // convert blog to base 64 string
-export const convertBlobToBase64 = blob => new Promise((resolve, reject) => {
+export const convertBlobToBase64 = (blob) => new Promise((resolve, reject) => {
   const reader = new FileReader();
   reader.onerror = reject;
 
@@ -34,7 +34,7 @@ export const scrapePage = (document, tag) => {
 };
 
 // fetch attorney from database
-const fetchAttorneyData = url => fetch(url).then(response => response.json());
+const fetchAttorneyData = (url) => fetch(url).then((response) => response.json());
 
 // retrieve attorney card data
 export const getAttorney = (attorney = null) => {
@@ -43,7 +43,7 @@ export const getAttorney = (attorney = null) => {
 };
 
 // format html to text
-export const convertUniCodeToString = html => html
+export const convertUniCodeToString = (html) => html
   .replace(/[\u2018\u2019]/g, "'")
   .replace(/[\u201C\u201D]/g, '"')
   .replace(/\u2013|\u2014/g, '-')
@@ -54,7 +54,7 @@ export const convertUniCodeToString = html => html
   .replace(/&amp;/g, '&');
 
 // remove main image, links, header title from content
-export const removeTitlesAndImgs = html => html
+export const removeTitlesAndImgs = (html) => html
   .replace(/<img[^>]*>/g, '')
   .replace(/<h2.*style=.text-align: center.*.<\/h2>/g, '')
   .replace(/<h2.*style=.text-align:center.*.<\/h2>/g, '')

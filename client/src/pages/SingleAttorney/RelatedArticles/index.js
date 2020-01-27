@@ -1,17 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import { addRandomKey } from '../../../utils/helpers';
 import './index.scss';
 
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right featured-slider-arrow right" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleRight
+      className="featured-slider-arrow right"
+      onKeyPress={onClick}
+      role="button"
+      tabIndex="0"
+      onClick={onClick}
+    />
+  );
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left featured-slider-arrow left" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleLeft
+      className="featured-slider-arrow left"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const RelatedArticles = (props) => {
@@ -20,12 +37,12 @@ const RelatedArticles = (props) => {
   const firstEightArticles = content.filter((p, i) => i < 8);
   const noImg = `${process.env.API_URL}/wp-content/themes/sh-law-theme/includes/assets/images/88a9c0b8e7ff2ed7ecff91cfdaa0b816.png`;
 
-  const Articlesettings = {    
+  const Articlesettings = {
     centerMode: true,
     infinite: true,
     slidesToShow: 3,
     dots: true,
-    adaptiveHeight: true,  
+    adaptiveHeight: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     className: 'fs-container',
@@ -53,7 +70,7 @@ const RelatedArticles = (props) => {
           slidesToScroll: 1,
           dots: false,
           arrows: false,
-          autoplay: true, 
+          autoplay: true,
         },
       },
     ],
@@ -66,7 +83,7 @@ const RelatedArticles = (props) => {
         (firstEightArticles.length > 3) ? (
           <Slider {...Articlesettings}>
             {
-              firstEightArticles.map(v => (
+              firstEightArticles.map((v) => (
                 <div key={addRandomKey(v.title)} className="article-card">
                   <a href={v.link}>
                     <img src={(v.featuredImg) ? v.featuredImg : noImg} alt={v.title} width="230" className="img-thumbnail mx-auto d-block mt-3" />
@@ -80,7 +97,7 @@ const RelatedArticles = (props) => {
           <div className="container">
             <div className="row">
               {
-                firstEightArticles.map(v => (
+                firstEightArticles.map((v) => (
                   <div key={addRandomKey(v.title)} className="col-sm-12 col-md-4 article-card">
                     <a href={v.link}>
                       <img src={(v.featuredImg) ? v.featuredImg : noImg} alt={v.title} width="230" className="img-thumbnail mt-3" />

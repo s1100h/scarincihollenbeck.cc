@@ -19,7 +19,7 @@ const VideoContent = (props) => {
       <div className="article-container container" id={`nav-${tabTitle}-tab`}>
         <div className="row">
           {
-            content.map(video => (
+            content.map((video) => (
               <div key={addRandomKey(video.title)} className="col-sm-12">
                 <div dangerouslySetInnerHTML={createMarkup(video.embed_video)} className="w-100" />
                 <h5 className="mt-2 mb-4">

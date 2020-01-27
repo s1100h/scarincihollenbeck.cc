@@ -8,7 +8,7 @@ const AuthorBio = (props) => {
   return (
     <div className="w-100 hide-print mt-5">
       {
-        (author) ? author.map(a => (
+        (author) ? author.map((a) => (
           <div key={addRandomKey(a.name)} className="mb-2">
             <h4 className="bg-light-gray">
               About Author

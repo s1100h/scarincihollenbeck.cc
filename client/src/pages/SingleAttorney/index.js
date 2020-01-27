@@ -22,28 +22,30 @@ class AttorneyBiography extends Component {
       bio: [],
       loading: false,
       currentTab: 'biography',
+      currentSidebarTab: true,
       matterTab: '',
       readMore: false,
-      spinner:false 
+      spinner: false,
     };
 
     this.fetchPostData = this.fetchPostData.bind(this);
     this.tabClick = this.tabClick.bind(this);
     this.matterClick = this.matterClick.bind(this);
     this.toggleReadMore = this.toggleReadMore.bind(this);
+    this.setSideBarTab = this.setSideBarTab.bind(this);
   }
 
   componentDidMount() {
     // get attorny from react router url
     const { attorney } = this.props.match.params;
-    this.setState({ spinner:true });
+    this.setState({ spinner: true });
     this.fetchPostData(`${process.env.API_URL}/wp-json/individual-attorney/attorney/${attorney}`);
   }
 
   fetchPostData(url) {
     this.setState({ loading: true });
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((bio) => {
         let matterTab = '';
         if (bio.representativeMatters[0] !== undefined) {
@@ -65,8 +67,16 @@ class AttorneyBiography extends Component {
     this.setState({ matterTab });
   }
 
+  setSideBarTab(e) {
+    const classes = e.target.classList;
+
+    if(classes[1] === "collapsed") {
+      this.setState({ currentSidebarTab: false });
+    }
+  }
+
   toggleReadMore() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       readMore: !prevState.readMore,
     }));
   }
@@ -79,6 +89,7 @@ class AttorneyBiography extends Component {
       matterTab,
       readMore,
       spinner,
+      currentSidebarTab,
     } = this.state;
 
     const {
@@ -144,10 +155,9 @@ class AttorneyBiography extends Component {
     // filter empty tabs
     if (tabs !== undefined) {
       const { headers, body } = tabs;
-      filterHeaders = headers.filter(a => typeof a !== 'number');
-      filterBody = body.filter(a => a[1] !== '');
+      filterHeaders = headers.filter((a) => typeof a !== 'number');
+      filterBody = body.filter((a) => a[1] !== '');
     }
-
 
 
     return (
@@ -161,10 +171,10 @@ class AttorneyBiography extends Component {
                 profile={(
                   <ProfileImage
                     image={profileImage}
-                    name={fullName}                    
+                    name={fullName}
                   />
                 )}
-                height={'325px'}
+                height="325px"
                 infoCard={(
                   <InfoCard
                     fullName={fullName}
@@ -177,51 +187,62 @@ class AttorneyBiography extends Component {
                     pdf={pdf}
                     vizibility={vizibility}
                   />
-                )} 
+                )}
               />
               <FullWidth>
-              <div className="line-header" id="nav-tab" role="tablist">
-                 <MenuItem currentTab={currentTab} tabTitle="biography" tabClick={this.tabClick} title="Biography" />
-                 { (representativeMatters) ? <MenuItem currentTab={currentTab} tabTitle="representative-matters" tabClick={this.tabClick} title="Representative Matters" /> : '' }
-                 { (representativeClients) ? <MenuItem currentTab={currentTab} tabTitle="representative-clients" tabClick={this.tabClick} title="Representative Clients" /> : '' }
-                 { (presentations) ? <MenuItem currentTab={currentTab} tabTitle="presentations" tabClick={this.tabClick} title="Presentations" /> : '' }
-                 { (publications) ? <MenuItem currentTab={currentTab} tabTitle="publications" tabClick={this.tabClick} title="Publications" /> : ''  }
-                 { (media) ? <MenuItem currentTab={currentTab} tabTitle="media" tabClick={this.tabClick} title="Media" /> : '' }
-                 { (blogPosts) ? <MenuItem currentTab={currentTab} tabTitle="blogs" tabClick={this.tabClick} title="Articles" /> : ''}
-                 { (newsEventArticles.length > 0) ? (newsEventArticles !== undefined) ? <MenuItem currentTab={currentTab} tabTitle="newsevents" tabClick={this.tabClick} title="News &amp; Events" /> : '' : '' } 
-                 { (videos) ? <MenuItem currentTab={currentTab} tabTitle="videos" tabClick={this.tabClick} title="Videos" /> : '' }
-                 { (tabs) ? filterHeaders.map(value => <MenuItem key={value} currentTab={currentTab} tabTitle={urlify(value)} tabClick={this.tabClick} title={value} />) : ''}
-               </div>
+                <div className="line-header" id="nav-tab" role="tablist">
+                  <MenuItem currentTab={currentTab} tabTitle="biography" tabClick={this.tabClick} title="Biography" />
+                  { (representativeMatters) ? <MenuItem currentTab={currentTab} tabTitle="representative-matters" tabClick={this.tabClick} title="Representative Matters" /> : '' }
+                  { (representativeClients) ? <MenuItem currentTab={currentTab} tabTitle="representative-clients" tabClick={this.tabClick} title="Representative Clients" /> : '' }
+                  { (presentations) ? <MenuItem currentTab={currentTab} tabTitle="presentations" tabClick={this.tabClick} title="Presentations" /> : '' }
+                  { (publications) ? <MenuItem currentTab={currentTab} tabTitle="publications" tabClick={this.tabClick} title="Publications" /> : '' }
+                  { (media) ? <MenuItem currentTab={currentTab} tabTitle="media" tabClick={this.tabClick} title="Media" /> : '' }
+                  { (blogPosts) ? <MenuItem currentTab={currentTab} tabTitle="blogs" tabClick={this.tabClick} title="Articles" /> : ''}
+                  { (newsEventArticles.length > 0) ? (newsEventArticles !== undefined) ? <MenuItem currentTab={currentTab} tabTitle="newsevents" tabClick={this.tabClick} title="News &amp; Events" /> : '' : '' }
+                  { (videos) ? <MenuItem currentTab={currentTab} tabTitle="videos" tabClick={this.tabClick} title="Videos" /> : '' }
+                  { (tabs) ? filterHeaders.map((value) => <MenuItem key={value} currentTab={currentTab} tabTitle={urlify(value)} tabClick={this.tabClick} title={value} />) : ''}
+                </div>
               </FullWidth>
               <NoHeaderMiniSidebar
                 body={(
                   <Body
-                  biography={biography}
-                  currentTab={currentTab}
-                  readMore={readMore}
-                  toggleReadMore={this.toggleReadMore}
-                  representativeMatters={representativeMatters}
-                  matterClick={this.matterClick}
-                  matterTab={matterTab}
-                  representativeClients={representativeClients}
-                  presentations={presentations}
-                  publications={publications}
-                  media={media}
-                  blogPosts={blogPosts}
-                  newsEventArticles={newsEventArticles}
-                  videos={videos}
-                  tabs={tabs}
-                  clients={clients}
-                  awards={awards}
-                  filterBody={filterBody}
+                    biography={biography}
+                    currentTab={currentTab}
+                    readMore={readMore}
+                    toggleReadMore={this.toggleReadMore}
+                    representativeMatters={representativeMatters}
+                    matterClick={this.matterClick}
+                    matterTab={matterTab}
+                    representativeClients={representativeClients}
+                    presentations={presentations}
+                    publications={publications}
+                    media={media}
+                    blogPosts={blogPosts}
+                    newsEventArticles={newsEventArticles}
+                    videos={videos}
+                    tabs={tabs}
+                    clients={clients}
+                    awards={awards}
+                    filterBody={filterBody}
                   />
                 )}
                 sidebar={(
                   <span>
-                     <Sidebar title="Related Practices" content={relatedPractices} show={false} />
-                     <br />
-                     <Sidebar title="Additional Information" content={ai} show={true} />
-                  </span>
+                    <Sidebar
+                      title="Related Practices"
+                      content={relatedPractices}
+                      currentSidebarTab={currentSidebarTab}
+                      setSideBarTab={this.setSideBarTab}
+                      show={true} />
+                    <br />
+                    <Sidebar
+                      title="Additional Information"
+                      content={ai}
+                      currentSidebarTab={currentSidebarTab}
+                      setSideBarTab={this.setSideBarTab}
+                      show={true}
+                    />
+                  </span> 
                 )}
               />
             </div>
@@ -229,7 +250,7 @@ class AttorneyBiography extends Component {
         }
       </div>
     );
-  };
-};
+  }
+}
 
 export default AttorneyBiography;

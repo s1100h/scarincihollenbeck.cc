@@ -5,17 +5,17 @@ import { makeTitle } from '../../utils/helpers';
 const BreadCrumbs = (props) => {
   const { breadCrumb, categorySlug } = props;
 
-  const firmInsightsBreadCrumbUrl = breadCrumb.map(bc => bc);
+  const firmInsightsBreadCrumbUrl = breadCrumb.map((bc) => bc);
 
   return (
     <h6>
-    <span>
-      <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
-      <strong className="text-black mt-2 mx-2 proxima-bold">
-        <i className="fas fa-caret-right" />
-      </strong>
-    </span>
-    {
+      <span>
+        <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
+        <strong className="text-black mt-2 mx-2 proxima-bold">
+          <i className="fas fa-caret-right" />
+        </strong>
+      </span>
+      {
       ((categorySlug !== 'firm-events') && (categorySlug !== 'firm-news') && !(firmInsightsBreadCrumbUrl.indexOf('law-firm-insights') > -1)) ? (
         <span>
           <a href={`${window.location.origin}/category/law-firm-insights`} className="red-title proxima-bold">LAW FIRM INSIGHTS</a>
@@ -26,7 +26,7 @@ const BreadCrumbs = (props) => {
       ) : ''
     }
 
-    {
+      {
       breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1)
         ? (
           <span key={val}>
@@ -56,13 +56,13 @@ const BreadCrumbs = (props) => {
           </span>
         )))
     }
-  </h6>
+    </h6>
 
   );
 };
 
 BreadCrumbs.propTypes = {
-  breadCrumbs: PropTypes.arrayOf( PropTypes.oneOfType([
+  breadCrumb: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ])),
@@ -70,7 +70,7 @@ BreadCrumbs.propTypes = {
 };
 
 BreadCrumbs.defaultProps = {
-  breadCrumbs: [],
+  breadCrumb: [],
   categorySlug: '',
 };
 

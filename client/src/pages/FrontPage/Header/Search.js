@@ -5,11 +5,11 @@ import ShDiamond from '../../../images/sh-mini-diamond.png';
 const Search = (props) => {
   const { searchTerm, onChange } = props;
 
-  const onSubmit = (e) =>  {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const formatUrl = str => str.toLowerCase().replace(/\s/g, '+');
-    window.location = `/s?=${formatUrl(searchTerm)}`
-  }
+    const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
+    window.location = `/s?=${formatUrl(searchTerm)}`;
+  };
 
   return (
     <div className="col-sm-12 col-md-6">
@@ -33,7 +33,7 @@ Search.propTypes = {
 };
 
 Search.defaultProps = {
-  searchTerms: '',
+  searchTerm: '',
   onChange: () => {},
 };
 

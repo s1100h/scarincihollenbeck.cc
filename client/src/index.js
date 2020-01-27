@@ -84,8 +84,14 @@ import './index.scss';
  *
  *  1. Add AMP component to Posts
  *  2. Add fadein class from animate.css to each class, so the content fades in when the page loads
- *  3. Refactor i tags with react-icons & lint all pages, components, layouts
+ *  3. Refactor i tags with react-icons & lint all pages, components, layouts left off on SingleCareer
  *  4. Add new SEO-optimized components (Description Text, Search) to Category Page
+ *  5. Dropdown menu attorney sidebar messed up
+ *  6. Fix links in the footer
+ *  7. Fix dropdown menu style on all practices page
+ *  8. Add +/- to location tabs 
+ *  9. Make Tending Stories own Component
+ *  10. Remove the get_home function from most urls in wp-rest api 
  * 
  * To Do (Webpack)
  * ==========================================
@@ -94,19 +100,11 @@ import './index.scss';
  *  3. Add a small express server to push to DO Spaces using AWS s3
  *  4. Set up Lazy Loading for common components -- React Sliders, Just In Carousels
  * 
- *  Known Bugs:
- * ========================================
- *  1. Dropdown menu attorney sidebar messed up
- *  2. Fix links in the footer
- *  3. Fix News & Events Scroller front page (break out into own component)
- *  4. Fix dropdown menu style on all practices page
- *  5. Add +/- to location tabs 
- *  6. Make Tending Stories own Component 
- * 
  * To Do (Pre-Production Push)
  * =======================================
  *  1. Set up sitemap xml
  *  2. Add feature to allow Google Analytics for pages to Footer 
+ *  3. Fix attorney cards -- Diversity, About Use, Women Lead
  * 
  */
 

@@ -1,15 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import Slider from 'react-slick';
+import noImg from '../../images/no-image-found-diamond.png';
 
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right post-scroll post-scroll-right" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+  return (
+    <FaAngleDoubleRight
+      className="post-scroll post-scroll-right"
+      role="button"
+      tabIndex={0}
+      onKeyDown={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left post-scroll post-scroll-left" role="button" tabIndex={0} onKeyDown={onClick} onClick={onClick} />;
+  return (
+    <FaAngleDoubleLeft
+      className="post-scroll post-scroll-left"
+      tabIndex={0}
+      onKeyDown={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const SliderContent = (props) => {
@@ -33,7 +50,7 @@ const SliderContent = (props) => {
       </div>
       <Slider {...settings}>
         {
-          slides.map(val => (
+          slides.map((val) => (
             <div key={val.title} className="px-3 pt-5 pb-2">
               <a href={val.link}>
                 <img src={val.image ? val.image : noImg} className="img-fluid" alt={val.title} />
@@ -52,7 +69,7 @@ const SliderContent = (props) => {
 
 SliderContent.propTypes = {
   title: PropTypes.string,
-  slides: PropTypes.arrayOf(PropTypes.object)
+  slides: PropTypes.arrayOf(PropTypes.object),
 };
 
 SliderContent.defaultProps = {
@@ -77,4 +94,3 @@ PrevArrow.defaultProps = {
 };
 
 export default SliderContent;
-

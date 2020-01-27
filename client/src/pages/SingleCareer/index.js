@@ -11,7 +11,6 @@ import BreadCrumb from './BreadCrumb';
 import Body from './Body';
 import blogHeader from './blogheader.jpg';
 import Sidebar from './Sidebar';
-import { createMarkup } from '../../utils/helpers';
 import './index.scss';
 
 
@@ -36,7 +35,7 @@ class Page extends Component {
         firstName: '',
         lastName: '',
         title: '',
-      }      
+      },
     };
     this.formSubmit = this.formSubmit.bind(this);
     this.changeForm = this.changeForm.bind(this);
@@ -46,12 +45,13 @@ class Page extends Component {
 
 
   componentDidMount() {
-    const { career } = this.props.match.params
-    this.setState({ spinner: true })
+    const { match } = this.props;
+    const { career } = match.params;
+    this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/individual-career/career/${career}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        const { title, positionDescription, seo} = data;
+        const { title, positionDescription, seo } = data;
 
         this.setState({
           currentId: career,
@@ -61,7 +61,6 @@ class Page extends Component {
           spinner: false,
         });
       });
-
   }
 
   changeForm(e) {
@@ -126,7 +125,7 @@ class Page extends Component {
   }
 
   toggleModal() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       show: !prevState.show,
     }));
   }
@@ -163,7 +162,7 @@ class Page extends Component {
             <LargeSidebar
               body={(
                 <div>
-                  <BreadCrumb currentTitle={currentTitle}/>
+                  <BreadCrumb currentTitle={currentTitle} />
                   <Body
                     currentTitle={currentTitle}
                     currentDescription={currentDescription}
@@ -175,16 +174,14 @@ class Page extends Component {
                     email={email}
                     phone={phone}
                     fileUpload={this.fileUpload}
-                    /> 
+                  />
                   <ContactForm />
                 </div>
               )}
               sidebar={(<Sidebar show={show} toggleModal={this.toggleModal} />)}
-            /> 
-
             />
           </div>
-        ): <PulseLoader color="#D02422" loading={spinner} />}
+        ) : <PulseLoader color="#D02422" loading={spinner} />}
       </div>
     );
   }

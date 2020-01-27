@@ -15,7 +15,7 @@ const Sidebar = (props) => {
   return (
     <div>
       <Search />
-      <TrendingNews posts={posts} /> 
+      <TrendingNews posts={posts} />
       <SubscriptionContent
         toggleModal={toggleModal}
         hideSubscription={hideSubscription}

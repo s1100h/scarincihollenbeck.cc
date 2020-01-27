@@ -1,17 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
+
 import { addRandomKey } from '../../utils/helpers';
 import './index.scss';
 
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right featured-slider-arrow right" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleRight
+      className="featured-slider-arrow right"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left featured-slider-arrow left" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleLeft
+      className="featured-slider-arrow left"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const NewsScroller = (props) => {
@@ -69,7 +87,7 @@ const NewsScroller = (props) => {
         (attorneysMentioned.length > 3) ? (
           <Slider {...Articlesettings}>
             {
-              attorneysMentioned.map(v => (
+              attorneysMentioned.map((v) => (
                 <div key={addRandomKey(v.title)} className="article-card">
                   <a href={v.link}>
                     <img src={(v.featuredImg) ? v.featuredImg : noImg} alt={v.title} width="230" className="img-thumbnail mx-auto d-block mt-3" />
@@ -83,7 +101,7 @@ const NewsScroller = (props) => {
           <div className="container">
             <div className="row">
               {
-                attorneysMentioned.map(v => (
+                attorneysMentioned.map((v) => (
                   <div key={addRandomKey(v.title)} className="col-sm-12 col-md-4 article-card">
                     <a href={v.link}>
                       <img src={(v.featuredImg) ? v.featuredImg : noImg} alt={v.title} width="230" className="img-thumbnail mt-3" />

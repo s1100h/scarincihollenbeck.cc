@@ -1,19 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Tabs = (props) => {
-  const { content, members, currentTab} = props;
+  const {
+    content, members, currentTab, tabClick,
+  } = props;
+
+  console.log(members);
 
   return (
     <div className="line-header" id="nav-tab" role="tablist">
-    {
+      {
       (content.length > 0) ? (
         <h3
           className={(currentTab === content[0].title) ? 'active' : ''}
           id="nav-home-tab"
           data-toggle="tab"
-          onClick={() => this.tabClick(content[0].title)}
-          onKeyPress={() => this.tabClick(content[0].title)}
+          onClick={() => tabClick(content[0].title)}
+          onKeyPress={() => tabClick(content[0].title)}
           href={`#${content[0].title}`}
           role="tab"
           aria-controls="nav-home"
@@ -23,7 +28,7 @@ const Tabs = (props) => {
         </h3>
       ) : ''
       }
-    {
+      {
       content.map((v, i) => ((i > 0) ? (
         <h3
           key={v.title}
@@ -31,8 +36,8 @@ const Tabs = (props) => {
           data-toggle="tab"
           href={`#${v.title}`}
           role="tab"
-          onClick={() => this.tabClick(v.title)}
-          onKeyPress={() => this.tabClick(v.title)}
+          onClick={() => tabClick(v.title)}
+          onKeyPress={() => tabClick(v.title)}
           aria-controls="nav-home"
           aria-selected="true"
         >
@@ -40,7 +45,7 @@ const Tabs = (props) => {
         </h3>
       ) : ''))
     }
-    {
+      {
       (Object.keys(members).length > 0) ? (
         <h3
           id="nav-home-tab"
@@ -48,8 +53,8 @@ const Tabs = (props) => {
           data-toggle="tab"
           href="#members"
           role="tab"
-          onClick={() => this.tabClick('members')}
-          onKeyPress={() => this.tabClick('members')}
+          onClick={() => tabClick('members')}
+          onKeyPress={() => tabClick('members')}
           aria-controls="nav-home"
           aria-selected="true"
         >
@@ -57,8 +62,22 @@ const Tabs = (props) => {
         </h3>
       ) : ''
     }
-  </div>
-  )
+    </div>
+  );
+};
+
+Tabs.propTypes = {
+  content: PropTypes.arrayOf(PropTypes.object),
+  members: PropTypes.objectOf(PropTypes.array),
+  currentTab: PropTypes.string,
+  tabClick: PropTypes.func,
+};
+
+Tabs.defaultProps = {
+  content: [],
+  members: {},
+  currentTab: '',
+  tabClick: () => {},
 };
 
 export default Tabs;

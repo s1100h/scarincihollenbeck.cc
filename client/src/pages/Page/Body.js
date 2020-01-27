@@ -5,7 +5,7 @@ import ContactForm from '../../components/ContactForm';
 
 const Body = (props) => {
   const { content } = props;
-  
+
   return (
     <div>
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
@@ -24,7 +24,7 @@ Body.propTypes = {
 };
 
 Body.defaultProps = {
-  content: ''
+  content: '',
 };
 
 export default Body;

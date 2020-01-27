@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import { makeTitle } from '../../utils/helpers';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchivehHead from '../../components/Head/archive';
 import BreadCrumbs from './BreadCrumbs';
-import Sidebar from './Sidebar/';
+import SideBar from './SideBar';
 import Body from './Body';
 import './index.scss';
 
@@ -29,8 +28,10 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    let categorySlug, page, breadCrumb;
-    const path = this.props.location.search;
+    const { location } = this.props;
+    let categorySlug; let page; let
+      breadCrumb;
+    const path = search.location;
 
     if (path.indexOf('/page/') > -1) {
       page = path.split('/page/').pop().replace('/', '');
@@ -41,19 +42,23 @@ class Search extends Component {
       page = 1;
       breadCrumb = [categorySlug, page];
     }
-    this.setState({ breadCrumb, categorySlug, currentPage: page, spinner: true }, () => {
+    this.setState({
+      breadCrumb, categorySlug, currentPage: page, spinner: true,
+    }, () => {
       this.getPosts(`${process.env.API_URL}/wp-json/search/query/${categorySlug}/${page}`);
     });
   }
 
   getPosts(url) {
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const {
           pages, results, posts, term,
         } = data;
-        this.setState({ results, trending: posts, term, spinner: false });
+        this.setState({
+          results, trending: posts, term, spinner: false,
+        });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);
@@ -63,7 +68,7 @@ class Search extends Component {
       .then(() => {
         // news
         fetch(`${process.env.API_URL}/wp-json/category/posts/firm-news`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const news = [...data.latest, ...data.archives];
             this.setState({ news });
@@ -72,7 +77,7 @@ class Search extends Component {
       .then(() => {
         // events
         fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const events = [...data.latest, ...data.archives];
             this.setState({ events });
@@ -82,7 +87,7 @@ class Search extends Component {
       .then(() => {
         // insights
         fetch(`${process.env.API_URL}/wp-json/category/posts/law-firm-insights`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const insight = [...data.latest, ...data.archives];
             this.setState({ insight });
@@ -108,12 +113,12 @@ class Search extends Component {
     // pagination set up
     const prev = (currentPage > 2) ? currentPage - 1 : 1;
     const next = (currentPage < pageNums.length) ? parseInt(currentPage, 10) + 1 : pageNums.length;
-    const cp = window.location.href.split('/').filter(a => a !== '');
+    const cp = window.location.href.split('/').filter((a) => a !== '');
     const active = (typeof cp[cp.length - 1] === 'number') ? cp[cp.length - 1] : 1;
 
-    const seo  = {
+    const seo = {
       title: `You searched for ${categorySlug} | Scarinci Hollenbeck`,
-    }
+    };
 
 
     return (
@@ -123,23 +128,27 @@ class Search extends Component {
           (!spinner) ? (
             <ArchiveLayout
               header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
-              body={(<Body
-                results={results}
-                categorySlug={categorySlug}
-                next={next}
-                prev={prev}
-                pageNums={pageNums}
-                news={news}
-                events={events}
-                insight={insight}
-                active={active}
-                /> )}
-              sidebar={(<Sidebar
-                trending={trending}
-              />)}
+              body={(
+                <Body
+                  results={results}
+                  categorySlug={categorySlug}
+                  next={next}
+                  prev={prev}
+                  pageNums={pageNums}
+                  news={news}
+                  events={events}
+                  insight={insight}
+                  active={active}
+                />
+ )}
+              sidebar={(
+                <SideBar
+                  trending={trending}
+                />
+)}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />
-        }      
+        }
       </div>
     );
   }

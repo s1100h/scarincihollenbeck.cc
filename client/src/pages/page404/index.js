@@ -28,7 +28,7 @@ class Page404 extends Component {
         method: 'post',
         body: searchTerm,
       })
-      .then(res => res.json());
+      .then((res) => res.json());
   }
 
 
@@ -38,17 +38,17 @@ class Page404 extends Component {
     const seo = {
       title: 'Page Not Found | Scarinci Hollenbeck',
       metaDescription: 'Sorry, it looks this like this page no longer exists on scarincihollenbeck.com',
-      canonicalLink: '/'
+      canonicalLink: '/',
     };
-    
+
     return (
       <div>
         <PageHead seo={seo} />
-        <SingleSubHeader 
+        <SingleSubHeader
           title="404: Resource Not Found"
           subtitle="Sorry, the page you are looking for cannot be found."
           image={cityBckGroundImg}
-          height={'auto'}
+          height="auto"
         />
         <FullWidth>
           <p className="lead">
@@ -76,7 +76,7 @@ class Page404 extends Component {
               </div>
             </div>
           </div>
-        </FullWidth>        
+        </FullWidth>
       </div>
     );
   }

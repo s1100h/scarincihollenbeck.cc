@@ -4,7 +4,9 @@ import './index.scss';
 
 
 const MenuItem = (props) => {
-  const {currentTab, tabTitle, tabClick, title } = props;
+  const {
+    currentTab, tabTitle, tabClick, title,
+  } = props;
   return (
     <h3
       className={(currentTab === tabTitle) ? 'active' : ''}
@@ -18,7 +20,7 @@ const MenuItem = (props) => {
       aria-hidden
     >
       {title}
-    </h3>              
+    </h3>
   );
 };
 
@@ -29,11 +31,11 @@ MenuItem.propTypes = {
   title: PropTypes.string,
 };
 
-MenuItem.defaultType = {
+MenuItem.defaultProps = {
   currentTab: '',
   tabTitle: '',
   tabClick: () => {},
   title: '',
 };
 
-export default MenuItem; 
+export default MenuItem;

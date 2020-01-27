@@ -3,7 +3,6 @@ import PropType from 'prop-types';
 import { addRandomKey, createMarkup } from '../../../utils/helpers';
 import Search from '../../../components/Search';
 import SubscriptionMessage from '../../../components/SubscriptionMessage';
-import SHDiamond from '../../../images/sh-mini-diamond.png';
 
 const EventSidebar = (props) => {
   const {
@@ -21,7 +20,6 @@ const EventSidebar = (props) => {
   return (
     <div className="col-sm-12 col-md-4 hide-print">
       <Search />
-      />
       {/** Event Details */}
       <div className="w-100 mt-4">
         <div className="sidebar-title">
@@ -61,7 +59,7 @@ const EventSidebar = (props) => {
             <div className="off-white">
               <ul className="no-dots">
                 {
-                  attorneys.map(a => (
+                  attorneys.map((a) => (
                     <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
                       <a href={a.link} className="m-attorneys d-flex flex-row">
                         <img src={a.image} alt={a.name} className="mr-2" />

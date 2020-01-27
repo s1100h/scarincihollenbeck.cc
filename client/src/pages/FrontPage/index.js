@@ -29,54 +29,50 @@ class FrontPage extends Component {
   }
 
   componentDidMount() {
-
     // fetch latest seo data
     fetch(`${process.env.API_URL}/wp-json/front-page/meta`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((seo) => {
-        this.setState({seo});
+        this.setState({ seo });
       })
       .then(() => {
         // fetch latest firm news data
         fetch(`${process.env.API_URL}/wp-json/category/posts/firm-news`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             const posts = data.latest;
             return posts;
           })
           .then((results) => {
             fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
-              .then(res => res.json())
+              .then((res) => res.json())
               .then((data) => {
                 const ePosts = data.latest;
-                const fPosts = results;
                 const posts = [...results, ...ePosts];
-                this.setState({posts});
+                this.setState({ posts });
               });
-          })
+          });
       })
       .then(() => {
         // fetch office locations
         fetch(`${process.env.API_URL}/wp-json/location-portal/offices`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
             this.setState({ locations: data.offices });
-          })
+          });
       })
       .then(() => {
         fetch(`${process.env.API_URL}/wp-json/practice-portal/page`)
-          .then(res => res.json())
+          .then((res) => res.json())
           .then((data) => {
-            const cPractices = data.practices.filter(p => p.category === 'Core Practices');
-            const corePractices = cPractices.map(cp => {
-              return {
-                name: cp.title,
-                link: cp.slug
-              }
-            });
+            const cPractices = data.practices.filter((p) => p.category === 'Core Practices');
+            const corePractices = cPractices.map((cp) => ({
+              name: cp.title,
+              link: cp.slug,
+            }));
             this.setState({ corePractices });
-          })
-      })
+          });
+      });
   }
 
   onChange(event) {
@@ -97,22 +93,22 @@ class FrontPage extends Component {
       corePractices,
       searchTerm,
     } = this.state;
-  
+
     const sortedLocations = sortByKey(locations, 'id');
-    const sortedPosts = sortByKey(posts, 'date'); 
+    const sortedPosts = sortByKey(posts, 'date');
 
     return (
       <div>
-        <FrontPageHead seo={seo}/>
-         <Header
+        <FrontPageHead seo={seo} />
+        <Header
           searchTerm={searchTerm}
           onChange={this.onChange}
-         />
+        />
         <div className="container">
           <ColumnContent corePractices={corePractices} onCategorySelection={this.onCategorySelection} />
           <FullWidthContent
-             sortedPosts={sortedPosts}
-             sortedLocations={sortedLocations}
+            sortedPosts={sortedPosts}
+            sortedLocations={sortedLocations}
           />
         </div>
       </div>

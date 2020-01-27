@@ -23,7 +23,7 @@ class Page extends Component {
       posts: [],
       show: false,
       triggerModal: true,
-      spinner:false,
+      spinner: false,
       seo: {},
     };
 
@@ -35,30 +35,34 @@ class Page extends Component {
 
 
   componentDidMount() {
-    const page = this.props.location.pathname;
+    const { location } = this.props;
+    const page = location.pathname;
+    
     this.fetchPageData(`${process.env.API_URL}/wp-json/single-page/page${page}`);
 
     // get latest posts
     fetch(`${process.env.API_URL}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         this.setState({ posts: data.posts });
-      })
+      });
   }
 
   fetchPageData(url) {
     this.setState({ spinner: true });
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const { content, title, seo } = data;
-        this.setState({ title, content, seo, spinner: false });
-    });
+        this.setState({
+          title, content, seo, spinner: false,
+        });
+      });
   }
 
   fetchPostData(url) {
     fetch(url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const {
           attorneys,
@@ -87,7 +91,7 @@ class Page extends Component {
   }
 
   toggleModal() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       show: !prevState.show,
     }));
   }
@@ -123,18 +127,20 @@ class Page extends Component {
           title={title}
           subtitle=""
           image={blogHeader}
-          height={'auto'}
+          height="auto"
         />
         {
           (!spinner) ? (
             <LargeSidebar
               body={(<Body content={content} />)}
-              sidebar={(<Sidebar
-                posts={posts}
-                hideSubscription={this.hideSubscription}
-                show={show}
-                toggleModal={this.toggleModal}
-              /> )}
+              sidebar={(
+                <Sidebar
+                  posts={posts}
+                  hideSubscription={this.hideSubscription}
+                  show={show}
+                  toggleModal={this.toggleModal}
+                />
+ )}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />
         }

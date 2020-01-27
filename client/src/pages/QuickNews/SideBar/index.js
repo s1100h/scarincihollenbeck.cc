@@ -6,16 +6,14 @@ import TrendingStories from './TrendingStories';
 
 const Sidebar = (props) => {
   const {
-    searchTerm,
     trending,
   } = props;
 
   return (
     <div>
       <Search />
-      />
       <AboutFirm />
-      <TrendingStories posts={trending} />      
+      <TrendingStories posts={trending} />
     </div>
   );
 };

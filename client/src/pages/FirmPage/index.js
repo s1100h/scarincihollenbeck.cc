@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
@@ -9,10 +8,7 @@ import MiniSidebar from '../../layouts/MiniSidebar';
 import Sidebar from './Sidebar';
 import Tabs from './Tabs';
 import TabContent from './TabContent';
-import NewsScroller from './NewsScroller';
-import {
-  createMarkup, splitUrl, splitUrlPreview, sortByKey,
-} from '../../utils/helpers';
+import { sortByKey } from '../../utils/helpers';
 import fpHeaderBckGround from './citybackground.jpg';
 import './index.scss';
 
@@ -24,7 +20,7 @@ class FirmPage extends Component {
       description: '',
       content: [],
       members: [],
-      seo:{},
+      seo: {},
       relatedPages: [],
       searchTerm: '',
       currentTab: '',
@@ -37,10 +33,12 @@ class FirmPage extends Component {
   }
 
   componentDidMount() {
-    const page = this.props.location.pathname;
+    const { location } = this.props;
+    const page = location.pathname;
+
     this.setState({ spinner: true });
     fetch(`${process.env.API_URL}/wp-json/firm-page/page${page}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         const {
           title,
@@ -99,6 +97,8 @@ class FirmPage extends Component {
     const { member, chair } = members;
     const sortedMembers = sortByKey(member, 'lastName');
 
+    console.log('seo: ', seo);
+
     return (
       <div>
         <PageHead seo={seo} />
@@ -106,39 +106,45 @@ class FirmPage extends Component {
           title={title}
           subtitle={description}
           image={fpHeaderBckGround}
-          height={'auto'}
+          height="auto"
         />
         {
           (!spinner) ? (
             <MiniSidebar
-            header={(<Tabs
-              content={content}
-              currentTab={currentTab}
-              members={members} />
+              header={(
+                <Tabs
+                  content={content}
+                  currentTab={currentTab}
+                  members={members}
+                  tabClick={this.tabClick}
+                />
             )}
-            body={(<TabContent
-              content={content}
-              sortedMembers={sortedMembers}
-              chair={chair}
-              handleLink={this.handleLink}
-              currentTab={currentTab}
-              attorneysMentioned={attorneysMentioned}
-              title={title}
-            />)}
-            sidebar={((relatedPages.length > 0) ? 
-              <Sidebar
-                searchTerm={searchTerm}
-                relatedPages={relatedPages}
-                onChange={this.onChange}
-              />
-             : '')}
+              body={(
+                <TabContent
+                  content={content}
+                  sortedMembers={sortedMembers}
+                  chair={chair}
+                  handleLink={this.handleLink}
+                  currentTab={currentTab}
+                  attorneysMentioned={attorneysMentioned}
+                  title={title}
+                />
+)}
+              sidebar={((relatedPages.length > 0)
+                ? (
+                  <Sidebar
+                    searchTerm={searchTerm}
+                    relatedPages={relatedPages}
+                    onChange={this.onChange}
+                  />
+                )
+                : '')}
             />
           ) : <PulseLoader color="#D02422" loading={spinner} />
         }
       </div>
-    )
+    );
   }
- 
 }
 
 export default FirmPage;

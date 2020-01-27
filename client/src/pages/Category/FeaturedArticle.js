@@ -8,8 +8,8 @@ const FeaturedArticle = (props) => {
 
   return (
     <article>
-      { main.map(val => (
-          <div className="main" key={val.title}>
+      { main.map((val) => (
+        <div className="main" key={val.title}>
           <a href={val.link}>
             <img src={val.image ? val.image : noImg} className="img-fluid" alt={val.title} />
           </a>
@@ -46,10 +46,9 @@ const FeaturedArticle = (props) => {
               ))
             }
           </p>
-        </div>    
-        ))
-      }
-      </article>
+        </div>
+      ))}
+    </article>
   );
 };
 
@@ -58,7 +57,7 @@ FeaturedArticle.propTypes = {
 };
 
 FeaturedArticle.defaultProps = {
-  main: []
+  main: [],
 };
 
 export default FeaturedArticle;

@@ -13,7 +13,7 @@ const Sidebar = (props) => {
     <div>
       <Search />
       <AboutFirm />
-      <TrendingStories posts={trending} />      
+      <TrendingStories posts={trending} />
     </div>
   );
 };

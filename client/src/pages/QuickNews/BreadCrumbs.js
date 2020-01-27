@@ -14,36 +14,35 @@ const BreadCrumbs = (props) => {
       </strong>
       { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
         <span key={val}>
-           <span className="red-title proxima-bold text-uppercase"> 
-             { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }
+          <span className="red-title proxima-bold text-uppercase">
+            { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }
           </span>
           <strong className="text-black mt-2 mx-2 proxima-bold">
             <i className="fas fa-caret-right" />
           </strong>
         </span>
       ) : (
-      <span key={val}>
-        <span className="red-title proxima-bold">
-          { (val === categorySlug) ? (<u>{val}</u>) : `${val}` }
+        <span key={val}>
+          <span className="red-title proxima-bold">
+            { (val === categorySlug) ? (<u>{val}</u>) : `${val}` }
+          </span>
         </span>
-      </span>
-    )))
-    }
+      )))}
     </h6>
-  )
-}
+  );
+};
 
 BreadCrumbs.propTypes = {
   breadCrumb: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
   ])),
   categorySlug: PropTypes.string,
 };
 
 BreadCrumbs.defaultProps = {
   breadCrumb: [],
-  categorySlug: ''
+  categorySlug: '',
 };
 
 export default BreadCrumbs;

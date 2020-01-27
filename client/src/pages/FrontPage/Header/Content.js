@@ -8,13 +8,13 @@ const Content = () => (
     <div className="container ml-4">
       <div className="row">
         <div className="col-sm-12 col-md-6 mb-3">
-          <a href={`/attorneys`} className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow fnt-btn">
+          <a href="/attorneys" className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow fnt-btn">
             Find an attorney
             <i className="fa fa-angle-double-right text-white ml-2" />
-          </a>                
+          </a>
         </div>
         <div className="col-sm-12 col-md-6">
-          <a href={`/practices`} className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow fnt-btn">
+          <a href="/practices" className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow fnt-btn">
             Select a practice
             <i className="fa fa-angle-double-right text-white ml-2" />
           </a>
@@ -25,4 +25,4 @@ const Content = () => (
 );
 
 
-export default Content; 
+export default Content;

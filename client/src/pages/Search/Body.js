@@ -12,43 +12,39 @@ const Body = (props) => {
     events,
     prev,
     next,
-    active
-   } = props;
+    active,
+  } = props;
 
   return (
     <div>
       <div className="row">
         <div className="col-sm-12 col-md-6">
-          {results.map((r, i) =>
-            i < 5 ? (
-              <div className="p-2" key={r.id}>
-                <a href={r.link} className="top-article">
-                  <h5 className="mb-0">{r.title}</h5>
-                  <p className="mt-0 mb-3 text-muted small-excerpt">
-                    {r.description}
-                  </p>
-                </a>
-              </div>
-            ) : (
-              ""
-            )
-          )}
+          {results.map((r, i) => (i < 5 ? (
+            <div className="p-2" key={r.id}>
+              <a href={r.link} className="top-article">
+                <h5 className="mb-0">{r.title}</h5>
+                <p className="mt-0 mb-3 text-muted small-excerpt">
+                  {r.description}
+                </p>
+              </a>
+            </div>
+          ) : (
+            ''
+          )))}
         </div>
         <div className="col-sm-12 col-md-6">
-          {results.map((r, i) =>
-            i > 5 ? (
-              <div className="p-2" key={r.id}>
-                <a href={r.link} className="top-article">
-                  <h5 className="mb-0">{r.title}</h5>
-                  <p className="mt-0 mb-3 text-muted small-excerpt">
-                    {r.description}
-                  </p>
-                </a>
-              </div>
-            ) : (
-              ""
-            )
-          )}
+          {results.map((r, i) => (i > 5 ? (
+            <div className="p-2" key={r.id}>
+              <a href={r.link} className="top-article">
+                <h5 className="mb-0">{r.title}</h5>
+                <p className="mt-0 mb-3 text-muted small-excerpt">
+                  {r.description}
+                </p>
+              </a>
+            </div>
+          ) : (
+            ''
+          )))}
         </div>
       </div>
       <div className="w-100 mt-0 ml--1">
@@ -66,43 +62,39 @@ const Body = (props) => {
                 </a>
               </li>
               {/** Current / First Number */}
-              {pageNums.map(val =>
-                active === val ? (
-                  <li
-                    className={active === val ? "active mr-2" : "mr-2"}
-                    key={`page-${val}`}
+              {pageNums.map((val) => (active === val ? (
+                <li
+                  className={active === val ? 'active mr-2' : 'mr-2'}
+                  key={`page-${val}`}
+                >
+                  <a
+                    className="text-dark mt-2"
+                    href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
                   >
-                    <a
-                      className="text-dark mt-2"
-                      href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
-                    >
-                      {val}
-                    </a>
-                  </li>
-                ) : (
-                  ""
-                )
-              )}
+                    {val}
+                  </a>
+                </li>
+              ) : (
+                ''
+              )))}
               {/** ... */}
               <li className="mx-1">...</li>
               {/** Last Number */}
-              {pageNums.map(val =>
-                pageNums.length - 1 === val ? (
-                  <li
-                    className={active === val ? "active mr-2" : "mr-2"}
-                    key={`page-${val}`}
+              {pageNums.map((val) => (pageNums.length - 1 === val ? (
+                <li
+                  className={active === val ? 'active mr-2' : 'mr-2'}
+                  key={`page-${val}`}
+                >
+                  <a
+                    className="text-dark"
+                    href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
                   >
-                    <a
-                      className="text-dark"
-                      href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
-                    >
-                      {val}
-                    </a>
-                  </li>
-                ) : (
-                  ""
-                )
-              )}
+                    {val}
+                  </a>
+                </li>
+              ) : (
+                ''
+              )))}
               <li className="ml-1">
                 <a
                   className="text-dark"
@@ -115,7 +107,7 @@ const Body = (props) => {
             </ul>
           </nav>
         ) : (
-          ""
+          ''
         )}
       </div>
       <div className="w-100 d-block">
@@ -124,7 +116,7 @@ const Body = (props) => {
         <NewsScroller title="Firm Insights" articles={insight} />
       </div>
     </div>
-  )
+  );
 };
 
 Body.propTypes = {

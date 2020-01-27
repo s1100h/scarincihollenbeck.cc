@@ -12,7 +12,7 @@ const TrendingStories = (props) => {
       </div>
       <div className="off-white">
         {
-          (posts) ? posts.map(p => (
+          (posts) ? posts.map((p) => (
             <div key={p.ID} className="p-2">
               <a href={p.link} className="top-article">
                 <h5 className="mb-0">{p.title}</h5>

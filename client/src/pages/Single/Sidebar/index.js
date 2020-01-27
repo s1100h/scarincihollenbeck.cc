@@ -23,7 +23,7 @@ const Sidebar = (props) => {
         </div>
         <div className="off-white">
           {
-            (posts) ? posts.map(p => (
+            (posts) ? posts.map((p) => (
               <div key={p.ID} className="p-2">
                 <a href={p.link} className="top-article">
                   <h5 className="mb-0">{p.title}</h5>
@@ -44,7 +44,7 @@ const Sidebar = (props) => {
             <div className="off-white">
               <ul className="no-dots">
                 {
-                  attorneys.map(a => (
+                  attorneys.map((a) => (
                     <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
                       <a href={a.link} className="m-attorneys d-flex flex-row">
                         <img src={a.image} alt={a.name} className="mr-2" />
@@ -72,6 +72,7 @@ Sidebar.propTypes = {
   attorneys: PropType.arrayOf(PropType.object),
   show: PropType.bool,
   toggleModal: PropType.func,
+  hideSubscription: PropType.func,
 };
 
 Sidebar.defaultProps = {
@@ -79,6 +80,7 @@ Sidebar.defaultProps = {
   attorneys: [],
   show: false,
   toggleModal: () => {},
+  hideSubscription: () => {},
 };
 
 export default Sidebar;
