@@ -39,6 +39,7 @@ const SliderContent = (props) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
+    lazyLoad: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };

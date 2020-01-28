@@ -8,31 +8,31 @@ import './index.scss';
 
 const RelatedAttorneys = (props) => {
   const { members, chair, handleLink } = props;
-  const attorneySlug = string => string.split('/attorneys/').pop();
-  console.log(chair);
+  const attorneySlug = (string) => string.split('/attorneys/').pop();
+
   return (
-    <span>
+    <div>
       {
           (chair.length > 0) ? (
             <div className="container">
               <div className="row bg-light-gray">
                 <div className="col-sm-12">
-                  <h4 className="c-title">Practice Chair</h4>                
+                  <h4 className="c-title">Practice Chair</h4>
                 </div>
               </div>
               <div className="row">
                 {
-                  chair.map(v => (
+                  chair.map((v) => (
                     <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
-                      <AttorneyCard 
-                        link={`/attorneys/${attorneySlug(v.link)}`}
+                      <AttorneyCard
+                        link={v.link}
                         image={v.image}
                         name={v.name}
                         title={v.designation}
                         number={v.contact}
                         email={v.email}
-                        height={'109px'}
-                        width={'75%'}
+                        height="109px"
+                        width="75%"
                       />
                     </div>
                   ))
@@ -52,7 +52,7 @@ const RelatedAttorneys = (props) => {
                 <form className="w-100 pt-2">
                   <select onChange={handleLink} className="w-100">
                     {
-                      members.map(v => <option value={v.link} key={v.ID} className="w-100">{v.name}</option>)
+                      members.map((v) => <option value={v.link} key={v.ID} className="w-100">{v.name}</option>)
                     }
                   </select>
                 </form>
@@ -61,17 +61,17 @@ const RelatedAttorneys = (props) => {
             <div className="row">
               <div className="col-sm-12 members-container">
                 {
-                  members.map(v => (
+                  members.map((v) => (
                     <div key={v.ID} className="w-45 float-left mr-4 mb-3">
-                      <AttorneyCard 
-                        link={`/attorneys/${attorneySlug(v.link)}`}
+                      <AttorneyCard
+                        link={v.link}
                         image={v.image}
                         name={v.name}
                         title={v.designation}
                         number={v.contact}
                         email={v.email}
-                        height={'109px'}
-                        width={'75%'}
+                        height="109px"
+                        width="75%"
                       />
                     </div>
                   ))
@@ -81,7 +81,7 @@ const RelatedAttorneys = (props) => {
           </div>
         ) : ''
       }
-    </span>
+    </div>
   );
 };
 

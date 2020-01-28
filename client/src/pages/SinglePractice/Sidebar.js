@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 
 const Sidebar = (props) => {
   const { 
@@ -24,39 +25,39 @@ const Sidebar = (props) => {
       </a>
       <div id="core-practices" className="collapse show">
         <div className="off-white">
-          <ul className="pl-0 pb-1 pr-1 no-dots sidebar-content sidebar-content-practice">
+          <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content sidebar-content-practice">
             <li>
-              <a href={`${process.env.API_URL}/practices/corporate-transactions-business`} className="small-excerpt">
+              <a href="/practices/corporate-transactions-business/" className="small-excerpt">
                 Corporate Transactions &amp; Business
               </a>
             </li>
             <li>
-              <a href={`${process.env.API_URL}/practices/environmental-and-land-use/`} className="small-excerpt">
+              <a href="/practices/environmental-and-land-use/" className="small-excerpt">
                 Environmental &amp; Land Use
               </a>
             </li>
             <li>
-              <a href={`${process.env.API_URL}/practices/intellectual-property/`} className="small-excerpt">
+              <a href="/practices/intellectual-property/" className="small-excerpt">
                 Intellectual Property
               </a>
             </li>
             <li>
-              <a href={`${process.env.API_URL}/practices/labor-employment/`} className="small-excerpt">
+              <a href="/practices/labor-employment/" className="small-excerpt">
                 Labor &amp; Employment
               </a>
             </li>
             <li>
-              <a href={`${process.env.API_URL}/practices/litigation/`} className="small-excerpt">
+              <a href="/practices/litigation/" className="small-excerpt">
                 Litigation
               </a>
             </li>
             <li>
-              <a href={`${process.env.API_URL}/practices/tax-trusts-estates/`} className="small-excerpt">
+              <a href="/practices/tax-trusts-estates/" className="small-excerpt">
                 Tax, Trust &amp; Estates
               </a>
             </li>
             <li>
-              <a href={`${process.env.API_URL}/practices/public-law/`} className="small-excerpt">
+              <a href="/practices/public-law/" className="small-excerpt">
                 Government &amp; Law
               </a>
             </li>
@@ -71,7 +72,7 @@ const Sidebar = (props) => {
       </a>
       <div id="related-practices" className="collapse show">
         <div className="off-white">
-          <ul className="pl-0 pb-1 pr-1 no-dots sidebar-content">
+          <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content">
             {practiceList.map(v => <li key={v.ID}><a href={v.slug} className={(v.title.length > 40) ? 'smaller-excerpt' : 'small-excerpt'}>{v.title}</a></li>)}
           </ul>
         </div>

@@ -4,13 +4,16 @@ import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { PulseLoader } from 'react-spinners';
 import ArchiveHead from '../../components/Head/archive';
+import Search from '../../components/Search';
 import FullWidth from '../../layouts/FullWidth';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import Breadcrumbs from './Breadcrumbs';
 import FeaturedArticle from './FeaturedArticle';
 import MainSidebarContent from './MainSidebarContent';
+import CategoryHeader from './CategoryHeader';
 import SliderContent from './SliderContent';
 import ColumnContent from './ColumnContent';
+import { makeTitle } from '../../utils/helpers';
 import noImg from '../../images/no-image-found-diamond.png';
 import './index.scss';
 
@@ -54,6 +57,7 @@ class CategoryBody extends Component {
       fiCategories: [],
       breadCrumb: [],
       categorySlug: '',
+      description: '',
       spinner: false,
       seo: {},
 
@@ -81,6 +85,7 @@ class CategoryBody extends Component {
           main,
           practices,
           seo,
+          description,
         } = data;
 
         this.setState({
@@ -90,6 +95,7 @@ class CategoryBody extends Component {
           main,
           practices,
           seo,
+          description,
           spinner: false,
         });
       });
@@ -106,8 +112,6 @@ class CategoryBody extends Component {
           }));
           this.setState({ corePractices });
         });
-
-      // get firm insights categories
     }
   }
 
@@ -124,6 +128,7 @@ class CategoryBody extends Component {
       corePractices,
       fiCategories,
       seo,
+      description,
     } = this.state;
 
 
@@ -150,6 +155,19 @@ class CategoryBody extends Component {
                   categorySlug={categorySlug}
                 />
               </FullWidth>
+              <LargeSidebar
+                body={(<CategoryHeader title={makeTitle(categorySlug)} content={description} />)}
+                sidebar={
+                  (
+                    <div>
+                      <small className="mb-3">
+                        Not what you are looking for? Feel free to see search out site to find the right attorney for your business.
+                      </small>
+                      <Search />
+                    </div>
+                  )
+                }
+              />
               <LargeSidebar
                 body={(<FeaturedArticle main={main} />)}
                 sidebar={(<MainSidebarContent latest={latest} />)}

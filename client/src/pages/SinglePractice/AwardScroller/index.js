@@ -1,18 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import { addRandomKey } from '../../../utils/helpers';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import noImg from '../../../images/no-image-found-diamond.png';
 import './index.scss';
 
 const HighlightNextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right featured-slider-arrow right" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleRight
+      className="featured-slider-arrow right"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const HighlightPrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left featured-slider-arrow left" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleLeft
+      className="featured-slider-arrow left"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 
@@ -60,7 +76,7 @@ const HighlightReal = (props) => {
     <div className="mt-4 w-100 d-block practice-news-list">
       <Slider {...HighlightSettings}>
         {
-              highlightReal.map(v => (
+              highlightReal.map((v) => (
                 <div key={v.id} className="article-card">
                   <img src={(v.image) ? v.image : noImg} alt={v.title} width="212" className="img-thumbnail mx-auto d-block mt-3" />
                   <h5 className="my-3 text-center small-excerpt">{v.title}</h5>

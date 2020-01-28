@@ -36,6 +36,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "array.prototype.find": "^2.0.4",
     "array.prototype.findindex": "^2.0.2",
     "bootstrap": "^4.3.1",

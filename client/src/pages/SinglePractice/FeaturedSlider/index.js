@@ -1,18 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import { addRandomKey } from '../../../utils/helpers';
 import noImg from '../../../images/no-image-found-diamond.png';
 import './index.scss';
 
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-right featured-slider-arrow right" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleRight
+      className="featured-slider-arrow right"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <i className="fas fa-angle-double-left featured-slider-arrow left" onKeyPress={onClick} role="button" tabIndex="0" onClick={onClick} />;
+  return (
+    <FaAngleDoubleLeft
+      className="featured-slider-arrow left"
+      role="button"
+      tabIndex="0"
+      onKeyPress={onClick}
+      onClick={onClick}
+    />
+  );
 };
 
 
@@ -27,6 +44,7 @@ const FeaturedSlider = (props) => {
     slidesToShow: 3,
     dots: true,
     adaptiveHeight: true,
+    lazyLoad: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -62,7 +80,7 @@ const FeaturedSlider = (props) => {
         (firstEightArticles.length > 3) ? (
           <Slider {...Articlesettings}>
             {
-              firstEightArticles.map(v => (
+              firstEightArticles.map((v) => (
                 <div key={addRandomKey(v.title)} className="article-card">
                   <a href={v.slug}>
                     <img src={(v.image) ? v.image : noImg} alt={v.title} width="212" className="img-thumbnail mx-auto d-block mt-3" />
@@ -76,7 +94,7 @@ const FeaturedSlider = (props) => {
           <div className="container">
             <div className="row">
               {
-                firstEightArticles.map(v => (
+                firstEightArticles.map((v) => (
                   <div key={addRandomKey(v.title)} className="col-sm-12 col-md-4 article-card">
                     <a href={v.link}>
                       <img src={(v.image) ? v.image : noImg} alt={v.title} className="img-thumbnail mt-3" />

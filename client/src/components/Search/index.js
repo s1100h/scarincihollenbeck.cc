@@ -56,16 +56,16 @@ class Search extends Component {
     } = this.state;
     return (
       <div className="w-100">
-        <form onChange={this.onChange}>
+        <form>
           <label htmlFor="searchSite" className="w-100">
-            <input name="keyword" type="search" id="searchSite" value={searchTerm} placeholder="Keyword..." className="form-control p-2" />
+            <input name="keyword" type="search" id="searchSite" value={searchTerm || ''} placeholder="Keyword..." className="form-control p-2" onChange={this.onChange} />
             <span className="sr-only">Search Site</span>
           </label>
           {/* Related Practice */}
           <label htmlFor="searchPractice" className="d-block w-100">
             <select name="practice" id="searchPractice" className="form-control p-2">
               <option defaultValue="Filter by practice">Filter by practice</option>
-              {allPractices.map((p) => <option value={p.title} key={p.ID}>{p.title}</option>) }
+              {allPractices.map((p) => <option value={p.title || ''} key={p.ID} onChange={this.onChange}>{p.title}</option>) }
             </select>
             <span className="sr-only">Filter by Practice</span>
           </label>
@@ -73,7 +73,7 @@ class Search extends Component {
           <label htmlFor="searchAttorney" className="d-block w-100">
             <select name="attorney" id="searchAttorney" className="form-control p-2">
               <option defaultValue="Filter by attorney">Filter by attorney</option>
-              {allAttorneys.map((p) => <option value={p.title} key={p.id}>{p.title}</option>) }
+              {allAttorneys.map((p) => <option value={p.title || ''} key={p.id} onChange={this.onChange}>{p.title}</option>) }
             </select>
             <span className="sr-only">Filtery by Attorney</span>
           </label>
@@ -81,7 +81,7 @@ class Search extends Component {
           <label htmlFor="searchCategory" className="d-block w-100">
             <select name="category" id="searchCategory" className="form-control p-2">
               <option defaultValue="Filter by category">Filter by category</option>
-              {allCategories.map((p) => ((p.name !== 'Uncategorized') ? <option value={p.name} key={p.id}>{p.name}</option> : '')) }
+              {allCategories.map((p) => ((p.name !== 'Uncategorized') ? <option value={p.name || ''} key={p.id} onChange={this.onChange}>{p.name}</option> : '')) }
             </select>
             <span className="sr-only">Filtery by Category</span>
           </label>

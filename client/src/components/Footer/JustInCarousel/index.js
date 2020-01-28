@@ -41,6 +41,7 @@ class JustInCarousel extends Component {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
+      lazyLoad: true,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
       initialSlide: 0,

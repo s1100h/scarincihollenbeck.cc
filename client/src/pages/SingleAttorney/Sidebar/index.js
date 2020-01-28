@@ -16,10 +16,10 @@ const SidebarContent = (props) => {
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">
-          <ul className="pl-0 pb-1 pr-1 pt-3 no-dots sidebar-content">
+          <ul className="pl-0 py-3 pr-1 no-dots sidebar-content">
             {
               content.map((v) => (
-                <li key={`${addRandomKey('sbc')}`} className="mb-3">
+                <li key={`${addRandomKey('sbc')}`}>
                   {
                     (v.link) ? <a href={v.link} className="link-style small-excerpt">{v.title}</a> : <strong>{v.title}</strong>
                   }

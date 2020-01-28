@@ -43,6 +43,7 @@ const FeaturedSlider = (props) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     className: 'fs-container',
+    lazyLoad: true,
     responsive: [
       {
         breakpoint: 1690,

@@ -83,22 +83,15 @@ import './index.scss';
  * =======================================
  *
  *  1. Add AMP component to Posts
- *  2. Add fadein class from animate.css to each class, so the content fades in when the page loads
- *  3. Refactor i tags with react-icons & lint all pages, components, layouts left off on SingleCareer
- *  4. Add new SEO-optimized components (Description Text, Search) to Category Page
  *  5. Dropdown menu attorney sidebar messed up
- *  6. Fix links in the footer
  *  7. Fix dropdown menu style on all practices page
  *  8. Add +/- to location tabs 
- *  9. Make Tending Stories own Component
- *  10. Remove the get_home function from most urls in wp-rest api 
  * 
  * To Do (Webpack)
  * ==========================================
  *  1. Refactor integrating PWA (webpack 4, react-router)
  *  2. Enable webpack 4 to be a solution for GT Metrix & Google Page speed issues 
  *  3. Add a small express server to push to DO Spaces using AWS s3
- *  4. Set up Lazy Loading for common components -- React Sliders, Just In Carousels
  * 
  * To Do (Pre-Production Push)
  * =======================================
@@ -146,7 +139,7 @@ class SiteRoutes extends Component {
         <Switch>
           <Route path='/' exact component={FrontPage} />
           <Route path='/attorneys' exact component={ArchiveAttorney} />
-          <Route path='/attorneys/:attorney' exact component={SingleAttorney} />
+          <Route path='/attorney/:attorney' exact component={SingleAttorney} />
           <Route path='/administration' exact component={ArchiveAdmin} />
           <Route path='/administration/:admin' exact component={SingleAdmin} />
           <Route path='/careers/' exact component={ArchiveCareer} />
@@ -180,7 +173,7 @@ class SiteRoutes extends Component {
           {
             sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )
           }
-          {(sitePages.length > 0 ) ?  <Route component={Page404} /> : ''}
+          {(sitePages.length > 0 ) && <Route component={Page404} /> }
         </Switch>
         <Footer />
       </Router>

@@ -1,6 +1,8 @@
 import React from 'react';
 import JustInCarousel from './JustInCarousel';
 
+const currentYear = new Date().getFullYear();
+
 const Footer = () => (
   <div className="container-fluid bk--gray d-print-none">
     <JustInCarousel />
@@ -67,9 +69,9 @@ const Footer = () => (
           <div className="col-sm-6">
             <p className="mr-auto proxima-bold h5 pb-0 mb-0">ATTORNEY ADVERTISING</p>
             <p className="mr-auto proxima-regular mt-0 pt-0">
-Prior results do not guarantee a similar outcome.
+              Prior results do not guarantee a similar outcome.
               <br />
-              © 2019, Scarinci Hollenbeck, LLC, all rights reserved.
+              © {currentYear}, Scarinci Hollenbeck, LLC, all rights reserved.
             </p>
           </div>
           <div className="col-sm-6 text-center">
@@ -89,7 +91,11 @@ Prior results do not guarantee a similar outcome.
               <li className="list-inline-item"><a href="/awards" className="proxima-bold red-title h6">Awards </a></li>
             </ul>
             <ul className="float-right no-dots list-inline mt-0 pt-0">
-              <li className="list-inline-item"><a href="/payments/?page=operating" className="proxima-bold red-title h6">Make Payment</a></li>
+              <li className="list-inline-item">
+                <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className="proxima-bold red-title h6">
+                  Make Payment
+                </a>
+              </li>
               <li className="list-inline-item">
                 <a href="/sitemap.xml" className="proxima-bold red-title h6">Sitemap</a>
                 {' '}

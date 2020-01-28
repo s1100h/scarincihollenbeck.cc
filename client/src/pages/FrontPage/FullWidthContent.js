@@ -67,6 +67,7 @@ const FullWidthContent = (props) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
+    lazyLoad: true,
     nextArrow: <PostsNextArrow />,
     prevArrow: <PostsPrevArrow />,
     responsive: [
@@ -103,7 +104,7 @@ const FullWidthContent = (props) => {
     slidesToShow: 3,
     slidesToScroll: 3,
     arrows: true,
-    lazyLoad: 'progressive',
+    lazyLoad: true,
     nextArrow: <LocationsNextArrow />,
     prevArrow: <LocationsPrevArrow />,
     responsive: [
@@ -133,8 +134,6 @@ const FullWidthContent = (props) => {
     ],
   };
   
-  console.log('sortedPosts: ', sortedPosts);
-
   return (
     <div className="row">
        <div className="col-sm-12 px-0">

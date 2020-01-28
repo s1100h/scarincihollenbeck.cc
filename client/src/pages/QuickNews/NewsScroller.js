@@ -44,6 +44,7 @@ const NewsScroller = (props) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
+    lazyLoad: true,
     nextArrow: <PostsNextArrow />,
     prevArrow: <PostsPrevArrow />,
     responsive: [

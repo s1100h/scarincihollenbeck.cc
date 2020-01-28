@@ -61,8 +61,29 @@ const Body = (props) => {
         <FeaturedSlider content={industryTopics} />
       </div>
     </div>
-    )
+  );
 };
 
+Body.propTypes = {
+  currentTab: PropTypes.string,
+  content: PropTypes.arrayOf(PropTypes.object),
+  attorneyList: PropTypes.arrayOf(PropTypes.object),
+  chair: PropTypes.arrayOf(PropTypes.object),
+  handleLink: PropTypes.func,
+  industryTopics: PropTypes.arrayOf(PropTypes.object),
+  highlightReal: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string,
+};
+
+Body.defaultProps = {
+  currentTab: '',
+  title: '',
+  content: [],
+  attorneyList: [],
+  chair: [],
+  industryTopics: [],
+  highlightReal: [],
+  handleLink: () => {},
+};
 
 export default Body;
