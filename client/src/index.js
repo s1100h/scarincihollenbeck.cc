@@ -83,9 +83,10 @@ import './index.scss';
  * =======================================
  *
  *  1. Add AMP component to Posts
- *  5. Dropdown menu attorney sidebar messed up
- *  7. Fix dropdown menu style on all practices page
- *  8. Add +/- to location tabs 
+ *  2. Dropdown menu attorney sidebar messed up
+ *  3. Fix dropdown menu style on all practices page
+ *  4. Add +/- to location/Attorney/Practices tabs
+ *  5. Add Lazy loading -- Trending Stories, lists of attorneys, blog posts, practices
  * 
  * To Do (Webpack)
  * ==========================================

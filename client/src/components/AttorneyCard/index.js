@@ -17,7 +17,7 @@ const AttorneyCard = (props) => {
   `;
 
   return (
-    <Card className="d-flex flex-row">
+    <Card className="d-flex flex-row attorney-card">
       <a href={link}>
         <img src={image} alt={name} className="mr-1" style={{ width }} />
       </a>

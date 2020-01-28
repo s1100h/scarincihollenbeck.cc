@@ -5,9 +5,23 @@ const TrendingStories = (props) => {
   const { content } = props;
 
   return (
-    <div>
-      Trending stories list will go here..
+    <div className="w-100 mt-4">
+    <div className="sidebar-title">
+      Trending Stories
     </div>
+    <div className="off-white">
+      {
+        (content.length > 0) && content.map((p) => (
+          <div key={p.ID} className="p-2">
+            <a href={p.link} className="top-article">
+              <h5 className="mb-0">{p.title}</h5>
+              {(p.author || p.author !== 'Scarinci Hollenbeck') && <p className="mt-0 mb-3 ft-22">{p.author}</p>}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
   )
 };
 

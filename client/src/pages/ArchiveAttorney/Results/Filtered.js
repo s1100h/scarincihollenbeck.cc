@@ -78,8 +78,6 @@ const Filtered = (props) => {
     .filter(filterLetter)
     .filter(filterQuery);
 
-  const attorneySlug = (string) => string.split('/attorneys/').pop();
-
   return (
     <div className="row">
 
@@ -87,7 +85,7 @@ const Filtered = (props) => {
       aFiltered.map((m) => (
         <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
           <AttorneyCard
-            link={`/attorneys/${attorneySlug(m.link)}`}
+            link={m.link}
             image={m.better_featured_image}
             name={m.title}
             title={m.designation}

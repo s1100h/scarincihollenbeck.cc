@@ -2,15 +2,18 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component'
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import MiniSidebar from '../../layouts/MiniSidebar';
-import Sidebar from './Sidebar';
-import Tabs from './Tabs';
-import TabContent from './TabContent';
 import { sortByKey } from '../../utils/helpers';
 import fpHeaderBckGround from './citybackground.jpg';
 import './index.scss';
+
+// lazy load components
+const Sidebar = loadable(() => import('./Sidebar'));
+const Tabs = loadable(() => import('./Tabs'));
+const TabContent = loadable(() => import('./TabContent'));
 
 class FirmPage extends Component {
   constructor(props) {
@@ -96,8 +99,6 @@ class FirmPage extends Component {
 
     const { member, chair } = members;
     const sortedMembers = sortByKey(member, 'lastName');
-
-    console.log('seo: ', seo);
 
     return (
       <div>

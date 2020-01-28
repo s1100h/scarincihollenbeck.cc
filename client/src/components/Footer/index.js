@@ -1,5 +1,8 @@
 import React from 'react';
-import JustInCarousel from './JustInCarousel';
+import loadable from '@loadable/component'
+
+// lazy load components
+const JustInCarousel = loadable(() => import('./JustInCarousel'));
 
 const currentYear = new Date().getFullYear();
 
@@ -48,7 +51,6 @@ const Footer = () => (
 
           </div>
           <div className="col-sm-6 text-right">
-
             <form className="search-form h-100 justify-content-center" role="search" action={`${process.env.API_URL}`} method="get">
               <label htmlFor="searchSite">
                 <span className="screen-reader-text">Search for:</span>
@@ -95,6 +97,9 @@ const Footer = () => (
                 <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className="proxima-bold red-title h6">
                   Make Payment
                 </a>
+                {' '}
+|
+                {' '}
               </li>
               <li className="list-inline-item">
                 <a href="/sitemap.xml" className="proxima-bold red-title h6">Sitemap</a>

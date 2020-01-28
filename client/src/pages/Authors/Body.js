@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import loadable from '@loadable/component'
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
-import NewsScroller from './NewsScroller';
+
+// lazy load components
+const NewsScroller  = loadable(() => import('./NewsScroller'));
+
 
 const Body = (props) => {
   const {

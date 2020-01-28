@@ -1,8 +1,13 @@
 import React from 'react';
 import PropType from 'prop-types';
+import loadable from '@loadable/component';
 import { addRandomKey } from '../../../utils/helpers';
-import Search from '../../../components/Search';
-import SubscriptionMessage from '../../../components/SubscriptionMessage';
+
+
+// lazy load components
+const Search = loadable(() => import('../../../components/Search'));
+const TrendingStories = loadable(() => import('../../../components/TrendingStories'));
+const SubscriptionMessage = loadable(() => import('../../../components/SubscriptionMessage'));
 
 const Sidebar = (props) => {
   const {
@@ -17,23 +22,7 @@ const Sidebar = (props) => {
     <div className="hide-print">
       <Search />
       {/** TOP ARTICLES */}
-      <div className="w-100 mt-4">
-        <div className="sidebar-title">
-          Trending Stories
-        </div>
-        <div className="off-white">
-          {
-            (posts) ? posts.map((p) => (
-              <div key={p.ID} className="p-2">
-                <a href={p.link} className="top-article">
-                  <h5 className="mb-0">{p.title}</h5>
-                  <p className="mt-0 mb-3 ft-22">{p.author}</p>
-                </a>
-              </div>
-            )) : ''
-          }
-        </div>
-      </div>
+      <TrendingStories content={posts} />
       {/** MENTIONED ATTORNEYS */}
       {
         (attorneys.length > 0) ? (

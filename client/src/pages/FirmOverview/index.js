@@ -3,13 +3,17 @@
 
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component'
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
 import { createMarkup } from '../../utils/helpers';
-import Members from './Members';
 import foHeaderBckGround from './citybackground.jpg';
 import './index.scss';
+
+// lazy load components
+const  Members = loadable(() => import('./Members'));
+
 
 class FirmOverview extends Component {
   constructor(props) {

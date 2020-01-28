@@ -2,6 +2,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component';
 import AttorneyHead from '../../components/Head/attorney';
 import MultiSubHeader from '../../layouts/MultiSubHeader';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
@@ -9,11 +10,14 @@ import FullWidth from '../../layouts/FullWidth';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import MenuItem from './MenuItem';
-import Body from './Body';
 import Sidebar from './Sidebar';
 import { sortByDateKey, urlify } from '../../utils/helpers';
 import attorneyHeader from './attorney-header.jpg';
 import './index.scss';
+
+// lazy load components
+const Body = loadable(() => import('./Body'));
+
 
 class AttorneyBiography extends Component {
   constructor(props) {

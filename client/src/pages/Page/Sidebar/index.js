@@ -1,7 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
 import Search from '../../../components/Search';
-import TrendingNews from './TrendingNews';
+import TrendingStories from '../../../components/TrendingStories';
 import SubscriptionContent from './SubscriptionContent';
 
 const Sidebar = (props) => {
@@ -15,7 +15,7 @@ const Sidebar = (props) => {
   return (
     <div>
       <Search />
-      <TrendingNews posts={posts} />
+      <TrendingStories content={posts} />
       <SubscriptionContent
         toggleModal={toggleModal}
         hideSubscription={hideSubscription}

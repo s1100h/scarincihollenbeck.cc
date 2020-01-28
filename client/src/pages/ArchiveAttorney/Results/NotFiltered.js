@@ -23,8 +23,6 @@ const NotFiltered = (props) => {
   // associates
   const associates = attorneys.filter((a) => a.designation === 'Associate');
 
-  const attorneySlug = (string) => string.split('/attorneys/').pop();
-
   return (
     <div className="row result-container">
       <div className="col-sm-12 my-4">
@@ -34,7 +32,7 @@ const NotFiltered = (props) => {
       managingPartners.map((m) => (
         <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
           <AttorneyCard
-            link={`/attorneys/${attorneySlug(m.link)}`}
+            link={m.link}
             image={m.better_featured_image}
             name={m.title}
             title={m.designation}
@@ -54,7 +52,7 @@ const NotFiltered = (props) => {
         partners.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
-              link={`/attorneys/${attorneySlug(m.link)}`}
+              link={m.link}
               image={m.better_featured_image}
               name={m.title}
               title={m.designation}
@@ -74,7 +72,7 @@ const NotFiltered = (props) => {
         counsel.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
-              link={`/attorneys/${attorneySlug(m.link)}`}
+              link={m.link}
               image={m.better_featured_image}
               name={m.title}
               title={m.designation}
@@ -94,7 +92,7 @@ const NotFiltered = (props) => {
         ofCounsel.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
-              link={`/attorneys/${attorneySlug(m.link)}`}
+              link={m.link}
               image={m.better_featured_image}
               name={m.title}
               title={m.designation}
@@ -114,7 +112,7 @@ const NotFiltered = (props) => {
         seniorAssociates.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
-              link={`/attorneys/${attorneySlug(m.link)}`}
+              link={m.link}
               image={m.better_featured_image}
               name={m.title}
               title={m.designation}
@@ -134,7 +132,7 @@ const NotFiltered = (props) => {
         associates.map((m) => (
           <div key={m.id} className="col-sm-12 col-md-6 col-lg-4 mb-2">
             <AttorneyCard
-              link={`/attorneys/${attorneySlug(m.link)}`}
+              link={m.link}
               image={m.better_featured_image}
               name={m.title}
               title={m.designation}

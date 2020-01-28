@@ -2,14 +2,16 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component';
 import { getDirectionsFromLocation } from '../../utils/helpers';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import LocationHead from '../../components/Head/location';
-import BodyContent from './BodyContent';
-import SideBar from './SideBar';
 import locArchiveBckGround from './citybackground.jpg';
 
+/** lazy load components */
+const BodyContent = loadable(() => import('./BodyContent'));
+const SideBar  = loadable(() => import('./SideBar'));
 
 class LocationPortal extends Component {
   constructor(props) {

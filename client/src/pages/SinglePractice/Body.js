@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RelatedAttorneys from './RelatedAttorneys';
-import RelatedArticles from './RelatedArticles';
-import FeaturedSlider from './FeaturedSlider';
-import AwardScroller from './AwardScroller';
+import loadable from '@loadable/component';
 import { createMarkup } from '../../utils/helpers';
+
+
+
+// lazy load components
+const RelatedAttorneys = loadable(() => import('./RelatedAttorneys'));
+const RelatedArticles = loadable(() => import('./RelatedArticles'));
+const FeaturedSlider = loadable(() => import('./FeaturedSlider'));
+const AwardScroller = loadable(() => import('./AwardScroller'));
 
 const Body = (props) => {
   const {

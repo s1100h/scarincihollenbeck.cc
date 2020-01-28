@@ -1,14 +1,15 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable max-len */
-/* eslint-disable implicit-arrow-linebreak */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component';
 import ArchiveHead from '../../components/Head/archive';
 import FullWidth from '../../layouts/FullWidth';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
-import CareerSection from './CareerSection';
-import EEOpportunityContent from './EEOpportunityContent';
 import carArchiveBckGround from './citybackground.jpg';
+
+// lazy load components
+const CareerSection = loadable(() => import('./CareerSection'));
+const EEOpportunityContent = loadable(() => import('./EEOpportunityContent'));
+
 
 
 class CareerBody extends Component {

@@ -1,20 +1,17 @@
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable consistent-return */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable eqeqeq */
-/* eslint-disable max-len */
-/* eslint-disable no-else-return */
-/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component'
 import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
-import Filters from './Filters';
-import Selected from './Selected';
-import Results from './Results';
 import { sortByKey } from '../../utils/helpers';
 import attArchiveBckGround from './attorney-archive-header.jpg';
+
+// lazy load components
+const Filters = loadable(() => import('./Filters'));
+const Selected = loadable(() => import('./Selected'));
+const Results = loadable(() => import('./Results'));
+
 import './index.scss';
 
 class AttorneyArchive extends Component {

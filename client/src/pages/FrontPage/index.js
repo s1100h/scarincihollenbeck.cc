@@ -1,18 +1,13 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable max-len */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-console */
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import loadable from '@loadable/component'
 import FrontPageHead from '../../components/Head/frontpage';
 import { sortByKey } from '../../utils/helpers';
 import Header from './Header';
-import ColumnContent from './ColumnContent';
-import FullWidthContent from './FullWidthContent';
 import './index.scss';
+
+// lazy load components
+const ColumnContent = loadable(() => import('./ColumnContent'));
+const FullWidthContent = loadable(() => import('./FullWidthContent'));
 
 class FrontPage extends Component {
   constructor(props) {

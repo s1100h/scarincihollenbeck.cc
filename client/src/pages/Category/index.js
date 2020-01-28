@@ -3,18 +3,24 @@ import React, { Component } from 'react';
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { PulseLoader } from 'react-spinners';
+import loadable from '@loadable/component'
 import ArchiveHead from '../../components/Head/archive';
 import Search from '../../components/Search';
 import FullWidth from '../../layouts/FullWidth';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import Breadcrumbs from './Breadcrumbs';
-import FeaturedArticle from './FeaturedArticle';
-import MainSidebarContent from './MainSidebarContent';
 import CategoryHeader from './CategoryHeader';
-import SliderContent from './SliderContent';
-import ColumnContent from './ColumnContent';
+
 import { makeTitle } from '../../utils/helpers';
 import noImg from '../../images/no-image-found-diamond.png';
+
+
+// lazy load components
+const SliderContent  = loadable(() => import('./SliderContent'));
+const ColumnContent = loadable(() => import('./ColumnContent'));
+const FeaturedArticle = loadable(() => import('./FeaturedArticle'));
+const MainSidebarContent = loadable(() => import('./MainSidebarContent'));
+
 import './index.scss';
 
 const NextArrow = (props) => {
