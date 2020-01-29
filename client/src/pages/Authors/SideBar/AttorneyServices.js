@@ -7,16 +7,16 @@ const AttorneyServices = (props) => {
   return (
     <div className="w-100 mt-5">
       <div className="sidebar-title">
-        {bio.map(b => b.name)}
+        {bio.map((b) => b.name)}
         {' '}
         Services
       </div>
       <div className="off-white p-3">
         {
-          (practices) ? practices.map(p => (
+          (practices) ? practices.map((p) => (
             <div key={p.title} className="mb-3">
               <a href={p.link} className="top-article">
-                <h5 className="mb-0">{p.title}</h5>                
+                <h5 className="mb-0">{p.title}</h5>
               </a>
             </div>
           )) : ''

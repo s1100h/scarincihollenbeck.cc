@@ -73,7 +73,9 @@
 .super-hide {
   visibility: hidden !important;
 }
-
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
 @media(min-width: 0px) and (max-width: 992px) {
   .practice-title {
     background-color: white;

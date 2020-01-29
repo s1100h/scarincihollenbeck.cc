@@ -1,11 +1,9 @@
 import React from 'react';
-import './index.scss';
-
 
 const LargeSidebar = (props) => {
   const { body, sidebar } = props;
 
-  return(
+  return (
     <div className="container">
       <div className="row">
         <div className="col-sm-12 col-md-8">
@@ -16,7 +14,7 @@ const LargeSidebar = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default LargeSidebar;

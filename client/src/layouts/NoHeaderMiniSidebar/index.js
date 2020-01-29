@@ -1,22 +1,20 @@
 import React from 'react';
-import './index.scss';
-
 
 const NoHeaderMiniSidebar = (props) => {
   const { body, sidebar } = props;
 
   return (
-  <div className="container mt-3">
-    <div className="row">      
-      <div className="col-sm-12 col-md-9">
-        {body}
-      </div>
-      <div className="col-sm-12 col-md-3">
-        {sidebar}
+    <div className="container mt-3">
+      <div className="row">
+        <div className="col-sm-12 col-md-9">
+          {body}
+        </div>
+        <div className="col-sm-12 col-md-3">
+          {sidebar}
+        </div>
       </div>
     </div>
-  </div>
-  )
+  );
 };
 
 export default NoHeaderMiniSidebar;

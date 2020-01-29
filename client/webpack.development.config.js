@@ -106,7 +106,6 @@ module.exports = {
         preset: ['default', { discardComments: { removeAll: true } }],
       },
       canPrint: true
-    }),
-    bundleAnalyzerPlugin
+    })
   ],
 };

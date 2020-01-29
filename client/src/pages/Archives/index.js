@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import { sumbitSearchForm } from '../../utils/helpers';
 import ArchiveHead from '../../components/Head/archive';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from './BreadCrumbs';

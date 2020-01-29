@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const TrendingStories = (props) => {
   const { content } = props;
+  console.log(content);
 
   return (
     <div className="w-100 mt-4">
@@ -15,7 +16,7 @@ const TrendingStories = (props) => {
           <div key={p.ID} className="p-2">
             <a href={p.link} className="top-article">
               <h5 className="mb-0">{p.title}</h5>
-              {(p.author || p.author !== 'Scarinci Hollenbeck') && <p className="mt-0 mb-3 ft-22">{p.author}</p>}
+              {(content.hasOwnProperty("author") || p.author === 'Scarinci Hollenbeck') ? <p className="mt-0 mb-3 ft-22">{p.author}</p> : <br/>}
             </a>
           </div>
         ))

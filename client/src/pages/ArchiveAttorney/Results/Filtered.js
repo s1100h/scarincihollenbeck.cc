@@ -91,7 +91,8 @@ const Filtered = (props) => {
             title={m.designation}
             number={m.phone}
             email={m.email}
-            height="148px"
+            height="112px"
+            width="81px"
           />
         </div>
       ))

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { PulseLoader } from 'react-spinners';
-import loadable from '@loadable/component'
+import loadable from '@loadable/component';
 import ArchiveHead from '../../components/Head/archive';
 import Search from '../../components/Search';
 import FullWidth from '../../layouts/FullWidth';

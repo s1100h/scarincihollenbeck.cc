@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  FaFacebookF, FaLinkedinIn, FaTwitter, FaEnvelope, FaPrint,
+} from 'react-icons/fa';
 import './index.scss';
 
 const Icons = (props) => {
@@ -14,27 +17,27 @@ const Icons = (props) => {
     <ul className="no-dots hide-print ss-list">
       <li>
         <a href={`https://facebook.com/sharer/sharer.php?u=${encodeLink}`} target="_blank" aria-label="facebook" rel="noopener noreferrer" className="btn-lg fb">
-          <i className="fab fa-facebook-f text-white" />
+          <FaFacebookF className="text-white fb " />
         </a>
       </li>
       <li className="mt-2">
         <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeLink}`} target="_blank" aria-label="linkedin" rel="noopener noreferrer" className="btn li">
-          <i className="fab fa-linkedin-in text-white" />
+          <FaLinkedinIn className="text-white" />
         </a>
       </li>
       <li className="mt-2">
         <a href={`https://twitter.com/share?url=${encodeLink}&text=${title}`} target="_blank" aria-label="twitter" rel="noopener noreferrer" className="btn tw">
-          <i className="fab fa-twitter text-white" />
+          <FaTwitter className="text-white" />
         </a>
       </li>
       <li className="mt-2">
         <a href={`mailto:${to}?subject=${title}&body=${encodeLink}`} aria-label="email" className="btn bg-gray">
-          <i className="fa fa-envelope" />
+          <FaEnvelope />
         </a>
       </li>
       <li className="mt-2">
         <button type="button" aria-label="Print Page" onClick={() => printScreen()} className="btn bg-gray">
-          <i className="fa fa-print" />
+          <FaPrint />
         </button>
       </li>
     </ul>

@@ -53,7 +53,7 @@ class Author extends Component {
           pages, results, term, seo,
         } = data;
         this.setState({
-         results, seo, spinner: false,
+          results, seo, spinner: false,
         });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {

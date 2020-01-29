@@ -1,9 +1,7 @@
-
- .practice-menu-box {
-  padding: .75em;
+.practice-menu-box {
+  padding: 1em;
   font-size: 1.1rem;
   border: 1px solid #db2220;
-
 }
 .practice-menu-box a {
  color: #bd2200;
@@ -46,12 +44,12 @@
 }
 .practices li:hover > ul {
  display:inherit;
-
 }
 .practice-dropdown li {
  transition: all 1s ease;
  -webkit-transition: all 1s ease;
- -moz-transition: all 1s ease
+ -moz-transition: all 1s ease;
+ font-size: 1rem;
 }
 .practice-dropdown li:hover  .practice-dropdown-child{
  background-color: #a9a9a9;
@@ -67,4 +65,59 @@
  -webkit-column-count: 3;
  -moz-column-count: 3;
  column-count: 3;
+}
+.css-0 {
+ display:block;
+ position:relative;
+ margin-left: auto;
+ margin-right: auto;
+}
+.ft-12 {
+ font-size: 1.2rem;
+}
+
+h2 {
+ font-size: 1.4rem;
+ color: white;
+ font-style: italic;
+}
+.practice-dropdown {
+  margin-top: -2px !important;
+}
+.practice-dropdown > li > a {
+ color: black !important;
+ padding: 11px;
+}
+.practice-dropdown > li > a:hover {
+ color: white !important;
+}
+
+@media (min-width: 1200px) {
+ .max-width-container {
+   max-width: 920px;
+ }
+}
+
+@media (min-width: 400px) and (max-width: 769px) {
+ .column-list {
+   -webkit-column-count: 1;
+   -moz-column-count: 1;
+   column-count: 1;
+ }
+ .main-btn {
+   width: 100%; 
+ }
+ .practices {
+   display: block !important;
+   width: 100% !important;
+ }
+}
+
+@media (max-width: 767px) {
+ .practice-dropdown {
+   background-color: #fcfaff;
+ }
+ .practice-menu-box:hover > .practice-dropdown.dropdown-menu {
+   display:initial;
+ }
 }

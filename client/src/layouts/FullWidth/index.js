@@ -1,6 +1,4 @@
 import React from 'react';
-import './index.scss';
-
 
 const FullWidth = (props) => {
   const { children } = props;
@@ -11,7 +9,7 @@ const FullWidth = (props) => {
           {children}
         </div>
       </div>
-    </div>        
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaCaretRight } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const BreadCrumbs = (props) => {
@@ -10,7 +11,7 @@ const BreadCrumbs = (props) => {
         <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
       </span>
       <strong className="text-black mt-2 mx-2 proxima-bold">
-        <i className="fas fa-caret-right" />
+        <FaCaretRight />
       </strong>
       { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
         <span key={val}>
@@ -18,7 +19,7 @@ const BreadCrumbs = (props) => {
             { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }
           </span>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <i className="fas fa-caret-right" />
+            <FaCaretRight />
           </strong>
         </span>
       ) : (

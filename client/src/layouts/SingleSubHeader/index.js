@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { createMarkup } from '../../utils/helpers';
-import './index.scss';
+
 
 const SingleSubHeader = (props) => {
-
-  const { title, subtitle, image, height } = props; 
+  const {
+    title, subtitle, image, height,
+  } = props;
 
   const HeaderBckGround = styled.div`
     background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${image}) no-repeat 50%;
@@ -35,13 +36,13 @@ const SingleSubHeader = (props) => {
             <div className="p-3">
               <span id="red-block" />
               <h1 className="text-white proxima-bold border-bottom">{title}</h1>
-              <h2 className="proxima-regular mt-3 mb-5" dangerouslySetInnerHTML={createMarkup(subtitle)} />
+              <h2 className="proxima-regular mt-3 mb-5 h2-italic" dangerouslySetInnerHTML={createMarkup(subtitle)} />
             </div>
-          </BgBlack >
+          </BgBlack>
         </div>
       </div>
     </HeaderBckGround>
-  )
+  );
 };
 
 SingleSubHeader.propTypes = {

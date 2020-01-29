@@ -212,9 +212,6 @@ class SubscriptionForm extends Component {
             </h5>
           </div>
           <div className="modal-body">
-            {(message) ? (
-              <p className="text-success">Thank you for subscribing!</p>
-            ) : ''}
             <form onSubmit={this.handleSubmit} method="post" className="mt-3">
               <div className="form-group">
                 <label htmlFor="firstName" className="sr-only"> Email:</label>
@@ -245,6 +242,7 @@ class SubscriptionForm extends Component {
                 }
               </ul>
               <div className="modal-footer">
+                {(message) && <p className="text-success">Thank you for subscribing!</p>}
                 <button type="button" onClick={() => this.hideSubscription()} className="btn btn-secondary proxima-bold" data-dismiss="modal">Close</button>
                 <input type="submit" className="btn btn-danger" value="Submit" />
               </div>

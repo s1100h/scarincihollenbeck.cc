@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shDiamond from '../../../images/sh-mini-diamond.png';
+import './index.scss';
 
 const checkboxes = [
   {
@@ -94,7 +94,7 @@ const Checkbox = ({
 );
 
 
-class SubscriptionForm extends Component {
+class SubscriptionBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -161,7 +161,7 @@ class SubscriptionForm extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch('https://hollenbeckscarinci.com/shlaw/site/subscription/form', {
+    fetch('http://165.227.220.15/shlaw/site/subscription/form', {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {
@@ -187,28 +187,37 @@ class SubscriptionForm extends Component {
 
 
     return (
-      <div className="w-100">
-        {(message) ? (
-          <p className="text-success">Thank you for subscribing!</p>
-        ) : ''}
-        <form onSubmit={this.handleSubmit} method="post" className="mt-3">
-          <div className="form-group">
-            <label htmlFor="firstName" className="sr-only"> Email:</label>
-            <input id="firstName" name="firstName" type="text" value={firstName} onChange={this.handleChange} className="form-control" aria-describedby="firstName" placeholder="Enter first name" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName" className="sr-only"> last Name:</label>
-            <input id="lastName" name="lastName" type="text" value={lastName} onChange={this.handleChange} className="form-control" aria-describedby="lastName" placeholder="Enter last name" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email" className="sr-only"> Email:</label>
-            <input id="email" name="email" type="text" value={email} onChange={this.handleChange} className="form-control" aria-describedby="email" placeholder="Enter email" required />
-          </div>
-          <div className="form-group mb-0">
-            <p className="small-excerpt">Please select a category(s) below:</p>
-          </div>
-          <ul className="no-dots two-column">
-            {
+      <div>
+        <div className="w-100">
+          <h1>Scarinci Hollenbeck Mailing List</h1>
+          <h2 className="text-dark my-4 font-normal red-title ft-17">As the legal world continues to evolve, it is important to stay aware of its various and regular updates.</h2>
+          <p className="h4">Be the the first to know when: </p>
+          <ul className="h4 my-4">
+            <li className="mb-4">When our <strong>attorney's blog posts</strong></li>
+            <li className="mb-4">Various <strong>legal updates</strong> that may pertain to your business</li>
+            <li className="mb-4">Any annoucements and press releases from the attorneys at the firm</li>
+          </ul>
+          <h4 className="red-title mb-4">Sign up Today!</h4>
+        </div>
+        <div className="w-100 border">          
+          <form onSubmit={this.handleSubmit} method="post" className="p-3">
+            <div className="form-group">
+              <label htmlFor="firstName" className="sr-only"> Email:</label>
+              <input id="firstName" name="firstName" type="text" value={firstName} onChange={this.handleChange} className="form-control" aria-describedby="firstName" placeholder="Enter first name" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="lastName" className="sr-only"> last Name:</label>
+              <input id="lastName" name="lastName" type="text" value={lastName} onChange={this.handleChange} className="form-control" aria-describedby="lastName" placeholder="Enter last name" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email" className="sr-only"> Email:</label>
+              <input id="email" name="email" type="text" value={email} onChange={this.handleChange} className="form-control" aria-describedby="email" placeholder="Enter email" required />
+            </div>
+            <div className="form-group mb-0">
+              <p className="small-excerpt">Please select a category(s) below:</p>
+            </div>
+            <ul className="no-dots two-column mt-2">
+              {
                   checkboxes.map((item) => (
                     <li key={item.key}>
                       <label htmlFor={item.name}>
@@ -219,11 +228,13 @@ class SubscriptionForm extends Component {
                     </li>
                   ))
                 }
-          </ul>
-          <div className="modal-footer">
-            <input type="submit" className="btn btn-danger" value="Submit" />
-          </div>
-        </form>
+            </ul>
+            <div>
+              {(message) && <p className="text-success">Thank you for subscribing!</p>}
+              <input type="submit" className="btn btn-danger" value="Submit" />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
@@ -241,12 +252,4 @@ Checkbox.defaultProps = {
   onChange: () => {},
 };
 
-SubscriptionForm.propTypes = {
-  hideSubscription: PropTypes.func,
-};
-
-SubscriptionForm.defaultProps = {
-  hideSubscription: () => {},
-};
-
-export default SubscriptionForm;
+export default SubscriptionBody;

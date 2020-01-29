@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaCaretDown } from 'react-icons/fa';
 import { addRandomKey } from '../../../utils/helpers';
 
 const PracticeListItem = (props) => {
@@ -25,9 +26,9 @@ const Practices = (props) => {
 
   // filter each item into a column
   // bankruptcy, intel, public
-  const bce = practices.filter((b) => ((b.ID === 28345 || b.ID === 28972 || b.ID === 28276) ? b : ''));
+  const bce = practices.filter((b) => ((b.ID === 28345 || b.ID === 29587 || b.ID === 28276) ? b : ''));
   // commerical, labor, tax
-  const cl = practices.filter((b) => ((b.ID === 29009 || b.ID === 28271 || b.ID === 28973) ? b : ''));
+  const cl = practices.filter((b) => ((b.ID === 29624 || b.ID === 28271 || b.ID === 29588) ? b : ''));
   // corporate
   const li = practices.filter((b) => b.ID === 28270);
   // env, litigation
@@ -45,37 +46,36 @@ const Practices = (props) => {
         onMouseOver={removeVisibilityClass}
         className="dropdown-toggle btn btn-light my-1"
       >
-        Filter by practice
-        <i className="ml-5 mt-1 fas fa-caret-down" />
+      Filter by practice
+        <FaCaretDown className="ml-5 mt-1" />
       </span>
-      <div aria-labelledby="megamneu" className="dropdown-menu border-0 p-0 m-0 megamenu-container">
+      <div aria-labelledby="megamneu" className="dropdown-menu border-0 p-0 m-0 megamenu-container shadow-sm">
         <div className="container mt--1">
-          <div className="row rounded-0 m-0 shadow-sm">
+          <div className="row rounded-0 m-0">
             <div className="col-sm-12 col-md-3 mt-md-3">
               {
-                bce.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-              }
+              bce.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
+            }
             </div>
             <div className="col-sm-12 col-md-3 mt-md-3">
               {
-                cl.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-              }
+              cl.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
+            }
             </div>
             <div className="col-sm-12 col-md-3 mt-md-3">
               {
-                li.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-              }
+              li.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
+            }
             </div>
             <div className="col-sm-12 col-md-3 mt-md-3">
               {
-                pt.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-              }
+              pt.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
+            }
             </div>
           </div>
         </div>
       </div>
     </li>
-
   );
 };
 

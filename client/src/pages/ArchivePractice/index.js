@@ -61,7 +61,7 @@ class PracticePortal extends Component {
       <div>
         <ArchiveHead seo={seo} />
         <SingleSubHeader
-          title="Scarinci Hollenbeck Legal Practices"
+          title="Legal Practices"
           subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today&apos;s businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."
           image={pracArchiveBckGround}
         />

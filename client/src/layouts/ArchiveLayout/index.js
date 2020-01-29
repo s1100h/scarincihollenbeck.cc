@@ -1,11 +1,9 @@
 import React from 'react';
-import './index.scss';
-
 
 const ArchiveLayout = (props) => {
   const { header, body, sidebar } = props;
 
-  return(
+  return (
     <div className="container">
       <div className="row">
         <div className="col-sm-12 col-md-18">
@@ -19,7 +17,7 @@ const ArchiveLayout = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ArchiveLayout;

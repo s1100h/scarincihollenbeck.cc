@@ -28,6 +28,7 @@ import Archives from './pages/Archives';
 import Authors from './pages/Authors';
 import QuickNews from './pages/QuickNews';
 import Search from './pages/Search';
+import SubscriptionPage from './pages/SubscriptionPage';
 import Page404 from './pages/page404';
 
 // vendor scss & js files
@@ -83,10 +84,7 @@ import './index.scss';
  * =======================================
  *
  *  1. Add AMP component to Posts
- *  2. Dropdown menu attorney sidebar messed up
- *  3. Fix dropdown menu style on all practices page
- *  4. Add +/- to location/Attorney/Practices tabs
- *  5. Add Lazy loading -- Trending Stories, lists of attorneys, blog posts, practices
+ *  2. Add +/- to Attorney/Practices tabs
  * 
  * To Do (Webpack)
  * ==========================================
@@ -165,7 +163,8 @@ class SiteRoutes extends Component {
           <Route path='/firm-news/:parent/:post' exact component={Single} />
           <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/category/:category' exact component={Category} />
-          <Route path='/category/:category/:child' exact component={Category} />       
+          <Route path='/category/:category/:child' exact component={Category} />
+          <Route path='/subscribe' exact component={SubscriptionPage} />       
           {/** Firm Page routes */}
           {
             firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)

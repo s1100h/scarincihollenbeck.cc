@@ -35,7 +35,7 @@ const BodyContent = (props) => {
         <div className="row">
           {
           sortedAttorneys.map((m) => (
-            <div key={m.ID} className="col-sm-12 col-md-6 mb-2">             
+            <div key={m.ID} className="col-sm-12 col-md-6 mb-2">
               <AttorneyCard
                 link={`/attorneys/${attorneySlug(m.link)}`}
                 image={m.image}
@@ -45,7 +45,7 @@ const BodyContent = (props) => {
                 email={m.email}
                 height="112px"
                 width="81px"
-              /> 
+              />
 
             </div>
           ))
