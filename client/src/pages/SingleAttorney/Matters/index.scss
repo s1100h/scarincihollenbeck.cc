@@ -31,14 +31,3 @@
   font-size: 1rem;
   line-height: 1.2;
 }
-[data-toggle="collapse"] .fas:before {  
-  content: "\f067";
-}
-
-[aria-expanded="true"] .fas:before {  
-  content: "\f068";
-}
-
-[data-toggle="collapse"].collapsed .fas:before {
-  content: "\f067";
-}

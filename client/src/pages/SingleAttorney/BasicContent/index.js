@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../../utils/helpers';
-import './index.scss';
-
 
 const BasicContent = (props) => {
   const {

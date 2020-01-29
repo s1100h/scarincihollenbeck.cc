@@ -38,8 +38,8 @@ const NotFiltered = (props) => {
             title={m.designation}
             number={m.phone}
             email={m.email}
+            width="80px"
             height="112px"
-            width="81px"
           />
         </div>
       ))
@@ -58,8 +58,8 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
+              width="80px"
               height="112px"
-              width="81px"
             />
           </div>
         ))
@@ -78,8 +78,8 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
+              width="80px"
               height="112px"
-              width="81px"
             />
           </div>
         ))
@@ -98,8 +98,8 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
+              width="80px"
               height="112px"
-              width="81px"
             />
           </div>
         ))
@@ -118,8 +118,8 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
+              width="80px"
               height="112px"
-              width="81px"
             />
           </div>
         ))
@@ -138,8 +138,8 @@ const NotFiltered = (props) => {
               title={m.designation}
               number={m.phone}
               email={m.email}
+              width="80px"
               height="112px"
-              width="81px"
             />
           </div>
         ))

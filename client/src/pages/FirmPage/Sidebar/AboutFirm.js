@@ -7,7 +7,7 @@ const AboutFirm = () => (
       Firm Resources
     </div>
     <div className="off-white">
-      <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content">
+      <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content-page">
         <li>
           <a href={`${process.env.API_URL}/category/firm-news/`} className="text-capitalize small-excerpt">
             Firm News

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AboutFirm from './AboutFirm';
 import AboutDiversity from './AboutDiversity';
-import './index.scss';
 
 const Sidebar = (props) => {
   const {

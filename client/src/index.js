@@ -85,6 +85,7 @@ import './index.scss';
  *
  *  1. Add AMP component to Posts
  *  2. Add +/- to Attorney/Practices tabs
+ *  3. Fix sidebar dropdown
  * 
  * To Do (Webpack)
  * ==========================================

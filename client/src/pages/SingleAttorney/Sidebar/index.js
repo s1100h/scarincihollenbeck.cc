@@ -8,11 +8,13 @@ import './index.scss';
 const SidebarContent = (props) => {
   const { title, content, show, setSideBarTab, currentSidebarTab } = props;
 
+  console.log(content);
+
   return (
     <div>
       <a href={`#${urlify(title)}`} onClick={(e) => setSideBarTab(e)} className="sidebar-title" data-toggle="collapse">
         {title}
-        {(currentSidebarTab) ? <FaMinus className="float-right" /> : <FaPlus className="float-right" /> }
+        {(show) ? <FaMinus className="float-right" /> : <FaPlus className="float-right" /> }
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">

@@ -20,17 +20,6 @@
   text-decoration: underline !important;
   cursor: pointer;
 }
-[data-toggle="collapse"] .fas:before {  
-  content: "\f067";
-}
-
-[aria-expanded="true"] .fas:before {  
-  content: "\f068";
-}
-
-[data-toggle="collapse"].collapsed .fas:before {
-  content: "\f067";
-}
 .sidebar-content {
   margin-left: 10px;
 }

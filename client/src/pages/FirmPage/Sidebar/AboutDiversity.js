@@ -11,7 +11,7 @@ const AboutDiversity = (props) => {
         Scarinci Hollenbeck Diversity
       </div>
       <div className="off-white">
-        <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content">
+        <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content-page">
           {
           relatedPages.map((val) => (
             <li key={val}>

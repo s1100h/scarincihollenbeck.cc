@@ -63,7 +63,7 @@ const InfoCard = (props) => {
         </div>
       ) : (
         <div className="col-sm-12 mt-3">
-          <h4 className="text-white">{designation}</h4>
+          <h4 className="text-white ml--10px">{designation}</h4>
         </div>
       )}
       {/** Chair section -- end */}
@@ -71,9 +71,9 @@ const InfoCard = (props) => {
       <div className="row">
         <div className="col-sm-12 col-md-6">
           <ul className="text-white no-dots mt-2 ml-0">
-            { (phoneNumber) ? <li className="mb-1"><h5><FaPhone className="text-white" /> <span className="proxima-regular ft-18">{`  ${phoneNumber}`}</span></h5></li> : '' }
-            { (fax) ? <li className="mb-1"><h5><FaFax className="text-white" /> <span className="proxima-regular ft-18">{`  ${fax}`}</span></h5></li> : '' }
-            { (email) ? <li className="mb-1"><h5><FaEnvelope className="text-white" /><a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-18">{` ${email}`}</a></h5></li> : '' }
+            { (phoneNumber) ? <li className="mb-1"><h5><FaPhone className="text-white" /> <span className="proxima-regular ft-17px">{`  ${phoneNumber}`}</span></h5></li> : '' }
+            { (fax) ? <li className="mb-1"><h5><FaFax className="text-white" /> <span className="proxima-regular ft-17px">{`  ${fax}`}</span></h5></li> : '' }
+            { (email) ? <li className="mb-1"><h5><FaEnvelope className="text-white" /><a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-17px">{` ${email}`}</a></h5></li> : '' }
           </ul>
         </div>
         {/** Col One phone, email, fax -- end */}
@@ -90,8 +90,8 @@ const InfoCard = (props) => {
                       {(v.channel === 'LinkedIn') && <FaLinkedin className="text-white" />}
                       {(v.channel === 'Skype') && <FaSkype className="text-white" />}
                       {(v.channel === 'Instagram') &&  <FaInstagram className="text-white" />}
-                      <a href={v.url} className="text-white mail-link proxima-regular ft-18 position-relative icon">
-                        <strong>{`  Connect on ${v.channel}`}</strong>
+                      <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                        {`  Connect on ${v.channel}`}
                       </a>
                     </h5>
                   </li>
@@ -101,7 +101,7 @@ const InfoCard = (props) => {
                     <h5>
                       <FaRegFileAlt className="text-white" />
                       {' '}
-                      <a href={pdf} className="text-white mail-link proxima-regular ft-18 position-relative icon">
+                      <a href={pdf} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {' Download Biography'}
                       </a>
                     </h5>
@@ -111,7 +111,7 @@ const InfoCard = (props) => {
                   <li className="mb-0 lh-1">
                     <h5>
                       <FaAddressCard className="text-white" />
-                      <a href={vizibility} className="text-white mail-link proxima-regular ft-18 position-relative icon">
+                      <a href={vizibility} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {' Download Contact'}
                       </a>
                     </h5>
