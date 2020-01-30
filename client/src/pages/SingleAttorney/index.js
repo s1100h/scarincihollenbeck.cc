@@ -26,7 +26,7 @@ class AttorneyBiography extends Component {
       bio: [],
       loading: false,
       currentTab: 'biography',
-      currentSidebarTab: true,
+      currentSidebarTab: 'Related Practices',
       matterTab: '',
       readMore: false,
       spinner: false,
@@ -72,11 +72,8 @@ class AttorneyBiography extends Component {
   }
 
   setSideBarTab(e) {
-    const classes = e.target.classList;
-
-    if(classes[1] === "collapsed") {
-      this.setState({ currentSidebarTab: false });
-    }
+    const currentSidebarTab = e;
+    this.setState({ currentSidebarTab });
   }
 
   toggleReadMore() {

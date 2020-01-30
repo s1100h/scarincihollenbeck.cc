@@ -33,11 +33,7 @@ const BreadCrumbs = (props) => {
           <span key={val}>
             <span>
               <a href={`${window.location.origin}/category/${val}`} className="red-title proxima-bold">
-                {
-                  (val === categorySlug)
-                    ? (<u>{makeTitle(val)}</u>)
-                    : `${val}`
-                }
+                {(val === categorySlug) ? (<u>{makeTitle(val)}</u>) : `${val}` }
               </a>
             </span>
             <strong className="text-black mt-2 mx-2 proxima-bold">
@@ -48,11 +44,7 @@ const BreadCrumbs = (props) => {
         : (
           <span key={val}>
             <a href={`${window.location.origin}/category/${val}`} className="red-title proxima-bold">
-              {
-                (val === categorySlug)
-                  ? (<u>{makeTitle(val)}</u>)
-                  : `${val}`
-              }
+              {(val === categorySlug) ? (<u>{makeTitle(val)}</u>) : `${val}` }
             </a>
           </span>
         )))

@@ -9,6 +9,8 @@ const SocialShareFooter = loadable(() => import('./SocialShareFooter'));
 const AuthorBio = loadable(() => import('./AuthorBio'));
 const ContactForm = loadable(() => import('./ContactForm'));
 
+import Breadcrumbs from './Breadcrumbs';
+
 const Body = (props) => {
   const {
     firstFeaturedImg,
@@ -17,15 +19,30 @@ const Body = (props) => {
     eventCat,
     date,
     title,
+    tags,
   } = props;
 
   return (
     <div>
-      <div dangerouslySetInnerHTML={createMarkup(firstFeaturedImg)} className="f-image" />
+      <Breadcrumbs title={title}/>
+      <div dangerouslySetInnerHTML={createMarkup(firstFeaturedImg)} className="f-image" />      
       {/** Author & date & Category */}
       <ArticleDetails author={author} date={date} />
       <hr />
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+      {(tags.length > 0) && (
+        <div className="small-excerpt ml--21px mb-0">
+          <ul className="no-dots list-inline">
+            <li className="list-inline-item"><strong>Tag: </strong></li>
+            {tags.map((tag, index) => (
+              <li key={tag.term_id || tag.ID} className="list-inline-item">
+                {tag.name}
+                {(index !== tags.length -1) && ',' }
+              </li>
+            ))}  
+          </ul>
+        </div>
+      )}
       <SocialShareFooter title={title} />
       {/** Author bios */}
       <AuthorBio author={author} />
@@ -42,11 +59,12 @@ const Body = (props) => {
 
 Body.propTypes = {
   date: PropTypes.string,
-  title: PropTypes.strin,
+  title: PropTypes.string,
   firstFeaturedImg: PropTypes.string,
   bodyContent: PropTypes.string,
   author: PropTypes.arrayOf(PropTypes.object),
   eventCat: PropTypes.bool,
+  tags: PropTypes.arrayOf(PropTypes.object)
 };
 
 Body.defaultProps = {
@@ -55,6 +73,7 @@ Body.defaultProps = {
   firstFeaturedImg: '',
   bodyContent: '',
   author: [],
+  tags: [],
   eventCat: false,
 };
 

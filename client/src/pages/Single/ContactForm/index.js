@@ -105,16 +105,16 @@ class ContactForm extends Component {
       <form className="mt--1 mb-3" onSubmit={this.onFormSubmit} method="post">
         <div className="form-row">
           <div className="col-md-6 mb-3">
-            <label htmlFor="firstName" className="sr-only">First name</label>
-            <input type="text" className="form-control" name="firstName" onChange={this.onFormChange} id="firstName" placeholder="First name" value={firstName} required />
+            <label htmlFor="contactFirmName" className="sr-only">First name</label>
+            <input type="text" className="form-control" name="firstName" onChange={this.onFormChange} id="contactFirmName" placeholder="First name" value={firstName} required />
           </div>
           <div className="col-md-6 mb-3">
-            <label htmlFor="lastName" className="sr-only">Last name</label>
-            <input type="text" className="form-control" name="lastName" onChange={this.onFormChange} id="lastName" placeholder="Last name" value={lastName} required />
+            <label htmlFor="contactLastName" className="sr-only">Last name</label>
+            <input type="text" className="form-control" name="lastName" onChange={this.onFormChange} id="contactLastName" placeholder="Last name" value={lastName} required />
           </div>
           <div className="col-md-6 mb-3">
-            <label htmlFor="email" className="sr-only">Email</label>
-            <input type="email" className="form-control" name="email" onChange={this.onFormChange} id="email" placeholder="Email" value={email} required />
+            <label htmlFor="contactEmail" className="sr-only">Email</label>
+            <input type="email" className="form-control" name="email" onChange={this.onFormChange} id="contactEmail" placeholder="Email" value={email} required />
           </div>
           <div className="col-md-6 mb-3">
             <label htmlFor="phone" className="sr-only">Phone</label>

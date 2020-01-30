@@ -87,34 +87,7 @@
   font-size: 1.05rem;
   line-height: 1.3;
 }
-.slick-dots {
-  position: initial;
-  bottom: 0;
-}
-.featured-slider-arrow {
-  color: black;
-  position: absolute;
-  top: 30%;
-  display: block;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  cursor: pointer;
-  border: none;
-}
-.featured-slider-arrow:hover {
-  cursor: pointer;
-}
-.featured-slider-arrow.left {
-  left: -30px;
-}
-.featured-slider-arrow.right {
-  left: 102%;
-  z-index: 4;
-}
-.attorney-news-slider > .slick-slider > .slick-list {
-  height: 217px!important;
-}
+
 @media (min-width: 0px) and (max-width: 500px) {
   .city-background {
     height: 800px;

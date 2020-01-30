@@ -81,11 +81,9 @@ import './index.scss';
  * Footer  
  * 
  * To Do (Pages & Components & WP Rest Route)
- * =======================================
- *
- *  1. Add AMP component to Posts
- *  2. Add +/- to Attorney/Practices tabs
- *  3. Fix sidebar dropdown
+ * ======================================= *
+ *  1. Fix Practice & Attorney sidebar drop downs
+ *  2. Make sure each page does not look like crapola
  * 
  * To Do (Webpack)
  * ==========================================
@@ -162,7 +160,9 @@ class SiteRoutes extends Component {
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />
+          <Route path='/firm-news/:post' exact component={Single} />
           <Route path='/firm-events/:parent/:post' exact component={Single} />
+          <Route path='/firm-events/:post' exact component={Single} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />
           <Route path='/subscribe' exact component={SubscriptionPage} />       

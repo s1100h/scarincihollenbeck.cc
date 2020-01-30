@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const PostHead = (props) => {
   const { seo } = props;
-
+  
   return (
     <Helmet>
       <title>{seo.title}</title>
@@ -18,7 +18,7 @@ const PostHead = (props) => {
       <meta property="og:url" content={`${window.location.href}/${seo.canonicalLink}`} />
       <meta property="og:site_name" content="Scarinci Hollenbeck" />
       <meta property="article:publisher" content="https://www.facebook.com/ScarinciHollenbeck/" />
-      {(seo.tags !== undefined && seo.tags.length > 0) ? seo.tags.map((t) => <meta key={t} property="article:tag" content={t} />) : ''}
+      {(seo.tags !== undefined && seo.tags.length > 0) ? seo.tags.map((t) => <meta key={t.ID || t.term_id} property="article:tag" content={t.name} />) : ''}
       <meta property="article:published_time" content={seo.publishedDate} />
       <meta property="article:modified_time" content={seo.updatedDate} />
       <meta property="og:updated_time" content={seo.updatedDate} />
@@ -34,25 +34,25 @@ const PostHead = (props) => {
       <meta name="twitter:creator" content="@S_H_Law" />
       <script type="application/ld+json">
         {`
-      "@context": "https://schema.org", 
-      "@type": "BlogPosting",
-      "headline": ${seo.title},
-      "image": ${seo.featuredImg}, 
-      "genre": "seo.primaryCategory", 
-      "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) ? JSON.stringify(seo.tags) : ''}, 
-      "publisher": "Scrarinci Hollenbeck, LLC",
-      "url": ${window.location.href}/${seo.canonicalLink},
-      "datePublished": ${seo.publishedDate},
-      "dateCreated": ${seo.updatedDate},
-      "dateModified": ${seo.updatedDate},
-      "description": ${seo.metaDescription},
-      "articleBody": ${seo.postContent},
-        "author": {
-         "@type": "Person",
-         "name": ${seo.author}
-       }
-    
-    `}
+          "@context": "https://schema.org", 
+          "@type": "BlogPosting",
+          "headline": ${seo.title},
+          "image": ${seo.featuredImg}, 
+          "genre": ${(seo.hasOwnProperty('primaryCategory')) && seo.primaryCategory.title}, 
+          "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) && seo.tags.map(tag => tag.name.toString()) }, 
+          "publisher": "Scrarinci Hollenbeck, LLC",
+          "url": ${window.location.href}/${seo.canonicalLink},
+          "datePublished": ${seo.publishedDate},
+          "dateCreated": ${seo.updatedDate},
+          "dateModified": ${seo.updatedDate},
+          "description": ${seo.metaDescription},
+          "articleBody": ${seo.postContent},
+            "author": {
+            "@type": "Person",
+            "name": ${seo.author}
+          }
+        
+        `}
       </script>
     </Helmet>
   );
@@ -61,7 +61,11 @@ const PostHead = (props) => {
 PostHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.objectOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ])),
+    PropTypes.arrayOf(PropTypes.object),
   ])),
 };
 

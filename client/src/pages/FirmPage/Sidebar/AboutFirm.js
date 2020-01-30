@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.scss';
 
 const AboutFirm = () => (
   <div className="w-100 mt-3">

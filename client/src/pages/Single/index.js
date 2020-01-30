@@ -25,6 +25,7 @@ class Single extends Component {
       eventDetails: [],
       author: [],
       attorneys: [],
+      tags: [],
       seo: {},
       show: false,
       triggerModal: true,
@@ -41,7 +42,7 @@ class Single extends Component {
 
   componentDidMount() {
     const { parent, child, post } = this.props.match.params;
-    
+
     this.setState({ spinner: true }, () => {
       this.fetchPostData(`${process.env.API_URL}/wp-json/single/post/${post}`);
       // set timeout to trigger
@@ -64,6 +65,7 @@ class Single extends Component {
           categories,
           eventDetails,
           seo,
+          tags,
         } = data;
 
         // check if its an event category
@@ -80,6 +82,7 @@ class Single extends Component {
           eventCat,
           eventDetails,
           seo,
+          tags,
           spinner: false,
         });
       });
@@ -141,6 +144,7 @@ class Single extends Component {
       eventDetails,
       seo,
       spinner,
+      tags,
     } = this.state;
 
 
@@ -172,6 +176,7 @@ class Single extends Component {
                 title={title}
                 author={author}
                 date={date}
+                tags={tags}
               />
 )}
             OneSidebar={(
