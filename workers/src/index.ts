@@ -4,7 +4,7 @@
  * CHRON Workers
  * ======================================================
  * 
- * https://scarincihollenbeck.com/wp-json/admin-search/admin/ -> /admin-archive(Archive Admin)
+ * https://scarincihollenbeck.com/wp-json/admin-search/admin/ -> /admin-archive (Archive Admin)
  * https://scarincihollenbeck.com/wp-json/attorney-search/office-locations -> /attorney-filters ( Archive Attorney, Page, QuickNews, Search, Single)
  * https://scarincihollenbeck.com/wp-json/attorney-search/designations -> /attorney-filters (Archive Attorney, Page, QuickNews, Search, Single)
  * https://scarincihollenbeck.com/wp-json/attorney-search/practices -> /attorney-filters (Archive Attorney, QuickNews, Search, Single)
@@ -19,3 +19,14 @@
  *  
  * 
  */
+
+const CronJob = require('cron').CronJob;
+import { fetchContent } from './fetch';
+import * as url from './urls';
+import * as key from './keys';
+
+/** 0 12 * * 1 **/
+new CronJob('* * * * *', async () => {
+
+  console.log('request made on monday at 12:00');
+}, null, true, 'America/New_York' );
