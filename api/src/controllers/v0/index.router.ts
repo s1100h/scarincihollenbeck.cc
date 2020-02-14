@@ -11,3 +11,27 @@
  * NEW https://scarincihollenbeck.com/wp-json/core-practices/list -> /core-practices (Pages: Category, Front Page)
  * NEW https://scfarincihollenbeck.com/wp-json/firm-pages/list -> /firm-pages (Pages: Routes(index.js))
  */
+
+import { Router, Request, Response } from 'express';
+import { AdminRouter } from './content/routes/adminarchive';
+import { AllCategories } from './content/routes/allcategories';
+// import { AttorneyFilterRouter } from './content/routes/attorenyFilter';
+// import { FirmOverviewRouter } from './content/routes/firmoverview';
+// import { FirmPageRouter } from './content/routes/firmpage';
+// import { OfficeRouter } from './content/routes/officelocations';
+
+
+const router: Router = Router();
+
+router.use('/cached', AdminRouter);
+router.use('/cached', AllCategories);
+// router.use('/cached', AttorneyFilterRouter);
+// router.use('/cached', FirmOverviewRouter);
+// router.use('/cached', FirmPageRouter);
+// router.use('/cached', OfficeRouter);
+
+router.get('/', async (req: Request, res: Response) => {    
+    res.send(`V0`);
+});
+
+export const IndexRouter: Router = router;
