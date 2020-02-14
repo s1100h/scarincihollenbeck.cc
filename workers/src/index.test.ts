@@ -26,11 +26,6 @@ describe('check types for common variables', () => {
 describe('results from fetch', () => {
   it('results are an array type', () => {
     const results = fetchContent(url.ADMIN_ARCHIVE_API_URL , keys.ADMIN_ARCHIVE_KEY);
-    console.log(results);
-    expect(results).to.be.a('object')
+    expect(results).to.be.a('array')
   })
-  // it('results length is greater than 0', () => {
-  //   const results = fetchContent(url.ADMIN_ARCHIVE_API_URL , key.ADMIN_ARCHIVE_KEY);
-  //   expect(results.length).gt(0)
-  // })
 })

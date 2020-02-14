@@ -7,18 +7,18 @@ const client = redis.createClient();
 export const fetchContent = async (url:string, key:string) => {
   const results: any = [];
   try {
-   const results = await fetch(`${process.env.BACKEND_SITE_URL}/${url}`)
-      .then((res) => res.json())
-      .then((data) => {
-        data.forEach((post:any) => {
-          results.push(post)
-        });        
-      })
-      .catch((err) => err);
+   await fetch(`${process.env.BACKEND_SITE_URL}/${url}`)
+    .then((res) => res.json())
+    .then((data) => {
+      data.forEach((post:any) => {
+        results.push(post)
+      });        
+    })
+    .catch((err) => err);
 
     const success = client.set(key, JSON.stringify(results));
-
-    return success
+    
+    return success;
   } catch (err) {
     if (err) err;
   }

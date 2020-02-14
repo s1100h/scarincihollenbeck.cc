@@ -19,14 +19,21 @@
  *  
  * 
  */
-
+require('dotenv').config()
 const CronJob = require('cron').CronJob;
 import { fetchContent } from './fetch';
 import * as url from './urls';
-import * as key from './keys';
+import * as keys from './keys';
 
 /** 0 12 * * 1 **/
 new CronJob('* * * * *', async () => {
-
-  console.log('request made on monday at 12:00');
+  await fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
+  await fetchContent(url.ATTORNEY_FILTERS_LOCATION_API_URL, keys.ATTORNEY_FILTERS_LOCATION_KEY);
+  await fetchContent(url.ATTORNEY_FILTERS_DESIGNATIONS_API_URL, keys.ATTORNEY_FILTERS_DESIGNATIONS_KEY);
+  await fetchContent(url.ATTORNEY_FILTERS_PRACTICES_API_URL, keys.ATTORNEY_FILTERS_PRACTICES_KEY);
+  await fetchContent(url.OFFICES_API_URL, keys.OFFICES_KEY);
+  await fetchContent(url.PAGE_API_URL, keys.PAGE_KEY);
+  await fetchContent(url.CONTENT_API_URL_API_URL, keys.CONTENT_KEY);
+  await fetchContent(url.CATEGORIES_API_URL, keys.CATEGORIES_KEY);
+  console.log('all site contents were added to redis db')
 }, null, true, 'America/New_York' );
