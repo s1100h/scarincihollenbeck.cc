@@ -31,7 +31,7 @@ class LocationPortal extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/location-portal/offices`)
+    fetch('http://localhost:8086/cached/office-locations')
       .then((res) => res.json())
       .then((data) => {
         const { offices } = data;

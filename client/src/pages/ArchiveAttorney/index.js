@@ -20,9 +20,9 @@ class AttorneyArchive extends Component {
     this.state = {
       userInput: '',
       select: [],
-      location: [],
-      designation: [],
-      practice: [],
+      locations: [],
+      designations: [],
+      practices: [],
       attorneys: [],
       seo: {},
       spinner: false,
@@ -45,21 +45,18 @@ class AttorneyArchive extends Component {
       .then((attorneys) => {
         this.setState({ attorneys, spinner: false });
       });
-
-    // fetch locations
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/office-locations`)
+    
+    fetch('http://localhost:8086/cached/attorney-filters')
       .then((res) => res.json())
-      .then((location) => this.setState({ location }));
+      .then((data) => {
+        const { locations, designations, practices } = data;
 
-    // get list of available designations
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/designations`)
-      .then((res) => res.json())
-      .then((designation) => this.setState({ designation }));
-
-    // get list of available practices and their children
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/practices`)
-      .then((res) => res.json())
-      .then((practice) => this.setState({ practice }));
+        this.setState({
+          locations,
+          designations,
+          practices
+        });
+      });
 
     // get page seo data
     fetch(`${process.env.API_URL}/wp-json/attorney-search/meta`)
@@ -156,9 +153,9 @@ class AttorneyArchive extends Component {
 
   render() {
     const {
-      location,
-      practice,
-      designation,
+      locations,
+      practices,
+      designations,
       attorneys,
       select,
       userInput,
@@ -167,7 +164,7 @@ class AttorneyArchive extends Component {
     } = this.state;
 
     // sort practices, designations, location
-    const sPractices = sortByKey(practice, 'title');
+    const sPractices = sortByKey(practices, 'title');
 
     // alphabet
     const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -187,8 +184,8 @@ class AttorneyArchive extends Component {
             <Filters
               practices={sPractices}
               alphabet={alphabet}
-              location={location}
-              designation={designation}
+              locations={locations}
+              designation={designations}
               userInput={userInput}
               handleChange={this.handleChange}
               onSelect={this.onSelect}

@@ -13,7 +13,7 @@ const Filters = (props) => {
   const {
     practices,
     alphabet,
-    location,
+    locations,
     designation,
     userInput,
     handleChange,
@@ -37,7 +37,7 @@ const Filters = (props) => {
                  onSelect={onSelect}
                  removeVisibilityClass={removeVisibilityClass}
                />
-               <Location locations={location} onSelect={onSelect} />
+               <Location locations={locations} onSelect={onSelect} />
                <Title designation={designation} onSelect={onSelect} />
              </ul>
            </div>
@@ -60,7 +60,7 @@ const Filters = (props) => {
               className="btn btn-danger float-right mx-3"
               onClick={() => clearAll()}
             >
-                Clear All
+              Clear All
             </button>
           </div>
         </div>
@@ -72,7 +72,7 @@ const Filters = (props) => {
 Filters.propTypes = {
   practices: PropTypes.arrayOf(PropTypes.object),
   alphabet: PropTypes.arrayOf(PropTypes.string),
-  location: PropTypes.arrayOf(PropTypes.object),
+  locations: PropTypes.arrayOf(PropTypes.object),
   designation: PropTypes.arrayOf(PropTypes.object),
   userInput: PropTypes.string,
   handleChange: PropTypes.func,
@@ -86,7 +86,7 @@ Filters.propTypes = {
 Filters.defaultProps = {
   practices: [],
   alphabet: [],
-  location: [],
+  locations: [],
   designation: [],
   userInput: '',
   handleChange: () => {},

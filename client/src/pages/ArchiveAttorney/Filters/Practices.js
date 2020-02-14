@@ -24,15 +24,23 @@ const PracticeListItem = (props) => {
 const Practices = (props) => {
   const { practices, onSelect, removeVisibilityClass } = props;
 
-  // filter each item into a column
+  /**
+   * 
+   * Filter each item into a column
+   * 
+   **/
+
   // bankruptcy, intel, public
-  const bce = practices.filter((b) => ((b.ID === 28345 || b.ID === 29587 || b.ID === 28276) ? b : ''));
+  const bce = practices.filter((b) => ((b.id === 28345 || b.id === 29587 || b.id === 28276) ? b : ''));
+
   // commerical, labor, tax
-  const cl = practices.filter((b) => ((b.ID === 29624 || b.ID === 28271 || b.ID === 29588) ? b : ''));
+  const cl = practices.filter((b) => ((b.id === 29624 || b.id === 28271 || b.id === 29588) ? b : ''));
+  
   // corporate
-  const li = practices.filter((b) => b.ID === 28270);
+  const li = practices.filter((b) => b.id === 28270);
+  
   // env, litigation
-  const pt = practices.filter((b) => ((b.ID === 28273 || b.ID === 28274) ? b : ''));
+  const pt = practices.filter((b) => ((b.id === 28273 || b.id === 28274) ? b : ''));
 
 
   return (
@@ -53,24 +61,16 @@ const Practices = (props) => {
         <div className="container mt--1">
           <div className="row rounded-0 m-0">
             <div className="col-sm-12 col-md-3 mt-md-3">
-              {
-              bce.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-            }
+              {bce.map((ft) => <PracticeListItem key={addRandomKey(ft.id.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)}
             </div>
             <div className="col-sm-12 col-md-3 mt-md-3">
-              {
-              cl.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-            }
+              {cl.map((ft) => <PracticeListItem key={addRandomKey(ft.id.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)}
             </div>
             <div className="col-sm-12 col-md-3 mt-md-3">
-              {
-              li.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-            }
+              {li.map((ft) => <PracticeListItem key={addRandomKey(ft.id.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)}
             </div>
             <div className="col-sm-12 col-md-3 mt-md-3">
-              {
-              pt.map((ft) => <PracticeListItem key={addRandomKey(ft.ID.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)
-            }
+              {pt.map((ft) => <PracticeListItem key={addRandomKey(ft.id.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)}
             </div>
           </div>
         </div>

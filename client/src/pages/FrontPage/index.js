@@ -50,18 +50,17 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch office locations
-        fetch(`${process.env.API_URL}/wp-json/location-portal/offices`)
+        fetch('http://localhost:8086/cached/office-locations')
           .then((res) => res.json())
           .then((data) => {
             this.setState({ locations: data.offices });
           });
       })
       .then(() => {
-        fetch(`${process.env.API_URL}/wp-json/practice-portal/page`)
+        fetch('http://localhost:8086/cached/core-practices')
           .then((res) => res.json())
           .then((data) => {
-            const cPractices = data.practices.filter((p) => p.category === 'Core Practices');
-            const corePractices = cPractices.map((cp) => ({
+            const corePractices = data.map((cp) => ({
               name: cp.title,
               link: cp.slug,
             }));

@@ -22,7 +22,7 @@ class AdminArchive extends Component {
   componentDidMount() {
     // fetch admin list
     this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/admin-search/admin/`)
+    fetch('http://localhost:8086/cached/administration-archives')
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;

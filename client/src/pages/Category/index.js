@@ -14,7 +14,6 @@ import CategoryHeader from './CategoryHeader';
 import { makeTitle } from '../../utils/helpers';
 import noImg from '../../images/no-image-found-diamond.png';
 
-
 // lazy load components
 const SliderContent  = loadable(() => import('./SliderContent'));
 const ColumnContent = loadable(() => import('./ColumnContent'));
@@ -22,6 +21,8 @@ const FeaturedArticle = loadable(() => import('./FeaturedArticle'));
 const MainSidebarContent = loadable(() => import('./MainSidebarContent'));
 
 import './index.scss';
+
+let _isMounted = false;
 
 const NextArrow = (props) => {
   const { onClick } = props;
@@ -74,6 +75,7 @@ class CategoryBody extends Component {
     const { match } = this.props;
     const { category } = match.params;
     const categorySlug = category;
+    _isMounted = true;
 
     this.setState({
       categorySlug: category,
@@ -108,17 +110,20 @@ class CategoryBody extends Component {
 
     if (categorySlug === 'firm-news' || categorySlug === 'firm-events') {
       // get core practices
-      fetch(`${process.env.API_URL}/wp-json/practice-portal/page`)
+      fetch('http://localhost:8086/cached/core-practices')
         .then((res) => res.json())
         .then((data) => {
-          const cPractices = data.filter((p) => p.category === 'Core Practices');
-          const corePractices = cPractices.map((cp) => ({
+          const corePractices = data.map((cp) => ({
             name: cp.title,
             link: cp.slug,
           }));
           this.setState({ corePractices });
         });
     }
+  }
+
+  componentWillUnmount() {
+    _isMounted = false;
   }
 
   render() {
@@ -198,7 +203,7 @@ class CategoryBody extends Component {
                 <ColumnContent
                   colOneTitle="More from our attorneys"
                   colOneContent={authors}
-                  colTwoTitle="More about our areas of law<"
+                  colTwoTitle="More about our areas of law"
                   colTwoContent={practices}
                 />
               ) : ''}

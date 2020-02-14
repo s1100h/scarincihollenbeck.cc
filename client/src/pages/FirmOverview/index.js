@@ -30,7 +30,7 @@ class FirmOverview extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/firm-overview/content`)
+    fetch('http://localhost:8086/cached/firm-overview')
       .then((res) => res.json())
       .then((data) => {
         const {

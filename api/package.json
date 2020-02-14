@@ -2,7 +2,7 @@
   "name": "scarincihollenbeck.com-api",
   "version": "1.0.0",
   "description": "api routes for scarincihollenbeck.com",
-  "main": "src/index.js",
+  "main": "src/server.ts",
   "scripts": {
     "start": "node .",
     "tsc": "tsc",

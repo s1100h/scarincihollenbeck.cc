@@ -10,20 +10,14 @@ router.get('/administration-archives', async (req: Request, res: Response) => {
   try {
     const admins = await getAsync('adminArchive');
 
-    // parse strings to JSON objects
+    // // parse strings to JSON objects
     const parsedAdmins = parseResults(admins);
     
-    // store results
-    const results:any = [];
-
-    // push formatted results to response results array
-    await parsedAdmins.forEach((post: any) => results.push(post));
-
-    if (results.length > 0) {
-      res.status(201).send(results);
+    if (Object.keys(parsedAdmins).length > 0) {
+      res.status(200).send(parsedAdmins);
     }
 
-    if (results.length < 0) {
+    if (Object.keys(parsedAdmins).length < 0) {
       res.status(400).send({ message: 'Sorry, no articles were found' });
     }
   } catch (err) {
