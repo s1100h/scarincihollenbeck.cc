@@ -23,11 +23,13 @@ class QuickNews extends Component {
       seo: {},
       spinner: false,
     };
+    this._isMounted = false;
   }
 
   componentDidMount() {
     const { match } = this.props;
     const { pageNum } = match.params;
+    this._isMounted = true;
 
     const categorySlug = 'Quick News';
     const breadCrumb = ['quick-news', 1];
@@ -45,6 +47,10 @@ class QuickNews extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   getPosts(url) {
     fetch(url)
       .then((res) => res.json())
@@ -52,9 +58,13 @@ class QuickNews extends Component {
         const {
           pages, results, posts, seo,
         } = data;
-        this.setState({
-          results, trending: posts, seo, spinner: false,
-        });
+        
+        if(this._isMounted) {
+          this.setState({
+            results, trending: posts, seo, spinner: false,
+          });
+        }
+
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);
@@ -62,33 +72,18 @@ class QuickNews extends Component {
         this.setState({ pageNums });
       })
       .then(() => {
-        // news
-        fetch(`${process.env.API_URL}/wp-json/category/posts/firm-news`)
+        // news & insights & events
+        fetch('http://localhost:8086/cached/latest-articles')
           .then((res) => res.json())
           .then((data) => {
-            const news = [...data.latest, ...data.archives];
-            this.setState({ news });
+            const { firmNews, firmInsights, firmEvents } = data;
+            this.setState({
+              news: firmNews,
+              events: firmEvents,
+              insight: firmInsights
+            });
           });
       })
-      .then(() => {
-        // events
-        fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
-          .then((res) => res.json())
-          .then((data) => {
-            const events = [...data.latest, ...data.archives];
-            this.setState({ events });
-          });
-      })
-
-      .then(() => {
-        // insights
-        fetch(`${process.env.API_URL}/wp-json/category/posts/law-firm-insights`)
-          .then((res) => res.json())
-          .then((data) => {
-            const insight = [...data.latest, ...data.archives];
-            this.setState({ insight });
-          });
-      });
   }
 
   render() {

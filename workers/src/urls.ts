@@ -9,3 +9,6 @@ export const FIRM_OVERVIEW_URL = 'wp-json/firm-overview/content';
 export const CATEGORIES_API_URL = 'wp-json/wp/v2/categories?per_page=100';
 export const CORE_PRACTICES_URL = 'wp-json/core-practices/list';
 export const PRACTICE_PAGE_URL = 'wp-json/practice-portal/page';
+export const FIRM_NEWS_URL = 'wp-json/category/posts/firm-news';
+export const FIRM_EVENTS_URL = 'wp-json/category/posts/firm-events';
+export const FIRM_INSIGHTS_URL = 'wp-json/category/posts/law-firm-insights';

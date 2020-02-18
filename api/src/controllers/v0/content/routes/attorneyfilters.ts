@@ -1,9 +1,3 @@
-/**
- *  * https://scarincihollenbeck.com/wp-json/attorney-search/office-locations -> /attorney-filters (Pages: Archive Attorney, Page, QuickNews, Search, Single)
- * https://scarincihollenbeck.com/wp-json/attorney-search/designations -> /attorney-filters (Pages: Archive Attorney, Page, QuickNews, Search, Single)
- * https://scarincihollenbeck.com/wp-json/attorney-search/practices -> /attorney-filters (Pages: Archive Attorney, QuickNews, Search, Single)
- */
-
 import {
   Router, Request, Response,
 } from 'express';

@@ -9,3 +9,6 @@ export const PRACTICE_PAGE_KEY = 'practicePage';
 export const FIRM_OVERVIEW_KEY = 'firmOverview';
 export const CATEGORIES_KEY = 'blogCategories';
 export const CORE_PRACTICES_KEY ='corePractices';
+export const FIRM_NEWS_KEY = 'firmNews';
+export const FIRM_EVENTS_KEY = 'firmEvents';
+export const FIRM_INSIGHTS_KEY = 'firmInsights';

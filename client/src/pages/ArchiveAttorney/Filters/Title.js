@@ -12,7 +12,7 @@ const Title = (props) => {
         <FaCaretDown className="ml-5 mt-1" />
       </span>
       <div className="dropdown-menu" aria-labelledby="titleDropDown">
-        { designation.map((d) => <button type="button" name="designation" className="dropdown-item btn btn-link" key={d.ID} onClick={(e) => onSelect(e, d.title)}>{d.title}</button>) }
+        { designation.map((d) => <button type="button" name="designation" className="dropdown-item btn btn-link" key={d.title} onClick={(e) => onSelect(e, d.title)}>{d.title}</button>) }
       </div>
     </li>
   );

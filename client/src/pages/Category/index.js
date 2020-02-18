@@ -5,7 +5,6 @@ import Slider from 'react-slick';
 import { PulseLoader } from 'react-spinners';
 import loadable from '@loadable/component';
 import ArchiveHead from '../../components/Head/archive';
-import Search from '../../components/Search';
 import FullWidth from '../../layouts/FullWidth';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import Breadcrumbs from './Breadcrumbs';
@@ -19,10 +18,9 @@ const SliderContent  = loadable(() => import('./SliderContent'));
 const ColumnContent = loadable(() => import('./ColumnContent'));
 const FeaturedArticle = loadable(() => import('./FeaturedArticle'));
 const MainSidebarContent = loadable(() => import('./MainSidebarContent'));
+const Search = loadable(() => import('../../components/Search'));
 
 import './index.scss';
-
-let _isMounted = false;
 
 const NextArrow = (props) => {
   const { onClick } = props;
@@ -75,7 +73,6 @@ class CategoryBody extends Component {
     const { match } = this.props;
     const { category } = match.params;
     const categorySlug = category;
-    _isMounted = true;
 
     this.setState({
       categorySlug: category,
@@ -120,10 +117,6 @@ class CategoryBody extends Component {
           this.setState({ corePractices });
         });
     }
-  }
-
-  componentWillUnmount() {
-    _isMounted = false;
   }
 
   render() {

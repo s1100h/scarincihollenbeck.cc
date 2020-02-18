@@ -20,6 +20,7 @@ import { FirmOverviewRouter } from './content/routes/firmoverview';
 import { FirmPageRouter } from './content/routes/firmpages';
 import { OfficeRouter } from './content/routes/officelocations';
 import { PracticePageRouter } from './content/routes/practices';
+import { LatestArticlesRouter } from './content/routes/latestarticle';
 
 
 const router: Router = Router();
@@ -32,6 +33,7 @@ router.use('/cached', FirmOverviewRouter);
 router.use('/cached', FirmPageRouter);
 router.use('/cached', OfficeRouter);
 router.use('/cached', PracticePageRouter);
+router.use('/cached', LatestArticlesRouter);
 
 router.get('/', async (req: Request, res: Response) => {    
     res.send('/cached/');

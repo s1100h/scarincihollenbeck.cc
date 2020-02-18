@@ -1,8 +1,12 @@
 import React from 'react';
 import PropType from 'prop-types';
-import Search from '../../../components/Search';
-import AboutFirm from './AboutFirm';
-import TrendingStories from './TrendingStories';
+import loadable from '@loadable/component';
+
+
+// lazy load components
+const AboutFirm = loadable(() => import('./AboutFirm'));
+const TrendingStories = loadable(() => import('../../../components/TrendingStories'));
+const Search = loadable(() => import('../../../components/Search'));
 
 const Sidebar = (props) => {
   const {

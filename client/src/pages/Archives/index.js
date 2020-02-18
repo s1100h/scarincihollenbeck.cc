@@ -61,33 +61,18 @@ class Archives extends Component {
         this.setState({ pageNums });
       })
       .then(() => {
-        // news
-        fetch(`${process.env.API_URL}/wp-json/category/posts/firm-news`)
+        // news & insights & events
+        fetch('http://localhost:8086/cached/latest-articles')
           .then((res) => res.json())
           .then((data) => {
-            const news = [...data.latest, ...data.archives];
-            this.setState({ news });
+            const { firmNews, firmInsights, firmEvents } = data;
+            this.setState({
+              news: firmNews,
+              events: firmEvents,
+              insight: firmInsights
+            });
           });
       })
-      .then(() => {
-        // events
-        fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
-          .then((res) => res.json())
-          .then((data) => {
-            const events = [...data.latest, ...data.archives];
-            this.setState({ events });
-          });
-      })
-
-      .then(() => {
-        // insights
-        fetch(`${process.env.API_URL}/wp-json/category/posts/law-firm-insights`)
-          .then((res) => res.json())
-          .then((data) => {
-            const insight = [...data.latest, ...data.archives];
-            this.setState({ insight });
-          });
-      });
   }
 
   render() {

@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SubscriptionForm from './SubscriptionForm';
+import loadable from '@loadable/component';
+
+// lazy load components
+const SubscriptionForm = loadable(() => import('./SubscriptionForm'));
+
 
 
 const ColumnContent = (props) => {
