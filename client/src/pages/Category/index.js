@@ -107,7 +107,7 @@ class CategoryBody extends Component {
 
     if (categorySlug === 'firm-news' || categorySlug === 'firm-events') {
       // get core practices
-      fetch('http://localhost:8086/cached/core-practices')
+      fetch('https://api.scarincilies.com/cached/core-practices')
         .then((res) => res.json())
         .then((data) => {
           const corePractices = data.map((cp) => ({

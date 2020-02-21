@@ -3,3 +3,6 @@ api/node_modules*
 client/node_modules*
 workers/node_modules*
 admin/*
+api/.env
+workers/.env
+client/.env

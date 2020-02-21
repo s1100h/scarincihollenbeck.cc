@@ -29,7 +29,7 @@ class JustInCarousel extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost/shlaw.dev.cc/wp-json/just-in/posts', { headers })
+    fetch('https://admin.scarincilies.com/wp-json/just-in/posts', { headers })
       .then((res) => res.json())
       .then((posts) => this.setState({ posts }));
   }

@@ -73,7 +73,7 @@ class QuickNews extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch('http://localhost:8086/cached/latest-articles')
+        fetch('https://api.scarincilies.com/cached/latest-articles')
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;

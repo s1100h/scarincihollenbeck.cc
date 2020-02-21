@@ -22,7 +22,7 @@ class AdminArchive extends Component {
   componentDidMount() {
     // fetch admin list
     this.setState({ spinner: true });
-    fetch('http://localhost:8086/cached/administration-archives')
+    fetch('https://api.scarincilies.com/cached/administration-archives')
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;

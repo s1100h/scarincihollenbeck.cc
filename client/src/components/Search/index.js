@@ -52,7 +52,7 @@ class Search extends Component {
   }
 
   componentDidMount() { 
-    fetch('http://localhost:8086/cached/search-options')
+    fetch('https://api.scarincilies.com/cached/search-options')
       .then((res) => res.json())
       .then((data) => {
         const {

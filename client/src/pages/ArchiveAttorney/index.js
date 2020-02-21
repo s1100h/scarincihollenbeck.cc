@@ -46,7 +46,7 @@ class AttorneyArchive extends Component {
         this.setState({ attorneys, spinner: false });
       });
     
-    fetch('http://localhost:8086/cached/attorney-filters')
+    fetch('https://api.scarincilies.com/cached/attorney-filters')
       .then((res) => res.json())
       .then((data) => {
         const { locations, designations, practices } = data;

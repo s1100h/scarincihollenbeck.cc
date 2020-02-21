@@ -30,7 +30,7 @@ class FirmOverview extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch('http://localhost:8086/cached/firm-overview')
+    fetch('https://api.scarincilies.com/cached/firm-overview')
       .then((res) => res.json())
       .then((data) => {
         const {

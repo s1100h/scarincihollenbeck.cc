@@ -31,7 +31,7 @@ class LocationPortal extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch('http://localhost:8086/cached/office-locations')
+    fetch('https://api.scarincilies.com/cached/office-locations')
       .then((res) => res.json())
       .then((data) => {
         const { offices } = data;
