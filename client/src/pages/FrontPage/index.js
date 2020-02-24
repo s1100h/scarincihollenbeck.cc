@@ -35,14 +35,14 @@ class FrontPage extends Component {
         fetch(`${process.env.API_URL}/wp-json/front-page/news`)
           .then((res) => res.json())
           .then((data) => {
-            const posts = data.latest;
+            const posts = data;
             return posts;
           })
           .then((results) => {
             fetch(`${process.env.API_URL}/wp-json/front-page/events`)
               .then((res) => res.json())
               .then((data) => {
-                const ePosts = data.latest;
+                const ePosts = data;
                 const posts = [...results, ...ePosts];
                 this.setState({ posts });
               });
