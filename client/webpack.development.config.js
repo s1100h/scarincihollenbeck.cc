@@ -10,6 +10,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin'); //brotli
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const path = require('path');
 
@@ -95,9 +96,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      filename: "./index.html",
-      async: ['main', 'vendor'],
-      defer: ['*']
     }),
     new MiniCssExtractPlugin({
       filename: '[name].bundle.css',
@@ -123,6 +121,9 @@ module.exports = {
       test: /\.(js|css|html|svg|jpg|png)$/,
       threshold: 10240,
       minRatio: 0.8
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     })
   ],
 };
