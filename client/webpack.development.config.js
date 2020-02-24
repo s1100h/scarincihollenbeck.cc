@@ -8,6 +8,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin'); //brotli
 
 const path = require('path');
 
@@ -106,6 +108,19 @@ module.exports = {
         preset: ['default', { discardComments: { removeAll: true } }],
       },
       canPrint: true
+    }),
+    new CompressionPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css|html|svg|jpg|png)$/,
+      threshold: 8192,
+      minRatio: 0.8
+    }),
+    new BrotliPlugin({ //brotli plugin
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg|jpg|png)$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   ],
 };

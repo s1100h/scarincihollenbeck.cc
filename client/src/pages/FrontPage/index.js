@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import loadable from '@loadable/component'
 import FrontPageHead from '../../components/Head/frontpage';
 import { sortByKey } from '../../utils/helpers';
-import Header from './Header';
 import './index.scss';
 
 // lazy load components
+const Header = loadable(() => import('./Header'));
 const ColumnContent = loadable(() => import('./ColumnContent'));
 const FullWidthContent = loadable(() => import('./FullWidthContent'));
 
@@ -32,14 +32,14 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch latest firm news data
-        fetch(`${process.env.API_URL}/wp-json/category/posts/firm-news`)
+        fetch(`${process.env.API_URL}/wp-json/front-page/news`)
           .then((res) => res.json())
           .then((data) => {
             const posts = data.latest;
             return posts;
           })
           .then((results) => {
-            fetch(`${process.env.API_URL}/wp-json/category/posts/firm-events`)
+            fetch(`${process.env.API_URL}/wp-json/front-page/events`)
               .then((res) => res.json())
               .then((data) => {
                 const ePosts = data.latest;

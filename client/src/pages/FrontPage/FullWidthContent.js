@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import LazyLoad from 'react-lazyload';
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import noImg from '../../images/no-image-found-diamond.png';
 

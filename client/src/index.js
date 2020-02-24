@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import loadable from '@loadable/component';
 
-// layouts
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+// lazy load layouts
+const NavBar = loadable(() => import('./components/NavBar'));
+const Footer = loadable(() => import('./components/Footer'));
 
 // pages
 import FrontPage from './pages/FrontPage';
@@ -107,7 +108,7 @@ class SiteRoutes extends Component {
     }
   };
   componentDidMount() {
-    fetch(`${process.env.API_URL}/wp-json/single-page/page-list`)
+    fetch('`${process.env.API_URL}/wp-json/single-page/page-list`')
    .then(res => res.json())
    .then(data => this.setState({sitePages: data}));
   }

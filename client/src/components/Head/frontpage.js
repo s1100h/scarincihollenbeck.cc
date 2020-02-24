@@ -10,12 +10,12 @@ const FrontPageHead = (props) => {
       <title>{seo.title}</title>
       <meta name="description" content={seo.metaDescription} />
       <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <link rel="canonical" href="https://scarincihollenbeck.com/" />
+      <link rel="canonical" href={window.location.href} />
       <meta property="og:locale" content="en_US" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.metaDescription} />
-      <meta property="og:url" content="https://scarincihollenbeck.com/" />
+      <meta property="og:url" content={window.location.href} />
       <meta property="og:site_name" content="Scarinci Hollenbeck" />
       <meta property="og:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
       <meta property="og:image:secure_url" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
@@ -36,7 +36,7 @@ const FrontPageHead = (props) => {
         "@context": "http://schema.org",
         "@type": "WebSite",
         "name": "Scarinci Hollenbeck",
-        "url": https://scarincihollenbeck.com/,
+        "url": ${window.location.href},
         sameAs": [
           "https://www.facebook.com/ScarinciHollenbeck/",
            "https://twitter.com/s_h_law",
@@ -44,7 +44,7 @@ const FrontPageHead = (props) => {
         ],
            "potentialAction": {
              "@type": "SearchAction",
-             "target": "https://scarincihollenbeck.com/s?={search_term}",
+             "target": "${window.location.href}/s?={search_term}",
              "query-input": "required name=search_term"
            }
 
