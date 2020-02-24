@@ -123,6 +123,7 @@ module.exports = {
       minRatio: 0.8
     }),
     new ScriptExtHtmlWebpackPlugin({
+      defer: /\.js$/,
       defaultAttribute: 'defer'
     })
   ],
