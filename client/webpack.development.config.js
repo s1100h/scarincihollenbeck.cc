@@ -95,7 +95,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
+      async: ['main', 'vendor'],
+      defer: ['*']
     }),
     new MiniCssExtractPlugin({
       filename: '[name].bundle.css',
