@@ -60,12 +60,14 @@ module.exports = {
   optimization: {
     usedExports: true,
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
         vendor: {
           test: /node_modules/,
           chunks: 'initial',
           name: 'vendor',
           enforce: true,
+          priority: -10
         },
       },
     },
