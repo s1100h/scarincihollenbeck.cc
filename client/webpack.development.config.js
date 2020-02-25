@@ -59,26 +59,16 @@ module.exports = {
   },
   optimization: {
     usedExports: true,
-    // splitChunks: {
-    //   chunks: 'async',
-    //   minSize: 30000,
-    //   minRemainingSize: 0,
-    //   maxSize: 0,
-    //   minChunks: 1,
-    //   maxAsyncRequests: 6,
-    //   maxInitialRequests: 4,
-    //   automaticNameDelimiter: '~',
-    //   automaticNameMaxLength: 30,
-    //   cacheGroups: {
-    //     vendor: {
-    //       test: /node_modules/,
-    //       chunks: 'initial',
-    //       name: 'vendor',
-    //       enforce: true,
-    //       priority: -10
-    //     },
-    //   },
-    // },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true,
+        },
+      },
+    },
     minimizer: [
       new TerserJSPlugin({
         terserOptions: {
@@ -134,7 +124,10 @@ module.exports = {
     }),
     new ScriptExtHtmlWebpackPlugin({
       defer: /\.js$/,
-      defaultAttribute: 'defer'
+      preload: {
+        test: /\.js$/,
+        chunks: 'defer'
+      }
     })
   ],
 };
