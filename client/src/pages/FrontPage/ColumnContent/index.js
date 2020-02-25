@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import About from './About';
-import Practices from './Practices';
-import Categories from './Categories';
 
+const About = loadable(() => import('./About'));
+const Practices = loadable(() => import('./Practices'));
+const Categories = loadable(() => import('./Categories'));
 
 const ColumnContent = (props) => {
   const { onCategorySelection, corePractices } = props;
