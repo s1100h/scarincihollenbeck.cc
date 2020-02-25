@@ -83,7 +83,7 @@ module.exports = {
   entry: ['core-js/stable', './src/index.js'],
   output: {
     filename: '[name].bundle.js',
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: '[contenthash].chunk.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
@@ -96,7 +96,7 @@ module.exports = {
       path: '.env.development',
     }),
     new HtmlWebpackPlugin({
-      preload: ['*.chunk.js'],
+      preload: ['*.chunk.css','*.bundle.css'],
       prefetch: false,
       template: "./src/index.html",
     }),
@@ -126,11 +126,8 @@ module.exports = {
       minRatio: 0.8
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defer: /\.bundle.js$/,
-      preload: {
-        test: /\.bundle.js$/,
-        chunks: 'defer'
-      }
+      defer: ['bundle', 'chunk'],
+      defaultAttribute: 'async'
     }),
     new ResourceHintWebpackPlugin()
   ],
