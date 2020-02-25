@@ -6,8 +6,8 @@ import './index.scss';
 
 // lazy load components
 const Header = loadable(() => import('./Header'));
-const ColumnContent = loadable(() => import('./ColumnContent'));
-const FullWidthContent = loadable(() => import('./FullWidthContent'));
+const ColumnContent = loadable(() => import(/* webpackChunkName="ColumnContent", webpack="lazy" */'./ColumnContent'));
+const FullWidthContent = loadable(() => import(/* webpackChunkName="FullWidthContent", webpack="lazy" */'./FullWidthContent'));
 
 class FrontPage extends Component {
   constructor(props) {

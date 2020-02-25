@@ -143,7 +143,7 @@ const FullWidthContent = (props) => {
                 sortedPosts.map(v => (
                   <div key={v.title} className="px-3 pt-5 pb-2">
                     <a href={v.link}>
-                      <LazyLoad height={300}>
+                      <LazyLoad width={300} offset={100}>
                         <img src={v.image ? v.image : noImg} className="img-thumbnail mx-auto d-block" alt={v.title} />
                       </LazyLoad>                      
                       <h5 className="mt-3 mb-2 text-center">{v.category}</h5>
@@ -164,7 +164,7 @@ const FullWidthContent = (props) => {
           {sortedLocations.map((l) => (
             <div className="card w-95 mb-2" key={l.id}>
               <a href={l.slug}>                
-                <LazyLoad height={300}>
+                <LazyLoad width={300} offset={100}>
                   <img src={l.featuredImg} alt={l.title} className="card-img-top" />
                 </LazyLoad>   
                 <p className="red-title m-3">

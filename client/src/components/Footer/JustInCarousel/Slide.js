@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 
 const Content = (props) => {
   const {title, image, category, link, date, location} = props;
@@ -18,7 +19,9 @@ const Content = (props) => {
         </p>
         <div className="just-in-content">
           <h5>{title}</h5>
-          <img src={image} alt={title} className="img-thumbnail d-block mx-auto" />
+          <LazyLoad>
+            <img src={image} alt={title} className="img-thumbnail d-block mx-auto" />
+          </LazyLoad>
         </div>
         <hr /><p className="tag"><i className="fas fa-plus-circle" />{location}</p>
       </a>

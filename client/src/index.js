@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 
 // lazy load layouts
-const NavBar = loadable(() => import('./components/NavBar'));
-const Footer = loadable(() => import('./components/Footer'));
+import NavBar from './components/NavBar'
+const Footer = loadable(() => import(/* webpackChunkName="Footer", webpack="lazy" */ './components/Footer'));
 
 // pages
 import FrontPage from './pages/FrontPage';

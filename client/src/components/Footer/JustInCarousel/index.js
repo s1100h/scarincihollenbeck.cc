@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
@@ -12,12 +13,12 @@ const headers = {
 
 const NextArrow = (props) => {
   const { onClick } = props;
-  return <FaAngleDoubleRight className="just-in-toggles just-in-toggle-right" onClick={onClick} />;
+  return <FaAngleDoubleRight role="button" aria-label="footer news button right" className="just-in-toggles just-in-toggle-right" onClick={onClick} />;
 };
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-  return <FaAngleDoubleLeft className="just-in-toggles just-in-toggle-left" onClick={onClick} />;
+  return <FaAngleDoubleLeft role="button" aria-label="footer news button left" className="just-in-toggles just-in-toggle-left" onClick={onClick} />;
 };
 
 class JustInCarousel extends Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import loadable from '@loadable/component'
 
 // lazy load components
-const JustInCarousel = loadable(() => import('./JustInCarousel'));
+const JustInCarousel = loadable(() => import(/* webpackChunkName="JustInCarousel", webpack="lazy" */ './JustInCarousel'));
 
 const currentYear = new Date().getFullYear();
 

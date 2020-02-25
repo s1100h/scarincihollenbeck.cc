@@ -12,8 +12,14 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin'); //brotli
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 const path = require('path');
+const glob = require('glob');
+
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
 
 // Analyze bundle size
 const bundleAnalyzerPlugin = new BundleAnalyzerPlugin({
@@ -50,9 +56,30 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|woff|woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
+          'file-loader',
           {
-            loader: 'file-loader',
-            options: {},
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
+            }
           },
         ],
       },
@@ -84,6 +111,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[contenthash].chunk.js',
+    jsonpScriptType: 'text/javascript',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
@@ -96,8 +124,8 @@ module.exports = {
       path: '.env.development',
     }),
     new HtmlWebpackPlugin({
-      preload: '*.css',
-      prefetch: false,
+      prefetch: ['*.css'],
+      preload: '*.*',
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
@@ -105,7 +133,7 @@ module.exports = {
       chunkFilename: '[id].chunk.css',
     }),
     new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.optimize\.css$/g,
+      assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
       cssProcessorPluginOptions: {
         preset: ['default', { discardComments: { removeAll: true } }],
@@ -126,9 +154,8 @@ module.exports = {
       minRatio: 0.8
     }),
     new ScriptExtHtmlWebpackPlugin({
-      sync: [/bundle/, /chunk/],
       defaultAttribute: 'defer'
     }),
-    new ResourceHintWebpackPlugin()
+    new ResourceHintWebpackPlugin(),    
   ],
 };
