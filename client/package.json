@@ -37,7 +37,8 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "install": "^0.13.0",
     "npm": "^6.13.7",
-    "optimize-css-assets-webpack-plugin": "^5.0.3"
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "resource-hints-webpack-plugin": "0.0.2"
   },
   "dependencies": {
     "@loadable/component": "^5.12.0",

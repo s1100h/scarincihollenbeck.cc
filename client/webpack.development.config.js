@@ -11,6 +11,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin'); //brotli
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin');
 
 const path = require('path');
 
@@ -96,6 +97,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      prefetch: ['**/*.*'],
+      preload: ['**/*.*']
     }),
     new MiniCssExtractPlugin({
       filename: '[name].bundle.css',
@@ -128,6 +131,7 @@ module.exports = {
         test: /\.js$/,
         chunks: 'async'
       }
-    })
+    }),
+    new ResourceHintWebpackPlugin()
   ],
 };
