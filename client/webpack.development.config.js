@@ -96,7 +96,7 @@ module.exports = {
       path: '.env.development',
     }),
     new HtmlWebpackPlugin({
-      preload: ['*.chunk.css','*.bundle.css'],
+      preload: '*.css',
       prefetch: false,
       template: "./src/index.html",
     }),
@@ -126,8 +126,8 @@ module.exports = {
       minRatio: 0.8
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defer: ['bundle', 'chunk'],
-      defaultAttribute: 'async'
+      sync: [/bundle/, /chunk/],
+      defaultAttribute: 'defer'
     }),
     new ResourceHintWebpackPlugin()
   ],
