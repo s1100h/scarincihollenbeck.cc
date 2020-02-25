@@ -1,4 +1,5 @@
 import React from 'react';
+import loadable from '@loadable/component';
 import PropTypes from 'prop-types';
 
 const About = loadable(() => import('./About'));

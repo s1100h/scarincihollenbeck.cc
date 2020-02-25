@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import loadable from '@loadable/component';
 import cityBckGroundImg from '../../../images/skyline-background.jpg';
 
 const Content = loadable(() => import('./Content'));
