@@ -17,5 +17,5 @@ import * as keys from './keys';
   await fetchContent(url.FIRM_NEWS_URL, keys.FIRM_NEWS_KEY);
   await fetchContent(url.FIRM_EVENTS_URL, keys.FIRM_EVENTS_KEY);
   await fetchContent(url.FIRM_INSIGHTS_URL, keys.FIRM_INSIGHTS_KEY);
-  console.log('all content has been fetched and is stored in redis db!')
+  console.log('all content has been fetched and is stored in redis db!!')
 })();
