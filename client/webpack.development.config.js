@@ -123,10 +123,10 @@ module.exports = {
       minRatio: 0.8
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defer: /\.js$/,
+      async: /\.js$/,
       preload: {
         test: /\.js$/,
-        chunks: 'defer'
+        chunks: 'async'
       }
     })
   ],
