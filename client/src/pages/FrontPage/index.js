@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import loadable from '@loadable/component'
+import loadable from '@loadable/component';
 import FrontPageHead from '../../components/Head/frontpage';
 import { sortByKey } from '../../utils/helpers';
 import './index.scss';
 
 // lazy load components
 const Header = loadable(() => import('./Header'));
-const ColumnContent = loadable(() => import(/* webpackChunkName="ColumnContent", webpack="lazy" */'./ColumnContent'));
-const FullWidthContent = loadable(() => import(/* webpackChunkName="FullWidthContent", webpack="lazy" */'./FullWidthContent'));
+const ColumnContent = loadable(() => import(/* webpackChunkName="ColumnContent", webpackMode="lazy */'./ColumnContent'));
+const FullWidthContent = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */'./FullWidthContent'));
 
 class FrontPage extends Component {
   constructor(props) {

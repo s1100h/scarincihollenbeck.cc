@@ -124,8 +124,8 @@ module.exports = {
       path: '.env.development',
     }),
     new HtmlWebpackPlugin({
-      prefetch: ['*.css'],
-      preload: '*.*',
+      prefetch: ['*.css', '*.tff'],
+      preload: ['*.css', '*.tff'],
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
@@ -154,6 +154,10 @@ module.exports = {
       minRatio: 0.8
     }),
     new ScriptExtHtmlWebpackPlugin({
+      dynamicChunks: {
+        defer: /chunk/,
+        position: 'body'
+      },
       defaultAttribute: 'defer'
     }),
     new ResourceHintWebpackPlugin(),    

@@ -11,6 +11,7 @@ const PostsNextArrow = (props) => {
     <FaAngleDoubleRight
       className="post-scroll post-scroll-right"
       role="button"
+      aria-label="news scroll button right"
       tabIndex={0}
       onKeyDown={onClick}
       onClick={onClick}
@@ -23,6 +24,7 @@ const PostsPrevArrow = (props) => {
   return (
     <FaAngleDoubleLeft
       className="post-scroll post-scroll-left"
+      aria-label="news scroll button left"
       role="button"
       tabIndex={0}
       onKeyDown={onClick}
@@ -37,6 +39,7 @@ const LocationsNextArrow = (props) => {
     <FaAngleDoubleRight
       className="post-scroll location-scroll-right"
       role="button"
+      aria-label="location scroll button right"
       tabIndex={0}
       onKeyDown={onClick}
       onClick={onClick}
@@ -49,6 +52,7 @@ const LocationsPrevArrow = (props) => {
   return (
     <FaAngleDoubleLeft
       className="post-scroll location-scroll-left"
+      aria-label="location scroll button left"
       role="button"
       tabIndex={0}
       onKeyDown={onClick}

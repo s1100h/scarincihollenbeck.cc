@@ -2,7 +2,7 @@ import React from 'react';
 import loadable from '@loadable/component'
 
 // lazy load components
-const JustInCarousel = loadable(() => import(/* webpackChunkName="JustInCarousel", webpack="lazy" */ './JustInCarousel'));
+const JustInCarousel = loadable(() => import(/* webpackChunkName="JustInCarousel", webpackMode="lazy */ './JustInCarousel'));
 
 const currentYear = new Date().getFullYear();
 
@@ -12,44 +12,6 @@ const Footer = () => (
     <footer>
       <div className="container-fluid h-100 mt-5 w-75 bk--gray">
         <div className="row border--red mb-3 align-items-center h-100">
-          <div className="col-sm-6">
-
-            <ul className="social-footer-icons h-100  justify-content-center no-dots">
-              <li>
-                <a href="https://www.linkedin.com/company/scarinci-hollenbeck-llc" rel="noopener noreferrer" target="_blank">
-                  <i
-                    className="fab fa-linkedin fa-2x"
-                  />
-                  <span>LinkedIn</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.facebook.com/ScarinciHollenbeck" rel="noopener noreferrer" target="_blank">
-                  <i className="fab fa-facebook-square fa-2x" />
-                  <span>Facebook</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/s_h_law" rel="noopener noreferrer" target="_blank">
-                  <i className="fab fa-twitter-square fa-2x" />
-                  <span>Twitter</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/c/scarincihollenbeck1" rel="noopener noreferrer" target="_blank">
-                  <i className="fab fa-youtube fa-2x" />
-                  <span>YouTube</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://plus.google.com/+ScarinciHollenbeck1" rel="noopener noreferrer" target="_blank">
-                  <i className="fab fa-google-plus-g fa-2x" />
-                  <span>Google Plus</span>
-                </a>
-              </li>
-            </ul>
-
-          </div>
           <div className="col-sm-6 text-right">
             <form className="search-form h-100 justify-content-center" role="search" action={`${process.env.API_URL}`} method="get">
               <label htmlFor="searchSite">

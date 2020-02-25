@@ -6,7 +6,7 @@ import loadable from '@loadable/component';
 
 // lazy load layouts
 import NavBar from './components/NavBar'
-const Footer = loadable(() => import(/* webpackChunkName="Footer", webpack="lazy" */ './components/Footer'));
+const Footer = loadable(() => import(/* webpackChunkName="Footer", webpackMode="lazy */ './components/Footer'));
 
 // pages
 import FrontPage from './pages/FrontPage';

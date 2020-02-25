@@ -2,9 +2,9 @@ import React from 'react';
 import loadable from '@loadable/component';
 import PropTypes from 'prop-types';
 
-const About = loadable(() => import('./About'));
-const Practices = loadable(() => import('./Practices'));
-const Categories = loadable(() => import('./Categories'));
+const About = loadable(() => import(/* webpackMode="lazy */ './About'));
+const Practices = loadable(() => import(/* webpackMode="lazy */ './Practices'));
+const Categories = loadable(() => import(/* webpackMode="lazy */ './Categories'));
 
 const ColumnContent = (props) => {
   const { onCategorySelection, corePractices } = props;

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
+import loadable from '@loadable/component';
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import Slide from './Slide';
 import './index.scss';
+
+const Slide = loadable(() => import(/* webpackChunkName="Slide", webpackMode="lazy" */ './Slide'));
 
 const headers = {
   Accept: 'application/json',

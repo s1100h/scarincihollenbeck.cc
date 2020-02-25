@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 import cityBckGroundImg from '../../../images/skyline-background.jpg';
 
-const Content = loadable(() => import('./Content'));
-const Search = loadable(() => import('./Search'));
+const Content = loadable(() => import(/* webpackMode="lazy */'./Content'));
+const Search = loadable(() => import(/* webpackMode="lazy */ './Search'));
 
 
 const HeaderBackground = styled.div`
