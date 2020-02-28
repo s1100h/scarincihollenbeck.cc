@@ -32,7 +32,6 @@ import Search from './pages/Search';
 import SubscriptionPage from './pages/SubscriptionPage';
 import Page404 from './pages/page404';
 
-// vendor scss & js files
 /**
 *
 * Bootstrap
@@ -40,11 +39,10 @@ import Page404 from './pages/page404';
 * Slick Carousel
 *
 **/
-// styling resources
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 /**
 * Main Style Sheet

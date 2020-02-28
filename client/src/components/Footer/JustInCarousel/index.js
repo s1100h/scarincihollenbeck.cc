@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import loadable from '@loadable/component';
 import { FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import Slider from 'react-slick';
 import './index.scss';
 
+const Slider = loadable(() => import(/* webpackChunkName="Slider", webpackMode="lazy" */ 'react-slick'));
 const Slide = loadable(() => import(/* webpackChunkName="Slide", webpackMode="lazy" */ './Slide'));
 
 const headers = {

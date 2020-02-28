@@ -10,14 +10,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin')
 
 const path = require('path');
-const glob = require('glob');
-
-const PATHS = {
-  src: path.join(__dirname, 'src')
-}
 
 module.exports = {
   devServer: {
@@ -166,21 +160,7 @@ module.exports = {
     }),
     new PreloadWebpackPlugin({
       rel: 'preload',
-      as(entry) {
-        if (/\.css$/.test(entry)) return 'style';
-        if (/\.woff$/.test(entry)) return 'font';
-        if (/\.eot$/.test(entry)) return 'font';
-        if (/\.tff$/.test(entry)) return 'font';
-        if (/\.png$/.test(entry)) return 'image';
-        if (/\.jpg$/.test(entry)) return 'image';
-        if (/\.svg$/.test(entry)) return 'image';
-        if (/\.gif$/.test(entry)) return 'image';
-        return 'script';
-      },
-      include: 'allChunks'
+      include: 'asyncChunks'
     }),
-    // new PurgecssPlugin({
-    //   paths: glob.sync(path.join(__dirname, 'src/*.html')),
-    // }),
   ],
 };
