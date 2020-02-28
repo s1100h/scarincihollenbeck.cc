@@ -4,31 +4,37 @@
 @font-face{ 
 	font-family: 'Proxima Nova Regular';
   src:  url('./fonts/proxima-nova-regular.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face{ 
 	font-family: 'Proxima Nova Thin';
   src:  url('./fonts/proxima-nova-thin.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face{ 
 	font-family: 'Proxima Nova SemiBold';
   src:  url('./fonts/proxima-nova-semibold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face{ 
 	font-family: 'Proxima Nova Bold';
   src:  url('./fonts/proxima-nova-bold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face{ 
 	font-family: 'Proxima Nova Extra Bold';
   src:  url('./fonts/proxima-nova-extrabold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face{ 
 	font-family: 'Proxima Nova Italic';
   src:  url('./fonts/proxima-nova-italic.ttf') format('truetype');
+  font-display: swap;
 }
 
 /* Universal Styles */

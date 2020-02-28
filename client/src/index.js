@@ -1,12 +1,12 @@
-  
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import loadable from '@loadable/component';
 
-// lazy load layouts
-import NavBar from './components/NavBar'
-const Footer = loadable(() => import(/* webpackChunkName="Footer", webpackMode="lazy */ './components/Footer'));
+// layouts
+const NavBar = loadable(() => import(/* webpackPrefetch="true" */ './components/NavBar'));
+const Footer = loadable(() => import(/* webpackPrefetch="true" */ './components/Footer'));
 
 // pages
 import FrontPage from './pages/FrontPage';
@@ -108,7 +108,7 @@ class SiteRoutes extends Component {
     }
   };
   componentDidMount() {
-    fetch('`${process.env.API_URL}/wp-json/single-page/page-list`')
+    fetch(`${process.env.API_URL}/wp-json/single-page/page-list`)
    .then(res => res.json())
    .then(data => this.setState({sitePages: data}));
   }
@@ -133,6 +133,7 @@ class SiteRoutes extends Component {
     ];
 
     return (
+      <HelmetProvider>
       <Router>
         <NavBar />
         <Switch>
@@ -179,6 +180,7 @@ class SiteRoutes extends Component {
         </Switch>
         <Footer />
       </Router>
+      </HelmetProvider>
     )
   }
 }
