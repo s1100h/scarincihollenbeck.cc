@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { GenerateSW } = require("workbox-webpack-plugin");
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
@@ -17,7 +16,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 8082,
+    port: 8083,
     historyApiFallback:{
       index:'dist/index.html'
     },
@@ -122,9 +121,6 @@ module.exports = {
       Promise: 'es6-promise',
       fetch: 'exports-loader?self.fetch!whatwg-fetch/dist/fetch.umd',
     }),
-    new Dotenv({
-      path: '.env.development',
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body'
@@ -160,7 +156,7 @@ module.exports = {
     }),
     new PreloadWebpackPlugin({
       rel: 'preload',
-      include: 'asyncChunks'
-    })    
+      include: 'initial'
+    }),
   ],
 };
