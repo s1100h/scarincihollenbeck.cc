@@ -5,8 +5,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import loadable from '@loadable/component';
 
 // layouts
-const NavBar = loadable(() => import(/* webpackPrefetch="true" */ './components/NavBar'));
-const Footer = loadable(() => import(/* webpackPrefetch="true" */ './components/Footer'));
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+// const NavBar = loadable(() => import(/* webpackPrefetch="true" */ './components/NavBar'));
+// const Footer = loadable(() => import(/* webpackPrefetch="true" */ './components/Footer'));
 
 // pages
 import FrontPage from './pages/FrontPage';

@@ -3,14 +3,22 @@ import loadable from '@loadable/component';
 import './index.scss';
 
 // additional components
-const NextArrow= loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './NextArrow'));
-const PreviousArrow = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './PreviousArrow'));
+// const NextArrow= loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './NextArrow'));
+// const PreviousArrow = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './PreviousArrow'));
+import NextArrow from './NextArrow';
+import PreviousArrow from './PreviousArrow';
+// const PreviousArrow = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './PreviousArrow'));
 
 // sliders
-const JustInCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './JustInCarousel'));
-const LargeArticleCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './LargeArticleCarousel'));
-const MiniArticleCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './MiniArticleCarousel'));
-const LocationCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './LocationCarousel'));
+// const JustInCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './JustInCarousel'));
+// const LargeArticleCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './LargeArticleCarousel'));
+// const MiniArticleCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './MiniArticleCarousel'));
+// const LocationCarousel = loadable(() => import(/* webpackChunkName="FullWidthContent", webpackMode="lazy */ './LocationCarousel'));
+
+import JustInCarousel from './JustInCarousel';
+import LargeArticleCarousel from './LargeArticleCarousel';
+import MiniArticleCarousel from './MiniArticleCarousel';
+import LocationCarousel from './LocationCarousel';
 
 class Carousel extends Component {
   constructor(props) {

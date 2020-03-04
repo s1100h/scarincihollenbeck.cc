@@ -12,6 +12,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const Critters = require('critters-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 module.exports = {
@@ -165,10 +166,13 @@ module.exports = {
     new Critters({
       mergeStylesheets: false,
       pruneSource: false,
-      preload: "media"
+      preload: 'swap',
+      // Don't inline critical font-face rules, but preload the font URLs:
+      preloadFonts: true
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
-    })  
+    }),
+    // new BundleAnalyzerPlugin()
   ],
 };
