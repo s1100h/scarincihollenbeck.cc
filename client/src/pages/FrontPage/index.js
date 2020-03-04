@@ -18,12 +18,15 @@ class FrontPage extends Component {
       locations: [],
       seo: {},
       corePractices: [],
+      end: 0.
     };
     this.onChange = this.onChange.bind(this);
     this.onCategorySelection = this.onCategorySelection.bind(this);
   }
 
   componentDidMount() {
+    const w = window.innerWidth;
+
     // fetch latest seo data
     fetch(`${process.env.API_URL}/wp-json/front-page/meta`)
       .then((res) => res.json())
@@ -67,6 +70,21 @@ class FrontPage extends Component {
             this.setState({ corePractices });
           });
       });
+
+       // large
+       if(w > 1690) {
+        this.setState({ end: 2})
+      }
+        
+      // small-medium 1200
+      if (w <= 1690 && w >= 650) {
+        this.setState({ end: 1})
+      }
+  
+      // small 650
+      if (w <= 650 && w >= 0) {
+        this.setState({ end: 0})
+      }
   }
 
   onChange(event) {
@@ -86,6 +104,7 @@ class FrontPage extends Component {
       seo,
       corePractices,
       searchTerm,
+      end,
     } = this.state;
 
     const sortedLocations = sortByKey(locations, 'id');
@@ -99,10 +118,14 @@ class FrontPage extends Component {
           onChange={this.onChange}
         />
         <div className="container">
-          <ColumnContent corePractices={corePractices} onCategorySelection={this.onCategorySelection} />
+          <ColumnContent
+            corePractices={corePractices}
+            onCategorySelection={this.onCategorySelection}
+          />
           <FullWidthContent
             sortedPosts={sortedPosts}
             sortedLocations={sortedLocations}
+            end={end}
           />
         </div>
       </div>

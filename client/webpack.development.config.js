@@ -9,8 +9,8 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
-
+const BrotliPlugin = require('brotli-webpack-plugin')
+const Critters = require('critters-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -41,31 +41,7 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|woff|woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              },
-              // optipng.enabled: false will disable optipng
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              // the webp option will enable WEBP
-              webp: {
-                quality: 75
-              }
-            }
-          },
+          'file-loader'
         ],
       },
     ],
@@ -126,8 +102,7 @@ module.exports = {
       path: '.env.development',
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      inject: 'body'
+      template: './src/index.html'
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
@@ -161,6 +136,11 @@ module.exports = {
     new PreloadWebpackPlugin({
       rel: 'preload',
       include: 'asyncChunks'
-    })    
+    }),
+    new Critters({
+      mergeStylesheets: false,
+      pruneSource: false,
+      preload: "media"
+    })  
   ],
 };
