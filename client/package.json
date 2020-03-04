@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --env.ENVIRONMENT=development --config webpack.development.config.js --history-api-fallback --watch",
-    "build": "rm -fr dist && webpack --mode production --env.ENVIRONMENT=development --config webpack.development.config.js",
+    "build": "rm -fr dist && webpack --mode production --env.ENVIRONMENT=development --config webpack.development.config.js && cp manifest.json dist && cp robots.txt dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors"
