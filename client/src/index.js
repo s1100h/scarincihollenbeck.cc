@@ -9,11 +9,13 @@ import Footer from './components/Footer';
 // pages
 //import FrontPage from './pages/FrontPage';
 const FrontPage = lazy(() => import(/* webpackPreload: true */ './pages/FrontPage'));
-// const ArchiveAttorney = lazy(() => import('./pages/ArchiveAttorney'));
+const ArchiveAttorney = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveAttorney'));
+const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/SingleAttorney'))
+// const  = lazy(() => import('./pages/ArchiveAttorney'));
 // import ArchiveAttorney from './pages/ArchiveAttorney';
 // import ArchiveAdmin from './pages/ArchiveAdmin';
 // import SingleAdmin from './pages/SingleAdmin';
-// import SingleAttorney from './pages/SingleAttorney';
+// import SingleAttorney from ;
 // import SingleCareer from './pages/SingleCareer';
 // import ArchiveCareer from './pages/ArchiveCareer';
 // import ArchiveLocation from './pages/ArchiveLocation';
@@ -131,12 +133,12 @@ class SiteRoutes extends Component {
     return (
       <Router>
         <NavBar />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div> </div>}>
         <Switch>
           <Route path='/' exact component={FrontPage} />
-          {/* <Route path='/attorneys' exact component={ArchiveAttorney} />
+          <Route path='/attorneys' exact component={ArchiveAttorney} />
           <Route path='/attorney/:attorney' exact component={SingleAttorney} />
-          <Route path='/administration' exact component={ArchiveAdmin} />
+          {/* <Route path='/administration' exact component={ArchiveAdmin} />
           <Route path='/administration/:admin' exact component={SingleAdmin} />
           <Route path='/careers/' exact component={ArchiveCareer} />
           <Route path='/career/:career' exact component={SingleCareer} />

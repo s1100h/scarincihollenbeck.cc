@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
@@ -11,7 +10,6 @@ import Filters from './Filters';
 import Selected from './Selected';
 import Results from './Results';
 
-import './index.scss';
 
 class AttorneyArchive extends Component {
   constructor(props) {
@@ -45,7 +43,7 @@ class AttorneyArchive extends Component {
         this.setState({ attorneys, spinner: false });
       });
     
-    fetch('https://api.scarincilies.com/cached/attorney-filters')
+    fetch(`${process.env.CACHED_URL}/cached/attorney-filters`)
       .then((res) => res.json())
       .then((data) => {
         const { locations, designations, practices } = data;
@@ -202,13 +200,13 @@ class AttorneyArchive extends Component {
                 userInput={userInput}
               />
               {
-                    (!spinner) ? (
+                    (!spinner) && (
                       <Results
                         attorneys={attorneys}
                         userInput={userInput}
                         select={select}
                       />
-                    ) : <PulseLoader color="#D02422" loading={spinner} />
+                    )
                   }
             </div>
             {/** End of Results */}

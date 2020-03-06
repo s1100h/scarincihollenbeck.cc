@@ -6,8 +6,6 @@ import Practices from './Practices';
 import Title from './Title';
 import Location from './Location';
 import MobileMenu from './MobileMenu';
-import './index.scss';
-
 
 const Filters = (props) => {
   const {

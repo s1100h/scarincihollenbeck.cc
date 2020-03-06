@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Filtered from './Filtered';
 import NotFiltered from './NotFiltered';
-import './index.scss';
-
 
 const Results = (props) => {
   const {

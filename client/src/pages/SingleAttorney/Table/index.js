@@ -10,6 +10,8 @@ const Table = (props) => {
     tabTitle,
     content,
   } = props;
+  console.log('content');
+  console.log(content)
 
   return (
     <div className={(currentTab === tabTitle) ? 'tab-pane active' : 'tab-pane'} id={tabTitle} role="tabpanel" aria-labelledby={`nav-${tabTitle}-tab`}>
@@ -18,14 +20,11 @@ const Table = (props) => {
         <table className="table mb-5">
           <thead className="thead-dark">
             <tr>
-              {
-                content.header.map((h) => <th key={h.c} className="text-uppercase">{h.c}</th>)
-              }
+              {(content.header) && content.header.map((h) => <th key={h.c} className="text-uppercase">{h.c}</th>)}
             </tr>
           </thead>
           <tbody>
-            {
-              content.body.map((b) => (
+            {(content.body) && content.body.map((b) => (
                 <tr key={addRandomKey(b[0].c)}>
                   <td dangerouslySetInnerHTML={createMarkup(b[0].c)} />
                   <td dangerouslySetInnerHTML={createMarkup(b[1].c)} />

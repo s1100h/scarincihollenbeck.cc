@@ -40,7 +40,7 @@ const SidebarContent = (props) => {
 
 SidebarContent.propTypes = {
   title: PropTypes.string,
-  currentSidebarTab: PropTypes.bool,
+  currentSidebarTab: PropTypes.string,
   content: PropTypes.arrayOf(PropTypes.object),
   show: PropTypes.bool,
   setSideBarTab: PropTypes.func,
@@ -48,7 +48,7 @@ SidebarContent.propTypes = {
 
 SidebarContent.defaultProps = {
   title: '',
-  currentSidebarTab: false,
+  currentSidebarTab: '',
   content: [],
   show: false,
   setSideBarTab: () => {},

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './index.scss';
 
 const Letter = (props) => {
   const { alphabet, letterClick } = props;

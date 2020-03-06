@@ -163,8 +163,7 @@ class AttorneyBiography extends Component {
     return (
       <div>
         <AttorneyHead seo={seo} />
-        {
-          (!spinner) ? (
+        { (!spinner) && (
             <div>
               <MultiSubHeader
                 image={attorneyHeader}
@@ -246,7 +245,7 @@ class AttorneyBiography extends Component {
                 )}
               />
             </div>
-          ) : <PulseLoader color="#D02422" loading={spinner} />
+          )
         }
       </div>
     );
