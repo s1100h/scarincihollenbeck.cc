@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import loadable from '@loadable/component';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import PageHead from '../../components/Head/page';
 import Search from '../../components/Search';
 import SubscriptionBody from './SubscriptionBody';
 
 // lazy load components
-const TrendingStories  = loadable(() => import('../../components/TrendingStories'));
+import TrendingStories from '../../components/TrendingStories';
 
 class SubscriptionPage extends Component {
   constructor(props) {

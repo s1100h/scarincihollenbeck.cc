@@ -1,10 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
 const FrontPageHead = (props) => {
   const { seo } = props;
-
+  console.log('are u being hit???')
   return (
     <Helmet>
       <title>{seo.title}</title>

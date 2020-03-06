@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import loadable from '@loadable/component';
 
 // lazy load components
-const NewsScroller = loadable(() => import('./NewsScroller'));
+// const NewsScroller = loadable(() => import('./NewsScroller'));
+import NewsScrollerr from './NewsScroller'
 
 const Body = (props) => {
   const {

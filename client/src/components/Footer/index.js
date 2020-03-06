@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import loadable from '@loadable/component'
-
-// lazy load components
-const Carousel = loadable(() => import(/* webpackChunkName="JustInCarousel", webpackMode="lazy */ '../Carousel'));
+import Carousel from '../Carousel'
 
 const currentYear = new Date().getFullYear();
 

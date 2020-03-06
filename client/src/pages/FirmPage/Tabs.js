@@ -6,13 +6,10 @@ const Tabs = (props) => {
   const {
     content, members, currentTab, tabClick,
   } = props;
-
-  console.log(members);
-
   return (
+
     <div className="line-header" id="nav-tab" role="tablist">
-      {
-      (content.length > 0) ? (
+      { (content.length > 0) && (
         <h3
           className={(currentTab === content[0].title) ? 'active' : ''}
           id="nav-home-tab"
@@ -26,10 +23,10 @@ const Tabs = (props) => {
         >
           {content[0].title}
         </h3>
-      ) : ''
+      )
       }
       {
-      content.map((v, i) => ((i > 0) ? (
+      content.map((v, i) => ((i > 0) && (
         <h3
           key={v.title}
           className={(currentTab === v.title) ? 'active' : ''}
@@ -43,13 +40,13 @@ const Tabs = (props) => {
         >
           {v.title}
         </h3>
-      ) : ''))
+      )))
     }
       {
-      (Object.keys(members).length > 0) ? (
+      (Object.keys(members).length > 0) && (
         <h3
           id="nav-home-tab"
-          className={(currentTab === 'members') ? 'active' : ''}
+          className={(currentTab === 'members') && 'active'}
           data-toggle="tab"
           href="#members"
           role="tab"
@@ -60,7 +57,7 @@ const Tabs = (props) => {
         >
           Members
         </h3>
-      ) : ''
+      )
     }
     </div>
   );

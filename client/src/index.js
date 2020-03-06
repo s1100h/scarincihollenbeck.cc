@@ -1,38 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import loadable from '@loadable/component';
 
 // layouts
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-// const NavBar = loadable(() => import(/* webpackPrefetch="true" */ './components/NavBar'));
-// const Footer = loadable(() => import(/* webpackPrefetch="true" */ './components/Footer'));
 
 // pages
-import FrontPage from './pages/FrontPage';
-import ArchiveAttorney from './pages/ArchiveAttorney';
-import ArchiveAdmin from './pages/ArchiveAdmin';
-import SingleAdmin from './pages/SingleAdmin';
-import SingleAttorney from './pages/SingleAttorney';
-import SingleCareer from './pages/SingleCareer';
-import ArchiveCareer from './pages/ArchiveCareer';
-import ArchiveLocation from './pages/ArchiveLocation';
-import ArchivePractice from './pages/ArchivePractice';
-import SinglePractice from './pages/SinglePractice';
-import FirmPage from './pages/FirmPage';
-import FirmOverview from './pages/FirmOverview';
-import Page from './pages/Page';
-import Single from './pages/Single';
-import Contact from './pages/Contact';
-import Category from './pages/Category';
-import Archives from './pages/Archives';
-import Authors from './pages/Authors';
-import QuickNews from './pages/QuickNews';
-import Search from './pages/Search';
-import SubscriptionPage from './pages/SubscriptionPage';
-import Page404 from './pages/page404';
+//import FrontPage from './pages/FrontPage';
+const FrontPage = lazy(() => import(/* webpackPreload: true */ './pages/FrontPage'));
+// const ArchiveAttorney = lazy(() => import('./pages/ArchiveAttorney'));
+// import ArchiveAttorney from './pages/ArchiveAttorney';
+// import ArchiveAdmin from './pages/ArchiveAdmin';
+// import SingleAdmin from './pages/SingleAdmin';
+// import SingleAttorney from './pages/SingleAttorney';
+// import SingleCareer from './pages/SingleCareer';
+// import ArchiveCareer from './pages/ArchiveCareer';
+// import ArchiveLocation from './pages/ArchiveLocation';
+// import ArchivePractice from './pages/ArchivePractice';
+// import SinglePractice from './pages/SinglePractice';
+// import FirmPage from './pages/FirmPage';
+// import FirmOverview from './pages/FirmOverview';
+// import Page from './pages/Page';
+// import Single from './pages/Single';
+// import Contact from './pages/Contact';
+// import Category from './pages/Category';
+// import Archives from './pages/Archives';
+// import Authors from './pages/Authors';
+// import QuickNews from './pages/QuickNews';
+// import Search from './pages/Search';
+// import SubscriptionPage from './pages/SubscriptionPage';
+// import Page404 from './pages/page404';
 
 /**
 *
@@ -43,8 +41,6 @@ import Page404 from './pages/page404';
 **/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 /**
 * Main Style Sheet
@@ -133,12 +129,12 @@ class SiteRoutes extends Component {
     ];
 
     return (
-      <HelmetProvider>
       <Router>
         <NavBar />
+        <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route path='/' exact component={FrontPage} />
-          <Route path='/attorneys' exact component={ArchiveAttorney} />
+          {/* <Route path='/attorneys' exact component={ArchiveAttorney} />
           <Route path='/attorney/:attorney' exact component={SingleAttorney} />
           <Route path='/administration' exact component={ArchiveAdmin} />
           <Route path='/administration/:admin' exact component={SingleAdmin} />
@@ -167,20 +163,20 @@ class SiteRoutes extends Component {
           <Route path='/firm-events/:post' exact component={Single} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />
-          <Route path='/subscribe' exact component={SubscriptionPage} />       
+          <Route path='/subscribe' exact component={SubscriptionPage} />        */}
           {/** Firm Page routes */}
           {
-            firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)
+            // firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)
           }
           {/** Pages **/}
           {
-            sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )
+            // sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )
           }
-          {(sitePages.length > 0 ) && <Route component={Page404} /> }
+          {/* {(sitePages.length > 0 ) && <Route component={Page404} /> } */}
         </Switch>
+        </Suspense>
         <Footer />
       </Router>
-      </HelmetProvider>
     )
   }
 }

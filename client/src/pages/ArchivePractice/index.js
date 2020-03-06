@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import loadable from '@loadable/component'
 import { sortByKey } from '../../utils/helpers';
 import { getPracticePortalContent } from './utils/api';
 import { sortPracticeCategorys } from './utils/helpers';
@@ -11,8 +10,8 @@ import pracArchiveBckGround from './citybackground.jpg';
 import './index.scss';
 
 // lazy load components
-const BlockList = loadable(() => import('./Lists/BlockList'));
-const SimpleList = loadable(() => import('./Lists/SimpleList'));
+import BlocKList from './Lists/BlockList';
+import SimpleList from './Lists/SimpleList';
 
 class PracticePortal extends Component {
   constructor(props) {

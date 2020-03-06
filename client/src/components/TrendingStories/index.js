@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const TrendingStories = (props) => {
   const { content } = props;
-  console.log(content);
 
   return (
     <div className="w-100 mt-4">

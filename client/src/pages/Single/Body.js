@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import loadable from '@loadable/component';
 import { createMarkup } from '../../utils/helpers';
 
-// lazy load components
-const ArticleDetails = loadable(() => import('./ArticleDetails'));
-const SocialShareFooter = loadable(() => import('./SocialShareFooter'));
-const AuthorBio = loadable(() => import('./AuthorBio'));
-const ContactForm = loadable(() => import('./ContactForm'));
+import ArticleDetails from './ArticleDetails';
+import SocialShareFooter from './SocialShareFooter';
+import AuthorBio from './AuthorBio';
+import ContactForm from './ContactForm';
 
 import Breadcrumbs from './Breadcrumbs';
 

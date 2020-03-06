@@ -2,7 +2,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import loadable from '@loadable/component';
 import AttorneyHead from '../../components/Head/attorney';
 import MultiSubHeader from '../../layouts/MultiSubHeader';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
@@ -16,7 +15,7 @@ import attorneyHeader from './attorney-header.jpg';
 import './index.scss';
 
 // lazy load components
-const Body = loadable(() => import('./Body'));
+import Body from './Body';
 
 
 class AttorneyBiography extends Component {

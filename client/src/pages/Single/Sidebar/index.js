@@ -1,13 +1,10 @@
 import React from 'react';
 import PropType from 'prop-types';
-import loadable from '@loadable/component';
 import { addRandomKey } from '../../../utils/helpers';
 
-
-// lazy load components
-const Search = loadable(() => import('../../../components/Search'));
-const TrendingStories = loadable(() => import('../../../components/TrendingStories'));
-const SubscriptionMessage = loadable(() => import('../../../components/SubscriptionMessage'));
+import Search from '../../../components/Search';
+import TrendingStories from '../../../components/TrendingStories';
+import SubscriptionMessage from '../../../components/SubscriptionMessage';
 
 const Sidebar = (props) => {
   const {

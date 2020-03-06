@@ -23,14 +23,11 @@ class QuickNews extends Component {
       seo: {},
       spinner: false,
     };
-    this._isMounted = false;
   }
 
   componentDidMount() {
     const { match } = this.props;
     const { pageNum } = match.params;
-    this._isMounted = true;
-
     const categorySlug = 'Quick News';
     const breadCrumb = ['quick-news', 1];
     let page = 1;

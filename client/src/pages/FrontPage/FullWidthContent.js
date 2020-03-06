@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import loadable from '@loadable/component';
-
-const Carousel = loadable(() => import(/* webpackChunkName="JustInCarousel", webpackMode="lazy */ '../../components/Carousel'));
+import Loader from '../../components/Loader';
+import Carousel from '../../components/Carousel';
 
 const FullWidthContent = (props) => {
   const { sortedPosts, sortedLocations, end } = props;
@@ -12,13 +11,13 @@ const FullWidthContent = (props) => {
   return (
     <div className="row">
        <div className="col-sm-12 px-0">
-          <Carousel sliderType="LargeArticle" slides={sortedPosts} start={0} end={end} arrowSize={1} />
+        <Carousel sliderType="LargeArticle" slides={sortedPosts} start={0} end={end} arrowSize={1} />
        </div>
       <div className="col-sm-12 mt-5 px-0">
         <div className="line-header"><h3>OUR OFFICES</h3></div>
       </div>
       <div className="col-sm-12 px-0 mt-5">
-        <Carousel sliderType="Location" slides={sortedLocations} start={0} end={end} arrowSize={1} />
+        <Carousel sliderType="LargeArticle" slides={sortedPosts} start={0} end={end} arrowSize={1} />
       </div>
     </div>
   );

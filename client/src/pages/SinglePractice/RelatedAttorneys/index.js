@@ -12,34 +12,33 @@ const RelatedAttorneys = (props) => {
 
   return (
     <div>
-      {
-          (chair.length > 0) ? (
-            <div className="container">
-              <div className="row bg-light-gray">
-                <div className="col-sm-12">
-                  <h4 className="c-title">Practice Chair</h4>
-                </div>
-              </div>
-              <div className="row">
-                {
-                  chair.map((v) => (
-                    <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
-                      <AttorneyCard
-                        link={v.link}
-                        image={v.image}
-                        name={v.name}
-                        title={v.designation}
-                        number={v.contact}
-                        email={v.email}
-                        height="109px"
-                        width="75%"
-                      />
-                    </div>
-                  ))
-                }
+      { (chair.length > 0) ? (
+          <div className="container">
+            <div className="row bg-light-gray">
+              <div className="col-sm-12">
+                <h4 className="c-title">Practice Chair</h4>
               </div>
             </div>
-          ) : ''
+            <div className="row">
+              {
+                chair.map((v) => (
+                  <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
+                    <AttorneyCard
+                      link={v.link}
+                      image={v.image}
+                      name={v.name}
+                      title={v.designation}
+                      number={v.contact}
+                      email={v.email}
+                      height="109px"
+                      width="75%"
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        ) : ''
         }
       {
         (members) ? (

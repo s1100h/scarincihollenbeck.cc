@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'react-spinners';
-import loadable from '@loadable/component'
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchivehHead from '../../components/Head/archive';
 import BreadCrumbs from './BreadCrumbs';
@@ -8,7 +7,7 @@ import SideBar from './SideBar';
 import './index.scss';
 
 // lazy load components
-const Body = loadable(() => import('./Body'));
+import Body from './Body';
 
 class Search extends Component {
   constructor(props) {
