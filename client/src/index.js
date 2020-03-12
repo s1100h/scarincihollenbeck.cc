@@ -34,20 +34,34 @@ const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/Sin
 // import SubscriptionPage from './pages/SubscriptionPage';
 // import Page404 from './pages/page404';
 
-/**
-*
-* Bootstrap
-* Font awesome
-* Slick Carousel
-*
-**/
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 
 /**
 * Main Style Sheet
 **/
-import './index.scss';
+import './styles/main.scss';
+import './styles/navigation.scss';
+import './styles/main.scss';
+import './styles/attorneys.scss';
+import './styles/single-attorney.scss';
+import './styles/single.scss';
+
+
+/** 
+ * Utils Sheets
+ */
+
+ import './styles/utils/attorney-card.scss';
+ import './styles/utils/carousel.scss';
+ import './styles/utils/just-in-carousel.scss';
+ import './styles/utils/location-carousel.scss';
+ 
+/**
+*
+* Bootstrap
+*
+**/
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 /**
  * Routes

@@ -1,0 +1,37 @@
+
+/* Single Post Stylein
+=================================================== */
+.the_content {
+  margin: 1em;
+}
+
+.z-99 {
+  z-index: 3;
+}
+.mh-125 {
+  max-height: 125px;
+}
+
+.SideBar__container li a {
+  color: black;
+  font-size: 14px; 
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.card-img-overlay {
+  padding: 2em;
+}
+
+/* Posts - Event Category
+========================================== */
+.event-info {
+  display: block; float:left; margin-right: 10px; padding: 10px; border: .5px solid #e9e9e9;
+}
+
+@media (max-width: 992px) {
+  .sm-m {
+    margin: 1.5rem!important;
+    flex-basis: 93% !important;
+  }
+}

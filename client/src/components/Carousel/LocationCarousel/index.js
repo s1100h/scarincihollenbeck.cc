@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
-import './index.scss';
 
 function LocationCarousel(props) {
   const { id, post } = props;

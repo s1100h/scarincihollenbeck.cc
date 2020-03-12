@@ -6,8 +6,6 @@ import LargeArticleCarousel from './LargeArticleCarousel';
 import MiniArticleCarousel from './MiniArticleCarousel';
 import LocationCarousel from './LocationCarousel';
 
-import './index.scss';
-
 class Carousel extends Component {
   constructor(props) {
     super(props);

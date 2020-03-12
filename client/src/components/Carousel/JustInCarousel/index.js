@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
 import { FaNewspaper, FaPlusCircle } from 'react-icons/fa';
-import './index.scss';
 
 const formatDate = (date) => {
   const d = new Date(date);

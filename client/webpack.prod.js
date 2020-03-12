@@ -11,17 +11,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 8082,
-    historyApiFallback:{
-      index:'dist/index.html'
-    },
-  },
   mode: 'production',
   module: {
     rules: [
@@ -149,7 +142,7 @@ module.exports = {
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
-    })
-    // new BundleAnalyzerPlugin()
+    }),
+    new CssCleanupPlugin()
   ],
 };

@@ -26,7 +26,7 @@ class AttorneyBiography extends Component {
       loading: false,
       currentTab: 'biography',
       currentSidebarTab: 'Related Practices',
-      matterTab: '',
+      matterTab,
       readMore: false,
       spinner: false,
     };
@@ -191,15 +191,15 @@ class AttorneyBiography extends Component {
               <FullWidth>
                 <div className="line-header" id="nav-tab" role="tablist">
                   <MenuItem currentTab={currentTab} tabTitle="biography" tabClick={this.tabClick} title="Biography" />
-                  { (representativeMatters) ? <MenuItem currentTab={currentTab} tabTitle="representative-matters" tabClick={this.tabClick} title="Representative Matters" /> : '' }
-                  { (representativeClients) ? <MenuItem currentTab={currentTab} tabTitle="representative-clients" tabClick={this.tabClick} title="Representative Clients" /> : '' }
-                  { (presentations) ? <MenuItem currentTab={currentTab} tabTitle="presentations" tabClick={this.tabClick} title="Presentations" /> : '' }
-                  { (publications) ? <MenuItem currentTab={currentTab} tabTitle="publications" tabClick={this.tabClick} title="Publications" /> : '' }
-                  { (media) ? <MenuItem currentTab={currentTab} tabTitle="media" tabClick={this.tabClick} title="Media" /> : '' }
-                  { (blogPosts) ? <MenuItem currentTab={currentTab} tabTitle="blogs" tabClick={this.tabClick} title="Articles" /> : ''}
-                  { (newsEventArticles.length > 0) ? (newsEventArticles !== undefined) ? <MenuItem currentTab={currentTab} tabTitle="newsevents" tabClick={this.tabClick} title="News &amp; Events" /> : '' : '' }
-                  { (videos) ? <MenuItem currentTab={currentTab} tabTitle="videos" tabClick={this.tabClick} title="Videos" /> : '' }
-                  { (tabs) ? filterHeaders.map((value) => <MenuItem key={value} currentTab={currentTab} tabTitle={urlify(value)} tabClick={this.tabClick} title={value} />) : ''}
+                  { (representativeMatters) && <MenuItem currentTab={currentTab} tabTitle="representative-matters" tabClick={this.tabClick} title="Representative Matters" />  }
+                  { (representativeClients) && <MenuItem currentTab={currentTab} tabTitle="representative-clients" tabClick={this.tabClick} title="Representative Clients" />  }
+                  { (presentations) && <MenuItem currentTab={currentTab} tabTitle="presentations" tabClick={this.tabClick} title="Presentations" />  }
+                  { (publications) && <MenuItem currentTab={currentTab} tabTitle="publications" tabClick={this.tabClick} title="Publications" />  }
+                  { (media) && <MenuItem currentTab={currentTab} tabTitle="media" tabClick={this.tabClick} title="Media" />  }
+                  { (blogPosts) && <MenuItem currentTab={currentTab} tabTitle="blogs" tabClick={this.tabClick} title="Articles" /> }
+                  { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <MenuItem currentTab={currentTab} tabTitle="newsevents" tabClick={this.tabClick} title="News &amp; Events" />   }
+                  { (videos) && <MenuItem currentTab={currentTab} tabTitle="videos" tabClick={this.tabClick} title="Videos" />  }
+                  { (tabs) && filterHeaders.map((value) => <MenuItem key={value} currentTab={currentTab} tabTitle={urlify(value)} tabClick={this.tabClick} title={value} />) }
                 </div>
               </FullWidth>
               <NoHeaderMiniSidebar
