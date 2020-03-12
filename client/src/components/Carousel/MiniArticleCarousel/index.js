@@ -15,12 +15,12 @@ export default function MiniArticleCarousel(props) {
 
   return (
     <li className={`list-inline-item carousel-slide level-${id}`}>
-      <a href={link}>
+      <a rel="preconnect" href={link}>
         <LazyLoad height={150}>
           <img rel="preconnect" src={image || postImg} alt={title} className="img-thumbnail mx-auto d-block" />
         </LazyLoad>
         <h5 className="mt-3 mb-2 text-center">{title}</h5>
-      </a> s  
+      </a> 
     </li>
   ) 
 }

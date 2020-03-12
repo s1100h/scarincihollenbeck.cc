@@ -75,8 +75,8 @@ class FrontPage extends Component {
       }
         
       // small-medium 1200
-      if (w <= 1690 && w >= 650) {
-        this.setState({ end: 1})
+      if (w < 1690 && w > 650) {
+        this.setState({ end: 2})
       }
   
       // small 650
@@ -109,7 +109,7 @@ class FrontPage extends Component {
     const sortedPosts = sortByKey(posts, 'date');
 
     return (
-      <div>
+      <div id="front-page">
         <FrontPageHead seo={seo} />
         <Header
           searchTerm={searchTerm}

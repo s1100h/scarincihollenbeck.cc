@@ -3,7 +3,6 @@ import NextArrow from './NextArrow';
 import PreviousArrow from './PreviousArrow';
 import JustInCarousel from './JustInCarousel';
 import LargeArticleCarousel from './LargeArticleCarousel';
-import MiniArticleCarousel from './MiniArticleCarousel';
 import LocationCarousel from './LocationCarousel';
 
 class Carousel extends Component {
@@ -54,10 +53,6 @@ class Carousel extends Component {
 
     if (sliderType === 'LargeArticle') { 
       return slides.map((post, index) => (index >= startCount && index <= endCount) && <LargeArticleCarousel key={post.title} post={post} id={index} />)
-    }
-
-    if (sliderType === 'MiniArticle') { 
-      return slides.map((post, index) => (index >= startCount && index <= endCount) && <MiniArticleCarousel key={post.title} post={post} id={index} />)
     }
 
     if (sliderType === 'Location') {

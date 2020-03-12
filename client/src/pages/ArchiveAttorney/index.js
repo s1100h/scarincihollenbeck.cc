@@ -167,7 +167,7 @@ class AttorneyArchive extends Component {
     const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     return (
-      <div>
+      <div id="attorney-archive">
         <ArchiveHead seo={seo} />
         <SingleSubHeader
           title="Attorneys"

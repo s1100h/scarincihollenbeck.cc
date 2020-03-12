@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaPlus, FaMinus } from "react-icons/fa";
-import { createMarkup, addRandomKey, urlify } from '../../../utils/helpers';
-import './index.scss';
+import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
 
 const SidebarContent = (props) => {
   const { title, content, show, setSideBarTab, currentSidebarTab } = props;
-
-  console.log(content);
 
   return (
     <div>
@@ -22,12 +19,8 @@ const SidebarContent = (props) => {
             {
               content.map((v) => (
                 <li key={`${addRandomKey('sbc')}`} className="mb-2">
-                  {
-                    (v.link) ? <a href={v.link} className="link-style small-excerpt">{v.title}</a> : <strong>{v.title}</strong>
-                  }
-                  {
-                    (v.content) ? <div dangerouslySetInnerHTML={createMarkup(v.content)} /> : ''
-                  }
+                  {(v.link) ? <a href={v.link} className="link-style small-excerpt">{v.title}</a> : <strong>{v.title}</strong>}
+                  {(v.content) && <div dangerouslySetInnerHTML={createMarkup(v.content)} />}
                 </li>
               ))
             }

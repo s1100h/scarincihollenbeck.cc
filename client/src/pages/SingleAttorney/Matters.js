@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, addRandomKey, urlify } from '../../../utils/helpers';
-import './index.scss';
+import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
 const Matters = (props) => {
   const {

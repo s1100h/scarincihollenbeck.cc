@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carousel from '../../../components/Carousel';
-import { addRandomKey } from '../../../utils/helpers';
-import './index.scss';
+import Carousel from '../../components/Carousel';
+import { addRandomKey } from '../../utils/helpers';
+import noImg from '../../images/no-image-found-diamond.png';
 
 const RelatedArticles = (props) => {
   const { title, content } = props;
-  // const firstEightArticles = content.filter((p, i) => i < 8);
-  const noImg = `${process.env.API_URL}/wp-content/themes/sh-law-theme/includes/assets/images/88a9c0b8e7ff2ed7ecff91cfdaa0b816.png`;
-
-  console.log('related content');
-  console.log(content);
 
   return (
     <div className="mt-4 w-100 d-block attorney-news-slider">

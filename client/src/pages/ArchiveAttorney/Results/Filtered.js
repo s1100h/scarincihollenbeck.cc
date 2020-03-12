@@ -97,7 +97,7 @@ const Filtered = (props) => {
       ))
     }
       {
-      (aFiltered.length < 1) ? <h3 className="text-center red-title d-block mx-auto my-4">Sorry, no attorneys found according to this query.</h3> : ''
+      (aFiltered.length < 1) && <h3 className="text-center red-title d-block mx-auto my-4">Sorry, no attorneys found according to this query.</h3>
     }
     </div>
   );

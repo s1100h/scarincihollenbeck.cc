@@ -50,20 +50,30 @@ const Body = (props) => {
         </div>
       </div>
       {/** Awards */}
-      {
-        (highlightReal.length > 0) ? (
-          <AwardScroller highlightReal={highlightReal} />
-        ) : ''
-      }
-      {/** Recent News Article */}
+      {(highlightReal.length > 0) && <AwardScroller highlightReal={highlightReal} /> }
+      {/** Recent News Articles */}
+      {(newsPosts) && (
       <div className="w-100 d-block">
         <h4 className="bg-light-gray">
-          Latest On
+        Latest News on
           {' '}
           {title}
         </h4>
-        <FeaturedSlider content={industryTopics} />
+        <FeaturedSlider content={newsPosts} />
       </div>
+      )}
+
+      {/** Recent Blog Articles */}
+      {(blogPosts) && (
+      <div className="w-100 d-block">
+        <h4 className="bg-light-gray">
+        Latest Articles on
+          {' '}
+          {title}
+        </h4>
+        <FeaturedSlider content={blogPosts} />
+      </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup } from '../../../utils/helpers';
-import './index.scss';
+import { createMarkup } from '../../utils/helpers';
 
 const Biography = (props) => {
   const {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, addRandomKey } from '../../../utils/helpers';
-import './index.scss';
+import { createMarkup, addRandomKey } from '../../utils/helpers';
 
 const Table = (props) => {
   const {
@@ -10,8 +9,6 @@ const Table = (props) => {
     tabTitle,
     content,
   } = props;
-  console.log('content');
-  console.log(content)
 
   return (
     <div className={(currentTab === tabTitle) ? 'tab-pane active' : 'tab-pane'} id={tabTitle} role="tabpanel" aria-labelledby={`nav-${tabTitle}-tab`}>

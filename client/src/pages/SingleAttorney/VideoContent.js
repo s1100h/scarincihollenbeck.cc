@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, addRandomKey } from '../../../utils/helpers';
-import './index.scss';
+import { createMarkup, addRandomKey } from '../../utils/helpers';
 
 
 const VideoContent = (props) => {

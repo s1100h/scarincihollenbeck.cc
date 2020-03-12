@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addRandomKey } from '../../../utils/helpers';
-import './index.scss';
+import { addRandomKey } from '../../utils/helpers';
 
 const Post = (props) => {
   const { title, link, img } = props;

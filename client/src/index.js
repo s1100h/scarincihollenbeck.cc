@@ -40,8 +40,7 @@ const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/Sin
 **/
 import './styles/main.scss';
 import './styles/navigation.scss';
-import './styles/main.scss';
-import './styles/attorneys.scss';
+import './styles/archive-attorneys.scss';
 import './styles/single-attorney.scss';
 import './styles/single.scss';
 

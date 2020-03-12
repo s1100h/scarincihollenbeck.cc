@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carousel from '../../../components/Carousel';
-
-import './index.scss';
+import Carousel from '../../components/Carousel';
 
 const FeaturedSlider = (props) => {
   const { content, title } = props;
@@ -24,7 +22,7 @@ const FeaturedSlider = (props) => {
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            { (content.length > 3) ? <Carousel sliderType="MiniArticle" slides={content} start={0} end={3} arrowSize={1} /> : (
+            { (content.length > 3) ? <Carousel sliderType="LargeArticle" slides={content} start={0} end={3} arrowSize={1} /> : (
                 <div className="d-flex flex-row">
                   {content.map((c) => <a href={c.link} key={c.title} className="mx-3"><img src={c.featuredImg} width="230" alt={c.title} className="img-fluid" /></a>) }
                 </div>

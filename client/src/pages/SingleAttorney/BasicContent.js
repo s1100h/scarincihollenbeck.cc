@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup } from '../../../utils/helpers';
+import { createMarkup } from '../../utils/helpers';
 
 const BasicContent = (props) => {
   const {

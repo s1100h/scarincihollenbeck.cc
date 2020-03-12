@@ -17,7 +17,7 @@ function JustInCarousel(props) {
 
   return (
     <li className={`JustInCarouselContent card carousel-slide level-${id}`}>
-      <a href={link}>
+      <a rel="preconnect" href={link}>
         <p className="just-in-header">
           <span className="category">
             <FaNewspaper />

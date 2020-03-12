@@ -5,9 +5,7 @@ import Carousel from '../../components/Carousel';
 
 const FullWidthContent = (props) => {
   const { sortedPosts, sortedLocations, end } = props;
-  console.log('end', end)
-
-  
+    
   return (
     <div className="row">
        <div className="col-sm-12 px-0">

@@ -42,7 +42,6 @@ const FeaturedSlider = (props) => {
     centerMode: true,
     infinite: true,
     slidesToShow: 3,
-    dots: true,
     adaptiveHeight: true,
     lazyLoad: true,
     nextArrow: <NextArrow />,

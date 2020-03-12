@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cityBckGroundImg from '../../../images/skyline-background.jpg';
-
-// const Content = loadable(() => import(/* webpackChunkName="Content Component", webpackMode="lazy */'./Content'));
-// const Search = loadable(() => import(/* webpackChunkName="Search Component", webpackMode="lazy */ './Search'));
-
 import Content from './Content';
 import Search from './Search';
 

@@ -26,7 +26,6 @@ const InfoCard = (props) => {
     vizibility,
   } = props;
 
-  console.log(socialMediaLinks);
 
   return (
     <div className="col-sm-12">

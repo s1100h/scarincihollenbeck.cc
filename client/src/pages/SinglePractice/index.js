@@ -24,6 +24,8 @@ class IndividualPractice extends Component {
       industryTopics: [],
       attorneyList: [],
       highlightReal: [],
+      blogPosts: [],
+      newsPosts: [],
       searchTerm: '',
       currentTab: '',
       spinner: false,
@@ -73,6 +75,20 @@ class IndividualPractice extends Component {
           seo,
         } = data;
 
+        const blogPosts = [];
+        const newsPosts = [];
+
+        // seperate out blog posts and news posts
+        industryTopics.forEach((post) => {
+          if (post.categoryParent === 599) {
+            blogPosts.push(post);
+          }
+
+          if (post.categoryParent === 98 || post.categoryParent === 99) {
+            newsPosts.push(post);
+          }
+        });
+
         this.setState({
           chair,
           title,
@@ -82,6 +98,8 @@ class IndividualPractice extends Component {
           attorneyList,
           practiceList,
           highlightReal,
+          blogPosts,
+          newsPosts,
           seo,
           spinner: false,
           currentTab: content[0].title,

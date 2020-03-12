@@ -12,11 +12,9 @@ import MenuItem from './MenuItem';
 import Sidebar from './Sidebar';
 import { sortByDateKey, urlify } from '../../utils/helpers';
 import attorneyHeader from './attorney-header.jpg';
-import './index.scss';
 
 // lazy load components
 import Body from './Body';
-
 
 class AttorneyBiography extends Component {
   constructor(props) {
@@ -26,7 +24,7 @@ class AttorneyBiography extends Component {
       loading: false,
       currentTab: 'biography',
       currentSidebarTab: 'Related Practices',
-      matterTab,
+      matterTab: '',
       readMore: false,
       spinner: false,
     };
@@ -161,7 +159,7 @@ class AttorneyBiography extends Component {
 
 
     return (
-      <div>
+      <div id="single-attorney">
         <AttorneyHead seo={seo} />
         { (!spinner) && (
             <div>
@@ -223,7 +221,7 @@ class AttorneyBiography extends Component {
                     clients={clients}
                     awards={awards}
                     filterBody={filterBody}
-                  />
+                  />                  
                 )}
                 sidebar={(
                   <span>
