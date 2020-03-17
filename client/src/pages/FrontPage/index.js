@@ -51,14 +51,14 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch office locations
-        fetch('https://api.scarincilies.com/cached/office-locations')
+        fetch(`${process.env.CACHED_URL}/cached/office-locations`)
           .then((res) => res.json())
           .then((data) => {
             this.setState({ locations: data.offices });
           });
       })
       .then(() => {
-        fetch('https://api.scarincilies.com/cached/core-practices')
+        fetch(`${process.env.CACHED_URL}/cached/core-practices`)
           .then((res) => res.json())
           .then((data) => {
             const corePractices = data.map((cp) => ({
