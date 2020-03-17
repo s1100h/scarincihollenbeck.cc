@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack.dev.js --history-api-fallback --watch",
-    "build": "webpack --mode production --config webpack.prod.js"
+    "build": "webpack --mode production --config webpack.prod.js && cp manifest.json dist && cp robots.txt dist"
   },
   "keywords": [
     "react.js",
