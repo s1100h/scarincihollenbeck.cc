@@ -19,7 +19,7 @@ class Footer extends Component {
 
   componentDidMount() {
     const w = window.innerWidth;
-    fetch('https://admin.scarincilies.com/wp-json/just-in/posts', { headers })
+    fetch(`${process.env.API_URL}/wp-json/just-in/posts`, { headers })
       .then((res) => res.json())
       .then((slides) => this.setState({ slides }));
 
