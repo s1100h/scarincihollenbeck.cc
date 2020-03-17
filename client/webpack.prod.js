@@ -3,7 +3,6 @@
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { GenerateSW } = require("workbox-webpack-plugin");
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Critters = require('critters-webpack-plugin');
@@ -12,6 +11,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -136,13 +136,12 @@ module.exports = {
       external: true,
       minimumExternalSize: 1660,
       keyframes: 'all',
-      // Don't inline critical font-face rules, but preload the font URLs:
       preloadFonts: true,
-      // additionalStylesheets: 'test'
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
-    new CssCleanupPlugin()
+    new CssCleanupPlugin(),
+    new WorkboxPlugin.GenerateSW(),
   ],
 };
