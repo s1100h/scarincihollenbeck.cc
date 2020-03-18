@@ -12,6 +12,7 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 
 module.exports = {
@@ -143,5 +144,8 @@ module.exports = {
     }),
     new CssCleanupPlugin(),
     new WorkboxPlugin.GenerateSW(),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json'
+    })
   ],
 };

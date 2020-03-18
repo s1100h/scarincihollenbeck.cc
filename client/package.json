@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack.dev.js --history-api-fallback --watch",
-    "build": "webpack --mode production --config webpack.prod.js && cp manifest.json dist && cp robots.txt dist"
+    "build": "webpack --mode production --config webpack.prod.js"
   },
   "keywords": [
     "react.js",
@@ -52,6 +52,7 @@
     "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1",
+    "webpack-manifest-plugin": "^2.2.0",
     "workbox-webpack-plugin": "^5.0.0"
   },
   "dependencies": {

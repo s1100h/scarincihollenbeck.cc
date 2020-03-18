@@ -3,14 +3,6 @@
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Critters = require('critters-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -31,11 +23,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
         test: /\.(sa|sc|c)ss$/,
       },
       {
@@ -69,56 +57,13 @@ module.exports = {
         ],
       },
     ],
-  },
-  optimization: {
-    minimize: true,
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/i,
-          chunks: "all",
-          enforce: true,
-        },
-        styles: {
-          name:'main',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true,
-        },
-        commons: {
-          name: "commons",    
-          chunks: "initial",  
-          minChunks: 5,
-          enforce: true,        
-        }
-      }
-    },
-    // The runtime should be in its own chunk
-    runtimeChunk: {
-        name: "runtime"
-    },
-    minimizer: [
-      new TerserJSPlugin({
-        parallel: true,
-        extractComments: true,
-        terserOptions: {
-          module: true,
-          toplevel: true,
-          output: {
-            comments: false,
-          },
-        },
-      }),
-      new OptimizeCssAssetsPlugin({}),
-    ]
-   },   
+  }, 
   entry: ['core-js/stable', './src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
-  devtool: false,
   plugins: [
     new webpack.ProvidePlugin({
       Promise: 'es6-promise',
@@ -129,27 +74,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].bundle.css',
-    }),
-    new Critters({
-      mergeStylesheets: true,
-      pruneSource: false,
-      preload: 'media',
-      compress: true,
-      noscriptFallback: false,
-      external: true,
-      minimumExternalSize: 1660,
-      keyframes: 'all',
-      // Don't inline critical font-face rules, but preload the font URLs:
-      preloadFonts: true,
-      // additionalStylesheets: 'test'
-    }),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
-    }),
-    new CssCleanupPlugin()
-    // new BundleAnalyzerPlugin()
+    })
   ],
 };

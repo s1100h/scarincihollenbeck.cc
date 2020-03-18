@@ -34,6 +34,13 @@ const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/Sin
 // import SubscriptionPage from './pages/SubscriptionPage';
 // import Page404 from './pages/page404';
 
+/**
+*
+* Bootstrap
+*
+**/
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 /**
 * Main Style Sheet
@@ -53,14 +60,6 @@ import './styles/single.scss';
  import './styles/utils/carousel.scss';
  import './styles/utils/just-in-carousel.scss';
  import './styles/utils/location-carousel.scss';
- 
-/**
-*
-* Bootstrap
-*
-**/
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 
 /**
  * Routes
