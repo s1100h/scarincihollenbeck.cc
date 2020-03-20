@@ -13,6 +13,7 @@ const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const CssCleanupPlugin = require('css-cleanup-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 module.exports = {
@@ -146,6 +147,7 @@ module.exports = {
     new WorkboxPlugin.GenerateSW(),
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
 };

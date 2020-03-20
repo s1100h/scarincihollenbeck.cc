@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { faPlus} from '@fortawesome/free-solid-svg-icons/faPlus'
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
 
@@ -11,7 +12,7 @@ const SidebarContent = (props) => {
     <div>
       <a href={`#${urlify(title)}`} onClick={(e) => setSideBarTab(title)} className="sidebar-title" data-toggle="collapse">
         {title}
-        {(title === currentSidebarTab || show) ? <FaMinus className="float-right" /> : <FaPlus className="float-right" /> }
+        {(title === currentSidebarTab || show) ? <faMinus className="float-right" /> : <faPlus className="float-right" /> }
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">

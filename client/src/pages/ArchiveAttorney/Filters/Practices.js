@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaCaretDown } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
 import { addRandomKey } from '../../../utils/helpers';
 
 const PracticeListItem = (props) => {
@@ -55,7 +56,7 @@ const Practices = (props) => {
         className="dropdown-toggle btn btn-light my-1"
       >
       Filter by practice
-        <FaCaretDown className="ml-5 mt-1" />
+        <FontAwesomeIcon icon={faCaretDown} className="ml-5 mt-1" />
       </span>
       <div aria-labelledby="megamneu" className="dropdown-menu border-0 p-0 m-0 megamenu-container shadow-sm">
         <div className="container mt--1">

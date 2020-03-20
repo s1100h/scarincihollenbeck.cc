@@ -1,11 +1,12 @@
 import React from 'react';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons/faAngleDoubleRight'
 
 const NextArrow = (props) => {
   const { nextImage, arrowSize } = props;
   return (
     <div onClick={nextImage} className="my-7" style={{fontSize: `${arrowSize}em`}}>
-      <FaAngleDoubleRight />
+      <FontAwesomeIcon icon={faAngleDoubleRight} />
     </div>
   )
 };

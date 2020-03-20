@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Content = () => (
   <div className="col-sm-12 col-md-6 border-right">
     <h1 className="text-white mx-5 mt-5 display-32 text--shadow animated fadeInUp fast">Personal attention to you and your business.</h1>

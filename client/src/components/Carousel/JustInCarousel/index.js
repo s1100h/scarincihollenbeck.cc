@@ -1,7 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
-import { FaNewspaper, FaPlusCircle } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle'
+
 
 const formatDate = (date) => {
   const d = new Date(date);
@@ -20,7 +23,7 @@ function JustInCarousel(props) {
       <a rel="preconnect" href={link}>
         <p className="just-in-header">
           <span className="category">
-            <FaNewspaper />
+            <FontAwesomeIcon icon={faNewspaper} />
             {' '}
             {category}
           </span>
@@ -34,7 +37,7 @@ function JustInCarousel(props) {
         </div>
         <hr />
         <p className="tag">
-          <FaPlusCircle />
+        <FontAwesomeIcon icon={faPlusCircle} />
           {' '}
           {location}
         </p>

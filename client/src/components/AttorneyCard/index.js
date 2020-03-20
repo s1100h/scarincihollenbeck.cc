@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
+
 import PropTypes from 'prop-types';
 
 const AttorneyCard = (props) => {
@@ -32,11 +35,11 @@ const AttorneyCard = (props) => {
           </p>
         </a>
         <div className="small-excerpt">
-          <FaPhone />
+          <FontAwesomeIcon icon={faPhone} />
           {' '}
           {number}
           <br />
-          <FaEnvelope />
+          <FontAwesomeIcon icon={faEnvelope} />
           {' '}
           {email}
         </div>

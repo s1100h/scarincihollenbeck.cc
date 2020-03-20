@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import AttorneyHead from '../../components/Head/attorney';
 import MultiSubHeader from '../../layouts/MultiSubHeader';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';

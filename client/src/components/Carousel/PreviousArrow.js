@@ -1,11 +1,13 @@
 import React from 'react';
-import { FaAngleDoubleLeft } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft'
+
 
 const PreviousArrow = (props) => {
-  const { nextImage, arrowSize } = props;
+  const { previousImage, arrowSize } = props;
   return (
-    <div onClick={nextImage} className="my-7" style={{fontSize: `${arrowSize}em`}}>
-      <FaAngleDoubleLeft />
+    <div onClick={previousImage} className="my-7" style={{fontSize: `${arrowSize}em`}}>
+      <FontAwesomeIcon icon={faAngleDoubleLeft} />
     </div>
   )
 };
