@@ -2,7 +2,9 @@
 api/node_modules*
 client/node_modules*
 workers/node_modules*
-admin/*
+admin/.env
+admin/wp-app/*
+admin/wp-data/*
 api/.env
 workers/.env
 client/.env
