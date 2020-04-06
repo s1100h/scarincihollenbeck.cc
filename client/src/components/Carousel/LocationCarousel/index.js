@@ -7,7 +7,7 @@ function LocationCarousel(props) {
   const { link, image, title } = post;
 
   return (
-    <li className={`card w-376 mx-2 mb-2 carousel-slide level-${id}`}>
+    <li className={`card w-349 mx-2 mb-2 carousel-slide level-${id}`}>
       <a href={link}>
         <LazyLoad height={150}>
           <img rel="preconnect" src={post.featuredImg} alt={post.title} className="card-img-top" />

@@ -4,17 +4,20 @@ import Carousel from '../../components/Carousel';
 
 const FullWidthContent = (props) => {
   const { sortedPosts, sortedLocations, end } = props;
-    
+
   return (
     <div className="row">
-       <div className="col-sm-12 px-0">
-        <Carousel sliderType="LargeArticle" slides={sortedPosts} start={0} end={end} arrowSize={1} />
+      <div className="col-sm-12 mt-5 px-0">
+        <div className="line-header"><h3>News & Events</h3></div>
+      </div>
+       <div className="col-sm-12 px-0 pt-5">
+        <Carousel sliderType="LargeArticle" slides={sortedPosts} start={0} end={2} arrowSize={1} />
        </div>
       <div className="col-sm-12 mt-5 px-0">
         <div className="line-header"><h3>OUR OFFICES</h3></div>
       </div>
-      <div className="col-sm-12 px-0 mt-5">
-        <Carousel sliderType="LargeArticle" slides={sortedPosts} start={0} end={end} arrowSize={1} />
+      <div className="col-sm-12 px-0 pt-5">
+        <Carousel sliderType="Location" slides={sortedLocations} start={0} end={2} arrowSize={1} />
       </div>
     </div>
   );

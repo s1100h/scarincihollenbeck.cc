@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{477:function(e,n,t){Object.defineProperty(n,"__esModule",{value:!0});var l,u=t(71),a=(l=u)&&l.__esModule?l:{default:l},o=t(479);n.default=function(e){return a.default.createElement("div",{onClick:e.previousImage,style:{fontSize:"2em",marginRight:"12px"}},a.default.createElement(o.FaAngleDoubleLeft,null))}}}]);

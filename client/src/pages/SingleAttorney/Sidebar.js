@@ -13,7 +13,7 @@ const SidebarContent = (props) => {
     <div>
       <a href={`#${urlify(title)}`} onClick={(e) => setSideBarTab(title)} className="sidebar-title" data-toggle="collapse">
         {title}
-        {(title === currentSidebarTab || show) ? <faMinus className="float-right" /> : <faPlus className="float-right" /> }
+        {(title === currentSidebarTab || show) ?  <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} /> }
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">

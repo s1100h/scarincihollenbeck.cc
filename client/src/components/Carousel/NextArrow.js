@@ -5,7 +5,7 @@ import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons/faAngleDou
 const NextArrow = (props) => {
   const { nextImage, arrowSize } = props;
   return (
-    <div onClick={nextImage} className="my-7" style={{fontSize: `${arrowSize}em`}}>
+    <div onClick={nextImage} className="my-7 site-arrows" style={{fontSize: `${arrowSize}em`}}>
       <FontAwesomeIcon icon={faAngleDoubleRight} />
     </div>
   )

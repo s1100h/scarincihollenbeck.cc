@@ -1,7 +1,5 @@
 import React, { Component, lazy } from 'react';
 import { sortByKey } from '../../utils/helpers';
-
-// import Header from './Header';
 import ColumnContent from './ColumnContent';
 import FullWidthContent from './FullWidthContent';
 import FrontPageHead from '../../components/Head/frontpage';
@@ -124,7 +122,7 @@ class FrontPage extends Component {
             sortedPosts={sortedPosts}
             sortedLocations={sortedLocations}
             end={end}
-          />
+          />          
         </div>
       </div>
     );

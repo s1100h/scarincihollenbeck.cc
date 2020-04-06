@@ -10,17 +10,11 @@ class Carousel extends Component {
     super(props);
     this.state = {
      startCount: 0,
-     endCount: 0
+     endCount: 2
     };
     this.previousImage = this.previousImage.bind(this);
     this.nextImage = this.nextImage.bind(this);
     this.renderSlides = this.renderSlides.bind(this);
-  }
-
-  componentDidMount() { 
-    const { start, end } = this.props; 
-    this.setState({ startCount: start });
-    this.setState({ endCount: end });
   }
 
   previousImage() {
@@ -28,7 +22,7 @@ class Carousel extends Component {
     const { startCount, endCount } = this.state;    
     const arrLength = parseInt(slides.length, 10);
 
-    const previousStartIndex = (startCount <= 0) ? arrLength - 4 : startCount - 1; 
+    const previousStartIndex = (startCount <= 0) ? arrLength - 3 : startCount - 1; 
     const previousEndIndex = (startCount <= 0 ) ?  arrLength - 1: endCount - 1;
 
     this.setState({ startCount: previousStartIndex });
@@ -41,7 +35,7 @@ class Carousel extends Component {
     const arrLength = parseInt(slides.length, 10);
 
     const nextStartIndex = (endCount === arrLength) ?  0 : startCount + 1; 
-    const nextEndIndex = (endCount === arrLength) ? 3 : endCount + 1;    
+    const nextEndIndex = (endCount === arrLength) ? 2 : endCount + 1;    
    
     this.setState({ startCount: nextStartIndex });
     this.setState({ endCount: nextEndIndex });
@@ -68,13 +62,16 @@ class Carousel extends Component {
   render() {
     const {  arrowSize, slides, sliderType } = this.props; 
     return (
-      <div id="carousel-slider">
-        <PreviousArrow previousImage={this.previousImage} arrowSize={arrowSize} />
-        <ul className="list-unstyled carousel-slider-track">
-          {(slides.length > 0) && this.renderSlides()} 
-         </ul>
-        <NextArrow nextImage={this.nextImage} arrowSize={arrowSize}/>
+      <div className="mx-auto d-block w-100">
+        <div id="carousel-slider">
+          <PreviousArrow previousImage={this.previousImage} arrowSize={arrowSize} />
+          <ul className="list-unstyled carousel-slider-track">
+            {(slides.length > 0) && this.renderSlides()} 
+          </ul>
+          <NextArrow nextImage={this.nextImage} arrowSize={arrowSize}/>
+        </div>
       </div>
+
     )
   }  
 }

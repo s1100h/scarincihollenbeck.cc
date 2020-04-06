@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone'
 import { faFax } from '@fortawesome/free-solid-svg-icons/faFax'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
-import { faRegFile } from '@fortawesome/free-solid-svg-icons/faRegFile'
+import { faFile } from '@fortawesome/free-solid-svg-icons/faFile'
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter'
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
@@ -97,7 +97,7 @@ const InfoCard = (props) => {
                 { (pdf) ? (
                   <li className="mb-0 lh-1">
                     <h5>
-                      <FontAwesomeIcon icon={faRegFile} className="text-white" />
+                      <FontAwesomeIcon icon={faFile} className="text-white" />
                       {' '}
                       <a href={pdf} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {' Download Biography'}

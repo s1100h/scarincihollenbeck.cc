@@ -13,10 +13,8 @@ import LazyLoad from 'react-lazyload';
     postImg = props.post.featuredImg;
   }
 
-  console.log(post)
-
   return (
-    <li className={`px-3 pt-5 pb-2 carousel-slide level-${id}`}>
+    <li className={`pb-2 carousel-slide level-${id}`}>
       <a href={link}>
         <LazyLoad height={150}>
           <img rel="preconnect" src={image || postImg} alt={title} className="img-thumbnail mx-auto d-block" />
