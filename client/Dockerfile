@@ -12,4 +12,4 @@ RUN npm rebuild node-sass
 
 EXPOSE 8500
 
-CMD npm start
+ENTRYPOINT [ "npm", "start" ]
