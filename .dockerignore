@@ -1,0 +1,6 @@
+.git
+.gitignore
+README.md
+docker-compose.yml
+api/app/node_modules
+client/app/node_modules

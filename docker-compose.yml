@@ -1,0 +1,95 @@
+version: '3'
+services:
+  client:
+    build: client/
+    volumes:
+      - "./client/app:/client"
+    environment:
+      - API_URL=${ADMIN_SITE}
+      - CACHED_URL=${CACHED_API}
+    ports:
+      - ${IP}:8500:8500
+    links:
+      - wp
+      - web
+      
+  web:
+    build: api/
+    volumes:
+      - "./api/app:/src"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - ADMIN_SITE=${ADMIN_SITE}
+      - REDIS_URL=redis://cache
+    ports:
+      - ${IP}:8200:8200
+    links:
+      - redis
+      - wp
+
+  redis:
+    image: redis
+    container_name: cache
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    expose:
+      - 6379
+  
+  wp:
+    image: wordpress:latest # https://hub.docker.com/_/wordpress/
+    ports:
+      - ${IP}:8400:80 # change ip if required
+    volumes:
+      - ./admin/config/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./admin/wp-app:/var/www/html # Full wordpress project
+      #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
+      #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: "${DB_NAME}"
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: "${DB_ROOT_PASSWORD}"
+    depends_on:
+      - db
+    links:
+      - db
+
+  wpcli:
+    image: wordpress:cli
+    volumes:
+      - ./admin/config/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./admin/wp-app:/var/www/html
+    depends_on:
+      - db
+      - wp
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    volumes:
+      - ./admin/config/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    ports:
+      - ${IP}:8300:80
+    links:
+      - db:db
+
+  db:
+    image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+    ports:
+      - ${IP}:3306:3306 # change ip if required
+    command: [
+        '--default_authentication_plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    volumes:
+      - ./admin/wp-data:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+
+volumes:
+  db_data:

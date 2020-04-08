@@ -1,0 +1,236 @@
+h1 {
+  font-size: 2rem;
+}
+.city-background {
+  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(../attorney-header.jpg) no-repeat 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+  clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+}
+.bg-black {
+  background-color: rgba(0,0,0,.5);
+  border-radius: 4px;
+  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+  clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+  max-height: 350px;
+}
+
+#red-block {
+  width: 10px;
+  height: 37px;
+  background-color: #bd2220;
+  margin-right: 15px;
+  display:block;
+  float:left; 
+}
+#white-border {
+  width: 100%;
+  height: 1px;
+  display: block;
+  background-color: white;
+  margin-top: -11px;
+}
+.mt--1 {
+  margin-top:-1em;
+}
+.line-header {
+  border-bottom: 1px solid #d1d1d1;
+  text-align: center;
+}
+.line-header .active {
+  color: #bd2220;
+  text-decoration: underline;
+  font-family: 'Proxima Nova Bold';
+  font-size: 1.2rem;
+}
+.line-header h3 {
+  background: #fff;
+  color: #1a1a1a;
+  display: inline-block;
+  font-size: 18px;
+  letter-spacing: .15em;
+  line-height: 26px;
+  margin-bottom: 0;
+  padding: 0 15px;
+  position: relative;
+  text-transform: uppercase;
+  top: 13px;
+  font-style: normal;
+  font-weight: 400;
+}
+.line-header .active {
+  color: #bd2220;
+  text-decoration: underline;
+}
+.line-header h3:hover {
+  cursor: pointer;
+}
+.css-0 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 0em;
+}
+.ft-30 {
+  font-size: 30px;
+}
+.bg-light-gray {
+  font-weight: 900;
+  background-color: #e9e9e9;
+  padding: 10px;
+  text-shadow: 0 0 0 #000;
+  margin-bottom: 30px;
+}
+.underline-hover:hover {
+  color: white !important;
+  text-decoration: underline;
+}
+.ft-18 {
+  font-size: 17px;
+}
+.white-transparent-border {
+  border: 10.5px solid rgba(255, 255, 255, 0.5);
+  background-origin: border-box;
+}
+.chair-link:hover, .mail-link:hover {
+  text-decoration:underline !important;
+  color: white !important;
+}
+.position-relative.icon {
+  top:-2px;
+}
+.lh-1 {
+  line-height: 1;
+}
+.off-white {
+  background-color: #fcfaff;
+}
+.article-container { 
+  display: block;
+  max-height: 600px;
+  overflow-y: hidden;
+  overflow: auto;
+}
+
+.article-container p {
+  margin-bottom: 1.125rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+.slick-dots {
+  position: initial;
+  bottom: 0;
+}
+.featured-slider-arrow {
+  color: black;
+  position: absolute;
+  top: 30%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+}
+.featured-slider-arrow:hover {
+  cursor: pointer;
+}
+.featured-slider-arrow.left {
+  left: -30px;
+}
+.featured-slider-arrow.right {
+  left: 102%;
+  z-index: 4;
+}
+.sidebar-title {
+  display: block;
+  background-color: #a9a9a9;
+  padding: 8px;
+  color: white;
+  font-size: 1.1rem;
+  border-bottom: 5px solid #bd2220;
+  font-weight: 600;
+  text-shadow: 0px 0px 1px black;
+}
+.sidebar-title:hover {
+  color: white !important;
+  text-decoration: underline !important;
+}
+.no-dots > li {
+  line-height: 1;
+  font-weight: 500;
+}
+.link-style:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+[data-toggle="collapse"] .fas:before {  
+  content: "\f067";
+}
+
+[aria-expanded="true"] .fas:before {  
+  content: "\f068";
+}
+
+[data-toggle="collapse"].collapsed .fas:before {
+  content: "\f067";
+}
+.sidebar-content {
+  margin-left: 10px;
+}
+.sidebar-content li div ul {
+  margin-top: 8px;
+  margin-left: 20px;
+  font-size: 14px;
+}
+.sidebar-content li div ul li {
+  margin-bottom: 12px;
+  line-height: 1.1;
+  margin-right: 11px;
+}
+@media (min-width: 767px) and (max-width: 992px) {
+  .sidebar-title {
+    height: 70px;
+  }
+}
+@media (min-width: 0px) and (max-width: 500px) {
+  .city-background {
+    height: 800px;
+  }
+  .bg-black {
+    min-height: 550px;
+  }
+}
+@media (min-width: 500px) and (max-width: 769px) {
+  .city-background {
+    height: 870px;
+  }
+  .bg-black {
+    min-height: 700px;
+  }
+}
+@media (min-width: 1200px) {
+  .max-width-container {
+    max-width: 920px;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .white-transparent-border {
+    width: 60%;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .line-header {
+    text-align: left;
+  }
+  .line-header h3 {
+    width: 100%;
+    display:block;
+  }
+}
