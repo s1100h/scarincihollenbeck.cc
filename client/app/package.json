@@ -16,6 +16,8 @@
   "author": "peter t",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -76,6 +78,7 @@
     "node-sass": "^4.13.1",
     "object.assign": "^4.1.0",
     "path": "^0.12.7",
+    "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.0",
     "react": "^16.13.1",
