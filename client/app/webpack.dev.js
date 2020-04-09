@@ -2,13 +2,15 @@
 /* eslint-disable no-unused-vars */
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
-
+console.log('path');
+console.log(path.join(__dirname, 'dist'))
 module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 8500,
+    port: 8600,
     historyApiFallback:{
       index:'dist/index.html'
     },
@@ -70,6 +72,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-    })
+    }),
+    new Dotenv({
+      path: '.env.dev',
+    }),
   ],
 };

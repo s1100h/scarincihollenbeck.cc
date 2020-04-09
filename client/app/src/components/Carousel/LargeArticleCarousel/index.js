@@ -14,7 +14,7 @@ import LazyLoad from 'react-lazyload';
   }
 
   return (
-    <li className={`pb-2 carousel-slide level-${id}`}>
+    <div className={`pb-2 carousel-slide level-${id}`}>
       <a href={link}>
         <LazyLoad height={150}>
           <img rel="preconnect" src={image || postImg} alt={title} className="img-thumbnail mx-auto d-block" />
@@ -22,7 +22,7 @@ import LazyLoad from 'react-lazyload';
         <h5 className="mt-3 mb-2 text-center">{category}</h5>
         <p className="text-muted small-excerpt text-center">{title}</p>
       </a>
-    </li>
+    </div>
   ) 
 }
 

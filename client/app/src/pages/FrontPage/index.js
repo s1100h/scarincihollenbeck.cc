@@ -24,21 +24,21 @@ class FrontPage extends Component {
     const w = window.innerWidth;
 
     // fetch latest seo data
-    fetch(`${process.env.API_URL}/wp-json/front-page/meta`)
+    fetch(`${process.env.ADMIN_URL}/wp-json/front-page/meta`)
       .then((res) => res.json())
       .then((seo) => {
         this.setState({ seo });
       })
       .then(() => {
         // fetch latest firm news data
-        fetch(`${process.env.API_URL}/wp-json/front-page/news`)
+        fetch(`${process.env.ADMIN_URL}/wp-json/front-page/news`)
           .then((res) => res.json())
           .then((data) => {
             const posts = data;
             return posts;
           })
           .then((results) => {
-            fetch(`${process.env.API_URL}/wp-json/front-page/events`)
+            fetch(`${process.env.ADMIN_URL}/wp-json/front-page/events`)
               .then((res) => res.json())
               .then((data) => {
                 const ePosts = data;
@@ -67,20 +67,7 @@ class FrontPage extends Component {
           });
       });
 
-       // large
-       if(w > 1690) {
-        this.setState({ end: 2})
-      }
-        
-      // small-medium 1200
-      if (w < 1690 && w > 650) {
-        this.setState({ end: 2})
-      }
-  
-      // small 650
-      if (w <= 650 && w >= 0) {
-        this.setState({ end: 0})
-      }
+ 
   }
 
   onChange(event) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Carousel from '../Carousel'
+import CarouselContainer from '../Carousel'
 
 const currentYear = new Date().getFullYear();
 
@@ -13,64 +13,42 @@ class Footer extends Component {
     super(props);
     this.state = {
      slides: [],
-     end: 2,
     };
   }
 
   componentDidMount() {
-    const w = window.innerWidth;
-    fetch(`${process.env.API_URL}/wp-json/just-in/posts`, { headers })
+    fetch(`${process.env.ADMIN_URL}/wp-json/just-in/posts`, { headers })
       .then((res) => res.json())
       .then((slides) => this.setState({ slides }));
 
-    
-    // large
-    if(w > 1690) {
-      this.setState({ end: 3})
-    }
-    
-    // medium 1690
-    if (w <= 1690 && w >= 1200) {
-      this.setState({ end: 2})
-    }
-
-    // small-medium 1200
-    if (w <= 1200 && w >= 650) {
-      this.setState({ end: 1})
-    }
-
-    // small 650
-    if (w <= 650 && w >= 0) {
-      this.setState({ end: 0})
-    }
 
   }
 
   render() {
-    const { slides, end } = this.state; 
+    const { slides } = this.state; 
     
     return (
       <div className="container-fluid bk--gray d-print-none">
-        <Carousel sliderType="JustInCarousel" slides={slides} start={0} end={end} arrowSize={2} />
+        <div className="just-in-container">
+          <CarouselContainer sliderType="JustInCarousel" slides={slides}  />
+        </div>
         <footer>
           <div className="container-fluid h-100 mt-5 w-75 bk--gray">
-            <div className="row border--red mb-3 align-items-center h-100">
-              <div className="col-sm-6 text-right">
-                <form className="search-form h-100 justify-content-center" role="search" action={`${process.env.API_URL}`} method="get">
-                  <label htmlFor="searchSite">
-                    <span className="screen-reader-text">Search for:</span>
-                    <input
-                      name="s"
-                      id="searchSite"
-                      title="Search for:"
-                      className="search-field footer--search--bar--inner"
-                      type="search"
-                      placeholder="Search Site..."
-                      defaultValue=""
-                    />
-                  </label>
-                </form>
-              </div>
+            <div className="d-flex justify-content-end border--red mb-3">
+              <form className="search-form" role="search" action={`${process.env.API_URL}`} method="get">
+                <label htmlFor="searchSite">
+                  <span className="screen-reader-text">Search for:</span>
+                  <input
+                    name="s"
+                    id="searchSite"
+                    title="Search for:"
+                    className="search-field footer--search--bar--inner mw-400"
+                    type="search"
+                    placeholder="Search Site..."
+                    defaultValue=""
+                  />
+                </label>
+              </form>
             </div>
             <div className="row pb-3 mb-0">
               <div className="col-sm-6">

@@ -19,7 +19,7 @@ function JustInCarousel(props) {
   const publishDate = date;
 
   return (
-    <li className={`JustInCarouselContent card carousel-slide level-${id}`}>
+    <div className={`JustInCarouselContent card carousel-slide level-${id}`}>
       <a rel="preconnect" href={link}>
         <p className="just-in-header">
           <span className="category">
@@ -42,7 +42,7 @@ function JustInCarousel(props) {
           {location}
         </p>
       </a>    
-    </li>
+    </div>
   ) 
 }
 

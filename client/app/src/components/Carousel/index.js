@@ -1,79 +1,77 @@
-import React, { Component } from 'react';
-import NextArrow from './NextArrow';
-import PreviousArrow from './PreviousArrow';
+import React from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import JustInCarousel from './JustInCarousel';
 import LargeArticleCarousel from './LargeArticleCarousel';
 import LocationCarousel from './LocationCarousel';
 
-class Carousel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-     startCount: 0,
-     endCount: 2
-    };
-    this.previousImage = this.previousImage.bind(this);
-    this.nextImage = this.nextImage.bind(this);
-    this.renderSlides = this.renderSlides.bind(this);
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
+
+const jiResponsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
+
+function renderSlides(type, slides) {
+  if (type === 'LargeArticle') { 
+    return slides.map(post => <LargeArticleCarousel key={post.title} post={post} />)
   }
 
-  previousImage() {
-    const { slides } = this.props;
-    const { startCount, endCount } = this.state;    
-    const arrLength = parseInt(slides.length, 10);
-
-    const previousStartIndex = (startCount <= 0) ? arrLength - 3 : startCount - 1; 
-    const previousEndIndex = (startCount <= 0 ) ?  arrLength - 1: endCount - 1;
-
-    this.setState({ startCount: previousStartIndex });
-    this.setState({ endCount: previousEndIndex });   
+  if (type === 'Location') {
+    return slides.map(post => <LocationCarousel key={post.id} post={post} />)
   }
 
-  nextImage() {
-    const { slides } = this.props;
-    const { startCount, endCount } = this.state; 
-    const arrLength = parseInt(slides.length, 10);
-
-    const nextStartIndex = (endCount === arrLength) ?  0 : startCount + 1; 
-    const nextEndIndex = (endCount === arrLength) ? 2 : endCount + 1;    
-   
-    this.setState({ startCount: nextStartIndex });
-    this.setState({ endCount: nextEndIndex });
+  if(type === 'JustInCarousel') {
+    return slides.map(post => <JustInCarousel key={post.id} post={post} />)
   }
 
-  renderSlides() {
-    const { slides, sliderType } = this.props;
-    const { startCount, endCount } = this.state; 
-
-    if (sliderType === 'LargeArticle') { 
-      return slides.map((post, index) => (index >= startCount && index <= endCount) && <LargeArticleCarousel key={post.title} post={post} id={index} />)
-    }
-
-    if (sliderType === 'Location') {
-      return slides.map((post, index) => (index >= startCount && index <= endCount) && <LocationCarousel key={post.id} post={post} id={index} />)
-    }
-
-    if(sliderType === 'JustInCarousel') {
-      return slides.map((post, index) => (index >= startCount && index <= endCount) && <JustInCarousel key={post.id} post={post} id={index} />)
-    }
-    
-  }
-
-  render() {
-    const {  arrowSize, slides, sliderType } = this.props; 
-    return (
-      <div className="mx-auto d-block w-100">
-        <div id="carousel-slider">
-          <PreviousArrow previousImage={this.previousImage} arrowSize={arrowSize} />
-          <ul className="list-unstyled carousel-slider-track">
-            {(slides.length > 0) && this.renderSlides()} 
-          </ul>
-          <NextArrow nextImage={this.nextImage} arrowSize={arrowSize}/>
-        </div>
-      </div>
-
-    )
-  }  
 }
 
-export default Carousel
+function CarouselContainer (props) {
+  const { slides, sliderType } = props;   
+    return (slides.length > 0) &&  (
+      <Carousel
+        responsive={(sliderType === 'JustInCarousel') ? jiResponsive : responsive}
+        infinite
+        arrows
+        swipeable
+      >
+        {(slides.length > 0) && renderSlides(sliderType, slides) }
+      </Carousel>
+    )
+}
+
+export default CarouselContainer;

@@ -1,15 +1,14 @@
+# build a production version of the site
 # pull official base image
-FROM node:13.12.0-alpine
+FROM node:alpine
 
 # create api dir for caching workers
-RUN mkdir /client
+RUN mkdir /src
 
-WORKDIR /client
-ADD app/package.json /client/package.json
-ADD app/package-lock.json /client/package-lock.json
-RUN npm install
-RUN npm rebuild node-sass
+WORKDIR /src
+ADD app/package.json /src/package.json
+ADD app/package-lock.json /src/package-lock.json
+
+
 
 EXPOSE 8500
-
-ENTRYPOINT [ "npm", "start" ]

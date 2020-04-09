@@ -50,6 +50,7 @@ import './styles/navigation.scss';
 import './styles/archive-attorneys.scss';
 import './styles/single-attorney.scss';
 import './styles/single.scss';
+import './styles/footer.scss';
 
 
 /** 

@@ -3,7 +3,7 @@ services:
   client:
     build: client/
     volumes:
-      - "./client/app:/client"
+      - "./client/app:/src"
     environment:
       - API_URL=${ADMIN_SITE}
       - CACHED_URL=${CACHED_API}

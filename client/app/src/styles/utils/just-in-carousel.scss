@@ -1,19 +1,25 @@
+.just-in-container {
+  max-width: 1416px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .JustInCarouselContent  {
   margin: 1rem;
   padding:.4rem;
   background-color: white;
-  width: 412px;
 }
 .JustInCarouselContent > a > .just-in-header {
   font-size:.7rem;
   color:white;
   background: linear-gradient(360deg, #901918 60%, #DD2624 100%);
-  padding: 1rem;
-  padding-bottom: 2rem;
+  min-height: 38px;
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 .JustInCarouselContent > a > .just-in-header > .category {
-  float:left;
-  font-size: 1rem;
+  float: left;
+  font-size: .8rem;
 }
 .JustInCarouselContent > a > .just-in-header > .category svg {
   margin-right: 4px;
@@ -43,8 +49,9 @@
   text-align:center;
 }
 .JustInCarouselContent > a > .just-in-content > h5 {
-  font-size: .9rem;
+  font-size: 1rem;
   color: black;
+  padding: 3px;
 }
 .just-in-toggles {
 font-size: 2rem;

@@ -173,6 +173,8 @@ function front_page_scripts() {
 }
 // add scripts and styles to single location
 add_action("wp_enqueue_scripts", "front_page_scripts" );
+// load front page API endpoint
+require_once plugin_dir_path(__FILE__) . "/includes/rest/front-page-rest.php";
 /**
  * Events Single scripts
  *
@@ -235,7 +237,7 @@ require_once plugin_dir_path(__FILE__) . "/includes/rest/archive-career-rest.php
  * @since 1.0.0
  */
 function page_scripts() {
-	if(is_page(array(29484, 28190, 29496, 28204, 29767, 29710, 30866, 32316))){
+	if(is_page(array(29484, 28190, 29496, 28204))){
     wp_enqueue_style("page", get_template_directory_uri() ."/includes/assets/css/page.min.css", array("sh-law-theme"), null, "screen"); 
     wp_enqueue_script( "vendor", get_template_directory_uri()  . "/includes/assets/js/vendor.min.js", null, null, true );
     wp_enqueue_script( "page", get_template_directory_uri()  . "/includes/assets/js/page.min.js", array("vendor"), null, true );
@@ -263,7 +265,6 @@ function search_scripts() {
 add_action("wp_enqueue_scripts", "search_scripts" );
 // load searcg events API endpoints
 require_once plugin_dir_path(__FILE__) . "/includes/rest/search-rest.php";
-require_once plugin_dir_path(__FILE__) . "/includes/rest/search-obj-rest.php";
 /**
  * Single scripts
  *
@@ -318,41 +319,6 @@ function firm_overview_scripts() {
 add_action("wp_enqueue_scripts", "firm_overview_scripts");
 // load single events API endpoints
 require_once plugin_dir_path(__FILE__) . "/includes/rest/firm-overview-rest.php";
-
-/**
- * Covid Response scripts
- *
- * enqueues scripts and styles for covid response page
- *
- * @since 1.0.0
- */
-function covid_response_scripts() {
-	if(is_page_template('template-covid-response.php')){
-    wp_enqueue_style("covid-response", get_template_directory_uri() ."/includes/assets/css/covid-response.min.css", array("sh-law-theme"), null, "screen"); 
-    wp_enqueue_script("vendor", get_template_directory_uri()  . "/includes/assets/js/vendor.min.js", null, null, true );
-    wp_enqueue_script("covid-response", get_template_directory_uri()  . "/includes/assets/js/covid-response.min.js", array("vendor"), null, true );
-	} 
-}
-// add scripts and styles to firm overview
-add_action("wp_enqueue_scripts", "covid_response_scripts");
-
-/**
- * Subscription page
- *
- * enqueues scripts and styles for covid response page
- *
- * @since 1.0.0
- */
-function subscription_page_scripts() {
-	if(is_page_template('template-subscription.php')){
-    wp_enqueue_style("subscription", get_template_directory_uri() ."/includes/assets/css/subscription-page.min.css", array("sh-law-theme"), null, "screen"); 
-    wp_enqueue_script("vendor", get_template_directory_uri()  . "/includes/assets/js/vendor.min.js", null, null, true );
-    wp_enqueue_script("subscription", get_template_directory_uri()  . "/includes/assets/js/subscription-page.min.js", array("vendor"), null, true );
-	} 
-}
-// add scripts and styles to firm overview
-add_action("wp_enqueue_scripts", "subscription_page_scripts");
-
 /**
  * Contact page scripts
  *
@@ -558,30 +524,6 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     return false;
 }
 
-// load preview post API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-single-rest.php";
-
-// load preview admin API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-admin-rest.php";
-
-// load preview practice API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-practice-rest.php";
-
-// load preview office API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-location-rest.php";
-
-// load preview career API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-career-rest.php";
-
-// load preview attorney API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-attorney-rest.php";
-
-// load preview page API endpoints
-require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-page-rest.php";
-
-// load preview page with firm-page template API endpoints
-// require_once plugin_dir_path(__FILE__) . "/includes/rest/preview-firm-page-rest.php";
-
 
 // remove wp editor from firmpage template
 function remove_editor() {
@@ -596,4 +538,58 @@ function remove_editor() {
 }
 add_action('init', 'remove_editor');
 
+/** Enable Better Meta Data support for custom WP Rest Routes */
+add_action( 'rest_api_init', 'wp_rest_filter_add_filters' );
+ /**
+  * Add the necessary filter to each post type
+  **/
+function wp_rest_filter_add_filters() {
+    foreach ( get_post_types( array( 'show_in_rest' => true ), 'objects' ) as $post_type ) {
+        add_filter( 'rest_' . $post_type->name . '_query', 'wp_rest_filter_add_filter_param', 10, 2 );
+    }
+}
+/**
+ * Add the filter parameter
+ *
+ * @param  array           $args    The query arguments.
+ * @param  WP_REST_Request $request Full details about the request.
+ * @return array $args.
+ **/
+function wp_rest_filter_add_filter_param( $args, $request ) {
+    // Bail out if no filter parameter is set.
+    if ( empty( $request['filter'] ) || ! is_array( $request['filter'] ) ) {
+        return $args;
+    }
+    $filter = $request['filter'];
+    if ( isset( $filter['posts_per_page'] ) && ( (int) $filter['posts_per_page'] >= 1 && (int) $filter['posts_per_page'] <= 100 ) ) {
+        $args['posts_per_page'] = $filter['posts_per_page'];
+    }
+    global $wp;
+    $vars = apply_filters( 'rest_query_vars', $wp->public_query_vars );
+    function allow_meta_query( $valid_vars )
+    {
+        $valid_vars = array_merge( $valid_vars, array( 'meta_query', 'meta_key', 'meta_value', 'meta_compare' ) );
+        return $valid_vars;
+    }
+    $vars = allow_meta_query( $vars );
 
+    foreach ( $vars as $var ) {
+        if ( isset( $filter[ $var ] ) ) {
+            $args[ $var ] = $filter[ $var ];
+        }
+    }
+    return $args;
+}
+
+// load single admin API endpoints
+require_once plugin_dir_path(__FILE__) . "/includes/rest/core-practices-rest.php";
+
+
+// load just in posts API endpoints
+require_once plugin_dir_path(__FILE__) . "/includes/rest/just-in-posts-rest.php";
+
+
+function get_relative_permalink( $url ) {
+  $url = get_permalink();
+  return str_replace( home_url(), "", $url );
+}

@@ -124,7 +124,7 @@ module.exports = {
       path: '.env.prod',
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      filename: './src/index.html',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].bundle.css',
@@ -148,6 +148,5 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
     }),
-    new BundleAnalyzerPlugin()
   ],
 };

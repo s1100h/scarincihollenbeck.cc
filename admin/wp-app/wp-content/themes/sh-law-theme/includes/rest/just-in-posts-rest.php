@@ -26,7 +26,7 @@ function get_categories_for_posts ($post_id) {
 function get_just_in_posts () {
 	
 	$args = array(
-		'category' => 1321,
+		'category' => 97,
 		'numberposts' => 10
 	);
 
