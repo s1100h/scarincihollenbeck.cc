@@ -314,7 +314,7 @@ add_action('rest_api_init', function()
       "videos" => get_field("attorney_videos", $attorney_id),
       "education" => get_field("education", $attorney_id),
       "barAdmissions" => get_field("bar_admissions", $attorney_id),
-      "additionalInforamtion" => get_field("additional_information", $attorney_id),
+      "additionalInformation" => get_field("additional_information", $attorney_id),
       "seo" => (object)array(
 	"office_id" => $office_id,      
 	"title" => get_post_meta($attorney_id, '_yoast_wpseo_title', true),

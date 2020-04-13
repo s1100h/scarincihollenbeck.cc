@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import ArchiveHead from '../../components/Head/archive';
 import FullWidth from '../../layouts/FullWidth';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
@@ -21,7 +20,6 @@ class CareerBody extends Component {
       keyword: '',
       location: '',
       type: '',
-      spinner: false,
     };
 
     this.filterTerm = this.filterTerm.bind(this);
@@ -31,12 +29,12 @@ class CareerBody extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/career-portal/careers`)
+    fetch(`${process.env.ADMIN_URL}/wp-json/career-portal/careers`)
       .then((res) => res.json())
       .then((data) => {
         const positions = data.careers;
         const { seo } = data;
-        this.setState({ positions, seo, spinner: false });
+        this.setState({ positions, seo });
       });
   }
 
@@ -85,21 +83,17 @@ class CareerBody extends Component {
             recruit, retain, and promote the best attorneys."
         />
         <FullWidth>
-          {
-            (!spinner) ? (
-              <CareerSection
-                sort={sort}
-                positions={positions}
-                keyword={keyword}
-                type={type}
-                career={career}
-                location={location}
-                selectOption={this.selectOption}
-                filterTerm={this.filterTerm}
-                clearFilter={this.clearFilter}
-              />
-            ) : <PulseLoader color="#D02422" loading={spinner} />
-          }
+          <CareerSection
+            sort={sort}
+            positions={positions}
+            keyword={keyword}
+            type={type}
+            career={career}
+            location={location}
+            selectOption={this.selectOption}
+            filterTerm={this.filterTerm}
+            clearFilter={this.clearFilter}
+          />
           <EEOpportunityContent content="EE content will og here" />
         </FullWidth>
       </div>

@@ -47,15 +47,15 @@ const jiResponsive = {
 
 function renderSlides(type, slides) {
   if (type === 'LargeArticle') { 
-    return slides.map(post => <LargeArticleCarousel key={post.title} post={post} />)
+    return slides.map(post => <LargeArticleCarousel id={post.title} key={post.title} post={post} />)
   }
 
   if (type === 'Location') {
-    return slides.map(post => <LocationCarousel key={post.id} post={post} />)
+    return slides.map(post => <LocationCarousel id={post.id} key={post.id} post={post} />)
   }
 
   if(type === 'JustInCarousel') {
-    return slides.map(post => <JustInCarousel key={post.id} post={post} />)
+    return slides.map(post => <JustInCarousel id={post.id} key={post.id} post={post} />)
   }
 
 }

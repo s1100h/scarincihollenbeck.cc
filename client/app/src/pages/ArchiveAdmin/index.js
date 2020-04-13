@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ArchiveHead from '../../components/Head/archive';
 import AttorneyCard from '../../components/AttorneyCard';
 import adminArchiveBckGround from './attorney-archive-header.jpg';
-import './index.scss';
-
 
 class AdminArchive extends Component {
   constructor(props) {
@@ -14,20 +11,19 @@ class AdminArchive extends Component {
     this.state = {
       admins: [],
       seo: {},
-      spinner: false,
     };
   }
 
   /* Fetch data events */
   componentDidMount() {
     // fetch admin list
-    this.setState({ spinner: true });
-    fetch('https://api.scarincilies.com/cached/administration-archives')
+    fetch(`${process.env.CACHED_URL}/cached/administration-archives`)
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;
         const { seo } = data;
-        this.setState({ admins, seo, spinner: false });
+        console.log(data);
+        this.setState({ admins, seo });
       });
   }
 
@@ -35,7 +31,7 @@ class AdminArchive extends Component {
     const {
       admins,
       seo,
-      spinner,
+
     } = this.state;
 
     return (
@@ -47,10 +43,10 @@ class AdminArchive extends Component {
           subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
         />
         <FullWidth>
-          <div className="container p-3 pt-4 border">
+          <div id="archive-admin" className="container p-3 pt-4 border">
             <div className="row">
               {
-                  (!spinner) ? admins.map((a) => (
+                  (admins.length > 0) && admins.map((a) => (
                     <div key={a.ID} className="col-sm-12 col-md-6 col-lg-4 mb-2">
                       <AttorneyCard
                         image={a.image.url}
@@ -63,7 +59,7 @@ class AdminArchive extends Component {
                         width="107px"
                       />
                     </div>
-                  )) : <PulseLoader color="#D02422" loading={spinner} />
+                  ))
                 }
             </div>
           </div>

@@ -34,15 +34,14 @@ class AttorneyBiography extends Component {
     this.toggleReadMore = this.toggleReadMore.bind(this);
     this.setSideBarTab = this.setSideBarTab.bind(this);
   }
-
   componentDidMount() {
-    // get attorny from react router url
     const { attorney } = this.props.match.params;
-    this.setState({ spinner: true });
-    this.fetchPostData(`${process.env.API_URL}/wp-json/individual-attorney/attorney/${attorney}`);
+    this.fetchPostData(`${process.env.ADMIN_URL}/wp-json/individual-attorney/attorney/${attorney}`)
   }
 
+
   fetchPostData(url) {
+
     this.setState({ loading: true });
     fetch(url)
       .then((res) => res.json())
@@ -52,6 +51,7 @@ class AttorneyBiography extends Component {
           const firstMatterTab = bio.representativeMatters[0].title;
           matterTab = firstMatterTab;
         }
+        console.log(bio);
 
         this.setState({ matterTab, bio, spinner: false });
       });
@@ -102,7 +102,7 @@ class AttorneyBiography extends Component {
       representativeMatters,
       representativeClients,
       relatedPractices,
-      additionalInforamtion,
+      additionalInformation,
       education,
       barAdmissions,
       eventPosts,
@@ -120,24 +120,22 @@ class AttorneyBiography extends Component {
       seo,
     } = bio;
 
-
-    // combine education, bar admissions, and additional info
-    // into one array
     let ai;
+    const ed = {
+      title: 'Education',
+      content: education,
+    };
 
-    if (additionalInforamtion !== undefined) {
-      const ed = {
-        title: 'Education',
-        content: education,
-      };
+    const ad = {
+      title: 'Bar Admissions',
+      content: barAdmissions,
+    };
 
-      const ad = {
-        title: 'Bar Admissions',
-        content: barAdmissions,
-      };
-
-      ai = [ed, ad, ...additionalInforamtion];
+    if (additionalInformation !== undefined && additionalInformation !== false) {
+      ai = [ed, ad, ...additionalInformation];
     }
+    
+    ai = [ed, ad];
 
     // combine and sort news articles & events articles
     let newsEventArticles = [];
@@ -243,7 +241,7 @@ class AttorneyBiography extends Component {
               />
             </div>
           )
-        }
+        } 
       </div>
     );
   }

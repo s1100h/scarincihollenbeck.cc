@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AttorneyCard from '../../../components/AttorneyCard';
-import { sortByKey } from '../../../utils/helpers';
-import './index.scss';
+import AttorneyCard from '../../components/AttorneyCard';
+import { sortByKey } from '../../utils/helpers';
 
 const attorneySlug = (string) => string.split('/attorneys/').pop();
 
@@ -17,7 +16,7 @@ const BodyContent = (props) => {
   const sortedAttorneys = sortByKey(attorneys, 'lastName');
 
   return (
-    <div>
+    <div id="location-body">
       <h4 className="bg-light-gray text-capitalize">
         {title}
         {' '}

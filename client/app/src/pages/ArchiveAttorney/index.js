@@ -37,7 +37,7 @@ class AttorneyArchive extends Component {
   componentDidMount() {
     // fetch attorney list
     this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/attorneys/`)
+    fetch(`${process.env.ADMIN_URL}/wp-json/attorney-search/attorneys/`)
       .then((res) => res.json())
       .then((attorneys) => {
         this.setState({ attorneys, spinner: false });
@@ -56,7 +56,7 @@ class AttorneyArchive extends Component {
       });
 
     // get page seo data
-    fetch(`${process.env.API_URL}/wp-json/attorney-search/meta`)
+    fetch(`${process.env.ADMIN_URL}/wp-json/attorney-search/meta`)
       .then((res) => res.json())
       .then((seo) => this.setState({ seo }));
   }

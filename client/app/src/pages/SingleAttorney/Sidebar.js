@@ -8,12 +8,14 @@ import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
 const SidebarContent = (props) => {
   const { title, content, show, setSideBarTab, currentSidebarTab } = props;
+  console.log(props);
+  console.log(show);
 
   return (
     <div>
       <a href={`#${urlify(title)}`} onClick={(e) => setSideBarTab(title)} className="sidebar-title" data-toggle="collapse">
         {title}
-        {(title === currentSidebarTab || show) ?  <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} /> }
+        {(title === currentSidebarTab || show) ?  <FontAwesomeIcon icon={faMinus} className="sidebar-icon" /> : <FontAwesomeIcon icon={faPlus} className="sidebar-icon" /> }
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">

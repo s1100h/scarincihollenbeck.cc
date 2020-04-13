@@ -1,0 +1,50 @@
+#single-admin {
+  .white-transparent-border {
+    border: 10.5px solid rgba(255, 255, 255, 0.5);
+    background-origin: border-box;
+  }
+
+  @media (min-width: 767px) and (max-width: 992px) {
+    .sidebar-title {
+      height: 70px;
+    }
+  }
+    
+  @media (min-width: 0px) and (max-width: 500px) {
+    .city-background {
+      height: 800px;
+    }
+    .bg-black {
+      min-height: 550px;
+    }
+  }
+  @media (min-width: 500px) and (max-width: 769px) {
+    .city-background {
+      height: 870px;
+    }
+    .bg-black {
+      min-height: 700px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .max-width-container {
+      max-width: 920px;
+    }
+  }
+  
+  @media (min-width: 0px) and (max-width: 767px) {
+    .white-transparent-border {
+      width: 60%;
+      display: block;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .line-header {
+      text-align: left;
+    }
+    .line-header h3 {
+      width: 100%;
+      display:block;
+    }
+  }
+}

@@ -3,10 +3,10 @@
   .line-header .active {
     color: #bd2220;
     text-decoration: underline;
-  }
-  .line-header .active {
     color: #bd2220;
     text-decoration: underline;
+    font-size: 1.2rem;
+    text-shadow: 1px 2px 4px #999;
   }
   .line-header h3:hover {
     cursor: pointer;
@@ -136,6 +136,10 @@
     color: white !important;
     text-decoration: underline !important;
   }
+  .sidebar-icon {
+    float: right;
+    margin-top: 5px;
+  }
   .no-dots > li {
     line-height: 1;
     font-weight: 500;
@@ -156,6 +160,12 @@
     margin-bottom: 12px;
     line-height: 1.1;
     margin-right: 11px;
+  }
+  /** featured slider stylings **/
+  .featured-article-attorney-container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   @media (min-width: 767px) and (max-width: 992px) {
     .sidebar-title {

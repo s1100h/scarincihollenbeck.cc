@@ -1,14 +1,9 @@
-# build a production version of the site
-# pull official base image
-FROM node:alpine
+FROM ubuntu:latest
 
-# create api dir for caching workers
-RUN mkdir /src
+# update ubuntu
+RUN apt-get update
+RUN apt-get install nginx -y
+COPY app/dist /var/www/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
-WORKDIR /src
-ADD app/package.json /src/package.json
-ADD app/package-lock.json /src/package-lock.json
-
-
-
-EXPOSE 8500

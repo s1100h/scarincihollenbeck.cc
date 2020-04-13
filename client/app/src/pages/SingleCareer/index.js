@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
@@ -22,7 +21,6 @@ class Page extends Component {
       currentDescription: '',
       currentId: '',
       seo: {},
-      spinner: false,
       show: false,
       message: false,
       form: {
@@ -35,6 +33,7 @@ class Page extends Component {
         firstName: '',
         lastName: '',
         title: '',
+        spinner:false
       },
     };
     this.formSubmit = this.formSubmit.bind(this);
@@ -47,8 +46,8 @@ class Page extends Component {
   componentDidMount() {
     const { match } = this.props;
     const { career } = match.params;
-    this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/individual-career/career/${career}`)
+
+    fetch(`${process.env.ADMIN_URL}/wp-json/individual-career/career/${career}`)
       .then((res) => res.json())
       .then((data) => {
         const { title, positionDescription, seo } = data;
@@ -58,7 +57,7 @@ class Page extends Component {
           currentTitle: title,
           currentDescription: positionDescription,
           seo,
-          spinner: false,
+          spinner: true,
         });
       });
   }
@@ -152,36 +151,32 @@ class Page extends Component {
     return (
       <div>
         <PageHead seo={seo} />
-        {(!spinner) ? (
-          <div>
-            <SingleSubHeader
-              image={blogHeader}
-              title={currentTitle}
-              subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
-            />
-            <LargeSidebar
-              body={(
-                <div>
-                  <BreadCrumb currentTitle={currentTitle} />
-                  <Body
-                    currentTitle={currentTitle}
-                    currentDescription={currentDescription}
-                    message={message}
-                    formSubmit={this.formSubmit}
-                    formChange={this.formChange}
-                    lastName={lastName}
-                    firstName={firstName}
-                    email={email}
-                    phone={phone}
-                    fileUpload={this.fileUpload}
-                  />
-                  <ContactForm />
-                </div>
-              )}
-              sidebar={(<Sidebar show={show} toggleModal={this.toggleModal} />)}
-            />
-          </div>
-        ) : <PulseLoader color="#D02422" loading={spinner} />}
+        <SingleSubHeader
+          image={blogHeader}
+          title={currentTitle}
+          subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
+        />
+        <LargeSidebar
+          body={(
+            <div>
+              <BreadCrumb currentTitle={currentTitle} />
+              <Body
+                currentTitle={currentTitle}
+                currentDescription={currentDescription}
+                message={message}
+                formSubmit={this.formSubmit}
+                formChange={this.formChange}
+                lastName={lastName}
+                firstName={firstName}
+                email={email}
+                phone={phone}
+                fileUpload={this.fileUpload}
+              />
+              <ContactForm />
+            </div>
+          )}
+          sidebar={(<Sidebar show={show} toggleModal={this.toggleModal} />)}
+        />
       </div>
     );
   }

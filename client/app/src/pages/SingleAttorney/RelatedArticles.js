@@ -11,7 +11,11 @@ const RelatedArticles = (props) => {
     <div className="mt-4 w-100 d-block attorney-news-slider">
       <h4 className="bg-light-gray">{title}</h4>
       {
-        (content.length > 3) ? <Carousel sliderType="LargeArticle" slides={content} start={0} end={3} arrowSize={1} /> : (
+        (content.length > 3) ? (
+          <div className="featured-article-attorney-container">
+            <Carousel sliderType="LargeArticle" slides={content} />
+          </div>
+        ) : (
           <div className="container">
             <div className="row">
               { content.map((v) => (

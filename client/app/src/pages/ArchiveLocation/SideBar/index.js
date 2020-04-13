@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { sortByKey, addRandomKey } from '../../../utils/helpers';
 import OfficeData from './OfficeData';
 import OfficeArticles from './OfficeArticles';
-import './index.scss';
-
 
 const SideBar = (props) => {
   const {
@@ -19,7 +17,7 @@ const SideBar = (props) => {
   const officeList = sortByKey(offices, 'title');
 
   return (
-    <div>
+    <div id="location-sidebar">
       {
         officeList.map((o) => (
           <OfficeData

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  FaPhone, FaEnvelope, FaPlus, FaMinus,
-} from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import PropTypes from 'prop-types';
 import { locationUrl } from '../../../utils/helpers';
-import './index.scss';
+
 
 const OfficeData = (props) => {
   const {
@@ -22,7 +24,7 @@ const OfficeData = (props) => {
     <div className="mb-2">
       <Link to={{ pathname: `/location/${locationUrl(title)}`, state: 'desiredState' }} className="sidebar-title">
         {title}
-        {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FaMinus className="float-right" /> : <FaPlus className="float-right" /> }
+        {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} className="text-white" /> }
       </Link>
       <div id={`${locationUrl(title)}`} className={(locationUrl(title) === currentOffice.replace(' ', '-')) ? 'collapse show' : 'collapse'}>
         <div className="off-white p-3">
@@ -30,11 +32,11 @@ const OfficeData = (props) => {
             {address.map((a) => <li key={a} className="mb-1">{a}</li>)}
           </ul>
           <p className="mb-0">
-            <FaPhone />
+            <FontAwesomeIcon icon={faPhone} className="text-white" />
             <span className="proxima-regular">{`  ${phone}`}</span>
           </p>
           <p className="mb-2">
-            <FaEnvelope />
+            <FontAwesomeIcon icon={faEnvelope} className="text-white" />
             <span className="proxima-regular">{`  ${fax}`}</span>
           </p>
           <button type="button" className="red-title proxima-bold btn bg-transparent ml--10" onClick={() => getLocationDirections(shortName)}>

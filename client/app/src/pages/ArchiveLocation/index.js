@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { PulseLoader } from 'react-spinners';
 import { getDirectionsFromLocation } from '../../utils/helpers';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
@@ -9,8 +8,8 @@ import LocationHead from '../../components/Head/location';
 import locArchiveBckGround from './citybackground.jpg';
 
 /** lazy load components */
-import BodyContent from './BodyContent';
-import Sidebar from './Sidebar';
+import BodyContent from './BodyContent.js';
+import SideBar from './SideBar/';
 
 class LocationPortal extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class LocationPortal extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch('https://api.scarincilies.com/cached/office-locations')
+    fetch(`${process.env.CACHED_URL}/cached/office-locations`)
       .then((res) => res.json())
       .then((data) => {
         const { offices } = data;
@@ -63,7 +62,7 @@ class LocationPortal extends Component {
   }
 
   fetchOfficeData(location) {
-    const url = `${process.env.API_URL}/wp-json/individual-location/office/${location}`;
+    const url = `${process.env.ADMIN_URL}/wp-json/individual-location/office/${location}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -84,7 +83,7 @@ class LocationPortal extends Component {
         });
       });
 
-    fetch(`${process.env.API_URL}/wp-json/individual-location/posts/${location}`)
+    fetch(`${process.env.ADMIN_URL}/wp-json/individual-location/posts/${location}`)
       .then((res) => res.json())
       .then((posts) => this.setState({ posts }));
   }
@@ -109,27 +108,25 @@ class LocationPortal extends Component {
           subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C. and San Francisco, CA, with our head quarters in Lyndhurst, NJ.`}
           image={locArchiveBckGround}
         />
-        {(!spinner) ? (
-          <LargeSidebar
-            body={(
-              <BodyContent
-                attorneys={currentOfficeAttorneys}
-                practices={currentOfficePractice}
-                map={currentOfficeMap}
-                title={currentOffice}
-              />
-)}
-            sidebar={(
-              <SideBar
-                title={currentOffice}
-                posts={posts}
-                offices={offices}
-                getLocationDirections={this.getLocationDirections}
-                setNewLocation={this.setNewLocation}
-              />
-            )}
-          />
-        ) : <PulseLoader color="#D02422" loading={spinner} />}
+        <LargeSidebar
+          body={(
+            <BodyContent
+              attorneys={currentOfficeAttorneys}
+              practices={currentOfficePractice}
+              map={currentOfficeMap}
+              title={currentOffice}
+            />
+          )}
+          sidebar={(
+            <SideBar
+              title={currentOffice}
+              posts={posts}
+              offices={offices}
+              getLocationDirections={this.getLocationDirections}
+              setNewLocation={this.setNewLocation}
+            />
+          )}
+        />
       </div>
     );
   }

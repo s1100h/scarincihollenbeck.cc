@@ -224,12 +224,15 @@ function get_location_posts($request) {
     foreach($location_posts as $post) {
       $att = get_field('related_attorneys', $post->ID);
       $related_att = [];
-      foreach($att as $a) {
-        $related_att[] = array(
-          "link" => "/attorneys/".$a->post_name,
-          "name" => $a->post_title
-        );
+      if(is_array($att)) {
+        foreach($att as $a) {
+          $related_att[] = array(
+            "link" => "/attorneys/".$a->post_name,
+            "name" => $a->post_title
+          );
+        }
       }
+
 
       $location_post_data[] = array(
         "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($post->ID))),

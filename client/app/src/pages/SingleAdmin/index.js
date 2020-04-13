@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import AdminHead from '../../components/Head/admin';
 import MultiSubHeader from '../../layouts/MultiSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import { createMarkup } from '../../utils/helpers';
-import './index.scss';
 import attorneyHeader from './attorney-header.jpg';
 
 
@@ -15,21 +13,19 @@ class AdminBiography extends Component {
     super(props);
     this.state = {
       admin: [],
-      spinner: false,
     };
     this.fetchPostData = this.fetchPostData.bind(this);
   }
 
   componentDidMount() {
     const { admin } = this.props.match.params;
-    this.setState({ spinner: true });
-    this.fetchPostData(`${process.env.API_URL}/wp-json/individual-admin/admin/${admin}`);
+    this.fetchPostData(`${process.env.ADMIN_URL}/wp-json/individual-admin/admin/${admin}`);
   }
 
   fetchPostData(url) {
     fetch(url)
       .then((res) => res.json())
-      .then((admin) => this.setState({ admin, spinner: false }));
+      .then((admin) => this.setState({ admin }));
   }
 
   render() {
@@ -44,14 +40,13 @@ class AdminBiography extends Component {
       vizibility,
       phone_extension,
       seo,
-      spinner,
     } = admin;
 
     return (
       <div>
         <AdminHead seo={seo} />
-        {(!spinner) ? (
-          <div>
+        {(admin) && (
+          <div id="single-admin">
             <MultiSubHeader
               image={attorneyHeader}
               profile={(
@@ -84,7 +79,7 @@ class AdminBiography extends Component {
               </div>
             </FullWidth>
           </div>
-        ) : <PulseLoader color="#D02422" loading={spinner} />}
+        )}
       </div>
     );
   }

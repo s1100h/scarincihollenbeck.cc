@@ -6,19 +6,28 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
-// pages
-//import FrontPage from './pages/FrontPage';
+
+/**
+ *  Home Page
+ */
 const FrontPage = lazy(() => import(/* webpackPreload: true */ './pages/FrontPage'));
+
+/**
+ *  Archive Pages
+ */
 const ArchiveAttorney = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveAttorney'));
-const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/SingleAttorney'))
-// const  = lazy(() => import('./pages/ArchiveAttorney'));
-// import ArchiveAttorney from './pages/ArchiveAttorney';
-// import ArchiveAdmin from './pages/ArchiveAdmin';
-// import SingleAdmin from './pages/SingleAdmin';
-// import SingleAttorney from ;
-// import SingleCareer from './pages/SingleCareer';
-// import ArchiveCareer from './pages/ArchiveCareer';
-// import ArchiveLocation from './pages/ArchiveLocation';
+const ArchiveCareer = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveCareer'));
+const ArchiveAdmin = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveAdmin'));
+const ArchiveLocation = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveLocation'));
+
+
+/**
+ *  Single Pages
+ */
+const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/SingleAttorney'));
+const SingleAdmin = lazy(() => import(/* webpackPreload: true */ './pages/SingleAdmin'));
+const SingleCareer = lazy(() => import(/* webpackPreload: true */ './pages/SingleCareer'));
+
 // import ArchivePractice from './pages/ArchivePractice';
 // import SinglePractice from './pages/SinglePractice';
 // import FirmPage from './pages/FirmPage';
@@ -48,7 +57,9 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './styles/main.scss';
 import './styles/navigation.scss';
 import './styles/archive-attorneys.scss';
+import './styles/archive-location.scss';
 import './styles/single-attorney.scss';
+import './styles/single-admin.scss';
 import './styles/single.scss';
 import './styles/footer.scss';
 
@@ -119,11 +130,14 @@ class SiteRoutes extends Component {
     }
   };
   componentDidMount() {
-    fetch(`${process.env.API_URL}/wp-json/single-page/page-list`)
-   .then(res => res.json())
-   .then(data => this.setState({sitePages: data}));
+    fetch(`${process.env.ADMIN_URL}/wp-json/single-page/page-list`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({sitePages: data})
+      });
   }
   render() {
+
     const { sitePages } = this.state; 
     const firmPages = [
       {
@@ -151,12 +165,17 @@ class SiteRoutes extends Component {
           <Route path='/' exact component={FrontPage} />
           <Route path='/attorneys' exact component={ArchiveAttorney} />
           <Route path='/attorney/:attorney' exact component={SingleAttorney} />
-          {/* <Route path='/administration' exact component={ArchiveAdmin} />
+          <Route path='/attorneys/:attorney' exact component={SingleAttorney} />
+          <Route path='/administration' exact component={ArchiveAdmin} />
           <Route path='/administration/:admin' exact component={SingleAdmin} />
+          <Route path='/administrations/:admin' exact component={SingleAdmin} />
           <Route path='/careers/' exact component={ArchiveCareer} />
           <Route path='/career/:career' exact component={SingleCareer} />
           <Route path='/locations' exact component={ArchiveLocation} />
           <Route path='/location/:location' exact component={ArchiveLocation} />
+          {/*                  
+          
+          
           <Route path='/practices' exact component={ArchivePractice} />
           <Route path='/law-practices' exact component={ArchivePractice} />
           <Route path='/practice/:practice' exact component={SinglePractice} />

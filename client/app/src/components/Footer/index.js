@@ -20,8 +20,6 @@ class Footer extends Component {
     fetch(`${process.env.ADMIN_URL}/wp-json/just-in/posts`, { headers })
       .then((res) => res.json())
       .then((slides) => this.setState({ slides }));
-
-
   }
 
   render() {
