@@ -1,26 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import AttorneyCard from '../../../components/AttorneyCard';
-
-import './index.scss';
-
+import AttorneyCard from '../../components/AttorneyCard';
 
 const RelatedAttorneys = (props) => {
   const { members, chair, handleLink } = props;
-  const attorneySlug = (string) => string.split('/attorneys/').pop();
 
   return (
     <div>
       { (chair.length > 0) ? (
-          <div className="container">
-            <div className="row bg-light-gray">
-              <div className="col-sm-12">
-                <h4 className="c-title">Practice Chair</h4>
-              </div>
+        <div className="container">
+          <div className="row bg-light-gray">
+            <div className="col-sm-12">
+              <h4 className="c-title">Practice Chair</h4>
             </div>
-            <div className="row">
-              {
+          </div>
+          <div className="row">
+            {
                 chair.map((v) => (
                   <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
                     <AttorneyCard
@@ -36,10 +32,9 @@ const RelatedAttorneys = (props) => {
                   </div>
                 ))
               }
-            </div>
           </div>
-        ) : ''
-        }
+        </div>
+      ) : ''}
       {
         (members) ? (
           <div className="container">

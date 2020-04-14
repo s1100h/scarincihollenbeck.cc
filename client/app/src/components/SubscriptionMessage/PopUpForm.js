@@ -163,7 +163,7 @@ class SubscriptionForm extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch('https://hollenbeckscarinci.com/shlaw/site/subscription/form', {
+    fetch(`${process.env.FORM_API}/shlaw/site/subscription/form`, {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {

@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import noImg from '../../../images/no-image-found-diamond.png';
-import './index.scss';
-
+import noImg from '../../images/no-image-found-diamond.png';
 
 const RelatedArticles = (props) => {
   const { articles } = props;

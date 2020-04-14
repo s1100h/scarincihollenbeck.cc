@@ -1,19 +1,32 @@
 version: '3'
 services:
-  client:
-    build: client/
+  # client:
+  #   build: client/
+  #   volumes:
+  #     - "./client/app:/src"
+  #   environment:
+  #     - API_URL=${ADMIN_SITE}
+  #     - CACHED_URL=${CACHED_API}
+  #   ports:
+  #     - ${IP}:8500:80
+  #   links:
+  #     - wp
+  #     - web
+  forms:
+    build: forms/
     volumes:
-      - "./client/app:/src"
-    environment:
-      - API_URL=${ADMIN_SITE}
-      - CACHED_URL=${CACHED_API}
+      - "./forms/app:/src"
     ports:
-      - ${IP}:8500:80
-    links:
-      - wp
-      - web
-      
-  web:
+      - ${IP}:8000:8000
+  
+  feed:
+    build: feed/
+    volumes:
+      - "./feed/app:/src"
+    ports:
+      - ${IP}:8100:8100
+
+  api:
     build: api/
     volumes:
       - "./api/app:/src"

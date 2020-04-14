@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import PropTypes from 'prop-types';
@@ -24,19 +24,19 @@ const OfficeData = (props) => {
     <div className="mb-2">
       <Link to={{ pathname: `/location/${locationUrl(title)}`, state: 'desiredState' }} className="sidebar-title">
         {title}
-        {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FontAwesomeIcon icon={faMinus} className="text-white" /> : <FontAwesomeIcon icon={faPlus} className="text-white" /> }
+        {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FontAwesomeIcon icon={faMinus} className="text-white location-toggle-icon" /> : <FontAwesomeIcon icon={faPlus} className="text-white location-toggle-icon" /> }
       </Link>
       <div id={`${locationUrl(title)}`} className={(locationUrl(title) === currentOffice.replace(' ', '-')) ? 'collapse show' : 'collapse'}>
         <div className="off-white p-3">
           <ul className="no-dots ml-0">
-            {address.map((a) => <li key={a} className="mb-1">{a}</li>)}
+            {address.map((a) => <li key={a} className="mb--10">{a}</li>)}
           </ul>
           <p className="mb-0">
-            <FontAwesomeIcon icon={faPhone} className="text-white" />
+            <FontAwesomeIcon icon={faPhone} />
             <span className="proxima-regular">{`  ${phone}`}</span>
           </p>
           <p className="mb-2">
-            <FontAwesomeIcon icon={faEnvelope} className="text-white" />
+            <FontAwesomeIcon icon={faFax} />
             <span className="proxima-regular">{`  ${fax}`}</span>
           </p>
           <button type="button" className="red-title proxima-bold btn bg-transparent ml--10" onClick={() => getLocationDirections(shortName)}>

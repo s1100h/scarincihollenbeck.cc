@@ -52,7 +52,7 @@ class Search extends Component {
   }
 
   componentDidMount() { 
-    fetch('https://api.scarincilies.com/cached/search-options')
+    fetch(`${process.env.CACHED_URL}/cached/search-options`)
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -77,8 +77,6 @@ class Search extends Component {
       practices,
       searchTerm,
     } = this.state;
-
-    console.log(categories)
     
     return (
       <div className="w-100">

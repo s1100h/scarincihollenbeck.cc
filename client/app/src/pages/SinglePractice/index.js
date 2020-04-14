@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import PracticeHead from '../../components/Head/practice';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
@@ -9,8 +8,6 @@ import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import cityBackground from './citybackground.jpg';
-import './index.scss';
-
 
 class IndividualPractice extends Component {
   constructor(props) {
@@ -20,43 +17,35 @@ class IndividualPractice extends Component {
       description: '',
       content: [],
       chair: [],
+      corePractices: [],
       practiceList: [],
       industryTopics: [],
       attorneyList: [],
       highlightReal: [],
       blogPosts: [],
       newsPosts: [],
-      searchTerm: '',
       currentTab: '',
-      spinner: false,
     };
     this.handleLink = this.handleLink.bind(this);
     this.fetchPostData = this.fetchPostData.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
     this.tabClick = this.tabClick.bind(this);
   }
 
   componentDidMount() {
     const { practice } = this.props.match.params;
-    this.setState({ spinner: true });
-    console.log('practice url: ', `${process.env.API_URL}/wp-json/individual-practices/practice/${practice}`);
-    this.fetchPostData(`${process.env.API_URL}/wp-json/individual-practices/practice/${practice}`);
-  }
+    this.fetchPostData(`${process.env.ADMIN_URL}/wp-json/individual-practices/practice/${practice}`);
 
-  onChange(event) {
-    const searchTerm = event.target.value;
-    this.setState({ searchTerm });
-  }
-
-  onSubmit() {
-    const { searchTerm } = this.state;
-    fetch(`${process.env.API_URL}/wp-json/search/post`,
-      {
-        method: 'post',
-        body: searchTerm,
-      })
-      .then((res) => res.json());
+    // get core practices
+    fetch(`${process.env.CACHED_URL}/cached/core-practices`)
+    .then((res) => res.json())
+    .then((data) => {
+      const corePractices = data.map((cp) => ({
+        name: cp.title,
+        link: cp.slug,
+      }));
+      this.setState({ corePractices });
+    });
+    
   }
 
   fetchPostData(url) {
@@ -101,7 +90,6 @@ class IndividualPractice extends Component {
           blogPosts,
           newsPosts,
           seo,
-          spinner: false,
           currentTab: content[0].title,
         });
       });
@@ -127,112 +115,113 @@ class IndividualPractice extends Component {
       attorneyList,
       searchTerm,
       currentTab,
+      newsPosts,
       highlightReal,
       seo,
-      spinner,
+      blogPosts,
+      corePractices,
     } = this.state;
 
     return (
       <div>
         <PracticeHead seo={seo} />
-        {(!spinner) ? (
-          <div>
-            <SingleSubHeader
-              title={title}
-              subtitle={description}
-              image={cityBackground}
-              height=""
-            />
-            { (content.length > 0) ? (
-              <div>
-                <FullWidth>
-                  <div className="line-header" id="nav-tab" role="tablist">
+        <div id="single-practice">
+          <SingleSubHeader
+            title={title}
+            subtitle={description}
+            image={cityBackground}
+            height=""
+          />
+          { (content.length > 0) ? (
+            <div>
+              <FullWidth>
+                <div className="line-header" id="nav-tab" role="tablist">
+                  <h3
+                    className={(currentTab === content[0].title) ? 'active' : ''}
+                    id="nav-home-tab"
+                    data-toggle="tab"
+                    onClick={() => this.tabClick(content[0].title)}
+                    onKeyPress={() => this.tabClick(content[0].title)}
+                    href={`#${content[0].title}`}
+                    role="tab"
+                    aria-controls="nav-home"
+                    aria-selected="true"
+                  >
+                    {content[0].title}
+                  </h3>
+                  { content.map((v, i) => ((i > 0) ? (
                     <h3
-                      className={(currentTab === content[0].title) ? 'active' : ''}
-                      id="nav-home-tab"
+                      key={v.title}
+                      className={(currentTab === v.title) ? 'active' : ''}
                       data-toggle="tab"
-                      onClick={() => this.tabClick(content[0].title)}
-                      onKeyPress={() => this.tabClick(content[0].title)}
-                      href={`#${content[0].title}`}
+                      href={`#${v.title}`}
                       role="tab"
+                      onClick={() => this.tabClick(v.title)}
+                      onKeyPress={() => this.tabClick(v.title)}
                       aria-controls="nav-home"
                       aria-selected="true"
                     >
-                      {content[0].title}
+                      {v.title}
                     </h3>
-                    { content.map((v, i) => ((i > 0) ? (
-                      <h3
-                        key={v.title}
-                        className={(currentTab === v.title) ? 'active' : ''}
-                        data-toggle="tab"
-                        href={`#${v.title}`}
-                        role="tab"
-                        onClick={() => this.tabClick(v.title)}
-                        onKeyPress={() => this.tabClick(v.title)}
-                        aria-controls="nav-home"
-                        aria-selected="true"
-                      >
-                        {v.title}
-                      </h3>
-                    ) : ''))}
-                    { (attorneyList.length > 0) ? (
-                      <h3
-                        id="nav-home-tab"
-                        className={(currentTab === 'team') ? 'active' : ''}
-                        data-toggle="tab"
-                        href="#team"
-                        role="tab"
-                        onClick={() => this.tabClick('team')}
-                        onKeyPress={() => this.tabClick('team')}
-                        aria-controls="nav-home"
-                        aria-selected="true"
-                      >
-                        Our Team
-                      </h3>
-                    ) : ''}
-                    { (industryTopics.length > 0) ? (
-                      <h3
-                        id="nav-home-tab"
-                        className={(currentTab === 'blogs') ? 'active' : ''}
-                        data-toggle="tab"
-                        href="#blogs"
-                        role="tab"
-                        onKeyPress={() => this.tabClick('blogs')}
-                        onClick={() => this.tabClick('blogs')}
-                        aria-controls="nav-home"
-                        aria-selected="true"
-                      >
-                        Related Updates
-                      </h3>
-                    ) : ''}
-                  </div>
-                </FullWidth>
-                <NoHeaderMiniSidebar
-                  body={(
-                    <Body
-                      currentTab={currentTab}
-                      content={content}
-                      attorneyList={attorneyList}
-                      chair={chair}
-                      handleLink={this.handleLink}
-                      industryTopics={industryTopics}
-                      highlightReal={highlightReal}
-                      title={title}
-                    />
+                  ) : ''))}
+                  { (attorneyList.length > 0) ? (
+                    <h3
+                      id="nav-home-tab"
+                      className={(currentTab === 'team') ? 'active' : ''}
+                      data-toggle="tab"
+                      href="#team"
+                      role="tab"
+                      onClick={() => this.tabClick('team')}
+                      onKeyPress={() => this.tabClick('team')}
+                      aria-controls="nav-home"
+                      aria-selected="true"
+                    >
+                      Our Team
+                    </h3>
+                  ) : ''}
+                  { (industryTopics.length > 0) ? (
+                    <h3
+                      id="nav-home-tab"
+                      className={(currentTab === 'blogs') ? 'active' : ''}
+                      data-toggle="tab"
+                      href="#blogs"
+                      role="tab"
+                      onKeyPress={() => this.tabClick('blogs')}
+                      onClick={() => this.tabClick('blogs')}
+                      aria-controls="nav-home"
+                      aria-selected="true"
+                    >
+                      Related Updates
+                    </h3>
+                  ) : ''}
+                </div>
+              </FullWidth>
+              <NoHeaderMiniSidebar
+                body={(
+                  <Body
+                    currentTab={currentTab}
+                    content={content}
+                    attorneyList={attorneyList}
+                    chair={chair}
+                    handleLink={this.handleLink}
+                    industryTopics={industryTopics}
+                    highlightReal={highlightReal}
+                    title={title}
+                    newPosts={newsPosts}
+                    blogPosts={blogPosts}
+                  />
                   )}
-                  sidebar={(
-                    <Sidebar
-                      searchTerm={searchTerm}
-                      onSubmit={this.onSubmit}
-                      onChange={this.onChange}
-                      practiceList={practiceList}
-                    />
+                sidebar={(
+                  <Sidebar
+                    searchTerm={searchTerm}
+                    practiceList={practiceList}
+                    corePractices={corePractices}
+                  />
                   )}
-                />
-              </div>
-            ) : '' }
-          </div>
-        ) : <PulseLoader color="#D02422" loading={spinner} />}
+              />
+            </div>
+          ) : '' }
+        </div>
       </div>
     );
   }

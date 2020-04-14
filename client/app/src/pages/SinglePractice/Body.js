@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 
 
-
 // lazy load components
-import RelatedAttorneys from './RelatedAttorneys'
-import RelatedArticles from './RelatedArticles'
-import FeaturedSlider from './FeaturedSlider'
-import AwardScroller from './AwardScroller'
+import RelatedAttorneys from './RelatedAttorneys';
+import RelatedArticles from './RelatedArticles';
+import FeaturedSlider from './FeaturedSlider';
+import AwardScroller from './AwardScroller';
 
 const Body = (props) => {
   const {
@@ -19,6 +18,8 @@ const Body = (props) => {
     handleLink,
     industryTopics,
     highlightReal,
+    newsPosts,
+    blogPosts,
     title,
   } = props;
 
@@ -52,10 +53,10 @@ const Body = (props) => {
       {/** Awards */}
       {(highlightReal.length > 0) && <AwardScroller highlightReal={highlightReal} /> }
       {/** Recent News Articles */}
-      {(newsPosts) && (
+      {(newsPosts.length > 0) && (
       <div className="w-100 d-block">
         <h4 className="bg-light-gray">
-        Latest News on
+          Latest News on
           {' '}
           {title}
         </h4>
@@ -64,10 +65,10 @@ const Body = (props) => {
       )}
 
       {/** Recent Blog Articles */}
-      {(blogPosts) && (
+      {(blogPosts.length > 0) && (
       <div className="w-100 d-block">
         <h4 className="bg-light-gray">
-        Latest Articles on
+          Latest Articles on
           {' '}
           {title}
         </h4>
@@ -86,6 +87,8 @@ Body.propTypes = {
   handleLink: PropTypes.func,
   industryTopics: PropTypes.arrayOf(PropTypes.object),
   highlightReal: PropTypes.arrayOf(PropTypes.object),
+  newsPosts: PropTypes.arrayOf(PropTypes.object),
+  blogPosts: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
 };
 
@@ -97,6 +100,8 @@ Body.defaultProps = {
   chair: [],
   industryTopics: [],
   highlightReal: [],
+  newsPosts: [],
+  blogPosts: [],
   handleLink: () => {},
 };
 

@@ -5,12 +5,17 @@ import LazyLoad from 'react-lazyload';
 
  function LargeArticleCarousel(props) {
   const { id, post } = props;
-  const { link, image, title, category } = post;
+  const {link, image, title, category } = post;
 
   let postImg; 
+  let imgCategory;
 
   if(!image) {
     postImg = props.post.featuredImg;
+  }
+
+  if(category && category.length > 0) {
+    imgCategory = category[0].name;
   }
 
   return (
@@ -19,7 +24,7 @@ import LazyLoad from 'react-lazyload';
         <LazyLoad height={150}>
           <img rel="preconnect" src={(image) ? image: (postImg) ? postImg : ''} alt={title} className="img-thumbnail mx-auto d-block" />
         </LazyLoad>
-        <h5 className="mt-3 mb-2 text-center">{category}</h5>
+        <h5 className="mt-3 mb-2 text-center">{(imgCategory) ? imgCategory : category }</h5>
         <p className="text-muted small-excerpt text-center">{title}</p>
       </a>
     </div>

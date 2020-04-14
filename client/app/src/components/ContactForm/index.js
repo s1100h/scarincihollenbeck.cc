@@ -74,7 +74,7 @@ class ContactForm extends Component {
       siteUrl,
     };
 
-    fetch('http://165.227.220.15/shlaw/site/contact/form', {
+    fetch(`${process.env.FORM_API}/shlaw/site/contact/form`, {
       method: 'post',
       body: JSON.stringify(inquiryData),
       headers: {

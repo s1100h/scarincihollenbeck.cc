@@ -21,8 +21,16 @@
   .ml--10 {
     margin-left: -10px;
   }
+  .mb--10 {
+    margin-bottom: -10px;
+  }
   .article-link:hover {
     text-decoration: underline;
+  }
+  .location-toggle-icon {
+    float:right;
+    margin-top:5px;
+    margin-bottom:2px;
   }
 }
 

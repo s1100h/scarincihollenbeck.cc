@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import SHDiamond from '../../images/sh-mini-diamond.png';
 
 const Sidebar = (props) => {
   const {
-    onSubmit,
-    onChange,
     practiceList,
-    searchTerm,
+    corePractices,
   } = props;
 
   return (
     <div>
-      <form role="search" method="GET" action={process.env.API_URL} onSubmit={onSubmit}>
+      <form role="search" method="GET">
         <label htmlFor="searchSite" className="w-100">
-          <input name="s" type="search" id="searchSite" placeholder="What are you searching for..." value={searchTerm} onChange={onChange} className="form-control p-2" />
+          <input name="s" type="search" id="searchSite" placeholder="What are you searching for..." className="form-control p-2" />
           <span className="sr-only">Search For Attorney</span>
         </label>
       </form>
-      <div className="my-3">
+      <div className="my-4">
         <div className="sidebar-title">
           Get in touch with an attorney
         </div>
@@ -36,62 +36,34 @@ const Sidebar = (props) => {
           </div>
         </div>
       </div>
-      <div className="my-3">
+      <div className="my-4">
         <a href="#core-practices" className="sidebar-title" data-toggle="collapse" aria-expanded="true">
-        Core Practices
-          <FaPlus className="text-white float-right" />
+          Core Practices
+          <FontAwesomeIcon icon={faPlus} className="text-white float-right" />
         </a>
         <div id="core-practices" className="collapse show">
           <div className="off-white">
             <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content sidebar-content-practice">
-              <li>
-                <a href="/practices/corporate-transactions-business/" className="small-excerpt">
-                Corporate Transactions &amp; Business
-                </a>
-              </li>
-              <li>
-                <a href="/practices/environmental-and-land-use/" className="small-excerpt">
-                Environmental &amp; Land Use
-                </a>
-              </li>
-              <li>
-                <a href="/practices/intellectual-property/" className="small-excerpt">
-                Intellectual Property
-                </a>
-              </li>
-              <li>
-                <a href="/practices/labor-employment/" className="small-excerpt">
-                Labor &amp; Employment
-                </a>
-              </li>
-              <li>
-                <a href="/practices/litigation/" className="small-excerpt">
-                Litigation
-                </a>
-              </li>
-              <li>
-                <a href="/practices/tax-trusts-estates/" className="small-excerpt">
-                Tax, Trust &amp; Estates
-                </a>
-              </li>
-              <li>
-                <a href="/practices/public-law/" className="small-excerpt">
-                Government &amp; Law
-                </a>
-              </li>
+              {corePractices.map((cp) => (
+                <li key={cp.name}>
+                  <a href={cp.link} key={cp.name} className="small-excerpt">
+                    {cp.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
       <div>
         <a href="#related-practices" className="sidebar-title" data-toggle="collapse" aria-expanded="true">
-        Related Sub-Practices
-          <FaPlus className="text-white float-right" />
+          Related Sub-Practices
+          <FontAwesomeIcon icon={faPlus} className="text-white float-right" />
         </a>
         <div id="related-practices" className="collapse show">
           <div className="off-white">
             <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content">
-              {practiceList.map((v) => <li key={v.ID} className="mb-3"><a href={v.slug} className={(v.title.length > 40) ? 'smaller-excerpt' : 'small-excerpt'}>{v.title}</a></li>)}
+              {practiceList.map((v) => <li key={v.title}><a href={v.slug} className={(v.title.length > 40) ? 'smaller-excerpt' : 'small-excerpt'}>{v.title}</a></li>)}
             </ul>
           </div>
         </div>
@@ -101,17 +73,13 @@ const Sidebar = (props) => {
 };
 
 Sidebar.propTypes = {
-  searchTerm: PropTypes.string,
-  onSubmit: PropTypes.func,
-  onChange: PropTypes.func,
   practiceList: PropTypes.arrayOf(PropTypes.object),
+  corePractices: PropTypes.arrayOf(PropTypes.object),
 };
 
 Sidebar.defaultProps = {
-  searchTerm: '',
-  onSubmit: () => {},
-  onChange: () => {},
   practiceList: [],
+  corePractices: [],
 };
 
 export default Sidebar;

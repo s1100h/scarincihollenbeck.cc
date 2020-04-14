@@ -19,6 +19,7 @@ const ArchiveAttorney = lazy(() => import(/* webpackPreload: true */ './pages/Ar
 const ArchiveCareer = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveCareer'));
 const ArchiveAdmin = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveAdmin'));
 const ArchiveLocation = lazy(() => import(/* webpackPreload: true */ './pages/ArchiveLocation'));
+const ArchivePractice = lazy(() => import(/* webpackPreload: true */ './pages/ArchivePractice'));
 
 
 /**
@@ -27,21 +28,33 @@ const ArchiveLocation = lazy(() => import(/* webpackPreload: true */ './pages/Ar
 const SingleAttorney = lazy(() => import(/* webpackPreload: true */ './pages/SingleAttorney'));
 const SingleAdmin = lazy(() => import(/* webpackPreload: true */ './pages/SingleAdmin'));
 const SingleCareer = lazy(() => import(/* webpackPreload: true */ './pages/SingleCareer'));
+const SinglePractice = lazy(() => import(/* webpackPreload: true */ './pages/SinglePractice'));
 
-// import ArchivePractice from './pages/ArchivePractice';
-// import SinglePractice from './pages/SinglePractice';
-// import FirmPage from './pages/FirmPage';
-// import FirmOverview from './pages/FirmOverview';
-// import Page from './pages/Page';
-// import Single from './pages/Single';
-// import Contact from './pages/Contact';
+/**
+ * Back Pages
+ */
+// const FirmPage = lazy(() => import(/* webpackPreload: true */ './pages/FirmPage'));
+// const FirmOverview = lazy(() => import(/* webpackPreload: true */ './pages/FirmOverview'));
+// const Page = lazy(() => import(/* webpackPreload: true */ './pages/Page'));
+const Contact = lazy(() => import(/* webpackPreload: true */ './pages/Contact'));
+// import SubscriptionPage from './pages/SubscriptionPage';
+// import Page404 from './pages/page404';
+
+/**
+ *  Blog Archives
+ */
 // import Category from './pages/Category';
 // import Archives from './pages/Archives';
 // import Authors from './pages/Authors';
 // import QuickNews from './pages/QuickNews';
 // import Search from './pages/Search';
-// import SubscriptionPage from './pages/SubscriptionPage';
-// import Page404 from './pages/page404';
+
+ /**
+  *  Blog Pages
+  */
+// import Single from './pages/Single';
+
+
 
 /**
 *
@@ -58,8 +71,10 @@ import './styles/main.scss';
 import './styles/navigation.scss';
 import './styles/archive-attorneys.scss';
 import './styles/archive-location.scss';
+import './styles/archive-practice.scss';
 import './styles/single-attorney.scss';
 import './styles/single-admin.scss';
+import './styles/single-practice.scss';
 import './styles/single.scss';
 import './styles/footer.scss';
 
@@ -102,23 +117,6 @@ import './styles/footer.scss';
  * =======================================
  * NavBar
  * Footer  
- * 
- * To Do (Pages & Components & WP Rest Route)
- * ======================================= *
- *  1. Fix Practice & Attorney sidebar drop downs
- *  2. Make sure each page does not look like crapola
- * 
- * To Do (Webpack)
- * ==========================================
- *  1. Refactor integrating PWA (webpack 4, react-router)
- *  2. Enable webpack 4 to be a solution for GT Metrix & Google Page speed issues 
- *  3. Add a small express server to push to DO Spaces using AWS s3
- * 
- * To Do (Pre-Production Push)
- * =======================================
- *  1. Set up sitemap xml
- *  2. Add feature to allow Google Analytics for pages to Footer 
- *  3. Fix attorney cards -- Diversity, About Use, Women Lead
  * 
  */
 
@@ -173,14 +171,15 @@ class SiteRoutes extends Component {
           <Route path='/career/:career' exact component={SingleCareer} />
           <Route path='/locations' exact component={ArchiveLocation} />
           <Route path='/location/:location' exact component={ArchiveLocation} />
-          {/*                  
-          
-          
           <Route path='/practices' exact component={ArchivePractice} />
           <Route path='/law-practices' exact component={ArchivePractice} />
           <Route path='/practice/:practice' exact component={SinglePractice} />
           <Route path='/practices/:practice' exact component={SinglePractice} />
           <Route path='/contact/' exact component={Contact} />
+          {/*                                  
+          
+
+          
           <Route path='/firm-overview/' exact component={FirmOverview} />
           <Route path='/category/quick-news' exact component={QuickNews} />
           <Route path='/category/quick-news/page/:pageNum' exact component={QuickNews} />
