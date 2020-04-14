@@ -2,17 +2,14 @@
 /* eslint class-methods-use-this: "error" */
 
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
 import { createMarkup } from '../../utils/helpers';
 import foHeaderBckGround from './citybackground.jpg';
-import './index.scss';
 
 // lazy load components
-import Memebers from './Members';
-
+import Members from './Members';
 
 class FirmOverview extends Component {
   constructor(props) {
@@ -22,14 +19,13 @@ class FirmOverview extends Component {
       mainTabs: [],
       additionalInfo: [],
       members: {},
-      seo: {},
-      spinner: false,
+      seo: {}
     };
   }
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch('https://api.scarincilies.com/cached/firm-overview')
+    fetch(`${process.env.CACHED_API}/cached/firm-overview`)
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -41,7 +37,7 @@ class FirmOverview extends Component {
         } = data;
 
         this.setState({
-          mainTabs, additionalInfo, members, seo, mainContent, spinner: false,
+          mainTabs, additionalInfo, members, seo, mainContent
         });
       });
   }
@@ -53,12 +49,12 @@ class FirmOverview extends Component {
       additionalInfo,
       members,
       mainContent,
-      spinner,
       seo,
     } = this.state;
 
     const subHeaderContent = mainContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
     const bodyContent = mainContent.replace(subHeaderContent, '');
+    console.log(seo);
 
     return (
       <div>
@@ -69,34 +65,29 @@ class FirmOverview extends Component {
           image={foHeaderBckGround}
           height="325px"
         />
-        <FullWidth>
+        <FullWidth id="firm-overview">
           <div className="text-muted lead text-center" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
-          {
-            (!spinner) ? (
-              <div>
-                { mainTabs.map((mt) => (
-                  <div className="w-100 mt-4 px-0" key={mt.title}>
-                    <div className="line-header">
-                      <h3>{mt.subTitle}</h3>
-                    </div>
-                    <div className="lead mt-4 text-center body-text" dangerouslySetInnerHTML={createMarkup(mt.content)} />
+            <div>
+              { mainTabs.map((mt) => (
+                <div className="w-100 mt-4 px-0" key={mt.title}>
+                  <div className="line-header">
+                    <h3>{mt.subTitle}</h3>
                   </div>
-                ))}
-                <div className="border">
-                  <Members title="Managing Partners" members={members.managingPartners} />
-                  <Members title="Partners" members={members.partners} />
-                  <Members title="Directors" members={members.admin} />
+                  <div className="lead mt-4 text-center body-text" dangerouslySetInnerHTML={createMarkup(mt.content)} />
                 </div>
-                { additionalInfo.map((ai) => (
-                  <div className="w-100 mt-4 px-0" key={ai.title}>
-                    <h4 className="bg-light-gray">{ai.title}</h4>
-                    <div className="lead mt-4 body-text" dangerouslySetInnerHTML={createMarkup(ai.content)} />
-                  </div>
-                ))}
+              ))}
+              <div className="border">
+                <Members title="Managing Partners" members={members.managingPartners} />
+                <Members title="Partners" members={members.partners} />
+                <Members title="Directors" members={members.admin} />
               </div>
-            ) : <PulseLoader color="#D02422" loading={spinner} />
-
-        }
+              { additionalInfo.map((ai) => (
+                <div className="w-100 mt-4 px-0" key={ai.title}>
+                  <h4 className="bg-light-gray">{ai.title}</h4>
+                  <div className="lead mt-4 body-text" dangerouslySetInnerHTML={createMarkup(ai.content)} />
+                </div>
+              ))}
+            </div>
         </FullWidth>
       </div>
     );

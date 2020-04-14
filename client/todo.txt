@@ -1,0 +1,18 @@
+Site Fixes
+============================================
+1. replace site title with attorney name in all bios
+2. fix scarinci lawyer article for david blank
+3. fix laura millers small image
+4. fix up the way kinon's biography is set up
+5. fix up the article carousel arrows at the bottom
+6. fix broken image in recent articles for linken
+7. fix image height for scarinci lawyer articles for mcnamara
+8. fix alot of featured images for articles for john scagnelli
+9. add linkedin Schwartz
+10. Make representative matters stand out a bit more and uniform
+11. Cassin bring down the font size of each section in his biography
+12. Limit the title length for recent articles
+13. Set up conditional statements if articles or news length is greater than 0
+14. Make all sidebars uniform for attorney bios
+15. Practices pages make dropdowns uniform
+16. Remove all images from the build and place them into CDN

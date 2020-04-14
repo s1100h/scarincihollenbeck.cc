@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AttorneyCard from '../../components/AttorneyCard';
-import './members.scss';
-
 
 const Members = (props) => {
   const { title, members } = props;

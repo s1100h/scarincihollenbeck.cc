@@ -33,8 +33,9 @@ const SinglePractice = lazy(() => import(/* webpackPreload: true */ './pages/Sin
 /**
  * Back Pages
  */
+const FirmOverview = lazy(() => import(/* webpackPreload: true */ './pages/FirmOverview'));
 // const FirmPage = lazy(() => import(/* webpackPreload: true */ './pages/FirmPage'));
-// const FirmOverview = lazy(() => import(/* webpackPreload: true */ './pages/FirmOverview'));
+
 // const Page = lazy(() => import(/* webpackPreload: true */ './pages/Page'));
 const Contact = lazy(() => import(/* webpackPreload: true */ './pages/Contact'));
 // import SubscriptionPage from './pages/SubscriptionPage';
@@ -179,11 +180,9 @@ class SiteRoutes extends Component {
           <Route path='/practice/:practice' exact component={SinglePractice} />
           <Route path='/practices/:practice' exact component={SinglePractice} />
           <Route path='/contact/' exact component={Contact} />
-          {/*                                  
-          
-
-          
           <Route path='/firm-overview/' exact component={FirmOverview} />
+          {/*                                                  
+          
           <Route path='/category/quick-news' exact component={QuickNews} />
           <Route path='/category/quick-news/page/:pageNum' exact component={QuickNews} />
           <Route path='/archives/:categorySlug' exact component={Archives} />

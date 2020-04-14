@@ -244,7 +244,18 @@ input, textarea {
   font-style: normal;
   font-weight: 400;
 }
-
+.bg-light-gray {
+  font-weight: 900;
+  background-color: #e9e9e9;
+  padding: 10px;
+  text-shadow: 0 0 0 #000;
+  margin-bottom: 30px;
+}
+.articles-container {
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: auto;
+}
 /** Contact Page **/
 .disclaimer input{
   width: 15px;
