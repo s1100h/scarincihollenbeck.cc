@@ -44,12 +44,10 @@ const Results = (props) => {
 
 Results.propTypes = {
   positions: PropTypes.arrayOf(PropTypes.object),
-  career: PropTypes.string,
 };
 
 Results.defaultProps = {
   positions: [],
-  career: '',
 };
 
 export default Results;

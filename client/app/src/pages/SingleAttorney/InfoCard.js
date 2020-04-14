@@ -1,15 +1,15 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone'
-import { faFax } from '@fortawesome/free-solid-svg-icons/faFax'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
-import { faFile } from '@fortawesome/free-solid-svg-icons/faFile'
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter'
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin'
-import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
+import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import PropTypes from 'prop-types';
 
 const InfoCard = (props) => {
@@ -69,9 +69,32 @@ const InfoCard = (props) => {
       <div className="row">
         <div className="col-sm-12 col-md-6">
           <ul className="text-white no-dots mt-2 ml-0">
-            { (phoneNumber) ? <li className="mb-1"><h5><FontAwesomeIcon icon={faPhone} className="text-white" /> <span className="proxima-regular ft-17px">{`  ${phoneNumber}`}</span></h5></li> : '' }
-            { (fax) ? <li className="mb-1"><h5><FontAwesomeIcon icon={faFax} className="text-white" /> <span className="proxima-regular ft-17px">{`  ${fax}`}</span></h5></li> : '' }
-            { (email) ? <li className="mb-1"><h5><FontAwesomeIcon icon={faEnvelope} className="text-white" /><a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-17px">{` ${email}`}</a></h5></li> : '' }
+            { (phoneNumber) ? (
+              <li className="mb-1">
+                <h5>
+                  <FontAwesomeIcon icon={faPhone} className="text-white" />
+                  {' '}
+                  <span className="proxima-regular ft-17px">{`  ${phoneNumber}`}</span>
+                </h5>
+              </li>
+            ) : '' }
+            { (fax) ? (
+              <li className="mb-1">
+                <h5>
+                  <FontAwesomeIcon icon={faFax} className="text-white" />
+                  {' '}
+                  <span className="proxima-regular ft-17px">{`  ${fax}`}</span>
+                </h5>
+              </li>
+            ) : '' }
+            { (email) ? (
+              <li className="mb-1">
+                <h5>
+                  <FontAwesomeIcon icon={faEnvelope} className="text-white" />
+                  <a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-17px">{` ${email}`}</a>
+                </h5>
+              </li>
+            ) : '' }
           </ul>
         </div>
         {/** Col One phone, email, fax -- end */}
@@ -83,11 +106,11 @@ const InfoCard = (props) => {
                 { socialMediaLinks.map((v) => (
                   <li key={v.channel} className="mb-0 lh-1">
                     <h5>
-                      {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white" />} 
+                      {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white" />}
                       {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white" />}
                       {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white" />}
                       {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white" />}
-                      {(v.channel === 'Instagram') &&  <FontAwesomeIcon icon={faInstagram} className="text-white" />}
+                      {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white" />}
                       <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {`  Connect on ${v.channel}`}
                       </a>
@@ -129,7 +152,7 @@ InfoCard.propTypes = {
   fullName: PropTypes.string,
   chair: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
+    PropTypes.object,
   ])),
   designation: PropTypes.string,
   phoneNumber: PropTypes.string,

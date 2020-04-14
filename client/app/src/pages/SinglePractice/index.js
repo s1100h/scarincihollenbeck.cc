@@ -33,19 +33,18 @@ class IndividualPractice extends Component {
 
   componentDidMount() {
     const { practice } = this.props.match.params;
-    this.fetchPostData(`${process.env.ADMIN_URL}/wp-json/individual-practices/practice/${practice}`);
+    this.fetchPostData(`${process.env.ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`);
 
     // get core practices
-    fetch(`${process.env.CACHED_URL}/cached/core-practices`)
-    .then((res) => res.json())
-    .then((data) => {
-      const corePractices = data.map((cp) => ({
-        name: cp.title,
-        link: cp.slug,
-      }));
-      this.setState({ corePractices });
-    });
-    
+    fetch(`${process.env.CACHED_API}/cached/core-practices`)
+      .then((res) => res.json())
+      .then((data) => {
+        const corePractices = data.map((cp) => ({
+          name: cp.title,
+          link: cp.slug,
+        }));
+        this.setState({ corePractices });
+      });
   }
 
   fetchPostData(url) {

@@ -39,12 +39,10 @@ const BlockList = (props) => {
 
 BlockList.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object),
-  id: PropTypes.number,
 };
 
 BlockList.defaultProps = {
   list: [],
-  id: 0,
 };
 
 export default BlockList;

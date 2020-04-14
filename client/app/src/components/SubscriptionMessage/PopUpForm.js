@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shDiamond from '../../images/sh-mini-diamond.png';
-import './index.scss';
 
 const checkboxes = [
   {
@@ -163,7 +162,7 @@ class SubscriptionForm extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch(`${process.env.FORM_API}/shlaw/site/subscription/form`, {
+    fetch(`${process.env.FORMS_API}/shlaw/site/subscription/form`, {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {
@@ -180,16 +179,14 @@ class SubscriptionForm extends Component {
   }
 
   hideSubscription() {
-    this.setState({ triggerModal: false }, () => {
-      // remove custom modal
-      const modal = document.getElementById('subscriptionModal');
-      modal.classList.remove('show');
-      modal.setAttribute('style', 'display:none');
+   // remove custom modal
+   const modal = document.getElementById('subscriptionModal');
+   modal.classList.remove('show');
+   modal.setAttribute('style', 'display:none');
 
-      // remove custom modal background
-      const modalBckGround = document.querySelector('.modal-backdrop');
-      modalBckGround.setAttribute('style', 'display:none');
-    });
+   // remove custom modal background
+   const modalBckGround = document.querySelector('.modal-backdrop');
+   modalBckGround.setAttribute('style', 'display:none');
   }
 
   render() {
@@ -198,12 +195,11 @@ class SubscriptionForm extends Component {
       message,
       lastName,
       firstName,
-      hideSubscription,
     } = this.state;
 
 
     return (
-      <div className="modal-dialog sub-form" role="document">
+      <div className="modal-dialog sub-form" id="subscription-form" role="document">
         <div className="modal-content">
           <div className="modal-header sidebar-title d-flex flex-row">
             <img src={shDiamond} alt="Scarinci hollenbeck diamond" className="w-15" />
@@ -212,6 +208,7 @@ class SubscriptionForm extends Component {
             </h5>
           </div>
           <div className="modal-body">
+            <button type="button" onClick={() => this.hideSubscription()} className="btn proxima-bold" data-dismiss="modal">Close</button>
             <form onSubmit={this.handleSubmit} method="post" className="mt-3">
               <div className="form-group">
                 <label htmlFor="firstName" className="sr-only"> Email:</label>

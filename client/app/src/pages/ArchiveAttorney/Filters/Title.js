@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import PropTypes from 'prop-types';
 
 const Title = (props) => {
@@ -9,7 +9,7 @@ const Title = (props) => {
   return (
     <li className="dropdown w3_megamenu-fw nav-item list-inline-item filter">
       <span data-toggle="dropdown" id="titleDropDown" className="dropdown-toggle btn btn-light my-1">
-          Filter by title
+        Filter by title
         <FontAwesomeIcon icon={faCaretDown} className="ml-5 mt-1" />
       </span>
       <div className="dropdown-menu" aria-labelledby="titleDropDown">

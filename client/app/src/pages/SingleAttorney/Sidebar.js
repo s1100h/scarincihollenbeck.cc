@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus} from '@fortawesome/free-solid-svg-icons/faPlus'
-import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
 
 const SidebarContent = (props) => {
-  const { title, content, show, setSideBarTab, currentSidebarTab } = props;
+  const {
+    title, content, show, setSideBarTab, currentSidebarTab,
+  } = props;
   console.log(props);
   console.log(show);
 
   return (
     <div>
-      <a href={`#${urlify(title)}`} onClick={(e) => setSideBarTab(title)} className="sidebar-title" data-toggle="collapse">
+      <a href={`#${urlify(title)}`} onClick={() => setSideBarTab(title)} className="sidebar-title" data-toggle="collapse">
         {title}
-        {(title === currentSidebarTab || show) ?  <FontAwesomeIcon icon={faMinus} className="sidebar-icon" /> : <FontAwesomeIcon icon={faPlus} className="sidebar-icon" /> }
+        {(title === currentSidebarTab || show) ? <FontAwesomeIcon icon={faMinus} className="sidebar-icon" /> : <FontAwesomeIcon icon={faPlus} className="sidebar-icon" /> }
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">

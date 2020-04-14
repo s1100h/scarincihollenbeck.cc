@@ -10,10 +10,8 @@ import BreadCrumb from './BreadCrumb';
 import Body from './Body';
 import blogHeader from './blogheader.jpg';
 import Sidebar from './Sidebar';
-import './index.scss';
 
-
-class Page extends Component {
+class SingleCareer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +31,7 @@ class Page extends Component {
         firstName: '',
         lastName: '',
         title: '',
-        spinner:false
+        spinner: false,
       },
     };
     this.formSubmit = this.formSubmit.bind(this);
@@ -47,7 +45,7 @@ class Page extends Component {
     const { match } = this.props;
     const { career } = match.params;
 
-    fetch(`${process.env.ADMIN_URL}/wp-json/individual-career/career/${career}`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/individual-career/career/${career}`)
       .then((res) => res.json())
       .then((data) => {
         const { title, positionDescription, seo } = data;
@@ -57,7 +55,6 @@ class Page extends Component {
           currentTitle: title,
           currentDescription: positionDescription,
           seo,
-          spinner: true,
         });
       });
   }
@@ -107,7 +104,7 @@ class Page extends Component {
 
   formSubmit() {
     const { form } = this.state;
-    fetch(`${process.env.FORM_API}/shlaw/site/career/form`, {
+    fetch(`${process.env.FORMS_API}/shlaw/site/career/form`, {
       method: 'post',
       body: JSON.stringify(form),
       headers: {
@@ -133,11 +130,9 @@ class Page extends Component {
     const {
       currentTitle,
       currentDescription,
-      currentId,
       message,
       form,
       seo,
-      spinner,
       show,
     } = this.state;
 
@@ -149,7 +144,7 @@ class Page extends Component {
     } = form;
 
     return (
-      <div>
+      <div id="single-career">
         <PageHead seo={seo} />
         <SingleSubHeader
           image={blogHeader}
@@ -182,4 +177,4 @@ class Page extends Component {
   }
 }
 
-export default Page;
+export default SingleCareer;

@@ -245,6 +245,10 @@ input, textarea {
   font-weight: 400;
 }
 
+/** Contact Page **/
+.disclaimer input{
+  width: 15px;
+}
 @media (max-width: 768px) {
   .text--sm--center {
     text-align: center!important;

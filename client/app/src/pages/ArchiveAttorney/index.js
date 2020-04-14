@@ -37,13 +37,13 @@ class AttorneyArchive extends Component {
   componentDidMount() {
     // fetch attorney list
     this.setState({ spinner: true });
-    fetch(`${process.env.ADMIN_URL}/wp-json/attorney-search/attorneys/`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/attorney-search/attorneys/`)
       .then((res) => res.json())
       .then((attorneys) => {
         this.setState({ attorneys, spinner: false });
       });
-    
-    fetch(`${process.env.CACHED_URL}/cached/attorney-filters`)
+
+    fetch(`${process.env.CACHED_API}/cached/attorney-filters`)
       .then((res) => res.json())
       .then((data) => {
         const { locations, designations, practices } = data;
@@ -51,12 +51,12 @@ class AttorneyArchive extends Component {
         this.setState({
           locations,
           designations,
-          practices
+          practices,
         });
       });
 
     // get page seo data
-    fetch(`${process.env.ADMIN_URL}/wp-json/attorney-search/meta`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/attorney-search/meta`)
       .then((res) => res.json())
       .then((seo) => this.setState({ seo }));
   }

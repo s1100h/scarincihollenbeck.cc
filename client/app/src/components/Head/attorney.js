@@ -69,7 +69,7 @@ AttorneyHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ])),
 };
 

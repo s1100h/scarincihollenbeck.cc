@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone'
-import { faFax } from '@fortawesome/free-solid-svg-icons/faFax'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
-import { faFile } from '@fortawesome/free-solid-svg-icons/faFile'
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter'
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare'
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin'
-import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
+import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 
 const InfoCard = (props) => {
   const {
@@ -67,11 +65,11 @@ const InfoCard = (props) => {
                     social_media_links.map((v) => (
                       <li key={v.channel} className="mb-0 lh-1">
                         <h5>
-                          {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white" />} 
+                          {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white" />}
                           {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white" />}
                           {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white" />}
                           {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white" />}
-                          {(v.channel === 'Instagram') &&  <FontAwesomeIcon icon={faInstagram} className="text-white" />}
+                          {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white" />}
                           <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                             {`  Connect on ${v.channel}`}
                           </a>

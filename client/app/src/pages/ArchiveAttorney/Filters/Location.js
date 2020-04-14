@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import PropTypes from 'prop-types';
 
 const Location = (props) => {
@@ -8,7 +8,7 @@ const Location = (props) => {
   return (
     <li className="dropdown nav-item list-inline-item mr-4 filter">
       <span data-toggle="dropdown" id="locationDropDown" className="dropdown-toggle btn btn-light my-1">
-          Filter by location
+        Filter by location
         <FontAwesomeIcon icon={faCaretDown} className="ml-5 mt-1" />
       </span>
       <div className="dropdown-menu w-100" aria-labelledby="locationDropDown">

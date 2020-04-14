@@ -44,7 +44,7 @@ const Filters = (props) => {
          <div className="bckground-gray p-2">
            <Keyword userInput={userInput} handleChange={handleChange} />
            <MobileMenu title="Filter by practice" name="practices" content={practices} onMobileSelect={onMobileSelect} />
-           <MobileMenu title="Filter by location" name="location" content={location} onMobileSelect={onMobileSelect} />
+           <MobileMenu title="Filter by location" name="location" content={locations} onMobileSelect={onMobileSelect} />
            <MobileMenu title="Filter by title" name="designation" content={designation} onMobileSelect={onMobileSelect} />
          </div>
        )

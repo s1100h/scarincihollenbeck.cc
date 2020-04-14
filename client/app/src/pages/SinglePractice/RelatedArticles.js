@@ -6,7 +6,7 @@ import noImg from '../../images/no-image-found-diamond.png';
 const RelatedArticles = (props) => {
   const { articles } = props;
   return (
-    <div className="container article-container">
+    <div className="container related-article-container">
       <div className="row">
         {
           (articles) ? (

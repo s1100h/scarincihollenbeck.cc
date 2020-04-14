@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const PostHead = (props) => {
   const { seo } = props;
-  
+
   return (
     <Helmet>
       <title>{seo.title}</title>
@@ -39,7 +39,7 @@ const PostHead = (props) => {
           "headline": ${seo.title},
           "image": ${seo.featuredImg}, 
           "genre": ${(seo.hasOwnProperty('primaryCategory')) && seo.primaryCategory.title}, 
-          "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) && seo.tags.map(tag => tag.name.toString()) }, 
+          "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) && seo.tags.map((tag) => tag.name.toString())}, 
           "publisher": "Scrarinci Hollenbeck, LLC",
           "url": ${window.location.href}/${seo.canonicalLink},
           "datePublished": ${seo.publishedDate},
@@ -63,7 +63,7 @@ PostHead.propTypes = {
     PropTypes.string,
     PropTypes.objectOf(PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
+      PropTypes.number,
     ])),
     PropTypes.arrayOf(PropTypes.object),
   ])),

@@ -17,12 +17,12 @@ class AdminArchive extends Component {
   /* Fetch data events */
   componentDidMount() {
     // fetch admin list
-    fetch(`${process.env.CACHED_URL}/cached/administration-archives`)
+    fetch(`${process.env.CACHED_API}/cached/administration-archives`)
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;
         const { seo } = data;
-        console.log(data);
+        
         this.setState({ admins, seo });
       });
   }

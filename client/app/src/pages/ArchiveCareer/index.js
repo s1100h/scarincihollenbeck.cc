@@ -9,7 +9,6 @@ import CareerSection from './CareerSection';
 import EEOpportunityContent from './EEOpportunityContent';
 
 
-
 class CareerBody extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +27,7 @@ class CareerBody extends Component {
   }
 
   componentDidMount() {
-    this.setState({ spinner: true });
-    fetch(`${process.env.ADMIN_URL}/wp-json/career-portal/careers`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/career-portal/careers`)
       .then((res) => res.json())
       .then((data) => {
         const positions = data.careers;
@@ -68,7 +66,6 @@ class CareerBody extends Component {
       type,
       location,
       seo,
-      spinner,
     } = this.state;
 
     const { career } = this.props.match.params;

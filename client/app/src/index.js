@@ -65,22 +65,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 /**
-* Main Style Sheet
+* Main Page Sheets
 **/
 import './styles/main.scss';
 import './styles/navigation.scss';
 import './styles/archive-attorneys.scss';
 import './styles/archive-location.scss';
 import './styles/archive-practice.scss';
+import './styles/archive-career.scss';
 import './styles/single-attorney.scss';
 import './styles/single-admin.scss';
 import './styles/single-practice.scss';
+import './styles/single-career.scss';
+import './styles/subscription-form.scss';
 import './styles/single.scss';
 import './styles/footer.scss';
 
 
 /** 
- * Utils Sheets
+ * Component Sheets
  */
 
  import './styles/utils/attorney-card.scss';

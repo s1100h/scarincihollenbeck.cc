@@ -38,7 +38,7 @@ const fetchAttorneyData = (url) => fetch(url).then((response) => response.json()
 
 // retrieve attorney card data
 export const getAttorney = (attorney = null) => {
-  const url = `http://192.168.99.100:8082/wp-json/attorney-card/attorney/${attorney}`;
+  const url = `${process.env.ADMIN_SITE}/wp-json/attorney-card/attorney/${attorney}`;
   return fetchAttorneyData(url);
 };
 

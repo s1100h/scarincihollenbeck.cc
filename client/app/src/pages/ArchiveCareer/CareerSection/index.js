@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { sortByKey } from '../../../utils/helpers';
 import FilterForms from './FilterForms';
 import Results from './Results';
-import './index.scss';
 
 const CareerSection = (props) => {
   const {
@@ -65,7 +64,7 @@ const CareerSection = (props) => {
     .filter(filterType);
 
   return (
-    <div className="mb-5">
+    <div className="mb-5" id="career-section">
       <FilterForms
         locations={locations}
         positionType={positionType}

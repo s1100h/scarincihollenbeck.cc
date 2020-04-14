@@ -53,24 +53,22 @@ const RelatedAttorneys = (props) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-12 members-container">
-                {
-                  members.map((v) => (
-                    <div key={v.ID} className="w-45 float-left mr-4 mb-3">
-                      <AttorneyCard
-                        link={v.link}
-                        image={v.image}
-                        name={v.name}
-                        title={v.designation}
-                        number={v.contact}
-                        email={v.email}
-                        height="109px"
-                        width="75%"
-                      />
-                    </div>
-                  ))
-                }
-              </div>
+              {
+                members.map((v) => (
+                  <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 mb-3">
+                    <AttorneyCard
+                      link={v.link}
+                      image={v.image}
+                      name={v.name}
+                      title={v.designation}
+                      number={v.contact}
+                      email={v.email}
+                      height="109px"
+                      width="75%"
+                    />
+                  </div>
+                ))
+              }
             </div>
           </div>
         ) : ''

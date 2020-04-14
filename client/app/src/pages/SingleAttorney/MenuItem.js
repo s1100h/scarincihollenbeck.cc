@@ -14,6 +14,7 @@ const MenuItem = (props) => {
       onClick={() => tabClick(tabTitle)}
       href={`#${tabTitle}`}
       role="tab"
+      tabIndex="0"
       aria-controls="nav-home"
       aria-selected
       aria-hidden

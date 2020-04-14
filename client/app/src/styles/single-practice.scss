@@ -86,7 +86,7 @@
   .tab-pane ul li {
     margin-bottom: 1.125rem;
     font-size: 1rem;
-    line-height: 1 !important;
+    line-height: 1.7 !important;
   }
   .practice-news-list > .slick-slider > .slick-list {
     height: 217px!important;
@@ -97,12 +97,18 @@
     padding: 10px;
     text-shadow: 0 0 0 #000;
     margin-bottom: 30px;
-}
+  }
   h2 {
     font-size: 1.4rem;
     color: white;
     font-style: italic;
    }
+  .related-article-container {
+    max-height: 700px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-bottom:2em;
+  }
   @media (min-width: 1200px) {
     .max-width-container {
       max-width: 920px;

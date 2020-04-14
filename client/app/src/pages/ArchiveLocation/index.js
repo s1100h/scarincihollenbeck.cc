@@ -1,6 +1,5 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
 import { getDirectionsFromLocation } from '../../utils/helpers';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
@@ -8,8 +7,8 @@ import LocationHead from '../../components/Head/location';
 import locArchiveBckGround from './citybackground.jpg';
 
 /** lazy load components */
-import BodyContent from './BodyContent.js';
-import SideBar from './SideBar/';
+import BodyContent from './BodyContent';
+import SideBar from './SideBar';
 
 class LocationPortal extends Component {
   constructor(props) {
@@ -22,19 +21,17 @@ class LocationPortal extends Component {
       offices: [],
       posts: [],
       seo: {},
-      spinner: false,
     };
     this.getLocationDirections = this.getLocationDirections.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ spinner: true });
-    fetch(`${process.env.CACHED_URL}/cached/office-locations`)
+    fetch(`${process.env.CACHED_API}/cached/office-locations`)
       .then((res) => res.json())
       .then((data) => {
         const { offices } = data;
         const { seo } = data;
-        this.setState({ offices, seo, spinner: false });
+        this.setState({ offices, seo });
       })
       .then(() => {
         const { currentOffice } = this.state;
@@ -45,7 +42,7 @@ class LocationPortal extends Component {
         if (location !== undefined) {
           const currentOffice = location.replace('-', ' ');
           this.setState({ currentOffice }, () => this.fetchOfficeData(location));
-        } 
+        }
       });
   }
 
@@ -62,7 +59,7 @@ class LocationPortal extends Component {
   }
 
   fetchOfficeData(location) {
-    const url = `${process.env.ADMIN_URL}/wp-json/individual-location/office/${location}`;
+    const url = `${process.env.ADMIN_SITE}/wp-json/individual-location/office/${location}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -83,7 +80,7 @@ class LocationPortal extends Component {
         });
       });
 
-    fetch(`${process.env.ADMIN_URL}/wp-json/individual-location/posts/${location}`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/individual-location/posts/${location}`)
       .then((res) => res.json())
       .then((posts) => this.setState({ posts }));
   }
@@ -97,7 +94,6 @@ class LocationPortal extends Component {
       currentOfficePractice,
       currentOffice,
       seo,
-      spinner,
     } = this.state;
 
     return (

@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { addRandomKey } from '../../../utils/helpers';
 
 const PracticeListItem = (props) => {
@@ -26,20 +26,20 @@ const Practices = (props) => {
   const { practices, onSelect, removeVisibilityClass } = props;
 
   /**
-   * 
+   *
    * Filter each item into a column
-   * 
-   **/
+   *
+   * */
 
   // bankruptcy, intel, public
   const bce = practices.filter((b) => ((b.id === 28345 || b.id === 29587 || b.id === 28276) ? b : ''));
 
   // commerical, labor, tax
   const cl = practices.filter((b) => ((b.id === 29624 || b.id === 28271 || b.id === 29588) ? b : ''));
-  
+
   // corporate
   const li = practices.filter((b) => b.id === 28270);
-  
+
   // env, litigation
   const pt = practices.filter((b) => ((b.id === 28273 || b.id === 28274) ? b : ''));
 
@@ -55,7 +55,7 @@ const Practices = (props) => {
         onMouseOver={removeVisibilityClass}
         className="dropdown-toggle btn btn-light my-1"
       >
-      Filter by practice
+        Filter by practice
         <FontAwesomeIcon icon={faCaretDown} className="ml-5 mt-1" />
       </span>
       <div aria-labelledby="megamneu" className="dropdown-menu border-0 p-0 m-0 megamenu-container shadow-sm">

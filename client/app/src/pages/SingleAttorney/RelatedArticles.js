@@ -19,14 +19,13 @@ const RelatedArticles = (props) => {
           <div className="container">
             <div className="row">
               { content.map((v) => (
-                  <div key={addRandomKey(v.title)} className="col-sm-12 col-md-4 article-card">
-                    <a href={v.link}>
-                      <img src={(v.featuredImg) ? v.featuredImg : noImg} alt={v.title} width="230" className="img-thumbnail mt-3" />
-                      <h5 className="my-3 small-excerpt">{v.title}</h5>
-                    </a>
-                  </div>
-                ))
-              }
+                <div key={addRandomKey(v.title)} className="col-sm-12 col-md-4 article-card">
+                  <a href={v.link}>
+                    <img src={(v.featuredImg) ? v.featuredImg : noImg} alt={v.title} width="230" className="img-thumbnail mt-3" />
+                    <h5 className="my-3 small-excerpt">{v.title}</h5>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         )

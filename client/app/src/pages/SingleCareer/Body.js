@@ -63,13 +63,13 @@ const Body = (props) => {
             <div className="row">
               <div className="col-sm-12 col-md-6">
                 <label htmlFor="resume" className="w-100">
-                    Resume:
+                  Resume:
                   <input type="file" id="resume" name="resume" className="form-control" aria-describedby="resume" onChange={fileUpload} />
                 </label>
               </div>
               <div className="col-sm-12 col-md-6">
                 <label htmlFor="coverLetter" className="w-100">
-                    Cover Letter:
+                  Cover Letter:
                   <input type="file" id="coverLetter" name="coverLetter" className="form-control" aria-describedby="coverLetter" onChange={fileUpload} />
                 </label>
               </div>
@@ -77,7 +77,7 @@ const Body = (props) => {
             <div className="row">
               <div className="col-sm-12 col-md-6">
                 <label htmlFor="writingSample" className="w-100 mt-2">
-                    Writing Samples/Additional Information:
+                  Writing Samples/Additional Information:
                   <input type="file" id="writingSample" name="writingSample" className="form-control" aria-describedby="writingSample" onChange={fileUpload} />
                 </label>
               </div>
@@ -90,7 +90,7 @@ const Body = (props) => {
           onClick={() => formSubmit()}
           onKeyPress={() => formSubmit()}
         >
-            Apply Now!
+          Apply Now!
         </button>
       </div>
     </div>

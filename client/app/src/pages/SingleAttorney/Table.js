@@ -22,15 +22,14 @@ const Table = (props) => {
           </thead>
           <tbody>
             {(content.body) && content.body.map((b) => (
-                <tr key={addRandomKey(b[0].c)}>
-                  <td dangerouslySetInnerHTML={createMarkup(b[0].c)} />
-                  <td dangerouslySetInnerHTML={createMarkup(b[1].c)} />
-                  {
+              <tr key={addRandomKey(b[0].c)}>
+                <td dangerouslySetInnerHTML={createMarkup(b[0].c)} />
+                <td dangerouslySetInnerHTML={createMarkup(b[1].c)} />
+                {
                     (b[2]) ? <td>{b[2].c}</td> : <td />
                   }
-                </tr>
-              ))
-            }
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -42,7 +41,7 @@ Table.propTypes = {
   title: PropTypes.string,
   currentTab: PropTypes.string,
   tabTitle: PropTypes.string,
-  content: PropTypes.object,
+  content: PropTypes.objectOf(PropTypes.string),
 };
 
 Table.defaultProps = {
