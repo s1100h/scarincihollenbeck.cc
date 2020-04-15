@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './index.scss';
 
 const checkboxes = [
   {
@@ -46,6 +45,12 @@ const checkboxes = [
     label: 'Cannabis Law',
     name: 'Cannabis Law',
     property: 'column_1',
+  },
+  {
+    key: 'covid19alerts',
+    label: 'COVID-19 Alerts',
+    name: 'COVID-19 Alerts',
+    property: 'column_two',
   },
   {
     key: 'commercialRealEstate',

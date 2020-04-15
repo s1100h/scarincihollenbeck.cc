@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -120,11 +120,12 @@ module.exports = {
       Promise: 'es6-promise',
       fetch: 'exports-loader?self.fetch!whatwg-fetch/dist/fetch.umd',
     }),
-    new Dotenv({
-      path: '.env.prod',
-    }),
+    // new Dotenv({
+    //   path: '.env.prod',
+    // }),
     new HtmlWebpackPlugin({
-      filename: './src/index.html',
+      template: './src/index.html',
+      filename: './index.html',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].bundle.css',

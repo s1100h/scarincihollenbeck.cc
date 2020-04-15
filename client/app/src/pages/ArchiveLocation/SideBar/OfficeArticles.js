@@ -7,7 +7,7 @@ const OfficeArticles = (props) => {
 
   return (
     <div className="mt-5">
-      <div className="sidebar-title">
+      <div className="sidebar-title text-capitalize">
         Latest from
         {' '}
         {title}

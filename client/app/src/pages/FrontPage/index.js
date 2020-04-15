@@ -24,21 +24,22 @@ class FrontPage extends Component {
     const w = window.innerWidth;
 
     // fetch latest seo data
-    fetch(`${process.env.ADMIN_URL}/wp-json/front-page/meta`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/front-page/meta`)
       .then((res) => res.json())
       .then((seo) => {
         this.setState({ seo });
       })
       .then(() => {
         // fetch latest firm news data
-        fetch(`${process.env.ADMIN_URL}/wp-json/front-page/news`)
+        fetch(`${process.env.ADMIN_SITE}/wp-json/front-page/news`)
           .then((res) => res.json())
           .then((data) => {
             const posts = data;
             return posts;
           })
           .then((results) => {
-            fetch(`${process.env.ADMIN_URL}/wp-json/front-page/events`)
+            // fetch latest firm events data
+            fetch(`${process.env.ADMIN_SITE}/wp-json/front-page/events`)
               .then((res) => res.json())
               .then((data) => {
                 const ePosts = data;
@@ -56,6 +57,7 @@ class FrontPage extends Component {
           });
       })
       .then(() => {
+        // fetch a list of core practices
         fetch(`${process.env.CACHED_URL}/cached/core-practices`)
           .then((res) => res.json())
           .then((data) => {

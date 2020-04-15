@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AttorneyCard from '../../components/AttorneyCard';
-import './index.scss';
 
 const attorneySlug = (string) => string.split('/attorneys/').pop();
 
@@ -12,7 +11,7 @@ const RelatedAttorneys = (props) => {
   return (
     <span>
       {
-          (chair.length > 0) ? (
+          (chair.length > 0) && (
             <div className="container">
               <div className="row bg-light-gray">
                 <div className="col-sm-12">
@@ -22,7 +21,7 @@ const RelatedAttorneys = (props) => {
               <div className="row">
                 {
                   chair.map((v) => (
-                    <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
+                    <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 my-3">
                       <AttorneyCard
                         link={`/attorneys/${attorneySlug(v.link)}`}
                         image={v.image}
@@ -38,10 +37,10 @@ const RelatedAttorneys = (props) => {
                 }
               </div>
             </div>
-          ) : ''
+          )
         }
       {
-        (members) ? (
+        (members) && (
           <div className="container">
             <div className="row mt-5 bg-light-gray">
               <div className="col-sm-12 col-md-6">
@@ -57,28 +56,28 @@ const RelatedAttorneys = (props) => {
                 </form>
               </div>
             </div>
-            <div className="row">
-              <div className="col-sm-12 members-container">
-                {
-                  members.map((v) => (
-                    <div key={v.ID} className="w-45 float-left mr-4 mb-3">
-                      <AttorneyCard
-                        link={`/attorneys/${attorneySlug(v.link)}`}
-                        image={v.image}
-                        name={v.name}
-                        title={v.designation}
-                        number={v.contact}
-                        email={v.email}
-                        height="112px"
-                        width="81px"
-                      />
-                    </div>
-                  ))
-                }
-              </div>
+            <div className="row members-container">
+
+              {
+                members.map((v) => (
+                  <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 my-3">
+                    <AttorneyCard
+                      link={`/attorneys/${attorneySlug(v.link)}`}
+                      image={v.image}
+                      name={v.name}
+                      title={v.designation}
+                      number={v.contact}
+                      email={v.email}
+                      height="112px"
+                      width="81px"
+                    />
+                  </div>
+                ))
+              }
+
             </div>
           </div>
-        ) : ''
+        ) 
       }
     </span>
   );

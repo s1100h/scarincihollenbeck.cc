@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import MiniSidebar from '../../layouts/MiniSidebar';
 import { sortByKey } from '../../utils/helpers';
 import fpHeaderBckGround from './citybackground.jpg';
-import './index.scss';
 
 // lazy load components
 import Sidebar from './Sidebar';
@@ -27,7 +25,6 @@ class FirmPage extends Component {
       searchTerm: '',
       currentTab: '',
       attorneysMentioned: [],
-      spinner: false,
     };
     this.handleLink = this.handleLink.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -38,8 +35,7 @@ class FirmPage extends Component {
     const { location } = this.props;
     const page = location.pathname;
 
-    this.setState({ spinner: true });
-    fetch(`${process.env.API_URL}/wp-json/firm-page/page${page}`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/firm-page/page${page}`)
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -63,7 +59,6 @@ class FirmPage extends Component {
           currentTab: content[0].title,
           attorneysMentioned,
           seo,
-          spinner: false,
         });
       });
   }
@@ -93,14 +88,13 @@ class FirmPage extends Component {
       description,
       attorneysMentioned,
       seo,
-      spinner,
     } = this.state;
 
     const { member, chair } = members;
     const sortedMembers = sortByKey(member, 'lastName');
 
     return (
-      <div>
+      <div id="firm-page">
         <PageHead seo={seo} />
         <SingleSubHeader
           title={title}
@@ -108,40 +102,36 @@ class FirmPage extends Component {
           image={fpHeaderBckGround}
           height="auto"
         />
-        {
-          (!spinner) ? (
-            <MiniSidebar
-              header={(
-                <Tabs
-                  content={content}
-                  currentTab={currentTab}
-                  members={members}
-                  tabClick={this.tabClick}
-                />
-            )}
-              body={(
-                <TabContent
-                  content={content}
-                  sortedMembers={sortedMembers}
-                  chair={chair}
-                  handleLink={this.handleLink}
-                  currentTab={currentTab}
-                  attorneysMentioned={attorneysMentioned}
-                  title={title}
-                />
-)}
-              sidebar={((relatedPages.length > 0)
-                ? (
-                  <Sidebar
-                    searchTerm={searchTerm}
-                    relatedPages={relatedPages}
-                    onChange={this.onChange}
-                  />
-                )
-                : '')}
+        <MiniSidebar
+          header={(
+            <Tabs
+              content={content}
+              currentTab={currentTab}
+              members={members}
+              tabClick={this.tabClick}
             />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
+            )}
+          body={(
+            <TabContent
+              content={content}
+              sortedMembers={sortedMembers}
+              chair={chair}
+              handleLink={this.handleLink}
+              currentTab={currentTab}
+              attorneysMentioned={attorneysMentioned}
+              title={title}
+            />
+)}
+          sidebar={((relatedPages.length > 0)
+            ? (
+              <Sidebar
+                searchTerm={searchTerm}
+                relatedPages={relatedPages}
+                onChange={this.onChange}
+              />
+            )
+            : '')}
+        />
       </div>
     );
   }

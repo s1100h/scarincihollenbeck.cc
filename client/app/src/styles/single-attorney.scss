@@ -1,32 +1,6 @@
 #single-attorney {
-
-  .line-header .active {
-    color: #bd2220;
-    text-decoration: underline;
-    color: #bd2220;
-    text-decoration: underline;
-    font-size: 1.2rem;
-    text-shadow: 1px 2px 4px #999;
-  }
-  .line-header h3:hover {
-    cursor: pointer;
-  }
-  .css-0 {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    top: 0em;
-  }
   .ft-30 {
     font-size: 30px;
-  }
-  .bg-light-gray {
-    font-weight: 900;
-    background-color: #e9e9e9;
-    padding: 10px;
-    text-shadow: 0 0 0 #000;
-    margin-bottom: 30px;
   }
   .underline-hover:hover {
     color: white !important;
@@ -54,14 +28,7 @@
   }
   .off-white {
     background-color: #fcfaff;
-  }
-  .article-container { 
-    display: block;
-    max-height: 600px;
-    overflow-y: hidden;
-    overflow: auto;
-  }
-  
+  }  
   .article-container p {
     margin-bottom: 1.125rem;
     font-size: 1.05rem;

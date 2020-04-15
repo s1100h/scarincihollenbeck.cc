@@ -1,17 +1,17 @@
 version: '3'
 services:
-  # client:
-  #   build: client/
-  #   volumes:
-  #     - "./client/app:/src"
-  #   environment:
-  #     - API_URL=${ADMIN_SITE}
-  #     - CACHED_URL=${CACHED_API}
-  #   ports:
-  #     - ${IP}:8500:80
-  #   links:
-  #     - wp
-  #     - web
+  client:
+    build: client/
+    volumes:
+      - "./client/app/dist:/usr/share/nginx/html"
+    ports:
+      - ${IP}:8500:80
+    links:
+      - wp
+      - api
+      - forms
+      - feed
+
   forms:
     build: forms/
     volumes:

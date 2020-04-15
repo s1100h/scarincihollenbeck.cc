@@ -1,4 +1,4 @@
-Site Fixes
+Cosmetic Fixes
 ============================================
 1. replace site title with attorney name in all bios
 2. fix scarinci lawyer article for david blank
@@ -16,3 +16,13 @@ Site Fixes
 14. Make all sidebars uniform for attorney bios
 15. Practices pages make dropdowns uniform
 16. Remove all images from the build and place them into CDN
+17. Make sure robots.txt and manifest.json are working properly
+18. Make sure subscription box has mulitple close buttons
+
+Integration Todos:
+=====================================================
+1. Continue integrating pages
+2. Continue Sass-ifying pages -- left off on navigation.scss
+
+
+

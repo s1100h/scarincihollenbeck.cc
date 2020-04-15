@@ -6,6 +6,7 @@ const Tabs = (props) => {
   const {
     content, members, currentTab, tabClick,
   } = props;
+
   return (
 
     <div className="line-header" id="nav-tab" role="tablist">
@@ -65,14 +66,14 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),
-  members: PropTypes.objectOf(PropTypes.array),
+  members: PropTypes.arrayOf(PropTypes.object),
   currentTab: PropTypes.string,
   tabClick: PropTypes.func,
 };
 
 Tabs.defaultProps = {
   content: [],
-  members: {},
+  members: [],
   currentTab: '',
   tabClick: () => {},
 };

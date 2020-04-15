@@ -16,7 +16,7 @@ class SubscriptionPage extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.API_URL}/wp-json/category/posts/law-firm-insights`)
+    fetch(`${process.env.CACHED_API}/wp-json/category/posts/law-firm-insights`)
     .then((res) => res.json())
     .then((data) => {
       const { main, latest, archives } = data;
@@ -25,7 +25,7 @@ class SubscriptionPage extends Component {
       const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a );
 
       const posts = [ ...main, ...latest, ...firstTwoArchives ];
-      console.log(posts)
+
       // set filtered results to state
       this.setState({ posts });
     });
@@ -44,7 +44,7 @@ class SubscriptionPage extends Component {
     // mimic single career page
     // sidebar -- search, and trending news
     return (
-      <div>
+      <div id="subscribe">
         <PageHead seo={seo} />
         <LargeSidebar
           body={(<SubscriptionBody />)}

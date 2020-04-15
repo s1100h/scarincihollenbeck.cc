@@ -54,7 +54,6 @@ class FirmOverview extends Component {
 
     const subHeaderContent = mainContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
     const bodyContent = mainContent.replace(subHeaderContent, '');
-    console.log(seo);
 
     return (
       <div>

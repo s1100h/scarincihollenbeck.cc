@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
@@ -10,8 +9,6 @@ import Sidebar from './Sidebar';
 import Body from './Body';
 import { createMarkup } from '../../utils/helpers';
 import blogHeader from './blogheader.jpg';
-import './index.scss';
-
 
 class Page extends Component {
   constructor(props) {
@@ -38,10 +35,10 @@ class Page extends Component {
     const { location } = this.props;
     const page = location.pathname;
     
-    this.fetchPageData(`${process.env.API_URL}/wp-json/single-page/page${page}`);
+    this.fetchPageData(`${process.env.ADMIN_SITE}/wp-json/single-page/page${page}`);
 
     // get latest posts
-    fetch(`${process.env.API_URL}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({ posts: data.posts });
@@ -49,7 +46,6 @@ class Page extends Component {
   }
 
   fetchPageData(url) {
-    this.setState({ spinner: true });
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -129,21 +125,17 @@ class Page extends Component {
           image={blogHeader}
           height="auto"
         />
-        {
-          (!spinner) ? (
-            <LargeSidebar
-              body={(<Body content={content} />)}
-              sidebar={(
-                <Sidebar
-                  posts={posts}
-                  hideSubscription={this.hideSubscription}
-                  show={show}
-                  toggleModal={this.toggleModal}
-                />
- )}
+        <LargeSidebar
+          body={(<Body content={content} />)}
+          sidebar={(
+            <Sidebar
+              posts={posts}
+              hideSubscription={this.hideSubscription}
+              show={show}
+              toggleModal={this.toggleModal}
             />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
+          )}
+        />
       </div>
     );
   }

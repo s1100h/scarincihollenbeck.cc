@@ -34,12 +34,11 @@ const SinglePractice = lazy(() => import(/* webpackPreload: true */ './pages/Sin
  * Back Pages
  */
 const FirmOverview = lazy(() => import(/* webpackPreload: true */ './pages/FirmOverview'));
-// const FirmPage = lazy(() => import(/* webpackPreload: true */ './pages/FirmPage'));
-
-// const Page = lazy(() => import(/* webpackPreload: true */ './pages/Page'));
+const FirmPage = lazy(() => import(/* webpackPreload: true */ './pages/FirmPage'));
+const Page = lazy(() => import(/* webpackPreload: true */ './pages/Page'));
 const Contact = lazy(() => import(/* webpackPreload: true */ './pages/Contact'));
-// import SubscriptionPage from './pages/SubscriptionPage';
-// import Page404 from './pages/page404';
+const SubscriptionPage = lazy(() => import(/* webpackPreload: true */ './pages/SubscriptionPage'));
+const Page404 = lazy(() => import(/* webpackPreload: true */ './pages/page404'));
 
 /**
  *  Blog Archives
@@ -70,7 +69,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 **/
 import './styles/main.scss';
 import './styles/navigation.scss';
-import './styles/archive-attorneys.scss';
+import './styles/archive-attorney&admin.scss';
 import './styles/archive-location.scss';
 import './styles/archive-practice.scss';
 import './styles/archive-career.scss';
@@ -79,6 +78,8 @@ import './styles/single-admin.scss';
 import './styles/single-practice.scss';
 import './styles/single-career.scss';
 import './styles/subscription-form.scss';
+import './styles/firm-page.scss';
+import './styles/page.scss';
 import './styles/single.scss';
 import './styles/footer.scss';
 
@@ -124,6 +125,10 @@ import './styles/footer.scss';
  * 
  */
 
+console.log('process.env');
+console.log(process.env.ADMIN_SITE);
+console.log(process.env.CACHED_API);
+
 class SiteRoutes extends Component {
   constructor(props) {
     super(props);
@@ -132,7 +137,7 @@ class SiteRoutes extends Component {
     }
   };
   componentDidMount() {
-    fetch(`${process.env.ADMIN_URL}/wp-json/single-page/page-list`)
+    fetch(`${process.env.ADMIN_SITE}/wp-json/single-page/page-list`)
       .then(res => res.json())
       .then(data => {
         this.setState({sitePages: data})
@@ -181,9 +186,11 @@ class SiteRoutes extends Component {
           <Route path='/practices/:practice' exact component={SinglePractice} />
           <Route path='/contact/' exact component={Contact} />
           <Route path='/firm-overview/' exact component={FirmOverview} />
+          <Route path='/subscribe' exact component={SubscriptionPage} />
+           
           {/*                                                  
           
-          <Route path='/category/quick-news' exact component={QuickNews} />
+          <Route path='/category/quick-news' exact component={QuickNews} />  
           <Route path='/category/quick-news/page/:pageNum' exact component={QuickNews} />
           <Route path='/archives/:categorySlug' exact component={Archives} />
           <Route path='/archives/:categorySlug/page/:pageNum' exact component={Archives} />
@@ -198,16 +205,15 @@ class SiteRoutes extends Component {
           <Route path='/firm-events/:post' exact component={Single} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />
-          <Route path='/subscribe' exact component={SubscriptionPage} />        */}
+          
+          */}
+
           {/** Firm Page routes */}
-          {
-            // firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)
-          }
+          {firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)}
           {/** Pages **/}
-          {
-            // sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )
-          }
-          {/* {(sitePages.length > 0 ) && <Route component={Page404} /> } */}
+          {sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )}
+          {/* 404 Page */}
+          {(sitePages.length >0 ) && <Route component={Page404} />}
         </Switch>
         </Suspense>
         <Footer />
