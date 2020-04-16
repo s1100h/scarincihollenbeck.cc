@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carousel from '../../components/Carousel';
-import { sortByKey } from '../../utils/helpers';
+import Carousel from './Carousel';
+import { sortByKey } from '../utils/helpers';
 
 const NewsScroller = (props) => {
   const { title, articles } = props;

@@ -52,7 +52,7 @@ function renderSlides(type, slides) {
   }
 
   if (type === 'Location') {
-    return slides.map((post) => <LocationCarousel id={post.id} key={post.id} post={post} />);
+    return slides.map((post) => <LocationCarousel id={parseInt(post.id, 10)} key={parseInt(post.id, 10)} post={post} />);
   }
 
   if (type === 'JustInCarousel') {

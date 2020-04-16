@@ -45,15 +45,20 @@ const Page404 = lazy(() => import(/* webpackPreload: true */ './pages/page404'))
  */
 const QuickNews = lazy(() => import(/* webpackPreload: true */ './pages/QuickNews'));
 const Archives = lazy(() => import(/* webpackPreload: true */ './pages/Archives'));
+const Authors = lazy(() => import(/* webpackPreload: true */ './pages/Authors'));
 // import Category from './pages/Category';
-// import Archives from ;
-// import Authors from './pages/Authors';
-// import Search from './pages/Search';
+
 
  /**
   *  Blog Pages
   */
 // import Single from './pages/Single';
+
+
+/**
+ * Search
+ */
+const Search = lazy(() => import(/* webpackPreload: true */ './pages/Search'));
 
 
 
@@ -187,14 +192,14 @@ class SiteRoutes extends Component {
           <Route path='/category/quick-news' exact component={QuickNews} />
           <Route path='/category/quick-news/page/:pageNum' exact component={QuickNews} />                    
           <Route path='/archives/:categorySlug' exact component={Archives} />
-          <Route path='/archives/:categorySlug/page/:pageNum' exact component={Archives} />  
-          {/*                                                  
-          
-          
-
+          <Route path='/archives/:categorySlug/page/:pageNum' exact component={Archives} />
           <Route path ='/author/:author' exact component={Authors} />
           <Route path ='/author/:author/page/:pageNum' exact component={Authors} />
-          <Route path={`/s`} component={Search} />
+          <Route path={`/s`} component={Search} />  
+          {/*                                                  
+          
+
+          
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />

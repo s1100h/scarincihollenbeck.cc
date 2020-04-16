@@ -22,7 +22,6 @@ function LocationCarousel(props) {
 }
 
 LocationCarousel.propTypes = {
-
   post: PropTypes.objectOf(PropTypes.string),
 };
 

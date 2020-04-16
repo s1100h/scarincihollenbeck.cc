@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
-import NewsScroller from './NewsScroller';
+import NewsScroller from '../../components/NewsScroller';
 
 const Body = (props) => {
   const {
@@ -72,7 +72,7 @@ const Body = (props) => {
                 >
                   <a
                     className="text-dark mt-2"
-                    href={`${window.location.origin}/${categorySlug}/page/${val}/`}
+                    href={`${window.location.origin}/category/${categorySlug}/page/${val}/`}
                   >
                     {val}
                   </a>
@@ -90,7 +90,7 @@ const Body = (props) => {
                 >
                   <a
                     className="text-dark"
-                    href={`${window.location.origin}/${categorySlug}/page/${val}/`}
+                    href={`${window.location.origin}/category/${categorySlug}/page/${val}/`}
                   >
                     {val}
                   </a>
@@ -101,10 +101,10 @@ const Body = (props) => {
               <li className="ml-1">
                 <a
                   className="text-dark"
-                  href={`${window.location.origin}/${categorySlug}/page/${next}/`}
+                  href={`${window.location.origin}/category/${categorySlug}/page/${next}/`}
                   aria-label="next link"
                 >
-                 <FontAwesomeIcon icon={faCaretRight} />
+                  <FontAwesomeIcon icon={faCaretRight} />
                 </a>
               </li>
             </ul>

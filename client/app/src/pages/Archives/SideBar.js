@@ -1,20 +1,19 @@
 import React from 'react';
 import PropType from 'prop-types';
-// lazy load components
-import AboutFirm from './AboutFirm'
-import TrendingStories from '../../../components/TrendingStories'
-import Search from '../../../components/Search'
+import TrendingStories from '../../components/TrendingStories';
+import Search from '../../components/Search';
+import AboutFirm from '../../components/AboutFirm';
 
 const SideBar = (props) => {
   const {
-    trending
+    trending,
   } = props;
 
   return (
     <div>
       <Search />
       <AboutFirm />
-      <TrendingStories content={trending} />      
+      <TrendingStories content={trending} />
     </div>
   );
 };

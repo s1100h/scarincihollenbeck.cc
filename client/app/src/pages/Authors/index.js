@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchiveHead from '../../components/Head/archive';
-import BreadCrumbs from './BreadCrumbs';
+import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
-import './index.scss';
 
 class Author extends Component {
   constructor(props) {
@@ -21,7 +19,6 @@ class Author extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
-      spinner: false,
       seo: {},
     };
 
@@ -39,9 +36,9 @@ class Author extends Component {
       breadCrumb[1] = pageNum;
     }
     this.setState({
-      breadCrumb, categorySlug: author, currentPage: page, spinner: true,
+      breadCrumb, categorySlug: author, currentPage: page,
     }, () => {
-      this.getPosts(`${process.env.API_URL}/wp-json/author/posts/${author}/${page}`, author);
+      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/posts/${author}/${page}`, author);
     });
   }
 
@@ -50,10 +47,11 @@ class Author extends Component {
       .then((res) => res.json())
       .then((data) => {
         const {
-          pages, results, term, seo,
+          pages, results, seo,
         } = data;
+
         this.setState({
-          results, seo, spinner: false,
+          results, seo,
         });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
@@ -62,7 +60,7 @@ class Author extends Component {
         this.setState({ pageNums });
       })
       .then(() => {
-        fetch(`${process.env.API_URL}/wp-json/author/bio/${authorName}`)
+        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${authorName}`)
           .then((res) => res.json())
           .then((results) => {
             const { bio, practices } = results;
@@ -77,17 +75,17 @@ class Author extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch('https://api.scarincilies.com/cached/latest-articles')
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`)
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;
             this.setState({
               news: firmNews,
               events: firmEvents,
-              insight: firmInsights
+              insight: firmInsights,
             });
           });
-      })      
+      });
   }
 
   render() {
@@ -102,7 +100,6 @@ class Author extends Component {
       currentPage,
       bio,
       practices,
-      spinner,
       seo,
     } = this.state;
 
@@ -116,32 +113,28 @@ class Author extends Component {
     return (
       <div>
         <ArchiveHead seo={seo} />
-        {
-          (!spinner) ? (
-            <ArchiveLayout
-              header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
-              body={(
-                <Body
-                  results={results}
-                  categorySlug={categorySlug}
-                  next={next}
-                  prev={prev}
-                  pageNums={pageNums}
-                  news={news}
-                  events={events}
-                  insight={insight}
-                  active={active}
-                />
- )}
-              sidebar={(
-                <SideBar
-                  bio={bio}
-                  practices={practices}
-                />
-)}
+        <ArchiveLayout
+          header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
+          body={(
+            <Body
+              results={results}
+              categorySlug={categorySlug}
+              next={next}
+              prev={prev}
+              pageNums={pageNums}
+              news={news}
+              events={events}
+              insight={insight}
+              active={active}
             />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
+ )}
+          sidebar={(
+            <SideBar
+              bio={bio}
+              practices={practices}
+            />
+)}
+        />
       </div>
     );
   }

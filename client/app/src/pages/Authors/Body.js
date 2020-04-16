@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
-
-// lazy load components
-import NewsScroller from './NewsScroller';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
+import NewsScroller from '../../components/NewsScroller';
 
 
 const Body = (props) => {
@@ -62,7 +62,7 @@ const Body = (props) => {
                   tabIndex="-1"
                   aria-label="previous link"
                 >
-                  <FaAngleDoubleLeft />
+                  <FontAwesomeIcon icon={faCaretLeft} />
                 </a>
               </li>
               {/** Current / First Number */}
@@ -105,7 +105,7 @@ const Body = (props) => {
                   href={`${window.location.origin}/author/${categorySlug}/page/${next}/`}
                   aria-label="next link"
                 >
-                  <FaAngleDoubleRight />
+                  <FontAwesomeIcon icon={faCaretRight} />
                 </a>
               </li>
             </ul>

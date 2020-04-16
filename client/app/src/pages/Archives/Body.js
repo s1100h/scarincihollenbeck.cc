@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import PropTypes from 'prop-types';
-import NewsScroller from './NewsScroller';
+import NewsScroller from '../../components/NewsScroller';
 
 const Body = (props) => {
   const {

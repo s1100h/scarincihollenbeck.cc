@@ -1,6 +1,5 @@
 import React from 'react';
 import PropType from 'prop-types';
-import './index.scss';
 
 const AttorneyServices = (props) => {
   const { bio, practices } = props;
@@ -16,7 +15,7 @@ const AttorneyServices = (props) => {
           (practices) ? practices.map((p) => (
             <div key={p.title} className="mb-3">
               <a href={p.link} className="top-article">
-                <h5 className="mb-0">{p.title}</h5>
+                <p className="proxima-bold">{p.title}</p>
               </a>
             </div>
           )) : ''

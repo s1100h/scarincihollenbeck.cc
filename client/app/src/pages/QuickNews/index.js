@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchiveHead from '../../components/Head/archive';
-import BreadCrumbs from './BreadCrumbs';
+import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
 
@@ -46,8 +46,8 @@ class QuickNews extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -58,7 +58,7 @@ class QuickNews extends Component {
         this.setState({
           results, trending: posts, seo,
         });
-        
+
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);

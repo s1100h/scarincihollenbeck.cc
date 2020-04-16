@@ -1,9 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
-
-import AboutFirm from './AboutFirm';
-import TrendingStories from '../../../components/TrendingStories';
-import Search from '../../../components/Search';
+import TrendingStories from '../../components/TrendingStories';
+import Search from '../../components/Search';
+import AboutFirm from '../../components/AboutFirm';
 
 const Sidebar = (props) => {
   const {
@@ -14,7 +13,7 @@ const Sidebar = (props) => {
     <div>
       <Search />
       <AboutFirm />
-      <TrendingStories posts={trending} />
+      <TrendingStories content={trending} />
     </div>
   );
 };

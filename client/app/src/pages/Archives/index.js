@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ArchiveHead from '../../components/Head/archive';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
-import BreadCrumbs from './BreadCrumbs';
+import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
 
@@ -18,7 +18,7 @@ class Archives extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
-      seo: {}
+      seo: {},
     };
   }
 
@@ -34,7 +34,7 @@ class Archives extends Component {
     }
 
     this.setState({
-      breadCrumb, categorySlug, currentPage: page
+      breadCrumb, categorySlug, currentPage: page,
     }, () => {
       this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${categorySlug}/${page}`);
     });
@@ -45,8 +45,8 @@ class Archives extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -55,7 +55,7 @@ class Archives extends Component {
         } = data;
 
         this.setState({
-          results, trending: posts, seo
+          results, trending: posts, seo,
         });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
@@ -69,8 +69,8 @@ class Archives extends Component {
           headers: {
             'Content-Type': 'application/json',
             'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip'
-          }
+            'Accept-Encoding': 'gzip',
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -78,10 +78,10 @@ class Archives extends Component {
             this.setState({
               news: firmNews,
               events: firmEvents,
-              insight: firmInsights
+              insight: firmInsights,
             });
           });
-      })
+      });
   }
 
   render() {
@@ -108,26 +108,26 @@ class Archives extends Component {
       <div>
         <ArchiveHead seo={seo} />
         <ArchiveLayout
-              header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
-              body={(
-                <Body
-                  results={results}
-                  categorySlug={categorySlug}
-                  next={next}
-                  prev={prev}
-                  pageNums={pageNums}
-                  news={news}
-                  events={events}
-                  insight={insight}
-                  active={active}
-                />
- )}
-              sidebar={(
-                <SideBar
-                  trending={trending}
-                />
-)}
+          header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
+          body={(
+            <Body
+              results={results}
+              categorySlug={categorySlug}
+              next={next}
+              prev={prev}
+              pageNums={pageNums}
+              news={news}
+              events={events}
+              insight={insight}
+              active={active}
             />
+ )}
+          sidebar={(
+            <SideBar
+              trending={trending}
+            />
+)}
+        />
       </div>
     );
   }

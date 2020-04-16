@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchivehHead from '../../components/Head/archive';
-import BreadCrumbs from './BreadCrumbs';
+import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
-import './index.scss';
-
-// lazy load components
 import Body from './Body';
 
 class Search extends Component {
@@ -23,7 +19,6 @@ class Search extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
-      spinner: false,
     };
 
     this.getPosts = this.getPosts.bind(this);
@@ -45,9 +40,9 @@ class Search extends Component {
       breadCrumb = [categorySlug, page];
     }
     this.setState({
-      breadCrumb, categorySlug, currentPage: page, spinner: true,
+      breadCrumb, categorySlug, currentPage: page,
     }, () => {
-      this.getPosts(`${process.env.API_URL}/wp-json/search/query/${categorySlug}/${page}`);
+      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/search/query/${categorySlug}/${page}`);
     });
   }
 
@@ -56,10 +51,10 @@ class Search extends Component {
       .then((res) => res.json())
       .then((data) => {
         const {
-          pages, results, posts, term,
+          pages, results, posts,
         } = data;
         this.setState({
-          results, trending: posts, term, spinner: false,
+          results, trending: posts,
         });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
@@ -69,17 +64,17 @@ class Search extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch('https://api.scarincilies.com/cached/latest-articles')
-        .then((res) => res.json())
-        .then((data) => {
-          const { firmNews, firmInsights, firmEvents } = data;
-          this.setState({
-            news: firmNews,
-            events: firmEvents,
-            insight: firmInsights
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`)
+          .then((res) => res.json())
+          .then((data) => {
+            const { firmNews, firmInsights, firmEvents } = data;
+            this.setState({
+              news: firmNews,
+              events: firmEvents,
+              insight: firmInsights,
+            });
           });
-        });
-      })
+      });
   }
 
   render() {
@@ -93,8 +88,6 @@ class Search extends Component {
       breadCrumb,
       categorySlug,
       currentPage,
-      term,
-      spinner,
     } = this.state;
 
     // pagination set up
@@ -111,31 +104,27 @@ class Search extends Component {
     return (
       <div>
         <ArchivehHead seo={seo} />
-        {
-          (!spinner) ? (
-            <ArchiveLayout
-              header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
-              body={(
-                <Body
-                  results={results}
-                  categorySlug={categorySlug}
-                  next={next}
-                  prev={prev}
-                  pageNums={pageNums}
-                  news={news}
-                  events={events}
-                  insight={insight}
-                  active={active}
-                />
- )}
-              sidebar={(
-                <SideBar
-                  trending={trending}
-                />
-)}
+        <ArchiveLayout
+          header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
+          body={(
+            <Body
+              results={results}
+              categorySlug={categorySlug}
+              next={next}
+              prev={prev}
+              pageNums={pageNums}
+              news={news}
+              events={events}
+              insight={insight}
+              active={active}
             />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
+ )}
+          sidebar={(
+            <SideBar
+              trending={trending}
+            />
+)}
+        />
       </div>
     );
   }
