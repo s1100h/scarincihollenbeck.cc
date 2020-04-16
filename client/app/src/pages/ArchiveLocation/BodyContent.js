@@ -23,7 +23,7 @@ const BodyContent = (props) => {
         Office
       </h4>
       <div className="w-100">
-        <iframe title={`${title} office`} src={map} className="w-100 h-300" frameBorder="0" allowFullScreen />
+        <iframe rel="preconnect" title={`${title} office`} src={map} className="w-100 h-300" frameBorder="0" allowFullScreen />
       </div>
       <h4 className="bg-light-gray text-capitalize mt-5">
         {title}

@@ -35,7 +35,13 @@ class FirmPage extends Component {
     const { location } = this.props;
     const page = location.pathname;
 
-    fetch(`${process.env.ADMIN_SITE}/wp-json/firm-page/page${page}`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/firm-page/page${page}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const {

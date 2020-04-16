@@ -17,11 +17,7 @@ class Footer extends Component {
   }
 
   componentDidMount() {
-    console.log('admin site url', process.env.ADMIN_SITE);
-    console.log('cached site url', process.env.CACHED_API);
-    console.log('process.env');
-    console.log(process.env);
-    fetch(`${process.env.ADMIN_SITE}/wp-json/just-in/posts`, { headers })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers })
       .then((res) => res.json())
       .then((slides) => this.setState({ slides }));
   }

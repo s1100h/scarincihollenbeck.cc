@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 const webpack = require('webpack');
-// const Dotenv = require('dotenv-webpack');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -94,9 +94,12 @@ module.exports = {
       Promise: 'es6-promise',
       fetch: 'exports-loader?self.fetch!whatwg-fetch/dist/fetch.umd',
     }),
-    // new Dotenv({
-    //   path: '.env.prod',
-    // }),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_ADMIN_SITE': JSON.stringify('http://localhost:8400'),
+      'process.env.REACT_APP_CACHED_API': JSON.stringify('http://localhost:8200'),
+      'process.env.REACT_APP_FORMS_API': JSON.stringify('http://localhost:8000'),
+      'process.env.REACT_APP_FEED_API': JSON.stringify('http://localhost:8100')
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',

@@ -43,10 +43,11 @@ const Page404 = lazy(() => import(/* webpackPreload: true */ './pages/page404'))
 /**
  *  Blog Archives
  */
+const QuickNews = lazy(() => import(/* webpackPreload: true */ './pages/QuickNews'));
+const Archives = lazy(() => import(/* webpackPreload: true */ './pages/Archives'));
 // import Category from './pages/Category';
-// import Archives from './pages/Archives';
+// import Archives from ;
 // import Authors from './pages/Authors';
-// import QuickNews from './pages/QuickNews';
 // import Search from './pages/Search';
 
  /**
@@ -133,7 +134,7 @@ class SiteRoutes extends Component {
     }
   };
   componentDidMount() {
-    fetch(`${process.env.ADMIN_SITE}/wp-json/single-page/page-list`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page-list`)
       .then(res => res.json())
       .then(data => {
         this.setState({sitePages: data})
@@ -183,13 +184,14 @@ class SiteRoutes extends Component {
           <Route path='/contact/' exact component={Contact} />
           <Route path='/firm-overview/' exact component={FirmOverview} />
           <Route path='/subscribe' exact component={SubscriptionPage} />
-           
+          <Route path='/category/quick-news' exact component={QuickNews} />
+          <Route path='/category/quick-news/page/:pageNum' exact component={QuickNews} />                    
+          <Route path='/archives/:categorySlug' exact component={Archives} />
+          <Route path='/archives/:categorySlug/page/:pageNum' exact component={Archives} />  
           {/*                                                  
           
-          <Route path='/category/quick-news' exact component={QuickNews} />  
-          <Route path='/category/quick-news/page/:pageNum' exact component={QuickNews} />
-          <Route path='/archives/:categorySlug' exact component={Archives} />
-          <Route path='/archives/:categorySlug/page/:pageNum' exact component={Archives} />
+          
+
           <Route path ='/author/:author' exact component={Authors} />
           <Route path ='/author/:author/page/:pageNum' exact component={Authors} />
           <Route path={`/s`} component={Search} />

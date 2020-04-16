@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaCaretRight } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import PropTypes from 'prop-types';
 
 const BreadCrumbs = (props) => {
@@ -11,7 +12,7 @@ const BreadCrumbs = (props) => {
         <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
       </span>
       <strong className="text-black mt-2 mx-2 proxima-bold">
-        <FaCaretRight />
+        <FontAwesomeIcon icon={faCaretRight} className="red-title" />
       </strong>
       { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
         <span key={val}>
@@ -19,7 +20,7 @@ const BreadCrumbs = (props) => {
             { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }
           </span>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FaCaretRight />
+            <FontAwesomeIcon icon={faCaretRight} className="red-title" />
           </strong>
         </span>
       ) : (

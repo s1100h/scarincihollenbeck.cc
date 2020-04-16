@@ -11,11 +11,11 @@ const TrendingStories = (props) => {
     </div>
     <div className="off-white">
       {
-        (content.length > 0) && content.map((p) => (
+        content.map((p) => (
           <div key={p.ID} className="p-2">
             <a href={p.link} className="top-article">
-              <h5 className="mb-0">{p.title}</h5>
-              {(content.hasOwnProperty("author") || p.author === 'Scarinci Hollenbeck') ? <p className="mt-0 mb-3 ft-22">{p.author}</p> : <br/>}
+              <p className="small-excerpt proxima-bold">{p.title}</p>
+              {(content.hasOwnProperty("author") || p.author === 'Scarinci Hollenbeck') && <p className="mt-0 mb-3 ft-22">{p.author}</p>}
             </a>
           </div>
         ))

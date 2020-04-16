@@ -4,17 +4,17 @@
   "description": "main website for the New Jersey & New York law firm Scarinci Hollenbeck",
   "icons": [
     {
-      "src": "./logo.png",
+      "src": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond-192x192-compressor.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "./logo.png",
+      "src": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond-512x512-compressor.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/",
   "background_color": "#DB2220",
   "display": "standalone",
   "scope": "/",

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import SHDiamond from '../../images/sh-mini-diamond.png';
+const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const Sidebar = (props) => {
   const {
@@ -26,7 +26,7 @@ const Sidebar = (props) => {
         </div>
         <div className="off-white">
           <div className="off-white mh-375">
-            <img src={SHDiamond} alt="Subscribe Scarinci Hollenbeck attorneys" className="mx-auto d-block py-4 w-50" />
+            <img src={ShDiamond} alt="Subscribe Scarinci Hollenbeck attorneys" className="mx-auto d-block py-4 w-50" />
             <p className="proxima-bold text-center px-3">
               Are you in need of an attorney that covers this area of law for your business?
             </p>

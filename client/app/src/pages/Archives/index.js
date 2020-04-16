@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import ArchiveHead from '../../components/Head/archive';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from './BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
-import './index.scss';
 
 class Archives extends Component {
   constructor(props) {
@@ -20,8 +18,7 @@ class Archives extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
-      seo: {},
-      spinner: false,
+      seo: {}
     };
   }
 
@@ -37,14 +34,20 @@ class Archives extends Component {
     }
 
     this.setState({
-      breadCrumb, categorySlug, currentPage: page, spinner: true,
+      breadCrumb, categorySlug, currentPage: page
     }, () => {
-      this.getPosts(`${process.env.API_URL}/wp-json/archive/query/${categorySlug}/${page}`);
+      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${categorySlug}/${page}`);
     });
   }
 
   getPosts(url) {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -52,7 +55,7 @@ class Archives extends Component {
         } = data;
 
         this.setState({
-          results, trending: posts, seo, spinner: false,
+          results, trending: posts, seo
         });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
@@ -62,7 +65,13 @@ class Archives extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch('https://api.scarincilies.com/cached/latest-articles')
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Encoding': 'gzip',
+            'Accept-Encoding': 'gzip'
+          }
+        })
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;
@@ -86,7 +95,6 @@ class Archives extends Component {
       breadCrumb,
       categorySlug,
       currentPage,
-      spinner,
       seo,
     } = this.state;
 
@@ -99,9 +107,7 @@ class Archives extends Component {
     return (
       <div>
         <ArchiveHead seo={seo} />
-        {
-          (!spinner) ? (
-            <ArchiveLayout
+        <ArchiveLayout
               header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
               body={(
                 <Body
@@ -122,8 +128,6 @@ class Archives extends Component {
                 />
 )}
             />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
       </div>
     );
   }

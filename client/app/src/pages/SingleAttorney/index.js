@@ -36,12 +36,18 @@ class AttorneyBiography extends Component {
 
   componentDidMount() {
     const { attorney } = this.props.match.params;
-    this.fetchPostData(`${process.env.ADMIN_SITE}/wp-json/individual-attorney/attorney/${attorney}`);
+    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-attorney/attorney/${attorney}`);
   }
 
 
   fetchPostData(url) {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((bio) => {
         let matterTab = '';

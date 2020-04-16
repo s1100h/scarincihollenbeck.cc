@@ -35,10 +35,16 @@ class Page extends Component {
     const { location } = this.props;
     const page = location.pathname;
     
-    this.fetchPageData(`${process.env.ADMIN_SITE}/wp-json/single-page/page${page}`);
+    this.fetchPageData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page${page}`);
 
     // get latest posts
-    fetch(`${process.env.ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         this.setState({ posts: data.posts });
@@ -46,7 +52,13 @@ class Page extends Component {
   }
 
   fetchPageData(url) {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const { content, title, seo } = data;

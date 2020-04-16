@@ -52,7 +52,7 @@ class Search extends Component {
   }
 
   componentDidMount() { 
-    fetch(`${process.env.CACHED_URL}/cached/search-options`)
+    fetch(`${process.env.REACT_APP_CACHED_URL}/cached/search-options`)
       .then((res) => res.json())
       .then((data) => {
         const {

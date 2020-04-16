@@ -1,5 +1,6 @@
 require('dotenv').config();
 import express = require('express');
+import compression = require('compression');
 import cors = require('cors')
 import bodyParser = require('body-parser')
 import { fetchData } from '../workers/run-workers';
@@ -13,6 +14,7 @@ import { IndexRouter } from './controllers/v0/index.router';
     
     app.use(cors());
     app.use(bodyParser());
+    app.use(compression());
     app.use('/', IndexRouter);
   
   

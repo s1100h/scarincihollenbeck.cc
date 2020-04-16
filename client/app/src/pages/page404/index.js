@@ -23,7 +23,7 @@ class Page404 extends Component {
 
   onSubmit() {
     const { searchTerm } = this.state;
-    fetch(`${process.env.API_URL}/wp-json/search/post`,
+    fetch(`${process.env.REACT_APP_API_URL}/wp-json/search/post`,
       {
         method: 'post',
         body: searchTerm,

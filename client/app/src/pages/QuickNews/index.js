@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
 import ArchiveLayout from '../../layouts/ArchiveLayout';
 import ArchiveHead from '../../components/Head/archive';
 import BreadCrumbs from './BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
-import './index.scss';
 
 class QuickNews extends Component {
   constructor(props) {
@@ -21,14 +19,13 @@ class QuickNews extends Component {
       breadCrumb: [],
       categorySlug: '',
       seo: {},
-      spinner: false,
     };
   }
 
   componentDidMount() {
     const { match } = this.props;
     const { pageNum } = match.params;
-    const categorySlug = 'Quick News';
+    const categorySlug = 'quick-news';
     const breadCrumb = ['quick-news', 1];
     let page = 1;
 
@@ -38,30 +35,30 @@ class QuickNews extends Component {
     }
 
     this.setState({
-      breadCrumb, categorySlug, currentPage: page, spinner: true,
+      breadCrumb, categorySlug, currentPage: page,
     }, () => {
-      this.getPosts(`${process.env.API_URL}/wp-json/quick-news/posts/${page}`);
+      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/quick-news/posts/${page}`);
     });
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   getPosts(url) {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const {
           pages, results, posts, seo,
         } = data;
-        
-        if(this._isMounted) {
-          this.setState({
-            results, trending: posts, seo, spinner: false,
-          });
-        }
 
+        this.setState({
+          results, trending: posts, seo,
+        });
+        
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
           pageNums.push(i);
@@ -70,17 +67,17 @@ class QuickNews extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch('https://api.scarincilies.com/cached/latest-articles')
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`)
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;
             this.setState({
               news: firmNews,
               events: firmEvents,
-              insight: firmInsights
+              insight: firmInsights,
             });
           });
-      })
+      });
   }
 
   render() {
@@ -95,7 +92,6 @@ class QuickNews extends Component {
       categorySlug,
       currentPage,
       seo,
-      spinner,
     } = this.state;
 
     // pagination set up
@@ -107,31 +103,27 @@ class QuickNews extends Component {
     return (
       <div>
         <ArchiveHead seo={seo} />
-        {
-          (!spinner) ? (
-            <ArchiveLayout
-              header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
-              body={(
-                <Body
-                  results={results}
-                  categorySlug={categorySlug}
-                  next={next}
-                  prev={prev}
-                  pageNums={pageNums}
-                  news={news}
-                  events={events}
-                  insight={insight}
-                  active={active}
-                />
- )}
-              sidebar={(
-                <SideBar
-                  trending={trending}
-                />
-)}
+        <ArchiveLayout
+          header={(<BreadCrumbs breadCrumb={breadCrumb} categorySlug={categorySlug} />)}
+          body={(
+            <Body
+              results={results}
+              categorySlug={categorySlug}
+              next={next}
+              prev={prev}
+              pageNums={pageNums}
+              news={news}
+              events={events}
+              insight={insight}
+              active={active}
             />
-          ) : <PulseLoader color="#D02422" loading={spinner} />
-        }
+ )}
+          sidebar={(
+            <SideBar
+              trending={trending}
+            />
+)}
+        />
       </div>
     );
   }

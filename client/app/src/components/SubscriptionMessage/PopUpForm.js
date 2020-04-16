@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shDiamond from '../../images/sh-mini-diamond.png';
+const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const checkboxes = [
   {
@@ -162,7 +162,7 @@ class SubscriptionForm extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch(`${process.env.FORMS_API}/shlaw/site/subscription/form`, {
+    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/subscription/form`, {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {

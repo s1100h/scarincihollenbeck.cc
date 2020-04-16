@@ -27,7 +27,13 @@ class LocationPortal extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.CACHED_API}/cached/office-locations`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const { offices } = data;
@@ -60,7 +66,7 @@ class LocationPortal extends Component {
   }
 
   fetchOfficeData(location) {
-    const url = `${process.env.ADMIN_SITE}/wp-json/individual-location/office/${location}`;
+    const url = `${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/office/${location}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -81,7 +87,7 @@ class LocationPortal extends Component {
         });
       });
 
-    fetch(`${process.env.ADMIN_SITE}/wp-json/individual-location/posts/${location}`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/posts/${location}`)
       .then((res) => res.json())
       .then((posts) => this.setState({ posts }));
   }

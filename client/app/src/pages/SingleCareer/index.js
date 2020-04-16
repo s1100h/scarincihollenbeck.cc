@@ -46,7 +46,13 @@ class SingleCareer extends Component {
     const { match } = this.props;
     const { career } = match.params;
 
-    fetch(`${process.env.ADMIN_SITE}/wp-json/individual-career/career/${career}`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const { title, positionDescription, seo } = data;
@@ -105,7 +111,7 @@ class SingleCareer extends Component {
 
   formSubmit() {
     const { form } = this.state;
-    fetch(`${process.env.FORMS_API}/shlaw/site/career/form`, {
+    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`, {
       method: 'post',
       body: JSON.stringify(form),
       headers: {

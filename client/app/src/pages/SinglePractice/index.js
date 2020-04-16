@@ -33,10 +33,16 @@ class IndividualPractice extends Component {
 
   componentDidMount() {
     const { practice } = this.props.match.params;
-    this.fetchPostData(`${process.env.ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`);
+    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`);
 
     // get core practices
-    fetch(`${process.env.CACHED_API}/cached/core-practices`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const corePractices = data.map((cp) => ({
@@ -48,7 +54,13 @@ class IndividualPractice extends Component {
   }
 
   fetchPostData(url) {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const {

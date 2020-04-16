@@ -2,5 +2,19 @@
 .gitignore
 README.md
 docker-compose.yml
+
+# ignore api files
 api/app/node_modules
+api/app/src
+
+# ignore client files
 client/app/node_modules
+client/app/src
+
+# ignore feed files
+feed/app/node_modules
+feed/app/src
+
+# ignore forms files
+forms/app/node_modules
+forms/app/src

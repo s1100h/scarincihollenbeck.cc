@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SubscriptionForm from '../../../components/SubscriptionForm';
-import SHDiamond from '../../../images/sh-mini-diamond.png';
+const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const SubscriptionContent = (props) => {
   const { toggleModal, hideSubscription, show } = props;
@@ -12,7 +12,7 @@ const SubscriptionContent = (props) => {
           Get the latest from our attorneys!
       </div>
       <div className="off-white mh-375">
-        <img src={SHDiamond} alt="Subscribe Scarinci Hollenbeck attorneys" className="mx-auto d-block py-4 w-50" />
+        <img src={ShDiamond} alt="Subscribe Scarinci Hollenbeck attorneys" className="mx-auto d-block py-4 w-50" />
         <p className="proxima-bold text-center px-3">
             Please fill out our short form to get the latest articles
             from the Scarinci Hollenbeck attorneys weekly on the cutting-edge legal topics.

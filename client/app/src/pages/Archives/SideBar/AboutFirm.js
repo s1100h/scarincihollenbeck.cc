@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.scss';
 
 const AboutFirm = () => (
   <div className="w-100 mt-5">
@@ -7,21 +6,23 @@ const AboutFirm = () => (
       Firm Resources
     </div>
     <div className="off-white">
-      <div className="p-2 list-style ml-45">
-        <a href="https://scarincihollenbeck/firm-news" className="h5">
-        Firm News
-        </a>
-      </div>
-      <div className="p-2 pb-1 list-style ml-45">
-        <a href="https://scarincihollenbeck/firm-events" className="h5">
-        Firm Events
-        </a>
-      </div>
-      <div className="p-2 pb-1 list-style ml-45">
-        <a href="https://scarincihollenbeck/law-firm-insights" className="h5">
-        Firm Insights
-        </a>
-      </div>
+      <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content-page">
+        <li>
+          <a href="https://scarincihollenbeck/firm-news" className="small-excerpt">
+            Firm News
+          </a>
+        </li>
+        <li>
+          <a href="https://scarincihollenbeck/law-firm-insights" className="small-excerpt">
+            Firm Insights
+          </a>
+        </li>
+        <li>
+          <a href="https://scarincihollenbeck/firm-events" className="small-excerpt">
+            Firm Events
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 );

@@ -38,13 +38,25 @@ class AttorneyArchive extends Component {
   componentDidMount() {
     // fetch attorney list
     this.setState({ spinner: true });
-    fetch(`${process.env.ADMIN_SITE}/wp-json/attorney-search/attorneys/`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((attorneys) => {
         this.setState({ attorneys, spinner: false });
       });
 
-    fetch(`${process.env.CACHED_API}/cached/attorney-filters`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const { locations, designations, practices } = data;
@@ -57,7 +69,13 @@ class AttorneyArchive extends Component {
       });
 
     // get page seo data
-    fetch(`${process.env.ADMIN_SITE}/wp-json/attorney-search/meta`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/meta`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((seo) => this.setState({ seo }));
   }

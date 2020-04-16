@@ -16,7 +16,13 @@ class SubscriptionPage extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.CACHED_API}/wp-json/category/posts/law-firm-insights`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/wp-json/category/posts/law-firm-insights`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
     .then((res) => res.json())
     .then((data) => {
       const { main, latest, archives } = data;

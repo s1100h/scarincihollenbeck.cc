@@ -26,7 +26,13 @@ class FirmOverview extends Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    fetch(`${process.env.CACHED_API}/cached/firm-overview`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const {

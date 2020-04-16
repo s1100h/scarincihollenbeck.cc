@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-// lazy load components
-// const NewsScroller = loadable(() => import('./NewsScroller'));
-import NewsScrollerr from './NewsScroller'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
+import NewsScroller from './NewsScroller';
 
 const Body = (props) => {
   const {
@@ -57,11 +57,11 @@ const Body = (props) => {
               <li className="mr-2">
                 <a
                   className="text-dark"
-                  href={`${window.location.origin}/archives/${categorySlug}/page/${prev}/`}
+                  href={`${window.location.origin}/${categorySlug}/page/${prev}/`}
                   tabIndex="-1"
                   aria-label="previous link"
                 >
-                  <i className="fas fa-angle-double-left" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faCaretLeft} />
                 </a>
               </li>
               {/** Current / First Number */}
@@ -72,7 +72,7 @@ const Body = (props) => {
                 >
                   <a
                     className="text-dark mt-2"
-                    href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
+                    href={`${window.location.origin}/${categorySlug}/page/${val}/`}
                   >
                     {val}
                   </a>
@@ -90,7 +90,7 @@ const Body = (props) => {
                 >
                   <a
                     className="text-dark"
-                    href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
+                    href={`${window.location.origin}/${categorySlug}/page/${val}/`}
                   >
                     {val}
                   </a>
@@ -101,10 +101,10 @@ const Body = (props) => {
               <li className="ml-1">
                 <a
                   className="text-dark"
-                  href={`${window.location.origin}/archives/${categorySlug}/page/${next}/`}
+                  href={`${window.location.origin}/${categorySlug}/page/${next}/`}
                   aria-label="next link"
                 >
-                  <i className="fas fa-angle-double-right" aria-hidden="true" />
+                 <FontAwesomeIcon icon={faCaretRight} />
                 </a>
               </li>
             </ul>

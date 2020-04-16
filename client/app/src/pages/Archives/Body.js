@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import PropTypes from 'prop-types';
 import NewsScroller from './NewsScroller';
 
@@ -59,7 +61,7 @@ const Body = (props) => {
                   tabIndex="-1"
                   aria-label="previous link"
                 >
-                  <FaAngleDoubleLeft />
+                  <FontAwesomeIcon icon={faCaretLeft} />
                 </a>
               </li>
               {/** Current / First Number */}
@@ -102,7 +104,7 @@ const Body = (props) => {
                   href={`${window.location.origin}/archives/${categorySlug}/page/${next}/`}
                   aria-label="next link"
                 >
-                  <FaAngleDoubleRight />
+                  <FontAwesomeIcon icon={faCaretRight} />
                 </a>
               </li>
             </ul>

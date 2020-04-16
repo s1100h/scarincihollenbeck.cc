@@ -251,11 +251,11 @@ function category_data($request) {
     /** Retrieve SEO data */
     $seo_meta   = get_option( 'wpseo_taxonomy_meta' );
     $seo_title  = $seo_meta['category'][$id]['wpseo_title'];
-    $seo_metadescription = $seo_meta['category'][$id]['wpseo_desc'];
+    // $seo_metadescription = $seo_meta['category'][$id]['wpseo_desc'];
   
     $post_data['seo'] = (object)array(
       "title" => $seo_title,
-      "metaDescription" => $seo_metadescription,
+      "metaDescription" => '',
       "canonicalLink" => "/"
     );
 

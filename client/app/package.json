@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack.dev.js --history-api-fallback --watch",
-    "build": "webpack --mode production --config webpack.prod.js"
+    "build": "webpack --mode production --config webpack.prod.js && cp manifest.json dist && cp robots.txt dist"
   },
   "keywords": [
     "react.js",
@@ -89,6 +89,7 @@
     "react-slick": "^0.25.2",
     "react-stickynode": "^2.1.1",
     "sass": "^1.26.3",
+    "source-map-explorer": "^2.4.2",
     "styled-components": "^5.1.0",
     "whatwg-fetch": "^3.0.0"
   }

@@ -161,7 +161,7 @@ class SubscriptionForm extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch(`${process.env.FORMS_API}/shlaw/site/subscription/form`, {
+    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/subscription/form`, {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {

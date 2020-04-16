@@ -18,7 +18,13 @@ class AdminArchive extends Component {
   /* Fetch data events */
   componentDidMount() {
     // fetch admin list
-    fetch(`${process.env.CACHED_API}/cached/administration-archives`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;

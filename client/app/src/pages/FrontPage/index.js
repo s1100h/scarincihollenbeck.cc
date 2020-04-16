@@ -21,17 +21,28 @@ class FrontPage extends Component {
   }
 
   componentDidMount() {
-    const w = window.innerWidth;
-
+   
     // fetch latest seo data
-    fetch(`${process.env.ADMIN_SITE}/wp-json/front-page/meta`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((seo) => {
         this.setState({ seo });
       })
       .then(() => {
         // fetch latest firm news data
-        fetch(`${process.env.ADMIN_SITE}/wp-json/front-page/news`)
+        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/news`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Encoding': 'gzip',
+            'Accept-Encoding': 'gzip'
+          }
+        })
           .then((res) => res.json())
           .then((data) => {
             const posts = data;
@@ -39,7 +50,13 @@ class FrontPage extends Component {
           })
           .then((results) => {
             // fetch latest firm events data
-            fetch(`${process.env.ADMIN_SITE}/wp-json/front-page/events`)
+            fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/events`, {
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Encoding': 'gzip',
+                'Accept-Encoding': 'gzip'
+              }
+            })
               .then((res) => res.json())
               .then((data) => {
                 const ePosts = data;
@@ -50,7 +67,13 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch office locations
-        fetch(`${process.env.CACHED_URL}/cached/office-locations`)
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Encoding': 'gzip',
+            'Accept-Encoding': 'gzip'
+          }
+        })
           .then((res) => res.json())
           .then((data) => {
             this.setState({ locations: data.offices });
@@ -58,7 +81,13 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch a list of core practices
-        fetch(`${process.env.CACHED_URL}/cached/core-practices`)
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Encoding': 'gzip',
+            'Accept-Encoding': 'gzip'
+          }
+        })
           .then((res) => res.json())
           .then((data) => {
             const corePractices = data.map((cp) => ({

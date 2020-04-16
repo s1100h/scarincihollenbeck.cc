@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShDiamond from '../../../images/sh-mini-diamond.png';
+const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const Search = (props) => {
   const { searchTerm, onChange } = props;
@@ -13,7 +13,7 @@ const Search = (props) => {
 
   return (
     <div className="col-sm-12 col-md-6">
-      <img src={ShDiamond} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />
+      <img rel="preconnect" src={ShDiamond} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />
       <h2 className="text-white text-center display-32 text--shadow animated fadeInUp slow">How can we help?</h2>
       <form className="animated fadeInUp slow mx-3 mt-5 mb-5" onChange={onChange}>
         <span className="screen-reader-text">Search for:</span>

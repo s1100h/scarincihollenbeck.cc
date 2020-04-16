@@ -28,7 +28,13 @@ class CareerBody extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.ADMIN_SITE}/wp-json/career-portal/careers`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Encoding': 'gzip',
+        'Accept-Encoding': 'gzip'
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const positions = data.careers;

@@ -63,7 +63,7 @@ router.get('/latest-articles', async (req: Request, res: Response) => {
     }
   } catch (err) {
     if (err) {
-      res.status(400).send('err');
+      res.status(400).send(err);
     }
   }
 });

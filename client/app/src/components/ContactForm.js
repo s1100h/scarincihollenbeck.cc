@@ -72,7 +72,7 @@ class ContactForm extends Component {
       siteUrl,
     };
 
-    fetch(`${process.env.FORMS_API}/shlaw/site/contact/form`, {
+    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/contact/form`, {
       method: 'post',
       body: JSON.stringify(inquiryData),
       headers: {

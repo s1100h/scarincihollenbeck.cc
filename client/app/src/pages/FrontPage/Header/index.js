@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Content from './Content';
 import Search from './Search';
 
-const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/skyline-background.jpg';
+const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/skyline-background-jpg2-compressor.jpg';
 
 const HeaderBackground = styled.div`
   background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${cityBckGroundImg}) no-repeat 50%;

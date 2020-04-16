@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const SHLogo = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2017.png';
+const SHLogo = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png';
 
 const NavBar = () => (
   <div className="navigation-wrap bg-light start-header start-style d-print-none">
@@ -9,7 +9,7 @@ const NavBar = () => (
         <div className="col-12 mt-3">
           <nav className="navbar navbar-expand-md navbar-light">
             <Link className="navbar-brand mb-3" to="/">
-              <img src={SHLogo} alt="Scarinci Hollenbeck Regional Business law firm" />
+              <img rel="preconnect" src={SHLogo} alt="Scarinci Hollenbeck Regional Business law firm" />
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
