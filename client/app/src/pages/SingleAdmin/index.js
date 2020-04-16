@@ -5,7 +5,7 @@ import FullWidth from '../../layouts/FullWidth';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import { createMarkup } from '../../utils/helpers';
-import attorneyHeader from './attorney-header.jpg';
+const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
 
 
 class AdminBiography extends Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PropUpForm from './PopUpForm';
-import SHDiamond from '../../images/sh-mini-diamond.png';
+const SHDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const SubscriptionMessage = (props) => {
   const { show, toggleModal } = props;

@@ -7,7 +7,7 @@ import FullWidth from '../../layouts/FullWidth';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
-import cityBackground from './citybackground.jpg';
+const cityBackground = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
 class IndividualPractice extends Component {
   constructor(props) {

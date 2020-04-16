@@ -6,7 +6,8 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
 import { createMarkup } from '../../utils/helpers';
-import foHeaderBckGround from './citybackground.jpg';
+
+const foHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
 // lazy load components
 import Members from './Members';

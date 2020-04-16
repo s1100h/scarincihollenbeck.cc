@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import ArchiveHead from '../../components/Head/archive';
 import FullWidth from '../../layouts/FullWidth';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
-import carArchiveBckGround from './citybackground.jpg';
 
-// lazy load components
+const carArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
+
+//components
 import CareerSection from './CareerSection';
 import EEOpportunityContent from './EEOpportunityContent';
 

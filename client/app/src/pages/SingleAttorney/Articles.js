@@ -2,10 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addRandomKey } from '../../utils/helpers';
+const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
 const Post = (props) => {
   const { title, link, img } = props;
-  const noImg = `${process.env.API_URL}/wp-content/themes/sh-law-theme/includes/assets/images/88a9c0b8e7ff2ed7ecff91cfdaa0b816.png`;
   return (
     <div className="col-sm-12 col-md-4 my-2 article-card">
       <a href={link}>

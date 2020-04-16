@@ -1,8 +1,21 @@
-FROM nginx
+FROM node:latest as app
 
-      # - ADMIN_SITE=${ADMIN_SITE}
-      # - CACHED_API=${CACHED_API}
-      # - FORMS_API=${FORMS_API}
-      # - FEED_API=${FEED_API}
-      # make these run time args
-COPY app/dist /usr/share/nginx/html
+WORKDIR /home/app
+COPY app /home/app
+
+RUN npm install
+
+ARG ADMIN_SITE
+ARG CACHED_API
+ARG FORMS_API
+ARG FEED_API
+
+ENV ADMIN_SITE=$ADMIN_SITE
+ENV CACHED_API=$CACHED_API
+ENV FORMS_API=$FORMS_API
+ENV FEED_API=$FEED_API
+
+RUN npm run build
+
+FROM nginx
+COPY --from=app /home/app/dist /usr/share/nginx/html

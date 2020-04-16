@@ -3,7 +3,12 @@ services:
   client:
     build: client/
     volumes:
-      - "./client/app/dist:/usr/share/nginx/html"
+      - "./client/app:/app"
+    environment:
+      - ADMIN_SITE=${ADMIN_SITE}
+      - CACHED_API=${CACHED_API}
+      - FORMS_API=${FORMS_API}
+      - FEED_API=${FEED_API}
     ports:
       - ${IP}:8500:80
     links:

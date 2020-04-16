@@ -4,8 +4,8 @@ import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ContactForm from '../../components/ContactForm';
-import contactHeaderBckGround from './citybackground.jpg';
-import './index.scss';
+
+const contactHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 const Contact = () => {
   const seo = {

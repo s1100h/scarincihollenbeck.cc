@@ -23,6 +23,7 @@ Integration Todos:
 =====================================================
 1. Continue integrating pages
 2. Continue Sass-ifying pages -- left off on navigation.scss
+3. Replace all env files with REACT_APP https://stackoverflow.com/questions/52103155/reading-an-environment-variable-in-react-which-was-set-by-docker
 
 
 

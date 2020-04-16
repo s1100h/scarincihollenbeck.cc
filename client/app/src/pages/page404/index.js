@@ -4,7 +4,7 @@ import FullWidth from '../../layouts/FullWidth';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import './index.scss';
-import cityBckGroundImg from './citybackground.jpg';
+const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 class Page404 extends Component {
   constructor(props) {

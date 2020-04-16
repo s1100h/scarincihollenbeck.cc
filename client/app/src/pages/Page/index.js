@@ -8,7 +8,7 @@ import LargeSidebar from '../../layouts/LargeSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import { createMarkup } from '../../utils/helpers';
-import blogHeader from './blogheader.jpg';
+const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
 class Page extends Component {
   constructor(props) {

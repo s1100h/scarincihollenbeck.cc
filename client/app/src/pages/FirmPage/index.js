@@ -5,8 +5,8 @@ import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import MiniSidebar from '../../layouts/MiniSidebar';
 import { sortByKey } from '../../utils/helpers';
-import fpHeaderBckGround from './citybackground.jpg';
 
+const fpHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 // lazy load components
 import Sidebar from './Sidebar';
 import Tabs from './Tabs';

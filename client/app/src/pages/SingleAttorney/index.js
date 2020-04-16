@@ -10,7 +10,7 @@ import InfoCard from './InfoCard';
 import MenuItem from './MenuItem';
 import Sidebar from './Sidebar';
 import { sortByDateKey, urlify } from '../../utils/helpers';
-import attorneyHeader from './attorney-header.jpg';
+const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
 
 // lazy load components
 import Body from './Body';

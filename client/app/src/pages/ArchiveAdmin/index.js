@@ -3,7 +3,8 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ArchiveHead from '../../components/Head/archive';
 import AttorneyCard from '../../components/AttorneyCard';
-import adminArchiveBckGround from './attorney-archive-header.jpg';
+
+const adminArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
 
 class AdminArchive extends Component {
   constructor(props) {

@@ -125,10 +125,6 @@ import './styles/footer.scss';
  * 
  */
 
-console.log('process.env');
-console.log(process.env.ADMIN_SITE);
-console.log(process.env.CACHED_API);
-
 class SiteRoutes extends Component {
   constructor(props) {
     super(props);

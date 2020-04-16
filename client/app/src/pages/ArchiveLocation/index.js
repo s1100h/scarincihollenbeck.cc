@@ -4,7 +4,8 @@ import { getDirectionsFromLocation } from '../../utils/helpers';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import LocationHead from '../../components/Head/location';
-import locArchiveBckGround from './citybackground.jpg';
+
+const locArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 /** lazy load components */
 import BodyContent from './BodyContent';

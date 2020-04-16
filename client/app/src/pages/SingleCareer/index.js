@@ -8,8 +8,9 @@ import LargeSidebar from '../../layouts/LargeSidebar';
 import ContactForm from '../../components/ContactForm';
 import BreadCrumb from './BreadCrumb';
 import Body from './Body';
-import blogHeader from './blogheader.jpg';
 import Sidebar from './Sidebar';
+
+const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
 class SingleCareer extends Component {
   constructor(props) {

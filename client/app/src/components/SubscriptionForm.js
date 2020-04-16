@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shDiamond from '../images/sh-mini-diamond.png';
+const shDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/skyline-background.jpg';
 
 const checkboxes = [
   {

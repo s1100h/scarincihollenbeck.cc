@@ -3,9 +3,10 @@ import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import { sortByKey } from '../../utils/helpers';
-import attArchiveBckGround from './attorney-archive-header.jpg';
 
-// lazy load components
+const attArchiveBckGround ='https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
+
+// components
 import Filters from './Filters';
 import Selected from './Selected';
 import Results from './Results';

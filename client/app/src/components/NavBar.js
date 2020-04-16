@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SHLogo from '../images/sh-logo-2017.png';
+const SHLogo = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2017.png';
 
 const NavBar = () => (
   <div className="navigation-wrap bg-light start-header start-style d-print-none">
