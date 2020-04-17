@@ -219,7 +219,7 @@ class AttorneyArchive extends Component {
                 userInput={userInput}
               />
               {
-                    (!spinner) && (
+                    (attorneys.length > 0) && (
                       <Results
                         attorneys={attorneys}
                         userInput={userInput}

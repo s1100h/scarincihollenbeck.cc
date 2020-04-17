@@ -22,34 +22,43 @@ const Body = (props) => {
   return (
     <div>
       <div className="row">
-        <div className="col-sm-12 col-md-6">
-          {results.map((r, i) => (i < 5 ? (
-            <div className="p-2" key={r.id}>
-              <a href={r.link} className="top-article">
-                <h5 className="mb-0">{r.title}</h5>
-                <p className="mt-0 mb-3 text-muted small-excerpt">
-                  {r.description}
-                </p>
-              </a>
-            </div>
-          ) : (
-            ''
-          )))}
-        </div>
-        <div className="col-sm-12 col-md-6">
-          {results.map((r, i) => (i > 5 ? (
-            <div className="p-2" key={r.id}>
-              <a href={r.link} className="top-article">
-                <h5 className="mb-0">{r.title}</h5>
-                <p className="mt-0 mb-3 text-muted small-excerpt">
-                  {r.description}
-                </p>
-              </a>
-            </div>
-          ) : (
-            ''
-          )))}
-        </div>
+        {(results.length > 0) ? (
+          <>
+                  <div className="col-sm-12 col-md-6">
+                  {results.map((r, i) => (i < 5 ? (
+                    <div className="p-2" key={r.id}>
+                      <a href={r.link} className="top-article">
+                        <h5 className="mb-0">{r.title}</h5>
+                        <p className="mt-0 mb-3 text-muted small-excerpt">
+                          {r.description}
+                        </p>
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )))}
+                </div>
+                <div className="col-sm-12 col-md-6">
+                  {results.map((r, i) => (i > 5 ? (
+                    <div className="p-2" key={r.id}>
+                      <a href={r.link} className="top-article">
+                        <h5 className="mb-0">{r.title}</h5>
+                        <p className="mt-0 mb-3 text-muted small-excerpt">
+                          {r.description}
+                        </p>
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )))}
+                </div>
+                </>
+        ) : (
+          <div className="col-sm-12 my-5">
+              <h3 className="text-center red-title"> Sorry, no results found for that query.</h3>
+          </div>
+        )}
+
       </div>
       <div className="w-100 mt-0 ml--1">
         {results !== undefined && pageNums.length > 1 ? (

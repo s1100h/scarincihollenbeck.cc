@@ -91,7 +91,7 @@ const Body = (props) => {
           content={media}
         />
         )}
-        { (blogPosts) && (
+        { (blogPosts) && (blogPosts.length > 0) && (
         <Articles
           currentTab={currentTab}
           tabTitle="blogs"
@@ -128,7 +128,7 @@ const Body = (props) => {
       { (clients) && (clients.length > 0) && <FeaturedSlider content={clients} title="Clients" />}
       { (awards) && (awards.length > 0) && <FeaturedSlider content={awards} title="Awards" />}
       { (newsEventArticles.length > 0) && <RelatedArticles title="News & Events" content={newsEventArticles} /> }
-      { (blogPosts) && <RelatedArticles title="Recent Articles" content={sortedBlogArticles} />}
+      { (blogPosts) && (blogPosts.length > 0) && <RelatedArticles title="Recent Articles" content={sortedBlogArticles} />}
     </div>
   );
 };

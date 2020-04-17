@@ -12,20 +12,16 @@ Cosmetic Fixes
 10. Make representative matters stand out a bit more and uniform
 11. Cassin bring down the font size of each section in his biography
 12. Limit the title length for recent articles
-13. Set up conditional statements if articles or news length is greater than 0
-14. Make all sidebars uniform for attorney bios
-15. Practices pages make dropdowns uniform
-16. Remove all images from the build and place them into CDN
-17. Make sure robots.txt and manifest.json are working properly
-18. Make sure subscription box has mulitple close buttons
-19. Run through compressor.io -- Jessica-Small.jpg, Samantha-Small-1.jpg, ron-bienstock-small.jpg, Jorge_small.jpg,/ChaudrySmall1.jpg, Ray-Small.jpg, Burke-Small.jpg, Sarah-Small.jpg, Gregg-Small-NEW.jpg, Simon-Small.jpg, Kevin-Small-NEW.jpg, Maryam_small.jpg, Ivan-Small-1.jpg, Dzwilewski-small.jpg, Lena-Small.jpg, Jasmine-Small.jpg, Sarah-Small.jpg, Alyssa-Small.jpg, citybackground.jpg, Cassin-Small-456.jpg, geppert-sm.jpg, pittard-sm.jpg, kane-sm.jpg
-20. Set up window-react for attorney archives, category pages, 
-21. Incorporate Corona Resource Page 
-22. Review live site and make sure they are similar 
+13. Practices pages make dropdowns uniform
+14. Make sure robots.txt and manifest.json are working properly
+15. Run through compressor.io -- Jessica-Small.jpg, Samantha-Small-1.jpg, ron-bienstock-small.jpg, Jorge_small.jpg,/ChaudrySmall1.jpg, Ray-Small.jpg, Burke-Small.jpg, Sarah-Small.jpg, Gregg-Small-NEW.jpg, Simon-Small.jpg, Kevin-Small-NEW.jpg, Maryam_small.jpg, Ivan-Small-1.jpg, Dzwilewski-small.jpg, Lena-Small.jpg, Jasmine-Small.jpg, Sarah-Small.jpg, Alyssa-Small.jpg, citybackground.jpg, Cassin-Small-456.jpg, geppert-sm.jpg, pittard-sm.jpg, kane-sm.jpg
+16. Set up window-react for attorney archives, category pages, https://github.com/bvaughn/react-window
+17. Review live site and make sure they are similar 
 
 Integration Todos:
 =====================================================
-2. Continue Sass-ifying pages -- left off on navigation.scss
+1. Continue Sass-ifying pages -- left off on navigation.scss
+2. Add all margin and font styling into its own sheet
 
 Pre-production Integration Todos:
 ============================================

@@ -193,7 +193,7 @@ class AttorneyBiography extends Component {
               { (presentations) && <MenuItem currentTab={currentTab} tabTitle="presentations" tabClick={this.tabClick} title="Presentations" /> }
               { (publications) && <MenuItem currentTab={currentTab} tabTitle="publications" tabClick={this.tabClick} title="Publications" /> }
               { (media) && <MenuItem currentTab={currentTab} tabTitle="media" tabClick={this.tabClick} title="Media" /> }
-              { (blogPosts) && <MenuItem currentTab={currentTab} tabTitle="blogs" tabClick={this.tabClick} title="Articles" /> }
+              { (blogPosts) && (blogPosts.length > 0) && <MenuItem currentTab={currentTab} tabTitle="blogs" tabClick={this.tabClick} title="Articles" /> }
               { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <MenuItem currentTab={currentTab} tabTitle="newsevents" tabClick={this.tabClick} title="News &amp; Events" /> }
               { (videos) && <MenuItem currentTab={currentTab} tabTitle="videos" tabClick={this.tabClick} title="Videos" /> }
               { (tabs) && filterHeaders.map((value) => <MenuItem key={value} currentTab={currentTab} tabTitle={urlify(value)} tabClick={this.tabClick} title={value} />) }
