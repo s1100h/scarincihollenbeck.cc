@@ -92,7 +92,7 @@ add_action('rest_api_init', function()
       foreach($news_true as $news) {
         $news_data[] = array(
           "title" => $news->post_title,
-          "link" => get_permalink($news->ID),
+          "link" => str_replace(home_url(), '', get_permalink($news->ID)),
           "featuredImg" => get_the_post_thumbnail_url($news->ID,'full')
         );
       }
@@ -111,7 +111,7 @@ add_action('rest_api_init', function()
       foreach($events_true as $event) {
         $events_data[] = array(
           "title" => $event->post_title,
-          "link" => get_permalink($event->ID),
+          "link" => str_replace(home_url(), '', get_permalink($event->ID)),
           "featuredImg" => get_the_post_thumbnail_url($event->ID,'full')
         );
       }
@@ -136,7 +136,7 @@ add_action('rest_api_init', function()
           }else {
             $blog_data[] = array(
               "title" => $blog->post_title,
-              "link" => get_permalink($blog->ID),
+              "link" => str_replace(home_url(), '', get_permalink($blog->ID)),
               "featuredImg" => get_the_post_thumbnail_url($blog->ID,'full')
             );
           }

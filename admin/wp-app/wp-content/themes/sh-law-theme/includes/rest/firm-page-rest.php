@@ -144,7 +144,7 @@ function individual_firm_page_data($request) {
     foreach($ma as $m) {
       $member_news[] = array(
         "title" => html_entity_decode(htmlspecialchars_decode($m->post_title)),
-        "link" => get_permalink($m->ID),
+        "link" => str_replace(home_url(), '', get_permalink($m->ID)),
         "featuredImg" => get_the_post_thumbnail_url($m->ID, 'medium'),
       );
       

@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
+import SimpleSearch from '../../components/SimpleSearch';
+
 const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
+
 
 const Sidebar = (props) => {
   const {
@@ -14,12 +17,7 @@ const Sidebar = (props) => {
 
   return (
     <div>
-      <form role="search" method="GET">
-        <label htmlFor="searchSite" className="w-100">
-          <input name="s" type="search" id="searchSite" placeholder="What are you searching for..." className="form-control p-2" />
-          <span className="sr-only">Search For Attorney</span>
-        </label>
-      </form>
+      <SimpleSearch />
       <div className="my-4">
         <div className="sidebar-title">
           Get in touch with an attorney
@@ -43,10 +41,10 @@ const Sidebar = (props) => {
         </a>
         <div id="core-practices" className="collapse show">
           <div className="off-white">
-            <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content sidebar-content-practice">
+            <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
               {corePractices.map((cp) => (
                 <li key={cp.name}>
-                  <a href={cp.link} key={cp.name} className="small-excerpt">
+                  <a href={cp.link} key={cp.name} className="proxima-bold">
                     {cp.name}
                   </a>
                 </li>
@@ -62,8 +60,8 @@ const Sidebar = (props) => {
         </a>
         <div id="related-practices" className="collapse show">
           <div className="off-white">
-            <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content">
-              {practiceList.map((v) => <li key={v.title}><a href={v.slug} className={(v.title.length > 40) ? 'smaller-excerpt' : 'small-excerpt'}>{v.title}</a></li>)}
+            <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
+              {practiceList.map((v) => <li key={v.title}><a href={v.slug} className={(v.title.length > 40) ? 'small-excerpt proxima-bold' : 'proxima-bold'}>{v.title}</a></li>)}
             </ul>
           </div>
         </div>

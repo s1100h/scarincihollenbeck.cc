@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SubscriptionForm from '../../components/SubscriptionForm';
+import SubscriptionForm from './ColSubscriptionForm';
 
 
 const ColumnContent = (props) => {

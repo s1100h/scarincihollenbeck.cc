@@ -99,7 +99,7 @@ add_action('rest_api_init', function()
       foreach($news_true as $news) {
         $news_data[] = array(
           "title" => html_entity_decode(htmlspecialchars_decode($news->post_title)),
-          "link" => get_permalink($news->ID),
+          "link" => str_replace(home_url(), '', get_permalink($news->ID)),
           "featuredImg" => get_the_post_thumbnail_url($news->ID, 'medium')
         );
       }
@@ -118,7 +118,7 @@ add_action('rest_api_init', function()
       foreach($events_true as $event) {
         $events_data[] = array(
           "title" => $event->post_title,
-          "link" => get_permalink($event->ID),
+          "link" => str_replace(home_url(), '', get_permalink($events->ID)),
           "featuredImg" => get_the_post_thumbnail_url($event->ID,'medium')
         );
       }
@@ -139,7 +139,7 @@ add_action('rest_api_init', function()
           foreach($insights_true as $it) {
             $internal_blog[] = array(
               "title" => html_entity_decode(htmlspecialchars_decode($it->post_title)),
-              "link" => get_the_permalink($it->ID),
+              "link" => str_replace(home_url(), '', get_permalink($it->ID)),
               "featuredImg" => get_the_post_thumbnail_url($it->ID,'medium'),
               "date" => $it->post_date
             );

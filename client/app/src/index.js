@@ -52,14 +52,13 @@ const Category = lazy(() => import(/* webpackPreload: true */ './pages/Category'
  /**
   *  Blog Pages
   */
-// import Single from './pages/Single';
+const Single = lazy(() => import(/* webpackPreload: true */ './pages/Single'));
 
 
 /**
  * Search Page
  */
 const Search = lazy(() => import(/* webpackPreload: true */ './pages/Search'));
-
 
 
 /**
@@ -86,9 +85,9 @@ import './styles/single-career.scss';
 import './styles/subscription-form.scss';
 import './styles/firm-page.scss';
 import './styles/page.scss';
+import './styles/category.scss';
 import './styles/single.scss';
 import './styles/footer.scss';
-
 
 /** 
  * Util Sheets
@@ -198,19 +197,13 @@ class SiteRoutes extends Component {
           <Route path={`/s`} component={Search} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />
-
-
-          {/*                                                
-                  
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
+          <Route path='/law-firm-insights/:parent/:child/:grandchild/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />
           <Route path='/firm-news/:post' exact component={Single} />
           <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/firm-events/:post' exact component={Single} />
-          
-          */}
-
           {/** Firm Page routes */}
           {firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)}
           {/** Pages **/}

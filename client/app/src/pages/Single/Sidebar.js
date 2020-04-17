@@ -1,10 +1,9 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { addRandomKey } from '../../../utils/helpers';
-
-import Search from '../../../components/Search';
-import TrendingStories from '../../../components/TrendingStories';
-import SubscriptionMessage from '../../../components/SubscriptionMessage';
+import { addRandomKey } from '../../utils/helpers';
+import Search from '../../components/Search';
+import TrendingStories from '../../components/TrendingStories';
+import SubscriptionMessage from '../../components/SubscriptionMessage';
 
 const Sidebar = (props) => {
   const {
@@ -22,7 +21,7 @@ const Sidebar = (props) => {
       <TrendingStories content={posts} />
       {/** MENTIONED ATTORNEYS */}
       {
-        (attorneys.length > 0) ? (
+        (attorneys.length > 0) && (
           <div className="w-100 mt-4">
             <div className="sidebar-title">
               Mentioned Attorneys
@@ -45,7 +44,7 @@ const Sidebar = (props) => {
               </ul>
             </div>
           </div>
-        ) : ''
+        )
       }
       {/** GET THE LATEST FROM OUR ATTORNEYS */}
       <SubscriptionMessage show={show} toggleModal={toggleModal} />

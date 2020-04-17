@@ -21,11 +21,11 @@ const SidebarContent = (props) => {
       </a>
       <div id={`${urlify(title)}`} className={(show) ? 'collapse show' : 'collapse'}>
         <div className="off-white">
-          <ul className="pl-0 py-3 pr-1 no-dots sidebar-content">
+          <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content">
             {
               content.map((v) => (
                 <li key={`${addRandomKey('sbc')}`} className="mb-2">
-                  {(v.link) ? <a href={v.link} className="link-style small-excerpt">{v.title}</a> : <strong>{v.title}</strong>}
+                  {(v.link) ? <a href={v.link} className="proxima-bold">{v.title}</a> : <strong>{v.title}</strong>}
                   {(v.content) && <div dangerouslySetInnerHTML={createMarkup(v.content)} />}
                 </li>
               ))

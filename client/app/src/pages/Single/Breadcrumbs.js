@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaCaretRight } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import PropTypes from 'prop-types';
 import { makeTitle } from '../../utils/helpers';
 
@@ -15,10 +16,10 @@ const Breadcrumbs = (props) => {
       <h6>
         <span>
           <a href={`${window.location.origin}`} className="red-title proxima-bold">
-          HOME
+            HOME
           </a>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FaCaretRight />
+            <FontAwesomeIcon icon={faCaretRight} />
           </strong>
         </span>
         {filterUrl.map((url) => (
@@ -27,7 +28,7 @@ const Breadcrumbs = (props) => {
               {makeTitle(url)}
             </a>
             <strong className="text-black mt-2 mx-2 proxima-bold">
-              <FaCaretRight />
+              <FontAwesomeIcon icon={faCaretRight} />
             </strong>
           </span>
         ))}

@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const shDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/skyline-background.jpg';
+const shDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const checkboxes = [
   {
@@ -51,6 +51,12 @@ const checkboxes = [
     key: 'commercialRealEstate',
     label: 'Commercial Real Estate',
     name: 'Commercial Real Estate',
+    property: 'column_two',
+  },
+  {
+    key: 'covid19Alert',
+    label: 'Covid-19 Alert',
+    name: 'Covid-19 Alert',
     property: 'column_two',
   },
   {

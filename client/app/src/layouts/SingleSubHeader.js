@@ -33,7 +33,7 @@ const SingleSubHeader = (props) => {
     <HeaderBckGround className="jumbotron jumbotron-fluid">
       <div className="container">
         <div className="row">
-          <BgBlack className="col-sm-12 col-md-7 offset-md-3 text-white">
+          <BgBlack className="col-sm-12 col-md-7 offset-md-2 text-white">
             <div className="p-3">
               <span id="red-block" />
               <h1 className="text-white proxima-bold border-bottom">{title}</h1>

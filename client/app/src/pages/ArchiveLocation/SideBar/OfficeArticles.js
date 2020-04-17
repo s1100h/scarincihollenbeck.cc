@@ -17,14 +17,12 @@ const OfficeArticles = (props) => {
           (posts.length > 0) ? posts.map((p) => (
             <div className="p-2 pt-3" key={addRandomKey(p.title)}>
               <a href={p.link}>
-                <h5 className="mb-0 article-link">
-                  {p.title}
-                </h5>
+                <p className="proxima-bold mb-0">{p.title}</p>
               </a>
               <span className="mt-0 mb-3 z-99">
                 {p.author.map((a, i) => (
                   <a href={a.link} key={addRandomKey(a.name)}>
-                    <span className="article-link">{a.name}</span>
+                    <span className="article-link small-excerpt">{a.name}</span>
                     {(i < p.author.length - 1) ? ' | ' : '' }
                   </a>
                 ))}

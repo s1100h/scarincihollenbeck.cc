@@ -10,7 +10,9 @@ const SliderContent = (props) => {
       <div className="line-header">
         <h3>{title}</h3>
       </div>
-      <Carousel sliderType="LargeArticle" slides={val.posts} />
+      <div className="mt-5">
+        <Carousel sliderType="LargeArticle" slides={slides} />
+      </div>
     </div>
   );
 };
@@ -23,22 +25,6 @@ SliderContent.propTypes = {
 SliderContent.defaultProps = {
   title: '',
   slides: [],
-};
-
-PrevArrow.propTypes = {
-  onClick: PropTypes.func,
-};
-
-NextArrow.propTypes = {
-  onClick: PropTypes.func,
-};
-
-NextArrow.defaultProps = {
-  onClick: () => {},
-};
-
-PrevArrow.defaultProps = {
-  onClick: () => {},
 };
 
 export default SliderContent;

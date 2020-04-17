@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { addRandomKey, createMarkup } from '../../../utils/helpers';
-import Search from '../../../components/Search';
-import SubscriptionMessage from '../../../components/SubscriptionMessage';
+import { addRandomKey, createMarkup } from '../../utils/helpers';
+import Search from '../../components/Search';
+import SubscriptionMessage from '../../components/SubscriptionMessage';
 
 const EventSidebar = (props) => {
   const {
@@ -13,12 +13,8 @@ const EventSidebar = (props) => {
   } = props;
 
   const eDetails = eventDetails[0];
-
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
-
   return (
-    <div className="col-sm-12 col-md-4 hide-print">
+    <div className="hide-print">
       <Search />
       {/** Event Details */}
       <div className="w-100 mt-4">
@@ -27,7 +23,7 @@ const EventSidebar = (props) => {
         </div>
         <div className="off-white">
           {
-            (eDetails !== undefined && formattedDate < eDetails.date) ? (
+            (eDetails !== undefined) && (
               <div className="p-3">
                 <span dangerouslySetInnerHTML={createMarkup(eDetails.address)} />
                 <p>
@@ -44,7 +40,7 @@ const EventSidebar = (props) => {
                   {eDetails.end}
                 </p>
               </div>
-            ) : <h5 className="p-4"><strong>Sorry, this event has ended.</strong></h5>
+            )
           }
 
         </div>

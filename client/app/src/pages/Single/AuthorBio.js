@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, addRandomKey } from '../../../utils/helpers';
+import { createMarkup, addRandomKey } from '../../utils/helpers';
 
 const AuthorBio = (props) => {
   const { author } = props;
@@ -25,7 +25,7 @@ const AuthorBio = (props) => {
               </p>
             </div>
           </div>
-        )) 
+        ))
       }
     </div>
   );

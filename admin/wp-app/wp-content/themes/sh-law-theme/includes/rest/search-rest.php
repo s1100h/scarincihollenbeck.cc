@@ -75,7 +75,7 @@ function search_query_data($request) {
         "title" => $posts[$i]->post_title,
         "image" => get_the_post_thumbnail_url($posts[$i]->ID, 'full'),
         "imgAlt" => "article ".$posts[$i]->ID,
-        "link" => get_permalink($posts[$i]->ID),
+        "link" => str_replace(home_url(), '', get_permalink($posts[$i]->ID)),
         "id" => $posts[$i]->ID,
         "date" => get_the_date( 'F j, Y', $posts[$i]->ID ),
         "description" => html_entity_decode(htmlspecialchars_decode(wp_trim_words($posts[$i]->post_content, 20, '...' )))       
@@ -91,7 +91,7 @@ function search_query_data($request) {
        $top_five_post_data[] = array(
          "ID" => $p->ID,
          "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
-         "link" => get_the_permalink($p->ID),
+         "link" => str_replace(home_url(), '', get_permalink($p->ID)),
          "author" => get_the_author_meta('display_name', (int)$p->post_author)
        );
      }

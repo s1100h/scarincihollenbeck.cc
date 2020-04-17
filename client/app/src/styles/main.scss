@@ -295,7 +295,7 @@ input, textarea {
   font-weight: 900;
   background-color: $light-gray;
   padding: 10px;
-  text-shadow: 0 0 0 #000;
+  //text-shadow: 0 0 0 #000;
   margin-bottom: 30px;
 }
 
@@ -344,6 +344,14 @@ input, textarea {
     text-align: left !important;
   }
 }
+
+// header offset fix
+@media (min-width: 768px) {
+  .offset-md-2 {
+    margin-left: 20.666667%;
+  }
+}
+
 
 /* .display-4 responsive
 ============================================== */

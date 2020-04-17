@@ -103,7 +103,7 @@ function single_preview_data($request) {
       $top_five_post_data[] = array(
         "ID" => $p->ID,
         "title" => get_the_title($p->ID),
-        "link" => get_the_permalink($p->ID),
+        "link" => str_replace(home_url(), '', get_permalink($p->ID)),
         "image" => get_the_post_thumbnail_url($p->ID, 'full')
       );
     }

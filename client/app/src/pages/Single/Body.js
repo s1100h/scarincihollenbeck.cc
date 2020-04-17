@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
-
+import ContactForm from '../../components/ContactForm';
+import Breadcrumbs from './Breadcrumbs';
 import ArticleDetails from './ArticleDetails';
 import SocialShareFooter from './SocialShareFooter';
 import AuthorBio from './AuthorBio';
-import ContactForm from './ContactForm';
-
-import Breadcrumbs from './Breadcrumbs';
 
 const Body = (props) => {
   const {
@@ -22,8 +20,8 @@ const Body = (props) => {
 
   return (
     <div>
-      <Breadcrumbs title={title}/>
-      <div dangerouslySetInnerHTML={createMarkup(firstFeaturedImg)} className="f-image" />      
+      <Breadcrumbs title={title} />
+      <div dangerouslySetInnerHTML={createMarkup(firstFeaturedImg)} className="f-image" />
       {/** Author & date & Category */}
       <ArticleDetails author={author} date={date} />
       <hr />
@@ -35,9 +33,9 @@ const Body = (props) => {
             {tags.map((tag, index) => (
               <li key={tag.term_id || tag.ID} className="list-inline-item">
                 {tag.name}
-                {(index !== tags.length -1) && ',' }
+                {(index !== tags.length - 1) && ',' }
               </li>
-            ))}  
+            ))}
           </ul>
         </div>
       )}
@@ -62,7 +60,7 @@ Body.propTypes = {
   bodyContent: PropTypes.string,
   author: PropTypes.arrayOf(PropTypes.object),
   eventCat: PropTypes.bool,
-  tags: PropTypes.arrayOf(PropTypes.object)
+  tags: PropTypes.arrayOf(PropTypes.object),
 };
 
 Body.defaultProps = {

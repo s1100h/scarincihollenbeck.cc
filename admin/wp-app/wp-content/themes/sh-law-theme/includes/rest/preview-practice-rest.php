@@ -138,7 +138,7 @@ function preview_individual_practice_data($request){
         $related_blog_data [] = array(
           "ID" => $p->ID,
           "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
-          "slug" => get_permalink($p->ID),
+          "slug" => str_replace(home_url(), '', get_permalink($p->ID)),
          );
        }
 			}

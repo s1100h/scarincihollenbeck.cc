@@ -25,10 +25,10 @@ Cosmetic Fixes
 
 Integration Todos:
 =====================================================
-1. Continue integrating pages
 2. Continue Sass-ifying pages -- left off on navigation.scss
 
 Pre-production Integration Todos:
 ============================================
 1. find away to optimize GA, SnapEngagement, and GRDP into app
 2. Add a redirect list to nginx server
+3. Add function to clean urls for blog emails

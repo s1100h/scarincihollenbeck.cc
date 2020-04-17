@@ -236,7 +236,7 @@ function get_location_posts($request) {
 
       $location_post_data[] = array(
         "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($post->ID))),
-        "link" => get_the_permalink($post->ID),
+        "link" => str_replace(home_url(), '', get_permalink($post->ID)),
         "author" => $related_att,
         "image" => (get_the_post_thumbnail_url($post->ID)) ? get_the_post_thumbnail_url($post->ID, 'full') : 'https://47vqih1qqjmc9x8wz20ph571-wpengine.netdna-ssl.com/wp-content/uploads/2018/05/no-image-found-diamond.png'
       );

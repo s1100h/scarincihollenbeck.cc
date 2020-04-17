@@ -149,7 +149,7 @@ function individual_practice_data($request){
       "ID" => $p->ID,
       "date" => get_the_date('F j, Y', $p->ID),
       "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
-      "link" => get_permalink($p->ID),
+      "link" => str_replace(home_url(), '', get_permalink($p->ID)),
       "categoryParent" => get_the_category($p->ID)[0]->category_parent,
       "image" => get_the_post_thumbnail_url($p->ID),
       "category" => get_the_category($p->ID)

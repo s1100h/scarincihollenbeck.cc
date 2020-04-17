@@ -127,18 +127,22 @@ class Page extends Component {
       seo,
     } = this.state;
 
+    const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
+    const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+    const bodyContent = content.replace(subTitle, '');
+
 
     return (
       <div>
         <PageHead seo={seo} />
         <SingleSubHeader
           title={title}
-          subtitle=""
+          subtitle={subTitle}
           image={blogHeader}
           height="auto"
         />
         <LargeSidebar
-          body={(<Body content={content} />)}
+          body={(<Body content={bodyContent} />)}
           sidebar={(
             <Sidebar
               posts={posts}

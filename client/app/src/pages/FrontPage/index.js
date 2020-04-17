@@ -3,7 +3,9 @@ import { sortByKey } from '../../utils/helpers';
 import ColumnContent from './ColumnContent';
 import FullWidthContent from './FullWidthContent';
 import FrontPageHead from '../../components/Head/frontpage';
-import Header from './Header';
+// import Header from './Header';
+import CoronaHeader from './CoronaHeader';
+
 
 class FrontPage extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class FrontPage extends Component {
       locations: [],
       seo: {},
       corePractices: [],
-      end: 0.
+
     };
     this.onChange = this.onChange.bind(this);
     this.onCategorySelection = this.onCategorySelection.bind(this);
@@ -96,7 +98,8 @@ class FrontPage extends Component {
             }));
             this.setState({ corePractices });
           });
-      });
+      })
+     
 
  
   }
@@ -127,10 +130,14 @@ class FrontPage extends Component {
     return (
       <div id="front-page">
         <FrontPageHead seo={seo} />
-        <Header
+        {/* <Header
           searchTerm={searchTerm}
           onChange={this.onChange}
-        />
+        /> */}
+        <CoronaHeader
+          searchTerm={searchTerm}
+          onChange={this.onChange}
+        />  
         <div className="container">
           <ColumnContent
             corePractices={corePractices}

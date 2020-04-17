@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const shDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const checkboxes = [
   {
@@ -114,7 +113,6 @@ class SubscriptionForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.hideSubscription = this.hideSubscription.bind(this);
   }
 
   handleChange(e) {
@@ -184,17 +182,6 @@ class SubscriptionForm extends Component {
       });
   }
 
-  hideSubscription() {
-   // remove custom modal
-   const modal = document.getElementById('subscriptionModal');
-   modal.classList.remove('show');
-   modal.setAttribute('style', 'display:none');
-
-   // remove custom modal background
-   const modalBckGround = document.querySelector('.modal-backdrop');
-   modalBckGround.setAttribute('style', 'display:none');
-  }
-
   render() {
     const {
       email,
@@ -203,38 +190,34 @@ class SubscriptionForm extends Component {
       firstName,
     } = this.state;
 
+    const { hideSubscription } = this.props;
+
 
     return (
-      <div className="modal-dialog sub-form" id="subscription-form" role="document">
-        <div className="modal-content">
-          <div className="modal-header sidebar-title d-flex flex-row">
-            <img src={shDiamond} alt="Scarinci hollenbeck diamond" className="w-15" />
-            <h5 id="subscriptionModalLabel" className="mt-2">
-              Sign up to get the latest from the Scarinci Hollenbeck attorneys!
-            </h5>
+      <div className="w-100">
+        {(message) && (
+          <p className="text-success">Thank you for subscribing!</p>
+        )}
+        <form onSubmit={this.handleSubmit} method="post" className="mt-3">
+          <div className="form-group">
+            <label htmlFor="firstName" className="sr-only"> Email:</label>
+            <input id="firstName" name="firstName" type="text" value={firstName} onChange={this.handleChange} className="form-control" aria-describedby="firstName" placeholder="Enter first name" />
           </div>
-          <div className="modal-body">
-            <button type="button" onClick={() => this.hideSubscription()} className="btn proxima-bold float-right mb-2 mt-0 btn-secondary" data-dismiss="modal">Close</button>
-            <form onSubmit={this.handleSubmit} method="post" className="mt-3">
-              <div className="form-group">
-                <label htmlFor="firstName" className="sr-only"> Email:</label>
-                <input id="firstName" name="firstName" type="text" value={firstName} onChange={this.handleChange} className="form-control" aria-describedby="firstName" placeholder="Enter first name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName" className="sr-only"> last Name:</label>
-                <input id="lastName" name="lastName" type="text" value={lastName} onChange={this.handleChange} className="form-control" aria-describedby="lastName" placeholder="Enter last name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email" className="sr-only"> Email:</label>
-                <input id="email" name="email" type="text" value={email} onChange={this.handleChange} className="form-control" aria-describedby="email" placeholder="Enter email" required />
-              </div>
-              <div className="form-group mb-0">
-                <p className="small-excerpt">Please select a category(s) below:</p>
-              </div>
-              <ul className="no-dots two-column">
-                {
-                  checkboxes.map((item) => (
-                    <li key={item.key}>
+          <div className="form-group">
+            <label htmlFor="lastName" className="sr-only"> last Name:</label>
+            <input id="lastName" name="lastName" type="text" value={lastName} onChange={this.handleChange} className="form-control" aria-describedby="lastName" placeholder="Enter last name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="sr-only"> Email:</label>
+            <input id="email" name="email" type="text" value={email} onChange={this.handleChange} className="form-control" aria-describedby="email" placeholder="Enter email" required />
+          </div>
+          <div className="form-group mb-0">
+            <p className="small-excerpt">Please select a category(s) below:</p>
+          </div>
+          <ul className="no-dots two-column">
+            {
+                  checkboxes.map(item => (
+                    <li key={item.key} className="mb--1">
                       <label htmlFor={item.name}>
                         <Checkbox id={item.name} className="d-block" name={item.name} property={item.property} onChange={this.handleCategoryChange} />
                         {' '}
@@ -243,15 +226,9 @@ class SubscriptionForm extends Component {
                     </li>
                   ))
                 }
-              </ul>
-              <div className="modal-footer">
-                {(message) && <p className="text-success">Thank you for subscribing!</p>}
-                <button type="button" onClick={() => this.hideSubscription()} className="btn btn-secondary proxima-bold" data-dismiss="modal">Close</button>
-                <input type="submit" className="btn btn-danger" value="Submit" />
-              </div>
-            </form>
-          </div>
-        </div>
+          </ul>
+          <input type="submit" className="btn btn-danger" value="Submit" />
+        </form>
       </div>
     );
   }

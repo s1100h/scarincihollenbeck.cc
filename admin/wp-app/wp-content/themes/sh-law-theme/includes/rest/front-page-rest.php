@@ -66,7 +66,7 @@ function front_page_news() {
      foreach($posts as $post) {
        $results[] = array(
          "ID" => $post->ID,
-         "link" => get_permalink($post->ID),
+         "link" => str_replace(home_url(), '', get_permalink($post->ID)),
          "title" => $post->post_title,
          "image" => get_the_post_thumbnail_url($post->ID),
          "category" => "Firm News"
@@ -106,7 +106,7 @@ function front_page_events() {
      foreach($posts as $post) {
        $results[] = array(
          "ID" => $post->ID,
-         "link" => get_permalink($post->ID),
+         "link" => str_replace(home_url(), '', get_permalink($post->ID)),
          "title" => $post->post_title,
          "image" => get_the_post_thumbnail_url($post->ID),
          "category" => "Firm Events"

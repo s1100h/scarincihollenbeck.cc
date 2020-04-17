@@ -10,7 +10,7 @@ import SliderContent from './SliderContent';
 import ColumnContent from './ColumnContent';
 import FeaturedArticle from './FeaturedArticle';
 import MainSidebarContent from './MainSidebarContent';
-import { makeTitle } from '../../utils/helpers';
+import { makeTitle, sortByKey } from '../../utils/helpers';
 
 class CategoryBody extends Component {
   constructor(props) {
@@ -60,9 +60,11 @@ class CategoryBody extends Component {
           description,
         } = data;
 
+        const sortedAuthors = sortByKey(authors, 'lastName')
+
         this.setState({
           archives,
-          authors,
+          authors: sortedAuthors,
           latest,
           main,
           practices,
@@ -88,6 +90,20 @@ class CategoryBody extends Component {
           }));
           this.setState({ corePractices });
         });
+      
+      // get firm insights categories
+      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Encoding': 'gzip',
+          'Accept-Encoding': 'gzip',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ fiCategories: data });
+        });
+      
     }
   }
 

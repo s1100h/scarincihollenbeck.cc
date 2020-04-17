@@ -15,9 +15,9 @@ add_action("rest_api_init", function()
 		"methods" => "GET",
 		"callback" => "category_data"
   ));
-  register_rest_route("category", "/all", array(
+  register_rest_route("category", "/firm-insights-children", array(
 		"methods" => "GET",
-		"callback" => "category_all_data"
+		"callback" => "firm_insights_children"
   ));
   
   register_rest_route("category", "sorted-categories", array (
@@ -251,11 +251,11 @@ function category_data($request) {
     /** Retrieve SEO data */
     $seo_meta   = get_option( 'wpseo_taxonomy_meta' );
     $seo_title  = $seo_meta['category'][$id]['wpseo_title'];
-    // $seo_metadescription = $seo_meta['category'][$id]['wpseo_desc'];
+    $seo_metadescription = $seo_meta['category'][$id]['wpseo_desc'];
   
     $post_data['seo'] = (object)array(
       "title" => $seo_title,
-      "metaDescription" => '',
+      "metaDescription" => $seo_metadescription,
       "canonicalLink" => "/"
     );
 
@@ -282,4 +282,20 @@ function category_sorted() {
   }
 
   return $category_info;
+}
+
+
+function firm_insights_children() {
+  $results = [];
+  $categories = get_categories(array( 'parent' => 599));
+
+  foreach($categories as $cat) {
+    $results[] = array(
+      "id" => $cat->term_id,
+      "name" => html_entity_decode(htmlspecialchars_decode($cat->name)),
+      "link" => '/category/'.$cat->slug 
+    );
+  }
+
+  return $results;
 }

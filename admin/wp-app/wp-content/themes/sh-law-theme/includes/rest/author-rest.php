@@ -97,7 +97,7 @@ function related_author_practices($request) {
     $related_practice_data['bio'] = array(
       "name" => get_the_title($attorney_id),
       "bioContent" => preg_replace('/\s+?(\S+)?$/', '', strip_tags(substr(get_field("biography_content", $attorney_id), 0, 250))). " ...",
-      "link" => get_post_permalink($attorney_id),
+      "link" => str_replace(home_url(), '', get_permalink($attorney_id)),
       "image" => get_the_post_thumbnail_url($attorney_id),
       "email" => get_field("email", $attorney_id),
       "phone" => get_field("phone_number", $attorney_id)
@@ -151,7 +151,7 @@ function author_query_data($request) {
     if(isset($posts[$i])) {
       $author_data['results'][] = array(
         "title" => html_entity_decode(htmlspecialchars_decode($posts[$i]->post_title)),
-        "link" => get_permalink($posts[$i]->ID),
+        "link" => str_replace(home_url(), '', get_permalink($posts[$i]->ID)),
         "id" => $posts[$i]->ID,
         "description" => html_entity_decode(htmlspecialchars_decode(wp_trim_words($posts[$i]->post_content, 20, '...' )))       
       );

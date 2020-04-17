@@ -73,7 +73,6 @@ function single_data($request) {
       'post_status' => 'publish',
       'numberposts' => 1
     );
-    $test = 'slug is a permalink';
     $post = get_posts($args);
     $post_id = $post[0]->ID;
     $post_title = $post[0]->post_title;
@@ -129,7 +128,7 @@ function single_data($request) {
       $top_five_post_data[] = array(
         "ID" => $p->ID,
         "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
-        "link" => get_the_permalink($p->ID),
+        "link" => str_replace(home_url(), '', get_permalink($p->ID)),
         "author" => get_the_author_meta('display_name', (int)$p->post_author)
       );
     }

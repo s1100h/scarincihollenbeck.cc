@@ -1,26 +1,26 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 const AboutFirm = () => (
   <div className="w-100 mt-3">
     <div className="sidebar-title">
       Firm Resources
     </div>
     <div className="off-white">
-      <ul className="pl-0 pt-2 pb-1 pr-1 no-dots sidebar-content-page">
+      <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
         <li>
-          <a href={`${process.env.API_URL}/category/firm-news/`} className="text-capitalize small-excerpt">
+          <Link to="/category/firm-news/"  className="proxima-bold">
             Firm News
-          </a>
+          </Link>
         </li>
-        <li>
-          <a href={`${process.env.API_URL}/category/firm-events/`} className="text-capitalize small-excerpt">
+        <li>          
+          <Link to="category/firm-events/"  className="proxima-bold">
             Firm Events
-          </a>
+          </Link>          
         </li>
         <li>
-          <a href={`${process.env.API_URL}/category/law-firm-insights/`} className="text-capitalize small-excerpt">
-          Firm Insights
-          </a>
+          <Link to="/category/law-firm-insights/" className="proxima-bold">
+            Firm Insights
+          </Link>
         </li>
       </ul>
     </div>

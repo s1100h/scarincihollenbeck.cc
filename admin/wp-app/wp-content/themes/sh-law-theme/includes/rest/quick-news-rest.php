@@ -50,7 +50,7 @@ function quick_news_data($request) {
        $top_five_post_data[] = array(
          "ID" => $p->ID,
          "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
-         "link" => get_the_permalink($p->ID),
+         "link" => str_replace(home_url(), '', get_permalink($p->ID)),
          "author" => get_the_author_meta('display_name', (int)$p->post_author)
        );
      }
@@ -62,7 +62,7 @@ function quick_news_data($request) {
    if(isset($posts[$i])) {
      $quick_news_content['results'][] = array(
        "title" => html_entity_decode(htmlspecialchars_decode($posts[$i]->post_title)),
-       "link" => get_permalink($posts[$i]->ID),
+       "link" => str_replace(home_url(), '', get_permalink($posts[$i]->ID)),
        "id" => $posts[$i]->ID,
        "date" => get_the_date( 'F j, Y', $posts[$i]->ID ),
        "description" => html_entity_decode(htmlspecialchars_decode(wp_trim_words($posts[$i]->post_content, 20, '...' )))       
