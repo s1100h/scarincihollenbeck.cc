@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-// lazy load components
-import SubscriptionForm from './SubscriptionForm'
-
+import SubscriptionForm from '../../components/SubscriptionForm';
 
 
 const ColumnContent = (props) => {

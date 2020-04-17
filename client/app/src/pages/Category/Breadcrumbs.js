@@ -1,6 +1,7 @@
 import React from 'react';
-import { FaCaretRight } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { makeTitle } from '../../utils/helpers';
 
 const BreadCrumbs = (props) => {
@@ -13,7 +14,7 @@ const BreadCrumbs = (props) => {
       <span>
         <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
         <strong className="text-black mt-2 mx-2 proxima-bold">
-          <FaCaretRight />
+          <FontAwesomeIcon icon={faCaretRight} className="red-title" />
         </strong>
       </span>
       {
@@ -21,7 +22,7 @@ const BreadCrumbs = (props) => {
         <span>
           <a href={`${window.location.origin}/category/law-firm-insights`} className="red-title proxima-bold">LAW FIRM INSIGHTS</a>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FaCaretRight />
+            <FontAwesomeIcon icon={faCaretRight} className="red-title" />
           </strong>
         </span>
       ) : ''
@@ -37,7 +38,7 @@ const BreadCrumbs = (props) => {
               </a>
             </span>
             <strong className="text-black mt-2 mx-2 proxima-bold">
-              <i className="fas fa-caret-right" />
+              <FontAwesomeIcon icon={faCaretRight} className="red-title" />
             </strong>
           </span>
         )

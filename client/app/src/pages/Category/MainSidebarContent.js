@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import noImg from '../../images/no-image-found-diamond.png';
+
+const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
 const MainSidebarContent = (props) => {
   const { latest } = props;

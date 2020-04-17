@@ -2,10 +2,11 @@ import React, { Component, Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// layouts
+/**
+ *  Components
+ */
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-
 
 /**
  *  Home Page
@@ -41,13 +42,12 @@ const SubscriptionPage = lazy(() => import(/* webpackPreload: true */ './pages/S
 const Page404 = lazy(() => import(/* webpackPreload: true */ './pages/page404'));
 
 /**
- *  Blog Archives
+ *  Blog Archives Pages
  */
 const QuickNews = lazy(() => import(/* webpackPreload: true */ './pages/QuickNews'));
 const Archives = lazy(() => import(/* webpackPreload: true */ './pages/Archives'));
 const Authors = lazy(() => import(/* webpackPreload: true */ './pages/Authors'));
-// import Category from './pages/Category';
-
+const Category = lazy(() => import(/* webpackPreload: true */ './pages/Category'));
 
  /**
   *  Blog Pages
@@ -56,7 +56,7 @@ const Authors = lazy(() => import(/* webpackPreload: true */ './pages/Authors'))
 
 
 /**
- * Search
+ * Search Page
  */
 const Search = lazy(() => import(/* webpackPreload: true */ './pages/Search'));
 
@@ -64,14 +64,14 @@ const Search = lazy(() => import(/* webpackPreload: true */ './pages/Search'));
 
 /**
 *
-* Bootstrap
+* Bootstrap Resources
 *
 **/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 /**
-* Main Page Sheets
+* Custom Style Sheets
 **/
 import './styles/main.scss';
 import './styles/navigation.scss';
@@ -91,7 +91,7 @@ import './styles/footer.scss';
 
 
 /** 
- * Component Sheets
+ * Util Sheets
  */
 
  import './styles/utils/attorney-card.scss';
@@ -195,19 +195,19 @@ class SiteRoutes extends Component {
           <Route path='/archives/:categorySlug/page/:pageNum' exact component={Archives} />
           <Route path ='/author/:author' exact component={Authors} />
           <Route path ='/author/:author/page/:pageNum' exact component={Authors} />
-          <Route path={`/s`} component={Search} />  
-          {/*                                                  
-          
+          <Route path={`/s`} component={Search} />
+          <Route path='/category/:category' exact component={Category} />
+          <Route path='/category/:category/:child' exact component={Category} />
 
-          
+
+          {/*                                                
+                  
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />
           <Route path='/firm-news/:post' exact component={Single} />
           <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/firm-events/:post' exact component={Single} />
-          <Route path='/category/:category' exact component={Category} />
-          <Route path='/category/:category/:child' exact component={Category} />
           
           */}
 
