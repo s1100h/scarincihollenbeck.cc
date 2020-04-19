@@ -1,10 +1,4 @@
 #location-sidebar {
-  .ml--10 {
-    margin-left: -10px;
-  }
-  .mb--10 {
-    margin-bottom: -10px;
-  }
   .article-link:hover {
     text-decoration: underline;
   }
@@ -13,10 +7,6 @@
     margin-top:5px;
     margin-bottom:2px;
   }
-
-  .no-dots {
-    list-style-type: none;
-  }
 }
 
 #location-body {
@@ -24,8 +14,5 @@
     max-height: 600px;
     overflow: hidden;
     overflow-y: auto;
-  }
-  .h-300 {
-    height: 300px;
   }
 }

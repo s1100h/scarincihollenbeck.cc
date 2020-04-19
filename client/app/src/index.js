@@ -85,9 +85,7 @@ import './styles/single-career.scss';
 import './styles/subscription-form.scss';
 import './styles/firm-page.scss';
 import './styles/page.scss';
-import './styles/category.scss';
 import './styles/single.scss';
-import './styles/footer.scss';
 
 /** 
  * Util Sheets
@@ -97,6 +95,7 @@ import './styles/footer.scss';
  import './styles/utils/carousel.scss';
  import './styles/utils/just-in-carousel.scss';
  import './styles/utils/location-carousel.scss';
+ import './styles/utils/spacing-and-fonts.scss';
 
 /**
  * Routes
