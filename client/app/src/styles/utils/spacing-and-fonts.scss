@@ -1,75 +1,93 @@
 /** Margins **/
-.mb--4 {
-  margin-bottom: -5em;
+.mb--1 {
+  margin-bottom: -1em;
 }
 .mb--2 {
   margin-bottom: -2em;
 }
+.mb--4 {
+  margin-bottom: -5em;
+}
+.mb--10 {
+  margin-bottom: -10px;
+}
+
 .mt-sm-6 {
   margin-top: 4em;
 }
 .mt--1 {
   margin-top: -1em;
 }
+.mt--10 {
+  margin-top: -10px;
+}
+.mt---5 {
+  margin-top: -.5em;
+}
+.mt---6 {
+  margin-top: -6px;
+}
+.mt--15 {
+  margin-top: -1.5em;
+}
+
+
 .ml--2 {
   margin-left: -2em;
 }
 .ml--10 {
   margin-left: -10px;
 }
-.mb--10 {
-  margin-bottom: -10px;
-}
 .ml--3px {
   margin-left: -3px;
 }
-.mb--1 {
-  margin-bottom: -1em;
+.ml-10 {
+  margin-left: 10.5em;
 }
-.mt---5 {
-  margin-top: -.5em;
+.ml--10px {
+  margin-left: -10px;
 }
-.mt--15 {
-  margin-top: -1.5em;
+.ml--21px {
+  margin-left: -21px;
 }
 
-/** Widths */
+/** widths */
+.w-15 {
+  width: 15%;
+}
+.w-40 {
+  width: 40%;
+}
+.w-45 {
+  width: 45% !important;
+}
 .w-60 {
   width: 67%;
 }
 .w-90 {
   width: 90% !important;
 }
-.w-40 {
-  width: 40%;
-}
-.w-15 {
-  width: 15%;
-}
-.w-45 {
-  width: 45% !important;
-}
 .mw-400 {
   min-width: 400px;
 }
+.mw-19 {
+  max-width: 19%;
+}
 
-/** Padding **/
+/** padding **/
 .p-25 {
   padding: .7rem!important;
 }
 
-/** Heights **/
-.mh-45 {
-  min-height: 45px;
-}
+/** heights **/
 .h-57 {
   height: 57px;
 }
-// .h-57 {
-//   height: 100px;
-// }
 .h-300 {
   height: 300px;
+}
+.mh-45 {
+  min-height: 45px;
 }
 .mh-75 {
   height: 425px;
@@ -77,17 +95,23 @@
   overflow:hidden;
   overflow-y: auto;
 }
+.mh-375 {
+  min-height: 375px;
+}
+.min-page-height {
+  min-height: 600px;
+}
 
-/** Positioning **/
+/** positioning **/
 .z-100 {
   position: absolute !important;
 }
 
-/** Fonts **/
+/** fonts **/
 .ft-12 {
   font-size: 1.2rem;
- }
- .ft-18 {
+}
+.ft-18 {
   font-size: 1.3rem;
 }
 .ft-13 {
@@ -103,6 +127,36 @@
 }
 .ft-10 {
   font-size: 8px;
+}
+.ft-17px {
+  font-size: 17px;
+}
+.ft-22 {
+  font-size: 17px;
+}
+.ft-30 {
+  font-size: 30px;
+}
+.text--sm--center {
+  text-align: center;
+}
+.proxima-bold {
+  font-family: 'Proxima Nova Bold';
+}
+.proxima-regular {
+  font-family: 'Proxima Nova Regular';
+}
+.proxima-thin {
+  font-family: 'Proxima Nova Thin';
+}
+.small-excerpt {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.smaller-excerpt {
+  font-size: 11px; 
 }
 
  /** titles **/

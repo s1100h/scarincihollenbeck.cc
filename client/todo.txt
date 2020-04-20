@@ -13,18 +13,12 @@ Cosmetic Fixes
 11. Cassin bring down the font size of each section in his biography
 12. Limit the title length for recent articles
 13. Practices pages make dropdowns uniform
-14. Make sure robots.txt and manifest.json are working properly
 15. Run through compressor.io -- Jessica-Small.jpg, Samantha-Small-1.jpg, ron-bienstock-small.jpg, Jorge_small.jpg,/ChaudrySmall1.jpg, Ray-Small.jpg, Burke-Small.jpg, Sarah-Small.jpg, Gregg-Small-NEW.jpg, Simon-Small.jpg, Kevin-Small-NEW.jpg, Maryam_small.jpg, Ivan-Small-1.jpg, Dzwilewski-small.jpg, Lena-Small.jpg, Jasmine-Small.jpg, Sarah-Small.jpg, Alyssa-Small.jpg, citybackground.jpg, Cassin-Small-456.jpg, geppert-sm.jpg, pittard-sm.jpg, kane-sm.jpg
 16. Set up window-react for attorney archives, category pages, https://github.com/bvaughn/react-window
 17. Review live site and make sure they are similar 
-
-Integration Todos:
-=====================================================
-1. Continue Sass-ifying pages -- left off on navigation.scss
-2. Add all margin and font styling into its own sheet
 
 Pre-production Integration Todos:
 ============================================
 1. find away to optimize GA, SnapEngagement, and GRDP into app
 2. Add a redirect list to nginx server
-3. Add function to clean urls for blog emails
+3. Add function to clean urls for blog emails from admin.scarincihollenbeck ot scarincihollenbeck

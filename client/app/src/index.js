@@ -77,15 +77,10 @@ import './styles/navigation.scss';
 import './styles/archive-attorney&admin.scss';
 import './styles/archive-location.scss';
 import './styles/archive-practice.scss';
-import './styles/archive-career.scss';
-import './styles/single-attorney.scss';
-import './styles/single-admin.scss';
+import './styles/single-admin&attorney&career&page&single.scss';
 import './styles/single-practice.scss';
-import './styles/single-career.scss';
 import './styles/subscription-form.scss';
 import './styles/firm-page.scss';
-import './styles/page.scss';
-import './styles/single.scss';
 
 /** 
  * Util Sheets
