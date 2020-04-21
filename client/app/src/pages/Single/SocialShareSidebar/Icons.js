@@ -19,7 +19,7 @@ const Icons = (props) => {
   return (
     <ul className="no-dots hide-print ss-list">
       <li>
-        <a href={`https://facebook.com/sharer/sharer.php?u=${encodeLink}`} target="_blank" aria-label="facebook" rel="noopener noreferrer" className="btn-lg fb">
+        <a href={`https://facebook.com/sharer/sharer.php?u=${encodeLink}`} target="_blank" aria-label="facebook" rel="noopener noreferrer" className="btn fb">
           <FontAwesomeIcon icon={faFacebookSquare} className="text-white" />
         </a>
       </li>

@@ -591,5 +591,5 @@ require_once plugin_dir_path(__FILE__) . "/includes/rest/just-in-posts-rest.php"
 
 function get_relative_permalink( $url ) {
   $url = get_permalink();
-  return str_replace( home_url(), "", $url );
+  return str_replace( home_url(), "http://test.com", $url );
 }

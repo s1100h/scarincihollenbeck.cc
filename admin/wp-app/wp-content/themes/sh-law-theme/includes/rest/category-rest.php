@@ -23,7 +23,12 @@ add_action("rest_api_init", function()
   register_rest_route("category", "sorted-categories", array (
     "methods" => "GET",
     "callback" => "category_sorted"
-  ));  
+  ));
+
+  register_rest_route("category", "all", array (
+    "methods" => "GET",
+    "callback" => "all_categories"
+  ));    
 });
 // related practice posts
 function get_core_practice_posts($id) {
@@ -264,6 +269,7 @@ function category_data($request) {
   return $post_data;
 }
 
+// get sorted cateories
 function category_sorted() {
   $args = array(
     'orderby' => 'name',
@@ -285,6 +291,7 @@ function category_sorted() {
 }
 
 
+// retrieve child categories for firm insights
 function firm_insights_children() {
   $results = [];
   $categories = get_categories(array( 'parent' => 599));
@@ -297,5 +304,18 @@ function firm_insights_children() {
     );
   }
 
+  return $results;
+}
+
+// get all categories
+function all_categories() {
+  $categories = get_categories();
+
+  foreach($categories as $cat) {
+    $results[] = array(
+      "title" => $cat->name,
+      "link" => "/category/".$cat->slug
+    );
+  }
   return $results;
 }

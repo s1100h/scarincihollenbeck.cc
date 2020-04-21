@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 import ContactForm from '../../components/ContactForm';
@@ -6,6 +7,7 @@ import Breadcrumbs from './Breadcrumbs';
 import ArticleDetails from './ArticleDetails';
 import SocialShareFooter from './SocialShareFooter';
 import AuthorBio from './AuthorBio';
+import { urlify } from '../../utils/helpers';
 
 const Body = (props) => {
   const {
@@ -32,7 +34,9 @@ const Body = (props) => {
             <li className="list-inline-item"><strong>Tag: </strong></li>
             {tags.map((tag, index) => (
               <li key={tag.term_id || tag.ID} className="list-inline-item">
-                {tag.name}
+                <Link to={`/archives/${urlify(tag.name)}`} className="blue-link">
+                 <u>{tag.name}</u>
+                </Link>
                 {(index !== tags.length - 1) && ',' }
               </li>
             ))}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CarouselContainer from './Carousel';
+import CookieConsentContainer from './CookieConsent';
 
 const currentYear = new Date().getFullYear();
 
@@ -109,6 +110,7 @@ class Footer extends Component {
             </div>
           </div>
         </footer>
+        <CookieConsentContainer />
       </div>
     );
   }
