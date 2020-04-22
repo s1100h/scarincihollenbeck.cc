@@ -169,7 +169,7 @@ function single_data($request) {
   
   if($query_tags === true) {
     foreach($query_tags as $qt) {    
-      $tags[] = str_replace('&amp;', '', $qt->name);
+      $tags[] = html_entity_decode(htmlspecialchars_decode($qt->name));
     }  
   }
 
