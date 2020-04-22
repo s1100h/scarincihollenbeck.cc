@@ -1,7 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
 
-const AttorneyServices = (props) => {
+function AttorneyServices(props) {
   const { bio, practices } = props;
   return (
     <div className="w-100 mt-5">
@@ -23,7 +23,7 @@ const AttorneyServices = (props) => {
       </div>
     </div>
   );
-};
+}
 
 AttorneyServices.propTypes = {
   practices: PropType.arrayOf(PropType.object),

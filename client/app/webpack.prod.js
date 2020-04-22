@@ -84,7 +84,7 @@ module.exports = {
   entry: ['core-js/stable', './src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js',
+    filename: '[name].bundle.js',
     publicPath: '/',
   },
   devtool: false,

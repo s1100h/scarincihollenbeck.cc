@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
-const PageHead = (props) => {
+function PageHead(props){
   const { seo } = props;
 
   return (

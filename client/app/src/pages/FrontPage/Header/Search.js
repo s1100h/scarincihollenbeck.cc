@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
-const Search = (props) => {
+function Search(props) {
   const { searchTerm, onChange } = props;
 
   const onSubmit = (e) => {
@@ -25,7 +26,7 @@ const Search = (props) => {
       </form>
     </div>
   );
-};
+}
 
 Search.propTypes = {
   searchTerm: PropTypes.string,

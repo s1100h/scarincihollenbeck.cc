@@ -16,29 +16,31 @@ class SubscriptionPage extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/wp-json/category/posts/law-firm-insights`, {
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/law-firm-insights`, {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
-    .then((res) => res.json())
-    .then((data) => {
-      const { main, latest, archives } = data;
-      
-      // filter the first 2 archives posts
-      const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a );
+      .then((res) => res.json())
+      .then((data) => {
+        const { main, latest, archives } = data;
 
-      const posts = [ ...main, ...latest, ...firstTwoArchives ];
+        // filter the first 2 archives posts
+        const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a);
 
-      // set filtered results to state
-      this.setState({ posts });
-    });
+        const posts = [...main, ...latest, ...firstTwoArchives];
+
+        console.log('posts');
+        console.log(posts);
+
+        // set filtered results to state
+        this.setState({ posts });
+      });
   }
 
   render() {
-
     const { posts } = this.state;
 
     const seo = {
@@ -46,7 +48,7 @@ class SubscriptionPage extends Component {
       metaDescription: 'Sign up now and get access to Scarinci Hollenbeck attorney\'s articles on cutting edge legal topics, their press releases, and firm announcements.',
       canonical: '/subscribe',
     };
-  
+
     // mimic single career page
     // sidebar -- search, and trending news
     return (
@@ -57,14 +59,14 @@ class SubscriptionPage extends Component {
           sidebar={(
             <div>
               <Search />
-              <TrendingStories content={posts} />
+              <TrendingStories title="Latest From Firm Insights" content={posts} />
             </div>
           )}
         />
       </div>
- 
-  );
-          }
-};
+
+    );
+  }
+}
 
 export default SubscriptionPage;

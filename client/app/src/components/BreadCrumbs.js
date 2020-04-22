@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import PropTypes from 'prop-types';
 
-const BreadCrumbs = (props) => {
+function BreadCrumbs(props) {
   const { breadCrumb, categorySlug } = props;
 
   return (
@@ -32,7 +32,7 @@ const BreadCrumbs = (props) => {
       )))}
     </h6>
   );
-};
+}
 
 BreadCrumbs.propTypes = {
   breadCrumb: PropTypes.arrayOf(PropTypes.oneOfType([

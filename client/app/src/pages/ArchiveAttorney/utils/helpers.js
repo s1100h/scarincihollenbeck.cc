@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-export const filterByKey = (list, key) => {
+export function filterByKey(list, key) {
   const results = [];
   for (let i = 0; i < list.length; i += 1) {
     if (list[i].key) {

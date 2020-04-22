@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Carousel from './Carousel';
 import { sortByKey } from '../utils/helpers';
 
-const NewsScroller = (props) => {
+function NewsScroller(props) {
   const { title, articles } = props;
   const sortedPosts = sortByKey(articles, 'date');
 
@@ -21,7 +21,7 @@ const NewsScroller = (props) => {
       </div>
     </div>
   );
-};
+}
 
 NewsScroller.propTypes = {
   title: PropTypes.string,

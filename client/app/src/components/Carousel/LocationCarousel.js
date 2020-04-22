@@ -26,7 +26,7 @@ LocationCarousel.propTypes = {
   post: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ])),
 };
 

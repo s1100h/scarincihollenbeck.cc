@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FilterForms = (props) => {
+function FilterForms(props) {
   const {
     locations,
     positionType,
@@ -60,7 +60,7 @@ const FilterForms = (props) => {
       </div>
     </div>
   );
-};
+}
 
 FilterForms.propTypes = {
   locations: PropTypes.arrayOf(PropTypes.string),

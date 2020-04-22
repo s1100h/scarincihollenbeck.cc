@@ -198,13 +198,21 @@ class SubscriptionBody extends Component {
           <h2 className="text-dark my-4 font-normal red-title ft-17">As the legal world continues to evolve, it is important to stay aware of its various and regular updates.</h2>
           <p className="h4">Be the the first to know when: </p>
           <ul className="h4 my-4">
-            <li className="mb-4">When our <strong>attorney's blog posts</strong></li>
-            <li className="mb-4">Various <strong>legal updates</strong> that may pertain to your business</li>
+            <li className="mb-4">
+              When our
+              <strong>attorney's blog posts</strong>
+            </li>
+            <li className="mb-4">
+              Various
+              <strong>legal updates</strong>
+              {' '}
+              that may pertain to your business
+            </li>
             <li className="mb-4">Any annoucements and press releases from the attorneys at the firm</li>
           </ul>
           <h4 className="red-title mb-4">Sign up Today!</h4>
         </div>
-        <div className="w-100 border">          
+        <div className="w-100 border">
           <form onSubmit={this.handleSubmit} method="post" className="p-3">
             <div className="form-group">
               <label htmlFor="firstName" className="sr-only"> Email:</label>

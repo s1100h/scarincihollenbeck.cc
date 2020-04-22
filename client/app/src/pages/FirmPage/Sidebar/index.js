@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AboutFirm from './AboutFirm';
 import AboutDiversity from './AboutDiversity';
 
-const Sidebar = (props) => {
+function Sidebar(props) {
   const {
     relatedPages,
     searchTerm,
@@ -22,7 +22,7 @@ const Sidebar = (props) => {
       <AboutFirm />
     </div>
   );
-};
+}
 
 
 Sidebar.propTypes = {

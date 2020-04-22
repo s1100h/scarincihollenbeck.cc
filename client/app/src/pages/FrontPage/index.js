@@ -1,9 +1,8 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import { sortByKey } from '../../utils/helpers';
 import ColumnContent from './ColumnContent';
 import FullWidthContent from './FullWidthContent';
 import FrontPageHead from '../../components/Head/frontpage';
-// import Header from './Header';
 import CoronaHeader from './CoronaHeader';
 
 
@@ -23,14 +22,13 @@ class FrontPage extends Component {
   }
 
   componentDidMount() {
-   
     // fetch latest seo data
     fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((seo) => {
@@ -42,8 +40,8 @@ class FrontPage extends Component {
           headers: {
             'Content-Type': 'application/json',
             'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip'
-          }
+            'Accept-Encoding': 'gzip',
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -56,8 +54,8 @@ class FrontPage extends Component {
               headers: {
                 'Content-Type': 'application/json',
                 'Content-Encoding': 'gzip',
-                'Accept-Encoding': 'gzip'
-              }
+                'Accept-Encoding': 'gzip',
+              },
             })
               .then((res) => res.json())
               .then((data) => {
@@ -73,8 +71,8 @@ class FrontPage extends Component {
           headers: {
             'Content-Type': 'application/json',
             'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip'
-          }
+            'Accept-Encoding': 'gzip',
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -87,8 +85,8 @@ class FrontPage extends Component {
           headers: {
             'Content-Type': 'application/json',
             'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip'
-          }
+            'Accept-Encoding': 'gzip',
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -98,10 +96,7 @@ class FrontPage extends Component {
             }));
             this.setState({ corePractices });
           });
-      })
-     
-
- 
+      });
   }
 
   onChange(event) {
@@ -137,7 +132,7 @@ class FrontPage extends Component {
         <CoronaHeader
           searchTerm={searchTerm}
           onChange={this.onChange}
-        />  
+        />
         <div className="container">
           <ColumnContent
             corePractices={corePractices}
@@ -147,7 +142,7 @@ class FrontPage extends Component {
             sortedPosts={sortedPosts}
             sortedLocations={sortedLocations}
             end={end}
-          />          
+          />
         </div>
       </div>
     );

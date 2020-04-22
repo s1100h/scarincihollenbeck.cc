@@ -22,14 +22,14 @@ class AdminArchive extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;
         const { seo } = data;
-        
+
         this.setState({ admins, seo });
       });
   }

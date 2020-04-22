@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const MenuItem = (props) => {
+function MenuItem(props) {
   const {
     currentTab, tabTitle, tabClick, title,
   } = props;
@@ -22,7 +22,7 @@ const MenuItem = (props) => {
       {title}
     </h3>
   );
-};
+}
 
 MenuItem.propTypes = {
   currentTab: PropTypes.string,

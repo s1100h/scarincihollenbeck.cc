@@ -4,7 +4,7 @@ import TrendingStories from '../../components/TrendingStories';
 import Search from '../../components/Search';
 import AboutFirm from '../../components/AboutFirm';
 
-const SideBar = (props) => {
+function SideBar(props) {
   const {
     trending,
   } = props;
@@ -16,7 +16,7 @@ const SideBar = (props) => {
       <TrendingStories content={trending} />
     </div>
   );
-};
+}
 
 SideBar.propTypes = {
   trending: PropType.arrayOf(PropType.object),

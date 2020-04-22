@@ -7,10 +7,10 @@ import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
 import { createMarkup } from '../../utils/helpers';
 
-const foHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
-
 // lazy load components
 import Members from './Members';
+
+const foHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
 class FirmOverview extends Component {
   constructor(props) {
@@ -20,18 +20,17 @@ class FirmOverview extends Component {
       mainTabs: [],
       additionalInfo: [],
       members: {},
-      seo: {}
+      seo: {},
     };
   }
 
   componentDidMount() {
-    this.setState({ spinner: true });
     fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -44,7 +43,7 @@ class FirmOverview extends Component {
         } = data;
 
         this.setState({
-          mainTabs, additionalInfo, members, seo, mainContent
+          mainTabs, additionalInfo, members, seo, mainContent,
         });
       });
   }
@@ -73,27 +72,27 @@ class FirmOverview extends Component {
         />
         <FullWidth id="firm-overview">
           <div className="text-muted lead text-center" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
-            <div>
-              { mainTabs.map((mt) => (
-                <div className="w-100 mt-4 px-0" key={mt.title}>
-                  <div className="line-header">
-                    <h3>{mt.subTitle}</h3>
-                  </div>
-                  <div className="lead mt-4 text-center body-text" dangerouslySetInnerHTML={createMarkup(mt.content)} />
+          <div>
+            { mainTabs.map((mt) => (
+              <div className="w-100 mt-4 px-0" key={mt.title}>
+                <div className="line-header">
+                  <h3>{mt.subTitle}</h3>
                 </div>
-              ))}
-              <div className="border">
-                <Members title="Managing Partners" members={members.managingPartners} />
-                <Members title="Partners" members={members.partners} />
-                <Members title="Directors" members={members.admin} />
+                <div className="lead mt-4 text-center body-text" dangerouslySetInnerHTML={createMarkup(mt.content)} />
               </div>
-              { additionalInfo.map((ai) => (
-                <div className="w-100 mt-4 px-0" key={ai.title}>
-                  <h4 className="bg-light-gray">{ai.title}</h4>
-                  <div className="lead mt-4 body-text" dangerouslySetInnerHTML={createMarkup(ai.content)} />
-                </div>
-              ))}
+            ))}
+            <div className="border">
+              <Members title="Managing Partners" members={members.managingPartners} />
+              <Members title="Partners" members={members.partners} />
+              <Members title="Directors" members={members.admin} />
             </div>
+            { additionalInfo.map((ai) => (
+              <div className="w-100 mt-4 px-0" key={ai.title}>
+                <h4 className="bg-light-gray">{ai.title}</h4>
+                <div className="lead mt-4 body-text" dangerouslySetInnerHTML={createMarkup(ai.content)} />
+              </div>
+            ))}
+          </div>
         </FullWidth>
       </div>
     );

@@ -54,12 +54,10 @@ const Category = lazy(() => import(/* webpackPreload: true */ './pages/Category'
   */
 const Single = lazy(() => import(/* webpackPreload: true */ './pages/Single'));
 
-
 /**
  * Search Page
  */
 const Search = lazy(() => import(/* webpackPreload: true */ './pages/Search'));
-
 
 /**
 *
@@ -85,7 +83,6 @@ import './styles/firm-page.scss';
 /** 
  * Util Sheets
  */
-
  import './styles/utils/attorney-card.scss';
  import './styles/utils/carousel.scss';
  import './styles/utils/just-in-carousel.scss';

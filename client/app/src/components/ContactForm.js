@@ -129,9 +129,9 @@ class ContactForm extends Component {
         </div>
         <div className="col-sm-12">
           <p className="small-excerpt ml--1">
-           The use of the Internet or this form for communication with the firm or any
-           individual member of the firm does not establish an attorney-client relationship.
-           Confidential or time-sensitive information should not be sent through this form.
+            The use of the Internet or this form for communication with the firm or any
+            individual member of the firm does not establish an attorney-client relationship.
+            Confidential or time-sensitive information should not be sent through this form.
           </p>
           <label htmlFor="disclaimer" className="d-flex flex-row mt-3 disclaimer">
             <input type="checkbox" className="form-control" id="disclaimer" name="disclaimer" required />

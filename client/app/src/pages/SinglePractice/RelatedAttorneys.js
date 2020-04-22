@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AttorneyCard from '../../components/AttorneyCard';
 
-const RelatedAttorneys = (props) => {
+function RelatedAttorneys(props) {
   const { members, chair, handleLink } = props;
 
   return (
@@ -75,7 +75,7 @@ const RelatedAttorneys = (props) => {
       }
     </div>
   );
-};
+}
 
 RelatedAttorneys.propTypes = {
   members: PropTypes.arrayOf(PropTypes.object),

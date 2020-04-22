@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 
-const Biography = (props) => {
+function Biography(props) {
   const {
     currentTab,
     tabTitle,
@@ -33,7 +33,7 @@ const Biography = (props) => {
       </a>
     </div>
   );
-};
+}
 
 Biography.propTypes = {
   currentTab: PropTypes.string,

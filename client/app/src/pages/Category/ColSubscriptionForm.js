@@ -190,8 +190,6 @@ class SubscriptionForm extends Component {
       firstName,
     } = this.state;
 
-    const { hideSubscription } = this.props;
-
 
     return (
       <div className="w-100">
@@ -216,7 +214,7 @@ class SubscriptionForm extends Component {
           </div>
           <ul className="no-dots two-column">
             {
-                  checkboxes.map(item => (
+                  checkboxes.map((item) => (
                     <li key={item.key} className="mb--1">
                       <label htmlFor={item.name}>
                         <Checkbox id={item.name} className="d-block" name={item.name} property={item.property} onChange={this.handleCategoryChange} />

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 const shDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const checkboxes = [
@@ -203,7 +204,7 @@ class SubscriptionForm extends Component {
               Sign up to get the latest from the Scarinci Hollenbeck attorneys!
             </h5>
           </div>
-          <div className="modal-body">            
+          <div className="modal-body">
             <form onSubmit={this.handleSubmit} method="post" className="mt-3">
               <div className="form-group">
                 <label htmlFor="firstName" className="sr-only"> Email:</label>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PropUpForm from './PopUpForm';
 const SHDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
-const SubscriptionMessage = (props) => {
+function SubscriptionMessage(props){
   const { show, toggleModal } = props;
 
   return (

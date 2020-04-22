@@ -5,12 +5,12 @@ import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import MiniSidebar from '../../layouts/MiniSidebar';
 import { sortByKey } from '../../utils/helpers';
-
-const fpHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 // lazy load components
 import Sidebar from './Sidebar';
 import Tabs from './Tabs';
 import TabContent from './TabContent';
+
+const fpHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
 class FirmPage extends Component {
   constructor(props) {
@@ -39,8 +39,8 @@ class FirmPage extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {

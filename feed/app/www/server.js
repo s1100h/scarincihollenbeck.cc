@@ -14,7 +14,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const Parser = require('rss-parser');
-const port = 8086;
+const port = 8100;
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -28,19 +28,6 @@ function parseFeedResults(feed, sourceUrl, source = null) {
         feed.items.forEach((post) => __awaiter(this, void 0, void 0, function* () {
             const { title, link, pubDate, isoDate, content, } = post;
             if (content.indexOf('pandemic') > -1 || content.indexOf('COVID-19') > -1 || content.indexOf('Corona') > -1) {
-                // check if its asbury park press
-                if (source === 'app') {
-                    const { author } = post;
-                    if (author.indexOf('Asbury Park Press') > -1) {
-                        yield results.push({
-                            title,
-                            link,
-                            pubDate,
-                            isoDate,
-                            source: sourceUrl,
-                        });
-                    }
-                }
                 // push results into array
                 yield results.push({
                     title,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
-const MainSidebarContent = (props) => {
+function MainSidebarContent(props) {
   const { latest } = props;
 
   return (
@@ -23,7 +23,7 @@ const MainSidebarContent = (props) => {
     }
     </ul>
   );
-};
+}
 
 MainSidebarContent.propTypes = {
   latest: PropTypes.arrayOf(PropTypes.object),

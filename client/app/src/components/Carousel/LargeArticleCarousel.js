@@ -5,7 +5,7 @@ import LazyLoad from 'react-lazyload';
 
 function limitTitleLength(title) {
   if (title.length > 200) {
-    return title.substring(0, 200) + ' ...';
+    return `${title.substring(0, 200)} ...`;
   }
 
   return title;
@@ -44,14 +44,14 @@ function LargeArticleCarousel(props) {
 LargeArticleCarousel.propTypes = {
   post: PropTypes.objectOf(PropTypes.oneOfType(
     PropTypes.string,
-    PropTypes.bool
+    PropTypes.bool,
   )),
   id: PropTypes.string,
 };
 
 LargeArticleCarousel.defaultProps = {
   post: {},
-  id: ''
+  id: '',
 };
 
 export default LargeArticleCarousel;

@@ -41,11 +41,9 @@ class Single extends Component {
   componentDidMount() {
     const { parent, child, post } = this.props.match.params;
 
-    this.setState({ spinner: true }, () => {
-      this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${post}`);
-      // set timeout to trigger
-      this.triggerSubscription();
-    });
+    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${post}`);
+    // set timeout to trigger
+    this.triggerSubscription();
   }
 
 

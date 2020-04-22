@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 import ContactForm from '../../components/ContactForm';
 
-const Body = (props) => {
+function Body(props) {
   const { content } = props;
 
   return (
@@ -17,7 +17,7 @@ const Body = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Body.propTypes = {
   content: PropTypes.string,

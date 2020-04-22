@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup, addRandomKey } from '../../utils/helpers';
 
-const AuthorBio = (props) => {
+function AuthorBio(props) {
   const { author } = props;
 
   return (
@@ -29,7 +29,7 @@ const AuthorBio = (props) => {
       }
     </div>
   );
-};
+}
 
 AuthorBio.propTypes = {
   author: PropTypes.arrayOf(PropTypes.object),

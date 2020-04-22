@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import moment from 'moment';
 
-export const setUserCookie = () => {
+export function setUserCookie() {
   // get the user cookie
   const currentCookies = document.cookie;
   const userCookie = currentCookies.indexOf('shpuser=') > -1;
@@ -15,4 +15,4 @@ export const setUserCookie = () => {
   }
 
   return false;
-};
+}

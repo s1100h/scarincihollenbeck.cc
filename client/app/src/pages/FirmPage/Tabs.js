@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Tabs = (props) => {
+function Tabs(props) {
   const {
     content, members, currentTab, tabClick,
   } = props;
@@ -24,8 +24,7 @@ const Tabs = (props) => {
         >
           {content[0].title}
         </h3>
-      )
-      }
+      )}
       {
       content.map((v, i) => ((i > 0) && (
         <h3
@@ -62,7 +61,7 @@ const Tabs = (props) => {
     }
     </div>
   );
-};
+}
 
 Tabs.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),

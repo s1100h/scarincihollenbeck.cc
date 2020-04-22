@@ -5,7 +5,7 @@ import { sortByKey, addRandomKey } from '../../../utils/helpers';
 import OfficeData from './OfficeData';
 import OfficeArticles from './OfficeArticles';
 
-const SideBar = (props) => {
+function SideBar(props) {
   const {
     offices,
     getLocationDirections,
@@ -36,7 +36,7 @@ const SideBar = (props) => {
       <OfficeArticles title={title} posts={posts} />
     </div>
   );
-};
+}
 
 SideBar.propTypes = {
   offices: PropTypes.arrayOf(PropTypes.object),

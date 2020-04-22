@@ -7,7 +7,7 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
-import { createMarkup } from '../../utils/helpers';
+
 const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
 class Page extends Component {
@@ -20,7 +20,7 @@ class Page extends Component {
       posts: [],
       show: false,
       triggerModal: true,
-      spinner: false,
+      covidPage: false,
       seo: {},
     };
 
@@ -34,21 +34,35 @@ class Page extends Component {
   componentDidMount() {
     const { location } = this.props;
     const page = location.pathname;
-    
+
     this.fetchPageData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page${page}`);
 
     // get latest posts
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ posts: data.posts });
-      });
+    if (page.indexOf('covid-19-crisis-management-unit') > -1) {
+      fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Encoding': 'gzip',
+          'Accept-Encoding': 'gzip',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ posts: data, covidPage: true });
+        });
+    } else {
+      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Encoding': 'gzip',
+          'Accept-Encoding': 'gzip',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ posts: data.posts });
+        });
+    }
   }
 
   fetchPageData(url) {
@@ -56,14 +70,14 @@ class Page extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         const { content, title, seo } = data;
         this.setState({
-          title, content, seo, spinner: false,
+          title, content, seo,
         });
       });
   }
@@ -123,8 +137,8 @@ class Page extends Component {
       content,
       posts,
       show,
-      spinner,
       seo,
+      covidPage,
     } = this.state;
 
     const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -133,7 +147,7 @@ class Page extends Component {
 
 
     return (
-      <div>
+      <div id="page">
         <PageHead seo={seo} />
         <SingleSubHeader
           title={title}
@@ -149,6 +163,7 @@ class Page extends Component {
               hideSubscription={this.hideSubscription}
               show={show}
               toggleModal={this.toggleModal}
+              covidPage={covidPage}
             />
           )}
         />

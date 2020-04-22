@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { addRandomKey } from '../../../utils/helpers';
 
-const PracticeListItem = (props) => {
+function PracticeListItem(props) {
   const { title, onSelect, pChildren } = props;
 
   return (
@@ -22,7 +22,7 @@ const PracticeListItem = (props) => {
   );
 };
 
-const Practices = (props) => {
+function FilterPractices(props) {
   const { practices, onSelect, removeVisibilityClass } = props;
 
   /**
@@ -80,13 +80,13 @@ const Practices = (props) => {
   );
 };
 
-Practices.propTypes = {
+FilterPractices.propTypes = {
   practices: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func,
   removeVisibilityClass: PropTypes.func,
 };
 
-Practices.defaultProps = {
+FilterPractices.defaultProps = {
   practices: [],
   onSelect: () => {},
   removeVisibilityClass: () => {},
@@ -104,4 +104,4 @@ PracticeListItem.defaultProps = {
   pChildren: [],
 };
 
-export default Practices;
+export default FilterPractices;

@@ -3,11 +3,11 @@ import ArchiveHead from '../../components/Head/archive';
 import FullWidth from '../../layouts/FullWidth';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 
-const carArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
-
-//components
+// components
 import CareerSection from './CareerSection';
 import EEOpportunityContent from './EEOpportunityContent';
+
+const carArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 
 class CareerBody extends Component {
@@ -32,8 +32,8 @@ class CareerBody extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {

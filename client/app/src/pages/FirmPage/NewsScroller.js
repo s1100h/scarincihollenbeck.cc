@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../../components/Carousel';
-
 import { addRandomKey } from '../../utils/helpers';
 
-const NewsScroller = (props) => {
+const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
+
+function NewsScroller(props) {
   const { title, attorneysMentioned } = props;
 
   return (
@@ -15,7 +16,7 @@ const NewsScroller = (props) => {
         {title}
       </h4>
       {
-        (attorneysMentioned.length > 3) ?  <Carousel sliderType="LargeArticle" slides={attorneysMentioned} /> : (
+        (attorneysMentioned.length > 3) ? <Carousel sliderType="LargeArticle" slides={attorneysMentioned} /> : (
           <div className="container">
             <div className="row">
               {
@@ -34,7 +35,7 @@ const NewsScroller = (props) => {
       }
     </div>
   );
-};
+}
 
 NewsScroller.propTypes = {
   title: PropTypes.string,

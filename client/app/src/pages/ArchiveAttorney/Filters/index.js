@@ -7,7 +7,7 @@ import Title from './Title';
 import Location from './Location';
 import MobileMenu from './MobileMenu';
 
-const Filters = (props) => {
+function Filters(props) {
   const {
     practices,
     alphabet,

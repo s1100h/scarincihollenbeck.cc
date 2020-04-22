@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { locationUrl } from '../../../utils/helpers';
 
 
-const OfficeData = (props) => {
+function OfficeData(props) {
   const {
     getLocationDirections,
     title,
@@ -48,7 +48,7 @@ const OfficeData = (props) => {
       </div>
     </div>
   );
-};
+}
 
 
 OfficeData.propTypes = {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../../components/Carousel';
 
-const HighlightReal = (props) => {
+function HighlightReal(props) {
   const { highlightReal } = props;
 
   return (
@@ -10,7 +10,7 @@ const HighlightReal = (props) => {
       <Carousel sliderType="LargeArticle" slides={highlightReal} />
     </div>
   );
-};
+}
 
 HighlightReal.propTypes = {
   highlightReal: PropTypes.arrayOf(PropTypes.object),

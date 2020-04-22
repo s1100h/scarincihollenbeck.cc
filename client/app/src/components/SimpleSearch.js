@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { addRandomKey } from '../utils/helpers';
 
 // create url for search query
 // handle complex search sidebar form
-export const sumbitSearchForm = (term) => {
+function sumbitSearchForm(term) {
   const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
 
   return `/s?=${formatUrl(term)}`;
@@ -14,7 +13,7 @@ class SimpleSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',     
+      searchTerm: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -22,7 +21,7 @@ class SimpleSearch extends Component {
   }
 
   onChange(event) {
-    const { value} = event.target;
+    const { value } = event.target;
     const searchTerm = value;
     this.setState({ searchTerm });
   }
@@ -37,14 +36,14 @@ class SimpleSearch extends Component {
 
       searchTerm,
     } = this.state;
-    
+
     return (
       <div className="w-100">
         <form>
           <label htmlFor="searchSite" className="w-100">
             <input name="keyword" type="search" id="searchSite" value={searchTerm || ''} placeholder="Keyword..." className="form-control p-2" onChange={this.onChange} />
             <span className="sr-only">Search Site</span>
-          </label>         
+          </label>
           <button type="button" onClick={() => this.onSubmit()} className="btn btn-danger my-2 px-5">Search</button>
         </form>
       </div>

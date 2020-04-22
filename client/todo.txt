@@ -5,10 +5,7 @@ Cosmetic Fixes
 3. fix broken image in recent articles for linken
 4. fix image height for scarinci lawyer articles for mcnamara
 5. fix alot of featured images for articles for john scagnelli
-6. Fix social media icons facebook all over and mobile
 7. Run through compressor.io -- Jessica-Small.jpg, Samantha-Small-1.jpg, ron-bienstock-small.jpg, Jorge_small.jpg,/ChaudrySmall1.jpg, Ray-Small.jpg, Burke-Small.jpg, Sarah-Small.jpg, Gregg-Small-NEW.jpg, Simon-Small.jpg, Kevin-Small-NEW.jpg, Maryam_small.jpg, Ivan-Small-1.jpg, Dzwilewski-small.jpg, Lena-Small.jpg, Jasmine-Small.jpg, Sarah-Small.jpg, Alyssa-Small.jpg, citybackground.jpg, Cassin-Small-456.jpg, geppert-sm.jpg, pittard-sm.jpg, kane-sm.jpg
-8. Design GDRP Footer
-
 
 Pre-production Integration Todos:
 ============================================

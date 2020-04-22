@@ -4,7 +4,7 @@ import Search from '../../components/Search';
 import SubscriptionMessage from '../../components/SubscriptionMessage';
 
 
-const Sidebar = (props) => {
+function Sidebar(props) {
   const { show, toggleModal } = props;
 
   return (
@@ -13,7 +13,7 @@ const Sidebar = (props) => {
       <SubscriptionMessage show={show} toggleModal={toggleModal} />
     </div>
   );
-};
+}
 
 Sidebar.propTypes = {
   show: PropTypes.bool,

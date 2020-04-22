@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AttorneyCard from '../../components/AttorneyCard';
 
-const Members = (props) => {
+function Members(props) {
   const { title, members } = props;
 
   return (
@@ -30,7 +30,7 @@ const Members = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Members.propTypes = {
   title: PropTypes.string,

@@ -6,7 +6,7 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import NewsScroller from '../../components/NewsScroller';
 
 
-const Body = (props) => {
+function Body(props) {
   const {
     results,
     pageNums,
@@ -121,7 +121,7 @@ const Body = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Body.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object),

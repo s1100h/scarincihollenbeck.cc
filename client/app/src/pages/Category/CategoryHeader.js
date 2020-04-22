@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 
-const CategoryHeader = (props) => {
+function CategoryHeader(props) {
   const { title, content } = props;
 
   return (
@@ -16,7 +16,7 @@ const CategoryHeader = (props) => {
       </div>
     </div>
   );
-};
+}
 
 
 CategoryHeader.propTypes = {

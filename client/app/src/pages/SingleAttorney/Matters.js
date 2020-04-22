@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
-const Matters = (props) => {
+function Matters(props) {
   const {
     currentTab,
     content,
@@ -33,7 +33,7 @@ const Matters = (props) => {
     </div>
 
   );
-};
+}
 
 Matters.propTypes = {
   currentTab: PropTypes.string,

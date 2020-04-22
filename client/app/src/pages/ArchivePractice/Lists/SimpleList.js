@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SimpleList = (props) => {
+function SimpleList(props) {
   const { list } = props;
   return (
     <div className="mt-5">
@@ -12,7 +12,7 @@ const SimpleList = (props) => {
       </ul>
     </div>
   );
-};
+}
 
 
 SimpleList.propTypes = {

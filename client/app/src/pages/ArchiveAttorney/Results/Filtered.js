@@ -6,7 +6,7 @@ import AttorneyCard from '../../../components/AttorneyCard';
 import { filterByKey } from '../../../utils/helpers';
 
 
-const Filtered = (props) => {
+function Filtered(props) {
   const {
     attorneys,
     userInput,

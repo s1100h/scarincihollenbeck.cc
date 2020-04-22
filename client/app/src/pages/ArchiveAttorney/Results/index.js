@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Filtered from './Filtered';
 import NotFiltered from './NotFiltered';
 
-const Results = (props) => {
+function Results(props) {
   const {
     attorneys,
     select,

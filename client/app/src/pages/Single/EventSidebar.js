@@ -4,7 +4,7 @@ import { addRandomKey, createMarkup } from '../../utils/helpers';
 import Search from '../../components/Search';
 import SubscriptionMessage from '../../components/SubscriptionMessage';
 
-const EventSidebar = (props) => {
+function EventSidebar(props) {
   const {
     attorneys,
     show,
@@ -76,7 +76,7 @@ const EventSidebar = (props) => {
       <SubscriptionMessage show={show} toggleModal={toggleModal} />
     </div>
   );
-};
+}
 
 EventSidebar.propTypes = {
   eventDetails: PropType.arrayOf(PropType.object),

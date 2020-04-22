@@ -60,7 +60,7 @@ class CategoryBody extends Component {
           description,
         } = data;
 
-        const sortedAuthors = sortByKey(authors, 'lastName')
+        const sortedAuthors = sortByKey(authors, 'lastName');
 
         this.setState({
           archives,
@@ -90,7 +90,7 @@ class CategoryBody extends Component {
           }));
           this.setState({ corePractices });
         });
-      
+
       // get firm insights categories
       fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, {
         headers: {
@@ -103,7 +103,6 @@ class CategoryBody extends Component {
         .then((data) => {
           this.setState({ fiCategories: data });
         });
-      
     }
   }
 
@@ -176,7 +175,7 @@ class CategoryBody extends Component {
           ) : ''}
           { practices.map((val) => (
             <FullWidth className="col-sm-12 mt-5" key={val.id}>
-              <SliderContent title={val.name} slides={val.posts} />              
+              <SliderContent title={val.name} slides={val.posts} />
             </FullWidth>
           ))}
           <FullWidth className="border-top mt-5">

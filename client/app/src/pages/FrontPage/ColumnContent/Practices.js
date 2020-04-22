@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Practices = (props) => {
+function Practices(props) {
   const { corePractices } = props;
 
   return (
@@ -13,12 +13,12 @@ const Practices = (props) => {
       </ul>
       <a href="/practices" className="red-title proxima-bold">
         <u>
-            All Practices &gt;&gt;
+          All Practices &gt;&gt;
         </u>
       </a>
     </div>
   );
-};
+}
 
 Practices.propTypes = {
   corePractices: PropTypes.arrayOf(PropTypes.object),

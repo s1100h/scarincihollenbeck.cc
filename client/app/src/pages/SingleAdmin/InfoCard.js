@@ -10,7 +10,7 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 
-const InfoCard = (props) => {
+function InfoCard(props) {
   const {
     Title,
     phone_extension,
@@ -99,7 +99,7 @@ const InfoCard = (props) => {
       </div>
     </div>
   );
-};
+}
 
 InfoCard.propTypes = {
   name: PropTypes.string,

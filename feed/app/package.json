@@ -2,12 +2,12 @@
   "name": "corona-feeds",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "serverjs",
   "scripts": {
     "start": "node .",
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
-    "prod": "tsc && node ./www/index.js",
+    "prod": "tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
     "build": "npm run clean && tsc && cp .npmrc www/.npmrc && cp package.json www/package.json",
     "test": "echo \"Error: no test specified\" && exit 1"

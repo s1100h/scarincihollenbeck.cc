@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup } from '../../utils/helpers';
-
-
-// lazy load components
 import RelatedAttorneys from './RelatedAttorneys';
 import RelatedArticles from './RelatedArticles';
 import FeaturedSlider from './FeaturedSlider';
 import AwardScroller from './AwardScroller';
+import { createMarkup } from '../../utils/helpers';
 
-const Body = (props) => {
+function Body(props) {
   const {
     currentTab,
     content,
@@ -77,7 +74,7 @@ const Body = (props) => {
       )}
     </div>
   );
-};
+}
 
 Body.propTypes = {
   currentTab: PropTypes.string,

@@ -4,7 +4,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import PropTypes from 'prop-types';
 import { makeTitle } from '../../utils/helpers';
 
-const Breadcrumbs = (props) => {
+function Breadcrumbs(props) {
   const { title } = props;
 
   const currentUrl = window.location.pathname.split('/');
@@ -40,7 +40,7 @@ const Breadcrumbs = (props) => {
       </h6>
     </div>
   );
-};
+}
 
 Breadcrumbs.propTypes = {
   title: PropTypes.string,

@@ -1,30 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 
 import PropTypes from 'prop-types';
 
-const AttorneyCard = (props) => {
+function AttorneyCard(props) {
   const {
     link, image, name, title, number, email, height, width,
   } = props;
 
-  const Card = styled.div`
-    height: ${height};
-    overflow: hidden;
-    border: .9px solid #e9e9e9;
-    width: 100%;
-  `;
-
   return (
-    <Card className="d-flex flex-row attorney-card">
-      <a href={link}>
+    <div className="d-flex flex-row attorney-card" height={height}>
+      <Link to={link}>
         <img rel="preload" src={image} alt={name} className="mr-1" style={{ width }} />
-      </a>
+      </Link>
       <div className="mt-3 ml-3">
-        <a href={link}>
+        <Link to={link}>
           <p className="text-uppercase red-title small-excerpt">
             <strong>{name}</strong>
           </p>
@@ -33,7 +26,7 @@ const AttorneyCard = (props) => {
               {title}
             </strong>
           </p>
-        </a>
+        </Link>
         <div className="small-excerpt">
           <FontAwesomeIcon icon={faPhone} />
           {' '}
@@ -44,9 +37,9 @@ const AttorneyCard = (props) => {
           {email}
         </div>
       </div>
-    </Card>
+    </div>
   );
-};
+}
 
 AttorneyCard.propTypes = {
   image: PropTypes.string,

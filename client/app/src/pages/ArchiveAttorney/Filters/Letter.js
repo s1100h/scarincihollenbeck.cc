@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Letter = (props) => {
+function FilterLetter(props) {
   const { alphabet, letterClick } = props;
 
   return (
@@ -23,14 +23,14 @@ const Letter = (props) => {
   );
 };
 
-Letter.propTypes = {
+FilterLetter.propTypes = {
   alphabet: PropTypes.arrayOf(PropTypes.string),
   letterClick: PropTypes.func,
 };
 
-Letter.defaultProps = {
+FilterLetter.defaultProps = {
   alphabet: [],
   letterClick: () => {},
 };
 
-export default Letter;
+export default FilterLetter;

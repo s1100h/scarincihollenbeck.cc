@@ -23,7 +23,7 @@ const BgBlack = styled.div`
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
 `;
 
-const Header = (props) => {
+function Header(props) {
   const { onChange, searchTerm } = props;
   return (
     <HeaderBackground className="jumbotron jumbotron-fluid">
@@ -35,7 +35,7 @@ const Header = (props) => {
       </BgBlack>
     </HeaderBackground>
   );
-};
+}
 
 Header.propTypes = {
   onChange: PropTypes.func,

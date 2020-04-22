@@ -7,7 +7,7 @@ import ContactForm from '../../components/ContactForm';
 
 const contactHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
-const Contact = () => {
+function Contact() {
   const seo = {
     title: 'Contact A Scarinci Hollenbeck Attorney',
     metaDescription: 'Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Jersey City, Washington D.C.',
@@ -26,13 +26,13 @@ const Contact = () => {
       <FullWidth>
         <div className="w-100">
           <p className="lead">
-              For media inquiries, please visit
+            For media inquiries, please visit
             {' '}
             <a href={`${window.location.origin}/category/law-firm-insights/`} className="blue-title">
               <u>Firm Insights.</u>
             </a>
             {' '}
-              For job opportunities please visit our
+            For job opportunities please visit our
             {' '}
             <a href={`${window.location.origin}/careers`} className="blue-title">
               <u>Careers page.</u>
@@ -40,14 +40,14 @@ const Contact = () => {
           </p>
           <p className="lead">
             {' '}
-              If you are a client, please get in touch with your
+            If you are a client, please get in touch with your
             {' '}
             <a href={`${window.location.origin}/attorneys`} className="blue-title"><u>Scarinci Hollenbeck attorney</u></a>
             {' '}
-              contact directly.
+            contact directly.
           </p>
           <p className="lead">
-              If you are looking to get in touch with an attorney under the terms as to becoming a new client please call 201-896-4100.
+            If you are looking to get in touch with an attorney under the terms as to becoming a new client please call 201-896-4100.
           </p>
           <h4 className="bg-light-gray">All other inquires please fill out the form below.</h4>
           <div className="w-75 mt-6">
@@ -57,6 +57,6 @@ const Contact = () => {
       </FullWidth>
     </div>
   );
-};
+}
 
 export default Contact;

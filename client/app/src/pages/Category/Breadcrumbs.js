@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { makeTitle } from '../../utils/helpers';
 
-const BreadCrumbs = (props) => {
+function BreadCrumbs(props) {
   const { breadCrumb, categorySlug } = props;
 
   const firmInsightsBreadCrumbUrl = breadCrumb.map((bc) => bc);
@@ -53,7 +53,7 @@ const BreadCrumbs = (props) => {
     </h6>
 
   );
-};
+}
 
 BreadCrumbs.propTypes = {
   breadCrumb: PropTypes.arrayOf(PropTypes.oneOfType([

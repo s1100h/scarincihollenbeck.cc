@@ -7,6 +7,7 @@ import FullWidth from '../../layouts/FullWidth';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
+
 const cityBackground = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
 class IndividualPractice extends Component {
@@ -40,8 +41,8 @@ class IndividualPractice extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -58,8 +59,8 @@ class IndividualPractice extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {

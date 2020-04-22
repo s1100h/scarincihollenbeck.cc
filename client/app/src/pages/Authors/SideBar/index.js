@@ -4,7 +4,7 @@ import Search from '../../../components/Search';
 import AboutAuthor from './AboutAuthor';
 import AttorneyServices from './AttorneyServices';
 
-const SideBar = (props) => {
+function SideBar(props) {
   const {
     bio,
     practices,
@@ -17,7 +17,7 @@ const SideBar = (props) => {
       <AttorneyServices practices={practices} bio={bio} />
     </div>
   );
-};
+}
 
 SideBar.propTypes = {
   practices: PropType.arrayOf(PropType.object),

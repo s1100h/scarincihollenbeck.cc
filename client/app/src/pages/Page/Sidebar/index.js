@@ -4,18 +4,19 @@ import Search from '../../../components/Search';
 import TrendingStories from '../../../components/TrendingStories';
 import SubscriptionContent from './SubscriptionContent';
 
-const Sidebar = (props) => {
+function Sidebar(props) {
   const {
     posts,
     hideSubscription,
     show,
     toggleModal,
+    covidPage,
   } = props;
 
   return (
     <div>
       <Search />
-      <TrendingStories content={posts} />
+      <TrendingStories title={(covidPage) ? 'Current Covid-19 News' : 'Trending Stories'} content={posts} />
       <SubscriptionContent
         toggleModal={toggleModal}
         hideSubscription={hideSubscription}
@@ -23,20 +24,22 @@ const Sidebar = (props) => {
       />
     </div>
   );
-};
+}
 
 Sidebar.propTypes = {
   posts: PropType.arrayOf(PropType.object),
   hideSubscription: PropType.func,
   show: PropType.bool,
+  covidPage: PropType.bool,
   toggleModal: PropType.func,
 };
 
 Sidebar.defaultProps = {
   posts: [],
   hideSubscription: () => {},
-  show: false,
   toggleModal: () => {},
+  show: false,
+  covidPage: false,
 };
 
 export default Sidebar;

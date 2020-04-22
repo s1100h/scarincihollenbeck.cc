@@ -5,7 +5,7 @@ import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookS
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import PropTypes from 'prop-types';
 
-const SocialShareFooter = (props) => {
+function SocialShareFooter(props) {
   const { title } = props;
 
   const encodeLink = encodeURIComponent(window.location.href);
@@ -41,7 +41,7 @@ const SocialShareFooter = (props) => {
       </div>
     </span>
   );
-};
+}
 
 SocialShareFooter.propTypes = {
   title: PropTypes.string,

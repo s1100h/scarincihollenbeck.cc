@@ -4,9 +4,10 @@ FROM node:latest
 RUN mkdir /src
 
 WORKDIR /src
-ADD app/package.json /src/package.json
+ADD app /src
 RUN npm install
 
 EXPOSE 8100
 
-CMD npm run dev
+RUN npm run build
+CMD npm run prod

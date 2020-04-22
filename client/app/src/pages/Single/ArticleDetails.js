@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ArticleDetails = (props) => {
+function ArticleDetails(props) {
   const { author, date } = props;
 
   return (
@@ -21,7 +21,7 @@ const ArticleDetails = (props) => {
       }
     </div>
   );
-};
+}
 
 ArticleDetails.propTypes = {
   author: PropTypes.arrayOf(PropTypes.object),

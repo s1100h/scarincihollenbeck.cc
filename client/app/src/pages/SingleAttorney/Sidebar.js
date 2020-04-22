@@ -6,12 +6,10 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
 
-const SidebarContent = (props) => {
+function SidebarContent(props) {
   const {
     title, content, show, setSideBarTab, currentSidebarTab,
   } = props;
-  console.log(props);
-  console.log(show);
 
   return (
     <div>
@@ -35,7 +33,7 @@ const SidebarContent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 SidebarContent.propTypes = {
   title: PropTypes.string,

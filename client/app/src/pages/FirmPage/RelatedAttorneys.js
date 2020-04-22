@@ -5,11 +5,11 @@ import AttorneyCard from '../../components/AttorneyCard';
 
 const attorneySlug = (string) => string.split('/attorneys/').pop();
 
-const RelatedAttorneys = (props) => {
+function RelatedAttorneys(props) {
   const { members, chair, handleLink } = props;
 
   return (
-    <span>
+    <div>
       {
           (chair.length > 0) && (
             <div className="container">
@@ -77,11 +77,11 @@ const RelatedAttorneys = (props) => {
 
             </div>
           </div>
-        ) 
+        )
       }
-    </span>
+    </div>
   );
-};
+}
 
 RelatedAttorneys.propTypes = {
   members: PropTypes.arrayOf(PropTypes.object),

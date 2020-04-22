@@ -5,7 +5,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { createMarkup } from '../../../utils/helpers';
 
-const AboutAuthor = (props) => {
+function AboutAuthor(props) {
   const { bio } = props;
 
   return (
@@ -38,7 +38,7 @@ const AboutAuthor = (props) => {
       </div>
     </div>
   );
-};
+}
 
 AboutAuthor.propTypes = {
   bio: PropTypes.arrayOf(PropTypes.object),

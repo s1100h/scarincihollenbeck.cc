@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SubscriptionForm from './ColSubscriptionForm';
 
 
-const ColumnContent = (props) => {
+function ColumnContent(props) {
   const {
     colOneTitle, colOneContent, colTwoTitle, colTwoContent,
   } = props;
@@ -36,7 +36,7 @@ const ColumnContent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 ColumnContent.propTypes = {
   colOneTitle: PropTypes.string,

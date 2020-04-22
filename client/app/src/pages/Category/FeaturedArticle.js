@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
-const FeaturedArticle = (props) => {
+function FeaturedArticle(props) {
   const { main } = props;
 
   return (
@@ -50,7 +50,7 @@ const FeaturedArticle = (props) => {
       ))}
     </article>
   );
-};
+}
 
 FeaturedArticle.propTypes = {
   main: PropTypes.arrayOf(PropTypes.object),

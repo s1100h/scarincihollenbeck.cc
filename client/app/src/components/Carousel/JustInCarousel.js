@@ -7,7 +7,7 @@ import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 
 
-const formatDate = (date) => {
+function formatDate(date) {
   const d = new Date(date);
   return d.toLocaleDateString();
 };

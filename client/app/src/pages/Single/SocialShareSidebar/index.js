@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import Icons from './Icons';
 
-const SocialShareSidebar = (props) => {
+function SocialShareSidebar(props) {
   const { printScreen, title } = props;
 
   const encodeLink = encodeURIComponent(window.location.href);
@@ -24,7 +24,7 @@ const SocialShareSidebar = (props) => {
       }
     </div>
   );
-};
+}
 
 SocialShareSidebar.propTypes = {
   printScreen: PropTypes.func,

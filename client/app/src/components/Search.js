@@ -3,7 +3,7 @@ import { addRandomKey } from '../utils/helpers';
 
 // create url for search query
 // handle complex search sidebar form
-export const sumbitSearchForm = (terms) => {
+function sumbitSearchForm(terms) {
   const {
     keyword,
     practice,
@@ -16,7 +16,7 @@ export const sumbitSearchForm = (terms) => {
   const url = results.trim().replace(/[^\w\s]/gi, '');
 
   return `/s?=${formatUrl(url)}`;
-};
+}
 
 
 class Search extends Component {
@@ -51,21 +51,21 @@ class Search extends Component {
     window.location = sumbitSearchForm(t);
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     fetch(`${process.env.REACT_APP_CACHED_API}/cached/search-options`)
       .then((res) => res.json())
       .then((data) => {
         const {
           attorneys,
           categories,
-          practices
+          practices,
         } = data;
 
         // set data from fetch requst to state
         this.setState({
           attorneys,
           categories,
-          practices
+          practices,
         });
       });
   }
@@ -76,36 +76,37 @@ class Search extends Component {
       categories,
       practices,
       searchTerm,
+      t
     } = this.state;
-    
+
     return (
       <div className="w-100">
-        <form>
+        <form onChange={this.onChange}>
           <label htmlFor="searchSite" className="w-100">
-            <input name="keyword" type="search" id="searchSite" value={searchTerm || ''} placeholder="Keyword..." className="form-control p-2" onChange={this.onChange} />
+            <input name="keyword" type="search" id="searchSite" value={searchTerm || ''} placeholder="Keyword..." className="form-control p-2" />
             <span className="sr-only">Search Site</span>
           </label>
           {/* Related Practice */}
           <label htmlFor="searchPractice" className="d-block w-100">
             <select name="practice" id="searchPractice" className="form-control p-2">
-              <option defaultValue="Filter by practice">Filter by practice</option>
-              {practices.map((p) => <option value={p.title || ''} key={addRandomKey(p.title)} onChange={this.onChange}>{p.title}</option>) }
+              <option defaultValue="Filter by practice">{t.practice || "Filter by practice"}</option>
+              {practices.map((p) => <option value={p.title || ''} key={addRandomKey(p.title)}>{p.title}</option>) }
             </select>
             <span className="sr-only">Filter by Practice</span>
           </label>
           {/* Related Practices */}
           <label htmlFor="searchAttorney" className="d-block w-100">
             <select name="attorney" id="searchAttorney" className="form-control p-2">
-              <option defaultValue="Filter by attorney">Filter by attorney</option>
-              {attorneys.map((p) => <option value={p.title || ''} key={addRandomKey(p.title)} onChange={this.onChange}>{p.title}</option>) }
+              <option defaultValue="Filter by attorney">{t.attorney || "Filter by attorney"}</option>
+              {attorneys.map((p) => <option value={p.title || ''} key={addRandomKey(p.title)}>{p.title}</option>) }
             </select>
             <span className="sr-only">Filtery by Attorney</span>
           </label>
           {/* Categories */}
           <label htmlFor="searchCategory" className="d-block w-100">
             <select name="category" id="searchCategory" className="form-control p-2">
-              <option defaultValue="Filter by category">Filter by category</option>
-              {categories.map((p) => ((p.title !== 'Uncategorized') ? <option value={p.title || ''} key={addRandomKey(p.title)} onChange={this.onChange}>{p.title}</option> : '')) }
+              <option defaultValue="Filter by category">{t.category || "Filter by category"}</option>
+              {categories.map((p) => ((p.title !== 'Uncategorized') ? <option value={p.title || ''} key={addRandomKey(p.title)}>{p.title}</option> : '')) }
             </select>
             <span className="sr-only">Filtery by Category</span>
           </label>

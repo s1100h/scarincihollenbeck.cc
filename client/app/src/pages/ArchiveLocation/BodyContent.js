@@ -5,7 +5,7 @@ import { sortByKey } from '../../utils/helpers';
 
 const attorneySlug = (string) => string.split('/attorneys/').pop();
 
-const BodyContent = (props) => {
+function BodyContent(props) {
   const {
     attorneys,
     practices,
@@ -90,7 +90,7 @@ const BodyContent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 BodyContent.propTypes = {
   attorneys: PropTypes.arrayOf(PropTypes.object),

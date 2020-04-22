@@ -9,7 +9,7 @@ import SimpleSearch from '../../components/SimpleSearch';
 const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 
-const Sidebar = (props) => {
+function Sidebar(props) {
   const {
     practiceList,
     corePractices,
@@ -68,7 +68,7 @@ const Sidebar = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Sidebar.propTypes = {
   practiceList: PropTypes.arrayOf(PropTypes.object),

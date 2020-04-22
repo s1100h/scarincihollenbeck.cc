@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Selected = (props) => {
+function Selected(props){
   const {
     select,
     userInput,

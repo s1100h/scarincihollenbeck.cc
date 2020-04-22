@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MobileMenu = (props) => {
+function MobileMenu(props) {
   const {
     content,
     onMobileSelect,

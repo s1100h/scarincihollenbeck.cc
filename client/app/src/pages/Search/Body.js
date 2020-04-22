@@ -6,7 +6,7 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import NewsScroller from '../../components/NewsScroller';
 
 
-const Body = (props) => {
+function Body(props) {
   const {
     results,
     pageNums,
@@ -17,45 +17,53 @@ const Body = (props) => {
     prev,
     next,
     active,
+    loading,
   } = props;
+  console.log('loading');
+  console.log(loading);
 
   return (
     <div>
       <div className="row">
-        {(results.length > 0) ? (
+        {(loading === true) ? (
           <>
-                  <div className="col-sm-12 col-md-6">
-                  {results.map((r, i) => (i < 5 ? (
-                    <div className="p-2" key={r.id}>
-                      <a href={r.link} className="top-article">
-                        <h5 className="mb-0">{r.title}</h5>
-                        <p className="mt-0 mb-3 text-muted small-excerpt">
-                          {r.description}
-                        </p>
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )))}
+            <div className="col-sm-12 col-md-6">
+              {results.map((r, i) => (i < 5 ? (
+                <div className="p-2" key={r.id}>
+                  <a href={r.link} className="top-article">
+                    <h5 className="mb-0">{r.title}</h5>
+                    <p className="mt-0 mb-3 text-muted small-excerpt">
+                      {r.description}
+                    </p>
+                  </a>
                 </div>
-                <div className="col-sm-12 col-md-6">
-                  {results.map((r, i) => (i > 5 ? (
-                    <div className="p-2" key={r.id}>
-                      <a href={r.link} className="top-article">
-                        <h5 className="mb-0">{r.title}</h5>
-                        <p className="mt-0 mb-3 text-muted small-excerpt">
-                          {r.description}
-                        </p>
-                      </a>
-                    </div>
-                  ) : (
-                    ''
-                  )))}
+              ) : (
+                ''
+              )))}
+            </div>
+            <div className="col-sm-12 col-md-6">
+              {results.map((r, i) => (i > 5 ? (
+                <div className="p-2" key={r.id}>
+                  <a href={r.link} className="top-article">
+                    <h5 className="mb-0">{r.title}</h5>
+                    <p className="mt-0 mb-3 text-muted small-excerpt">
+                      {r.description}
+                    </p>
+                  </a>
                 </div>
-                </>
+              ) : (
+                ''
+              )))}
+            </div>
+          </>
         ) : (
           <div className="col-sm-12 my-5">
-              <h3 className="text-center red-title"> Sorry, no results found for that query.</h3>
+            <h3 className="text-center red-title">Loading results...</h3>
+          </div>
+        )}
+        {(results.length === 0 && loading === true) && (
+          <div className="col-sm-12 my-5">
+            <h3 className="text-center red-title"> Sorry, no results found for that query.</h3>
           </div>
         )}
 
@@ -130,7 +138,7 @@ const Body = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Body.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object),

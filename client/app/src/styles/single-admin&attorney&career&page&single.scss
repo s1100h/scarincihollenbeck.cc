@@ -181,8 +181,10 @@
    }
   }
   .top-article {
-    &:hover {
-      text-decoration: underline !important;
+    p {
+      &:hover {
+        text-decoration: underline !important;
+      }
     }
   }
  
@@ -213,7 +215,7 @@
     padding-top: 20px !important;
   }
 }
-#single-attorney,#single-career, #single-admin {
+#single-attorney,#single-career, #single-admin, #single {
   // mobie queries
   @media (min-width: 767px) and (max-width: 992px) {
     .sidebar-title {
@@ -258,8 +260,10 @@
       display:block;
     }
     .ss-list {
+      margin-left: 0;
       li {
         display: inline;
+        margin-right:5px;
       }
     }
   }

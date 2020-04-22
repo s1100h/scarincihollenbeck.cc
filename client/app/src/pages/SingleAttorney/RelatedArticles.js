@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../../components/Carousel';
 import { addRandomKey } from '../../utils/helpers';
+
 const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
-const RelatedArticles = (props) => {
+function RelatedArticles(props) {
   const { title, content } = props;
 
   return (
@@ -32,7 +33,7 @@ const RelatedArticles = (props) => {
       }
     </div>
   );
-};
+}
 
 RelatedArticles.propTypes = {
   title: PropTypes.string,

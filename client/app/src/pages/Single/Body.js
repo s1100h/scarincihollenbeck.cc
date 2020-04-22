@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { createMarkup } from '../../utils/helpers';
+import { createMarkup, urlify } from '../../utils/helpers';
 import ContactForm from '../../components/ContactForm';
 import Breadcrumbs from './Breadcrumbs';
 import ArticleDetails from './ArticleDetails';
 import SocialShareFooter from './SocialShareFooter';
 import AuthorBio from './AuthorBio';
-import { urlify } from '../../utils/helpers';
 
-const Body = (props) => {
+
+function Body(props) {
   const {
     firstFeaturedImg,
     bodyContent,
@@ -35,7 +35,7 @@ const Body = (props) => {
             {tags.map((tag, index) => (
               <li key={tag.term_id || tag.ID} className="list-inline-item">
                 <Link to={`/archives/${urlify(tag.name)}`} className="blue-link">
-                 <u>{tag.name}</u>
+                  <u>{tag.name}</u>
                 </Link>
                 {(index !== tags.length - 1) && ',' }
               </li>
@@ -55,7 +55,7 @@ const Body = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Body.propTypes = {
   date: PropTypes.string,

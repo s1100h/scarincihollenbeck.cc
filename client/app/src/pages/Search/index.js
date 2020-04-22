@@ -19,6 +19,7 @@ class Search extends Component {
       currentPage: '',
       breadCrumb: [],
       categorySlug: '',
+      loading: false,
     };
 
     this.getPosts = this.getPosts.bind(this);
@@ -54,7 +55,7 @@ class Search extends Component {
           pages, results, posts,
         } = data;
         this.setState({
-          results, trending: posts,
+          results, trending: posts, loading: true,
         });
         const pageNums = [];
         for (let i = 1; i <= pages; i += 1) {
@@ -88,6 +89,7 @@ class Search extends Component {
       breadCrumb,
       categorySlug,
       currentPage,
+      loading,
     } = this.state;
 
     // pagination set up
@@ -117,6 +119,7 @@ class Search extends Component {
               events={events}
               insight={insight}
               active={active}
+              loading={loading}
             />
  )}
           sidebar={(

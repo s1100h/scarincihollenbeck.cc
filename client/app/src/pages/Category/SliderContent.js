@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../../components/Carousel';
 
-const SliderContent = (props) => {
+function SliderContent(props) {
   const { title, slides } = props;
 
   return (
@@ -15,7 +15,7 @@ const SliderContent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 SliderContent.propTypes = {
   title: PropTypes.string,

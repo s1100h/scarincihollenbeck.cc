@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import PropTypes from 'prop-types';
 
-const Location = (props) => {
+function FilterLocation(props) {
   const { locations, onSelect } = props;
   return (
     <li className="dropdown nav-item list-inline-item mr-4 filter">
@@ -18,14 +18,14 @@ const Location = (props) => {
   );
 };
 
-Location.propTypes = {
+FilterLocation.propTypes = {
   locations: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func,
 };
 
-Location.defaultProps = {
+FilterLocation.defaultProps = {
   locations: [],
   onSelect: () => {},
 };
 
-export default Location;
+export default FilterLocation;

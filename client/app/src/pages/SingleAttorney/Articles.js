@@ -2,9 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addRandomKey } from '../../utils/helpers';
+
 const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
-const Post = (props) => {
+function Post(props) {
   const { title, link, img } = props;
   return (
     <div className="col-sm-12 col-md-4 my-2 article-card">
@@ -14,9 +15,9 @@ const Post = (props) => {
       </a>
     </div>
   );
-};
+}
 
-const Articles = (props) => {
+function Articles(props) {
   const {
     currentTab,
     tabTitle,
@@ -34,7 +35,7 @@ const Articles = (props) => {
       </div>
     </div>
   );
-};
+}
 
 
 Post.propTypes = {

@@ -6,7 +6,7 @@ import { sortByKey } from '../../../utils/helpers';
 import FilterForms from './FilterForms';
 import Results from './Results';
 
-const CareerSection = (props) => {
+function CareerSection(props) {
   const {
     positions,
     keyword,
@@ -78,7 +78,7 @@ const CareerSection = (props) => {
       <Results positions={p} career={career} />
     </div>
   );
-};
+}
 
 CareerSection.propTypes = {
   keyword: PropTypes.string,

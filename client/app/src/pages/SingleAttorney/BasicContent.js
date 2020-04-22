@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 
-const BasicContent = (props) => {
+function BasicContent(props) {
   const {
     currentTab,
     tabTitle,
@@ -20,7 +20,7 @@ const BasicContent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 BasicContent.propTypes = {
   currentTab: PropTypes.string,

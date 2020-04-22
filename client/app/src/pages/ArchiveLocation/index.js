@@ -5,11 +5,11 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import LocationHead from '../../components/Head/location';
 
-const locArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
-
 /** lazy load components */
 import BodyContent from './BodyContent';
 import SideBar from './SideBar';
+
+const locArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 class LocationPortal extends Component {
   constructor(props) {
@@ -31,8 +31,8 @@ class LocationPortal extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((data) => {

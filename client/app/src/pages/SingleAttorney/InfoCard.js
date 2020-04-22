@@ -12,7 +12,7 @@ import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import PropTypes from 'prop-types';
 
-const InfoCard = (props) => {
+function InfoCard(props) {
   const {
     fullName,
     chair,
@@ -146,7 +146,7 @@ const InfoCard = (props) => {
       </div>
     </div>
   );
-};
+}
 
 InfoCard.propTypes = {
   fullName: PropTypes.string,

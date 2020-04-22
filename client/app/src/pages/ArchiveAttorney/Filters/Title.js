@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import PropTypes from 'prop-types';
 
-const Title = (props) => {
+function FilterTitle(props) {
   const { designation, onSelect } = props;
 
   return (
@@ -19,15 +19,15 @@ const Title = (props) => {
   );
 };
 
-Title.propTypes = {
+FilterTitle.propTypes = {
   designation: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func,
 };
 
 
-Title.defaultProps = {
+FilterTitle.defaultProps = {
   designation: [],
   onSelect: () => {},
 };
 
-export default Title;
+export default FilterTitle;

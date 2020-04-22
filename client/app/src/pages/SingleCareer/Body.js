@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 
 
-const Body = (props) => {
+function Body(props) {
   const {
     currentTitle,
     currentDescription,
@@ -95,7 +95,7 @@ const Body = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Body.propTypes = {
   currentTitle: PropTypes.string,

@@ -8,7 +8,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 
 
-const Icons = (props) => {
+function Icons(props) {
   const {
     encodeLink,
     to,
@@ -45,7 +45,7 @@ const Icons = (props) => {
       </li>
     </ul>
   );
-};
+}
 
 Icons.propTypes = {
   printScreen: PropTypes.func,

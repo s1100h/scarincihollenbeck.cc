@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Keyword = (props) => {
+function FilterKeyword(props){
   const { userInput, handleChange } = props;
 
   return (
@@ -15,14 +15,14 @@ const Keyword = (props) => {
   );
 };
 
-Keyword.propTypes = {
+FilterKeyword.propTypes = {
   userInput: PropTypes.string,
   handleChange: PropTypes.func,
 };
 
-Keyword.defaultProps = {
+FilterKeyword.defaultProps = {
   userInput: '',
   handleChange: () => {},
 };
 
-export default Keyword;
+export default FilterKeyword;

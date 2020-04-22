@@ -5,11 +5,11 @@ import { sortPracticeCategorys } from './utils/helpers';
 import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
-
-const pracArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 // lazy load components
 import BlockList from './Lists/BlockList';
 import SimpleList from './Lists/SimpleList';
+
+const pracArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 class PracticePortal extends Component {
   constructor(props) {

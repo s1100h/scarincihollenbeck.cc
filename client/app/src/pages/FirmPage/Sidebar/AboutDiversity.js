@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AboutDiversity = (props) => {
+function AboutDiversity(props) {
   const { relatedPages } = props;
 
   return (
@@ -17,13 +17,12 @@ const AboutDiversity = (props) => {
                 {(val === 'women-in-sh') ? 'Women In SH' : val.replace(/-/g, ' ')}
               </a>
             </li>
-          ))
-          }
+          ))}
         </ul>
       </div>
     </div>
   );
-};
+}
 
 AboutDiversity.propTypes = {
   relatedPages: PropTypes.arrayOf(PropTypes.string),

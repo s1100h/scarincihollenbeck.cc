@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { urlify } from '../../../utils/helpers';
 
-const Results = (props) => {
+function Results(props) {
   const { positions } = props;
 
   return (
@@ -40,7 +40,7 @@ const Results = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Results.propTypes = {
   positions: PropTypes.arrayOf(PropTypes.object),

@@ -4,7 +4,7 @@ import { createMarkup } from '../../utils/helpers';
 import NewsScroller from './NewsScroller';
 import RelatedAttorneys from './RelatedAttorneys';
 
-const TabContent = (props) => {
+function TabContent(props) {
   const {
     content,
     sortedMembers,
@@ -46,7 +46,7 @@ const TabContent = (props) => {
       <NewsScroller attorneysMentioned={attorneysMentioned} title={title} />
     </div>
   );
-};
+}
 
 TabContent.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),

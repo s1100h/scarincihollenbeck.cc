@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup, addRandomKey } from '../../utils/helpers';
 
-const Table = (props) => {
+function Table(props) {
   const {
     title,
     currentTab,
@@ -35,7 +35,7 @@ const Table = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Table.propTypes = {
   title: PropTypes.string,

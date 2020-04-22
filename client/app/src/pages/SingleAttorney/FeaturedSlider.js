@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../../components/Carousel';
 
-const FeaturedSlider = (props) => {
+function FeaturedSlider(props) {
   const { content, title } = props;
 
   return (
@@ -31,7 +31,7 @@ const FeaturedSlider = (props) => {
       </div>
     </div>
   );
-};
+}
 
 FeaturedSlider.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),

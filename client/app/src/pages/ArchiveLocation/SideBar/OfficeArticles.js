@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addRandomKey } from '../../../utils/helpers';
 
-const OfficeArticles = (props) => {
+function OfficeArticles(props) {
   const { posts, title } = props;
 
   return (
@@ -34,7 +34,7 @@ const OfficeArticles = (props) => {
       </div>
     </div>
   );
-};
+}
 
 OfficeArticles.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),

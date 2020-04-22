@@ -10,10 +10,11 @@ import InfoCard from './InfoCard';
 import MenuItem from './MenuItem';
 import Sidebar from './Sidebar';
 import { sortByDateKey, urlify } from '../../utils/helpers';
-const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
 
 // lazy load components
 import Body from './Body';
+
+const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
 
 class AttorneyBiography extends Component {
   constructor(props) {
@@ -45,8 +46,8 @@ class AttorneyBiography extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
+        'Accept-Encoding': 'gzip',
+      },
     })
       .then((res) => res.json())
       .then((bio) => {

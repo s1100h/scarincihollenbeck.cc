@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../../components/Carousel';
 import { addRandomKey } from '../../utils/helpers';
+
 const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
-const FeaturedSlider = (props) => {
+function FeaturedSlider(props) {
   const { content } = props;
-
-  
   const firstEightArticles = content.filter((p, i) => i < 8);
-
-
 
   return (
     <div className="mt-4 w-100 d-block practice-news-list">
@@ -34,7 +31,7 @@ const FeaturedSlider = (props) => {
       }
     </div>
   );
-};
+}
 
 FeaturedSlider.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),

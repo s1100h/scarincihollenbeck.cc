@@ -9,7 +9,6 @@ const Sidebar = (props) => {
   const {
     posts,
     attorneys,
-    hideSubscription,
     show,
     toggleModal,
   } = props;
@@ -18,7 +17,7 @@ const Sidebar = (props) => {
     <div className="hide-print">
       <Search />
       {/** TOP ARTICLES */}
-      <TrendingStories content={posts} />
+      <TrendingStories title="Trending Stories" content={posts} />
       {/** MENTIONED ATTORNEYS */}
       {
         (attorneys.length > 0) && (
@@ -56,16 +55,14 @@ Sidebar.propTypes = {
   posts: PropType.arrayOf(PropType.object),
   attorneys: PropType.arrayOf(PropType.object),
   show: PropType.bool,
-  toggleModal: PropType.func,
-  hideSubscription: PropType.func,
+  toggleModal: PropType.func
 };
 
 Sidebar.defaultProps = {
   posts: [],
   attorneys: [],
   show: false,
-  toggleModal: () => {},
-  hideSubscription: () => {},
+  toggleModal: () => {}
 };
 
 export default Sidebar;

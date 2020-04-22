@@ -10,7 +10,7 @@ import FeaturedSlider from './FeaturedSlider';
 import RelatedArticles from './RelatedArticles';
 import { addRandomKey, sortByDateKey, urlify } from '../../utils/helpers';
 
-const Body = (props) => {
+function Body(props) {
   const {
     biography,
     currentTab,
@@ -131,7 +131,7 @@ const Body = (props) => {
       { (blogPosts) && (blogPosts.length > 0) && <RelatedArticles title="Recent Articles" content={sortedBlogArticles} />}
     </div>
   );
-};
+}
 
 
 export default Body;

@@ -4,7 +4,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import PropTypes from 'prop-types';
 
 
-const BreadCrumb = (props) => {
+function BreadCrumb(props) {
   const { currentTitle } = props;
   return (
     <h6>
@@ -25,7 +25,7 @@ const BreadCrumb = (props) => {
       </span>
     </h6>
   );
-};
+}
 
 BreadCrumb.propTypes = {
   currentTitle: PropTypes.string,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Categories = (props) => {
+function Categories(props) {
   const { onCategorySelection } = props;
 
   return (
@@ -38,7 +38,7 @@ const Categories = (props) => {
       </a>
     </div>
   );
-};
+}
 
 
 Categories.propTypes = {

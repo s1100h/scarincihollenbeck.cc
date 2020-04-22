@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+
 const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png';
 
-const RelatedArticles = (props) => {
+function RelatedArticles(props) {
   const { articles } = props;
   return (
     <div className="container related-article-container">
@@ -23,7 +24,7 @@ const RelatedArticles = (props) => {
       </div>
     </div>
   );
-};
+}
 
 RelatedArticles.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object),

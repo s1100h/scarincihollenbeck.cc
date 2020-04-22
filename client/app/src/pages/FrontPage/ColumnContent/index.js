@@ -4,7 +4,7 @@ import About from './About';
 import Practices from './Practices';
 import Categories from './Categories';
 
-const ColumnContent = (props) => {
+function ColumnContent(props) {
   const { onCategorySelection, corePractices } = props;
 
   return (
@@ -23,7 +23,7 @@ const ColumnContent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 ColumnContent.propTypes = {
   onCategorySelection: PropTypes.func,
