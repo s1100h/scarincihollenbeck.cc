@@ -116,10 +116,11 @@
 .nav-link{
 	color: $off-black !important;
 	font-weight: 500;
-    transition: all 200ms linear;
+  transition: all 200ms linear;
 }
 .nav-item:hover .nav-link{
-	color: $standard-red !important;
+  color: $standard-red !important;
+  text-decoration: none !important;
 }
 .nav-item.active .nav-link{
 	color: $off-green !important;

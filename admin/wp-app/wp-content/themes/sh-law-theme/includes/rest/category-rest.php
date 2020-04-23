@@ -30,6 +30,7 @@ add_action("rest_api_init", function()
     "callback" => "all_categories"
   ));    
 });
+
 // related practice posts
 function get_core_practice_posts($id) {
   $posts = get_posts(array(
@@ -202,8 +203,8 @@ function category_data($request) {
     foreach($terms as $t) {
       $post_data['practices'][] = array(
         "id" => $t->term_id,
-        "name" => $t->name,
-        "link" => "/category/".$slug."/".$t->slug,
+        "name" => html_entity_decode(htmlspecialchars_decode($t->name)),
+        "link" => "/category/".$t->slug,
         "posts" =>  get_core_practice_posts($t->term_id)
       );
     }

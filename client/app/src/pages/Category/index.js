@@ -164,15 +164,14 @@ class CategoryBody extends Component {
               colTwoTitle="Firm Insight's Categories"
               colTwoContent={fiCategories}
             />
-          ) : ''}
-          { (categorySlug === 'law-firm-insights') ? (
+          ) : (
             <ColumnContent
               colOneTitle="More from our attorneys"
               colOneContent={authors}
               colTwoTitle="More about our areas of law"
               colTwoContent={practices}
             />
-          ) : ''}
+          )}
           { practices.map((val) => (
             <FullWidth className="col-sm-12 mt-5" key={val.id}>
               <SliderContent title={val.name} slides={val.posts} />

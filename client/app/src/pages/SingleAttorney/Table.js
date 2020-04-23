@@ -41,7 +41,10 @@ Table.propTypes = {
   title: PropTypes.string,
   currentTab: PropTypes.string,
   tabTitle: PropTypes.string,
-  content: PropTypes.objectOf(PropTypes.string),
+  content: PropTypes.objectOf(PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.array
+  )),
 };
 
 Table.defaultProps = {

@@ -1,9 +1,9 @@
 .vscode
-client/app/node_modules*
-api/app/node_modules*
-feed/app/node_modules*
-forms/app/node_modules*
-sitemaps/app/node_modules*
+client/app/node_modules/*
+api/app/node_modules/*
+feed/app/node_modules/*
+forms/app/node_modules/*
+sitemaps/app/node_modules/*
 admin/.env
 admin/wp-app/wp-admin/*
 admin/wp-app/wp-includes/*

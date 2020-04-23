@@ -13,7 +13,7 @@ function Sidebar(props) {
     <div>
       <Search />
       <AboutFirm />
-      <TrendingStories content={trending} />
+      <TrendingStories title="Trending Stories" content={trending} />
     </div>
   );
 }

@@ -11,15 +11,17 @@ function AttorneyServices(props) {
         Services
       </div>
       <div className="off-white p-3">
+        <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
         {
-          (practices) ? practices.map((p) => (
-            <div key={p.title} className="mb-3">
-              <a href={p.link} className="top-article">
-                <p className="proxima-bold">{p.title}</p>
+          (practices) && practices.map((p) => (
+            <li key={p.title}>
+              <a href={p.link} className="proxima-bold">
+                {p.title}
               </a>
-            </div>
-          )) : ''
+            </li>
+          ))
         }
+        </ul>
       </div>
     </div>
   );

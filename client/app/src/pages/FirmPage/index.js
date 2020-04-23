@@ -128,15 +128,13 @@ class FirmPage extends Component {
               title={title}
             />
 )}
-          sidebar={((relatedPages.length > 0)
-            ? (
+          sidebar={((relatedPages.length > 0) && (
               <Sidebar
                 searchTerm={searchTerm}
                 relatedPages={relatedPages}
                 onChange={this.onChange}
               />
-            )
-            : '')}
+          ))}
         />
       </div>
     );
