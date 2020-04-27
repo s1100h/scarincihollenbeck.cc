@@ -5,7 +5,6 @@ import { sortPracticeCategorys } from './utils/helpers';
 import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
-// lazy load components
 import BlockList from './Lists/BlockList';
 import SimpleList from './Lists/SimpleList';
 

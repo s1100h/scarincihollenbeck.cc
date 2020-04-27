@@ -13,8 +13,7 @@ function BlockList(props) {
                 <a href={v.slug} className="practice-link">
                   {v.title}
                 </a>
-                {
-                (v.children.length > 0) ? (
+                {(v.children.length > 0) && (
                   <ul className="practice-dropdown dropdown-menu mx-0 w-100 px-0 no-dots mt-2">
                     {
                       v.children.map((vc) => (
@@ -26,8 +25,7 @@ function BlockList(props) {
                       ))
                     }
                   </ul>
-                ) : ''
-              }
+                )}
               </div>
             </li>
           ))

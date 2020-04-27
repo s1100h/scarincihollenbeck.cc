@@ -27,8 +27,7 @@ const Sidebar = (props) => {
             </div>
             <div className="off-white">
               <ul className="no-dots">
-                {
-                  attorneys.map((a) => (
+                { attorneys.map((a) => (
                     <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
                       <a href={a.link} className="m-attorneys d-flex flex-row">
                         <img src={a.image} alt={a.name} className="mr-2" />

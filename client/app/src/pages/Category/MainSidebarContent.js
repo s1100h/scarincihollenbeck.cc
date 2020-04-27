@@ -8,8 +8,7 @@ function MainSidebarContent(props) {
 
   return (
     <ul className="no-dots mx-3 mt-0">
-      {
-      latest.map((val) => (
+      {latest.map((val) => (
         <li key={val.title} className="w-100 mb-5">
           <a href={val.link}>
             <img src={val.image ? val.image : noImg} className="img-fluid" alt={val.title} />

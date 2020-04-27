@@ -22,8 +22,7 @@ function EventSidebar(props) {
           Event Details
         </div>
         <div className="off-white">
-          {
-            (eDetails !== undefined) && (
+          {(eDetails !== undefined) && (
               <div className="p-3">
                 <span dangerouslySetInnerHTML={createMarkup(eDetails.address)} />
                 <p>
@@ -42,7 +41,6 @@ function EventSidebar(props) {
               </div>
             )
           }
-
         </div>
       </div>
       {/** MENTIONED ATTORNEYS */}

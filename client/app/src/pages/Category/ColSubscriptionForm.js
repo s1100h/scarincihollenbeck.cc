@@ -213,17 +213,16 @@ class SubscriptionForm extends Component {
             <p className="small-excerpt">Please select a category(s) below:</p>
           </div>
           <ul className="no-dots two-column">
-            {
-                  checkboxes.map((item) => (
-                    <li key={item.key} className="mb--1">
-                      <label htmlFor={item.name}>
-                        <Checkbox id={item.name} className="d-block" name={item.name} property={item.property} onChange={this.handleCategoryChange} />
-                        {' '}
-                        {item.name}
-                      </label>
-                    </li>
-                  ))
-                }
+            {checkboxes.map((item) => (
+              <li key={item.key} className="mb--1">
+                <label htmlFor={item.name}>
+                  <Checkbox id={item.name} className="d-block" name={item.name} property={item.property} onChange={this.handleCategoryChange} />
+                  {' '}
+                  {item.name}
+                </label>
+              </li>
+            ))
+            }
           </ul>
           <input type="submit" className="btn btn-danger" value="Submit" />
         </form>

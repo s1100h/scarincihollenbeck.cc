@@ -19,9 +19,7 @@ function AuthorBio(props) {
               <img src={a.image} alt={a.name} className="img-thumbnail m-3 mw-19" />
               <p className="small-excerpt w-75 mt-3 mb--1">
                 <span dangerouslySetInnerHTML={createMarkup(a.bio)} className="d-block mb-3" />
-                {
-                  (a.name !== 'Scarinci Hollenbeck') ? <a href={a.link} className="btn-sm small-excerpt btn-danger">Full Biography &gt;&gt;</a> : ''
-                }
+                {(a.name !== 'Scarinci Hollenbeck') && <a href={a.link} className="btn-sm small-excerpt btn-danger">Full Biography &gt;&gt;</a> }
               </p>
             </div>
           </div>

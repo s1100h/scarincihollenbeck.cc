@@ -29,21 +29,18 @@ function FeaturedArticle(props) {
           <hr />
           <p className="mt-4 mb-4 ft-13">
             <span className="text-black">BY </span>
-            {
-              val.author.map((a, indx) => (
-                (indx < val.author.length - 1)
-                  ? (
-                    <a key={a.name} href={a.link} className="text-black text-uppercase">
-                      <u>{`${a.name},`}</u>
-                      {' '}
-                    </a>
-                  )
-                  : (
-                    <a key={a.name} href={a.link} className="text-black text-uppercase">
-                      <u>{a.name}</u>
-                    </a>
-                  )
-              ))
+            {val.author.map((a, indx) => (
+              (indx < val.author.length - 1) ? (
+                  <a key={a.name} href={a.link} className="text-black text-uppercase">
+                    <u>{`${a.name},`}</u>
+                    {' '}
+                  </a>
+                ) : (
+                  <a key={a.name} href={a.link} className="text-black text-uppercase">
+                    <u>{a.name}</u>
+                  </a>
+                )
+            ))
             }
           </p>
         </div>

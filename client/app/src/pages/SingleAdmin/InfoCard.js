@@ -58,7 +58,7 @@ function InfoCard(props) {
         </div>
         <div className="col-sm-12 col-md-6">
           {
-            (social_media_links) ? (
+            (social_media_links) && (
               <span>
                 <ul className="ml-0 mt-2">
                   {
@@ -78,8 +78,7 @@ function InfoCard(props) {
                     ))
                   }
                   {
-                    (vizibility)
-                      ? (
+                    (vizibility) && (
                         <li className="mb-0 lh-1">
                           <h5>
                             <FontAwesomeIcon icon={faAddressCard} className="text-white" />
@@ -88,12 +87,12 @@ function InfoCard(props) {
                             </a>
                           </h5>
                         </li>
-                      ) : ''
+                      )
                   }
 
                 </ul>
               </span>
-            ) : ''
+            ) 
           }
         </div>
       </div>
