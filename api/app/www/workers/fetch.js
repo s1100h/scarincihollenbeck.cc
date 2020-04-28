@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const fetch = require('node-fetch');
 const redis = require("redis");
-// fetch posts from donaldscarinci.com and set it to redis cache
+// fetch posts from scarincihollenbeck.com and set it to redis cache
 exports.fetchContent = (url, key) => __awaiter(void 0, void 0, void 0, function* () {
     const client = redis.createClient(process.env.REDIS_URL);
     client.auth(process.env.REDIS_PASSWORD);
@@ -22,6 +22,7 @@ exports.fetchContent = (url, key) => __awaiter(void 0, void 0, void 0, function*
         return success;
     }
     catch (err) {
+        console.log('err');
         console.log(err);
         return err;
     }

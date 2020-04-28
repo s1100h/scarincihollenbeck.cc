@@ -2,7 +2,7 @@
 const fetch = require('node-fetch');
 import redis = require('redis');
 
-// fetch posts from donaldscarinci.com and set it to redis cache
+// fetch posts from scarincihollenbeck.com and set it to redis cache
 export const fetchContent = async (url:string, key:string) => {
   const client = redis.createClient(process.env.REDIS_URL);
   client.auth(process.env.REDIS_PASSWORD);
@@ -14,6 +14,7 @@ export const fetchContent = async (url:string, key:string) => {
     return success
 
   }catch(err) {
+    console.log('err');
     console.log(err);
     return err;
   }

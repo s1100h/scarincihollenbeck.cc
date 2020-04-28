@@ -15,7 +15,7 @@ import { IndexRouter } from './controllers/v0/index.router';
     app.use(cors());
     app.use(bodyParser());
     app.use(compression());
-    app.use('/', IndexRouter);
+    // app.use('/', IndexRouter);
   
   
     // Root URI call
