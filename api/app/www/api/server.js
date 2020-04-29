@@ -15,6 +15,7 @@ const compression = require("compression");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const run_workers_1 = require("../workers/run-workers");
+const index_router_1 = require("./controllers/v0/index.router");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const app = express();
@@ -22,7 +23,7 @@ const run_workers_1 = require("../workers/run-workers");
         app.use(cors());
         app.use(bodyParser());
         app.use(compression());
-        // app.use('/', IndexRouter);
+        app.use('/', index_router_1.IndexRouter);
         // Root URI call
         app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.send('/cached/');
