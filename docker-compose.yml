@@ -4,7 +4,6 @@ services:
     build: client/
     volumes:
       - "./client/app:/app"
-      # - "./client/client.nginx.conf /etc/nginx/conf.d/client.nginx.confd"
     environment:
       - ADMIN_SITE=${ADMIN_SITE}
       - CACHED_API=${CACHED_API}
