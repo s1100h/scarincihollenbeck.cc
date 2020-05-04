@@ -105,7 +105,7 @@ services:
     volumes:
       - ./admin/app:/var/www/html
       - ./client/app/dist:/usr/share/nginx/html
-      - ./nginx-conf/:etc/nginx/conf.d
+      - ./nginx-conf/:/etc/nginx/conf.d
       # - ./nginx-conf/sites-available/admin.scarincihollenbeck.conf:/etc/nginx/sites-available/admin.scarincihollenbeck.conf
       # - ./nginx-conf/sites-available/scarincihollenbeck.conf:/etc/nginx/sites-available/scarincihollenbeck.conf
       - certbot-etc:/etc/letsencrypt
