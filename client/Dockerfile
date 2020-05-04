@@ -17,7 +17,7 @@ ENV FEED_API=$FEED_API
 
 RUN npm run build
 
-FROM nginx
+FROM nginx:latest
 RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=app /home/app/dist /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d

@@ -3,7 +3,7 @@ services:
   client:
     build: client/
     volumes:
-      - "./client/app:/app"
+      - ./client/app:/app
     environment:
       - ADMIN_SITE=${ADMIN_SITE}
       - CACHED_API=${CACHED_API}
@@ -20,7 +20,7 @@ services:
   forms:
     build: forms/
     volumes:
-      - "./forms/app:/src"
+      - ./forms/app:/src
     ports:
       - ${IP}:8000:8000
   
@@ -34,7 +34,7 @@ services:
   api:
     build: api/
     volumes:
-      - "./api/app:/src"
+      - ./api/app:/src
     env_file: .env
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -104,8 +104,11 @@ services:
       - "443:443"
     volumes:
       - ./admin/app:/var/www/html
-      - ./admin/nginx-conf:/etc/nginx/conf.d
+      - ./client/app/dist:/usr/share/nginx/html
+      - ./nginx-conf/sites-available/admin.scarincihollenbeck.conf:/etc/nginx/sites-available/admin.scarincihollenbeck.conf
+      - ./nginx-conf/sites-available/scarincihollenbeck.conf:/etc/nginx/sites-available/scarincihollenbeck.conf
       - certbot-etc:/etc/letsencrypt
+    # command: bash -c "ln -s /etc/nginx/sites-available/admin.scarincihollenbeck.conf /etc/nginx/sites-enabled && ln -s /etc/nginx/sites-available/scarincihollenbeck.conf /etc/nginx/sites-enabled && rm /etc/nginx/sites-enabled/default"
     networks:
       - app-network
 
@@ -117,8 +120,9 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - ./admin/app:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d admin.scarincihollenbeck.cc -d www.admin.scarincihollenbeck.cc
-
+      - ./client/app/dist:/usr/share/nginx/html
+    command: bash -c "certonly --webroot --webroot-path=/var/www/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d admin.scarincihollenbeck.cc -d www.admin.scarincihollenbeck.cc && certonly --webroot --webroot-path=/usr/share/nginx/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d scarincihollenbeck.cc -d www.scarincihollenbeck.cc"
+  
 volumes:
   certbot-etc:
 networks:
