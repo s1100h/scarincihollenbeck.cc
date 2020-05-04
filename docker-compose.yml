@@ -10,7 +10,7 @@ services:
       - FORMS_API=${FORMS_API}
       - FEED_API=${FEED_API}
     ports:
-      - ${IP}:8500:80
+      - ${IP}:8500:81
     links:
       - wp
       - api
@@ -101,6 +101,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "81:81"
       - "443:443"
     volumes:
       - ./admin/app:/var/www/html
