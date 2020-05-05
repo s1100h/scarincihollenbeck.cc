@@ -5,15 +5,10 @@ services:
     volumes:
       - ./client/app:/app
     environment:
-      # - VIRTUAL_HOST=legalmarketinghouse.com
-      # - LETSENCRYPT_HOST=legalmarketinghouse.com
-      # - LETSENCRYPT_EMAIL=ptumulty@sh-law.com
       - ADMIN_SITE=${ADMIN_SITE}
       - CACHED_API=${CACHED_API}
       - FORMS_API=${FORMS_API}
       - FEED_API=${FEED_API}
-    ports:
-      - 8500:80
     links:
       - wp
       - api
@@ -97,41 +92,7 @@ services:
       - ./admin/app:/var/www/html
       - ./admin/config/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
-      - app-network
-
-  # webserver:
-  #   depends_on:
-  #     - wp
-  #     - client
-  #   image: jwilder/nginx-proxy:latest
-  #   container_name: webserver
-  #   restart: unless-stopped
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./admin/app:/var/www/html
-  #     - ./client/app/dist:/usr/share/nginx/html
-  #     - ./nginx/:/etc/nginx/conf.d
-  #     - /var/run/docker.sock:/tmp/docker.sock:ro
-  #   networks:
-  #     - app-network
-
-  # certbot:
-  #   depends_on:
-  #     - webserver
-  #   image: jrcs/letsencrypt-nginx-proxy-companion
-  #   container_name: certbot
-  #   environment:
-  #     - NGINX_PROXY_CONTAINER=webserver
-  #   volumes:
-  #     - certs:/etc/nginx/certs
-  #     - vhostd:/etc/nginx/vhost.d
-  #     - client_html:/usr/share/nginx/html
-  #     - admin_html:/var/www/html
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #   restart: always
-  
+      - app-network  
 volumes:
   certbot-etc:
 networks:
