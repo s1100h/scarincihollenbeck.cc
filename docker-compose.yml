@@ -13,7 +13,7 @@ services:
       - FORMS_API=${FORMS_API}
       - FEED_API=${FEED_API}
     ports:
-      - ${IP}:8500:80
+      - 8500:80
     links:
       - wp
       - api
@@ -25,14 +25,14 @@ services:
     volumes:
       - ./forms/app:/src
     ports:
-      - ${IP}:8000:8000
+      - 8000:8000
   
   feed:
     build: feed/
     volumes:
       - "./feed/app:/src"
     ports:
-      - ${IP}:8100:8100
+      - 8100:8100
 
   api:
     build: api/
@@ -44,7 +44,7 @@ services:
       - ADMIN_SITE=${ADMIN_SITE}
       - REDIS_URL=redis://cache
     ports:
-      - ${IP}:8200:8200
+      - 8200:8200
     links:
       - redis
       - wp
@@ -67,7 +67,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - ${IP}:3306:3306
+      - 3306:3306
     environment:
       - MYSQL_DATABASE=sh_db
     volumes: 
