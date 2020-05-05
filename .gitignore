@@ -7,7 +7,7 @@ sitemaps/app/node_modules/*
 admin/.env
 admin/app/wp-admin/*
 admin/app/wp-includes/*
-admin/app/wp-content/*
+# admin/app/wp-content/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html

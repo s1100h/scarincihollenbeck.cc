@@ -1,0 +1,5 @@
+.DS_Store
+js/node_modules/*
+node_modules/*
+js/.env.*
+src/analytics.js

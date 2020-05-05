@@ -102,6 +102,7 @@ services:
   webserver:
     depends_on:
       - wp
+      - client
     image: jwilder/nginx-proxy
     container_name: webserver
     restart: unless-stopped
@@ -118,20 +119,20 @@ services:
     networks:
       - app-network
 
-  certbot:
-    depends_on:
-      - webserver
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: certbot
-    environment:
-      - NGINX_PROXY_CONTAINER=webserver
-    volumes:
-      - certs:/etc/nginx/certs
-      - vhostd:/etc/nginx/vhost.d
-      - client_html:/usr/share/nginx/html
-      - admin_html:/var/www/html
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: always
+  # certbot:
+  #   depends_on:
+  #     - webserver
+  #   image: jrcs/letsencrypt-nginx-proxy-companion
+  #   container_name: certbot
+  #   environment:
+  #     - NGINX_PROXY_CONTAINER=webserver
+  #   volumes:
+  #     - certs:/etc/nginx/certs
+  #     - vhostd:/etc/nginx/vhost.d
+  #     - client_html:/usr/share/nginx/html
+  #     - admin_html:/var/www/html
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   restart: always
   
 volumes:
   certs:
