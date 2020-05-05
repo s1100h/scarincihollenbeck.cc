@@ -106,21 +106,21 @@ services:
     volumes:
       - ./admin/app:/var/www/html
       - ./client/app/dist:/usr/share/nginx/html
-      - ./nginx-conf/:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
+      - ./nginx/:/etc/nginx/conf.d
+      # - certbot-etc:/etc/letsencrypt
     networks:
       - app-network
 
-  certbot:
-    depends_on:
-      - webserver
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - ./admin/app:/var/www/html
-      - ./client/app/dist:/usr/share/nginx/html
-    command: bash -c "certonly --webroot --webroot-path=/var/www/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d admin.scarincihollenbeck.cc -d www.admin.scarincihollenbeck.cc && certonly --webroot --webroot-path=/usr/share/nginx/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d scarincihollenbeck.cc -d www.scarincihollenbeck.cc"
+  # certbot:
+  #   depends_on:
+  #     - webserver
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - certbot-etc:/etc/letsencrypt
+  #     - ./admin/app:/var/www/html
+  #     - ./client/app/dist:/usr/share/nginx/html
+  #   command: bash -c "certonly --webroot --webroot-path=/var/www/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d admin.scarincihollenbeck.cc -d www.admin.scarincihollenbeck.cc && certonly --webroot --webroot-path=/usr/share/nginx/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d scarincihollenbeck.cc -d www.scarincihollenbeck.cc"
   
 volumes:
   certbot-etc:
