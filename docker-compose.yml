@@ -103,19 +103,16 @@ services:
     depends_on:
       - wp
       - client
-    image: jwilder/nginx-proxy
+    image: nginx:latest
     container_name: webserver
     restart: unless-stopped
     ports:
       - "80:80"
-      - "81:81"
       - "443:443"
     volumes:
-      - certs:/etc/nginx/certs:ro
-      - vhostd:/etc/nginx/vhost.d
-      - client_html:/usr/share/nginx/html
-      - admin_html:/var/www/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./admin/app:/var/www/html
+      - ./client/app/dist:/usr/share/nginx/html
+      - ./nginx/:/etc/nginx/conf.d
     networks:
       - app-network
 
@@ -135,10 +132,7 @@ services:
   #   restart: always
   
 volumes:
-  certs:
-  client_html:
-  vhostd:
-  admin_html:
+  certbot-etc:
 networks:
   app-network:
-    driver: bridge  
+    driver: bridge 

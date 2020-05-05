@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const emailData = require('./mailer.js');
 const app = express();
-const port = process.env.PORT || 8085;
+const port = process.env.PORT || 8000;
 
 // url prefix
 const urlPrefix = '/shlaw/site/';
