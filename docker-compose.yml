@@ -9,8 +9,6 @@ services:
       - CACHED_API=${CACHED_API}
       - FORMS_API=${FORMS_API}
       - FEED_API=${FEED_API}
-    ports:
-      - 8500:80
     links:
       - wp
       - api
