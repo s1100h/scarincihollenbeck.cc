@@ -113,6 +113,7 @@ services:
       - ./admin/app:/var/www/html
       - ./client/app/dist:/usr/share/nginx/html
       - ./nginx/:/etc/nginx/conf.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - app-network
 
