@@ -84,7 +84,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - ${IP}:8400:80
+      - 8400:80
     environment:
       # - VIRTUAL_HOST=admin.legalmarketinghouse.com
       # - LETSENCRYPT_HOST=admin.legalmarketinghouse.com
