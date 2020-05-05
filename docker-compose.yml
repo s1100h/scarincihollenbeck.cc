@@ -118,13 +118,18 @@ services:
       - webserver
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: certbot
+    environment:
+      - NGINX_PROXY_CONTAINER=webserver
     volumes:
+      - certs:/etc/nginx/certs
+      - vhostd:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    volumes_from:
-      - webserver
+    restart: always
   
 volumes:
   certbot-etc:
+  webserver:
 networks:
   app-network:
     driver: bridge  
