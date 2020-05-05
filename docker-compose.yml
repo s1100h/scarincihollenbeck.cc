@@ -79,11 +79,8 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - 8400:80
+      - 8400:81
     environment:
-      # - VIRTUAL_HOST=admin.legalmarketinghouse.com
-      # - LETSENCRYPT_HOST=admin.legalmarketinghouse.com
-      # - LETSENCRYPT_EMAIL=ptumulty@sh-law.com
       - WORDPRESS_DB_HOST=db:3306
       - WORDPRESS_DB_USER=${MYSQL_USER}
       - WORDPRESS_DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
