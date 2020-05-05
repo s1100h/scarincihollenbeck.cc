@@ -81,7 +81,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - 8400:81
+      - 8400:80
     environment:
       - WORDPRESS_DB_HOST=db:3306
       - WORDPRESS_DB_USER=${MYSQL_USER}
