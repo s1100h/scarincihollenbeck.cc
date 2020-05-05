@@ -10,7 +10,7 @@ services:
       - FORMS_API=${FORMS_API}
       - FEED_API=${FEED_API}
     ports:
-      - ${IP}:8500:81
+      - ${IP}:8500:80
     links:
       - wp
       - api
@@ -107,10 +107,7 @@ services:
       - ./admin/app:/var/www/html
       - ./client/app/dist:/usr/share/nginx/html
       - ./nginx-conf/:/etc/nginx/conf.d
-      # - ./nginx-conf/sites-available/admin.scarincihollenbeck.conf:/etc/nginx/sites-available/admin.scarincihollenbeck.conf
-      # - ./nginx-conf/sites-available/scarincihollenbeck.conf:/etc/nginx/sites-available/scarincihollenbeck.conf
       - certbot-etc:/etc/letsencrypt
-    # command: bash -c "ln -s /etc/nginx/sites-available/admin.scarincihollenbeck.conf /etc/nginx/sites-enabled && ln -s /etc/nginx/sites-available/scarincihollenbeck.conf /etc/nginx/sites-enabled && rm /etc/nginx/sites-enabled/default"
     networks:
       - app-network
 
