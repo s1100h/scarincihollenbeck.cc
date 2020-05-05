@@ -10,7 +10,7 @@ services:
       - FORMS_API=${FORMS_API}
       - FEED_API=${FEED_API}
     ports:
-      - ${IP}:8500:80
+      - ${IP}:8500:81
     links:
       - wp
       - api
