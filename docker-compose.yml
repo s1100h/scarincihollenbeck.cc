@@ -5,9 +5,9 @@ services:
     volumes:
       - ./client/app:/app
     environment:
-      - VIRTUAL_HOST=legalmarketinghouse.com
-      - LETSENCRYPT_HOST=legalmarketinghouse.com
-      - LETSENCRYPT_EMAIL=ptumulty@sh-law.com
+      # - VIRTUAL_HOST=legalmarketinghouse.com
+      # - LETSENCRYPT_HOST=legalmarketinghouse.com
+      # - LETSENCRYPT_EMAIL=ptumulty@sh-law.com
       - ADMIN_SITE=${ADMIN_SITE}
       - CACHED_API=${CACHED_API}
       - FORMS_API=${FORMS_API}
@@ -86,9 +86,9 @@ services:
     ports:
       - ${IP}:8400:80
     environment:
-      - VIRTUAL_HOST=admin.legalmarketinghouse.com
-      - LETSENCRYPT_HOST=admin.legalmarketinghouse.com
-      - LETSENCRYPT_EMAIL=ptumulty@sh-law.com
+      # - VIRTUAL_HOST=admin.legalmarketinghouse.com
+      # - LETSENCRYPT_HOST=admin.legalmarketinghouse.com
+      # - LETSENCRYPT_EMAIL=ptumulty@sh-law.com
       - WORDPRESS_DB_HOST=db:3306
       - WORDPRESS_DB_USER=${MYSQL_USER}
       - WORDPRESS_DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -99,23 +99,23 @@ services:
     networks:
       - app-network
 
-  webserver:
-    depends_on:
-      - wp
-      - client
-    image: jwilder/nginx-proxy:latest
-    container_name: webserver
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./admin/app:/var/www/html
-      - ./client/app/dist:/usr/share/nginx/html
-      - ./nginx/:/etc/nginx/conf.d
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - app-network
+  # webserver:
+  #   depends_on:
+  #     - wp
+  #     - client
+  #   image: jwilder/nginx-proxy:latest
+  #   container_name: webserver
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./admin/app:/var/www/html
+  #     - ./client/app/dist:/usr/share/nginx/html
+  #     - ./nginx/:/etc/nginx/conf.d
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #   networks:
+  #     - app-network
 
   # certbot:
   #   depends_on:
