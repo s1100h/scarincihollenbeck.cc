@@ -5,6 +5,7 @@ services:
     volumes:
       - ./client/app:/app
     environment:
+      - VIRTUAL_HOST=legalmarketinghouse.com
       - ADMIN_SITE=${ADMIN_SITE}
       - CACHED_API=${CACHED_API}
       - FORMS_API=${FORMS_API}
@@ -83,6 +84,7 @@ services:
     ports:
       - ${IP}:8400:80
     environment:
+      - VIRTUAL_HOST=admin.legalmarketinghouse.com
       - WORDPRESS_DB_HOST=db:3306
       - WORDPRESS_DB_USER=${MYSQL_USER}
       - WORDPRESS_DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -96,7 +98,7 @@ services:
   webserver:
     depends_on:
       - wp
-    image: nginx:latest
+    image: jwilder/nginx-proxy
     container_name: webserver
     restart: unless-stopped
     ports:
@@ -104,23 +106,22 @@ services:
       - "81:81"
       - "443:443"
     volumes:
-      - ./admin/app:/var/www/html
-      - ./client/app/dist:/usr/share/nginx/html
-      - ./nginx/:/etc/nginx/conf.d
-      # - certbot-etc:/etc/letsencrypt
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/certs
     networks:
       - app-network
 
-  # certbot:
-  #   depends_on:
-  #     - webserver
-  #   image: certbot/certbot
-  #   container_name: certbot
-  #   volumes:
-  #     - certbot-etc:/etc/letsencrypt
-  #     - ./admin/app:/var/www/html
-  #     - ./client/app/dist:/usr/share/nginx/html
-  #   command: bash -c "certonly --webroot --webroot-path=/var/www/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d admin.scarincihollenbeck.cc -d www.admin.scarincihollenbeck.cc && certonly --webroot --webroot-path=/usr/share/nginx/html --email ptumulty@sh-law.com --agree-tos --no-eff-email --force-renewal -d scarincihollenbeck.cc -d www.scarincihollenbeck.cc"
+  certbot:
+    depends_on:
+      - webserver
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: certbot
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - webserver
   
 volumes:
   certbot-etc:
