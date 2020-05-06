@@ -24,8 +24,7 @@ class AttorneyBiography extends Component {
       currentTab: 'biography',
       currentSidebarTab: 'Related Practices',
       matterTab: '',
-      readMore: false,
-      spinner: false,
+      readMore: false
     };
 
     this.fetchPostData = this.fetchPostData.bind(this);
@@ -35,24 +34,18 @@ class AttorneyBiography extends Component {
     this.setSideBarTab = this.setSideBarTab.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { attorney } = this.props.match.params;
-    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-attorney/attorney/${attorney}`);
-  }
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-attorney/attorney/${attorney}`, { headers });
+    const bio = await response.json();
+    let matterTab = '';
+    if (bio.representativeMatters[0] !== undefined) {
+      const firstMatterTab = bio.representativeMatters[0].title;
+      matterTab = firstMatterTab;
+    }
 
+    this.setState({ matterTab, bio });
 
-  fetchPostData(url) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((bio) => {
-        let matterTab = '';
-        if (bio.representativeMatters[0] !== undefined) {
-          const firstMatterTab = bio.representativeMatters[0].title;
-          matterTab = firstMatterTab;
-        }
-
-        this.setState({ matterTab, bio, spinner: false });
-      });
   }
 
   tabClick(e) {
@@ -82,7 +75,6 @@ class AttorneyBiography extends Component {
       currentTab,
       matterTab,
       readMore,
-      spinner,
       currentSidebarTab,
     } = this.state;
 
@@ -155,7 +147,6 @@ class AttorneyBiography extends Component {
     return (
       <div id="single-attorney">
         <AttorneyHead seo={seo} />
-        { (!spinner) && (
         <div>
           <MultiSubHeader
             image={attorneyHeader}
@@ -238,7 +229,6 @@ class AttorneyBiography extends Component {
                 )}
           />
         </div>
-        )}
       </div>
     );
   }

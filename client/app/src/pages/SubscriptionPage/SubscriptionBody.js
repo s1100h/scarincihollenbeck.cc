@@ -166,20 +166,22 @@ class SubscriptionBody extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch('http://165.227.220.15/shlaw/site/subscription/form', {
+    const headers = {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
-    })
-      .then((data) => {
-        const { status } = data;
+      }
+    };
 
-        if (status === 200) {
-          this.setState({ message: true });
-        }
-      });
+    const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/subscription/form`, headers);
+    const jsonResponse = await request.json();
+    const { status } = jsonResponse;
+    
+    if (status === 200) {
+      this.setState({ message: true });
+    }
   }
 
   render() {
@@ -200,7 +202,7 @@ class SubscriptionBody extends Component {
           <ul className="h4 my-4">
             <li className="mb-4">
               When our
-              <strong>attorney's blog posts</strong>
+              <strong> attorney's blog posts</strong>
             </li>
             <li className="mb-4">
               Various

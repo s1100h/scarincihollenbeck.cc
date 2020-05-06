@@ -15,18 +15,13 @@ class AdminBiography extends Component {
     this.state = {
       admin: [],
     };
-    this.fetchPostData = this.fetchPostData.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { admin } = this.props.match.params;
-    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${admin}`);
-  }
-
-  fetchPostData(url) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((admin) => this.setState({ admin }));
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${admin}`, { headers });
+    const json = await response.json();
+    this.setState({ admin: json })
   }
 
   render() {

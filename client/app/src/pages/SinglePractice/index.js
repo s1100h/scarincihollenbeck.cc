@@ -29,71 +29,62 @@ class IndividualPractice extends Component {
       currentTab: '',
     };
     this.handleLink = this.handleLink.bind(this);
-    this.fetchPostData = this.fetchPostData.bind(this);
     this.tabClick = this.tabClick.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { practice } = this.props.match.params;
-    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`);
+    const practicesResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`, { headers });
+    const corePracticesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
+    const practiceJson = await practicesResponse.json();
+    const corePracticesJson = await corePracticesResponse.json();
 
-    // get core practices
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const corePractices = data.map((cp) => ({
-          name: cp.title,
-          link: cp.slug,
-        }));
-        this.setState({ corePractices });
-      });
-  }
+    const corePractices = corePracticesJson.map((cp) => ({
+      name: cp.title,
+      link: cp.slug,
+    }));
 
-  fetchPostData(url) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          chair,
-          title,
-          description,
-          content,
-          practiceList,
-          industryTopics,
-          attorneyList,
-          highlightReal,
-          seo,
-        } = data;
+    const {
+      chair,
+      title,
+      description,
+      content,
+      practiceList,
+      industryTopics,
+      attorneyList,
+      highlightReal,
+      seo,
+    } = practiceJson;
 
-        const blogPosts = [];
-        const newsPosts = [];
+    const blogPosts = [];
+    const newsPosts = [];
 
-        // seperate out blog posts and news posts
-        industryTopics.forEach((post) => {
-          if (post.categoryParent === 599) {
-            blogPosts.push(post);
-          }
+    // seperate out blog posts and news posts
+    industryTopics.forEach((post) => {
+      if (post.categoryParent === 599) {
+        blogPosts.push(post);
+      }
 
-          if (post.categoryParent === 98 || post.categoryParent === 99) {
-            newsPosts.push(post);
-          }
-        });
+      if (post.categoryParent === 98 || post.categoryParent === 99) {
+        newsPosts.push(post);
+      }
+    });
 
-        this.setState({
-          chair,
-          title,
-          description,
-          content,
-          industryTopics,
-          attorneyList,
-          practiceList,
-          highlightReal,
-          blogPosts,
-          newsPosts,
-          seo,
-          currentTab: content[0].title,
-        });
-      });
+    this.setState({
+      chair,
+      title,
+      description,
+      content,
+      industryTopics,
+      attorneyList,
+      practiceList,
+      highlightReal,
+      blogPosts,
+      newsPosts,
+      seo,
+      currentTab: content[0].title,
+      corePractices
+    });
   }
 
   handleLink(e) {

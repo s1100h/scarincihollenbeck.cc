@@ -23,10 +23,9 @@ class Search extends Component {
       loading: false,
     };
 
-    this.getPosts = this.getPosts.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { location } = this.props;
     let categorySlug; let page; let
       breadCrumb;
@@ -41,43 +40,35 @@ class Search extends Component {
       page = 1;
       breadCrumb = [categorySlug, page];
     }
-    this.setState({
-      breadCrumb, categorySlug, currentPage: page,
-    }, () => {
-      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/search/query/${categorySlug}/${page}`);
+    
+
+    this.setState({ breadCrumb, categorySlug, currentPage: page, loading: true }, async () => {
+
+      const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/search/query/${categorySlug}/${page}`, { headers });
+      const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
+      const postJson = await postResponse.json();
+      const articleJson = await articlesResponse.json();
+      const { pages, results, posts, seo } = postJson;
+      const { firmNews, firmInsights, firmEvents } = articleJson;
+
+      const pageNums = [];
+      for (let i = 1; i <= pages; i += 1) {
+        pageNums.push(i);
+      }
+  
+      this.setState({
+        results,
+        seo,
+        pageNums,
+        trending: posts,
+        news: firmNews,
+        events: firmEvents,
+        insight: firmInsights,
+        loading: false,
+      });
     });
   }
 
-  getPosts(url) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          pages, results, posts,
-        } = data;
-        this.setState({
-          results, trending: posts, loading: true,
-        });
-        const pageNums = [];
-        for (let i = 1; i <= pages; i += 1) {
-          pageNums.push(i);
-        }
-        this.setState({ pageNums });
-      })
-      .then(() => {
-        // news & insights & events
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`)
-          .then((res) => res.json())
-          .then((data) => {
-            const { firmNews, firmInsights, firmEvents } = data;
-            this.setState({
-              news: firmNews,
-              events: firmEvents,
-              insight: firmInsights,
-            });
-          });
-      });
-  }
 
   render() {
     const {

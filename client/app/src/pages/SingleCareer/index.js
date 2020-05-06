@@ -43,22 +43,19 @@ class SingleCareer extends Component {
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     const { match } = this.props;
     const { career } = match.params;
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, { headers });
+    const json = await response.json();
+    const { title, positionDescription, seo } = Json;
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const { title, positionDescription, seo } = data;
-
-        this.setState({
-          currentId: career,
-          currentTitle: title,
-          currentDescription: positionDescription,
-          seo,
-        });
-      });
+    this.setState({
+      currentId: career,
+      currentTitle: title,
+      currentDescription: positionDescription,
+      seo,
+    });
   }
 
   changeForm(e) {
@@ -104,23 +101,24 @@ class SingleCareer extends Component {
     }
   }
 
-  formSubmit() {
+  async formSubmit() {
     const { form } = this.state;
-    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`, {
+    const headers = {
       method: 'post',
       body: JSON.stringify(form),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
-    })
-      .then((data) => {
-        const { status } = data;
+      }
+    };
 
-        if (status === 200) {
-          this.setState({ message: true });
-        }
-      });
+    const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`, { headers });
+    const json = request.json();
+    const { status } = json;
+
+    if (status === 200) {
+      this.setState({ message: true });
+    }
   }
 
   toggleModal() {

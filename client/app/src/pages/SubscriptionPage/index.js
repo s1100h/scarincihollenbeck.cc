@@ -14,19 +14,19 @@ class SubscriptionPage extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/law-firm-insights`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const { main, latest, archives } = data;
+  async componentDidMount() {
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/law-firm-insights`, { headers });
+    const json = await response.json();
 
-        // filter the first 2 archives posts
-        const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a);
+    const { main, latest, archives } = json;
 
-        const posts = [...main, ...latest, ...firstTwoArchives];
-        // set filtered results to state
-        this.setState({ posts });
-      });
+    // filter the first 2 archives posts
+    const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a);
+
+    const posts = [...main, ...latest, ...firstTwoArchives];
+    // set filtered results to state
+    this.setState({ posts });
+
   }
 
   render() {

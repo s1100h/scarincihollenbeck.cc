@@ -32,56 +32,49 @@ class Single extends Component {
       eventCat: false,
     };
 
-    this.fetchPostData = this.fetchPostData.bind(this);
     this.printScreen = this.printScreen.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.hideSubscription = this.hideSubscription.bind(this);
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     const { parent, child, post } = this.props.match.params;
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${post}`, { headers });
+    const json =  await response.json();
+    const {
+      attorneys,
+      author,
+      content,
+      date,
+      posts,
+      title,
+      categories,
+      eventDetails,
+      seo,
+      tags,
+    } = json;
 
-    this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${post}`);
+    // check if its an event category
+    const eventCat = categories.map((a) => a.id).indexOf(99) > -1;
+
+    // set data from fetch requst to state
+    this.setState({
+      attorneys,
+      author,
+      content,
+      date,
+      posts,
+      title,
+      eventCat,
+      eventDetails,
+      seo,
+      tags,
+    });
+
+    
     // set timeout to trigger
     this.triggerSubscription();
-  }
-
-
-  fetchPostData(url) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          attorneys,
-          author,
-          content,
-          date,
-          posts,
-          title,
-          categories,
-          eventDetails,
-          seo,
-          tags,
-        } = data;
-
-        // check if its an event category
-        const eventCat = categories.map((a) => a.id).indexOf(99) > -1;
-
-        // set data from fetch requst to state
-        this.setState({
-          attorneys,
-          author,
-          content,
-          date,
-          posts,
-          title,
-          eventCat,
-          eventDetails,
-          seo,
-          tags,
-        });
-      });
   }
 
   printScreen() {

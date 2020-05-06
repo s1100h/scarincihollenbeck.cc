@@ -19,13 +19,11 @@ function Body(props) {
     active,
     loading,
   } = props;
-  console.log('loading');
-  console.log(loading);
 
   return (
     <div>
       <div className="row">
-        {(loading === true) ? (
+        {(loading !== true) ? (
           <>
             <div className="col-sm-12 col-md-6">
               {results.map((r, i) => (i < 5 ? (
