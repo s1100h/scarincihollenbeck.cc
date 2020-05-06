@@ -13,10 +13,11 @@ class Footer extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers })
-      .then((res) => res.json())
-      .then((slides) => this.setState({ slides }));
+  async componentDidMount() {
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+    const slides = await response.json();
+
+    this.setState({ slides })
   }
 
   render() {

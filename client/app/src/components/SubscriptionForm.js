@@ -150,7 +150,7 @@ class SubscriptionForm extends Component {
     }
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const {
       firstName,
@@ -168,21 +168,22 @@ class SubscriptionForm extends Component {
       siteUrl: window.location.href,
     };
 
-    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/subscription/form`, {
+    const headers = {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
-    })
-      .then((data) => {
-        const { status } = data;
+      }
+    };
 
-        if (status === 200) {
-          this.setState({ message: true });
-        }
-      });
+    const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/subscription/form`, headers);
+    const jsonResponse = await request.json();
+    const { status } = jsonResponse;
+    
+    if (status === 200) {
+      this.setState({ message: true });
+    }
   }
 
   render() {

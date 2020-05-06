@@ -23,7 +23,7 @@ class Archives extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { match } = this.props;
     const { categorySlug, pageNum } = match.params;
     let page = 1;
@@ -34,44 +34,33 @@ class Archives extends Component {
       breadCrumb[1] = pageNum;
     }
 
-    this.setState({
-      breadCrumb, categorySlug, currentPage: page,
-    }, () => {
-      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${categorySlug}/${page}`);
+    this.setState({ breadCrumb, categorySlug, currentPage: page }, async () => {
+
+      const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${categorySlug}/${page}`, { headers });
+      const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
+      const postJson = await postResponse.json();
+      const articleJson = await articlesResponse.json();
+      const { pages, results, posts, seo } = postJson;
+      const { firmNews, firmInsights, firmEvents } = articleJson;
+
+      const pageNums = [];
+      for (let i = 1; i <= pages; i += 1) {
+        pageNums.push(i);
+      }
+  
+      this.setState({
+        results,
+        seo,
+        pageNums,
+        trending: posts,
+        news: firmNews,
+        events: firmEvents,
+        insight: firmInsights,
+      });
     });
   }
 
-  getPosts(url) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          pages, results, posts, seo,
-        } = data;
 
-        this.setState({
-          results, trending: posts, seo,
-        });
-        const pageNums = [];
-        for (let i = 1; i <= pages; i += 1) {
-          pageNums.push(i);
-        }
-        this.setState({ pageNums });
-      })
-      .then(() => {
-        // news & insights & events
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers })
-          .then((res) => res.json())
-          .then((data) => {
-            const { firmNews, firmInsights, firmEvents } = data;
-            this.setState({
-              news: firmNews,
-              events: firmEvents,
-              insight: firmInsights,
-            });
-          });
-      });
-  }
 
   render() {
     const {

@@ -24,25 +24,20 @@ class LocationPortal extends Component {
     this.getLocationDirections = this.getLocationDirections.bind(this);
   }
 
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const { offices } = data;
-        const { seo } = data;
-        this.setState({ offices, seo });
-      })
-      .then(() => {
-        const { currentOffice } = this.state;
-        this.fetchOfficeData(currentOffice);
-        // get location params
-        const { location } = this.props.match.params;
+  async componentDidMount() {
+    const { currentOffice } = this.state;
+    const { location } = this.props.match.params;
+    const response = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers });
+    const json = await response.json();
+    const { offices, seo } = json;
 
-        if (location !== undefined) {
-          const currentOffice = location.replace('-', ' ');
-          this.setState({ currentOffice }, () => this.fetchOfficeData(location));
-        }
-      });
+    this.setState({ offices, seo });
+    this.fetchOfficeData(currentOffice);
+
+    if (location !== undefined) {
+      const currentOffice = location.replace('-', ' ');
+      this.setState({ currentOffice }, () => this.fetchOfficeData(location));
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -57,29 +52,21 @@ class LocationPortal extends Component {
     return getDirectionsFromLocation(location);
   }
 
-  fetchOfficeData(location) {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/office/${location}`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          mapLink,
-          attorneys,
-          practices,
-          seo,
-        } = data;
-
-
-        this.setState({
-          currentOfficeMap: mapLink,
-          currentOfficeAttorneys: attorneys,
-          currentOfficePractice: practices,
-          seo,
-        });
-      });
-
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/posts/${location}`, { headers })
-      .then((res) => res.json())
-      .then((posts) => this.setState({ posts }));
+  async fetchOfficeData(location) {
+    const officeResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/office/${location}`, { headers });
+    const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/posts/${location}`, { headers });
+    const offices = await officeResponse.json();
+    const posts = await postsResponse.json();
+    const { mapLink, attorneys, practices, seo } = offices;
+    
+    this.setState({
+      currentOfficeMap: mapLink,
+      currentOfficeAttorneys: attorneys,
+      currentOfficePractice: practices,
+      seo,
+      posts,
+    });
+  
   }
 
   render() {

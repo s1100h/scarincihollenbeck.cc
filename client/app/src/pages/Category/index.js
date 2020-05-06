@@ -31,60 +31,50 @@ class CategoryBody extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { match } = this.props;
     const { category } = match.params;
     const categorySlug = category;
+    const categoryResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/${categorySlug}`, { headers });
+    const categoryJson = await categoryResponse.json();
+    const {
+      archives,
+      authors,
+      latest,
+      main,
+      practices,
+      seo,
+      description,
+    } = categoryJson;
+
+    const sortedAuthors = sortByKey(authors, 'lastName');
 
     this.setState({
       categorySlug: category,
       breadCrumb: [category],
+      archives,
+      authors: sortedAuthors,
+      latest,
+      main,
+      practices,
+      seo,
+      description,
     });
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/${categorySlug}`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          archives,
-          authors,
-          latest,
-          main,
-          practices,
-          seo,
-          description,
-        } = data;
-
-        const sortedAuthors = sortByKey(authors, 'lastName');
-
-        this.setState({
-          archives,
-          authors: sortedAuthors,
-          latest,
-          main,
-          practices,
-          seo,
-          description,
-        });
-      });
 
     if (categorySlug === 'firm-news' || categorySlug === 'firm-events') {
-      // get core practices
-      fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers })
-        .then((res) => res.json())
-        .then((data) => {
-          const corePractices = data.map((cp) => ({
-            name: cp.title,
-            link: cp.slug,
-          }));
-          this.setState({ corePractices });
-        });
+      const practicesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
+      const firmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, { headers });
+      const practicesJson = await practicesResponse.json();
+      const firmInsightsJson = await firmInsightsResponse.json();
 
-      // get firm insights categories
-      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, { headers })
-        .then((res) => res.json())
-        .then((data) => {
-          this.setState({ fiCategories: data });
-        });
+      const corePractices = practicesJson.map((cp) => ({
+        name: cp.title,
+        link: cp.slug,
+      }));
+
+      this.setState({ corePractices, fiCategories: firmInsightsJson });     
+      
     }
   }
 

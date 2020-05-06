@@ -9,7 +9,7 @@ function Practices(props) {
       <h5 className="red-title">Core Practices</h5>
       <hr />
       <ul className="ml-4">
-        { corePractices.map((p) => <li key={p.name} className="blue-title"><a href={p.link} className="blue-title proxima-bold">{p.name}</a></li>) }
+        { corePractices.map((p) => <li key={p.title} className="blue-title"><a href={p.slug} className="blue-title proxima-bold">{p.title}</a></li>) }
       </ul>
       <a href="/practices" className="red-title proxima-bold">
         <u>

@@ -20,53 +20,26 @@ class FrontPage extends Component {
     this.onCategorySelection = this.onCategorySelection.bind(this);
   }
 
-  componentDidMount() {
-    // fetch latest seo data
+  async componentDidMount() {
+    const seoResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, { headers });
+    const newsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/news`, { headers });
+    const eventsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/events`, { headers });
+    const officeResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers });
+    const practicesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
+    const seo = await seoResponse.json();
+    const news = await newsResponse.json();
+    const events = await eventsResponse.json();
+    const officeJson = await officeResponse.json();
+    const corePractices = await practicesResponse.json();
+    const posts = [...news, ...events];
+    const locations = officeJson.offices;
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, { headers })
-      .then((res) => res.json())
-      .then((seo) => {
-        this.setState({ seo });
-      })
-      .then(() => {
-        // fetch latest firm news data
-        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/news`, { headers })
-          .then((res) => res.json())
-          .then((data) => {
-            const posts = data;
-            return posts;
-          })
-          .then((results) => {
-            // fetch latest firm events data
-            fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/events`, { headers })
-              .then((res) => res.json())
-              .then((data) => {
-                const ePosts = data;
-                const posts = [...results, ...ePosts];
-                this.setState({ posts });
-              });
-          });
-      })
-      .then(() => {
-        // fetch office locations
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers })
-          .then((res) => res.json())
-          .then((data) => {
-            this.setState({ locations: data.offices });
-          });
-      })
-      .then(() => {
-        // fetch a list of core practices
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers })
-          .then((res) => res.json())
-          .then((data) => {
-            const corePractices = data.map((cp) => ({
-              name: cp.title,
-              link: cp.slug,
-            }));
-            this.setState({ corePractices });
-          });
-      });
+    console.log(corePractices);
+    
+    this.setState({ seo });
+    this.setState({ posts });
+    this.setState({ locations });
+    this.setState({ corePractices });
   }
 
   onChange(event) {

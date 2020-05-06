@@ -24,22 +24,21 @@ class FirmOverview extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          mainTabs,
-          additionalInfo,
-          members,
-          mainContent,
-          seo,
-        } = data;
+  async componentDidMount() {
+    const response = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, { headers });
+    const json = await response.json();
 
-        this.setState({
-          mainTabs, additionalInfo, members, seo, mainContent,
-        });
-      });
+    const {
+      mainTabs,
+      additionalInfo,
+      members,
+      mainContent,
+      seo,
+    } = json;
+
+    this.setState({
+      mainTabs, additionalInfo, members, seo, mainContent,
+    });
   }
 
 

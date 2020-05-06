@@ -30,36 +30,34 @@ class FirmPage extends Component {
     this.tabClick = this.tabClick.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { location } = this.props;
     const page = location.pathname;
+    const request = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/firm-page/page${page}`, { headers });
+    const json = await request.json();
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/firm-page/page${page}`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          title,
-          tabs,
-          members,
-          relatedPages,
-          description,
-          attorneysMentioned,
-          seo,
-        } = data;
+    const {
+      title,
+      tabs,
+      members,
+      relatedPages,
+      description,
+      attorneysMentioned,
+      seo,
+    } = json;
 
-        const content = tabs;
+    const content = tabs;
 
-        this.setState({
-          title,
-          content,
-          members,
-          relatedPages,
-          description,
-          currentTab: content[0].title,
-          attorneysMentioned,
-          seo,
-        });
-      });
+    this.setState({
+      title,
+      content,
+      members,
+      relatedPages,
+      description,
+      currentTab: content[0].title,
+      attorneysMentioned,
+      seo,
+    });
   }
 
   onChange(event) {

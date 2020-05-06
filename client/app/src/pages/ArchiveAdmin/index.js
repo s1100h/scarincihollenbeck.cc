@@ -17,16 +17,12 @@ class AdminArchive extends Component {
   }
 
   /* Fetch data events */
-  componentDidMount() {
-    // fetch admin list
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const { admins } = data;
-        const { seo } = data;
+  async componentDidMount() {
+    const response = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers });
+    const json = await response.json();
+    const { admins, seo } = json;
 
-        this.setState({ admins, seo });
-      });
+    this.setState({ admins, seo });
   }
 
   render() {

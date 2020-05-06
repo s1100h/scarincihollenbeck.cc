@@ -4,6 +4,7 @@ Pre-production Integration Todos:
 2. Copy all content down to DB before building out server
 3. Set up certbox with nginx for client microservice
 4. Integrate sitemap microservice and make sure that is working properly
+5. Finish up refactoring pages to async/await & lint those pages
 
 Post-production Cosmetic Fixes
 ============================================

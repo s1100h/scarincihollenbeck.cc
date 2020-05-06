@@ -126,7 +126,7 @@ function firm_overview_data() {
     "seo" => (object)array(
       "title" => get_post_meta($page_id,'_yoast_wpseo_title', true),
       "metaDescription" => get_post_meta($page_id,'_yoast_wpseo_metadesc', true),
-      "canonicalLink" => "/"
+      "canonicalLink" => "/firm-overview"
     )
   );
   

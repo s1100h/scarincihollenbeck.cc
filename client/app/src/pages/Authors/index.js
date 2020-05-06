@@ -23,11 +23,10 @@ class Author extends Component {
       seo: {},
     };
 
-    this.getPosts = this.getPosts.bind(this);
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     const { author, pageNum } = this.props.match.params;
     let page = 1;
     const breadCrumb = [author, 1];
@@ -36,58 +35,36 @@ class Author extends Component {
       page = pageNum;
       breadCrumb[1] = pageNum;
     }
-    this.setState({
-      breadCrumb, categorySlug: author, currentPage: page,
-    }, () => {
-      this.getPosts(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/posts/${author}/${page}`, author);
-    });
-  }
+    this.setState({ breadCrumb, categorySlug: author, currentPage: page }, async () => {
+      const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/posts/${author}/${page}`, { headers });
+      const authorResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${author}`, { headers });
+      const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
+      const postJson = await postResponse.json();
+      const authorJson = await authorResponse.json();
+      const articlesJson = await articlesResponse.json();
+      const { pages, results, seo } = postJson;
+      const { bio, practices } = authorJson;
+      const { firmNews, firmInsights, firmEvents } = articlesJson;
+      const bioData = [bio];
 
-  getPosts(url, authorName) {
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          pages, results, seo,
-        } = data;
+      const pageNums = [];
+      for (let i = 1; i <= pages; i += 1) {
+        pageNums.push(i);
+      }     
 
-        this.setState({
-          results, seo,
-        });
-        const pageNums = [];
-        for (let i = 1; i <= pages; i += 1) {
-          pageNums.push(i);
-        }
-        this.setState({ pageNums });
-      })
-      .then(() => {
-        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${authorName}`, { headers })
-          .then((res) => res.json())
-          .then((results) => {
-            const { bio, practices } = results;
-
-            const bioData = [bio];
-
-            this.setState({
-              bio: bioData,
-              practices,
-            });
-          });
-      })
-      .then(() => {
-        // news & insights & events
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers })
-          .then((res) => res.json())
-          .then((data) => {
-            const { firmNews, firmInsights, firmEvents } = data;
-            this.setState({
-              news: firmNews,
-              events: firmEvents,
-              insight: firmInsights,
-            });
-          });
+      this.setState({
+        results,
+        seo,
+        pageNums,
+        bio: bioData,
+        practices,
+        news: firmNews,
+        events: firmEvents,
+        insight: firmInsights,
       });
-  }
+      
+    });
+  } 
 
   render() {
     const {

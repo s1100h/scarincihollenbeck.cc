@@ -32,31 +32,22 @@ class AttorneyArchive extends Component {
   }
 
   /* Fetch data events */
-  componentDidMount() {
-    // fetch attorney list
-    this.setState({ spinner: true });
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys/`, { headers })
-      .then((res) => res.json())
-      .then((attorneys) => {
-        this.setState({ attorneys, spinner: false });
-      });
+  async componentDidMount() {
+    const attorneyResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys/`, { headers });
+    const filterResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers });
+    const seoResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/meta`, { headers });
+    const attorneys = await attorneyResponse.json();
+    const filters = await filterResponse.json();
+    const seo = await seoResponse.json();
+    const { locations, designations, practices } = filters;
 
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const { locations, designations, practices } = data;
-
-        this.setState({
-          locations,
-          designations,
-          practices,
-        });
-      });
-
-    // get page seo data
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/meta`, { headers })
-      .then((res) => res.json())
-      .then((seo) => this.setState({ seo }));
+    this.setState({ attorneys });
+    this.setState({ seo });
+    this.setState({
+      locations,
+      designations,
+      practices,
+    });
   }
 
   /* Click Events */

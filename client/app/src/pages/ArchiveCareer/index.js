@@ -25,14 +25,13 @@ class CareerBody extends Component {
     this.clearFilter = this.clearFilter.bind(this);
   }
 
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const positions = data.careers;
-        const { seo } = data;
-        this.setState({ positions, seo });
-      });
+  async componentDidMount() {
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, { headers });
+    const json = response.json();
+    const { seo, careers } =  json;
+    const positions = careers;
+    
+    this.setState({ positions, seo });
   }
 
   filterTerm(e) {

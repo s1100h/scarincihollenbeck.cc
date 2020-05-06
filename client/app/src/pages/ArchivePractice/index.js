@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { sortByKey } from '../../utils/helpers';
+import { sortByKey, headers } from '../../utils/helpers';
 import { getPracticePortalContent } from './utils/api';
 import { sortPracticeCategorys } from './utils/helpers';
 import ArchiveHead from '../../components/Head/archive';
@@ -22,19 +22,18 @@ class PracticePortal extends Component {
     };
   }
 
-  componentDidMount() {
-    getPracticePortalContent().then((data) => {
-      const results = sortPracticeCategorys(data.practices);
-      const { seo } = data;
-      const { core, additional, business } = results;
+  async componentDidMount() {
+    // get list of all attorneys
+    const practiceResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/practice-portal/page/`, { headers });
+    const practiceJson = await practiceResponse.json();
+    const results = await sortPracticeCategorys(practiceJson.practices);
+    const { core, additional, business } = results;
 
-      this.setState({
-        core,
-        additional,
-        business,
-        seo,
-
-      });
+    this.setState({
+      core,
+      additional,
+      business,
+      seo: practiceJson.seo
     });
   }
 

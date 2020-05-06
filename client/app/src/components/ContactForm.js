@@ -47,7 +47,7 @@ class ContactForm extends Component {
     }
   }
 
-  onFormSubmit(e) {
+  async onFormSubmit(e) {
     e.preventDefault();
     const {
       firstName,
@@ -72,21 +72,23 @@ class ContactForm extends Component {
       siteUrl,
     };
 
-    fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/contact/form`, {
+    const headers = {
       method: 'post',
       body: JSON.stringify(inquiryData),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
-    })
-      .then((data) => {
-        const { status } = data;
+      }
+    };
 
-        if (status === 200) {
-          this.setState({ successMessage: true });
-        }
-      });
+    const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/contact/form`, headers);
+    const jsonResponse = await request.json();
+    const { status } = jsonResponse;
+    
+    if (status === 200) {
+      this.setState({ message: true });
+    }
+
   }
 
   render() {
