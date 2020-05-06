@@ -1,47 +1,20 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import FullWidth from '../../layouts/FullWidth';
-import PageHead from '../../components/Head/page';
+import SimpleSearch from '../../components/SimpleSearch';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 
 const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
-class Page404 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchTerm: '',
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
 
-  onChange(event) {
-    const searchTerm = event.target.value;
-    this.setState({ searchTerm });
-  }
-
-  onSubmit() {
-    const { searchTerm } = this.state;
-    fetch(`${process.env.REACT_APP_API_URL}/wp-json/search/post`,
-      {
-        method: 'post',
-        body: searchTerm,
-      })
-      .then((res) => res.json());
-  }
-
-
-  render() {
-    const { searchTerm } = this.state;
-
-    const seo = {
-      title: 'Page Not Found | Scarinci Hollenbeck',
-      metaDescription: 'Sorry, it looks this like this page no longer exists on scarincihollenbeck.com',
-      canonicalLink: '/',
-    };
-
-    return (
+function Page4040 () {
+  const seo = {
+    title: 'Page Not Found | Scarinci Hollenbeck',
+    metaDescription: 'Sorry, it looks this like this page no longer exists on scarincihollenbeck.com',
+    canonicalLink: '/',
+  };
+  
+  return (
       <div>
         <PageHead seo={seo} />
         <SingleSubHeader
@@ -57,11 +30,7 @@ class Page404 extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-md-6 offset-md-3">
-                <form role="search" className="mt-4 d-block" method="GET" action={window.location.origin}>
-                  <span className="screen-reader-text">Search for:</span>
-                  <input name="s" type="search" placeholder="Try another search..." value={searchTerm} aria-labelledby="searchbutton" className="form-control" onChange={this.onChange} />
-                  <button type="submit" id="searchbutton" className="btn btn-danger px-5 d-block mx-auto mt-4">Submit</button>
-                </form>
+                <SimpleSearch />
               </div>
               <div className="col-sm-12 col-md-8 mt-5 offset-md-2 off-white">
                 <h4 className="proxima-bold p-3 pb-0 mb-0 text-center">Or try visiting one of these pages on our site to narrow your search.</h4>
@@ -114,8 +83,7 @@ class Page404 extends Component {
           </div>
         </FullWidth>
       </div>
-    );
-  }
+  )
 }
 
 export default Page404;

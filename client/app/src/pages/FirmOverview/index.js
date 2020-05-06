@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
-import { createMarkup } from '../../utils/helpers';
+import { createMarkup, headers } from '../../utils/helpers';
 
 // lazy load components
 import Members from './Members';
@@ -25,13 +25,7 @@ class FirmOverview extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

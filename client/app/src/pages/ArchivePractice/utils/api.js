@@ -6,8 +6,6 @@ require('isomorphic-fetch');
 const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
-  'Content-Encoding': 'gzip',
-  'Accept-Encoding': 'gzip',
 };
 
 // get list of all attorneys

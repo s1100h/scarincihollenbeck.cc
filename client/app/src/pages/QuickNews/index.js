@@ -4,6 +4,7 @@ import ArchiveHead from '../../components/Head/archive';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
+import { headers } from '../../utils/helpers';
 
 class QuickNews extends Component {
   constructor(props) {
@@ -42,13 +43,7 @@ class QuickNews extends Component {
   }
 
   getPosts(url) {
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -67,7 +62,7 @@ class QuickNews extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`)
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers })
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;

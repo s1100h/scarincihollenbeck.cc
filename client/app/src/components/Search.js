@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { addRandomKey } from '../utils/helpers';
+import { addRandomKey, headers } from '../utils/helpers';
+
 
 // create url for search query
 // handle complex search sidebar form
@@ -52,7 +53,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/search-options`)
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/search-options`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

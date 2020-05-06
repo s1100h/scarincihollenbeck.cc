@@ -4,6 +4,7 @@ import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
+import { headers } from '../../utils/helpers';
 
 class Archives extends Component {
   constructor(props) {
@@ -41,13 +42,7 @@ class Archives extends Component {
   }
 
   getPosts(url) {
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -65,13 +60,7 @@ class Archives extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip',
-          },
-        })
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers })
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;

@@ -7,6 +7,7 @@ import FullWidth from '../../layouts/FullWidth';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
+import { headers } from '../../utils/helpers';
 
 const cityBackground = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
@@ -37,13 +38,7 @@ class IndividualPractice extends Component {
     this.fetchPostData(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`);
 
     // get core practices
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const corePractices = data.map((cp) => ({
@@ -55,13 +50,7 @@ class IndividualPractice extends Component {
   }
 
   fetchPostData(url) {
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

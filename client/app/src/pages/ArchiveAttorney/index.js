@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import ArchiveHead from '../../components/Head/archive';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
-import { sortByKey } from '../../utils/helpers';
-
-const attArchiveBckGround ='https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
-
-// components
+import { sortByKey, headers } from '../../utils/helpers';
 import Filters from './Filters';
 import Selected from './Selected';
 import Results from './Results';
 
+const attArchiveBckGround ='https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
 
 class AttorneyArchive extends Component {
   constructor(props) {
@@ -38,25 +35,13 @@ class AttorneyArchive extends Component {
   componentDidMount() {
     // fetch attorney list
     this.setState({ spinner: true });
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys/`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys/`, { headers })
       .then((res) => res.json())
       .then((attorneys) => {
         this.setState({ attorneys, spinner: false });
       });
 
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
-    })
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const { locations, designations, practices } = data;
@@ -69,13 +54,7 @@ class AttorneyArchive extends Component {
       });
 
     // get page seo data
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/meta`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip'
-      }
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/meta`, { headers })
       .then((res) => res.json())
       .then((seo) => this.setState({ seo }));
   }

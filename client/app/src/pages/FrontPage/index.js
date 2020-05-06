@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { sortByKey } from '../../utils/helpers';
+import { sortByKey, headers } from '../../utils/helpers';
 import ColumnContent from './ColumnContent';
 import FullWidthContent from './FullWidthContent';
 import FrontPageHead from '../../components/Head/frontpage';
 import CoronaHeader from './CoronaHeader';
-
 
 class FrontPage extends Component {
   constructor(props) {
@@ -23,26 +22,14 @@ class FrontPage extends Component {
 
   componentDidMount() {
     // fetch latest seo data
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, { headers })
       .then((res) => res.json())
       .then((seo) => {
         this.setState({ seo });
       })
       .then(() => {
         // fetch latest firm news data
-        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/news`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip',
-          },
-        })
+        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/news`, { headers })
           .then((res) => res.json())
           .then((data) => {
             const posts = data;
@@ -50,13 +37,7 @@ class FrontPage extends Component {
           })
           .then((results) => {
             // fetch latest firm events data
-            fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/events`, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Content-Encoding': 'gzip',
-                'Accept-Encoding': 'gzip',
-              },
-            })
+            fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/events`, { headers })
               .then((res) => res.json())
               .then((data) => {
                 const ePosts = data;
@@ -67,13 +48,7 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch office locations
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip',
-          },
-        })
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers })
           .then((res) => res.json())
           .then((data) => {
             this.setState({ locations: data.offices });
@@ -81,13 +56,7 @@ class FrontPage extends Component {
       })
       .then(() => {
         // fetch a list of core practices
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Content-Encoding': 'gzip',
-            'Accept-Encoding': 'gzip',
-          },
-        })
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers })
           .then((res) => res.json())
           .then((data) => {
             const corePractices = data.map((cp) => ({

@@ -3,9 +3,8 @@ import LargeSidebar from '../../layouts/LargeSidebar';
 import PageHead from '../../components/Head/page';
 import Search from '../../components/Search';
 import SubscriptionBody from './SubscriptionBody';
-
-// lazy load components
 import TrendingStories from '../../components/TrendingStories';
+import { headers } from '../../utils/helpers';
 
 class SubscriptionPage extends Component {
   constructor(props) {
@@ -16,13 +15,7 @@ class SubscriptionPage extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/law-firm-insights`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/law-firm-insights`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const { main, latest, archives } = data;
@@ -31,10 +24,6 @@ class SubscriptionPage extends Component {
         const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a);
 
         const posts = [...main, ...latest, ...firstTwoArchives];
-
-        console.log('posts');
-        console.log(posts);
-
         // set filtered results to state
         this.setState({ posts });
       });

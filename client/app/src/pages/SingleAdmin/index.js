@@ -4,7 +4,7 @@ import MultiSubHeader from '../../layouts/MultiSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
-import { createMarkup } from '../../utils/helpers';
+import { createMarkup, headers } from '../../utils/helpers';
 
 const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
 
@@ -24,13 +24,7 @@ class AdminBiography extends Component {
   }
 
   fetchPostData(url) {
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((admin) => this.setState({ admin }));
   }

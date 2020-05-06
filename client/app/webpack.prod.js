@@ -95,10 +95,10 @@ module.exports = {
       fetch: 'exports-loader?self.fetch!whatwg-fetch/dist/fetch.umd',
     }),
     new webpack.DefinePlugin({
-      'process.env.REACT_APP_ADMIN_SITE': JSON.stringify('http://localhost:8400'),
-      'process.env.REACT_APP_CACHED_API': JSON.stringify('http://localhost:8200'),
-      'process.env.REACT_APP_FORMS_API': JSON.stringify('http://localhost:8000'),
-      'process.env.REACT_APP_FEED_API': JSON.stringify('http://localhost:8100')
+      'process.env.REACT_APP_ADMIN_SITE': JSON.stringify('https://admin.legalmarketinghouse.com'),
+      'process.env.REACT_APP_CACHED_API': JSON.stringify('https://api.legalmarketinghouse.com'),
+      'process.env.REACT_APP_FORMS_API': JSON.stringify('https://forms.legalmarketinghouse.com'),
+      'process.env.REACT_APP_FEED_API': JSON.stringify('https://feed.legalmarketinghouse.com')
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 import EventSidebar from './EventSidebar';
 import SocialShareSidebar from './SocialShareSidebar';
 import { setUserCookie } from './usercookie';
+import { headers } from '../../utils/helpers';
 
 const headerImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
@@ -48,7 +49,7 @@ class Single extends Component {
 
 
   fetchPostData(url) {
-    fetch(url)
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

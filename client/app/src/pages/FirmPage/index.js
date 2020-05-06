@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import MiniSidebar from '../../layouts/MiniSidebar';
-import { sortByKey } from '../../utils/helpers';
-// lazy load components
+import { sortByKey, headers } from '../../utils/helpers';
 import Sidebar from './Sidebar';
 import Tabs from './Tabs';
 import TabContent from './TabContent';
@@ -35,13 +34,7 @@ class FirmPage extends Component {
     const { location } = this.props;
     const page = location.pathname;
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/firm-page/page${page}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/firm-page/page${page}`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

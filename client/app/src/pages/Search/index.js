@@ -4,6 +4,7 @@ import ArchivehHead from '../../components/Head/archive';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
+import { headers } from '../../utils/helpers';
 
 class Search extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Search extends Component {
   }
 
   getPosts(url) {
-    fetch(url)
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

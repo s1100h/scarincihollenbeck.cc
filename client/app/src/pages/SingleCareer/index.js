@@ -9,6 +9,7 @@ import ContactForm from '../../components/ContactForm';
 import BreadCrumb from './BreadCrumb';
 import Body from './Body';
 import Sidebar from './Sidebar';
+import { headers } from '../../utils/helpers';
 
 const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
@@ -46,13 +47,7 @@ class SingleCareer extends Component {
     const { match } = this.props;
     const { career } = match.params;
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const { title, positionDescription, seo } = data;
@@ -115,6 +110,7 @@ class SingleCareer extends Component {
       method: 'post',
       body: JSON.stringify(form),
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     })

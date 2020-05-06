@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import ArchiveHead from '../../components/Head/archive';
 import FullWidth from '../../layouts/FullWidth';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
-
-// components
 import CareerSection from './CareerSection';
 import EEOpportunityContent from './EEOpportunityContent';
+import { headers } from '../../utils/helpers';
 
 const carArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
-
 
 class CareerBody extends Component {
   constructor(props) {
@@ -28,13 +26,7 @@ class CareerBody extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const positions = data.careers;

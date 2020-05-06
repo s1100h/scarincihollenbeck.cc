@@ -3,6 +3,7 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ArchiveHead from '../../components/Head/archive';
 import AttorneyCard from '../../components/AttorneyCard';
+import { headers } from '../../utils/helpers';
 
 const adminArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
 
@@ -18,13 +19,7 @@ class AdminArchive extends Component {
   /* Fetch data events */
   componentDidMount() {
     // fetch admin list
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const { admins } = data;

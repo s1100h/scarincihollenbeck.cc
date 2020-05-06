@@ -172,6 +172,7 @@ class SubscriptionForm extends Component {
       method: 'post',
       body: JSON.stringify(subscriberData),
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     })

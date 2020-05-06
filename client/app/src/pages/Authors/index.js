@@ -4,6 +4,7 @@ import ArchiveHead from '../../components/Head/archive';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
+import { headers } from '../../utils/helpers';
 
 class Author extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class Author extends Component {
   }
 
   getPosts(url, authorName) {
-    fetch(url)
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -60,7 +61,7 @@ class Author extends Component {
         this.setState({ pageNums });
       })
       .then(() => {
-        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${authorName}`)
+        fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${authorName}`, { headers })
           .then((res) => res.json())
           .then((results) => {
             const { bio, practices } = results;
@@ -75,7 +76,7 @@ class Author extends Component {
       })
       .then(() => {
         // news & insights & events
-        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`)
+        fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers })
           .then((res) => res.json())
           .then((data) => {
             const { firmNews, firmInsights, firmEvents } = data;

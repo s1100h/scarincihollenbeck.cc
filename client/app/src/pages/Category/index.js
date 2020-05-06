@@ -10,7 +10,7 @@ import SliderContent from './SliderContent';
 import ColumnContent from './ColumnContent';
 import FeaturedArticle from './FeaturedArticle';
 import MainSidebarContent from './MainSidebarContent';
-import { makeTitle, sortByKey } from '../../utils/helpers';
+import { makeTitle, sortByKey, headers } from '../../utils/helpers';
 
 class CategoryBody extends Component {
   constructor(props) {
@@ -41,13 +41,7 @@ class CategoryBody extends Component {
       breadCrumb: [category],
     });
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/${categorySlug}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/posts/${categorySlug}`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -75,13 +69,7 @@ class CategoryBody extends Component {
 
     if (categorySlug === 'firm-news' || categorySlug === 'firm-events') {
       // get core practices
-      fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Encoding': 'gzip',
-          'Accept-Encoding': 'gzip',
-        },
-      })
+      fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers })
         .then((res) => res.json())
         .then((data) => {
           const corePractices = data.map((cp) => ({
@@ -92,13 +80,7 @@ class CategoryBody extends Component {
         });
 
       // get firm insights categories
-      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Encoding': 'gzip',
-          'Accept-Encoding': 'gzip',
-        },
-      })
+      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, { headers })
         .then((res) => res.json())
         .then((data) => {
           this.setState({ fiCategories: data });

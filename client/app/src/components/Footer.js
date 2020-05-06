@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import CarouselContainer from './Carousel';
 import CookieConsentContainer from './CookieConsent';
+import { headers } from '../utils/helpers';
 
 const currentYear = new Date().getFullYear();
-
-const headers = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-};
 
 class Footer extends Component {
   constructor(props) {

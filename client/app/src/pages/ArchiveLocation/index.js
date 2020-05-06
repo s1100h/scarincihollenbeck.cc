@@ -1,11 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-import { getDirectionsFromLocation } from '../../utils/helpers';
+import { getDirectionsFromLocation, headers } from '../../utils/helpers';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import LocationHead from '../../components/Head/location';
-
-/** lazy load components */
 import BodyContent from './BodyContent';
 import SideBar from './SideBar';
 
@@ -27,13 +25,7 @@ class LocationPortal extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const { offices } = data;
@@ -66,9 +58,7 @@ class LocationPortal extends Component {
   }
 
   fetchOfficeData(location) {
-    const url = `${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/office/${location}`;
-
-    fetch(url)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/office/${location}`, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {
@@ -87,7 +77,7 @@ class LocationPortal extends Component {
         });
       });
 
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/posts/${location}`)
+    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/posts/${location}`, { headers })
       .then((res) => res.json())
       .then((posts) => this.setState({ posts }));
   }

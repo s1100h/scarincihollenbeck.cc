@@ -126,3 +126,7 @@ export const filterByKey = (list, key) => {
 // make title
 export const makeTitle = string => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
+export const headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};

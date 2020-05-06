@@ -7,6 +7,7 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
+import { headers } from '../../utils/helpers';
 
 const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
@@ -39,25 +40,13 @@ class Page extends Component {
 
     // get latest posts
     if (page.indexOf('covid-19-crisis-management-unit') > -1) {
-      fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Encoding': 'gzip',
-          'Accept-Encoding': 'gzip',
-        },
-      })
+      fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers })
         .then((res) => res.json())
         .then((data) => {
           this.setState({ posts: data, covidPage: true });
         });
     } else {
-      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Encoding': 'gzip',
-          'Accept-Encoding': 'gzip',
-        },
-      })
+      fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers })
         .then((res) => res.json())
         .then((data) => {
           this.setState({ posts: data.posts });
@@ -66,13 +55,7 @@ class Page extends Component {
   }
 
   fetchPageData(url) {
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const { content, title, seo } = data;
@@ -83,7 +66,7 @@ class Page extends Component {
   }
 
   fetchPostData(url) {
-    fetch(url)
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((data) => {
         const {

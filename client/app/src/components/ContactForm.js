@@ -76,6 +76,7 @@ class ContactForm extends Component {
       method: 'post',
       body: JSON.stringify(inquiryData),
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     })

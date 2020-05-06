@@ -9,7 +9,7 @@ import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import MenuItem from './MenuItem';
 import Sidebar from './Sidebar';
-import { sortByDateKey, urlify } from '../../utils/helpers';
+import { sortByDateKey, urlify, headers } from '../../utils/helpers';
 
 // lazy load components
 import Body from './Body';
@@ -42,13 +42,7 @@ class AttorneyBiography extends Component {
 
 
   fetchPostData(url) {
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Encoding': 'gzip',
-        'Accept-Encoding': 'gzip',
-      },
-    })
+    fetch(url, { headers })
       .then((res) => res.json())
       .then((bio) => {
         let matterTab = '';
