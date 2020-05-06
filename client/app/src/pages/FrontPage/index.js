@@ -22,6 +22,7 @@ class FrontPage extends Component {
 
   componentDidMount() {
     // fetch latest seo data
+
     fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, { headers })
       .then((res) => res.json())
       .then((seo) => {

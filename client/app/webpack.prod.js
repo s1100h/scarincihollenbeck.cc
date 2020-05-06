@@ -99,6 +99,7 @@ module.exports = {
       'process.env.REACT_APP_CACHED_API': JSON.stringify('https://api.legalmarketinghouse.com'),
       'process.env.REACT_APP_FORMS_API': JSON.stringify('https://forms.legalmarketinghouse.com'),
       'process.env.REACT_APP_FEED_API': JSON.stringify('https://feed.legalmarketinghouse.com')
+
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
