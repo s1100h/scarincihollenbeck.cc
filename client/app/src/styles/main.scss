@@ -331,6 +331,33 @@ ul {
   margin-left: 10px;
 }
 
+
+/** footer **/
+.footer-search {
+  div {
+    form {
+      button {
+        float: right !important;
+        padding: 3px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 5px !important;
+        background: rgba(0,0,0,0);
+        border: 0px;
+        text-decoration: underline;
+        color: $dark-red;
+        
+        &:hover {
+          border: 0px !important;
+          background: rgba(0,0,0,0);
+          text-decoration: underline;
+          color: $standard-red;
+        }
+      }
+    }
+  }
+}
 @media (max-width: 768px) {
   .text--sm--center {
     text-align: center!important;

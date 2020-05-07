@@ -7,7 +7,7 @@ function Members(props) {
 
   return (
     <div className="col-sm-12 mt-5">
-      <h4 className="red-title border-bottom">{title}</h4>
+      <h4 className="red-title border-bottom text-uppercase">{title}</h4>
       <div className="container articles-container mt-3">
         <div className="row">
           {

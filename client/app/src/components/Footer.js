@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CarouselContainer from './Carousel';
 import CookieConsentContainer from './CookieConsent';
+import Search from './SimpleSearch';
 import { headers } from '../utils/helpers';
 
 const currentYear = new Date().getFullYear();
@@ -30,21 +31,10 @@ class Footer extends Component {
         </div>
         <footer>
           <div className="container-fluid h-100 mt-5 w-75 bk--gray">
-            <div className="d-flex justify-content-end border--red mb-3">
-              <form className="search-form" role="search" action={`${process.env.API_URL}`} method="get">
-                <label htmlFor="searchSite">
-                  <span className="screen-reader-text">Search for:</span>
-                  <input
-                    name="s"
-                    id="searchSite"
-                    title="Search for:"
-                    className="search-field footer--search--bar--inner mw-400"
-                    type="search"
-                    placeholder="Search Site..."
-                    defaultValue=""
-                  />
-                </label>
-              </form>
+            <div className="row border--red mb-3">
+              <div className="col-sm-12 col-md-3 offset-md-9 mb-2 footer-search">
+                <Search />
+              </div>
             </div>
             <div className="row pb-3 mb-0">
               <div className="col-sm-6">
@@ -59,7 +49,7 @@ class Footer extends Component {
                 </p>
               </div>
               <div className="col-sm-6 text-center">
-                <ul className="float-right no-dots list-inline pb-0 mb-0">
+                <ul className="d-flex justify-content-end no-dots list-inline pb-0 mb-0">
                   <li className="list-inline-item">
                     <a href="/contact" className="proxima-bold red-title h6">Contact Us</a>
                     {' '}
