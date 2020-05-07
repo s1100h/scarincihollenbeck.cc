@@ -28,7 +28,7 @@ services:
       - ADMIN_SITE=${ADMIN_SITE}
       - REDIS_URL=redis://cache
     ports:
-      - 8200:8080
+      - 8200:8200
     links:
       - redis
       - wp
