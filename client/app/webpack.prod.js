@@ -16,6 +16,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
+
 module.exports = {
   mode: 'production',
   module: {
@@ -94,12 +95,8 @@ module.exports = {
       Promise: 'es6-promise',
       fetch: 'exports-loader?self.fetch!whatwg-fetch/dist/fetch.umd',
     }),
-    new webpack.DefinePlugin({
-      'process.env.REACT_APP_ADMIN_SITE': JSON.stringify('https://admin.legalmarketinghouse.com'),
-      'process.env.REACT_APP_CACHED_API': JSON.stringify('https://api.legalmarketinghouse.com'),
-      'process.env.REACT_APP_FORMS_API': JSON.stringify('https://forms.legalmarketinghouse.com'),
-      'process.env.REACT_APP_FEED_API': JSON.stringify('https://feed.legalmarketinghouse.com')
-
+    new Dotenv({
+      path: '.env.prod',
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

@@ -16,39 +16,48 @@ function Body(props) {
     prev,
     next,
     active,
+    loading
   } = props;
 
   return (
     <div>
       <div className="row">
-        <div className="col-sm-12 col-md-6">
-          {results.map((r, i) => (i < 5 ? (
-            <div className="p-2" key={r.id}>
-              <a href={r.link} className="top-article">
-                <h5 className="mb-0">{r.title}</h5>
-                <p className="mt-0 mb-3 text-muted small-excerpt">
-                  {r.description}
-                </p>
-              </a>
+        {(loading === false) ? (
+          <>
+            <div className="col-sm-12 col-md-6">
+              {results.map((r, i) => (i < 5 ? (
+                <div className="p-2" key={r.id}>
+                  <a href={r.link} className="top-article">
+                    <h5 className="mb-0">{r.title}</h5>
+                    <p className="mt-0 mb-3 text-muted small-excerpt">
+                      {r.description}
+                    </p>
+                  </a>
+                </div>
+              ) : (
+                ''
+              )))}
             </div>
-          ) : (
-            ''
-          )))}
-        </div>
-        <div className="col-sm-12 col-md-6">
-          {results.map((r, i) => (i > 5 ? (
-            <div className="p-2" key={r.id}>
-              <a href={r.link} className="top-article">
-                <h5 className="mb-0">{r.title}</h5>
-                <p className="mt-0 mb-3 text-muted small-excerpt">
-                  {r.description}
-                </p>
-              </a>
+            <div className="col-sm-12 col-md-6">
+              {results.map((r, i) => (i > 5 ? (
+                <div className="p-2" key={r.id}>
+                  <a href={r.link} className="top-article">
+                    <h5 className="mb-0">{r.title}</h5>
+                    <p className="mt-0 mb-3 text-muted small-excerpt">
+                      {r.description}
+                    </p>
+                  </a>
+                </div>
+              ) : (
+                ''
+              )))}
             </div>
-          ) : (
-            ''
-          )))}
-        </div>
+          </>
+        ) : (
+          <div className="col-sm-12 my-5">
+            <h3 className="text-center red-title">Loading results...</h3>
+          </div>
+        )}
       </div>
       <div className="w-100 mt-0 ml--1">
         {results !== undefined && pageNums.length > 1 ? (
@@ -132,6 +141,7 @@ Body.propTypes = {
   prev: PropTypes.number,
   next: PropTypes.number,
   active: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 Body.defaultProps = {
@@ -144,6 +154,7 @@ Body.defaultProps = {
   prev: 0,
   next: 0,
   active: 1,
+  loading: false,
 };
 
 export default Body;

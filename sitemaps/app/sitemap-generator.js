@@ -7,6 +7,8 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
+const SITE_URL = '';
+
 // build sitemap
 function buildSitemap(urlList) {
   let sitemap = `<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
@@ -26,18 +28,18 @@ function buildRouteLinks(content) {
   content.forEach((post) => {
 
     if(post.hasOwnProperty('slug')) {
-      if(post.slug.indexOf('http://localhost:8400') > -1) {
+      if(post.slug.indexOf(SITE_URL) > -1) {
         results.push(post.slug);
       }else {
-        results.push(`http://localhost:8400${post.slug}`);
+        results.push(`${SITE_URL}${post.slug}`);
       }
     };
 
     if(post.hasOwnProperty('link')) {
-      if(post.link.indexOf('http://localhost:8400') > -1) {
+      if(post.link.indexOf(SITE_URL) > -1) {
         results.push(post.link)
       }else {
-        results.push(`http://localhost:8400${post.link}`);
+        results.push(`${SITE_URL}${post.link}`);
       }
     }
 
@@ -55,44 +57,43 @@ function buildRouteLinks(content) {
 }
 
 async function getSiteLinks() {
-  try {
-    
+  try {    
     // blog posts 
-    const sitePosts = await request.get('http://localhost:8400/wp-json/wp/v2/posts?post_per_page=2').set(headers).then((res) => JSON.parse(res.text));
+    const sitePosts = await request.get(`${SITE_URL}/wp-json/wp/v2/posts?post_per_page=2`).set(headers).then((res) => JSON.parse(res.text));
     const postLinks = await buildRouteLinks(sitePosts);
 
     // attorney links
-    const siteAttorney = await request.get('http://localhost:8400/wp-json/attorney-search/attorneys').set(headers).then((res) => JSON.parse(res.text));
+    const siteAttorney = await request.get(`${SITE_URL}/wp-json/attorney-search/attorneys`).set(headers).then((res) => JSON.parse(res.text));
     const attorneyLinks = await buildRouteLinks(siteAttorney);
 
     // location links
-    const siteLocation = await request.get('http://localhost:8400/wp-json/location-portal/offices').set(headers).then((res) => JSON.parse(res.text));
+    const siteLocation = await request.get(`${SITE_URL}/wp-json/location-portal/offices`).set(headers).then((res) => JSON.parse(res.text));
     const locationLinks = await buildRouteLinks(siteLocation.offices);
 
     // practice links
-    const sitePractices = await request.get('http://localhost:8400/wp-json/practice-portal/page').set(headers).then((res) => JSON.parse(res.text));
+    const sitePractices = await request.get(`${SITE_URL}/wp-json/practice-portal/page`).set(headers).then((res) => JSON.parse(res.text));
     const practiceLinks = await buildRouteLinks(sitePractices.practices);
 
     // admin links
-    const siteAdmins = await request.get('http://localhost:8400/wp-json/admin-search/admin').set(headers).then((res) => JSON.parse(res.text));
+    const siteAdmins = await request.get(`${SITE_URL}/wp-json/admin-search/admin`).set(headers).then((res) => JSON.parse(res.text));
     const adminsLinks = await buildRouteLinks(siteAdmins.admins);
 
     // page links
-    const sitePages = await request.get('http://localhost:8400/wp-json/wp/v2/pages').set(headers).then((res) => JSON.parse(res.text));
+    const sitePages = await request.get(`${SITE_URL}/wp-json/wp/v2/pages`).set(headers).then((res) => JSON.parse(res.text));
     const pagesLinks = await buildRouteLinks(sitePages);
 
     // all categories
-    const categoryPages = await request.get('http://localhost:8400/wp-json/category/all').then((res) => JSON.parse(res.text));
+    const categoryPages = await request.get(`${SITE_URL}/wp-json/wp/v2/pages`).then((res) => JSON.parse(res.text));
     const categoryLinks = await buildRouteLinks(categoryPages);
   
     // basic pages
     const basicLinks = [
-      'http://localhost:8400',
-      'http://localhost:8400/attorneys',
-      'http://localhost:8400/locations',
-      'http://localhost:8400/careers',
-      'http://localhost:8400/practices',
-      'http://localhost:8400/law-practices'
+      `${SITE_URL}`,
+      `${SITE_URL}/attorneys`,
+      `${SITE_URL}/locations`,
+      `${SITE_URL}/careers`,
+      `${SITE_URL}/practices`,
+      `${SITE_URL}/law-practices`
     ];
 
     const siteMapLinks = [

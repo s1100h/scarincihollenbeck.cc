@@ -44,6 +44,7 @@ class Search extends Component {
     const { value, name } = event.target;
     const { t } = this.state;
     t[name] = value;
+
     this.setState({ t });
   }
 
@@ -52,23 +53,14 @@ class Search extends Component {
     window.location = sumbitSearchForm(t);
   }
 
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/search-options`, { headers })
-      .then((res) => res.json())
-      .then((data) => {
-        const {
-          attorneys,
-          categories,
-          practices,
-        } = data;
+  async componentDidMount() {
+   const response = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/search-options`, { headers });
+   const json = await response.json();
+   const { attorneys, categories, practices } = json;
+   
+   // set data from fetch requst to state
+   this.setState({ attorneys, categories, practices });
 
-        // set data from fetch requst to state
-        this.setState({
-          attorneys,
-          categories,
-          practices,
-        });
-      });
   }
 
   render() {
@@ -84,7 +76,7 @@ class Search extends Component {
       <div className="w-100">
         <form onChange={this.onChange}>
           <label htmlFor="searchSite" className="w-100">
-            <input name="keyword" type="search" id="searchSite" value={searchTerm || ''} placeholder="Keyword..." className="form-control p-2" />
+            <input name="keyword" type="search" id="searchSite" value={t.keyword || ''} placeholder="Keyword..." className="form-control p-2" />
             <span className="sr-only">Search Site</span>
           </label>
           {/* Related Practice */}

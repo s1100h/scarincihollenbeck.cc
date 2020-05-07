@@ -20,7 +20,7 @@ class AttorneyArchive extends Component {
       practices: [],
       attorneys: [],
       seo: {},
-      spinner: false,
+      loading: false,
     };
     this.letterClick = this.letterClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -41,7 +41,10 @@ class AttorneyArchive extends Component {
     const seo = await seoResponse.json();
     const { locations, designations, practices } = filters;
 
-    this.setState({ attorneys });
+    this.setState({ loading: true }, () => {
+      this.setState({ attorneys, loading: false });
+    });
+
     this.setState({ seo });
     this.setState({
       locations,
@@ -146,7 +149,7 @@ class AttorneyArchive extends Component {
       select,
       userInput,
       seo,
-      spinner,
+      loading
     } = this.state;
 
     // sort practices, designations, location
@@ -189,12 +192,16 @@ class AttorneyArchive extends Component {
                 userInput={userInput}
               />
               {
-                    (attorneys.length > 0) && (
+                    (loading === false && attorneys.length > 0) ? (
                       <Results
                         attorneys={attorneys}
                         userInput={userInput}
                         select={select}
                       />
+                    ) : (
+                      <div className="w-100 my-5">
+                          <h3 className="text-center red-title">Loading attorney list...</h3>
+                      </div>
                     )
                   }
             </div>

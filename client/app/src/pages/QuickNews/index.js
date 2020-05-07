@@ -20,6 +20,7 @@ class QuickNews extends Component {
       breadCrumb: [],
       categorySlug: '',
       seo: {},
+      loading: false,
     };
   }
 
@@ -35,7 +36,7 @@ class QuickNews extends Component {
       breadCrumb[1] = pageNum;
     }
     
-    this.setState({ breadCrumb, categorySlug, currentPage: page }, async () => {
+    this.setState({ breadCrumb, categorySlug, currentPage: page, loading: true }, async () => {
 
       const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/quick-news/posts/${page}`, { headers });
       const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
@@ -57,6 +58,7 @@ class QuickNews extends Component {
         news: firmNews,
         events: firmEvents,
         insight: firmInsights,
+        loading: false
       });
     });
   }
@@ -72,6 +74,7 @@ class QuickNews extends Component {
       categorySlug,
       currentPage,
       seo,
+      loading
     } = this.state;
 
     // pagination set up
@@ -96,6 +99,7 @@ class QuickNews extends Component {
               events={events}
               insight={insight}
               active={active}
+              loading={loading}
             />
  )}
           sidebar={(

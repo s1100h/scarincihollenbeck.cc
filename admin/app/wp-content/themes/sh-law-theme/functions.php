@@ -589,6 +589,8 @@ require_once plugin_dir_path(__FILE__) . "/includes/rest/core-practices-rest.php
 require_once plugin_dir_path(__FILE__) . "/includes/rest/just-in-posts-rest.php";
 
 
-
-
-
+// filter out admin subdomain from get_permalink function
+add_filter( 'post_link', 'filter_permalink_subdomain', 99 );
+function filter_permalink_subdomain( $permalink ) {
+  return str_replace( "admin." , "", $permalink);
+}

@@ -3,14 +3,7 @@ Pre-production Integration Todos:
 1. find away to optimize GA, SnapEngagement
 2. Copy all content down to DB before building out server
 3. Set up certbox with nginx for client microservice
-4. Integrate sitemap microservice and make sure that is working properly
-5. Finish up refactoring pages to async/await & lint those pages
-6. Incorporate gzip compression for api endpoints
-7. Add loading messages to Archives & Quick News
-8. Add "Loading attorney list..." to attorney archives page
-9. Get subdomain removed from theme and the email subscriber plugin
-10. Fix responsive carousel in mobile
-
+4. compress response of api
 
 Post-production Cosmetic Fixes
 ============================================

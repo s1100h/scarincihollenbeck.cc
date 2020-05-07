@@ -19,11 +19,12 @@ function Body(props) {
     active,
     loading,
   } = props;
+  console.log(loading)
 
   return (
     <div>
       <div className="row">
-        {(loading !== true) ? (
+        {(loading === false) ? (
           <>
             <div className="col-sm-12 col-md-6">
               {results.map((r, i) => (i < 5 ? (
@@ -59,7 +60,7 @@ function Body(props) {
             <h3 className="text-center red-title">Loading results...</h3>
           </div>
         )}
-        {(results.length === 0 && loading === true) && (
+        {(results.length <= 0 && loading === false) && (
           <div className="col-sm-12 my-5">
             <h3 className="text-center red-title"> Sorry, no results found for that query.</h3>
           </div>
