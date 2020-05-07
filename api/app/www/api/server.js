@@ -19,14 +19,14 @@ const index_router_1 = require("./controllers/v0/index.router");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const app = express();
-        const port = process.env.PORT || 8080; // default port to listen
+        const port = process.env.PORT || 8200; // default port to listen
         app.use(compression());
         app.use(cors());
         app.use(bodyParser());
         app.use('/', index_router_1.IndexRouter);
         // Root URI call
         app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-            res.send('/cached/');
+            res.send('base url is /cached/');
         }));
         // Start the Server
         app.listen(port, () => {

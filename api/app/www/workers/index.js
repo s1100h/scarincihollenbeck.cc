@@ -54,7 +54,6 @@ function callWorkers() {
             yield fetch_1.fetchContent(url.OFFICES_API_URL, keys.OFFICES_KEY);
             yield fetch_1.fetchContent(url.FIRM_OVERVIEW_URL, keys.FIRM_OVERVIEW_KEY);
             yield fetch_1.fetchContent(url.CORE_PRACTICES_URL, keys.CORE_PRACTICES_KEY);
-            console.log('Once a day tasks completed');
         }), null, true, 'America/New_York');
         /** Once every 30 minute tasks */
         // */30 * * * *
@@ -66,7 +65,6 @@ function callWorkers() {
             yield fetch_1.fetchContent(url.FIRM_NEWS_URL, keys.FIRM_NEWS_KEY);
             yield fetch_1.fetchContent(url.FIRM_EVENTS_URL, keys.FIRM_EVENTS_KEY);
             yield fetch_1.fetchContent(url.FIRM_INSIGHTS_URL, keys.FIRM_INSIGHTS_KEY);
-            console.log('Once every 30 minute tasks completed');
         }), null, true, 'America/New_York');
     });
 }
