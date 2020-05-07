@@ -11,16 +11,15 @@ import { IndexRouter } from './controllers/v0/index.router';
   try {
     const app = express();
     const port = process.env.PORT || 8200; // default port to listen
-    
-    app.use(cors());
-    app.use(bodyParser());
     app.use(compression());
+    app.use(cors());
+    app.use(bodyParser());    
     app.use('/', IndexRouter);
   
   
     // Root URI call
     app.get('/', async (req, res) => {
-      res.send('/cached/');
+      res.send('base url is /cached/');
     });
   
   

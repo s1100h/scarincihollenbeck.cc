@@ -1,22 +1,8 @@
 version: '3'
 services:
-  client:
-    build: client/
-    volumes:
-      - ./client/app:/app
-    environment:
-      - ADMIN_SITE=${ADMIN_SITE}
-      - CACHED_API=${CACHED_API}
-      - FORMS_API=${FORMS_API}
-      - FEED_API=${FEED_API}
-    links:
-      - wp
-      - api
-      - forms
-      - feed
-
   forms:
     build: forms/
+    container_name: site-forms
     volumes:
       - ./forms/app:/src
     ports:
@@ -24,6 +10,7 @@ services:
   
   feed:
     build: feed/
+    container_name: site-feed
     volumes:
       - "./feed/app:/src"
     ports:
@@ -31,21 +18,22 @@ services:
 
   api:
     build: api/
+    container_name: site-api
     volumes:
       - ./api/app:/src
-    env_file: .env
+    env_file:
+      - .env
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - ADMIN_SITE=${ADMIN_SITE}
       - REDIS_URL=redis://cache
     ports:
-      - 8200:8200
+      - 8200:8080
     links:
       - redis
       - wp
     networks:
-      - app-network
-  
+      - app-network 
 
   redis:
     image: redis

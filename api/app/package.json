@@ -11,8 +11,7 @@
     "clean": "rm -rf www/ || true",
     "build": "npm run clean && tsc && cp .npmrc www/.npmrc && cp package.json www/package.json",
     "test": "mocha -r ts-node/register src/**/*.test.ts",
-    "worker": "tsc && node ./www/run-workers.js",
-    "hello": "node src/hello.js"
+    "worker": "tsc && node ./www/run-workers.js"
   },
   "author": "peter t",
   "license": "ISC",

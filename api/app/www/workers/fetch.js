@@ -22,8 +22,7 @@ exports.fetchContent = (url, key) => __awaiter(void 0, void 0, void 0, function*
         return success;
     }
     catch (err) {
-        console.log('err');
-        console.log(err);
+        console.log(process.env.TEST);
         return err;
     }
 });

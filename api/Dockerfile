@@ -9,5 +9,5 @@ RUN npm install
 
 EXPOSE 8200
 
-RUN npm run build
-CMD npm run prod
+# RUN npm run build
+CMD npm run dev

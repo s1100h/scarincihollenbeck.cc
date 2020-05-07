@@ -20,7 +20,7 @@
  * 
  */
 
-require('dotenv').config()
+require('dotenv').config();
 const CronJob = require('cron').CronJob;
 import { fetchContent } from './fetch';
 import * as url from './urls';
@@ -39,7 +39,6 @@ async function callWorkers() {
     await fetchContent(url.OFFICES_API_URL, keys.OFFICES_KEY);
     await fetchContent(url.FIRM_OVERVIEW_URL, keys.FIRM_OVERVIEW_KEY);
     await fetchContent(url.CORE_PRACTICES_URL, keys.CORE_PRACTICES_KEY);
-    console.log('Once a day tasks completed');
   }, null, true, 'America/New_York' );
 
   /** Once every 30 minute tasks */
@@ -52,7 +51,6 @@ async function callWorkers() {
     await fetchContent(url.FIRM_NEWS_URL, keys.FIRM_NEWS_KEY);
     await fetchContent(url.FIRM_EVENTS_URL, keys.FIRM_EVENTS_KEY);
     await fetchContent(url.FIRM_INSIGHTS_URL, keys.FIRM_INSIGHTS_KEY);
-    console.log('Once every 30 minute tasks completed');
   }, null, true, 'America/New_York' );
 }
 

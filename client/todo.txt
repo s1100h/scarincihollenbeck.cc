@@ -3,7 +3,6 @@ Pre-production Integration Todos:
 1. find away to optimize GA, SnapEngagement
 2. Copy all content down to DB before building out server
 3. Set up certbox with nginx for client microservice
-4. compress response of api
 
 Post-production Cosmetic Fixes
 ============================================
