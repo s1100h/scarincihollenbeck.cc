@@ -27,7 +27,7 @@ class AttorneyBiography extends Component {
       readMore: false
     };
 
-    this.fetchPostData = this.fetchPostData.bind(this);
+
     this.tabClick = this.tabClick.bind(this);
     this.matterClick = this.matterClick.bind(this);
     this.toggleReadMore = this.toggleReadMore.bind(this);

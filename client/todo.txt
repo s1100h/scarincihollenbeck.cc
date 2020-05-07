@@ -8,6 +8,9 @@ Pre-production Integration Todos:
 6. Incorporate gzip compression for api endpoints
 7. Add loading messages to Archives & Quick News
 8. Add "Loading attorney list..." to attorney archives page
+9. Get subdomain removed from theme and the email subscriber plugin
+10. Fix responsive carousel in mobile
+
 
 Post-production Cosmetic Fixes
 ============================================

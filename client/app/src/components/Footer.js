@@ -25,7 +25,7 @@ class Footer extends Component {
 
     return (
       <div className="container-fluid bk--gray d-print-none">
-        <div className="just-in-container">
+        <div className="just-in-container w-75">
           <CarouselContainer sliderType="JustInCarousel" slides={slides} />
         </div>
         <footer>

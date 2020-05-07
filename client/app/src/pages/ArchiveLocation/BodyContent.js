@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import AttorneyCard from '../../components/AttorneyCard';
 import { sortByKey } from '../../utils/helpers';
 
-const attorneySlug = (string) => string.split('/attorneys/').pop();
-
 function BodyContent(props) {
   const {
     attorneys,
@@ -36,7 +34,7 @@ function BodyContent(props) {
           sortedAttorneys.map((m) => (
             <div key={m.ID} className="col-sm-12 col-md-6 mb-2">
               <AttorneyCard
-                link={`/attorneys/${attorneySlug(m.link)}`}
+                link={m.link}
                 image={m.image}
                 name={m.name}
                 title={m.designation}

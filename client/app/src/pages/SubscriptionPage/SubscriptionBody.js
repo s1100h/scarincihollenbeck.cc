@@ -148,7 +148,7 @@ class SubscriptionBody extends Component {
     }
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const {
       firstName,

@@ -28,3 +28,29 @@
     display: none !important;
   }
 }
+
+@media (min-width: 2004px) {
+  .just-in-container {
+    .react-multi-carousel-list {
+      .react-multiple-carousel__arrow--right {
+        right: -1%!important;
+      }
+      .react-multiple-carousel__arrow--left {
+        left: -1% !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 2475px) {
+  .just-in-container {
+    .react-multi-carousel-list {
+      .react-multiple-carousel__arrow--right {
+        right: -.5% !important;
+      }
+      .react-multiple-carousel__arrow--left {
+        left: -.5% !important;
+      }
+    }
+  }
+}

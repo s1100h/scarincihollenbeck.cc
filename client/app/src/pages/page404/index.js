@@ -2,12 +2,13 @@
 import React, { Component } from 'react';
 import FullWidth from '../../layouts/FullWidth';
 import SimpleSearch from '../../components/SimpleSearch';
+import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 
 const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 
-function Page4040 () {
+function Page404 () {
   const seo = {
     title: 'Page Not Found | Scarinci Hollenbeck',
     metaDescription: 'Sorry, it looks this like this page no longer exists on scarincihollenbeck.com',
@@ -37,43 +38,43 @@ function Page4040 () {
                 <ul className="ml-6">
                   <li>
                     <p>
-                      <a href={`${window.location.origin}/attorneys`}>
-                        <h5 className="u-hover">Attorneys</h5>
+                      <a href={`${window.location.origin}/attorneys`}  className="u-hover h5">
+                        Attorneys
                       </a>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <a href={`${window.location.origin}/practices`}>
-                        <h5 className="u-hover">Practices</h5>
+                      <a href={`${window.location.origin}/practices`} className="u-hover h5">
+                        Practices
                       </a>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <a href={`${window.location.origin}/locations`}>
-                        <h5 className="u-hover">Locations</h5>
+                      <a href={`${window.location.origin}/locations`} className="u-hover h5">
+                        Locations
                       </a>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <a href={`${window.location.origin}/category/firm-news`}>
-                        <h5 className="u-hover">Firm News</h5>
+                      <a href={`${window.location.origin}/category/firm-news`} className="u-hover h5">
+                        Firm News
                       </a>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <a href={`${window.location.origin}/category/firm-events`}>
-                        <h5 className="u-hover">Firm Events</h5>
+                      <a href={`${window.location.origin}/category/firm-events`} className="u-hover h5">
+                        Firm Events
                       </a>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <a href={`${window.location.origin}/category/firm-insights`}>
-                        <h5 className="u-hover">Firm Insights</h5>
+                      <a href={`${window.location.origin}/category/firm-insights`} className="u-hover h5">
+                        Firm Insights
                       </a>
                     </p>
                   </li>
