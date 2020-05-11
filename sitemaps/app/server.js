@@ -8,7 +8,7 @@ const getSiteLinks = require('./sitemap-generator.js');
 (async () => {
   try {
     const app = express();
-    const port = process.env.PORT || 8500; // default port to listen
+    const port = process.env.PORT || 8700; // default port to listen
     app.use(compression());
     app.use(cors());
 

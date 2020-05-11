@@ -7,4 +7,6 @@ WORKDIR /src
 ADD app/package.json /src/package.json
 RUN npm install
 
+EXPOSE 8700
+
 CMD npm start

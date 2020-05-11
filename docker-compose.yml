@@ -33,7 +33,23 @@ services:
       - redis
       - wp
     networks:
-      - app-network 
+      - app-network
+
+  sitemaps:
+    build: sitemaps/
+    container_name: sitemaps
+    volumes:
+      - ./sitemaps/app:/src
+    env_file:
+      - .env
+    environment:
+      - ADMIN_SITE=${ADMIN_SITE}
+    ports:
+      - 8700:8700
+    links:
+      - wp
+    networks:
+      - app-network
 
   redis:
     image: redis
