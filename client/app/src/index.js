@@ -1,5 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
+import history from './utils/history';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /**
@@ -121,6 +123,17 @@ import './styles/firm-page.scss';
  * 
  */
 
+ /**
+  *  Set up Google Analytics 
+  * =============================================
+  */
+ReactGA.initialize('UA-18813670-1');
+
+history.listen(location => {
+	ReactGA.set({ page: location.pathname });
+	ReactGA.pageview(location.pathname);
+});
+
 class SiteRoutes extends Component {
   constructor(props) {
     super(props);
@@ -128,12 +141,13 @@ class SiteRoutes extends Component {
       sitePages: []
     }
   };
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page-list`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({sitePages: data})
-      });
+
+  async componentDidMount() {
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page-list`);
+    const sitePages = await response.json();
+
+    this.setState({ sitePages });
+    ReactGA.pageview(window.location.pathname);
   }
   render() {
 
