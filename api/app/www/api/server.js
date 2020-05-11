@@ -25,7 +25,7 @@ const index_router_1 = require("./controllers/v0/index.router");
         app.use(bodyParser());
         app.use('/', index_router_1.IndexRouter);
         // Root URI call
-        app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        app.get('/', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.send('base url is /cached/');
         }));
         // Start the Server
