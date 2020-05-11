@@ -76,7 +76,7 @@ class Search extends Component {
       <div className="w-100">
         <form onChange={this.onChange}>
           <label htmlFor="searchSite" className="w-100">
-            <input name="keyword" type="search" id="searchSite" value={t.keyword || ''} placeholder="Keyword..." className="form-control p-2" />
+            <input name="keyword" type="search" id="searchSite" value={'' || t.keyword} placeholder="Keyword..." className="form-control p-2" />
             <span className="sr-only">Search Site</span>
           </label>
           {/* Related Practice */}

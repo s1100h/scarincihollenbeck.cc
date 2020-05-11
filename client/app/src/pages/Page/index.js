@@ -35,12 +35,12 @@ class Page extends Component {
     const { location } = this.props;
     const page = location.pathname;
     const pageResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page${page}`);
-    const pageJson = await pageResonse.json();
+    const pageJson = await pageResponse.json();
     const { content, title, seo } = pageJson;
 
     if (page.indexOf('covid-19-crisis-management-unit') > -1) {
       const covidResponse = await fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers });
-      const posts = covidResponse.json();
+      const posts = await covidResponse.json();
       this.setState({ posts, covidPage: true });
     } else {
       const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers });
