@@ -4,14 +4,25 @@ import { Link } from 'react-router-dom';
 import { urlify } from '../../../utils/helpers';
 
 function Results(props) {
-  const { positions } = props;
+  const { positions, loading } = props;
+  console.log(loading);
+  console.log(positions)
 
   return (
     <div className="w-100 border mt-0">
       <div className="container mt-2">
         <div className="row">
-          {
-            positions.map((p) => (
+          {(loading === true) && (
+            <div className="w-100 my-5">
+              <h3 className="text-center red-title">Loading open career positions...</h3>
+            </div>
+          )}
+          {(loading === false && positions.length < 1) && (
+            <div className="w-100 my-5">
+              <h3 className="text-center red-title">Sorry, career position availabled based on that query.</h3>
+            </div>
+          )}
+          {(loading === false) && positions.map((p) => (
               <div key={p.title} className="col-sm-12 col-md-4 mt-3 mb-2">
                 <Link to={`/career/${urlify(p.title)}`}>
                   <div className="card d-flex flex-row">
@@ -34,8 +45,7 @@ function Results(props) {
                   </div>
                 </Link>
               </div>
-            ))
-          }
+            ))}           
         </div>
       </div>
     </div>
@@ -44,10 +54,12 @@ function Results(props) {
 
 Results.propTypes = {
   positions: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool
 };
 
 Results.defaultProps = {
   positions: [],
+  loading: true,
 };
 
 export default Results;

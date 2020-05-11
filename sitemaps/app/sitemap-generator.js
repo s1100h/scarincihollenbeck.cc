@@ -1,5 +1,4 @@
 const request = require('superagent');
-const CronJob = require('cron').CronJob;
 const fs = require('fs');
 
 const headers = {
@@ -7,7 +6,7 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const SITE_URL = '';
+const SITE_URL = 'https://scarincihollenbeck.com';
 
 // build sitemap
 function buildSitemap(urlList) {
@@ -109,13 +108,12 @@ async function getSiteLinks() {
 
     const sitemap = buildSitemap(siteMapLinks);
 
-    fs.writeFile('../../client/app/dist/sitemap.xml', sitemap, (err) => {
+    fs.writeFile('./sitemap.xml', sitemap, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
   
       // success case, the file was saved
       console.log('Sitemap created!');
-      console.log('Sitemap copied to production directory');
   });
 
     
@@ -125,10 +123,4 @@ async function getSiteLinks() {
   }
 };
 
-
-
-var job = new CronJob('* * * * * *', function() {
-  getSiteLinks();
-}, null, true, 'America/New_York');
-
-job.start();
+exports.getSiteLinks = getSiteLinks;

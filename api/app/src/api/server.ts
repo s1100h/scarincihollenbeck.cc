@@ -18,7 +18,7 @@ import { IndexRouter } from './controllers/v0/index.router';
   
   
     // Root URI call
-    app.get('/', async (req, res) => {
+    app.get('/', async (_, res) => {
       res.send('base url is /cached/');
     });
   

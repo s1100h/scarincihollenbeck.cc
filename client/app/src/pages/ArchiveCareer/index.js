@@ -18,6 +18,7 @@ class CareerBody extends Component {
       keyword: '',
       location: '',
       type: '',
+      loading: true,
     };
 
     this.filterTerm = this.filterTerm.bind(this);
@@ -27,12 +28,14 @@ class CareerBody extends Component {
 
   async componentDidMount() {
     const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, { headers });
-    const json = response.json();
+    const json = await response.json();
     const { seo, careers } =  json;
     const positions = careers;
     
-    this.setState({ positions, seo });
-  }
+    this.setState({ positions, seo}, () => {
+      this.setState({ loading: false  });
+    });
+  };
 
   filterTerm(e) {
     const keyword = e.target.value;
@@ -64,6 +67,7 @@ class CareerBody extends Component {
       type,
       location,
       seo,
+      loading,
     } = this.state;
 
     const { career } = this.props.match.params;
@@ -85,6 +89,7 @@ class CareerBody extends Component {
             type={type}
             career={career}
             location={location}
+            loading={loading}
             selectOption={this.selectOption}
             filterTerm={this.filterTerm}
             clearFilter={this.clearFilter}

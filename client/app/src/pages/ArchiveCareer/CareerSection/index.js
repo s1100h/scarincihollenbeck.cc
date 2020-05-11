@@ -16,6 +16,7 @@ function CareerSection(props) {
     selectOption,
     career,
     clearFilter,
+    loading,
   } = props;
 
   const sortPositions = sortByKey(positions, 'title');
@@ -75,7 +76,11 @@ function CareerSection(props) {
         filterTerm={filterTerm}
         clearFilter={clearFilter}
       />
-      <Results positions={p} career={career} />
+      <Results
+        positions={p}
+        loading={loading}
+        career={career}
+      />
     </div>
   );
 }
@@ -89,6 +94,7 @@ CareerSection.propTypes = {
   filterTerm: PropTypes.func,
   selectOption: PropTypes.func,
   clearFilter: PropTypes.func,
+  loading: PropTypes.bool
 };
 
 CareerSection.defaultProps = {
@@ -97,6 +103,7 @@ CareerSection.defaultProps = {
   type: '',
   career: '',
   positions: [],
+  loading: true,
   filterTerm: () => {},
   selectOption: () => {},
   clearFilter: () => {},

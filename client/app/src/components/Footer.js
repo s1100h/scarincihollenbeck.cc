@@ -74,7 +74,7 @@ class Footer extends Component {
                     {' '}
                   </li>
                   <li className="list-inline-item">
-                    <a href="/sitemap.xml" className="proxima-bold red-title h6">Sitemap</a>
+                    <a href="https://sitemap.scarincihollenbeck.com/sitemap.xml" className="proxima-bold red-title h6">Sitemap</a>
                     {' '}
                     |
                     {' '}
