@@ -1,10 +1,23 @@
 version: '3'
 services:
+
   forms:
     build: forms/
     container_name: site-forms
     volumes:
       - ./forms/app:/src
+    env_file:
+      - .env
+    environment:
+      - GMAIL_ADDRESS=${GMAIL_ADDRESS}
+      - GMAIL_OAUTH_CLIENT_ID=${GMAIL_OAUTH_CLIENT_ID}
+      - GMAIL_OAUTH_PROJECT_ID=${GMAIL_OAUTH_PROJECT_ID}
+      - GMAIL_OAUTH_CLIENT_SECRET=${GMAIL_OAUTH_CLIENT_SECRET}
+      - GMAIL_OAUTH_REDIRECT_URL=${GMAIL_OAUTH_REDIRECT_URL}
+      - GMAIL_OAUTH_REFRESH_TOKEN=${GMAIL_OAUTH_REFRESH_TOKEN}
+      - GMAIL_OAUTH_ACCESS_TOKEN=${GMAIL_OAUTH_ACCESS_TOKEN}
+      - GMAIL_OAUTH_TOKEN_EXPIRE=${GMAIL_OAUTH_TOKEN_EXPIRE}
+      - GMAIL_AUTHORIZAION_CODE=${GMAIL_AUTHORIZAION_CODE}
     ports:
       - 8000:8000
   
