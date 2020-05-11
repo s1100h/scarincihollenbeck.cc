@@ -17,7 +17,7 @@ function FilterTitle(props) {
       </div>
     </li>
   );
-};
+}
 
 FilterTitle.propTypes = {
   designation: PropTypes.arrayOf(PropTypes.object),

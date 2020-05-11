@@ -94,7 +94,7 @@ CareerSection.propTypes = {
   filterTerm: PropTypes.func,
   selectOption: PropTypes.func,
   clearFilter: PropTypes.func,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 CareerSection.defaultProps = {

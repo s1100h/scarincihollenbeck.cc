@@ -83,7 +83,7 @@ class IndividualPractice extends Component {
       newsPosts,
       seo,
       currentTab: content[0].title,
-      corePractices
+      corePractices,
     });
   }
 

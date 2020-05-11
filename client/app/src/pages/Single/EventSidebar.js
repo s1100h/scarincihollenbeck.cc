@@ -23,24 +23,23 @@ function EventSidebar(props) {
         </div>
         <div className="off-white">
           {(eDetails !== undefined) && (
-              <div className="p-3">
-                <span dangerouslySetInnerHTML={createMarkup(eDetails.address)} />
-                <p>
-                  <strong>Date: </strong>
-                  {' '}
-                  {eDetails.date}
-                  <br />
-                  <strong>Start: </strong>
-                  {' '}
-                  {eDetails.start}
-                  <br />
-                  <strong>End: </strong>
-                  {' '}
-                  {eDetails.end}
-                </p>
-              </div>
-            )
-          }
+          <div className="p-3">
+            <span dangerouslySetInnerHTML={createMarkup(eDetails.address)} />
+            <p>
+              <strong>Date: </strong>
+              {' '}
+              {eDetails.date}
+              <br />
+              <strong>Start: </strong>
+              {' '}
+              {eDetails.start}
+              <br />
+              <strong>End: </strong>
+              {' '}
+              {eDetails.end}
+            </p>
+          </div>
+          )}
         </div>
       </div>
       {/** MENTIONED ATTORNEYS */}

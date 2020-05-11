@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function FilterKeyword(props){
+function FilterKeyword(props) {
   const { userInput, handleChange } = props;
 
   return (
@@ -13,7 +13,7 @@ function FilterKeyword(props){
       </label>
     </form>
   );
-};
+}
 
 FilterKeyword.propTypes = {
   userInput: PropTypes.string,

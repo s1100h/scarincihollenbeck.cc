@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Selected(props){
+function Selected(props) {
   const {
     select,
     userInput,
@@ -49,7 +49,7 @@ function Selected(props){
       }
     </ul>
   );
-};
+}
 
 Selected.propTypes = {
   select: PropTypes.arrayOf(PropTypes.object),

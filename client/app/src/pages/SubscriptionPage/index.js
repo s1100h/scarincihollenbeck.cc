@@ -26,7 +26,6 @@ class SubscriptionPage extends Component {
     const posts = [...main, ...latest, ...firstTwoArchives];
     // set filtered results to state
     this.setState({ posts });
-
   }
 
   render() {

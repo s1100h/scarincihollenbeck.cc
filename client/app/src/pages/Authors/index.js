@@ -23,7 +23,6 @@ class Author extends Component {
       seo: {},
       loading: false,
     };
-
   }
 
 
@@ -36,7 +35,9 @@ class Author extends Component {
       page = pageNum;
       breadCrumb[1] = pageNum;
     }
-    this.setState({ breadCrumb, categorySlug: author, currentPage: page, loading: true, }, async () => {
+    this.setState({
+      breadCrumb, categorySlug: author, currentPage: page, loading: true,
+    }, async () => {
       const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/posts/${author}/${page}`, { headers });
       const authorResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${author}`, { headers });
       const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
@@ -51,7 +52,7 @@ class Author extends Component {
       const pageNums = [];
       for (let i = 1; i <= pages; i += 1) {
         pageNums.push(i);
-      }     
+      }
 
       this.setState({
         results,
@@ -64,9 +65,8 @@ class Author extends Component {
         insight: firmInsights,
         loading: false,
       });
-      
     });
-  } 
+  }
 
   render() {
     const {
@@ -81,7 +81,7 @@ class Author extends Component {
       bio,
       practices,
       seo,
-      loading
+      loading,
     } = this.state;
 
     // pagination set up

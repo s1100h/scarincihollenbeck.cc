@@ -33,7 +33,7 @@ class PracticePortal extends Component {
       core,
       additional,
       business,
-      seo: practiceJson.seo
+      seo: practiceJson.seo,
     });
   }
 

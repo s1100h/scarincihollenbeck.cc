@@ -35,20 +35,23 @@ class Archives extends Component {
       breadCrumb[1] = pageNum;
     }
 
-    this.setState({ breadCrumb, categorySlug, currentPage: page, loading: true }, async () => {
-
+    this.setState({
+      breadCrumb, categorySlug, currentPage: page, loading: true,
+    }, async () => {
       const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${categorySlug}/${page}`, { headers });
       const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
       const postJson = await postResponse.json();
       const articleJson = await articlesResponse.json();
-      const { pages, results, posts, seo } = postJson;
+      const {
+        pages, results, posts, seo,
+      } = postJson;
       const { firmNews, firmInsights, firmEvents } = articleJson;
 
       const pageNums = [];
       for (let i = 1; i <= pages; i += 1) {
         pageNums.push(i);
       }
-  
+
       this.setState({
         results,
         seo,
@@ -57,11 +60,10 @@ class Archives extends Component {
         news: firmNews,
         events: firmEvents,
         insight: firmInsights,
-        loading: false
+        loading: false,
       });
     });
   }
-
 
 
   render() {
@@ -76,7 +78,7 @@ class Archives extends Component {
       categorySlug,
       currentPage,
       seo,
-      loading
+      loading,
     } = this.state;
 
     // pagination set up

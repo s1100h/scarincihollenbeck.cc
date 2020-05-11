@@ -23,9 +23,8 @@ function BreadCrumbs(props) {
             <FontAwesomeIcon icon={faCaretRight} className="red-title" />
           </strong>
         </span>
-      )
-    }
-    { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1)
+      )}
+      { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1)
         ? (
           <span key={val}>
             <span>
@@ -43,8 +42,7 @@ function BreadCrumbs(props) {
               {(val === categorySlug) ? (<u>{makeTitle(val)}</u>) : `${val}` }
             </a>
           </span>
-        )))       
-    }
+        )))}
     </h6>
 
   );

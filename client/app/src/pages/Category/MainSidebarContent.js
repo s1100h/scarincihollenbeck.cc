@@ -18,8 +18,7 @@ function MainSidebarContent(props) {
             </p>
           </a>
         </li>
-      ))
-    }
+      ))}
     </ul>
   );
 }

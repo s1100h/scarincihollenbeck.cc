@@ -21,7 +21,7 @@ function MobileMenu(props) {
       </select>
     </div>
   );
-};
+}
 
 MobileMenu.propTypes = {
   title: PropTypes.string,

@@ -28,17 +28,16 @@ const Sidebar = (props) => {
             <div className="off-white">
               <ul className="no-dots">
                 { attorneys.map((a) => (
-                    <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
-                      <a href={a.link} className="m-attorneys d-flex flex-row">
-                        <img src={a.image} alt={a.name} className="mr-2" />
-                        <span className="ml-2 related-attorneys">
-                          <h5 className="proxima-bold mb-0">{a.name}</h5>
-                          <p className="proxima-regular mt---6">{a.designation}</p>
-                        </span>
-                      </a>
-                    </li>
-                  ))
-                }
+                  <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
+                    <a href={a.link} className="m-attorneys d-flex flex-row">
+                      <img src={a.image} alt={a.name} className="mr-2" />
+                      <span className="ml-2 related-attorneys">
+                        <h5 className="proxima-bold mb-0">{a.name}</h5>
+                        <p className="proxima-regular mt---6">{a.designation}</p>
+                      </span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -54,14 +53,14 @@ Sidebar.propTypes = {
   posts: PropType.arrayOf(PropType.object),
   attorneys: PropType.arrayOf(PropType.object),
   show: PropType.bool,
-  toggleModal: PropType.func
+  toggleModal: PropType.func,
 };
 
 Sidebar.defaultProps = {
   posts: [],
   attorneys: [],
   show: false,
-  toggleModal: () => {}
+  toggleModal: () => {},
 };
 
 export default Sidebar;

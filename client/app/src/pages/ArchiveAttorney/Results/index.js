@@ -23,7 +23,7 @@ function Results(props) {
       }
     </div>
   );
-};
+}
 
 
 Results.propTypes = {

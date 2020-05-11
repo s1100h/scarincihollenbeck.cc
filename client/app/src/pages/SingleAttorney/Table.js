@@ -43,7 +43,7 @@ Table.propTypes = {
   tabTitle: PropTypes.string,
   content: PropTypes.objectOf(PropTypes.oneOfType(
     PropTypes.string,
-    PropTypes.array
+    PropTypes.array,
   )),
 };
 

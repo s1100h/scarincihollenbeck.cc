@@ -57,8 +57,10 @@ class LocationPortal extends Component {
     const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-location/posts/${location}`, { headers });
     const offices = await officeResponse.json();
     const posts = await postsResponse.json();
-    const { mapLink, attorneys, practices, seo } = offices;
-    
+    const {
+      mapLink, attorneys, practices, seo,
+    } = offices;
+
     this.setState({
       currentOfficeMap: mapLink,
       currentOfficeAttorneys: attorneys,
@@ -66,7 +68,6 @@ class LocationPortal extends Component {
       seo,
       posts,
     });
-  
   }
 
   render() {

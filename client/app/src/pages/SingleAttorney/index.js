@@ -24,7 +24,7 @@ class AttorneyBiography extends Component {
       currentTab: 'biography',
       currentSidebarTab: 'Related Practices',
       matterTab: '',
-      readMore: false
+      readMore: false,
     };
 
 
@@ -45,7 +45,6 @@ class AttorneyBiography extends Component {
     }
 
     this.setState({ matterTab, bio });
-
   }
 
   tabClick(e) {

@@ -13,7 +13,7 @@ function RelatedArticles(props) {
           (articles) ? (
             articles.map((v) => (
               <div className="col-sm-12 col-md-6 mb-3 article-card" key={v.ID}>
-                <a href={v.slug}>
+                <a href={v.link}>
                   <img src={(v.image) ? v.image : noImg} width="300" className="img-thumbnail mx-auto d-block" alt={v.title} />
                   <p className="small-excerpt text-center">{v.title}</p>
                 </a>

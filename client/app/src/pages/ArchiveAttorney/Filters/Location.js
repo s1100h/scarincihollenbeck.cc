@@ -16,7 +16,7 @@ function FilterLocation(props) {
       </div>
     </li>
   );
-};
+}
 
 FilterLocation.propTypes = {
   locations: PropTypes.arrayOf(PropTypes.object),

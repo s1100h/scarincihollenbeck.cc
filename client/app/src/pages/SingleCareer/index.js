@@ -48,7 +48,7 @@ class SingleCareer extends Component {
     const { career } = match.params;
     const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, { headers });
     const json = await response.json();
-    const { title, positionDescription, seo } = Json;
+    const { title, positionDescription, seo } = json;
 
     this.setState({
       currentId: career,
@@ -109,7 +109,7 @@ class SingleCareer extends Component {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
     };
 
     const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`, { headers });

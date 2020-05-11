@@ -12,7 +12,7 @@ function AttorneyServices(props) {
       </div>
       <div className="off-white p-3">
         <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
-        {
+          {
           (practices) && practices.map((p) => (
             <li key={p.title}>
               <a href={p.link} className="proxima-bold">

@@ -16,7 +16,7 @@ function Body(props) {
     prev,
     next,
     active,
-    loading
+    loading,
   } = props;
 
   return (

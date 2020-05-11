@@ -73,8 +73,7 @@ class CategoryBody extends Component {
         link: cp.slug,
       }));
 
-      this.setState({ corePractices, fiCategories: firmInsightsJson });     
-      
+      this.setState({ corePractices, fiCategories: firmInsightsJson });
     }
   }
 

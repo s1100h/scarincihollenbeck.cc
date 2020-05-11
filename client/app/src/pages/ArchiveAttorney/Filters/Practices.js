@@ -20,7 +20,7 @@ function PracticeListItem(props) {
       </div>
     </span>
   );
-};
+}
 
 function FilterPractices(props) {
   const { practices, onSelect, removeVisibilityClass } = props;
@@ -78,7 +78,7 @@ function FilterPractices(props) {
       </div>
     </li>
   );
-};
+}
 
 FilterPractices.propTypes = {
   practices: PropTypes.arrayOf(PropTypes.object),

@@ -22,10 +22,10 @@ function AttorneyCards(title, content) {
             width="80px"
             height="112px"
           />
-         </div>
+        </div>
       ))}
     </div>
-  )
+  );
 }
 
 class NotFiltered extends PureComponent {
@@ -51,16 +51,16 @@ class NotFiltered extends PureComponent {
 
     return (
       <div>
-        {AttorneyCards('Managing Partner',  managingPartners )}
-        {AttorneyCards('Partners',  partners )}
-        {AttorneyCards('Counsel',  counsel )}
-        {AttorneyCards('Of Counsel & Counsel Emeritus',  ofCounsel )}
-        {AttorneyCards('Senior Associates', seniorAssociates )}
-        {AttorneyCards('Associates', associates )}
+        {AttorneyCards('Managing Partner', managingPartners)}
+        {AttorneyCards('Partners', partners)}
+        {AttorneyCards('Counsel', counsel)}
+        {AttorneyCards('Of Counsel & Counsel Emeritus', ofCounsel)}
+        {AttorneyCards('Senior Associates', seniorAssociates)}
+        {AttorneyCards('Associates', associates)}
       </div>
     );
   }
-};
+}
 
 NotFiltered.propTypes = {
   attorneys: PropTypes.arrayOf(PropTypes.object),

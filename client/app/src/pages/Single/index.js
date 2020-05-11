@@ -41,7 +41,7 @@ class Single extends Component {
   async componentDidMount() {
     const { parent, child, post } = this.props.match.params;
     const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${post}`, { headers });
-    const json =  await response.json();
+    const json = await response.json();
     const {
       attorneys,
       author,
@@ -72,7 +72,7 @@ class Single extends Component {
       tags,
     });
 
-    
+
     // set timeout to trigger
     this.triggerSubscription();
   }

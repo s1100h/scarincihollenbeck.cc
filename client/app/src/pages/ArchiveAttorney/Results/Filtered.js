@@ -101,7 +101,7 @@ function Filtered(props) {
     }
     </div>
   );
-};
+}
 
 Filtered.propTypes = {
   attorneys: PropTypes.arrayOf(PropTypes.object),

@@ -293,8 +293,29 @@ ul {
 }
 
 /** Contact Page **/
-.disclaimer input{
-  width: 15px;
+.disclaimer {
+  input {
+    width:15px;
+  }
+  input, span {
+    float: left;
+  }
+  span {
+    font-size: 13px;
+    margin: 10px;
+  }
+}
+
+/** Category Archives **/
+#category-header {
+  h1 {
+    font-size:3rem;
+  }
+  div.proxima-regular {
+    p {
+      font-size:1.2rem;
+    }
+  }
 }
 
 /** Consent Message **/
@@ -306,6 +327,9 @@ ul {
     }
   }
 }
+
+
+
 
 /** standard Sidebar Stylings **/
 .sidebar-title {

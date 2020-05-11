@@ -79,20 +79,20 @@ function InfoCard(props) {
                   }
                   {
                     (vizibility) && (
-                        <li className="mb-0 lh-1">
-                          <h5>
-                            <FontAwesomeIcon icon={faAddressCard} className="text-white" />
-                            <a href={vizibility} className="text-white mail-link proxima-regular ft-17px position-relative icon">
-                              {' Download Contact'}
-                            </a>
-                          </h5>
-                        </li>
-                      )
+                    <li className="mb-0 lh-1">
+                      <h5>
+                        <FontAwesomeIcon icon={faAddressCard} className="text-white" />
+                        <a href={vizibility} className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                          {' Download Contact'}
+                        </a>
+                      </h5>
+                    </li>
+                    )
                   }
 
                 </ul>
               </span>
-            ) 
+            )
           }
         </div>
       </div>

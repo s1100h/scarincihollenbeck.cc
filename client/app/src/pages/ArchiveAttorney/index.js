@@ -7,7 +7,7 @@ import Filters from './Filters';
 import Selected from './Selected';
 import Results from './Results';
 
-const attArchiveBckGround ='https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
+const attArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
 
 class AttorneyArchive extends Component {
   constructor(props) {
@@ -149,7 +149,7 @@ class AttorneyArchive extends Component {
       select,
       userInput,
       seo,
-      loading
+      loading,
     } = this.state;
 
     // sort practices, designations, location
@@ -200,7 +200,7 @@ class AttorneyArchive extends Component {
                       />
                     ) : (
                       <div className="w-100 my-5">
-                          <h3 className="text-center red-title">Loading attorney list...</h3>
+                        <h3 className="text-center red-title">Loading attorney list...</h3>
                       </div>
                     )
                   }

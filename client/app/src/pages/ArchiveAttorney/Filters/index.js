@@ -65,7 +65,7 @@ function Filters(props) {
       </div>
     </span>
   );
-};
+}
 
 Filters.propTypes = {
   practices: PropTypes.arrayOf(PropTypes.object),

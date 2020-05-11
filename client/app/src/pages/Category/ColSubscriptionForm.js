@@ -221,8 +221,7 @@ class SubscriptionForm extends Component {
                   {item.name}
                 </label>
               </li>
-            ))
-            }
+            ))}
           </ul>
           <input type="submit" className="btn btn-danger" value="Submit" />
         </form>

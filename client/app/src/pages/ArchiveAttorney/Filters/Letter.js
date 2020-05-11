@@ -21,7 +21,7 @@ function FilterLetter(props) {
       </ul>
     </div>
   );
-};
+}
 
 FilterLetter.propTypes = {
   alphabet: PropTypes.arrayOf(PropTypes.string),

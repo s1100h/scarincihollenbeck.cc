@@ -35,7 +35,7 @@ function sort_obj_results($data)
 				"name" => html_entity_decode(htmlspecialchars_decode($d->post_title)),
 				"lastName" => extract_last_name(get_field("email", $d->ID)),
 				"link" => "/attorney/".$d->post_name,
-				"image" => get_the_post_thumbnail_url($d->ID),
+				"image" => get_the_post_thumbnail_url($d->ID, "full"),
 				"email" => get_field("email", $d->ID),
 				"contact" => get_field("phone_number", $d->ID),
 				"designation" => get_field("designation", $d->ID)
@@ -47,7 +47,7 @@ function sort_obj_results($data)
 			"name" => html_entity_decode(htmlspecialchars_decode($data[0]->post_title)),
 			"lastName" => extract_last_name(get_field("email", $data[0]->ID)),
 			"link" => "/attorney/".$data[0]->post_name,
-			"image" => get_field("profile_image", $data[0]->ID)["url"],
+			"image" => get_the_post_thumbnail_url($data[0]->ID, "full"),
 			"email" => get_field("email", $data[0]->ID),
 			"contact" => get_field("phone_number", $data[0]->ID),
 			"designation" => get_field("designation",$data [0]->ID)

@@ -136,9 +136,9 @@ class ContactForm extends Component {
             individual member of the firm does not establish an attorney-client relationship.
             Confidential or time-sensitive information should not be sent through this form.
           </p>
-          <label htmlFor="disclaimer" className="d-flex flex-row mt-3 disclaimer">
+          <label htmlFor="disclaimer" className="mt-3 disclaimer">
             <input type="checkbox" className="form-control" id="disclaimer" name="disclaimer" required />
-            <span className="text-muted small-excerpt mt-0">I have read the disclaimer *</span>
+            <span className="text-muted">* I have read the disclaimer</span>
           </label>
         </div>
         <input type="submit" className="ml-2 w-25 mt-2 btn btn-danger" value="Submit" />

@@ -19,7 +19,7 @@ function Body(props) {
     active,
     loading,
   } = props;
-  console.log(loading)
+  console.log(loading);
 
   return (
     <div>

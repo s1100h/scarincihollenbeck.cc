@@ -21,7 +21,7 @@ class AdminBiography extends Component {
     const { admin } = this.props.match.params;
     const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${admin}`, { headers });
     const json = await response.json();
-    this.setState({ admin: json })
+    this.setState({ admin: json });
   }
 
   render() {

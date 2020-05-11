@@ -34,8 +34,6 @@ class FrontPage extends Component {
     const posts = [...news, ...events];
     const locations = officeJson.offices;
 
-    console.log(corePractices);
-    
     this.setState({ seo });
     this.setState({ posts });
     this.setState({ locations });

@@ -120,11 +120,11 @@ class FirmPage extends Component {
             />
 )}
           sidebar={((relatedPages.length > 0) && (
-              <Sidebar
-                searchTerm={searchTerm}
-                relatedPages={relatedPages}
-                onChange={this.onChange}
-              />
+          <Sidebar
+            searchTerm={searchTerm}
+            relatedPages={relatedPages}
+            onChange={this.onChange}
+          />
           ))}
         />
       </div>
