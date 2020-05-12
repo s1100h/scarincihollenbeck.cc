@@ -319,6 +319,11 @@ ul {
 }
 
 /** Covid 19 Response Page **/
+.card-img-top {
+  flex-shrink: 0;
+  width: 100%;
+}
+
 #covid-19-response-team {
   padding-left:0px;
   .row {
@@ -341,14 +346,6 @@ ul {
     }
   }
 }
-
-#covid-post {
-  .card-img-top {
-    flex-shrink: 0;
-    width: 100%;
-  }  
-}
-
 /** Consent Message **/
 .cookieConsent {
   div {
