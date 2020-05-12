@@ -319,13 +319,13 @@ ul {
 }
 
 /** Covid 19 Response Page **/
-
 #covid-19-response-team {
   padding-left:0px;
   .row {
     margin-bottom: 1em !important;
     .col-sm-12 {
       .attorney-card {
+        flex-direction: column;
         a {
           background-color:black;
         }
@@ -340,6 +340,16 @@ ul {
       }
     }
   }
+}
+
+#covid-post {
+  .card-img-top {
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
 }
 
 /** Consent Message **/
