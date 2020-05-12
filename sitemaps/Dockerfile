@@ -7,6 +7,4 @@ WORKDIR /src
 ADD app /src
 RUN npm install
 
-EXPOSE 8700
-
 CMD npm run start

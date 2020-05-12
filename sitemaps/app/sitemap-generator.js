@@ -1,12 +1,19 @@
 const request = require('superagent');
 const fs = require('fs');
+const CronJob = require('cron').CronJob;
 
 const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
 
-const SITE_URL = 'https://scarincihollenbeck.com';
+const SITE_URL = 'https://admin.scarincihollenbeck.com';
+
+
+// modify url to remove admin.
+function modUrl(url) {
+  return url.replace('admin.','');
+}
 
 // build sitemap
 function buildSitemap(urlList) {
@@ -28,24 +35,29 @@ function buildRouteLinks(content) {
 
     if(post.hasOwnProperty('slug')) {
       if(post.slug.indexOf(SITE_URL) > -1) {
-        results.push(post.slug);
+        const url = modUrl(post.slug);
+        results.push(url);
       }else {
-        results.push(`${SITE_URL}${post.slug}`);
+        const url = `http://scarincihollenbeck.com/${post.slug}`;
+        results.push(url);
       }
     };
 
     if(post.hasOwnProperty('link')) {
       if(post.link.indexOf(SITE_URL) > -1) {
-        results.push(post.link)
+        const url = modUrl(post.link);
+        results.push(url);
       }else {
-        results.push(`${SITE_URL}${post.link}`);
+        const url = `http://scarincihollenbeck.com/${post.link}`;
+        results.push(url);
       }
     }
 
     if(post.hasOwnProperty('children')) {
       if(post.children.length > 0) {
         post.children.forEach((child) => {
-          results.push(child.slug);
+          const url = modUrl(child.slug);
+          results.push(url);
         })
       }
     }
@@ -87,12 +99,12 @@ async function getSiteLinks() {
   
     // basic pages
     const basicLinks = [
-      `${SITE_URL}`,
-      `${SITE_URL}/attorneys`,
-      `${SITE_URL}/locations`,
-      `${SITE_URL}/careers`,
-      `${SITE_URL}/practices`,
-      `${SITE_URL}/law-practices`
+      `https://scarincihollenbeck.com`,
+      `https://scarincihollenbeck.com/attorneys`,
+      `https://scarincihollenbeck.com/locations`,
+      `https://scarincihollenbeck.com/careers`,
+      `https://scarincihollenbeck.com/practices`,
+      `https://scarincihollenbeck.com/law-practices`
     ];
 
     const siteMapLinks = [
@@ -108,13 +120,21 @@ async function getSiteLinks() {
 
     const sitemap = buildSitemap(siteMapLinks);
 
-    fs.writeFile('./sitemap.xml', sitemap, (err) => {
+    fs.writeFile('../../client/app/dist/sitemap.xml', sitemap, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
   
       // success case, the file was saved
-      console.log('Sitemap created!');
+      console.log('Sitemap created dist directory!');
   });
+
+  fs.writeFile('../../client/app/sitemap.xml', sitemap, (err) => {
+    // throws an error, you could also catch it here
+    if (err) throw err;
+
+    // success case, the file was saved
+    console.log('Sitemap created in src directory');
+});
 
     
   } catch(err) {
@@ -123,4 +143,9 @@ async function getSiteLinks() {
   }
 };
 
-exports.getSiteLinks = getSiteLinks;
+// 0 23 * * 0    
+const job = new CronJob('0 23 * * 0', async () => {
+  await getSiteLinks();
+}, null, true, 'America/New_York');
+
+job.start();
