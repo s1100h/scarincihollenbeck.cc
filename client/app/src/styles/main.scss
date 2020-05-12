@@ -344,12 +344,9 @@ ul {
 
 #covid-post {
   .card-img-top {
-    border-top-left-radius: calc(.25rem - 1px);
-    border-top-right-radius: calc(.25rem - 1px);
     flex-shrink: 0;
     width: 100%;
-  }
-  
+  }  
 }
 
 /** Consent Message **/
