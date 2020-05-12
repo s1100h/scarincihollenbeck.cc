@@ -4,6 +4,7 @@ import compression = require('compression');
 import cors = require('cors')
 import bodyParser = require('body-parser')
 import { fetchData } from '../workers/run-workers';
+import { executeWorkers } from '../workers';
 import { IndexRouter } from './controllers/v0/index.router';
 
 (async () => {
@@ -23,8 +24,9 @@ import { IndexRouter } from './controllers/v0/index.router';
   
   
     // Start the Server
-    app.listen(port, () => {
-      fetchData();
+    app.listen(port, async() => {
+      await fetchData();
+      await executeWorkers();
       console.log('/cached api running');
       console.log(`server running on ${port}`);
       console.log('press CTRL+C to stop server');

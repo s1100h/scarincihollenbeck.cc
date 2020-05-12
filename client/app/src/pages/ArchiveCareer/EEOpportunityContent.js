@@ -15,7 +15,7 @@ const EEOpportunityContent = () => (
           <p className="proxima-bold">
             TO READ ABOUT SCARINCI HOLLENBECK’S COMMITMENT TO DIVERSITY,
             {' '}
-            <a href={`${window.location.host}/diversity`} className="red-title proxima-bold">
+            <a href={`${window.location.origin}/diversity`} className="red-title proxima-bold">
               <u>
                 CLICK HERE.
               </u>
