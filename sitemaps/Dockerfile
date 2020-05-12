@@ -9,4 +9,4 @@ RUN npm install
 
 EXPOSE 8700
 
-RUN npm run start
+CMD npm run start

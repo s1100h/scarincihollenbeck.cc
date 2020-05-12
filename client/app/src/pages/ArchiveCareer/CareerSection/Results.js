@@ -19,7 +19,7 @@ function Results(props) {
           )}
           {(loading === false && positions.length < 1) && (
             <div className="w-100 my-5">
-              <h3 className="text-center red-title">Sorry, career position availabled based on that query.</h3>
+              <h3 className="text-center red-title">Sorry, no career position available...</h3>
             </div>
           )}
           {(loading === false) && positions.map((p) => (

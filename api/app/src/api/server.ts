@@ -4,7 +4,6 @@ import compression = require('compression');
 import cors = require('cors')
 import bodyParser = require('body-parser')
 import { fetchData } from '../workers/run-workers';
-
 import { IndexRouter } from './controllers/v0/index.router';
 
 (async () => {

@@ -17,8 +17,8 @@ const getSiteLinks = require('./sitemap-generator.js');
        res.sendFile(path.join(__dirname , 'sitemap.xml'));
     });
 
-    
-    const job = new CronJob('0 23 * * 0 ', function() {
+    // 0 23 * * 0    
+    const job = new CronJob('* * * * * ', function() {
       getSiteLinks();
     }, null, true, 'America/New_York');
 
