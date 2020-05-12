@@ -16,7 +16,7 @@ const NavBar = () => (
               <span className="navbar-toggler-icon" />
             </button>
             {/** Dropdown Menu */}
-            <div id="navbarSupportedContent" className="navbar-collapse collapse show">
+            <div id="navbarSupportedContent" className="navbar-collapse collapse">
               <ul id="menu-main-menu" className="navbar-nav ml-auto py-4 py-md-0">
                 <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" className="dropdown nav-item">
                   <div title="The Firm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle nav-link span-hover">

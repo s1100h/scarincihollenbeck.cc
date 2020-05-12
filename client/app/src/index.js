@@ -69,7 +69,16 @@ const Search = lazy(() => import(/* webpackPreload: true */ './pages/Search'));
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-/**
+/** 
+ * Util Sheets
+ */
+ import './styles/utils/attorney-card.scss';
+ import './styles/utils/carousel.scss';
+ import './styles/utils/just-in-carousel.scss';
+ import './styles/utils/location-carousel.scss';
+ import './styles/utils/spacing-and-fonts.scss';
+
+ /**
 * Custom Style Sheets
 **/
 import './styles/main.scss';
@@ -81,15 +90,6 @@ import './styles/single-admin&attorney&career&page&single.scss';
 import './styles/single-practice.scss';
 import './styles/subscription-form.scss';
 import './styles/firm-page.scss';
-
-/** 
- * Util Sheets
- */
- import './styles/utils/attorney-card.scss';
- import './styles/utils/carousel.scss';
- import './styles/utils/just-in-carousel.scss';
- import './styles/utils/location-carousel.scss';
- import './styles/utils/spacing-and-fonts.scss';
 
 /**
  * Routes
