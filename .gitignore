@@ -5,8 +5,7 @@ client/app/node_modules/*
 feed/app/node_modules/*
 forms/app/node_modules/*
 sitemaps/app/node_modules/*
-admin/app/wp-content/themes/sh-law-theme/node_modules/*
-admin/app/wp-content/themes/sh-law-theme/js/node_modules/*
+admin/app/wp-content/*
 admin/.env
 admin/app/wp-admin/*
 admin/app/wp-includes/*

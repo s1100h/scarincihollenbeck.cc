@@ -168,7 +168,7 @@ class WPMUDEV_Dashboard {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate_plugin' ) );
 
 		// Register the plugin uninstall hook.
-		register_uninstall_hook( __FILE__, array( 'WPMUDEV_Dashboard', 'uninstall_plugin' ) );
+		register_uninstall_hook( __FILE__, array( 'WPMUDEV_Dashboard', 'uninstall_plugin' ) );		  	  		 	  	 			  
 
 		/**
 		 * Custom code can be executed after Dashboard is initialized with the
