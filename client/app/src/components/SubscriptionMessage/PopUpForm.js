@@ -23,6 +23,7 @@ class SubscriptionForm extends Component {
       lastName: '',
       categories: [],
       message: false,
+      disabled: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -92,11 +93,10 @@ class SubscriptionForm extends Component {
     };
 
     const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/subscription/form`, headers);
-    const jsonResponse = await request.json();
-    const { status } = jsonResponse;
+    const status = await request.status;
     
     if (status === 200) {
-      this.setState({ message: true });
+      this.setState({ message: true, disabled: true });
     }
   }
 
@@ -117,6 +117,7 @@ class SubscriptionForm extends Component {
       message,
       lastName,
       firstName,
+      disabled
     } = this.state;
 
 
@@ -161,9 +162,9 @@ class SubscriptionForm extends Component {
                 }
               </ul>
               <div className="modal-footer">
-                {(message) && <p className="text-success">Thank you for subscribing!</p>}
+                {(message) && <p className="text-success proxima-bold mx-auto">Thank you for subscribing!</p>}
                 <button type="button" onClick={() => this.hideSubscription()} className="btn btn-secondary proxima-bold" data-dismiss="modal">Close</button>
-                <input type="submit" className="btn btn-danger" value="Submit" />
+                <input type="submit" className="btn btn-danger" disabled={disabled} value="Submit" />
               </div>
             </form>
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PropUpForm from './PopUpForm';
+import PopUpForm from './PopUpForm';
 const SHDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 function SubscriptionMessage(props){
@@ -21,7 +21,7 @@ function SubscriptionMessage(props){
           Subscribe Now!
         </button>
         <div className={(show) ? 'modal fade show' : 'modal fade'} id="subscriptionModal" tabIndex="-1" role="dialog" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
-          <PropUpForm />
+          <PopUpForm />
         </div>
       </div>
     </div>

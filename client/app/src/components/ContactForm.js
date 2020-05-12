@@ -13,6 +13,7 @@ class ContactForm extends Component {
       subject: '',
       message: '',
       successMessage: false,
+      disabled: false,
     };
 
     this.onFormChange = this.onFormChange.bind(this);
@@ -82,11 +83,10 @@ class ContactForm extends Component {
     };
 
     const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/contact/form`, headers);
-    const jsonResponse = await request.json();
-    const { status } = jsonResponse;
+    const status = await request.status;
     
     if (status === 200) {
-      this.setState({ message: true });
+      this.setState({ successMessage: true, disabled: true });
     }
 
   }
@@ -100,6 +100,7 @@ class ContactForm extends Component {
       subject,
       message,
       successMessage,
+      disabled,
     } = this.state;
 
     return (
@@ -141,8 +142,8 @@ class ContactForm extends Component {
             <span className="text-muted">* I have read the disclaimer</span>
           </label>
         </div>
-        <input type="submit" className="ml-2 w-25 mt-2 btn btn-danger" value="Submit" />
-        {(successMessage) ? <p className="text-success">Thank you for your inquiry one of our representative will reach out to you shortly!</p> : ''}
+        <input type="submit" className="ml-2 w-25 mt-2 btn btn-danger" disabled={disabled} value="Submit" />
+        {(successMessage) ? <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p> : ''}
       </form>
     );
   }
