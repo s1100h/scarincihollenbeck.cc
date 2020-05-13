@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { addRandomKey, createMarkup, urlify } from '../utils/helpers';
 
 const ArticleContainer = styled.div`
-  height: 545px;
+  height: 470px;
   overflow:hidden;
   overflow-y: auto;
 `;

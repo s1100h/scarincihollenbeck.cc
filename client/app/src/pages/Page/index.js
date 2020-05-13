@@ -34,27 +34,25 @@ class Page extends Component {
   async componentDidMount() {
     const { location } = this.props;
     const page = location.pathname;
-    const pageResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page${page}`);
-    const pageJson = await pageResponse.json();
-    const { content, title, seo } = pageJson;
-
-    if (page.indexOf('covid-19-crisis-management-unit') > -1) {
-      const covidResponse = await fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers });
-      const posts = await covidResponse.json();
-      this.setState({ posts, covidPage: true });
-    } else {
-      const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers });
-      const postJson = await postResponse.json();
-      const { posts } = postJson;
-      this.setState({ posts: data.posts });
-    }
+    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page${page}`);
+    const json = await response.json();
+    const { content, title, seo } = json;
 
     this.setState({
       title, content, seo,
     });
 
-
-    // get latest posts
+    if (page.indexOf('covid-19-crisis-management-unit') > -1) {
+      const covidResponse = await fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers });
+      const posts = await covidResponse.json();
+      this.setState({ posts, covidPage: true });
+    }
+    
+    const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers });
+    const postJson = await postResponse.json();
+    const { posts } = postJson;
+    this.setState({ posts });
+    
   }
 
 

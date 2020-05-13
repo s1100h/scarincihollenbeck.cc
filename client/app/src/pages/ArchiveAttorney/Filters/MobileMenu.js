@@ -15,7 +15,7 @@ function MobileMenu(props) {
         <option value="">{title}</option>
         {
           content.map((p) => (
-            <option key={p.ID} value={p.title} name="practices" className="mobile-option">{p.title}</option>
+            <option key={p.title} value={p.title} name="practices" className="mobile-option">{p.title}</option>
           ))
         }
       </select>

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ArchiveHead from '../../components/Head/archive';
 import Search from '../../components/Search';
+import ErrorBoundary from '../../components/ErrorBoundary';
 import FullWidth from '../../layouts/FullWidth';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import Breadcrumbs from './Breadcrumbs';
@@ -94,7 +95,7 @@ class CategoryBody extends Component {
 
 
     return (
-      <div>
+      <ErrorBoundary>
         <ArchiveHead seo={seo} />
         <div id="category">
           <FullWidth>
@@ -161,7 +162,7 @@ class CategoryBody extends Component {
             </p>
           </FullWidth>
         </div>
-      </div>
+      </ErrorBoundary>
     );
   }
 }

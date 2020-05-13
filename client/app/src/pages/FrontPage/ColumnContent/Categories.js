@@ -16,17 +16,17 @@ function Categories(props) {
           </p>
           <select id="category" className="home-select w-100 p-2" onChange={onCategorySelection}>
             <option>Select Category</option>
-            <option value="/category/law-firm-insights/business-law/">Business Law</option>
-            <option value="/category/law-firm-insights/cannabis-law/">Cannabis Law</option>
-            <option value="/category/law-firm-insights/commercial-real-estate/">Commercial Real Estate</option>
-            <option value="/category/law-firm-insights/entertainment-and-media/">Entertainment and Media</option>
-            <option value="/category/law-firm-insights/environmental-land-use/">Environmental and Land Use</option>
-            <option value="/category/law-firm-insights/intellectual-property/">Intellectual Property</option>
-            <option value="/category/law-firm-insights/labor-employment/">Labor and Employment</option>
-            <option value="/category/law-firm-insights/litigation/">Litigation</option>
-            <option value="/category/law-firm-insights/public-law/">Public Law</option>
-            <option value="/category/law-firm-insights/tax/">Tax</option>
-            <option value="/category/law-firm-insights/technology/">Technology</option>
+            <option value="/category/business-law/">Business Law</option>
+            <option value="/category/cannabis-law/">Cannabis Law</option>
+            <option value="/category/commercial-real-estate/">Commercial Real Estate</option>
+            <option value="/category/entertainment-and-media/">Entertainment and Media</option>
+            <option value="/category/environmental-land-use/">Environmental and Land Use</option>
+            <option value="/category/intellectual-property/">Intellectual Property</option>
+            <option value="/category/labor-employment/">Labor and Employment</option>
+            <option value="/category/litigation/">Litigation</option>
+            <option value="/category/public-law/">Public Law</option>
+            <option value="/category/tax/">Tax</option>
+            <option value="/category/technology/">Technology</option>
           </select>
         </label>
       </form>

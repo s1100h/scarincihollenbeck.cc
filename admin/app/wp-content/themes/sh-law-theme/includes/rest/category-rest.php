@@ -262,7 +262,7 @@ function category_data($request) {
     $post_data['seo'] = (object)array(
       "title" => $seo_title,
       "metaDescription" => $seo_metadescription,
-      "canonicalLink" => "/category/".$slug
+      "canonicalLink" => "category/".$slug
     );
 
     $post_data['description'] = category_description($id);

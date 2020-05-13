@@ -214,7 +214,7 @@ function single_data($request) {
       "tags" =>  (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),
       "publishedDate" => get_the_date('Y-m-d H:i:s', $post_id),
       "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
-      "postContent" => html_entity_decode(htmlspecialchars_decode($post_content)),
+      "postContent" => html_entity_decode(htmlspecialchars_decode(str_replace('"', '', $post_content))),
       "primaryCategory" => $categories[0],
       "author" => implode($authors_names)
     )

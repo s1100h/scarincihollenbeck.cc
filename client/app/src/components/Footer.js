@@ -78,13 +78,7 @@ class Footer extends Component {
                     {' '}
                     |
                     {' '}
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="/disclaimer" className="proxima-bold red-title h6">Disclaimer</a>
-                    {' '}
-                    |
-                    {' '}
-                  </li>
+                  </li>                 
                   <li className="list-inline-item">
                     <a href="/terms-of-use" className="proxima-bold red-title h6">Terms of Use</a>
                     {' '}

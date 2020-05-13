@@ -17,7 +17,7 @@ function Selected(props) {
           <li className="list-inline-item">
             <button
               type="button"
-              className="btn btn-link red-title"
+              className="btn btn-link red-title proxima-bold"
               id={userInput}
               onClick={() => clearQuery('query')}
               data-toggle="tooltip"
@@ -34,7 +34,7 @@ function Selected(props) {
          <li className=" list-inline-item" key={s.key}>
            <button
              type="button"
-             className="btn btn-link red-title"
+             className="btn btn-link red-title proxima-bold"
              id={s.selected}
              onClick={() => clearQuery(s.key)}
              data-toggle="tooltip"

@@ -2,93 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const checkboxes = [
-  {
-    key: 'business',
-    label: 'Business Law',
-    name: 'Business Law',
-    property: 'column_1',
-  },
-  {
-    key: 'firmnews',
-    label: 'Firm News',
-    name: 'Firm News',
-    property: 'column_1',
-  },
-  {
-    key: 'publiclaw',
-    label: 'Public Law',
-    name: 'Public Law',
-    property: 'column_1',
-  },
-  {
-    key: 'technology',
-    label: 'Technology',
-    name: 'Technology',
-    property: 'column_1',
-  },
-  {
-    key: 'tax',
-    label: 'Tax',
-    name: 'Tax',
-    property: 'column_1',
-  },
-  {
-    key: 'firmevents',
-    label: 'Firm Events',
-    name: 'Firm Events',
-    property: 'column_1',
-  },
-  {
-    key: 'cannabis',
-    label: 'Cannabis Law',
-    name: 'Cannabis Law',
-    property: 'column_1',
-  },
-  {
-    key: 'commercialRealEstate',
-    label: 'Commercial Real Estate',
-    name: 'Commercial Real Estate',
-    property: 'column_two',
-  },
-  {
-    key: 'covid19Alert',
-    label: 'Covid-19 Alert',
-    name: 'Covid-19 Alert',
-    property: 'column_two',
-  },
-  {
-    key: 'entertainmentSports',
-    label: 'Entertainment & Sports',
-    name: 'Entertainment & Sports',
-    property: 'column_two',
-  },
-  {
-    key: 'environmentalLandUse',
-    label: 'Environmental & Land Use',
-    name: 'Environmental & Land Use',
-    property: 'column_two',
-  },
-  {
-    key: 'intellectualProperty',
-    label: 'Intellectual Property',
-    name: 'Intellectual Property',
-    property: 'column_two',
-  },
-  {
-    key: 'laboremployment',
-    label: 'Labor Employment',
-    name: 'Labor Employment',
-    property: 'column_two',
-  },
-  {
-    key: 'litigation',
-    label: 'Litigation',
-    name: 'Litigation',
-    property: 'column_two',
-  },
-];
+import { checkboxes } from '../../utils/categories';
 
 const Checkbox = ({
   property,
@@ -212,9 +126,9 @@ class SubscriptionForm extends Component {
           <div className="form-group mb-0">
             <p className="small-excerpt">Please select a category(s) below:</p>
           </div>
-          <ul className="no-dots two-column">
+          <ul className="no-dots two-column mt-3 ml-0">
             {checkboxes.map((item) => (
-              <li key={item.key} className="mb--1">
+              <li key={item.key} className="small-excerpt mb--1">
                 <label htmlFor={item.name}>
                   <Checkbox id={item.name} className="d-block" name={item.name} property={item.property} onChange={this.handleCategoryChange} />
                   {' '}

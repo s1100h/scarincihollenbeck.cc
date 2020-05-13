@@ -82,8 +82,8 @@ function quick_news_data($request) {
   $quick_news_content['seo'] = (object)array(
     "title" => $seo_title,
     "metaDescription" => $seo_metadescription,
-    "canonicalLink" => "/category/quick-news"
+    "canonicalLink" => "category/quick-news"
   );
 
-  return $quick_news_content;
+  return rest_ensure_response($quick_news_content);
 }
