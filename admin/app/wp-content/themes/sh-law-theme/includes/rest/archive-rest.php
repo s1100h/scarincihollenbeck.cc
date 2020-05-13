@@ -91,7 +91,7 @@ function archive_query_data($request) {
   $archive_data['seo'] = (object)array(
     "title" => $seo_title,
     "metaDescription" => $seo_metadescription,
-    "canonicalLink" => "/"
+    "canonicalLink" => "/archives/".$slug
   );
 
   return $archive_data;

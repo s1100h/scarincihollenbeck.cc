@@ -33,7 +33,7 @@ function individual_page_data($request) {
     "seo" => (object)array(
       "title" => get_post_meta($page->ID,'_yoast_wpseo_title', true),
       "metaDescription" => get_post_meta($page->ID,'_yoast_wpseo_metadesc', true),
-      "canonicalLink" => "/"
+      "canonicalLink" => $slug
     )    
   );
   return $page_contents;

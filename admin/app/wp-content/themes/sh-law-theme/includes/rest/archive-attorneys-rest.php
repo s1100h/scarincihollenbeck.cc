@@ -40,7 +40,7 @@ function attorney_meta() {
   $seo = (object)array(
     "title" => "Find an Attorney | Scarinci Hollenbeck, LLC",
     "metaDescription" => "In Scarinci Hollenbeck's attorneys archive, you can find one of our skillful attorneys who can service your business legal needs.",
-    "canonicalLink" => "/"
+    "canonicalLink" => "attorneys"
   );
   return $seo;
 };

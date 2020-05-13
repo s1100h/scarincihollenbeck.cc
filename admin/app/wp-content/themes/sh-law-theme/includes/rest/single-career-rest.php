@@ -49,7 +49,7 @@ function individual_career_data($request)
       "seo" => (object)array(
         "title" => get_post_meta( $id, '_yoast_wpseo_title', true),
         "metaDescription" => get_post_meta( $id, '_yoast_wpseo_metadesc', true),
-        "canonicalLink" => $slug
+        "canonicalLink" => "/career/.$slug
       )
   );
 	

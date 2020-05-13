@@ -57,7 +57,7 @@ add_action( 'rest_api_init', function () {
    $portal_data['seo'] = (object)array(
     "title" => "Scarinci Hollenbeck NY, NJ, DC, CA Office Locations",
     "metaDescription" => "To best serve our clients, Scarinci Hollenbeck has attorneys in office locations in New York, New Jersery, Washington D.C., and San Francisco, CA.",
-    "canonicalLink" => "/",
+    "canonicalLink" => "locations",
 
    );
    return rest_ensure_response($portal_data);

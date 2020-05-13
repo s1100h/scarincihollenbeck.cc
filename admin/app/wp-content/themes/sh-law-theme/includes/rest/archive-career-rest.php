@@ -51,7 +51,7 @@ function career_portal_data()
   $career_portal_data['seo'] = (object)array(
     "title" => "Careers & Positions | Scarinci Hollenbeck, LLC",
     "metaDescription" => "Careers & Available Positions. Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys.",
-    "canonicalLink" => "/"
+    "canonicalLink" => "careers"
   );
 
 
