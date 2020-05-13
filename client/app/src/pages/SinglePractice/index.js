@@ -122,8 +122,6 @@ class IndividualPractice extends Component {
       error
     } = this.state;
 
-    console.log(error);
-
     if(error) {
       return <Page404 />
     }
