@@ -15,6 +15,11 @@ function modUrl(url) {
   return url.replace('admin.','');
 }
 
+// remove dublicate links
+function getDuplicates(arr) {
+  return arr.filter((value, index) => arr.indexOf(value) !== index);
+}
+
 // build sitemap
 function buildSitemap(urlList) {
   let sitemap = `<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
@@ -30,7 +35,8 @@ function buildSitemap(urlList) {
 }
 
 function buildRouteLinks(content) {
-  results = []
+  results = [];
+
   content.forEach((post) => {
 
     if(post.hasOwnProperty('slug')) {
@@ -48,7 +54,7 @@ function buildRouteLinks(content) {
         const url = modUrl(post.link);
         results.push(url);
       }else {
-        const url = `http://scarincihollenbeck.com/${post.link}`;
+        const url = `http://scarincihollenbeck.com${post.link}`;
         results.push(url);
       }
     }
@@ -62,12 +68,18 @@ function buildRouteLinks(content) {
       }
     }
 
+
   });
 
-  return results
+  const prunedResults = getDuplicates(results);
+
+  return prunedResults;
 }
 
 async function getSiteLinks() {
+  const flame = String.fromCodePint(0x1F525);
+  const poop = String.fromCodePint(0x1F4A9);
+
   try {    
     // blog posts 
     const sitePosts = await request.get(`${SITE_URL}/wp-json/wp/v2/posts?post_per_page=2`).set(headers).then((res) => JSON.parse(res.text));
@@ -92,10 +104,6 @@ async function getSiteLinks() {
     // page links
     const sitePages = await request.get(`${SITE_URL}/wp-json/wp/v2/pages`).set(headers).then((res) => JSON.parse(res.text));
     const pagesLinks = await buildRouteLinks(sitePages);
-
-    // all categories
-    const categoryPages = await request.get(`${SITE_URL}/wp-json/wp/v2/pages`).then((res) => JSON.parse(res.text));
-    const categoryLinks = await buildRouteLinks(categoryPages);
   
     // basic pages
     const basicLinks = [
@@ -104,7 +112,11 @@ async function getSiteLinks() {
       `https://scarincihollenbeck.com/locations`,
       `https://scarincihollenbeck.com/careers`,
       `https://scarincihollenbeck.com/practices`,
-      `https://scarincihollenbeck.com/law-practices`
+      `https://scarincihollenbeck.com/law-practices`,
+      `https://scarincihollenbeck.com/category/law-firm-insights`,
+      `https://scarincihollenbeck.com/category/firm-news`,
+      `https://scarincihollenbeck.com/category/firm-events`,
+      `https://scarincihollenbeck.com/category/quick-news`
     ];
 
     const siteMapLinks = [
@@ -121,19 +133,21 @@ async function getSiteLinks() {
     const sitemap = buildSitemap(siteMapLinks);
 
     fs.writeFile('../../client/app/dist/sitemap.xml', sitemap, (err) => {
-      // throws an error, you could also catch it here
-      if (err) throw err;
-  
-      // success case, the file was saved
-      console.log('Sitemap created dist directory!');
+      try {
+        console.log(`${flame} success! new sitemap is is client src/dist directory.`);
+      }catch(err) {
+        console.log(`${poop} Shit! there was an error adding the sitemap to src/dist directory.`);
+        return new Error(err);
+      }
   });
 
   fs.writeFile('../../client/app/sitemap.xml', sitemap, (err) => {
-    // throws an error, you could also catch it here
-    if (err) throw err;
-
-    // success case, the file was saved
-    console.log('Sitemap created in src directory');
+    try {
+      console.log(`${flame} success! new sitemap is is client src directory.`);
+    }catch(err) {
+      console.log(`${poop} Shit! there was an error adding the sitemap to src/dist directory.`);
+      return new Error(err);
+    }
 });
 
     

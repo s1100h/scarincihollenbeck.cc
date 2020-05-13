@@ -12,7 +12,7 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 
 function InfoCard(props) {
   const {
-    Title,
+    title,
     phone_extension,
     email,
     social_media_links,
@@ -29,7 +29,7 @@ function InfoCard(props) {
         </div>
         <div className="col-sm-12 mt--1 mb-2 mx-0">
           <h5 className="text-white">
-            {Title}
+            {title}
           </h5>
         </div>
         <div className="col-sm-12 col-md-6">
@@ -102,7 +102,7 @@ function InfoCard(props) {
 
 InfoCard.propTypes = {
   name: PropTypes.string,
-  Title: PropTypes.string,
+  title: PropTypes.string,
   phone_extension: PropTypes.string,
   email: PropTypes.string,
   social_media_links: PropTypes.arrayOf(PropTypes.object),
@@ -110,7 +110,7 @@ InfoCard.propTypes = {
 };
 
 InfoCard.defaultProps = {
-  Title: '',
+  title: '',
   name: '',
   phone_extension: '',
   email: '',

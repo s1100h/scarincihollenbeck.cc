@@ -35,13 +35,13 @@ function AdminHead(props){
         {
           "@context": "http://www.schema.org",
           "@type": "Person",
-          "@id": ${window.location.origin}/${seo.canonicalLink},
-          "name": ${seo.name},
-          "alternateName": ${seo.title},
+          "@id":"${window.location.origin}/${seo.canonicalLink}",
+          "name": "${seo.name}",
+          "alternateName":" ${seo.title}",
           "nationality": "American",
-          "Description": ${seo.metaDescription},
-        "disambiguatingDescription": ${seo.metaDescription},
-        "jobTitle": ${seo.jobPosition},
+          "Description": "${seo.metaDescription}",
+        "disambiguatingDescription": "${seo.metaDescription}",
+        "jobTitle": "${seo.jobPosition}",
         "worksFor": [
           {
             "@type": "Organization",
@@ -53,11 +53,11 @@ function AdminHead(props){
             ]
           }
         ],
-        "url": ${window.location.origin}/${seo.canonicalLink},
-        "image": ${seo.featuredImg},
+        "url": "${window.location.origin}/${seo.canonicalLink}",
+        "image": "${seo.featuredImg}",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": ${seo.addressLocality},
+          "addressLocality": "${seo.addressLocality}",
           "addressRegion": "NJ",
           "addressCountry": "United States"
         }
@@ -73,6 +73,7 @@ AdminHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
+    PropTypes.boolean,
     PropTypes.arrayOf(PropTypes.string),
   ])),
 };

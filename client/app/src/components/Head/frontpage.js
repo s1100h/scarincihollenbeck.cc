@@ -35,7 +35,7 @@ function FrontPageHead(props){
         "@context": "http://schema.org",
         "@type": "WebSite",
         "name": "Scarinci Hollenbeck",
-        "url": ${window.location.href},
+        "url": "${window.location.href}",
         sameAs": [
           "https://www.facebook.com/ScarinciHollenbeck/",
            "https://twitter.com/s_h_law",

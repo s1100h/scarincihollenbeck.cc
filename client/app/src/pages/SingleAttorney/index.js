@@ -5,6 +5,7 @@ import AttorneyHead from '../../components/Head/attorney';
 import MultiSubHeader from '../../layouts/MultiSubHeader';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
 import FullWidth from '../../layouts/FullWidth';
+import Page404 from '../page404';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import MenuItem from './MenuItem';
@@ -25,6 +26,7 @@ class AttorneyBiography extends Component {
       currentSidebarTab: 'Related Practices',
       matterTab: '',
       readMore: false,
+      error: false,
     };
 
 
@@ -36,15 +38,21 @@ class AttorneyBiography extends Component {
 
   async componentDidMount() {
     const { attorney } = this.props.match.params;
-    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-attorney/attorney/${attorney}`, { headers });
-    const bio = await response.json();
-    let matterTab = '';
-    if (bio.representativeMatters[0] !== undefined) {
-      const firstMatterTab = bio.representativeMatters[0].title;
-      matterTab = firstMatterTab;
-    }
 
-    this.setState({ matterTab, bio });
+    try {
+      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-attorney/attorney/${attorney}`, { headers });
+      const bio = await response.json();
+      let matterTab = '';
+      if (bio.representativeMatters[0] !== undefined) {
+        const firstMatterTab = bio.representativeMatters[0].title;
+        matterTab = firstMatterTab;
+      }
+
+      this.setState({ matterTab, bio });
+    } catch(err) {
+      this.setState({ error: true });
+    }
+    
   }
 
   tabClick(e) {
@@ -75,6 +83,7 @@ class AttorneyBiography extends Component {
       matterTab,
       readMore,
       currentSidebarTab,
+      error
     } = this.state;
 
     const {
@@ -140,6 +149,10 @@ class AttorneyBiography extends Component {
       const { headers, body } = tabs;
       filterHeaders = headers.filter((a) => typeof a !== 'number');
       filterBody = body.filter((a) => a[1] !== '');
+    }
+
+    if(error) {
+      return <Page404 />
     }
 
 

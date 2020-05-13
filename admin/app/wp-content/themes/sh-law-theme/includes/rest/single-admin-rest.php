@@ -84,5 +84,10 @@ add_action('rest_api_init', function()
       )     
 
     );
-  return rest_ensure_response($biography);
+
+  if(is_null($id)){
+    return new WP_REST_Response(null, 404);
+  } else {
+    return rest_ensure_response($biography);
+  }
 }

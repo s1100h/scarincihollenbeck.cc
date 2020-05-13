@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AdminHead from '../../components/Head/admin';
 import MultiSubHeader from '../../layouts/MultiSubHeader';
 import FullWidth from '../../layouts/FullWidth';
+import Page404 from '../page404';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import { createMarkup, headers } from '../../utils/helpers';
@@ -14,19 +15,27 @@ class AdminBiography extends Component {
     super(props);
     this.state = {
       admin: [],
+      error: false,
     };
   }
 
   async componentDidMount() {
     const { admin } = this.props.match.params;
-    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${admin}`, { headers });
-    const json = await response.json();
-    this.setState({ admin: json });
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${admin}`, { headers });
+      const json = await response.json();
+
+      this.setState({ admin: json });
+    } catch (err) {
+      this.setState({ error: true });
+    }
   }
 
   render() {
-    const { admin } = this.state;
+    const { admin, error } = this.state;
     const {
+      ID,
       Title,
       biography,
       email,
@@ -36,47 +45,47 @@ class AdminBiography extends Component {
       vizibility,
       phone_extension,
       seo,
+
     } = admin;
+    
+    if(error) {
+      return <Page404 />
+    }
 
     return (
-      <div>
-        <AdminHead seo={seo} />
-        {(admin) && (
-          <div id="single-admin">
-            <MultiSubHeader
-              image={attorneyHeader}
-              profile={(
-                <ProfileImage
-                  admin={admin}
-                  image={image}
-                  name={name}
-                />
-          )}
-              height="325px"
-              infoCard={(
-                <InfoCard
-                  name={name}
-                  Title={Title}
-                  phone_extension={phone_extension}
-                  email={email}
-                  social_media_links={social_media_links}
-                  vizibility={vizibility}
-                />
-          )}
-            />
-            <FullWidth>
-              <div>
-                <div className="line-header">
-                  <h3>Biography</h3>
-                </div>
-                <div className="w-100 mt-5">
-                  <div dangerouslySetInnerHTML={createMarkup(biography)} />
-                </div>
-              </div>
-            </FullWidth>
-          </div>
+      <div id="single--admin">
+          <AdminHead seo={seo} />
+          <MultiSubHeader
+            image={attorneyHeader}
+            profile={(
+              <ProfileImage
+                image={image}
+                name={name}
+              />
         )}
-      </div>
+            height="325px"
+            infoCard={(
+              <InfoCard
+                name={name}
+                Title={Title}
+                phone_extension={phone_extension}
+                email={email}
+                social_media_links={social_media_links}
+                vizibility={vizibility}
+              />
+        )}
+          />
+          <FullWidth>
+            <div>
+              <div className="line-header">
+                <h3>Biography</h3>
+              </div>
+              <div className="w-100 mt-5">
+                <div dangerouslySetInnerHTML={createMarkup(biography)} />
+              </div>
+            </div>
+          </FullWidth>
+        </div>
     );
   }
 }

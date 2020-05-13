@@ -3,6 +3,7 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import PostHead from '../../components/Head/post';
+import ErrorBoundary from '../../components/ErrorBoundary';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import ThreeColMiniSidebar from '../../layouts/ThreeColMiniSidebar';
 import Body from './Body';
@@ -29,7 +30,7 @@ class Single extends Component {
       seo: {},
       show: false,
       triggerModal: true,
-      eventCat: false,
+      eventCat: false
     };
 
     this.printScreen = this.printScreen.bind(this);
@@ -144,6 +145,7 @@ class Single extends Component {
 
     return (
       <div id="single">
+        <ErrorBoundary>
         <PostHead seo={seo} />
         { (subTitle !== null) && (
           <SingleSubHeader
@@ -164,13 +166,13 @@ class Single extends Component {
               date={date}
               tags={tags}
             />
-)}
+          )}
           OneSidebar={(
             <SocialShareSidebar
               printScreen={this.printScreen}
               title={title}
             />
-              )}
+          )}
           TwoSidebar={(eventCat === true) ? (
             <EventSidebar
               eventDetails={eventDetails}
@@ -189,6 +191,7 @@ class Single extends Component {
             />
           )}
         />
+      </ErrorBoundary>
       </div>
     );
   }

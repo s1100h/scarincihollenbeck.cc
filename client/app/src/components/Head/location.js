@@ -14,18 +14,18 @@ function LocationHead(props){
         { ` {
         "@context": "https://schema.org",
         "@type": "LegalService",
-        "name": ${seo.title},
+        "name": "${seo.title}",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": ${seo.streetAddress},
-          "addressLocality": ${seo.addressLocality},
-          "addressRegion": ${seo.addressRegion},
-          "postalCode": ${seo.postalCode}
+          "streetAddress": "${seo.streetAddress}",
+          "addressLocality": "${seo.addressLocality}",
+          "addressRegion": "${seo.addressRegion}",
+          "postalCode": "${seo.postalCode}"
         },
-        "image": ${seo.image},
+        "image": "${seo.image}",
         "email": "info@sh-law.com",
         "telePhone": ${seo.telephone},
-        "url": ${window.location.origin}/${seo.canonicalLink},
+        "url": "${window.location.origin}/${seo.canonicalLink}",
         "paymentAccepted": [ "check", "credit card", "invoice" ],
         "openingHours": "Mo,Tu,We,Th,Fr 08:00-06:00",
         "openingHoursSpecification": [ {
@@ -42,8 +42,8 @@ function LocationHead(props){
         } ],
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": ${seo.latitude},
-          "longitude": ${seo.longitude}
+          "latitude": "${seo.latitude}",
+          "longitude": "${seo.longitude}"
         },
         "priceRange":"$$$$$"
 

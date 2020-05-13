@@ -53,5 +53,9 @@ function individual_career_data($request)
       )
   );
 	
-  return rest_ensure_response($career_data);
+  if(is_null($id)){
+    return new WP_REST_Response(null, 404);
+  } else {
+    return rest_ensure_response($career_data);
+  }
 }

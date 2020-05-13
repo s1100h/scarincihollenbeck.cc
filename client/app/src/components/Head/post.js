@@ -36,20 +36,20 @@ function PostHead(props) {
         {`
           "@context": "https://schema.org", 
           "@type": "BlogPosting",
-          "headline": ${seo.title},
-          "image": ${seo.featuredImg}, 
-          "genre": ${(seo.hasOwnProperty('primaryCategory')) && seo.primaryCategory.title}, 
+          "headline": "${seo.title}",
+          "image": "${seo.featuredImg}", 
+          "genre": "${(seo.hasOwnProperty('primaryCategory')) && seo.primaryCategory.title}", 
           "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) && seo.tags.map((tag) => tag.name.toString())}, 
           "publisher": "Scrarinci Hollenbeck, LLC",
-          "url": ${window.location.href}/${seo.canonicalLink},
-          "datePublished": ${seo.publishedDate},
-          "dateCreated": ${seo.updatedDate},
-          "dateModified": ${seo.updatedDate},
-          "description": ${seo.metaDescription},
-          "articleBody": ${seo.postContent},
+          "url": "${window.location.href}/${seo.canonicalLink}",
+          "datePublished": "${seo.publishedDate}",
+          "dateCreated": "${seo.updatedDate}",
+          "dateModified": "${seo.updatedDate}",
+          "description": "${seo.metaDescription}",
+          "articleBody": "${seo.postContent}",
             "author": {
             "@type": "Person",
-            "name": ${seo.author}
+            "name": "${seo.author}"
           }
         
         `}

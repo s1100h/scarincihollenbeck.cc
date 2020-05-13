@@ -234,5 +234,9 @@ usort($practiceList, "sub_practice_practice_sort");
       "practiceTitle" => html_entity_decode(htmlspecialchars_decode(get_the_title($id)))
     )
 	);
-	return rest_ensure_response($practice_content);
+	if(is_null($id)){
+    return new WP_REST_Response(null, 404);
+  } else {
+    return rest_ensure_response($practice_content);
+  }
 }

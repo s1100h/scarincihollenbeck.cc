@@ -17,9 +17,9 @@ function PracticeHead(props) {
         {
           "@context": "http://schema.org",
           "@type": "LegalService",
-          "name": ${seo.practiceTitle},
-          "description": ${seo.metaDescription},
-          "url": ${window.location.origin}/${seo.canonicalLink},
+          "name": "${seo.practiceTitle}",
+          "description": "${seo.metaDescription}",
+          "url": "${window.location.origin}/${seo.canonicalLink}",
           "image": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png",
           "telephone": "201-896-4100",
           "email": "info@sh-law.com",

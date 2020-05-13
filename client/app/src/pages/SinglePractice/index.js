@@ -5,6 +5,7 @@ import PracticeHead from '../../components/Head/practice';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import NoHeaderMiniSidebar from '../../layouts/NoHeaderMiniSidebar';
+import Page404 from '../page404';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import { headers } from '../../utils/helpers';
@@ -27,6 +28,7 @@ class IndividualPractice extends Component {
       blogPosts: [],
       newsPosts: [],
       currentTab: '',
+      error: false,
     };
     this.handleLink = this.handleLink.bind(this);
     this.tabClick = this.tabClick.bind(this);
@@ -34,57 +36,62 @@ class IndividualPractice extends Component {
 
   async componentDidMount() {
     const { practice } = this.props.match.params;
-    const practicesResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`, { headers });
-    const corePracticesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
-    const practiceJson = await practicesResponse.json();
-    const corePracticesJson = await corePracticesResponse.json();
 
-    const corePractices = corePracticesJson.map((cp) => ({
-      name: cp.title,
-      link: cp.slug,
-    }));
-
-    const {
-      chair,
-      title,
-      description,
-      content,
-      practiceList,
-      industryTopics,
-      attorneyList,
-      highlightReal,
-      seo,
-    } = practiceJson;
-
-    const blogPosts = [];
-    const newsPosts = [];
-
-    // seperate out blog posts and news posts
-    industryTopics.forEach((post) => {
-      if (post.categoryParent === 599) {
-        blogPosts.push(post);
-      }
-
-      if (post.categoryParent === 98 || post.categoryParent === 99) {
-        newsPosts.push(post);
-      }
-    });
-
-    this.setState({
-      chair,
-      title,
-      description,
-      content,
-      industryTopics,
-      attorneyList,
-      practiceList,
-      highlightReal,
-      blogPosts,
-      newsPosts,
-      seo,
-      currentTab: content[0].title,
-      corePractices,
-    });
+    try {
+      const practicesResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-practices/practice/${practice}`, { headers });
+      const corePracticesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
+      const practiceJson = await practicesResponse.json();
+      const corePracticesJson = await corePracticesResponse.json();
+  
+      const corePractices = corePracticesJson.map((cp) => ({
+        name: cp.title,
+        link: cp.slug,
+      }));
+  
+      const {
+        chair,
+        title,
+        description,
+        content,
+        practiceList,
+        industryTopics,
+        attorneyList,
+        highlightReal,
+        seo,
+      } = practiceJson;
+  
+      const blogPosts = [];
+      const newsPosts = [];
+  
+      // seperate out blog posts and news posts
+      industryTopics.forEach((post) => {
+        if (post.categoryParent === 599) {
+          blogPosts.push(post);
+        }
+  
+        if (post.categoryParent === 98 || post.categoryParent === 99) {
+          newsPosts.push(post);
+        }
+      });
+  
+      this.setState({
+        chair,
+        title,
+        description,
+        content,
+        industryTopics,
+        attorneyList,
+        practiceList,
+        highlightReal,
+        blogPosts,
+        newsPosts,
+        seo,
+        currentTab: content[0].title,
+        corePractices,
+      });
+    } catch(err) {
+      this.setState({ error: true });
+    }
   }
 
   handleLink(e) {
@@ -112,8 +119,14 @@ class IndividualPractice extends Component {
       seo,
       blogPosts,
       corePractices,
+      error
     } = this.state;
 
+    console.log(error);
+
+    if(error) {
+      return <Page404 />
+    }
     return (
       <div>
         <PracticeHead seo={seo} />

@@ -35,27 +35,27 @@ function AttorneyHead(props) {
         {
           "@context": "http://schema.org",
           "@type": "LegalService",
-          "name": ${seo.fullName},
-          "description": ${seo.schemaDescription},
-          "url": ${window.location.origin}/${seo.canonicalLink},
-          "image": ${seo.featuredImg},
+          "name": "${seo.fullName}",
+          "description": "${seo.schemaDescription}",
+          "url": "${window.location.origin}/${seo.canonicalLink}",
+          "image": "${seo.featuredImg}",
           "priceRange": "$$$$",
-          "telephone": ${seo.phone},
-          "email": ${seo.email},
-          "hasMap": ${seo.map},
+          "telephone": "${seo.phone}",
+          "email": "${seo.email}",
+          "hasMap": "${seo.map}",
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": ${seo.town},
-            "addressRegion": ${seo.state},
-            "postalCode": ${seo.zip},
-            "streetAddress": ${seo.address}
+            "addressLocality": "${seo.town}",
+            "addressRegion": "${seo.state}",
+            "postalCode": "${seo.zip}",
+            "streetAddress": "${seo.address}"
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": ${seo.lat},
-            "longitude": ${seo.long}
+            "latitude": "${seo.lat}",
+            "longitude": "${seo.long}"
           },
-          "sameAs": ${seo.socialMedia},
+          "sameAs": "${seo.socialMedia}",
           "openingHours": "Mo,Tu,We,Th,Fr, 8:00-5:00"
         }
         `

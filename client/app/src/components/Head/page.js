@@ -14,8 +14,8 @@ function PageHead(props){
         {` {
           "@context": "http://schema.org",
           "@type": "WebPage",
-          "name": ${seo.title},
-          "description": {${seo.metaDescription},
+          "name": "${seo.title}",
+          "description": "${seo.metaDescription}",
           "publisher": {
               "@type": "LegalServices",
               "name": "Scarinci Hollenbeck"

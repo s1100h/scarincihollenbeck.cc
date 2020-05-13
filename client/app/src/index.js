@@ -215,7 +215,7 @@ class SiteRoutes extends Component {
           {/** Pages **/}
           {sitePages.map(p => <Route key={p.ID} path={p.path} exact render={props => <Page {...props} /> } /> )}
           {/* 404 Page */}
-          {(sitePages.length >0 ) && <Route component={Page404} />}
+          {(sitePages.length > 0 ) && <Route path="*" component={Page404} />}
         </Switch>
         </Suspense>
         <Footer />

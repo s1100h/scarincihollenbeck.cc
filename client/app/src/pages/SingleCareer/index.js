@@ -3,9 +3,11 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import PageHead from '../../components/Head/page';
+import ErrorBoundary from '../../components/ErrorBoundary';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import ContactForm from '../../components/ContactForm';
+import Page404 from '../page404';
 import BreadCrumb from './BreadCrumb';
 import Body from './Body';
 import Sidebar from './Sidebar';
@@ -34,6 +36,7 @@ class SingleCareer extends Component {
         lastName: '',
         title: '',
         spinner: false,
+        error: false,
       },
     };
     this.formSubmit = this.formSubmit.bind(this);
@@ -46,17 +49,22 @@ class SingleCareer extends Component {
   async componentDidMount() {
     const { match } = this.props;
     const { career } = match.params;
-    const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, { headers });
-    const json = await response.json();
-    const { title, positionDescription, seo } = json;
+    
+    try {
+      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${career}`, { headers });
+      const json = await response.json();
+      const { title, positionDescription, seo } = json;
 
-    this.setState({
-      currentId: career,
-      currentTitle: title,
-      currentDescription: positionDescription,
-      seo,
-    });
-  }
+      this.setState({
+        currentId: career,
+        currentTitle: title,
+        currentDescription: positionDescription,
+        seo,
+      });
+    } catch(err) {
+      this.setState({ error: true });
+    }
+  } 
 
   changeForm(e) {
     const { form } = this.state;
@@ -135,6 +143,7 @@ class SingleCareer extends Component {
       form,
       seo,
       show,
+      error,
     } = this.state;
 
     const {
@@ -144,35 +153,39 @@ class SingleCareer extends Component {
       phone,
     } = form;
 
+    if(error) {
+      return <Page404 />;
+    }
+
     return (
       <div id="single-career">
         <PageHead seo={seo} />
-        <SingleSubHeader
-          image={blogHeader}
-          title={currentTitle}
-          subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
-        />
-        <LargeSidebar
-          body={(
-            <div>
-              <BreadCrumb currentTitle={currentTitle} />
-              <Body
-                currentTitle={currentTitle}
-                currentDescription={currentDescription}
-                message={message}
-                formSubmit={this.formSubmit}
-                formChange={this.formChange}
-                lastName={lastName}
-                firstName={firstName}
-                email={email}
-                phone={phone}
-                fileUpload={this.fileUpload}
-              />
-              <ContactForm />
-            </div>
-          )}
-          sidebar={(<Sidebar show={show} toggleModal={this.toggleModal} />)}
-        />
+          <SingleSubHeader
+            image={blogHeader}
+            title={currentTitle}
+            subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
+          />
+          <LargeSidebar
+            body={(
+              <div>
+                <BreadCrumb currentTitle={currentTitle} />
+                <Body
+                  currentTitle={currentTitle}
+                  currentDescription={currentDescription}
+                  message={message}
+                  formSubmit={this.formSubmit}
+                  formChange={this.formChange}
+                  lastName={lastName}
+                  firstName={firstName}
+                  email={email}
+                  phone={phone}
+                  fileUpload={this.fileUpload}
+                />
+                <ContactForm />
+              </div>
+            )}
+            sidebar={(<Sidebar show={show} toggleModal={this.toggleModal} />)}
+          />
       </div>
     );
   }
