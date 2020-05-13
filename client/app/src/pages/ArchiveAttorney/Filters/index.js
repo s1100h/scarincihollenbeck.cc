@@ -49,22 +49,30 @@ function Filters(props) {
          </div>
        )
      }
-     {(window.innerWidth > 992) && (
+     {(window.innerWidth > 992) ? (
         <div className="drkbckground-gray border h-57">
           <div className="row mt-2">
             <Letter alphabet={alphabet} letterClick={letterClick} />
+            <div className="col-sm-12 col-md-2">
+              <button
+                type="button"
+                className="btn btn-danger float-right mx-3"
+                onClick={() => clearAll()}
+              >
+                Clear All
+              </button>
+            </div>
           </div>
         </div>
-      )}
-      <div className="col-sm-12 col-md-2">
+      ) : (
         <button
           type="button"
-          className={(window.innerWidth > 992) ? "btn btn-danger float-right mx-3" : "btn btn-danger w-100 mt-3 mb--2"}
+          className="btn btn-danger w-100 mt-3 mb--2"
           onClick={() => clearAll()}
         >
           Clear All
         </button>    
-      </div>
+      )}      
     </>
   );
 }
