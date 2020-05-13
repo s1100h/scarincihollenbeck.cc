@@ -11,23 +11,16 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log('error in catch');
-    console.log(error);
-    console.log('errorInfo in catch');
-    console.log(errorInfo);
     this.setState({
       error,
       errorInfo
     });
-    console.log(error);
-    console.log(errorInfo);
   }
 
   render() {
     const { error } = this.state;
     const { children } = this.props;
-    console.log('error');
-    console.log(error);
+
     if(error) {
       return <Page404 />
     }

@@ -210,6 +210,13 @@ class SiteRoutes extends Component {
           <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/firm-events/:post' exact component={Single} />
           <Route path='/quick-news/:post' exact component={Single} />
+          <Route path='/federal-payroll-protection-act/:post' exact component={Single} />
+          <Route path='/cyber-security-client-alert/:post' exact component={Single} />
+          <Route path='/diversity/:post' exact component={Single} />
+          <Route path='/women-lead/:post' exact component={Single} />
+          <Route path='/post-covid-19-alert/:post' exact component={Single} />
+          <Route path='/headlines/:post' exact component={Single} />                  
+          
           {/** Firm Page routes */}
           {firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)}
           {/** Pages **/}
