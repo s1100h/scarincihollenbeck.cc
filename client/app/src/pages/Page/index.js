@@ -47,7 +47,9 @@ class Page extends Component {
       const covidResponse = await fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers });
       const posts = await covidResponse.json();
 
-      this.setState({ posts, covidPage: true });
+      this.setState({ covidPage: true }, () => {
+        this.setState({ posts });
+      });
     }
 
     if(page.indexOf(covidUrl) < -1) {
