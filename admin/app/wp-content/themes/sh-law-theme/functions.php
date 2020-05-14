@@ -594,3 +594,12 @@ add_filter( 'post_link', 'filter_permalink_subdomain', 99 );
 function filter_permalink_subdomain( $permalink ) {
   return str_replace( "admin." , "", $permalink);
 }
+
+
+// fix preview button
+add_filter( 'preview_post_link', 'the_preview_fix' );
+
+function the_preview_fix() {
+    $slug = basename(get_permalink());
+    return "https://admin.$slug";
+}
