@@ -230,7 +230,7 @@ usort($practiceList, "sub_practice_practice_sort");
     "seo" => (object)array(
       "title" => get_post_meta($id, '_yoast_wpseo_title', true),
       "metaDescription" => get_post_meta($id, '_yoast_wpseo_metadesc', true),
-      "canonicalLink" => $slug,
+      "canonicalLink" => "practices/".$slug,
       "practiceTitle" => html_entity_decode(htmlspecialchars_decode(get_the_title($id)))
     )
 	);

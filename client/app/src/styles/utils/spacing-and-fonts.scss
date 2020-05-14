@@ -74,6 +74,13 @@
   max-width: 19%;
 }
 
+/** target IE10 and above **/
+@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+  .mw-19 {
+    max-width: 7rem;
+  }
+}
+
 /** padding **/
 .p-25 {
   padding: .7rem!important;
