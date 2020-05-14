@@ -46,7 +46,9 @@ app.post(`${urlPrefix}career/form`, async (req, res) => {
 })
 
 // home route
-app.get('/', (req, res) => res.send(`You must be lost please visit scarincihollenbeck.com`));
+app.get('/', (req, res) => {
+  res.redirect('https://scarincihollenbeck.com');
+});
 
 // server port
 app.listen(port, () => console.log(`-- debug mode scarincihollenbeck.com form routes server is listening on port ${port}`));

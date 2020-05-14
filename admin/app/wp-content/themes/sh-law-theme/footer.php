@@ -9,10 +9,7 @@
 ?>
   <div class="container-fluid bk--gray d-print-none">
   <!-- Stop scrolling for attorney bio pages -->
-  <div id="stop-scrolling"></div>
-  <!-- Just In Carousel -->
-  <?php echo do_shortcode( '[just_in_news_carousel]' ); ?>
-  <!-- Footer -->
+  <div id="stop-scrolling"></div>  
  <footer>
       <div class="container-fluid h-100 mt-5 w-75 bk--gray">
         <div class="row border--red mb-3 align-items-center h-100">

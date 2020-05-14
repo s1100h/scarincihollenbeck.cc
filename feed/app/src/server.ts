@@ -42,7 +42,7 @@ async function parseFeedResults(feed: any, sourceUrl: string, source: string = n
 
 // filter for covid-19 or corona virus terms
 app.get('/', async (req: any, res: any) => {
-  res.send('Please visit endpoint /covid-19-news');
+  res.redirect('https://scarincihollenbeck.com');
 });
 
 app.get('/covid-19-news', async (req: any, res: { send: (arg0: { message: string; sendStatus: any; }) => void; }) => {

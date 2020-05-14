@@ -15,19 +15,11 @@ import { IndexRouter } from './controllers/v0/index.router';
     app.use(cors());
     app.use(bodyParser());    
     app.use('/', IndexRouter);
-  
-  
-    // Root URI call
-    app.get('/', async (_, res) => {
-      res.send('base url is /cached/');
-    });
-  
-  
+
     // Start the Server
     app.listen(port, async() => {
       await fetchData();
       await executeWorkers();
-      console.log('/cached api running');
       console.log(`server running on ${port}`);
       console.log('press CTRL+C to stop server');
     });

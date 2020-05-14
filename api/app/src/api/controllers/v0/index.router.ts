@@ -36,7 +36,7 @@ router.use('/cached', PracticePageRouter);
 router.use('/cached', LatestArticlesRouter);
 
 router.get('/', async (req: Request, res: Response) => {    
-    res.send('/cached/');
+  res.redirect('https://scarincihollenbeck.com');
 });
 
 export const IndexRouter: Router = router;

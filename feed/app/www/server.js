@@ -43,7 +43,7 @@ function parseFeedResults(feed, sourceUrl, source = null) {
 }
 // filter for covid-19 or corona virus terms
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send('Please visit endpoint /covid-19-news');
+    res.redirect('https://scarincihollenbeck.com');
 }));
 app.get('/covid-19-news', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

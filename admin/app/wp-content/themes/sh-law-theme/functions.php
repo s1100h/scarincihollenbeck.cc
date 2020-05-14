@@ -597,9 +597,28 @@ function filter_permalink_subdomain( $permalink ) {
 
 
 // fix preview button
-add_filter( 'preview_post_link', 'the_preview_fix' );
+add_filter( 'preview_post_link', 'preview_link_fix' );
+function preview_link_fix( $preview_link )
+{
+    $post = get_post( get_the_ID() );
+    if (
+        ! is_admin()
+        OR 'post.php' != $GLOBALS['pagenow']
+    )
+        return $preview_link;
 
-function the_preview_fix() {
-    $slug = basename(get_permalink());
-    return "https://admin.$slug";
+    $args = array(
+      'p' => 123
+    );
+
+    return add_query_arg( $args, "https://admin.scarincihollenbeck.com" );
+}
+
+// redirect if someone isn't logged in
+add_action( 'template_redirect', 'redirect_to_specific_page' );
+function redirect_to_specific_page() {
+  if (!is_user_logged_in() ) {
+    wp_redirect( 'https://scarincihollenbeck.com', 301 ); 
+    exit;
+  }
 }
