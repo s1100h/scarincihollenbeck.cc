@@ -37,21 +37,26 @@ class Page extends Component {
     const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single-page/page${page}`);
     const json = await response.json();
     const { content, title, seo } = json;
+    const covidUrl = 'covid-19-crisis-management-unit';
 
     this.setState({
       title, content, seo,
     });
 
-    if (page.indexOf('covid-19-crisis-management-unit') > -1) {
+    if (page.indexOf(covidUrl) > -1) {
       const covidResponse = await fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers });
       const posts = await covidResponse.json();
+
       this.setState({ posts, covidPage: true });
     }
-    
-    const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers });
-    const postJson = await postResponse.json();
-    const { posts } = postJson;
-    this.setState({ posts });
+
+    if(page.indexOf(covidUrl) < -1) {
+      const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers });
+      const postJson = await postResponse.json();
+      const { posts } = postJson;
+      
+      this.setState({ posts });
+    }  
     
   }
 
