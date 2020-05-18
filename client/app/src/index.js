@@ -185,9 +185,11 @@ class SiteRoutes extends Component {
           <Route path='/careers/' exact component={ArchiveCareer} />
           <Route path='/career/:career' exact component={SingleCareer} />
           <Route path='/locations' exact component={ArchiveLocation} />
+          <Route path='/location' exact component={ArchiveLocation} />
           <Route path='/location/:location' exact component={ArchiveLocation} />
           <Route path='/practices' exact component={ArchivePractice} />
           <Route path='/law-practices' exact component={ArchivePractice} />
+          <Route path='/practice' exact component={ArchivePractice} />
           <Route path='/practice/:practice' exact component={SinglePractice} />
           <Route path='/practices/:practice' exact component={SinglePractice} />
           <Route path='/contact/' exact component={Contact} />

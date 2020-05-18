@@ -224,7 +224,7 @@ usort($practiceList, "sub_practice_practice_sort");
     "chair" => $chair_data,
     "attorneyList" =>  $attorneyList,
     "practiceList" => $practiceList,
-		"excludePractices" => $exclude_practice_data,
+    "excludePractices" => $exclude_practice_data,
     "industryTopics" => $related_blog_data,
     "highlightReal" => $highlight_real_data,
     "seo" => (object)array(

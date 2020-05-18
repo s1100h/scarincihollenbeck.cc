@@ -63,10 +63,7 @@ const NavBar = () => (
                     </li>
                     <li className="nav-item">
                       <a title="Firm Insights" href="/category/law-firm-insights/" className="dropdown-item">Firm Insights</a>
-                    </li>
-                    <li className=" nav-item">
-                      <a title="Quick News" href="/category/quick-news/" className="dropdown-item">Quick News</a>
-                    </li>
+                    </li>                    
                   </ul>
                 </li>
                 <li className="nav-item">

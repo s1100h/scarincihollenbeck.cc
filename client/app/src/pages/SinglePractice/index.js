@@ -64,16 +64,16 @@ class IndividualPractice extends Component {
       const newsPosts = [];
   
       // seperate out blog posts and news posts
-      industryTopics.forEach((post) => {
+      industryTopics.forEach(async (post) => {
         if (post.categoryParent === 599) {
-          blogPosts.push(post);
+          await blogPosts.push(post);
         }
   
         if (post.categoryParent === 98 || post.categoryParent === 99) {
-          newsPosts.push(post);
+          await newsPosts.push(post);
         }
       });
-  
+ 
       this.setState({
         chair,
         title,
@@ -89,6 +89,7 @@ class IndividualPractice extends Component {
         currentTab: content[0].title,
         corePractices,
       });
+
     } catch(err) {
       this.setState({ error: true });
     }
@@ -210,7 +211,7 @@ class IndividualPractice extends Component {
                     industryTopics={industryTopics}
                     highlightReal={highlightReal}
                     title={title}
-                    newPosts={newsPosts}
+                    newsPosts={newsPosts}
                     blogPosts={blogPosts}
                   />
                   )}

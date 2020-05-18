@@ -2,93 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const checkboxes = [
-  {
-    key: 'business',
-    label: 'Business Law',
-    name: 'Business Law',
-    property: 'column_1',
-  },
-  {
-    key: 'firmnews',
-    label: 'Firm News',
-    name: 'Firm News',
-    property: 'column_1',
-  },
-  {
-    key: 'publiclaw',
-    label: 'Public Law',
-    name: 'Public Law',
-    property: 'column_1',
-  },
-  {
-    key: 'technology',
-    label: 'Technology',
-    name: 'Technology',
-    property: 'column_1',
-  },
-  {
-    key: 'tax',
-    label: 'Tax',
-    name: 'Tax',
-    property: 'column_1',
-  },
-  {
-    key: 'firmevents',
-    label: 'Firm Events',
-    name: 'Firm Events',
-    property: 'column_1',
-  },
-  {
-    key: 'cannabis',
-    label: 'Cannabis Law',
-    name: 'Cannabis Law',
-    property: 'column_1',
-  },
-  {
-    key: 'covid19alerts',
-    label: 'COVID-19 Alerts',
-    name: 'COVID-19 Alerts',
-    property: 'column_two',
-  },
-  {
-    key: 'commercialRealEstate',
-    label: 'Commercial Real Estate',
-    name: 'Commercial Real Estate',
-    property: 'column_two',
-  },
-  {
-    key: 'entertainmentSports',
-    label: 'Entertainment & Sports',
-    name: 'Entertainment & Sports',
-    property: 'column_two',
-  },
-  {
-    key: 'environmentalLandUse',
-    label: 'Environmental & Land Use',
-    name: 'Environmental & Land Use',
-    property: 'column_two',
-  },
-  {
-    key: 'intellectualProperty',
-    label: 'Intellectual Property',
-    name: 'Intellectual Property',
-    property: 'column_two',
-  },
-  {
-    key: 'laboremployment',
-    label: 'Labor Employment',
-    name: 'Labor Employment',
-    property: 'column_two',
-  },
-  {
-    key: 'litigation',
-    label: 'Litigation',
-    name: 'Litigation',
-    property: 'column_two',
-  },
-];
+import { checkboxes } from '../../utils/categories';
 
 const Checkbox = ({
   property,
@@ -206,6 +120,7 @@ class SubscriptionBody extends Component {
             </li>
             <li className="mb-4">
               Various
+              {' '}
               <strong>legal updates</strong>
               {' '}
               that may pertain to your business

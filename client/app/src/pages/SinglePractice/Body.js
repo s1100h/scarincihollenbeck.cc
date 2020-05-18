@@ -19,7 +19,7 @@ function Body(props) {
     blogPosts,
     title,
   } = props;
-
+  
   return (
     <div>
       <div className="tab-content">
@@ -60,7 +60,6 @@ function Body(props) {
         <FeaturedSlider content={newsPosts} />
       </div>
       )}
-
       {/** Recent Blog Articles */}
       {(blogPosts.length > 0) && (
       <div className="w-100 d-block">
