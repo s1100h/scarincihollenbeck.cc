@@ -23,10 +23,11 @@ if ( ! ES()->is_premium() ) {
 			'ig_es_comment_added' => __( 'Comment Added', 'email-subscribers' ),
 		),
 		'Form'    => array(
-			'ig_es_cf7_submitted'           => __( 'Contact Form 7 Submitted', 'email-subscribers' ),
-			'ig_es_wpforms_submitted'       => __( 'WP Form Submitted', 'email-subscribers' ),
-			'ig_es_ninja_forms_submitted'   => __( 'Ninja Form Submitted', 'email-subscribers' ),
-			'ig_es_gravity_forms_submitted' => __( 'Gravity Form Submitted', 'email-subscribers' ),
+			'ig_es_cf7_submitted'              => __( 'Contact Form 7 Submitted', 'email-subscribers' ),
+			'ig_es_wpforms_submitted'          => __( 'WP Form Submitted', 'email-subscribers' ),
+			'ig_es_ninja_forms_submitted'      => __( 'Ninja Form Submitted', 'email-subscribers' ),
+			'ig_es_gravity_forms_submitted'	   => __( 'Gravity Form Submitted', 'email-subscribers' ),
+			'ig_es_forminator_forms_submitted' => __( 'Forminator Form Submitted', 'email-subscribers' ),
 		),
 		'Order'   => array(
 			'ig_es_wc_order_completed'    => __( 'WooCommerce Order Completed', 'email-subscribers' ),

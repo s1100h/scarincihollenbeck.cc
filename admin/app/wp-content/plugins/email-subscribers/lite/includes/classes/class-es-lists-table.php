@@ -73,8 +73,8 @@ class ES_Lists_Table extends WP_List_Table {
 				echo $this->edit_list( absint( $list ) );
 			} else { ?>
 
-				<h1 class=" wp-heading-inline"><span class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate"><a href="admin.php?page=es_subscribers"><?php _e( 'Audience', 'email-subscribers' ); ?> </a>
-					</span> > <?php _e('Lists', 'email-subscribers'); ?> <a href="admin.php?page=es_lists&action=new" class="pt-2 ig-es-title-button px-2 py-2 mx-2"><?php _e('Add New','email-subscribers'); ?></a></h1>
+				<h1 class=" wp-heading-inline "><span class="text-base font-normal leading-7 text-indigo-600 sm:leading-9 sm:truncate"><a href="admin.php?page=es_subscribers"><?php _e( 'Audience', 'email-subscribers' ); ?> </a>
+					</span> <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4 mt-1 inline-block align-middle"><path d="M9 5l7 7-7 7"></path></svg><span class="text-2xl font-medium leading-7 text-gray-900 sm:leading-9 sm:truncate"> <?php _e('Lists', 'email-subscribers'); ?></span> <a href="admin.php?page=es_lists&action=new" class="pt-2 ig-es-title-button px-2 py-2 mx-2"><?php _e('Add New','email-subscribers'); ?></a></h1>
 					<br>
 
 					<div id="poststuff" class="es-items-lists es-lists-table">
@@ -249,10 +249,11 @@ class ES_Lists_Table extends WP_List_Table {
 			<header class="ml-12 mr-8  wp-heading-inline">
 				<div class="md:flex md:items-center md:justify-between justify-center">
 					<div class="flex-1 min-w-0">
-						<h1 class="text-xl leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
-							<span class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
-								<a href="admin.php?page=es_subscribers"><?php _e('Audience ','email-subscribers'); ?></a></span> >
-								<a href="admin.php?page=es_lists&action=manage-lists"><?php _e(' Lists ','email-subscribers'); ?></a> >
+						<h2 class="text-2xl font-medium leading-7 text-gray-900 sm:leading-9 sm:truncate">
+							<span class="text-base font-normal leading-7 text-indigo-600 sm:leading-9 sm:truncate">
+								<a href="admin.php?page=es_subscribers"><?php _e('Audience ','email-subscribers'); ?></a></span> <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-3 h-3 mt-1 inline-block align-middle"><path d="M9 5l7 7-7 7"></path></svg>
+								<a class="text-base font-normal leading-7 text-indigo-600 sm:leading-9 sm:truncate" href="admin.php?page=es_lists&action=manage-lists"><?php _e(' Lists ','email-subscribers'); ?></a> <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-3 h-3 mt-1 inline-block align-middle"><path d="M9 5l7 7-7 7"></path></svg>
+
 								<?php
 								if ( $is_new ) {
 									_e( 'Add New', 'email-subscribers' );
@@ -261,7 +262,7 @@ class ES_Lists_Table extends WP_List_Table {
 								}
 
 								?>
-							</h1>
+							</h2>
 						</div>
 					</div>
 				</header>
@@ -290,7 +291,7 @@ class ES_Lists_Table extends WP_List_Table {
 										</div>
 
 										<input type="hidden" name="submitted" value="submitted"/>
-										<input type="submit" name="submit" id="submit" class="cursor-pointer ig-es-primary-button px-4 py-2 my-4 ml-6 mr-2" value="<?php if ( $is_new ) {  
+										<input type="submit" name="submit" id="submit" class="cursor-pointer align-middle ig-es-primary-button px-4 py-2 my-4 ml-6 mr-2" value="<?php if ( $is_new ) {  
 											_e( 'Save List', 'email-subscribers' ); 
 										}
 										else{
@@ -298,7 +299,7 @@ class ES_Lists_Table extends WP_List_Table {
 										}
 
 										?>"/><!-- <?php submit_button(); ?> -->
-										<a href="admin.php?page=es_lists&action=manage-lists" class="cursor-pointer rounded-md border border-indigo-600 hover:shadow-md focus:outline-none focus:shadow-outline-indigo text-sm leading-5 font-medium transition ease-in-out duration-150 px-4 my-2 py-2 mx-2 ">Cancel</a>
+										<a href="admin.php?page=es_lists&action=manage-lists" class="cursor-pointer align-middle rounded-md border border-indigo-600 hover:shadow-md focus:outline-none focus:shadow-outline-indigo text-sm leading-5 font-medium transition ease-in-out duration-150 px-4 my-2 py-2 mx-2 ">Cancel</a>
 									</form>
 								</div>
 							</div>

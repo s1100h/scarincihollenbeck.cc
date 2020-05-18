@@ -118,9 +118,17 @@ class Email_Subscribers_Admin {
 
 		wp_enqueue_script( $this->email_subscribers, plugin_dir_url( __FILE__ ) . 'js/email-subscribers-admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-tabs' ), $this->version, false );
 
+
+
 		$ig_es_js_data = array(
-			'ajax_error_message' => __( 'An error has occured. Please try again later.', 'email-subscribers' ),
-			'security'           => wp_create_nonce( 'ig-es-admin-ajax-nonce' ),
+			'security'  => wp_create_nonce( 'ig-es-admin-ajax-nonce' ),
+			'i18n_data' => array(
+				'ajax_error_message' 			  => __( 'An error has occured. Please try again later.', 'email-subscribers' ),
+				'broadcast_draft_success_message' => __( 'Broadcast saved as draft successfully.', 'email-subscribers' ),
+				'broadcast_draft_error_message'   => __( 'An error has occured while saving the broadcast. Please try again later.', 'email-subscribers' ),
+				'broadcast_subject_empty_message' => __( 'Please add a broadcast subject before saving.', 'email-subscribers' ),
+				'empty_template_message'          => __( 'Please add email body.', 'email-subscribers' ),
+			),
 		);
 
 		wp_localize_script( $this->email_subscribers, 'ig_es_js_data', $ig_es_js_data );
@@ -152,6 +160,7 @@ class Email_Subscribers_Admin {
 		if ( ! empty( $get_page ) && 'es_dashboard' === $get_page ) {
 			wp_enqueue_script( 'frappe-js', plugin_dir_url( __FILE__ ) . 'js/frappe-charts.min.life.js', array( 'jquery' ), $this->version, false );
 		}
+
 	}
 
 	public function remove_submenu() {
@@ -636,7 +645,6 @@ class Email_Subscribers_Admin {
 			'custom_admin_notice',
 			'output_custom_notices',
 			'ig_es_fail_php_version_notice',
-			'contact_background_notice'
 		);
 
 		// User admin notices

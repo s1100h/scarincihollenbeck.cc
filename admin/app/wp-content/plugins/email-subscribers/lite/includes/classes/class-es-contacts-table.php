@@ -188,15 +188,17 @@ class ES_Contacts_Table extends WP_List_Table {
 
 			?>
 
-			<h1 class="wp-heading-inline">
-				<span class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate"><?php 
-				_e( 'Audience', 'email-subscribers' ); ?>
-			</span>
+			<h2 class="wp-heading-inline">
+				<span class="text-base font-normal text-indigo-600 sm:leading-7 sm:truncate"><?php 
+				_e( 'Audience <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4 inline-block align-middle text-gray-900"><path d="M9 5l7 7-7 7"></path></svg>', 'email-subscribers' ); ?>
+				 </span>
+				 <span class="text-2xl font-medium text-gray-900 sm:leading-9 sm:truncate">
 			<?php 
-			_e( ' > Contacts', 'email-subscribers' ); ?>
+			_e( 'Contacts', 'email-subscribers' ); ?>
+		</span>
 			<?php ES_Common::prepare_main_header_navigation( $audience_tab_main_navigation );
 			?>
-		</h1>
+		</h2>
 
 		<div class="my-4">
 			<?php $this->get_contacts_reports() ?>
@@ -492,11 +494,17 @@ class ES_Contacts_Table extends WP_List_Table {
 			<header class="ml-12 mr-8 wp-heading-inline">
 				<div class="md:flex md:items-center md:justify-between justify-center">
 					<div class="flex-1 min-w-0">
-						<h1 class="text-2xl leading-7 font-bold text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
-							<span class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
-								<a href="admin.php?page=es_subscribers"><?php _e('Audience ','email-subscribers'); ?></a></span> >
+						<h2 class="text-2xl leading-7 text-gray-900 sm:leading-9 sm:truncate">
+							<span class="text-base font-normal leading-7 text-indigo-600 sm:leading-9 sm:truncate">
+								<a href="admin.php?page=es_subscribers"><?php _e('Audience ','email-subscribers'); ?></a></span> <svg class="w-6 h-6 mt-2 inline-block" fill="currentColor" viewBox="0 0 24 24">
+											<path
+											fill-rule="evenodd"
+											d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+											clip-rule="evenodd"
+											></path>
+										</svg>
 								<?php echo $title; ?>
-							</h1>
+							</h2>
 						</div>
 
 						<div class="py-2 flex md:mt-0 pb-2">
@@ -666,7 +674,7 @@ class ES_Contacts_Table extends WP_List_Table {
 									<span class="my-2 mr-10 dashicons dashicons-admin-users"></span>
 								</span>
 							</div>
-							<input id="ig-es-contact-first-name" class="ig-es-contact-first-name form-input block border-gray-400 w-full pl-10 pr-12 shadow-sm  focus:bg-gray-100 sm:text-sm sm:leading-5"  placeholder="Enter first name" name="contact_data[first_name]" value="<?php echo esc_attr( $first_name ); ?>" />
+							<input id="ig-es-contact-first-name" class="ig-es-contact-first-name form-input block border-gray-400 w-full pl-10 pr-12 shadow-sm  focus:bg-gray-100 sm:text-sm sm:leading-5"  placeholder="<?php _e('Enter First Name', 'email-subscribers'); ?>" name="contact_data[first_name]" value="<?php echo esc_attr( $first_name ); ?>" />
 						</div>
 					</div>
 				</div>
@@ -686,7 +694,7 @@ class ES_Contacts_Table extends WP_List_Table {
 									<span class="my-2 mr-10 dashicons dashicons-admin-users"></span>
 								</span>
 							</div>
-							<input id="ig-es-contact-last-name" class="ig-es-contact-last-name form-input block border-gray-400 w-full pl-10 pr-12 shadow-sm  focus:bg-gray-100 sm:text-sm sm:leading-5" placeholder="Enter last name" name="contact_data[last_name]" value="<?php echo esc_attr( $last_name ); ?>" />
+							<input id="ig-es-contact-last-name" class="ig-es-contact-last-name form-input block border-gray-400 w-full pl-10 pr-12 shadow-sm  focus:bg-gray-100 sm:text-sm sm:leading-5" placeholder="<?php _e('Enter Last Name', 'email-subscribers'); ?>" name="contact_data[last_name]" value="<?php echo esc_attr( $last_name ); ?>" />
 						</div>
 					</div>
 				</div>
@@ -705,7 +713,7 @@ class ES_Contacts_Table extends WP_List_Table {
 								<span class="inset-y-0 text-gray-400 sm:text-sm sm:leading-5">
 									<span class="my-2 mr-10 dashicons dashicons-email-alt"></span></span>
 								</div>
-								<input id="email" class="form-input block border-gray-400 w-full pl-10 pr-12 shadow-sm  focus:bg-gray-100 sm:text-sm sm:leading-5"" id="email" name="contact_data[email]" value="<?php echo esc_attr( $email ); ?>"  placeholder="Enter Email" />
+								<input id="email" class="form-input block border-gray-400 w-full pl-10 pr-12 shadow-sm  focus:bg-gray-100 sm:text-sm sm:leading-5"" id="email" name="contact_data[email]" value="<?php echo esc_attr( $email ); ?>"  placeholder="<?php _e('Enter Email', 'email-subscribers'); ?>" />
 							</div>
 						</div>
 					</div>
@@ -757,14 +765,14 @@ class ES_Contacts_Table extends WP_List_Table {
 							<input type="hidden" name="contact_data[created_at]" value="<?php echo $created; ?>" />
 							<input type="hidden" name="contact_data[guid]" value="<?php echo $guid; ?>" />
 							<input type="hidden" name="submitted" value="submitted" />
-							<input type="submit" name="submit" class="cursor-pointer px-4 my-2 py-2 mx-2 ig-es-primary-button hover:shadow-md" value="<?php if ( $is_new ) {  
+							<input type="submit" name="submit" class="cursor-pointer align-middle px-4 my-2 py-2 mx-2 ig-es-primary-button hover:shadow-md" value="<?php if ( $is_new ) {  
 								_e( 'Save Contact', 'email-subscribers' ); 
 							}
 							else{
 								_e( 'Save Changes', 'email-subscribers' ); 
 							}
 							?>"/>
-							<a href="admin.php?page=es_subscribers" class="cursor-pointer rounded-md border border-indigo-600 hover:shadow-md focus:outline-none focus:shadow-outline-indigo text-sm leading-5 font-medium transition ease-in-out duration-150 px-4 my-2 py-2 mx-2 ">Cancel</a>
+							<a href="admin.php?page=es_subscribers" class="cursor-pointer align-middle rounded-md border border-indigo-600 hover:shadow-md focus:outline-none focus:shadow-outline-indigo text-sm leading-5 font-medium transition ease-in-out duration-150 px-4 my-2 py-2 mx-2 ">Cancel</a>
 						</div>
 					</div>
 				</form>

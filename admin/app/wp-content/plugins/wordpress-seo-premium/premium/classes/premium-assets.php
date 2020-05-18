@@ -60,12 +60,14 @@ class WPSEO_Premium_Assets implements WPSEO_WordPress_Integration {
 		return [
 			[
 				'name'         => 'yoast-seo-premium-commons',
-				'source'       => 'assets/js/dist/commons-premium-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'commons-premium-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [],
 			],
 			[
 				'name'         => WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox',
-				'source'       => 'assets/js/dist/wp-seo-premium-metabox-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'wp-seo-premium-metabox-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [
 					'jquery',
 					'wp-util',
@@ -81,17 +83,20 @@ class WPSEO_Premium_Assets implements WPSEO_WordPress_Integration {
 			],
 			[
 				'name'         => 'yoast-social-preview',
-				'source'       => 'assets/js/dist/yoast-premium-social-preview-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'yoast-premium-social-preview-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [ 'jquery', 'jquery-ui-core', 'yoast-seo-premium-commons', WPSEO_Admin_Asset_Manager::PREFIX . 'analysis' ],
 			],
 			[
 				'name'         => 'wp-seo-premium-custom-fields-plugin',
-				'source'       => 'assets/js/dist/wp-seo-premium-custom-fields-plugin-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'wp-seo-premium-custom-fields-plugin-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [ 'jquery', 'yoast-seo-premium-commons' ],
 			],
 			[
 				'name'         => 'wp-seo-premium-quickedit-notification',
-				'source'       => 'assets/js/dist/wp-seo-premium-quickedit-notification-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'wp-seo-premium-quickedit-notification-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [
 					'jquery',
 					'wp-api',
@@ -101,7 +106,8 @@ class WPSEO_Premium_Assets implements WPSEO_WordPress_Integration {
 			],
 			[
 				'name'         => 'wp-seo-premium-redirect-notifications',
-				'source'       => 'assets/js/dist/wp-seo-premium-redirect-notifications-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'wp-seo-premium-redirect-notifications-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [
 					'jquery',
 					'wp-api',
@@ -111,7 +117,8 @@ class WPSEO_Premium_Assets implements WPSEO_WordPress_Integration {
 			],
 			[
 				'name'         => 'wp-seo-premium-redirect-notifications-gutenberg',
-				'source'       => 'assets/js/dist/wp-seo-premium-redirect-notifications-gutenberg-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+				'path'         => 'assets/js/dist/',
+				'filename'     => 'wp-seo-premium-redirect-notifications-gutenberg-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 				'dependencies' => [
 					WPSEO_Admin_Asset_Manager::PREFIX . 'components',
 					'wp-plugins',
@@ -163,9 +170,15 @@ class WPSEO_Premium_Assets implements WPSEO_WordPress_Integration {
 	 * @return void
 	 */
 	protected function register_script( $script ) {
+		$url = plugin_dir_url( WPSEO_PREMIUM_FILE ) . $script['path'] . $script['filename'];
+
+		if ( defined( 'YOAST_SEO_PREMIUM_DEV_SERVER' ) && YOAST_SEO_PREMIUM_DEV_SERVER ) {
+			$url = 'http://localhost:8081/' . $script['filename'];
+		}
+
 		wp_register_script(
 			$script['name'],
-			plugin_dir_url( WPSEO_PREMIUM_FILE ) . $script['source'],
+			$url,
 			$script['dependencies'],
 			WPSEO_VERSION
 		);

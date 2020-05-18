@@ -4,9 +4,9 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Author URI: https://www.icegram.com/
 Tags: subscription, newsletter, email marketing, post notification, email newsletter form, email signup, email widget, newsletter signup, subscribe, subscription form, bulk emails, signup form, list builder, lead generation, welcome email, contacts
 Requires at least: 3.9
-Tested up to: 5.4
+Tested up to: 5.4.1
 Requires PHP: 5.6
-Stable tag: 4.4.6
+Stable tag: 4.4.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses
 
@@ -246,7 +246,9 @@ Refer [here](https://www.icegram.com/documentation/es-faq/).
 
 4. Campaigns
 
-5. Send Broadcasts
+5. Broadcasts Content
+
+5_1. Broadcast Summary
 
 6. New Post Notification
 
@@ -279,9 +281,21 @@ Refer [here](https://www.icegram.com/documentation/es-faq/).
 
 == Changelog ==
 
+**4.4.7 (14.05.2020)**
+
+* New: Improved Broadcast UI
+* New: Now, able to draft broadcast and send later
+* New: Added campaign level open/ view tracking
+* New: Form level captcha is available (**PRO**)
+* New: Added campaign level Link tracking (**PRO**)
+* New: Added campaign level UTM tracking (**PRO**)
+* Update: Use date formate which set in WordPress
+* Update: UI improvements
+* Fix: Import/ Export issues
+
 **4.4.6 (23.04.2020)**
 
-* New: Integrate [Forminator](https://wordpress.org/plugins/forminator/) form plugin (**Premium**)
+* New: Integrate [Forminator](https://wordpress.org/plugins/forminator/) form plugin (**PRO**)
 * Update: Improved Import/ Export feature
 * Update: Improved manage lists UI
 * Update: Improved Export contacts UI

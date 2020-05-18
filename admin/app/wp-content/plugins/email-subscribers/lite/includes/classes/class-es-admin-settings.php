@@ -82,7 +82,7 @@ class ES_Admin_Settings {
 				$email_fields_to_sanitize = array(
 					'ig_es_from_email'
 				);
-
+				
 				foreach ( $options as $key => $value ) {
 					if ( substr( $key, 0, 6 ) === 'ig_es_' ) {
 
@@ -95,7 +95,7 @@ class ES_Admin_Settings {
 						} elseif ( in_array( $key, $email_fields_to_sanitize ) ) {
 							$value = sanitize_email( $value );
 						}
-
+				
 						update_option( $key, wp_unslash( $value ), false );
 					}
 				}
@@ -113,10 +113,10 @@ class ES_Admin_Settings {
 		?>
 
 		<div class="wrap">
-			<h1 class="mt-4 wp-heading-inline"><span class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">Settings</h1>
+			<h1 class="mt-4 wp-heading-inline"><span class="text-2xl font-medium leading-7 text-gray-900 sm:leading-9 sm:truncate">Settings</h1>
 			</header>
 		</span>
-		<form action="" method="post" id="email_tabs_form" class="font-sans sticky bg-white rounded-lg shadow-md">
+		<form action="" method="post" id="email_tabs_form" class="sticky font-sans bg-white rounded-lg shadow-md">
 			<div class="flex flex-wrap mt-6">
 				<?php settings_fields( 'email_subscribers_settings' );
 				$es_settings_tabs = array(
@@ -127,14 +127,14 @@ class ES_Admin_Settings {
 				);
 				$es_settings_tabs = apply_filters( 'ig_es_settings_tabs', $es_settings_tabs );
 				?>
-				<div id="es-settings-menu" class="w-1/5 border-r border-gray-100 pt-4 text-gray-800 leading-normal">
-					<div class="es-menu-list lg:block mt-0 my-2 lg:my-0 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
-						<ul class="menu-nav" class=" list-reset py-2 md:py-0">
+				<div id="es-settings-menu" class="w-1/5 pt-4 leading-normal text-gray-800 border-r border-gray-100">
+					<div class="z-20 my-2 mt-0 bg-white shadow es-menu-list lg:block lg:my-0 lg:border-transparent lg:shadow-none lg:bg-transparent" style="top:6em;" id="menu-content">
+						<ul id="menu-nav" class="py-2 list-reset md:py-0">
 							<?php
 							foreach ( $es_settings_tabs as $key => $value ) {
 								?>
-								<li id="menu-content-li" class="settings-menu-change mx-2 h-10 py-1 border rounded md:my-2 border-transparent hover:rounded-lg hover:border-gray-200">
-									<a href="#tabs-<?php echo $key ?>" id="menu-content-change" class="block px-4 pt-1 align-middle font-medium text-base hover:text-gray-800 no-underline active:text-gray-900"><i class="py-0.5 dashicons dashicons-<?php echo $value['icon'] ?>"></i>&nbsp;<?php echo $value['name'] ?></a></li>
+								<li id="menu-content" class="h-10 py-1 mx-2 border border-transparent rounded settings-menu-change md:my-2 hover:rounded-lg hover:border-gray-200">
+									<a href="#tabs-<?php echo $key ?>" id="menu-content-change" class="block px-4 pt-1 text-base font-medium text-gray-900 no-underline align-middle hover:text-gray-800"><i class="py-0.5 dashicons dashicons-<?php echo $value['icon'] ?>"></i>&nbsp;<?php echo $value['name'] ?></a></li>
 									<?php
 								}
 								?>
@@ -519,7 +519,7 @@ $email_sending_settings = array(
 
 	'ig_es_test_send_email' => array(
 		'type'         => 'html',
-		'html'         => '<input id="es-test-email" class="mt-3 mb-1 form-input h-9 border-gray-400"/><input type="submit" name="submit" id="es-send-test" class="ig-es-primary-button" value="Send Email"><span class="es_spinner_image_admin" id="spinner-image" style="display:none"><img src="' . ES_PLUGIN_URL . 'lite/public/images/spinner.gif' . '" alt="Loading..."/></span>',
+		'html'         => '<input id="es-test-email" class="mt-3 mb-1 border-gray-400 form-input h-9"/><input type="submit" name="submit" id="es-send-test" class="ig-es-primary-button" value="Send Email"><span class="es_spinner_image_admin" id="spinner-image" style="display:none"><img src="' . ES_PLUGIN_URL . 'lite/public/images/spinner.gif' . '" alt="Loading..."/></span>',
 		'placeholder'  => '',
 		'supplemental' => '',
 		'default'      => '',
@@ -645,7 +645,7 @@ public function field_callback( $arguments, $id_key = '' ) {
 			break;
 
 			case 'number': // If it is a number field
-			$field_html = sprintf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" %5$s min="0" class="mt-2 mb-1 h-9 text-sm border-gray-400 w-2/5 "/>', $uid, $type, $placeholder, $value, $readonly );
+			$field_html = sprintf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" %5$s min="0" class="w-2/5 mt-2 mb-1 text-sm border-gray-400 h-9 "/>', $uid, $type, $placeholder, $value, $readonly );
 			break;
 
 			case 'email':
@@ -657,21 +657,21 @@ public function field_callback( $arguments, $id_key = '' ) {
 			break;
 
 			case 'file':
-			$field_html = '<input type="text" id="logo_url" name="' . $uid . '" value="' . $value . '" class="form-input w-2/3 mt-2 mb-1 h-9 border-gray-400 text-sm w-3/5' . $class . '"/> <input id="upload_logo_button" type="button" class="button" value="Upload Logo" />';
+			$field_html = '<input type="text" id="logo_url" name="' . $uid . '" value="' . $value . '" class="w-2/3 w-3/5 mt-2 mb-1 text-sm border-gray-400 form-input h-9' . $class . '"/> <input id="upload_logo_button" type="button" class="button" value="Upload Logo" />';
 			break;
 
 			case 'checkbox' :
 
-			$field_html = '<label for="' . $id_key . '" class="mt-4 mb-1 inline-flex items-center cursor-pointer">
+			$field_html = '<label for="' . $id_key . '" class="inline-flex items-center mt-4 mb-1 cursor-pointer">
 			<span class="relative">';
 
-				if ( ! $disabled ) {
-					$field_html .= '<input id="' . $id_key . '"  type="checkbox" name="' . $uid . '"  value="yes" ' . checked( $value, 'yes', false ) . ' class="mt-6 absolute es-check-toggle opacity-0 w-0 h-0 ' . $class . '" />';
-				}
+			if ( ! $disabled ) {
+				$field_html .= '<input id="' . $id_key . '"  type="checkbox" name="' . $uid . '"  value="yes" ' . checked( $value, 'yes', false ) . ' class="absolute w-0 h-0 mt-6 opacity-0 es-check-toggle ' . $class . '" />';
+			}
 
 			$field_html .= $placeholder . '</input>
-			<span class="es-mail-toggle-line block w-10 h-6 bg-gray-300 rounded-full shadow-inner "></span>
-			<span class="es-mail-toggle-dot absolute transition-all duration-300 ease-in-out block w-4 h-4 mt-1 ml-1 bg-white rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline"></span>	
+			<span class="block w-10 h-6 bg-gray-300 rounded-full shadow-inner es-mail-toggle-line "></span>
+			<span class="absolute inset-y-0 left-0 block w-4 h-4 mt-1 ml-1 transition-all duration-300 ease-in-out bg-white rounded-full shadow es-mail-toggle-dot focus-within:shadow-outline"></span>	
 			</span>
 			</label>';
 			break;
@@ -698,7 +698,7 @@ public function field_callback( $arguments, $id_key = '' ) {
 		//If there is help text
 		if ( ! empty( $arguments['desc'] ) ) {
 			$helper     = $arguments['desc'];
-			$field_html .= sprintf( '<p class="helper italic text-xs font-normal text-gray-500 mb-2 leading-snug"> %s</p>', $helper ); // Show it
+			$field_html .= sprintf( '<p class="mb-2 text-xs italic font-normal leading-snug text-gray-500 helper"> %s</p>', $helper ); // Show it
 		}
 
 		return $field_html;
@@ -713,28 +713,33 @@ public function field_callback( $arguments, $id_key = '' ) {
 	}
 
 	function render_settings_fields( $fields ) {
-		$html = "<table class='mt-4 rounded-lg bg-white mr-4 lg:mx-5 xl:mx-7 overflow-hidden'>";
+		$html = "<table class='mt-4 mr-4 overflow-hidden bg-white rounded-lg lg:mx-5 xl:mx-7'>";
 		$html .= "<tbody>";
 		foreach ( $fields as $key => $field ) {
 			if ( ! empty( $field['name'] ) ) {
-				$html .= "<tr class=' ml-4 py-4 border-b border-gray-100'><th scope='row' class='pt-7 ml-6 block pt-3 pb-8 text-left pr-4'><span class='text-sm font-semibold text-gray-600 pb-2'>";
+				$html .= "<tr class='py-4 ml-4 border-b border-gray-100 '><th scope='row' class='block pt-3 pb-8 pr-4 ml-6 text-left pt-7'><span class='pb-2 text-sm font-semibold text-gray-600'>";
 				$html .= $field['name'];
 
 				if ( ! empty( $field['is_premium'] ) ) {
-					$html .= '<a href="' . $field['link'] . '" target="_blank"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">' . __( 'Premium', 'email-subscribers' ) . '</span></a>';
+					$html .= '<a href="' . $field['link'] . '" target="_blank"><span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">' . __( 'Premium', 'email-subscribers' ) . '</span></a>';
 				}
 
 				//If there is help text
 				if ( ! empty( $field['info'] ) ) {
 					$helper = $field['info'];
-					$html   .= "<br />" . sprintf( '<p class="italic text-xs font-normal text-gray-500 mt-1  leading-snug">%s</p>', $helper ); // Show it
+					$html   .= "<br />" . sprintf( '<p class="mt-1 text-xs italic font-normal leading-snug text-gray-500">%s</p>', $helper ); // Show it
 				}
 				$button_html = "<tr>";
 
 				$html .= "</th>";
 			}
 
-			$html .= "<td class=' pl-5 w-4/6 bg-white rounded-lg py-2'>";
+			$html .= "<td class='w-4/6 py-2 pl-5 bg-white rounded-lg '>";
+
+			if ( ! empty( $field['upgrade_desc'] ) ) {
+				$html .="<div class='flex'><div class='flex-none w-2/5'>";
+			}
+
 			if ( ! empty( $field['sub_fields'] ) ) {
 				$option_key = '';
 				foreach ( $field['sub_fields'] as $field_key => $sub_field ) {
@@ -755,6 +760,28 @@ public function field_callback( $arguments, $id_key = '' ) {
 				$html .= $this->field_callback( $field );
 			}
 
+			if ( ! empty( $field['upgrade_desc'] ) ) {
+				$html .="</div>
+				<div class='w-3/5'>  
+					<div class='px-3 py-2 mr-2 rounded-md bg-teal-50'>
+						<div class='flex'>
+							<div class='flex-shrink-0'>
+								<svg class='w-5 h-5 text-teal-400' fill='currentColor' viewBox='0 0 20 20'>
+									<path fill-rule='evenodd' d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z' clip-rule='evenodd'/>
+								</svg>
+							</div>
+						<div class='ml-3'>
+							<h3 class='text-sm font-medium leading-5 text-teal-700'>";
+							$html .= $field['upgrade_title'] . "</h3>";
+							$html .= "<div class='mt-2 text-sm leading-5 text-teal-500'>
+							<p>". $field['upgrade_desc'] . "</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>";
+			}
+
 			$html .= "</td></tr>";
 		}
 
@@ -765,7 +792,7 @@ public function field_callback( $arguments, $id_key = '' ) {
 		$html .= '<input type="hidden" name="submitted" value="submitted" />';
 		$html .= '<input type="hidden" name="submit_action" value="ig-es-save-admin-settings" />';
 		$html .= $nonce_field;
-		$html .= '<input type="submit" name="submit" class="cursor-pointer my-2 mx-6 ig-es-primary-button" value="' . __( 'Save Settings', 'email-subscribers' ) . '">';
+		$html .= '<input type="submit" name="submit" class="mx-6 my-2 cursor-pointer ig-es-primary-button" value="' . __( 'Save Settings', 'email-subscribers' ) . '">';
 		$html .= "</td></tr>";
 		$html .= "</tbody>";
 		$html .= "</table>";
@@ -814,20 +841,20 @@ public function field_callback( $arguments, $id_key = '' ) {
 
 		foreach ( $mailers as $key => $mailer ) {
 			$html .= '<label class="inline-flex items-center cursor-pointer">';
-			$html .= '<input type="radio" class="es_mailer absolute opacity-0 w-0 h-0" name="ig_es_mailer_settings[mailer]" value="' . $key . '" ' . checked( $selected_mailer, $key, false ) . '></input>';
+			$html .= '<input type="radio" class="absolute w-0 h-0 opacity-0 es_mailer" name="ig_es_mailer_settings[mailer]" value="' . $key . '" ' . checked( $selected_mailer, $key, false ) . '></input>';
 
 			if ( ! empty( $mailer['is_premium'] ) ) {
 				$html .= '<a href="' . $mailer['url'] . '" target="_blank">';
 			}
 
-			$html .= '<div class="mt-4 mr-4 border-solid border-2 rounded-lg border-gray-200 shadow-md es-mailer-logo">
-			<div class="es-logo-wrapper border-0">
+			$html .= '<div class="mt-4 mr-4 border-2 border-gray-200 border-solid rounded-lg shadow-md es-mailer-logo">
+			<div class="border-0 es-logo-wrapper">
 			<img src="' . $mailer['logo'] . '" alt="Default (none)">
 			</div>'
 			. $mailer['name'];
 
 			if ( ! empty( $mailer['is_premium'] ) ) {
-				$html .= '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Premium</span></a>';
+				$html .= '<span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Premium</span></a>';
 			}
 			$html .= '</div></label>';
 		}

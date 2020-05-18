@@ -608,7 +608,6 @@ if ( ! class_exists( 'Email_Subscribers' ) ) {
 				'lite/includes/classes/class-es-message.php',
 				'lite/includes/classes/class-es-lists-table.php',
 				'lite/includes/classes/class-es-contacts-table.php',
-				'lite/includes/classes/class-es-contact-background-process.php',
 				'lite/includes/classes/class-es-post-notifications.php',
 				'lite/includes/classes/class-es-templates-table.php',
 				'lite/includes/classes/class-es-campaigns-table.php',
@@ -812,8 +811,6 @@ if ( ! class_exists( 'Email_Subscribers' ) ) {
 			$this->loader->add_action( 'admin_print_scripts', $plugin_admin, 'remove_other_admin_notices' );
 
 			$this->loader->add_filter( 'admin_footer_text', $plugin_admin, 'update_admin_footer_text' );
-
-
 
 		}
 
@@ -1121,10 +1118,10 @@ if ( ! class_exists( 'Email_Subscribers' ) ) {
 		 *
 		 * @since 4.4.4
 		 */
-		public function init_action_scheduler_queue_runner() {
+		public function init_action_scheduler_queue_runner( $action = 'ig_es_init_queue_runner' ) {
 
 			$admin_ajax_url = admin_url( 'admin-ajax.php' );
-			$admin_ajax_url = add_query_arg( 'action', 'ig_es_init_queue_runner', $admin_ajax_url );
+			$admin_ajax_url = add_query_arg( 'action', $action, $admin_ajax_url );
 			$args           = array(
 				'timeout'   => 0.01,
 				'blocking'  => false,
