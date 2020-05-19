@@ -6,7 +6,7 @@ import SideBar from './SideBar';
 import Body from './Body';
 import { headers } from '../../utils/helpers';
 
-class Archives extends Component {
+class BackCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,8 +26,11 @@ class Archives extends Component {
 
   async componentDidMount() {
     const { match } = this.props;
-    const { categorySlug, pageNum } = match.params;
+    const { pageNum } = match.params;
     let page = 1;
+
+    const baseUrl = window.location.pathname.split('/');
+    const categorySlug = baseUrl[baseUrl.length - 1];
 
     const breadCrumb = [categorySlug, 1];
 
@@ -43,6 +46,7 @@ class Archives extends Component {
       const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
       const postJson = await postResponse.json();
       const articleJson = await articlesResponse.json();
+
       const {
         pages, results, posts, seo,
       } = postJson;
@@ -118,4 +122,4 @@ class Archives extends Component {
   }
 }
 
-export default Archives;
+export default BackCategory;

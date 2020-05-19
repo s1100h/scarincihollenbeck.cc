@@ -48,6 +48,7 @@ const Page404 = lazy(() => import(/* webpackPreload: true */ './pages/page404'))
  */
 const QuickNews = lazy(() => import(/* webpackPreload: true */ './pages/QuickNews'));
 const Archives = lazy(() => import(/* webpackPreload: true */ './pages/Archives'));
+const BackCategory = lazy(() => import(/* webpackPreload: true */ './pages/BackCategory'));
 const Authors = lazy(() => import(/* webpackPreload: true */ './pages/Authors'));
 const Category = lazy(() => import(/* webpackPreload: true */ './pages/Category'));
 
@@ -203,16 +204,24 @@ class SiteRoutes extends Component {
           <Route path ='/author/:author' exact component={Authors} />
           <Route path ='/author/:author/page/:pageNum' exact component={Authors} />
           <Route path={`/s`} component={Search} />
-          <Route path='/category/just-in' exact component={Archives} />
-          <Route path='/category/federal-payroll-protection-act' exact component={Archives} />
-          <Route path='/category/diversity' exact component={Archives} />
-          <Route path='/category/women-lead' exact component={Archives} />
-          <Route path='/category/client-alert' exact component={Archives} />
-          <Route path='/category/cyber-security-client-alert' exact component={Archives} />
-          <Route path='/category/federal-payroll-protection-act' exact component={Archives} />
-          <Route path='/category/headlines' exact component={Archives} />
-          <Route path='/category/covid-19-education-alerts' exact component={Archives} />
-          <Route path='/category/covid-19-alerts' exact component={Archives} />
+          <Route path='/category/just-in' exact component={BackCategory} />
+          <Route path='/category/just-in/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/diversity' exact component={BackCategory} />
+          <Route path='/category/diversity/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/women-lead' exact component={BackCategory} />
+          <Route path='/category/women-lead/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/client-alert' exact component={BackCategory} />
+          <Route path='/category/client-alert/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/cyber-security-client-alert' exact component={BackCategory} />
+          <Route path='/category/cyber-security-client-alert/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/federal-payroll-protection-act' exact component={BackCategory} />
+          <Route path='/category/federal-payroll-protection-act/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/headlines' exact component={BackCategory} />
+          <Route path='/category/headlines/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/covid-19-education-alerts' exact component={BackCategory} />
+          <Route path='/category/covid-19-education-alerts/page/:pageNum' exact component={BackCategory} />
+          <Route path='/category/covid-19-alerts' exact component={BackCategory} />
+          <Route path='/category/covid-19-alerts/page/:pageNum' exact component={BackCategory} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />          
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
