@@ -205,16 +205,16 @@ class SiteRoutes extends Component {
           <Route path={`/s`} component={Search} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />
-          <Route path='/category/just-in' exact component={Archive} />
-          <Route path='/category/federal-payroll-protection-act' exact component={Archive} />
-          <Route path='/category/diversity' exact component={Archive} />
-          <Route path='/category/women-lead' exact component={Archive} />
-          <Route path='/category/client-alert' exact component={Archive} />
-          <Route path='/category/cyber-security-client-alert' exact component={Archive} />
-          <Route path='/category/federal-payroll-protection-act' exact component={Archive} />
-          <Route path='/category/headlines' exact component={Archive} />
-          <Route path='/category/covid-19-education-alerts' exact component={Archive} />
-          <Route path='/category/covid-19-alerts' exact component={Archive} />
+          <Route path='/category/just-in' exact component={Archives} />
+          <Route path='/category/federal-payroll-protection-act' exact component={Archives} />
+          <Route path='/category/diversity' exact component={Archives} />
+          <Route path='/category/women-lead' exact component={Archives} />
+          <Route path='/category/client-alert' exact component={Archives} />
+          <Route path='/category/cyber-security-client-alert' exact component={Archives} />
+          <Route path='/category/federal-payroll-protection-act' exact component={Archives} />
+          <Route path='/category/headlines' exact component={Archives} />
+          <Route path='/category/covid-19-education-alerts' exact component={Archives} />
+          <Route path='/category/covid-19-alerts' exact component={Archives} />
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:grandchild/:post' exact component={Single} />
