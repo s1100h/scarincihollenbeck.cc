@@ -203,8 +203,6 @@ class SiteRoutes extends Component {
           <Route path ='/author/:author' exact component={Authors} />
           <Route path ='/author/:author/page/:pageNum' exact component={Authors} />
           <Route path={`/s`} component={Search} />
-          <Route path='/category/:category' exact component={Category} />
-          <Route path='/category/:category/:child' exact component={Category} />
           <Route path='/category/just-in' exact component={Archives} />
           <Route path='/category/federal-payroll-protection-act' exact component={Archives} />
           <Route path='/category/diversity' exact component={Archives} />
@@ -215,6 +213,8 @@ class SiteRoutes extends Component {
           <Route path='/category/headlines' exact component={Archives} />
           <Route path='/category/covid-19-education-alerts' exact component={Archives} />
           <Route path='/category/covid-19-alerts' exact component={Archives} />
+          <Route path='/category/:category' exact component={Category} />
+          <Route path='/category/:category/:child' exact component={Category} />          
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:grandchild/:post' exact component={Single} />
