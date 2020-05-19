@@ -4,6 +4,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import PropTypes from 'prop-types';
 import NewsScroller from '../../components/NewsScroller';
+import { urlify } from '../../utils/helpers';
 
 function Body(props) {
   const {
@@ -66,7 +67,7 @@ function Body(props) {
               <li className="mr-2">
                 <a
                   className="text-dark"
-                  href={`${window.location.origin}/archives/${categorySlug}/page/${prev}/`}
+                  href={`${window.location.origin}/archives/${urlify(categorySlug)}/page/${prev}/`}
                   tabIndex="-1"
                   aria-label="previous link"
                 >
@@ -81,7 +82,7 @@ function Body(props) {
                 >
                   <a
                     className="text-dark mt-2"
-                    href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
+                    href={`${window.location.origin}/archives/${urlify(categorySlug)}/page/${val}/`}
                   >
                     {val}
                   </a>
@@ -99,7 +100,7 @@ function Body(props) {
                 >
                   <a
                     className="text-dark"
-                    href={`${window.location.origin}/archives/${categorySlug}/page/${val}/`}
+                    href={`${window.location.origin}/archives/${urlify(categorySlug)}/page/${val}/`}
                   >
                     {val}
                   </a>
@@ -110,7 +111,7 @@ function Body(props) {
               <li className="ml-1">
                 <a
                   className="text-dark"
-                  href={`${window.location.origin}/archives/${categorySlug}/page/${next}/`}
+                  href={`${window.location.origin}/archives/${urlify(categorySlug)}/page/${next}/`}
                   aria-label="next link"
                 >
                   <FontAwesomeIcon icon={faCaretRight} />

@@ -4,7 +4,7 @@ import ArchiveLayout from '../../layouts/ArchiveLayout';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import SideBar from './SideBar';
 import Body from './Body';
-import { headers } from '../../utils/helpers';
+import { headers, makeTitle } from '../../utils/helpers';
 
 class Archives extends Component {
   constructor(props) {
@@ -28,7 +28,18 @@ class Archives extends Component {
     const { match } = this.props;
     const { categorySlug, pageNum } = match.params;
     let page = 1;
-    const breadCrumb = [categorySlug, 1];
+    let baseBreadCrumb = '';
+
+    if (categorySlug === undefined) {
+      const baseUrl = window.location.pathname.split('/');
+      baseBreadCrumb = makeTitle(baseUrl[baseUrl.length - 1]);
+    }
+
+    if (categorySlug !== undefined) {
+      baseBreadCrumb = makeTitle(categorySlug);
+    }
+
+    const breadCrumb = [baseBreadCrumb, 1];
 
     if (pageNum !== undefined) {
       page = pageNum;
@@ -36,7 +47,7 @@ class Archives extends Component {
     }
 
     this.setState({
-      breadCrumb, categorySlug, currentPage: page, loading: true,
+      breadCrumb, categorySlug: baseBreadCrumb, currentPage: page, loading: true,
     }, async () => {
       const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${categorySlug}/${page}`, { headers });
       const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
@@ -105,12 +116,12 @@ class Archives extends Component {
               active={active}
               loading={loading}
             />
- )}
+          )}
           sidebar={(
             <SideBar
               trending={trending}
             />
-)}
+          )}
         />
       </div>
     );
