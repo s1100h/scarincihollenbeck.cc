@@ -25,8 +25,6 @@ class IndividualPractice extends Component {
       industryTopics: [],
       attorneyList: [],
       highlightReal: [],
-      blogPosts: [],
-      newsPosts: [],
       currentTab: '',
       error: false,
     };
@@ -60,19 +58,6 @@ class IndividualPractice extends Component {
         seo,
       } = practiceJson;
   
-      const blogPosts = [];
-      const newsPosts = [];
-  
-      // seperate out blog posts and news posts
-      industryTopics.forEach(async (post) => {
-        if (post.categoryParent === 599) {
-          await blogPosts.push(post);
-        }
-  
-        if (post.categoryParent === 98 || post.categoryParent === 99) {
-          await newsPosts.push(post);
-        }
-      });
  
       this.setState({
         chair,
@@ -83,8 +68,6 @@ class IndividualPractice extends Component {
         attorneyList,
         practiceList,
         highlightReal,
-        blogPosts,
-        newsPosts,
         seo,
         currentTab: content[0].title,
         corePractices,
@@ -136,7 +119,7 @@ class IndividualPractice extends Component {
             image={cityBackground}
             height=""
           />
-          { (content.length > 0) ? (
+          { (content.length > 0) && (
             <div>
               <FullWidth>
                 <div className="line-header" id="nav-tab" role="tablist">
@@ -153,7 +136,7 @@ class IndividualPractice extends Component {
                   >
                     {content[0].title}
                   </h3>
-                  { content.map((v, i) => ((i > 0) ? (
+                  { content.map((v, i) => ((i > 0) && (
                     <h3
                       key={v.title}
                       className={(currentTab === v.title) ? 'active' : ''}
@@ -167,23 +150,8 @@ class IndividualPractice extends Component {
                     >
                       {v.title}
                     </h3>
-                  ) : ''))}
-                  { (attorneyList.length > 0) ? (
-                    <h3
-                      id="nav-home-tab"
-                      className={(currentTab === 'team') ? 'active' : ''}
-                      data-toggle="tab"
-                      href="#team"
-                      role="tab"
-                      onClick={() => this.tabClick('team')}
-                      onKeyPress={() => this.tabClick('team')}
-                      aria-controls="nav-home"
-                      aria-selected="true"
-                    >
-                      Our Team
-                    </h3>
-                  ) : ''}
-                  { (industryTopics.length > 0) ? (
+                  )))}
+                  { (industryTopics.length > 0) && (
                     <h3
                       id="nav-home-tab"
                       className={(currentTab === 'blogs') ? 'active' : ''}
@@ -197,7 +165,7 @@ class IndividualPractice extends Component {
                     >
                       Related Updates
                     </h3>
-                  ) : ''}
+                  )}
                 </div>
               </FullWidth>
               <NoHeaderMiniSidebar
@@ -211,8 +179,6 @@ class IndividualPractice extends Component {
                     industryTopics={industryTopics}
                     highlightReal={highlightReal}
                     title={title}
-                    newsPosts={newsPosts}
-                    blogPosts={blogPosts}
                   />
                   )}
                 sidebar={(
@@ -224,7 +190,7 @@ class IndividualPractice extends Component {
                   )}
               />
             </div>
-          ) : '' }
+          )}
         </div>
       </div>
     );

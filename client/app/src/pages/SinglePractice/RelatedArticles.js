@@ -7,7 +7,7 @@ const noImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-i
 function RelatedArticles(props) {
   const { articles } = props;
   return (
-    <div className="container related-article-container">
+    <div className="container related-article-container my-5">
       <div className="row">
         {
           (articles) ? (

@@ -16,6 +16,19 @@ add_action('rest_api_init', function()
 		"callback" => "individual_practice_data"
 	));
 });
+
+
+function find_post_category_ids($post_id) {
+  $categorys = get_the_category($post_id);
+  $parent_ids = array();
+
+  foreach($categorys as $cat) {
+    $parent_ids[] = $cat->category_parent;
+  };
+
+  return array_values(array_unique($parent_ids)); 
+}
+
 function sort_object_results($data)
 {
 	$results = array();
@@ -150,7 +163,7 @@ function individual_practice_data($request){
       "date" => get_the_date('F j, Y', $p->ID),
       "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
       "link" => str_replace(home_url(), '', get_permalink($p->ID)),
-      "categoryParent" => get_the_category($p->ID)[0]->category_parent,
+      "categoryIds" => find_post_category_ids($p->ID),
       "image" => get_the_post_thumbnail_url($p->ID),
       "category" => get_the_category($p->ID)
       );

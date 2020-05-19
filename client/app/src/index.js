@@ -77,6 +77,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
  import './styles/utils/just-in-carousel.scss';
  import './styles/utils/location-carousel.scss';
  import './styles/utils/spacing-and-fonts.scss';
+ import './styles/utils/tabs.scss';
 
  /**
 * Custom Style Sheets

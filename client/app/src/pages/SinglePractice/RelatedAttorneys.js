@@ -10,12 +10,10 @@ function RelatedAttorneys(props) {
     <div>
       { (chair.length > 0) ? (
         <div className="container">
-          <div className="row bg-light-gray">
-            <div className="col-sm-12">
-              <h4 className="c-title">Practice Chair</h4>
-            </div>
+          <div className="line-header">
+            <h3>Practice Chair</h3>
           </div>
-          <div className="row">
+          <div className="row mt-4">
             {
                 chair.map((v) => (
                   <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
@@ -38,23 +36,16 @@ function RelatedAttorneys(props) {
       {
         (members) ? (
           <div className="container">
-            <div className="row mt-5 bg-light-gray">
-              <div className="col-sm-12 col-md-6">
-                <h4 className="c-title">Members</h4>
-              </div>
-              <div className="col-sm-12 col-md-6">
-                <form className="w-100 pt-2">
-                  <select onChange={handleLink} className="w-100">
-                    {
-                      members.map((v) => <option value={v.link} key={v.ID} className="w-100">{v.name}</option>)
-                    }
-                  </select>
-                </form>
-              </div>
+            <div className="line-header">
+              <h3>Members</h3>
             </div>
-            <div className="row">
-              {
-                members.map((v) => (
+            <form className="w-50 py-4">
+              <select onChange={handleLink} className="w-100">
+                {members.map((v) => <option value={v.link} key={v.ID} className="w-100">{v.name}</option>)}
+              </select>
+            </form>
+            <div className="row mh-75">
+              { members.map((v) => (
                   <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 mb-3">
                     <AttorneyCard
                       link={v.link}

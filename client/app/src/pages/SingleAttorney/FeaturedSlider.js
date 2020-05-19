@@ -7,18 +7,13 @@ function FeaturedSlider(props) {
 
   return (
     <div className="mt-4 w-100 d-block attorney-news-slider">
-      <h4 className="bg-light-gray">
-        { (title === 'Awards') ? (
-          <span>
-            {title}
-            {' '}
-            -
-            {' '}
-            <a href="/awards/" className="small-excerpt position-relative award-link">Award Methodology</a>
-          </span>
-        ) : title}
-      </h4>
-      <div className="container">
+      <div className="line-header mb-3">
+        <h3>
+          {title}
+        </h3>
+      </div>
+      {(title === 'Awards') && <a href="/awards" className="text-center d-block proxima-bold red-title">Award Methodology</a>}
+      <div className="container mt--1">
         <div className="row">
           <div className="col-sm-12">
             { (content.length > 3) ? <Carousel sliderType="LargeArticle" slides={content} /> : (

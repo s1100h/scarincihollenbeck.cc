@@ -15,8 +15,6 @@ function Body(props) {
     handleLink,
     industryTopics,
     highlightReal,
-    newsPosts,
-    blogPosts,
     title,
   } = props;
   
@@ -35,40 +33,30 @@ function Body(props) {
               dangerouslySetInnerHTML={createMarkup(v.content)}
             />
           ) : ''))
-        }
-        <div id="team" className={(currentTab === 'team') ? 'tab-pane active' : 'tab-pane'} role="tabpanel" aria-labelledby="nav-home-tab">
-          <RelatedAttorneys
-            members={attorneyList}
-            chair={chair}
-            handleLink={handleLink}
-          />
-        </div>
+        }        
         <div id="blogs" className={(currentTab === 'blogs') ? 'tab-pane active' : 'tab-pane'} role="tabpanel" aria-labelledby="nav-home-tab">
           <RelatedArticles articles={industryTopics} />
         </div>
       </div>
+      {/** List of members */}
+      <RelatedAttorneys
+            members={attorneyList}
+            chair={chair}
+            handleLink={handleLink}
+        />
       {/** Awards */}
       {(highlightReal.length > 0) && <AwardScroller highlightReal={highlightReal} /> }
-      {/** Recent News Articles */}
-      {(newsPosts.length > 0) && (
-      <div className="w-100 d-block">
-        <h4 className="bg-light-gray">
-          Latest News on
-          {' '}
-          {title}
-        </h4>
-        <FeaturedSlider content={newsPosts} />
-      </div>
-      )}
       {/** Recent Blog Articles */}
-      {(blogPosts.length > 0) && (
+      {(industryTopics.length > 0) && (
       <div className="w-100 d-block">
-        <h4 className="bg-light-gray">
-          Latest Articles on
-          {' '}
-          {title}
-        </h4>
-        <FeaturedSlider content={blogPosts} />
+        <div className="line-header">
+          <h3>
+            Latest Articles on
+            {' '}
+            {title}
+          </h3>
+        </div>
+        <FeaturedSlider content={industryTopics} />
       </div>
       )}
     </div>
@@ -83,8 +71,6 @@ Body.propTypes = {
   handleLink: PropTypes.func,
   industryTopics: PropTypes.arrayOf(PropTypes.object),
   highlightReal: PropTypes.arrayOf(PropTypes.object),
-  newsPosts: PropTypes.arrayOf(PropTypes.object),
-  blogPosts: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
 };
 
@@ -96,8 +82,6 @@ Body.defaultProps = {
   chair: [],
   industryTopics: [],
   highlightReal: [],
-  newsPosts: [],
-  blogPosts: [],
   handleLink: () => {},
 };
 

@@ -10,11 +10,14 @@ function NewsScroller(props) {
 
   return (
     <div className="mt-4 w-100 d-block">
-      <h4 className="bg-light-gray">
-        Latest From
-        {' '}
-        {title}
-      </h4>
+      <div className="line-header">
+        <h3>
+          Latest From
+          {' '}
+          {title}
+        </h3>
+      </div>
+
       {
         (attorneysMentioned.length > 3) ? <Carousel sliderType="LargeArticle" slides={attorneysMentioned} /> : (
           <div className="container">

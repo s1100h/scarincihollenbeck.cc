@@ -10,7 +10,9 @@ function RelatedArticles(props) {
 
   return (
     <div className="mt-4 w-100 d-block attorney-news-slider">
-      <h4 className="bg-light-gray">{title}</h4>
+      <div className="line-header mb-4">
+        <h3>{title}</h3>
+      </div>
       {
         (content.length > 3) ? (
           <div className="featured-article-attorney-container">

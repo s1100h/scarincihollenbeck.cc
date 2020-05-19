@@ -18,11 +18,11 @@ function TabContent(props) {
   return (
     <div>
       {
-        (content.length > 0) ? (
+        (content.length > 0) && (
           <div className="tab-content">
             <div className={(currentTab === content[0].title) ? 'tab-pane active article-container mt-4' : 'tab-pane article-container mt-4'} id={`#${content[0].title}`} role="tabpanel" aria-labelledby="nav-home-tab" dangerouslySetInnerHTML={createMarkup(content[0].content)} />
             {
-               content.map((v, i) => ((i > 0) ? (
+               content.map((v, i) => ((i > 0) && (
                  <div
                    key={v.title}
                    id={`#${v.title}`}
@@ -31,18 +31,16 @@ function TabContent(props) {
                    aria-labelledby="nav-home-tab"
                    dangerouslySetInnerHTML={createMarkup(v.content)}
                  />
-               ) : ''))
-             }
-            <div id="team" className={(currentTab === 'members') ? 'tab-pane active mt-4' : 'tab-pane mt-4'} role="tabpanel" aria-labelledby="nav-home-tab">
-              <RelatedAttorneys
-                members={sortedMembers}
-                chair={chair}
-                handleLink={handleLink}
-              />
-            </div>
+               )))
+             }            
           </div>
-        ) : ''
+        )
       }
+      <RelatedAttorneys
+        members={sortedMembers}
+        chair={chair}
+        handleLink={handleLink}
+      />
       <NewsScroller attorneysMentioned={attorneysMentioned} title={title} />
     </div>
   );
