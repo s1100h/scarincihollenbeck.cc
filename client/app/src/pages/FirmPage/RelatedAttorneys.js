@@ -16,10 +16,10 @@ function RelatedAttorneys(props) {
               <div className="line-header">
                 <h3>Group Chair</h3>
               </div>
-              <div className="row">
+              <div className="row mt-4 mb--1">
                 {
                   chair.map((v) => (
-                    <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 my-3">
+                    <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
                       <AttorneyCard
                         link={v.link}
                         image={v.image}
@@ -43,14 +43,14 @@ function RelatedAttorneys(props) {
             <div className="line-header">
               <h3>Members</h3>
             </div>
-            <form className="w-50 pt-2">
+            <form className="w-50 pt-5 pb-3">
               <select onChange={handleLink} className="w-100">
                 {
                   members.map((v) => <option value={v.link} key={v.ID} className="w-100">{v.name}</option>)
                 }
               </select>
             </form>
-            <div className="container">
+            <div className="container-fluid px-0">
             <div className="row members-container">
 
               {

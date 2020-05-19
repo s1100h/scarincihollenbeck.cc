@@ -10,7 +10,7 @@ function NewsScroller(props) {
 
   return (
     <div className="mt-4 w-100 d-block">
-      <div className="line-header">
+      <div className="line-header  mb-4">
         <h3>
           Latest From
           {' '}

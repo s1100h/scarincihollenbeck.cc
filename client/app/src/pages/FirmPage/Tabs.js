@@ -7,11 +7,9 @@ function Tabs(props) {
     content, members, currentTab, tabClick,
   } = props;
 
-  return (
-
-    <div className="line-header" id="nav-tab" role="tablist">
-      { (content.length > 0) && (
-        <h3
+  return (content.length > 1) && (
+    <div className="line-header" id="nav-tab" role="tablis">
+      <h3
           className={(currentTab === content[0].title) ? 'active' : ''}
           id="nav-home-tab"
           data-toggle="tab"
@@ -23,10 +21,8 @@ function Tabs(props) {
           aria-selected="true"
         >
           {content[0].title}
-        </h3>
-      )}
-      {
-      content.map((v, i) => ((i > 0) && (
+      </h3>
+      { content.map((v, i) => ((i > 0) && (
         <h3
           key={v.title}
           className={(currentTab === v.title) ? 'active' : ''}
@@ -40,27 +36,9 @@ function Tabs(props) {
         >
           {v.title}
         </h3>
-      )))
-    }
-      {
-      (Object.keys(members).length > 0) && (
-        <h3
-          id="nav-home-tab"
-          className={(currentTab === 'members') && 'active'}
-          data-toggle="tab"
-          href="#members"
-          role="tab"
-          onClick={() => tabClick('members')}
-          onKeyPress={() => tabClick('members')}
-          aria-controls="nav-home"
-          aria-selected="true"
-        >
-          Members
-        </h3>
-      )
-    }
+      )))} 
     </div>
-  );
+  ) 
 }
 
 Tabs.propTypes = {
