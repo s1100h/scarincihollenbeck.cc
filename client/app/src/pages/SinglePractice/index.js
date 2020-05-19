@@ -122,8 +122,8 @@ class IndividualPractice extends Component {
           { (content.length > 0) && (
             <div>
               <FullWidth>
-                <div className="line-header" id="nav-tab" role="tablist">
-                  <h3
+                <div className="tab-container mb--1" id="nav-tab" role="tablist">
+                  <button
                     className={(currentTab === content[0].title) ? 'active' : ''}
                     id="nav-home-tab"
                     data-toggle="tab"
@@ -135,9 +135,9 @@ class IndividualPractice extends Component {
                     aria-selected="true"
                   >
                     {content[0].title}
-                  </h3>
+                  </button>
                   { content.map((v, i) => ((i > 0) && (
-                    <h3
+                    <button
                       key={v.title}
                       className={(currentTab === v.title) ? 'active' : ''}
                       data-toggle="tab"
@@ -149,10 +149,10 @@ class IndividualPractice extends Component {
                       aria-selected="true"
                     >
                       {v.title}
-                    </h3>
+                    </button>
                   )))}
                   { (industryTopics.length > 0) && (
-                    <h3
+                    <button
                       id="nav-home-tab"
                       className={(currentTab === 'blogs') ? 'active' : ''}
                       data-toggle="tab"
@@ -164,7 +164,7 @@ class IndividualPractice extends Component {
                       aria-selected="true"
                     >
                       Related Updates
-                    </h3>
+                    </button>
                   )}
                 </div>
               </FullWidth>

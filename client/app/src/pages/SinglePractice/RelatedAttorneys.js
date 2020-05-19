@@ -13,7 +13,7 @@ function RelatedAttorneys(props) {
           <div className="line-header">
             <h3>Practice Chair</h3>
           </div>
-          <div className="row mt-4">
+          <div className="row my-5">
             {
                 chair.map((v) => (
                   <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6">
@@ -46,20 +46,19 @@ function RelatedAttorneys(props) {
             </form>
             <div className="row mh-75">
               { members.map((v) => (
-                  <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 mb-3">
-                    <AttorneyCard
-                      link={v.link}
-                      image={v.image}
-                      name={v.name}
-                      title={v.designation}
-                      number={v.contact}
-                      email={v.email}
-                      height="109px"
-                      width="75%"
-                    />
-                  </div>
-                ))
-              }
+                <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 mb-3">
+                  <AttorneyCard
+                    link={v.link}
+                    image={v.image}
+                    name={v.name}
+                    title={v.designation}
+                    number={v.contact}
+                    email={v.email}
+                    height="109px"
+                    width="75%"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         ) : ''

@@ -7,7 +7,7 @@ function MenuItem(props) {
     currentTab, tabTitle, tabClick, title,
   } = props;
   return (
-    <h3
+    <button
       className={(currentTab === tabTitle) ? 'active' : ''}
       id="nav-home-tab"
       data-toggle="tab"
@@ -15,12 +15,13 @@ function MenuItem(props) {
       href={`#${tabTitle}`}
       role="tab"
       tabIndex="0"
+      type="button"
       aria-controls="nav-home"
       aria-selected
       aria-hidden
     >
       {title}
-    </h3>
+    </button>
   );
 }
 

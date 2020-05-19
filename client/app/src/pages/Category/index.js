@@ -144,7 +144,7 @@ class CategoryBody extends Component {
               colTwoContent={practices}
             />
           )}
-          { practices.map((val) => (
+          { practices.map((val) => (val.name !== 'Uncategorized') && (
             <FullWidth className="col-sm-12 mt-5" key={val.id}>
               <SliderContent title={val.name} slides={val.posts} />
             </FullWidth>

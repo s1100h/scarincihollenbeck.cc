@@ -205,6 +205,16 @@ class SiteRoutes extends Component {
           <Route path={`/s`} component={Search} />
           <Route path='/category/:category' exact component={Category} />
           <Route path='/category/:category/:child' exact component={Category} />
+          <Route path='/category/just-in' exact component={Archive} />
+          <Route path='/category/federal-payroll-protection-act' exact component={Archive} />
+          <Route path='/category/diversity' exact component={Archive} />
+          <Route path='/category/women-lead' exact component={Archive} />
+          <Route path='/category/client-alert' exact component={Archive} />
+          <Route path='/category/cyber-security-client-alert' exact component={Archive} />
+          <Route path='/category/federal-payroll-protection-act' exact component={Archive} />
+          <Route path='/category/headlines' exact component={Archive} />
+          <Route path='/category/covid-19-education-alerts' exact component={Archive} />
+          <Route path='/category/covid-19-alerts' exact component={Archive} />
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:grandchild/:post' exact component={Single} />
@@ -217,8 +227,11 @@ class SiteRoutes extends Component {
           <Route path='/cyber-security-client-alert/:post' exact component={Single} />
           <Route path='/diversity/:post' exact component={Single} />
           <Route path='/women-lead/:post' exact component={Single} />
-          <Route path='/post-covid-19-alert/:post' exact component={Single} />
-          <Route path='/headlines/:post' exact component={Single} />                  
+          <Route path='/client-alert/:post' exact component={Single} />
+          <Route path='/headlines/:post' exact component={Single} />  
+          <Route path='/covid-19-alerts/:post' exact component={Single} />  
+          <Route path='/covid-19-education-alerts/:post' exact component={Single} />
+          <Route path='/just-in/:post' exact component={Single} />                  
           
           {/** Firm Page routes */}
           {firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)}

@@ -28,7 +28,7 @@ function BodyContent(props) {
         {' '}
         Attorneys
       </h4>
-      <div className="container limit-location-container">
+      <div className="container">
         <div className="row">
           {
           sortedAttorneys.map((m) => (

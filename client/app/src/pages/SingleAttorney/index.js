@@ -49,10 +49,9 @@ class AttorneyBiography extends Component {
       }
 
       this.setState({ matterTab, bio });
-    } catch(err) {
+    } catch (err) {
       this.setState({ error: true });
     }
-    
   }
 
   tabClick(e) {
@@ -83,7 +82,7 @@ class AttorneyBiography extends Component {
       matterTab,
       readMore,
       currentSidebarTab,
-      error
+      error,
     } = this.state;
 
     const {
@@ -151,8 +150,8 @@ class AttorneyBiography extends Component {
       filterBody = body.filter((a) => a[1] !== '');
     }
 
-    if(error) {
-      return <Page404 />
+    if (error) {
+      return <Page404 />;
     }
 
 
@@ -184,7 +183,7 @@ class AttorneyBiography extends Component {
                 )}
           />
           <FullWidth>
-            <div className="line-header" id="nav-tab" role="tablist">
+            <div className="tab-container mb--1" id="nav-tab" role="tablist">
               <MenuItem currentTab={currentTab} tabTitle="biography" tabClick={this.tabClick} title="Biography" />
               { (representativeMatters) && <MenuItem currentTab={currentTab} tabTitle="representative-matters" tabClick={this.tabClick} title="Representative Matters" /> }
               { (representativeClients) && <MenuItem currentTab={currentTab} tabTitle="representative-clients" tabClick={this.tabClick} title="Representative Clients" /> }

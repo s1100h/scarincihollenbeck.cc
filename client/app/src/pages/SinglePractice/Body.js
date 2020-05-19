@@ -17,13 +17,13 @@ function Body(props) {
     highlightReal,
     title,
   } = props;
-  
+
   return (
     <div>
       <div className="tab-content">
         <div className={(currentTab === content[0].title) ? 'tab-pane active article-container' : 'tab-pane article-container'} id={`#${content[0].title}`} role="tabpanel" aria-labelledby="nav-home-tab" dangerouslySetInnerHTML={createMarkup(content[0].content)} />
         {
-          content.map((v, i) => ((i > 0) ? (
+          content.map((v, i) => ((i > 0) && (
             <div
               key={v.title}
               id={`#${v.title}`}
@@ -32,18 +32,19 @@ function Body(props) {
               aria-labelledby="nav-home-tab"
               dangerouslySetInnerHTML={createMarkup(v.content)}
             />
-          ) : ''))
-        }        
+          )))
+        }
         <div id="blogs" className={(currentTab === 'blogs') ? 'tab-pane active' : 'tab-pane'} role="tabpanel" aria-labelledby="nav-home-tab">
+          <h4 className="bg-light-gray">Related Articles</h4>
           <RelatedArticles articles={industryTopics} />
         </div>
       </div>
       {/** List of members */}
       <RelatedAttorneys
-            members={attorneyList}
-            chair={chair}
-            handleLink={handleLink}
-        />
+        members={attorneyList}
+        chair={chair}
+        handleLink={handleLink}
+      />
       {/** Awards */}
       {(highlightReal.length > 0) && <AwardScroller highlightReal={highlightReal} /> }
       {/** Recent Blog Articles */}
@@ -51,9 +52,7 @@ function Body(props) {
       <div className="w-100 d-block">
         <div className="line-header">
           <h3>
-            Latest Articles on
-            {' '}
-            {title}
+            Latest News & Articles
           </h3>
         </div>
         <FeaturedSlider content={industryTopics} />

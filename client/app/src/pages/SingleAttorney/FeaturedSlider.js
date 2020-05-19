@@ -12,8 +12,7 @@ function FeaturedSlider(props) {
           {title}
         </h3>
       </div>
-      {(title === 'Awards') && <a href="/awards" className="text-center d-block proxima-bold red-title">Award Methodology</a>}
-      <div className="container mt--1">
+      <div className="container">
         <div className="row">
           <div className="col-sm-12">
             { (content.length > 3) ? <Carousel sliderType="LargeArticle" slides={content} /> : (
@@ -22,6 +21,11 @@ function FeaturedSlider(props) {
               </div>
             )}
           </div>
+          {(title === 'Awards') && (
+            <div className="col-sm-12">
+              <a href="/awards" className="text-center d-block proxima-bold red-title">Award Methodology</a>
+            </div>
+          )}
         </div>
       </div>
     </div>
