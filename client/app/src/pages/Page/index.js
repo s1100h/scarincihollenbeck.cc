@@ -8,8 +8,7 @@ import LargeSidebar from '../../layouts/LargeSidebar';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import { headers } from '../../utils/helpers';
-
-const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
+import { blogHeaderJPG, blogHeaderWebP } from '../../utils/next-gen-images';
 
 class Page extends Component {
   constructor(props) {
@@ -38,12 +37,13 @@ class Page extends Component {
     const json = await response.json();
     const { content, title, seo } = json;
     const covidUrl = 'covid-19-crisis-management-unit';
+    const covidEdUrl = 'government-education-covid-19-response-team';
 
     this.setState({
       title, content, seo,
     });
 
-    if (page.indexOf(covidUrl) > -1) {
+    if (page.indexOf(covidUrl) > -1 || page.indexOf(covidEdUrl) > -1) {
       const covidResponse = await fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers });
       const posts = await covidResponse.json();
 
@@ -108,11 +108,15 @@ class Page extends Component {
         <SingleSubHeader
           title={title}
           subtitle={subTitle}
-          image={blogHeader}
+          imageWebp={blogHeaderWebP}            
+          imageJPG={blogHeaderJPG}
           height="auto"
         />
         <LargeSidebar
-          body={(<Body content={bodyContent} />)}
+          body={(<Body
+            content={bodyContent}
+            covidPage={covidPage}            
+          />)}
           sidebar={(
             <Sidebar
               posts={posts}

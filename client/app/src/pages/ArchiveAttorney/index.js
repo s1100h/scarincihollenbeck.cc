@@ -6,8 +6,7 @@ import { sortByKey, headers } from '../../utils/helpers';
 import Filters from './Filters';
 import Selected from './Selected';
 import Results from './Results';
-
-const attArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
+import { attorneyArchiveHeaderWebP, attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
 
 class AttorneyArchive extends Component {
   constructor(props) {
@@ -163,7 +162,8 @@ class AttorneyArchive extends Component {
         <ArchiveHead seo={seo} />
         <SingleSubHeader
           title="Attorneys"
-          image={attArchiveBckGround}
+          imageWebp={attorneyArchiveHeaderWebP}            
+          imageJPG={attorneyArchiveHeaderJPG}
           subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
           height="330px"
         />

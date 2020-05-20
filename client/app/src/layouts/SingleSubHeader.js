@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { createMarkup } from '../utils/helpers';
+import { createMarkup, checkIEBrowser } from '../utils/helpers';
 
 
 const SingleSubHeader = (props) => {
   const {
-    title, subtitle, image, height,
+    title, subtitle, imageWebp, imageJPG, height,
   } = props;
 
+  let image = '';
+  const ieBrowser = checkIEBrowser();
+
+  image = imageWebp;
+
+  if(ieBrowser) {
+    image = imageJPG;
+  }
+
   const HeaderBckGround = styled.div`
-    background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${image}) no-repeat 50%;
+    background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${image}) no-repeat 50%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -47,6 +56,8 @@ const SingleSubHeader = (props) => {
 };
 
 SingleSubHeader.propTypes = {
+  imageWebp: PropTypes.string,
+  imageJPG: PropTypes.string,
   image: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.oneOfType([
@@ -57,7 +68,8 @@ SingleSubHeader.propTypes = {
 };
 
 SingleSubHeader.defaultProps = {
-  image: '',
+  imageWebp: '',
+  imageJPG:'',
   title: '',
   subtitle: '',
   height: '',

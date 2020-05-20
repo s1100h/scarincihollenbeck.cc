@@ -12,8 +12,7 @@ import EventSidebar from './EventSidebar';
 import SocialShareSidebar from './SocialShareSidebar';
 import { setUserCookie } from './usercookie';
 import { headers } from '../../utils/helpers';
-
-const headerImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
+import { blogHeaderJPG, blogHeaderWebP } from '../../utils/next-gen-images';
 
 class Single extends Component {
   constructor(props) {
@@ -151,7 +150,8 @@ class Single extends Component {
           <SingleSubHeader
             title={title}
             subtitle={subTitle}
-            image={headerImg}
+            imageWebp={blogHeaderWebP}            
+            imageJPG={blogHeaderJPG}
           />
         )}
         <ThreeColMiniSidebar

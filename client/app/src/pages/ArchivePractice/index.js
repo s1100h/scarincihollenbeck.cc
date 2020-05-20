@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { sortByKey, headers } from '../../utils/helpers';
+import { singleCityBackgroundJPG, singleCityBackgroundWebP } from '../../utils/next-gen-images';
 import { getPracticePortalContent } from './utils/api';
 import { sortPracticeCategorys } from './utils/helpers';
 import ArchiveHead from '../../components/Head/archive';
@@ -7,8 +8,6 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import BlockList from './Lists/BlockList';
 import SimpleList from './Lists/SimpleList';
-
-const pracArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 class PracticePortal extends Component {
   constructor(props) {
@@ -57,7 +56,8 @@ class PracticePortal extends Component {
         <SingleSubHeader
           title="Legal Practices"
           subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today&apos;s businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."
-          image={pracArchiveBckGround}
+          imageWebp={singleCityBackgroundWebP}            
+          imageJPG={singleCityBackgroundJPG}
         />
         <FullWidth>
           <div id="archive-practice">

@@ -9,8 +9,7 @@ import Page404 from '../page404';
 import Sidebar from './Sidebar';
 import Body from './Body';
 import { headers } from '../../utils/helpers';
-
-const cityBackground = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
+import { cityBackgroundJPG, cityBackgroundWebp } from '../../utils/next-gen-images';
 
 class IndividualPractice extends Component {
   constructor(props) {
@@ -116,7 +115,8 @@ class IndividualPractice extends Component {
           <SingleSubHeader
             title={title}
             subtitle={description}
-            image={cityBackground}
+            imageWebp={cityBackgroundWebp}            
+            imageJPG={cityBackgroundJPG}
             height=""
           />
           { (content.length > 0) && (

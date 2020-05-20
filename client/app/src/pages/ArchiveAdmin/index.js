@@ -4,8 +4,7 @@ import FullWidth from '../../layouts/FullWidth';
 import ArchiveHead from '../../components/Head/archive';
 import AttorneyCard from '../../components/AttorneyCard';
 import { headers } from '../../utils/helpers';
-
-const adminArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-archive-header.jpg';
+import { attorneyArchiveHeaderWebP, attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
 
 class AdminArchive extends Component {
   constructor(props) {
@@ -36,7 +35,8 @@ class AdminArchive extends Component {
       <div>
         <ArchiveHead seo={seo} />
         <SingleSubHeader
-          image={adminArchiveBckGround}
+          imageWebp={attorneyArchiveHeaderWebP}            
+          imageJPG={attorneyArchiveHeaderJPG}
           title="Administration"
           subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
         />

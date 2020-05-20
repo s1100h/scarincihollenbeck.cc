@@ -1,0 +1,14 @@
+export const cityBackgroundJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
+export const cityBackgroundWebp = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/citybackground-1-webp.webp';
+export const cityBckGroundImgFrontPageJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/skyline-background-jpg2-compressor.jpg';
+export const cityBckGroundImgFrontPageWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/skyline-background-webp.webp';
+export const coronaVirusFrontPagePNG= 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/corona-virus-background-compressor.png';
+export const coronaVirusFrontPageWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/corona-virus-background-compressor-webp.webp';
+export const blogHeaderJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/blogheader-jpg.jpg';
+export const blogHeaderWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/blogheader-webp.webp';
+export const attorneyHeaderJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-header-jpg.jpg';
+export const attorneyHeaderWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-header-webp.webp';
+export const singleCityBackgroundJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/citybackground-jpg.jpg';
+export const singleCityBackgroundWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/citybackground-webp.webp';
+export const attorneyArchiveHeaderWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-webp.webp';
+export const attorneyArchiveHeaderJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-jpg.jpg';

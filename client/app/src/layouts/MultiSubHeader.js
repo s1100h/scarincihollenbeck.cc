@@ -1,10 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { checkIEBrowser } from '../utils/helpers';
 
 const MultiSubHeader = (props) => {
   const {
-    profile, infoCard, image, height,
+    profile, infoCard, imageWebp, imageJXR, imageJPG2000, imageJPG, height,
   } = props;
+
+  let image = '';
+  const ieBrowser = checkIEBrowser();
+
+  image = imageWebp;
+
+  if(ieBrowser) {
+    image = imageJPG;
+  }
 
   const HeaderBackground = styled.div`
   background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${image}) no-repeat 50%;
@@ -38,6 +49,25 @@ const MultiSubHeader = (props) => {
       </div>
     </HeaderBackground>
   );
+};
+
+MultiSubHeader.propTypes = {
+  imageWebp: PropTypes.string,
+  imageJPG: PropTypes.string,
+  profile: PropTypes.string,
+  infoCard: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  height: PropTypes.string,
+};
+
+MultiSubHeader.defaultProps = {
+  imageWebp: '',
+  imageJPG:'',
+  profile: '',
+  infoCard: '',
+  height: '',
 };
 
 export default MultiSubHeader;

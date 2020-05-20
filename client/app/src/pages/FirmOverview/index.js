@@ -6,11 +6,8 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import PageHead from '../../components/Head/page';
 import FullWidth from '../../layouts/FullWidth';
 import { createMarkup, headers } from '../../utils/helpers';
-
-// lazy load components
+import { cityBackgroundJPG, cityBackgroundWebp } from '../../utils/next-gen-images';
 import Members from './Members';
-
-const foHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground-1.jpg';
 
 class FirmOverview extends Component {
   constructor(props) {
@@ -60,7 +57,8 @@ class FirmOverview extends Component {
         <SingleSubHeader
           title="Firm Overview"
           subtitle={subHeaderContent}
-          image={foHeaderBckGround}
+          imageWebp={cityBackgroundWebp}            
+          imageJPG={cityBackgroundJPG}
           height="325px"
         />
         <FullWidth id="firm-overview">

@@ -11,11 +11,11 @@ import InfoCard from './InfoCard';
 import MenuItem from './MenuItem';
 import Sidebar from './Sidebar';
 import { sortByDateKey, urlify, headers } from '../../utils/helpers';
-
+import { attorneyHeaderJPG, attorneyHeaderWebP } from '../../utils/next-gen-images';
 // lazy load components
 import Body from './Body';
 
-const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
+
 
 class AttorneyBiography extends Component {
   constructor(props) {
@@ -160,7 +160,8 @@ class AttorneyBiography extends Component {
         <AttorneyHead seo={seo} />
         <div>
           <MultiSubHeader
-            image={attorneyHeader}
+            imageWebp={attorneyHeaderWebP}            
+            imageJPG={attorneyHeaderJPG}
             profile={(
               <ProfileImage
                 image={profileImage}

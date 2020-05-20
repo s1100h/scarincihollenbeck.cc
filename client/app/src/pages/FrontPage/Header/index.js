@@ -1,13 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import { checkIEBrowser } from '../../../utils/helpers';
+import { cityBckGroundImgFrontPageJPG, cityBckGroundImgFrontPageWebP } from '../../../utils/next-gen-images';
 import PropTypes from 'prop-types';
 import Content from './Content';
 import Search from './Search';
 
-const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/skyline-background-jpg2-compressor.jpg';
 
-const HeaderBackground = styled.div`
-  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${cityBckGroundImg}) no-repeat 50%;
+
+
+
+
+function Header(props) {
+  const { onChange, searchTerm } = props;
+
+  let image = '';
+  const ieBrowser = checkIEBrowser();
+
+  image = cityBckGroundImgFrontPageWebP;
+
+  if(ieBrowser) {
+    image = cityBckGroundImgFrontPageJPG;
+  }
+
+  const HeaderBackground = styled.div`
+  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${image}) no-repeat 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -23,8 +40,6 @@ const BgBlack = styled.div`
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
 `;
 
-function Header(props) {
-  const { onChange, searchTerm } = props;
   return (
     <HeaderBackground className="jumbotron jumbotron-fluid">
       <BgBlack className="container animated fadeInUp fast mt-4">

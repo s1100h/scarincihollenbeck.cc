@@ -12,8 +12,8 @@ import BreadCrumb from './BreadCrumb';
 import Body from './Body';
 import Sidebar from './Sidebar';
 import { headers } from '../../utils/helpers';
+import { blogHeaderJPG, blogHeaderWebP } from '../../utils/next-gen-images';
 
-const blogHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/blogheader.jpg';
 
 class SingleCareer extends Component {
   constructor(props) {
@@ -161,7 +161,8 @@ class SingleCareer extends Component {
       <div id="single-career">
         <PageHead seo={seo} />
           <SingleSubHeader
-            image={blogHeader}
+            imageWebp={blogHeaderWebP}            
+            imageJPG={blogHeaderJPG}
             title={currentTitle}
             subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
           />

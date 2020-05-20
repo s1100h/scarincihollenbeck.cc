@@ -5,8 +5,8 @@ import SingleSubHeader from '../../layouts/SingleSubHeader';
 import CareerSection from './CareerSection';
 import EEOpportunityContent from './EEOpportunityContent';
 import { headers } from '../../utils/helpers';
+import { singleCityBackgroundJPG, singleCityBackgroundWebP } from '../../utils/next-gen-images';
 
-const carArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 class CareerBody extends Component {
   constructor(props) {
@@ -76,10 +76,10 @@ class CareerBody extends Component {
       <div>
         <ArchiveHead seo={seo} />
         <SingleSubHeader
-          image={carArchiveBckGround}
+          imageWebp={singleCityBackgroundWebP}            
+          imageJPG={singleCityBackgroundJPG}
           title="Careers & Available Positions"
-          subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to
-            recruit, retain, and promote the best attorneys."
+          subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
         />
         <FullWidth>
           <CareerSection

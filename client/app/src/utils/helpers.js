@@ -130,3 +130,10 @@ export const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
+
+export const  checkIEBrowser = () => {
+  const ua = window.navigator.userAgent;
+  const msie = ua.indexOf("Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C;") > -1;
+  
+  return msie
+}

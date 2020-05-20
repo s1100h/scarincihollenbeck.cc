@@ -1,13 +1,12 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { getDirectionsFromLocation, headers } from '../../utils/helpers';
+import { singleCityBackgroundJPG, singleCityBackgroundWebP } from '../../utils/next-gen-images';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import LargeSidebar from '../../layouts/LargeSidebar';
 import LocationHead from '../../components/Head/location';
 import BodyContent from './BodyContent';
 import SideBar from './SideBar';
-
-const locArchiveBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
 
 class LocationPortal extends Component {
   constructor(props) {
@@ -87,7 +86,8 @@ class LocationPortal extends Component {
         <SingleSubHeader
           title="Office Locations"
           subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C. and San Francisco, CA, with our head quarters in Lyndhurst, NJ.`}
-          image={locArchiveBckGround}
+          imageWebp={singleCityBackgroundWebP}            
+          imageJPG={singleCityBackgroundJPG}
         />
         <LargeSidebar
           body={(

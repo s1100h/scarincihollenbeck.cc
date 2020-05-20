@@ -4,8 +4,7 @@ import PageHead from '../../components/Head/page';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
 import FullWidth from '../../layouts/FullWidth';
 import ContactForm from '../../components/ContactForm';
-
-const contactHeaderBckGround = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/citybackground.jpg';
+import { singleCityBackgroundJPG, singleCityBackgroundWebP } from '../../utils/next-gen-images';
 
 function Contact() {
   const seo = {
@@ -20,7 +19,8 @@ function Contact() {
       <SingleSubHeader
         title="Contact Us"
         subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
-        image={contactHeaderBckGround}
+        imageWebp={singleCityBackgroundWebP}            
+        imageJPG={singleCityBackgroundJPG}
         height="325px"
       />
       <FullWidth>

@@ -6,8 +6,7 @@ import Page404 from '../page404';
 import ProfileImage from './ProfileImage';
 import InfoCard from './InfoCard';
 import { createMarkup, headers } from '../../utils/helpers';
-
-const attorneyHeader = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/attorney-header.jpg';
+import { attorneyHeaderJPG, attorneyHeaderWebP } from '../../utils/next-gen-images';
 
 
 class AdminBiography extends Component {
@@ -56,7 +55,8 @@ class AdminBiography extends Component {
       <div id="single--admin">
           <AdminHead seo={seo} />
           <MultiSubHeader
-            image={attorneyHeader}
+            imageWebp={attorneyHeaderWebP}            
+            imageJPG={attorneyHeaderJPG}
             profile={(
               <ProfileImage
                 image={image}

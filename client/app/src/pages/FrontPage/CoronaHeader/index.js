@@ -1,13 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { checkIEBrowser } from '../../../utils/helpers';
+import { coronaVirusFrontPagePNG, coronaVirusFrontPageWebP } from '../../../utils/next-gen-images';
 import PropTypes from 'prop-types';
 import Content from './Content';
 import Search from './Search';
 
-const cityBckGroundImg = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/corona-virus-background-compressor.png';
+const CoronaHeader = (props) => {
+  const { onChange, searchTerm } = props;
 
-const HeaderBackground = styled.div`
-  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(${cityBckGroundImg}) no-repeat 50%;
+  let image = '';
+  const ieBrowser = checkIEBrowser();
+
+  image = coronaVirusFrontPageWebP;
+
+  if(ieBrowser) {
+    image = coronaVirusFrontPagePNG;
+  }
+
+  const HeaderBackground = styled.div`
+  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${image}) no-repeat 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,9 +34,6 @@ const BgBlack = styled.div`
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
 `;
-
-const CoronaHeader = (props) => {
-  const { onChange, searchTerm } = props;
   return (
     <HeaderBackground className="jumbotron jumbotron-fluid">
       <BgBlack className="container animated fadeInUp fast mt-4">
