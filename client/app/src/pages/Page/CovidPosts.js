@@ -16,13 +16,13 @@ class CovidPosts extends Component {
     const pathName = window.location.pathname;
 
     if (pathName.indexOf(covidUrl) > -1) {
-      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/posts?categories=20250&post_per_page=-1`);
+      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/posts?categories=20250per_page=100`);
       const posts = await response.json();
       this.setState({ posts, articleTitle: "COVID-19 Articles" });
     }
 
     if(pathName.indexOf(covidEdUrl) > -1) {
-      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/posts?categories=22896&post_per_page=-1`);
+      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/posts?categories=22896&per_page=100`);
       const posts = await response.json();
       this.setState({ posts, articleTitle: "Education COVID-19 Articles" });
     }    
@@ -32,13 +32,14 @@ class CovidPosts extends Component {
     const { posts, articleTitle } = this.state; 
 
     return (
+      <>
+      <h3>
+        <strong style={{"font-size": "1.8rem"}}>{articleTitle}</strong>
+      </h3>
+      <hr />
       <div className="container">
-       <div className="row">
-         <div className="col-sm-12">
-          <h3><strong style={{"font-size": "1.8rem"}}>{articleTitle}</strong></h3>
-           <hr />
-         </div>
-       {(posts.length > 0) && posts.map((post) => (
+       <div className="row mh-75">
+        {(posts.length > 0) && posts.map((post) => (
          <div className="" key={post.id} className="col-sm-12 col-md-12 col-lg-6 my-3">
            <div className="card" id="covid-post">
             <img style={{"flexShrink": 0, "width": "100%"}} src={post.fimg_url} alt={post.title.rendered} />
@@ -51,6 +52,7 @@ class CovidPosts extends Component {
        ))} 
        </div>
       </div>
+      </>
     )
   }
 };
