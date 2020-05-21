@@ -16,7 +16,7 @@ class CovidPosts extends Component {
     const pathName = window.location.pathname;
 
     if (pathName.indexOf(covidUrl) > -1) {
-      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/posts?categories=20250per_page=100`);
+      const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/posts?categories=20250&per_page=100`);
       const posts = await response.json();
       this.setState({ posts, articleTitle: "COVID-19 Articles" });
     }
