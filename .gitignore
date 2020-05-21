@@ -9,6 +9,7 @@ admin/app/wp-content/*
 admin/.env
 admin/app/wp-admin/*
 admin/app/wp-includes/*
+admin/app/wp-content/uploads/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html

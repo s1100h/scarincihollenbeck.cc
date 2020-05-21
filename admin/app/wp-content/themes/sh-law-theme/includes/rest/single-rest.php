@@ -76,7 +76,7 @@ function single_data($request) {
     $post = get_posts($args);
     $post_id = $post[0]->ID;
     $post_title = $post[0]->post_title;
-    $post_content = str_replace(home_url(), '', $post[0]->post_content);
+    $post_content = $post[0]->post_content;
   }
 
   // authors data
@@ -190,6 +190,7 @@ function single_data($request) {
     "idTrueFalse" => $slugIsID,
     "id" => $post_id,
     "title" => $post_title,
+    "featuredImage" => wp_get_attachment_image(get_post_thumbnail_id($post_id), 'full'),
     "content" => html_entity_decode(htmlspecialchars_decode($post_content)),
     "author" => $authors_data, 
     "date" => get_the_date("F j, Y", $post_id ),
