@@ -43,7 +43,7 @@ function Sidebar(props) {
           <div className="off-white">
             <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
               {corePractices.map((cp) => (
-                <li key={cp.name}>
+                <li key={cp.name} className="mb--7px--lh-22">
                   <a href={cp.link} key={cp.name} className="proxima-bold">
                     {cp.name}
                   </a>
@@ -61,7 +61,7 @@ function Sidebar(props) {
         <div id="related-practices" className="collapse show">
           <div className="off-white">
             <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
-              {practiceList.map((v) => <li key={v.title}><a href={v.slug} className={(v.title.length > 40) ? 'small-excerpt proxima-bold' : 'proxima-bold'}>{v.title}</a></li>)}
+              {practiceList.map((v) => <li key={v.title} className="mb--7px--lh-22"><a href={v.slug} className={(v.title.length > 40) ? 'small-excerpt proxima-bold' : 'proxima-bold'}>{v.title}</a></li>)}
             </ul>
           </div>
         </div>
