@@ -146,7 +146,7 @@ function individual_practice_data($request){
   $related_blog_data = array();
 
   $related_blog_args = array(
-    'numberposts' => -1,
+    'numberposts' => 100,
     'cat' => $related_blogs,
     'order' => 'DESC',
   );
