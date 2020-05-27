@@ -223,10 +223,12 @@ class SiteRoutes extends Component {
           <Route path='/category/covid-19-alerts' exact component={BackCategory} />
           <Route path='/category/covid-19-alerts/page/:pageNum' exact component={BackCategory} />
           <Route path='/category/:category' exact component={Category} />
-          <Route path='/category/:category/:child' exact component={Category} />          
+          <Route path='/category/:category/:child' exact component={Category} />
+          <Route path='/law-firm-insights/:post' exact component={Single} />          
           <Route path='/law-firm-insights/:parent/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:post' exact component={Single} />
           <Route path='/law-firm-insights/:parent/:child/:grandchild/:post' exact component={Single} />
+          <Route path='/firm-news/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />
           <Route path='/firm-news/:post' exact component={Single} />
           <Route path='/firm-events/:parent/:post' exact component={Single} />
