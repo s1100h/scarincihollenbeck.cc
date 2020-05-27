@@ -202,8 +202,7 @@ function individual_practice_data($request){
   // retrieve highlight real
   $highlight_real = get_field("highlight_scroller", $id);
   $highlight_real_data = array();
-  print('$highlight_real');
-  var_dump( $highlight_real);
+
   if($highlight_real !== false) {
     foreach($highlight_real as $hr) {
       $highlight_real_data[] = array(
