@@ -110,9 +110,12 @@ function individual_practice_data($request){
 	//page id
 	$id = $practices[0]->ID;
 	// practice chair
-	$chair = get_field("section_chief", $id);
+
+  $chair = get_field("section_chief", $id);
+  
 	$chair_data = array();
-	if($chair) {
+  
+  if($chair) {
 		$chair_data = sort_object_results($chair);
 	}
 
@@ -142,23 +145,23 @@ function individual_practice_data($request){
   }
   
   // related blog
-  $related_blogs = implode(", ",get_field("related_blog_category", $id));
   $related_blog_data = array();
 
   $related_blog_args = array(
     'numberposts' => 100,
-    'cat' => $related_blogs,
+    'category__in' => get_field("related_blog_category", $id),
     'order' => 'DESC',
+    
   );
 
   // query related posts
-  $related_blog_posts = get_posts($related_blog_args);
+  $related_blog_posts = new WP_Query($related_blog_args);
 
 
   // get posts
-  if($related_blog_posts) {
-    foreach($related_blog_posts as $p) {
-    $related_blog_data [] = array(
+  if($related_blog_posts->posts) {
+    foreach($related_blog_posts->posts as $p) {
+    $related_blog_data[] = array(
       "ID" => $p->ID,
       "date" => get_the_date('F j, Y', $p->ID),
       "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
@@ -199,7 +202,8 @@ function individual_practice_data($request){
   // retrieve highlight real
   $highlight_real = get_field("highlight_scroller", $id);
   $highlight_real_data = array();
-
+  print('$highlight_real');
+  var_dump( $highlight_real);
   if($highlight_real !== false) {
     foreach($highlight_real as $hr) {
       $highlight_real_data[] = array(
@@ -238,6 +242,7 @@ usort($practiceList, "sub_practice_practice_sort");
     "attorneyList" =>  $attorneyList,
     "practiceList" => $practiceList,
     "excludePractices" => $exclude_practice_data,
+    "blog_data_id" =>get_field("related_blog_category", $id),
     "industryTopics" => $related_blog_data,
     "highlightReal" => $highlight_real_data,
     "seo" => (object)array(
