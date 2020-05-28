@@ -30,21 +30,18 @@ class LocationPortal extends Component {
     const json = await response.json();
     const { offices, seo } = json;
 
-    this.setState({ offices, seo });
-    this.fetchOfficeData(currentOffice);
+    this.setState({ offices, seo });   
+
 
     if (location !== undefined) {
       const currentOffice = location.replace('-', ' ');
       this.setState({ currentOffice }, () => this.fetchOfficeData(location));
     }
-  }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.location.state === 'desiredState') {
-      const { location } = nextProps.match.params;
-      const currentOffice = location.replace('-', ' ');
-      this.setState({ currentOffice }, () => this.fetchOfficeData(location));
+    if(location === undefined) {
+      this.fetchOfficeData(currentOffice);
     }
+
   }
 
   getLocationDirections(location) {
@@ -59,6 +56,9 @@ class LocationPortal extends Component {
     const {
       mapLink, attorneys, practices, seo,
     } = offices;
+
+    console.log('offices');
+    console.log(offices);
 
     this.setState({
       currentOfficeMap: mapLink,

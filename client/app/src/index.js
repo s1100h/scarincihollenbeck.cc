@@ -242,8 +242,7 @@ class SiteRoutes extends Component {
           <Route path='/headlines/:post' exact component={Single} />  
           <Route path='/covid-19-alerts/:post' exact component={Single} />  
           <Route path='/covid-19-education-alerts/:post' exact component={Single} />
-          <Route path='/just-in/:post' exact component={Single} />                  
-          
+          <Route path='/just-in/:post' exact component={Single} />                
           {/** Firm Page routes */}
           {firmPages.map(fp => <Route key={fp.path} path={fp.path} exact render={props => <FirmPage {...props} /> } />)}
           {/** Pages **/}

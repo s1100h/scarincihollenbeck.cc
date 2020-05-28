@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
@@ -22,10 +21,10 @@ function OfficeData(props) {
 
   return (
     <div className="mb-2">
-      <Link to={{ pathname: `/location/${locationUrl(title)}`, state: 'desiredState' }} className="sidebar-title">
+      <a href={`/location/${locationUrl(title)}`} className="sidebar-title">
         {title}
         {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FontAwesomeIcon icon={faMinus} className="text-white location-toggle-icon" /> : <FontAwesomeIcon icon={faPlus} className="text-white location-toggle-icon" /> }
-      </Link>
+      </a>
       <div id={`${locationUrl(title)}`} className={(locationUrl(title) === currentOffice.replace(' ', '-')) ? 'collapse show' : 'collapse'}>
         <div className="off-white p-3">
           <ul className="no-dots ml-0">

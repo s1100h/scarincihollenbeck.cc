@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 function AboutDiversity(props) {
   const { relatedPages } = props;
 
+  console.log('relatedPages');
+  console.log(relatedPages);
+
   return (
     <div className="w-100 mt-3">
       <div className="sidebar-title">
@@ -14,7 +17,7 @@ function AboutDiversity(props) {
           { relatedPages.map((val) => (
             <li key={val}>
               <a href={`${window.location.origin}/${val}`} className="proxima-bold text-capitalize">
-                {(val === 'women-in-sh') ? 'Women In SH' : val.replace(/-/g, ' ')}
+                {val.replace(/-/g, ' ')}
               </a>
             </li>
           ))}

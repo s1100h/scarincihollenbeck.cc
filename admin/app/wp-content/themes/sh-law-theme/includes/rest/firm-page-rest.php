@@ -24,7 +24,7 @@ function individual_firm_page_data($request) {
   $page_id = $page->ID;
   $pages = array(
     'pro-bono',
-    'women-in-sh',
+    'women-lead',
     'community-involvement',
     'diversity-group'
   );

@@ -46,7 +46,16 @@ function Body(props) {
         handleLink={handleLink}
       />
       {/** Awards */}
-      {(highlightReal.length > 0) && <AwardScroller highlightReal={highlightReal} /> }
+      {(highlightReal.length > 0) && (
+        <>
+          <div className="line-header">
+            <h3>
+              Represenative Clients
+            </h3>
+          </div>
+          <AwardScroller highlightReal={highlightReal} />
+        </>
+      ) }
       {/** Recent Blog Articles */}
       {(industryTopics.length > 0) && (
       <div className="w-100 d-block">

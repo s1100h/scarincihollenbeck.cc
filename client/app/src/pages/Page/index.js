@@ -52,7 +52,7 @@ class Page extends Component {
       });
     }
 
-    if(page.indexOf(covidUrl) < -1) {
+    if(page.indexOf(covidUrl) < 0) {
       const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers });
       const postJson = await postResponse.json();
       const { posts } = postJson;
