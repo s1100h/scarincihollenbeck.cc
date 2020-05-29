@@ -231,8 +231,8 @@ class SiteRoutes extends Component {
           <Route path='/firm-news/:post' exact component={Single} />
           <Route path='/firm-news/:parent/:post' exact component={Single} />
           <Route path='/firm-news/:post' exact component={Single} />
-          <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/firm-events/:post' exact component={Single} />
+          <Route path='/firm-events/:parent/:post' exact component={Single} />
           <Route path='/quick-news/:post' exact component={Single} />
           <Route path='/federal-payroll-protection-act/:post' exact component={Single} />
           <Route path='/cyber-security-client-alert/:post' exact component={Single} />
