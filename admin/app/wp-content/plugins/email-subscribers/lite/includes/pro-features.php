@@ -197,7 +197,7 @@ function ig_es_add_upsale( $fields ) {
 		$fields['general'] = $general_fields;
 	}
 
-	if ( ! ES()->is_premium() ) {
+	if ( ! ES()->is_premium_installed() ) {
 
 		$utm_args = array(
 			'utm_medium' => 'enable_captcha'
@@ -356,17 +356,17 @@ function ig_es_add_comments_tab_settings( $tab_options ) {
 		<h2><?php _e( 'Sync Comment Users', 'email-subscribers' ) ?></h2>
 		<p><?php _e( 'Quickly add to your mailing list when someone post a comment on your website.', 'email-subscribers' ) ?></p>
 		<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-		<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=comment_sync&utm_campaign=es_upsale#sync_comment_users"><?php _e( 'Email Subscribers Starter', 'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable Comment user sync and select the list in which you want to add people whenever someone post a
+		<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=comment_sync&utm_campaign=es_upsell#sync_comment_users"><?php _e( 'Email Subscribers Starter', 'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable Comment user sync and select the list in which you want to add people whenever someone post a
 		comment.', 'email-subscribers' ) ?></p>
 		<hr>
-		<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=comment_sync&utm_campaign=es_upsale#sync_comment_users"><?php _e( 'Email Subscribers Starter', 'email-subscribers' ) ?></a> <?php _e( 'now', 'email-subscribers' ) ?></p>
+		<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=comment_sync&utm_campaign=es_upsell#sync_comment_users"><?php _e( 'Email Subscribers Starter', 'email-subscribers' ) ?></a> <?php _e( 'now', 'email-subscribers' ) ?></p>
 	</div>
 	<?php
 
 	$content = ob_get_clean();
 
 	?>
-	<a target="_blank" href="https://www.icegram.com/quickly-add-people-to-your-mailing-list-whenever-someone-post-a-comment/?utm_source=in_app&utm_medium=es_comment_upsale&utm_campaign=es_upsale#sync_comment_users">
+	<a target="_blank" href="https://www.icegram.com/quickly-add-people-to-your-mailing-list-whenever-someone-post-a-comment/?utm_source=in_app&utm_medium=es_comment_upsale&utm_campaign=es_upsell#sync_comment_users">
 		<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/es-comments.png' ?> "/>
 	</a>
 	<?php
@@ -385,15 +385,15 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 		<h2><?php _e( 'Sync WooCommerce Customers', 'email-subscribers' ) ?></h2>
 		<p><?php _e( 'Are you using WooCommerce for your online business? You can use this integration to add to a specific list whenever someone make a purchase from you', 'email-subscribers' ) ?></p>
 		<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-		<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=woocommerce_sync&utm_campaign=es_upsale#sync_woocommerce_customers"><?php _e( 'Email Subscribers Starter', 'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable WooCommerce sync and select the list in which you want to add people whenever they
+		<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=woocommerce_sync&utm_campaign=es_upsell#sync_woocommerce_customers"><?php _e( 'Email Subscribers Starter', 'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable WooCommerce sync and select the list in which you want to add people whenever they
 			purchase something
 			from you.', 'email-subscribers' ) ?></p>
 			<hr>
-			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=woocommerce_sync&utm_campaign=es_upsale#sync_woocommerce_customers">Email Subscribers Starter</a> Now</p>
+			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=woocommerce_sync&utm_campaign=es_upsell#sync_woocommerce_customers">Email Subscribers Starter</a> Now</p>
 		</div>
 		<?php $content = ob_get_clean(); ?>
 
-		<a target="_blank" href="https://www.icegram.com/quickly-add-customers-to-your-mailing-list/?utm_source=in_app&utm_medium=woocommerce_sync&utm_campaign=es_upsale#sync_woocommerce_customers">
+		<a target="_blank" href="https://www.icegram.com/quickly-add-customers-to-your-mailing-list/?utm_source=in_app&utm_medium=woocommerce_sync&utm_campaign=es_upsell#sync_woocommerce_customers">
 			<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/woocommerce-sync.png' ?> "/>
 		</a>
 
@@ -418,14 +418,14 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 			<h2><?php _e( 'Sync Contact Form 7 users', 'email-subscribers' ) ?></h2>
 			<p><?php _e( 'Are you using Contact Form 7 for your list building? You can use this integration to add to a specific list whenever new subscribers added from Contact Form 7', 'email-subscribers' ) ?></p>
 			<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=cf7_sync&utm_campaign=es_upsale#sync_cf7_subscribers"><?php _e( 'Email Subscribers Starter',
+			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=cf7_sync&utm_campaign=es_upsell#sync_cf7_subscribers"><?php _e( 'Email Subscribers Starter',
 			'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable Contact form 7 sync and select the list in which you want to add people whenever they fill any of the Contact Form.', 'email-subscribers' ) ?></p>
 			<hr>
-			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=cf7_sync&utm_campaign=es_upsale#sync_cf7_subscribers">Email Subscribers Starter</a> Now</p>
+			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=cf7_sync&utm_campaign=es_upsell#sync_cf7_subscribers">Email Subscribers Starter</a> Now</p>
 		</div>
 		<?php $content = ob_get_clean(); ?>
 
-		<a target="_blank" href="https://www.icegram.com/add-people-to-your-mailing-list-whenever-they-submit-any-of-the-contact-form-7-form/?utm_source=in_app&utm_medium=cf7_sync&utm_campaign=es_upsale#sync_cf7_subscribers">
+		<a target="_blank" href="https://www.icegram.com/add-people-to-your-mailing-list-whenever-they-submit-any-of-the-contact-form-7-form/?utm_source=in_app&utm_medium=cf7_sync&utm_campaign=es_upsell#sync_cf7_subscribers">
 			<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/cf7-sync.png' ?> "/>
 		</a>
 
@@ -450,14 +450,14 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 			<h2><?php _e( 'Sync Donors', 'email-subscribers' ) ?></h2>
 			<p><?php _e( 'We found that you are using Give WordPress plugin to collect donations. Now, with this integration, you can add your donors to any of your subscriber list and send them Newsletters in future.', 'email-subscribers' ) ?></p>
 			<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=give_sync&utm_campaign=es_upsale#sync_give_donors"><?php _e( 'Email Subscribers Starter',
+			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=give_sync&utm_campaign=es_upsell#sync_give_donors"><?php _e( 'Email Subscribers Starter',
 			'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable Give integration and select the list in which you want to add people whenever they make donation.', 'email-subscribers' ) ?></p>
 			<hr>
-			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=give_sync&utm_campaign=es_upsale#sync_give_donors">Email Subscribers Starter</a> Now</p>
+			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=give_sync&utm_campaign=es_upsell#sync_give_donors">Email Subscribers Starter</a> Now</p>
 		</div>
 		<?php $content = ob_get_clean(); ?>
 
-		<a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=give_sync&utm_campaign=es_upsale#sync_give_donors">
+		<a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=give_sync&utm_campaign=es_upsell#sync_give_donors">
 			<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/give-sync.png' ?> "/>
 		</a>
 
@@ -482,14 +482,14 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 			<h2><?php _e( 'Sync Donors', 'email-subscribers' ) ?></h2>
 			<p><?php _e( 'Are you using Give WordPress plugin to collect donations? Want to send Thank You email to them? You can use this integration to be in touch with them.', 'email-subscribers' ) ?></p>
 			<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=wpforms_sync&utm_campaign=es_upsale#sync_wpforms_contacts"><?php _e( 'Email Subscribers Starter',
+			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=wpforms_sync&utm_campaign=es_upsell#sync_wpforms_contacts"><?php _e( 'Email Subscribers Starter',
 			'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable Give sync and select the list in which you want to add people whenever they make donation.', 'email-subscribers' ) ?></p>
 			<hr>
-			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=wpforms_sync&utm_campaign=es_upsale#sync_wpforms_contacts">Email Subscribers Starter</a> Now</p>
+			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=wpforms_sync&utm_campaign=es_upsell#sync_wpforms_contacts">Email Subscribers Starter</a> Now</p>
 		</div>
 		<?php $content = ob_get_clean(); ?>
 
-		<a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=wpforms_sync&utm_campaign=es_upsale#sync_wpforms_contacts">
+		<a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=wpforms_sync&utm_campaign=es_upsell#sync_wpforms_contacts">
 			<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/wpforms-sync.png' ?> "/>
 		</a>
 
@@ -514,14 +514,14 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 			<h2><?php _e( 'Sync Contacts', 'email-subscribers' ) ?></h2>
 			<p><?php _e( 'We found that you are using Ninja Forms. Want to add your contact to a mailing list? You can use this integration to add your contact to add into mailing list', 'email-subscribers' ) ?></p>
 			<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=ninja_forms_sync&utm_campaign=es_upsale#sync_ninja_forms_contacts"><?php _e( 'Email Subscribers Starter',
+			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=ninja_forms_sync&utm_campaign=es_upsell#sync_ninja_forms_contacts"><?php _e( 'Email Subscribers Starter',
 			'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable Give sync and select the list in which you want to add people whenever they make donation.', 'email-subscribers' ) ?></p>
 			<hr>
-			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=ninja_forms_sync&utm_campaign=es_upsale#sync_ninja_forms_contacts">Email Subscribers Starter</a> Now</p>
+			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=ninja_forms_sync&utm_campaign=es_upsell#sync_ninja_forms_contacts">Email Subscribers Starter</a> Now</p>
 		</div>
 		<?php $content = ob_get_clean(); ?>
 
-		<a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=ninja_forms_sync&utm_campaign=es_upsale#sync_ninja_forms_contacts">
+		<a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=ninja_forms_sync&utm_campaign=es_upsell#sync_ninja_forms_contacts">
 			<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/ninja-forms-sync.png' ?> "/>
 		</a>
 
@@ -546,14 +546,14 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 			<h2><?php _e( 'Sync Customers', 'email-subscribers' ) ?></h2>
 			<p><?php _e( 'We found that you are using EDD to sell digital goods online. You can use this integration to send Newsletters/ Post Notifications to your customers.', 'email-subscribers' ) ?></p>
 			<h2><?php _e( 'How to setup?', 'email-subscribers' ) ?></h2>
-			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=edd_sync&utm_campaign=es_upsale#sync_edd_customers"><?php _e( 'Email Subscribers Starter',
+			<p><?php _e( 'Once you upgrade to ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-starter/?utm_source=in_app&utm_medium=edd_sync&utm_campaign=es_upsell#sync_edd_customers"><?php _e( 'Email Subscribers Starter',
 			'email-subscribers' ) ?></a>, <?php _e( 'you will have settings panel where you need to enable EDD sync and select the list in which you want to add people whenever they purchase something from you.', 'email-subscribers' ) ?></p>
 			<hr>
-			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=edd_sync&utm_campaign=es_upsale#sync_edd_customers">Email Subscribers Starter</a> Now</p>
+			<p class="help"><?php _e( 'Checkout ', 'email-subscribers' ) ?><a target="_blank" href="https://www.icegram.com/email-subscribers-pricing/?utm_source=in_app&utm_medium=edd_sync&utm_campaign=es_upsell#sync_edd_customers">Email Subscribers Starter</a> Now</p>
 		</div>
 		<?php $content = ob_get_clean(); ?>
 
-		<a target="_blank" href="https://www.icegram.com/email-subscribers/?utm_source=in_app&utm_medium=edd_sync&utm_campaign=es_upsale#sync_edd_customers">
+		<a target="_blank" href="https://www.icegram.com/email-subscribers/?utm_source=in_app&utm_medium=edd_sync&utm_campaign=es_upsell#sync_edd_customers">
 			<img src=" <?php echo ES_PLUGIN_URL . 'lite/admin/images/edd-sync.png' ?> "/>
 		</a>
 
@@ -576,7 +576,7 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
 		if ( ! ES()->is_starter() ) {
 			?>
 			<script>
-				jQuery('#submitdiv').after('<div class="es_upsale"><a style="text-decoration:none;" target="_blank" href="https://www.icegram.com/documentation/how-ready-made-template-in-in-email-subscribers-look/?utm_source=in_app&utm_medium=es_template&utm_campaign=es_upsale"><img title="Get readymade templates" style="width:100%;border:0.3em #d46307 solid" src="<?php echo ES_PLUGIN_URL?>lite/admin/images/starter-tmpl.png"/><p style="background: #d46307; color: #FFF; padding: 4px; width: 100%; text-align:center">Get readymade beautiful email templates</p></a></div>');
+				jQuery('#submitdiv').after('<div class="es_upsale"><a style="text-decoration:none;" target="_blank" href="https://www.icegram.com/documentation/how-ready-made-template-in-in-email-subscribers-look/?utm_source=in_app&utm_medium=es_template&utm_campaign=es_upsell"><img title="Get readymade templates" style="width:100%;border:0.3em #d46307 solid" src="<?php echo ES_PLUGIN_URL?>lite/admin/images/starter-tmpl.png"/><p style="background: #d46307; color: #FFF; padding: 4px; width: 100%; text-align:center">Get readymade beautiful email templates</p></a></div>');
 			</script>
 			<?php
 		}
@@ -591,7 +591,7 @@ function ig_es_add_woocommerce_tab_settings( $tab_options ) {
  */
 function ig_es_add_captcha_option( $form_data ) {
 
-	if ( ! ES()->is_starter() ) {
+	if ( ! ES()->is_premium_installed() ) {
 
 		$utm_args = array(
 			"utm_medium" => "es_form_captcha"
@@ -624,7 +624,7 @@ function ig_es_add_captcha_option( $form_data ) {
 			</div>
 
 			<div class="w-3/6 mt-3.5 pr-4">
-				<div class="inline-flex rounded-md bg-teal-50 px-2 pt-1 h-20 w-full">
+				<div class="inline-flex rounded-md bg-teal-50 px-2 pt-1 w-full">
 					<div class="px-2 pt-2 pb-2">
 						<div class="flex">
 							<div class="flex-shrink-0">
@@ -639,6 +639,8 @@ function ig_es_add_captcha_option( $form_data ) {
 								<div class="mt-2 text-sm leading-5 text-teal-700">
 									<p>
 										<?php _e( 'Secure your form and avoid spam signups with form Captcha', 'email-subscribers' ); ?>
+
+										<?php if(ES_Common::can_show_coupon('PREMIUM10')) { _e( 'Get <b>10% flat discount</b> if you upgrade now!. <br /><br />Use coupon code <b>PREMIUM10</b>', 'email-subscribers' );}?>
 									</p>
 								</div>
 							</div>
@@ -750,8 +752,6 @@ function ig_es_additional_schedule_option(){
 					</div>
 				</div>
 			</div>
-			<input type="radio" class="form-radio" id="send_now" disabled>
-			<label for="send_now" class="text-sm font-normal text-gray-600"><?php echo esc_html__( 'Send Now', 'email-subscribers' ); ?></label>
 
 				<div class="block py-2 mt-2 ">
 					<div class="inline-flex rounded-md bg-teal-100 px-2 pt-1 w-full">
@@ -769,6 +769,7 @@ function ig_es_additional_schedule_option(){
 									<div class="mt-2 text-sm leading-5 text-teal-700">
 										<p>
 											<?php _e( 'Link Tracking, UTM Tracking and Scheduling Options are part of Email Subscribers PRO', 'email-subscribers' ); ?>
+											<?php if(ES_Common::can_show_coupon('PREMIUM10')) {  echo "<br /><br />"; _e( 'Get <b>10% flat discount</b> if you upgrade now!. <br /><br />Use coupon code <b>PREMIUM10</b>', 'email-subscribers' );}?>
 										</p>
 									</div>
 								</div>

@@ -39,7 +39,7 @@ class ES_Admin_Notices {
 	 * Store notices to DB
 	 */
 	public static function store_notices() {
-		update_option( 'ig_admin_notices', self::get_notices() );
+		update_option( 'ig_es_admin_notices', self::get_notices() );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class ES_Admin_Notices {
 		}
 
 		foreach ( $notices as $notice ) {
-			
+
 			if ( ! empty( self::$core_notices[ $notice ] ) ) {
 
 				add_action( 'admin_notices', array( __CLASS__, self::$core_notices[ $notice ] ) );
@@ -127,6 +127,7 @@ class ES_Admin_Notices {
 				add_action( 'admin_notices', array( __CLASS__, 'output_custom_notices' ) );
 			}
 		}
+
 	}
 
 	/**
@@ -210,7 +211,7 @@ class ES_Admin_Notices {
 				exit();
 			}
 			if ( $option_name === 'redirect_upsale_notice' ) {
-				header( "Location: https://www.icegram.com/email-subscribers-starter-plan-pricing/?utm_source=es&utm_medium=es_upsale_banner&utm_campaign=es_upsale" );
+				header( "Location: https://www.icegram.com/email-subscribers-starter-plan-pricing/?utm_source=es&utm_medium=es_upsale_banner&utm_campaign=es_upsell" );
 				exit();
 			}
 			if ( $option_name === 'offer_bfcm_done_2019' || $option_name === 'offer_last_day_bfcm_done_2019' ) {

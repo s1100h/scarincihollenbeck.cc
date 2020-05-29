@@ -160,6 +160,8 @@ public function custom_admin_notice() {
 		$order_by = sanitize_sql_orderby( ig_es_get_request_data( 'orderby' ) );
 		$order    = ig_es_get_request_data( 'order' );
 		$search   = ig_es_get_request_data( 's' );
+		$filter_by_campaign_type = ig_es_get_request_data( 'filter_by_campaign_type' );
+		$filter_by_campaign_status = ig_es_get_request_data( 'filter_by_campaign_status' );
 
 		if ( $do_count_only ) {
 			$sql = "SELECT count(*) as total FROM " . IG_CAMPAIGNS_TABLE;
@@ -189,6 +191,24 @@ public function custom_admin_notice() {
 					$sql = $wpdb->prepare( $sql, $args );
 				}
 			}
+		}
+
+		if ( ! empty( $filter_by_campaign_status ) || ( '0' === $filter_by_campaign_status ) ) {
+				if ( $add_where_clause ) {
+					$sql .= $wpdb->prepare( " AND status = %s", $filter_by_campaign_status );
+				} else {
+					$sql .= $wpdb->prepare( " WHERE status = %s", $filter_by_campaign_status );
+				}
+
+		}
+
+		if ( ! empty( $filter_by_campaign_type )  ) {
+				if ( $add_where_clause ) {
+					$sql .= $wpdb->prepare( " AND type = %s", $filter_by_campaign_type );
+				} else {
+					$sql .= $wpdb->prepare( " WHERE type = %s", $filter_by_campaign_type );
+				}
+
 		}
 
 		if ( ! $do_count_only ) {
@@ -329,6 +349,8 @@ public function custom_admin_notice() {
 
 		$template = get_post( $item['base_template_id'] );
 
+		$report = ES_DB_Mailing_Queue::get_notification_by_campaign_id( $item['id'] );
+
 		if ( $type !== 'newsletter' ) {
 			if ( $template instanceof WP_Post ) {
 				$title = '<strong>' . $template->post_title . '</strong>';
@@ -337,6 +359,13 @@ public function custom_admin_notice() {
 			}
 			$slug = ( in_array( $item['type'], array( 'post_notification', 'post_digest' ) ) ) ? esc_attr( 'es_notifications' ) : 'es_' . $item['type'];
 			$actions ['edit']  = sprintf( __( '<a href="?page=%s&action=%s&list=%s&_wpnonce=%s" class="text-indigo-600">Edit</a>', 'email-subscribers' ), $slug, 'edit', absint( $item['id'] ), $nonce );
+
+			if( in_array( $type, array( 'post_notification', 'post_digest' ) ) ) {
+				// Add reports link if there are any reports related to the post notification.
+				if( ! empty( $report ) ) {
+					$actions['report'] = sprintf( '<a href="?page=%s&campaign_id=%d" class="text-indigo-600">%s</a>', esc_attr( 'es_reports' ), $item['id'], __( 'Report', 'email-subscribers' ) );
+				}
+			}
 		} else {
 
 			$title  = $item['name'];
@@ -350,6 +379,18 @@ public function custom_admin_notice() {
 
 			if( in_array( $status, $broadcast_allowed_edit_statuses ) ) {
 				$actions ['edit']  = sprintf( __( '<a href="?page=%s&action=%s&list=%s&_wpnonce=%s" class="text-indigo-600">Edit</a>', 'email-subscribers' ), $slug, 'edit', absint( $item['id'] ), $nonce );
+			}
+
+			$broadcast_allowed_report_statuses = array(
+				IG_ES_CAMPAIGN_STATUS_SCHEDULED,
+				IG_ES_CAMPAIGN_STATUS_QUEUED,
+				IG_ES_CAMPAIGN_STATUS_ACTIVE,
+				IG_ES_CAMPAIGN_STATUS_FINISHED
+			);
+
+			if( in_array( $status, $broadcast_allowed_report_statuses ) && ! empty( $report ) ) {
+				$es_nonce = wp_create_nonce( 'es_notification' );
+				$actions['report'] = sprintf( '<a href="?page=%s&action=%s&list=%s&_wpnonce=%s" class="text-indigo-600">%s</a>', esc_attr( 'es_reports' ), 'view', $report['hash'], $es_nonce, __( 'Report', 'email-subscribers' ) );
 			}
 		}
 
@@ -533,6 +574,18 @@ public function custom_admin_notice() {
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $text ); ?>:</label>
 			<input type="search" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>"/>
 			<?php submit_button( __( 'Search Campaigns', 'email-subscribers' ), 'button', false, false, array( 'id' => 'search-submit' ) ); ?>
+		</p>
+		<p class="search-box search-group-box box-ma10">
+			<?php $filter_by_status = ig_es_get_request_data( 'filter_by_campaign_status' ); ?>
+			<select name="filter_by_campaign_status" id="ig_es_filter_campaign_status_by_type">
+				<?php echo ES_Common::prepare_campaign_statuses_dropdown_options( $filter_by_status, __( 'All Statuses', 'email-subscribers' ) ); ?>
+			</select>
+		</p>
+		<p class="search-box search-group-box box-ma10">
+			<?php $filter_by_campaign_type = ig_es_get_request_data( 'filter_by_campaign_type' ); ?>
+			<select name="filter_by_campaign_type" id="ig_es_filter_campaign_type">
+				<?php echo ES_Common::prepare_campaign_type_dropdown_options( $filter_by_campaign_type, __( 'All Type', 'email-subscribers' ) ); ?>
+			</select>
 		</p>
 	<?php }
 

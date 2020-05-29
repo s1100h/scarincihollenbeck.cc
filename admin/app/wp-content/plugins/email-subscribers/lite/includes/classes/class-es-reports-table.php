@@ -368,8 +368,9 @@ class ES_Reports_Table extends WP_List_Table {
 	public function get_notifications( $per_page = 5, $page_number = 1, $do_count_only = false ) {
 		global $wpdb;
 
-		$order_by = sanitize_sql_orderby( ig_es_get_request_data( 'orderby' ) );
-		$order    = ig_es_get_request_data( 'order' );
+		$order_by    = sanitize_sql_orderby( ig_es_get_request_data( 'orderby' ) );
+		$order       = ig_es_get_request_data( 'order' );
+		$campaign_id = ig_es_get_request_data( 'campaign_id' );
 
 		$ig_mailing_queue_table = IG_MAILING_QUEUE_TABLE;
 
@@ -377,6 +378,24 @@ class ES_Reports_Table extends WP_List_Table {
 			$sql = "SELECT count(*) as total FROM {$ig_mailing_queue_table}";
 		} else {
 			$sql = "SELECT * FROM {$ig_mailing_queue_table}";
+		}
+
+		$where_columns = array();
+		$where_args    = array();
+
+		if( ! empty( $campaign_id ) && is_numeric( $campaign_id ) ) {
+			$where_columns[] = "campaign_id = %d";
+			$where_args[]  = $campaign_id;
+		}
+
+		$where_query = '';
+		if( ! empty( $where_columns ) ) {
+			$where_query = implode( " AND ", $where_columns );
+			$where_query = $wpdb->prepare( $where_query, $where_args );
+		}
+
+		if( ! empty( $where_query ) ) {
+			$sql .= ' WHERE ' . $where_query;
 		}
 
 		if ( ! $do_count_only ) {

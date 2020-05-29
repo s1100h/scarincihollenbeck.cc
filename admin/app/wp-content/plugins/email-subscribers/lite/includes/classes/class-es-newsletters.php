@@ -632,7 +632,7 @@ class ES_Newsletters {
 		<div class="wrap">
 		<div class="tool-box">
 		<div class="es-main" style="display:flex;">
-		<div class="es-preview broadcast-preview">' . $es_template_body . '</div>
+		<div class="es-preview broadcast-preview w-full">' . $es_template_body . '</div>
 		<div style="clear:both;"></div>
 		</div>
 		<div style="clear:both;"></div>

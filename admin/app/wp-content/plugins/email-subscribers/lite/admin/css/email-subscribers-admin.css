@@ -1849,3 +1849,8 @@ div.broadcast_side_content{
 .es-preview.broadcast-preview p {
     margin : 1em 0 !important;
 }
+
+.es-preview.broadcast-preview img.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+}

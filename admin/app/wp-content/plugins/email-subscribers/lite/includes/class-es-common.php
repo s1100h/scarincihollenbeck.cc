@@ -1273,7 +1273,7 @@ class ES_Common {
 		$url          = ! empty( $utm_args['url'] ) ? $utm_args['url'] : 'https://icegram.com/email-subscribers-pricing/';
 		$utm_source   = ! empty( $utm_args['utm_source'] ) ? $utm_args['utm_source'] : 'in_app';
 		$utm_medium   = ! empty( $utm_args['utm_medium'] ) ? $utm_args['utm_medium'] : '';
-		$utm_campaign = ! empty( $utm_args['utm_campaign'] ) ? $utm_args['utm_campaign'] : 'es_upsale';
+		$utm_campaign = ! empty( $utm_args['utm_campaign'] ) ? $utm_args['utm_campaign'] : 'es_upsell';
 
 		if ( ! empty( $utm_source ) ) {
 			$url = add_query_arg( 'utm_source', $utm_source, $url );
@@ -1352,19 +1352,186 @@ class ES_Common {
 	 */
 	public static function handle_emoji_characters( $string = '' ) {
 
-		if( ! empty( $string ) ) {
-			if( function_exists( 'wp_encode_emoji' ) ) {
+		if ( ! empty( $string ) ) {
+			if ( function_exists( 'wp_encode_emoji' ) ) {
 				$string = wp_encode_emoji( $string );
 			} else {
-				$string = preg_replace('%(?:
+				$string = preg_replace( '%(?:
 						\xF0[\x90-\xBF][\x80-\xBF]{2}      # planes 1-3
 					| [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
 					| \xF4[\x80-\x8F][\x80-\xBF]{2}      # plane 16
-				)%xs', '', $string);
+				)%xs', '', $string );
 			}
 		}
 
 		return $string;
 	}
+
+	/**
+	 * Get Campaign type
+	 *
+	 * @param bool $reverse
+	 *
+	 * @return array
+	 *
+	 * @since 4.4.8
+	 */
+	public static function get_campaign_type_key_name_map( $reverse = false ) {
+
+		$campaign_type = array(
+			'newsletter'        => __( 'Broadcast', 'email-subscribers' ),
+			'post_notification' => __( 'Post Notification', 'email-subscribers' ),
+			'sequence'          => __( 'Sequence', 'email-subscribers' ),
+			'post_digest'       => __( 'Post Digest', 'email-subscribers' ),
+		);
+
+		if ( $reverse ) {
+			$campaign_type = array_flip( $campaign_type );
+		}
+
+		return $campaign_type;
+	}
+
+	/**
+	 * Prepare Campaign Status dropdown
+	 *
+	 * @param string $selected
+	 * @param string $default_label
+	 *
+	 * @return string
+	 *
+	 * @since 4.4.8
+	 */
+	public static function prepare_campaign_type_dropdown_options( $selected = '', $default_label = '' ) {
+
+		$campaign_type = self::get_campaign_type_key_name_map();
+
+		$dropdown = '<option class="text-sm" value="">All Types</option>';
+		foreach ( $campaign_type as $key => $type ) {
+
+			$dropdown .= "<option class='text-sm' value='{$key}'";
+
+			if ( strtolower( $selected ) === strtolower( $key ) ) {
+				$dropdown .= "selected = selected";
+			}
+
+			$dropdown .= ">{$type}</option>";
+		}
+
+		return $dropdown;
+	}
+
+	/**
+	 * Get Campaign Statuses
+	 *
+	 * @param string $campaign_type
+	 * @param bool $reverse
+	 *
+	 * @return array
+	 *
+	 * @since 4.4.8
+	 */
+	public static function get_campaign_statuses_key_name_map( $reverse = false ) {
+
+		$statuses = array(
+			'0' => __( 'Draft', 'email-subscribers' ),
+			'3' => __( 'Sending', 'email-subscribers' ),
+			'2' => __( 'Scheduled', 'email-subscribers' ),
+			'5' => __( 'Sent', 'email-subscribers' ),
+			'1' => __( 'Active', 'email-subscribers' ),
+		);
+
+
+		if ( $reverse ) {
+			$statuses = array_flip( $statuses );
+		}
+
+		return $statuses;
+	}
+
+	/**
+	 * Prepare Campaign Status dropdown
+	 *
+	 * @param string $selected
+	 * @param string $default_label
+	 *
+	 * @return string
+	 *
+	 * @since 4.4.8
+	 */
+	public static function prepare_campaign_statuses_dropdown_options( $selected = '', $default_label = '' ) {
+
+		$statuses = self::get_campaign_statuses_key_name_map();
+
+		$dropdown = '<option class="text-sm" value="">All Statuses</option>';
+
+		foreach ( $statuses as $key => $status ) {
+
+			$dropdown .= "<option class='text-sm' value='{$key}'";
+
+			if ( strtolower( $selected ) === strtolower( $key ) ) {
+				$dropdown .= "selected = selected";
+			}
+
+			$dropdown .= ">{$status}</option>";
+		}
+
+		return $dropdown;
+	}
+
+	/**
+	 * Can show coupon code?
+	 *
+	 * @param string $coupon_code
+	 *
+	 * @return bool
+	 *
+	 * @since 4.4.8
+	 */
+	public static function can_show_coupon( $coupon = 'PREMIUM10' ) {
+		$coupons = get_option( 'ig_es_coupons', array() );
+
+		$can_show = true;
+
+		if ( ! empty( $coupons ) ) {
+
+			if ( isset( $coupons[ $coupon ] ) ) {
+				$last_shown_time = $coupons[ $coupon ]['last_shown_time'];
+
+				if ( $last_shown_time <= time() - ( 7 * 24 * 60 * 60 ) ) {
+					$can_show = true;
+				} else {
+					$can_show = false;
+				}
+			} else {
+				$can_show = true;
+			}
+		}
+
+		if ( $can_show ) {
+			self::update_coupon_data( $coupon );
+		}
+
+		return $can_show;
+	}
+
+	/**
+	 * Update coupons data
+	 *
+	 * @param $coupon
+	 *
+	 * @since 4.4.8
+	 */
+	public static function update_coupon_data( $coupon ) {
+		$coupons = get_option( 'ig_es_coupons', array() );
+
+		$coupons[ $coupon ] = array(
+			'last_shown_time' => time(),
+			'count'           => $coupons[ $coupon ]['count'] + 1
+		);
+
+		update_option( 'ig_es_coupons', $coupons );
+	}
+
 
 }

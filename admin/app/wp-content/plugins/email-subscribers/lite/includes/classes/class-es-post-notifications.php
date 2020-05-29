@@ -249,7 +249,7 @@ class ES_Post_Notifications_Table {
 		$cat         = isset( $data['categories'] ) ? $data['categories'] : '';
 		$list_id     = isset( $data['list_ids'] ) ? $data['list_ids'] : '';
 		$template_id = isset( $data['base_template_id'] ) ? $data['base_template_id'] : '';
-		$status      = isset( $data['status'] ) ? $data['status'] : '';
+		$status      = isset( $data['status'] ) ? $data['status'] : 0 ;
 		$nonce       = wp_create_nonce( 'es_post_notification' );
 		?>
 
@@ -323,9 +323,13 @@ class ES_Post_Notifications_Table {
 											</label>
 										</th>
 										<td class="w-9/12 py-3">
-											<select class="relative form-select shadow-sm border border-gray-400 w-1/3 ml-12" name="status" id="status">
-												<?php echo ES_Common::prepare_status_dropdown_options( $status ); ?>
-											</select>
+											<label for="status" class="ml-12 inline-flex items-center cursor-pointer"><span class="relative">
+												<input id="status" type="checkbox" class="absolute es-check-toggle opacity-0 w-0 h-0" 
+												name="status"  value="1" <?php checked( $status, '1' ); ?> />
+
+												<span class="es-mail-toggle-line inline-block w-10 h-6 bg-gray-300 rounded-full shadow-inner"></span>
+												<span class="es-mail-toggle-dot absolute transition-all duration-300 ease-in-out block w-4 h-4 mt-1 ml-1 bg-white rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline"></span>	
+											</span></label>
 										</td>
 									</tr>
 								<?php } ?>
