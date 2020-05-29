@@ -9,14 +9,12 @@ class FrontPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',
       posts: [],
       locations: [],
       seo: {},
       corePractices: [],
 
     };
-    this.onChange = this.onChange.bind(this);
     this.onCategorySelection = this.onCategorySelection.bind(this);
   }
 
@@ -40,10 +38,7 @@ class FrontPage extends Component {
     this.setState({ corePractices });
   }
 
-  onChange(event) {
-    const searchTerm = event.target.value;
-    this.setState({ searchTerm });
-  }
+
 
 
   onCategorySelection(event) {
@@ -70,10 +65,7 @@ class FrontPage extends Component {
           searchTerm={searchTerm}
           onChange={this.onChange}
         /> */}
-        <CoronaHeader
-          searchTerm={searchTerm}
-          onChange={this.onChange}
-        />
+        <CoronaHeader />
         <div className="container">
           <ColumnContent
             corePractices={corePractices}

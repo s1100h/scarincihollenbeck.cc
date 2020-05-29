@@ -82,7 +82,7 @@ class LocationPortal extends Component {
         <LocationHead seo={seo} />
         <SingleSubHeader
           title="Office Locations"
-          subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C. and San Francisco, CA, with our head quarters in Lyndhurst, NJ.`}
+          subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
           imageWebp={singleCityBackgroundWebP}            
           imageJPG={singleCityBackgroundJPG}
         />
