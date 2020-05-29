@@ -10,7 +10,7 @@ function OfficeArticles(props) {
       <div className="sidebar-title text-capitalize">
         Latest from
         {' '}
-        {title}
+        {(title === 'Washington Dc') ? 'Washington DC' : title }
       </div>
       <div className="off-white">
         {

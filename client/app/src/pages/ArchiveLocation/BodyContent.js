@@ -16,7 +16,7 @@ function BodyContent(props) {
   return (
     <div id="location-body">
       <h4 className="bg-light-gray text-capitalize">
-        {title}
+        {(title === 'Washington Dc') ? 'Washington DC' : title }
         {' '}
         Office
       </h4>
