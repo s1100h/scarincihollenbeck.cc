@@ -232,6 +232,38 @@
 
 			});
 
+			// Filtering campaign status based of type
+			var campaign_type = $('#ig_es_filter_campaign_type').val();
+			campaign_status(campaign_type);
+				
+			$('#ig_es_filter_campaign_type').change(function (e) {
+				var campaign_type = $(this).val();
+				$('#ig_es_filter_campaign_status_by_type').val('');
+				campaign_status(campaign_type);
+				});
+
+			function campaign_status( campaign_type ) {
+				var $status_id = $('#ig_es_filter_campaign_status_by_type');
+ 				switch(campaign_type) {
+					case 'newsletter':	
+						$status_id.children('option').show();
+						$('#ig_es_filter_campaign_status_by_type option[value="0"]').html('Draft').show();
+						$('#ig_es_filter_campaign_status_by_type option[value="1"]').hide();
+						break;
+					case 'post_notification':
+					case 'post_digest':
+					case 'sequence':
+						$status_id.children('option').hide();
+						$('#ig_es_filter_campaign_status_by_type option[value=""],option[value="1"]').show();
+						$('#ig_es_filter_campaign_status_by_type option[value="0"]').html('In Active').show();
+						break;
+					default:
+						$status_id.children('option').show();
+						break;
+				}
+			}
+
+
 			// Broadcast Setttings
 			// Get count by list
 			$('#ig_es_campaign_submit_button').attr("disabled", true);

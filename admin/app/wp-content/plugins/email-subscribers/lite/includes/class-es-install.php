@@ -265,13 +265,13 @@ if ( ! class_exists( 'ES_Install' ) ) {
 
 				self::update( true );
 
-				ES_Admin_Notices::add_notice( 'update' );
+				//ES_Admin_Notices::add_notice( 'update' );
 			}
 
 			if ( ! empty( $_GET['force_update_ig_es'] ) ) {
 				check_admin_referer( 'ig_es_force_db_update', 'ig_es_force_db_update_nonce' );
 				self::update();
-				ES_Admin_Notices::add_notice( 'update' );
+				//ES_Admin_Notices::add_notice( 'update' );
 				wp_safe_redirect( admin_url( 'admin.php?page=es_settings' ) );
 				exit;
 			}
@@ -429,7 +429,7 @@ if ( ! class_exists( 'ES_Install' ) ) {
 					self::update();
 				} else {
 					self::$logger->info( 'Show update notice.', self::$logger_context );
-					ES_Admin_Notices::add_notice( 'update' );
+					//ES_Admin_Notices::add_notice( 'update' );
 				}
 			} else {
 				self::$logger->info( 'Database is upto date' );
@@ -842,7 +842,7 @@ if ( ! class_exists( 'ES_Install' ) ) {
                 KEY `status` (status),
                 KEY `base_template_id` (base_template_id)
             ) $collate;
-            
+
             CREATE TABLE `{$wpdb->prefix}ig_contacts` (
 				`id` int(10) NOT NULL AUTO_INCREMENT,
 				`wp_user_id` int(10) NOT NULL DEFAULT '0',
@@ -871,8 +871,8 @@ if ( ! class_exists( 'ES_Install' ) ) {
             ) $collate;
 
             CREATE TABLE `{$wpdb->prefix}ig_contacts_ips` (
-				ip varchar(45) NOT NULL, 
-				created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+				ip varchar(45) NOT NULL,
+				created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				PRIMARY KEY  (created_on, ip),
 				KEY ip (ip)
             ) $collate;
@@ -906,7 +906,7 @@ if ( ! class_exists( 'ES_Install' ) ) {
 				`updated_at` datetime DEFAULT NULL,
 				`deleted_at` datetime DEFAULT NULL,
                 PRIMARY KEY  (id)
-                                                      
+
             ) $collate;
 
             CREATE TABLE `{$wpdb->prefix}ig_lists_contacts` (

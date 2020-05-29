@@ -123,6 +123,7 @@ return array(
     'POMO_StringReader' => $baseDir . '/premium/node_modules/node-wp-i18n/bin/php/pomo/streams.php',
     'Plural_Forms' => $baseDir . '/premium/node_modules/node-wp-i18n/bin/php/pomo/plural-forms.php',
     'PotExtMeta' => $baseDir . '/premium/node_modules/node-wp-i18n/bin/php/pot-ext-meta.php',
+    'ResetIndexableHierarchyTable' => $baseDir . '/src/config/migrations/20200513133401_ResetIndexableHierarchyTable.php',
     'StringExtractor' => $baseDir . '/premium/node_modules/node-wp-i18n/bin/php/extract.php',
     'Translation_Entry' => $baseDir . '/premium/node_modules/node-wp-i18n/bin/php/pomo/entry.php',
     'Translations' => $baseDir . '/premium/node_modules/node-wp-i18n/bin/php/pomo/translations.php',

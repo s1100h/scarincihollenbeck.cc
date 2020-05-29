@@ -276,15 +276,17 @@ if ( ! class_exists( 'Email_Subscribers' ) ) {
 		 * @since 4.0.0
 		 */
 		public function add_admin_notice() {
-			global $ig_es_tracker;
-
-			$active_plugins = $ig_es_tracker::get_active_plugins();
+			/*
+			// Disable Covid-19 Notice
+			// Keeping the code here for future reference if we want to add
+			// offer later.
 
 			if ( ! ES()->is_premium() ) {
 				$args['url']     = 'https://www.icegram.com/';
 				$args['include'] = ES_PLUGIN_DIR . 'lite/includes/notices/views/ig-es-offer.php';
 				ES_Admin_Notices::add_custom_notice( 'covid_19', $args );
 			}
+			*/
 
 			$screen_id = $this->get_current_screen_id();
 			// Don't show admin notices on Dashboard if onboarding is not yet completed.
@@ -903,6 +905,36 @@ if ( ! class_exists( 'Email_Subscribers' ) ) {
 		 */
 		public function is_premium() {
 			return ES()->is_starter() || ES()->is_pro();
+		}
+
+		/**
+		 * Check whether ES premium activated
+		 *
+		 * @return mixed
+		 *
+		 * @since 4.4.8
+		 */
+		public function is_premium_activated() {
+			global $ig_es_tracker;
+
+			$plugin = 'email-subscribers-premium/email-subscribers-premium.php';
+
+			return $ig_es_tracker::is_plugin_activated( $plugin );
+		}
+
+		/**
+		 * Check whether ES Premium Installed
+		 *
+		 * @return mixed
+		 *
+		 * @since 4.4.8
+		 */
+		public function is_premium_installed() {
+			global $ig_es_tracker;
+
+			$plugin = 'email-subscribers-premium/email-subscribers-premium.php';
+
+			return $ig_es_tracker::is_plugin_installed( $plugin );
 		}
 
 		/**

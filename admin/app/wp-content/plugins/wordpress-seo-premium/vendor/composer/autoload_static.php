@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit49268188a10c3d5e6d8a984dee6dc5eb
+class ComposerStaticInite2bd4ac2d81b22e1d234662dbd24863b
 {
     public static $prefixLengthsPsr4 = array (
         'C' => 
@@ -138,6 +138,7 @@ class ComposerStaticInit49268188a10c3d5e6d8a984dee6dc5eb
         'POMO_StringReader' => __DIR__ . '/../..' . '/premium/node_modules/node-wp-i18n/bin/php/pomo/streams.php',
         'Plural_Forms' => __DIR__ . '/../..' . '/premium/node_modules/node-wp-i18n/bin/php/pomo/plural-forms.php',
         'PotExtMeta' => __DIR__ . '/../..' . '/premium/node_modules/node-wp-i18n/bin/php/pot-ext-meta.php',
+        'ResetIndexableHierarchyTable' => __DIR__ . '/../..' . '/src/config/migrations/20200513133401_ResetIndexableHierarchyTable.php',
         'StringExtractor' => __DIR__ . '/../..' . '/premium/node_modules/node-wp-i18n/bin/php/extract.php',
         'Translation_Entry' => __DIR__ . '/../..' . '/premium/node_modules/node-wp-i18n/bin/php/pomo/entry.php',
         'Translations' => __DIR__ . '/../..' . '/premium/node_modules/node-wp-i18n/bin/php/pomo/translations.php',
@@ -1039,9 +1040,9 @@ class ComposerStaticInit49268188a10c3d5e6d8a984dee6dc5eb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit49268188a10c3d5e6d8a984dee6dc5eb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit49268188a10c3d5e6d8a984dee6dc5eb::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit49268188a10c3d5e6d8a984dee6dc5eb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite2bd4ac2d81b22e1d234662dbd24863b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite2bd4ac2d81b22e1d234662dbd24863b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite2bd4ac2d81b22e1d234662dbd24863b::$classMap;
 
         }, null, ClassLoader::class);
     }
