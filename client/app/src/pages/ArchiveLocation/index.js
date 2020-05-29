@@ -57,9 +57,6 @@ class LocationPortal extends Component {
       mapLink, attorneys, practices, seo,
     } = offices;
 
-    console.log('offices');
-    console.log(offices);
-
     this.setState({
       currentOfficeMap: mapLink,
       currentOfficeAttorneys: attorneys,

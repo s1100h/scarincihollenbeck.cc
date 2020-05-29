@@ -16,7 +16,7 @@ function BodyContent(props) {
   return (
     <div id="location-body">
       <h4 className="bg-light-gray text-capitalize">
-        {(title === 'Washington Dc') ? 'Washington DC' : title }
+        {(title === 'washington dc') ? 'Washington D.C.' : title }
         {' '}
         Office
       </h4>
@@ -24,7 +24,7 @@ function BodyContent(props) {
         <iframe rel="preconnect" title={`${title} office`} src={map} className="w-100 h-300" frameBorder="0" allowFullScreen />
       </div>
       <h4 className="bg-light-gray text-capitalize mt-5">
-        {title}
+        {(title === 'washington dc') ? 'Washington D.C.' : title }
         {' '}
         Attorneys
       </h4>
