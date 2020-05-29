@@ -22,7 +22,7 @@ function OfficeData(props) {
   return (
     <div className="mb-2">
       <a href={`/location/${locationUrl(title)}`} className="sidebar-title">
-        {title}
+        {(title === 'Washington Dc') ? 'Washington DC' : title }
         {(locationUrl(title) === currentOffice.replace(' ', '-')) ? <FontAwesomeIcon icon={faMinus} className="text-white location-toggle-icon" /> : <FontAwesomeIcon icon={faPlus} className="text-white location-toggle-icon" /> }
       </a>
       <div id={`${locationUrl(title)}`} className={(locationUrl(title) === currentOffice.replace(' ', '-')) ? 'collapse show' : 'collapse'}>
