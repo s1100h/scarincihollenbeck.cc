@@ -12,3 +12,5 @@ export const singleCityBackgroundJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloce
 export const singleCityBackgroundWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-Webp.webp';
 export const attorneyArchiveHeaderWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-webp.webp';
 export const attorneyArchiveHeaderJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-jpg.jpg';
+export const ShDiamondPNG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png';
+export const ShDiamondWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-min-diamond-WEBP.webp';

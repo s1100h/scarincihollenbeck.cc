@@ -118,7 +118,7 @@ add_action('rest_api_init', function()
       foreach($events_true as $event) {
         $events_data[] = array(
           "title" => $event->post_title,
-          "link" => str_replace(home_url(), '', get_permalink($events->ID)),
+          "link" => str_replace(home_url(), '', get_permalink($event->ID)),
           "featuredImg" => get_the_post_thumbnail_url($event->ID,'medium')
         );
       }

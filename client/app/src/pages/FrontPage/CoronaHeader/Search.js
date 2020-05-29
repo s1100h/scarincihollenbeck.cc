@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FrontPageSearch from '../../../components/FrontPageSearch';
+import { ShDiamondPNG, ShDiamondWebP } from '../../../utils/next-gen-images';
 
-const ShDiamond = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-mini-diamond.png';
 
 const Search = (props) => {
   const { searchTerm, onChange } = props;
@@ -14,16 +15,13 @@ const Search = (props) => {
 
   return (
     <div className="col-sm-12 col-md-6">
-      <img rel="preconnect" src={ShDiamond} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />
+      <picture>
+        <source srcset={ShDiamondWebP} type="image/webp"/>
+        <source srcset={ShDiamondPNG} type="image/png"/>
+        <img rel="preconnect" src={ShDiamondPNG} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />     
+      </picture>      
       <h2 className="text-white text-center display-32 text--shadow animated fadeInUp slow">How can we help?</h2>
-      <form className="animated fadeInUp slow mx-3 mt-5 mb-5" onChange={onChange}>
-        <span className="screen-reader-text">Search for:</span>
-        <input name="s" type="search" aria-labelledby="searchbutton" placeholder="What are you searching for.." defaultValue={searchTerm} className="form-control mw-100 p-2 mx-auto d-block" />
-        <button type="button" onClick={(e) => onSubmit(e)} id="searchbutton" className="btn btn-danger mt-3 mx-auto d-block btn-lg animated fadeInUp slow fnt-btn">
-          Search
-          <i className="fa fa-angle-double-right text-white ml-2 animated fadeInUp slow" />
-        </button>
-      </form>
+      <FrontPageSearch />
     </div>
   );
 };
