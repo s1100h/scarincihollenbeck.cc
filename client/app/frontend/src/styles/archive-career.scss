@@ -1,0 +1,21 @@
+@import "variables";
+
+#career-section {
+  .bckground-gray {
+    background-color: $light-gray;
+  }
+  .filter {
+    input, select {
+      background-color: white; 
+      border-radius: 6px;
+    }
+  }
+  #bg-red-block {
+    width: 10px;
+    height: 112px;
+    background-color: $standard-red;
+    margin-right: 15px;
+    display:block;
+    float:left; 
+   }
+}

@@ -1,0 +1,1 @@
+export const SHLogo = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png';
