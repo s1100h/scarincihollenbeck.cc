@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
+import { ShDiamondPNG } from '../../utils/next-gen-images';
 
 function PostHead(props) {
   const { seo } = props;
@@ -21,7 +22,7 @@ function PostHead(props) {
       <meta property="article:published_time" content={seo.publishedDate} />
       <meta property="article:modified_time" content={seo.updatedDate} />
       <meta property="og:updated_time" content={seo.updatedDate} />
-      <meta property="og:image" content={seo.featuredImg} />
+      <meta property="og:image" content={(seo.featuredImg) ? seo.featuredImg : ShDiamondPNG} />
       <meta property="og:image:secure_url" content={`${window.location.href}/${seo.canonicalLink}`} />
       <meta property="og:image:width" content="300" />
       <meta property="og:image:height" content="150" />
@@ -36,7 +37,7 @@ function PostHead(props) {
           "@context": "https://schema.org", 
           "@type": "BlogPosting",
           "headline": "${seo.title}",
-          "image": "${seo.featuredImg}", 
+          "image": "${(seo.featuredImg) ? seo.featuredImg : ShDiamondPNG}", 
           "genre": "${(seo.hasOwnProperty('primaryCategory')) && seo.primaryCategory.title}", 
           "keywords": ${(seo.tags !== undefined && seo.tags.length > 0) && seo.tags.map((tag) => tag.name.toString())}, 
           "publisher": "Scrarinci Hollenbeck, LLC",
@@ -60,6 +61,7 @@ function PostHead(props) {
 PostHead.propTypes = {
   seo: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
+    PropTypes.boolean,
     PropTypes.objectOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { checkIEBrowser } from '../utils/helpers';
+import { device } from '../utils/screens';
 
 const MultiSubHeader = (props) => {
   const {
@@ -32,7 +33,12 @@ const MultiSubHeader = (props) => {
   border-radius: 4px;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
-  max-height: ${height};
+  max-height: 400px;
+
+  @media ${device.laptop} { 
+    max-height: ${height};
+  }
+
 `;
 
   return (

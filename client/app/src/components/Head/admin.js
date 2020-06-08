@@ -40,28 +40,28 @@ function AdminHead(props){
           "alternateName":" ${seo.title}",
           "nationality": "American",
           "Description": "${seo.metaDescription}",
-        "disambiguatingDescription": "${seo.metaDescription}",
-        "jobTitle": "${seo.jobPosition}",
-        "worksFor": [
-          {
-            "@type": "Organization",
-            "name": "Scarinci Hollenbeck, LLC",
-            "sameAs": [
-              "https://twitter.com/S_H_Law",
-              "https://www.facebook.com/ScarinciHollenbeck/",
-              "https://www.linkedin.com/company/scarinci-hollenbeck-llc/",
-            ]
-          }
-        ],
-        "url": "${window.location.origin}/${seo.canonicalLink}",
-        "image": "${seo.featuredImg}",
-        "address": {
+          "disambiguatingDescription": "${seo.metaDescription}",
+          "jobTitle": "${seo.jobPosition}",
+          "worksFor": [
+            {
+              "@type": "Organization",
+              "name": "Scarinci Hollenbeck, LLC",
+              "sameAs": [
+                "https://twitter.com/S_H_Law",
+                "https://www.facebook.com/ScarinciHollenbeck/",
+                "https://www.linkedin.com/company/scarinci-hollenbeck-llc/",
+              ]
+            }
+          ],
+          "url": "${window.location.origin}/${seo.canonicalLink}",
+          "image": "${seo.featuredImg}",
+          "address": {
           "@type": "PostalAddress",
-          "addressLocality": "${seo.addressLocality}",
-          "addressRegion": "NJ",
-          "addressCountry": "United States"
+            "addressLocality": "${seo.addressLocality}",
+            "addressRegion": "NJ",
+            "addressCountry": "United States"
+          }
         }
-      }
         `
       }
       </script>

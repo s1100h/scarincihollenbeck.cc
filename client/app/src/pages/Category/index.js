@@ -54,13 +54,19 @@ class CategoryBody extends Component {
       categorySlug: category,
       breadCrumb: [category],
       archives,
-      authors: sortedAuthors,
+      authors: sortedAuthors.filter(author => author.name !== 'Scarinci Hollenbeck'),
       latest,
       main,
       practices,
       seo,
       description,
     });
+
+    if(practices.length === 0) {
+      const firmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/category/firm-insights-children`, { headers });
+      const firmInsightsJson = await firmInsightsResponse.json();
+      this.setState({fiCategories: firmInsightsJson});
+    }
 
 
     if (categorySlug === 'firm-news' || categorySlug === 'firm-events') {
@@ -92,8 +98,7 @@ class CategoryBody extends Component {
       seo,
       description,
     } = this.state;
-
-
+    
     return (
       <ErrorBoundary>
         <ArchiveHead seo={seo} />
@@ -140,8 +145,8 @@ class CategoryBody extends Component {
             <ColumnContent
               colOneTitle="More from our attorneys"
               colOneContent={authors}
-              colTwoTitle="More about our areas of law"
-              colTwoContent={practices}
+              colTwoTitle={(practices.length > 0) ? "More about our areas of law": "Firm Insight's Categories" }
+              colTwoContent={(practices.length > 0) ? practices : fiCategories }
             />
           )}
           { practices.map((val) => (val.name !== 'Uncategorized') && (
