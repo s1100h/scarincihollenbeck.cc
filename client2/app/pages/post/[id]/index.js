@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import NavBar from '../../components/navbar'
+import NavBar from '../../../components/navbar'
 import Head from 'next/head'
 
-const Post = () => {
+const PostId = () => {
   const router = useRouter()
   const { id } = router.query
 
@@ -31,4 +31,4 @@ const Post = () => {
   )
 }
 
-export default Post
+export default PostId

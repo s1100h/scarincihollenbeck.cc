@@ -1,17 +1,16 @@
 import { useRouter } from 'next/router'
 import NavBar from '../../../components/navbar'
 
-const Comment = () => {
+const ArchivesPage = () => {
   const router = useRouter()
-  const { id, comment } = router.query
+  const { id } = router.query
 
   return (
     <>
       <NavBar />
-      <h1>Post: {id}</h1>
-      <h1>Comment: {comment}</h1>
+      <h1>Archives Page: {id}</h1>
     </>
   )
 }
 
-export default Comment
+export default ArchivesPage

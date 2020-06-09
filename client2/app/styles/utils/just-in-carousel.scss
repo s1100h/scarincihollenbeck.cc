@@ -24,7 +24,7 @@
 }
 .JustInCarouselContent > a > .just-in-header > .category svg {
   margin-right: 4px;
-  margin-bottom: -2px;
+  width: 15px
 }
 .JustInCarouselContent > a > .just-in-header > .date {
   float:right;
@@ -45,6 +45,7 @@
 .JustInCarouselContent > a > .tag > svg{
   margin-right: .5rem;
   margin-bottom: .2rem;
+  width: 25px
 }
 .JustInCarouselContent > a > .just-in-content, .tag {
   text-align:center;

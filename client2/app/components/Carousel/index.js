@@ -58,20 +58,19 @@ function renderSlides(type, slides) {
   }
 }
 
-function CarouselContainer(props) {
-  const { slides, sliderType } = props;
-  console.log(props);
+function CarouselContainer(props) {  
+  const { sliderType, slides } = props;
   return (slides.length > 0) && (
-  // <Carousel
-  //   responsive={(sliderType === 'JustInCarousel') ? jiResponsive : responsive}
-  //   infinite
-  //   arrows
-  //   swipeable
-  // >
-  //   {(slides.length > 0) && renderSlides(sliderType, slides) }
-  // </Carousel>
-  <div> slides will go here...</div>
+  <Carousel
+    responsive={(sliderType === 'JustInCarousel') ? jiResponsive : responsive}
+    infinite
+    arrows
+    swipeable
+  >
+    {(slides.length > 0) && renderSlides(sliderType, slides) }
+  </Carousel>
   );
+  return <div>arousel</div>
 }
 
 export default CarouselContainer;
