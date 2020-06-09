@@ -38,7 +38,7 @@ export default function InfoCard(props) {
           <ul className="text-white no-dots ml-0">
             <li className="mb-1">
               <h5>
-                <FontAwesomeIcon icon={faPhone} className="text-white" />
+                <FontAwesomeIcon icon={faPhone} className="text-white mw-18" />
                 <span className="proxima-regular ft-18">
                   {' '}
                   201-896-4100
@@ -49,7 +49,7 @@ export default function InfoCard(props) {
             </li>
             <li className="mb-1">
               <h5>
-                <FontAwesomeIcon icon={faEnvelope} className="text-white" />
+                <FontAwesomeIcon icon={faEnvelope} className="text-white mw-18" />
                 <a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-18">
                   {' '}
                   {email}
@@ -67,11 +67,11 @@ export default function InfoCard(props) {
                     social_media_links.map((v) => (
                       <li key={v.channel} className="mb-0 lh-1">
                         <h5>
-                          {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white" />}
-                          {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white" />}
-                          {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white" />}
-                          {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white" />}
-                          {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white" />}
+                          {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white mw-18" />}
+                          {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white mw-18" />}
+                          {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white mw-18" />}
+                          {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white mw-18" />}
+                          {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white mw-18" />}
                           <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                             {`  Connect on ${v.channel}`}
                           </a>
@@ -83,7 +83,7 @@ export default function InfoCard(props) {
                     (vizibility) && (
                     <li className="mb-0 lh-1">
                       <h5>
-                        <FontAwesomeIcon icon={faAddressCard} className="text-white" />
+                        <FontAwesomeIcon icon={faAddressCard} className="text-white mw-18" />
                         <a href={vizibility} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                           {' Download Contact'}
                         </a>
