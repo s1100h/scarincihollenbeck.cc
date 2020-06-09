@@ -26,7 +26,6 @@ function SingleAdmin({slides, admin, router }){
     phone_extension,
     seo  
   } = admin;
-  console.log(admin);
 
   return (
     <>
@@ -134,7 +133,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const adminResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${params.admin}`, { headers });
+  const adminResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${params.slug}`, { headers });
   const admin = await adminResponse.json();
   const slides = await sliderResponse.json();
 
