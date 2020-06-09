@@ -1,8 +1,12 @@
-import NavBar from '../components/navbar'
-import Footer from '../components/footer'
 import Head from 'next/head';
 import { withRouter } from 'next/router';
-import{ headers } from '../utils/helpers';
+import Container from 'react-bootstrap/Container';
+import NavBar from '../components/navbar';
+import Footer from '../components/footer';
+import CoronaHeader from '../components/FrontPage/corona-header';
+import ColumnContent from '../components/FrontPage/column-content';
+import FullWidthContent from '../components/FrontPage/full-width-content';
+import{ headers, sortByKey } from '../utils/helpers';
 
 
 function Home({
@@ -13,6 +17,9 @@ function Home({
   corePractices,
   router
 }) {
+
+  const sortedLocations = sortByKey(locations, 'id');
+  const sortedPosts = sortByKey(posts, 'date');
   
   return(
   <>
@@ -65,13 +72,21 @@ function Home({
       </script> 
     </Head>
     <NavBar />
-    <h1>Hello World!</h1>
+    <CoronaHeader />
+    <Container>
+      <ColumnContent corePractices={corePractices} />
+      <FullWidthContent
+        sortedPosts={sortedPosts}
+        sortedLocations={sortedLocations}
+      /> 
+    </Container>
     <Footer
       slides={slides}      
     />
   </>
 )
 }
+
 export async function getStaticProps() {
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
   const seoResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, { headers });

@@ -282,6 +282,13 @@ ul {
   margin-bottom: 30px;
 }
 
+.bg-black-background {
+  background-color: rgba(0,0,0, .50);
+  border-radius: 4px;
+  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
+  clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
+}
+
 .articles-container {
   max-height: 600px;
   overflow: hidden;
@@ -346,6 +353,7 @@ ul {
     }
   }
 }
+
 /** Consent Message **/
 .cookieConsent {
   div {
@@ -356,10 +364,7 @@ ul {
   }
 }
 
-
-
-
-/** standard Sidebar Stylings **/
+/** Standard Sidebar Stylings **/
 .sidebar-title {
   display: block;
   background-color: $dark-gray;
@@ -375,14 +380,18 @@ ul {
     text-decoration: underline !important;
   }
 }
-
+/**  home page **/
+.fnt-btn {
+  svg {
+    max-width: 8px;
+  }
+}
 /** forum Columns **/
 .two-column {
   column-count: 2;
   column-gap: 0px;
   margin-left: 10px;
 }
-
 
 /** footer **/
 .footer-search {

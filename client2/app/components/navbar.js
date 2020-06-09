@@ -10,8 +10,8 @@ import { SHLogo } from '../utils/next-gen-images';
 
 const Header = () => (
   <header className="mt-3">
-    <Container className="border-bottom">
-      <Row>
+    <Container>
+      <Row className="border-bottom">
         <Navbar bg="light" expand="lg">
           <Navbar.Brand className="mr-5">
             <Link href="/">

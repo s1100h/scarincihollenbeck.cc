@@ -64,7 +64,7 @@ export const getDirectionsFromLocation = (location) => {
     },
     {
       title: 'new york',
-      address: '3 Park Ave. New York, NY 10016',
+      address: '589 8th Avenue, New York, NY, 10018',
     },
     {
       title: 'washington dc',
@@ -130,10 +130,3 @@ export const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
-
-export const  checkIEBrowser = () => {
-  const ua = window.navigator.userAgent;
-  const msie = ua.indexOf("Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C;") > -1;
-  
-  return msie
-}
