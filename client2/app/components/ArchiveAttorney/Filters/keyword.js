@@ -5,7 +5,7 @@ export default function Keyword(props) {
 
   return (
     <Form inline className="filter w-40">
-      <Form.Control type="text" className="w-100" placeholder="Search by keyword..." onChange={handleChange} />
+      <Form.Control type="text" className="w-85" placeholder="Search by keyword..." onChange={handleChange} />
     </Form>
   );
 }

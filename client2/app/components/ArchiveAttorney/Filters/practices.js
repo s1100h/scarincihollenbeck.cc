@@ -21,6 +21,10 @@ function PracticeListItem(props) {
   );
 }
 
+function PracticeItemContainer() {
+
+}
+
 export default function Practices(props) {
   const { practices, onSelect, removeVisibilityClass } = props;
 
@@ -42,10 +46,9 @@ export default function Practices(props) {
   // env, litigation
   const pt = practices.filter((b) => ((b.id === 28273 || b.id === 28274) ? b : ''));
 
-
   return (
-    <NavDropdown title={<>Filter by practice <FontAwesomeIcon icon={faCaretDown} className="ml-5 mt-1 mw-18" /></>} id="basic-nav-dropdown" className="bg-white rounded">
-      <Container className="mt--1">
+    <NavDropdown title={<>Filter by practice <FontAwesomeIcon icon={faCaretDown} className="ml-5 mw-10"  /></>} id="basic-nav-dropdown" className="bg-white rounded position-static">
+      <Container className="mt--1 p-0" fluid>
         <Row className="rounded-0 m-0">
           <Col sm={12} md={3} className=" mt-md-3">
             {bce.map((ft) => <PracticeListItem key={addRandomKey(ft.id.toString())} title={ft.title} onSelect={onSelect} pChildren={ft.children} />)}

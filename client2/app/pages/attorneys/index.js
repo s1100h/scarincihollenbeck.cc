@@ -4,7 +4,9 @@ import { withRouter } from 'next/router';
 import { headers, sortByKey } from '../../utils/helpers';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
-import Filters from '../../components/ArchiveAttorney/Filters'
+import Selected from './selected';
+import Filters from '../../components/ArchiveAttorney/Filters';
+import Results from '../../components/ArchiveAttorney/Results';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
 import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
@@ -13,6 +15,9 @@ function Attorneys({slides, seo, locations, designations, practices, attorneys, 
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
   const [attorneyList, setAttorneyList ] = useState([]);
+
+  let load = true;
+  load = loading;
 
   /* Click Events */
   function onSelect(e, input) {
@@ -61,7 +66,6 @@ function Attorneys({slides, seo, locations, designations, practices, attorneys, 
 
   /** Clear user query */
   function clearQuery(key) {
-    const { select } = this.state;
     const rQuery = select.filter((a) => a.key !== key);
 
     setUserInput('');
@@ -109,6 +113,18 @@ function Attorneys({slides, seo, locations, designations, practices, attorneys, 
             onMobileSelect={onMobileSelect}
           />
           {/** End of Filters */}
+          {/** Results */}
+          <div className="w-100 border mt-sm-6 mt-md-0">
+            <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
+            { (load === false && attorneys.length > 0) ? (
+                <Results attorneys={attorneys} userInput={userInput} select={select} />
+              ) : ( 
+                <div className="w-100 my-5">
+                  <h3 className="text-center red-title">Loading attorney list...</h3>
+                </div>
+            )}
+          </div>
+          {/** End of Results */}
         </div>
       </FullWidth>
       <Footer slides={slides} />

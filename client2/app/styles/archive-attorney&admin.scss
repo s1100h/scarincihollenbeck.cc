@@ -112,6 +112,9 @@
     visibility: hidden !important;
   }
   .dropdown {
+    .dropdown-menu {
+      min-width: 100%;
+    }
     &:hover {
       .dropdown-menu {
         display: block;

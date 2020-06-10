@@ -1,6 +1,6 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from '../../AttorneyCard';
+import AttorneyCard from '../../attorney-card';
 
 function AttorneyCards(title, content) {
   return (
@@ -29,36 +29,34 @@ function AttorneyCards(title, content) {
   );
 }
 
-class NotFiltered extends PureComponent {
-  render() {
-    const { attorneys } = this.props;
-    // managing partners
-    const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
+export default function NotFiltered(props) {
+  const { attorneys } = props;
+  // managing partners
+  const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
 
-    // partners
-    const partners = attorneys.filter((a) => a.designation === 'Partner');
+  // partners
+  const partners = attorneys.filter((a) => a.designation === 'Partner');
 
-    // counsel
-    const counsel = attorneys.filter((a) => a.designation === 'Counsel');
+  // counsel
+  const counsel = attorneys.filter((a) => a.designation === 'Counsel');
 
-    // of counsel & counsel emeritus
-    const ofCounsel = attorneys.filter((a) => a.designation.indexOf('Of Counsel') > -1);
+  // of counsel & counsel emeritus
+  const ofCounsel = attorneys.filter((a) => a.designation.indexOf('Of Counsel') > -1);
 
-    // senior associates
-    const seniorAssociates = attorneys.filter((a) => a.designation === 'Senior Associate');
+  // senior associates
+  const seniorAssociates = attorneys.filter((a) => a.designation === 'Senior Associate');
 
-    // associates
-    const associates = attorneys.filter((a) => a.designation === 'Associate');
+  // associates
+  const associates = attorneys.filter((a) => a.designation === 'Associate');
 
-    return (
-      <div>
-        {AttorneyCards('Managing Partner', managingPartners)}
-        {AttorneyCards('Partners', partners)}
-        {AttorneyCards('Counsel', counsel)}
-        {AttorneyCards('Of Counsel & Counsel Emeritus', ofCounsel)}
-        {AttorneyCards('Senior Associates', seniorAssociates)}
-        {AttorneyCards('Associates', associates)}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {AttorneyCards('Managing Partner', managingPartners)}
+      {AttorneyCards('Partners', partners)}
+      {AttorneyCards('Counsel', counsel)}
+      {AttorneyCards('Of Counsel & Counsel Emeritus', ofCounsel)}
+      {AttorneyCards('Senior Associates', seniorAssociates)}
+      {AttorneyCards('Associates', associates)}
+    </div>
+  );
 }
