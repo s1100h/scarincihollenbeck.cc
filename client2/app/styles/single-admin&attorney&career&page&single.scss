@@ -42,28 +42,24 @@
 
   // rep & client matters stylings  
   .main-tab {
-    font-size: 18px;
+    font-size: 1.1rem;
     line-height: 26px;
     text-align: center;
-    padding: 10px;
     border: 1.5px solid $standard-red;
-    min-width: 300px;
+    min-width: 250px;
     text-transform: uppercase;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    color: $standard-red !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    text-decoration: none;
     transition: All 1s ease;
     -webkit-transition: All 1s ease;
-    a {
-      transition:All 1s ease;
-      -webkit-transition:All 1s ease;
-      -moz-transition:All 1s ease;
-      color: $standard-red;
-    }
+    -moz-transition:All 1s ease;
     &:hover {
       background-color: $standard-red;
-      a {  
-        color: white !important;
-        font-weight:bold;
-        text-shadow: 1px 2px 5px black;
-      }
+      color: white !important;
     }
   }
 

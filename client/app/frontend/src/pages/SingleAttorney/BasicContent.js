@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { createMarkup } from '../../utils/helpers';
 
 function BasicContent(props) {
-  const {
-    currentTab,
-    tabTitle,
-    title,
-    content,
-  } = props;
+  const { tabTitle, title, content } = props;
 
   return (
     <div className={(currentTab === tabTitle) ? 'tab-pane active' : 'tab-pane'} id={tabTitle} role="tabpanel" aria-labelledby={`nav-${tabTitle}-tab`}>
