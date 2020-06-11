@@ -42,13 +42,21 @@ function get_single_category_data($request) {
 
 // retrieves data based on use query
 function get_all_category_data() {
-  global $wp_query;
+  $categories = get_categories();
   $results = [];
-  $all_categories = get_categories();
 
-  foreach($all_categories as $category) {
-    
+  foreach ($categories as $category) {
+    $count = $category->category_count;
+    $slug = $category->slug;
+
+    for($i = 1; $i <= $count; $i++) {
+      $results[] = array(
+        "link" => $slug,
+        "id" => $i
+      );
+    }
   }
+  
 
   return $results;
 }

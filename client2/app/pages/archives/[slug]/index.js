@@ -5,6 +5,7 @@ import Footer from '../../../components/footer';
 import Breadcrumbs from '../../../components/breadcrumbs';
 import ArchiveLayout from '../../../layouts/archive-layout';
 import Body from './body';
+import Sidebar from './sidebar';
 import { headers } from '../../../utils/helpers';
 
 
@@ -33,10 +34,10 @@ function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNe
               insight={firmInsights}
             />
           )}
-          sidebar={(<>Sidebar here...</>)}
+          sidebar={(<Sidebar trending={posts}/>)}
         />
       </div>
-      <Footer slides={slides} />
+      <Footer slides={(<Sidebar trending={posts}/>)} />
     </>
   )
 }

@@ -6,28 +6,29 @@ import Pagination from 'react-bootstrap/Pagination'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
+import NewsScroller from '../../components/news-scroller';
 import { urlify } from '../../utils/helpers';
 
 export default function Body(props) {
   const {
     results,
     pages,
+    currentPage,
     term,
     news,
     insight,
     events,
-    prev,
-    next,
-    active,
-    loading,
   } = props;
 
   function handlePagination(e, page) {
     e.preventDefault();
-    Router.push({ pathname: `/archives/${term}/page/${page}`})
-  }
+    Router.push({
+      pathname: '/search',
+      query: { q: term, page: page }})
+  };
 
-  console.log(results);
+  const next = parseInt(currentPage, 10) + 1;
+  const previous = parseInt(currentPage, 10) - 1;
 
 
   return (
@@ -60,13 +61,18 @@ export default function Body(props) {
         <Col sm={12}>
         <Pagination>
           <Pagination.First onClick={(e) => handlePagination(e, 1)} />            
-          <Pagination.Prev  onClick={(e) => handlePagination(e, currentPage - 1)}/>
+          <Pagination.Prev  onClick={(e) => handlePagination(e, previous)}/>
           <Pagination.Item>{1}</Pagination.Item>
           <Pagination.Ellipsis />
           <Pagination.Item>{pages}</Pagination.Item>
-          <Pagination.Next onClick={(e) => handlePagination(e, currentPage + 1)}/>
+          <Pagination.Next onClick={(e) => handlePagination(e, next)}/>
           <Pagination.Last onClick={(e) => handlePagination(e, pages)}/>
         </Pagination>
+        </Col>
+        <Col sm={12}>
+          <NewsScroller title="Firm News" articles={news} />
+          <NewsScroller title="Firm Events" articles={insight} />
+          <NewsScroller title="Firm Insights" articles={events} />          
         </Col>
       </Row>
     </Container>

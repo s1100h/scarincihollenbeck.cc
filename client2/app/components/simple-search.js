@@ -18,9 +18,10 @@ export default function SimpleSearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
     Router.push({
       pathname: '/search',
-      query: { q: searchInput },
+      query: { q: formatUrl(searchInput), page:1 },
     })
   }
 

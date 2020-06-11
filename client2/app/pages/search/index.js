@@ -6,13 +6,15 @@ import Footer from '../../components/footer';
 import Breadcrumbs from '../../components/breadcrumbs';
 import ArchiveLayout from '../../layouts/archive-layout';
 import Body from './body';
-import { headers } from '../../utils/helpers';
+import Sidebar from './sidebar';
+import { headers, urlify } from '../../utils/helpers';
 const request = require('superagent');
 
 function Archive({ slides, firmNews, firmEvents, firmInsights}){
   const router = useRouter()
-  const { q } = router.query
+  const { q, page } = router.query
   const [results, setResults] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [pages, setPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [term, setTerm] = useState('');
@@ -20,8 +22,7 @@ function Archive({ slides, firmNews, firmEvents, firmInsights}){
   useEffect(() => {
     const fetchData = async () => {
       // fetch query results
-
-      const fetchQuery = request.get(`http://localhost:8400/wp-json/search/query/${q}/1`)
+      const fetchQuery = request.get(`http://localhost:8400/wp-json/search/query/${q}/${page}`)
         .set(headers)
         .then((res) => ({
           status: res.status,
@@ -31,25 +32,31 @@ function Archive({ slides, firmNews, firmEvents, firmInsights}){
 
       fetchQuery.then((results) => {
         const { status, body } = results;
-        console.log(results);
+
         if (status === 200) {
-          setResults(body.results);
-          setPages(body.pages);
-          setTerm(body.term);     
-          
+          const { results, pages, term, posts } = body;
+           
+          setResults(results);
+          setPages(pages);
+          setTerm(term);    
+          setCurrentPage(page);
+          setPosts(posts);
         }
       });
     };
-
-    fetchData();
-  }, [q]);
+    
+    if(q !== undefined && page !== undefined) {
+      fetchData();
+    }
+    
+  }, [q, page]);
 
   return (
     <>      
       <NavBar />
       <div id="search">
         <ArchiveLayout
-          header={(<Breadcrumbs breadCrumb={[term, 1]} categorySlug={term} />)}
+          header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
           body={(
             <Body
               results={results}
@@ -61,7 +68,7 @@ function Archive({ slides, firmNews, firmEvents, firmInsights}){
               insight={firmInsights}
             />
           )}
-          sidebar={(<>Sidebar here...</>)}
+          sidebar={(<Sidebar trending={posts}/>)}
         />
       </div>
       <Footer slides={slides} />

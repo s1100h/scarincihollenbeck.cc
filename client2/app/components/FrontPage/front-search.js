@@ -5,21 +5,16 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import useInput from '../../utils/input-hook';
 
-
-// creates search url from query
-function sumbitSearchForm(term) {
-  const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
-  return `/s?=${formatUrl(term)}`;
-};
-
 export default function FrontSearch() {
   const { value:searchInput, bind:bindSearchInput, reset:resetSearchInput } = useInput('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
+
     Router.push({
       pathname: '/search',
-      query: { q: searchInput },
+      query: { q: formatUrl(searchInput), page: 1 },
     })
   }
 
