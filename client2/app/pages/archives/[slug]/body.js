@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,8 +11,9 @@ import { urlify } from '../../../utils/helpers';
 export default function Body(props) {
   const {
     results,
-    pageNums,
-    categorySlug,
+    pages,
+    term,
+    currentPage,
     news,
     insight,
     events,
@@ -20,6 +22,12 @@ export default function Body(props) {
     active,
     loading,
   } = props;
+
+  function handlePagination(e, page) {
+    e.preventDefault();
+    Router.push({ pathname: `/archives/${term}/page/${page}`})
+  }
+
 
   return (
     <Container>
@@ -50,21 +58,13 @@ export default function Body(props) {
         </Col>
         <Col sm={12}>
         <Pagination>
-          <Pagination.First />
-          <Pagination.Prev />
+          <Pagination.First onClick={(e) => handlePagination(e, 1)} />            
+          <Pagination.Prev  onClick={(e) => handlePagination(e, currentPage - 1)}/>
           <Pagination.Item>{1}</Pagination.Item>
           <Pagination.Ellipsis />
-
-          <Pagination.Item>{10}</Pagination.Item>
-          <Pagination.Item>{11}</Pagination.Item>
-          <Pagination.Item active>{12}</Pagination.Item>
-          <Pagination.Item>{13}</Pagination.Item>
-          <Pagination.Item disabled>{14}</Pagination.Item>
-
-          <Pagination.Ellipsis />
-          <Pagination.Item>{20}</Pagination.Item>
-          <Pagination.Next />
-          <Pagination.Last />
+          <Pagination.Item>{pages}</Pagination.Item>
+          <Pagination.Next onClick={(e) => handlePagination(e, currentPage + 1)}/>
+          <Pagination.Last onClick={(e) => handlePagination(e, pages)}/>
         </Pagination>
         </Col>
       </Row>

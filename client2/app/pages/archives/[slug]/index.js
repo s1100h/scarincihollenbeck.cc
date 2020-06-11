@@ -9,7 +9,7 @@ import { headers } from '../../../utils/helpers';
 import { attorneyArchiveHeaderJPG } from '../../../utils/next-gen-images';
 
 
-function Archive({ slides, seo, results, pages, term, posts, firmNews, firmEvents, firmInsights, router}){
+function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNews, firmEvents, firmInsights, router}){
 
   return (
     <>
@@ -26,13 +26,12 @@ function Archive({ slides, seo, results, pages, term, posts, firmNews, firmEvent
           body={(
             <Body
               results={results}
-              categorySlug={term}
-              next={2}
-              prev={1}
-              pageNums={pages}
+              term={term}
+              pages={pages}
+              currentPage={currentPage}
               news={firmNews}
               events={firmEvents}
-              insight={firmInsight}
+              insight={firmInsights}
             />
           )}
           sidebar={(<>Sidebar here...</>)}
@@ -44,10 +43,11 @@ function Archive({ slides, seo, results, pages, term, posts, firmNews, firmEvent
 }
 
 export async function getStaticPaths() {
-  const archive = ['/archives/new-jersey', '/archives/scarinci-hollenbeck', '/archives/donald-scarinci'];
+  const archiveResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/categories?per_page=100`, { headers });
+  const archive = await archiveResponse.json();
 
   return  {
-    paths: archive.map(link => link) || [],
+    paths: archive.map(category => `/archives/${category.slug}`) || [],
     fallback: true,
   }
 }
@@ -59,11 +59,11 @@ export async function getStaticProps({params}) {
   const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
   const postJson = await postResponse.json();
   const articleJson = await articlesResponse.json();
-  const { results, pages, posts, term } = postJson;
+  const { results, pages, posts, currentPage, term } = postJson;
   const { firmNews, firmEvents, firmInsights } = articleJson;
 
   const seo = {
-    title: `Article archives for term ${term} | Scarinci Hollenbeck`,
+    title: `Article Archives For Term ${term} | Scarinci Hollenbeck`,
     metaDescription: `On Scarinci Hollenbeck's popular legal blog, you can find articles pertaining to ${term} and much, much more.`,
     canonicalLink: `archives/${term}`
   };
@@ -75,6 +75,7 @@ export async function getStaticProps({params}) {
       seo,
       results,
       pages,
+      currentPage,
       term,
       posts,
       firmNews,

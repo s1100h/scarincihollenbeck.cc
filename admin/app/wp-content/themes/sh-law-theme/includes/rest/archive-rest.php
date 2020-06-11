@@ -25,7 +25,7 @@ function archive_query_data($request) {
   $offset = $request["offset"];
   $archive_data = array();
 
-  $numposts = 10;
+  $numposts = 9;
 
   // set results to match offset 
   $start = ($offset - 1) * $numposts; 
@@ -45,6 +45,9 @@ function archive_query_data($request) {
 
   // add term to results
   $archive_data['term'] = $slug;
+
+    // add term to results
+    $archive_data['currentPage'] = (int)$offset;
 
   // add number of pages to results
   $archive_data['pages'] = ceil(count($posts) / $numposts);

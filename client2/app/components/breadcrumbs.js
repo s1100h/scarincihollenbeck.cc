@@ -1,17 +1,18 @@
+import { withRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import PropTypes from 'prop-types';
 
-export default function BreadCrumbs(props) {
+function BreadCrumbs(props, router) {
   const { breadCrumb, categorySlug } = props;
 
   return (
     <h6>
       <span>
-        <a href={`${window.location.origin}`} className="red-title proxima-bold">HOME</a>
+        <a href={`${router.pathname}`} className="red-title proxima-bold">HOME</a>
       </span>
       <strong className="text-black mt-2 mx-2 proxima-bold">
-        <FontAwesomeIcon icon={faCaretRight} className="red-title" />
+        <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
       </strong>
       { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
         <span key={val}>
@@ -19,7 +20,7 @@ export default function BreadCrumbs(props) {
             { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }
           </span>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FontAwesomeIcon icon={faCaretRight} className="red-title" />
+            <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
           </strong>
         </span>
       ) : (
@@ -32,3 +33,5 @@ export default function BreadCrumbs(props) {
     </h6>
   );
 }
+
+export default withRouter(BreadCrumbs);
