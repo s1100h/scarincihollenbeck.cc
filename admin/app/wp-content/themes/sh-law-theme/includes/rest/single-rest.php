@@ -26,7 +26,7 @@ function all_posts_by_category($request) {
   $category = get_category_by_slug($slug);
   $id = $category->term_id;
 
-  $query_posts = new WP_Query( array( 'cat' => $id, 'posts_per_page' => 2 ) );
+  $query_posts = new WP_Query( array( 'cat' => $id, 'posts_per_page' => -1 ) );
   $posts = $query_posts->posts;
   $links = [];
 
@@ -206,14 +206,38 @@ function single_data($request) {
     "ID" => 000,
   );
 
+  // get subtitle the first h2 text
+    $h2_pattern = "|<\s*h[2](?:.*)>(.*)<\/h2>|Ui";
+    preg_match_all($h2_pattern , $post_content, $h2_matches);
+
+    $sub_title_no_tags = $h2_matches[1][0];
+    $sub_title_tags = $h2_matches[0][0];
+
+    $body_content = str_replace($sub_title_tags, "", html_entity_decode(htmlspecialchars_decode($post_content)));
+
+
+    // check if post is an event 
+    $event_id = array_filter($categories, function($item){
+      return ($item['id'] == 99);
+    });
+
+   if(empty($event_id)) {
+     $is_event = false;
+   }else {
+     $is_event = true;
+   }
+
+  // remove the first h2 text from string
   $post_data = array (
     "idTrueFalse" => $slugIsID,
     "id" => $post_id,
     "title" => $post_title,
-    "featuredImage" => wp_get_attachment_image(get_post_thumbnail_id($post_id), 'full'),
-    "content" => html_entity_decode(htmlspecialchars_decode($post_content)),
+    "subTitle" => $sub_title_no_tags,
+    "featuredImage" => get_the_post_thumbnail_url($post_id, 'full'),
+    "content" => $body_content,
     "author" => $authors_data, 
     "date" => get_the_date("F j, Y", $post_id ),
+    "isEventCategory" => $is_event,
     "categories" => $categories,
     "next" => array(
       "title" => get_the_title(get_next_post_id($post_id)),

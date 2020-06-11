@@ -14,10 +14,30 @@ import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 // TODO: Set up cookies
 // https://github.com/maticzav/nookies
 
-function LawFirmInsightsPost({slides, attorneys, author, date, posts, title, subTitle, firstFeaturedImg, bodyContent, eventCat, eventDetails, seo, tags, router }){
-  console.log(eventCat);  
-  return (bodyContent !== undefined) && (
+function LawFirmInsightsPost({
+  slides,
+  seo,
+  title,
+  subTitle,
+  featuredImage,
+  content,
+  author,
+  date,
+  isEventCategory,
+  categories,
+  posts,
+  attorneys,
+  eventDetails,
+  tags
+
+}){
+  
+
+  return (
     <>
+      <NavBar />
+      {(content !== undefined) && (
+        <>
         <Head>
           <title>{seo.title}</title>
           <meta name="description" content={seo.metaDescription} />
@@ -65,56 +85,56 @@ function LawFirmInsightsPost({slides, attorneys, author, date, posts, title, sub
             
             `}
           </script>
-        </Head>
-        <NavBar />
-        <SingleSubHeader
-          image={blogHeaderJPG}
-          title={title}
-          subtitle={subTitle}
-        />
-        <div id="single">
-          {/* <ThreeColMiniSidebar
-            body={(
-              <Body
-                firstFeaturedImg={firstFeaturedImg}
-                bodyContent={bodyContent}
-                author={author}
-                eventCat={eventCat}
-                title={title}
-                author={author}
-                date={date}
-                tags={tags}
-              />
-            )}
-            OneSidebar={(
-              <SocialShareSidebar
-                title={title}
-              />
-            )}
-            TwoSidebar={(eventCat === true) ? (
-              <EventSidebar
-                eventDetails={eventDetails}
-                attorneys={attorneys}
-              />
-            ) : (
-              <Sidebar
-                posts={posts}
-                attorneys={attorneys}
-              />
-            )}
-          /> */}
-        </div>
-       <Footer slides={slides} />
-      </>
+          </Head>
+          <SingleSubHeader
+            image={blogHeaderJPG}
+            title={title}
+            subtitle={subTitle}
+            />
+            <div id="single">
+            <ThreeColMiniSidebar
+              body={(
+                <Body
+                  firstFeaturedImg={firstFeaturedImg}
+                  bodyContent={bodyContent}
+                  author={author}
+                  eventCat={isEventCategory}
+                  title={title}
+                  author={author}
+                  date={date}
+                  tags={tags}
+                />
+              )}
+              OneSidebar={(
+                <SocialShareSidebar
+                  title={title}
+                />
+              )}
+              TwoSidebar={(eventCat === true) ? (
+                <EventSidebar
+                  eventDetails={eventDetails}
+                  attorneys={attorneys}
+                />
+              ) : (
+                <Sidebar
+                  posts={posts}
+                  attorneys={attorneys}
+                />
+              )}
+            />
+            </div>
+          <Footer slides={slides} />        
+        </>
+      )}      
+    </>
   )   
 }
 
 export async function getStaticPaths() {
   const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/law-firm-insights`, { headers });
-  const json = await postsResponse.json();
-
+  const postsJson = await postsResponse.json();
   return  {
-    paths: json.map(link => `/law-firm-insights/[slug]/${link}`|| `/law-firm-insights/${link}`) || [],
+    paths: postsJson.map(link => `/law-firm-insights/${link}` || `/law-firm-insights/[slug]/${link}`) || [],
     fallback: true,
   }
 }
@@ -124,30 +144,40 @@ export async function getStaticProps({params}) {
   const lawFirmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${slug}`, { headers });
   const lawFirmInsightsJSON = await lawFirmInsightsResponse.json();
   const slides = await sliderResponse.json();
-  const { attorneys, author, content, date, posts, title, categories, eventDetails, seo, tags } = lawFirmInsightsJSON;
-  const eventCat = categories.map((a) => a.id).indexOf(99) > -1;
 
-  const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
-  const featuredImg = content.match(/<figure(.*?)>(.*?)<\/figure>/g);
-  const firstFeaturedImg = (featuredImg !== null) ? featuredImg[0] : '';
-  const bodyContent = content.replace(firstFeaturedImg, '').replace(subTitle, '');
+  const {
+    seo,
+    title,
+    subTitle,
+    featuredImage,
+    content,
+    author,
+    date,
+    isEventCategory,
+    categories,
+    posts,
+    attorneys,
+    eventDetails,
+    tags
+  } = lawFirmInsightsJSON;
 
-  
+  // author, attorney
+
   return {
     props: {
       slides,
-      attorneys,
-      author,
-      bodyContent,
-      firstFeaturedImg,
-      subTitle,
-      date,
-      posts,
-      title,
-      eventCat,
-      eventDetails,
       seo,
+      title,
+      subTitle,
+      featuredImage,
+      content,
+      author,
+      date,
+      isEventCategory,
+      categories,
+      posts,
+      attorneys,
+      eventDetails,
       tags
     },
   }
