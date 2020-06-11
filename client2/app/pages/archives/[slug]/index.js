@@ -37,7 +37,7 @@ function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNe
           sidebar={(<Sidebar trending={posts}/>)}
         />
       </div>
-      <Footer slides={(<Sidebar trending={posts}/>)} />
+      <Footer slides={slides} />
     </>
   )
 }

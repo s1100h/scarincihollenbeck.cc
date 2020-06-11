@@ -19,20 +19,28 @@ add_action('rest_api_init', function()
 		"methods" => WP_REST_SERVER::READABLE,
 		"callback" => "related_author_practices"
   ));
+  register_rest_route("author", "/list", array(
+		"methods" => WP_REST_SERVER::READABLE,
+		"callback" => "get_author_list"
+  ));
 });
 
 // retrieve related practices to author 
 function related_author_practices($request) {
   $slug = $request['slug'];
-
-  // author id
   $author = get_user_by('login', $slug);
+
+  if($author == false) {
+    $author = get_user_by('login', 'Scarinci Hollenbeck');
+  }
 
   if(is_object($author)) {
     $author_email = $author->user_email;
   }else {
     $author_email = $author['user_email'];
   }
+
+  
   
 
   $related_attorneys = get_posts(array(
@@ -52,6 +60,8 @@ function related_author_practices($request) {
   $related_practices = get_field("related_practices", $attorney_id);
   $related_practice_data = array();
 
+  $related_practice_data['currentUser'] = $slug;
+
   if($slug == "scarincihollenbeck"){
     $bio = "With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, San Francisco, CA, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them. Since the firm was founded in 1988, we have maintained our reputation for getting things done. Most attorneys at Scarinci Hollenbeck have significant experience in their practice areas, and have published and lectured on current topics in their field.";
 
@@ -63,38 +73,10 @@ function related_author_practices($request) {
       "email" => "info@sh-law.com",
       "phone" => "201-896-4100"
     );
-    $related_practice_data['practices'] = array(
-      array(
-        "title" => "CORPORATE TRANSACTIONS & BUSINESS",
-        "link" => "https://scarincihollenbeck.com/practices/corporate-transactions-and-business/"
-      ),
-      array(
-        "title" => "ENVIRONMENTAL & LAND USE",
-        "link" => "https://scarincihollenbeck.com/practices/environmental-and-land-use/"
-      ),
-      array(              
-        "title" => "INTELLECTUAL PROPERTY",
-        "link" => "https://scarincihollenbeck.com/practices/intellectual-property/"
-      ),
-      array(
-        "title" => "LABOR & EMPLOYMENT",
-        "link" => "https://scarincihollenbeck.com/practices/labor-employment/",
-      ),
-      array(              
-        "title" => "LITIGATION",
-        "link" => "https://scarincihollenbeck.com/practices/litigation/",
-      ),
-      array(
-        "title" => "TAX, TRUSTS & ESTATES",
-        "link" => "https://scarincihollenbeck.com/practices/tax-trusts-and-estates/",
-      ),
-      array(
-        "title" => "GOVERNMENT & EDUCATION LAW",
-        "link" => "https://scarincihollenbeck.com/practices/public-law/"
-      )
-    );   
+    $related_practice_data['practices'] = core_practices();
+
   }else {
-    $related_practice_data['bio'] = array(
+    $related_practice_data['bio'][] = array(
       "name" => get_the_title($attorney_id),
       "bioContent" => preg_replace('/\s+?(\S+)?$/', '', strip_tags(substr(get_field("biography_content", $attorney_id), 0, 250))). " ...",
       "link" => str_replace(home_url(), '', get_permalink($attorney_id)),
@@ -113,6 +95,8 @@ function related_author_practices($request) {
       }
     }
   }
+
+  
 
   return $related_practice_data;
 }
@@ -165,6 +149,8 @@ function author_query_data($request) {
 
   $author_data['term'] = $slug;
 
+  $author_data['currentPage'] = $offset;
+
   /** Retrieve SEO */
  
    $author_data['seo'] = (object)array(
@@ -174,4 +160,18 @@ function author_query_data($request) {
    );
 
   return $author_data;
+}
+
+function get_author_list() {
+  $authors = get_users();
+  $results = [];
+
+  foreach($authors as $author) {
+    $author_data = $author->data;
+
+    if($author_data->ID !== "2" || $author_data->ID !== "50" || $author_data->ID !== "71")
+    $results[] = $author->data->user_nicename;
+  }
+
+  return $results;
 }
