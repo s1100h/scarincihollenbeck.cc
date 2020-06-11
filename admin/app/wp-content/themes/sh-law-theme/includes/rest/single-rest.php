@@ -15,8 +15,28 @@ add_action("rest_api_init", function()
     "methods" => WP_REST_SERVER::READABLE,
     "callback" => "single_data"
   ));
-  
+  register_rest_route("single", "list/(?P<slug>[a-zA-Z0-9-+.,%20$]+)", array(
+    "methods" => WP_REST_SERVER::READABLE,
+    "callback" => "all_posts_by_category"
+  ));
 });
+
+function all_posts_by_category($request) {
+  $slug = $request['slug'];
+  $category = get_category_by_slug($slug);
+  $id = $category->term_id;
+
+  $query_posts = new WP_Query( array( 'cat' => $id, 'posts_per_page' => -1 ) );
+  $posts = $query_posts->posts;
+  $links = [];
+
+  foreach($posts as $post) {
+    $links[] = $post->post_name;
+  };
+  
+  return $links;
+}
+
 function get_previous_post_id( $post_id ) {
   // Get a global post reference since get_adjacent_post() references it
   global $post;

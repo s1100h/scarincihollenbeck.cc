@@ -6,13 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { addRandomKey } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
-
-// creates search url from query
-function sumbitSearchForm(term) {
-  const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
-  return `/s?=${formatUrl(term)}`;
-};
-
 export default function SimpleSearch() {
   const { value:searchInput, bind:bindSearchInput, reset:resetSearchInput } = useInput('');
 

@@ -1,4 +1,4 @@
-export default const checkboxes = [
+export const checkboxes = [
   {
     key: 'business',
     label: 'Business Law',

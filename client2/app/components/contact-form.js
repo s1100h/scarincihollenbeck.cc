@@ -1,0 +1,161 @@
+import React, { useState } from 'react';
+import { withRouter } from 'next/router';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import useInput from '../utils/input-hook';
+
+
+// TODO: setup react-gcaptcha
+const Recaptcha = require('react-gcaptcha');
+
+const callback = function (key) {
+  console.log(key);
+};
+
+const loaded = function () {
+  console.log('recaptchaLoaded');
+};
+
+function ContactForm() {
+  const { value:firstNameInput, bind:bindFirstNameInput, reset:resetFirstNameInput } = useInput('');
+  const { value:lastNameInput, bind:bindLastNameInput, reset:resetLastNameInput } = useInput('');
+  const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
+  const { value:phoneInput, bind:bindPhoneInput, reset:resetPhoneInput } = useInput('');
+  const { value:subjectInput, bind:bindSubjectInput, reset:resetSubjectInput } = useInput('');
+  const { value:messageInput, bind:bindMessageInput, reset:resetMessageInput } = useInput('');
+  const { value:disclaimerInput, bind: bindDisclaimerInput, reset:resetDisclaimerInput } = useInput([]);
+  const [disabled, setDisabled] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const pageTitle = document.querySelector('h1.text-white.proxima-bold').innerText;
+    const siteUrl = window.location.href;
+
+    const inquiryData = {
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      phone: phoneInput,
+      subject: subjectInput,
+      message: messageInput,
+      pageTitle,
+      siteUrl,
+    };
+
+    const headers = {
+      method: 'post',
+      body: JSON.stringify(inquiryData),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }
+    };
+
+    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/subscription/form/shlaw/site/contact/form', headers);
+    const status = await request.status;
+    console.log(status);
+    
+    if (status === 200) {
+      setSuccessMessage(true);
+      setDisabled(true);
+      resetDisclaimerInput();
+      resetLastNameInput();
+      resetFirstNameInput();
+      resetEmailInput();
+      resetPhoneInput();
+      resetSubjectInput();
+      resetMessageInput();
+    }
+  }
+
+  return (
+    <>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form.Row>
+          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom01">
+            <Form.Control
+              required
+              type="text"
+              placeholder="First name"
+              {...bindFirstNameInput}            
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom02">
+            <Form.Control
+              required
+              type="text"
+              placeholder="Last name"
+              {...bindLastNameInput}
+              
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>       
+        </Form.Row>
+        <Form.Row>
+          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom03">
+            <Form.Control
+              required
+              type="email"
+              placeholder="Email"
+              {...bindEmailInput}            
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom04">            
+            <Form.Control
+              required
+              type="phone"
+              placeholder="phone"
+              {...bindPhoneInput}
+              
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>       
+        </Form.Row>
+        <Form.Row>
+          <Form.Group as={Col} sm={12} controlId="validationCustom05">
+            <Form.Control
+              required
+              type="text"
+              placeholder="Subject"
+              {...bindSubjectInput}            
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} sm={12} controlId="validationCustom06">
+            <Form.Control
+              required
+              as="textarea"
+              rows="3"
+              placeholder="Message"
+              {...bindMessageInput}            
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>                        
+        <Form.Group>
+          <Form.Label>
+            * The use of the Internet or this form for communication with the firm or any individual member of the firm does not establish an attorney-client relationship. Confidential or time-sensitive information should not be sent through this form.
+          </Form.Label>
+          <Form.Check
+            required
+            label="I have read the disclaimer"
+            feedback="You must agree before submitting."
+            {...bindDisclaimerInput}
+          />
+        </Form.Group>
+        {(successMessage) ? <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p> : ''}
+        <Button variant="danger" className="ml-2 w-25 mt-2" type="submit">Submit form</Button>
+      </Form>
+      <Recaptcha
+        sitekey='6LeH4osUAAAAADUFuFTHDFeoQ48Q27X4Pt5sn8IB'
+        onloadCallback={loaded}
+        verifyCallback={callback}
+      /> 
+    </>
+  )
+}
+
+export default withRouter(ContactForm);
