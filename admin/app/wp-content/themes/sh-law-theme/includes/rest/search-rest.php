@@ -56,15 +56,15 @@ function search_query_data($request) {
   $start = ($offset - 1) * $numposts; 
   $end =  $offset * $numposts;
 
-  $slugTerm = explode("+", $slug);
+  $slugTerm = str_replace(' ', '%20', $slug);
  
-  $posts = new WP_Query( array( 's' => $slug, 'posts_per_page' => -1 ) );
+  $posts = new WP_Query( array( 's' => $slugTerm[0], 'posts_per_page' => -1 ) );
   $posts = $posts->posts;
 
   $search_data = array();
 
   // add term to results
-  $search_data['term'] = implode(" ", $slugTerm);
+  $search_data['term'] = $slug;
 
   // add number of pages to results
   $search_data['pages'] = ceil(count($posts) / $numposts);

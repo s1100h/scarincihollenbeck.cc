@@ -41,11 +41,11 @@ function ArchivePage({ slides, seo, results, pages, currentPage, term, posts, fi
 }
 
 export async function getStaticPaths() {
-  const catResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/all-categories/list`, { headers });
+  const catResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/all-categories/single/quick-news`, { headers });
   const catJson = await catResponse.json();
 
   return  {
-    paths:catJson.map(cat => `/archives/${cat.link}/page/${cat.id}`) || [],
+    paths:catJson.map(cat => `/category/${cat.link}/page/${cat.id}`) || [],
     fallback: true,
   }
   
@@ -54,7 +54,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
-  const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${params.slug}/${params.id}`, { headers });
+  const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/quick-news/${params.id}`, { headers });
   const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
   const postJson = await postResponse.json();
   const articleJson = await articlesResponse.json();
@@ -62,9 +62,9 @@ export async function getStaticProps({params}) {
   const { firmNews, firmEvents, firmInsights } = articleJson;
 
   const seo = {
-    title: `Article Archives For Term ${term} | Scarinci Hollenbeck`,
-    metaDescription: `On Scarinci Hollenbeck's popular legal blog, you can find articles pertaining to ${term} and much, much more.`,
-    canonicalLink: `archives/${term}`
+    title: `Scarinci Hollenbeck Laywers News & Media Appearances | Page ${params.id}`,
+    metaDescription: 'The Scarinci Hollenbeck attorneys have their finger on the pulse of the latest legal issues that affect businesses through New York & New Jersey.',
+    canonicalLink: 'category/quick-news'
   };
   
 

@@ -6,7 +6,6 @@ import Breadcrumbs from '../../../components/breadcrumbs';
 import ArchiveLayout from '../../../layouts/archive-layout';
 import Body from './body';
 import { headers } from '../../../utils/helpers';
-import { attorneyArchiveHeaderJPG } from '../../../utils/next-gen-images';
 
 
 function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNews, firmEvents, firmInsights, router}){

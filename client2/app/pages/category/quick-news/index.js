@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
-import NavBar from '../../../../components/navbar';
-import Footer from '../../../..//components/footer';
-import Breadcrumbs from '../../../../components/breadcrumbs';
-import ArchiveLayout from '../../../../layouts/archive-layout';
-import Body from '../body';
-import { headers } from '../../../../utils/helpers';
+import NavBar from '../../../components/navbar';
+import Footer from '../../../components/footer';
+import Breadcrumbs from '../../../components/breadcrumbs';
+import ArchiveLayout from '../../../layouts/archive-layout';
+import Body from './body';
+import { headers } from '../../../utils/helpers';
 
-function ArchivePage({ slides, seo, results, pages, currentPage, term, posts, firmNews, firmEvents, firmInsights, router}){
+function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNews, firmEvents, firmInsights, router}){
 
   return (
     <>
@@ -20,7 +20,7 @@ function ArchivePage({ slides, seo, results, pages, currentPage, term, posts, fi
       <NavBar />
       <div id="archives">
         <ArchiveLayout
-          header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
+          header={(<Breadcrumbs breadCrumb={[term, 1]} categorySlug={term} />)}
           body={(
             <Body
               results={results}
@@ -41,20 +41,16 @@ function ArchivePage({ slides, seo, results, pages, currentPage, term, posts, fi
 }
 
 export async function getStaticPaths() {
-  const catResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/all-categories/list`, { headers });
-  const catJson = await catResponse.json();
-
   return  {
-    paths:catJson.map(cat => `/archives/${cat.link}/page/${cat.id}`) || [],
+    paths: ['/category/quick-news'] || [],
     fallback: true,
   }
-  
 }
 
 export async function getStaticProps({params}) {
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
-  const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${params.slug}/${params.id}`, { headers });
+  const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/quick-news/1`, { headers });
   const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
   const postJson = await postResponse.json();
   const articleJson = await articlesResponse.json();
@@ -62,9 +58,9 @@ export async function getStaticProps({params}) {
   const { firmNews, firmEvents, firmInsights } = articleJson;
 
   const seo = {
-    title: `Article Archives For Term ${term} | Scarinci Hollenbeck`,
-    metaDescription: `On Scarinci Hollenbeck's popular legal blog, you can find articles pertaining to ${term} and much, much more.`,
-    canonicalLink: `archives/${term}`
+    title: 'Scarinci Hollenbeck Laywers News & Media Appearances',
+    metaDescription: 'The Scarinci Hollenbeck attorneys have their finger on the pulse of the latest legal issues that affect businesses through New York & New Jersey.',
+    canonicalLink: 'category/quick-news'
   };
   
 
@@ -84,4 +80,4 @@ export async function getStaticProps({params}) {
   }
 }
 
-export default withRouter(ArchivePage)
+export default withRouter(Archive)
