@@ -8,12 +8,16 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 
-function SocialShareSidebar(props, { router }) {
-  const { printScreen, title } = props;
+function SocialShareSidebar(props, router) {
+  const { title } = props;
 
   const encodeLink = encodeURIComponent(router.pathname);
   const to = '';
-  const w = window.innerWidth;
+  
+
+  function printScreen() {
+
+  }
 
   return (
     <Col sm={1}>

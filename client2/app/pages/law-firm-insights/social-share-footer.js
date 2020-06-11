@@ -4,7 +4,7 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
-function SocialShareFooter(props, { router }) {
+function SocialShareFooter(props, router ) {
   const { title } = props;
   const encodeLink = encodeURIComponent(router.pathname);
 

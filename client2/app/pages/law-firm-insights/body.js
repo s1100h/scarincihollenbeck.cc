@@ -1,8 +1,10 @@
+import Link from 'next/link';
 import ContactForm from '../../components/contact-form';
-import Breadcrumbs from './breadcrumbs';
+// import Breadcrumbs from './breadcrumbs';
 import ArticleDetails from './article-details';
 import SocialShareFooter from './social-share-footer';
 import AuthorBio from './author-bio';
+import { createMarkup, urlify } from '../../utils/helpers';
 
 
 export default function Body(props) {
@@ -18,7 +20,7 @@ export default function Body(props) {
 
   return (
     <>
-      <Breadcrumbs title={title} />
+      {/* <Breadcrumbs title={title} /> */}
       <div dangerouslySetInnerHTML={createMarkup(firstFeaturedImg)} className="f-image" />
       {/** Author & date & Category */}
       <ArticleDetails author={author} date={date} />

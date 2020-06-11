@@ -26,7 +26,7 @@ function all_posts_by_category($request) {
   $category = get_category_by_slug($slug);
   $id = $category->term_id;
 
-  $query_posts = new WP_Query( array( 'cat' => $id, 'posts_per_page' => -1 ) );
+  $query_posts = new WP_Query( array( 'cat' => $id, 'posts_per_page' => 2 ) );
   $posts = $query_posts->posts;
   $links = [];
 
