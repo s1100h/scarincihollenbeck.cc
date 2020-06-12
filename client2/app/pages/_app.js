@@ -1,4 +1,7 @@
-import App from 'next/app'
+import App from 'next/app';
+import Router from 'next/router';
+import NProgress from 'nprogress'; //nprogress module
+import 'nprogress/nprogress.css';
 
 /**
 *
@@ -30,8 +33,20 @@ import '../styles/single-practice.scss';
 import '../styles/subscription-form.scss';
 import '../styles/firm-page.scss';
 
+
+ /**
+* Bind nprogress loader to app
+**/
+const msDelay = 200;
+const options = { trickleSpeed: 50 };
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
+
+
+
 function SHApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default SHApp
+export default SHApp;

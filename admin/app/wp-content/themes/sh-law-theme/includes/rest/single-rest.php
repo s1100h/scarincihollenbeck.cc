@@ -26,7 +26,11 @@ function all_posts_by_category($request) {
   $category = get_category_by_slug($slug);
   $id = $category->term_id;
 
-  $query_posts = new WP_Query( array( 'cat' => $id, 'posts_per_page' => -1 ) );
+  $query_posts = new WP_Query( array(
+    'cat' => $id,
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+  ));
   $posts = $query_posts->posts;
   $links = [];
 
@@ -34,7 +38,7 @@ function all_posts_by_category($request) {
     $links[] = $post->post_name;
   };
   
-  return $links;
+  return array_unique($links);
 }
 
 function get_previous_post_id( $post_id ) {

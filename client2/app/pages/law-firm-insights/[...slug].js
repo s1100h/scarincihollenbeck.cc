@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
+import SyncLoader from 'react-spinners/SyncLoader';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
@@ -14,29 +15,22 @@ import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 // TODO: Set up cookies
 // https://github.com/maticzav/nookies
 
-function LawFirmInsightsPost({
-  slides,
-  seo,
-  title,
-  subTitle,
-  featuredImage,
-  content,
-  author,
-  date,
-  isEventCategory,
-  categories,
-  posts,
-  attorneys,
-  eventDetails,
-  tags
-
-}){
-  
+function LawFirmInsightsPost({ slides, lawFirmInsightsJSON }){ 
+  // console.log('content');
+  // console.log(content);
+  console.log('slides');
+  console.log(slides); 
 
   return (
     <>
       <NavBar />
-      {(content !== undefined) && (
+      {(lawFirmInsightsJSON === undefined) ? (
+        <div clasName="row justify-content-center align-self-center">
+          <SyncLoader color={"#DB2220"} />
+
+        </div>
+      ) : <div>Blogs...</div>}
+      {/* {(content !== undefined) && (
         <>
         <Head>
           <title>{seo.title}</title>
@@ -122,10 +116,10 @@ function LawFirmInsightsPost({
                 />
               )}
             />
-            </div>
-          <Footer slides={slides} />        
+          </div>               
         </>
-      )}      
+      )} */}
+      {/* <Footer slides={slides} />          */}
     </>
   )   
 }
@@ -133,52 +127,55 @@ function LawFirmInsightsPost({
 export async function getStaticPaths() {
   const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/law-firm-insights`, { headers });
   const postsJson = await postsResponse.json();
+
   return  {
-    paths: postsJson.map(link => `/law-firm-insights/${link}` || `/law-firm-insights/[slug]/${link}`) || [],
+    paths: postsJson.map(link => `/law-firm-insights/[${link}]` || `/law-firm-insights/[slug]/${link}`) || [],
     fallback: true,
   }
 }
+
 export async function getStaticProps({params}) {
-  const slug = params.slug[params.slug.length - 1];
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const lawFirmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${slug}`, { headers });
+  const lawFirmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
   const lawFirmInsightsJSON = await lawFirmInsightsResponse.json();
   const slides = await sliderResponse.json();
 
-  const {
-    seo,
-    title,
-    subTitle,
-    featuredImage,
-    content,
-    author,
-    date,
-    isEventCategory,
-    categories,
-    posts,
-    attorneys,
-    eventDetails,
-    tags
-  } = lawFirmInsightsJSON;
+  // const {
+  //   seo,
+  //   title,
+  //   subTitle,
+  //   featuredImage,
+  //   content,
+  //   author,
+  //   date,
+  //   isEventCategory,
+  //   categories,
+  //   posts,
+  //   attorneys,
+  //   eventDetails,
+  //   tags
+  // } = lawFirmInsightsJSON;
 
   // author, attorney
 
   return {
     props: {
       slides,
-      seo,
-      title,
-      subTitle,
-      featuredImage,
-      content,
-      author,
-      date,
-      isEventCategory,
-      categories,
-      posts,
-      attorneys,
-      eventDetails,
-      tags
+      lawFirmInsightsJSON
+      // content: lawFirmInsightsJSON.content
+      // seo,
+      // title,
+      // subTitle,
+      // featuredImage,
+      // content,
+      // author,
+      // date,
+      // isEventCategory,
+      // categories,
+      // posts,
+      // attorneys,
+      // eventDetails,
+      // tags
     },
   }
 }
