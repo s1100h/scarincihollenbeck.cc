@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { setCookie } from 'nookies';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -17,8 +18,15 @@ function SubscriptionFormWithButton(props) {
   const [disabled, setDisabled] = useState(false);
   const [message, setMessage] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setCookiesClick();
+
+  };
+  const handleShow = () => {
+    setShow(true);
+    setCookiesClick();
+  };
 
   const router = useRouter();
 
@@ -54,6 +62,15 @@ function SubscriptionFormWithButton(props) {
       resetEmailInput();
       resetCategoryInput();
     }
+  }
+
+  function setCookiesClick() {
+    const cookieId = Math.random().toString(36).substring(7);
+   
+    setCookie(null, 'shpuser', cookieId, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: router.asPath,
+    });
   }
 
   return (

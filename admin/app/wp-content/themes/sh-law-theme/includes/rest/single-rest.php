@@ -40,7 +40,21 @@ function all_posts_by_category($request) {
   
   return array_unique($links);
 }
+function get_post_featured_image($content) {
+  // expresstion to match image element
+  $regex = '/src="([^"]*)"/';
+  // execute regex 
+  preg_match_all($regex, $content, $matches);
+  // reversing the matches array 
+  $matches = array_reverse($matches);
 
+  $results = '';
+
+  if(isset($matches[0][0])) {
+    $results = $matches[0][0];
+  }
+  return $results;
+}
 function get_previous_post_id( $post_id ) {
   // Get a global post reference since get_adjacent_post() references it
   global $post;
@@ -211,37 +225,33 @@ function single_data($request) {
   );
 
   // get subtitle the first h2 text
-    $h2_pattern = "|<\s*h[2](?:.*)>(.*)<\/h2>|Ui";
-    preg_match_all($h2_pattern , $post_content, $h2_matches);
+  $h2_pattern = "|<\s*h[2](?:.*)>(.*)<\/h2>|Ui";
+  preg_match_all($h2_pattern , $post_content, $h2_matches);
 
-    $sub_title_no_tags = $h2_matches[1][0];
-    $sub_title_tags = $h2_matches[0][0];
+  $sub_title_no_tags = $h2_matches[1][0];
+  $sub_title_tags = $h2_matches[0][0];
 
-    $body_content = str_replace($sub_title_tags, "", html_entity_decode(htmlspecialchars_decode($post_content)));
+  // remove the featured image from the text
+  $img_pattern = "/<img[^>]+\>/i";
+  preg_match_all($img_pattern , $post_content, $img_matches);
+
+  $remove_image_from_content = str_replace($img_matches[0][0], "", html_entity_decode(htmlspecialchars_decode($post_content)));
 
 
-    // check if post is an event 
-    $event_id = array_filter($categories, function($item){
-      return ($item['id'] == 99);
-    });
+  
+    $body_content = str_replace($sub_title_tags, "", $remove_image_from_content);
 
-   if(empty($event_id)) {
-     $is_event = false;
-   }else {
-     $is_event = true;
-   }
 
   // remove the first h2 text from string
   $post_data = array (
-    "idTrueFalse" => $slugIsID,
+    "idTrueFalse" => $slugIsID,    
     "id" => $post_id,
     "title" => $post_title,
     "subTitle" => $sub_title_no_tags,
-    "featuredImage" => get_the_post_thumbnail_url($post_id, 'full'),
+    "featuredImage" => get_post_featured_image($post_content),
     "content" => $body_content,
     "author" => $authors_data, 
     "date" => get_the_date("F j, Y", $post_id ),
-    "isEventCategory" => $is_event,
     "categories" => $categories,
     "next" => array(
       "title" => get_the_title(get_next_post_id($post_id)),

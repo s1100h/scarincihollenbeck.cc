@@ -5,6 +5,7 @@ import ArticleDetails from './article-details';
 import SocialShareFooter from './social-share-footer';
 import AuthorBio from './author-bio';
 import { createMarkup, urlify } from '../../utils/helpers';
+import { noImgFoundPNG } from '../../utils/next-gen-images';
 
 
 export default function Body(props) {
@@ -23,7 +24,7 @@ export default function Body(props) {
   return (
     <>
       <Breadcrumbs title={title} />
-      <img src={featuredImage} className="w-100" alt={title} />
+      <img src={featuredImage || noImgFoundPNG } className="w-100" alt={title} />
       {/* Author & date & Category */}
       <ArticleDetails author={author} date={date} />
       <hr />

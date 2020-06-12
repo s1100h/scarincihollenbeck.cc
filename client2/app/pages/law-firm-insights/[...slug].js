@@ -15,11 +15,9 @@ import SocialShareSidebar from './social-share-sidebar';
 import { headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
-// TODO: Set up cookies
-// https://github.com/maticzav/nookies
 
-function LawFirmInsightsPost({ slides, post, router }){ 
 
+function LawFirmInsightsPost({ slides, post, router }){
   return (
     <>
       <NavBar />
@@ -99,30 +97,13 @@ function LawFirmInsightsPost({ slides, post, router }){
                   />
                 )}
                 OneSidebar={(<SocialShareSidebar title={post.title} />)}
-                // (eventCat === true) ? (
-                //   <EventSidebar
-                //     eventDetails={post.eventDetails}
-                //     attorneys={post.attorneys}
-                //   />
-                // ) : (
-                //   <Sidebar
-                //     posts={post.posts}
-                //     attorneys={post.attorneys}
-                //   />
-                // )
                 TwoSidebar={(<Sidebar
                     posts={post.posts}
                     attorneys={post.attorneys}
                   />)}
               />
+              <Footer slides={slides} />
             </div>
-         
-          {/* 
-           
-              
-              
-            </div>
-          <Footer slides={slides} />                */}
         </>
       )}     
     </>
@@ -140,6 +121,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
+  
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
   const lawFirmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
   const post = await lawFirmInsightsResponse.json();

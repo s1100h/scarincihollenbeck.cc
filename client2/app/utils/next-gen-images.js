@@ -15,3 +15,4 @@ export const attorneyArchiveHeaderJPG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloc
 export const shDiamondPNG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png';
 export const ShDiamondWebP = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-min-diamond-WEBP.webp';
 export const SHLogo = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png';
+export const noImgFoundPNG = 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'
