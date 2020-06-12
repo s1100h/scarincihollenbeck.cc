@@ -8,9 +8,9 @@ import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import ThreeColMiniSidebar from '../../layouts/three-col-mini-sidebar';
-import Body from './body';
-import EventSidebar from './event-sidebar';
-import SocialShareSidebar from './social-share-sidebar';
+import Body from '../../components/post/body';
+import EventSidebar from '../../components/post/event-sidebar';
+import SocialShareSidebar from '../../components/post/social-share-sidebar';
 import { headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 

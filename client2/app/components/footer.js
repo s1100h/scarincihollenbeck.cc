@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from './cookie-consent';
 import SimpleSearch from './simple-search';
-import CarouselContainer from './Carousel';
+import CarouselContainer from './carousel';
 
 export default function Footer(props) {
   const { slides } = props;

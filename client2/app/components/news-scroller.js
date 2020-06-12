@@ -1,4 +1,4 @@
-import Carousel from './Carousel';
+import Carousel from './carousel';
 import { sortByKey } from '../utils/helpers';
 
 export default function NewsScroller(props) {

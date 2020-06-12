@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carousel from '../../../components/Carousel';
+import Carousel from '../../../components/carousel';
 import { addRandomKey } from '../../../utils/helpers';
 
 export default function RelatedArticles(props) {

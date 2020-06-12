@@ -8,17 +8,13 @@ import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import ThreeColMiniSidebar from '../../layouts/three-col-mini-sidebar';
-import Body from './body';
-import Sidebar from './sidebar';
-import EventSidebar from './event-sidebar';
-import SocialShareSidebar from './social-share-sidebar';
+import Body from '../../components/post/body';
+import Sidebar from '../../components/post/sidebar';
+import SocialShareSidebar from '../../components/post/social-share-sidebar';
 import { headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
-// TODO: Set up cookies
-// https://github.com/maticzav/nookies
-
-function LawFirmInsightsPost({ slides, post, router }){ 
+function Headlines({ slides, post, router }){ 
 
   return (
     <>
@@ -99,50 +95,33 @@ function LawFirmInsightsPost({ slides, post, router }){
                   />
                 )}
                 OneSidebar={(<SocialShareSidebar title={post.title} />)}
-                // (eventCat === true) ? (
-                //   <EventSidebar
-                //     eventDetails={post.eventDetails}
-                //     attorneys={post.attorneys}
-                //   />
-                // ) : (
-                //   <Sidebar
-                //     posts={post.posts}
-                //     attorneys={post.attorneys}
-                //   />
-                // )
                 TwoSidebar={(<Sidebar
-                    posts={post.posts}
-                    attorneys={post.attorneys}
-                  />)}
+                  posts={post.posts}
+                  attorneys={post.attorneys}
+                />)}
               />
+              <Footer slides={slides} />
             </div>
-         
-          {/* 
-           
-              
-              
-            </div>
-          <Footer slides={slides} />                */}
+          </>
+        )}     
         </>
-      )}     
-    </>
-  )   
-}
+      )   
+  }
 
 export async function getStaticPaths() {
-  const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/law-firm-insights`, { headers });
+  const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/federal-payroll-protection-act`, { headers });
   const postsJson = await postsResponse.json();
 
   return  {
-    paths: postsJson.map(link => `/law-firm-insights/[...slug]/${link}`) || [],
+    paths: postsJson.map(link => `/federal-payroll-protection-act/[...slug]/${link}`) || [],
     fallback: true,
   }
 }
 
 export async function getStaticProps({params}) {
   const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const lawFirmInsightsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
-  const post = await lawFirmInsightsResponse.json();
+  const firmEventsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
+  const post = await firmEventsResponse.json();
   const slides = await sliderResponse.json();
 
   return {
@@ -153,4 +132,4 @@ export async function getStaticProps({params}) {
   }
 }
 
-export default withRouter(LawFirmInsightsPost);
+export default withRouter(Headlines);

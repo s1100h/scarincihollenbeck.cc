@@ -1,4 +1,4 @@
-import CarouselContainer from '../Carousel';
+import CarouselContainer from '../carousel';
 
 export default function FullWidthContent(props) {
   const { sortedPosts, sortedLocations } = props;

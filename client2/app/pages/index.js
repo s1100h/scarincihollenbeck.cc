@@ -3,8 +3,8 @@ import { withRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import NavBar from '../components/navbar';
 import Footer from '../components/footer';
-import CoronaHeader from '../components/FrontPage/corona-header';
-import ColumnContent from '../components/FrontPage/column-content';
+import CoronaHeader from '../components/frontpage/corona-header';
+import ColumnContent from '../components/frontpage/column-content';
 import FullWidthContent from '../components/FrontPage/full-width-content';
 import{ headers, sortByKey } from '../utils/helpers';
 

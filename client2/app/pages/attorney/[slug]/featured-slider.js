@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carousel from '../../../components/Carousel';
+import Carousel from '../../../components/carousel';
 
 export default function FeaturedSlider(props) {
   const { content, title } = props;

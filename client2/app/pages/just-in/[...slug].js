@@ -14,7 +14,7 @@ import SocialShareSidebar from '../../components/post/social-share-sidebar';
 import { headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
-function FirmNews({ slides, post, router }){ 
+function Headlines({ slides, post, router }){ 
 
   return (
     <>
@@ -109,11 +109,11 @@ function FirmNews({ slides, post, router }){
   }
 
 export async function getStaticPaths() {
-  const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/covid-19-alerts`, { headers });
+  const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/just-in`, { headers });
   const postsJson = await postsResponse.json();
 
   return  {
-    paths: postsJson.map(link => `/covid-19-alerts/[...slug]/${link}`) || [],
+    paths: postsJson.map(link => `/just-in/[...slug]/${link}`) || [],
     fallback: true,
   }
 }
@@ -132,4 +132,4 @@ export async function getStaticProps({params}) {
   }
 }
 
-export default withRouter(FirmNews);
+export default withRouter(Headlines);
