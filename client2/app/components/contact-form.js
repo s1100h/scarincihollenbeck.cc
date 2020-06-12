@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 import useInput from '../utils/input-hook';
 
 
@@ -26,12 +27,11 @@ function ContactForm() {
   const { value:disclaimerInput, bind: bindDisclaimerInput, reset:resetDisclaimerInput } = useInput([]);
   const [disabled, setDisabled] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
+  const [validated, setValidated] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const pageTitle = document.querySelector('h1.text-white.proxima-bold').innerText;
-    const siteUrl = window.location.href;
+  const router = useRouter();
 
+  async function sendInquiry(){
     const inquiryData = {
       firstName: firstNameInput,
       lastName: lastNameInput,
@@ -67,6 +67,24 @@ function ContactForm() {
       resetSubjectInput();
       resetMessageInput();
     }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const pageTitle = document.querySelector('h1.text-white.proxima-bold').innerText;
+    const siteUrl = router.asPath;
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+
+    if(validated === true) {
+      sendInquiry();
+    }    
   }
 
   return (
@@ -158,4 +176,4 @@ function ContactForm() {
   )
 }
 
-export default withRouter(ContactForm);
+export default ContactForm;
