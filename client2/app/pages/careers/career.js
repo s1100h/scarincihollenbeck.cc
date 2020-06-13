@@ -1,27 +1,26 @@
-import { sortByKey } from '../../../utils/helpers';
+import { sortByKey } from '../../utils/helpers';
 import FilterForms from './filter-forms';
 import Results from './results';
 
 export default function CareerSection(props) {
   const {
-    positions,
+    careers,
     keyword,
     filterTerm,
     location,
     type,
     selectOption,
     career,
-    clearFilter,
-    loading,
+    clearFilter
   } = props;
 
-  const sortPositions = sortByKey(positions, 'title');
-  const locations = positions.map((p) => p.positionLocation);
-  const positionType = positions.map((p) => p.positionType);
+  const sortPositions = sortByKey(careers, 'title');
+  const locations = careers.map((p) => p.positionLocation);
+  const positionType = careers.map((p) => p.positionType);
 
 
   // add location filter to sortPostions
-  const filterLocation = (position) => {
+  function filterLocation(position) {
     if (location) {
       return position.positionLocation.indexOf(location) >= 0;
     } else {
@@ -30,7 +29,7 @@ export default function CareerSection(props) {
   };
 
   // add type filter to sortPosition
-  const filterType = (position) => {
+  function filterType(position) {
     if (type) {
       return position.positionType.indexOf(type) >= 0;
     } else {
@@ -39,7 +38,7 @@ export default function CareerSection(props) {
   };
 
   // add keyword filter to sortPostions
-  const filterKeyword = (position) => {
+  function filterKeyword(position) {
     if (keyword) {
       if (position.title.indexOf(keyword) >= 0) {
         return position;
@@ -74,7 +73,6 @@ export default function CareerSection(props) {
       />
       <Results
         positions={p}
-        loading={loading}
         career={career}
       />
     </div>

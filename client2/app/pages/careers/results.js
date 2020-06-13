@@ -2,22 +2,22 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { urlify } from '../../../utils/helpers';
+import { urlify } from '../../utils/helpers';
 
-function Results(props) {
+export default function Results(props) {
   const { positions } = props;
 
   return (
     <div className="w-100 border mt-0">
       <Container className="mt-2">
         <Row>         
-          {positions.length < 1) && (
+          {(positions.length < 1) && (
             <div className="w-100 my-5">
-              <h3 className="text-center red-title">Sorry, no career position available...</h3>
+              <h3 className="text-center red-title">Sorry, no career positions available...</h3>
             </div>
           )}
           {positions.map((p) => (
-            <div key={p.title} className="col-sm-12 col-md-4 mt-3 mb-2">
+            <Col sm={12} md={4} key={p.title} className="mt-3 mb-2">
               <Link href="/career/[slug]" as={`/career/${urlify(p.title)}`}>
                 <div className="card d-flex flex-row">
                   <div id="bg-red-block" />
@@ -38,7 +38,7 @@ function Results(props) {
                   </div>
                 </div>
               </Link>
-            </div>
+            </Col>
           ))}
         </Row>
       </Container>
