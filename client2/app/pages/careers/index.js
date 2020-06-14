@@ -24,13 +24,16 @@ function Careers({slides, careers, seo, router}) {
     setKeyword(keyword);
   }
 
-  function selectOption(e) {
-    const { name, value } = e.target;
+  function selectOption(e) {   
+    const { name, innerText } = e.target;
+    console.log();
+
     if (name === 'location') {
-      this.setState({ location: value });
-      setLocation(value);
-    } else if (name === 'type') {
-      setType(value);
+      setLocation(innerText);
+    }
+    
+    if (name === 'type') {
+      setType(innerText);
     }
   }
 
@@ -39,8 +42,6 @@ function Careers({slides, careers, seo, router}) {
     setLocation('');
     setType('');
   }
-
-  console.log(careers)
 
   return (
     <>
@@ -60,7 +61,7 @@ function Careers({slides, careers, seo, router}) {
         <FullWidth>
           <CareerSection
             sort={sort}
-            positions={positions}
+            careers={careers}
             keyword={keyword}
             type={type}
             career={career}

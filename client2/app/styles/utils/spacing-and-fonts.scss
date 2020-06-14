@@ -35,7 +35,9 @@
   margin-top: -1.5em;
 }
 
-
+.ml-5em {
+  margin-left: 5em;
+}
 .ml--2 {
   margin-left: -2em;
 }
@@ -71,11 +73,17 @@
 .w-85 {
   width: 85% !important;
 }
+.w-88px {
+  width: 88px;
+}
 .w-90 {
   width: 90% !important;
 }
 .w-500 {
   width: 500px;
+}
+.mw-200 {
+  min-width: 200px;
 }
 .mw-400 {
   min-width: 400px;
@@ -100,6 +108,13 @@
 }
 .mw-10 {
   max-width: 10px;
+}
+.mw-255{
+  min-width:255px;
+}
+
+.mh-36px {
+  max-height: 36px;
 }
 
 /** target IE10 and above **/

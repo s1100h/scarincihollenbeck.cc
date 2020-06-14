@@ -3,6 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 
 export default function FilterForms(props) {
   const {
@@ -23,31 +25,31 @@ export default function FilterForms(props) {
 
   return (
     <>
-      <Navbar expand="lg" className="bckground-gray border p-2">
+      <Navbar expand="lg" className="bk--gray border p-2">
         <Form inline className="filter w-40">
           <Form.Control type="text" className="w-85" placeholder="Search by keyword..." onChange={filterTerm} />
-        </Form>        
+        </Form>         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="nav-fill w-100">
-            <NavDropdown title="Locations" id="basic-nav-dropdown" className="bg-white rounded">
-              {locs.map((loc) => (
-                <NavDropdown.Item key={loc} type="button" name="location" className="btn btn-link w-100" onClick={(e) => selectOption(e, loc)}>
+            <NavDropdown title={<>Filter by location <FontAwesomeIcon icon={faCaretDown} className="ml-5 mw-10" /></>} id="basic-nav-dropdown" className="bg-white rounded pl-2 text-left">      
+              {locs.map(loc => (
+                <NavDropdown.Item key={loc} type="button" name="locations" className="btn btn-link w-100" onClick={(e) => onSelect(e)}>
                   {loc}
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
-            <NavDropdown title="Position Type" id="basic-nav-dropdown" className="bg-white rounded">
-              {typs.map((typ) => (
-                <NavDropdown.Item key={typ} type="button" name="type" className="btn btn-link w-100" onClick={(e) => selectOption(e, typ)}>
+            <NavDropdown title={<>Filter by location <FontAwesomeIcon icon={faCaretDown} className="ml-5 mw-10" /></>} id="basic-nav-dropdown" className="bg-white rounded pl-2 text-left">      
+              {typs.map(typ => (
+                <NavDropdown.Item key={typ} type="button" name="type" className="btn btn-link w-100" onClick={(e) => onSelect(e)}>
                   {typ}
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-      </Navbar>
-      <Button variant="danger" className="ml-1 float-right" onClick={() => clearFilter()}>Clear Filters</Button>
+        <Button variant="danger" className="ml-1 float-right" onClick={() => clearFilter()}>Clear Filters</Button>
+      </Navbar>      
     </>
   )    
 }

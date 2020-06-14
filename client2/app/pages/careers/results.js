@@ -21,7 +21,7 @@ export default function Results(props) {
               <Link href="/career/[slug]" as={`/career/${urlify(p.title)}`}>
                 <div className="card d-flex flex-row">
                   <div id="bg-red-block" />
-                  <div className="my-2">
+                  <div className="my-2 pl-2">
                     <h5 className="mb-0">{p.title}</h5>
                     <p className="my-0">
                       <strong>Location: </strong>

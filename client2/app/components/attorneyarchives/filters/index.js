@@ -25,7 +25,7 @@ export default function Filter(props) {
     <>
       {
        (2 > 1) ? (
-        <Navbar expand="lg" className="bckground-gray border p-2">
+        <Navbar expand="lg" className="bk--gray border p-2">
           <Keyword userInput={userInput} handleChange={handleChange} />          
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="navbarSupportedContent">
