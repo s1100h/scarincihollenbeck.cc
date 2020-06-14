@@ -228,6 +228,19 @@
     padding-top: 20px !important;
   }
 }
+
+#single-career {
+  .dropzone-center { 
+    border: 3px dotted #db2220;
+    /* width: 60%; */
+    height: 100px;
+    border-radius: 4px;
+  
+  }
+  .dropzone-center:hover {
+    cursor: pointer;
+  }
+}
 #single-attorney,#single-career, #single-admin, #single {
   // mobie queries
   @media (min-width: 767px) and (max-width: 992px) {

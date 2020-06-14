@@ -1,3 +1,4 @@
+import CareerForm from '../../../components/career-form';
 import { createMarkup } from '../../../utils/helpers';
 
 export default function Body(props) {
@@ -9,6 +10,7 @@ export default function Body(props) {
         <h4 className="mt-1 mb-0 w-75">{title}</h4>
       </div>
       <div className="w-100" dangerouslySetInnerHTML={createMarkup(position)} />
+      <CareerForm />
     </>
   )
 }
