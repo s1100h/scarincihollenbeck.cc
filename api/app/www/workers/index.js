@@ -47,7 +47,6 @@ function callWorkers() {
         /** Once a day tasks */
         // 0 0 * * *
         yield new CronJob('0 0 * * *', () => __awaiter(this, void 0, void 0, function* () {
-            yield fetch_1.fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
             yield fetch_1.fetchContent(url.ATTORNEY_FILTERS_LOCATION_API_URL, keys.ATTORNEY_FILTERS_LOCATION_KEY);
             yield fetch_1.fetchContent(url.ATTORNEY_FILTERS_DESIGNATIONS_API_URL, keys.ATTORNEY_FILTERS_DESIGNATIONS_KEY);
             yield fetch_1.fetchContent(url.ATTORNEY_FILTERS_PRACTICES_API_URL, keys.ATTORNEY_FILTERS_PRACTICES_KEY);
@@ -58,6 +57,7 @@ function callWorkers() {
         /** Once every 30 minute tasks */
         // */30 * * * *
         yield new CronJob('*/30 * * * *', () => __awaiter(this, void 0, void 0, function* () {
+            yield fetch_1.fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
             yield fetch_1.fetchContent(url.ATTORNEY_LIST_API_URL, keys.ATTORNEY_LIST_KEY);
             yield fetch_1.fetchContent(url.PAGE_API_URL, keys.PAGE_KEY);
             yield fetch_1.fetchContent(url.CATEGORIES_API_URL, keys.CATEGORIES_KEY);

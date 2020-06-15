@@ -31,8 +31,7 @@ import * as keys from './keys';
 async function callWorkers() {
   /** Once a day tasks */
   // 0 0 * * *
-  await new CronJob('0 0 * * *', async () => {
-    await fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
+  await new CronJob('0 0 * * *', async () => {    
     await fetchContent(url.ATTORNEY_FILTERS_LOCATION_API_URL, keys.ATTORNEY_FILTERS_LOCATION_KEY);
     await fetchContent(url.ATTORNEY_FILTERS_DESIGNATIONS_API_URL, keys.ATTORNEY_FILTERS_DESIGNATIONS_KEY);
     await fetchContent(url.ATTORNEY_FILTERS_PRACTICES_API_URL, keys.ATTORNEY_FILTERS_PRACTICES_KEY);
@@ -44,6 +43,7 @@ async function callWorkers() {
   /** Once every 30 minute tasks */
   // */30 * * * *
   await new CronJob('*/30 * * * *', async () => {
+    await fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
     await fetchContent(url.ATTORNEY_LIST_API_URL, keys.ATTORNEY_LIST_KEY);
     await fetchContent(url.PAGE_API_URL, keys.PAGE_KEY);
     await fetchContent(url.CATEGORIES_API_URL, keys.CATEGORIES_KEY);
