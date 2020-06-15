@@ -5,6 +5,7 @@ import cors = require('cors')
 import bodyParser = require('body-parser')
 import { fetchData } from '../workers/run-workers';
 import { executeWorkers } from '../workers';
+import { getAsync, parseResults } from './controllers/v0/content/redis.utils';
 import { IndexRouter } from './controllers/v0/index.router';
 
 (async () => {
@@ -19,6 +20,7 @@ import { IndexRouter } from './controllers/v0/index.router';
     // Start the Server
     app.listen(port, async() => {
       fetchData();
+      console.log(getAsync('adminArchive'));
       console.log(`server running on ${port}`);
       console.log('press CTRL+C to stop server');
     });

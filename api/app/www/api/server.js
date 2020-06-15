@@ -15,6 +15,7 @@ const compression = require("compression");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const run_workers_1 = require("../workers/run-workers");
+const redis_utils_1 = require("./controllers/v0/content/redis.utils");
 const index_router_1 = require("./controllers/v0/index.router");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -27,6 +28,7 @@ const index_router_1 = require("./controllers/v0/index.router");
         // Start the Server
         app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
             run_workers_1.fetchData();
+            console.log(redis_utils_1.getAsync('adminArchive'));
             console.log(`server running on ${port}`);
             console.log('press CTRL+C to stop server');
         }));
