@@ -4,8 +4,6 @@ const redis = require("redis");
 // set up redis client
 const client = redis.createClient(process.env.REDIS_URL);
 client.auth(process.env.REDIS_PASSWORD);
-console.log('client');
-console.log(client);
 const { promisify } = require('util');
 exports.getAsync = promisify(client.get).bind(client);
 // parse results

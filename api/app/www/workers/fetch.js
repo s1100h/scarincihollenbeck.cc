@@ -19,6 +19,8 @@ exports.fetchContent = (url, key) => __awaiter(void 0, void 0, void 0, function*
         const response = yield fetch(`${process.env.ADMIN_SITE}/${url}`);
         const body = yield response.json();
         const success = client.set(key, JSON.stringify(body));
+        console.log('success');
+        console.log(success);
         return success;
     }
     catch (err) {

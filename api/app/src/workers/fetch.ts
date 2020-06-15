@@ -12,6 +12,8 @@ export const fetchContent = async (url:string, key:string) => {
     const response = await fetch(`${process.env.ADMIN_SITE}/${url}`);
     const body = await response.json();
     const success = client.set(key, JSON.stringify(body));
+    console.log('success');
+    console.log(success);
     return success;
 
   }catch(err) {
