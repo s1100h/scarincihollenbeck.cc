@@ -12,6 +12,8 @@ router.get('/firm-overview', async (req: Request, res: Response) => {
 
     // // parse strings to JSON objects
     const parsedFirmOverview = parseResults(firmOverview);
+    console.log('parsedFirmOverview');
+    console.log(firmOverview)
 
     if (Object.keys(parsedFirmOverview).length > 0) {
       res.status(200).send(parsedFirmOverview);

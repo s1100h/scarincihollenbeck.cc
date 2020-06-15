@@ -18,7 +18,7 @@ import { IndexRouter } from './controllers/v0/index.router';
 
     // Start the Server
     app.listen(port, async() => {
-      fetchData();
+      await fetchData();
       console.log(`server running on ${port}`);
       console.log('press CTRL+C to stop server');
     });

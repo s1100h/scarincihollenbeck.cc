@@ -18,6 +18,8 @@ router.get('/firm-overview', (req, res) => __awaiter(void 0, void 0, void 0, fun
         const firmOverview = yield redis_utils_1.getAsync('firmOverview');
         // // parse strings to JSON objects
         const parsedFirmOverview = redis_utils_1.parseResults(firmOverview);
+        console.log('parsedFirmOverview');
+        console.log(firmOverview);
         if (Object.keys(parsedFirmOverview).length > 0) {
             res.status(200).send(parsedFirmOverview);
         }

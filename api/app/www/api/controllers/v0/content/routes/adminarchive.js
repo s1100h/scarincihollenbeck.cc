@@ -18,6 +18,7 @@ router.get('/administration-archives', (req, res) => __awaiter(void 0, void 0, v
         const admins = yield redis_utils_1.getAsync('adminArchive');
         // // parse strings to JSON objects
         const parsedAdmins = redis_utils_1.parseResults(admins);
+        console.log('parsedAmins');
         if (Object.keys(parsedAdmins).length > 0) {
             res.status(200).send(parsedAdmins);
         }

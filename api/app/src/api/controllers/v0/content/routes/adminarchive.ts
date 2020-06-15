@@ -12,6 +12,7 @@ router.get('/administration-archives', async (req: Request, res: Response) => {
 
     // // parse strings to JSON objects
     const parsedAdmins = parseResults(admins);
+    console.log('parsedAmins')
     
     if (Object.keys(parsedAdmins).length > 0) {
 
