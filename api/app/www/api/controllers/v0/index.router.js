@@ -42,7 +42,7 @@ router.use('/cached', officelocations_1.OfficeRouter);
 router.use('/cached', practices_1.PracticePageRouter);
 router.use('/cached', latestarticle_1.LatestArticlesRouter);
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.redirect('https://scarincihollenbeck.com');
+    res.redirect('/cached');
 }));
 exports.IndexRouter = router;
 //# sourceMappingURL=index.router.js.map
