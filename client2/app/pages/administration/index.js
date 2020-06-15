@@ -54,7 +54,7 @@ function Administration({slides, admins, seo, router }){
 }
 
 export async function getStaticProps() {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const adminResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers });
   const aJson = await adminResponse.json();
   const slides = await sliderResponse.json();

@@ -56,7 +56,7 @@ function Career({seo, slides, title, positionDescription, router}) {
 };
 
 export async function getStaticPaths() {
-  const careersResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, { headers });
+  const careersResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers });
   const careersJson = await careersResponse.json();
 
   return  {
@@ -66,9 +66,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
-  const careerResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-career/career/${params.slug}`, { headers });
+  const careerResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers });
   const careerJson = await careerResponse.json();
   const { title, positionDescription, seo } = careerJson; 
 

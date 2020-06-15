@@ -88,10 +88,10 @@ function Home({
 }
 
 export async function getStaticProps() {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const seoResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/meta`, { headers });
-  const newsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/news`, { headers });
-  const eventsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/front-page/events`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
+  const seoResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers });
+  const newsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers });
+  const eventsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers });
   const officeResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers });
   const practicesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
   const seo = await seoResponse.json();

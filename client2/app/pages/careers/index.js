@@ -79,9 +79,9 @@ function Careers({slides, careers, seo, router}) {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
-  const careerResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/career-portal/careers`, { headers });
+  const careerResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers });
   const careerJson = await careerResponse.json();
   const { seo, careers } = careerJson;
   

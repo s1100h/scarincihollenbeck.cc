@@ -274,7 +274,7 @@ function Attorney({slides, bio, router }) {
 }
 
 export async function getStaticPaths() {
-  const attorneysResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys`, { headers });
+  const attorneysResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers });
   const attorneys = await attorneysResponse.json();
 
   return  {
@@ -284,8 +284,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const response = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-attorney/attorney/${params.slug}`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
+  const response = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers });
   const bio = await response.json();
   const slides = await sliderResponse.json();
 

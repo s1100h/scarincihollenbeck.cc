@@ -14,7 +14,7 @@ import SocialShareSidebar from '../../components/post/social-share-sidebar';
 import { headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
-function Headlines({ slides, post, router }){ 
+function JustIn({ slides, post, router }){ 
 
   return (
     <>
@@ -109,7 +109,7 @@ function Headlines({ slides, post, router }){
   }
 
 export async function getStaticPaths() {
-  const postsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/list/just-in`, { headers });
+  const postsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/list/just-in`, { headers });
   const postsJson = await postsResponse.json();
 
   return  {
@@ -119,8 +119,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const firmEventsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
+  const firmEventsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
   const post = await firmEventsResponse.json();
   const slides = await sliderResponse.json();
 
@@ -132,4 +132,4 @@ export async function getStaticProps({params}) {
   }
 }
 
-export default withRouter(Headlines);
+export default withRouter(JustIn);

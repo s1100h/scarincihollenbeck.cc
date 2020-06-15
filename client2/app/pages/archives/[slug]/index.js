@@ -43,7 +43,7 @@ function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNe
 }
 
 export async function getStaticPaths() {
-  const archiveResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/wp/v2/categories?per_page=100`, { headers });
+  const archiveResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/categories?per_page=100`, { headers });
   const archive = await archiveResponse.json();
 
   return  {
@@ -53,9 +53,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
-  const postResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/archive/query/${params.slug}/1`, { headers });
+  const postResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/archive/query/${params.slug}/1`, { headers });
   const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
   const postJson = await postResponse.json();
   const articleJson = await articlesResponse.json();

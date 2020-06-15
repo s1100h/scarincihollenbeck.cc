@@ -135,10 +135,10 @@ function Attorneys({slides, seo, locations, designations, practices, attorneys, 
 }
 
 export async function getStaticProps() {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const attorneyResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/attorneys/`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
+  const attorneyResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys/`, { headers });
   const filterResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers });
-  const seoResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/attorney-search/meta`, { headers });
+  const seoResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers });
   const slides = await sliderResponse.json();
   const attorneys = await attorneyResponse.json();
   const filters = await filterResponse.json();

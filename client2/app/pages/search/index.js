@@ -78,7 +78,7 @@ function Archive({ slides, firmNews, firmEvents, firmInsights}){
 
 
 export async function getStaticProps() {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();  
   const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
   const articleJson = await articlesResponse.json();

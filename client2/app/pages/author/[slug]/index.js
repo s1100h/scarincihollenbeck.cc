@@ -86,7 +86,7 @@ function Author({ slides, seo, bio, currentUser, practices, firmNews, firmEvents
 }
 
 export async function getStaticPaths() {
-  const authorResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/list`, { headers });
+  const authorResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/list`, { headers });
   const authors = await authorResponse.json();
 
   return  {
@@ -96,9 +96,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
-  const authorResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/author/bio/${params.slug}`, { headers });
+  const authorResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/bio/${params.slug}`, { headers });
   const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
   const authorJson = await authorResponse.json();
   const articlesJson = await articlesResponse.json();

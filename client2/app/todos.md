@@ -12,4 +12,5 @@
 1. Makre sure all pages look good
 2. Make sure all forms work
 3. Make sure the site is compatible with IE11
+4. Make header look good
 
