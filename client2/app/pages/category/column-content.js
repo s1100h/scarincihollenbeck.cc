@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SubscriptionFormColumn from '../../components/subscription-form-column';
 
 export default function ColumnContent(props) {
@@ -12,14 +13,30 @@ export default function ColumnContent(props) {
           <h5 className="red-title">{colOneTitle}</h5>
           <hr />
           <ul className="ml-0 mh-75">
-            {colOneContent.map((v) => <li key={v.name} className="blue-title ml-3"><a href={v.link} className="blue-title proxima-bold mb-0">{v.name}</a></li>)}
+            {colOneContent.map((v) => (
+              <li key={v.name} className="blue-title ml-3">
+                <Link href="/author/[slug]" as={v.link}>
+                  <a className="blue-title proxima-bold mb-0">
+                    {v.name}
+                  </a>
+                </Link>                
+              </li>
+            ))}
           </ul>
         </div>
         <div className="col-sm-12 col-md-4 border-right">
           <h5 className="red-title">{colTwoTitle}</h5>
           <hr />
           <ul className="ml-0 mh-75">
-            {colTwoContent.map((v) => <li key={v.name} className="blue-title ml-3"><a href={v.link} className="blue-title proxima-bold mb-0">{v.name}</a></li>)}
+            {colTwoContent.map((v) => (
+              <li key={v.name} className="blue-title ml-3">
+                <Link href="/category/[slug]" as={v.link}>
+                  <a className="blue-title proxima-bold mb-0">
+                    {v.name}
+                  </a>
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="col-sm-12 col-md-4">

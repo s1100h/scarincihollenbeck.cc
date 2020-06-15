@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
@@ -10,15 +10,70 @@ import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import Search from '../../components/search';
 import Breadcrumbs from './breadcrumbs';
+import MainArticlesContainer from './main-articles-container';
+import MainSidebarContent from './main-sidebar-content';
 import CategoryHeader from './category-header';
-import { headers, makeTitle } from '../../utils/helpers';
+import CategorySliderContainer from './category-slider-container';
+import ColumnContent from './column-content';
+import { headers, makeTitle, sortByKey } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
+const request = require('superagent');
 
-function Category({slides, category, router }) {
-  // const sortedAuthors = sortByKey(authors, 'lastName');
-  console.log(router);
-  
+function Category({slides, category, router, current }) {
+  const [firmCategories, setFirmCategories ] = useState([]);
+  const [corePractices, setCorePractices ] = useState([]);
+
+  function formatCorePractices(link) {
+    return {
+      name: link.title,
+      link: link.slug 
+    }
+  }
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // get firm insight categories
+      const requestFirmCategories = request.get('http://localhost:8400/wp-json/category/firm-insights-children')
+        .set(headers)
+        .then((res) => ({
+          status: res.status,
+          body: JSON.parse(res.text),
+        }))
+        .catch((err) => err);
+
+      requestFirmCategories.then((results) => {
+        const { status, body } = results;
+        if(status === 200) {
+          setFirmCategories(body);
+        }
+      });
+
+      const requestCorePractices = request.get('http://localhost:8200/cached/core-practices')
+        .set(headers)
+        .then((res) => ({
+          status: res.status,
+          body: JSON.parse(res.text),
+        }))
+        .catch((err) => err);
+
+        requestCorePractices.then((results) => {
+          const { status, body } = results;
+
+          if(status === 200) {
+            const formattedPractices = body.map(item => formatCorePractices(item));
+            setCorePractices(formattedPractices);
+          }
+      });
+
+
+    };
+
+    fetchData();
+    
+  }, []);
+ 
   return (
     <>
       <NavBar />
@@ -55,6 +110,38 @@ function Category({slides, category, router }) {
                 )
               }
             />
+            <LargeSidebar
+              body={(<MainArticlesContainer main={category.main} />)}
+              sidebar={(<MainSidebarContent latest={category.latest} />)}
+            />
+            <FullWidth>
+              <CategorySliderContainer title="MOST RECENT" slides={category.archives} />
+            </FullWidth>
+            <FullWidth>
+              <div className="line-header">
+                <h3>DISCOVER</h3>
+              </div>
+            </FullWidth>
+            { (category.current_category.slug === 'firm-events' || category.current_category.slug === 'firm-news') ? (
+                <ColumnContent
+                  colOneTitle="Scarinci Hollenbeck Core Practices"
+                  colOneContent={corePractices}
+                  colTwoTitle="Firm Insight's Categories"
+                  colTwoContent={firmCategories}
+                />
+              ) : (
+                <ColumnContent
+                  colOneTitle="More from our attorneys"
+                  colOneContent={sortByKey(category.authors, 'lastName')}
+                  colTwoTitle={(category.practices.length > 0) ? "More about our areas of law": "Firm Insight's Categories" }
+                  colTwoContent={(category.practices.length > 0) ? category.practices : firmCategories }
+                />
+              )}
+              {category.practices.map((val) => (val.name !== 'Uncategorized') && (
+                <FullWidth className="col-sm-12 mt-5" key={val.id}>
+                  <CategorySliderContainer title={val.name} slides={val.posts} />
+                </FullWidth>
+              ))}
             <Footer slides={slides} />
           </div>
         </>
@@ -79,31 +166,6 @@ export async function getStaticProps({params}) {
   const categoryJson = await categoryResponse.json();
   const slides = await sliderResponse.json();
   const category = categoryJson;
-  
-
-  // if practices are 0
-  // if(categoryJson.practices.length === 0) {
-  //   const firmInsightsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers });
-  //   const firmInsightsJson = await firmInsightsResponse.json();
-  //   practiceResults = firmInsightsJson;
-  // }
-
-  // // if its firm events or firm news page 
-  // // get different resources
-  // if (params.slug === 'firm-news' || params.slug === 'firm-events') {
-  //   const practicesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
-  //   const firmInsightsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers });
-  //   const practicesJson = await practicesResponse.json();
-  //   const firmInsightsJson = await firmInsightsResponse.json();
-
-  //   const formattedCorePractices = practicesJson.map((cp) => ({
-  //     name: cp.title,
-  //     link: cp.slug,
-  //   }));
-
-  //   practiceResults = firmInsightsJson;
-  //   corePractices = formattedCorePractices;
-  // }  
 
   return {
     props: {

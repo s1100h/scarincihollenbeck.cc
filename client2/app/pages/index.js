@@ -5,7 +5,7 @@ import NavBar from '../components/navbar';
 import Footer from '../components/footer';
 import CoronaHeader from '../components/frontpage/corona-header';
 import ColumnContent from '../components/frontpage/column-content';
-import FullWidthContent from '../components/FrontPage/full-width-content';
+import FullWidthContent from '../components/frontpage/full-width-content';
 import{ headers, sortByKey } from '../utils/helpers';
 
 

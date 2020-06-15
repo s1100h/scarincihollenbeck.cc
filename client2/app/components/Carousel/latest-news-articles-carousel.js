@@ -10,7 +10,7 @@ function limitTitleLength(title) {
   return title;
 }
 
-function LargeArticleCarousel(props) {
+export default function LatestNewsArticlesCarousel(props) {
   const { id, post } = props;
   const {
     link, image, title, category,
@@ -41,5 +41,3 @@ function LargeArticleCarousel(props) {
     </div>
   );
 }
-
-export default LargeArticleCarousel;

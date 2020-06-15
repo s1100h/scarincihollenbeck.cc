@@ -1,8 +1,8 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import JustInCarousel from './just-in-carousel';
-import LargeArticleCarousel from './large-article-carousel';
-import LocationCarousel from './location-carousel';
+import JustInArticlesCarousel from './just-in-articles-carousel';
+import LatestNewsArticlesCarousel from './latest-news-articles-carousel';
+import OfficeLocationCarousel from './office-location-carousel';
 
 const responsive = {
   superLargeDesktop: {
@@ -46,15 +46,15 @@ const jiResponsive = {
 
 function renderSlides(type, slides) {
   if (type === 'LargeArticle') {
-    return slides.map((post) => <LargeArticleCarousel id={post.title} key={post.title} post={post} />);
+    return slides.map((post) => <LatestNewsArticlesCarousel id={post.title} key={post.title} post={post} />);
   }
 
   if (type === 'Location') {
-    return slides.map((post) => <LocationCarousel id={parseInt(post.id, 10)} key={parseInt(post.id, 10)} post={post} />);
+    return slides.map((post) => <OfficeLocationCarousel id={parseInt(post.id, 10)} key={parseInt(post.id, 10)} post={post} />);
   }
 
   if (type === 'JustInCarousel') {
-    return slides.map((post) => <JustInCarousel key={post.id} post={post} />);
+    return slides.map((post) => <JustInArticlesCarousel key={post.id} post={post} />);
   }
 }
 
@@ -70,7 +70,6 @@ function CarouselContainer(props) {
     {(slides.length > 0) && renderSlides(sliderType, slides) }
   </Carousel>
   );
-  return <div>arousel</div>
 }
 
 export default CarouselContainer;

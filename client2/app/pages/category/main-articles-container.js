@@ -1,15 +1,16 @@
-import { noImgFoundPNG } from '../../utils/helpers';
+import Link from 'next/link';
+import { noImgFoundPNG } from '../../utils/next-gen-images';
 
-export default function FeaturedArticle(props) {
+export default function MainArticlesContainer(props) {
   const { main } = props;
 
   return (
     <article>
       { main.map((val) => (
         <div className="main" key={val.title}>
-          <a href={val.link}>
-            <img src={val.image ? val.image : noImgFoundPNG} className="img-fluid" alt={val.title} />
-          </a>
+            <a href={val.link}>
+              <img src={val.image ? val.image : noImgFoundPNG} className="img-fluid" alt={val.title} />
+            </a>
           <p className="mt-5 mb-4">
             <a href={val.category.link} className="text-muted ft-01 text-uppercase">
               {val.category.name}
@@ -18,7 +19,7 @@ export default function FeaturedArticle(props) {
           <h1 className="mb-4 mt-3 display-4">
             <a href={val.link}>
               {val.title}
-            </a>
+            </a>            
           </h1>
           <p className="text-muted mt-4 mb-4 mr-4">
             {val.excerpt}

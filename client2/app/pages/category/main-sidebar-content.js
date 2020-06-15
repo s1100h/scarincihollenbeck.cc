@@ -1,4 +1,4 @@
-import { noImgFoundPNG } from '../../utils/helpers';
+import { noImgFoundPNG } from '../../utils/next-gen-images';
 
 export default function MainSidebarContent(props) {
   const { latest } = props;

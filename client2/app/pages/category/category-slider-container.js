@@ -1,6 +1,6 @@
 import Carousel from '../../components/Carousel';
 
-export default function SliderContent(props) {
+export default function CategorySliderContainer(props) {
   const { title, slides } = props;
 
   return (

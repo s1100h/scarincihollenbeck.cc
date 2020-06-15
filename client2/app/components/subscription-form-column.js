@@ -1,4 +1,4 @@
 
-export default SubscriptionFormColumn() {
+export default function SubscriptionFormColumn() {
   return 'subscription form here...'
 }

@@ -133,8 +133,7 @@ function category_data($request) {
   $id = $current_category->term_id;
 
   $post_data = array();
-
-
+  
   // todays post 
   $post_data['main'][] = array (
     "ID" => $posts[0]->ID,

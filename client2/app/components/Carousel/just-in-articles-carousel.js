@@ -10,7 +10,7 @@ function formatDate(date) {
   return d.toLocaleDateString();
 };
 
-function JustInCarousel(props) {
+export default function JustInArticlesCarousel(props) {
   const { post } = props;
   const {
     id, link, date, category, title, image, location,
@@ -47,5 +47,3 @@ function JustInCarousel(props) {
     </div>
   );
 }
-
-export default JustInCarousel;

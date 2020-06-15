@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 
-function LocationCarousel(props) {
+export default function OfficeLocationCarousel(props) {
   const { post } = props;
   const { slug, featuredImg, title } = post;
 
@@ -21,5 +21,3 @@ function LocationCarousel(props) {
     </div>
   );
 }
-
-export default LocationCarousel;
