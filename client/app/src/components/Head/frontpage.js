@@ -41,14 +41,12 @@ function FrontPageHead(props){
            "https://twitter.com/s_h_law",
            "https://www.linkedin.com/company/scarinci-hollenbeck-llc"
         ],
-           "potentialAction": {
-             "@type": "SearchAction",
-             "target": "${window.location.href}/s?={search_term}",
-             "query-input": "required name=search_term"
-           }
-
-      }
-      
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "${window.location.href}/s?={search_term}",
+          "query-input": "required name=search_term"
+        }
+      }      
       `
     }
       </script>

@@ -24,7 +24,7 @@ function LocationHead(props){
         },
         "image": "${seo.image}",
         "email": "info@sh-law.com",
-        "telePhone": ${seo.telephone},
+        "telephone": "${seo.telephone}",
         "url": "${window.location.origin}/${seo.canonicalLink}",
         "paymentAccepted": [ "check", "credit card", "invoice" ],
         "openingHours": "Mo,Tu,We,Th,Fr 08:00-06:00",

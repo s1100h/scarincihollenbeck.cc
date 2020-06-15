@@ -143,9 +143,15 @@
     font-size: 1.1rem;
     line-height: 1.5;
   }
-  .post-content a {
-    color: blue;
-    text-decoration: underline;
+  .post-content, .author-bio {
+    a {
+      color: blue;
+      text-decoration: underline;
+    }
+    a.btn-sm {
+      color: white !important;
+      text-decoration: none !important;
+    }
   }
  
   .fb {

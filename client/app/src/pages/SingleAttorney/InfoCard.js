@@ -122,7 +122,7 @@ function InfoCard(props) {
                     <h5>
                       <FontAwesomeIcon icon={faFile} className="text-white" />
                       {' '}
-                      <a href={pdf} className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                      <a href={pdf} rel="nofollow" className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {' Download Biography'}
                       </a>
                     </h5>
