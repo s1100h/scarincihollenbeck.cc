@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import FormReCaptcha from './google-recaptcha-button';
 import useInput from '../utils/input-hook';
 
 function ContactForm() {
@@ -13,7 +14,7 @@ function ContactForm() {
   const { value:subjectInput, bind:bindSubjectInput, reset:resetSubjectInput } = useInput('');
   const { value:messageInput, bind:bindMessageInput, reset:resetMessageInput } = useInput('');
   const { value:disclaimerInput, bind: bindDisclaimerInput, reset:resetDisclaimerInput } = useInput([]);
-  const [disabled, setDisabled] = useState(false);
+  const [captcha, setCaptcha ] = useState(true);
   const [successMessage, setSuccessMessage] = useState(false);
   const [validated, setValidated] = useState(false);
 
@@ -46,7 +47,6 @@ function ContactForm() {
     
     if (status === 200) {
       setSuccessMessage(true);
-      setDisabled(true);
       resetDisclaimerInput();
       resetLastNameInput();
       resetFirstNameInput();
@@ -152,6 +152,7 @@ function ContactForm() {
             {...bindDisclaimerInput}
           />
         </Form.Group>
+        <FormReCaptcha setCaptcha={setCaptcha} />
         {(successMessage) ? <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p> : ''}
         <Button variant="danger" className="ml-2 w-25 mt-2" type="submit">Submit form</Button>
       </Form>      

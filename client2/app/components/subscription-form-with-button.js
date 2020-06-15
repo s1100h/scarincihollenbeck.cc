@@ -4,6 +4,7 @@ import { setCookie } from 'nookies';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import FormReCaptcha from './google-recaptcha-button';
 import{ checkboxes }from '../utils/categories';
 import useInput from '../utils/input-hook';
 import { shDiamondPNG } from '../utils/next-gen-images';
@@ -15,7 +16,7 @@ function SubscriptionFormWithButton(props) {
   const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
   const { value:categoryInput, bind:bindCategoryInput, reset:resetCategoryInput } = useInput([]);
   const [show, setShow] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [captcha, setCaptcha ] = useState(true);
   const [message, setMessage] = useState(false);
 
   const handleClose = () => {
@@ -56,7 +57,6 @@ function SubscriptionFormWithButton(props) {
     
     if (status === 200) {
       setMessage(true);
-      setDisabled(true);
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
@@ -114,9 +114,10 @@ function SubscriptionFormWithButton(props) {
               </ul>              
             </Form.Group>
             <div className="modal-footer">
+              <FormReCaptcha setCaptcha={setCaptcha} className="float-right"/>
               {(message) && <p className="text-success proxima-bold mx-auto">Thank you for subscribing!</p>}
               <Button type="button" variant="secondary" className="proxima-bold" onClick={handleClose}>Close</Button>
-              <Button type="submit" variant="danger" disabled={disabled}>Submit</Button>
+              <Button type="submit" variant="danger" disabled={captcha}>Submit</Button>
             </div>     
           </Form>
         </Modal.Body>

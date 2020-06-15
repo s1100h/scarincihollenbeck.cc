@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons/faCheck';
+import FormReCaptcha from './google-recaptcha-button';
 import { headers } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
@@ -21,8 +21,10 @@ export default function CareerForm() {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
+  const [captcha, setCaptcha ] = useState(true);
   const [validated, setValidated] = useState(false);
 
+ 
   const onDrop = useCallback((acceptedFiles) => {
     if(acceptedFiles.length === 0) {
       setFailure(true);
@@ -37,8 +39,8 @@ export default function CareerForm() {
   }, []);
 
   const thumbs = files.map((file) => (
-    <div className="thumbInner" key={file.name}>
-      <img src={file.preview} className="img img-responsive w-25" alt={file.name} />
+    <div className="thumbInner" key={file.name} className="my-3">
+      <p className="my-0 py-0">{file.name} - <FontAwesomeIcon icon={faCheck} className="text-success mw-12" /></p>
     </div>
   ));
 
@@ -60,8 +62,16 @@ export default function CareerForm() {
 
   req.end((err) => {
     if (err) {
+      console.log('err', err);
       setFailure(true);
     }
+    
+    setSuccessMessage(true);
+    resetDisclaimerInput();
+    resetLastNameInput();
+    resetFirstNameInput();
+    resetEmailInput();
+    resetPhoneInput();
     setSuccess(true);
   });  
 }
@@ -71,16 +81,12 @@ export default function CareerForm() {
       <div className="w-100 border">
       {(success) && (
         <div className="alert alert-success w-75 mt-4">
-          Great, all documents have been uploaded and sent to the hiring staff at Scarinci Hollenbeck!            
-          <FontAwesomeIcon icon={faCheck} className="float-right my-1" />
+          Great, all documents have been uploaded and sent to the hiring staff at Scarinci Hollenbeck!          
         </div>
       )}
       { (failure) && (
           <div className="alert alert-danger w-50 mt-4">
-            There was an issue for more information please call 201-896-4100!
-            <FaExclamationTriangle className="float-right my-1" />
-            <FontAwesomeIcon icon={faExclamationTriangle} className="float-right my-1" />
-            faExclamationTriangle
+            There was an issue for more information please call 201-896-4100!            
           </div>
         )}           
       </div>
@@ -129,77 +135,10 @@ export default function CareerForm() {
               </div>
             </Form.Group>           
             </Form.Row>
-            <Button type="submit" variant="danger" className="px-5">Submit</Button>
+            <FormReCaptcha setCaptcha={setCaptcha} />
+            <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
       </div>      
-    </>
-    // <div className="w-100 border">
-    //     : ''}
-    //     <form method="post" className="mt-4">
-    //       <div className="container">
-    //         <div className="row">
-    //           <div className="col-sm-12">
-    //             <p className="text-muted">Please fill out the form below to apply for this position.</p>
-    //           </div>
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="firstName" className="w-100">
-    //               <input type="text" id="firstName" name="firstName" className="form-control" aria-describedby="firstName" value={firstName || 'First name'} placeholder="First name" onChange={changeForm} />
-    //               <span className="sr-only">First Name</span>
-    //             </label>
-    //           </div>
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="lastName" className="w-100">
-    //               <input type="text" id="lastName" name="lastName" className="form-control" aria-describedby="lastName" value={lastName || 'Last name'} placeholder="Last name" onChange={changeForm} />
-    //               <span className="sr-only">Last Name</span>
-    //             </label>
-    //           </div>
-    //         </div>
-    //         <div className="row">
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="email" className="w-100">
-    //               <input type="email" id="email" name="email" className="form-control" aria-describedby="email" value={email || 'Email'} placeholder="Email" onChange={changeForm} />
-    //               <span className="sr-only">Email</span>
-    //             </label>
-    //           </div>
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="phone" className="w-100">
-    //               <input type="tel" id="phone" name="phone" className="form-control" aria-describedby="phone" value={phone || 'Phone'} placeholder="Phone" onChange={changeForm} />
-    //               <span className="sr-only">Phone</span>
-    //             </label>
-    //           </div>
-    //         </div>
-    //         <div className="row">
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="resume" className="w-100">
-    //               Resume:
-    //               <input type="file" id="resume" name="resume" className="form-control" aria-describedby="resume" onChange={fileUpload} />
-    //             </label>
-    //           </div>
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="coverLetter" className="w-100">
-    //               Cover Letter:
-    //               <input type="file" id="coverLetter" name="coverLetter" className="form-control" aria-describedby="coverLetter" onChange={fileUpload} />
-    //             </label>
-    //           </div>
-    //         </div>
-    //         <div className="row">
-    //           <div className="col-sm-12 col-md-6">
-    //             <label htmlFor="writingSample" className="w-100 mt-2">
-    //               Writing Samples/Additional Information:
-    //               <input type="file" id="writingSample" name="writingSample" className="form-control" aria-describedby="writingSample" onChange={fileUpload} />
-    //             </label>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </form>
-    //     <button
-    //       type="button"
-    //       className="btn ml-3 w-25 btn-danger my-4"
-    //       onClick={() => formSubmit()}
-    //       onKeyPress={() => formSubmit()}
-    //     >
-    //       Apply Now!
-    //     </button>
-    //   </div>
+    </>   
   )
 }

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { addRandomKey } from '../../utils/helpers';
-import Search from '../../components/search';
-import TrendingStories from '../../components/trending-stories';
-import SubscriptionMessage from '../../components/subscription-message';
+import Search from '../search';
+import TrendingStories from '../trending-stories';
+import SubscriptionMessage from '../subscription-message';
 
 export default function Sidebar(props) {
   const { posts, attorneys } = props;

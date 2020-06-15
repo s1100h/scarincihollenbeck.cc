@@ -76,22 +76,22 @@ const Header = () => (
               </Nav.Item>
               <NavDropdown title="Library" id="basic-nav-dropdown">
                   <NavDropdown.Item>
-                    <Link href="/quick-news/">
+                    <Link href="/category/quick-news">
                       Quick News
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link href="/firm-news/">
+                    <Link href="/category/firm-news">
                       Firm News
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link href="/firm-events/">
+                    <Link href="/category/firm-events">
                       Firm Events
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link href="/law-firm-insights/">
+                    <Link href="/category/law-firm-insights">
                       Firm Insights
                     </Link>
                   </NavDropdown.Item>

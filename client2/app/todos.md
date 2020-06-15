@@ -1,15 +1,12 @@
 # To dos
 
 ## Pages to Complete
-2. Location Archives
-3. Practices Archives
-4. Single Location
-5. Single Practice
-6. Subscription 
-7. Back Pages --- Awards, Covid Resource Pages, Terms of Use, Disclaimr
-8. Category
-9. Create a re-captcha component
-
+1. Location Archives
+2. Practices Archives
+3. Single Location
+4. Single Practice
+5. Subscription 
+6. Back Pages --- Awards, Covid Resource Pages, Terms of Use, Disclaimr
 
 ## Pre Production
 1. Makre sure all pages look good

@@ -6,6 +6,7 @@ import SingleSubHeader from '../../../layouts/single-sub-header';
 import LargeSidebar from '../../../layouts/large-sidebar';
 import BreadCrumb from './breadcrumb';
 import Body from './body';
+import Sidebar from './sidebar';
 import { urlify, headers } from '../../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../../utils/next-gen-images';
 
@@ -38,14 +39,14 @@ function Career({seo, slides, title, positionDescription, router}) {
       <div id="single-career">
         <LargeSidebar
           body={<>
-            <BreadCrumb />
+            <BreadCrumb title={title} />
             <Body
               title={title}
               position={positionDescription}
             />
           
           </>}
-          sidebar={<>Sidebar..</>}
+          sidebar={<Sidebar />}
         />
       </div>
       <Footer slides={slides} />
