@@ -47,7 +47,7 @@ describe('test environment variables', () => {
         // redis url    
         const TEST_REDIS_URL = process.env.REDIS_URL;
         console.log('redis url');
-        chai_1.expect(TEST_REDIS_URL).equal('172.23.0.2:6379');
+        chai_1.expect(TEST_REDIS_URL).equal('redis://cache');
     });
 });
 //# sourceMappingURL=index.test.js.map
