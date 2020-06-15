@@ -5,18 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import useInput from '../utils/input-hook';
 
-
-// TODO: setup react-gcaptcha
-const Recaptcha = require('react-gcaptcha');
-
-const callback = function (key) {
-  console.log(key);
-};
-
-const loaded = function () {
-  console.log('recaptchaLoaded');
-};
-
 function ContactForm() {
   const { value:firstNameInput, bind:bindFirstNameInput, reset:resetFirstNameInput } = useInput('');
   const { value:lastNameInput, bind:bindLastNameInput, reset:resetLastNameInput } = useInput('');
@@ -166,12 +154,7 @@ function ContactForm() {
         </Form.Group>
         {(successMessage) ? <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p> : ''}
         <Button variant="danger" className="ml-2 w-25 mt-2" type="submit">Submit form</Button>
-      </Form>
-      <Recaptcha
-        sitekey='6LeH4osUAAAAADUFuFTHDFeoQ48Q27X4Pt5sn8IB'
-        onloadCallback={loaded}
-        verifyCallback={callback}
-      /> 
+      </Form>      
     </>
   )
 }

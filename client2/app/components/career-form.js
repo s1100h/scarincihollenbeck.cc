@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { headers } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
@@ -13,93 +17,72 @@ export default function CareerForm() {
   const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
   const { value:phoneInput, bind:bindPhoneInput, reset:resetPhoneInput } = useInput('');
   const [files, setFiles] = useState([]);
+  const [preview, setPreview ] = useState([]);
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
   const [validated, setValidated] = useState(false);
 
+  const onDrop = useCallback((acceptedFiles) => {
+    if(acceptedFiles.length === 0) {
+      setFailure(true);
+    }
+
+    setPreview(files.map((file) => Object.assign(file, {
+      preview: URL.createObjectURL(file)
+     })));
+
+    setFiles(acceptedFiles);  
+
+  }, []);
+
+  const thumbs = files.map((file) => (
+    <div className="thumbInner" key={file.name}>
+      <img src={file.preview} className="img img-responsive w-25" alt={file.name} />
+    </div>
+  ));
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({accept: '.odt,.doc,.docx,.pdf,.dotx', onDrop });
 
-  function onDrop(files) {
-    console.log('files');
-    console.log(files);    
-  }
 
+ function formSubmit(e) {
+   e.preventDefault();
+   const req = upload.post(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`).set(headers);
+   const inquiry = {
+    firstNameInput,
+    lastNameInput,
+    emailInput,
+    phoneInput,
+    files
+  };
 
-  // function fileUpload(e) {
-  //   const { form } = this.state;
-  //   const { files, name } = e.target;
-  //   const file = files[0];
+  req.set(inquiry);
 
-  //   // check if file extension is either a word doc or PDF
-  //   // .odt, .doc, .docx, .pdf
-  //   const ext = file.name.split('.').pop();
-
-  //   if (ext === 'odt' || ext === 'doc' || ext === 'docx' || ext === 'pdf' || ext === 'dotx') {
-  //     const filename = file.name;
-  //     const contentType = file.type;
-  //     const updatedForm = form;
-  //     const reader = new FileReader();
-
-  //     reader.onload = (upload) => {
-  //       updatedForm[name] = {
-  //         filename,
-  //         content: upload.target.result.split('base64,')[1],
-  //         encoding: 'base64',
-  //         contentType,
-  //       };
-
-  //       setForm(updatedForm);
-  //     };
-
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     alert('Please upload either a Word Document or a PDF, thank you');
-  //   }
-  // }
-
- function formSubmit() {
-   console.log('this is a form..')
-  // const req = upload.post(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`).set(headers);
-
-  // files.forEach((file) => {
-  //   req.attach('file', file);
-  // });
-
-  // setFiles(files.map((file) => Object.assign(file, {
-  //   preview: URL.createObjectURL(file)
-  // })));
-
-  // req.end((err) => {
-  //   if(err) {
-  //     setFailure(true);
-  //   }
-  //   setSuccess(true);
-  // })
-    // const headers = {
-    //   method: 'post',
-    //   body: JSON.stringify(form),
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    // };
-
-    // const request = await fetch(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`, { headers });
-    // const json = request.json();
-    // const { status } = json;
-
-    // if (status === 200) {
-    //   this.setState({ message: true });
-    // }
-  }
+  req.end((err) => {
+    if (err) {
+      setFailure(true);
+    }
+    setSuccess(true);
+  });  
+}
 
   return (
     <>
       <div className="w-100 border">
-        {(successMessage) && (
-            <p className="text-success mx-3 mt-3">Great, thank you for applying! One of our representatives will be in contact shortly.</p>
-        )} 
+      {(success) && (
+        <div className="alert alert-success w-75 mt-4">
+          Great, all documents have been uploaded and sent to the hiring staff at Scarinci Hollenbeck!            
+          <FontAwesomeIcon icon={faCheck} className="float-right my-1" />
+        </div>
+      )}
+      { (failure) && (
+          <div className="alert alert-danger w-50 mt-4">
+            There was an issue for more information please call 201-896-4100!
+            <FaExclamationTriangle className="float-right my-1" />
+            <FontAwesomeIcon icon={faExclamationTriangle} className="float-right my-1" />
+            faExclamationTriangle
+          </div>
+        )}           
       </div>
       <div className="mt-4">
          <p className="text-muted">Please fill out the form below to apply for this position.</p>
@@ -120,44 +103,33 @@ export default function CareerForm() {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} sm={12} md={6} controlId="validationCustom04">
-                <Form.Control required type="phone" placeholder="phone" {...bindPhoneInput} />
+                <Form.Control required type="phone" placeholder="Phone" {...bindPhoneInput} />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>     
-            </Form.Row>
+            </Form.Row>            
             <Form.Row>
-              <Form.Group as={Col} sm={12} md={6} controlId="validationCustom05">
-                <Form.Control required type="email" placeholder="Email" {...bindEmailInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} sm={12} md={6} controlId="validationCustom06">
-                <Form.Control required type="phone" placeholder="phone" {...bindPhoneInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>     
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} sm={12} controlId="validationCustom07">
-                <Form.Control required type="email" placeholder="Email" {...bindEmailInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>                
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} sm={12}>
-              <div {...getRootProps()} className="dropzone-center">
-              <input {...getInputProps()} />
-              {(isDragActive) ? (
-                <div className="red-title text-center mx-auto p-5 d-block">
-                  {/** Document image */}
-                  <span className="ft-1 mt-3 mt--1">Drop files here...</span>
+              <Form.Group as={Col} sm={12}>                
+                <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample</Form.Label>
+                <div className="thumbsContainer">
+                  {thumbs}
                 </div>
-              ) : (
-                <div className="red-title text-center mx-auto p-5 d-block">
-                  {/** Document image */}
-                  <span className="ft-1 mt-3 mt--1">Add Resume, Cover Letter, & Writing Sample...</span>
-                </div>
-              )}
-            </div>
-              </Form.Group>
+                <div {...getRootProps()} className="dropzone-center">
+                <input {...getInputProps()} />
+                {(isDragActive) ? (
+                  <div className="red-title my-4 text-center d-block">
+                    {/** Document image */}
+                    <span className="small-excerpt">Drop files here...</span>
+                  </div>
+                ) : (
+                  <div className="red-title my-4 text-center d-block">
+                    {/** Document image */}
+                    <span className="small-excerpt">Click here to upload documents or drag them over this area to upload (must be a .doc, .docx, or .pdf format)</span>
+                  </div>
+                )}
+              </div>
+            </Form.Group>           
             </Form.Row>
+            <Button type="submit" variant="danger" className="px-5">Submit</Button>
         </Form>
       </div>      
     </>
