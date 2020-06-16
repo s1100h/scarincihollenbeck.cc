@@ -1,4 +1,4 @@
-import Carousel from '../../components/Carousel';
+import LatestNewsArticlesCarousel from '../../components/carousels/latest-news-articles-carousel';
 
 export default function CategorySliderContainer(props) {
   const { title, slides } = props;
@@ -9,7 +9,7 @@ export default function CategorySliderContainer(props) {
         <h3>{title}</h3>
       </div>
       <div className="mt-5">
-        <Carousel sliderType="LargeArticle" slides={slides} />
+        <LatestNewsArticlesCarousel slides={slides} />
       </div>
     </div>
   );

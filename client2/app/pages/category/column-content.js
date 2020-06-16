@@ -15,7 +15,7 @@ export default function ColumnContent(props) {
           <ul className="ml-0 mh-75">
             {colOneContent.map((v) => (
               <li key={v.name} className="blue-title ml-3">
-                <Link href="/author/[slug]" as={v.link}>
+                <Link href={v.link}>
                   <a className="blue-title proxima-bold mb-0">
                     {v.name}
                   </a>

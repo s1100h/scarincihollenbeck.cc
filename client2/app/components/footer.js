@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from './cookie-consent';
 import SimpleSearch from './simple-search';
-import CarouselContainer from './carousel';
+import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
 
 export default function Footer(props) {
   const { slides } = props;
@@ -13,7 +13,7 @@ export default function Footer(props) {
   return (
     <Container fluid className="bk--gray d-prin-none">
       <div className="just-in-container w-75">
-        <CarouselContainer sliderType="JustInCarousel" slides={slides} />
+        <JustInArticlesCarousel slides={slides} />
       </div>
       <footer>
           <Container fluid className="h-100 mt-5 w-75 bk--gray">

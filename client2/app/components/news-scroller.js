@@ -1,4 +1,4 @@
-import Carousel from './carousel';
+import LatestNewsArticlesCarousel from './carousels/latest-news-articles-carousel';
 import { sortByKey } from '../utils/helpers';
 
 export default function NewsScroller(props) {
@@ -13,7 +13,7 @@ export default function NewsScroller(props) {
       <div className="container">
         <div className="row">
           <div className="col-sm-12 pt-4">
-            <Carousel sliderType="LargeArticle" slides={sortedPosts} />
+            <LatestNewsArticlesCarousel slides={sortedPosts} />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { withRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
@@ -142,6 +143,20 @@ function Category({slides, category, router, current }) {
                   <CategorySliderContainer title={val.name} slides={val.posts} />
                 </FullWidth>
               ))}
+              <FullWidth className="border-top mt-5">
+                <p className="text-center lead mt-4">
+                  <small>
+                    <em>Looking for something specific, feel free to search our archives.</em>
+                  </small>
+                </p>
+                <p className="text-center">
+                  <Link href="/archives/[slug]" as={`/archives/${current}`}>
+                    <a className="red-title">                      
+                      <u>Site Archives &gt;&gt;</u>
+                    </a>
+                  </Link>
+                </p>
+              </FullWidth>
             <Footer slides={slides} />
           </div>
         </>
@@ -170,7 +185,8 @@ export async function getStaticProps({params}) {
   return {
     props: {
       slides,      
-      category
+      category,
+      current: params.slug
     },
   }
 }

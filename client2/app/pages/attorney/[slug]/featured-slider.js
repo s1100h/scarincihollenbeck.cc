@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carousel from '../../../components/carousel';
+import LatestNewsArticlesCarousel from '../../../components/carousels/latest-news-articles-carousel';
 
 export default function FeaturedSlider(props) {
   const { content, title } = props;
@@ -16,7 +16,7 @@ export default function FeaturedSlider(props) {
       <Container>
         <Row>
           <Col sm={12}>
-            { (content.length > 3) ? <Carousel sliderType="LargeArticle" slides={content} /> : (
+            { (content.length > 3) ? <LatestNewsArticlesCarousel slides={content} /> : (
               <div className="d-flex flex-row">
                 {content.map((c) => (
                   <a className="mx-3" href={c.link}>

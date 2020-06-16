@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carousel from '../../../components/carousel';
+import LatestNewsArticlesCarousel from '../../../carousels/latest-news-articles-carousel';
 import { addRandomKey } from '../../../utils/helpers';
 
 export default function RelatedArticles(props) {
@@ -15,7 +15,7 @@ export default function RelatedArticles(props) {
       {
         (content.length > 3) ? (
           <div className="featured-article-attorney-container">
-            <Carousel sliderType="LargeArticle" slides={content} />
+            <LatestNewsArticlesCarousel slides={content} />
           </div>
         ) : (
           <Container>
