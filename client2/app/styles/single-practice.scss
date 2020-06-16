@@ -1,4 +1,27 @@
+@import "variables";
+
 #single-practice {
+  .main-tab {
+    font-size: 1.1rem;
+    line-height: 26px;
+    text-align: center;
+    border: 1.5px solid $standard-red;
+    min-width: 250px;
+    text-transform: uppercase;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    color: $standard-red !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    text-decoration: none;
+    transition: All 1s ease;
+    -webkit-transition: All 1s ease;
+    -moz-transition:All 1s ease;
+    &:hover {
+      background-color: $standard-red;
+      color: white !important;
+    }
+  }
   .tab-content {
     font-size: 1.125rem;
   }

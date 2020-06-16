@@ -1,17 +1,18 @@
 import Head from 'next/head';
-import { withRouter } from 'next/router';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import BarLoader from 'react-spinners/BarLoader';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import LargeSidebar from '../../layouts/large-sidebar';
-import BodyContent from './body-content';
-import SideBar from './sidebar';
+import BodyContent from '../../components/locations/body-content';
+import SideBar from '../../components/locations/sidebar';
 import { headers } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 
-function Location({ slides, seo, offices, lyndhurst, posts, router}){
+export default function Location({ slides, seo, offices, lyndhurst, posts, router}){
 
 
   return (
@@ -30,7 +31,7 @@ function Location({ slides, seo, offices, lyndhurst, posts, router}){
           <title>{seo.title}</title>
           <meta name="description" content={seo.metaDescription} />
           <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-          <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />     
+          <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />     
         </Head>
         <div id="location">
           <SingleSubHeader
@@ -48,12 +49,11 @@ function Location({ slides, seo, offices, lyndhurst, posts, router}){
               />
             )}
             sidebar={(
-              // <SideBar
-              //   title={lyndhurst.name}
-              //   posts={posts}
-              //   offices={offices}      
-              // />
-              <>Sidebar..</>
+              <SideBar
+                title={lyndhurst.name}
+                posts={posts}
+                offices={offices}      
+              />              
             )}
           />
           <Footer slides={slides} />
@@ -85,5 +85,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(Location)

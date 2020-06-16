@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { withRouter } from 'next/router';
 import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
@@ -28,7 +27,7 @@ import { sortByDateKey, urlify, headers, addRandomKey } from '../../../utils/hel
 import { attorneyHeaderJPG } from '../../../utils/next-gen-images';
 
 
-function Attorney({slides, bio, router }) {
+export default function Attorney({slides, bio }) {
   const {
     fullName,
     designation,
@@ -105,12 +104,12 @@ function Attorney({slides, bio, router }) {
       <title>{seo.title}</title>
       <meta name="description" content={seo.metaDescription} />
       <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+      <link rel="canonical" href={`https://scarincihollenbeck.com/attorney/${seo.canonicalLink}`} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:site_name" content="Scarinci Hollenbeck" />
       <meta property="og:type" content="profile" />
       <meta property="og:locale" content="en_US" />
-      <meta property="og:url" content={`${router.pathname}/${seo.canonicalLink}`} />
+      <meta property="og:url" content={`https://scarincihollenbeck.com/attorney/${seo.canonicalLink}`} />
       <meta property="og:image" content={seo.featuredImg} />
       <meta property="og:image:secure_url" content={seo.featuredImg} />
       <meta property="og:image:width" content={seo.imgWidth} />
@@ -132,7 +131,7 @@ function Attorney({slides, bio, router }) {
           "@type": "LegalService",
           "name": "${seo.fullName}",
           "description": "${seo.schemaDescription}",
-          "url": "${router.pathname}/${seo.canonicalLink}",
+          "url": "https://scarincihollenbeck.com/attorney/${seo.canonicalLink}",
           "image": "${seo.featuredImg}",
           "priceRange": "$$$$",
           "telephone": "${seo.phone}",
@@ -296,5 +295,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(Attorney);

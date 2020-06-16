@@ -11,7 +11,7 @@ import { headers } from '../../../utils/helpers';
 
 const request = require('superagent');
 
-function Author({ slides, seo, bio, currentUser, practices, firmNews, firmEvents, firmInsights}){
+export default function Author({ slides, seo, bio, currentUser, practices, firmNews, firmEvents, firmInsights}){
   const router = useRouter()
   const { page } = router.query
   const [results, setResults] = useState([]);
@@ -60,7 +60,7 @@ function Author({ slides, seo, bio, currentUser, practices, firmNews, firmEvents
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`https://scarincihollenbeck.com/author/${seo.canonicalLink}`} />
       </Head>
       <NavBar />
       <div id="archives">
@@ -127,5 +127,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default Author;

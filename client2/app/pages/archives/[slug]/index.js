@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { withRouter } from 'next/router';
 import NavBar from '../../../components/navbar';
 import Footer from '../../../components/footer';
 import Breadcrumbs from '../../../components/breadcrumbs';
@@ -9,7 +8,7 @@ import Sidebar from './sidebar';
 import { headers } from '../../../utils/helpers';
 
 
-function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNews, firmEvents, firmInsights, router}){
+export default function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNews, firmEvents, firmInsights}){
 
   return (
     <>
@@ -17,7 +16,7 @@ function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNe
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`https://scarincihollenbeck.com/archives/${seo.canonicalLink}`} />
       </Head>
       <NavBar />
       <div id="archives">
@@ -84,5 +83,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(Archive)

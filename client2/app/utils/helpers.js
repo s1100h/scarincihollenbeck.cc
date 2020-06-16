@@ -137,3 +137,10 @@ export function formatDate(date) {
   const results = `${month[dateObj.getMonth()]} ${dateObj.getDay()}, ${dateObj.getFullYear()}`;
   return results;
 }
+
+export function formatCorePractices(link) {
+  return {
+    name: link.title,
+    link: link.slug 
+  }
+}

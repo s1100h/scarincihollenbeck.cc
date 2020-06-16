@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { withRouter } from 'next/router';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import FullWidth from '../../layouts/full-width';
@@ -11,7 +10,7 @@ import { headers } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 
-function Careers({slides, careers, seo, router}) {
+export default function Careers({slides, careers, seo}) {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
@@ -49,7 +48,7 @@ function Careers({slides, careers, seo, router}) {
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`$https://scarincihollenbeck.com/${seo.canonicalLink}`} />
       </Head>
       <NavBar />
       <div id="careers">
@@ -94,5 +93,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(Careers);

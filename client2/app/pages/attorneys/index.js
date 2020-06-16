@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { withRouter } from 'next/router';
 import { headers, sortByKey } from '../../utils/helpers';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
@@ -11,7 +10,7 @@ import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
 import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
 
-function Attorneys({slides, seo, locations, designations, practices, attorneys, loading, router}) {
+export default function Attorneys({slides, seo, locations, designations, practices, attorneys, loading}) {
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
   const [attorneyList, setAttorneyList ] = useState([]);
@@ -88,7 +87,7 @@ function Attorneys({slides, seo, locations, designations, practices, attorneys, 
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />
       </Head>
       <NavBar />
       <SingleSubHeader
@@ -158,5 +157,3 @@ export async function getStaticProps() {
     },
   }
 }
-
-export default withRouter(Attorneys)

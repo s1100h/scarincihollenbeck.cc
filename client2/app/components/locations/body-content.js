@@ -41,7 +41,8 @@ export default function BodyContent(props) {
                 number={m.contact}
                 email={m.email}
                 height="109px"
-                width="75%"
+                width="75%"                
+                type="/attorney/[slug]"
               />
             </Col>
           ))}

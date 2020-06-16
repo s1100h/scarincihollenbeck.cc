@@ -18,13 +18,13 @@ export default function AttorneyCard(props) {
 
   return (
     <div className="d-flex flex-row attorney-card" height={height}>
-      <Link href="/attorney/[slug]" as={link}>
+      <Link href={type} as={link}>
         <a>          
           <img rel="preload" src={image} alt={name} className="mr-1" style={{ width }} />
         </a>
       </Link>
       <div className="mt-3 ml-3">
-        <Link href="/attorney/[slug]" as={link}>
+        <Link href={type} as={link}>
           <a>
             <p className="text-uppercase red-title small-excerpt">
               <strong>{name}</strong>

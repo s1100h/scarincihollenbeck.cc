@@ -16,7 +16,7 @@ function Archive({ slides, seo, results, pages, currentPage, term, posts, firmNe
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`${router.pathname}/category/quick-news/${seo.canonicalLink}`} />
       </Head>
       <NavBar />
       <div id="archives">

@@ -12,14 +12,14 @@ import { headers } from '../../utils/helpers';
 import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
 
 
-function Administration({slides, admins, seo, router }){
+export default function Administration({slides, admins, seo }){
   return (
     <>
       <Head>
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`http://scarincihollenbeck.com/${seo.canonicalLink}`} />
       </Head>
       <NavBar />
       <SingleSubHeader
@@ -68,5 +68,3 @@ export async function getStaticProps() {
     },
   }
 }
-
-export default withRouter(Administration)

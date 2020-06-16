@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -16,22 +16,15 @@ import MainSidebarContent from './main-sidebar-content';
 import CategoryHeader from './category-header';
 import CategorySliderContainer from './category-slider-container';
 import ColumnContent from './column-content';
-import { headers, makeTitle, sortByKey } from '../../utils/helpers';
+import { headers, makeTitle, sortByKey, formatCorePractices } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 const request = require('superagent');
 
-function Category({slides, category, router, current }) {
+export default function Category({slides, category, current }) {
   const [firmCategories, setFirmCategories ] = useState([]);
   const [corePractices, setCorePractices ] = useState([]);
-
-  function formatCorePractices(link) {
-    return {
-      name: link.title,
-      link: link.slug 
-    }
-  }
-
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +83,7 @@ function Category({slides, category, router, current }) {
             <title>{category.seo.title}</title>
             <meta name="description" content={category.seo.metaDescription} />
             <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <link rel="canonical" href={`${router.pathname}/${category.seo.canonicalLink}`} />
+            <link rel="canonical" href={`https://scarincihollenbeck.com/category/${category.seo.canonicalLink}`} />
           </Head>
           <div id="category">
             <FullWidth>
@@ -190,5 +183,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(Category);

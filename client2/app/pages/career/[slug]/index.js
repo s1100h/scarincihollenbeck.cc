@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { withRouter } from 'next/router';
 import NavBar from '../../../components/navbar';
 import Footer from '../../../components/footer';
 import SingleSubHeader from '../../../layouts/single-sub-header';
@@ -10,14 +9,14 @@ import Sidebar from './sidebar';
 import { urlify, headers } from '../../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../../utils/next-gen-images';
 
-function Career({seo, slides, title, positionDescription, router}) {
+export default function Career({seo, slides, title, positionDescription}) {
   
   return(
     <>
       <Head>
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`https://scarincihollenbeck.com/career/${seo.canonicalLink}`} />
         <script type="application/ld+json">
           {` {
             "@context": "http://schema.org",
@@ -81,5 +80,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(Career)

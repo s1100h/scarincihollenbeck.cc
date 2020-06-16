@@ -14,7 +14,7 @@ import SocialShareSidebar from '../../components/post/social-share-sidebar';
 import { headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
-function ClientAlert({ slides, post, router }){ 
+function ClientAlert({ slides, post }){ 
 
   return (
     <>
@@ -36,7 +36,7 @@ function ClientAlert({ slides, post, router }){
             <meta property="og:type" content="article" />
             <meta property="og:title" content={post.seo.title} />
             <meta property="og:description" content={post.seo.metaDescription} />
-            <meta property="og:url" content={`${router.pathname}/${post.seo.canonicalLink}`} />
+            <meta property="og:url" content={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`} />
             <meta property="og:site_name" content="Scarinci Hollenbeck" />
             <meta property="article:publisher" content="https://www.facebook.com/ScarinciHollenbeck/" />
             {(post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => <meta key={t.ID || t.term_id} property="article:tag" content={t.name} />) : ''}
@@ -44,7 +44,7 @@ function ClientAlert({ slides, post, router }){
             <meta property="article:modified_time" content={post.seo.updatedDate} />
             <meta property="og:updated_time" content={post.seo.updatedDate} />
             <meta property="og:image" content={(post.seo.featuredImg) ? post.seo.featuredImg : shDiamondPNG} />
-            <meta property="og:image:secure_url" content={`${router.pathname}/${post.seo.canonicalLink}`} />
+            <meta property="og:image:secure_url" content={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`} />
             <meta property="og:image:width" content="300" />
             <meta property="og:image:height" content="150" />
             <meta name="twitter:card" content="summary" />
@@ -62,7 +62,7 @@ function ClientAlert({ slides, post, router }){
                 "genre": "${(post.seo.hasOwnProperty('primaryCategory')) && post.seo.primaryCategory.title}", 
                 "keywords": ${(post.seo.tags !== undefined && post.seo.tags.length > 0) && post.seo.tags.map((tag) => tag.name.toString())}, 
                 "publisher": "Scrarinci Hollenbeck, LLC",
-                "url": "${router.pathname}/${post.seo.canonicalLink}",
+                "url": "http://scarinihollenbeck.com/client-alert/${post.seo.canonicalLink}",
                 "datePublished": "${post.seo.publishedDate}",
                 "dateCreated": "${post.seo.updatedDate}",
                 "dateModified": "${post.seo.updatedDate}",

@@ -47,7 +47,7 @@ export default function TrendingStories(props) {
                 </Link>
               </>
               )}
-              {(typeof p.author === 'object') && (
+              {(typeof p.author === 'object' && p.author.length > 0) && (
               <>
                 <strong>Author: </strong>
                 <Link href={`/author/${createUserName(p.author[0].name)}`}>

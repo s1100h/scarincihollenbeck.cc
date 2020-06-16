@@ -18,6 +18,10 @@ add_action('rest_api_init', function()
   register_rest_route("practice-portal", "blog-categories", array(
 		"methods" => WP_REST_SERVER::READABLE,
 		"callback" => "practice_portal_blogs"
+  ));
+  register_rest_route("practice-portal", "all-links", array(
+		"methods" => WP_REST_SERVER::READABLE,
+		"callback" => "all_practice_links"
 	));
 });
 /** 
@@ -127,4 +131,26 @@ function practice_portal_page()
   
   return rest_ensure_response($page_content);
   
+}
+
+/**
+ * 
+ * returns object all practices' links
+ * 
+ */
+function all_practice_links() {
+  $practice_links = [];
+  $wp_query;
+  // retrieve all the data from practice_portal_categories field
+  $args = array(
+		"posts_per_page" => -1,
+		"post_type" => "practices",
+		"post_status" => "publish"
+	);
+  $practices = new WP_Query($args);
+
+  foreach($practices->posts as $practice) {
+    $practice_links[] = $practice->post_name;
+  }  
+  return rest_ensure_response($practice_links);
 }

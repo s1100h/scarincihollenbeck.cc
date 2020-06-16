@@ -38,7 +38,7 @@ export default function JustInArticlesCarousel(props) {
   return (slides.length > 0) && (
     <Carousel responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (
-        <div className={`JustInCarouselContent card carousel-slide level-${parseInt(post.id, 10)}`}>
+        <div key={parseInt(post.id, 10)} className={`JustInCarouselContent card carousel-slide level-${parseInt(post.id, 10)}`}>
           <Link href={post.link}>
             <a>
               <p className="just-in-header">

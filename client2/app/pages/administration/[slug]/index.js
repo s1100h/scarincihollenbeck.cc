@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { withRouter, useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +12,7 @@ import { headers, createMarkup } from '../../../utils/helpers';
 import { attorneyHeaderJPG } from '../../../utils/next-gen-images';
 
 
-function SingleAdmin({slides, admin, router }){
+export default function SingleAdmin({slides, admin }){
   const {
     ID,
     Title,
@@ -33,12 +32,12 @@ function SingleAdmin({slides, admin, router }){
         <title>{seo.title}</title>
         <meta name="description" content={seo.metaDescription} />
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`${router.pathname}/${seo.canonicalLink}`} />
+        <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:site_name" content="Scarinci Hollenbeck" />
         <meta property="og:type" content="profile" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content={`${router.pathname}/${seo.canonicalLink}`} />
+        <meta property="og:url" content={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />
         <meta property="og:image" content={seo.featuredImg} />
         <meta property="og:image:secure_url" content={seo.featuredImg} />
         <meta property="og:image:width" content={seo.imgWidth} />
@@ -57,7 +56,7 @@ function SingleAdmin({slides, admin, router }){
             {
               "@context": "http://www.schema.org",
               "@type": "Person",
-              "@id":"${router.pathname}/${seo.canonicalLink}",
+              "@id":"https://scarincihollenbeck.com}/administration/${seo.canonicalLink}",
               "name": "${seo.name}",
               "alternateName":" ${seo.title}",
               "nationality": "American",
@@ -75,7 +74,7 @@ function SingleAdmin({slides, admin, router }){
                   ]
                 }
               ],
-              "url": "${router.pathname}/${seo.canonicalLink}",
+              "url": "https://scarincihollenbeck.com/administration/${seo.canonicalLink}",
               "image": "${seo.featuredImg}",
               "address": {
               "@type": "PostalAddress",
@@ -91,7 +90,7 @@ function SingleAdmin({slides, admin, router }){
       <div id="single-admin">
         <MultiSubHeader         
           image={attorneyHeaderJPG}
-          height="325px"
+          height="450px"
           profile={( <ProfileImage image={image} name={name} /> )}
           infoCard={(
             <InfoCard
@@ -121,7 +120,7 @@ function SingleAdmin({slides, admin, router }){
 }
 
 export async function getStaticPaths() {
-  const adminsResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/admin-search/admin`, { headers });
+  const adminsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers });
   const json = await adminsResponse.json();
   const { admins } = json;
 
@@ -132,8 +131,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/just-in/posts`, { headers });
-  const adminResponse = await fetch(`${process.env.REACT_APP_ADMIN_SITE}/wp-json/individual-admin/admin/${params.slug}`, { headers });
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
+  const adminResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers });
   const admin = await adminResponse.json();
   const slides = await sliderResponse.json();
 
@@ -144,5 +143,3 @@ export async function getStaticProps({params}) {
     },
   }
 }
-
-export default withRouter(SingleAdmin)

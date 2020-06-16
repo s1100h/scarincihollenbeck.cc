@@ -5,23 +5,22 @@
     padding: 1em;
     font-size: 1.1rem;
     border: 1px solid $standard-red;
-    a {
-      color: $standard-red;
-     }
+    color: $standard-red;
+    border-radius: .25rem;
 
      &:hover {
       background-color: $standard-red;
-      a { 
-        color: white;
+      color: white;     
+
+      .dropdown-menu {
+        display: block;
       }
     }
   }
 
-  .practice-link {
-    &:hover {
-      color: white !important;
-      text-decoration: underline !important;
-     }
+ 
+  a.practice-menu-box:hover {
+    color: white;
   }
   .main-btn {
     font-size: 18px;

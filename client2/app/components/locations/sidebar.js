@@ -41,7 +41,6 @@ function HeaderToggle({ children, eventKey, callback }){
        )}    
     </button>
   )
-
 }
 
 
@@ -54,14 +53,14 @@ export default function SideBar(props) {
 
   const officeList = sortByKey(offices, 'title');
   const currentEventKey = useContext(AccordionContext);
-
+  console.log(offices);
   return (
     <div id="location-sidebar">
       <Accordion defaultActiveKey={0}>  
         {offices.map((office, i) => (
           <div key={office.title} className="mb-3">
             <HeaderToggle eventKey={i}>
-              <h5 className="mb-0 pb-0 float-left">{office.title}</h5>
+              <h5 className="mb-0 pb-0 float-left text-white">{office.title}</h5>
             </HeaderToggle>
             <Accordion.Collapse eventKey={i}>
             <div className="off-white p-3">
@@ -69,24 +68,31 @@ export default function SideBar(props) {
                 {office.address.map((a) => <li key={a} className="mb--10">{a}</li>)}
               </ul>
               <p className="mb-0">
-                <FontAwesomeIcon icon={faPhone} />
+                <FontAwesomeIcon icon={faPhone} className="mw-18"/>
                 <span className="proxima-regular">{`  ${office.phone}`}</span>
               </p>
               <p className="mb-2">
-                <FontAwesomeIcon icon={faFax} />
+                <FontAwesomeIcon icon={faFax} className="mw-18"/>
                 <span className="proxima-regular">{`  ${office.fax}`}</span>
               </p>
-              <Button variant="link" className="red-title proxima-bold btn bg-transparent ml--10" onClick={() => console.log('this is the location btn')}>
+              <Link href="/location/[slug]" as={office.slug}>
+                <a>
+                  <p className="mb-0 pb-0 mt-4 red-title proxima-bold">{office.title} Details &gt;&gt;</p>
+                </a>
+              </Link>
+              <Button variant="link" className="red-title proxima-bold btn bg-transparent pt-0 mt-0 my-0 py-0" onClick={() => console.log('this is the location btn')}>
                 Directions to
                 {' '}
-                {title}
+                {office.title}
+                {' '}
+                &gt;&gt;
               </Button>
             </div>
             </Accordion.Collapse>
           </div>
         ))}
       </Accordion>
-      <TrendingStories title={`<>News from ${title}</>`} content={posts} />
+      <TrendingStories title={`News from ${title}`} content={posts} />
     </div>
   );
 }
