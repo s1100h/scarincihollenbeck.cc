@@ -38,8 +38,6 @@ function HeaderToggle({ children, eventKey, callback }){
 
 export default function SidebarContent(props) {
   const { title, content, tabKey, linkType } = props;
-  console.log(title);
-  console.log(tabKey);
 
   return (
     <>

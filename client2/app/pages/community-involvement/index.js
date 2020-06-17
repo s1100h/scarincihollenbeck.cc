@@ -87,13 +87,7 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
               </Col>
               <Col sm={12} md={9} className="mt-4">
                 {(tabs.length > 0) && tabs.map((tab, index) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content}/></TabContent>)}                              
-                {/* Related Articles tab */}
-                {/* Attorney list */}
-                <RelatedAttorneys
-                  members={members}
-                  chair={chair}
-                  handleLink={handleLink}
-                />
+                
               {/** Recent Blog Articles */}
               {(attorneysMentioned.length > 0) && (
                 <div className="w-100 d-block">
@@ -121,10 +115,10 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
 
 export async function getStaticProps({params}) {
   const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
-  const pageResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers });
+  const pageResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/community-involvement`, { headers });
   const page = await pageResponse.json();
   const slides = await sliderResponse.json();
-  const { attorneysMentioned, title, description, tabs, members, relatedPages, seo } = page;
+  const { attorneysMentioned, title, description, tabs, relatedPages, seo } = page;
 
   return {
     props: {
@@ -133,8 +127,6 @@ export async function getStaticProps({params}) {
       title,
       description,
       tabs,
-      members: members.member,
-      chair: members.chair,
       relatedPages,
       seo
     },

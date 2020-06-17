@@ -39,7 +39,7 @@ export default function LatestNewsArticlesCarousel(props) {
   return (slides.length > 0) && (
     <Carousel responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
-        <div className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}>
+        <div key={parseInt(post.id, 10)} className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}>
         <Link href={post.link}>
           <a>
             <LazyLoad height={150}>

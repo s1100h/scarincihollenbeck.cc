@@ -121,7 +121,7 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
 
 export async function getStaticProps({params}) {
   const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
-  const pageResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers });
+  const pageResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/diversity-group`, { headers });
   const page = await pageResponse.json();
   const slides = await sliderResponse.json();
   const { attorneysMentioned, title, description, tabs, members, relatedPages, seo } = page;
