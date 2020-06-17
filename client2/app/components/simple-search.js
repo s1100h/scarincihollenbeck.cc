@@ -29,7 +29,7 @@ export default function SimpleSearch() {
           </Form.Label>
           <Form.Control type="text" placeholder="Keyword.." {...bindSearchInput} />
         </Form.Group>
-        <Button type="submit">
+        <Button type="submit" variant="danger">
           Search
         </Button>
       </Form>

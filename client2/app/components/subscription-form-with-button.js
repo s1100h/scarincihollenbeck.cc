@@ -75,7 +75,7 @@ function SubscriptionFormWithButton(props) {
 
   return (
     <>
-      <Button variant="danger" className="mx-auto p-2 d-block w-50 text-center border-r-5 mb-3"  onClick={handleShow}>
+      <Button variant="danger" className="mx-auto p-2 d-block w-50 text-center border-r-5 mb-3 ft-14px"  onClick={handleShow}>
         Subscribe Now!
       </Button>
       <Modal show={show} onHide={handleClose} id="subscription-form">

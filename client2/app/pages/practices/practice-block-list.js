@@ -7,8 +7,6 @@ import Col from 'react-bootstrap/Col';
 
 export default function PracticeBlockList(props){
   const { list } = props;
-  console.log('list');
-  console.log(list);
 
   return (
     <Container className="mt-5">

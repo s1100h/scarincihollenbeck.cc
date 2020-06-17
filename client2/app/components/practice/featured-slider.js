@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
+import SimpleNewsArticlesCarousel from '../carousels/simple-news-articles-carousel';
 import { noImgFoundPNG } from '../../utils/next-gen-images';
 import { addRandomKey } from '../../utils/helpers';
 
@@ -11,7 +11,7 @@ export default function FeaturedSlider(props) {
 
   return (
     <div className="mt-4 w-100 d-block practice-news-list">
-      {(firstEightArticles.length > 3) ? <LatestNewsArticlesCarousel slides={firstEightArticles} /> : (
+      {(firstEightArticles.length > 3) ? <SimpleNewsArticlesCarousel slides={firstEightArticles} /> : (
         <Container>
           <Row>
             {firstEightArticles.map((v) => (
