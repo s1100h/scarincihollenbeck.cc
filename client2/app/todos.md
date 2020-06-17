@@ -1,7 +1,6 @@
 ## Pre Production
 1. Make sure all pages & header look good
 2. Make sure the site is compatible with IE11
-3. Fix font loading issue good
 4. Double check all the meta sections are correction
 5. Double check mobile & make a custom dropdown mobile menu
 

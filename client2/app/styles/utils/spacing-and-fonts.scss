@@ -11,9 +11,10 @@
 .mb--10 {
   margin-bottom: -10px;
 }
-.mb--7px--lh-22 {
+.mb--7px--lh-22--ft-14px {
   margin-bottom: 7px;
   line-height: 22px;
+  font-size: 14px;
 }
 
 .mt-sm-6 {
@@ -198,12 +199,15 @@
 }
 .proxima-bold {
   font-family: 'Proxima Nova Bold';
+  font-weight: bold;
 }
 .proxima-regular {
   font-family: 'Proxima Nova Regular';
+  font-weight: normal;
 }
 .proxima-thin {
   font-family: 'Proxima Nova Thin';
+  font-weight: thin;
 }
 .small-excerpt {
   font-size: 13px;

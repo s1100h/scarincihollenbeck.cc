@@ -52,10 +52,10 @@ export default function SidebarContent(props) {
           </SideBarHeaderToggle>
           <Accordion.Collapse eventKey={itemKey}>
             <div className="off-white">
-              <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content">
+              <ul className="p-1 pt-3 sidebar-content-page">
                 {
                   content.map((v) => (
-                    <li key={`${addRandomKey('sbc')}`} className="mb-2">
+                    <li key={`${addRandomKey('sbc')}`} className="mb--7px--lh-22--ft-14px">
                       {(v.link) ? <a href={v.link} className="proxima-bold">{v.title}</a> : <strong>{v.title}</strong>}
                       {(v.content) && <div dangerouslySetInnerHTML={createMarkup(v.content)} />}
                     </li>

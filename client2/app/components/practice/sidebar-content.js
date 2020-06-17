@@ -46,11 +46,11 @@ export default function SidebarContent(props) {
           <h5 className="mb-0 pb-0 float-left text-white">{title}</h5>
         </HeaderToggle>
         <Accordion.Collapse eventKey={tabKey}>
-          <div className="off-white p-3">
-            <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
+          <div className="off-white">
+            <ul className="p-1 pt-3 sidebar-content-page">
               {content.map((item) => (
-                <li key={item.title} className="mb--7px--lh-22">
-                  <a href={item.slug} className={(item.title.length > 40) ? 'small-excerpt proxima-bold' : 'proxima-bold'}>
+                <li key={item.title} className="mb--7px--lh-22--ft-14px">
+                  <a href={item.slug} className="proxima-bold">
                     {item.title}
                   </a>
                 </li>

@@ -182,6 +182,7 @@ ul {
 
 }
 
+/** lists **/
 .no-dots-list, .no-dots {
   list-style-type: none !important;
 }
@@ -189,6 +190,8 @@ ul {
   list-style-type:  disc !important;
   display: list-item;
 }
+
+/** ADA & search **/
 .screen-reader-text {
   display: none;
 }
@@ -422,6 +425,12 @@ ul {
     }
   }
 }
+
+/** dropdown menu **/
+.dropdown-item {
+  font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
   .text--sm--center {
     text-align: center!important;

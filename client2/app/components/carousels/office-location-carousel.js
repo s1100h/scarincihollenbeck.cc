@@ -30,7 +30,7 @@ export default function OfficeLocationCarousel(props) {
   return (slides.length > 0) && (
     <Carousel responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
-        <div className="location-card mx-auto d-block border">
+        <div key={post.title} className="location-card mx-auto d-block border">
           <Link href="/location/[slug]" as={post.slug}>
             <a>
               <LazyLoad height={150}>
