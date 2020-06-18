@@ -56,38 +56,39 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
     fetchData();
     
   }, [page]);
-
+  console.log(results);
   return (
     <>
       <NavBar />
-      {(authorJson === undefined && results.length <= 0) ? (
+      {(results.length <= 0) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
             <BarLoader color={"#DB2220"} />
           </Row>
         </Container>
       ) : (
-        <>
-          <div id="archives">
-            <ArchiveLayout
-              header={(<Breadcrumbs breadCrumb={[authorJson.currentUser, currentPage]} categorySlug={authorJson.currentUser} />)}
-              body={(
-                <Body
-                  results={results}
-                  term={authorJson.currentUser}
-                  pages={pages}
-                  currentPage={currentPage}
-                  news={firmNews}
-                  events={firmEvents}
-                  insight={firmInsights}
-                />
-              )}
-              sidebar={(<Sidebar bio={authorJson.bio} practices={authorJson.practices} />)}
-            />
-          </div>
-          <Footer slides={slides} />
-        </>
-      )}
+          <>
+            <div id="archives">
+              <ArchiveLayout
+                header={(<Breadcrumbs breadCrumb={[authorJson.currentUser, currentPage]} categorySlug={authorJson.currentUser} />)}
+                body={(
+                  <Body
+                    results={results}
+                    term={authorJson.currentUser}
+                    pages={pages}
+                    currentPage={currentPage}
+                    news={firmNews}
+                    events={firmEvents}
+                    insight={firmInsights}
+                  />
+                )}
+                sidebar={(<Sidebar bio={authorJson.bio} practices={authorJson.practices} />)}
+              />
+            </div>
+          </>
+        )}
+
+      <Footer slides={slides} />
     </>
   )
 }

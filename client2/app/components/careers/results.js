@@ -18,7 +18,7 @@ export default function Results(props) {
           )}
           {positions.map((p) => (
             <Col sm={12} md={4} key={p.title} className="mt-3 mb-2">
-              <Link href="/career/[slug]" as={`/career/${urlify(p.title)}`}>
+              <Link href="/career/[slug]" as={`/career/${p.slug}`}>
                 <div className="card d-flex flex-row">
                   <div id="bg-red-block" />
                   <div className="my-2 pl-2">

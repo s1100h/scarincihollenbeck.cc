@@ -47,8 +47,7 @@ export default function Matters(props) {
     title,
     tabTitle,
   } = props;
-
-  console.log(content);
+  
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>

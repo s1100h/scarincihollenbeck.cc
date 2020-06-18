@@ -177,8 +177,12 @@ function get_author_list() {
 
   foreach($filtered_authors as $author) {
     $author_data = $author;
-    if($author_data->user_login != "Peter" && $author_data->user_login != 'dyoung' && $author_data->user_login != 'ptumulty'){
-      $results[] = $author_data->user_login;
+    $post_count = count_user_posts($author_data->ID);
+
+    if($post_count > 0) {
+      if($author_data->user_login != "Peter" && $author_data->user_login != 'dyoung' && $author_data->user_login != 'ptumulty'){
+         $results[] = $author_data->user_login;
+      }
     }
   }
 

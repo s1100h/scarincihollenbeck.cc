@@ -87,7 +87,7 @@ function get_attorney_info($authors) {
       $authors_data[] = array(
         "t" => $ae,
         "name" => ($apost != null) ? $apost[0]->post_title : 'No Attorney Found',
-        "link" => (get_the_author_meta("email", $author->ID || $apost != null) === "info@sh-law.com") ? "/" :  "/attorneys/".$apost[0]->post_name
+        "link" => str_replace("https://scarincihollenbeck.com", "", get_the_author_meta("user_url", $author->ID))
       );
     }
   }

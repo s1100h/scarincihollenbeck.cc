@@ -8,7 +8,7 @@ export const fetchContent = async (url:string, key:string) => {
   client.auth(process.env.REDIS_PASSWORD);
 
   try {
-    
+    console.log('url: ', `${process.env.ADMIN_SITE}/${url}`);
     const response = await fetch(`${process.env.ADMIN_SITE}/${url}`);
     const body = await response.json();
     const success = client.set(key, JSON.stringify(body));

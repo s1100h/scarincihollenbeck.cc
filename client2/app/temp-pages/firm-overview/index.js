@@ -13,7 +13,7 @@ import { headers, createMarkup } from '../../utils/helpers';
 export default function FirmOverview({slides, mainTabs, additionalInfo, members, mainContent, seo}){
   const subHeaderContent = mainContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent, '');
-  console.log(seo);
+
 
   return (
     <>

@@ -187,7 +187,7 @@ function individual_location_data($request)
  * Grab latest post title by location selection
  *
  * @param array $data Options for the function.
- * @return string|null Post title, link, and featured image for the latest,  * or null if none.
+ * @return string|null Post title, link, and featured image for the latest, * or null if none.
  */
 function get_location_posts($request) {
   $slug = $request['slug'];

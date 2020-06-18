@@ -9,20 +9,20 @@ import Sidebar from '../../components/singlecareer/sidebar';
 import { urlify, headers } from '../../utils/helpers';
 import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
-export default function Career({seo, slides, title, positionDescription}) {
-  
+export default function Career({slides, careerJson}) {
+  console.log(careerJson);
   return(
     <>
       <Head>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.metaDescription} />
-        <link rel="canonical" href={`https://scarincihollenbeck.com/career/${seo.canonicalLink}`} />
+        <title>{careerJson.seo.title}</title>
+        <meta name="description" content={careerJson.seo.metaDescription} />
+        <link rel="canonical" href={`https://scarincihollenbeck.com/career/${careerJson.seo.canonicalLink}`} />
         <script type="application/ld+json">
           {` {
             "@context": "http://schema.org",
             "@type": "WebPage",
-            "name": "${seo.title}",
-            "description": "${seo.metaDescription}",
+            "name": "${careerJson.seo.title}",
+            "description": "${careerJson.seo.metaDescription}",
             "publisher": {
                 "@type": "LegalServices",
                 "name": "Scarinci Hollenbeck"
@@ -32,16 +32,16 @@ export default function Career({seo, slides, title, positionDescription}) {
       <NavBar />
       <SingleSubHeader         
         image={blogHeaderJPG}
-        title={title}
+        title={careerJson.title}
         subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
       />
       <div id="single-career">
         <LargeSidebar
           body={<>
-            <BreadCrumb title={title} />
+            <BreadCrumb title={careerJson.title} />
             <Body
-              title={title}
-              position={positionDescription}
+              title={careerJson.title}
+              position={careerJson.positionDescription}
             />
           
           </>}
@@ -69,14 +69,11 @@ export async function getStaticProps({params}) {
   const slides = await sliderResponse.json();
   const careerResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers });
   const careerJson = await careerResponse.json();
-  const { title, positionDescription, seo } = careerJson; 
 
   return {
     props: {
       slides,
-      seo,
-      title,
-      positionDescription
+      careerJson
     },
   }
 }

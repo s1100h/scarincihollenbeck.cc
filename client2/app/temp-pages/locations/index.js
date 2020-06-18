@@ -53,7 +53,7 @@ export default function Location({ slides, seo, offices, lyndhurst, posts, route
                 title={lyndhurst.name}
                 posts={posts}
                 offices={offices}
-                startingKey={1}      
+                startingKey="lyndhurst"      
               />              
             )}
           />

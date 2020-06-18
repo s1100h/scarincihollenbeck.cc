@@ -39,10 +39,8 @@ function SideBarHeaderToggle({ children, eventKey, callback }){
 }
 
 export default function SidebarContent(props) {
-  const {
-    title, content, itemKey
-  } = props;
-
+  const { title, content, itemKey } = props;
+  
   return (
     <>
       <Accordion defaultActiveKey={0}>  
@@ -53,14 +51,17 @@ export default function SidebarContent(props) {
           <Accordion.Collapse eventKey={itemKey}>
             <div className="off-white">
               <ul className="p-1 pt-3 sidebar-content-page">
-                {
-                  content.map((v) => (
-                    <li key={`${addRandomKey('sbc')}`} className="mb--7px--lh-22--ft-14px">
-                      {(v.link) ? <a href={v.link} className="proxima-bold">{v.title}</a> : <strong>{v.title}</strong>}
-                      {(v.content) && <div dangerouslySetInnerHTML={createMarkup(v.content)} />}
-                    </li>
-                  ))
-                }
+                {content.map((item) => (Object.keys(item).length > 0) && (
+                  <li key={addRandomKey('bio-info')} className="mb--7px--lh-22--ft-14px">
+                    {(item.link) ? <a href={item.link} className="proxima-bold">{item.title}</a> : <strong>{item.title}</strong>}
+                    {(item.content) && (typeof item.content === "object") ? item.content.map((i) => (
+                      <div key={addRandomKey('sub-bio-info')}>
+                        <span className="proxima-bold">{i.title}</span>
+                        <div dangerouslySetInnerHTML={createMarkup(i.content)} />
+                      </div>
+                    )) : <div dangerouslySetInnerHTML={createMarkup(item.content)} /> }
+                  </li>
+                ))}
               </ul>
             </div>
           </Accordion.Collapse>

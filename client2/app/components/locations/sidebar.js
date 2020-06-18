@@ -61,10 +61,10 @@ export default function SidebarContent(props) {
       {officeList.map((office) => (
         <Accordion key={office.title} defaultActiveKey={startingKey}>  
           <div key={office.title} className="mb-3">
-            <LocationHeaderToggle eventKey={office.id}>
+            <LocationHeaderToggle eventKey={urlify(office.title)}>
               <h5 className="mb-0 pb-0 float-left">{office.title}</h5>
             </LocationHeaderToggle>
-            <Accordion.Collapse eventKey={office.id}>
+            <Accordion.Collapse eventKey={urlify(office.title)}>
               <div className="off-white p-3">
                 <ul className="no-dots ml-0">
                   {office.address.map((a) => <li key={a} className="mb--10">{a}</li>)}

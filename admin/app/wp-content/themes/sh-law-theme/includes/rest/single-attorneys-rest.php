@@ -245,7 +245,10 @@ add_action('rest_api_init', function()
     // modify $bio for description schema.org
     $schema_description = preg_match('/<p>(.*?)<\/p>/s', $bio, $matches);
 
-
+  $education = get_field("education", $attorney_id);
+  $bar_admissions = get_field("bar_admissions", $attorney_id);
+  $affiliations = get_field("affiliations", $attorney_id);
+  $additional_information = get_field("additional_information", $attorney_id);
             
   $biography = array(
     "authorID" => $author_id->ID,
@@ -312,12 +315,27 @@ add_action('rest_api_init', function()
       "awards" => $awards_data,
       "clients" => $clients_data,
       "videos" => get_field("attorney_videos", $attorney_id),
-      "education" => get_field("education", $attorney_id),
-      "barAdmissions" => get_field("bar_admissions", $attorney_id),
-      "additionalInformation" => get_field("additional_information", $attorney_id),
+      "sidebar" => array(
+        ($education != false) ? array(
+          "title" => "Education",
+          "content" => $education
+        ) : [],
+        ($bar_admissions != false) ? array(
+          "title" => "Bar Admissions",
+          "content" => $bar_admissions
+        ) : [],
+        ($affiliations != false) ? array(
+          "title" => "Affiliations",
+          "content" => $affiliations 
+        ) : [],
+        ($additional_information != false) ? array(
+          "title" => "Additional Information",
+          "content" => $additional_information
+        ) : []
+      ),
       "seo" => (object)array(
-	"office_id" => $office_id,      
-	"title" => get_post_meta($attorney_id, '_yoast_wpseo_title', true),
+	      "office_id" => $office_id,      
+	      "title" => get_post_meta($attorney_id, '_yoast_wpseo_title', true),
         "fullName" => html_entity_decode(htmlspecialchars_decode(get_the_title($attorney_id))),
         "phone" => get_field("phone_number", $attorney_id),
         "email" => $email,

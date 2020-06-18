@@ -8,12 +8,11 @@ import SingleSubHeader from '../../layouts/single-sub-header';
 import LargeSidebar from '../../layouts/large-sidebar';
 import BodyContent from '../../components/locations/body-content';
 import SideBar from '../../components/locations/sidebar';
-import { headers} from '../../utils/helpers';
+import { headers, urlify } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 
 export default function Location({ slides, seo, offices, currentOffice, posts}){
-  const getCurrentLocationInfo = offices.filter((office) => office.title === currentOffice.name);
 
   return (
     <>
@@ -53,7 +52,7 @@ export default function Location({ slides, seo, offices, currentOffice, posts}){
                 title={currentOffice.name}
                 posts={posts}
                 offices={offices}
-                startingKey={getCurrentLocationInfo[0].id}      
+                startingKey={urlify(currentOffice.name)}      
               />              
             )}
           />

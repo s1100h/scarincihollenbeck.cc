@@ -16,6 +16,7 @@ exports.fetchContent = (url, key) => __awaiter(void 0, void 0, void 0, function*
     const client = redis.createClient(process.env.REDIS_URL);
     client.auth(process.env.REDIS_PASSWORD);
     try {
+        console.log('url: ', `${process.env.ADMIN_SITE}/${url}`);
         const response = yield fetch(`${process.env.ADMIN_SITE}/${url}`);
         const body = yield response.json();
         const success = client.set(key, JSON.stringify(body));

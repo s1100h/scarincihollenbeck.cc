@@ -32,8 +32,6 @@ router.get('/latest-articles', (req, res) => __awaiter(void 0, void 0, void 0, f
         const parsedFirmNews = redis_utils_1.parseResults(firmNewsKey);
         const parsedFirmEvents = redis_utils_1.parseResults(firmEventsKey);
         const parsedFirmInsights = redis_utils_1.parseResults(firmInsightsKey);
-        // store results
-        let results = {};
         // push formatted results to response results array
         const firmNewsMain = yield parsedFirmNews.main.map((post) => responseObject(post));
         const firmNewsLatest = yield parsedFirmNews.latest.map((post) => responseObject(post));
@@ -41,7 +39,7 @@ router.get('/latest-articles', (req, res) => __awaiter(void 0, void 0, void 0, f
         const firmEventsLatest = yield parsedFirmEvents.latest.map((post) => responseObject(post));
         const firmInsightsMain = yield parsedFirmInsights.main.map((post) => responseObject(post));
         const firmInsightsLatest = yield parsedFirmInsights.latest.map((post) => responseObject(post));
-        results = {
+        const results = {
             firmNews: [
                 ...firmNewsMain,
                 ...firmNewsLatest
@@ -55,17 +53,20 @@ router.get('/latest-articles', (req, res) => __awaiter(void 0, void 0, void 0, f
                 ...firmInsightsLatest
             ]
         };
-        if (Object.keys(results).length > 0) {
-            res.status(200).send(results);
-        }
-        if (Object.keys(results).length < 0) {
-            res.status(400).send({ message: 'Sorry, no articles were found' });
-        }
+        // results = {
+        //   
+        //   firmEvents : [
+        //     ...firmEventsMain,
+        //     ...firmEventsLatest
+        //   ],
+        //   
+        // }; 
+        res.send(results);
     }
     catch (err) {
-        if (err) {
-            res.status(400).send(err);
-        }
+        res.status(400).send({
+            'error': err
+        });
     }
 }));
 exports.LatestArticlesRouter = router;

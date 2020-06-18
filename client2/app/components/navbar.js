@@ -24,20 +24,20 @@ const Header = () => (
           <Navbar.Collapse id="basic-navbar-nav" className="ml-5">
             <Nav className="ml-3 mt-3">
               <NavDropdown title="The Firm" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/administration/">
+                <NavDropdown.Item href="/administration">
                   Administration
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/careers/">
+                <NavDropdown.Item href="/careers">
                   Careers
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/community-involvement/">
+                <NavDropdown.Item href="/community-involvement">
                   Community Involvement
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/diversity-group/">
+                <NavDropdown.Item href="/diversity-group">
                   Diversity Group
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link href="/firm-overview/">
+                  <Link href="/firm-overview">
                     Firm Overview
                   </Link>
                 </NavDropdown.Item>

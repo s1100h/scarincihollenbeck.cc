@@ -40,15 +40,13 @@ export default function LatestNewsArticlesCarousel(props) {
     <Carousel responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={parseInt(post.id, 10)} className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}>
-        <Link href={post.link}>
-          <a>
+          <a href={post.link}>
             <LazyLoad height={150}>
-              <img rel="preconnect" src={(post.image) || noImgFoundPNG} alt={post.title} className="img-thumbnail mx-auto d-block" />
+              <img rel="preconnect" src={(post.image) ? post.image : (post.featuredImg) ? post.featuredImg : noImgFoundPNG} alt={post.title} className="img-thumbnail mx-auto d-block" />
             </LazyLoad>
             <h5 className="mt-3 mb-2 text-center">{post.category || '' }</h5>
             <p className="text-muted small-excerpt text-center">{limitTitleLength(post.title)}</p>
           </a>
-        </Link>
       </div>
       ))}      
     </Carousel>  
