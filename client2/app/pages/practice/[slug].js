@@ -114,7 +114,7 @@ export default function SinglePractice({ slides, practice, corePractices }){
                           <div className="line-header">
                             <h3>Represenative Clients</h3>
                           </div>
-                          <FeaturedSlider highlightReal={practice.highlightReal} />
+                          <FeaturedSlider content={practice.highlightReal} />
                         </>
                       )}
                     {/** Recent Blog Articles */}

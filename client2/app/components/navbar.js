@@ -23,79 +23,59 @@ const Header = () => (
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="ml-5">
             <Nav className="ml-3 mt-3">
-            <NavDropdown title="The Firm" id="basic-nav-dropdown">
-                  <NavDropdown.Item>
-                    <Link href="/administration/">
-                      Administration
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/careers/">
-                      Careers
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/community-involvement/">
-                      Community Involvement
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/diversity-group/">
-                      Diversity Group
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/firm-overview/">
-                      Firm Overview
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/pro-bono/">
-                      Pro Bono
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/women-lead/">
-                      Women Lead
-                    </Link>
-                  </NavDropdown.Item>
-                </NavDropdown>
+              <NavDropdown title="The Firm" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/administration/">
+                  Administration
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/careers/">
+                  Careers
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/community-involvement/">
+                  Community Involvement
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/diversity-group/">
+                  Diversity Group
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link href="/firm-overview/">
+                    Firm Overview
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/pro-bono/">
+                  Pro Bono
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/women-lead/">
+                  Women Lead
+                </NavDropdown.Item>
+              </NavDropdown>
               <Nav.Item>
-                <Link href="/attorneys/">
+                <Link href="/attorneys">
                   <a>
                     Attorneys
                   </a>
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link href="/practices/">
+                <Link href="/practices">
                   <a>
                     Practices
                   </a>
                 </Link>
               </Nav.Item>
               <NavDropdown title="Library" id="basic-nav-dropdown">
-                  <NavDropdown.Item>
-                    <Link href="/category/quick-news">
-                      Quick News
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/category/firm-news">
-                      Firm News
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/category/firm-events">
-                      Firm Events
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link href="/category/law-firm-insights">
-                      Firm Insights
-                    </Link>
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <NavDropdown.Item href="/category/quick-news?page=1">
+                  Quick News
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/category/firm-news">
+                  Firm News
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/category/firm-events">
+                  Firm Events
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/category/law-firm-insights">
+                  Firm Insights
+                </NavDropdown.Item>
+              </NavDropdown>
               <Nav.Item>
                 <Link href="/locations">
                   <a>
@@ -113,7 +93,7 @@ const Header = () => (
               <Nav.Item>
                 <strong>Phone: </strong> 201-896-4100
               </Nav.Item>
-            </Nav>            
+          </Nav>            
           </Navbar.Collapse>
         </Navbar>
       </Row>

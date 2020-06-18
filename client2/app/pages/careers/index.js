@@ -4,8 +4,8 @@ import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import FullWidth from '../../layouts/full-width';
 import SingleSubHeader from '../../layouts/single-sub-header';
-import CareerSection from './career';
-import EEOpportunityContent from './equal-opportunity-content';
+import CareerSection from '../../components/careers/career';
+import EEOpportunityContent from '../../components/careers/equal-opportunity-content';
 import { headers } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 

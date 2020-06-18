@@ -54,7 +54,7 @@ export default function Contact({slides}) {
               {' '}
               For job opportunities please visit our
               {' '}
-              <Link href="/careeres">
+              <Link href="/careers">
                 <a className="blue-title">
                   <u>Careers page.</u>
                 </a>

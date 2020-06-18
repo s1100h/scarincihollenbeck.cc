@@ -30,7 +30,7 @@ export default function Administration({slides, admins, seo }){
       <FullWidth>
         <Container id="archive-admin" className="p-3 pt-4 border">
           <Row>
-            { (admins.length > 0) && admins.map((a) => (
+            {admins.map((a) => (
               <Col sm={12} md={6} lg={4} key={a.ID} className="mb-2">
                 <AttorneyCard
                   image={a.image.url}

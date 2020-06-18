@@ -10,13 +10,13 @@ import LargeSidebar from '../../layouts/large-sidebar';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import Search from '../../components/search';
-import Breadcrumbs from './breadcrumbs';
-import MainArticlesContainer from './main-articles-container';
-import MainSidebarContent from './main-sidebar-content';
-import CategoryHeader from './category-header';
-import CategorySliderContainer from './category-slider-container';
-import ColumnContent from './column-content';
-import { headers, makeTitle, sortByKey, formatCorePractices } from '../../utils/helpers';
+import Breadcrumbs from '../../components/category/breadcrumbs';
+import MainArticlesContainer from '../../components/category/main-articles-container';
+import MainSidebarContent from '../../components/category/main-sidebar-content';
+import CategoryHeader from '../../components/category/category-header';
+import CategorySliderContainer from '../../components/category/category-slider-container';
+import ColumnContent from '../../components/category/column-content';
+import { headers, makeTitle, sortByKey, formatCorePractices, urlify } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 const request = require('superagent');
@@ -25,6 +25,10 @@ export default function Category({slides, category, current }) {
   const [firmCategories, setFirmCategories ] = useState([]);
   const [corePractices, setCorePractices ] = useState([]);
   const router = useRouter();
+
+  // get page term
+  const categorySlug = router.asPath.split('/');
+  const categoryTitle = categorySlug[categorySlug.length -1];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,7 +96,7 @@ export default function Category({slides, category, current }) {
               />
             </FullWidth>
             <LargeSidebar
-              body={(<CategoryHeader title={router.asPath} content={category.description} />)}
+              body={(<CategoryHeader title={categoryTitle} content={category.description} />)}
               sidebar={
                 (
                   <>
@@ -143,11 +147,9 @@ export default function Category({slides, category, current }) {
                   </small>
                 </p>
                 <p className="text-center">
-                  <Link href="/archives/[slug]" as={`/archives/${current}`}>
-                    <a className="red-title">                      
+                    <a className="red-title" href={`/archives?q=${urlify(categoryTitle)}&page=1`}>                      
                       <u>Site Archives &gt;&gt;</u>
                     </a>
-                  </Link>
                 </p>
               </FullWidth>
             <Footer slides={slides} />
@@ -163,7 +165,7 @@ export async function getStaticPaths() {
   const allCategoryJson = await allCategoryResponse.json();
 
   return  {
-    paths: allCategoryJson.map(category => `/category/${category.link}`) || [],
+    paths: allCategoryJson.map(category => `/category${category.link}`) || [],
     fallback: true,
   }
 }

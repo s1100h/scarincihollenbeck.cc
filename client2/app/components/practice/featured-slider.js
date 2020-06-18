@@ -7,6 +7,7 @@ import { addRandomKey } from '../../utils/helpers';
 
 export default function FeaturedSlider(props) {
   const { content } = props;
+
   const firstEightArticles = content.filter((p, i) => i < 8);
 
   return (

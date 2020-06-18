@@ -6,7 +6,7 @@ import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
-import FirmMembers from './firm-members';
+import FirmMembers from '../../components/firmoverview/firm-members';
 import { cityBackgroundJPG } from '../../utils/next-gen-images';
 import { headers, createMarkup } from '../../utils/helpers';
 

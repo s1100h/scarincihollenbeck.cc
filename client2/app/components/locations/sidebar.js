@@ -5,10 +5,15 @@ import AccordionContext from 'react-bootstrap/AccordionContext';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { locationUrl, sortByKey } from '../../utils/helpers';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
+import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
+import TrendingStories from '../trending-stories';
+import { locationUrl, sortByKey, urlify, getDirectionsFromLocation } from '../../utils/helpers';
 
 
-function HeaderToggle({ children, eventKey, callback }){
+function LocationHeaderToggle({ children, eventKey, callback }){
  
   const currentEventKey = useContext(AccordionContext);
 
@@ -43,23 +48,53 @@ export default function SidebarContent(props) {
   const {
     offices,   
     posts,
-    title,   
+    title,
+    startingKey   
   } = props;
+
 
   const officeList = sortByKey(offices, 'title');
   const currentEventKey = useContext(AccordionContext);
 
   return (
     <div id="practice-sidebar">
-      <Accordion defaultActiveKey={0}>
-        <HeaderToggle eventKey={i}>
-          <h5 className="mb-0 pb-0 float-left text-white">{office.title}</h5>
-        </HeaderToggle>
-        <Accordion.Collapse eventKey={0}>  
-            Stuff...
-        </Accordion.Collapse>
-      </Accordion>
-      <TrendingStories title={`News from ${title}`} content={posts} />
+      {officeList.map((office) => (
+        <Accordion key={office.title} defaultActiveKey={startingKey}>  
+          <div key={office.title} className="mb-3">
+            <LocationHeaderToggle eventKey={office.id}>
+              <h5 className="mb-0 pb-0 float-left">{office.title}</h5>
+            </LocationHeaderToggle>
+            <Accordion.Collapse eventKey={office.id}>
+              <div className="off-white p-3">
+                <ul className="no-dots ml-0">
+                  {office.address.map((a) => <li key={a} className="mb--10">{a}</li>)}
+                </ul>
+                <p className="mb-0">
+                  <FontAwesomeIcon icon={faPhone} className="mw-18"/>
+                  <span className="proxima-regular">{`  ${office.phone}`}</span>
+                </p>
+                <p className="mb-2">
+                  <FontAwesomeIcon icon={faFax} className="mw-18" />
+                  <span className="proxima-regular">{`  ${office.fax}`}</span>
+                </p>
+                <div className="m-2">
+                  <a href={office.slug} className="red-title proxima-bold">
+                    {`${office.title} Office Details `}
+                  </a>
+                  <Button variant="transparent" className="red-title proxima-bold ml--10" onClick={() => getDirectionsFromLocation(urlify(office.title))}>
+                    Directions to
+                    {' '}
+                    {office.title}
+                    
+                  </Button>
+                </div>
+
+              </div>
+            </Accordion.Collapse>
+          </div>
+        </Accordion>
+      ))}
+      <TrendingStories title={`News from ${title}`} content={posts} /> 
     </div>
   );
 }

@@ -40,7 +40,7 @@ export default function SimpleNewsArticlesCarousel(props) {
     <Carousel responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={parseInt(post.id, 10)} className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}>
-        <Link href={post.link}>
+        <Link href={(post.link) ? post.link : '#'}>
           <a>
             <LazyLoad height={150}>
               <img rel="preconnect" src={(post.image)  ? post.image : noImgFoundPNG} alt={post.title} className="img-thumbnail mx-auto d-block" />

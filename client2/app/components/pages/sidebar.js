@@ -1,4 +1,4 @@
-import Search from '../Search';
+import Search from '../search';
 import TrendingStories from '../trending-stories';
 import SubscriptionMessage from '../subscription-message';
 

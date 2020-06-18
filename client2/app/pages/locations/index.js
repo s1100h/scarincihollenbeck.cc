@@ -52,7 +52,8 @@ export default function Location({ slides, seo, offices, lyndhurst, posts, route
               <SideBar
                 title={lyndhurst.name}
                 posts={posts}
-                offices={offices}      
+                offices={offices}
+                startingKey={1}      
               />              
             )}
           />

@@ -65,11 +65,11 @@ function related_author_practices($request) {
   if($slug == "scarincihollenbeck"){
     $bio = "With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, San Francisco, CA, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them. Since the firm was founded in 1988, we have maintained our reputation for getting things done. Most attorneys at Scarinci Hollenbeck have significant experience in their practice areas, and have published and lectured on current topics in their field.";
 
-    $related_practice_data['bio'] = array(
+    $related_practice_data['bio'][] = array(
       "name" => "Scarinci Hollenbeck",
       "bioContent" => preg_replace('/\s+?(\S+)?$/', '', strip_tags(substr($bio, 0, 250))). " ...",
-      "link" => "www.sh-law.com",
-      "image" => "https://47vqih1qqjmc9x8wz20ph571-wpengine.netdna-ssl.com/wp-content/uploads/2018/09/sh-mini-diamond_88a9c0b8e7ff2ed7ecff91cfdaa0b816.png",
+      "link" => "/",
+      "image" => "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/09/sh-mini-diamond_88a9c0b8e7ff2ed7ecff91cfdaa0b816.png",
       "email" => "info@sh-law.com",
       "phone" => "201-896-4100"
     );
@@ -166,11 +166,20 @@ function get_author_list() {
   $authors = get_users();
   $results = [];
 
-  foreach($authors as $author) {
-    $author_data = $author->data;
+  function filter_callback($element) {
+    if (isset($element->user_url) && $element->user_url != '') {
+      return TRUE;
+    }
+    return FALSE;
+  }
 
-    if($author_data->ID !== "2" || $author_data->ID !== "50" || $author_data->ID !== "71")
-    $results[] = $author->data->user_nicename;
+  $filtered_authors = array_filter($authors, filter_callback);
+
+  foreach($filtered_authors as $author) {
+    $author_data = $author;
+    if($author_data->user_login != "Peter" && $author_data->user_login != 'dyoung' && $author_data->user_login != 'ptumulty'){
+      $results[] = $author_data->user_login;
+    }
   }
 
   return $results;

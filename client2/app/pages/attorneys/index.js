@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { headers, sortByKey } from '../../utils/helpers';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
-import Selected from './selected';
+import Selected from '../../components/attorneyarchives/selected';
 import Filters from '../../components/attorneyarchives/filters';
 import Results from '../../components/attorneyarchives/results';
 import SingleSubHeader from '../../layouts/single-sub-header';

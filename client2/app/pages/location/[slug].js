@@ -13,7 +13,7 @@ import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 
 export default function Location({ slides, seo, offices, currentOffice, posts}){
-
+  const getCurrentLocationInfo = offices.filter((office) => office.title === currentOffice.name);
 
   return (
     <>
@@ -52,7 +52,8 @@ export default function Location({ slides, seo, offices, currentOffice, posts}){
               <SideBar
                 title={currentOffice.name}
                 posts={posts}
-                offices={offices}      
+                offices={offices}
+                startingKey={getCurrentLocationInfo[0].id}      
               />              
             )}
           />

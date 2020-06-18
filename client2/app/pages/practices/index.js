@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import NavBar from '../../components/navbar';
 import Footer from '../../components/footer';
-import SimpleList from './practice-simple-list';
-import PracticeBlockList from './practice-block-list';
+import SimpleList from '../../components/archivepractice/practice-simple-list';
+import PracticeBlockList from '../../components/archivepractice/practice-block-list';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
 import { headers, sortByKey } from '../../utils/helpers';

@@ -7,7 +7,7 @@ import Footer from '../../components/footer';
 import Search from '../../components/search';
 import LargeSidebar from '../../layouts/large-sidebar';
 import TrendingStories from '../../components/trending-stories';
-import SubscriptionBody from './subscription-body';
+import SubscriptionBody from '../../components/subscription-body';
 import { headers } from '../../utils/helpers';
 
 export default function Subscription({slides, posts}){ 
@@ -71,5 +71,3 @@ export async function getStaticProps() {
     },
   }
 }
-
-export default withRouter(Subscription)
