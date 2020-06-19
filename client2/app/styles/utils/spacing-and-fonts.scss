@@ -121,6 +121,12 @@
   max-height: 36px;
 }
 
+/* font icon sizes */
+.icon-w8px-h20px {
+  max-width: 12px;
+  height: 20px;
+}
+
 /** target IE10 and above **/
 @media screen and (min-width:0\0) and (min-resolution: +72dpi) {
   .mw-19 {
@@ -136,6 +142,9 @@
 /** heights **/
 .h-57 {
   height: 57px;
+}
+.mh-57 {
+  min-height: 57px;
 }
 .h-300 {
   height: 300px;

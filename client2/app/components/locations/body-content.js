@@ -34,7 +34,7 @@ export default function BodyContent(props) {
           {attorneys.map((m) => (
             <Col sm={12} md={12} lg={6} className="mb-2" key={m.ID}>
               <AttorneyCard
-                link={m.link}
+                link={`/attorney${m.link}`}
                 image={m.image}
                 name={m.name}
                 title={m.designation}

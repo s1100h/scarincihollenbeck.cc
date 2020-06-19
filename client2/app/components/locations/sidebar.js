@@ -34,9 +34,9 @@ function LocationHeaderToggle({ children, eventKey, callback }){
     >
       {children}
       {(isCurrentEventKey) ? (
-         <FontAwesomeIcon icon={faMinus} className="text-white float-right mw-18" />   
+         <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />   
        ) : (
-          <FontAwesomeIcon icon={faPlus} className="text-white float-right mw-18" />
+          <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
           
        )}    
     </button>
@@ -70,11 +70,11 @@ export default function SidebarContent(props) {
                   {office.address.map((a) => <li key={a} className="mb--10">{a}</li>)}
                 </ul>
                 <p className="mb-0">
-                  <FontAwesomeIcon icon={faPhone} className="mw-18"/>
+                  <FontAwesomeIcon icon={faPhone} className="icon-w8px-h20px"/>
                   <span className="proxima-regular">{`  ${office.phone}`}</span>
                 </p>
                 <p className="mb-2">
-                  <FontAwesomeIcon icon={faFax} className="mw-18" />
+                  <FontAwesomeIcon icon={faFax} className="icon-w8px-h20px" />
                   <span className="proxima-regular">{`  ${office.fax}`}</span>
                 </p>
                 <div className="m-2">

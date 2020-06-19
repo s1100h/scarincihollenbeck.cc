@@ -68,7 +68,7 @@ export default function InfoCard(props) {
             { (phoneNumber) && (
               <li className="mb-1">
                 <h5>
-                  <FontAwesomeIcon icon={faPhone} className="text-white mw-18" />
+                  <FontAwesomeIcon icon={faPhone} className="text-white icon-w8px-h20px" />
                   {' '}
                   <span className="proxima-regular ft-17px">{`  ${phoneNumber}`}</span>
                 </h5>
@@ -77,7 +77,7 @@ export default function InfoCard(props) {
             { (fax) && (
               <li className="mb-1">
                 <h5>
-                  <FontAwesomeIcon icon={faFax} className="text-white mw-18" />
+                  <FontAwesomeIcon icon={faFax} className="text-white icon-w8px-h20px" />
                   {' '}
                   <span className="proxima-regular ft-17px">{`  ${fax}`}</span>
                 </h5>
@@ -86,7 +86,7 @@ export default function InfoCard(props) {
             { (email) && (
               <li className="mb-1">
                 <h5>
-                  <FontAwesomeIcon icon={faEnvelope} className="text-white mw-18" />
+                  <FontAwesomeIcon icon={faEnvelope} className="text-white icon-w8px-h20px" />
                   <a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-17px">{` ${email}`}</a>
                 </h5>
               </li>
@@ -102,11 +102,11 @@ export default function InfoCard(props) {
                 { socialMediaLinks.map((v) => (
                   <li key={v.channel} className="mb-0 lh-1">
                     <h5>
-                      {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white mw-18" />}
-                      {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white mw-18" />}
-                      {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white mw-18" />}
-                      {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white mw-18" />}
-                      {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white mw-18" />}
+                      {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white icon-w8px-h20px" />}
+                      {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white icon-w8px-h20px" />}
+                      {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white icon-w8px-h20px" />}
+                      {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white icon-w8px-h20px" />}
+                      {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white icon-w8px-h20px" />}
                       <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {`  Connect on ${v.channel}`}
                       </a>
@@ -116,7 +116,7 @@ export default function InfoCard(props) {
                 { (pdf) && (
                   <li className="mb-0 lh-1">
                     <h5>
-                      <FontAwesomeIcon icon={faFile} className="text-white mw-18" />
+                      <FontAwesomeIcon icon={faFile} className="text-white icon-w8px-h20px" />
                       {' '}
                       <a href={pdf} rel="nofollow" className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {' Download Biography'}
@@ -127,7 +127,7 @@ export default function InfoCard(props) {
                 { (vizibility) && (
                   <li className="mb-0 lh-1">
                     <h5>
-                      <FontAwesomeIcon icon={faAddressCard} className="text-white mw-18" />
+                      <FontAwesomeIcon icon={faAddressCard} className="text-white icon-w8px-h20px" />
                       <a href={vizibility} className="text-white mail-link proxima-regular ft-17px position-relative icon">
                         {' Download Contact'}
                       </a>

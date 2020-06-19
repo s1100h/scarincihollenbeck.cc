@@ -49,7 +49,7 @@ export default function CareerForm() {
 
  function formSubmit(e) {
    e.preventDefault();
-   const req = upload.post(`${process.env.REACT_APP_FORMS_API}/shlaw/site/career/form`).set(headers);
+   const req = upload.post(`https://forms.scarincihollenbeck.com/shlaw/site/career/form`).set(headers);
    const inquiry = {
     firstNameInput,
     lastNameInput,

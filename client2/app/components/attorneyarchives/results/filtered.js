@@ -82,7 +82,7 @@ export default function Filtered(props) {
       {aFiltered.map((m) => (
         <Col sm={12} md={6} lg={4} key={m.id} className="mb-2">
           <AttorneyCard
-            link={m.link}
+            link={`/attorney${m.link}`}
             image={m.better_featured_image}
             name={m.title}
             title={m.designation}

@@ -13,7 +13,7 @@ function AttorneyCards(title, content) {
       { content.map((m) => (
         <Col key={m.id} sm={12} md={6} lg={4} className="mb-2">
           <AttorneyCard
-            link={m.link}
+            link={`/attorney${m.link}`}
             image={m.better_featured_image}
             name={m.title}
             title={m.designation}

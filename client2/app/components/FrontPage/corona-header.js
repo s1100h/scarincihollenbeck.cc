@@ -39,17 +39,17 @@ export default function CoronaHeader(props) {
               <Row>
                 <Col sm={12} md={6} className="mb-3">
                   <Link href="/firm-news/client-alert/client-alert-covid-19/">
-                    <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow fnt-btn">
+                    <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow">
                       Client Message
-                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2" />
+                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px" />
                     </a>                    
                   </Link>
                 </Col>
                 <Col sm={12} md={6}>
                   <Link href="/covid-19-crisis-management-unit/">
-                    <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow fnt-btn">
+                    <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow">
                       Resource Center
-                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2" />
+                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px" />
                     </a>                    
                   </Link>
                 </Col>

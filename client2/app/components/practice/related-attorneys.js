@@ -18,7 +18,7 @@ export default function RelatedAttorneys(props) {
             {chair.map((v) => (
               <Col sm={12} md={12} lg={6} key={v.ID}>
                 <AttorneyCard
-                  link={v.link}
+                  link={`/attorney${v.link}`}
                   image={v.image}
                   name={v.name}
                   title={v.designation}

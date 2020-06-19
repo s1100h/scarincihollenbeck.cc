@@ -126,9 +126,13 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .bg-black-background {
-    max-height: 300px;
-  }  
+  
+  
+  /** read more btn **/
+  .read-more-btn {
+    background-color: white !important;
+    border: 0px solid white !important;
+  }
 }
 
 #single-career, #page, #single {
@@ -278,6 +282,9 @@
   @media (min-width: 1200px) {
     .max-width-container {
       max-width: 920px;
+    }
+    .bg-black-background {
+      max-height: 300px;
     }
   }
   

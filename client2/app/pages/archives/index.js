@@ -25,7 +25,7 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
     const fetchData = async () => {
 
       // fetch query results
-      const fetchQuery = request.get(`http://localhost:8400/wp-json/archive/query/${q}/${page}`)
+      const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/archive/query/${q}/${page}`)
         .set(headers)
         .then((res) => ({
           status: res.status,

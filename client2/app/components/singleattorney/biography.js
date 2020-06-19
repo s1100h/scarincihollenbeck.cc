@@ -25,7 +25,7 @@ function BioContentToggle({ children, eventKey, callback }){
     <button
       type="button"
       variant="transparent"
-      className="red-title proxima-bold mb-3"
+      className="red-title proxima-bold mb-3 read-more-btn"
       
       onClick={decoratedOnClick}
     >

@@ -1,5 +1,9 @@
 import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 import Keyword from './keyword';
 import Letter from './letter';
 import Practices from './practices';
@@ -23,52 +27,31 @@ export default function Filter(props) {
 
   return (
     <>
-      {
-       (2 > 1) ? (
-        <Navbar expand="lg" className="bk--gray border p-2">
-          <Keyword userInput={userInput} handleChange={handleChange} />          
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="navbarSupportedContent">
-            <Nav className="nav-fill w-100">
-              <Practices practices={practices} onSelect={onSelect} />
-              <Location locations={locations} onSelect={onSelect} />
-              <Title designation={designation} onSelect={onSelect} />
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-       ) : (
-         <div className="bckground-gray p-2">
-           <Keyword userInput={userInput} handleChange={handleChange} />
-           <MobileMenu title="Filter by practice" name="practices" content={practices} onMobileSelect={onMobileSelect} />
-           <MobileMenu title="Filter by location" name="location" content={locations} onMobileSelect={onMobileSelect} />
-           <MobileMenu title="Filter by title" name="designation" content={designation} onMobileSelect={onMobileSelect} />
-         </div>
-       )
-     }
-     {(2 > 1) ? (
-        <div className="drkbckground-gray border h-57">
-          <div className="row mt-2">
-            <Letter alphabet={alphabet} letterClick={letterClick} />
-            <div className="col-sm-12 col-md-2">
-              <button
-                type="button"
-                className="btn btn-danger float-right mx-3"
-                onClick={() => clearAll()}
-              >
-                Clear All
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <button
-          type="button"
-          className="btn btn-danger w-100 mt-3 mb--2"
-          onClick={() => clearAll()}
-        >
-          Clear All
-        </button>    
-      )}      
+      <Navbar expand="lg" className="bk--gray border p-2">
+        <Keyword userInput={userInput} handleChange={handleChange} />          
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="navbarSupportedContent">
+          <Nav className="nav-fill w-100">
+            <Practices practices={practices} onSelect={onSelect} />
+            <Location locations={locations} onSelect={onSelect} />
+            <Title designation={designation} onSelect={onSelect} />
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <Container className="drkbckground-gray border">
+        <Row className="mt-2 mb-0">
+          <Letter alphabet={alphabet} letterClick={letterClick} />
+          <Col sm={12} md={2}>
+            <Button
+              variant="danger"
+              className="float-md-right mx-3 mb-2"
+              onClick={() => clearAll()}
+            >
+              Clear All
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 

@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import AttorneyCard from '../attorney-card';
 
 export default function FirmMembers(props) {
-  const { title, members, type } = props;
+  const { title, members, type, slug } = props;
 
   return (
     <div className="w-100 mt-5 px-3">
@@ -14,7 +14,7 @@ export default function FirmMembers(props) {
           {members.map((m) => (
             <Col sm={12} md={6} lg={4} className="mb-2" key={m.ID}>
               <AttorneyCard
-                link={m.link}
+                link={`/${slug}/${m.link}`}
                 image={m.image}
                 name={m.name}
                 title={(title === 'Directors') ? m.title : m.designation}

@@ -4,8 +4,8 @@ export default function Letter(props) {
   const { alphabet, letterClick } = props;
 
   return (
-    <Col sm={12} md={10} className="mt-2">
-      <ul className="list-inline ml-4 ">
+    <Col sm={12} md={10}>
+      <ul className="list-inline ml-4 mb-0">
         {alphabet.map((val) => (
           <li
             onClick={letterClick}

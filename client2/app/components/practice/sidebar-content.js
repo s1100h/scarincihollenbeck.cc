@@ -26,9 +26,9 @@ function HeaderToggle({ children, eventKey, callback }){
     >
       {children}
       {(isCurrentEventKey) ? (
-         <FontAwesomeIcon icon={faMinus} className="text-white float-right mw-18" />   
+         <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />   
        ) : (
-          <FontAwesomeIcon icon={faPlus} className="text-white float-right mw-18" />
+          <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
           
        )}    
     </button>

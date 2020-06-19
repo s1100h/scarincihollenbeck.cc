@@ -37,11 +37,11 @@ export default function AttorneyCard(props) {
           </a>
         </Link>
         <div className="small-excerpt">
-          <FontAwesomeIcon icon={faPhone} className="mw-12" />
+          <FontAwesomeIcon icon={faPhone} className="icon-w8px-h20px" />
           {' '}
           {number}
           <br />
-          <FontAwesomeIcon icon={faEnvelope} className="mw-12" />
+          <FontAwesomeIcon icon={faEnvelope} className="icon-w8px-h20px" />
           {' '}
           {email}
         </div>

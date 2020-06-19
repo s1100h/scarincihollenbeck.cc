@@ -53,9 +53,9 @@ export default function FirmOverview({slides, mainTabs, additionalInfo, members,
             </div>
           ))}
           <div className="border">
-            <FirmMembers title="Managing Partners" members={members.managingPartners} type="/attorney/[slug]/" />
-            <FirmMembers title="Partners" members={members.partners} type="/attorney/[slug]/" />
-            <FirmMembers title="Directors" members={members.admin} type="/administration/[slug]/" />
+            <FirmMembers title="Managing Partners" members={members.managingPartners} type="/attorney/[slug]/" slug="/attorney" />
+            <FirmMembers title="Partners" members={members.partners} type="/attorney/[slug]/" slug="/attorney"/>
+            <FirmMembers title="Directors" members={members.admin} type="/administration/[slug]/" slug="/administration"/>
           </div>
           </>
         </div>
