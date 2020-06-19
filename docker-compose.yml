@@ -29,6 +29,19 @@ services:
     ports:
       - 8100:8100
 
+  client:
+    build: client/
+    container_name: site-client
+    volumes:
+      - "./client/app:/src"
+    ports:
+      - 7900:3000
+    depends_on:
+      - api
+      - wp
+    networks:
+      - app-network
+
   api:
     build: api/
     container_name: site-api
