@@ -244,6 +244,13 @@
     cursor: pointer;
   }
 }
+
+#single-admin {
+  .bg-black-background {
+    max-height: 300px;
+  }
+  
+}
 #single-attorney,#single-career, #single-admin, #single {
   // mobie queries
   @media (min-width: 767px) and (max-width: 992px) {

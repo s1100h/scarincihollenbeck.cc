@@ -431,6 +431,22 @@ ul {
   font-size: 1.1rem;
 }
 
+.dropdown-item:hover {
+  color: white !important;
+  text-decoration: underline;
+  border-bottom: 3px solid $standard-red !important;
+}
+
+.dropdown-toggle.nav-link {
+  margin-top:-10px;
+}
+.nav-item {
+  a:hover {
+    color: $standard-red;
+    text-decoration: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   .text--sm--center {
     text-align: center!important;
