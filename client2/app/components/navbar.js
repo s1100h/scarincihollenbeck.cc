@@ -41,10 +41,10 @@ const Header = () => (
                     Firm Overview
                   </Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/pro-bono/">
+                <NavDropdown.Item href="/pro-bono">
                   Pro Bono
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/women-lead/">
+                <NavDropdown.Item href="/women-lead">
                   Women Lead
                 </NavDropdown.Item>
               </NavDropdown>

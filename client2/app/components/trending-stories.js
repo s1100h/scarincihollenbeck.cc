@@ -30,11 +30,9 @@ export default function TrendingStories(props) {
       <ArticleContainer className="off-white">
         {(content.length > 0) ? content.map((p) => (
           <div key={p.ID || addRandomKey(p.title)} className="p-2">
-            <Link href={p.link}>
-              <a className="top-article">
-                <p className="proxima-bold mb-0">{p.title}</p>  
-              </a>
-            </Link>
+            <a href={p.link} className="top-article">
+              <p className="proxima-bold mb-0">{p.title}</p>  
+            </a>
             {(p.hasOwnProperty('author') || p.author === 'Scarinci Hollenbeck') && (
             <>
               {(typeof p.author === 'string') && (

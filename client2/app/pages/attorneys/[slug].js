@@ -235,7 +235,7 @@ export async function getStaticPaths() {
   const attorneys = await attorneysResponse.json();
 
   return  {
-    paths: attorneys.map(attorney => `/attorney${attorney.link}`) || [],
+    paths: attorneys.map(attorney => `/attorneys${attorney.link}`) || [],
     fallback: true,
   }
 }

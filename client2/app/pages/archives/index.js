@@ -69,7 +69,7 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
       ) : (
         <div id="archives">
           <ArchiveLayout
-            header={(<Breadcrumbs breadCrumb={[term, 1]} categorySlug={term} />)}
+            header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
             body={(
               <Body
                 results={results}

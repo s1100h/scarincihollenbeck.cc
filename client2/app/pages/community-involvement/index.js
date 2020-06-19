@@ -71,6 +71,7 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
             }`}
         </script>
       </Head>
+      <NavBar />
       <SingleSubHeader
         image={cityBackgroundJPG}
         title={title}
