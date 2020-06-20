@@ -168,6 +168,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
+  // use Promise.all, use preview mode, and get footer request back in here...
   const categoryResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug}`, { headers });
   const categoryJson = await categoryResponse.json();
   const category = categoryJson;

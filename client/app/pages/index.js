@@ -16,6 +16,7 @@ export default function Home({
   slides
 }) {
   
+  
   return(
   <>
     <Head>
@@ -69,10 +70,10 @@ export default function Home({
     <CoronaHeader />
     <Container>
       <ColumnContent corePractices={corePractices} />
-      {/* <FullWidthContent
+      <FullWidthContent
         sortedPosts={sortByKey(posts, 'date')}
-        sortedLocations={sortByKey(locations, 'id')}
-      />  */}
+        sortedLocations={sortByKey(locations.offices, 'id')}
+      />
     </Container>
     <Footer slides={slides} />
     Stuff..

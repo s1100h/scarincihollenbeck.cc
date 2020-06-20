@@ -17,7 +17,7 @@ export default function Footer(props) {
   return (
     <Container fluid className="bk--gray d-prin-none">
       <div className="just-in-container w-75">
-        {/* <JustInArticlesCarousel slides={slides} /> */}
+        <JustInArticlesCarousel slides={slides} />
       </div>
       <footer>
           <Container fluid className="h-100 mt-5 w-75 bk--gray">
