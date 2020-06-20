@@ -4,19 +4,17 @@ import Container from 'react-bootstrap/Container';
 import CoronaHeader from '../components/frontpage/corona-header';
 import ColumnContent from '../components/frontpage/column-content';
 import FullWidthContent from '../components/frontpage/full-width-content';
+import Footer from '../components/footer';
 import{ headers, sortByKey } from '../utils/helpers';
 
 
-function Home({
+export default function Home({
   seo,
   posts,
   locations,
   corePractices,
-  router
+  slides
 }) {
-
-  const sortedLocations = sortByKey(locations, 'id');
-  const sortedPosts = sortByKey(posts, 'date');
   
   return(
   <>
@@ -26,12 +24,12 @@ function Home({
       <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport"/>
       <meta name="description" content={seo.metaDescription} />
       <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <link rel="canonical" href={router.pathname} />
+      <link rel="canonical" href="https://scarincihollenbeck.com/" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.metaDescription} />
-      <meta property="og:url" content={router.pathname} />
+      <meta property="og:url" content="https://scarincihollenbeck.com/" />
       <meta property="og:site_name" content="Scarinci Hollenbeck" />
       <meta property="og:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
       <meta property="og:image:secure_url" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
@@ -52,7 +50,7 @@ function Home({
             "@context": "http://schema.org",
             "@type": "WebSite",
             "name": "Scarinci Hollenbeck",
-            "url": "${router.pathname}",
+            "url": ""https://scarincihollenbeck.com/"",
             "sameAs": [
               "https://www.facebook.com/ScarinciHollenbeck/",
               "https://twitter.com/s_h_law",
@@ -60,7 +58,7 @@ function Home({
             ],
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "${router.pathname}/s?={search_term}",
+              "target": "https://scarincihollenbeck.com/search?q={search_term}",
               "query-input": "required name=search_term"
             }
           }      
@@ -71,38 +69,36 @@ function Home({
     <CoronaHeader />
     <Container>
       <ColumnContent corePractices={corePractices} />
-      <FullWidthContent
-        sortedPosts={sortedPosts}
-        sortedLocations={sortedLocations}
-      /> 
+      {/* <FullWidthContent
+        sortedPosts={sortByKey(posts, 'date')}
+        sortedLocations={sortByKey(locations, 'id')}
+      />  */}
     </Container>
+    <Footer slides={slides} />
+    Stuff..
   </>
 )
 }
 
 export async function getStaticProps() {
-  const seoResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers });
-  const newsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers });
-  const eventsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers });
-  const officeResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers });
-  const practicesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers });
-  const seo = await seoResponse.json();
-  const news = await newsResponse.json();
-  const events = await eventsResponse.json();
-  const officeJson = await officeResponse.json();
-  const corePractices = await practicesResponse.json();
-  const posts = [...news, ...events];
-  const locations = officeJson.offices;
+ const [ seo, news, events, locations, corePractices, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+ ]);
 
+ const posts = [...news, ...events];
 
   return {
     props: {
       seo,
       posts,
       locations,
-      corePractices
+      corePractices,
+      slides
     },
   }
 }
-
-export default withRouter(Home)

@@ -3,7 +3,6 @@ import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css';
 import NavBar from '../components/navbar';
-import Footer from '../components/footer';
 
 /**
 *
@@ -54,17 +53,8 @@ function SHApp({ Component, pageProps, posts }) {
         <main>
           <Component {...pageProps} />
         </main>
-      <Footer />
     </>
   )
 }
-
-
-// SHApp.getInitialProps = async (appContext) => {
-//   const getJustInPosts = await fetch(`http://localhost:8400/wp-json/just-in/posts`);
-//   const posts = await getJustInPosts.json();
-
-//   return { posts }
-// }
 
 export default SHApp;

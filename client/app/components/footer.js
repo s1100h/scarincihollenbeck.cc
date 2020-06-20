@@ -11,7 +11,7 @@ import { headers } from '../utils/helpers';
 const request = require('superagent');
 
 export default function Footer(props) {
-  // const { slides } = props;
+  const { slides } = props;
   const currentYear = new Date().getFullYear();
 
   return (

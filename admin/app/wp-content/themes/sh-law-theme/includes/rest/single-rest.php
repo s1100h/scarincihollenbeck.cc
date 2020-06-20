@@ -28,7 +28,7 @@ function all_posts_by_category($request) {
 
   $query_posts = new WP_Query( array(
     'cat' => $id,
-    'posts_per_page' => -1,
+    'posts_per_page' => 100,
     'post_status' => 'publish',
   ));
   $posts = $query_posts->posts;
