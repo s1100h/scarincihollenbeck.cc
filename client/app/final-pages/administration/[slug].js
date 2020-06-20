@@ -3,6 +3,8 @@ import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import NavBar from '../../components/navbar';
+import Footer from '../../components/footer';
 import ProfileImage from '../../components/administration/profile-image';
 import InfoCard from '../../components/administration/info-card';
 import MultiSubHeader from '../../layouts/multi-sub-header';
@@ -11,10 +13,11 @@ import { headers, createMarkup } from '../../utils/helpers';
 import { attorneyHeaderJPG } from '../../utils/next-gen-images';
 
 
-export default function SingleAdmin({adminJson}){
+export default function SingleAdmin({slides, adminJson}){
 
   return (
     <>
+      <NavBar />
       {(adminJson === undefined) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
@@ -109,6 +112,7 @@ export default function SingleAdmin({adminJson}){
             </div>
           </FullWidth>
         </div>
+        <Footer slides={slides} />
         </>
       )}
     </>   
@@ -116,12 +120,15 @@ export default function SingleAdmin({adminJson}){
 }
 
 export async function getStaticProps({params}) {
-  const adminResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers });
-  const adminJson = await adminResponse.json();
-  const { seo, title } = adminJson;
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
+    const adminResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers });
+    const adminJson = await adminResponse.json();
+    const slides = await sliderResponse.json();
+    const { seo, title } = adminJson;
 
     return {
       props: {
+        slides,
         adminJson
       },
     }

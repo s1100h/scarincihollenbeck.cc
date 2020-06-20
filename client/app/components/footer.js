@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -5,15 +6,18 @@ import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from './cookie-consent';
 import SimpleSearch from './simple-search';
 import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
+import { headers } from '../utils/helpers';
+
+const request = require('superagent');
 
 export default function Footer(props) {
-  const { slides } = props;
+  // const { slides } = props;
   const currentYear = new Date().getFullYear();
 
   return (
     <Container fluid className="bk--gray d-prin-none">
       <div className="just-in-container w-75">
-        <JustInArticlesCarousel slides={slides} />
+        {/* <JustInArticlesCarousel slides={slides} /> */}
       </div>
       <footer>
           <Container fluid className="h-100 mt-5 w-75 bk--gray">

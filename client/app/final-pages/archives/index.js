@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import NavBar from '../../components/navbar';
+import Footer from '../../components/footer';
 import Breadcrumbs from '../../components/breadcrumbs';
 import ArchiveLayout from '../../layouts/archive-layout';
 import Body from '../../components/archives/body';
@@ -56,6 +58,7 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
 
   return (
     <>
+      <NavBar />
       {(results.length === 0 && slides === undefined) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
@@ -82,6 +85,7 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
           />
         </div>
       )}
+      <Footer slides={slides} /> */}
     </>
   )
 }

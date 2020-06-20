@@ -3,6 +3,8 @@ import { withRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import NavBar from '../../components/navbar';
+import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
 import AttorneyCard from '../../components/attorney-card';
@@ -19,6 +21,7 @@ export default function Administration({slides, admins, seo }){
         <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href={`http://scarincihollenbeck.com/${seo.canonicalLink}`} />
       </Head>
+      <NavBar />
       <SingleSubHeader
         image={attorneyArchiveHeaderJPG}
         title="Administration"
@@ -45,17 +48,21 @@ export default function Administration({slides, admins, seo }){
           </Row>
         </Container>
       </FullWidth>
+      <Footer slides={slides} />
     </>
   )
 }
 
 export async function getStaticProps() {
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const adminResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers });
   const aJson = await adminResponse.json();
+  const slides = await sliderResponse.json();
   const { admins, seo } = aJson;
 
   return {
     props: {
+      slides,
       seo,
       admins
     },

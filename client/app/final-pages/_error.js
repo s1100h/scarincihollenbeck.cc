@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import NavBar from '../components/navbar';
+import Footer from '../components/footer';
 import SingleSubHeader from '../layouts/single-sub-header';
 import FullWidth from '../layouts/full-width';
 import SimpleSearch from '../components/simple-search';
@@ -23,6 +25,7 @@ export default function ErrorPage({slides}) {
         <meta name="description" content={seo.metaDescription} />
         <link rel="canonical" href={`http://scarincihollenbeck.com/${seo.canonicalLink}`} />
       </Head>
+      <NavBar />
       <div id="error">
         <SingleSubHeader
           title="404: Resource Not Found"
@@ -106,6 +109,7 @@ export default function ErrorPage({slides}) {
           </Row>
         </Container>
       </div>
+      <Footer slides={slides} />      
     </>
   )
 }

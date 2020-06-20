@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
+import NavBar from '../components/navbar';
+import Footer from '../components/footer';
 import CoronaHeader from '../components/frontpage/corona-header';
 import ColumnContent from '../components/frontpage/column-content';
 import FullWidthContent from '../components/frontpage/full-width-content';
@@ -8,6 +10,7 @@ import{ headers, sortByKey } from '../utils/helpers';
 
 
 function Home({
+  slides,
   seo,
   posts,
   locations,
@@ -68,6 +71,7 @@ function Home({
         }
       </script> 
     </Head>
+    <NavBar />
     <CoronaHeader />
     <Container>
       <ColumnContent corePractices={corePractices} />
@@ -76,11 +80,15 @@ function Home({
         sortedLocations={sortedLocations}
       /> 
     </Container>
+    <Footer
+      slides={slides}      
+    />
   </>
 )
 }
 
 export async function getStaticProps() {
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const seoResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers });
   const newsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers });
   const eventsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers });
@@ -91,12 +99,14 @@ export async function getStaticProps() {
   const events = await eventsResponse.json();
   const officeJson = await officeResponse.json();
   const corePractices = await practicesResponse.json();
+  const slides = await sliderResponse.json();
   const posts = [...news, ...events];
   const locations = officeJson.offices;
 
 
   return {
     props: {
+      slides,
       seo,
       posts,
       locations,

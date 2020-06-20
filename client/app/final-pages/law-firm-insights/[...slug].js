@@ -3,6 +3,8 @@ import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import NavBar from '../../components/navbar';
+import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import ThreeColMiniSidebar from '../../layouts/three-col-mini-sidebar';
 import Body from '../../components/post/body';
@@ -13,9 +15,10 @@ import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
 
 
 
-export default function LawFirmInsightsPost({ post }){
+export default function LawFirmInsightsPost({ slides, post }){
   return (
     <>
+      <NavBar />
       {(post === undefined) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
@@ -97,9 +100,10 @@ export default function LawFirmInsightsPost({ post }){
                     attorneys={post.attorneys}
                   />)}
               />
+              <Footer slides={slides} />
             </div>
         </>
-      )}   
+      )}     
     </>
   )   
 }
@@ -115,11 +119,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
+  
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const lawFirmInsightsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers });
   const post = await lawFirmInsightsResponse.json();
+  const slides = await sliderResponse.json();
 
   return {
     props: {
+      slides,
       post
     },
   }

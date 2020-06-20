@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { SHLogo } from '../utils/next-gen-images';
 
 
-const Header = () => (
+const NavBar = () => (
   <header className="mt-3">
     <Container>
       <Row className="border-bottom">
@@ -101,4 +101,4 @@ const Header = () => (
   </header>
 );
 
-export default Header;
+export default NavBar;

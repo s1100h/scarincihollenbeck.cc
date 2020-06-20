@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import FullWidth from '../../layouts/full-width';
 import LargeSidebar from '../../layouts/large-sidebar';
+import NavBar from '../../components/navbar';
+import Footer from '../../components/footer';
 import Search from '../../components/search';
 import Breadcrumbs from '../../components/category/breadcrumbs';
 import MainArticlesContainer from '../../components/category/main-articles-container';
@@ -19,7 +21,7 @@ import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 const request = require('superagent');
 
-export default function Category({category, seo, current }) {
+export default function Category({slides, category, current }) {
   const [firmCategories, setFirmCategories ] = useState([]);
   const [corePractices, setCorePractices ] = useState([]);
   const router = useRouter();
@@ -72,8 +74,8 @@ export default function Category({category, seo, current }) {
  
   return (
     <>
-      
-      {(category === undefined) ? (
+      <NavBar />
+      {(category === undefined && firmCategories.length <= 0 && corePractices.length <= 0 && slides === undefined) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
             <BarLoader color={"#DB2220"} />
@@ -82,10 +84,10 @@ export default function Category({category, seo, current }) {
       ) : (
         <>
           <Head>
-            <title>{seo.title || ''}</title>
-            <meta name="description" content={seo.metaDescription || ''} />
+            <title>{category.seo.title}</title>
+            <meta name="description" content={category.seo.metaDescription} />
             <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink || 'law-firm-insights'}`} />
+            <link rel="canonical" href={`https://scarincihollenbeck.com/category/${category.seo.canonicalLink}`} />
           </Head>
           <div id="category">
             <FullWidth>
@@ -150,9 +152,10 @@ export default function Category({category, seo, current }) {
                     </a>
                 </p>
               </FullWidth>
+            <Footer slides={slides} />
           </div>
         </>
-      )}   
+      )}    
     </>
   );
 }
@@ -168,15 +171,17 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
+  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const categoryResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug}`, { headers });
   const categoryJson = await categoryResponse.json();
+  const slides = await sliderResponse.json();
   const category = categoryJson;
 
   return {
     props: {
+      slides,      
       category,
-      current: params.slug,
-      seo: category.seo
+      current: params.slug
     },
   }
 }
