@@ -3,6 +3,7 @@ import { withRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
 import AttorneyCard from '../../components/attorney-card';
@@ -45,17 +46,22 @@ export default function Administration({slides, admins, seo }){
           </Row>
         </Container>
       </FullWidth>
+      <Footer slides={slides} />
     </>
   )
 }
 
 export async function getStaticProps() {
-  const adminResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers });
-  const aJson = await adminResponse.json();
+  const [ aJson, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  ]);
+
   const { admins, seo } = aJson;
 
   return {
     props: {
+      slides,
       seo,
       admins
     },

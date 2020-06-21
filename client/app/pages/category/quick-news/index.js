@@ -8,9 +8,12 @@ import Breadcrumbs from '../../../components/breadcrumbs';
 import ArchiveLayout from '../../../layouts/archive-layout';
 import QuickNewsBody from '../../../components/quick-news-body';
 import Sidebar from '../../../components/archives/sidebar';
+import Footer from '../../../components/footer';
 import { headers } from '../../../utils/helpers';
 
-export default function QuickNews({ firmNews, firmEvents, firmInsights}){
+const request = require('superagent');
+
+export default function QuickNews({ firmNews, firmEvents, firmInsights, slides}){
   const router = useRouter()
   const { page } = router.query
   const [results, setResults] = useState([]);
@@ -18,8 +21,6 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights}){
   const [pages, setPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [term, setTerm] = useState('');
-
-  const request = require('superagent');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,6 +95,7 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights}){
               sidebar={(<Sidebar trending={posts}/>)}
             />
           </div>
+          <Footer slides={slides} />
         </>
       )}
     </>
@@ -101,9 +103,12 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights}){
 }
 
 export async function getStaticProps({params}) {
-  const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
-  const articleJson = await articlesResponse.json();
-  const { firmNews, firmEvents, firmInsights } = articleJson;
+  const [ articles, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+ ]);
+
+ const { firmNews, firmEvents, firmInsights } = articles;
 
 
   
@@ -112,7 +117,8 @@ export async function getStaticProps({params}) {
     props: {
       firmNews,
       firmEvents,
-      firmInsights
+      firmInsights,
+      slides
     },
   }
 }

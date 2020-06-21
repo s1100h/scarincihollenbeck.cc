@@ -43,7 +43,7 @@ export default function SimpleNewsArticlesCarousel(props) {
         <Link href={(post.link) ? post.link : '#'}>
           <a>
             <LazyLoad height={150}>
-              <img rel="preconnect" src={(post.image)  ? post.image : noImgFoundPNG} alt={post.title} className="img-thumbnail mx-auto d-block" />
+              <img rel="preconnect" src={(post.image)  ? post.image : (post.featuredImg) ? post.featuredImg : noImgFoundPNG} alt={post.title} className="img-thumbnail mx-auto d-block" />
             </LazyLoad>           
             <p className="text-muted small-excerpt text-center">{limitTitleLength(post.title)}</p>
           </a>

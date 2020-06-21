@@ -46,7 +46,7 @@ function firm_overview_data() {
         "ID" => $at->ID,
         "name" => $at->post_title,
         "image" => get_the_post_thumbnail_url($at->ID),
-        "link" => "/attorneys/".$at->post_name,
+        "link" => "/".$at->post_name,
         "phone" => get_field('phone_number', $at->ID),
         "email" => get_field('email', $at->ID),
         "designation" => get_field('designation', $at->ID)
@@ -58,7 +58,7 @@ function firm_overview_data() {
         "ID" => $at->ID,
         "name" => $at->post_title,
         "image" => get_the_post_thumbnail_url($at->ID),
-        "link" => get_home_url("/")."/attorneys/".$at->post_name,
+        "link" => "/".$at->post_name,
         "phone" => get_field('phone_number', $at->ID),
         "email" => get_field('email', $at->ID),
         "designation" => get_field('designation', $at->ID)
@@ -93,7 +93,7 @@ function firm_overview_data() {
       "name" => $ad->post_title,
       "title" => get_field("Title", $ad->ID),
       "image" => get_the_post_thumbnail_url($ad->ID),
-      "link" => "/administration/".$ad->post_name,
+      "link" => "/".$ad->post_name,
       "extension" => get_field('phone_extension', $ad->ID),
       "email" => get_field('email', $ad->ID),
       "designation" => get_field('designation', $at->ID)

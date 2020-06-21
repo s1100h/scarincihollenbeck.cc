@@ -5,14 +5,14 @@ import Form from 'react-bootstrap/Form';
 import AttorneyCard from '../attorney-card';
 
 export default function RelatedAttorneys(props) {
-  const { members, chair, handleLink } = props;
+  const { members, chair, title, handleLink } = props;
 
   return (
     <>
       { (chair.length > 0) && (
         <Container>
           <div className="line-header">
-            <h3>Practice Chair</h3>
+            <h3>{title}</h3>
           </div>
           <Row className="my-5">
             {chair.map((v) => (

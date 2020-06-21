@@ -36,10 +36,8 @@ const NavBar = () => (
                 <NavDropdown.Item href="/diversity-group">
                   Diversity Group
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link href="/firm-overview">
-                    Firm Overview
-                  </Link>
+                <NavDropdown.Item href="/firm-overview">
+                  Firm Overview
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/pro-bono">
                   Pro Bono

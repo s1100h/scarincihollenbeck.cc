@@ -22,7 +22,7 @@ export default function Sidebar(props) {
               <ul className="no-dots">
                 { attorneys.map((a) => (
                   <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
-                    <Link as='/attorney[slug]' href={a.link}>
+                    <Link href='/attorney[slug]' as={a.link}>
                       <a className="m-attorneys d-flex flex-row">
                         <img src={a.image} alt={a.name} className="mr-2" />
                         <span className="ml-2 related-attorneys">

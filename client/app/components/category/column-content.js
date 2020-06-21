@@ -14,9 +14,9 @@ export default function ColumnContent(props) {
           <hr />
           <ul className="ml-0 mh-75">
             {colOneContent.map((v) => (
-              <li key={v.name} className="blue-title ml-3">
-                <a href={v.link} className="blue-title proxima-bold mb-0">
-                  {v.name}
+              <li key={v.title || v.name} className="blue-title ml-3">
+                <a href={v.link || v.slug} className="blue-title proxima-bold mb-0">
+                  {v.title || v.name}
                 </a>                
               </li>
             ))}
@@ -27,9 +27,9 @@ export default function ColumnContent(props) {
           <hr />
           <ul className="ml-0 mh-75">
             {colTwoContent.map((v) => (
-              <li key={v.name} className="blue-title ml-3">
-                <a href={v.link} className="blue-title proxima-bold mb-0">
-                  {v.name}
+              <li key={v.name || v.title} className="blue-title ml-3">
+                <a href={v.link || v.slug} className="blue-title proxima-bold mb-0">
+                  {v.name || v.title}
                 </a>
               </li>
             ))}

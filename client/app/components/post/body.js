@@ -35,11 +35,9 @@ export default function Body(props) {
             <li className="list-inline-item"><strong>Tag: </strong></li>
             {tags.map((tag, index) => (
               <li key={tag.term_id || tag.ID} className="list-inline-item">
-                <Link href="/archives/[slug]" as={`/archives/${urlify(tag.name)}`}> 
-                  <a className="blue-link">
+                  <a href={`/archives?q=${urlify(tag.name)}&page=1`}className="blue-link">
                     <u>{tag.name}</u>
                   </a>
-                </Link>
                 {(index !== tags.length - 1) && ',' }
               </li>
             ))}

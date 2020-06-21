@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Footer from '../../components/footer';
 import ProfileImage from '../../components/administration/profile-image';
 import InfoCard from '../../components/administration/info-card';
 import MultiSubHeader from '../../layouts/multi-sub-header';
@@ -11,11 +13,12 @@ import { headers, createMarkup } from '../../utils/helpers';
 import { attorneyHeaderJPG } from '../../utils/next-gen-images';
 
 
-export default function SingleAdmin({adminJson}){
+export default function SingleAdmin({slides, adminJson}){
+  const router = useRouter();
 
   return (
     <>
-      {(adminJson === undefined) ? (
+      {(router.isFallback) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
             <BarLoader color={"#DB2220"} />
@@ -109,22 +112,11 @@ export default function SingleAdmin({adminJson}){
             </div>
           </FullWidth>
         </div>
+        <Footer slides={slides} />
         </>
       )}
     </>   
   )
-}
-
-export async function getStaticProps({params}) {
-  const adminResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers });
-  const adminJson = await adminResponse.json();
-  const { seo, title } = adminJson;
-
-    return {
-      props: {
-        adminJson
-      },
-    }
 }
 
 export async function getStaticPaths() {
@@ -136,3 +128,18 @@ export async function getStaticPaths() {
     fallback: true,
   }
 }
+
+export async function getStaticProps({params}) {
+  const [ adminJson, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  ]);
+
+  return {
+    props: {
+      slides,
+      adminJson
+    },
+  }
+}
+

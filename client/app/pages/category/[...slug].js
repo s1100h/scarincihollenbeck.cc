@@ -14,66 +14,22 @@ import MainSidebarContent from '../../components/category/main-sidebar-content';
 import CategoryHeader from '../../components/category/category-header';
 import CategorySliderContainer from '../../components/category/category-slider-container';
 import ColumnContent from '../../components/category/column-content';
+import Footer from '../../components/footer';
 import { headers, makeTitle, sortByKey, formatCorePractices, urlify } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 const request = require('superagent');
 
-export default function Category({category, seo, current }) {
-  const [firmCategories, setFirmCategories ] = useState([]);
-  const [corePractices, setCorePractices ] = useState([]);
+export default function Category({category, seo, current, slides, corePractices, firmCategories}) {
   const router = useRouter();
-
-  // get page term
   const categorySlug = router.asPath.split('/');
   const categoryTitle = categorySlug[categorySlug.length -1];
-
-  useEffect(() => {
-    const fetchData = async () => {
-      // get firm insight categories
-      const requestFirmCategories = request.get('http://localhost:8400/wp-json/category/firm-insights-children')
-        .set(headers)
-        .then((res) => ({
-          status: res.status,
-          body: JSON.parse(res.text),
-        }))
-        .catch((err) => err);
-
-      requestFirmCategories.then((results) => {
-        const { status, body } = results;
-        if(status === 200) {
-          setFirmCategories(body);
-        }
-      });
-
-      const requestCorePractices = request.get('http://localhost:8200/cached/core-practices')
-        .set(headers)
-        .then((res) => ({
-          status: res.status,
-          body: JSON.parse(res.text),
-        }))
-        .catch((err) => err);
-
-        requestCorePractices.then((results) => {
-          const { status, body } = results;
-
-          if(status === 200) {
-            const formattedPractices = body.map(item => formatCorePractices(item));
-            setCorePractices(formattedPractices);
-          }
-      });
-
-
-    };
-
-    fetchData();
-    
-  }, []);
+  
  
   return (
     <>
       
-      {(category === undefined) ? (
+      {(router.isFallback) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
             <BarLoader color={"#DB2220"} />
@@ -151,6 +107,7 @@ export default function Category({category, seo, current }) {
                 </p>
               </FullWidth>
           </div>
+          <Footer slides={slides} />
         </>
       )}   
     </>
@@ -158,26 +115,32 @@ export default function Category({category, seo, current }) {
 }
 
 export async function getStaticPaths() {
-  const allCategoryResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/all`, { headers });
-  const allCategoryJson = await allCategoryResponse.json();
+  const [ allCategories ] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/all`, { headers }).then(data => data.json())
+ ]);
 
   return  {
-    paths: allCategoryJson.map(category => `/category${category.link}`) || [],
+    paths: allCategories.map(category => `/category${category.link}`) || [],
     fallback: true,
   }
 }
 
 export async function getStaticProps({params}) {
-  // use Promise.all, use preview mode, and get footer request back in here...
-  const categoryResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug}`, { headers });
-  const categoryJson = await categoryResponse.json();
-  const category = categoryJson;
+  const [ category, firmCategories, corePractices, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug}`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  ]);
 
   return {
     props: {
       category,
       current: params.slug,
-      seo: category.seo
+      seo: category.seo,
+      firmCategories,
+      corePractices,
+      slides
     },
   }
 }

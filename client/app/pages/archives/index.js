@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Footer from '../../components/footer';
 import Breadcrumbs from '../../components/breadcrumbs';
 import ArchiveLayout from '../../layouts/archive-layout';
 import Body from '../../components/archives/body';
@@ -82,16 +83,18 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
           />
         </div>
       )}
+      <Footer slides={slides} /> */}
     </>
   )
 }
 
 
 export async function getStaticProps() {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
-  const articlesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers });
-  const slides = await sliderResponse.json();
-  const articleJson = await articlesResponse.json();
+  const [ articleJson, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  ]);
+
   const { firmNews, firmEvents, firmInsights } = articleJson;
 
 
