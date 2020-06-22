@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 import ErrorPage from 'next/error';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
@@ -35,6 +36,47 @@ export default function LawFirmInsightsPost({ slides, post }){
        
       ) : (
         <>
+        <NextSeo
+            title={post.seo.title}
+            description={post.seo.metaDescription}
+            canonical={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            openGraph={{
+              url: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              title: 'Scarinci Hollenbeck',
+              description:post.seo.metaDescription,
+              type: 'article',
+              article: {
+                publishedTime: post.seo.publishedDate,
+                modifiedTime: post.seo.updatedDate,
+                authors: post.seo.authors,
+                tags: (post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => t.name ) : []
+              },
+              images: [
+                {
+                  url: (post.seo.featuredImg) ? post.seo.featuredImg : shDiamondPNG,
+                  width: 750,
+                  height: 350,
+                  alt: post.seo.title,
+                }
+              ]
+            }}
+            twitter={{
+              handle: '@S_H_Law',
+              site: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              cardType: post.seo.metaDescription,
+            }}
+            />
+              <ArticleJsonLd
+                url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+                title={`${post.seo.title}`}
+                images={(post.seo.featuredImg) ? [post.seo.featuredImg ]: [shDiamondPNG]}
+                datePublished={post.seo.publishedDate}
+                dateModified={post.seo.updatedDate}
+                authorName={post.seo.author}
+                publisherName="Scarinci Hollenbeck, LLC"
+                publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
+                description={`${post.seo.metaDescription}`}
+              />
           <Head>
             <title>{post.seo.title}</title>
             <meta name="description" content={post.seo.metaDescription} />

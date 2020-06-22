@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -72,12 +73,11 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights, slides})
        
       ) : (
         <>
-          <Head>
-            <title>{seo.title}</title>
-            <meta name="description" content={seo.metaDescription} />
-            <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <link rel="canonical" href={`https://scarincihollenbeck.com/category/quick-news/${seo.canonicalLink}`} />
-          </Head>
+          <NextSeo
+            title={seo.title || ''}
+            description={seo.metaDescription || ''}
+            canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+          />
           <div id="quick-news">
             <ArchiveLayout
               header={(<Breadcrumbs breadCrumb={[term, 1]} categorySlug={term} />)}

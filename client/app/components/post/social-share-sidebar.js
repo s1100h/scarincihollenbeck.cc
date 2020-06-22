@@ -11,7 +11,7 @@ import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 function SocialShareSidebar(props) {
   const { title } = props;
   const router = useRouter();
-  const encodeLink = encodeURIComponent(`http://scarincihollenbeck.com/${router.asPath}`);
+  const encodeLink = encodeURIComponent(`https://scarincihollenbeck.com${router.asPath}`);
   const to = '';
   
 

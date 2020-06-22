@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -66,6 +67,7 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
        
       ) : (
         <div id="archives">
+          <NextSeo nofollow={true} />
           <ArchiveLayout
             header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
             body={(

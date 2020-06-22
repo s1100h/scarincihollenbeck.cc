@@ -14,7 +14,7 @@ import { headers } from '../../utils/helpers';
 import { blogHeaderJPG } from '../../utils/next-gen-images';
 
 
-export default function Disclaimer({slides, title, content, posts, seo }){
+export default function PrivacyPolicy({slides, title, content, posts, seo }){
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -51,7 +51,7 @@ export default function Disclaimer({slides, title, content, posts, seo }){
 
 export async function getStaticProps() {
   const [aJson, postJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/disclaimer`, { headers }).then(data => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/privacy-policy`, { headers }).then(data => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers }).then(data => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
   ]);

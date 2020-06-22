@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -37,12 +38,11 @@ export default function Category({category, seo, current, slides, corePractices,
         </Container>       
       ) : (
         <>
-          <Head>
-            <title>{seo.title || ''}</title>
-            <meta name="description" content={seo.metaDescription || ''} />
-            <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink || 'law-firm-insights'}`} />
-          </Head>
+          <NextSeo
+            title={seo.title || `${categoryTitle} Legal Blog | Scarinci Hollenbeck`}
+            description={seo.metaDescription || ''}
+            canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+          />
           <div id="category">
             <FullWidth>
               <Breadcrumbs

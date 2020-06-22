@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import BarLoader from 'react-spinners/BarLoader';
@@ -26,12 +27,44 @@ export default function Location({ slides, seo, offices, currentOffice, posts}){
      
     ) : (
       <>
-        <Head>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.metaDescription} />
-          <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-          <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />     
-        </Head>
+        <NextSeo
+          title={seo.title}
+          description={seo.metaDescription}
+          canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        />
+        <LocalBusinessJsonLd
+          type="LegalService"
+          id="https://scarincihollenbeck.com"
+          name={seo.title}
+          description={seo.metaDescription}
+          url={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+          telephone={seo.telephone}
+          address={{
+            streetAddress: seo.streetAddress,
+            addressLocality: seo.addressLocality,
+            addressRegion: seo.addressRegion,
+            postalCode: seo.postalCode,
+            addressCountry: seo.addressCountry,
+          }}
+          geo={{
+            latitude: seo.latitude,
+            longitude: seo.longitude,
+          }}
+          images={[ seo.image ]}
+          openingHours={[
+            {
+              opens: '08:00',
+              closes: '18:00',
+              dayOfWeek: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday'
+              ]
+            }
+          ]}
+        />
         <div id="location">
           <SingleSubHeader
             title="Office Locations"
@@ -86,7 +119,7 @@ export async function getStaticProps({params}) {
   return {
     props: {
       offices: locations.offices,
-      seo: locations.seo,
+      seo: currentOffice.seo,
       slides,
       currentOffice,
       posts: currentOfficePosts

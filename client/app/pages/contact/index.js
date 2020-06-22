@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 import Footer from '../../components/footer';
 import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
@@ -16,22 +17,11 @@ export default function Contact({slides}) {
 
   return (
     <>
-      <Head>
-      <title>{seo.title}</title>
-      <meta name="description" content={seo.metaDescription} />
-      <link rel="canonical" href={`http://scarincihollenbeck.com/${seo.canonicalLink}`} />
-      <script type="application/ld+json">
-        {` {
-          "@context": "http://schema.org",
-          "@type": "WebPage",
-          "name": "${seo.title}",
-          "description": "${seo.metaDescription}",
-          "publisher": {
-              "@type": "LegalServices",
-              "name": "Scarinci Hollenbeck"
-          }`}
-      </script>
-      </Head>
+      <NextSeo
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      />
       <div id="contact">
         <SingleSubHeader
           title="Contact Us"

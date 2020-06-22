@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
@@ -57,171 +58,144 @@ export default function Attorney({slides, bio }) {
           </Container>
         ) : (
           <>
-            <Head>
-              <title>{bio.seo.title}</title>
-              <meta name="description" content={bio.seo.metaDescription} />
-              <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-              <link rel="canonical" href={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`} />
-              <meta property="og:title" content={bio.seo.title} />
-              <meta property="og:site_name" content="Scarinci Hollenbeck" />
-              <meta property="og:type" content="profile" />
-              <meta property="og:locale" content="en_US" />
-              <meta property="og:url" content={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`} />
-              <meta property="og:image" content={bio.seo.featuredImg} />
-              <meta property="og:image:secure_url" content={bio.seo.featuredImg} />
-              <meta property="og:image:width" content={bio.seo.imgWidth} />
-              <meta property="og:image:height" content={bio.seo.imgHeight} />
-              <meta property="og:image:type" content="image/jpg" />
-              <meta property="profile:first_name" content={bio.seo.firstName} />
-              <meta property="profile:last_name" content={bio.seo.lastName} />
-              <meta name="twitter:card" content="summary" />
-              <meta name="twitter:description" content={bio.seo.metaDescription} />
-              <meta name="twitter:title" content={bio.seo.title} />
-              <meta name="twitter:site" content="@S_H_Law" />
-              <meta name="twitter:image" content={bio.seo.featuredImg} />
-              <meta name="twitter:creator" content="@S_H_Law" />
-              <script type="application/ld+json">
-                {
-                `
-                {
-                  "@context": "http://schema.org",
-                  "@type": "LegalService",
-                  "name": "${bio.seo.fullName}",
-                  "description": "${bio.seo.schemaDescription}",
-                  "url": "https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}",
-                  "image": "${bio.seo.featuredImg}",
-                  "priceRange": "$$$$",
-                  "telephone": "${bio.seo.phone}",
-                  "email": "${bio.seo.email}",
-                  "hasMap": "${bio.seo.map}",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "${bio.seo.town}",
-                    "addressRegion": "${bio.seo.state}",
-                    "postalCode": "${bio.seo.zip}",
-                    "streetAddress": "${bio.seo.address}"
-                  },
-                  "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": "${bio.seo.lat}",
-                    "longitude": "${bio.seo.long}"
-                  },
-                  "sameAs": "${bio.seo.socialMedia}",
-                  "openingHours": "Mo,Tu,We,Th,Fr, 8:00-5:00"
-                }
-                `
-              }
-              </script>
-              </Head>
-              <div id="single-attorney">
-              <MultiSubHeader        
-                image={attorneyHeaderJPG}
-                profile={( <ProfileImage image={bio.profileImage} name={bio.fullName} /> )}
-                height="auto"
-                infoCard={(
-                  <InfoCard
-                    fullName={bio.fullName}
-                    chair={bio.chair}
-                    designation={bio.designation}
-                    phoneNumber={bio.phoneNumber}
-                    fax={bio.fax}
-                    email={bio.email}
-                    socialMediaLinks={bio.socialMediaLinks}
-                    pdf={bio.pdf}
-                    vizibility={bio.vizibility}
-                  />
-                )}
-              />
-              <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="biography">
-                <Container>
-                  <Row>
-                    <Col sm={12}>
-                      <Nav>
-                        <Nav.Link eventKey="biography" className="main-tab">Biography</Nav.Link>
-                        { (bio.representativeMatters) && <Nav.Link eventKey="representative-matters" className="main-tab">Representative Matters</Nav.Link> }
-                        { (bio.representativeClients) && <Nav.Link eventKey="represntative-clients" className="main-tab">Representative Clients</Nav.Link> }
-                        { (bio.presentations) && <Nav.Link eventKey="presentations" className="main-tab">Presentations</Nav.Link> }
-                        { (bio.publications) && <Nav.Link eventKey="publications" className="main-tab">Publications</Nav.Link> }
-                        { (bio.media) && <Nav.Link eventKey="media" className="main-tab">Media</Nav.Link> }
-                        { (bio.blogPosts.length > 0) && <Nav.Link eventKey="blogs" className="main-tab">Articles</Nav.Link>}
-                        { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <Nav.Link eventKey="newsevents" className="main-tab">News &amp; Events</Nav.Link> }
-                        { (bio.videos) && <Nav.Link eventKey="videos" className="main-tab">Videos</Nav.Link> }
-                        { (bio.tabs) && filterHeaders.map((value) => <Nav.Link key={urlify(value)} eventKey={urlify(value)} className="main-tab">{value}</Nav.Link>) } 
-                      </Nav>       
-                    </Col>
-                    <Col sm={12} md={9} className="mt-4">
+            <NextSeo
+              title={bio.seo.title}
+              description={bio.seo.metaDescription}
+              canonical={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`}
+              openGraph={{
+                url: `https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`,
+                title: 'Scarinci Hollenbeck',
+                description:bio.seo.metaDescription,
+                images: [
+                  {
+                    url: bio.seo.featuredImg,
+                    width: 200,
+                    height: 220,
+                    alt: bio.seo.title,
+                  }
+                ],
+                site_name: 'Scarinci Hollenbeck',
+              }}
+              twitter={{
+                handle: '@S_H_Law',
+                site: `https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`,
+                cardType: bio.seo.metaDescription,
+              }}
+            />
+            <SocialProfileJsonLd
+              type="Person"
+              name={bio.seo.fullName}
+              url={`https://scarincihollenbeck.com/${bio.seo.canonicalLink}`}
+              sameAs={bio.seo.socialMedia}
+            />
+            <div id="single-attorney">
+            <MultiSubHeader        
+              image={attorneyHeaderJPG}
+              profile={( <ProfileImage image={bio.profileImage} name={bio.fullName} /> )}
+              height="auto"
+              infoCard={(
+                <InfoCard
+                  fullName={bio.fullName}
+                  chair={bio.chair}
+                  designation={bio.designation}
+                  phoneNumber={bio.phoneNumber}
+                  fax={bio.fax}
+                  email={bio.email}
+                  socialMediaLinks={bio.socialMediaLinks}
+                  pdf={bio.pdf}
+                  vizibility={bio.vizibility}
+                />
+              )}
+            />
+            <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="biography">
+              <Container>
+                <Row>
+                  <Col sm={12}>
+                    <Nav>
+                      <Nav.Link eventKey="biography" className="main-tab">Biography</Nav.Link>
+                      { (bio.representativeMatters) && <Nav.Link eventKey="representative-matters" className="main-tab">Representative Matters</Nav.Link> }
+                      { (bio.representativeClients) && <Nav.Link eventKey="represntative-clients" className="main-tab">Representative Clients</Nav.Link> }
+                      { (bio.presentations) && <Nav.Link eventKey="presentations" className="main-tab">Presentations</Nav.Link> }
+                      { (bio.publications) && <Nav.Link eventKey="publications" className="main-tab">Publications</Nav.Link> }
+                      { (bio.media) && <Nav.Link eventKey="media" className="main-tab">Media</Nav.Link> }
+                      { (bio.blogPosts.length > 0) && <Nav.Link eventKey="blogs" className="main-tab">Articles</Nav.Link>}
+                      { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <Nav.Link eventKey="newsevents" className="main-tab">News &amp; Events</Nav.Link> }
+                      { (bio.videos) && <Nav.Link eventKey="videos" className="main-tab">Videos</Nav.Link> }
+                      { (bio.tabs) && filterHeaders.map((value) => <Nav.Link key={urlify(value)} eventKey={urlify(value)} className="main-tab">{value}</Nav.Link>) } 
+                    </Nav>       
+                  </Col>
+                  <Col sm={12} md={9} className="mt-4">
+                    <TabContent>
+                      <Biography tabTitle="biography" title="Biography" content={bio.biography} />
+                    </TabContent>              
+                    {(bio.representativeMatters) && (
                       <TabContent>
-                        <Biography tabTitle="biography" title="Biography" content={bio.biography} />
-                      </TabContent>              
-                      {(bio.representativeMatters) && (
-                        <TabContent>
-                          <Matters tabTitle="representative-matters" title="Representative Matters" content={bio.representativeMatters} />
-                        </TabContent>
-                      )}
-                      {(bio.representativeClients) &&  (
-                        <TabContent>
-                          <Matters tabTitle="representative-clients" title="Representative Clients" content={bio.representativeClients} />
-                        </TabContent>
-                      )}
-                      {(bio.presentations) &&  (
-                        <TabContent>
-                          <TableTab tabTitle="presentations" title="Presentations" content={bio.presentations} />
-                        </TabContent>
-                      )}
-                      {(bio.publications) && (
-                        <TabContent>
-                          <TableTab tabTitle="publications" title="Publications" content={bio.publications} />
-                        </TabContent>
-                      )}
-                      {(bio.media) && (
-                        <TabContent>
-                          <TableTab tabTitle="media" title="Media" content={bio.media} />
-                        </TabContent>
-                      )}
-                      {(bio.blogPosts.length > 0) && (
-                        <TabContent>
-                          <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
-                        </TabContent>
-                      )}
-                      {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
-                        <TabContent>
-                          <Articles tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} />
-                        </TabContent>
-                      )}
-                      {(bio.videos) && (
-                        <TabContent>
-                          <VideoTab title="Videos" content={bio.videos} tabTitle="videos" />
-                        </TabContent>
-                      )}
-                      {(bio.tabs) &&  (
-                        <TabContent>
-                          {filterBody.map((b) => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} tabTitle={urlify(b[1])} />)}
-                        </TabContent>
-                      )}
-                      { (bio.clients) && (bio.clients.length > 0) && <FeaturedSlider content={bio.clients} title="Clients" />}
-                      { (bio.awards) && (bio.awards.length > 0) && <FeaturedSlider content={bio.awards} title="Awards" />}
-                      { (newsEventArticles.length > 0) && <RelatedArticles title="News & Events" content={newsEventArticles} /> }
-                      { (bio.blogPosts) && (bio.blogPosts.length > 0) && <RelatedArticles title="Recent Articles" content={sortByDateKey(bio.blogPosts, 'date')} />} 
-                    </Col>
-                    <Col sm={12} md={3} className="mt-4">
-                      <SidebarContent
-                        title="Related Practices"
-                        content={bio.relatedPractices}
-                        itemKey={0}
-                      />
-                      <br />
-                      <SidebarContent
-                        title="Additional Information"
-                        content={bio.sidebar}
-                        itemKey={1}
-                      />
-                    </Col>     
-                  </Row>
-                </Container>
-              </TabContainer>
-                  
-              </div>
-              <Footer slides={slides} />
+                        <Matters tabTitle="representative-matters" title="Representative Matters" content={bio.representativeMatters} />
+                      </TabContent>
+                    )}
+                    {(bio.representativeClients) &&  (
+                      <TabContent>
+                        <Matters tabTitle="representative-clients" title="Representative Clients" content={bio.representativeClients} />
+                      </TabContent>
+                    )}
+                    {(bio.presentations) &&  (
+                      <TabContent>
+                        <TableTab tabTitle="presentations" title="Presentations" content={bio.presentations} />
+                      </TabContent>
+                    )}
+                    {(bio.publications) && (
+                      <TabContent>
+                        <TableTab tabTitle="publications" title="Publications" content={bio.publications} />
+                      </TabContent>
+                    )}
+                    {(bio.media) && (
+                      <TabContent>
+                        <TableTab tabTitle="media" title="Media" content={bio.media} />
+                      </TabContent>
+                    )}
+                    {(bio.blogPosts.length > 0) && (
+                      <TabContent>
+                        <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
+                      </TabContent>
+                    )}
+                    {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
+                      <TabContent>
+                        <Articles tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} />
+                      </TabContent>
+                    )}
+                    {(bio.videos) && (
+                      <TabContent>
+                        <VideoTab title="Videos" content={bio.videos} tabTitle="videos" />
+                      </TabContent>
+                    )}
+                    {(bio.tabs) &&  (
+                      <TabContent>
+                        {filterBody.map((b) => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} tabTitle={urlify(b[1])} />)}
+                      </TabContent>
+                    )}
+                    { (bio.clients) && (bio.clients.length > 0) && <FeaturedSlider content={bio.clients} title="Clients" />}
+                    { (bio.awards) && (bio.awards.length > 0) && <FeaturedSlider content={bio.awards} title="Awards" />}
+                    { (newsEventArticles.length > 0) && <RelatedArticles title="News & Events" content={newsEventArticles} /> }
+                    { (bio.blogPosts) && (bio.blogPosts.length > 0) && <RelatedArticles title="Recent Articles" content={sortByDateKey(bio.blogPosts, 'date')} />} 
+                  </Col>
+                  <Col sm={12} md={3} className="mt-4">
+                    <SidebarContent
+                      title="Related Practices"
+                      content={bio.relatedPractices}
+                      itemKey={0}
+                    />
+                    <br />
+                    <SidebarContent
+                      title="Additional Information"
+                      content={bio.sidebar}
+                      itemKey={1}
+                    />
+                  </Col>     
+                </Row>
+              </Container>
+            </TabContainer>
+            </div>
+            <Footer slides={slides} />
           </>
         )}
     </>

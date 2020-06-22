@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
@@ -57,62 +58,36 @@ export default function Attorney({slides, bio }) {
           </Container>
         ) : (
           <>
-            <Head>
-              <title>{bio.seo.title}</title>
-              <meta name="description" content={bio.seo.metaDescription} />
-              <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-              <link rel="canonical" href={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`} />
-              <meta property="og:title" content={bio.seo.title} />
-              <meta property="og:site_name" content="Scarinci Hollenbeck" />
-              <meta property="og:type" content="profile" />
-              <meta property="og:locale" content="en_US" />
-              <meta property="og:url" content={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`} />
-              <meta property="og:image" content={bio.seo.featuredImg} />
-              <meta property="og:image:secure_url" content={bio.seo.featuredImg} />
-              <meta property="og:image:width" content={bio.seo.imgWidth} />
-              <meta property="og:image:height" content={bio.seo.imgHeight} />
-              <meta property="og:image:type" content="image/jpg" />
-              <meta property="profile:first_name" content={bio.seo.firstName} />
-              <meta property="profile:last_name" content={bio.seo.lastName} />
-              <meta name="twitter:card" content="summary" />
-              <meta name="twitter:description" content={bio.seo.metaDescription} />
-              <meta name="twitter:title" content={bio.seo.title} />
-              <meta name="twitter:site" content="@S_H_Law" />
-              <meta name="twitter:image" content={bio.seo.featuredImg} />
-              <meta name="twitter:creator" content="@S_H_Law" />
-              <script type="application/ld+json">
-                {
-                `
-                {
-                  "@context": "http://schema.org",
-                  "@type": "LegalService",
-                  "name": "${bio.seo.fullName}",
-                  "description": "${bio.seo.schemaDescription}",
-                  "url": "https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}",
-                  "image": "${bio.seo.featuredImg}",
-                  "priceRange": "$$$$",
-                  "telephone": "${bio.seo.phone}",
-                  "email": "${bio.seo.email}",
-                  "hasMap": "${bio.seo.map}",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "${bio.seo.town}",
-                    "addressRegion": "${bio.seo.state}",
-                    "postalCode": "${bio.seo.zip}",
-                    "streetAddress": "${bio.seo.address}"
-                  },
-                  "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": "${bio.seo.lat}",
-                    "longitude": "${bio.seo.long}"
-                  },
-                  "sameAs": "${bio.seo.socialMedia}",
-                  "openingHours": "Mo,Tu,We,Th,Fr, 8:00-5:00"
-                }
-                `
-              }
-              </script>
-              </Head>
+              <NextSeo
+                title={bio.seo.title}
+                description={bio.seo.metaDescription}
+                canonical={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`}
+                openGraph={{
+                  url: `https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`,
+                  title: 'Scarinci Hollenbeck',
+                  description:bio.seo.metaDescription,
+                  images: [
+                    {
+                      url: bio.seo.featuredImg,
+                      width: 200,
+                      height: 220,
+                      alt: bio.seo.title,
+                    }
+                  ],
+                  site_name: 'Scarinci Hollenbeck',
+                }}
+                twitter={{
+                  handle: '@S_H_Law',
+                  site: `https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`,
+                  cardType: bio.seo.metaDescription,
+                }}
+              />
+              <SocialProfileJsonLd
+                type="Person"
+                name={bio.seo.fullName}
+                url={`https://scarincihollenbeck.com/${bio.seo.canonicalLink}`}
+                sameAs={bio.seo.socialMedia}
+              />
               <div id="single-attorney">
               <MultiSubHeader        
                 image={attorneyHeaderJPG}

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import Footer from '../../components/footer';
 import SimpleList from '../../components/archivepractice/practice-simple-list';
 import PracticeBlockList from '../../components/archivepractice/practice-block-list';
@@ -27,12 +28,11 @@ export default function Administration({ slides, core, additional, business, seo
 
   return (
     <>
-      <Head>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.metaDescription} />
-        <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <link rel="canonical" href={`http://scarincihollenbeck.com/${seo.canonicalLink}`} />
-      </Head>
+      <NextSeo
+          title={seo.title}
+          description={seo.metaDescription}
+          canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        />
       <SingleSubHeader
           title="Legal Practices"
           subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today&apos;s businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."         

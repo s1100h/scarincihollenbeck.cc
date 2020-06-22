@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -67,6 +68,7 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
       ) : (
         <>
           <div id="authors">
+            <NextSeo nofollow={true} />
             <ArchiveLayout
               header={(<Breadcrumbs breadCrumb={[authorJson.currentUser, currentPage]} categorySlug={authorJson.currentUser} />)}
               body={(

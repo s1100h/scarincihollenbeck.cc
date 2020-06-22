@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import BarLoader from 'react-spinners/BarLoader';
@@ -27,12 +28,11 @@ export default function Location({ slides, seo, offices, lyndhurst, posts}){
      
     ) : (
       <>
-        <Head>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.metaDescription} />
-          <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-          <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />     
-        </Head>
+      <NextSeo
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      />
         <div id="location">
           <SingleSubHeader
             title="Office Locations"

@@ -275,7 +275,7 @@ function single_data($request) {
       "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
       "postContent" => html_entity_decode(htmlspecialchars_decode(str_replace('"', '', $post_content))),
       "primaryCategory" => $categories[0],
-      "author" => implode($authors_names)
+      "author" => $authors_names
     )
   );
   return rest_ensure_response($post_data);

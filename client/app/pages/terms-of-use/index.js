@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -20,22 +21,11 @@ export default function TermsOfUse({slides, title, content, posts, seo }){
 
   return (
     <>
-      <Head>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.metaDescription} />
-        <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />
-        <script type="application/ld+json">
-          {` {
-            "@context": "http://schema.org",
-            "@type": "WebPage",
-            "name": "${seo.title}",
-            "description": "${seo.metaDescription}",
-            "publisher": {
-                "@type": "LegalServices",
-                "name": "Scarinci Hollenbeck"
-            }`}
-        </script>
-        </Head>
+      <NextSeo
+        title={seo.title || ''}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      />
         <SingleSubHeader
           title={title}
           subtitle={subTitle}         

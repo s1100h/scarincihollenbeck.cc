@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
@@ -54,22 +55,11 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
 
   return (
     <>
-      <Head>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.metaDescription} />
-        <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />
-        <script type="application/ld+json">
-          {` {
-            "@context": "http://schema.org",
-            "@type": "WebPage",
-            "name": "${seo.title}",
-            "description": "${seo.metaDescription}",
-            "publisher": {
-                "@type": "LegalServices",
-                "name": "Scarinci Hollenbeck"
-            }`}
-        </script>
-      </Head>
+      <NextSeo
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      />
       <SingleSubHeader
         image={cityBackgroundJPG}
         title={title}

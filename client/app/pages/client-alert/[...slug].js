@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -32,54 +33,48 @@ export default function ClientAlert({ slides, post }){
        
       ) : (
         <>
-          <Head>
-            <title>{post.seo.title}</title>
-            <meta name="description" content={post.seo.metaDescription} />
-            <link rel="canonical" href={post.seo.canonicalLink} />
-            <meta property="og:locale" content="en_US" />
-            <meta property="og:type" content="article" />
-            <meta property="og:title" content={post.seo.title} />
-            <meta property="og:description" content={post.seo.metaDescription} />
-            <meta property="og:url" content={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`} />
-            <meta property="og:site_name" content="Scarinci Hollenbeck" />
-            <meta property="article:publisher" content="https://www.facebook.com/ScarinciHollenbeck/" />
-            {(post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => <meta key={t.ID || t.term_id} property="article:tag" content={t.name} />) : ''}
-            <meta property="article:published_time" content={post.seo.publishedDate} />
-            <meta property="article:modified_time" content={post.seo.updatedDate} />
-            <meta property="og:updated_time" content={post.seo.updatedDate} />
-            <meta property="og:image" content={(post.seo.featuredImg) ? post.seo.featuredImg : shDiamondPNG} />
-            <meta property="og:image:secure_url" content={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`} />
-            <meta property="og:image:width" content="300" />
-            <meta property="og:image:height" content="150" />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:description" content={post.seo.metaDescription} />
-            <meta name="twitter:title" content={post.seo.title} />
-            <meta name="twitter:site" content="@S_H_Law" />
-            <meta name="twitter:image" content={shDiamondPNG} />
-            <meta name="twitter:creator" content="@S_H_Law" />
-            <script type="application/ld+json">
-              {`
-                "@context": "https://schema.org", 
-                "@type": "BlogPosting",
-                "headline": "${post.seo.title}",
-                "image": "${(post.seo.featuredImg) ? post.seo.featuredImg : shDiamondPNG}", 
-                "genre": "${(post.seo.hasOwnProperty('primaryCategory')) && post.seo.primaryCategory.title}", 
-                "keywords": ${(post.seo.tags !== undefined && post.seo.tags.length > 0) && post.seo.tags.map((tag) => tag.name.toString())}, 
-                "publisher": "Scrarinci Hollenbeck, LLC",
-                "url": "http://scarinihollenbeck.com/client-alert/${post.seo.canonicalLink}",
-                "datePublished": "${post.seo.publishedDate}",
-                "dateCreated": "${post.seo.updatedDate}",
-                "dateModified": "${post.seo.updatedDate}",
-                "description": "${post.seo.metaDescription}",
-                "articleBody": "${post.seo.postContent}",
-                  "author": {
-                  "@type": "Person",
-                  "name": "${post.seo.author}"
+          <NextSeo
+            title={post.seo.title}
+            description={post.seo.metaDescription}
+            canonical={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            openGraph={{
+              url: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              title: post.seo.title,
+              description:post.seo.metaDescription,
+              type: 'article',
+              article: {
+                publishedTime: post.seo.publishedDate,
+                modifiedTime: post.seo.updatedDate,
+                authors: post.seo.authors,
+                tags: (post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => t.name ) : []
+              },
+              images: [
+                {
+                  url: (post.seo.featuredImg) ? post.seo.featuredImg : shDiamondPNG,
+                  width: 750,
+                  height: 350,
+                  alt: post.seo.title,
                 }
-              
-              `}
-            </script>
-            </Head>
+              ]
+            }}
+            twitter={{
+              handle: '@S_H_Law',
+              site: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              cardType: post.seo.metaDescription,
+            }}
+            />
+              <ArticleJsonLd
+                url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+                title={`${post.seo.title}`}
+                images={(post.seo.featuredImg) ? [post.seo.featuredImg ]: [shDiamondPNG]}
+                datePublished={post.seo.publishedDate}
+                dateModified={post.seo.updatedDate}
+                authorName={post.seo.author}
+                publisherName="Scarinci Hollenbeck, LLC"
+                publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
+                description={`${post.seo.metaDescription}`}
+              />
+         
             <SingleSubHeader
               image={blogHeaderJPG}
               title={post.title}

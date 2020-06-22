@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import CoronaHeader from '../components/frontpage/corona-header';
 import ColumnContent from '../components/frontpage/column-content';
@@ -19,54 +20,30 @@ export default function Home({
   
   return(
   <>
-    <Head>
-      <title>{seo.title}</title>
-      <meta charSet="utf-8"/>
-      <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport"/>
-      <meta name="description" content={seo.metaDescription} />
-      <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <link rel="canonical" href="https://scarincihollenbeck.com/" />
-      <meta property="og:locale" content="en_US" />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={seo.title} />
-      <meta property="og:description" content={seo.metaDescription} />
-      <meta property="og:url" content="https://scarincihollenbeck.com/" />
-      <meta property="og:site_name" content="Scarinci Hollenbeck" />
-      <meta property="og:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-      <meta property="og:image:secure_url" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-      <meta property="og:image:width" content="750" />
-      <meta property="og:image:height" content="350" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:description" content={seo.metaDescription} />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:site" content="@S_H_Law" />
-      <meta name="twitter:image" content="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png" />
-      <meta name="twitter:creator" content="@S_H_Law" />
-      <meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
-      <meta name="google-site-verification" content="googlee1788c62f584220b" /> 
-      <script type="application/ld+json">
-        {
-          `
+    <NextSeo
+      title={seo.title}
+      description={seo.metaDescription}
+      canonical="https://scarincihollenbeck.com/"
+      openGraph={{
+        url: 'https://scarincihollenbeck.com/',
+        title: 'Scarinci Hollenbeck',
+        description:seo.metaDescription,
+        images: [
           {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "Scarinci Hollenbeck",
-            "url": ""https://scarincihollenbeck.com/"",
-            "sameAs": [
-              "https://www.facebook.com/ScarinciHollenbeck/",
-              "https://twitter.com/s_h_law",
-              "https://www.linkedin.com/company/scarinci-hollenbeck-llc"
-            ],
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://scarincihollenbeck.com/search?q={search_term}",
-              "query-input": "required name=search_term"
-            }
-          }      
-          `
-        }
-      </script> 
-    </Head>
+            url: 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png',
+            width: 750,
+            height: 350,
+            alt: 'Og Image Alt',
+          }
+        ],
+        site_name: 'Scarinci Hollenbeck',
+      }}
+      twitter={{
+        handle: '@S_H_Law',
+        site: 'https://scarincihollenbeck.com',
+        cardType: 'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
+      }}
+    />
     <CoronaHeader />
     <Container>
       <ColumnContent corePractices={corePractices} />

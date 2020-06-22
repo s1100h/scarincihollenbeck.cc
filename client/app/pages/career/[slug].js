@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -25,22 +26,11 @@ export default function Career({slides, careerJson}) {
           </Container>
         ) : (
           <>
-            <Head>
-              <title>{careerJson.seo.title}</title>
-              <meta name="description" content={careerJson.seo.metaDescription} />
-              <link rel="canonical" href={`https://scarincihollenbeck.com/career/${careerJson.seo.canonicalLink}`} />
-              <script type="application/ld+json">
-                {` {
-                  "@context": "http://schema.org",
-                  "@type": "WebPage",
-                  "name": "${careerJson.seo.title}",
-                  "description": "${careerJson.seo.metaDescription}",
-                  "publisher": {
-                      "@type": "LegalServices",
-                      "name": "Scarinci Hollenbeck"
-                  }`}
-              </script>
-            </Head>
+            <NextSeo
+              title={careerJson.seo.title}
+              description={careerJson.seo.metaDescription}
+              canonical={`http://scarincihollenbeck.com/${careerJson.seo.canonicalLink}`}
+            />
             <SingleSubHeader         
               image={blogHeaderJPG}
               title={careerJson.title}

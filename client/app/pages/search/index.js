@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import Footer from '../../components/footer';
 import Breadcrumbs from '../../components/breadcrumbs';
@@ -53,6 +54,7 @@ export default function SearchPage({ slides, firmNews, firmEvents, firmInsights}
   return (
     <> 
       <div id="search">
+        <NextSeo nofollow={true} />
         <ArchiveLayout
           header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
           body={(

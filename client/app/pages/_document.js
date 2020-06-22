@@ -31,7 +31,12 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head/ >
+        <Head>
+          <meta charSet="utf-8"/>
+          <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport"/>
+          <meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
+          <meta name="google-site-verification" content="googlee1788c62f584220b" /> 
+        </Head>
         <body>
           <Main />
           <NextScript />

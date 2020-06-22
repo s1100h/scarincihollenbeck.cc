@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -21,41 +22,11 @@ export default function GovernmentEducationCovidResponseTeam({slides, title, con
 
   return (
     <>
-      <Head>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.metaDescription} />
-        <link rel="canonical" href={`https://scarincihollenbeck.com/${seo.canonicalLink}`} />
-        <script type="application/ld+json">
-          {` {
-                "@context": "http://schema.org",
-                "@type": "LegalService",
-                "name": "${seo.practiceTitle}",
-                "description": "${seo.metaDescription}",
-                "url": "https://scarincihollenbeck.com/${seo.canonicalLink}",
-                "image": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png",
-                "telephone": "201-896-4100",
-                "email": "info@sh-law.com",
-                "hasMap": "https://www.google.com/maps/place/1100+Valley+Brook+Ave,+Lyndhurst,+NJ+07071/@40.8023747,-74.1104934,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2561a06bdb41f:0xb3627d0eda6743c8!8m2!3d40.8023707!4d-74.1083047",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Lyndhurst",
-                  "addressRegion": "NJ",
-                  "postalCode": "07071",
-                  "streetAddress": "1100 Valley Brook Ave., P.O. Box 790"
-                },
-                "geo": {
-                  "@type": "GeoCoordinates",
-                  "latitude": "40.802374",
-                  "longitude": ",-74.1104934"
-                },
-                "sameAs": [
-                  "https://www.facebook.com/ScarinciHollenbeck/",
-                  "https://twitter.com/s_h_law?lang=en"
-                ],
-                "openingHours": "Mo,Tu,We,Th,Fr, 8:00-5:00"
-              }`}
-        </script>
-        </Head>
+    <NextSeo
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      />
       <NavBar />
       <SingleSubHeader
         title={title}
