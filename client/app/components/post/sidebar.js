@@ -8,7 +8,7 @@ export default function Sidebar(props) {
   const { posts, attorneys } = props;
 
   return (
-    <div className="hide-print">
+    <div className="d-print-none">
       <Search />
       {/** TOP ARTICLES */}
       <TrendingStories title="Trending Stories" content={posts} />

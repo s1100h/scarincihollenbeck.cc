@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { NexSeo, ArticleJsonLd } from 'next-seo';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';

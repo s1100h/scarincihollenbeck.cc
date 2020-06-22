@@ -5,7 +5,7 @@ export default function AuthorBio(props) {
   const { author } = props;
 
   return (
-    <div className="w-100 hide-print mt-5">
+    <div className="w-100 d-print-none mt-5">
       {
         (author) && author.map((a) => (
           <div key={addRandomKey(a.name)} className="mb-2">

@@ -144,3 +144,8 @@ export function formatCorePractices(link) {
     link: link.slug 
   }
 }
+
+export function printScreen() {
+  window.print();
+  return false;
+}

@@ -88,6 +88,7 @@ export default function ClientAlert({ slides, post }){
                     content={post.content}
                     eventCat={post.isEventCategory}
                     title={post.title}
+                    subTitle={post.subTitle}
                     author={post.author}
                     date={post.date}
                     tags={post.tags}

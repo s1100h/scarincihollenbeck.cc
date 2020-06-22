@@ -43,9 +43,9 @@ export default function SinglePractice({ slides, practice, corePractices }){
       ) : (
         <>
             <NextSeo
-              title={seo.title}
-              description={seo.metaDescription}
-              canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+              title={practice.seo.title}
+              description={practice.seo.metaDescription}
+              canonical={`http://scarincihollenbeck.com/${practice.seo.canonicalLink}`}
             />
             <SingleSubHeader
               image={cityBackgroundJPG}

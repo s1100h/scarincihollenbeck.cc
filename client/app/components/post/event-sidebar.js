@@ -12,7 +12,7 @@ export default function EventSidebar(props) {
 
   const eDetails = eventDetails[0];
   return (
-    <div className="hide-print">
+    <div className="d-print-none">
       <Search />
       {/** Event Details */}
       <div className="w-100 mt-4">

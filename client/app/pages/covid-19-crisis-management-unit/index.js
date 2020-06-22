@@ -22,7 +22,6 @@ export default function Covid19CrisisManagementUnit({slides, title, content, pos
 
   return (
     <>
-      <Head>
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}

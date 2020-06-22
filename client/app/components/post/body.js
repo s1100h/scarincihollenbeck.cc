@@ -17,6 +17,7 @@ export default function Body(props) {
     date,
     title,
     tags,
+    subTitle
   } = props;
 
 
@@ -24,13 +25,18 @@ export default function Body(props) {
   return (
     <>
       <Breadcrumbs title={title} />
-      <img src={featuredImage || noImgFoundPNG } className="w-100 mb-3" alt={title} />
+      <img src={featuredImage || noImgFoundPNG } className="w-100 mb-3 d-print-none" alt={title} />
+      {/* title and subtitle for print version only */}
+      <div class="d-none d-print-block">
+        <h1>{title}</h1>
+        <h2>{subTitle}</h2>
+      </div>
       {/* Author & date & Category */}
       <ArticleDetails author={author} date={date} />
       <hr />
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
       {(tags.length > 0) && (
-        <div className="small-excerpt ml--21px mb-0">
+        <div className="small-excerpt ml--21px mb-0 d-print-none">
           <ul className="no-dots list-inline">
             <li className="list-inline-item"><strong>Tag: </strong></li>
             {tags.map((tag, index) => (

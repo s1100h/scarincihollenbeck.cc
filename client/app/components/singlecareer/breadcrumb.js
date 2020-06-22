@@ -15,7 +15,7 @@ export default function BreadCrumb(props) {
         </a>
       </Link>
       <strong className="text-black mt-2 mx-2 proxima-bold">
-        <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
+        <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
       </strong> 
       <Link href="/careers">
         <a className="red-title proxima-bold">
@@ -23,7 +23,7 @@ export default function BreadCrumb(props) {
         </a>
       </Link> 
       <strong className="text-black mt-2 mx-2 proxima-bold">
-        <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
+        <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
       </strong>
       <Link href="/career/[slug]" as={router.asPath}>
         <a className="red-title proxima-bold text-uppercase">

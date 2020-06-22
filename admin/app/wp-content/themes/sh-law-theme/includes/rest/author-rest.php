@@ -166,14 +166,15 @@ function get_author_list() {
   $authors = get_users();
   $results = [];
 
-  function filter_callback($element) {
-    if (isset($element->user_url) && $element->user_url != '') {
-      return TRUE;
-    }
-    return FALSE;
-  }
 
-  $filtered_authors = array_filter($authors, filter_callback);
+
+  $filtered_authors = array_filter($authors, function($element) {
+    if (isset($element->user_url) && $element->user_url != '') {
+      return True;
+    }else {
+      return False;
+    }
+  }, ARRAY_FILTER_USE_BOTH);
 
   foreach($filtered_authors as $author) {
     $author_data = $author;

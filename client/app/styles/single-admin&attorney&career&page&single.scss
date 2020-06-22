@@ -312,3 +312,15 @@
     }
   }
 }
+
+/** Print query **/
+@media print {
+  #single {
+    .col-md-7 {
+      width: 100%;
+      overflow: initial;
+      position: relative;
+      overflow-y: visible; 
+    }
+  }
+}

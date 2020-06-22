@@ -11,7 +11,7 @@ function SocialShareFooter(props) {
 
   return (
     <>
-      <div className="line-header hide-print mt-5">
+      <div className="line-header d-print-none mt-5">
         <h3>Please Share This article</h3>
       </div>
       <div className="d-block hide-print">

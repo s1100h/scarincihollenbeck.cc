@@ -19,7 +19,7 @@ export default function SingleSubHeader(props) {
   const { title, subtitle, image, height } = props;
   
   return (
-    <HeaderBckGround image={image} height={height} className="jumbotron jumbotron-fluid">
+    <HeaderBckGround image={image} height={height} className="jumbotron jumbotron-fluid d-print-none">
       <Container>
         <Row>
           <Col sm={12} md={{ span: 7, offset: 2 }} className="bg-black-background text-white">

@@ -13,14 +13,14 @@ function Breadcrumbs(props) {
   filterUrl.pop();
 
   return (
-    <div className="mt-0 mb-3">
+    <div className="mt-0 mb-3 d-print-none">
       <h6>
         <>
           <a href="https://scarincihollenbeck.com" className="red-title proxima-bold">
             HOME
           </a>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FontAwesomeIcon icon={faCaretRight} />
+            <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px"/>
           </strong>
         </>
         {filterUrl.map((url) => (
@@ -31,7 +31,7 @@ function Breadcrumbs(props) {
               </a>
             </Link>            
             <strong className="text-black mt-2 mx-2 proxima-bold">
-              <FontAwesomeIcon icon={faCaretRight} />
+              <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px"/>
             </strong>
           </span>
         ))}

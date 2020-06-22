@@ -15,7 +15,7 @@ export default function Footer(props) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Container fluid className="bk--gray d-prin-none">
+    <Container fluid className="bk--gray d-print-none">
       <div className="just-in-container w-75">
         <JustInArticlesCarousel slides={slides} />
       </div>

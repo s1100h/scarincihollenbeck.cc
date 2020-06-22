@@ -93,8 +93,9 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
 }
 
 export async function getStaticPaths() {
-  const authorResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/list`, { headers });
-  const authors = await authorResponse.json()
+  const [authors] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/list`, { headers }).then(data => data.json())
+  ]);
 
   return  {
     paths: authors.map(author => `/author/${author}`) || [],
