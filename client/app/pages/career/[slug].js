@@ -61,7 +61,7 @@ export async function getStaticPaths() {
   const careersJson = await careersResponse.json();
 
   return  {
-    paths: careersJson.careers.map(career => `/career${career.slug}`) || [],
+    paths: (careersJson.hasOwnProperty('careers')) ? careersJson.careers.map(career => `/career${career.slug}`) : [],
     fallback: true,
   }
 }

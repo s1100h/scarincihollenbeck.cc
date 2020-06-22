@@ -1,11 +1,10 @@
 ## Pre-Post Production
-2. Add Sitemap & robot.txt -- https://dev.to/embiem/auto-generate-sitemapxml-in-nextjs-2nh1
+1. Make sure the form fields match up to the key values for the forms api
 
 ## Post Production
-.5 Create a branch that has the new client and old client on it and pull that into production server to test
 1. Make sure captcha is working properly
 2. Make sure all forms work
-3. Fix people's pictures
+3. Set proper file permissions for WP Admin
 
 ## Post Post Production
 1. Run site through linter
