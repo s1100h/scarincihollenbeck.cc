@@ -588,6 +588,9 @@ require_once plugin_dir_path(__FILE__) . "/includes/rest/core-practices-rest.php
 // load just in posts API endpoints
 require_once plugin_dir_path(__FILE__) . "/includes/rest/just-in-posts-rest.php";
 
+// load just in posts API endpoints
+require_once plugin_dir_path(__FILE__) . "/includes/rest/all-categories-and-posts-rest.php";
+
 
 // filter out admin subdomain from get_permalink function
 add_filter( 'post_link', 'filter_permalink_subdomain', 99 );

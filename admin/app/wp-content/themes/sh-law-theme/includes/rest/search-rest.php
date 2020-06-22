@@ -64,7 +64,7 @@ function search_query_data($request) {
   $search_data = array();
 
   // add term to results
-  $search_data['term'] = implode(" ", $slugTerm);
+  $search_data['term'] = ucfirst(implode(" ", $slugTerm));
 
   // add number of pages to results
   $search_data['pages'] = ceil(count($posts) / $numposts);

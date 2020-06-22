@@ -237,7 +237,7 @@ function attorney_list()
         // build attorney bio object to send out in /attorneys endpoint
         $bio = (object) array(
             "id" => $id,
-            "link" => "/attorney/" . $post->post_name,
+            "link" => "/" . $post->post_name,
             "title" => $post->post_title,
             "main_photo" => $main_photo["url"],
             "better_featured_image" => get_the_post_thumbnail_url($id, 'full'),

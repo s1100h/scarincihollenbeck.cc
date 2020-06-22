@@ -37,8 +37,12 @@ function career_portal_data()
   $career_portal_data = array();
 
   foreach($careers as $car) {
+    $career_slug = str_replace(home_url(), '', get_permalink($car->ID));
+    $career_slug = str_replace('/careers', '', $career_slug);
+
     $career_portal_data['careers'][] = array(
       "title" => get_field("position", $car->ID),
+      "slug" => rtrim($career_slug, "/"),
       "positionType" => get_field("position_type", $car->ID),
       "contact" => get_field("contact", $car->ID),
       "startDate" => get_field('start_date', $car->ID),

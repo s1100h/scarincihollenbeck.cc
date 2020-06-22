@@ -25,7 +25,7 @@ function archive_query_data($request) {
   $offset = $request["offset"];
   $archive_data = array();
 
-  $numposts = 10;
+  $numposts = 9;
 
   // set results to match offset 
   $start = ($offset - 1) * $numposts; 
@@ -46,13 +46,16 @@ function archive_query_data($request) {
   // add term to results
   $archive_data['term'] = $slug;
 
+    // add term to results
+    $archive_data['currentPage'] = (int)$offset;
+
   // add number of pages to results
   $archive_data['pages'] = ceil(count($posts) / $numposts);
 
   foreach(range($start, $end) as $i) {
     if(isset($posts[$i])) {
       $archive_data['results'][] = array(
-        "title" => $posts[$i]->post_title,
+        "title" => html_entity_decode(htmlspecialchars_decode($posts[$i]->post_title)),
         "image" => get_the_post_thumbnail_url($posts[$i]->ID, 'full'),
         "imgAlt" => "article ".$posts[$i]->ID,
         "link" => str_replace(home_url(), '', get_permalink($posts[$i]->ID)),
@@ -76,7 +79,7 @@ function archive_query_data($request) {
 
   foreach($top_five_posts->posts as $p) {
     $archive_data['posts'][] = array(
-      "title" => get_the_title($p->ID),
+      "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
       "image" => get_the_post_thumbnail_url($p->ID, 'full'),
       "link" => str_replace(home_url(), '', get_permalink($p->ID)),
       "author" => get_the_author_meta('display_name', (int)$p->post_author)

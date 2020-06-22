@@ -15,8 +15,46 @@ add_action("rest_api_init", function()
     "methods" => WP_REST_SERVER::READABLE,
     "callback" => "single_data"
   ));
-  
+  register_rest_route("single", "list/(?P<slug>[a-zA-Z0-9-+.,%20$]+)", array(
+    "methods" => WP_REST_SERVER::READABLE,
+    "callback" => "all_posts_by_category"
+  ));
 });
+
+function all_posts_by_category($request) {
+  $slug = $request['slug'];
+  $category = get_category_by_slug($slug);
+  $id = $category->term_id;
+
+  $query_posts = new WP_Query( array(
+    'cat' => $id,
+    'posts_per_page' => 100,
+    'post_status' => 'publish',
+  ));
+  $posts = $query_posts->posts;
+  $links = [];
+
+  foreach($posts as $post) {
+    $links[] = $post->post_name;
+  };
+  
+  return array_unique($links);
+}
+function get_post_featured_image($content) {
+  // expresstion to match image element
+  $regex = '/src="([^"]*)"/';
+  // execute regex 
+  preg_match_all($regex, $content, $matches);
+  // reversing the matches array 
+  $matches = array_reverse($matches);
+
+  $results = '';
+
+  if(isset($matches[0][0])) {
+    $results = $matches[0][0];
+  }
+  return $results;
+}
 function get_previous_post_id( $post_id ) {
   // Get a global post reference since get_adjacent_post() references it
   global $post;
@@ -186,12 +224,32 @@ function single_data($request) {
     "ID" => 000,
   );
 
+  // get subtitle the first h2 text
+  $h2_pattern = "|<\s*h[2](?:.*)>(.*)<\/h2>|Ui";
+  preg_match_all($h2_pattern , $post_content, $h2_matches);
+
+  $sub_title_no_tags = $h2_matches[1][0];
+  $sub_title_tags = $h2_matches[0][0];
+
+  // remove the featured image from the text
+  $img_pattern = "/<img[^>]+\>/i";
+  preg_match_all($img_pattern , $post_content, $img_matches);
+
+  $remove_image_from_content = str_replace($img_matches[0][0], "", html_entity_decode(htmlspecialchars_decode($post_content)));
+
+
+  
+    $body_content = str_replace($sub_title_tags, "", $remove_image_from_content);
+
+
+  // remove the first h2 text from string
   $post_data = array (
-    "idTrueFalse" => $slugIsID,
+    "idTrueFalse" => $slugIsID,    
     "id" => $post_id,
     "title" => $post_title,
-    "featuredImage" => wp_get_attachment_image(get_post_thumbnail_id($post_id), 'full'),
-    "content" => html_entity_decode(htmlspecialchars_decode($post_content)),
+    "subTitle" => $sub_title_no_tags,
+    "featuredImage" => get_post_featured_image($post_content),
+    "content" => $body_content,
     "author" => $authors_data, 
     "date" => get_the_date("F j, Y", $post_id ),
     "categories" => $categories,
@@ -217,7 +275,7 @@ function single_data($request) {
       "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
       "postContent" => html_entity_decode(htmlspecialchars_decode(str_replace('"', '', $post_content))),
       "primaryCategory" => $categories[0],
-      "author" => implode($authors_names)
+      "author" => $authors_names
     )
   );
   return rest_ensure_response($post_data);

@@ -2,6 +2,10 @@
 
 api/app/node_modules/*
 client/app/node_modules/*
+client/app/frontend/node_modules/*
+client/app/backend/node_modules/*
+client2/app/node_modules/*
+client2/app/.next/*
 feed/app/node_modules/*
 forms/app/node_modules/*
 sitemaps/app/node_modules/*
@@ -17,4 +21,6 @@ admin/app/*.php
 admin/db/*
 admin/*.sql
 admin-old/*
+sitemaps/app/__pycache__/*
+sitemaps/app/env/*
 .env

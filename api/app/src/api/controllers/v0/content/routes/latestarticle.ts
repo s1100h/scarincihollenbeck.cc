@@ -28,9 +28,6 @@ router.get('/latest-articles', async (req: Request, res: Response) => {
     const parsedFirmEvents = parseResults(firmEventsKey);
     const parsedFirmInsights = parseResults(firmInsightsKey);
 
-    // store results
-    let results:any = {};
-
     // push formatted results to response results array
     const firmNewsMain = await parsedFirmNews.main.map((post: any) => responseObject(post));
     const firmNewsLatest = await parsedFirmNews.latest.map((post: any) => responseObject(post));
@@ -39,9 +36,9 @@ router.get('/latest-articles', async (req: Request, res: Response) => {
     const firmInsightsMain = await parsedFirmInsights.main.map((post: any) => responseObject(post));
     const firmInsightsLatest = await parsedFirmInsights.latest.map((post: any) => responseObject(post));
 
-    results = {
+    const results: any ={
       firmNews : [
-        ...firmNewsMain,
+         ...firmNewsMain,
         ...firmNewsLatest
       ],
       firmEvents : [
@@ -52,19 +49,22 @@ router.get('/latest-articles', async (req: Request, res: Response) => {
         ...firmInsightsMain,
         ...firmInsightsLatest
       ]
-    };    
-
-    if (Object.keys(results).length > 0) {
-      res.status(200).send(results);
     }
+    // results = {
+    //   
+    //   firmEvents : [
+    //     ...firmEventsMain,
+    //     ...firmEventsLatest
+    //   ],
+    //   
+    // }; 
+    
+  res.send(results);
 
-    if (Object.keys(results).length < 0) {
-      res.status(400).send({ message: 'Sorry, no articles were found' });
-    }
   } catch (err) {
-    if (err) {
-      res.status(400).send(err);
-    }
+    res.status(400).send({
+      'error': err
+    });
   }
 });
 
