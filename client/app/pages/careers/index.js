@@ -87,7 +87,7 @@ export async function getStaticProps({params}) {
     props: {
       slides,
       seo,
-      careers: careersJson.hasOwnProperty('careers') ? careersJson.careers : []
+      careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : []
     },
   }
 }
