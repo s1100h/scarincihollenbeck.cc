@@ -1,10 +1,10 @@
-FROM node:latest
-
-# create api dir for caching workers
-RUN mkdir /src
+FROM python:3.9.0a5
 
 WORKDIR /src
 ADD app /src
-RUN npm install
 
-CMD npm run start
+RUN pip install -r requirements.txt
+
+RUN virtualenv env
+
+CMD [ "python", "./app.py" ]

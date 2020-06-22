@@ -21,4 +21,6 @@ admin/app/*.php
 admin/db/*
 admin/*.sql
 admin-old/*
+sitemaps/app/__pycache__/*
+sitemaps/app/env/*
 .env

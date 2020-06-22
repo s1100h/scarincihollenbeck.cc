@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   forms:
     build: forms/
     container_name: site-forms
@@ -48,22 +47,6 @@ services:
     networks:
       - app-network
 
-  sitemaps:
-    build: sitemaps/
-    container_name: sitemaps
-    volumes:
-      - ./sitemaps/app:/src
-    env_file:
-      - .env
-    environment:
-      - ADMIN_SITE=${ADMIN_SITE}
-    ports:
-      - 8700:8700
-    links:
-      - wp
-    networks:
-      - app-network
-
   redis:
     image: redis
     container_name: cache
@@ -107,6 +90,16 @@ services:
       - ./admin/config/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
       - app-network
+
+  sitemaps:
+    build: sitemaps/
+    container_name: sitemap-generator
+    volumes:
+      - ./sitemaps/app:/src
+    networks:
+      - app-network
+   
+
 networks:
   app-network:
     driver: bridge 
