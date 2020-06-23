@@ -6,6 +6,6 @@ export default function PracticeContent(props) {
   return (
     <TabPane eventKey={tabTitle} title={title}>
       <div dangerouslySetInnerHTML={createMarkup(content)} />
-    </TabPane>    
-  )
+    </TabPane>
+  );
 }

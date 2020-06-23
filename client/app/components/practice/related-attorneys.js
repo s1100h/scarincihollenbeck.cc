@@ -5,7 +5,9 @@ import Form from 'react-bootstrap/Form';
 import AttorneyCard from '../attorney-card';
 
 export default function RelatedAttorneys(props) {
-  const { members, chair, title, handleLink } = props;
+  const {
+    members, chair, title, handleLink,
+  } = props;
 
   return (
     <>

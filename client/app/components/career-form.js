@@ -12,114 +12,119 @@ import useInput from '../utils/input-hook';
 const upload = require('superagent');
 
 export default function CareerForm() {
-  const { value:firstNameInput, bind:bindFirstNameInput, reset:resetFirstNameInput } = useInput('');
-  const { value:lastNameInput, bind:bindLastNameInput, reset:resetLastNameInput } = useInput('');
-  const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
-  const { value:phoneInput, bind:bindPhoneInput, reset:resetPhoneInput } = useInput('');
+  const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
+  const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
+  const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
+  const { value: phoneInput, bind: bindPhoneInput, reset: resetPhoneInput } = useInput('');
   const [files, setFiles] = useState([]);
-  const [preview, setPreview ] = useState([]);
+  const [preview, setPreview] = useState([]);
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
-  const [captcha, setCaptcha ] = useState(true);
+  const [captcha, setCaptcha] = useState(true);
   const [validated, setValidated] = useState(false);
 
- 
+
   const onDrop = useCallback((acceptedFiles) => {
-    if(acceptedFiles.length === 0) {
+    if (acceptedFiles.length === 0) {
       setFailure(true);
     }
 
     setPreview(files.map((file) => Object.assign(file, {
-      preview: URL.createObjectURL(file)
-     })));
+      preview: URL.createObjectURL(file),
+    })));
 
-    setFiles(acceptedFiles);  
-
+    setFiles(acceptedFiles);
   }, []);
 
   const thumbs = files.map((file) => (
     <div className="thumbInner" key={file.name} className="my-3">
-      <p className="my-0 py-0">{file.name} - <FontAwesomeIcon icon={faCheck} className="text-success mw-12" /></p>
+      <p className="my-0 py-0">
+        {file.name}
+        {' '}
+        -
+        {' '}
+        <FontAwesomeIcon icon={faCheck} className="text-success mw-12" />
+      </p>
     </div>
   ));
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({accept: '.odt,.doc,.docx,.pdf,.dotx', onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ accept: '.odt,.doc,.docx,.pdf,.dotx', onDrop });
 
 
- function formSubmit(e) {
-   e.preventDefault();
-   const req = upload.post(`https://forms.scarincihollenbeck.com/shlaw/site/career/form`).set(headers);
-   const inquiry = {
-    firstNameInput,
-    lastNameInput,
-    emailInput,
-    phoneInput,
-    files
-  };
+  function formSubmit(e) {
+    e.preventDefault();
+    const req = upload.post('https://forms.scarincihollenbeck.com/shlaw/site/career/form').set(headers);
+    const inquiry = {
+      firstNameInput,
+      lastNameInput,
+      emailInput,
+      phoneInput,
+      files,
+    };
 
-  req.set(inquiry);
+    req.set(inquiry);
 
-  req.end((err) => {
-    if (err) {
-      console.log('err', err);
-      setFailure(true);
-    }
-    
-    setSuccessMessage(true);
-    resetDisclaimerInput();
-    resetLastNameInput();
-    resetFirstNameInput();
-    resetEmailInput();
-    resetPhoneInput();
-    setSuccess(true);
-  });  
-}
+    req.end((err) => {
+      if (err) {
+        console.log('err', err);
+        setFailure(true);
+      }
+
+      setSuccessMessage(true);
+      resetDisclaimerInput();
+      resetLastNameInput();
+      resetFirstNameInput();
+      resetEmailInput();
+      resetPhoneInput();
+      setSuccess(true);
+    });
+  }
 
   return (
     <>
       <div className="w-100 border">
-      {(success) && (
+        {(success) && (
         <div className="alert alert-success w-75 mt-4">
-          Great, all documents have been uploaded and sent to the hiring staff at Scarinci Hollenbeck!          
+          Great, all documents have been uploaded and sent to the hiring staff at Scarinci Hollenbeck!
         </div>
-      )}
-      { (failure) && (
-          <div className="alert alert-danger w-50 mt-4">
-            There was an issue for more information please call 201-896-4100!            
-          </div>
-        )}           
+        )}
+        { (failure) && (
+        <div className="alert alert-danger w-50 mt-4">
+          There was an issue for more information please call 201-896-4100!
+        </div>
+        )}
       </div>
       <div className="mt-4">
-         <p className="text-muted">Please fill out the form below to apply for this position.</p>
-         <Form method="post" onSubmit={formSubmit}>
+        <p className="text-muted">Please fill out the form below to apply for this position.</p>
+        <Form method="post" onSubmit={formSubmit}>
           <Form.Row>
             <Form.Group as={Col} sm={12} md={6} controlId="validationCustom01">
-                <Form.Control required type="text" placeholder="First name" {...bindFirstNameInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} sm={12} md={6} controlId="validationCustom02">
-                <Form.Control required type="text" placeholder="Last name" {...bindLastNameInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>     
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} sm={12} md={6} controlId="validationCustom03">
-                <Form.Control required type="email" placeholder="Email" {...bindEmailInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} sm={12} md={6} controlId="validationCustom04">
-                <Form.Control required type="phone" placeholder="Phone" {...bindPhoneInput} />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>     
-            </Form.Row>            
-            <Form.Row>
-              <Form.Group as={Col} sm={12}>                
-                <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample</Form.Label>
-                <div className="thumbsContainer">
-                  {thumbs}
-                </div>
-                <div {...getRootProps()} className="dropzone-center">
+              <Form.Control required type="text" placeholder="First name" {...bindFirstNameInput} />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} sm={12} md={6} controlId="validationCustom02">
+              <Form.Control required type="text" placeholder="Last name" {...bindLastNameInput} />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} sm={12} md={6} controlId="validationCustom03">
+              <Form.Control required type="email" placeholder="Email" {...bindEmailInput} />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} sm={12} md={6} controlId="validationCustom04">
+              <Form.Control required type="phone" placeholder="Phone" {...bindPhoneInput} />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} sm={12}>
+              <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample</Form.Label>
+              <div className="thumbsContainer">
+                {thumbs}
+              </div>
+              <div {...getRootProps()} className="dropzone-center">
                 <input {...getInputProps()} />
                 {(isDragActive) ? (
                   <div className="red-title my-4 text-center d-block">
@@ -133,12 +138,12 @@ export default function CareerForm() {
                   </div>
                 )}
               </div>
-            </Form.Group>           
-            </Form.Row>
-            <FormReCaptcha setCaptcha={setCaptcha} />
-            <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
+            </Form.Group>
+          </Form.Row>
+          <FormReCaptcha setCaptcha={setCaptcha} />
+          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
-      </div>      
-    </>   
-  )
+      </div>
+    </>
+  );
 }

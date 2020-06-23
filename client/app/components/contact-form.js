@@ -7,20 +7,20 @@ import FormReCaptcha from './google-recaptcha-button';
 import useInput from '../utils/input-hook';
 
 function ContactForm() {
-  const { value:firstNameInput, bind:bindFirstNameInput, reset:resetFirstNameInput } = useInput('');
-  const { value:lastNameInput, bind:bindLastNameInput, reset:resetLastNameInput } = useInput('');
-  const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
-  const { value:phoneInput, bind:bindPhoneInput, reset:resetPhoneInput } = useInput('');
-  const { value:subjectInput, bind:bindSubjectInput, reset:resetSubjectInput } = useInput('');
-  const { value:messageInput, bind:bindMessageInput, reset:resetMessageInput } = useInput('');
-  const { value:disclaimerInput, bind: bindDisclaimerInput, reset:resetDisclaimerInput } = useInput([]);
-  const [captcha, setCaptcha ] = useState(true);
+  const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
+  const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
+  const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
+  const { value: phoneInput, bind: bindPhoneInput, reset: resetPhoneInput } = useInput('');
+  const { value: subjectInput, bind: bindSubjectInput, reset: resetSubjectInput } = useInput('');
+  const { value: messageInput, bind: bindMessageInput, reset: resetMessageInput } = useInput('');
+  const { value: disclaimerInput, bind: bindDisclaimerInput, reset: resetDisclaimerInput } = useInput([]);
+  const [captcha, setCaptcha] = useState(true);
   const [successMessage, setSuccessMessage] = useState(false);
   const [validated, setValidated] = useState(false);
 
   const router = useRouter();
 
-  async function sendInquiry(pageTitle, siteUrl){
+  async function sendInquiry(pageTitle, siteUrl) {
     const inquiryData = {
       firstName: firstNameInput,
       lastName: lastNameInput,
@@ -38,12 +38,12 @@ function ContactForm() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
     };
 
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/contact/form', headers);
     const status = await request.status;
-    
+
     if (status === 200) {
       setSuccessMessage(true);
       resetDisclaimerInput();
@@ -69,10 +69,10 @@ function ContactForm() {
 
     setValidated(true);
 
-    if(validated === false) {
+    if (validated === false) {
       sendInquiry(pageTitle, siteUrl);
-    }    
-  }
+    }
+  };
 
   return (
     <>
@@ -83,7 +83,7 @@ function ContactForm() {
               required
               type="text"
               placeholder="First name"
-              {...bindFirstNameInput}            
+              {...bindFirstNameInput}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -93,10 +93,10 @@ function ContactForm() {
               type="text"
               placeholder="Last name"
               {...bindLastNameInput}
-              
+
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>       
+          </Form.Group>
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} sm={12} md="6" controlId="validationCustom03">
@@ -104,20 +104,20 @@ function ContactForm() {
               required
               type="email"
               placeholder="Email"
-              {...bindEmailInput}            
+              {...bindEmailInput}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom04">            
+          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom04">
             <Form.Control
               required
               type="phone"
               placeholder="phone"
               {...bindPhoneInput}
-              
+
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>       
+          </Form.Group>
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} sm={12} controlId="validationCustom05">
@@ -125,7 +125,7 @@ function ContactForm() {
               required
               type="text"
               placeholder="Subject"
-              {...bindSubjectInput}            
+              {...bindSubjectInput}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -135,11 +135,11 @@ function ContactForm() {
               as="textarea"
               rows="3"
               placeholder="Message"
-              {...bindMessageInput}            
+              {...bindMessageInput}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-        </Form.Row>                        
+        </Form.Row>
         <Form.Group>
           <Form.Label>
             * The use of the Internet or this form for communication with the firm or any individual member of the firm does not establish an attorney-client relationship. Confidential or time-sensitive information should not be sent through this form.
@@ -154,9 +154,9 @@ function ContactForm() {
         <FormReCaptcha setCaptcha={setCaptcha} />
         {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p>}
         <Button variant="danger" className="ml-2 w-25 mt-2" type="submit" disabled={captcha}>Submit form</Button>
-      </Form>      
+      </Form>
     </>
-  )
+  );
 }
 
 export default ContactForm;

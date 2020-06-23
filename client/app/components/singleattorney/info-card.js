@@ -33,10 +33,10 @@ export default function InfoCard(props) {
         <h1 className="text-white border-bottom">
           { (fullName) && `${fullName} `}
           { (chair !== undefined && chair.length > 0) && (
-              <span className=" h5 text-white">
-                -
-                {` ${designation}`}
-              </span>
+          <span className=" h5 text-white">
+            -
+            {` ${designation}`}
+          </span>
           )}
         </h1>
       </div>

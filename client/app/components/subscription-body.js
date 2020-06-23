@@ -24,7 +24,7 @@ export default function SubscriptionBody() {
         </ul>
         <h4 className="red-title mb-4">Sign up Today!</h4>
       </div>
-      <SubscriptionPageForm />          
+      <SubscriptionPageForm />
     </>
-  )
+  );
 }

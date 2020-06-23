@@ -20,18 +20,18 @@ function Breadcrumbs(props) {
             HOME
           </a>
           <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px"/>
+            <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
           </strong>
         </>
         {filterUrl.map((url) => (
           <span key={url}>
-            <Link href="/category/[slug]" as={`/category/${url}`}> 
+            <Link href="/category/[slug]" as={`/category/${url}`}>
               <a className="red-title proxima-bold">
                 {makeTitle(url)}
               </a>
-            </Link>            
+            </Link>
             <strong className="text-black mt-2 mx-2 proxima-bold">
-              <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px"/>
+              <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
             </strong>
           </span>
         ))}
@@ -40,7 +40,7 @@ function Breadcrumbs(props) {
             <a className="red-title proxima-bold text-uppercase">
               <u>{title}</u>
             </a>
-          </Link>          
+          </Link>
         </>
       </h6>
     </div>

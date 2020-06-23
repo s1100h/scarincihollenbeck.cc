@@ -10,11 +10,14 @@ import ArchiveLayout from '../../layouts/archive-layout';
 import Body from '../../components/archives/body';
 import Sidebar from '../../components/archives/sidebar';
 import { headers } from '../../utils/helpers';
+
 const request = require('superagent');
 
-export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
-  const router = useRouter()
-  const { q, page } = router.query
+export default function Archive({
+  slides, firmNews, firmEvents, firmInsights,
+}) {
+  const router = useRouter();
+  const { q, page } = router.query;
   const [results, setResults] = useState([]);
   const [posts, setPosts] = useState([]);
   const [pages, setPages] = useState(0);
@@ -23,7 +26,6 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
 
   useEffect(() => {
     const fetchData = async () => {
-
       // fetch query results
       const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/archive/query/${q}/${page}`)
         .set(headers)
@@ -37,23 +39,23 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
         const { status, body } = results;
 
         if (status === 200) {
-          const { results, pages, term, posts } = body;
-           
+          const {
+            results, pages, term, posts,
+          } = body;
+
           setResults(results);
           setPages(pages);
-          setTerm(term);    
+          setTerm(term);
           setCurrentPage(page);
           setPosts(posts);
         }
       });
     };
-    
-    if(q !== undefined && page !== undefined) {
+
+    if (q !== undefined && page !== undefined) {
       fetchData();
     }
-    
   }, [q, page]);
-
 
 
   return (
@@ -61,13 +63,13 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
       {(results.length === 0 && slides === undefined) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
-            <BarLoader color={"#DB2220"} />
+            <BarLoader color="#DB2220" />
           </Row>
         </Container>
-       
+
       ) : (
         <div id="archives">
-          <NextSeo nofollow={true} />
+          <NextSeo nofollow />
           <ArchiveLayout
             header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
             body={(
@@ -81,33 +83,33 @@ export default function Archive({ slides, firmNews, firmEvents, firmInsights}){
                 insight={firmInsights}
               />
             )}
-            sidebar={(<Sidebar trending={posts}/>)}
+            sidebar={(<Sidebar trending={posts} />)}
           />
         </div>
       )}
-      <Footer slides={slides} /> */}
+      <Footer slides={slides} />
+      {' '}
+      */}
     </>
-  )
+  );
 }
 
 
 export async function getStaticProps() {
-  const [ articleJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  const [articleJson, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   const { firmNews, firmEvents, firmInsights } = articleJson;
 
-
-  
 
   return {
     props: {
       slides,
       firmNews,
       firmEvents,
-      firmInsights
+      firmInsights,
     },
-  }
+  };
 }

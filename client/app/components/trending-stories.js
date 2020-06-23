@@ -31,7 +31,7 @@ export default function TrendingStories(props) {
         {(content.length > 0) ? content.map((p) => (
           <div key={p.ID || addRandomKey(p.title)} className="p-2">
             <a href={p.link} className="top-article">
-              <p className="proxima-bold mb-0">{p.title}</p>  
+              <p className="proxima-bold mb-0">{p.title}</p>
             </a>
             {(p.hasOwnProperty('author') || p.author === 'Scarinci Hollenbeck') && (
             <>

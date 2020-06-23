@@ -18,10 +18,11 @@ function sortPracticeCategorys(list) {
     additional,
     business,
   };
-};
+}
 
-export default function Administration({ slides, core, additional, business, seo }){
-
+export default function Administration({
+  slides, core, additional, business, seo,
+}) {
   const sortedCore = sortByKey(core, 'title');
   const sortedAdditional = sortByKey(additional, 'title');
   const sortedBusiness = sortByKey(business, 'title');
@@ -29,15 +30,15 @@ export default function Administration({ slides, core, additional, business, seo
   return (
     <>
       <NextSeo
-          title={seo.title}
-          description={seo.metaDescription}
-          canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-        />
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      />
       <SingleSubHeader
-          title="Legal Practices"
-          subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today&apos;s businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."         
-          image={singleCityBackgroundJPG}
-        />
+        title="Legal Practices"
+        subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today&apos;s businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."
+        image={singleCityBackgroundJPG}
+      />
       <div id="archive-practice">
         <FullWidth>
           <div id="archive-practice">
@@ -61,19 +62,19 @@ export default function Administration({ slides, core, additional, business, seo
                 <h3>BUSINESS RELATED LEGAL SERVICES</h3>
               </div>
             </div>
-            <SimpleList list={sortedBusiness} />          
-          </div>        
+            <SimpleList list={sortedBusiness} />
+          </div>
         </FullWidth>
       </div>
       <Footer slides={slides} />
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
   const [practiceJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
   const results = await sortPracticeCategorys(practiceJson.practices);
   const { core, additional, business } = results;
@@ -86,5 +87,5 @@ export async function getStaticProps() {
       business,
       seo: practiceJson.seo,
     },
-  }
+  };
 }

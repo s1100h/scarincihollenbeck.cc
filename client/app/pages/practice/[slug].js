@@ -24,7 +24,7 @@ import NoHeaderMiniSidebar from '../../layouts/no-header-mini-sidebar';
 import { headers, urlify } from '../../utils/helpers';
 import { cityBackgroundJPG, cityBackgroundWebp } from '../../utils/next-gen-images';
 
-export default function SinglePractice({ slides, practice, corePractices }){
+export default function SinglePractice({ slides, practice, corePractices }) {
   const router = useRouter();
 
   function handleLink(e) {
@@ -36,52 +36,52 @@ export default function SinglePractice({ slides, practice, corePractices }){
       {(router.isFallback) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
-            <BarLoader color={"#DB2220"} />
+            <BarLoader color="#DB2220" />
           </Row>
         </Container>
-       
+
       ) : (
         <>
-            <NextSeo
-              title={practice.seo.title}
-              description={practice.seo.metaDescription}
-              canonical={`http://scarincihollenbeck.com/${practice.seo.canonicalLink}`}
-            />
-            <SingleSubHeader
-              image={cityBackgroundJPG}
-              title={practice.title}
-              subtitle={practice.description}
-              />
-            <div id="single-practice">
-              <TabContainer className="mb--1" id="nav-tab" defaultActiveKey={urlify(practice.content[0].title)}>                
-                <Container>
-                  <Row>
-                    <Col sm={12}>
-                      <Nav>
-                        {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} key={item.title} className="main-tab">{item.title}</Nav.Link>)}
-                        {(practice.industryTopics.length > 0) &&  <Nav.Link eventKey="related-updates" className="main-tab">Related Updates</Nav.Link> }                    
-                      </Nav>       
-                    </Col>
-                    <Col sm={12} md={9} className="mt-4">
-                     {(practice.content.length > 0) && practice.content.map((item, index) => <TabContent key={item.title}><PracticeContent tabTitle={urlify(item.title)} title={item.title} content={item.content}/></TabContent>)}
-                     {(practice.industryTopics.length > 0) && <TabContent><RelatedArticlesTab tabTitle="related-updates" title="Related Updates" content={practice.industryTopics} /></TabContent>}                      
-                     {/* Related Articles tab */}
-                     {/* Attorney list */}
-                     <RelatedAttorneys
-                        title="Practice Chair"
-                        members={practice.attorneyList}
-                        chair={practice.chair}
-                        handleLink={handleLink}
-                     />
-                     {/** Awards */}
-                     {(practice.highlightReal.length > 0) && (
-                        <>
-                          <div className="line-header">
-                            <h3>Represenative Clients</h3>
-                          </div>
-                          <FeaturedSlider content={practice.highlightReal} />
-                        </>
-                      )}
+          <NextSeo
+            title={practice.seo.title}
+            description={practice.seo.metaDescription}
+            canonical={`http://scarincihollenbeck.com/${practice.seo.canonicalLink}`}
+          />
+          <SingleSubHeader
+            image={cityBackgroundJPG}
+            title={practice.title}
+            subtitle={practice.description}
+          />
+          <div id="single-practice">
+            <TabContainer className="mb--1" id="nav-tab" defaultActiveKey={urlify(practice.content[0].title)}>
+              <Container>
+                <Row>
+                  <Col sm={12}>
+                    <Nav>
+                      {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} key={item.title} className="main-tab">{item.title}</Nav.Link>)}
+                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates" className="main-tab">Related Updates</Nav.Link> }
+                    </Nav>
+                  </Col>
+                  <Col sm={12} md={9} className="mt-4">
+                    {(practice.content.length > 0) && practice.content.map((item, index) => <TabContent key={item.title}><PracticeContent tabTitle={urlify(item.title)} title={item.title} content={item.content} /></TabContent>)}
+                    {(practice.industryTopics.length > 0) && <TabContent><RelatedArticlesTab tabTitle="related-updates" title="Related Updates" content={practice.industryTopics} /></TabContent>}
+                    {/* Related Articles tab */}
+                    {/* Attorney list */}
+                    <RelatedAttorneys
+                      title="Practice Chair"
+                      members={practice.attorneyList}
+                      chair={practice.chair}
+                      handleLink={handleLink}
+                    />
+                    {/** Awards */}
+                    {(practice.highlightReal.length > 0) && (
+                      <>
+                        <div className="line-header">
+                          <h3>Represenative Clients</h3>
+                        </div>
+                        <FeaturedSlider content={practice.highlightReal} />
+                      </>
+                    )}
                     {/** Recent Blog Articles */}
                     {(practice.industryTopics.length > 0) && (
                       <div className="w-100 d-block">
@@ -91,46 +91,46 @@ export default function SinglePractice({ slides, practice, corePractices }){
                         <FeaturedSlider content={practice.industryTopics} />
                       </div>
                     )}
-                    </Col>
-                    <Col sm={12} md={3}>
-                      <SimpleSearch />
-                      <SubscriptionMessage />
-                      <SidebarContent title="Core Practices" content={corePractices} tabKey={0} />
-                      <SidebarContent title="Related Sub-Practices" content={practice.practiceList} tabKey={1} />
-                    </Col>
-                  </Row>
-                </Container> 
-              </TabContainer>              
-            </div>
-            <Footer slides={slides} />
-          </>
-        )}     
+                  </Col>
+                  <Col sm={12} md={3}>
+                    <SimpleSearch />
+                    <SubscriptionMessage />
+                    <SidebarContent title="Core Practices" content={corePractices} tabKey={0} />
+                    <SidebarContent title="Related Sub-Practices" content={practice.practiceList} tabKey={1} />
+                  </Col>
+                </Row>
+              </Container>
+            </TabContainer>
+          </div>
+          <Footer slides={slides} />
         </>
-      )   
-  }
+      )}
+    </>
+  );
+}
 
 export async function getStaticPaths() {
   const practicesResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/all-links/`, { headers });
   const practicesJson = await practicesResponse.json();
 
-  return  {
-    paths: practicesJson.map(practice => `/practice/${practice}`) || [],
+  return {
+    paths: practicesJson.map((practice) => `/practice/${practice}`) || [],
     fallback: true,
-  }
+  };
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const [practice, corePractices, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   return {
     props: {
       slides,
       practice,
-      corePractices
+      corePractices,
     },
-  }
+  };
 }

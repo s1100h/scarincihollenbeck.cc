@@ -47,8 +47,8 @@ export default function LatestNewsArticlesCarousel(props) {
             <h5 className="mt-3 mb-2 text-center">{post.category || '' }</h5>
             <p className="text-muted small-excerpt text-center">{limitTitleLength(post.title)}</p>
           </a>
-      </div>
-      ))}      
-    </Carousel>  
+        </div>
+      ))}
+    </Carousel>
   );
 }

@@ -1,4 +1,4 @@
-import Router from 'next/router'
+import Router from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,16 +7,16 @@ import { addRandomKey } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
 export default function SimpleSearch() {
-  const { value:searchInput, bind:bindSearchInput, reset:resetSearchInput } = useInput('');
+  const { value: searchInput, bind: bindSearchInput, reset: resetSearchInput } = useInput('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
     Router.push({
       pathname: '/search',
-      query: { q: formatUrl(searchInput), page:1 },
-    })
-  }
+      query: { q: formatUrl(searchInput), page: 1 },
+    });
+  };
 
   return (
     <div className="mw-447">

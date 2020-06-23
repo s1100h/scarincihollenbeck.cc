@@ -11,11 +11,13 @@ import SingleSubHeader from '../../layouts/single-sub-header';
 import FullWidth from '../../layouts/full-width';
 import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
 
-export default function Attorneys({slides, seo, locations, designations, practices, attorneys}) {
+export default function Attorneys({
+  slides, seo, locations, designations, practices, attorneys,
+}) {
   const router = useRouter();
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
-  const [attorneyList, setAttorneyList ] = useState([]);
+  const [attorneyList, setAttorneyList] = useState([]);
 
   /* Click Events */
   function onSelect(e, input) {
@@ -27,7 +29,6 @@ export default function Attorneys({slides, seo, locations, designations, practic
 
     // set new results[] to state select
     setSelect(concatResults);
-
   }
 
   function onMobileSelect(e) {
@@ -48,7 +49,7 @@ export default function Attorneys({slides, seo, locations, designations, practic
     const results = { selected, key };
     const s = select.filter((a) => a.key !== key);
     const concatResults = s.concat(results);
-    
+
     // set new results[] to state select
     setSelect(concatResults);
   }
@@ -88,7 +89,7 @@ export default function Attorneys({slides, seo, locations, designations, practic
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
       <SingleSubHeader
-        title="Attorneys"        
+        title="Attorneys"
         image={attorneyArchiveHeaderJPG}
         subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
         height="330px"
@@ -113,13 +114,13 @@ export default function Attorneys({slides, seo, locations, designations, practic
           <div className="w-100 border mt-sm-6 mt-md-0">
             <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
             {(attorneys.length > 0) && (
-                <Results attorneys={attorneys} userInput={userInput} select={select} />
-              )} 
-              {(attorneys === undefined && router.isFallback) && ( 
-                <div className="w-100 my-5">
-                  <h3 className="text-center red-title">Loading attorney list...</h3>
-                </div>
-              )}
+            <Results attorneys={attorneys} userInput={userInput} select={select} />
+            )}
+            {(attorneys === undefined && router.isFallback) && (
+            <div className="w-100 my-5">
+              <h3 className="text-center red-title">Loading attorney list...</h3>
+            </div>
+            )}
           </div>
           {/** End of Results */}
         </div>
@@ -127,16 +128,15 @@ export default function Attorneys({slides, seo, locations, designations, practic
       <Footer slides={slides} />
 
     </>
-  )
-
+  );
 }
 
 export async function getStaticProps() {
-  const [ attorneys, filters, seo, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  const [attorneys, filters, seo, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   const { locations, designations, practices } = filters;
@@ -148,7 +148,7 @@ export async function getStaticProps() {
       locations,
       designations,
       practices,
-      attorneys
+      attorneys,
     },
-  }
+  };
 }

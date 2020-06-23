@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export default function PracticeBlockList(props){
+export default function PracticeBlockList(props) {
   const { list } = props;
 
   return (
@@ -22,16 +22,16 @@ export default function PracticeBlockList(props){
                   <Dropdown.Item key={practice.ID} href={practice.slug}>Overview</Dropdown.Item>
                   {practice.children.map((child) => <Dropdown.Item key={child.ID} href={child.slug}>{child.title}</Dropdown.Item>)}
                 </Dropdown.Menu>
-              </Dropdown>   
+              </Dropdown>
             ) : (
               <a href={practice.slug} className="practice-menu-box w-100 d-inline-block text-center align-middle">
                 {practice.title}
-              </a> 
+              </a>
             )}
-            
+
           </Col>
         ))}
       </Row>
     </Container>
-  )
+  );
 }

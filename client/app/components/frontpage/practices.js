@@ -15,7 +15,7 @@ export default function Practices(props) {
               <a className="blue-title proxima-bold">
                 {p.title}
               </a>
-            </Link>            
+            </Link>
           </li>
         )) }
       </ul>
@@ -25,7 +25,7 @@ export default function Practices(props) {
             All Practices &gt;&gt;
           </u>
         </a>
-      </Link>      
+      </Link>
     </div>
   );
 }

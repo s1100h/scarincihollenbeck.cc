@@ -22,13 +22,13 @@ export default function Filter(props) {
     onSelect,
     letterClick,
     clearAll,
-    onMobileSelect
+    onMobileSelect,
   } = props;
 
   return (
     <>
       <Navbar expand="lg" className="bk--gray border p-2">
-        <Keyword userInput={userInput} handleChange={handleChange} />          
+        <Keyword userInput={userInput} handleChange={handleChange} />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="nav-fill w-100">
@@ -53,7 +53,5 @@ export default function Filter(props) {
         </Row>
       </Container>
     </>
-  )
-
-
+  );
 }

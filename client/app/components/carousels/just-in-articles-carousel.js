@@ -31,7 +31,7 @@ const jiResponsive = {
 function formatDate(date) {
   const d = new Date(date);
   return d.toLocaleDateString();
-};
+}
 
 export default function JustInArticlesCarousel(props) {
   const { slides } = props;
@@ -39,31 +39,30 @@ export default function JustInArticlesCarousel(props) {
     <Carousel responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={parseInt(post.id, 10)} className={`JustInCarouselContent card carousel-slide level-${parseInt(post.id, 10)}`}>
-            <a href={post.link}>
-              <p className="just-in-header">
-                <span className="category">
-                  <FontAwesomeIcon icon={faNewspaper} />
-                  {' '}
-                  {post.category}
-                </span>
-                <span className="date">{(formatDate(post.date) === 'Invalid Date') ? '' : formatDate(post.date)}</span>
-              </p>
-              <div className="just-in-content">
-                <h5>{post.title}</h5>
-                <LazyLoad height={150}>
-                  <img rel="preconnect" src={post.image} alt={post.title} className="img-thumbnail d-block mx-auto" />
-                </LazyLoad>
-              </div>
-              <hr />
-              <p className="tag">
-                <FontAwesomeIcon icon={faPlusCircle} />
+          <a href={post.link}>
+            <p className="just-in-header">
+              <span className="category">
+                <FontAwesomeIcon icon={faNewspaper} />
                 {' '}
-                {post.location}
-              </p>
-            </a>
+                {post.category}
+              </span>
+              <span className="date">{(formatDate(post.date) === 'Invalid Date') ? '' : formatDate(post.date)}</span>
+            </p>
+            <div className="just-in-content">
+              <h5>{post.title}</h5>
+              <LazyLoad height={150}>
+                <img rel="preconnect" src={post.image} alt={post.title} className="img-thumbnail d-block mx-auto" />
+              </LazyLoad>
+            </div>
+            <hr />
+            <p className="tag">
+              <FontAwesomeIcon icon={faPlusCircle} />
+              {' '}
+              {post.location}
+            </p>
+          </a>
         </div>
-      ))}      
+      ))}
     </Carousel>
-  )
-
+  );
 }

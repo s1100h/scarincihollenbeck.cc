@@ -15,7 +15,9 @@ import { headers } from '../../utils/helpers';
 import { blogHeaderJPG } from '../../utils/next-gen-images';
 
 
-export default function Covid19CrisisManagementUnit({slides, title, content, posts, covidPosts, seo }){
+export default function Covid19CrisisManagementUnit({
+  slides, title, content, posts, covidPosts, seo,
+}) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -27,38 +29,38 @@ export default function Covid19CrisisManagementUnit({slides, title, content, pos
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
-        <SingleSubHeader
-          title={title}
-          subtitle={subTitle}         
-          image={blogHeaderJPG}
-          height="auto"
-        />
-        <LargeSidebar
-          body={(
-            <Body
-              content={bodyContent}
-              posts={covidPosts}
-              articleTitle="COVID-19 Articles"
-            />
+      <SingleSubHeader
+        title={title}
+        subtitle={subTitle}
+        image={blogHeaderJPG}
+        height="auto"
+      />
+      <LargeSidebar
+        body={(
+          <Body
+            content={bodyContent}
+            posts={covidPosts}
+            articleTitle="COVID-19 Articles"
+          />
           )}
-          sidebar={(
-            <Sidebar
-              posts={posts}
-              covidPage={true}
-            />
+        sidebar={(
+          <Sidebar
+            posts={posts}
+            covidPage
+          />
           )}
-        />
-        <Footer slides={slides} />
-      </>
-  )
+      />
+      <Footer slides={slides} />
+    </>
+  );
 }
 
 export async function getStaticProps() {
   const [aJson, posts, covidPosts, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   const { title, content, seo } = aJson;
@@ -70,7 +72,7 @@ export async function getStaticProps() {
       content,
       posts,
       covidPosts,
-      seo
+      seo,
     },
-  }
+  };
 }

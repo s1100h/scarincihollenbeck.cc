@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from '../../components/attorney-card';
+import AttorneyCard from '../attorney-card';
 import { sortByKey } from '../../utils/helpers';
 
 export default function BodyContent(props) {
@@ -30,7 +30,7 @@ export default function BodyContent(props) {
         Attorneys
       </h4>
       <Container>
-        <Row>          
+        <Row>
           {attorneys.map((m) => (
             <Col sm={12} md={12} lg={6} className="mb-2" key={m.ID}>
               <AttorneyCard
@@ -41,7 +41,7 @@ export default function BodyContent(props) {
                 number={m.contact}
                 email={m.email}
                 height="109px"
-                width="75%"                
+                width="75%"
                 type="/attorney/[slug]"
               />
             </Col>

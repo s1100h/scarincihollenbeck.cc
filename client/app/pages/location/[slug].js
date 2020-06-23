@@ -13,88 +13,90 @@ import { headers, urlify } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 
-export default function Location({ slides, seo, offices, currentOffice, posts}){
+export default function Location({
+  slides, seo, offices, currentOffice, posts,
+}) {
   const router = useRouter();
 
   return (
     <>
-    {(router.isFallback) ? (
-      <Container>
-        <Row id="page-loader-container" className="justify-content-center align-self-center">
-          <BarLoader color={"#DB2220"} />
-        </Row>
-      </Container>
-     
-    ) : (
-      <>
-        <NextSeo
-          title={seo.title}
-          description={seo.metaDescription}
-          canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-        />
-        <LocalBusinessJsonLd
-          type="LegalService"
-          id="https://scarincihollenbeck.com"
-          name={seo.title}
-          description={seo.metaDescription}
-          url={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-          telephone={seo.telephone}
-          address={{
-            streetAddress: seo.streetAddress,
-            addressLocality: seo.addressLocality,
-            addressRegion: seo.addressRegion,
-            postalCode: seo.postalCode,
-            addressCountry: seo.addressCountry,
-          }}
-          geo={{
-            latitude: seo.latitude,
-            longitude: seo.longitude,
-          }}
-          images={[ seo.image ]}
-          openingHours={[
-            {
-              opens: '08:00',
-              closes: '18:00',
-              dayOfWeek: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday'
-              ]
-            }
-          ]}
-        />
-        <div id="location">
-          <SingleSubHeader
-            title="Office Locations"
-            subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
-            image={singleCityBackgroundJPG}
+      {(router.isFallback) ? (
+        <Container>
+          <Row id="page-loader-container" className="justify-content-center align-self-center">
+            <BarLoader color="#DB2220" />
+          </Row>
+        </Container>
+
+      ) : (
+        <>
+          <NextSeo
+            title={seo.title}
+            description={seo.metaDescription}
+            canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
           />
-          <LargeSidebar
-            body={(
-              <BodyContent
-                attorneys={currentOffice.attorneys}
-                practices={currentOffice.practices}
-                map={currentOffice.mapLink}
-                title={currentOffice.name}
-              />
-            )}
-            sidebar={(
-              <SideBar
-                title={currentOffice.name}
-                posts={posts}
-                offices={offices}
-                startingKey={urlify(currentOffice.name)}      
-              />              
-            )}
+          <LocalBusinessJsonLd
+            type="LegalService"
+            id="https://scarincihollenbeck.com"
+            name={seo.title}
+            description={seo.metaDescription}
+            url={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+            telephone={seo.telephone}
+            address={{
+              streetAddress: seo.streetAddress,
+              addressLocality: seo.addressLocality,
+              addressRegion: seo.addressRegion,
+              postalCode: seo.postalCode,
+              addressCountry: seo.addressCountry,
+            }}
+            geo={{
+              latitude: seo.latitude,
+              longitude: seo.longitude,
+            }}
+            images={[seo.image]}
+            openingHours={[
+              {
+                opens: '08:00',
+                closes: '18:00',
+                dayOfWeek: [
+                  'Monday',
+                  'Tuesday',
+                  'Wednesday',
+                  'Thursday',
+                  'Friday',
+                ],
+              },
+            ]}
           />
-          <Footer slides={slides} />
-        </div>
-      </>
-      )}     
-      </>
-  )
+          <div id="location">
+            <SingleSubHeader
+              title="Office Locations"
+              subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
+              image={singleCityBackgroundJPG}
+            />
+            <LargeSidebar
+              body={(
+                <BodyContent
+                  attorneys={currentOffice.attorneys}
+                  practices={currentOffice.practices}
+                  map={currentOffice.mapLink}
+                  title={currentOffice.name}
+                />
+            )}
+              sidebar={(
+                <SideBar
+                  title={currentOffice.name}
+                  posts={posts}
+                  offices={offices}
+                  startingKey={urlify(currentOffice.name)}
+                />
+            )}
+            />
+            <Footer slides={slides} />
+          </div>
+        </>
+      )}
+    </>
+  );
 }
 
 export async function getStaticPaths() {
@@ -102,18 +104,18 @@ export async function getStaticPaths() {
   const json = await officesResponse.json();
   const { offices } = json;
 
-  return  {
-    paths: offices.map(office => office.slug) || [],
+  return {
+    paths: offices.map((office) => office.slug) || [],
     fallback: true,
-  }
+  };
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const [locations, currentOffice, currentOfficePosts, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   return {
@@ -122,7 +124,7 @@ export async function getStaticProps({params}) {
       seo: currentOffice.seo,
       slides,
       currentOffice,
-      posts: currentOfficePosts
+      posts: currentOfficePosts,
     },
-  }
+  };
 }

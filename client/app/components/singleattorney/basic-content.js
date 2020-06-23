@@ -9,7 +9,7 @@ import { createMarkup } from '../../utils/helpers';
 export default function BasicContent(props) {
   const { tabTitle, title, content } = props;
 
-  return(
+  return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>
       <Container className="container article-container">
@@ -18,6 +18,5 @@ export default function BasicContent(props) {
         </Row>
       </Container>
     </Tab.Pane>
-  )
-
+  );
 }

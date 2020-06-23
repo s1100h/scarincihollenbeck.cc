@@ -24,29 +24,29 @@ import NoHeaderMiniSidebar from '../../layouts/no-header-mini-sidebar';
 import { headers, urlify, makeTitle } from '../../utils/helpers';
 import { cityBackgroundJPG, cityBackgroundWebp } from '../../utils/next-gen-images';
 
-export default function WomenLead({slides, attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo }){
+export default function WomenLead({
+  slides, attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
+}) {
   const router = useRouter();
-  
-  const fullRelatedPages = relatedPages.map((page) => {
-    return {
-      title: makeTitle(page),
-      slug:page
-    }
-  });
+
+  const fullRelatedPages = relatedPages.map((page) => ({
+    title: makeTitle(page),
+    slug: page,
+  }));
 
   const firmResources = [
     {
       title: 'Firm News',
-      slug: '/category/firm-news'
+      slug: '/category/firm-news',
     },
     {
       title: 'Firm Events',
-      slug: '/category/firm-events'
+      slug: '/category/firm-events',
     },
     {
       title: 'Firm Insights',
-      slug: '/category/firm-insights'
-    }
+      slug: '/category/firm-insights',
+    },
   ];
 
   function handleLink(e) {
@@ -64,18 +64,18 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
         image={cityBackgroundJPG}
         title={title}
         subtitle={description}
-        />
+      />
       <div id="single-practice">
-        <TabContainer className="mb--1" id="nav-tab" defaultActiveKey={urlify(tabs[0].title)}>                
+        <TabContainer className="mb--1" id="nav-tab" defaultActiveKey={urlify(tabs[0].title)}>
           <Container>
             <Row>
               <Col sm={12}>
                 <Nav>
                   {(tabs.length > 0) && tabs.map((tab) => <Nav.Link eventKey={urlify(tab.title)} key={tab.title} className="main-tab">{tab.title}</Nav.Link>)}
-                </Nav>       
+                </Nav>
               </Col>
               <Col sm={12} md={9} className="mt-4">
-                {(tabs.length > 0) && tabs.map((tab, index) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content}/></TabContent>)}                              
+                {(tabs.length > 0) && tabs.map((tab, index) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content} /></TabContent>)}
                 {/* Related Articles tab */}
                 {/* Attorney list */}
                 <RelatedAttorneys
@@ -83,15 +83,19 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
                   chair={chair}
                   handleLink={handleLink}
                 />
-              {/** Recent Blog Articles */}
-              {(attorneysMentioned.length > 0) && (
+                {/** Recent Blog Articles */}
+                {(attorneysMentioned.length > 0) && (
                 <div className="w-100 d-block">
                   <div className="line-header">
-                    <h3>`Latest From ${title}`</h3>
+                    <h3>
+                      `Latest From $
+                      {title}
+                      `
+                    </h3>
                   </div>
                   <FeaturedSlider content={attorneysMentioned} />
                 </div>
-              )}
+                )}
               </Col>
               <Col sm={12} md={3}>
                 <SimpleSearch />
@@ -100,20 +104,22 @@ export default function WomenLead({slides, attorneysMentioned, title, descriptio
                 <SidebarContent title="Firm Resources" content={firmResources} tabKey={1} />
               </Col>
             </Row>
-          </Container> 
-        </TabContainer>              
+          </Container>
+        </TabContainer>
       </div>
       <Footer slides={slides} />
-    </> 
-  )  
+    </>
+  );
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const [page, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/diversity-group`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/diversity-group`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-  const { attorneysMentioned, title, description, tabs, members, relatedPages, seo } = page;
+  const {
+    attorneysMentioned, title, description, tabs, members, relatedPages, seo,
+  } = page;
 
 
   return {
@@ -126,7 +132,7 @@ export async function getStaticProps({params}) {
       members: members.member,
       chair: members.chair,
       relatedPages,
-      seo
+      seo,
     },
-  }
+  };
 }

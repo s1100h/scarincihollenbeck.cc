@@ -42,7 +42,7 @@ export default function OfficeLocationCarousel(props) {
             </a>
           </Link>
         </div>
-      ))}      
-    </Carousel>  
+      ))}
+    </Carousel>
   );
 }

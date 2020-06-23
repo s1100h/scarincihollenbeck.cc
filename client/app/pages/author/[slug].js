@@ -14,9 +14,11 @@ import { headers } from '../../utils/helpers';
 
 const request = require('superagent');
 
-export default function Author({ slides, authorJson, firmNews, firmEvents, firmInsights}){
-  const router = useRouter()
-  const { page } = router.query
+export default function Author({
+  slides, authorJson, firmNews, firmEvents, firmInsights,
+}) {
+  const router = useRouter();
+  const { page } = router.query;
   const [results, setResults] = useState([]);
   const [posts, setPosts] = useState([]);
   const [pages, setPages] = useState(1);
@@ -27,7 +29,7 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
       // fetch query results
       let currentPage = 1;
 
-      if(page !== undefined) {
+      if (page !== undefined) {
         currentPage = page;
       }
 
@@ -44,7 +46,7 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
 
         if (status === 200) {
           const { posts, pages, results } = body;
-           
+
           setResults(results);
           setPosts(posts);
           setPages(pages);
@@ -52,9 +54,8 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
         }
       });
     };
-    
+
     fetchData();
-    
   }, [page]);
 
   return (
@@ -62,13 +63,13 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
       {(authorJson === undefined && results.length <= 0 && slides === undefined) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
-            <BarLoader color={"#DB2220"} />
+            <BarLoader color="#DB2220" />
           </Row>
         </Container>
       ) : (
         <>
           <div id="authors">
-            <NextSeo nofollow={true} />
+            <NextSeo nofollow />
             <ArchiveLayout
               header={(<Breadcrumbs breadCrumb={[authorJson.currentUser, currentPage]} categorySlug={authorJson.currentUser} />)}
               body={(
@@ -89,25 +90,25 @@ export default function Author({ slides, authorJson, firmNews, firmEvents, firmI
         </>
       )}
     </>
-  )
+  );
 }
 
 export async function getStaticPaths() {
   const [authors] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/list`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/list`, { headers }).then((data) => data.json()),
   ]);
 
-  return  {
-    paths: authors.map(author => `/author/${author}`) || [],
+  return {
+    paths: authors.map((author) => `/author/${author}`) || [],
     fallback: true,
-  }
+  };
 }
 
-export async function getStaticProps({params}) {
-  const [ authorJson, articlesJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/bio/${params.slug}`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+export async function getStaticProps({ params }) {
+  const [authorJson, articlesJson, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/bio/${params.slug}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   const { firmNews, firmInsights, firmEvents } = articlesJson;
@@ -118,7 +119,7 @@ export async function getStaticProps({params}) {
       authorJson,
       firmNews,
       firmEvents,
-      firmInsights
+      firmInsights,
     },
-  }
+  };
 }

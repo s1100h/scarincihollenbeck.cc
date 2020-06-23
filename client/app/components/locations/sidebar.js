@@ -10,11 +10,12 @@ import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import TrendingStories from '../trending-stories';
-import { locationUrl, sortByKey, urlify, getDirectionsFromLocation } from '../../utils/helpers';
+import {
+  locationUrl, sortByKey, urlify, getDirectionsFromLocation,
+} from '../../utils/helpers';
 
 
-function LocationHeaderToggle({ children, eventKey, callback }){
- 
+function LocationHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
 
   const decoratedOnClick = useAccordionToggle(
@@ -29,27 +30,27 @@ function LocationHeaderToggle({ children, eventKey, callback }){
       type="button"
       variant="link"
       className="sidebar-title w-100 p-2 text-left"
-      
+
       onClick={decoratedOnClick}
     >
       {children}
       {(isCurrentEventKey) ? (
-         <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />   
-       ) : (
-          <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
-          
-       )}    
+        <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />
+      ) : (
+        <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
+
+      )}
     </button>
-  )
+  );
 }
 
 
 export default function SidebarContent(props) {
   const {
-    offices,   
+    offices,
     posts,
     title,
-    startingKey   
+    startingKey,
   } = props;
 
 
@@ -59,7 +60,7 @@ export default function SidebarContent(props) {
   return (
     <div id="practice-sidebar">
       {officeList.map((office) => (
-        <Accordion key={office.title} defaultActiveKey={startingKey}>  
+        <Accordion key={office.title} defaultActiveKey={startingKey}>
           <div key={office.title} className="mb-3">
             <LocationHeaderToggle eventKey={urlify(office.title)}>
               <h5 className="mb-0 pb-0 float-left">{office.title}</h5>
@@ -70,7 +71,7 @@ export default function SidebarContent(props) {
                   {office.address.map((a) => <li key={a} className="mb--10">{a}</li>)}
                 </ul>
                 <p className="mb-0">
-                  <FontAwesomeIcon icon={faPhone} className="icon-w8px-h20px"/>
+                  <FontAwesomeIcon icon={faPhone} className="icon-w8px-h20px" />
                   <span className="proxima-regular">{`  ${office.phone}`}</span>
                 </p>
                 <p className="mb-2">
@@ -85,7 +86,7 @@ export default function SidebarContent(props) {
                     Directions to
                     {' '}
                     {office.title}
-                    
+
                   </Button>
                 </div>
 
@@ -94,7 +95,7 @@ export default function SidebarContent(props) {
           </div>
         </Accordion>
       ))}
-      <TrendingStories title={`News from ${title}`} content={posts} /> 
+      <TrendingStories title={`News from ${title}`} content={posts} />
     </div>
   );
 }

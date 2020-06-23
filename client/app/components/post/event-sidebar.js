@@ -1,6 +1,6 @@
 import { addRandomKey, createMarkup } from '../../utils/helpers';
-import Search from '../../components/search';
-import SubscriptionMessage from '../../components/subscription-message';
+import Search from '../search';
+import SubscriptionMessage from '../subscription-message';
 
 export default function EventSidebar(props) {
   const {

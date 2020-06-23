@@ -9,7 +9,7 @@ import SimpleSearch from '../components/simple-search';
 import { singleCityBackgroundJPG } from '../utils/next-gen-images';
 import { headers } from '../utils/helpers';
 
-export default function Custom404({slides}) {
+export default function Custom404({ slides }) {
   const seo = {
     title: 'Page Not Found | Scarinci Hollenbeck',
     metaDescription: 'Sorry, it looks this like this page no longer exists on scarincihollenbeck.com',
@@ -26,16 +26,16 @@ export default function Custom404({slides}) {
       <div id="error">
         <SingleSubHeader
           title="404: Resource Not Found"
-          subtitle="Sorry, the page you are looking for cannot be found."          
+          subtitle="Sorry, the page you are looking for cannot be found."
           image={singleCityBackgroundJPG}
           height="auto"
         />
         <FullWidth>
           <p className="lead">
-           It&apos;s possible you entered the address incorrectly or we moved the desired page. Try searching our site to find what you are looking for.
-          </p> 
-            
-           
+            It&apos;s possible you entered the address incorrectly or we moved the desired page. Try searching our site to find what you are looking for.
+          </p>
+
+
         </FullWidth>
         <Container>
           <Row>
@@ -107,7 +107,7 @@ export default function Custom404({slides}) {
         </Container>
       </div>
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
@@ -116,7 +116,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      slides
+      slides,
     },
-  }
+  };
 }

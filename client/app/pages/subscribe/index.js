@@ -10,13 +10,13 @@ import TrendingStories from '../../components/trending-stories';
 import SubscriptionBody from '../../components/subscription-body';
 import { headers } from '../../utils/helpers';
 
-export default function Subscription({slides, posts}){ 
+export default function Subscription({ slides, posts }) {
   const seo = {
     title: 'Subscribe To Firm Mailing List | Scarinci Hollenbeck',
     metaDescription: 'Sign up now and get access to Scarinci Hollenbeck attorney\'s articles on cutting edge legal topics, their press releases, and firm announcements.',
     canonical: '/subscribe',
   };
-  
+
 
   return (
     <>
@@ -26,23 +26,23 @@ export default function Subscription({slides, posts}){
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
       <LargeSidebar
-          body={(<SubscriptionBody />)}
-          sidebar={(
-            <div>
-              <Search />
-              <TrendingStories title="Latest From Firm Insights" content={posts} />
-            </div>
+        body={(<SubscriptionBody />)}
+        sidebar={(
+          <div>
+            <Search />
+            <TrendingStories title="Latest From Firm Insights" content={posts} />
+          </div>
           )}
-        />
+      />
       <Footer slides={slides} />
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
   const [json, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
   const { main, latest, archives } = json;
   const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a);
@@ -51,7 +51,7 @@ export async function getStaticProps() {
   return {
     props: {
       slides,
-      posts
+      posts,
     },
-  }
+  };
 }

@@ -8,8 +8,8 @@ import {
   FacebookIcon,
   LinkedinIcon,
   TwitterIcon,
-  EmailIcon
-} from "react-share";
+  EmailIcon,
+} from 'react-share';
 import Sticky from 'react-stickynode';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -24,7 +24,7 @@ function SocialShareSidebar(props) {
 
   return (
     <Col sm={1} className="d-print-none">
-      <Sticky enabled={true} top="#stick-start" bottomBoundary="#stop-scrolling">
+      <Sticky enabled top="#stick-start" bottomBoundary="#stop-scrolling">
         <FacebookShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
@@ -72,6 +72,6 @@ function SocialShareSidebar(props) {
       </Sticky>
     </Col>
   );
-};
+}
 
 export default SocialShareSidebar;

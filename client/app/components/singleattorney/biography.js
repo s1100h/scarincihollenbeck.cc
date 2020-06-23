@@ -10,8 +10,7 @@ import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { createMarkup } from '../../utils/helpers';
 
 
-function BioContentToggle({ children, eventKey, callback }){
- 
+function BioContentToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
 
   const decoratedOnClick = useAccordionToggle(
@@ -26,17 +25,18 @@ function BioContentToggle({ children, eventKey, callback }){
       type="button"
       variant="transparent"
       className="red-title proxima-bold mb-3 read-more-btn"
-      
+
       onClick={decoratedOnClick}
     >
-      {(isCurrentEventKey) ? children : <u>Read More &gt;&gt;</u>}          
+      {(isCurrentEventKey) ? children : <u>Read More &gt;&gt;</u>}
     </button>
-  )
-
+  );
 }
 
 export default function Biography(props) {
-  const { tabTitle, content, title, toggleReadMore, readMore } = props;
+  const {
+    tabTitle, content, title, toggleReadMore, readMore,
+  } = props;
   const c = content.split(/<p[^>]*>/).filter((a) => a !== '');
   const excerpt = c[0].replace('</p>', '');
   const excerptTwo = c[1];
@@ -47,7 +47,7 @@ export default function Biography(props) {
       <h4 className="bg-light-gray">{title}</h4>
       <p className="bio" dangerouslySetInnerHTML={createMarkup(excerpt)} id="nav-bio-tab" />
       <p className="bio" dangerouslySetInnerHTML={createMarkup(excerptTwo)} />
-      <Accordion>  
+      <Accordion>
         <BioContentToggle eventKey={0}>
           <u>Read Less &gt;&gt;</u>
         </BioContentToggle>
@@ -56,5 +56,5 @@ export default function Biography(props) {
         </Accordion.Collapse>
       </Accordion>
     </TabPane>
-  )
+  );
 }

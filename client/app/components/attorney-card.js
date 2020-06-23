@@ -19,7 +19,7 @@ export default function AttorneyCard(props) {
   return (
     <div className="d-flex flex-row attorney-card" height={height}>
       <Link href={type} as={link}>
-        <a>          
+        <a>
           <img rel="preload" src={image} alt={name} className="mr-1" style={{ width }} />
         </a>
       </Link>

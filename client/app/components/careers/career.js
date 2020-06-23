@@ -11,7 +11,7 @@ export default function CareerSection(props) {
     type,
     selectOption,
     career,
-    clearFilter
+    clearFilter,
   } = props;
 
   const sortPositions = sortByKey(careers, 'title');
@@ -23,36 +23,34 @@ export default function CareerSection(props) {
   function filterLocation(position) {
     if (location) {
       return position.positionLocation.indexOf(location) >= 0;
-    } else {
-      return position;
     }
-  };
+    return position;
+  }
 
   // add type filter to sortPosition
   function filterType(position) {
     if (type) {
       return position.positionType.indexOf(type) >= 0;
-    } else {
-      return position;
     }
-  };
+    return position;
+  }
 
   // add keyword filter to sortPostions
   function filterKeyword(position) {
     if (keyword) {
       if (position.title.indexOf(keyword) >= 0) {
         return position;
-      } else if (position.positionDescription.indexOf(keyword.trim()) >= 0) {
+      } if (position.positionDescription.indexOf(keyword.trim()) >= 0) {
         return position;
-      } else if (position.positionLocation.indexOf(keyword) >= 0) {
+      } if (position.positionLocation.indexOf(keyword) >= 0) {
         return position;
-      } else if (position.positionType.indexOf(keyword) >= 0) {
+      } if (position.positionType.indexOf(keyword) >= 0) {
         return position;
       }
     } else {
       return position;
     }
-  };
+  }
 
   const p = sortPositions
     .filter(filterKeyword)
