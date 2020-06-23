@@ -7,6 +7,7 @@
 5. Write documeantion
 6. Set up storybooks
 7. Bug: fix search page
+8. Bug category checkbox look
 
 
 
