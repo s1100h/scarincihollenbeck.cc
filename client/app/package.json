@@ -28,6 +28,7 @@
     "react-cookie-consent": "^5.0.1",
     "react-dom": "16.8.6",
     "react-dropzone": "^11.0.1",
+    "react-ga": "^3.0.0",
     "react-gcaptcha": "^4.2.3",
     "react-google-recaptcha": "^2.1.0",
     "react-lazyload": "^2.6.7",

@@ -39,8 +39,7 @@ export default function JustInArticlesCarousel(props) {
     <Carousel responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={parseInt(post.id, 10)} className={`JustInCarouselContent card carousel-slide level-${parseInt(post.id, 10)}`}>
-          <Link href={post.link}>
-            <a>
+            <a href={post.link}>
               <p className="just-in-header">
                 <span className="category">
                   <FontAwesomeIcon icon={faNewspaper} />
@@ -62,7 +61,6 @@ export default function JustInArticlesCarousel(props) {
                 {post.location}
               </p>
             </a>
-          </Link>
         </div>
       ))}      
     </Carousel>
