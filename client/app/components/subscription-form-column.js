@@ -59,7 +59,6 @@ export default function SubscriptionFormColumn(props) {
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
-      resetCategoryInput();
       setCategories([]);
     }
   }

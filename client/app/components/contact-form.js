@@ -20,7 +20,7 @@ function ContactForm() {
 
   const router = useRouter();
 
-  async function sendInquiry(){
+  async function sendInquiry(pageTitle, siteUrl){
     const inquiryData = {
       firstName: firstNameInput,
       lastName: lastNameInput,
@@ -43,7 +43,6 @@ function ContactForm() {
 
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/subscription/form/shlaw/site/contact/form', headers);
     const status = await request.status;
-    console.log(status);
     
     if (status === 200) {
       setSuccessMessage(true);
@@ -60,7 +59,7 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const pageTitle = document.querySelector('h1.text-white.proxima-bold').innerText;
-    const siteUrl = router.asPath;
+    const siteUrl = `https://scarincihollenbeck.com/${router.asPath}`;
     const form = event.currentTarget;
 
     if (form.checkValidity() === false) {
@@ -71,7 +70,7 @@ function ContactForm() {
     setValidated(true);
 
     if(validated === false) {
-      sendInquiry();
+      sendInquiry(pageTitle, siteUrl);
     }    
   }
 
@@ -153,8 +152,8 @@ function ContactForm() {
           />
         </Form.Group>
         <FormReCaptcha setCaptcha={setCaptcha} />
-        {(successMessage) ? <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p> : ''}
-        <Button variant="danger" className="ml-2 w-25 mt-2" type="submit"  disabled={captcha}>Submit form</Button>
+        {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p>}
+        <Button variant="danger" className="ml-2 w-25 mt-2" type="submit" disabled={captcha}>Submit form</Button>
       </Form>      
     </>
   )

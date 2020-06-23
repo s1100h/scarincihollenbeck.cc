@@ -16,7 +16,7 @@ function Post(content, { key, index, isScrolling, isVisible, style }) {
         <Image src={post.featuredImg} className="w-25 mr-3" rounded/>       
         <div>
           <h5 className="d-block w-100 mb-0 pt-0">{post.title}</h5>
-          <p className="mt-0 pt-0">{formatDate(post.date)}</p>
+          {(post.date !== undefined) && <p className="mt-0 pt-0">{formatDate(post.date)}</p>} 
         </div>
       </a>
     </li>

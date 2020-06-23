@@ -60,7 +60,6 @@ function SubscriptionFormNoButton(props) {
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
-      resetCategoryInput();
       setCategories([]);
     }
   }
