@@ -12,7 +12,8 @@ function SubscriptionPageForm(props) {
   const { value:firstNameInput, bind:bindFirstNameInput, reset:resetFirstNameInput } = useInput('');
   const { value:lastNameInput, bind:bindLastNameInput, reset:resetLastNameInput } = useInput('');
   const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
-  const { value:categoryInput, bind:bindCategoryInput, reset:resetCategoryInput } = useInput([]);
+  
+  const [categories, setCategories ] = useState([]);
   const [captcha, setCaptcha ] = useState(true);
   const [message, setMessage] = useState(false);
 
@@ -22,13 +23,12 @@ function SubscriptionPageForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const categoryValues = categoriesInput.map((c) => c.value);
 
     const subscriberData = {
       firstName:firstNameInput,
       lastName:lastNameInput,
       email:emailInput,
-      categoryValues,
+      categoryValues: categories,
       siteUrl: router.asPath,
     };
 
@@ -50,7 +50,13 @@ function SubscriptionPageForm(props) {
       resetLastNameInput();
       resetEmailInput();
       resetCategoryInput();
+      setCategories([]);
     }
+  }
+
+  function selectCategory(e) {
+    const checkedBox = e.target.value;
+    setCategories(categories => [...categories, checkedBox]);
   }
 
   
@@ -76,8 +82,8 @@ function SubscriptionPageForm(props) {
                   type="checkbox"
                   id={type.key}
                   label={type.label}
-                  {...bindCategoryInput}
-                  required
+                  value={type.label}
+                  onClick={selectCategory}
                 />
               </li>
             ))}

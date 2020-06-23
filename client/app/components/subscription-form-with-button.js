@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { setCookie } from 'nookies';
 import Button from 'react-bootstrap/Button';
@@ -14,7 +14,8 @@ function SubscriptionFormWithButton(props) {
   const { value:firstNameInput, bind:bindFirstNameInput, reset:resetFirstNameInput } = useInput('');
   const { value:lastNameInput, bind:bindLastNameInput, reset:resetLastNameInput } = useInput('');
   const { value:emailInput, bind:bindEmailInput, reset:resetEmailInput } = useInput('');
-  const { value:categoryInput, bind:bindCategoryInput, reset:resetCategoryInput } = useInput([]);
+  
+  const [categories, setCategories ] = useState([]);
   const [show, setShow] = useState(false);
   const [captcha, setCaptcha ] = useState(true);
   const [message, setMessage] = useState(false);
@@ -33,13 +34,12 @@ function SubscriptionFormWithButton(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const categoryValues = categoriesInput.map((c) => c.value);
 
     const subscriberData = {
       firstName:firstNameInput,
       lastName:lastNameInput,
       email:emailInput,
-      categoryValues,
+      categoryValues: categories,
       siteUrl: router.asPath,
     };
 
@@ -61,7 +61,14 @@ function SubscriptionFormWithButton(props) {
       resetLastNameInput();
       resetEmailInput();
       resetCategoryInput();
+      setCategories([]);
     }
+  }
+
+
+  function selectCategory(e) {
+    const checkedBox = e.target.value;
+    setCategories(categories => [...categories, checkedBox]);
   }
 
   function setCookiesClick() {
@@ -97,17 +104,18 @@ function SubscriptionFormWithButton(props) {
             <Form.Group controlId="email.ControlInput">
               <Form.Control id="email" name="email" type="text" placeholder="Enter email" {...bindEmailInput} required/>
             </Form.Group>
-            <Form.Group controlId="cateogry.ControlSelect1">
+            <Form.Group>
               <Form.Label className="small-excerpt">Please select a category(s) below:</Form.Label>
               <ul className="no-dots two-column">
                 {checkboxes.map((type) => (
                   <li key={type.key}>
                     <Form.Check 
                       type="checkbox"
+                      name="category"
                       id={type.key}
                       label={type.label}
-                      {...bindCategoryInput}
-                      required
+                      value={type.label}
+                      onClick={selectCategory}
                     />
                   </li>
                 ))}
