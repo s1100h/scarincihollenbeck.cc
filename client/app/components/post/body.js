@@ -27,7 +27,7 @@ export default function Body(props) {
       <Breadcrumbs title={title} />
       <img src={featuredImage || noImgFoundPNG } className="w-100 mb-3 d-print-none" alt={title} />
       {/* title and subtitle for print version only */}
-      <div class="d-none d-print-block">
+      <div className="d-none d-print-block">
         <h1>{title}</h1>
         <h2>{subTitle}</h2>
       </div>
