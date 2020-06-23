@@ -1,50 +1,74 @@
 import { useRouter } from 'next/router';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WorkplaceShareButton,
+  FacebookIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  EmailIcon
+} from "react-share";
 import Sticky from 'react-stickynode';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 import { printScreen } from '../../utils/helpers';
 
 function SocialShareSidebar(props) {
   const { title } = props;
   const router = useRouter();
-  const encodeLink = encodeURIComponent(``);
   const to = '';
 
   return (
     <Col sm={1} className="d-print-none">
       <Sticky enabled={true} top="#stick-start" bottomBoundary="#stop-scrolling">
-        <ul className="no-dots hide-print ss-list">
-          <li>
-            <a href={`https://facebook.com/sharer/sharer.php?u=https://scarincihollenbeck.com${router.asPath}`} target="_blank" aria-label="facebook" rel="noopener noreferrer" className="btn fb">
-              <FontAwesomeIcon icon={faFacebookSquare} className="text-white icon-w22px-h22px" />
-            </a>
-          </li>
-          <li className="mt-2">
-            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=https://scarincihollenbeck.com${router.asPath}`} target="_blank" aria-label="linkedin" rel="noopener noreferrer" className="btn li">
-              <FontAwesomeIcon icon={faLinkedin} className="text-white icon-w22px-h22px" />
-            </a>
-          </li>
-          <li className="mt-2">
-            <a href={`https://twitter.com/share?url=https://scarincihollenbeck.com${router.asPath}&text=${title}`} target="_blank" aria-label="twitter" rel="noopener noreferrer" className="btn tw">
-              <FontAwesomeIcon icon={faTwitter} className="text-white icon-w22px-h22px" />
-            </a>
-          </li>
-          <li className="mt-2">
-            <a href={`mailto:${to}?subject=${title}&body=https://scarincihollenbeck.com${router.asPath}`} aria-label="email" className="btn bg-gray">
-              <FontAwesomeIcon icon={faEnvelope} className="icon-w22px-h22px" />
-            </a>
-          </li>
-          <li className="mt-2">
-            <button type="button" aria-label="Print Page" onClick={() => printScreen()} className="btn bg-gray">
-              <FontAwesomeIcon icon={faPrint} className="icon-w22px-h22px" />
-            </button>
-          </li>
-        </ul>
+        <FacebookShareButton
+          url={`https://scarincihollenbeck.com${router.asPath}`}
+          quote={title}
+        >
+          <FacebookIcon
+            size={45}
+            borderRadius={5}
+          />
+        </FacebookShareButton>
+        <LinkedinShareButton
+          url={`https://scarincihollenbeck.com${router.asPath}`}
+          quote={title}
+          className="mt-2"
+        >
+          <LinkedinIcon
+            size={45}
+            borderRadius={5}
+          />
+        </LinkedinShareButton>
+        <TwitterShareButton
+          url={`https://scarincihollenbeck.com${router.asPath}`}
+          quote={title}
+          className="mt-2"
+        >
+          <TwitterIcon
+            size={45}
+            borderRadius={5}
+          />
+        </TwitterShareButton>
+        <EmailShareButton
+          className="mt-2"
+          subject={title}
+          body={`https://scarincihollenbeck.com${router.asPath}`}
+          separator=""
+        >
+          <EmailIcon
+            size={45}
+            borderRadius={5}
+          />
+
+        </EmailShareButton>
+        <Button className="ml-10px-mr-10px mt-2 prnt-icon" aria-label="Print Page" onClick={() => printScreen()}>
+          <FontAwesomeIcon icon={faPrint} className="icon-w20px-h20px" />
+        </Button>
       </Sticky>
     </Col>
   );

@@ -1,5 +1,7 @@
+import React, { useEffect } from 'react';
 import App from 'next/app';
 import Router from 'next/router';
+import ReactGA from 'react-ga';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css';
 import NavBar from '../components/navbar';
@@ -47,6 +49,17 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 
 function SHApp({ Component, pageProps, posts }) {
+  useEffect(() => {
+    ReactGA.initialize('UA-18813670-1');
+
+    function onView() {
+      ReactGA.set({ page: window.location.pathname })
+      ReactGA.pageview(window.location.pathname)
+    }
+
+    onView();
+    Router.events.on('routeChangeComplete', onView);
+  })
   return (
     <>
       <NavBar />

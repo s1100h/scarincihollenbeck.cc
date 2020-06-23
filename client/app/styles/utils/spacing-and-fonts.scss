@@ -60,6 +60,10 @@
 .ml--21px {
   margin-left: -21px;
 }
+.ml-10px-mr-10px {
+  margin-left:10px;
+  margin-right:10px;
+}
 
 /** widths */
 .w-15 {
@@ -129,6 +133,10 @@
 .icon-w22px-h22px {
   width: 22px;
   height: 22px;
+}
+.icon-w20px-h20px {
+  width: 20px !important;
+  height: 20px;
 }
 /** target IE10 and above **/
 @media screen and (min-width:0\0) and (min-resolution: +72dpi) {
