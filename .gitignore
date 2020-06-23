@@ -13,8 +13,9 @@ admin/.env
 admin/app/wp-admin/*
 admin/app/wp-includes/*
 admin/app/wp-content/uploads/*
-admin/app/wp-content/plugins/*
 admin/app/wp-content/upgrade/*
+admin/app/wp-content/upgrades/*
+admin/app/wp-content/plugins/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html
