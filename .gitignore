@@ -14,6 +14,7 @@ admin/app/wp-admin/*
 admin/app/wp-includes/*
 admin/app/wp-content/uploads/*
 admin/app/wp-content/plugins/*
+admin/app/wp-content/upgrade/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html
