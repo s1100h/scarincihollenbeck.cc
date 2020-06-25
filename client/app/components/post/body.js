@@ -18,6 +18,7 @@ export default function Body(props) {
     title,
     tags,
     subTitle,
+    caption
   } = props;
 
 
@@ -25,6 +26,7 @@ export default function Body(props) {
     <>
       <Breadcrumbs title={title} />
       <img src={featuredImage || noImgFoundPNG} className="w-100 mb-3 d-print-none" alt={title} />
+      {(caption) && <div className="mt--1 mb-2" dangerouslySetInnerHTML={createMarkup(caption)} />}
       {/* title and subtitle for print version only */}
       <div className="d-none d-print-block">
         <h1>{title}</h1>

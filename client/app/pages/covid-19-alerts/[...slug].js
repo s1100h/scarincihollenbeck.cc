@@ -85,6 +85,7 @@ export default function CovidAlerts({ slides, post }) {
               body={(
                 <Body
                   featuredImage={post.featuredImage}
+                  caption={post.featuredImageCaption}
                   content={post.content}
                   eventCat={post.isEventCategory}
                   title={post.title}
@@ -110,17 +111,7 @@ export default function CovidAlerts({ slides, post }) {
   );
 }
 
-export async function getStaticPaths() {
-  const postsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/list/covid-19-alerts`, { headers });
-  const postsJson = await postsResponse.json();
-
-  return {
-    paths: postsJson.map((link) => `/covid-19-alerts/[...slug]/${link}`) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [post, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),

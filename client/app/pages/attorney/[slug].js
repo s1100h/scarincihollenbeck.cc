@@ -205,17 +205,7 @@ export default function Attorney({ slides, bio }) {
   );
 }
 
-export async function getStaticPaths() {
-  const attorneysResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers });
-  const attorneys = await attorneysResponse.json();
-
-  return {
-    paths: attorneys.map((attorney) => `/attorney${attorney.link}`) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [bio, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),

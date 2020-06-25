@@ -118,18 +118,7 @@ export default function Category({
   );
 }
 
-export async function getStaticPaths() {
-  const [allCategories] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/all`, { headers }).then((data) => data.json()),
-  ]);
-
-  return {
-    paths: allCategories.map((category) => `/category${category.link}`) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [category, firmCategories, corePractices, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers }).then((data) => data.json()),
