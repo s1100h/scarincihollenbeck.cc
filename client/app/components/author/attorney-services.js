@@ -19,7 +19,7 @@ export default function AttorneyServices(props) {
                 <a className="proxima-bold">
                   {p.title}
                 </a>
-              </Link>              
+              </Link>
             </li>
           ))
         }

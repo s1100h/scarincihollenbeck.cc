@@ -8,18 +8,18 @@ import useInput from '../utils/input-hook';
 const request = require('superagent');
 
 export default function Search() {
-  const { value:searchInput, bind:bindSearchInput, reset:resetSearchInput } = useInput('');
-  const { value:practiceInput, bind:bindPracticeInput, reset:resetPracticeInput } = useInput('');
-  const { value:attorneyInput, bind:bindAttorneyInput, reset:resetAttorneyInput } = useInput('');
-  const { value:categoryInput, bind:bindCategoryInput, reset:resetCategoryInput } = useInput('');
+  const { value: searchInput, bind: bindSearchInput, reset: resetSearchInput } = useInput('');
+  const { value: practiceInput, bind: bindPracticeInput, reset: resetPracticeInput } = useInput('');
+  const { value: attorneyInput, bind: bindAttorneyInput, reset: resetAttorneyInput } = useInput('');
+  const { value: categoryInput, bind: bindCategoryInput, reset: resetCategoryInput } = useInput('');
   const [attorneys, setAttorneys] = useState([]);
   const [practices, setPractices] = useState([]);
   const [categories, setCategories] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       // fetch query results
-      const fetchQuery = request.get(`http://localhost:8200/cached/search-options`)
+      const fetchQuery = request.get('http://localhost:8200/cached/search-options')
         .set(headers)
         .then((res) => ({
           status: res.status,
@@ -37,9 +37,9 @@ export default function Search() {
           setPractices(practices);
         }
       });
-    };    
-    
-    fetchData();    
+    };
+
+    fetchData();
   }, []);
 
   const handleSubmit = (e) => {
@@ -49,7 +49,7 @@ export default function Search() {
 
     Router.push({
       pathname: '/search',
-      query: { q: formatUrl(query), page:1 },
+      query: { q: formatUrl(query), page: 1 },
     });
 
     resetSearchInput();
@@ -98,7 +98,5 @@ export default function Search() {
         <Button type="submit" variant="danger" className="my-2 px-5">Search</Button>
       </Form>
     </div>
-  )
-
+  );
 }
-

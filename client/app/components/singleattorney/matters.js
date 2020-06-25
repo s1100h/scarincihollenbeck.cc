@@ -9,8 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { createMarkup } from '../../utils/helpers';
 
-function HeaderToggle({ children, eventKey, callback }){
- 
+function HeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
 
   const decoratedOnClick = useAccordionToggle(
@@ -25,19 +24,18 @@ function HeaderToggle({ children, eventKey, callback }){
       type="button"
       variant="link"
       className="sidebar-title w-100 p-2 text-left"
-      
+
       onClick={decoratedOnClick}
     >
       {children}
       {(isCurrentEventKey) ? (
-         <FontAwesomeIcon icon={faMinus} className="text-white float-right mw-18" />   
-       ) : (
-          <FontAwesomeIcon icon={faPlus} className="text-white float-right mw-18" />
-          
-       )}    
-    </button>
-  )
+        <FontAwesomeIcon icon={faMinus} className="text-white float-right mw-18" />
+      ) : (
+        <FontAwesomeIcon icon={faPlus} className="text-white float-right mw-18" />
 
+      )}
+    </button>
+  );
 }
 
 export default function Matters(props) {
@@ -47,12 +45,12 @@ export default function Matters(props) {
     title,
     tabTitle,
   } = props;
-  
+
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>
       {(content.length > 1) ? (
-        <Accordion defaultActiveKey={0}>  
+        <Accordion defaultActiveKey={0}>
           {content.map((m, i) => (
             <div key={m.title} className="mb-3">
               <HeaderToggle eventKey={i}>
@@ -64,8 +62,7 @@ export default function Matters(props) {
             </div>
           ))}
         </Accordion>
-      ) : <div className="off-white matters px-2 py-4" dangerouslySetInnerHTML={createMarkup(content[0].content)} />
-      }
+      ) : <div className="off-white matters px-2 py-4" dangerouslySetInnerHTML={createMarkup(content[0].content)} />}
     </Tab.Pane>
 
   );

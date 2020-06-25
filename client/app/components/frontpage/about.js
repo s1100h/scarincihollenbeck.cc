@@ -11,7 +11,7 @@ const About = () => (
           Read More &gt;&gt;
         </u>
       </a>
-    </Link>    
+    </Link>
   </div>
 );
 

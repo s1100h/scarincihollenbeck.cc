@@ -7,8 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
 
-function SideBarHeaderToggle({ children, eventKey, callback }){
- 
+function SideBarHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
 
   const decoratedOnClick = useAccordionToggle(
@@ -23,27 +22,26 @@ function SideBarHeaderToggle({ children, eventKey, callback }){
       type="button"
       variant="link"
       className="sidebar-title w-100 p-2 text-left"
-      
+
       onClick={decoratedOnClick}
     >
       {children}
       {(isCurrentEventKey) ? (
-         <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />   
-       ) : (
-          <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
-          
-       )}    
-    </button>
-  )
+        <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />
+      ) : (
+        <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
 
+      )}
+    </button>
+  );
 }
 
 export default function SidebarContent(props) {
   const { title, content, itemKey } = props;
-  
+
   return (
     <>
-      <Accordion defaultActiveKey={0}>  
+      <Accordion defaultActiveKey={0}>
         <div key={title} className="mb-3">
           <SideBarHeaderToggle eventKey={itemKey}>
             <h5 className="mb-0 pb-0 float-left">{title}</h5>
@@ -54,7 +52,7 @@ export default function SidebarContent(props) {
                 {content.map((item) => (Object.keys(item).length > 0) && (
                   <li key={addRandomKey('bio-info')} className="mb--7px--lh-22--ft-14px">
                     {(item.link) ? <a href={item.link} className="proxima-bold">{item.title}</a> : <strong>{item.title}</strong>}
-                    {(item.content) && (typeof item.content === "object") ? item.content.map((i) => (
+                    {(item.content) && (typeof item.content === 'object') ? item.content.map((i) => (
                       <div key={addRandomKey('sub-bio-info')}>
                         <span className="proxima-bold">{i.title}</span>
                         <div dangerouslySetInnerHTML={createMarkup(i.content)} />

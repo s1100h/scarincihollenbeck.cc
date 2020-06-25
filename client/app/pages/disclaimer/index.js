@@ -14,46 +14,48 @@ import { headers } from '../../utils/helpers';
 import { blogHeaderJPG } from '../../utils/next-gen-images';
 
 
-export default function Disclaimer({slides, title, content, posts, seo }){
+export default function Disclaimer({
+  slides, title, content, posts, seo,
+}) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
   return (
     <>
-    <NextSeo
+      <NextSeo
         title={seo.title}
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
-        <SingleSubHeader
-          title={title}
-          subtitle={subTitle}         
-          image={blogHeaderJPG}
-          height="auto"
-        />
-        <LargeSidebar
-          body={(
-            <Body
-              content={bodyContent}
-            />
+      <SingleSubHeader
+        title={title}
+        subtitle={subTitle}
+        image={blogHeaderJPG}
+        height="auto"
+      />
+      <LargeSidebar
+        body={(
+          <Body
+            content={bodyContent}
+          />
           )}
-          sidebar={(
-            <Sidebar
-              posts={posts}
-            />
+        sidebar={(
+          <Sidebar
+            posts={posts}
+          />
           )}
-        />
-        <Footer slides={slides} />
-      </>
-  )
+      />
+      <Footer slides={slides} />
+    </>
+  );
 }
 
 export async function getStaticProps() {
   const [aJson, postJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/disclaimer`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/disclaimer`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
   const { posts } = postJson;
   const { title, content, seo } = aJson;
@@ -64,7 +66,7 @@ export async function getStaticProps() {
       title,
       content,
       posts,
-      seo
+      seo,
     },
-  }
+  };
 }

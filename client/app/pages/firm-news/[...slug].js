@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useRouter } from'next/router';
+import { useRouter } from 'next/router';
 import { NextSeo, NewsArticleJsonLd } from 'next-seo';
 import ErrorPage from 'next/error';
 import BarLoader from 'react-spinners/BarLoader';
@@ -14,24 +14,24 @@ import Body from '../../components/post/body';
 import Sidebar from '../../components/post/sidebar';
 import SocialShareSidebar from '../../components/post/social-share-sidebar';
 import { headers } from '../../utils/helpers';
-import { blogHeaderJPG, shDiamondPNG} from '../../utils/next-gen-images';
+import { blogHeaderJPG, shDiamondPNG } from '../../utils/next-gen-images';
 
-export default function FirmNews({ slides, post }){
+export default function FirmNews({ slides, post }) {
   const router = useRouter();
-  
+
   if (!router.isFallback && post.id === null) {
-    return <ErrorPage statusCode={404} />
-  } 
+    return <ErrorPage statusCode={404} />;
+  }
 
   return (
     <>
       {(post === undefined && router.isFallback) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
-            <BarLoader color={"#DB2220"} />
+            <BarLoader color="#DB2220" />
           </Row>
         </Container>
-       
+
       ) : (
         <>
           <NextSeo
@@ -41,13 +41,13 @@ export default function FirmNews({ slides, post }){
             openGraph={{
               url: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
               title: 'Scarinci Hollenbeck',
-              description:post.seo.metaDescription,
+              description: post.seo.metaDescription,
               type: 'article',
               article: {
                 publishedTime: post.seo.publishedDate,
                 modifiedTime: post.seo.updatedDate,
                 authors: post.seo.authors,
-                tags: (post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => t.name ) : []
+                tags: (post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => t.name) : [],
               },
               images: [
                 {
@@ -55,80 +55,73 @@ export default function FirmNews({ slides, post }){
                   width: 750,
                   height: 350,
                   alt: post.seo.title,
-                }
-              ]
+                },
+              ],
             }}
             twitter={{
               handle: '@S_H_Law',
               site: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
               cardType: post.seo.metaDescription,
             }}
-            />
-              <NewsArticleJsonLd
-                url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
-                title={`${post.seo.title}`}
-                images={(post.seo.featuredImg) ? [post.seo.featuredImg ]: [shDiamondPNG]}
-                datePublished={post.seo.publishedDate}
-                dateModified={post.seo.updatedDate}
-                authorName={post.seo.author}
-                publisherName="Scarinci Hollenbeck, LLC"
-                publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
-                description={`${post.seo.metaDescription}`}
-                body={post.content}
-              />
-            <SingleSubHeader
-              image={blogHeaderJPG}
-              title={post.title}
-              subtitle={post.subTitle}
-              />
-            <div id="single">
-              <ThreeColMiniSidebar
-                body={(
-                  <Body
-                    featuredImage={post.featuredImage}
-                    content={post.content}
-                    eventCat={post.isEventCategory}
-                    title={post.title}
-                    subTitle={post.subTitle}
-                    author={post.author}
-                    date={post.date}
-                    tags={post.tags}
-                  />
+          />
+          <NewsArticleJsonLd
+            url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            title={`${post.seo.title}`}
+            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : [shDiamondPNG]}
+            datePublished={post.seo.publishedDate}
+            dateModified={post.seo.updatedDate}
+            authorName={post.seo.author}
+            publisherName="Scarinci Hollenbeck, LLC"
+            publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
+            description={`${post.seo.metaDescription}`}
+            body={post.content}
+          />
+          <SingleSubHeader
+            image={blogHeaderJPG}
+            title={post.title}
+            subtitle={post.subTitle}
+          />
+          <div id="single">
+            <ThreeColMiniSidebar
+              body={(
+                <Body
+                  featuredImage={post.featuredImage}
+                  caption={post.featuredImageCaption}
+                  content={post.content}
+                  eventCat={post.isEventCategory}
+                  title={post.title}
+                  subTitle={post.subTitle}
+                  author={post.author}
+                  date={post.date}
+                  tags={post.tags}
+                />
                 )}
-                OneSidebar={(<SocialShareSidebar title={post.title} />)}
-                TwoSidebar={(<Sidebar
+              OneSidebar={(<SocialShareSidebar title={post.title} />)}
+              TwoSidebar={(
+                <Sidebar
                   posts={post.posts}
                   attorneys={post.attorneys}
-                />)}
-              />
-            </div>
-          <Footer slides={slides} /> 
-          </>
-        )}    
+                />
+)}
+            />
+          </div>
+          <Footer slides={slides} />
         </>
-      )   
-  }
-
-export async function getStaticPaths() {
-  const postsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/list/firm-news`, { headers });
-  const postsJson = await postsResponse.json();
-
-  return  {
-    paths: postsJson.map(link => `/firm-news/[...slug]/${link}`) || [],
-    fallback: true,
-  }
+      )}
+    </>
+  );
 }
 
-export async function getStaticProps({params}) {
+export async function getServerSideProps({ params }) {
   const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   return {
     props: {
       slides,
-      post
+      post,
     },
-  }
+  };
 }

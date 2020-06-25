@@ -1,7 +1,7 @@
 import SubscriptionFormWithButton from './subscription-form-with-button';
 import { shDiamondPNG } from '../utils/next-gen-images';
 
-export default function SubscriptionMessage(){
+export default function SubscriptionMessage() {
   return (
     <div className="w-100 mt-4">
       <div className="sidebar-title">
@@ -17,4 +17,4 @@ export default function SubscriptionMessage(){
       </div>
     </div>
   );
-};
+}

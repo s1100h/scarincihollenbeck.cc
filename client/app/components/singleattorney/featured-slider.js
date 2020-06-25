@@ -11,7 +11,10 @@ export default function FeaturedSlider(props) {
   return (
     <div className="mt-4 w-100 d-block attorney-news-slider">
       <div className="line-header mb-3">
-        <h3>{title} </h3>
+        <h3>
+          {title}
+          {' '}
+        </h3>
       </div>
       <Container>
         <Row>

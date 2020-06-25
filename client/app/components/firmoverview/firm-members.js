@@ -4,7 +4,9 @@ import Col from 'react-bootstrap/Col';
 import AttorneyCard from '../attorney-card';
 
 export default function FirmMembers(props) {
-  const { title, members, type, slug } = props;
+  const {
+    title, members, type, slug,
+  } = props;
 
   return (
     <div className="w-100 mt-5 px-3">

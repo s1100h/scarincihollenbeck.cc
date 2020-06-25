@@ -12,7 +12,7 @@ import { headers } from '../../utils/helpers';
 import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
 
 
-export default function Administration({slides, admins, seo }){
+export default function Administration({ slides, admins, seo }) {
   return (
     <>
       <NextSeo
@@ -48,13 +48,13 @@ export default function Administration({slides, admins, seo }){
       </FullWidth>
       <Footer slides={slides} />
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const [ aJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+  const [aJson, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
   const { admins, seo } = aJson;
@@ -63,7 +63,7 @@ export async function getStaticProps() {
     props: {
       slides,
       seo,
-      admins
+      admins,
     },
-  }
+  };
 }

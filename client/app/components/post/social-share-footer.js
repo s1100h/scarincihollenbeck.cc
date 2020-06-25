@@ -8,8 +8,8 @@ import {
   FacebookIcon,
   LinkedinIcon,
   TwitterIcon,
-  EmailIcon
-} from "react-share";
+  EmailIcon,
+} from 'react-share';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
@@ -26,7 +26,7 @@ function SocialShareFooter(props) {
         <h3>Please Share This article</h3>
       </div>
       <div className="d-flex hide-print">
-{/* 
+        {/*
           <FacebookIcon size={25} />
           <span className="proxima-thin smaller-excerpt text-white"> Share on Facebook</span>
         </FacebookShareButton>
@@ -61,7 +61,7 @@ function SocialShareFooter(props) {
             >
               <FontAwesomeIcon icon={faFacebookSquare} className="text-white icon-w22px-h22px" />
               {' '}
-                <span className="proxima-thin smaller-excerpt text-white"> Share on Facebook</span>
+              <span className="proxima-thin smaller-excerpt text-white"> Share on Facebook</span>
             </FacebookShareButton>
           </li>
           <li className="list-inline-item m-3">
@@ -86,7 +86,7 @@ function SocialShareFooter(props) {
               <span className="proxima-thin smaller-excerpt text-white"> Share on Twitter</span>
             </TwitterShareButton>
 
-              
+
           </li>
         </ul>
       </div>

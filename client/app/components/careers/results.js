@@ -10,7 +10,7 @@ export default function Results(props) {
   return (
     <div className="w-100 border mt-0">
       <Container className="mt-2">
-        <Row>         
+        <Row>
           {(positions.length < 1) && (
             <div className="w-100 my-5">
               <h3 className="text-center red-title">Sorry, no career positions available...</h3>

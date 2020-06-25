@@ -12,5 +12,5 @@ export default function Body(props) {
       <div className="w-100" dangerouslySetInnerHTML={createMarkup(position)} />
       <CareerForm />
     </>
-  )
+  );
 }

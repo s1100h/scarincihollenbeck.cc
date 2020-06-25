@@ -16,7 +16,7 @@ const BgBlack = styled.div`
 `;
 
 const HeaderBackground = styled.div`
-  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${props => props.image}) no-repeat 50%;
+  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${(props) => props.image}) no-repeat 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -42,7 +42,7 @@ export default function CoronaHeader(props) {
                     <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow">
                       Client Message
                       <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px" />
-                    </a>                    
+                    </a>
                   </Link>
                 </Col>
                 <Col sm={12} md={6}>
@@ -50,7 +50,7 @@ export default function CoronaHeader(props) {
                     <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow">
                       Resource Center
                       <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px" />
-                    </a>                    
+                    </a>
                   </Link>
                 </Col>
               </Row>
@@ -58,14 +58,14 @@ export default function CoronaHeader(props) {
           </Col>
           <Col sm={12} md={6}>
             <picture>
-              <source srcSet={shDiamondPNG} type="image/png"/>
-              <img rel="preconnect" src={shDiamondPNG} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />     
-            </picture>      
+              <source srcSet={shDiamondPNG} type="image/png" />
+              <img rel="preconnect" src={shDiamondPNG} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />
+            </picture>
             <h2 className="text-white text-center display-32 text--shadow animated fadeInUp slow">How can we help?</h2>
             <FrontSearch />
           </Col>
         </Row>
-      </Container>      
+      </Container>
     </HeaderBackground>
   );
-};
+}

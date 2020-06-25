@@ -8,7 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 
 
-function HeaderToggle({ children, eventKey, callback }){ 
+function HeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
   const decoratedOnClick = useAccordionToggle(
     eventKey,
@@ -21,27 +21,29 @@ function HeaderToggle({ children, eventKey, callback }){
       type="button"
       variant="link"
       className="sidebar-title w-100 p-2 text-left"
-      
+
       onClick={decoratedOnClick}
     >
       {children}
       {(isCurrentEventKey) ? (
-         <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />   
-       ) : (
-          <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
-          
-       )}    
+        <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />
+      ) : (
+        <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
+
+      )}
     </button>
-  )
+  );
 }
 
 
 export default function SidebarContent(props) {
-  const { title, content, tabKey, linkType } = props;
+  const {
+    title, content, tabKey, linkType,
+  } = props;
 
   return (
     <>
-      <Accordion defaultActiveKey={0} className="mt-4">  
+      <Accordion defaultActiveKey={0} className="mt-4">
         <HeaderToggle eventKey={tabKey}>
           <h5 className="mb-0 pb-0 float-left text-white">{title}</h5>
         </HeaderToggle>

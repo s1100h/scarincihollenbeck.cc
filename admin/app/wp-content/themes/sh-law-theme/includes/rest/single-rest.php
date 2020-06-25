@@ -224,22 +224,19 @@ function single_data($request) {
     "ID" => 000,
   );
 
-  // get subtitle the first h2 text
-  $h2_pattern = "|<\s*h[2](?:.*)>(.*)<\/h2>|Ui";
-  preg_match_all($h2_pattern , $post_content, $h2_matches);
-
-  $sub_title_no_tags = $h2_matches[1][0];
-  $sub_title_tags = $h2_matches[0][0];
-
-  // remove the featured image from the text
-  $img_pattern = "/<img[^>]+\>/i";
-  preg_match_all($img_pattern , $post_content, $img_matches);
-
-  $remove_image_from_content = str_replace($img_matches[0][0], "", html_entity_decode(htmlspecialchars_decode($post_content)));
-
-
+  // format body content remove h2 tags, images, and fig captions
+  preg_match_all("|<\s*h2(?:.*)>(.*)<\/h2>|Ui" , $post_content, $h2_matches);
+  preg_match_all("/<img[^>]+\>/i" , $post_content, $img_matches);
+  preg_match_all("|<\s*figcaption(?:.*)>(.*)<\/figcaption>|Ui" , $post_content, $figurecaption_matches);
+ 
+  $body_content = str_replace($img_matches[0][0], "", html_entity_decode(htmlspecialchars_decode($post_content)));
+  $body_content = str_replace(html_entity_decode(htmlspecialchars_decode($h2_matches[1][0])), "", $body_content);
   
-    $body_content = str_replace($sub_title_tags, "", $remove_image_from_content);
+  if(!empty($figurecaption_matches[0][0]))  {
+    $body_content = str_replace($figurecaption_matches[0][0], "", $body_content);
+  }
+
+
 
 
   // remove the first h2 text from string
@@ -247,8 +244,9 @@ function single_data($request) {
     "idTrueFalse" => $slugIsID,    
     "id" => $post_id,
     "title" => $post_title,
-    "subTitle" => $sub_title_no_tags,
+    "subTitle" => html_entity_decode(htmlspecialchars_decode($h2_matches[1][0])),
     "featuredImage" => get_post_featured_image($post_content),
+    "featuredImageCaption" => (!empty($figurecaption_matches[0][0])) ? $figurecaption_matches[0][0] : false,
     "content" => $body_content,
     "author" => $authors_data, 
     "date" => get_the_date("F j, Y", $post_id ),
@@ -273,7 +271,7 @@ function single_data($request) {
       "tags" =>  (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),
       "publishedDate" => get_the_date('Y-m-d H:i:s', $post_id),
       "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
-      "postContent" => html_entity_decode(htmlspecialchars_decode(str_replace('"', '', $post_content))),
+      "postContent" => $body_content,
       "primaryCategory" => $categories[0],
       "author" => $authors_names
     )

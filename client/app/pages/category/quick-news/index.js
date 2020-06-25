@@ -14,9 +14,11 @@ import { headers } from '../../../utils/helpers';
 
 const request = require('superagent');
 
-export default function QuickNews({ firmNews, firmEvents, firmInsights, slides}){
-  const router = useRouter()
-  const { page } = router.query
+export default function QuickNews({
+  firmNews, firmEvents, firmInsights, slides,
+}) {
+  const router = useRouter();
+  const { page } = router.query;
   const [results, setResults] = useState([]);
   const [posts, setPosts] = useState([]);
   const [pages, setPages] = useState(0);
@@ -25,7 +27,6 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights, slides})
 
   useEffect(() => {
     const fetchData = async () => {
-
       // fetch query results
       const fetchQuery = request.get(`http://localhost:8400/wp-json/archive/query/quick-news/${page}`)
         .set(headers)
@@ -39,27 +40,28 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights, slides})
         const { status, body } = results;
 
         if (status === 200) {
-          const { results, pages, term, posts } = body;
-           
+          const {
+            results, pages, term, posts,
+          } = body;
+
           setResults(results);
           setPages(pages);
-          setTerm(term);    
+          setTerm(term);
           setCurrentPage(page);
           setPosts(posts);
         }
       });
     };
-    
-    if(page !== undefined) {
+
+    if (page !== undefined) {
       fetchData();
     }
-    
   }, [page]);
 
   const seo = {
     title: 'Scarinci Hollenbeck Laywers News & Media Appearances',
     metaDescription: 'The Scarinci Hollenbeck attorneys have their finger on the pulse of the latest legal issues that affect businesses through New York & New Jersey.',
-    canonicalLink: 'category/quick-news'
+    canonicalLink: 'category/quick-news',
   };
 
   return (
@@ -67,10 +69,10 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights, slides})
       {(results.length === 0) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
-            <BarLoader color={"#DB2220"} />
+            <BarLoader color="#DB2220" />
           </Row>
         </Container>
-       
+
       ) : (
         <>
           <NextSeo
@@ -92,33 +94,31 @@ export default function QuickNews({ firmNews, firmEvents, firmInsights, slides})
                   insight={firmInsights}
                 />
               )}
-              sidebar={(<Sidebar trending={posts}/>)}
+              sidebar={(<Sidebar trending={posts} />)}
             />
           </div>
           <Footer slides={slides} />
         </>
       )}
     </>
-  )
+  );
 }
 
-export async function getStaticProps({params}) {
-  const [ articles, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
- ]);
+export async function getStaticProps({ params }) {
+  const [articles, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  ]);
 
- const { firmNews, firmEvents, firmInsights } = articles;
+  const { firmNews, firmEvents, firmInsights } = articles;
 
-
-  
 
   return {
     props: {
       firmNews,
       firmEvents,
       firmInsights,
-      slides
+      slides,
     },
-  }
+  };
 }

@@ -17,7 +17,7 @@ export default function ColumnContent(props) {
               <li key={v.title || v.name} className="blue-title ml-3">
                 <a href={v.link || v.slug} className="blue-title proxima-bold mb-0">
                   {v.title || v.name}
-                </a>                
+                </a>
               </li>
             ))}
           </ul>

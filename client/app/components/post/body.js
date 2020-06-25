@@ -17,15 +17,16 @@ export default function Body(props) {
     date,
     title,
     tags,
-    subTitle
+    subTitle,
+    caption
   } = props;
-
 
 
   return (
     <>
       <Breadcrumbs title={title} />
-      <img src={featuredImage || noImgFoundPNG } className="w-100 mb-3 d-print-none" alt={title} />
+      <img src={featuredImage || noImgFoundPNG} className="w-100 mb-3 d-print-none" alt={title} />
+      {(caption) && <div className="mt--1 mb-2" dangerouslySetInnerHTML={createMarkup(caption)} />}
       {/* title and subtitle for print version only */}
       <div className="d-none d-print-block">
         <h1>{title}</h1>
@@ -41,9 +42,9 @@ export default function Body(props) {
             <li className="list-inline-item"><strong>Tag: </strong></li>
             {tags.map((tag, index) => (
               <li key={tag.term_id || tag.ID} className="list-inline-item">
-                  <a href={`/archives?q=${urlify(tag.name)}&page=1`}className="blue-link">
-                    <u>{tag.name}</u>
-                  </a>
+                <a href={`/archives?q=${urlify(tag.name)}&page=1`} className="blue-link">
+                  <u>{tag.name}</u>
+                </a>
                 {(index !== tags.length - 1) && ',' }
               </li>
             ))}
@@ -51,7 +52,7 @@ export default function Body(props) {
         </div>
       )}
       <SocialShareFooter title={title} />
-      {/*Author bios */}
+      {/* Author bios */}
       <AuthorBio author={author} />
       {/* Contact form */}
       <div className="w-100 mt-5 hide-print">
@@ -59,7 +60,7 @@ export default function Body(props) {
         <div className="mt-5">
           <ContactForm />
         </div>
-      </div> 
+      </div>
     </>
   );
 }

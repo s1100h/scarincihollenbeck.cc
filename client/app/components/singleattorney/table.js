@@ -1,5 +1,5 @@
 import TabPane from 'react-bootstrap/TabPane';
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
 import { createMarkup, addRandomKey } from '../../utils/helpers';
 
 export default function TableTab(props) {

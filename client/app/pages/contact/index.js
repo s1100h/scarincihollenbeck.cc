@@ -8,7 +8,7 @@ import ContactForm from '../../components/contact-form';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 import { headers } from '../../utils/helpers';
 
-export default function Contact({slides}) {
+export default function Contact({ slides }) {
   const seo = {
     title: 'Contact A Scarinci Hollenbeck Attorney',
     metaDescription: 'Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Jersey City, Washington D.C.',
@@ -25,7 +25,7 @@ export default function Contact({slides}) {
       <div id="contact">
         <SingleSubHeader
           title="Contact Us"
-          subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."          
+          subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
           image={singleCityBackgroundJPG}
           height="325px"
         />
@@ -38,7 +38,7 @@ export default function Contact({slides}) {
                 <a className="blue-title">
                   <u>Firm Insights.</u>
                 </a>
-              </Link>              
+              </Link>
               {' '}
               For job opportunities please visit our
               {' '}
@@ -70,9 +70,9 @@ export default function Contact({slides}) {
           </div>
         </FullWidth>
       </div>
-      <Footer slides={slides} />      
+      <Footer slides={slides} />
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
@@ -81,7 +81,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      slides
+      slides,
     },
-  }
+  };
 }

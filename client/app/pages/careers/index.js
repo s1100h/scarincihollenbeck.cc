@@ -10,27 +10,27 @@ import { headers } from '../../utils/helpers';
 import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
 
 
-export default function Careers({slides, careers, seo}) {
+export default function Careers({ slides, careers, seo }) {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
   const [sort, setSort] = useState('title');
   const [positions, setPositions] = useState([]);
   const [career, setCareer] = useState('');
-  
+
   function filterTerm(e) {
     const keyword = e.target.value;
     setKeyword(keyword);
   }
 
-  function selectOption(e) {   
+  function selectOption(e) {
     const { name, innerText } = e.target;
     console.log();
 
     if (name === 'location') {
       setLocation(innerText);
     }
-    
+
     if (name === 'type') {
       setType(innerText);
     }
@@ -68,26 +68,26 @@ export default function Careers({slides, careers, seo}) {
             clearFilter={clearFilter}
           />
           <EEOpportunityContent />
-        </FullWidth>        
+        </FullWidth>
       </div>
-      <Footer slides={slides} />      
+      <Footer slides={slides} />
     </>
-  )
+  );
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const [careerJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers }).then(data => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then(data => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
   const { seo, careers } = careerJson;
-  
+
 
   return {
     props: {
       slides,
       seo,
-      careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : []
+      careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : [],
     },
-  }
+  };
 }

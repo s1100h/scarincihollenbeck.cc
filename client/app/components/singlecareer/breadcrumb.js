@@ -16,12 +16,12 @@ export default function BreadCrumb(props) {
       </Link>
       <strong className="text-black mt-2 mx-2 proxima-bold">
         <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
-      </strong> 
+      </strong>
       <Link href="/careers">
         <a className="red-title proxima-bold">
           CAREERS
         </a>
-      </Link> 
+      </Link>
       <strong className="text-black mt-2 mx-2 proxima-bold">
         <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
       </strong>
@@ -29,7 +29,7 @@ export default function BreadCrumb(props) {
         <a className="red-title proxima-bold text-uppercase">
           {title}
         </a>
-      </Link>        
-    </>    
+      </Link>
+    </>
   );
 }

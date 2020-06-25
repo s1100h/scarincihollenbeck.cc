@@ -23,27 +23,24 @@ export default function Filtered(props) {
   const filterPractices = (attorney) => {
     if (practices.length > 0) {
       return attorney.practices_array.indexOf(practices[0]) > -1;
-    } else {
-      return attorney;
     }
+    return attorney;
   };
 
   // filter by key -- location
   const filterLocation = (attorney) => {
     if (location.length > 0) {
       return attorney.location.indexOf(location[0]) >= 0;
-    } else {
-      return attorney;
     }
+    return attorney;
   };
 
   // filter by key -- designation
   const filterDesignation = (attorney) => {
     if (desgination.length > 0) {
       return attorney.designation.indexOf(desgination[0]) >= 0;
-    } else {
-      return attorney;
     }
+    return attorney;
   };
 
   // filter by key -- query
@@ -65,9 +62,8 @@ export default function Filtered(props) {
   const filterLetter = (attorney) => {
     if (letter.length > 0) {
       return attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase();
-    } else {
-      return attorney;
     }
+    return attorney;
   };
 
   const aFiltered = attorneys
@@ -92,9 +88,8 @@ export default function Filtered(props) {
             type="/attorney/[slug]"
           />
         </Col>
-      ))
-    }
-    {(aFiltered.length < 1) && <h3 className="text-center red-title d-block mx-auto my-4">Sorry, no attorneys found according to this query.</h3>}
+      ))}
+      {(aFiltered.length < 1) && <h3 className="text-center red-title d-block mx-auto my-4">Sorry, no attorneys found according to this query.</h3>}
     </Row>
   );
 }

@@ -9,7 +9,7 @@ const AboutFirm = () => (
       <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
         <li>
           <Link href="/category/firm-news">
-            <a className="proxima-bold">              
+            <a className="proxima-bold">
               Firm News
             </a>
           </Link>
@@ -18,12 +18,12 @@ const AboutFirm = () => (
           <Link href="/category/law-firm-insights">
             <a className="proxima-bold">
               Firm Insights
-            </a>            
+            </a>
           </Link>
         </li>
         <li>
           <Link href="/category/firm-events">
-            <a className="proxima-bold">              
+            <a className="proxima-bold">
               Firm Events
             </a>
           </Link>

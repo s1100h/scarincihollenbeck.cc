@@ -89,9 +89,11 @@ const NavBar = () => (
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <strong>Phone: </strong> 201-896-4100
+                <strong>Phone: </strong>
+                {' '}
+                201-896-4100
               </Nav.Item>
-          </Nav>            
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </Row>

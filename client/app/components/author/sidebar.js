@@ -3,8 +3,8 @@ import AboutAuthor from './about-author';
 import AttorneyServices from './attorney-services';
 
 export default function SideBar(props) {
-  const { bio, practices, } = props;
-  
+  const { bio, practices } = props;
+
   return (
     <div>
       <Search />

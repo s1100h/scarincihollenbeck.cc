@@ -11,6 +11,5 @@ export default function Sidebar(props) {
       <TrendingStories title={(covidPage) ? 'Current Covid-19 News' : 'Trending Stories'} content={posts} />
       <SubscriptionMessage />
     </>
-  )
-
+  );
 }
