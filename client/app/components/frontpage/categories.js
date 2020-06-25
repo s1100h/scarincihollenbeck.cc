@@ -35,7 +35,7 @@ const Categories = () => (
       </Form.Group>
     </Form>
     <p className="my-3 small-excerpt mb-0">Not sure? Feel free to browse here.</p>
-    <Link href="/category/law-firm-insights/">
+    <Link href="/category[slug]" as="/category/law-firm-insights/">
       <a className="red-title proxima-bold">
         <u>
           Firm Insights &gt;&gt;

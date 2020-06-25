@@ -262,7 +262,7 @@ function single_data($request) {
     "posts" => $top_five_post_data,
     "attorneys" => $attorney_data,
     "eventDetails" => ($eventDetails) ? $eventDetails : [],
-    "tags" => (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),
+    "tags" => (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : html_entity_decode(htmlspecialchars_decode(get_the_tags($post_id))),
     "seo" => (object)array(
       "title" => get_post_meta($post_id, '_yoast_wpseo_title', true),
       "metaDescription" => get_post_meta($post_id, '_yoast_wpseo_metadesc', true),
@@ -271,7 +271,7 @@ function single_data($request) {
       "tags" =>  (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),
       "publishedDate" => get_the_date('Y-m-d H:i:s', $post_id),
       "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
-      "postContent" => $body_content,
+      "postContent" => trim(preg_replace('/\s\s+/', ' ', strip_tags($body_content))),
       "primaryCategory" => $categories[0],
       "author" => $authors_names
     )

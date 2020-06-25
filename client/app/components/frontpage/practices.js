@@ -11,7 +11,7 @@ export default function Practices(props) {
       <ul className="ml-4">
         { corePractices.map((p) => (
           <li key={p.title} className="blue-title">
-            <Link href={p.slug}>
+            <Link href="/practices/[slug]" as={p.slug}>
               <a className="blue-title proxima-bold">
                 {p.title}
               </a>
