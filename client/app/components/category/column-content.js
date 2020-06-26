@@ -9,7 +9,7 @@ export default function ColumnContent(props) {
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-sm-12 col-md-4 border-right">
+        <div className="col-sm-12 col-md-3 border-right">
           <h5 className="red-title">{colOneTitle}</h5>
           <hr />
           <ul className="ml-0 mh-75">
@@ -35,11 +35,11 @@ export default function ColumnContent(props) {
             ))}
           </ul>
         </div>
-        <div className="col-sm-12 col-md-4">
+        <div className="col-sm-12 col-md-5">
           <h5 className="red-title">Join our mailing list!</h5>
           <hr />
           <div className="ModalForm-main">
-            <p className="text-center text-muted small-excerpt">Enter your email and select a category(s) below.</p>
+            <p className="text-center text-muted small-excerpt mb-2">Enter your email and select a category(s) below.</p>
             <SubscriptionFormColumn />
           </div>
         </div>

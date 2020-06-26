@@ -45,7 +45,9 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const query = `${(searchInput !== '') ? searchInput : ''} ${(practiceInput !== '') ? practiceInput : ''} ${(attorneyInput !== '') ? attorneyInput : ''} ${(categoryInput !== '') ? categoryInput : ''}`;
-    const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
+    const formatUrl = (str) => str.toLowerCase().replace(',',' ').replace('&', '').replace('’', "'").replace('.', '').replace("'",'').replace(/\s+/g,' ').replace(/\s/g, '+');
+
+    console.log('formattedUrl', formatUrl(query));
 
     Router.push({
       pathname: '/search',

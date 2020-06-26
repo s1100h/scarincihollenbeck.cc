@@ -55,8 +55,8 @@ export const checkboxes = [
   },
   {
     key: 'cyberSecurityDataPrivacy',
-    label: 'Cyber Security & Data Privacy',
-    name: 'Cyber Security & Data Privacy',
+    label: 'Cyber Security',
+    name: 'Cyber Security',
     property: 'column_two',
   },
   {

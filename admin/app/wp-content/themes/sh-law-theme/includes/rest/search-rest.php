@@ -56,7 +56,7 @@ function search_query_data($request) {
   $start = ($offset - 1) * $numposts; 
   $end =  $offset * $numposts;
 
-  $slugTerm = explode("+", $slug);
+  $slugTerm = str_replace("+", " ", $slug);
  
   $posts = new WP_Query( array( 's' => $slug, 'posts_per_page' => -1 ) );
   $posts = $posts->posts;
@@ -64,7 +64,7 @@ function search_query_data($request) {
   $search_data = array();
 
   // add term to results
-  $search_data['term'] = ucfirst(implode(" ", $slugTerm));
+  $search_data['term'] = ucwords($slugTerm);
 
   // add number of pages to results
   $search_data['pages'] = ceil(count($posts) / $numposts);

@@ -271,7 +271,7 @@ function single_data($request) {
       "tags" =>  (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),
       "publishedDate" => get_the_date('Y-m-d H:i:s', $post_id),
       "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
-      "postContent" => trim(preg_replace('/\s\s+/', ' ', strip_tags($body_content))),
+      "postContent" => str_replace("“", "'", str_replace("”", "'", preg_replace("/\"/","'", trim(preg_replace('/\s\s+/', ' ', strip_tags($body_content)))))),
       "primaryCategory" => $categories[0],
       "author" => $authors_names
     )

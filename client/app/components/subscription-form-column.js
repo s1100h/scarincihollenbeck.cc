@@ -69,7 +69,7 @@ export default function SubscriptionFormColumn(props) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}  id="subscription-form">
         <Form.Group>
           <Form.Control id="firstName" name="firstName" type="text" placeholder="Enter first name" {...bindFirstNameInput} required />
         </Form.Group>
@@ -82,7 +82,7 @@ export default function SubscriptionFormColumn(props) {
         <Form.Group>
           <Form.Label className="small-excerpt">Please select a category(s) below:</Form.Label>
           <ul className="no-dots two-column">
-            {checkboxes.map((type) => (
+            {checkboxes.map((type, index) => (
               <li key={type.key}>
                 <Form.Check
                   type="checkbox"
