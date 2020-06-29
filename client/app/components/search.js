@@ -19,7 +19,7 @@ export default function Search() {
   useEffect(() => {
     const fetchData = async () => {
       // fetch query results
-      const fetchQuery = request.get('http://localhost:8200/cached/search-options')
+      const fetchQuery = request.get('https://api.scarincihollenbeck.com/cached/search-options')
         .set(headers)
         .then((res) => ({
           status: res.status,

@@ -265,7 +265,7 @@ function single_data($request) {
     "tags" => (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : html_entity_decode(htmlspecialchars_decode(get_the_tags($post_id))),
     "seo" => (object)array(
       "title" => get_post_meta($post_id, '_yoast_wpseo_title', true),
-      "metaDescription" => get_post_meta($post_id, '_yoast_wpseo_metadesc', true),
+      "metaDescription" => preg_replace("/\"/","'", trim(preg_replace('/\s\s+/', ' ', strip_tags(get_post_meta($post_id, '_yoast_wpseo_metadesc', true))))),
       "canonicalLink" => $slug,
       "featuredImg" => get_the_post_thumbnail_url($post_id),
       "tags" =>  (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),

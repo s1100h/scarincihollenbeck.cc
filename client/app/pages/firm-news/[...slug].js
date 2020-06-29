@@ -74,7 +74,7 @@ export default function FirmNews({ slides, post }) {
             publisherName="Scarinci Hollenbeck, LLC"
             publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
             description={`${post.seo.metaDescription}`}
-            body={post.content}
+            body={`${post.seo.postContent}`}
           />
           <SingleSubHeader
             image={blogHeaderJPG}

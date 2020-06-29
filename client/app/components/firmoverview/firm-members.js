@@ -16,7 +16,7 @@ export default function FirmMembers(props) {
           {members.map((m) => (
             <Col sm={12} md={6} lg={4} className="mb-2" key={m.ID}>
               <AttorneyCard
-                link={`/${slug}/${m.link}`}
+                link={`${slug}${m.link}`}
                 image={m.image}
                 name={m.name}
                 title={(title === 'Directors') ? m.title : m.designation}
