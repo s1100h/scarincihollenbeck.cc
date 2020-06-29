@@ -36,9 +36,6 @@ function limitTitleLength(title) {
 export default function LatestNewsArticlesCarousel(props) {
   const { slides } = props;
 
-  console.log('slides');
-  console.log(slides);
-
   return (slides.length > 0) && (
     <Carousel responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
