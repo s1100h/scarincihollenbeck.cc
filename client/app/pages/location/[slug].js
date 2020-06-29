@@ -53,19 +53,18 @@ export default function Location({
               longitude: seo.longitude,
             }}
             images={[seo.image]}
-            openingHours={[
-              {
-                opens: '08:00',
-                closes: '18:00',
-                dayOfWeek: [
-                  'Monday',
-                  'Tuesday',
-                  'Wednesday',
-                  'Thursday',
-                  'Friday',
-                ],
-              },
-            ]}
+            openingHours={[{
+              opens: '08:00',
+              closes: '18:00',
+              dayOfWeek: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday'
+              ]
+            }]}
           />
           <div id="location">
             <SingleSubHeader
