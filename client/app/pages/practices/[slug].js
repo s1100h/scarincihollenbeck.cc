@@ -108,17 +108,7 @@ export default function SinglePractice({ slides, practice, corePractices }) {
   );
 }
 
-export async function getStaticPaths() {
-  const practicesResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/all-links/`, { headers });
-  const practicesJson = await practicesResponse.json();
-
-  return {
-    paths: practicesJson.map((practice) => `/practices/${practice}`) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [practice, corePractices, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then((data) => data.json()),
