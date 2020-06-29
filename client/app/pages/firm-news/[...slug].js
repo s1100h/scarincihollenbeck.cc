@@ -95,14 +95,14 @@ export default function FirmNews({ slides, post }) {
                   date={post.date}
                   tags={post.tags}
                 />
-                )}
+              )}
               OneSidebar={(<SocialShareSidebar title={post.title} />)}
               TwoSidebar={(
                 <Sidebar
                   posts={post.posts}
                   attorneys={post.attorneys}
                 />
-)}
+              )}
             />
           </div>
           <Footer slides={slides} />

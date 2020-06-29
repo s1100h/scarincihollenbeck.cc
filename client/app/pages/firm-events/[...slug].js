@@ -100,7 +100,7 @@ export default function FirmEvents({ slides, post }) {
                   eventDetails={post.eventDetails}
                   attorneys={post.attorneys}
                 />
-)}
+              )}
             />
             <Footer slides={slides} />
           </div>
