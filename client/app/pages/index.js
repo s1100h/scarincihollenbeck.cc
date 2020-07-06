@@ -2,11 +2,11 @@ import Head from 'next/head';
 import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
-import CoronaHeader from '../components/frontpage/corona-header';
-import ColumnContent from '../components/frontpage/column-content';
-import FullWidthContent from '../components/frontpage/full-width-content';
-import Footer from '../components/footer';
-import { headers, sortByKey } from '../utils/helpers';
+import CoronaHeader from 'components/frontpage/corona-header';
+import ColumnContent from 'components/frontpage/column-content';
+import FullWidthContent from 'components/frontpage/full-width-content';
+import Footer from 'components/footer';
+import { headers, sortByKey } from 'utils/helpers';
 
 
 export default function Home({

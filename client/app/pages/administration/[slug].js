@@ -5,13 +5,13 @@ import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from '../../components/footer';
-import ProfileImage from '../../components/administration/profile-image';
-import InfoCard from '../../components/administration/info-card';
-import MultiSubHeader from '../../layouts/multi-sub-header';
-import FullWidth from '../../layouts/full-width';
-import { headers, createMarkup } from '../../utils/helpers';
-import { attorneyHeaderJPG } from '../../utils/next-gen-images';
+import Footer from 'components/footer';
+import ProfileImage from 'components/administration/profile-image';
+import InfoCard from 'components/administration/info-card';
+import MultiSubHeader from 'layouts/multi-sub-header';
+import FullWidth from 'layouts/full-width';
+import { headers, createMarkup } from 'utils/helpers';
+import { attorneyHeaderJPG } from 'utils/next-gen-images';
 
 
 export default function SingleAdmin({ slides, adminJson }) {

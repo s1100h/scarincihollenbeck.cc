@@ -4,13 +4,13 @@ import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import BarLoader from 'react-spinners/BarLoader';
-import Footer from '../../components/footer';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import LargeSidebar from '../../layouts/large-sidebar';
-import BodyContent from '../../components/locations/body-content';
-import SideBar from '../../components/locations/sidebar';
-import { headers, urlify } from '../../utils/helpers';
-import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
+import Footer from 'components/footer';
+import SingleSubHeader from 'layouts/single-sub-header';
+import LargeSidebar from 'layouts/large-sidebar';
+import BodyContent from 'components/locations/body-content';
+import SideBar from 'components/locations/sidebar';
+import { headers, urlify } from 'utils/helpers';
+import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
 
 export default function Location({

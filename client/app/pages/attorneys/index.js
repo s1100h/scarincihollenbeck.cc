@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import { headers, sortByKey } from '../../utils/helpers';
-import Footer from '../../components/footer';
-import Selected from '../../components/attorneyarchives/selected';
-import Filters from '../../components/attorneyarchives/filters';
-import Results from '../../components/attorneyarchives/results';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import FullWidth from '../../layouts/full-width';
-import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
+import { headers, sortByKey } from 'utils/helpers';
+import Footer from 'components/footer';
+import Selected from 'components/attorneyarchives/selected';
+import Filters from 'components/attorneyarchives/filters';
+import Results from 'components/attorneyarchives/results';
+import SingleSubHeader from 'layouts/single-sub-header';
+import FullWidth from 'layouts/full-width';
+import { attorneyArchiveHeaderJPG } from 'utils/next-gen-images';
 
 export default function Attorneys({
   slides, seo, locations, designations, practices, attorneys,

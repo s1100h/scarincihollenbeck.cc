@@ -46,7 +46,6 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-
 function SHApp({ Component, pageProps, posts }) {
   useEffect(() => {
     ReactGA.initialize('UA-18813670-1');

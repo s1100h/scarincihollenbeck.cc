@@ -4,12 +4,12 @@ import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Footer from '../../components/footer';
-import Breadcrumbs from '../../components/breadcrumbs';
-import ArchiveLayout from '../../layouts/archive-layout';
-import Body from '../../components/archives/body';
-import Sidebar from '../../components/archives/sidebar';
-import { headers } from '../../utils/helpers';
+import Footer from 'components/footer';
+import Breadcrumbs from 'components/breadcrumbs';
+import ArchiveLayout from 'layouts/archive-layout';
+import Body from 'components/archives/body';
+import Sidebar from 'components/archives/sidebar';
+import { headers } from 'utils/helpers';
 
 const request = require('superagent');
 

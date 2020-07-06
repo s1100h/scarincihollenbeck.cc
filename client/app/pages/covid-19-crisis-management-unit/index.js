@@ -4,15 +4,15 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import NavBar from '../../components/navbar';
-import Footer from '../../components/footer';
-import Body from '../../components/pages/body';
-import Sidebar from '../../components/pages/sidebar';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import LargeSidebar from '../../layouts/large-sidebar';
-import AttorneyCard from '../../components/attorney-card';
-import { headers } from '../../utils/helpers';
-import { blogHeaderJPG } from '../../utils/next-gen-images';
+import NavBar from 'components/navbar';
+import Footer from 'components/footer';
+import Body from 'components/pages/body';
+import Sidebar from 'components/pages/sidebar';
+import SingleSubHeader from 'layouts/single-sub-header';
+import LargeSidebar from 'layouts/large-sidebar';
+import AttorneyCard from 'components/attorney-card';
+import { headers } from 'utils/helpers';
+import { blogHeaderJPG } from 'utils/next-gen-images';
 
 
 export default function Covid19CrisisManagementUnit({

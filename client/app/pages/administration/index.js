@@ -4,12 +4,12 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from '../../components/footer';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import FullWidth from '../../layouts/full-width';
-import AttorneyCard from '../../components/attorney-card';
-import { headers } from '../../utils/helpers';
-import { attorneyArchiveHeaderJPG } from '../../utils/next-gen-images';
+import Footer from 'components/footer';
+import SingleSubHeader from 'layouts/single-sub-header';
+import FullWidth from 'layouts/full-width';
+import AttorneyCard from 'components/attorney-card';
+import { headers } from 'utils/helpers';
+import { attorneyArchiveHeaderJPG } from 'utils/next-gen-images';
 
 
 export default function Administration({ slides, admins, seo }) {

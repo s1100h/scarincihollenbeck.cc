@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
-import Footer from '../../components/footer';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import FullWidth from '../../layouts/full-width';
-import ContactForm from '../../components/contact-form';
-import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
-import { headers } from '../../utils/helpers';
+import Footer from 'components/footer';
+import SingleSubHeader from 'layouts/single-sub-header';
+import FullWidth from 'layouts/full-width';
+import ContactForm from 'components/contact-form';
+import { singleCityBackgroundJPG } from 'utils/next-gen-images';
+import { headers } from 'utils/helpers';
 
 export default function Contact({ slides }) {
   const seo = {

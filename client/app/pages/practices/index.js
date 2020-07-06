@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import Footer from '../../components/footer';
-import SimpleList from '../../components/archivepractice/practice-simple-list';
-import PracticeBlockList from '../../components/archivepractice/practice-block-list';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import FullWidth from '../../layouts/full-width';
-import { headers, sortByKey } from '../../utils/helpers';
-import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
+import Footer from 'components/footer';
+import SimpleList from 'components/archivepractice/practice-simple-list';
+import PracticeBlockList from 'components/archivepractice/practice-block-list';
+import SingleSubHeader from 'layouts/single-sub-header';
+import FullWidth from 'layouts/full-width';
+import { headers, sortByKey } from 'utils/helpers';
+import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
 function sortPracticeCategorys(list) {
   const core = list.filter((e) => e.category === 'Core Practices');

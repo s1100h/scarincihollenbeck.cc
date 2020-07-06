@@ -10,25 +10,25 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Footer from '../../components/footer';
-import MultiSubHeader from '../../layouts/multi-sub-header';
-import NoHeaderMiniSidebar from '../../layouts/no-header-mini-sidebar';
-import FullWidth from '../../layouts/full-width';
-import ProfileImage from '../../components/singleattorney/profile-image';
-import InfoCard from '../../components/singleattorney/info-card';
-import Biography from '../../components/singleattorney/biography';
-import Matters from '../../components/singleattorney/matters';
-import TableTab from '../../components/singleattorney/table';
-import Articles from '../../components/singleattorney/articles';
-import VideoTab from '../../components/singleattorney/video-content';
-import BasicContent from '../../components/singleattorney/basic-content';
-import SidebarContent from '../../components/singleattorney/sidebar';
-import FeaturedSlider from '../../components/singleattorney/featured-slider';
-import RelatedArticles from '../../components/singleattorney/related-articles';
+import Footer from 'components/footer';
+import MultiSubHeader from 'layouts/multi-sub-header';
+import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
+import FullWidth from 'layouts/full-width';
+import ProfileImage from 'components/singleattorney/profile-image';
+import InfoCard from 'components/singleattorney/info-card';
+import Biography from 'components/singleattorney/biography';
+import Matters from 'components/singleattorney/matters';
+import TableTab from 'components/singleattorney/table';
+import Articles from 'components/singleattorney/articles';
+import VideoTab from 'components/singleattorney/video-content';
+import BasicContent from 'components/singleattorney/basic-content';
+import SidebarContent from 'components/singleattorney/sidebar';
+import FeaturedSlider from 'components/singleattorney/featured-slider';
+import RelatedArticles from 'components/singleattorney/related-articles';
 import {
   sortByDateKey, urlify, headers, addRandomKey,
-} from '../../utils/helpers';
-import { attorneyHeaderJPG } from '../../utils/next-gen-images';
+} from 'utils/helpers';
+import { attorneyHeaderJPG } from 'utils/next-gen-images';
 
 
 export default function Attorney({ slides, bio }) {

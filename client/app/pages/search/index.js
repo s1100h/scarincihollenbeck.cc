@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import Footer from '../../components/footer';
-import Breadcrumbs from '../../components/breadcrumbs';
-import ArchiveLayout from '../../layouts/archive-layout';
-import Body from '../../components/archives/body';
-import Sidebar from '../../components/archives/sidebar';
-import { headers, urlify } from '../../utils/helpers';
+import Footer from 'components/footer';
+import Breadcrumbs from 'components/breadcrumbs';
+import ArchiveLayout from 'layouts/archive-layout';
+import Body from 'components/archives/body';
+import Sidebar from 'components/archives/sidebar';
+import { headers, urlify } from 'utils/helpers';
 
 const request = require('superagent');
 

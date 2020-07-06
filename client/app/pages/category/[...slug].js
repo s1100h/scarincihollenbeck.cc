@@ -6,20 +6,20 @@ import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import FullWidth from '../../layouts/full-width';
-import LargeSidebar from '../../layouts/large-sidebar';
-import Search from '../../components/search';
-import Breadcrumbs from '../../components/category/breadcrumbs';
-import MainArticlesContainer from '../../components/category/main-articles-container';
-import MainSidebarContent from '../../components/category/main-sidebar-content';
-import CategoryHeader from '../../components/category/category-header';
-import CategorySliderContainer from '../../components/category/category-slider-container';
-import ColumnContent from '../../components/category/column-content';
-import Footer from '../../components/footer';
+import FullWidth from 'layouts/full-width';
+import LargeSidebar from 'layouts/large-sidebar';
+import Search from 'components/search';
+import Breadcrumbs from 'components/category/breadcrumbs';
+import MainArticlesContainer from 'components/category/main-articles-container';
+import MainSidebarContent from 'components/category/main-sidebar-content';
+import CategoryHeader from 'components/category/category-header';
+import CategorySliderContainer from 'components/category/category-slider-container';
+import ColumnContent from 'components/category/column-content';
+import Footer from 'components/footer';
 import {
   headers, makeTitle, sortByKey, formatCorePractices, urlify,
-} from '../../utils/helpers';
-import { singleCityBackgroundJPG } from '../../utils/next-gen-images';
+} from 'utils/helpers';
+import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
 const request = require('superagent');
 

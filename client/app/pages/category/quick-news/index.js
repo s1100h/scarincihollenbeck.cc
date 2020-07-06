@@ -5,12 +5,12 @@ import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Head from 'next/head';
-import Breadcrumbs from '../../../components/breadcrumbs';
-import ArchiveLayout from '../../../layouts/archive-layout';
-import QuickNewsBody from '../../../components/quick-news-body';
-import Sidebar from '../../../components/archives/sidebar';
-import Footer from '../../../components/footer';
-import { headers } from '../../../utils/helpers';
+import Breadcrumbs from 'components/breadcrumbs';
+import ArchiveLayout from 'layouts/archive-layout';
+import QuickNewsBody from 'components/quick-news-body';
+import Sidebar from 'components/archives/sidebar';
+import Footer from 'components/footer';
+import { headers } from 'utils/helpers';
 
 const request = require('superagent');
 

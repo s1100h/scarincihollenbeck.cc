@@ -6,15 +6,15 @@ import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import NavBar from '../../components/navbar';
-import Footer from '../../components/footer';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import ThreeColMiniSidebar from '../../layouts/three-col-mini-sidebar';
-import Body from '../../components/post/body';
-import Sidebar from '../../components/post/sidebar';
-import SocialShareSidebar from '../../components/post/social-share-sidebar';
-import { headers } from '../../utils/helpers';
-import { blogHeaderJPG, shDiamondPNG } from '../../utils/next-gen-images';
+import NavBar from 'components/navbar';
+import Footer from 'components/footer';
+import SingleSubHeader from 'layouts/single-sub-header';
+import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
+import Body from 'components/post/body';
+import Sidebar from 'components/post/sidebar';
+import SocialShareSidebar from 'components/post/social-share-sidebar';
+import { headers } from 'utils/helpers';
+import { blogHeaderJPG, shDiamondPNG } from 'utils/next-gen-images';
 
 export default function Headlines({ slides, post }) {
   const router = useRouter();

@@ -5,12 +5,12 @@ import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from '../../components/footer';
-import Breadcrumbs from '../../components/breadcrumbs';
-import ArchiveLayout from '../../layouts/archive-layout';
-import Body from '../../components/author/body';
-import Sidebar from '../../components/author/sidebar';
-import { headers } from '../../utils/helpers';
+import Footer from 'components/footer';
+import Breadcrumbs from 'components/breadcrumbs';
+import ArchiveLayout from 'layouts/archive-layout';
+import Body from 'components/author/body';
+import Sidebar from 'components/author/sidebar';
+import { headers } from 'utils/helpers';
 
 const request = require('superagent');
 

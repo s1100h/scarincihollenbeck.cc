@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from '../../components/footer';
-import SingleSubHeader from '../../layouts/single-sub-header';
-import FullWidth from '../../layouts/full-width';
-import FirmMembers from '../../components/firmoverview/firm-members';
-import { cityBackgroundJPG } from '../../utils/next-gen-images';
-import { headers, createMarkup } from '../../utils/helpers';
+import Footer from 'components/footer';
+import SingleSubHeader from 'layouts/single-sub-header';
+import FullWidth from 'layouts/full-width';
+import FirmMembers from 'components/firmoverview/firm-members';
+import { cityBackgroundJPG } from 'utils/next-gen-images';
+import { headers, createMarkup } from 'utils/helpers';
 
 export default function FirmOverview({
   slides, mainTabs, additionalInfo, members, mainContent, seo,

@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from '../../components/footer';
-import Search from '../../components/search';
-import LargeSidebar from '../../layouts/large-sidebar';
-import TrendingStories from '../../components/trending-stories';
-import SubscriptionBody from '../../components/subscription-body';
-import { headers } from '../../utils/helpers';
+import Footer from 'components/footer';
+import Search from 'components/search';
+import LargeSidebar from 'layouts/large-sidebar';
+import TrendingStories from 'components/trending-stories';
+import SubscriptionBody from 'components/subscription-body';
+import { headers } from 'utils/helpers';
 
 export default function Subscription({ slides, posts }) {
   const seo = {
