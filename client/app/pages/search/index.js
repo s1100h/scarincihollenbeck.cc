@@ -23,11 +23,9 @@ export default function SearchPage({
   const [term, setTerm] = useState('');
 
   useEffect(() => {
-    console.log('link...')
-    console.log(`https://admin.scarincihollenbeck.com/wp-json/search/query/${q}/${page}`);
     const fetchData = async () => {
       // fetch query results
-      const fetchQuery = request.get(`http://localhost:8400/wp-json/search/query/${q}/${page}`)
+      const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/search/query/${q}/${page}`)
         .set(headers)
         .then((res) => ({
           status: res.status,

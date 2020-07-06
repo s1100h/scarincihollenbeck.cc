@@ -98,18 +98,7 @@ export default function Location({
   );
 }
 
-export async function getStaticPaths() {
-  const officesResponse = await fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers });
-  const json = await officesResponse.json();
-  const { offices } = json;
-
-  return {
-    paths: offices.map((office) => office.slug) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [locations, currentOffice, currentOfficePosts, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`, { headers }).then((data) => data.json()),
