@@ -79,9 +79,10 @@ export default function WomenLead({
                 {/* Related Articles tab */}
                 {/* Attorney list */}
                 <RelatedAttorneys
-                  members={members}
-                  chair={chair}
-                  handleLink={handleLink}
+                   title="Group Leader"
+                   members={(members.length > 0) ? members : []}
+                   chair={(chair.length > 0) ? chair : []}
+                   handleLink={handleLink}
                 />
                 {/** Recent Blog Articles */}
                 {(attorneysMentioned.length > 0) && (
@@ -112,7 +113,7 @@ export default function WomenLead({
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const [page, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/diversity-group`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
@@ -129,8 +130,8 @@ export async function getServerSideProps({ params }) {
       title,
       description,
       tabs,
-      members: members.member,
-      chair: members.chair,
+      members: members.member || [],
+      chair: members.chair || [],
       relatedPages,
       seo,
     },

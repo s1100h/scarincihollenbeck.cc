@@ -80,8 +80,8 @@ export default function WomenLead({
                 {/* Attorney list */}
                 <RelatedAttorneys
                   title="Group Leader"
-                  members={members}
-                  chair={chair}
+                  members={(members.length > 0) ? members : []}
+                  chair={(chair.length > 0) ? chair : []}
                   handleLink={handleLink}
                 />
                 {/** Recent Blog Articles */}
@@ -113,7 +113,7 @@ export default function WomenLead({
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   const [page, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
@@ -130,8 +130,8 @@ export async function getServerSideProps({ params }) {
       title,
       description,
       tabs,
-      members: members.member,
-      chair: members.chair,
+      members: members.member || [],
+      chair: members.chair || [],
       relatedPages,
       seo,
     },
