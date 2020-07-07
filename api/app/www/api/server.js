@@ -14,7 +14,6 @@ const express = require("express");
 const compression = require("compression");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const run_workers_1 = require("../workers/run-workers");
 const workers_1 = require("../workers");
 const index_router_1 = require("./controllers/v0/index.router");
 (() => __awaiter(void 0, void 0, void 0, function* () {
@@ -27,7 +26,7 @@ const index_router_1 = require("./controllers/v0/index.router");
         app.use('/', index_router_1.IndexRouter);
         // Start the Server
         app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-            yield run_workers_1.fetchData();
+            // await fetchData();
             yield workers_1.executeWorkers();
             console.log(`server running on ${port}`);
             console.log('press CTRL+C to stop server');

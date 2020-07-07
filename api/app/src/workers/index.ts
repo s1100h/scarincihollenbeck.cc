@@ -31,7 +31,7 @@ import * as keys from './keys';
 async function callWorkers() {
   /** Once a day tasks */
   // 0 0 * * *
-  await new CronJob('* * * * *', async () => {    
+  await new CronJob('0 0 * * *', async () => {    
     await fetchContent(url.ATTORNEY_FILTERS_LOCATION_API_URL, keys.ATTORNEY_FILTERS_LOCATION_KEY);
     await fetchContent(url.ATTORNEY_FILTERS_DESIGNATIONS_API_URL, keys.ATTORNEY_FILTERS_DESIGNATIONS_KEY);
     await fetchContent(url.ATTORNEY_FILTERS_PRACTICES_API_URL, keys.ATTORNEY_FILTERS_PRACTICES_KEY);
