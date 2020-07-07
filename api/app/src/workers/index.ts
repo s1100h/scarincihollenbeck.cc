@@ -42,7 +42,7 @@ async function callWorkers() {
 
   /** Once every 30 minute tasks */
   // */30 * * * *
-  await new CronJob('* * * * *', async () => {
+  await new CronJob('*/30 * * * *', async () => {
     await fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
     await fetchContent(url.ATTORNEY_LIST_API_URL, keys.ATTORNEY_LIST_KEY);
     await fetchContent(url.PAGE_API_URL, keys.PAGE_KEY);
