@@ -55,7 +55,7 @@ export default function FirmOverview({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [firmOverviewJson, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_CACHED_API}/cached/firm-overview`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
