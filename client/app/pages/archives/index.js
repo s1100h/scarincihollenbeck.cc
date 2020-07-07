@@ -9,7 +9,7 @@ import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import Body from 'components/archives/body';
 import Sidebar from 'components/archives/sidebar';
-import { headers } from 'utils/helpers';
+import { headers, makeQueryTitle } from 'utils/helpers';
 
 const request = require('superagent');
 
@@ -66,12 +66,11 @@ export default function Archive({
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <div id="archives">
           <NextSeo nofollow />
           <ArchiveLayout
-            header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
+            header={(<Breadcrumbs breadCrumb={[makeQueryTitle(term), currentPage]} categorySlug={term} />)}
             body={(
               <Body
                 results={results}
@@ -88,8 +87,6 @@ export default function Archive({
         </div>
       )}
       <Footer slides={slides} />
-      {' '}
-      */}
     </>
   );
 }

@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
+import BarLoader from 'react-spinners/BarLoader';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import Body from 'components/archives/body';
 import Sidebar from 'components/archives/sidebar';
-import { headers, urlify } from 'utils/helpers';
+import { headers, urlify, makeQueryTitle } from 'utils/helpers';
 
 const request = require('superagent');
 
@@ -56,26 +59,36 @@ export default function SearchPage({
   }, [q, page]);
 
   return (
-    <>
-      <div id="search">
-        <NextSeo nofollow />
-        <ArchiveLayout
-          header={(<Breadcrumbs breadCrumb={[term, currentPage]} categorySlug={term} />)}
-          body={(
-            <Body
-              results={results}
-              term={term}
-              pages={pages}
-              currentPage={currentPage}
-              news={firmNews}
-              events={firmEvents}
-              insight={firmInsights}
+    <> 
+      {(results.length <= 0) ? (
+        <Container>
+          <Row id="page-loader-container" className="justify-content-center align-self-center">
+            <BarLoader color="#DB2220" />
+          </Row>
+        </Container>
+      ) : (
+        <>
+          <div id="search">
+            <NextSeo nofollow />
+            <ArchiveLayout
+              header={(<Breadcrumbs breadCrumb={[makeQueryTitle(term), currentPage]} categorySlug={term} />)}
+              body={(
+                <Body
+                  results={results}
+                  term={term}
+                  pages={pages}
+                  currentPage={currentPage}
+                  news={firmNews}
+                  events={firmEvents}
+                  insight={firmInsights}
+                />
+              )}
+              sidebar={(<Sidebar trending={posts} />)}
             />
-          )}
-          sidebar={(<Sidebar trending={posts} />)}
-        />
-      </div>
-      <Footer slides={slides} />
+          </div>
+          <Footer slides={slides} />
+        </>
+      )}
     </>
   );
 }

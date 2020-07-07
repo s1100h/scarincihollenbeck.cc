@@ -149,3 +149,8 @@ export function printScreen() {
   window.print();
   return false;
 }
+
+export function makeQueryTitle(title) {
+  const formatTitle = title.replace(/\+/g, ' ');
+  return makeTitle(formatTitle);
+}
