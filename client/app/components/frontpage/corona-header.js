@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import { coronaVirusFrontPagePNG, shDiamondPNG } from '../../utils/next-gen-images';
+import { coronaVirusFrontPagePNG, shDiamondPNG } from 'utils/next-gen-images';
 import FrontSearch from './front-search';
 
 const BgBlack = styled.div`
@@ -33,15 +33,15 @@ export default function CoronaHeader(props) {
       <Container className="animated fadeInUp fast mt-4 bg-black-background">
         <Row>
           <Col sm={12} md={6} className="border-right">
-            <h1 className="text-white mx-5 mt-5 display-32 text--shadow animated fadeInUp fast">Scarinci Hollenbeck Covid-19 Crisis Management Group</h1>
-            <p className="lead text-white text--shadow mx-5 animated fadeInUp slow">Scarinci Hollenbeck is 100% operational and ready to assist clients without any business disruption.</p>
+            <h1 className="text-white mx-5 mt-5 display-32 text--shadow animated fadeInUp fast">Ready to rebuild? Scarinci Hollenbeck is here to help</h1>
+            <p className="lead text-white text--shadow mx-5 animated fadeInUp slow">Scarinci Hollenbeck remains 100% operational and committed to assisting your business with the next step.</p>
             <Container className="ml-4">
               <Row>
                 <Col sm={12} md={6} className="mb-3">
                   <Link href="/firm-news/client-alert/client-alert-covid-19" as="/firm-news/client-alert/client-alert-covid-19/">
                     <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow">
                       Client Message
-                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px" />
+                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px mb--3px" />
                     </a>
                   </Link>
                 </Col>
@@ -49,7 +49,7 @@ export default function CoronaHeader(props) {
                   <Link href="/covid-19-crisis-management-unit/">
                     <a className="btn btn-danger w-75 p-2 shadow lift ft-11 animated fadeInUp slow">
                       Resource Center
-                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px" />
+                      <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px mb--3px" />
                     </a>
                   </Link>
                 </Col>

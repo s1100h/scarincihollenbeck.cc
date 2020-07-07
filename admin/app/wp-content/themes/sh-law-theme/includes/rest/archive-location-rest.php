@@ -9,7 +9,7 @@ add_action( 'rest_api_init', function () {
  * Grab latest post title by location selection
  *
  * @param array $data Options for the function.
- * @return string|null Post title, link, and featured image for the latest,  * or null if none.
+ * @return string|null Post title, link, and featured image for the latest, * or null if none.
  */
  function location_portal_data()
  {
@@ -55,8 +55,8 @@ add_action( 'rest_api_init', function () {
    }
    //seo
    $portal_data['seo'] = (object)array(
-    "title" => "Scarinci Hollenbeck NY, NJ, DC, CA Office Locations",
-    "metaDescription" => "To best serve our clients, Scarinci Hollenbeck has attorneys in office locations in New York, New Jersery, Washington D.C., and San Francisco, CA.",
+    "title" => "Office Locations | Scarinci Hollenbeck",
+    "metaDescription" => "Scarinci Hollenbeck is an alternative to a National 250 law firm. With multiple offices in New Jersey, New York City, and the District of Columbia.",
     "canonicalLink" => "locations",
 
    );

@@ -95,37 +95,50 @@ def retrieve_links():
   # retrieve news, eventes, and blog posts
   for id in site_categorys:
     posts_url = '{base_url}/wp-json/wp/v2/posts/?categories={id}&per_page={total}'.format(id=id, base_url=base_url, total=total)
-    site_links.append(request_for_links(posts_url,'monthly', '0.8'))
-        
+    post_links = request_for_links(posts_url,'monthly', '0.8')
 
+    for post_link in post_links:
+      site_links.append(post_link)
+        
   # retrieve attorneys
   attorneys_url = '{base_url}/wp-json/wp/v2/attorneys?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_links(attorneys_url, 'monthly', '0.8'))
+  attorney_links = request_for_links(attorneys_url, 'monthly', '0.8')
+  for attorney_link in attorney_links:
+    site_links.append(attorney_link)
 
   # retrieve locations
   locations_url = '{base_url}/wp-json/wp/v2/location?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_links(locations_url, 'yearly', '0.6'))
-
+  location_links = request_for_links(locations_url, 'yearly', '0.6')
+  for location_link in location_links:
+    site_links.append(location_link)
+  
   # retrieve admins
   admin_url = '{base_url}/wp-json/wp/v2/administration?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_links(admin_url, 'yearly', '0.2'))
+  admin_links = request_for_links(admin_url, 'yearly', '0.2')
+  for admin_link in admin_links:
+    site_links.append(admin_link)
 
   # retrieve practices
   practices_url = '{base_url}/wp-json/wp/v2/practices?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_links(practices_url, 'monthly', '0.8'))
+  practice_links = request_for_links(practices_url, 'monthly', '0.8')
+  for practice_link in practice_links:
+    site_links.append(practice_link)
 
   # retrieve careers
   careers_url = '{base_url}/wp-json/wp/v2/careers?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_links(careers_url, 'monthly', '0.4'))
+  career_links = request_for_links(careers_url, 'monthly', '0.4')
+  for career_link in career_links:
+    site_links.append(career_link)
 
   # retrieve pages
   pages_url = '{base_url}/wp-json/wp/v2/pages?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_links(pages_url, 'yearly', '0.2'))
+  page_links = request_for_links(pages_url, 'yearly', '0.2')
+  for page_link in page_links:
+    site_links.append(page_link)
 
   # standard pages
   now = datetime.datetime.now()
-
-  site_links.append([
+  standard_pages = [
     {
       'id': 1,
       'link': 'https://scarincihollenbeck.com',
@@ -182,11 +195,14 @@ def retrieve_links():
       'change_freq': 'monthly',
       'priority': '0.4' 
     }       
-  ])
+  ]
+
+  for page in standard_pages:
+    site_links.append(page)
 
   # category pages
-  category_url = '{base_url}/wp-json/wp/v2/categories?per_page={total}'.format(base_url=base_url, total=total)
-  site_links.append(request_for_category_links(category_url, 'daily', '0.6'))
+  # category_url = '{base_url}/wp-json/wp/v2/categories?per_page={total}'.format(base_url=base_url, total=total)
+  # site_links.append(request_for_category_links(category_url, 'daily', '0.6'))
 
   # retrieve archive pages
-  return remove_duplicates(site_links)
+  return site_links
