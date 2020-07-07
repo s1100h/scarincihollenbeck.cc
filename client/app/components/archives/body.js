@@ -18,13 +18,16 @@ export default function Body(props) {
     news,
     insight,
     events,
+    pathname,
+    q
   } = props;
 
   function handlePagination(e, page) {
     e.preventDefault();
+
     Router.push({
-      pathname: '/archives',
-      query: { q: term, page },
+      pathname,
+      query: { q, page },
     });
   }
 

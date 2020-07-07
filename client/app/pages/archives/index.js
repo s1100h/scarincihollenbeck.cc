@@ -26,7 +26,6 @@ export default function Archive({
 
   useEffect(() => {
     const fetchData = async () => {
-      // fetch query results
       const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/archive/query/${q}/${page}`)
         .set(headers)
         .then((res) => ({
@@ -80,6 +79,8 @@ export default function Archive({
                 news={firmNews}
                 events={firmEvents}
                 insight={firmInsights}
+                pathname="/archives"
+                q={q}
               />
             )}
             sidebar={(<Sidebar trending={posts} />)}

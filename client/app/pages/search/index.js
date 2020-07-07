@@ -81,6 +81,8 @@ export default function SearchPage({
                   news={firmNews}
                   events={firmEvents}
                   insight={firmInsights}
+                  pathname="/search"
+                  q={q}
                 />
               )}
               sidebar={(<Sidebar trending={posts} />)}
