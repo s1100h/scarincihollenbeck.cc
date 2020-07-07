@@ -33,8 +33,8 @@ export default function CoronaHeader(props) {
       <Container className="animated fadeInUp fast mt-4 bg-black-background">
         <Row>
           <Col sm={12} md={6} className="border-right">
-            <h1 className="text-white mx-5 mt-5 display-32 text--shadow animated fadeInUp fast">Ready to rebuild? Scarinci Hollenbeck is here to help</h1>
-            <p className="lead text-white text--shadow mx-5 animated fadeInUp slow">Scarinci Hollenbeck remains 100% operational and committed to assisting your business with the next step.</p>
+            <h1 className="text-white mx-5 mt-5 display-32 text--shadow animated fadeInUp fast">Scarinci Hollenbeck Covid-19 Crisis Management Group</h1>
+            <p className="lead text-white text--shadow mx-5 animated fadeInUp slow">Scarinci Hollenbeck is 100% operational and ready to assist clients without any business disruption.</p>
             <Container className="ml-4">
               <Row>
                 <Col sm={12} md={6} className="mb-3">
