@@ -283,12 +283,17 @@ ul {
   padding: 10px;
   margin-bottom: 30px;
 }
-
-.bg-black-background {
-  background-color: rgba(0,0,0, .50);
+.bg-black-background, .bg-black-background--darker {
   border-radius: 4px;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
+}
+.bg-black-background {
+  background-color: rgba(0,0,0, .50);  
+}
+
+.bg-black-background--darker {
+  background-color: rgba(0,0,0, .75);
 }
 
 .articles-container {

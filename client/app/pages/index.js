@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
-import CoronaHeader from 'components/frontpage/corona-header';
+import NewDawnHeader from 'components/frontpage/new-dawn-header';
 import ColumnContent from 'components/frontpage/column-content';
 import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
@@ -42,7 +42,7 @@ export default function Home({
           cardType: 'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
         }}
       />
-      <CoronaHeader />
+      <NewDawnHeader />
       <Container>
         <ColumnContent corePractices={corePractices} />
         <FullWidthContent
