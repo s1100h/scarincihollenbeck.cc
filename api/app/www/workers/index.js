@@ -56,7 +56,7 @@ function callWorkers() {
         }), null, true, 'America/New_York');
         /** Once every 30 minute tasks */
         // */30 * * * *
-        yield new CronJob('* * * * *', () => __awaiter(this, void 0, void 0, function* () {
+        yield new CronJob('*/30 * * * *', () => __awaiter(this, void 0, void 0, function* () {
             yield fetch_1.fetchContent(url.ADMIN_ARCHIVE_API_URL, keys.ADMIN_ARCHIVE_KEY);
             yield fetch_1.fetchContent(url.ATTORNEY_LIST_API_URL, keys.ATTORNEY_LIST_KEY);
             yield fetch_1.fetchContent(url.PAGE_API_URL, keys.PAGE_KEY);
