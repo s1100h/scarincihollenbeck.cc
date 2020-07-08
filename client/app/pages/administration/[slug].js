@@ -96,17 +96,7 @@ export default function SingleAdmin({ slides, adminJson }) {
   );
 }
 
-export async function getStaticPaths() {
-  const adminsResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers });
-  const json = await adminsResponse.json();
-
-  return {
-    paths: json.admins.map((admin) => admin.link) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [adminJson, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
