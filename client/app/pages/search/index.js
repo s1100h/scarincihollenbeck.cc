@@ -89,7 +89,6 @@ export async function getStaticProps() {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-  const { firmNews, firmEvents, firmInsights } = articleJson;
 
 
   return {
