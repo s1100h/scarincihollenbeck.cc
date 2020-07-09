@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev -p 7700",
     "sitemap": "node sitemap-generator.js",
-    "build": "npm run sitmap && next build",
+    "build": "next build",
     "start": "next start -p 7300"
   },
   "license": "ISC",
