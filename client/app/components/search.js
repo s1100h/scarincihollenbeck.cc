@@ -5,8 +5,6 @@ import Button from 'react-bootstrap/Button';
 import { addRandomKey, headers } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
-const request = require('superagent');
-
 export default function Search() {
   const { value: searchInput, bind: bindSearchInput, reset: resetSearchInput } = useInput('');
   const { value: practiceInput, bind: bindPracticeInput, reset: resetPracticeInput } = useInput('');
@@ -18,25 +16,15 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // fetch query results
-      const fetchQuery = request.get('https://api.scarincihollenbeck.com/cached/search-options')
-        .set(headers)
-        .then((res) => ({
-          status: res.status,
-          body: JSON.parse(res.text),
-        }))
-        .catch((err) => err);
+      const [attorneys, practices, categories] = await Promise.all([
+        fetch('https://admin.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then((data) => data.json()),
+        fetch('https://admin.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then((data) => data.json()),
+        fetch('https://admin.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100', { headers}).then((data) => data.json())
+      ]);
 
-      fetchQuery.then((results) => {
-        const { status, body } = results;
-
-        if (status === 200) {
-          const { attorneys, categories, practices } = body;
-          setAttorneys(attorneys);
-          setCategories(categories);
-          setPractices(practices);
-        }
-      });
+      setAttorneys(attorneys);
+      setCategories(categories);
+      setPractices(practices);
     };
 
     fetchData();
@@ -46,8 +34,6 @@ export default function Search() {
     e.preventDefault();
     const query = `${(searchInput !== '') ? searchInput : ''} ${(practiceInput !== '') ? practiceInput : ''} ${(attorneyInput !== '') ? attorneyInput : ''} ${(categoryInput !== '') ? categoryInput : ''}`;
     const formatUrl = (str) => str.toLowerCase().replace(',',' ').replace('&', '').replace('’', "'").replace('.', '').replace("'",'').replace(/\s+/g,' ').replace(/\s/g, '+');
-
-    console.log('formattedUrl', formatUrl(query));
 
     Router.push({
       pathname: '/search',
@@ -81,19 +67,19 @@ export default function Search() {
         <Form.Group controlId="practices.ControlSelect1">
           <Form.Control as="select" {...bindPracticeInput}>
             <option>Filter by practice</option>
-            {practices.map((p) => <option key={addRandomKey(p.title)}>{p.title}</option>) }
+            {(practices.length > 0) && practices.map((practice) => <option key={addRandomKey(practice.title)}>{practice.title}</option>) }
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="attorneys.ControlSelect1">
           <Form.Control as="select" {...bindAttorneyInput}>
             <option>Filter by attorney</option>
-            {attorneys.map((p) => <option key={addRandomKey(p.title)}>{p.title}</option>) }
+            {(attorneys.length > 0) && attorneys.map((attorney) => <option key={addRandomKey(attorney.title)}>{attorney.title}</option>) }
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="category.SelectCategory">
           <Form.Control as="select" {...bindCategoryInput}>
             <option>Filter by category</option>
-            {categories.map((p) => ((p.title !== 'Uncategorized') && <option key={addRandomKey(p.title)}>{p.title}</option>)) }
+            {(categories.length > 0) && categories.map((category) => ((category.name !== 'Uncategorized') && <option key={addRandomKey(category.name)}>{category.name}</option>)) }
           </Form.Control>
         </Form.Group>
         <Button type="submit" variant="secondary" onClick={() => clearFields()} className="proxima-bold px-5 my-2 mr-2">Clear</Button>

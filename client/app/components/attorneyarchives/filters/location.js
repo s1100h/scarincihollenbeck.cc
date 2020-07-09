@@ -4,6 +4,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 
 export default function Location(props) {
   const { locations, onSelect } = props;
+
   return (
     <NavDropdown
       title={(
@@ -17,7 +18,7 @@ export default function Location(props) {
     >
 
       {locations.map((location) => (
-        <NavDropdown.Item key={location.id} type="button" name="location" className="btn btn-link w-100" onClick={(e) => onSelect(e, location.title)}>
+        <NavDropdown.Item key={location.ID} type="button" name="location" className="btn btn-link w-100" onClick={(e) => onSelect(e, location.title)}>
           {location.title}
         </NavDropdown.Item>
       ))}

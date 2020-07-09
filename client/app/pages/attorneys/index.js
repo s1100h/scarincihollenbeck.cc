@@ -132,14 +132,14 @@ export default function Attorneys({
 }
 
 export async function getServerSideProps() {
-  const [attorneys, filters, seo, slides] = await Promise.all([
+  const [attorneys, locations, designations, practices, seo, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/attorney-filters`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/office-locations`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/designations`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/practices`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-
-  const { locations, designations, practices } = filters;
 
   return {
     props: {

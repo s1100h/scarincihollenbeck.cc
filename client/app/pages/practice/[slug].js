@@ -113,7 +113,7 @@ export default function SinglePractice({ slides, practice, corePractices }) {
 export async function getServerSideProps({ params }) {
   const [practice, corePractices, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 

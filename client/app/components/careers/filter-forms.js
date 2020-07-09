@@ -35,12 +35,12 @@ export default function FilterForms(props) {
             <NavDropdown
               title={(
                 <>
-                  Filter by location
-                  <FontAwesomeIcon icon={faCaretDown} className="ml-5 mw-10" />
+                  <span className="ml-2 my-3">Filter by location</span>
+                  <FontAwesomeIcon icon={faCaretDown} className="ml-4em icon-w8px-h20px" />
                 </>
-)}
+              )}
               id="basic-nav-dropdown"
-              className="bg-white rounded pl-2 text-left"
+              className="bg-white rounded text-left maxw-225"
             >
               {locs.map((loc) => (
                 <NavDropdown.Item key={loc} type="button" name="locations" className="btn btn-link w-100" onClick={(e) => onSelect(e)}>
@@ -51,12 +51,12 @@ export default function FilterForms(props) {
             <NavDropdown
               title={(
                 <>
-                  Filter by location
-                  <FontAwesomeIcon icon={faCaretDown} className="ml-5 mw-10" />
+                  <span className="ml-2 my-3">Filter by type</span>
+                  <FontAwesomeIcon icon={faCaretDown} className="ml-5em icon-w8px-h20px" />
                 </>
-)}
+              )}
               id="basic-nav-dropdown"
-              className="bg-white rounded pl-2 text-left"
+              className="bg-white rounded text-left maxw-225"
             >
               {typs.map((typ) => (
                 <NavDropdown.Item key={typ} type="button" name="type" className="btn btn-link w-100" onClick={(e) => onSelect(e)}>

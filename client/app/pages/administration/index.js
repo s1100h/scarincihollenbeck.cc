@@ -53,7 +53,7 @@ export default function Administration({ slides, admins, seo }) {
 
 export async function getServerSideProps() {
   const [aJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/administration-archives`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 

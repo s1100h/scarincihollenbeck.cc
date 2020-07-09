@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev -p 7700",
+    "sitemap": "node sitemap-generator.js",
     "build": "next build",
     "start": "next start -p 7300"
   },

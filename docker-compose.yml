@@ -28,34 +28,6 @@ services:
     ports:
       - 8100:8100
 
-  api:
-    build: api/
-    container_name: site-api
-    volumes:
-      - ./api/app:/src
-    env_file:
-      - .env
-    environment:
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - ADMIN_SITE=${ADMIN_SITE}
-      - REDIS_URL=redis://cache
-    ports:
-      - 8200:8200
-    links:
-      - redis
-      - wp
-    networks:
-      - app-network
-
-  redis:
-    image: redis
-    container_name: cache
-    command: redis-server --requirepass ${REDIS_PASSWORD}
-    expose:
-      - 6379
-    networks:
-      - app-network
-      
   db:
     image: mysql:latest
     container_name: db
@@ -90,15 +62,6 @@ services:
       - ./admin/config/php.conf.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
       - app-network
-
-  sitemaps:
-    build: sitemaps/
-    container_name: sitemap-generator
-    volumes:
-      - ./sitemaps/app:/src
-    networks:
-      - app-network
-   
 
 networks:
   app-network:

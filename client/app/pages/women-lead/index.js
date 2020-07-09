@@ -89,8 +89,7 @@ export default function WomenLead({
                 <div className="w-100 d-block">
                   <div className="line-header">
                     <h3>
-                      `Latest From $
-                      {title}
+                      `Latest From {title}
                       `
                     </h3>
                   </div>
