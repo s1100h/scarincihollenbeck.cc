@@ -63,15 +63,6 @@ services:
     networks:
       - app-network
 
-  sitemaps:
-    build: sitemaps/
-    container_name: sitemap-generator
-    volumes:
-      - ./sitemaps/app:/src
-    networks:
-      - app-network
-   
-
 networks:
   app-network:
     driver: bridge 

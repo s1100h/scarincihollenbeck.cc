@@ -6,8 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
-import ProfileImage from 'components/administration/profile-image';
-import InfoCard from 'components/administration/info-card';
+import ProfileImage from 'components/singleattorney/profile-image';
+import InfoCard from 'components/singleattorney/info-card';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
@@ -66,15 +66,16 @@ export default function SingleAdmin({ slides, adminJson }) {
             <MultiSubHeader
               image={attorneyHeaderJPG}
               height="450px"
-              profile={(<ProfileImage image={adminJson.image} name={adminJson.name} />)}
+              profile={(<ProfileImage image={adminJson.image.url} name={adminJson.name} />)}
               infoCard={(
                 <InfoCard
-                  name={adminJson.name}
-                  title={adminJson.Title}
-                  phone_extension={adminJson.phone_extension}
                   email={adminJson.email}
                   social_media_links={adminJson.social_media_links}
                   vizibility={adminJson.vizibility}
+                  fullName={adminJson.name}
+                  designation={adminJson.Title}
+                  phoneNumber={`201-896-4100 ${adminJson.phone_extension}`}
+                  socialMediaLinks={adminJson.social_media_links}
                 />
             )}
             />

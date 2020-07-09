@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev -p 7700",
-    "build": "next build",
+    "sitemap": "node sitemap-generator.js",
+    "build": "npm run sitmap && next build",
     "start": "next start -p 7300"
   },
   "license": "ISC",

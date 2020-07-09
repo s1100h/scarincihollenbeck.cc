@@ -107,7 +107,7 @@ export default function InfoCard(props) {
                       {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white icon-w8px-h20px" />}
                       {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white icon-w8px-h20px" />}
                       {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white icon-w8px-h20px" />}
-                      <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                      <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative bottom--1px icon">
                         {`  Connect on ${v.channel}`}
                       </a>
                     </h5>
