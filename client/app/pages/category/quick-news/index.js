@@ -92,19 +92,19 @@ export default function QuickNews({
 }
 
 export async function getStaticProps({ params }) {
-  const [articles, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then((data) => data.json()),
+  const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-
-  const { firmNews, firmEvents, firmInsights } = articles;
 
 
   return {
     props: {
-      firmNews,
-      firmEvents,
-      firmInsights,
+      firmNews: firmNews.latest || [],
+      firmEvents: firmEvents.latest || [],
+      firmInsights: firmInsights.latest || [],
       slides,
     },
   };

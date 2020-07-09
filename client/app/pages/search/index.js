@@ -28,7 +28,7 @@ export default function SearchPage({
   useEffect(() => {
     const fetchData = async () => {
       const [body] = await Promise.all([
-        fetch(`http://localhost:8400/wp-json/search/query/${q}/${page}`, { headers }).then((data) => data.json())
+        fetch(`https://admin.scarincihollenbeck.com/wp-json/search/query/${q}/${page}`, { headers }).then((data) => data.json())
       ]);
       const { results, pages, term, posts } = body;
 
@@ -83,8 +83,10 @@ export default function SearchPage({
 
 
 export async function getStaticProps() {
-  const [articleJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then((data) => data.json()),
+  const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
   const { firmNews, firmEvents, firmInsights } = articleJson;
@@ -93,9 +95,9 @@ export async function getStaticProps() {
   return {
     props: {
       slides,
-      firmNews,
-      firmEvents,
-      firmInsights,
+      firmNews: firmNews.latest || [],
+      firmEvents: firmEvents.latest || [],
+      firmInsights: firmInsights.latest || [],
     },
   };
 }
