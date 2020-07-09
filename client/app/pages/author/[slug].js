@@ -12,8 +12,6 @@ import Body from 'components/author/body';
 import Sidebar from 'components/author/sidebar';
 import { headers } from 'utils/helpers';
 
-const request = require('superagent');
-
 export default function Author({
   slides, authorJson, firmNews, firmEvents, firmInsights,
 }) {
@@ -33,26 +31,15 @@ export default function Author({
         currentPage = page;
       }
 
-      const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/author/posts/${authorJson.currentUser}/${currentPage}`)
-        .set(headers)
-        .then((res) => ({
-          status: res.status,
-          body: JSON.parse(res.text),
-        }))
-        .catch((err) => err);
+      const [body] = await Promise.all([
+        fetch(`https://admin.scarincihollenbeck.com/wp-json/author/posts/${authorJson.currentUser}/${currentPage}`, { headers }).then((data) => data.json())
+      ]);
 
-      fetchQuery.then((results) => {
-        const { status, body } = results;
-
-        if (status === 200) {
-          const { posts, pages, results } = body;
-
-          setResults(results);
-          setPosts(posts);
-          setPages(pages);
-          setCurrentPage(currentPage);
-        }
-      });
+      const { posts, pages, results } = body;
+      setResults(results);
+      setPosts(posts);
+      setPages(pages);
+      setCurrentPage(currentPage);          
     };
 
     fetchData();
@@ -105,21 +92,21 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [authorJson, articlesJson, slides] = await Promise.all([
+  const [authorJson, firmNews, firmInsights, firmEvents, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/bio/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/latest-articles`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-
-  const { firmNews, firmInsights, firmEvents } = articlesJson;
 
   return {
     props: {
       slides,
       authorJson,
-      firmNews,
-      firmEvents,
-      firmInsights,
+      firmNews: firmNews.latest || [],
+      firmEvents: firmEvents.latest || [],
+      firmInsights: firmInsights.latest || [],
     },
   };
 }

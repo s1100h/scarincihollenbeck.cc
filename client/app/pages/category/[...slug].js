@@ -21,8 +21,6 @@ import {
 } from 'utils/helpers';
 import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
-const request = require('superagent');
-
 export default function Category({
   category, seo, current, slides, corePractices, firmCategories,
 }) {
@@ -122,7 +120,7 @@ export async function getServerSideProps({ params }) {
   const [category, firmCategories, corePractices, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/core-practices`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 

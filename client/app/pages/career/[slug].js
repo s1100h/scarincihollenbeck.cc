@@ -58,17 +58,7 @@ export default function Career({ slides, careerJson }) {
   );
 }
 
-export async function getStaticPaths() {
-  const careersResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers });
-  const careersJson = await careersResponse.json();
-
-  return {
-    paths: (careersJson.hasOwnProperty('careers')) ? careersJson.careers.map((career) => `/career${career.slug}`) : [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [careerJson, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),

@@ -70,7 +70,7 @@ export default function Location({
 
 export async function getServerSideProps() {
   const [locations, lyndhurst, lyndhurstposts, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_CACHED_API}/cached/office-locations`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/lyndhurst`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),

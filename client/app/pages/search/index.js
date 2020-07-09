@@ -27,30 +27,16 @@ export default function SearchPage({
 
   useEffect(() => {
     const fetchData = async () => {
-      // fetch query results
-      const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/search/query/${q}/${page}`)
-        .set(headers)
-        .then((res) => ({
-          status: res.status,
-          body: JSON.parse(res.text),
-        }))
-        .catch((err) => err);
+      const [body] = await Promise.all([
+        fetch(`http://localhost:8400/wp-json/search/query/${q}/${page}`, { headers }).then((data) => data.json())
+      ]);
+      const { results, pages, term, posts } = body;
 
-      fetchQuery.then((results) => {
-        const { status, body } = results;
-
-        if (status === 200) {
-          const {
-            results, pages, term, posts,
-          } = body;
-
-          setResults(results);
-          setPages(pages);
-          setTerm(term);
-          setCurrentPage(page);
-          setPosts(posts);
-        }
-      });
+      setResults(results);
+      setPages(pages);
+      setTerm(term);
+      setCurrentPage(page);
+      setPosts(posts);      
     };
 
     if (q !== undefined && page !== undefined) {
