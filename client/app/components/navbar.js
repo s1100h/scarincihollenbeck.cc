@@ -61,9 +61,6 @@ const NavBar = () => (
                 </Link>
               </Nav.Item>
               <NavDropdown title="Library" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/category/quick-news?page=1">
-                  Quick News
-                </NavDropdown.Item>
                 <NavDropdown.Item href="/category/firm-news">
                   Firm News
                 </NavDropdown.Item>
@@ -72,6 +69,9 @@ const NavBar = () => (
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/category/law-firm-insights">
                   Firm Insights
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/category/quick-news?page=1">
+                  Quick News
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Item>
