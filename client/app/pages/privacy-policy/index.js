@@ -51,7 +51,7 @@ export default function PrivacyPolicy({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [aJson, postJson, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/privacy-policy`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone`, { headers }).then((data) => data.json()),
