@@ -27,12 +27,11 @@ export default function QuickNews({
 
   useEffect(() => {
     const fetchData = async () => {
-
-      const [body] = await Promise.all([
+      const [response] = await Promise.all([
         fetch(`https://admin.scarincihollenbeck.com/wp-json/archive/query/quick-news/${page}`, { headers }).then((data) => data.json())
       ]);
 
-      const { results, pages, term, posts } = body;
+      const { results, pages, term, posts } = response;
       setResults(results);
       setPages(pages);
       setTerm(term);
@@ -91,7 +90,7 @@ export default function QuickNews({
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),

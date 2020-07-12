@@ -26,29 +26,16 @@ export default function Archive({
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchQuery = request.get(`https://admin.scarincihollenbeck.com/wp-json/archive/query/${q}/${page}`)
-        .set(headers)
-        .then((res) => ({
-          status: res.status,
-          body: JSON.parse(res.text),
-        }))
-        .catch((err) => err);
+      const [response] = await Promise.all([
+        fetch(`https://admin.scarincihollenbeck.com/wp-json/author/posts/${q}/${page}`, { headers }).then((data) => data.json())
+      ]);
+      const { results, pages, term, posts } = response;
 
-      fetchQuery.then((results) => {
-        const { status, body } = results;
-
-        if (status === 200) {
-          const {
-            results, pages, term, posts,
-          } = body;
-
-          setResults(results);
-          setPages(pages);
-          setTerm(term);
-          setCurrentPage(page);
-          setPosts(posts);
-        }
-      });
+      setResults(results);
+      setPages(pages);
+      setTerm(term);
+      setCurrentPage(page);
+      setPosts(posts);
     };
 
     if (q !== undefined && page !== undefined) {
@@ -93,7 +80,7 @@ export default function Archive({
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),

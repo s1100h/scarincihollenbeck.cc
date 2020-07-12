@@ -27,10 +27,10 @@ export default function SearchPage({
 
   useEffect(() => {
     const fetchData = async () => {
-      const [body] = await Promise.all([
+      const [response] = await Promise.all([
         fetch(`https://admin.scarincihollenbeck.com/wp-json/search/query/${q}/${page}`, { headers }).then((data) => data.json())
       ]);
-      const { results, pages, term, posts } = body;
+      const { results, pages, term, posts } = response;
 
       setResults(results);
       setPages(pages);
@@ -82,7 +82,7 @@ export default function SearchPage({
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),

@@ -31,11 +31,11 @@ export default function Author({
         currentPage = page;
       }
 
-      const [body] = await Promise.all([
+      const [response] = await Promise.all([
         fetch(`https://admin.scarincihollenbeck.com/wp-json/author/posts/${authorJson.currentUser}/${currentPage}`, { headers }).then((data) => data.json())
       ]);
 
-      const { posts, pages, results } = body;
+      const { posts, pages, results } = response;
       setResults(results);
       setPosts(posts);
       setPages(pages);
@@ -80,18 +80,7 @@ export default function Author({
   );
 }
 
-export async function getStaticPaths() {
-  const [authors] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/list`, { headers }).then((data) => data.json()),
-  ]);
-
-  return {
-    paths: authors.map((author) => `/author/${author}`) || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [authorJson, firmNews, firmInsights, firmEvents, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/bio/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
