@@ -58,7 +58,7 @@ export default function WomenLead({
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical="http://scarincihollenbeck.com/women-lead"
       />
       <SingleSubHeader
         image={cityBackgroundJPG}
