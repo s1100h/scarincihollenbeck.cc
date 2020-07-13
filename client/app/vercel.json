@@ -22,7 +22,7 @@
     { "source": "/careers/securities-and-regulatory-attorney", "destination": "/careers/", "statusCode": 301 },
     { "source": "/careers/litigation-attorney", "destination": "/careers/", "statusCode": 301 },
     { "source": "/make-payment", "destination": "https://secure.lawpay.com/pages/scarincihollenbeck/operating", "statusCode": 301 },
-    { "source": "/payments/?page=operating", "destination": "https://secure.lawpay.com/pages/scarincihollenbeck/operating", "statusCode": 301 },
+    { "source": "/payments/([^/]+)", "destination": "https://secure.lawpay.com/pages/scarincihollenbeck/operating", "statusCode": 301 },
     { "source": "/firm-news/uncategorized/http-www-businesslawnews-com-interpretational-risk-in-takaful-insurance-products-takaful-insurance", "destination": "/", "statusCode": 301 },
     { "source": "/firm-news/just-in/njicle-presents-theodore-roosevelt-and-the-progressive-era", "destination": "/", "statusCode": 301 },
     { "source": "/attorney-search-results", "destination": "/attorneys/", "statusCode": 301 },
