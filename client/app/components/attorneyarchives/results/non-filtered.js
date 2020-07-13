@@ -31,11 +31,12 @@ function AttorneyCards(title, content) {
 
 export default function NotFiltered(props) {
   const { attorneys } = props;
+
   // managing partners
   const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
 
-  // partners
-  const partners = attorneys.filter((a) => a.designation === 'Partner');
+  // partners & nyc managing partner
+  const partners = attorneys.filter((a) => a.designation === 'Partner' || a.designation === 'NYC Managing Partner');
 
   // counsel
   const counsel = attorneys.filter((a) => a.designation === 'Counsel');
