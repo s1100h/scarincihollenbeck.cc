@@ -53,7 +53,7 @@ function firm_overview_data() {
       );
     }
 
-    if($designation == "Partner") {
+    if($designation == "Partner" || $designation == "NYC Managing Partner") {
       $members['partners'][] = array(
         "ID" => $at->ID,
         "name" => $at->post_title,
