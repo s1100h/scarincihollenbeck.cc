@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "redirects": [
     { "source": "/pix11-morning-show-discusses-donald-sterling-apology-sports-entertainment-lawyer-anthony-r-caruso", "destination": "/anthony-caruso-discuses-donald-sterling/", "statusCode": 301 },
     { "source": "/international-business-publication-corporateintl-names-2014-tax-law-firm-of-the-year-in-new-jersey", "destination": "/corporateintl-names-2014-tax-law-firm/", "statusCode": 301 },
@@ -35,7 +36,7 @@
     { "source": "/law-firm-insights/business-law/securities-law/will-it-soon-be-easier-for-new-york-and-new-jersey-start-ups-to-go-public", "destination": "/law-firm-insights/business-law/securities-law/new-york-and-new-jersey-start-ups-to-go-public/", "statusCode": 301 },
     { "source": "/law-firm-insights/environmental-land-use/lsrp-post-hurricane-sandy-site-evaluations", "destination": "/law-firm-insights/environmental-land-use/10-key-changes-to-nj-site-remediation-reform-act/", "statusCode": 301 },
     { "source": "/law-firm-insights/entertainment-and-sports/new-jersey-parties-remediating", "destination": "/law-firm-insights/environmental-land-use/10-key-changes-to-nj-site-remediation-reform-act/", "statusCode": 301 },
-    { "source": "/law-firm-insights/business-law/bankruptcy-creditors-rights/creditors-rights/buy-a-picasso-detroit-chapter-9-bankruptcy", "destination": "/category//law-firm-insights/business-law/bankruptcy-creditors-rights/creditors-rights/", "statusCode": 301 },
+    { "source": "/law-firm-insights/business-law/bankruptcy-creditors-rights/creditors-rights/buy-a-picasso-detroit-chapter-9-bankruptcy", "destination": "/category/law-firm-insights/business-law/bankruptcy-creditors-rights/creditors-rights/", "statusCode": 301 },
     { "source": "/law-firm-insights/entertainment-and-sports/daily-fantasy-sports-co", "destination": "/law-firm-insights/entertainment-and-sports/new-jersey-adopts-fantasy-sports-rules/", "statusCode": 301 },
     { "source": "/law-firm-insights/environmental-land-use/epa-releases-pfas-action-plan%ef%bb%bf", "destination": "/law-firm-insights/environmental-land-use/epa-releases-pfas-action-plan/", "statusCode": 301 },
     { "source": "/law-firm-insights/business-law/bankruptcy-creditors-rights/business/biotech-files-for-chapter-7", "destination": "/category/law-firm-insights/business-law/bankruptcy-creditors-rights/business/", "statusCode": 301 },
