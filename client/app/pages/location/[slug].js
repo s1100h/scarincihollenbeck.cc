@@ -31,6 +31,12 @@ function buildLocationSchema(location, map) {
         },
     "openingHours": ["Mo-Fr 08:00-18:00"],
     "hasmap" : map,
+    "geo" : {
+      "@type" : "GeoCoordinates",
+      "latitude" : location.latitude,
+      "longitude" : location.longitude
+    },
+    "priceRange" : "$$$$",
     "sameAs" : [ "https://www.facebook.com/ScarinciHollenbeck/",
         "https://www.linkedin.com/company/scarinci-hollenbeck-llc",
         "https://twitter.com/s_h_law"]
