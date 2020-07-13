@@ -42,7 +42,7 @@
     { "source": "/firm-news/new-jersey-cyber-security-lawyer-moderate-symposium", "destination": "/category/firm-news/", "statusCode": 301 },
     { "source": "/firm-events/hurricane-sandy-recovery-and-rebuild-seminar", "destination": "/quick-news/superstorm-sandy-suit-settlements/", "statusCode": 301 },
     { "source": "/law-firm-insights/business-law/important-new-jersey-remediation-deadlines-are-approaching-are-you-ready", "destination": "/law-firm-insights/commercial-real-estate/real-estate-commercial-leasing/", "statusCode": 301 },
-    { "source": "new-jersey-licensed-site-remediation-professionals-lsrps-must-be-hired-for-all-environmental-remediation-work-in-new-jersey/", "desctionat":"/category/environmental", "statusCode": 301 },
+    { "source": "new-jersey-licensed-site-remediation-professionals-lsrps-must-be-hired-for-all-environmental-remediation-work-in-new-jersey/", "destination":"/category/environmental", "statusCode": 301 },
     { "source": "/law-firm-insights/environmental-land-use/proposed-bill-would-reinstate-requirement-for-a-certification-of-no-contamination-for-a-de-minimis-exemption-under-new-jerseys-industrial-site-recovery-act", "destination": "/law-firm-insights/environmental-land-use/", "statusCode": 301 },
     { "source": "de-minimis-exemption-under-new-jerseys-industrial-site-recovery-act/", "destination": "/", "statusCode": 301 },
     { "source": "/attorneys/harvey-r-poe", "destination": "/", "statusCode": 301 },
