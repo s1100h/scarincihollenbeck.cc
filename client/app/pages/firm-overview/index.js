@@ -13,8 +13,8 @@ import { headers, createMarkup } from 'utils/helpers';
 export default function FirmOverview({
   slides, mainTabs, additionalInfo, members, mainContent, seo,
 }) {
-  const subHeaderContent = mainContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const bodyContent = mainContent.replace(subHeaderContent, '');
+  const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
+  const bodyContent = mainContent.replace(subHeaderContent[0], '');
 
 
   return (
@@ -26,7 +26,7 @@ export default function FirmOverview({
       />
       <SingleSubHeader
         title="Firm Overview"
-        subtitle={subHeaderContent}
+        subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, "")}
         image={cityBackgroundJPG}
         height="325px"
       />
