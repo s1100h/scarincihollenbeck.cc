@@ -8,6 +8,7 @@ import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
 import { headers, sortByKey } from 'utils/helpers';
 
+export const config = { amp: 'hybrid' };
 
 export default function Home({
   seo,

@@ -27,7 +27,7 @@ export default function Archive({
   useEffect(() => {
     const fetchData = async () => {
       const [response] = await Promise.all([
-        fetch(`https://admin.scarincihollenbeck.com/wp-json/author/posts/${q}/${page}`, { headers }).then((data) => data.json())
+        fetch(`https://admin.scarincihollenbeck.com/wp-json/search/query/${q}/${page}`, { headers }).then((data) => data.json())
       ]);
       const { results, pages, term, posts } = response;
 
