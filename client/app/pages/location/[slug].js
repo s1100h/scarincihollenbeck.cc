@@ -12,11 +12,37 @@ import SideBar from 'components/locations/sidebar';
 import { headers, urlify } from 'utils/helpers';
 import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
+function buildLocationSchema(location, map) {
+  return {
+    "@context" : "http://schema.org",
+    "@type" : "LocalBusiness",
+    "name" : "Scarinci Hollebneck",
+    "url" : "https://scarincihollenbeck.com",
+    "logo": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png",
+    "image": location.image,
+    "address": {
+        "@type" : "PostalAddress",
+        "streetAddress": location.streetAddress,
+        "addressLocality": location.addressLocality,
+        "addressRegion": location.addressRegion,
+        "postalCode": location.postalCode,
+        "addressCountry": location.addressCountry,
+        "telephone" : location.telephone
+        },
+    "openingHours": ["Mo-Fr 08:00-18:00"],
+    "hasmap" : map,
+    "sameAs" : [ "https://www.facebook.com/ScarinciHollenbeck/",
+        "https://www.linkedin.com/company/scarinci-hollenbeck-llc",
+        "https://twitter.com/s_h_law"]
+      
+  }
+}
 
 export default function Location({
   slides, seo, offices, currentOffice, posts,
 }) {
   const router = useRouter();
+  
 
   return (
     <>
@@ -34,38 +60,13 @@ export default function Location({
             description={seo.metaDescription}
             canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
           />
-          <LocalBusinessJsonLd
-            type="LegalService"
-            id="https://scarincihollenbeck.com"
-            name={seo.title}
-            description={seo.metaDescription}
-            url={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-            telephone={seo.telephone}
-            address={{
-              streetAddress: seo.streetAddress,
-              addressLocality: seo.addressLocality,
-              addressRegion: seo.addressRegion,
-              postalCode: seo.postalCode,
-              addressCountry: seo.addressCountry,
-            }}
-            geo={{
-              latitude: seo.latitude,
-              longitude: seo.longitude,
-            }}
-            images={[seo.image]}
-            openingHours={[{
-              opens: '08:00',
-              closes: '18:00',
-              dayOfWeek: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
-              ]
-            }]}
-          />
+          <Head>
+            <script
+              key={currentOffice.name}
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)) }}
+            />
+          </Head>          
           <div id="location">
             <SingleSubHeader
               title="Office Locations"
