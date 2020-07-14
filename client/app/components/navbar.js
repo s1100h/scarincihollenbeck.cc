@@ -5,8 +5,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { SHLogo } from '../utils/next-gen-images';
-
 
 const NavBar = () => (
   <header className="mt-3">
