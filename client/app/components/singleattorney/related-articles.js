@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
 import { addRandomKey } from '../../utils/helpers';
-import { shDiamondPNG } from '../../utils/next-gen-images';
 
 export default function RelatedArticles(props) {
   const { title, content } = props;
