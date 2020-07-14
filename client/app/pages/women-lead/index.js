@@ -22,7 +22,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
 import { headers, urlify, makeTitle } from 'utils/helpers';
-import { cityBackgroundJPG, cityBackgroundWebp } from 'utils/next-gen-images';
 
 export default function WomenLead({
   slides, attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
@@ -61,7 +60,7 @@ export default function WomenLead({
         canonical="http://scarincihollenbeck.com/women-lead"
       />
       <SingleSubHeader
-        image={cityBackgroundJPG}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
         title={title}
         subtitle={description}
       />

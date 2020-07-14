@@ -5,8 +5,6 @@ import Button from 'react-bootstrap/Button';
 import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 import useInput from '../utils/input-hook';
-import { shDiamondPNG } from '../utils/next-gen-images';
-
 
 function SubscriptionPageForm(props) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');

@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import { coronaVirusFrontPagePNG, shDiamondPNG } from 'utils/next-gen-images';
 import FrontSearch from './front-search';
 
 const BgBlack = styled.div`
@@ -26,10 +25,9 @@ const HeaderBackground = styled.div`
 `;
 
 export default function CoronaHeader(props) {
-  const image = coronaVirusFrontPagePNG;
 
   return (
-    <HeaderBackground image={image} className="jumbotron jumbotron-fluid">
+    <HeaderBackground image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/corona-virus-background-compressor.png" className="jumbotron jumbotron-fluid">
       <Container className="animated fadeInUp fast mt-4 bg-black-background">
         <Row>
           <Col sm={12} md={6} className="border-right">
@@ -57,10 +55,7 @@ export default function CoronaHeader(props) {
             </Container>
           </Col>
           <Col sm={12} md={6}>
-            <picture>
-              <source srcSet={shDiamondPNG} type="image/png" />
-              <img rel="preconnect" src={shDiamondPNG} alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />
-            </picture>
+            <img rel="preconnect" src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png" alt="scarinci hollenbeck diamond" className="mt-3 p-2 animated fadeInUp slow mx-auto d-block" />
             <h2 className="text-white text-center display-32 text--shadow animated fadeInUp slow">How can we help?</h2>
             <FrontSearch />
           </Col>

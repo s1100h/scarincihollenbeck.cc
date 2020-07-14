@@ -27,7 +27,7 @@ export default function FirmOverview({
       <SingleSubHeader
         title="Firm Overview"
         subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, "")}
-        image={cityBackgroundJPG}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
         height="325px"
       />
       <FullWidth>

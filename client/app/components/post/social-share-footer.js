@@ -18,40 +18,12 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 function SocialShareFooter(props) {
   const { title } = props;
   const router = useRouter();
-  const encodeLink = encodeURIComponent(`http://scarincihollenbeck.com/${router.asPath}`);
-
   return (
     <>
       <div className="line-header d-print-none mt-5">
         <h3>Please Share This article</h3>
       </div>
       <div className="d-flex hide-print">
-        {/*
-          <FacebookIcon size={25} />
-          <span className="proxima-thin smaller-excerpt text-white"> Share on Facebook</span>
-        </FacebookShareButton>
-        <LinkedinShareButton
-          url={`https://scarincihollenbeck.com${router.asPath}`}
-          quote={title}
-          className="mt-2"
-        >
-          <LinkedinIcon
-            size={45}
-            borderRadius={5}
-          />
-          <span className="proxima-thin smaller-excerpt text-white"> Share on LinkedIn</span>
-        </LinkedinShareButton>
-        <TwitterShareButton
-          url={`https://scarincihollenbeck.com${router.asPath}`}
-          quote={title}
-          className="mt-2"
-        >
-          <TwitterIcon
-            size={200}
-            borderRadius={5}
-          />
-          <span className="proxima-thin smaller-excerpt text-white"> Share on Twitter</span>
-        </TwitterShareButton> */}
         <ul className="no-dots hide-print list-inline my-5 text-center">
           <li className="list-inline-item m-3">
             <FacebookShareButton

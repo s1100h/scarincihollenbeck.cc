@@ -19,7 +19,6 @@ import Footer from 'components/footer';
 import {
   headers, makeTitle, sortByKey, formatCorePractices, urlify,
 } from 'utils/helpers';
-import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
 export default function Category({
   category, seo, current, slides, corePractices, firmCategories,

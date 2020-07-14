@@ -5,8 +5,6 @@ import ArticleDetails from './article-details';
 import SocialShareFooter from './social-share-footer';
 import AuthorBio from './author-bio';
 import { createMarkup, urlify } from '../../utils/helpers';
-import { noImgFoundPNG } from '../../utils/next-gen-images';
-
 
 export default function Body(props) {
   const {
@@ -25,7 +23,7 @@ export default function Body(props) {
   return (
     <>
       <Breadcrumbs title={title} />
-      <img src={featuredImage || noImgFoundPNG} className="w-100 mb-3 d-print-none" alt={title} />
+      <img src={featuredImage || "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png"} className="w-100 mb-3 d-print-none" alt={title} />
       {(caption) && <div className="mt--1 mb-2" dangerouslySetInnerHTML={createMarkup(caption)} />}
       {/* title and subtitle for print version only */}
       <div className="d-none d-print-block">

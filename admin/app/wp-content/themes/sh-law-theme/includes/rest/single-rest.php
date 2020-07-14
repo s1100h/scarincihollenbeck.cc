@@ -229,7 +229,7 @@ function single_data($request) {
   preg_match_all("/<img[^>]+\>/i" , $post_content, $img_matches);
   preg_match_all("|<\s*figcaption(?:.*)>(.*)<\/figcaption>|Ui" , $post_content, $figurecaption_matches);
  
-  $body_content = str_replace($img_matches[0][0], "", html_entity_decode(htmlspecialchars_decode($post_content)));
+  $body_content = str_replace(html_entity_decode(htmlspecialchars_decode($img_matches[0][0])), "", html_entity_decode(htmlspecialchars_decode($post_content)));
   $body_content = str_replace(html_entity_decode(htmlspecialchars_decode($h2_matches[1][0])), "", $body_content);
   
   if(!empty($figurecaption_matches[0][0]))  {

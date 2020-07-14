@@ -11,8 +11,6 @@ import InfoCard from 'components/singleattorney/info-card';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
-import { attorneyHeaderJPG } from 'utils/next-gen-images';
-
 
 export default function SingleAdmin({ slides, adminJson }) {
   const router = useRouter();
@@ -64,7 +62,7 @@ export default function SingleAdmin({ slides, adminJson }) {
           />
           <div id="single-admin">
             <MultiSubHeader
-              image={attorneyHeaderJPG}
+              image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
               height="450px"
               profile={(<ProfileImage image={adminJson.image.url} name={adminJson.name} />)}
               infoCard={(

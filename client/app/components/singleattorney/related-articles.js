@@ -24,7 +24,7 @@ export default function RelatedArticles(props) {
               { content.map((v) => (
                 <Col sm={12} md={4} key={addRandomKey(v.title)} className="article-card">
                   <a href={v.link}>
-                    <img src={(v.featuredImg) ? v.featuredImg : shDiamondPNG} alt={v.title} width="230" className="img-thumbnail mt-3" />
+                    <img src={(v.featuredImg) ? v.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"} alt={v.title} width="230" className="img-thumbnail mt-3" />
                     <h5 className="my-3 small-excerpt">{v.title}</h5>
                   </a>
                 </Col>

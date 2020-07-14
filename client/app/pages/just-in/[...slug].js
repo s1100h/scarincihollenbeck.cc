@@ -13,7 +13,6 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
-import { blogHeaderJPG, shDiamondPNG } from 'utils/next-gen-images';
 
 export default function JustIn({ slides, post }) {
   const router = useRouter();
@@ -50,7 +49,7 @@ export default function JustIn({ slides, post }) {
               },
               images: [
                 {
-                  url: (post.seo.featuredImg) ? post.seo.featuredImg : shDiamondPNG,
+                  url: (post.seo.featuredImg) ? post.seo.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png",
                   width: 750,
                   height: 350,
                   alt: post.seo.title,
@@ -66,7 +65,7 @@ export default function JustIn({ slides, post }) {
           <ArticleJsonLd
             url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
-            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : [shDiamondPNG]}
+            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
             datePublished={post.seo.publishedDate}
             dateModified={post.seo.updatedDate}
             authorName={post.seo.author}
@@ -75,7 +74,7 @@ export default function JustIn({ slides, post }) {
             description={`${post.seo.metaDescription}`}
           />
           <SingleSubHeader
-            image={blogHeaderJPG}
+            image={"https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"}
             title={post.title}
             subtitle={post.subTitle}
           />

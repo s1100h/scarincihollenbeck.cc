@@ -22,7 +22,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
 import { headers, urlify } from 'utils/helpers';
-import { cityBackgroundJPG, cityBackgroundWebp } from 'utils/next-gen-images';
 
 export default function SinglePractice({ slides, practice, corePractices }) {
   const router = useRouter();
@@ -48,7 +47,7 @@ export default function SinglePractice({ slides, practice, corePractices }) {
             canonical={`http://scarincihollenbeck.com/${practice.seo.canonicalLink}`}
           />
           <SingleSubHeader
-            image={cityBackgroundJPG}
+            image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
             title={practice.title}
             subtitle={practice.description}
           />

@@ -21,7 +21,7 @@ export default function Administration({ slides, admins, seo }) {
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
       <SingleSubHeader
-        image={attorneyArchiveHeaderJPG}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-jpg.jpg"
         title="Administration"
         subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
       />

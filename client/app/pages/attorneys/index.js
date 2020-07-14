@@ -9,7 +9,6 @@ import Filters from 'components/attorneyarchives/filters';
 import Results from 'components/attorneyarchives/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import { attorneyArchiveHeaderJPG } from 'utils/next-gen-images';
 
 export default function Attorneys({
   slides, seo, locations, designations, practices, attorneys,
@@ -90,7 +89,7 @@ export default function Attorneys({
       />
       <SingleSubHeader
         title="Attorneys"
-        image={attorneyArchiveHeaderJPG}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-jpg.jpg"
         subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
         height="330px"
       />

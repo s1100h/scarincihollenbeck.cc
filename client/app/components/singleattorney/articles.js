@@ -5,7 +5,6 @@ import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import { List } from 'react-virtualized';
 import { addRandomKey, formatDate } from '../../utils/helpers';
-import { shDiamondPNG } from '../../utils/next-gen-images';
 
 function Post(content, {
   key, index, isScrolling, isVisible, style,

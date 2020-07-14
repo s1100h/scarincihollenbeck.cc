@@ -11,7 +11,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import AttorneyCard from 'components/attorney-card';
 import { headers } from 'utils/helpers';
-import { blogHeaderJPG } from 'utils/next-gen-images';
 
 
 export default function PrivacyPolicy({
@@ -31,7 +30,7 @@ export default function PrivacyPolicy({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image={blogHeaderJPG}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
       <LargeSidebar

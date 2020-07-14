@@ -12,7 +12,6 @@ import BreadCrumb from 'components/singlecareer/breadcrumb';
 import Body from 'components/singlecareer/body';
 import Sidebar from 'components/singlecareer/sidebar';
 import { urlify, headers } from 'utils/helpers';
-import { blogHeaderJPG, shDiamondPNG } from 'utils/next-gen-images';
 
 export default function Career({ slides, careerJson }) {
   const router = useRouter();
@@ -32,7 +31,7 @@ export default function Career({ slides, careerJson }) {
             canonical={`http://scarincihollenbeck.com/${careerJson.seo.canonicalLink}`}
           />
           <SingleSubHeader
-            image={blogHeaderJPG}
+            image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
             title={careerJson.title}
             subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
           />

@@ -10,7 +10,6 @@ import LargeSidebar from 'layouts/large-sidebar';
 import BodyContent from 'components/locations/body-content';
 import SideBar from 'components/locations/sidebar';
 import { headers, urlify } from 'utils/helpers';
-import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
 function buildLocationSchema(location, map) {
   return {
@@ -77,7 +76,7 @@ export default function Location({
             <SingleSubHeader
               title="Office Locations"
               subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
-              image={singleCityBackgroundJPG}
+              image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
             />
             <LargeSidebar
               body={(

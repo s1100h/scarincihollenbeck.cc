@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { noImgFoundPNG } from '../../utils/next-gen-images';
 
 export default function MainArticlesContainer(props) {
   const { main } = props;
@@ -9,7 +8,7 @@ export default function MainArticlesContainer(props) {
       { main.map((val) => (
         <div className="main" key={val.title}>
           <a href={val.link}>
-            <img src={val.image ? val.image : noImgFoundPNG} className="img-fluid" alt={val.title} />
+            <img src={val.image ? val.image : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'} className="img-fluid" alt={val.title} />
           </a>
           <p className="mt-5 mb-4">
             <a href={val.category.link} className="text-muted ft-01 text-uppercase">

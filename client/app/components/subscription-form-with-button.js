@@ -7,8 +7,6 @@ import Form from 'react-bootstrap/Form';
 import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 import useInput from '../utils/input-hook';
-import { shDiamondPNG } from '../utils/next-gen-images';
-
 
 function SubscriptionFormWithButton(props) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
@@ -85,7 +83,7 @@ function SubscriptionFormWithButton(props) {
       </Button>
       <Modal show={show} onHide={handleClose} id="subscription-form">
         <Modal.Header className="sidebar-title d-flex flex-row">
-          <img src={shDiamondPNG} alt="Scarinci hollenbeck diamond" className="w-15" />
+          <img src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png" alt="Scarinci hollenbeck diamond" className="w-15" />
           <h5 id="subscriptionModalLabel" className="mt-2">
             Sign up to get the latest from the Scarinci Hollenbeck attorneys!
           </h5>

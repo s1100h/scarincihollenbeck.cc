@@ -28,8 +28,6 @@ import RelatedArticles from 'components/singleattorney/related-articles';
 import {
   sortByDateKey, urlify, headers, addRandomKey,
 } from 'utils/helpers';
-import { attorneyHeaderJPG } from 'utils/next-gen-images';
-
 
 export default function Attorney({ slides, bio }) {
   const router = useRouter();
@@ -92,7 +90,7 @@ export default function Attorney({ slides, bio }) {
           />
           <div id="single-attorney">
             <MultiSubHeader
-              image={attorneyHeaderJPG}
+              image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
               profile={(<ProfileImage image={bio.profileImage} name={bio.fullName} />)}
               height="auto"
               infoCard={(

@@ -26,7 +26,7 @@ export default function Contact({ slides }) {
         <SingleSubHeader
           title="Contact Us"
           subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
-          image={singleCityBackgroundJPG}
+          image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
           height="325px"
         />
         <FullWidth>

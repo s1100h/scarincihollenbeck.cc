@@ -3,7 +3,6 @@ import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { noImgFoundPNG } from '../../utils/next-gen-images';
 
 const responsive = {
   superLargeDesktop: {
@@ -42,7 +41,7 @@ export default function SimpleNewsArticlesCarousel(props) {
         <div key={parseInt(post.id, 10)} className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}>
           <a href={(post.link) ? post.link : '#'}>
             <LazyLoad height={150}>
-              <img rel="preconnect" src={(post.image) ? post.image : (post.featuredImg) ? post.featuredImg : noImgFoundPNG} alt={post.title} className="img-thumbnail mx-auto d-block" />
+              <img rel="preconnect" src={(post.image) ? post.image : (post.featuredImg) ? post.featuredImg : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'} alt={post.title} className="img-thumbnail mx-auto d-block" />
             </LazyLoad>
             <p className="text-muted small-excerpt text-center">{limitTitleLength(post.title)}</p>
           </a>

@@ -7,8 +7,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import CareerSection from 'components/careers/career';
 import EEOpportunityContent from 'components/careers/equal-opportunity-content';
 import { headers } from 'utils/helpers';
-import { singleCityBackgroundJPG } from 'utils/next-gen-images';
-
 
 export default function Careers({ slides, careers, seo }) {
   const [keyword, setKeyword] = useState('');
@@ -51,7 +49,7 @@ export default function Careers({ slides, careers, seo }) {
       />
       <div id="careers">
         <SingleSubHeader
-          image={singleCityBackgroundJPG}
+          image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
           title="Careers & Available Positions"
           subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
         />

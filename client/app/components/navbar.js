@@ -16,7 +16,7 @@ const NavBar = () => (
           <Navbar.Brand className="mr-5">
             <Link href="/">
               <a>
-                <img src={SHLogo} alt="Scarinci Hollenbeck, LLC" />
+                <img src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png" alt="Scarinci Hollenbeck, LLC" />
               </a>
             </Link>
           </Navbar.Brand>
