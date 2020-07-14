@@ -36,7 +36,7 @@ export default function Administration({
       <SingleSubHeader
         title="Legal Practices"
         subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today&apos;s businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."
-        image={singleCityBackgroundJPG}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
       />
       <div id="archive-practice">
         <FullWidth>
