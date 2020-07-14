@@ -1,5 +1,4 @@
 import SubscriptionFormWithButton from './subscription-form-with-button';
-import { shDiamondPNG } from '../utils/next-gen-images';
 
 export default function SubscriptionMessage() {
   return (
