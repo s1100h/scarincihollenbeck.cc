@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SimpleNewsArticlesCarousel from '../carousels/simple-news-articles-carousel';
-import { noImgFoundPNG } from '../../utils/next-gen-images';
 import { addRandomKey } from '../../utils/helpers';
 
 export default function FeaturedSlider(props) {
