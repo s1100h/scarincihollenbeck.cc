@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import SingleSubHeader from '../layouts/single-sub-header';
 import FullWidth from '../layouts/full-width';
 import SimpleSearch from '../components/simple-search';
-import { singleCityBackgroundJPG } from '../utils/next-gen-images';
 import { headers } from '../utils/helpers';
 
 export default function Custom404({ slides }) {
@@ -27,7 +26,7 @@ export default function Custom404({ slides }) {
         <SingleSubHeader
           title="404: Resource Not Found"
           subtitle="Sorry, the page you are looking for cannot be found."
-          image={singleCityBackgroundJPG}
+          image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
           height="auto"
         />
         <FullWidth>

@@ -12,8 +12,6 @@ import Sidebar from 'components/archives/sidebar';
 import Footer from 'components/footer';
 import { headers } from 'utils/helpers';
 
-const request = require('superagent');
-
 export default function QuickNews({
   firmNews, firmEvents, firmInsights, slides,
 }) {
