@@ -9,7 +9,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
 import { headers } from 'utils/helpers';
-import { attorneyArchiveHeaderJPG } from 'utils/next-gen-images';
 
 
 export default function Administration({ slides, admins, seo }) {
