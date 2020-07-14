@@ -6,7 +6,6 @@ import PracticeBlockList from 'components/archivepractice/practice-block-list';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, sortByKey } from 'utils/helpers';
-import { singleCityBackgroundJPG } from 'utils/next-gen-images';
 
 function sortPracticeCategorys(list) {
   const core = list.filter((e) => e.category === 'Core Practices');
