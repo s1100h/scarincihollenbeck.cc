@@ -13,7 +13,6 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
-import { blogHeaderJPG, shDiamondPNG } from 'utils/next-gen-images';
 
 export default function ClientAlert({ slides, post }) {
   const router = useRouter();
