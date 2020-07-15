@@ -10,6 +10,9 @@ admin/app/wp-content/uploads/*
 admin/app/wp-content/upgrade/*
 admin/app/wp-content/upgrades/*
 admin/app/wp-content/plugins/*
+admin/app/wp-content/themes/twentytwenty/*
+admin/app/wp-content/themes/tt-sh-law-theme/*
+admin/app/wp-content/themes/shlaw-theme--light/js/node_modules/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html
