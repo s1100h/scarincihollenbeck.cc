@@ -94,8 +94,6 @@
     { "source": "/law-firm-insights/tax/taxes/fraud/u-s-france-sign-intergovernmental-agreement-to-combat-offshore-tax-evasion", "destination": "/law-firm-insights/tax/taxes/fraud/u-s-france-agreement-to-combat-offshore-tax-evasion/", "statusCode": 301 },
     { "source": "/practices/environmental-and-land-use", "destination": "/practices/environmental/", "statusCode": 301 },
     { "source": "/category/firm-news/commercial-real-estate-firm-news", "destination": "/category/firm-news/real-estate-news/", "statusCode": 301 },
-    { "source": "/category/firm-news/client-alert", "destination": "/category/client-alert/", "statusCode": 301 },
-    { "source": "/category/client-alert", "destination": "/category/firm-news/client-alert/", "statusCode": 301 },
     { "source": "/law-firm-insights/environmental-land-use/registration-deadline-approaching-for-businesses-providing-soil-and-fill-recycling-services", "destination": "/law-firm-insights/environmental-land-use/businesses-providing-soil-and-fill-recycling-services/", "statusCode": 301 },
     { "source": "/covid-19-resources", "destination": "/covid-19-crisis-management-unit/", "statusCode": 301 },
     { "source": "/firm-news/covid-19-alerts/after-action-planning-for-businesses-should-start-now", "destination": "/firm-news/covid-19-alerts/after-action-planning-for-businesses/", "statusCode": 301 },
@@ -237,6 +235,7 @@
     { "source": "/attorneys/john-j-d-burke-esq", "destination": "/attorneys/john-j-d-burke", "statusCode": 301 },
     { "source": "/attorney/john-j-d-burke-esq", "destination": "/attorney/john-j-d-burke", "statusCode": 301 },
     { "source": "/attorneys/joseph-m-manak-esq", "destination": "/attorneys/joseph-m-manak", "statusCode": 301 },
-    { "source": "/attorney/joseph-m-manak-esq", "destination": "/attorney/joseph-m-manak", "statusCode": 301 }
+    { "source": "/attorney/joseph-m-manak-esq", "destination": "/attorney/joseph-m-manak", "statusCode": 301 },
+    { "source": "/category/covid-19-education-alerts", "destination": "/category/covid-19-education-alert", "statusCode": 301 }
   ]
 }
