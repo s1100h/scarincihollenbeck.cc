@@ -42,7 +42,9 @@ app.post(`${urlPrefix}career/form`, async (req, res) => {
   // pass data to nodemailer career service
   const career = await emailData.career(req.body);
   
-  res.send(career);
+  res.send({
+    response: career
+  });
 })
 
 // home route
