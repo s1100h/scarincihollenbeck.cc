@@ -48,7 +48,7 @@ export default function CareerForm({ contact }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ accept: '.odt,.doc,.docx,.pdf,.dotx', onDrop });
 
 
-  function formSubmit(e) {
+  async function formSubmit(e) {
     e.preventDefault();
     const careerInquiry = {
       firstNameInput,
