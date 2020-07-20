@@ -9,8 +9,6 @@ import FormReCaptcha from './google-recaptcha-button';
 import { headers } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
-const upload = require('superagent');
-
 export default function CareerForm({ contact }) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
@@ -22,8 +20,6 @@ export default function CareerForm({ contact }) {
   const [failure, setFailure] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
   const [captcha, setCaptcha] = useState(true);
-  const [validated, setValidated] = useState(false);
-
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length === 0) {
@@ -54,8 +50,7 @@ export default function CareerForm({ contact }) {
 
   function formSubmit(e) {
     e.preventDefault();
-    const req = upload.post('https://forms.scarincihollenbeck.com/shlaw/site/career/form').set(headers);
-    const inquiry = {
+    const careerInquiry = {
       firstNameInput,
       lastNameInput,
       emailInput,
@@ -64,22 +59,25 @@ export default function CareerForm({ contact }) {
       contact
     };
 
-    req.set(inquiry);
-    
-    req.end((err) => {
-      if (err) {
-        console.log('err', err);
-        setFailure(true);
-      }
+    const headers = {
+      method: 'post',
+      body: JSON.stringify(careerInquiry),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    };
 
+    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/career/form', headers);
+    const status = await request.status;
+
+    if (status === 200) {
       setSuccessMessage(true);
-      resetDisclaimerInput();
       resetLastNameInput();
       resetFirstNameInput();
       resetEmailInput();
       resetPhoneInput();
-      setSuccess(true);
-    });
+    }
   }
 
   return (
@@ -142,7 +140,8 @@ export default function CareerForm({ contact }) {
             </Form.Group>
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
-          <Button type="submit" variant="danger"  className="px-5">Submit</Button>
+          {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
+          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
       </div>
     </>
