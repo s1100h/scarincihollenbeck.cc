@@ -28,12 +28,12 @@ app.post(`${urlPrefix}subscription/form`, async (req, res) => {
 });
 
 // contact route
-app.post(`${urlPrefix}contact/form`, async (req, res) => {
+app.post(`/shlaw/site/contact/form`, async (req, res) => {
   // data (firstName, lastName, subject, message, phone, pageTitle, currentUrl)
   // pass data to nodemailer inquiry service
 	const contact = await emailData.inquiry(req.body);
 	
-	res.send(contact);
+	res.send(req.body);
 });
 
 // career route
@@ -42,13 +42,12 @@ app.post(`${urlPrefix}career/form`, async (req, res) => {
   // pass data to nodemailer career service
   const career = await emailData.career(req.body);
   
-  res.send(req.body);
+  res.send(career);
 })
 
 // home route
 app.get('/', (req, res) => {
-  console.log('forms');
-  res.send('we have forms....')
+  res.redirect('https://scarincihollenbeck.com');
 });
 
 // server port
