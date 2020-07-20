@@ -100,7 +100,7 @@ export default function CareerForm({ contact, title }) {
         </div>
         )}
         { (failure) && (
-        <div className="alert alert-danger w-50 mt-4">
+        <div className="alert alert-danger w-75 mt-4">
           There was an issue for more information please email psmoeller@sh-law.com or ptumulty@sh-law.com
         </div>
         )}
