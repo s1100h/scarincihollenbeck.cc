@@ -33,7 +33,7 @@ app.post(`${urlPrefix}contact/form`, async (req, res) => {
   // pass data to nodemailer inquiry service
 	const contact = await emailData.inquiry(req.body);
 	
-	res.send('contact');
+	res.send(contact);
 });
 
 // career route
@@ -48,6 +48,7 @@ app.post(`${urlPrefix}career/form`, async (req, res) => {
 // home route
 app.get('/', (req, res) => {
   console.log('forms');
+  res.send('we have forms....')
 });
 
 // server port
