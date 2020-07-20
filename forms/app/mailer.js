@@ -96,16 +96,14 @@ exports.inquiry = (inq) => {
 			</div>
 		`
 	};
-
-	smtpTransport.sendMail(inquiryMessage, (error, response) => {
-		if (error) {
-			console.log(error);
-			return error;
-		} else {
-			console.log(response);
-			return response;
-		}		
-	});
+	return smtpTransport;
+	// smtpTransport.sendMail(inquiryMessage, (error, response) => {
+	// 	if (error) {
+	// 		return error;
+	// 	} else {
+	// 		return response;
+	// 	}		
+	// });
 };
 
 

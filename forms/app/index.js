@@ -34,7 +34,7 @@ app.post(`${urlPrefix}contact/form`, async (req, res) => {
 	const contact = await emailData.inquiry(req.body);	
 	res.send({
     request: req.body,
-    results: 'contact'
+    results: contact
   });
 });
 
