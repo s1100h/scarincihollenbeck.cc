@@ -61,7 +61,7 @@ exports.subscriber = (subscriber) => {
 exports.inquiry = async (inq) => {
 
 	// SMTP transporter object
-	const smtpTransport = nodemailer.createTransport({
+	const smtpTransport = await nodemailer.createTransport({
 		host: 'smtp.gmail.com',
 		port: 465,
 		secure: true,
@@ -96,7 +96,15 @@ exports.inquiry = async (inq) => {
 			</div>
 		`
 	};
-	return smtpTransport
+	smtpTransport.sendMail(inquiryMessage, (error, response) => {
+		if (error) {
+			console.log(error);
+			return error;
+		} else {
+			console.log(response);
+			return response;
+		}		
+	});
 };
 
 

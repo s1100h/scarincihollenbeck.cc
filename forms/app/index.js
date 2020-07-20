@@ -31,11 +31,8 @@ app.post(`${urlPrefix}subscription/form`, async (req, res) => {
 app.post(`${urlPrefix}contact/form`, async (req, res) => {
   // data (firstName, lastName, subject, message, phone, pageTitle, currentUrl)
   // pass data to nodemailer inquiry service
-	const contact = await emailData.inquiry(req.body);	
-	res.send({
-    request: req.body,
-    results: contact
-  });
+  const contact = await emailData.inquiry(req.body);
+  res.send(contact);
 });
 
 // career route
