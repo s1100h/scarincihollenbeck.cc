@@ -1,0 +1,43 @@
+{
+  "name": "sh-law-theme-twentynineteen",
+  "version": "1.0.0",
+  "description": "sh-law.com site theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserslist": [
+    "> 1%",
+    "ie >= 8",
+    "edge >= 15",
+    "ie_mob >= 10",
+    "ff >= 45",
+    "chrome >= 45",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ],
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^2.0.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1100h/sh-law-theme-twentynineteen.git"
+  },
+  "keywords": [
+    "gulp",
+    "wordpress"
+  ],
+  "author": "peter t",
+  "license": "ISC",
+  "homepage": "https://github.com/s1100h/sh-law-theme-twentynineteen#readme"
+}

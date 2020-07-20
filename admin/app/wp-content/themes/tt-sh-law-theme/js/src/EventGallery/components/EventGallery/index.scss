@@ -1,0 +1,50 @@
+.PhotoGrid__title{
+  h1  {
+    color: white;
+    text-shadow: 4px 2px 4px #000;
+    text-align: center;
+  }
+}
+.PhotoGrid__list {
+  li {
+    .photo-width {
+      max-width: 164px;
+    }
+    .photo-width:hover {
+      cursor: pointer;
+    }
+  }
+}
+.SocialShare__list {
+  li {
+    display:inline;
+    a {
+      i {
+        color: #a9a9a9;
+        border: 3px solid #e9e9e9;
+        border-radius: 4px;
+        padding: 10px
+      }
+    }
+  }
+}
+.EventSlider {
+  .event-arrow {
+    font-size: 2rem;
+  }
+  .event-arrow:hover {
+      cursor: pointer;
+  }
+  .event-arrow-left {
+    float: left;
+    position: relative;
+    top: 7.1em;
+    left: -.5em;
+  }
+  .event-arrow-right {
+    float: right;
+    position: relative;
+    bottom: 17rem;
+    left: 1.4em;
+  }
+}

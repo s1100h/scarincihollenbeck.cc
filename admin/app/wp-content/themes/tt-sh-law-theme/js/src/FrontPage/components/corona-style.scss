@@ -1,0 +1,37 @@
+/** Corona stylings 
+=============================== **/
+#corona > h2 {
+  font-size: 3em;
+}
+#corona > .sub-headline {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+#corona > .link {
+  font-size: 1.3rem;
+}
+#corona > .link > a {
+  text-decoration: underline;
+  color: #db2220;
+}
+#corona > .link > a:hover {
+  cursor: pointer;
+  color: #db2220 !important;
+}
+
+.corona-articles > .corona-articles-subheadline {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.corona-articles.mt-45 {
+  margin-top: 2rem;
+}
+
+.corona-articles-list {
+  text-align:left;
+}
+
+.corona-link {
+  text-decoration: underline;
+}
