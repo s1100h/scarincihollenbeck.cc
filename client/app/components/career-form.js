@@ -101,7 +101,7 @@ export default function CareerForm({ contact, title }) {
         )}
         { (failure) && (
         <div className="alert alert-danger w-50 mt-4">
-          There was an issue for more information please call 201-896-4100!
+          There was an issue for more information please email psmoeller@sh-law.com or ptumulty@sh-law.com
         </div>
         )}
       </div>
@@ -144,7 +144,7 @@ export default function CareerForm({ contact, title }) {
                 ) : (
                   <div className="red-title my-4 text-center d-block">
                     {/** Document image */}
-                    <span className="small-excerpt">Click here to upload documents or drag them over this area to upload (must be a .doc, .docx, or .pdf format)</span>
+                    <span className="small-excerpt">Click here to upload documents or drag them over this area to upload (must be in a .odt,.doc,.docx, or .dotx format)</span>
                   </div>
                 )}
               </div>
@@ -152,7 +152,7 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
           {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
-          <Button type="submit" variant="danger" className="px-5">Submit</Button>
+          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
       </div>
     </>
