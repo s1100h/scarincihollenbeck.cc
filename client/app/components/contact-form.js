@@ -44,6 +44,9 @@ function ContactForm() {
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/contact/form', headers);
     const status = await request.status;
 
+    console.log('request');
+    console.log(request);
+    
     if (status === 200) {
       setSuccessMessage(true);
       resetDisclaimerInput();

@@ -33,7 +33,7 @@ app.post(`/shlaw/site/contact/form`, async (req, res) => {
   // pass data to nodemailer inquiry service
 	const contact = await emailData.inquiry(req.body);
 	
-	res.send(req.body);
+	res.send(contact);
 });
 
 app.post('/shlaw/site/test/', async (req, res) => {
