@@ -36,6 +36,10 @@ app.post(`/shlaw/site/contact/form`, async (req, res) => {
 	res.send(req.body);
 });
 
+app.post('/shlaw/site/test/', async (req, res) => {
+  res.send("test ");
+});
+
 // career route
 app.post(`${urlPrefix}career/form`, async (req, res) => {
   // data (job title, resume, cover letter, additional files)
