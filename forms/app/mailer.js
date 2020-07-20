@@ -96,7 +96,8 @@ exports.inquiry = async (inq) => {
 			</div>
 		`
 	};
-	smtpTransport.sendMail(inquiryMessage, (error, response) => {
+	
+	await smtpTransport.sendMail(inquiryMessage, (error, response) => {
 		if(error) { 
 			return error;
 		}
