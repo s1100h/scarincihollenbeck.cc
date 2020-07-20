@@ -110,7 +110,8 @@ exports.inquiry = async (inq) => {
 
 // career email 
 exports.career = (career) => {
-
+	const { contact, title, email, firstName, lastName, phone, files } = career;
+	
 	// SMTP transporter object
 	const smtpTransport = nodemailer.createTransport({
 		host: 'smtp.gmail.com',
@@ -126,9 +127,6 @@ exports.career = (career) => {
 			expires: Number.parseInt(process.env.GMAIL_OAUTH_TOKEN_EXPIRE, 10),
 		},
 	});
-
-	// career data
-	const { contact, title, email, firstName, lastName, phone, files } = career;
 
 	// new career alert message
 	const careerMessage = {

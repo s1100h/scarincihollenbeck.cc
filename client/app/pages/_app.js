@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import withGA from "next-ga";
+import withGA from 'next-ga';
 import NProgress from 'nprogress'; // nprogress module
 import 'nprogress/nprogress.css';
 import NavBar from 'components/navbar';

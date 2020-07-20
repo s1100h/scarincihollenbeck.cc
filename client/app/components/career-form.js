@@ -6,10 +6,9 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import FormReCaptcha from './google-recaptcha-button';
-import { headers } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
-export default function CareerForm({ contact }) {
+export default function CareerForm({ contact, title }) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
@@ -51,12 +50,13 @@ export default function CareerForm({ contact }) {
   async function formSubmit(e) {
     e.preventDefault();
     const careerInquiry = {
-      firstNameInput,
-      lastNameInput,
-      emailInput,
-      phoneInput,
-      files,
-      contact
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      phone: phoneInput,
+      files: files,
+      contact: contact,
+      title: title
     };
 
     const headers = {
@@ -141,7 +141,7 @@ export default function CareerForm({ contact }) {
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
           {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
-          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
+          <Button type="submit" variant="danger" className="px-5">Submit</Button>
         </Form>
       </div>
     </>
