@@ -29,13 +29,24 @@ export default function CareerForm({ contact, title }) {
       preview: URL.createObjectURL(file),
     })));
 
-    setFiles(acceptedFiles);
+    // read file blob    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const fileContents = {
+        title: acceptedFiles[0].name,
+        contents: event.target.result
+      };
+
+      setFiles(files => [...files, fileContents]);
+      
+    };
+    reader.readAsDataURL(acceptedFiles[0]);
   }, []);
 
   const thumbs = files.map((file) => (
-    <div className="thumbInner" key={file.name} className="my-3">
+    <div className="thumbInner" key={file.title} className="my-3">
       <p className="my-0 py-0">
-        {file.name}
+        {file.title}
         {' '}
         -
         {' '}

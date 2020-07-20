@@ -128,14 +128,20 @@ exports.career = (career) => {
 		},
 	});
 
+	const attachments = files.map(file => {
+		return {
+			filename: file.title,
+			content: file.contents.split("base64,")[1],
+			encoding: 'base64'
+		}
+	})
+
 	// new career alert message
 	const careerMessage = {
 		from: process.env.GMAIL_ADDRESS,
 		to: contact[0],
 		cc: (contact[1]) ? contact[1] : '',
-		attachments: [
-		  (files) ? files : {}
-		],
+		attachments: attachments,
 		subject: `New Applicant for ${title} position`,
 		html: `
 			<div style="display:block; width: 1000px;">
