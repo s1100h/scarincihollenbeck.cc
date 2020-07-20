@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
@@ -74,7 +73,7 @@ export default function Contact({ slides }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
   const slides = await sliderResponse.json();
 

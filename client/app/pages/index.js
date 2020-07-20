@@ -1,5 +1,3 @@
-import Head from 'next/head';
-import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import NewDawnHeader from 'components/frontpage/new-dawn-header';
@@ -54,7 +52,7 @@ export default function Home({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [seo, news, events, locations, corePractices, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers }).then((data) => data.json()),

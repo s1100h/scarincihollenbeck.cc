@@ -4,7 +4,6 @@ import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
@@ -18,7 +17,6 @@ export default function Author({
   const router = useRouter();
   const { page } = router.query;
   const [results, setResults] = useState([]);
-  const [posts, setPosts] = useState([]);
   const [pages, setPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -35,9 +33,8 @@ export default function Author({
         fetch(`https://admin.scarincihollenbeck.com/wp-json/author/posts/${authorJson.currentUser}/${currentPage}`, { headers }).then((data) => data.json())
       ]);
 
-      const { posts, pages, results } = response;
+      const { pages, results } = response;
       setResults(results);
-      setPosts(posts);
       setPages(pages);
       setCurrentPage(currentPage);          
     };

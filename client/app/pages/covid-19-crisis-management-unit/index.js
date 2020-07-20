@@ -1,16 +1,9 @@
-import Head from 'next/head';
-import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import NavBar from 'components/navbar';
 import Footer from 'components/footer';
 import Body from 'components/pages/body';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import AttorneyCard from 'components/attorney-card';
 import { headers } from 'utils/helpers';
 
 export default function Covid19CrisisManagementUnit({
@@ -53,7 +46,7 @@ export default function Covid19CrisisManagementUnit({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [aJson, posts, covidPosts, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers }).then((data) => data.json()),

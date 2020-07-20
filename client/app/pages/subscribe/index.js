@@ -1,8 +1,4 @@
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import Search from 'components/search';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -39,7 +35,7 @@ export default function Subscription({ slides, posts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [json, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),

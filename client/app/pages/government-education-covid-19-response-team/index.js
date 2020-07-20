@@ -1,16 +1,10 @@
-import Head from 'next/head';
-import { withRouter } from 'next/router';
+
 import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import NavBar from 'components/navbar';
 import Footer from 'components/footer';
 import Body from 'components/pages/body';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import AttorneyCard from 'components/attorney-card';
 import { headers } from 'utils/helpers';
 
 export default function GovernmentEducationCovidResponseTeam({
@@ -27,7 +21,6 @@ export default function GovernmentEducationCovidResponseTeam({
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
-      <NavBar />
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
@@ -54,7 +47,7 @@ export default function GovernmentEducationCovidResponseTeam({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [covidPosts, page, posts, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`, { headers }).then((data) => data.json()),

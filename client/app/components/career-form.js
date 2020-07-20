@@ -11,7 +11,7 @@ import useInput from '../utils/input-hook';
 
 const upload = require('superagent');
 
-export default function CareerForm() {
+export default function CareerForm({ contact }) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
@@ -61,10 +61,11 @@ export default function CareerForm() {
       emailInput,
       phoneInput,
       files,
+      contact
     };
 
     req.set(inquiry);
-
+    
     req.end((err) => {
       if (err) {
         console.log('err', err);
@@ -141,7 +142,7 @@ export default function CareerForm() {
             </Form.Group>
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
-          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
+          <Button type="submit" variant="danger"  className="px-5">Submit</Button>
         </Form>
       </div>
     </>

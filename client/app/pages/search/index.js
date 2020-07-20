@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import BarLoader from 'react-spinners/BarLoader';
@@ -11,8 +10,6 @@ import ArchiveLayout from 'layouts/archive-layout';
 import Body from 'components/archives/body';
 import Sidebar from 'components/archives/sidebar';
 import { headers, urlify, makeQueryTitle } from 'utils/helpers';
-
-const request = require('superagent');
 
 export default function SearchPage({
   slides, firmNews, firmEvents, firmInsights,

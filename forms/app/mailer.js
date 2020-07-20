@@ -128,7 +128,7 @@ exports.career = (career) => {
 	});
 
 	// career data
-	const { contact, title, coverLetter, email, firstName, lastName, phone, resume, writingSample } = career;
+	const { contact, title, email, firstName, lastName, phone, files } = career;
 
 	// new career alert message
 	const careerMessage = {
@@ -136,9 +136,7 @@ exports.career = (career) => {
 		to: contact[0],
 		cc: (contact[1]) ? contact[1] : '',
 		attachments: [
-		  (resume) ? resume : {},
-		  (coverLetter) ? coverLetter : {},
-		  (writingSample) ? writingSample : {},
+		  (files) ? files : {}
 		],
 		subject: `New Applicant for ${title} position`,
 		html: `
