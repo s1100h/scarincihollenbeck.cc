@@ -1,10 +1,9 @@
 
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
-import Body from 'components/pages/body';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import LargeSidebar from 'layouts/large-sidebar';
+import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers } from 'utils/helpers';
 
 export default function GovernmentEducationCovidResponseTeam({
@@ -27,20 +26,16 @@ export default function GovernmentEducationCovidResponseTeam({
         image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
-      <LargeSidebar
-        body={(
-          <Body
-            content={bodyContent}
-            posts={covidPosts}
-            articleTitle="COVID-19 Articles"
-          />
-        )}
+      <LargeSidebarWithPosts
+        posts={covidPosts}
+        postsTitle="Government & Education COVID-19 Articles"
+        content={bodyContent}
         sidebar={(
           <Sidebar
             posts={posts}
             covidPage
           />
-        )}
+          )}
       />
       <Footer slides={slides} />
     </>
