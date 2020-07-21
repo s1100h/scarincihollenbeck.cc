@@ -12,6 +12,7 @@ import { headers } from 'utils/helpers';
 
 
 export default function Administration({ slides, admins, seo }) {
+  const reverseAdmins = admins.reverse();
   return (
     <>
       <NextSeo
@@ -27,7 +28,7 @@ export default function Administration({ slides, admins, seo }) {
       <FullWidth>
         <Container id="archive-admin" className="p-3 pt-4 border">
           <Row>
-            {admins.map((admin) => (
+            {reverseAdmins.map((admin) => (
               <Col sm={12} md={6} lg={4} key={admin.ID} className="mb-2">
                 <AttorneyCard
                   image={admin.image.url}
