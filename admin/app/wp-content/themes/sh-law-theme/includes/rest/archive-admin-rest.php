@@ -31,7 +31,7 @@ function admin_list()
         ),
         "meta_key" => "lastName",
         "orderby" => "meta_value",
-        "order" => "ASC"
+        "order" => "DESC"
     );
     $admins = get_posts($args);
     // the complete list of admins and their data
@@ -61,6 +61,7 @@ function admin_list()
       "metaDescription" => "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
       "canonicalLink" => "administration"
     );
+
    
     return rest_ensure_response($admin_list);
 }
