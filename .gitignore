@@ -13,6 +13,8 @@ admin/app/wp-content/plugins/*
 admin/app/wp-content/themes/twentytwenty/*
 admin/app/wp-content/themes/tt-sh-law-theme/*
 admin/app/wp-content/themes/shlaw-theme--light/js/node_modules/*
+admin/app/wp-content/themes/shlaw-theme--light/*
+admin/app/wp-content/themes/twentytwenty/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html

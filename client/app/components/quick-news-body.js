@@ -3,17 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import NewsScroller from './news-scroller';
-import { urlify } from '../utils/helpers';
 
 export default function QuickNewsBody(props) {
   const {
     results,
     pages,
-    term,
     currentPage,
     news,
     insight,

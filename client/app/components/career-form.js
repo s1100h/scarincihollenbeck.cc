@@ -6,12 +6,9 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import FormReCaptcha from './google-recaptcha-button';
-import { headers } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
-const upload = require('superagent');
-
-export default function CareerForm() {
+export default function CareerForm({ contact, title }) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
@@ -22,8 +19,6 @@ export default function CareerForm() {
   const [failure, setFailure] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
   const [captcha, setCaptcha] = useState(true);
-  const [validated, setValidated] = useState(false);
-
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length === 0) {
@@ -34,13 +29,24 @@ export default function CareerForm() {
       preview: URL.createObjectURL(file),
     })));
 
-    setFiles(acceptedFiles);
+    // read file blob    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const fileContents = {
+        title: acceptedFiles[0].name,
+        contents: event.target.result
+      };
+
+      setFiles(files => [...files, fileContents]);
+      
+    };
+    reader.readAsDataURL(acceptedFiles[0]);
   }, []);
 
   const thumbs = files.map((file) => (
-    <div className="thumbInner" key={file.name} className="my-3">
+    <div className="thumbInner" key={file.title} className="my-3">
       <p className="my-0 py-0">
-        {file.name}
+        {file.title}
         {' '}
         -
         {' '}
@@ -52,33 +58,37 @@ export default function CareerForm() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ accept: '.odt,.doc,.docx,.pdf,.dotx', onDrop });
 
 
-  function formSubmit(e) {
+  async function formSubmit(e) {
     e.preventDefault();
-    const req = upload.post('https://forms.scarincihollenbeck.com/shlaw/site/career/form').set(headers);
-    const inquiry = {
-      firstNameInput,
-      lastNameInput,
-      emailInput,
-      phoneInput,
-      files,
+    const careerInquiry = {
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      phone: phoneInput,
+      files: files,
+      contact: contact,
+      title: title
     };
 
-    req.set(inquiry);
+    const headers = {
+      method: 'post',
+      body: JSON.stringify(careerInquiry),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    };
 
-    req.end((err) => {
-      if (err) {
-        console.log('err', err);
-        setFailure(true);
-      }
+    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/career/form', headers);
+    const status = await request.status;
 
+    if (status === 200) {
       setSuccessMessage(true);
-      resetDisclaimerInput();
       resetLastNameInput();
       resetFirstNameInput();
       resetEmailInput();
       resetPhoneInput();
-      setSuccess(true);
-    });
+    }
   }
 
   return (
@@ -90,8 +100,8 @@ export default function CareerForm() {
         </div>
         )}
         { (failure) && (
-        <div className="alert alert-danger w-50 mt-4">
-          There was an issue for more information please call 201-896-4100!
+        <div className="alert alert-danger w-75 mt-4">
+          There was an issue for more information please email psmoeller@sh-law.com or ptumulty@sh-law.com
         </div>
         )}
       </div>
@@ -134,13 +144,14 @@ export default function CareerForm() {
                 ) : (
                   <div className="red-title my-4 text-center d-block">
                     {/** Document image */}
-                    <span className="small-excerpt">Click here to upload documents or drag them over this area to upload (must be a .doc, .docx, or .pdf format)</span>
+                    <span className="small-excerpt">Click here to upload documents or drag them over this area to upload (must be in a .odt,.doc,.docx, or .dotx format)</span>
                   </div>
                 )}
               </div>
             </Form.Group>
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
+          {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
           <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
       </div>

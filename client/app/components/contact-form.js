@@ -43,7 +43,6 @@ function ContactForm() {
 
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/contact/form', headers);
     const status = await request.status;
-
     if (status === 200) {
       setSuccessMessage(true);
       resetDisclaimerInput();

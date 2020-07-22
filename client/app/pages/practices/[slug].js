@@ -1,11 +1,8 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
-import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
-import TabPane from 'react-bootstrap/TabPane';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -14,13 +11,12 @@ import Footer from 'components/footer';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import PracticeContent from 'components/practice/practice-content';
+import CovidResourceBox from 'components/practice/covid-resource-box';
 import FeaturedSlider from 'components/practice/featured-slider';
 import RelatedAttorneys from 'components/practice/related-attorneys';
 import RelatedArticlesTab from 'components/practice/related-articles-tab';
 import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
-import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
 import { headers, urlify } from 'utils/helpers';
 
 export default function SinglePractice({ slides, practice, corePractices }) {
@@ -91,6 +87,24 @@ export default function SinglePractice({ slides, practice, corePractices }) {
                     )}
                   </Col>
                   <Col sm={12} md={3}>
+                    {(router.query.slug === 'education-law') && (
+                      <>
+                        <CovidResourceBox
+                          title="COVID-19 Response Team"
+                          link="/government-education-covid-19-response-team"
+                          message="Learn more about the Government & Education Law Practice's COVID-19 focused response team."
+                        />
+                      </>
+                    )}
+                    {(router.query.slug === 'crisis-risk-management') && (
+                      <>
+                        <CovidResourceBox
+                          title="COVID-19 Crisis Management Unit"
+                          link="/covid-19-crisis-management-unit"
+                          message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
+                        />
+                      </>
+                    )}
                     <SimpleSearch />
                     <SubscriptionMessage />
                     <SidebarContent title="Core Practices" content={corePractices} tabKey={0} />

@@ -1,11 +1,11 @@
 import ContactForm from '../contact-form';
-import { createMarkup } from '../../utils/helpers';
+import { createMarkup } from 'utils/helpers';
 
 export default function Body(props) {
   const { content } = props;
 
   return (
-    <div>
+    <>
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
       <div className="mt-5 w-100">
         <h4 className="bg-light-gray">
@@ -13,6 +13,6 @@ export default function Body(props) {
         </h4>
         <ContactForm />
       </div>
-    </div>
+    </>
   );
 }

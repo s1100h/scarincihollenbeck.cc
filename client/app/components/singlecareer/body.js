@@ -2,7 +2,7 @@ import CareerForm from '../career-form';
 import { createMarkup } from '../../utils/helpers';
 
 export default function Body(props) {
-  const { title, position } = props;
+  const { title, position, contact } = props;
 
   return (
     <>
@@ -10,7 +10,7 @@ export default function Body(props) {
         <h4 className="mt-1 mb-0 w-75">{title}</h4>
       </div>
       <div className="w-100" dangerouslySetInnerHTML={createMarkup(position)} />
-      <CareerForm />
+      <CareerForm contact={contact} title={title} />
     </>
   );
 }

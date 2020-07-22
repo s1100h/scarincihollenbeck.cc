@@ -11,8 +11,6 @@ import Body from 'components/archives/body';
 import Sidebar from 'components/archives/sidebar';
 import { headers, makeQueryTitle } from 'utils/helpers';
 
-const request = require('superagent');
-
 export default function Archive({
   slides, firmNews, firmEvents, firmInsights,
 }) {

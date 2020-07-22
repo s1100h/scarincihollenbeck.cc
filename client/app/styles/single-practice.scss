@@ -63,15 +63,8 @@
     font-size: 1rem;
     line-height: 1.7 !important;
   }
-  
-  .related-article-container {
-    max-height: 700px;
-    overflow: hidden;
-    overflow-y: scroll;
-    margin-bottom:2em;
-  }
 
-  .article-container {
+  .tab-content {
     p {
       a {
         color: blue;

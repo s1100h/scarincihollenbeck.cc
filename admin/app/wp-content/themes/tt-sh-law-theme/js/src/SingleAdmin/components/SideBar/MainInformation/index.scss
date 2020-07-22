@@ -1,0 +1,12 @@
+.MainInformation {
+  text-align:center;
+}
+
+@media (min-width:700px) and (max-width:1023px) {
+  .MainInformation {
+    margin-top: 2em;
+    h1,h2,h3,a {
+      color:white; 
+    }
+  }
+}

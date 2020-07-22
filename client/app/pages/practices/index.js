@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import SimpleList from 'components/archivepractice/practice-simple-list';
@@ -70,7 +69,7 @@ export default function Administration({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [practiceJson, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),

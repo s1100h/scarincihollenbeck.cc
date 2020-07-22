@@ -22,7 +22,7 @@ export default function Footer(props) {
       <footer>
         <Container fluid className="h-100 mt-5 w-75 bk--gray">
           <Row className="border--red mb-3">
-            <Col sm={12} md={3} md={{ span: 9, offset: 9 }} className="mb-2 footer-search">
+            <Col sm={12} md={{ span: 3, offset: 9 }} className="mb-2 footer-search">
               <SimpleSearch />
             </Col>
           </Row>

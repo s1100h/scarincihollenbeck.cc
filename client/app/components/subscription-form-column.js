@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
@@ -13,18 +12,8 @@ export default function SubscriptionFormColumn(props) {
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
 
   const [categories, setCategories] = useState([]);
-  const [show, setShow] = useState(false);
   const [captcha, setCaptcha] = useState(true);
   const [message, setMessage] = useState(false);
-
-  const handleClose = () => {
-    setShow(false);
-    setCookiesClick();
-  };
-  const handleShow = () => {
-    setShow(true);
-    setCookiesClick();
-  };
 
   const router = useRouter();
 

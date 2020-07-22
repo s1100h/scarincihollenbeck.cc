@@ -4,14 +4,13 @@ import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import BreadCrumb from 'components/singlecareer/breadcrumb';
 import Body from 'components/singlecareer/body';
 import Sidebar from 'components/singlecareer/sidebar';
-import { urlify, headers } from 'utils/helpers';
+import { headers } from 'utils/helpers';
 
 export default function Career({ slides, careerJson }) {
   const router = useRouter();
@@ -43,6 +42,7 @@ export default function Career({ slides, careerJson }) {
                   <Body
                     title={careerJson.title}
                     position={careerJson.positionDescription}
+                    contact={careerJson.contact}
                   />
 
                 </>

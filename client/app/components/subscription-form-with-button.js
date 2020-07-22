@@ -18,14 +18,14 @@ function SubscriptionFormWithButton(props) {
   const [captcha, setCaptcha] = useState(true);
   const [message, setMessage] = useState(false);
 
-  const handleClose = () => {
-    setShow(false);
-    setCookiesClick();
-  };
   const handleShow = () => {
     setShow(true);
     setCookiesClick();
   };
+
+  const handleClose = () => {
+    setShow(false);
+  }
 
   const router = useRouter();
 

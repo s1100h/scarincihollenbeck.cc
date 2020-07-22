@@ -58,10 +58,10 @@ exports.subscriber = (subscriber) => {
 }
 
 // inquiry from contact or blog post
-exports.inquiry = (inq) => {
+exports.inquiry = async (inq) => {
 
 	// SMTP transporter object
-	const smtpTransport = nodemailer.createTransport({
+	const smtpTransport = await nodemailer.createTransport({
 		host: 'smtp.gmail.com',
 		port: 465,
 		secure: true,
@@ -96,7 +96,6 @@ exports.inquiry = (inq) => {
 			</div>
 		`
 	};
-
 	smtpTransport.sendMail(inquiryMessage, (error, response) => {
 		if (error) {
 			console.log(error);
@@ -111,7 +110,8 @@ exports.inquiry = (inq) => {
 
 // career email 
 exports.career = (career) => {
-
+	const { contact, title, email, firstName, lastName, phone, files } = career;
+	
 	// SMTP transporter object
 	const smtpTransport = nodemailer.createTransport({
 		host: 'smtp.gmail.com',
@@ -128,19 +128,20 @@ exports.career = (career) => {
 		},
 	});
 
-	// career data
-	const { contact, title, coverLetter, email, firstName, lastName, phone, resume, writingSample } = career;
+	const attachments = files.map(file => {
+		return {
+			filename: file.title,
+			content: file.contents.split("base64,")[1],
+			encoding: 'base64'
+		}
+	})
 
 	// new career alert message
 	const careerMessage = {
 		from: process.env.GMAIL_ADDRESS,
 		to: contact[0],
 		cc: (contact[1]) ? contact[1] : '',
-		attachments: [
-		  (resume) ? resume : {},
-		  (coverLetter) ? coverLetter : {},
-		  (writingSample) ? writingSample : {},
-		],
+		attachments: attachments,
 		subject: `New Applicant for ${title} position`,
 		html: `
 			<div style="display:block; width: 1000px;">

@@ -1,0 +1,12 @@
+.result-container {
+  height: 680px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.w-90 {
+  width: 90% !important;
+}
+.attorney-card:hover {
+  box-shadow: 3px 3px 10px #a9a9a9;
+  cursor: pointer;
+}
