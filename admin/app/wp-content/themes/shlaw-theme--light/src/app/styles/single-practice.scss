@@ -1,0 +1,112 @@
+@import "variables";
+
+#single-practice {
+  .main-tab {
+    font-size: 1.1rem;
+    line-height: 26px;
+    text-align: center;
+    border: 1px solid $standard-red;
+    min-width: 250px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    color: $standard-red !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    text-decoration: none;
+    transition: All 1s ease;
+    -webkit-transition: All 1s ease;
+    -moz-transition:All 1s ease;
+    border-radius: 5px;
+    &:hover {
+      background-color: $standard-red;
+      color: white !important;
+      border: 0px solid white;
+    }
+  }
+  .tab-content {
+    font-size: 1.125rem;
+  }
+  .rp-practice {
+    margin-top: -6px;
+  }
+  .rp-practice li {
+    margin-bottom:-11px;
+  }
+  .sidebar-content {
+    margin-left: 10px;
+  }
+  .sidebar-content-practice li  {
+    height: 30px; 
+  }
+  .sidebar-content li:hover a {
+    text-decoration: underline !important;
+  }
+  .sidebar-content li div ul {
+    margin-top: 8px;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+  .sidebar-content li div ul li {
+    margin-bottom: 12px;
+    line-height: 1.1;
+    margin-right: 11px;
+  }
+  .sidebar-title:hover {
+    color: white !important;
+    text-decoration: underline !important;
+  }
+  .tab-pane ul {
+    line-height: 150%;
+  }
+  .tab-pane ul li {
+    margin-bottom: 1.125rem;
+    font-size: 1rem;
+    line-height: 1.7 !important;
+  }
+
+  .tab-content {
+    p {
+      a {
+        color: blue;
+        text-decoration: underline;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    .max-width-container {
+      max-width: 920px;
+    }
+  }
+  @media (min-width: 0px) and (max-width: 400px) {
+    .city-background {
+      min-height: 700px;
+    }
+    .w-45 {
+      width: 100% !important;
+    }
+    .attorney-card {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  }
+  @media (min-width: 400px) and (max-width: 769px) {
+    .city-background {
+      min-height: 500px;
+    }
+    .w-45 {
+      width: 100% !important;
+    }
+    .attorney-card {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  }
+  @media (min-width: 769px) and (max-width: 992px) {
+    .city-background {
+      min-height: 400px;
+    }
+    .w-45 {
+      width: 100% !important;
+    }  
+  }
+}

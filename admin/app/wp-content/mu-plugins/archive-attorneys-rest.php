@@ -248,7 +248,7 @@ function attorney_list()
             "phone" => $phone,
             "fax" => $fax,
             "email" => $email,
-            "pdf_bio" => $pdf["url"],
+            "pdf_bio" => ($pdf["url"]) ? $pdf["url"] : '',
             "v_card" => $vizibility,
             "location_array" => $location_data,
             "location" => implode(", ", $location_data),
