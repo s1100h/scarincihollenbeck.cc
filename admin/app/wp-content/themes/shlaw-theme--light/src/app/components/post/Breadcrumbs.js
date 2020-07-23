@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { makeTitle } from '../../utils/helpers';
 
-export function Breadcrumbs(props) {
+export default function Breadcrumbs({title}) {
 
   return (
     <div className="mt-0 mb-3 d-print-none">
@@ -16,7 +16,7 @@ export function Breadcrumbs(props) {
             <FontAwesomeIcon icon={faCaretRight} className="red-title icon-w8px-h20px" />
           </strong>
         </>
-        {filterUrl.map((url) => (
+        {[].map((url) => (
           <span key={url}>
             <a className="red-title proxima-bold" href={`/category/${url}`}>
                 {makeTitle(url)}

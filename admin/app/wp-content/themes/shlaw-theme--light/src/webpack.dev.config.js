@@ -42,11 +42,11 @@ module.exports = {
     ],
   },
   entry: {
-    // singleAttorney: ['core-js/stable', './app/SingleAttorney/index.js'],
-    // singleAdmin: ['core-js/stable', './app/SingleAdmin/index.js'],
-    // singlePractice: ['core-js/stable', './app/SinglePractice/index.js'],  
-    // singleCareer: ['core-js/stable', './app/SingleCareer/index.js'],  
-    // singleLocation: ['core-js/stable', './app/SingleLocation/index.js'],    
+    singleAttorney: './app/SingleAttorney/index.js',
+    singleAdmin: './app/SingleAdmin/index.js',
+    singlePractice: './app/SinglePractice/index.js',  
+    singleCareer: './app/SingleCareer/index.js',  
+    singleLocation: './app/SingleLocation/index.js',    
     page: './app/Page/index.js',
     single: './app/Single/index.js'
   },
@@ -60,36 +60,26 @@ module.exports = {
     new Dotenv({
       path: '.env.development',
     }),
-    // new HtmlWebpackPlugin({
-    //   chunks: ['singleAttorney', 'vendor'],
-    //   chunksSortMode: 'dependency',
-    //   template: './app/SingleAttorney/attorney-index.html',
-    //   filename: './attorney-index.html',
-    // }),    
-    // new HtmlWebpackPlugin({
-    //   chunks: ['singleAdmin', 'vendor'],
-    //   chunksSortMode: 'dependency',
-    //   template: './app/SingleAdmin/admin-index.html',
-    //   filename: './admin-index.html',
-    // }),
-    // new HtmlWebpackPlugin({
-    //   chunks: ['singlePractice', 'vendor'],
-    //   chunksSortMode: 'dependency',
-    //   template: './app/SinglePractice/practice-index.html',
-    //   filename: './practice-index.html',
-    // }),
-    // new HtmlWebpackPlugin({
-    //     chunks: ['singleCareer', 'vendor'],
-    //     chunksSortMode: 'dependency',
-    //     template: './app/SinglePractice/career-index.html',
-    //     filename: './career-index.html',
-    // }),
-    // new HtmlWebpackPlugin({
-    //     chunks: ['singleLocation', 'vendor'],
-    //     chunksSortMode: 'dependency',
-    //     template: './app/SinglePractice/location-index.html',
-    //     filename: './location-index.html',
-    // }),
+    new HtmlWebpackPlugin({
+      template: './app/SingleAttorney/attorney-index.html',
+      filename: './attorney-index.html',
+    }),    
+    new HtmlWebpackPlugin({
+      template: './app/SingleAdmin/admin-index.html',
+      filename: './admin-index.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './app/SinglePractice/practice-index.html',
+      filename: './practice-index.html',
+    }),
+    new HtmlWebpackPlugin({
+        template: './app/SingleCareer/career-index.html',
+        filename: './career-index.html',
+    }),
+    new HtmlWebpackPlugin({
+        template: './app/SingleLocation/location-index.html',
+        filename: './location-index.html',
+    }),
     new HtmlWebpackPlugin({
       template: './app/Page/page-index.html',
       filename: './page-index.html',

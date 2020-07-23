@@ -1,0 +1,6 @@
+<?php
+
+site footer
+
+
+?>

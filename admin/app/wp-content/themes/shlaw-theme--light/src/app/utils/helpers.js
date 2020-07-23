@@ -93,3 +93,26 @@ export function printScreen() {
   window.print();
   return false;
 }
+
+export function formatDate(date) {
+  const dateObj = new Date(date);
+  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const results = `${month[dateObj.getMonth()]} ${dateObj.getDay()}, ${dateObj.getFullYear()}`;
+  return results;
+}
+
+export function sortByKey(list, key) {
+  if (list !== undefined) {
+    list.sort((a, b) => {
+      if (a[key] > b[key]) {
+        return 1;
+      }
+      if (a[key] < b[key]) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  return list;
+};

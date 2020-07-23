@@ -6,19 +6,17 @@ import SocialShareFooter from './SocialShareFooter';
 import AuthorBio from './AuthorBio';
 import { createMarkup, urlify } from '../../utils/helpers';
 
-function Body(props) {
-  const {
-    featuredImage,
-    content,
-    author,
-    eventCat,
-    date,
-    title,
-    tags,
-    subTitle,
-    caption
-  } = props;
-
+export default function Body({
+  featuredImage,
+  content,
+  author,
+  eventCat,
+  date,
+  title,
+  tags,
+  subTitle,
+  caption
+}) {
 
   return (
     <>
@@ -31,7 +29,7 @@ function Body(props) {
         <h2>{subTitle}</h2>
       </div>
       {/* Author & date & Category */}
-      <ArticleDetails author={author} date={date} />
+      <ArticleDetails author={author || []} date={date || ''} />
       <hr />
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
       {(tags.length > 0) && (
@@ -62,4 +60,3 @@ function Body(props) {
     </>
   );
 }
-export default Body;

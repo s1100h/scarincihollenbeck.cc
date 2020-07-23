@@ -1,22 +1,54 @@
-import ProfileImage from '../components/singleattorney/profile-image';
-import InfoCard from '../components/singleattorney/info-card';
+import React, { useState, useEffect } from 'react';
+import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import BarLoader from 'react-spinners/BarLoader';
+import ProfileImage from '../components/singleattorney/ProfileImage';
+import InfoCard from '../components/singleattorney/InfoCard';
 import MultiSubHeader from '../layouts/MultiSubHeader';
 import FullWidth from '../layouts/FullWidth';
-import { headers, createMarkup } from 'utils/helpers';
+import { headers, createMarkup } from '../utils/helpers';
+
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 export default function SingleAdmin() {
-  const [admin, setAdmin ] = useState([]);
-  useEffect(async () => {
-    const [admin] = await Promise.all([
-      fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json())
-    ]);
+  const [admin, setAdmin ] = useState({});
 
-    setAdmin(admin);
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      let previewId;
+
+      if(process.env.NODE_ENV === 'production') {
+        const url = window.location.search;
+        previewId = url.split('preview_id=').pop().split('&')[0];
+      }
+
+      if(process.env.NODE_ENV === 'development') {
+        previewId = 20116;
+      }     
+
+      const [admin] = await Promise.all([
+        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/preview-admin/admin/${previewId}`, { headers }).then((data) => data.json())
+      ]);
+  
+      setAdmin(admin);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
-      <div id="single-admin">
+      {(Object.keys(admin).length === 0) ? (
+        <Container>
+          <Row id="page-loader-container" className="justify-content-center align-self-center">
+            <BarLoader color="#DB2220" />
+          </Row>
+        </Container>
+      ) : (
+        <>      
         <MultiSubHeader
           image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
           height="450px"
@@ -43,7 +75,8 @@ export default function SingleAdmin() {
             </div>
           </div>
         </FullWidth>
-      </div>              
+      </>
+      )}                  
     </>
   );
 }

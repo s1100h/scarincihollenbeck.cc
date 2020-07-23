@@ -1,7 +1,8 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
+import LatestNewsArticlesCarousel from '../carousels/LatestNewsArticlesCarousel';
 
 export default function FeaturedSlider(props) {
   const { content, title } = props;

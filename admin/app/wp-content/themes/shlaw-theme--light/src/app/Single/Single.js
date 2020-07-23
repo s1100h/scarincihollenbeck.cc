@@ -6,18 +6,26 @@ import Sidebar from '../components/post/Sidebar';
 import SocialShareSidebar from '../components/post/SocialshareSidebar';
 import { headers } from '../utils/helpers';
 
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 export default function Single() {
   const [post, setPost ] = useState([]);
-  useEffect(async () => {
-    const [post] = await Promise.all([
-      fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/ny-nj-allowing-remote-notarizations`, { headers }).then((data) => data.json())
-    ]);
 
-    setPost(post);
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      const [post] = await Promise.all([
+        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/ny-nj-allowing-remote-notarizations`, { headers }).then((data) => data.json())
+      ]);
+  
+      setPost(post);
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div id="single">
+    <>
       <SingleSubHeader
         image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
         title={post.title}
@@ -34,7 +42,7 @@ export default function Single() {
             subTitle={post.subTitle}
             author={post.author}
             date={post.date}
-            tags={post.tags}
+            tags={post.tags || []}
           />
           )}
         OneSidebar={(<SocialShareSidebar title={post.title} />)}
@@ -45,6 +53,6 @@ export default function Single() {
           />
         )}
       />
-    </div>
+    </>
   );
 }

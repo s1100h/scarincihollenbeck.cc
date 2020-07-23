@@ -5,7 +5,6 @@ import SingleSubHeader from '../layouts/SingleSubHeader';
 import LargeSidebar from '../layouts/LargeSidebar';
 import { headers } from '../utils/helpers';
 
-
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -38,9 +37,6 @@ function Page() {
 
     fetchData();
   }, []);
-
-  
-
 
   return (
     <>      

@@ -29,10 +29,7 @@ function BioContentToggle({ children, eventKey, callback }) {
   );
 }
 
-export default function Biography(props) {
-  const {
-    tabTitle, content, title, toggleReadMore, readMore,
-  } = props;
+export default function Biography({tabTitle, content, title, toggleReadMore, readMore}) {
   const c = content.split(/<p[^>]*>/).filter((a) => a !== '');
   const excerpt = c[0].replace('</p>', '');
   const excerptTwo = c[1];

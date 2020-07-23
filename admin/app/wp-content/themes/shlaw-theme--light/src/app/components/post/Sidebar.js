@@ -4,7 +4,7 @@ import Search from '../Search';
 import TrendingStories from '../TrendingStories';
 import SubscriptionMessage from '../SubscriptionMessage';
 
-function Sidebar(props) {
+export default function Sidebar(props) {
   const { posts, attorneys } = props;
 
   return (
@@ -42,5 +42,3 @@ function Sidebar(props) {
     </div>
   );
 }
-
-export default Sidebar;

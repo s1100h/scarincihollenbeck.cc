@@ -1,7 +1,8 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from '../attorney-card';
+import AttorneyCard from '../AttorneyCard';
 import { sortByKey } from '../../utils/helpers';
 
 export default function BodyContent(props) {
@@ -31,7 +32,7 @@ export default function BodyContent(props) {
       </h4>
       <Container>
         <Row>
-          {attorneys.map((m) => (
+          {(attorneys !== undefined) && attorneys.map((m) => (
             <Col sm={12} md={12} lg={6} className="mb-2" key={m.ID}>
               <AttorneyCard
                 link={m.link}
@@ -55,8 +56,7 @@ export default function BodyContent(props) {
         <Row>
           <Col sm={12} md={6} className="col-sm-12 col-md-6">
             <ul className="blue-title">
-              {
-                practices.map((val, indx) => ((practices.length / 2 > indx) ? (
+                {(practices !== undefined) && practices.map((val, indx) => ((practices.length / 2 > indx) && (
                   <li key={val.ID}>
                     <a href={val.slug} className="proxima-bold blue-title">
                       <u>
@@ -64,14 +64,12 @@ export default function BodyContent(props) {
                       </u>
                     </a>
                   </li>
-                ) : ''))
-              }
+                )))}
             </ul>
           </Col>
           <Col sm={12} md={6}>
             <ul className="blue-title">
-              {
-                practices.map((val, indx) => ((practices.length / 2 <= indx) ? (
+                {(practices !== undefined) && practices.map((val, indx) => ((practices.length / 2 <= indx) && (
                   <li key={val.ID}>
                     <a href={val.slug} className="proxima-bold blue-title">
                       <u>
@@ -79,8 +77,7 @@ export default function BodyContent(props) {
                       </u>
                     </a>
                   </li>
-                ) : ''))
-              }
+                )))}
             </ul>
           </Col>
         </Row>

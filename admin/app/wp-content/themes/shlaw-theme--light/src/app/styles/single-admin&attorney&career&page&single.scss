@@ -293,8 +293,7 @@
 #single-admin {
   .bg-black-background {
     max-height: 300px;
-  }
-  
+  }  
 }
 #single-attorney,#single-career, #single-admin, #single {
   // mobie queries
@@ -325,7 +324,7 @@
       max-width: 920px;
     }
     .bg-black-background {
-      max-height: 300px;
+      min-height: 300px;
     }
   }
   

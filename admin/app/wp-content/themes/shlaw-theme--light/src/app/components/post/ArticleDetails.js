@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function ArticleDetails(props) {
-  const { author, date } = props;
+export default function ArticleDetails({ author, date }) {
 
   return (
     <>

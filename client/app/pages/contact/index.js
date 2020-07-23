@@ -8,7 +8,7 @@ import { headers } from 'utils/helpers';
 
 export default function Contact({ slides }) {
   const seo = {
-    title: 'Contact a Scarinci Hollenbeck Attorney',
+    title: 'Contact | Scarinci Hollenbeck',
     metaDescription: 'Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Washington D.C.',
     canonicalLink: 'contact',
   };

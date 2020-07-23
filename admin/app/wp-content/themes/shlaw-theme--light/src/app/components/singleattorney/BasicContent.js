@@ -1,3 +1,4 @@
+import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';

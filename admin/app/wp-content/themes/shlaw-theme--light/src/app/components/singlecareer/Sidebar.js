@@ -1,5 +1,6 @@
-import Search from '../search';
-import SubscriptionMessage from '../subscription-message';
+import React from 'react';
+import Search from '../Search';
+import SubscriptionMessage from '../SubscriptionMessage';
 
 export default function Sidebar() {
   return (

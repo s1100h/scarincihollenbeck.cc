@@ -1,3 +1,4 @@
+import React from 'react';
 import { createMarkup } from '../../utils/helpers';
 
 export default function Body(props) {
