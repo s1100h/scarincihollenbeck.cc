@@ -29,7 +29,9 @@ add_action('rest_api_init', function()
      $args = array(
        "numberposts" => 1,
        "p" => $id, 
-       "post_type" => "administration"
+       "post_type" => "administration",
+       "post" => "revision",
+       "post_status" => array('draft', 'publish', 'auto-draft', 'prending')
      );
      
      // query attorney post object

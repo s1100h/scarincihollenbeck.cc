@@ -1,3 +1,3 @@
 <?php get_header(); ?>
-  <div id="single-location"></div>
+  <div id="page"></div>
 <?php get_footer(); ?>

@@ -22,11 +22,18 @@ export default function SingleAdmin() {
 
       if(process.env.NODE_ENV === 'production') {
         const url = window.location.search;
-        previewId = url.split('preview_id=').pop().split('&')[0];
+        
+        if(url.indexOf('preview_id=') > -1) {
+          previewId = url.split('preview_id=').pop().split('&')[0];
+        }
+
+        if(url.indexOf('p=') > -1) {
+          previewId = url.split('p=').pop().split('&')[0];
+        }        
       }
 
       if(process.env.NODE_ENV === 'development') {
-        previewId = 20116;
+        previewId = 20875;
       }     
 
       const [admin] = await Promise.all([

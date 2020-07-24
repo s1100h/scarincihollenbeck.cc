@@ -19,11 +19,29 @@ export default function Location() {
   const [posts, setPosts ] = useState([]);
 
   useEffect(() => {
+    let previewId;
+
+    if(process.env.NODE_ENV === 'production') {
+      const url = window.location.search;
+      
+      if(url.indexOf('preview_id=') > -1) {
+        previewId = url.split('preview_id=').pop().split('&')[0];
+      }
+
+      if(url.indexOf('p=') > -1) {
+        previewId = url.split('p=').pop().split('&')[0];
+      }        
+    }
+
+    if(process.env.NODE_ENV === 'development') {
+      previewId = 29436;
+    } 
+
     const fetchData = async () => {
       const [locations, currentOffice, currentOfficePosts] = await Promise.all([
         fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
-        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/lyndhurst`, { headers }).then((data) => data.json()),
-        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json())
+        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/preview-location/office/${previewId}`, { headers }).then((data) => data.json()),
+        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/preview-location/posts/${previewId}`, { headers }).then((data) => data.json())
       ]);
   
       setOffices(locations.offices);

@@ -11,7 +11,7 @@ if(!defined("ABSPATH")) {
  **/
 add_action('rest_api_init', function()
   {
-    register_rest_route("preview-attorney", "attorney/(?P<slug>[a-zA-Z0-9-]+)", array(
+    register_rest_route("preview-attorney", "attorney/(?P<id>\d+)", array(
       "methods" => WP_REST_SERVER::READABLE,
       "callback" => "preview_attorney"
     )); 
@@ -29,7 +29,9 @@ add_action('rest_api_init', function()
       $args = array(
         "numberposts" => 1,
         "p" => $id, 
-        "post_type" => "attorneys"
+        "post_type" => "attorneys",
+        "post" => "revision",
+        "post_status" => array('draft', 'publish', 'auto-draft', 'prending')
       );
 
       // query attorney post object

@@ -21,9 +21,27 @@ export default function SinglePractice() {
   const [ corePractices, setCorePractices ] = useState([]);
 
   useEffect(() => {
+    let previewId;
+
+    if(process.env.NODE_ENV === 'production') {
+      const url = window.location.search;
+      
+      if(url.indexOf('preview_id=') > -1) {
+        previewId = url.split('preview_id=').pop().split('&')[0];
+      }
+
+      if(url.indexOf('p=') > -1) {
+        previewId = url.split('p=').pop().split('&')[0];
+      }        
+    }
+
+    if(process.env.NODE_ENV === 'development') {
+      previewId = 29624;
+    } 
+
     const fetchData = async () => {
       const [practice, corePractices] = await Promise.all([
-        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/commercial-real-estate`, { headers }).then((data) => data.json()),
+        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/preview-practices/practice/${previewId}`, { headers }).then((data) => data.json()),
         fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
         fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
       ]);

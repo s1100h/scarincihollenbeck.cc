@@ -35,8 +35,26 @@ export default function Attorney() {
 
   useEffect(() => {
     const fetchData = async () => {
+      let previewId;
+
+      if(process.env.NODE_ENV === 'production') {
+        const url = window.location.search;
+        
+        if(url.indexOf('preview_id=') > -1) {
+          previewId = url.split('preview_id=').pop().split('&')[0];
+        }
+
+        if(url.indexOf('p=') > -1) {
+          previewId = url.split('p=').pop().split('&')[0];
+        }        
+      }
+
+      if(process.env.NODE_ENV === 'development') {
+        previewId = 37190;
+      } 
+
       const [bio] = await Promise.all([
-        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/ronald-s-bienstock`, { headers }).then((data) => data.json())
+        fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/preview-attorney/attorney/${previewId}`, { headers }).then((data) => data.json())
       ]);
   
       setBio(bio);

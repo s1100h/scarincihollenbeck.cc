@@ -1,0 +1,250 @@
+<?php // Search  - WP REST Endpoints 
+if(!defined("ABSPATH")) {
+  exit;
+}
+/**
+ * Register search endpoint to WP-REST 
+ *
+ * @since 1.0.0
+ * /
+ * 
+ **/
+add_action("rest_api_init", function()
+{
+  register_rest_route("preview-single", "post/(?P<id>\d+)", array(
+    "methods" => WP_REST_SERVER::READABLE,
+    "callback" => "preview_single"
+  ));
+});
+
+function get_post_featured_image_prev($content) {
+  // expresstion to match image element
+  $regex = '/src="([^"]*)"/';
+  // execute regex 
+  preg_match_all($regex, $content, $matches);
+  // reversing the matches array 
+  $matches = array_reverse($matches);
+
+  $results = '';
+
+  if(isset($matches[0][0])) {
+    $results = $matches[0][0];
+  }
+  return $results;
+}
+
+function get_previous_post_id_prev( $post_id ) {
+  // Get a global post reference since get_adjacent_post() references it
+  global $post;
+  // Store the existing post object for later so we don't lose it
+  $oldGlobal = $post;
+  // Get the post object for the specified post and place it in the global variable
+  $post = get_post( $post_id );
+  // Get the post object for the previous post
+  $previous_post = get_previous_post();
+  // Reset our global object
+  $post = $oldGlobal;
+  if ( '' == $previous_post ) 
+      return 0;
+  return $previous_post->ID; 
+} 
+
+function get_next_post_id_prev( $post_id ) {
+  // Get a global post reference since get_adjacent_post() references it
+  global $post;
+  // Store the existing post object for later so we don't lose it
+  $oldGlobal = $post;
+  // Get the post object for the specified post and place it in the global variable
+  $post = get_post( $post_id );
+  // Get the post object for the next post
+  $next_post = get_next_post();
+  // Reset our global object
+  $post = $oldGlobal;
+  if ( '' == $next_post ) 
+      return 0;
+  return $next_post->ID; 
+} 
+
+function get_url_from_avatar_prev($avatar) {
+  preg_match("/src='(.*?)'/i", $avatar, $matches);
+  return $matches[1];
+}
+
+function preview_single($request) {
+  $slug = $request["slug"];
+
+  $args = array(
+		"p" => $id, 
+    'post_type'   => 'post',
+    'numberposts' => 1,
+    "post" => "revision",
+    "post_status" => array('draft', 'publish', 'auto-draft', 'prending')
+  );
+
+  $post = get_posts($args);
+  $post_id = $post[0]->ID;
+  $post_title = $post[0]->post_title;
+  $post_content = $post[0]->post_content;
+
+  // authors data
+  $authors = get_coauthors($post_id);
+  $authors_data = array();
+
+  foreach($authors as $a) {
+    $author_email = get_the_author_meta("email", $a->ID);
+    $related_attorneys;
+  
+    if($author_email !== "info@sh-law.com") {
+      $related_attorneys = get_posts(array(
+        "posts_per_page" => 1,
+        "post_status"      => "publish",
+        "post_type" => "attorneys",
+        "meta_query" => array(
+          array(
+          "key" => "email",
+          "value" => $author_email,
+          "compare" => "LIKE"
+        ))
+      ));
+    }
+
+    $authors_data[] = array(
+      "name" => get_the_author_meta("display_name", $a->ID),
+      "link" => (get_the_author_meta("email", $a->ID) === "info@sh-law.com" || get_the_author_meta("email", $a->ID) === "scarincihollenbeckmarketing@gmail.com") ? "/" : $a->user_url,
+      "email" => get_the_author_meta("email", $a->ID),
+      "bio" =>  get_the_author_meta("description", $a->ID),
+      "image" => get_wp_user_avatar_src($a->ID),
+    );
+  }
+
+  // retrieve related attorney
+  $attorney_data = array();
+  $attorneys = get_field("related_attorneys", $post_id);
+  
+  if($attorneys) {
+    foreach($attorneys as $attorney) {
+      $attorney_data[] = array(
+        "name" => $attorney->post_title,
+        "image" => get_the_post_thumbnail_url($attorney->ID),
+        "designation" => get_field("designation", $attorney->ID),
+        "link" => "/attorneys/".$attorney->post_name
+      );
+    }
+  }
+
+  // get top 5 posts
+  $top_five_posts = new WP_Query(array('posts_per_page'=>5, 'meta_key'=>'popular_posts', 'orderby'=>'meta_value_num', 'order'=>'DESC'));
+  $top_five_post_data = array();
+  if(isset($top_five_posts->posts)) {
+    foreach($top_five_posts->posts as $p) {
+      $top_five_post_data[] = array(
+        "ID" => $p->ID,
+        "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
+        "link" => str_replace(home_url(), '', get_permalink($p->ID)),
+        "author" => get_the_author_meta('display_name', (int)$p->post_author)
+      );
+    }
+  }
+  
+  // categories 
+  $category_list =  wp_get_post_categories($post_id);
+  $categories = array();
+
+  foreach($category_list as $cl) {
+    $data = get_category($cl);
+    $categories[] = array(
+      "id" => $data->term_id,
+      "title" => $data->name,
+      "link" => '/category/'.$data->slug
+    );
+  }
+
+  // event details
+  $eventDetails = array();
+
+  $address = get_field("event_location_address", $post_id);
+  $post_event_date = get_field("post_event_date", $post_id);
+  $start = get_field("event_start", $post_id);
+  $end = get_field("event_end", $post_id);
+
+  if($address !== null || $post_event_date !== null || $start !== null || $end !== null)
+  $eventDetails[] = array(
+    "address" => $address,
+    "date" =>  $post_event_date,
+    "start" => $start,
+    "end" => $end
+  );
+
+  // get post tags
+  $tags = array();
+  $query_tags = get_the_tags($post_id);
+  
+  if($query_tags === true) {
+    foreach($query_tags as $qt) {    
+      $tags[] = html_entity_decode(htmlspecialchars_decode($qt->name));
+    }  
+  }
+
+  // stringify authors for seo data
+  $authors_names = array();
+  foreach($authors_data as $ad) {
+    $authors_names[] = $ad['name'];
+  } 
+  
+  // default tag
+  $default_tag[] = (object)array(
+    "name" => "Scarinci Hollenbeck",
+    "ID" => 000,
+  );
+
+  // format body content remove h2 tags, images, and fig captions
+  preg_match_all("|<\s*h2(?:.*)>(.*)<\/h2>|Ui" , $post_content, $h2_matches);
+  preg_match_all("/<img[^>]+\>/i" , $post_content, $img_matches);
+  preg_match_all("|<\s*figcaption(?:.*)>(.*)<\/figcaption>|Ui" , $post_content, $figurecaption_matches);
+ 
+  $body_content = str_replace(html_entity_decode(htmlspecialchars_decode($img_matches[0][0])), "", html_entity_decode(htmlspecialchars_decode($post_content)));
+  $body_content = str_replace(html_entity_decode(htmlspecialchars_decode($h2_matches[1][0])), "", $body_content);
+  
+  if(!empty($figurecaption_matches[0][0]))  {
+    $body_content = str_replace($figurecaption_matches[0][0], "", $body_content);
+  }
+
+  // remove the first h2 text from string
+  $post_data = array (
+    "idTrueFalse" => $slugIsID,    
+    "id" => $post_id,
+    "title" => $post_title,
+    "subTitle" => html_entity_decode(htmlspecialchars_decode($h2_matches[1][0])),
+    "featuredImage" => get_post_featured_image_prev($post_content),
+    "featuredImageCaption" => (!empty($figurecaption_matches[0][0])) ? $figurecaption_matches[0][0] : false,
+    "content" => $body_content,
+    "author" => $authors_data, 
+    "date" => get_the_date("F j, Y", $post_id ),
+    "categories" => $categories,
+    "next" => array(
+      "title" => get_the_title(get_next_post_id_prev($post_id)),
+      "link" => get_the_permalink(get_next_post_id_prev($post_id))
+    ),
+    "previous" => array(
+      "title" => get_the_title(get_previous_post_id_prev($post_id)),
+      "link" => get_the_permalink(get_previous_post_id_prev($post_id))
+    ),
+    "posts" => $top_five_post_data,
+    "attorneys" => $attorney_data,
+    "eventDetails" => ($eventDetails) ? $eventDetails : [],
+    "tags" => (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : html_entity_decode(htmlspecialchars_decode(get_the_tags($post_id))),
+    "seo" => (object)array(
+      "title" => get_post_meta($post_id, '_yoast_wpseo_title', true),
+      "metaDescription" => preg_replace("/\"/","'", trim(preg_replace('/\s\s+/', ' ', strip_tags(get_post_meta($post_id, '_yoast_wpseo_metadesc', true))))),
+      "canonicalLink" => $slug,
+      "featuredImg" => get_the_post_thumbnail_url($post_id),
+      "tags" =>  (get_the_tags($post_id) === false || count(get_the_tags($post_id)) < 0) ? $default_tag : get_the_tags($post_id),
+      "publishedDate" => get_the_date('Y-m-d H:i:s', $post_id),
+      "updatedDate" => get_the_modified_date('Y-m-d H:i:s', $post_id),
+      "postContent" => str_replace("“", "'", str_replace("”", "'", preg_replace("/\"/","'", trim(preg_replace('/\s\s+/', ' ', strip_tags($body_content)))))),
+      "primaryCategory" => $categories[0],
+      "author" => $authors_names
+    )
+  );
+  return rest_ensure_response($post_data);
+}
