@@ -109,7 +109,7 @@ export default function QuickNewsPost({ slides, post }) {
 
 export async function getServerSideProps({ params }) {
   const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/quick-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
 
