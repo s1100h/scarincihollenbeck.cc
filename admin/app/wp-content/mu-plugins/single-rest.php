@@ -272,6 +272,6 @@ function single_data($request) {
 
     return rest_ensure_response($post_data);
   }else {
-    return [];
+    return rest_ensure_response(404, []);
   }
 }
