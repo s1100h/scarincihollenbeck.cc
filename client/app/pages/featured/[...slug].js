@@ -17,7 +17,7 @@ import { headers } from 'utils/helpers';
 export default function Featured({ slides, post }) {
   const router = useRouter();
 
-  if (!router.isFallback && post.id === null) {
+  if (!router.isFallback && Object.entries(post).length === 0) {
     return <ErrorPage statusCode={404} />;
   }
 

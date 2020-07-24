@@ -18,7 +18,7 @@ import { headers } from 'utils/helpers';
 export default function LawFirmInsightsPost({ slides, post }) {
   const router = useRouter();
 
-  if (!router.isFallback && post.id === null) {
+  if (!router.isFallback && Object.entries(post).length === 0) {
     return <ErrorPage statusCode={404} />;
   }
 
