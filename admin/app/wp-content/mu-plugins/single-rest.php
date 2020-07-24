@@ -11,7 +11,7 @@ if(!defined("ABSPATH")) {
  **/
 add_action("rest_api_init", function()
 {
-  register_rest_route("single", "post/(?P<slug>[a-zA-Z0-9-+.,%20$]+)", array(
+  register_rest_route("single", "post/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<category>[a-zA-Z0-9-+.,%20$]+)", array(
     "methods" => WP_REST_SERVER::READABLE,
     "callback" => "single_data"
   ));
@@ -40,6 +40,7 @@ function all_posts_by_category($request) {
   
   return array_unique($links);
 }
+
 function get_post_featured_image($content) {
   // expresstion to match image element
   $regex = '/src="([^"]*)"/';
@@ -55,6 +56,7 @@ function get_post_featured_image($content) {
   }
   return $results;
 }
+
 function get_previous_post_id( $post_id ) {
   // Get a global post reference since get_adjacent_post() references it
   global $post;
@@ -70,6 +72,7 @@ function get_previous_post_id( $post_id ) {
       return 0;
   return $previous_post->ID; 
 } 
+
 function get_next_post_id( $post_id ) {
   // Get a global post reference since get_adjacent_post() references it
   global $post;
@@ -85,41 +88,33 @@ function get_next_post_id( $post_id ) {
       return 0;
   return $next_post->ID; 
 } 
+
 function get_url_from_avatar($avatar) {
   preg_match("/src='(.*?)'/i", $avatar, $matches);
   return $matches[1];
 }
+
 function single_data($request) {
   $slug = $request["slug"];
+  $category_slug = $request["category"];
 
-  $args = array();
-  $post;
-  $post_id;
-  $test;
-  $slugIsID = is_numeric($slug);
-
-  if($slugIsID) {
-    $post = get_post($slug);
-    $post_id = $post->ID;
-    $test = 'slug is an id number';
-    $post_title = $post->post_title;
-    $post_content = $post->post_content;
-  }else {
-    $args = array(
-      'name'        => $slug,
-      'post_type'   => 'post',
-      'post_status' => 'publish',
-      'numberposts' => 1
-    );
-    $post = get_posts($args);
-    $post_id = $post[0]->ID;
-    $post_title = $post[0]->post_title;
-    $post_content = $post[0]->post_content;
-  }
+  $args = array(
+    'name'        => $slug,
+    'category_name' => $category_slug,
+    'post_type'   => 'post',
+    'post_status' => 'publish',
+    'numberposts' => 1
+  );
+  
+  $post = get_posts($args);
+  $post_id = $post[0]->ID;
+  $post_title = $post[0]->post_title;
+  $post_content = $post[0]->post_content;
 
   // authors data
   $authors = get_coauthors($post_id);
   $authors_data = array();
+
   foreach($authors as $a) {
     $author_email = get_the_author_meta("email", $a->ID);
     $related_attorneys;
