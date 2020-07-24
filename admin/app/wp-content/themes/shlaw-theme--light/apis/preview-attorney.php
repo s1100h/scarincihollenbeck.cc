@@ -252,19 +252,20 @@ add_action('rest_api_init', function()
     $bar_admissions = get_field("bar_admissions", $attorney_id);
     $affiliations = get_field("affiliations", $attorney_id);
     $additional_information = get_field("additional_information", $attorney_id);
+    $pdf = get_field("pdf_bio", $attorney_id)["url"];
               
     $biography = array(
-      "authorID" => $author_id->ID,
+      "authorID" => ($author_id->ID) ? $author_id->ID : 0,
       "fullName" => html_entity_decode(htmlspecialchars_decode(get_the_title($attorney_id))),
       "firstName" => get_field("first_name", $attorney_id),
       "middleInitial" =>get_field("middle_initial", $attorney_id),
       "lastName" => get_field("last_name", $attorney_id),
       "designation" => get_field("designation", $attorney_id),
-      "profileImage" =>$image["url"],
+      "profileImage" => ($image["url"]) ? $image["url"] : '',
       "phoneNumber" => get_field("phone_number", $attorney_id),
       "fax" => get_field("fax_number", $attorney_id),
       "email" => $email,
-      "pdf" => get_field("pdf_bio", $attorney_id)["url"],
+      "pdf" => ($pdf) ? $pdf : '',
       "vizibility"=> get_field("vizibility", $attorney_id),
       "socialMediaLinks" => $social_media,
       "chair" => $chair_data,
@@ -312,7 +313,7 @@ add_action('rest_api_init', function()
         "representativeMatters" => get_field("rep_matters", $attorney_id),
         "representativeClients" => get_field("rep_clients", $attorney_id),
         "relatedPractices" => $related_pratice_data,
-        "blogPosts" => $blog_data,
+        "blogPosts" => ($blog_data) ? $blog_data : [],
         "newsPosts" => $news_data,
         "eventPosts" => $events_data,
         "awards" => $awards_data,

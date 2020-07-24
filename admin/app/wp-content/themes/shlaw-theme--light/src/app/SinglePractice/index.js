@@ -23,6 +23,6 @@ import '../styles/utils/tabs.scss';
 import '../styles/main.scss';
 import '../styles/navigation.scss';
 
-import '../styles/single-admin&attorney&career&page&single.scss';
+import '../styles/single-practice.scss';
 
 ReactDOM.render(<SinglePractice />, document.getElementById('single-practice'));

@@ -180,3 +180,18 @@ add_action("wp_enqueue_scripts", "preview_single_scripts" );
 
 // load single events API endpoints
 require_once plugin_dir_path(__FILE__) . "/apis/preview-single.php";
+
+// filter out admin subdomain from get_permalink function
+add_filter( 'post_link', 'filter_permalink_subdomain', 99 );
+function filter_permalink_subdomain( $permalink ) {
+  return str_replace( "admin." , "", $permalink);
+}
+
+// redirect if someone isn't logged in
+add_action( 'template_redirect', 'redirect_to_specific_page' );
+function redirect_to_specific_page() {
+  if (!is_user_logged_in() ) {
+    wp_redirect( 'https://scarincihollenbeck.com', 301 ); 
+    exit;
+  }
+}

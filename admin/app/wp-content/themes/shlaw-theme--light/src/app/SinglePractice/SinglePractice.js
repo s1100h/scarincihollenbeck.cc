@@ -16,6 +16,9 @@ import SidebarContent from '../components/practice/SidebarContent';
 import SingleSubHeader from '../layouts/SingleSubHeader';
 import { headers, urlify } from '../utils/helpers';
 
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 export default function SinglePractice() {
   const [ practice, setPractice ] = useState({});
   const [ corePractices, setCorePractices ] = useState([]);
@@ -32,7 +35,9 @@ export default function SinglePractice() {
 
       if(url.indexOf('p=') > -1) {
         previewId = url.split('p=').pop().split('&')[0];
-      }        
+      }  
+      
+      console.log(previewId);
     }
 
     if(process.env.NODE_ENV === 'development') {
