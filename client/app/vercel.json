@@ -236,6 +236,9 @@
     { "source": "/attorney/john-j-d-burke-esq", "destination": "/attorney/john-j-d-burke", "statusCode": 301 },
     { "source": "/attorneys/joseph-m-manak-esq", "destination": "/attorneys/joseph-m-manak", "statusCode": 301 },
     { "source": "/attorney/joseph-m-manak-esq", "destination": "/attorney/joseph-m-manak", "statusCode": 301 },
-    { "source": "/category/covid-19-education-alerts", "destination": "/category/covid-19-education-alert", "statusCode": 301 }
+    { "source": "/client-alert/long-term-tax-abatements-in-new-jersey", "destination": "/law-firm-insights/long-term-tax-abatements-in-new-jersey", "statusCode": 301 },
+    { "source": "/client-alert/statute-of-limitations-trade-secret-misappropriation", "destination": "/law-firm-insights/business-law/statute-of-limitations-trade-secret-misappropriation", "statusCode": 301 },
+    { "source": "/client-alert/working-capital-adjustments-ma", "destination": "/law-firm-insights/business-law/working-capital-adjustments-ma", "statusCode": 301 },
+    { "source": "/client-alert/ip-cases-to-watch-2020", "destination": "/law-firm-insights/intellectual-property/ip-cases-to-watch-2020", "statusCode": 301 }
   ]
 }
