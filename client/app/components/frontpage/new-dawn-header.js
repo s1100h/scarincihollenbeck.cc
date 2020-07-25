@@ -28,7 +28,7 @@ export default function NewDawnHeader(props) {
             <Container className="ml-4">
               <Row>
                 <Col sm={12} md={6} className="mb-3">
-                  <Link href="/firm-news/client-alert/client-alert-covid-19" as="/firm-news/client-alert/client-alert-covid-19/">
+                  <Link href="/client-alert/client-alert-covid-19" as="/client-alert/client-alert-covid-19">
                     <a className="btn btn-danger w-75 p-2 mb-3 shadow lift ft-11 animated fadeInUp slow">
                       Client Message
                       <FontAwesomeIcon icon={faCaretRight} className="text-white ml-2 icon-w8px-h20px mb--3px" />
