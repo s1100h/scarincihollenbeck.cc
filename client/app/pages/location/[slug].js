@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import ErrorPage from 'next/error';
 import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -46,8 +47,11 @@ function buildLocationSchema(location, map) {
 export default function Location({
   slides, seo, offices, currentOffice, posts,
 }) {
-  const router = useRouter();
-  
+    const router = useRouter();
+
+  if (!router.isFallback && Object.entries(currentOffice).length === 0) {
+    return <ErrorPage statusCode={404} />;
+  }  
 
   return (
     <>
@@ -114,8 +118,8 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      offices: locations.offices,
-      seo: currentOffice.seo,
+      offices: locations.offices || {},
+      seo: currentOffice.seo || {},
       slides,
       currentOffice,
       posts: currentOfficePosts,

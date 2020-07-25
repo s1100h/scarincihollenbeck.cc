@@ -107,153 +107,155 @@ function individual_practice_data($request){
 	);
 	// query attorney post object
 	$practices = get_posts($args);
-	//page id
-	$id = $practices[0]->ID;
-	// practice chair
 
-  $chair = get_field("section_chief", $id);
-  
-	$chair_data = array();
-  
-  if($chair) {
-		$chair_data = sort_object_results($chair);
-	}
+	if(count($practices) > 0) {
+			//page id
+			$id = $practices[0]->ID;
+			// practice chair
 
-	// include attorneys
-	$include_attorneys = get_field("include_attorney", $id);
-	$include_attorney_data = array();
-	if($include_attorneys) {
-		$include_attorney_data = sort_object_results($include_attorneys);
-	}
-	// related attorneys
-	$related_attorneys = get_posts(array(
-    'posts_per_page' => -1,
-    'post_status'      => 'publish',
-    'exclude'      => (isset($chair[0]->ID)) ? $chair[0]->ID : 0,
-		'post_type' => 'attorney',
-		'meta_query' => array(
-			array(
-			'key' => 'related_practices',
-			'value' => '"' .$id. '"',
-			'compare' => 'LIKE'
-		))
-	));
-  $related_attorneys_data = array();
-  
-	if($related_attorneys) {
-		$related_attorneys_data = sort_object_results($related_attorneys);
-  }
-  
-  // related blog
-  $related_blog_data = array();
+			$chair = get_field("section_chief", $id);
+			
+			$chair_data = array();
+			
+			if($chair) {
+				$chair_data = sort_object_results($chair);
+			}
 
-  $related_blog_args = array(
-    'numberposts' => 100,
-    'category__in' => get_field("related_blog_category", $id),
-    'order' => 'DESC',
-    
-  );
+			// include attorneys
+			$include_attorneys = get_field("include_attorney", $id);
+			$include_attorney_data = array();
+			if($include_attorneys) {
+				$include_attorney_data = sort_object_results($include_attorneys);
+			}
+			// related attorneys
+			$related_attorneys = get_posts(array(
+				'posts_per_page' => -1,
+				'post_status'      => 'publish',
+				'exclude'      => (isset($chair[0]->ID)) ? $chair[0]->ID : 0,
+				'post_type' => 'attorney',
+				'meta_query' => array(
+					array(
+					'key' => 'related_practices',
+					'value' => '"' .$id. '"',
+					'compare' => 'LIKE'
+				))
+			));
+			$related_attorneys_data = array();
+			
+			if($related_attorneys) {
+				$related_attorneys_data = sort_object_results($related_attorneys);
+			}
+			
+			// related blog
+			$related_blog_data = array();
 
-  // query related posts
-  $related_blog_posts = new WP_Query($related_blog_args);
+			$related_blog_args = array(
+				'numberposts' => 100,
+				'category__in' => get_field("related_blog_category", $id),
+				'order' => 'DESC',
+				
+			);
+
+			// query related posts
+			$related_blog_posts = new WP_Query($related_blog_args);
 
 
-  // get posts
-  if($related_blog_posts->posts) {
-    foreach($related_blog_posts->posts as $p) {
-    $related_blog_data[] = array(
-      "ID" => $p->ID,
-      "date" => get_the_date('F j, Y', $p->ID),
-      "title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
-      "link" => str_replace(home_url(), '', get_permalink($p->ID)),
-      "categoryIds" => find_post_category_ids($p->ID),
-      "image" => get_the_post_thumbnail_url($p->ID),
-      "category" => get_the_category($p->ID)
-      );
-    }
-  }
-	
-	// get child
-	$child = get_field("child_practice", $id);
-	if($child) {
-    $child_data = sort_result_links($child);
-  }
-	// // exclude practices
-	$exclude_practices = get_field("exclude_practice", $id);
-	$exclude_practice_data = array();
-	if($exclude_practices) {
-		$exclude_practice_data = sort_id_results($exclude_practices);
-	}
-	// include practices
-	$include_practices = get_field("include_practice", $id);
-	$include_practice_data = array();
-	if($include_practices) {
-		$include_practice_data = sort_result_links($include_practices);
-  }
-  
-  // retrieve children
-  $related_children = get_field("child_practice", $id);
-  
-	$related_children_data = array();
-	if($related_children) {
-		$related_children_data = sort_result_links($related_children);
-  }
-  
-  // retrieve highlight real
-  $highlight_real = get_field("highlight_scroller", $id);
-  $highlight_real_data = array();
+			// get posts
+			if($related_blog_posts->posts) {
+				foreach($related_blog_posts->posts as $p) {
+				$related_blog_data[] = array(
+					"ID" => $p->ID,
+					"date" => get_the_date('F j, Y', $p->ID),
+					"title" => html_entity_decode(htmlspecialchars_decode(get_the_title($p->ID))),
+					"link" => str_replace(home_url(), '', get_permalink($p->ID)),
+					"categoryIds" => find_post_category_ids($p->ID),
+					"image" => get_the_post_thumbnail_url($p->ID),
+					"category" => get_the_category($p->ID)
+					);
+				}
+			}
+			
+			// get child
+			$child = get_field("child_practice", $id);
+			if($child) {
+				$child_data = sort_result_links($child);
+			}
+			// // exclude practices
+			$exclude_practices = get_field("exclude_practice", $id);
+			$exclude_practice_data = array();
+			if($exclude_practices) {
+				$exclude_practice_data = sort_id_results($exclude_practices);
+			}
+			// include practices
+			$include_practices = get_field("include_practice", $id);
+			$include_practice_data = array();
+			if($include_practices) {
+				$include_practice_data = sort_result_links($include_practices);
+			}
+			
+			// retrieve children
+			$related_children = get_field("child_practice", $id);
+			
+			$related_children_data = array();
+			if($related_children) {
+				$related_children_data = sort_result_links($related_children);
+			}
+			
+			// retrieve highlight real
+			$highlight_real = get_field("highlight_scroller", $id);
+			$highlight_real_data = array();
 
-  if($highlight_real !== false) {
-    foreach($highlight_real as $hr) {
-      $highlight_real_data[] = array(
-        "id" => $hr['image']['ID'],
-        "title" => $hr['title'],
-        "image" => $hr['image']['url']
-      );
-    }
-  }
+			if($highlight_real !== false) {
+				foreach($highlight_real as $hr) {
+					$highlight_real_data[] = array(
+						"id" => $hr['image']['ID'],
+						"title" => $hr['title'],
+						"image" => $hr['image']['url']
+					);
+				}
+			}
 
-  // merge attorney list and practice list
-  $attorneyList = array_merge($include_attorney_data, $related_attorneys_data);
-  $practiceList = array_merge($include_practice_data, $related_children_data);
-  // sort by title
-  function sub_practice_attorney_sort($a, $b) {
-    return strcmp($a['lastName'], $b['lastName']);
-}
+			// merge attorney list and practice list
+			$attorneyList = array_merge($include_attorney_data, $related_attorneys_data);
+			$practiceList = array_merge($include_practice_data, $related_children_data);
+			// sort by title
+			function sub_practice_attorney_sort($a, $b) {
+				return strcmp($a['lastName'], $b['lastName']);
+		}
 
-function sub_practice_practice_sort($a, $b) {
-  return strcmp($a['title'], $b['title']);
-}
+		function sub_practice_practice_sort($a, $b) {
+			return strcmp($a['title'], $b['title']);
+		}
 
-usort($attorneyList, "sub_practice_attorney_sort");
-usort($practiceList, "sub_practice_practice_sort");
+		usort($attorneyList, "sub_practice_attorney_sort");
+		usort($practiceList, "sub_practice_practice_sort");
 
-	// retrieve attorneys includes in this practice
-	$practice_content = array(
-    "practiceID" => $id,
-    "slug" => $slug,
-    "chairID" => (isset($chair[0]->ID)) ? $chair[0]->ID : 0,
-		"title" => html_entity_decode(htmlspecialchars_decode(get_the_title($id))),
-		"description" => get_field("description", $id),
-		"children" => $related_children_data,
-		"content" => get_field("content_section", $id),
-    "chair" => $chair_data,
-    "attorneyList" =>  $attorneyList,
-    "practiceList" => $practiceList,
-    "excludePractices" => $exclude_practice_data,
-    "blog_data_id" =>get_field("related_blog_category", $id),
-    "industryTopics" => $related_blog_data,
-    "highlightReal" => $highlight_real_data,
-    "seo" => (object)array(
-      "title" => get_post_meta($id, '_yoast_wpseo_title', true),
-      "metaDescription" => get_post_meta($id, '_yoast_wpseo_metadesc', true),
-      "canonicalLink" => "practices/".$slug,
-      "practiceTitle" => html_entity_decode(htmlspecialchars_decode(get_the_title($id)))
-    )
-	);
-	if(is_null($id)){
-    return new WP_REST_Response(null, 404);
-  } else {
-    return rest_ensure_response($practice_content);
-  }
+			// retrieve attorneys includes in this practice
+			$practice_content = array(
+				"practiceID" => $id,
+				"slug" => $slug,
+				"chairID" => (isset($chair[0]->ID)) ? $chair[0]->ID : 0,
+				"title" => html_entity_decode(htmlspecialchars_decode(get_the_title($id))),
+				"description" => get_field("description", $id),
+				"children" => $related_children_data,
+				"content" => get_field("content_section", $id),
+				"chair" => $chair_data,
+				"attorneyList" =>  $attorneyList,
+				"practiceList" => $practiceList,
+				"excludePractices" => $exclude_practice_data,
+				"blog_data_id" =>get_field("related_blog_category", $id),
+				"industryTopics" => $related_blog_data,
+				"highlightReal" => $highlight_real_data,
+				"seo" => (object)array(
+					"title" => get_post_meta($id, '_yoast_wpseo_title', true),
+					"metaDescription" => get_post_meta($id, '_yoast_wpseo_metadesc', true),
+					"canonicalLink" => "practices/".$slug,
+					"practiceTitle" => html_entity_decode(htmlspecialchars_decode(get_the_title($id)))
+				)
+			);
+
+			return rest_ensure_response($practice_content);
+		} else {
+			return rest_ensure_response(404, []);
+		}
 }

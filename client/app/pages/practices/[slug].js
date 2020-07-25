@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import ErrorPage from 'next/error';
 import BarLoader from 'react-spinners/BarLoader';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
@@ -21,6 +22,11 @@ import { headers, urlify } from 'utils/helpers';
 
 export default function SinglePractice({ slides, practice, corePractices }) {
   const router = useRouter();
+
+  if (!router.isFallback && Object.entries(practice).length === 0) {
+    return <ErrorPage statusCode={404} />;
+  }
+
 
   function handleLink(e) {
     router.push(e.target.value);

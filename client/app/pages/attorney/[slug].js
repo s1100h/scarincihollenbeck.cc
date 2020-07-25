@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
@@ -46,6 +46,10 @@ export default function Attorney({ slides, bio }) {
       filterHeaders = headers.filter((a) => typeof a !== 'number');
       filterBody = body.filter((a) => a[1] !== '');
     }
+  }
+
+  if (!router.isFallback && Object.entries(bio).length === 0) {
+    return <ErrorPage statusCode={404} />;
   }
 
   return (

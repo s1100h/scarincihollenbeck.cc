@@ -101,86 +101,88 @@ function individual_location_data($request)
   
 	// query attorney post object
   $office = get_posts($args);
-  
-  //page id
-  $id = $office[0]->ID;
-  
-  $practice_data = array();
-  $practices = get_field("office_practices", $id);
-  
-  if($practices){
-    $practice_data = sort_r_links($practices);
-  }
 
-  // related attorneys
-  $args = array(
-    'posts_per_page'	=> -1,
-    'post_type'			=> 'attorneys',
-    'meta_query' => array(
-      array(
-          'key' => 'office_location', // name of custom field
-          'value' => '"'.$id.'"', // matches exactly "red"
-          'compare' => 'LIKE'
-      )
-    )
-  );
+  if(count($office) > 0) {
+      //page id
+      $id = $office[0]->ID;
+      
+      $practice_data = array();
+      $practices = get_field("office_practices", $id);
+      
+      if($practices){
+        $practice_data = sort_r_links($practices);
+      }
 
-  $related_attorneys = get_posts($args);
-  $attorney_data = [];
-  
-  if($related_attorneys) {
-    $attorney_data = sort_obj_results($related_attorneys);
-  }
-  
-  // combine address fields into a single string
-  
+      // related attorneys
+      $args = array(
+        'posts_per_page'	=> -1,
+        'post_type'			=> 'attorneys',
+        'meta_query' => array(
+          array(
+              'key' => 'office_location', // name of custom field
+              'value' => '"'.$id.'"', // matches exactly "red"
+              'compare' => 'LIKE'
+          )
+        )
+      );
 
-  $building_title = get_field("office_building_title", $id);
-  $street_address = get_field("street_address", $id);
-  $po_box = get_field("po_box", $id);
-  $floor = get_field("floor", $id);
-  $address_locality = get_field("address_locality", $id);
-  $address_region = get_field("address_region", $id);
-  $post_code = get_field("post_code", $id);
-  $address_country = get_field("address_country", $id);
+      $related_attorneys = get_posts($args);
+      $attorney_data = [];
+      
+      if($related_attorneys) {
+        $attorney_data = sort_obj_results($related_attorneys);
+      }
+      
+      // combine address fields into a single string
+      $building_title = get_field("office_building_title", $id);
+      $street_address = get_field("street_address", $id);
+      $po_box = get_field("po_box", $id);
+      $floor = get_field("floor", $id);
+      $address_locality = get_field("address_locality", $id);
+      $address_region = get_field("address_region", $id);
+      $post_code = get_field("post_code", $id);
+      $address_country = get_field("address_country", $id);
 
-  $address_array = array (
-    $building_title,
-    $street_address,
-    $po_box,
-    $floor,
-    $address_locality.", ".$address_region.", ".$post_code
-  );
+      $address_array = array (
+        $building_title,
+        $street_address,
+        $po_box,
+        $floor,
+        $address_locality.", ".$address_region.", ".$post_code
+      );
 
-  $address_array = array_filter($address_array, 'strlen');
-  $address_array = array_values($address_array);
-  // office data
-  $office_data = array(
-    "id" => $id,
-    "name" => html_entity_decode(htmlspecialchars_decode(get_the_title($id))),
-    "address" => $address_array,
-    "phone" => get_field("phone", $id),
-    "fax" => get_field("fax", $id),
-    "mapLink" => get_field("map_link", $id),
-    "practices" => $practice_data,
-    "attorneys" => $attorney_data,
-    "seo" => (object)array(
-      "title" => get_post_meta( $id, '_yoast_wpseo_title', true),
-      "metaDescription" => get_post_meta( $id, '_yoast_wpseo_metadesc', true),
-      "canonicalLink" => "location/".$o_slug,
-      "streetAddress" =>  $street_address,
-      "addressLocality"=>  $address_locality,
-      "addressRegion"=>  $address_region,
-      "postalCode"=>  $post_code,
-      "addressCountry"=>  $address_country,
-      "latitude"=>  get_field("latitude", $id),
-      "longitude"=>  get_field("longitude", $id),
-      "url"=>  "location/".html_entity_decode(htmlspecialchars_decode(get_the_title($id))),
-      "telephone"=>  get_field("phone", $id),
-      "image" => get_the_post_thumbnail_url($id, 'full')
-    )
-  );
-  return $office_data;
+      $address_array = array_filter($address_array, 'strlen');
+      $address_array = array_values($address_array);
+      // office data
+      $office_data = array(
+        "id" => $id,
+        "name" => html_entity_decode(htmlspecialchars_decode(get_the_title($id))),
+        "address" => $address_array,
+        "phone" => get_field("phone", $id),
+        "fax" => get_field("fax", $id),
+        "mapLink" => get_field("map_link", $id),
+        "practices" => $practice_data,
+        "attorneys" => $attorney_data,
+        "seo" => (object)array(
+          "title" => get_post_meta( $id, '_yoast_wpseo_title', true),
+          "metaDescription" => get_post_meta( $id, '_yoast_wpseo_metadesc', true),
+          "canonicalLink" => "location/".$o_slug,
+          "streetAddress" =>  $street_address,
+          "addressLocality"=>  $address_locality,
+          "addressRegion"=>  $address_region,
+          "postalCode"=>  $post_code,
+          "addressCountry"=>  $address_country,
+          "latitude"=>  get_field("latitude", $id),
+          "longitude"=>  get_field("longitude", $id),
+          "url"=>  "location/".html_entity_decode(htmlspecialchars_decode(get_the_title($id))),
+          "telephone"=>  get_field("phone", $id),
+          "image" => get_the_post_thumbnail_url($id, 'full')
+        )
+      );
+      return rest_ensure_response($office_data);
+  } else {
+    return rest_ensure_response(404, []);
+  } 
 }
 
 /**
