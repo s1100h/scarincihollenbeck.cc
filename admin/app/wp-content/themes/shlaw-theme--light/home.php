@@ -6,7 +6,7 @@
           <div class="card-body text-center">
             <h4><strong>Scarinci Hollenbeck Admin Site</strong></h4>
             <hr />
-            <p>Scarinci Hollenbeck Admin Site is CMS that stores all the data found on <a href="https://scarincihollenbeck.com" target="_blank">scarincihollenbeck.com</a>.</p>
+            <p>Scarinci Hollenbeck Admin Site is a CMS (Content Management System) that stores all the data found on <a href="https://scarincihollenbeck.com" target="_blank">scarincihollenbeck.com</a>.</p>
             <p>You can add new or edit attorney profiles, administration profiles, careers listings, practice pages, office pages, and blog posts by visting the administration dashboard.</p> 
             <a class="btn btn-info my-3" href="<?php echo admin_url(); ?>" role="button">Dashboard</a>
           </div>
