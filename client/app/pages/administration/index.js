@@ -1,5 +1,3 @@
-import Head from 'next/head';
-import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';

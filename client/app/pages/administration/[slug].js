@@ -4,7 +4,6 @@ import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import ProfileImage from 'components/singleattorney/profile-image';
 import InfoCard from 'components/singleattorney/info-card';
