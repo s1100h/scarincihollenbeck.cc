@@ -22,8 +22,6 @@ import { headers, urlify } from 'utils/helpers';
 export default function SinglePractice({ slides, practice, corePractices }) {
   const router = useRouter();
 
-  const router = useRouter();
-
   if (!router.isFallback && Object.entries(practice).length === 0) {
     return <ErrorPage statusCode={404} />;
   }
