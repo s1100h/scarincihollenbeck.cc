@@ -272,7 +272,7 @@ function category_data($request) {
 
       return rest_ensure_response($post_data, 200);
     } else {
-      return rest_ensure_response(array('error' => 'No category found'), 404);
+      return rest_ensure_response(array( 'message'=> 'No category found.', 'status' => 404), 404);
     }
 
     

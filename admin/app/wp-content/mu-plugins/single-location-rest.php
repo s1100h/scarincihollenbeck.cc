@@ -181,7 +181,7 @@ function individual_location_data($request)
       );
       return new WP_REST_Response($office_data, 200);
   } else {
-    return new WP_REST_Response(array('error' => 'No location found'), 404);
+    return new WP_REST_Response(array( 'message'=> 'No location found.', 'status' => 404), 404);
   } 
 }
 

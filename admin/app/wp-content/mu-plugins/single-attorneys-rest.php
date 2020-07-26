@@ -364,6 +364,6 @@ add_action('rest_api_init', function()
 
         return new WP_REST_Response($biography, 200);
      } else {
-        return new WP_REST_Response(array('error' => 'No attorney found'), 404);
+        return new WP_REST_Response(array( 'message'=> 'No attorney found.', 'status' => 404), 404);
      }  
 }

@@ -56,6 +56,6 @@ function individual_career_data($request)
 
     return new WP_REST_Response($career_data, 200);
   } else {
-    return new WP_REST_Response(array('error' => 'No career found'), 404);
+    return new WP_REST_Response(array( 'message'=> 'No career found.', 'status' => 404), 404);
   }
 }
