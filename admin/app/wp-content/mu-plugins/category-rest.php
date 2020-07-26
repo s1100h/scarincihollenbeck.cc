@@ -95,10 +95,12 @@ function get_attorney_info($authors) {
   // populate authors_data
   return $authors_data;
 }
+
 function get_co_authors( $post_id ) {
   $authors = get_coauthors($post_id);
   return get_attorney_info($authors);  
 }
+
 function get_featured_image($content) {
 	  // expresstion to match image element
 	  $regex = '/src="([^"]*)"/';
@@ -114,159 +116,166 @@ function get_featured_image($content) {
     }
 	  return $results;
 }
+
 function category_data($request) {
 	 global $post;
 
-  $slug = $request["slug"];
+    $slug = $request["slug"];
 
-  $args = array(
-    "category_name" => $slug,
-    "post_type"   => "post",
-    "post_status" => "publish",
-    "numberposts" => -1
-  );
-
-  $posts = get_posts($args);
-
-  // current category
-  $current_category = get_category_by_slug( $slug );
-  $id = $current_category->term_id;
-
-  $post_data = array();
-  
-  // todays post 
-  $post_data['main'][] = array (
-    "ID" => $posts[0]->ID,
-    "title" => html_entity_decode(htmlspecialchars_decode($posts[0]->post_title)),
-    "link" => str_replace(home_url(), '', get_permalink($posts[0]->ID)),
-    //
-    "image" =>  get_featured_image($posts[0]->post_content),
-    "category" => array (
-      "name" => get_the_category_by_ID(wp_get_post_categories($posts[0]->ID)[0]),
-      "link" => "/category/".get_category(wp_get_post_categories($posts[0]->ID)[0])->slug
-    ),
-    "author" =>  get_co_authors($posts[0]->ID),
-    "excerpt" => wp_trim_words($posts[0]->post_content, 50, '...' )
-  );
-
-  // weeks post
-  foreach(range(1,3) as $i) {
-    $post_data['latest'][] = array(
-      "ID" => $posts[$i]->ID,
-      "title" => html_entity_decode(htmlspecialchars_decode($posts[$i]->post_title)),
-      "date" => get_the_date(' F j, Y', $posts[$i]),
-      "category" => ucwords(str_replace( 'firm-', ' ', $slug )),
-      "link" => str_replace(home_url(), '', get_permalink($posts[$i]->ID)),
-      "image" => get_featured_image($posts[$i]->post_content),
-      "excerpt" => wp_trim_words($posts[$i]->post_content, 20, '...' ),
-      "author" =>  get_co_authors($posts[$i]->ID)
+    $args = array(
+      "category_name" => $slug,
+      "post_type"   => "post",
+      "post_status" => "publish",
+      "numberposts" => -1
     );
-  }
-  
-  // months posts
-  $month_end = 8;
 
-  if((count($posts) > 8)) {
-    foreach(range(4, $month_end) as $j) {
-      if(!is_null($posts[$j])) {
-       $post_data['archives'][] = array(
-        "ID" => $posts[$j]->ID,
-         "title" => html_entity_decode(htmlspecialchars_decode($posts[$j]->post_title)),
-         "link" => str_replace(home_url(), '', get_permalink($posts[$j]->ID)),
-         "image" => get_featured_image($posts[$j]->post_content),
-         "excerpt" => wp_trim_words($posts[$j]->post_content, 20, '...' ),
-         "author" =>  get_co_authors($posts[$j]->ID)
-       );
-      }else {
-        $post_data['archives'] = array();
+    $posts = get_posts($args);
+
+    if(count($posts) > 0) {
+      // current category
+    $current_category = get_category_by_slug( $slug );
+    $id = $current_category->term_id;
+
+    $post_data = array();
+    
+    // todays post 
+    $post_data['main'][] = array (
+      "ID" => $posts[0]->ID,
+      "title" => html_entity_decode(htmlspecialchars_decode($posts[0]->post_title)),
+      "link" => str_replace(home_url(), '', get_permalink($posts[0]->ID)),
+      //
+      "image" =>  get_featured_image($posts[0]->post_content),
+      "category" => array (
+        "name" => get_the_category_by_ID(wp_get_post_categories($posts[0]->ID)[0]),
+        "link" => "/category/".get_category(wp_get_post_categories($posts[0]->ID)[0])->slug
+      ),
+      "author" =>  get_co_authors($posts[0]->ID),
+      "excerpt" => wp_trim_words($posts[0]->post_content, 50, '...' )
+    );
+
+    // weeks post
+    foreach(range(1,3) as $i) {
+      $post_data['latest'][] = array(
+        "ID" => $posts[$i]->ID,
+        "title" => html_entity_decode(htmlspecialchars_decode($posts[$i]->post_title)),
+        "date" => get_the_date(' F j, Y', $posts[$i]),
+        "category" => ucwords(str_replace( 'firm-', ' ', $slug )),
+        "link" => str_replace(home_url(), '', get_permalink($posts[$i]->ID)),
+        "image" => get_featured_image($posts[$i]->post_content),
+        "excerpt" => wp_trim_words($posts[$i]->post_content, 20, '...' ),
+        "author" =>  get_co_authors($posts[$i]->ID)
+      );
+    }
+    
+    // months posts
+    $month_end = 8;
+
+    if((count($posts) > 8)) {
+      foreach(range(4, $month_end) as $j) {
+        if(!is_null($posts[$j])) {
+        $post_data['archives'][] = array(
+          "ID" => $posts[$j]->ID,
+          "title" => html_entity_decode(htmlspecialchars_decode($posts[$j]->post_title)),
+          "link" => str_replace(home_url(), '', get_permalink($posts[$j]->ID)),
+          "image" => get_featured_image($posts[$j]->post_content),
+          "excerpt" => wp_trim_words($posts[$j]->post_content, 20, '...' ),
+          "author" =>  get_co_authors($posts[$j]->ID)
+        );
+        }else {
+          $post_data['archives'] = array();
+        }
       }
-     }
-  } else {
-    $post_data['archives'] = array();
-  }
-
-
-
-  // child practices
-  $parent_term_id = $id; // term id of parent term (edited missing semi colon)
-  $taxonomies = array( 
-    'category',
-  );
-
-  $args = array(
-    'parent' => $parent_term_id,
-  ); 
-  
-  $terms = get_terms($taxonomies, $args);
-  if(count($terms) > 0) {
-    foreach($terms as $t) {
-      $post_data['practices'][] = array(
-        "id" => $t->term_id,
-        "name" => html_entity_decode(htmlspecialchars_decode($t->name)),
-        "link" => "/category/".$t->slug,
-        "posts" =>  get_core_practice_posts($t->term_id)
-      );
-    }
-  }else {
-    $post_data['practices'] = array();
-  }
-
-  // parent
-  if($current_category->parent !== 0){
-    $post_data['parent'] = array(
-      "name" => get_category($current_category->parent)->name,
-      "link" => "/category/".get_category($current_category->parent)->slug
-    );
-  }else {
-    $post_data['parent'] = array();
-  }
-  
-
-
-  $author_ids = array();
-
-  // retrieve all author ids
-  foreach($posts as $ap) {
-    $author_ids[] = $ap->post_author;
-  }
-
-  // remove duplicates
-  $author_ids = array_unique($author_ids);
-  $author_ids= array_values($author_ids);
-
-  foreach($author_ids as $ai) {
-    $web_url = get_the_author_meta('url', $ai);
-
-    if($web_url !== "") {
-      $post_data['authors'][] = array(
-        "name" => get_the_author_meta('display_name', $ai),
-        "link" => "/author/".get_the_author_meta('user_nicename', $ai),
-        "id" => $ai,
-        "lastName" => get_the_author_meta('last_name', $ai)
-
-      );
+    } else {
+      $post_data['archives'] = array();
     }
 
-  }  
 
-  $post_data['current_category'] = $current_category;
-  $post_data['numberOfPosts'] = count($posts);
-  $post_data['$month_end'] = $month_end;
 
-    /** Retrieve SEO data */
-    $seo_meta   = get_option( 'wpseo_taxonomy_meta' );
-    $seo_title  = $seo_meta['category'][$id]['wpseo_title'];
-    $seo_metadescription = $seo_meta['category'][$id]['wpseo_desc'];
-  
-    $post_data['seo'] = (object)array(
-      "title" => $seo_title,
-      "metaDescription" => $seo_metadescription,
-      "canonicalLink" => "category/".$slug
+    // child practices
+    $parent_term_id = $id; // term id of parent term (edited missing semi colon)
+    $taxonomies = array( 
+      'category',
     );
 
-    $post_data['description'] = category_description($id);
+    $args = array(
+      'parent' => $parent_term_id,
+    ); 
+    
+    $terms = get_terms($taxonomies, $args);
+    if(count($terms) > 0) {
+      foreach($terms as $t) {
+        $post_data['practices'][] = array(
+          "id" => $t->term_id,
+          "name" => html_entity_decode(htmlspecialchars_decode($t->name)),
+          "link" => "/category/".$t->slug,
+          "posts" =>  get_core_practice_posts($t->term_id)
+        );
+      }
+    }else {
+      $post_data['practices'] = array();
+    }
 
-  return $post_data;
+    // parent
+    if($current_category->parent !== 0){
+      $post_data['parent'] = array(
+        "name" => get_category($current_category->parent)->name,
+        "link" => "/category/".get_category($current_category->parent)->slug
+      );
+    }else {
+      $post_data['parent'] = array();
+    }
+    
+
+
+    $author_ids = array();
+
+    // retrieve all author ids
+    foreach($posts as $ap) {
+      $author_ids[] = $ap->post_author;
+    }
+
+    // remove duplicates
+    $author_ids = array_unique($author_ids);
+    $author_ids= array_values($author_ids);
+
+    foreach($author_ids as $ai) {
+      $web_url = get_the_author_meta('url', $ai);
+
+      if($web_url !== "") {
+        $post_data['authors'][] = array(
+          "name" => get_the_author_meta('display_name', $ai),
+          "link" => "/author/".get_the_author_meta('user_nicename', $ai),
+          "id" => $ai,
+          "lastName" => get_the_author_meta('last_name', $ai)
+
+        );
+      }
+
+    }  
+
+    $post_data['current_category'] = $current_category;
+    $post_data['numberOfPosts'] = count($posts);
+    $post_data['$month_end'] = $month_end;
+
+      /** Retrieve SEO data */
+      $seo_meta   = get_option( 'wpseo_taxonomy_meta' );
+      $seo_title  = $seo_meta['category'][$id]['wpseo_title'];
+      $seo_metadescription = $seo_meta['category'][$id]['wpseo_desc'];
+    
+      $post_data['seo'] = (object)array(
+        "title" => $seo_title,
+        "metaDescription" => $seo_metadescription,
+        "canonicalLink" => "category/".$slug
+      );
+
+      $post_data['description'] = category_description($id);
+
+      return rest_ensure_response($post_data);
+    } else {
+      return rest_ensure_response(404, []);
+    }
+
+    
 }
 
 // get sorted cateories

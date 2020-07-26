@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import ErrorPage from 'next/error';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -26,6 +25,10 @@ export default function Category({
   const router = useRouter();
   const categorySlug = router.asPath.split('/');
   const categoryTitle = categorySlug[categorySlug.length - 1];
+
+  if (!router.isFallback && Object.entries(category).length === 0) {
+    return <ErrorPage statusCode={404} />;
+  }
 
 
   return (
@@ -127,7 +130,7 @@ export async function getServerSideProps({ params }) {
     props: {
       category,
       current: params.slug,
-      seo: category.seo,
+      seo: category.seo || {},
       firmCategories,
       corePractices,
       slides,
