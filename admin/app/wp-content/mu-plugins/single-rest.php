@@ -107,7 +107,7 @@ function single_data($request) {
   
   $post = get_posts($args);
 
-  if(in_category($category_slug, $post[0]->ID)) {
+  if(count($post) > 0 && in_category($category_slug, $post[0]->ID)) {
     $post_id = $post[0]->ID;
     $post_title = $post[0]->post_title;
     $post_content = $post[0]->post_content;
@@ -270,8 +270,8 @@ function single_data($request) {
       )
     );
 
-    return rest_ensure_response($post_data);
-  }else {
-    return rest_ensure_response(404, []);
+    return new WP_REST_Response($post_data, 200);
+  } else {
+    return new WP_REST_Response(array( 'message'=> 'No post found.', 'status' => 404), 404);
   }
 }

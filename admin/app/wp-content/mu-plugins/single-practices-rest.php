@@ -254,8 +254,8 @@ function individual_practice_data($request){
 				)
 			);
 
-			return rest_ensure_response($practice_content);
+			return new WP_REST_Response($practice_content, 200);
 		} else {
-			return rest_ensure_response(404, []);
+			return new WP_REST_Response(array('error' => 'No practice found'), 404);
 		}
 }

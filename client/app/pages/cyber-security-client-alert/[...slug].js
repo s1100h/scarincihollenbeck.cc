@@ -17,7 +17,7 @@ import { headers } from 'utils/helpers';
 export default function CyberSecurityClientAlert({ slides, post }) {
   const router = useRouter();
 
-  if (!router.isFallback && Object.entries(post).length === 0) {
+  if (!router.isFallback && post.hasOwnProperty('status') === true && post.status === 404) {
     return <ErrorPage statusCode={404} />;
   }
 
@@ -110,11 +110,15 @@ export default function CyberSecurityClientAlert({ slides, post }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [post, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/cyber-security-client-alert`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  if(post.hasOwnProperty('status') === true && post.status === 404) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

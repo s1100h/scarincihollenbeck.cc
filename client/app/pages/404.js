@@ -9,7 +9,7 @@ import FullWidth from 'layouts/full-width';
 import SimpleSearch from '../components/simple-search';
 import { headers } from 'utils/helpers';
 
-export default function Page404() {
+export default function Custom404() {
   const [ slides, setSlides ] = useState([]);
 
   useEffect(() => {

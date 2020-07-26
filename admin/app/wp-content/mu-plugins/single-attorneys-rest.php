@@ -359,12 +359,11 @@ add_action('rest_api_init', function()
             "firstName" => get_field("first_name", $attorney_id),
             "lastName" => get_field("last_name", $attorney_id),
             "socialMedia" => $social_media_links
-
           )
       );
-        return rest_ensure_response($biography);
 
+        return new WP_REST_Response($biography, 200);
      } else {
-        return rest_ensure_response(404, []);
+        return new WP_REST_Response(array('error' => 'No attorney found'), 404);
      }  
 }

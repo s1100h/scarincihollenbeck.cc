@@ -270,9 +270,9 @@ function category_data($request) {
 
       $post_data['description'] = category_description($id);
 
-      return rest_ensure_response($post_data);
+      return rest_ensure_response($post_data, 200);
     } else {
-      return rest_ensure_response(404, []);
+      return rest_ensure_response(array('error' => 'No category found'), 404);
     }
 
     

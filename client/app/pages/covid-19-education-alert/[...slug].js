@@ -16,7 +16,7 @@ import { headers } from 'utils/helpers';
 export default function CovidEducationAlerts({ slides, post }) {
   const router = useRouter();
 
-  if (!router.isFallback && Object.entries(post).length === 0) {
+  if (!router.isFallback && post.hasOwnProperty('error') === true) {
     return <ErrorPage statusCode={404} />;
   }
 

@@ -179,9 +179,9 @@ function individual_location_data($request)
           "image" => get_the_post_thumbnail_url($id, 'full')
         )
       );
-      return rest_ensure_response($office_data);
+      return new WP_REST_Response($office_data, 200);
   } else {
-    return rest_ensure_response(404, []);
+    return new WP_REST_Response(array('error' => 'No location found'), 404);
   } 
 }
 

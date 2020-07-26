@@ -1,11 +1,9 @@
 import { useRouter } from 'next/router';
 import { NextSeo, NewsArticleJsonLd } from 'next-seo';
-import ErrorPage from 'next/error';
+import Error from 'next/error';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import NavBar from 'components/navbar';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
@@ -14,16 +12,16 @@ import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function FirmNews({ slides, post }) {
+export default function FirmNews({ slides, post }) {  
   const router = useRouter();
 
-  if (!router.isFallback && Object.entries(post).length === 0) {
-    return <ErrorPage statusCode={404} />;
+  if (!router.isFallback && post.hasOwnProperty('status') === true && post.status === 404) {
+    return <Error statusCode={404} />
   }
 
   return (
     <>
-      {(post === undefined && router.isFallback) ? (
+      {(router.isFallback && Object.entries(post).length === 0) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
             <BarLoader color="#DB2220" />
@@ -103,23 +101,30 @@ export default function FirmNews({ slides, post }) {
               )}
             />
           </div>
-          <Footer slides={slides} />
+          <Footer slides={slides} /> 
         </>
       )}
     </>
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/firm-news`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/firm-news`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers })
+      .then((data) => data.json()),
   ]);
 
+  if(post.hasOwnProperty('status') === true && post.status === 404) {
+    res.statusCode = 404;
+  }
+  
   return {
     props: {
-      slides,
-      post,
+      slides: slides || [],
+      post: post || {},
     },
   };
 }

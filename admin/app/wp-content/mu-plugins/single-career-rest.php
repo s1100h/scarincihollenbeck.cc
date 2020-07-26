@@ -36,26 +36,26 @@ function individual_career_data($request)
   
   $careers = get_posts($args);
 
-  $id = $careers[0]->ID;
+  if(count($careers) > 0) {
+    $id = $careers[0]->ID;
 
-  $career_data = array(
-    "title" => get_field("position", $id),
-      "positionType" => get_field("position_type", $id),
-      "contact" => get_field("contact", $id),
-      "startDate" => get_field('start_date', $id),
-      "positionLocation" => get_field('position_location', $id),
-      "duration" => get_field('duration', $id),
-      "positionDescription" => get_field('position_description', $id),
-      "seo" => (object)array(
-        "title" => get_post_meta( $id, '_yoast_wpseo_title', true),
-        "metaDescription" => get_post_meta( $id, '_yoast_wpseo_metadesc', true),
-        "canonicalLink" => "career/".$slug
-      )
-  );
-	
-  if(is_null($id)){
-    return new WP_REST_Response(null, 404);
+    $career_data = array(
+      "title" => get_field("position", $id),
+        "positionType" => get_field("position_type", $id),
+        "contact" => get_field("contact", $id),
+        "startDate" => get_field('start_date', $id),
+        "positionLocation" => get_field('position_location', $id),
+        "duration" => get_field('duration', $id),
+        "positionDescription" => get_field('position_description', $id),
+        "seo" => (object)array(
+          "title" => get_post_meta( $id, '_yoast_wpseo_title', true),
+          "metaDescription" => get_post_meta( $id, '_yoast_wpseo_metadesc', true),
+          "canonicalLink" => "career/".$slug
+        )
+    );
+
+    return new WP_REST_Response($career_data, 200);
   } else {
-    return rest_ensure_response($career_data);
+    return new WP_REST_Response(array('error' => 'No career found'), 404);
   }
 }
