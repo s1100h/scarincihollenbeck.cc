@@ -129,10 +129,11 @@ function single_data($request) {
       $data = get_category($cat);
       $test_again[] = $data->term_id;
       $categories_to_check[] = category_is_in_slug_category($category_slug_id, $data->term_id);
+      $categories_to_check[] = $data->term_id;
     }
 
     // in_array(true, $categories_to_check)
-    if(in_array(true, $categories_to_check)) {
+    if(2 > 1) {
       $post_title = $post[0]->post_title;
       $post_content = $post[0]->post_content;
 

@@ -57,7 +57,7 @@ export default function InfoCard(props) {
         </div>
       ) : (
         <Col sm={12} className="mt-3">
-          <h4 className="text-white ml--10px">{designation}</h4>
+          <h2 className="text-white ml--10px h4 ft-style-inherit">{designation}</h2>
         </Col>
       )}
       {/** Chair section -- end */}

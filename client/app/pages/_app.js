@@ -34,6 +34,7 @@ import 'styles/single-admin&attorney&career&page&single.scss';
 import 'styles/single-practice.scss';
 import 'styles/subscription-form.scss';
 import 'styles/firm-page.scss';
+import 'styles/category.scss';
 
 
 /**

@@ -246,6 +246,10 @@
     { "source": "/client-alert/businesses-should-review-arbitration-clauses-in-light-of-recent-nj-supreme-court-decision", "destination": "/law-firm-insights/business-law/clauses-in-light-of-recent-nj-supreme-court-decision", "statusCode": 301 },
     { "source": "/client-alert/compliance-concerns-force-drug-company-to-shift-business-model", "destination": "/law-firm-insights/business-law/compliance-concerns-drug-company", "statusCode": 301 },
     { "source": "/client-alert/daily-fantasy-sports-company-scores-legal-win", "destination": "/law-firm-insights/entertainment-and-sports/fantasy-gambling-laws", "statusCode": 301 },
-    { "source": "/client-alert/estate-planning-acronyms-for-the-remainder-of-2012", "destination": "/category/tax", "statusCode": 301 }
+    { "source": "/client-alert/estate-planning-acronyms-for-the-remainder-of-2012", "destination": "/category/tax", "statusCode": 301 },
+    { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 },
+    { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 },
+    { "source": "/client-alert/new-rules-facilitate-intrastate-regional-securities-offerings", "destination": "/law-firm-insights/business-law/securities-law/new-rules-facilitate-intrastate-regional-securities-offerings", "statusCode": 301 },
+    { "source": "/covid-19-education-alert/njdoe-graduation-ceremony-guidelines", "destination": "/law-firm-insights/business-law/securities-law/new-rules-facilitate-intrastate-regional-securities-offerings", "statusCode": 301 }
   ]
 }

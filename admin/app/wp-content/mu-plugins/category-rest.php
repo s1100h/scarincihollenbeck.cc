@@ -268,7 +268,7 @@ function category_data($request) {
         "canonicalLink" => "category/".$slug
       );
 
-      $post_data['description'] = category_description($id);
+      $post_data['description'] = str_replace('<p>', '', str_replace('</p>', '', category_description($id)));
 
       return rest_ensure_response($post_data, 200);
     } else {
