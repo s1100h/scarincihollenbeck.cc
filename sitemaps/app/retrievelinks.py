@@ -200,9 +200,9 @@ def retrieve_links():
   for page in standard_pages:
     site_links.append(page)
 
-  # category pages
-  # category_url = '{base_url}/wp-json/wp/v2/categories?per_page={total}'.format(base_url=base_url, total=total)
-  # site_links.append(request_for_category_links(category_url, 'daily', '0.6'))
+
+  # prunes results
+  pruned_results = [i for n, i in enumerate(site_links) if i not in site_links[n + 1:]] 
 
   # retrieve archive pages
-  return site_links
+  return pruned_results
