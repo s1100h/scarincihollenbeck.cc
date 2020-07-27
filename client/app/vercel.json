@@ -234,6 +234,8 @@
     { "source": "/women-in-sh", "destination": "/women-lead", "statusCode": 301 },
     { "source": "/attorneys/john-j-d-burke-esq", "destination": "/attorneys/john-j-d-burke", "statusCode": 301 },
     { "source": "/attorney/john-j-d-burke-esq", "destination": "/attorney/john-j-d-burke", "statusCode": 301 },
+    { "source": "/attorneys/john-burke", "destination": "/attorney/john-j-d-burke", "statusCode": 301 },
+    { "source": "/attorney/john-burke", "destination": "/attorney/john-j-d-burke", "statusCode": 301 },
     { "source": "/attorneys/joseph-m-manak-esq", "destination": "/attorneys/joseph-m-manak", "statusCode": 301 },
     { "source": "/attorney/joseph-m-manak-esq", "destination": "/attorney/joseph-m-manak", "statusCode": 301 },
     { "source": "/client-alert/long-term-tax-abatements-in-new-jersey", "destination": "/law-firm-insights/long-term-tax-abatements-in-new-jersey", "statusCode": 301 },
@@ -250,6 +252,8 @@
     { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 },
     { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 },
     { "source": "/client-alert/new-rules-facilitate-intrastate-regional-securities-offerings", "destination": "/law-firm-insights/business-law/securities-law/new-rules-facilitate-intrastate-regional-securities-offerings", "statusCode": 301 },
-    { "source": "/covid-19-education-alert/njdoe-graduation-ceremony-guidelines", "destination": "/law-firm-insights/business-law/securities-law/new-rules-facilitate-intrastate-regional-securities-offerings", "statusCode": 301 }
+    { "source": "/covid-19-education-alert/njdoe-graduation-ceremony-guidelines", "destination": "/law-firm-insights/business-law/securities-law/new-rules-facilitate-intrastate-regional-securities-offerings", "statusCode": 301 },
+    { "source": "/contact-attorney", "destination": "/contact", "statusCode": 301 },
+    { "source": "/law-practices", "destination": "/practices", "statusCode": 301 }
   ]
 }
