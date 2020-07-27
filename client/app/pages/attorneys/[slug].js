@@ -1,4 +1,3 @@
-import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
@@ -10,6 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
@@ -48,8 +48,8 @@ export default function Attorney({ slides, bio }) {
     }
   }
 
-  if (!router.isFallback && Object.entries(bio).length === 0) {
-    return <ErrorPage statusCode={404} />;
+  if (bio.status === 404) {
+    return <Error statusCode={404} />;
   }
 
   return (
@@ -206,11 +206,15 @@ export default function Attorney({ slides, bio }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [bio, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  if(bio.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

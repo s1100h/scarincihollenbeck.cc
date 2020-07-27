@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import ErrorPage from 'next/error';
+import Error from 'pages/_error';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -26,8 +26,8 @@ export default function Category({
   const categorySlug = router.asPath.split('/');
   const categoryTitle = categorySlug[categorySlug.length - 1];
 
-  if (!router.isFallback && Object.entries(category).length === 0) {
-    return <ErrorPage statusCode={404} />;
+  if (category.status === 404) {
+    return <Error statusCode={404} />;
   }
 
 
@@ -125,6 +125,10 @@ export async function getServerSideProps({ params }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  if(category.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

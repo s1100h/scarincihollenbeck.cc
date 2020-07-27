@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import ErrorPage from 'next/error';
 import BarLoader from 'react-spinners/BarLoader';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
@@ -8,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
@@ -23,10 +23,9 @@ import { headers, urlify } from 'utils/helpers';
 export default function SinglePractice({ slides, practice, corePractices }) {
   const router = useRouter();
 
-  if (!router.isFallback && Object.entries(practice).length === 0) {
-    return <ErrorPage statusCode={404} />;
+  if (practice.status === 404) {
+    return <Error statusCode={404} />;
   }
-
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -127,12 +126,18 @@ export default function SinglePractice({ slides, practice, corePractices }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [practice, corePractices, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  console.log('practice error: ', practice.status);
+  
+  if(practice.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

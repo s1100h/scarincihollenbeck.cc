@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import ErrorPage from 'next/error';
-import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
+import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import BarLoader from 'react-spinners/BarLoader';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -49,9 +49,9 @@ export default function Location({
 }) {
     const router = useRouter();
 
-  if (!router.isFallback && Object.entries(currentOffice).length === 0) {
-    return <ErrorPage statusCode={404} />;
-  }  
+    if (currentOffice.status === 404) {
+      return <Error statusCode={404} />;
+    }
 
   return (
     <>
@@ -115,6 +115,10 @@ export async function getServerSideProps({ params }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  if(currentOffice.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

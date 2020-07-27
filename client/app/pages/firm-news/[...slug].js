@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { NextSeo, NewsArticleJsonLd } from 'next-seo';
-import Error from 'next/error';
+import Error from 'pages/_error';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,8 +15,8 @@ import { headers } from 'utils/helpers';
 export default function FirmNews({ slides, post }) {  
   const router = useRouter();
 
-  if (!router.isFallback && post.hasOwnProperty('status') === true && post.status === 404) {
-    return <Error statusCode={404} />
+  if (post.status === 404) {
+    return <Error statusCode={404} />;
   }
 
   return (
@@ -117,7 +117,7 @@ export async function getServerSideProps({ params, res }) {
       .then((data) => data.json()),
   ]);
 
-  if(post.hasOwnProperty('status') === true && post.status === 404) {
+  if(post.status === 404 && res) {
     res.statusCode = 404;
   }
   

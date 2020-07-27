@@ -1,9 +1,9 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -14,6 +14,11 @@ import { headers } from 'utils/helpers';
 
 export default function Career({ slides, careerJson }) {
   const router = useRouter();
+
+  if (careerJson.status === 404) {
+    return <Error statusCode={404} />;
+  }
+
   return (
     <>
       {(router.isFallback) ? (
@@ -62,6 +67,10 @@ export async function getServerSideProps({ params }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  if(careerJson.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

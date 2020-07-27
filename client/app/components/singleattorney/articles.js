@@ -14,7 +14,7 @@ function Post(content, {
   return (
     <li key={key} className="my-3 pb-3 border-bottom">
       <a href={post.link} className="d-flex flex-row">
-        <Image src={post.featuredImg} className="w-25 mr-3" rounded />
+        <Image src={post.featuredImg || 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'} className="w-25 mr-3" rounded />
         <div>
           <h5 className="d-block w-100 mb-0 pt-0">{post.title}</h5>
           {(post.date !== undefined) && <p className="mt-0 pt-0">{formatDate(post.date)}</p>}

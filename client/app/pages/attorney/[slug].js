@@ -1,19 +1,15 @@
-import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
-import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
-import TabPane from 'react-bootstrap/TabPane';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';
-import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
-import FullWidth from 'layouts/full-width';
 import ProfileImage from 'components/singleattorney/profile-image';
 import InfoCard from 'components/singleattorney/info-card';
 import Biography from 'components/singleattorney/biography';
@@ -48,8 +44,8 @@ export default function Attorney({ slides, bio }) {
     }
   }
 
-  if (!router.isFallback && Object.entries(bio).length === 0) {
-    return <ErrorPage statusCode={404} />;
+  if (bio.status === 404) {
+    return <Error statusCode={404} />;
   }
 
   return (
@@ -133,49 +129,49 @@ export default function Attorney({ slides, bio }) {
                       <Biography tabTitle="biography" title="Biography" content={bio.biography} />
                     </TabContent>
                     {(bio.representativeMatters) && (
-                    <TabContent>
-                          <Matters tabTitle="representative-matters" title="Representative Matters" content={bio.representativeMatters} />
-                        </TabContent>
+                      <TabContent>
+                        <Matters tabTitle="representative-matters" title="Representative Matters" content={bio.representativeMatters} />
+                      </TabContent>
                     )}
                     {(bio.representativeClients) && (
-                    <TabContent>
-                          <Matters tabTitle="representative-clients" title="Representative Clients" content={bio.representativeClients} />
-                        </TabContent>
+                      <TabContent>
+                        <Matters tabTitle="representative-clients" title="Representative Clients" content={bio.representativeClients} />
+                      </TabContent>
                     )}
                     {(bio.presentations) && (
-                    <TabContent>
-                          <TableTab tabTitle="presentations" title="Presentations" content={bio.presentations} />
-                        </TabContent>
+                      <TabContent>
+                        <TableTab tabTitle="presentations" title="Presentations" content={bio.presentations} />
+                      </TabContent>
                     )}
                     {(bio.publications) && (
-                    <TabContent>
-                          <TableTab tabTitle="publications" title="Publications" content={bio.publications} />
-                        </TabContent>
+                      <TabContent>
+                        <TableTab tabTitle="publications" title="Publications" content={bio.publications} />
+                      </TabContent>
                     )}
                     {(bio.media) && (
-                    <TabContent>
-                          <TableTab tabTitle="media" title="Media" content={bio.media} />
-                        </TabContent>
+                      <TabContent>
+                        <TableTab tabTitle="media" title="Media" content={bio.media} />
+                      </TabContent>
                     )}
                     {(bio.blogPosts.length > 0) && (
-                    <TabContent>
-                          <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
-                        </TabContent>
+                     <TabContent>
+                        <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
+                      </TabContent>
                     )}
                     {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
-                    <TabContent>
-                          <Articles tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} />
-                        </TabContent>
+                      <TabContent>
+                        <Articles tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} />
+                      </TabContent>
                     )}
                     {(bio.videos) && (
-                    <TabContent>
-                          <VideoTab title="Videos" content={bio.videos} tabTitle="videos" />
-                        </TabContent>
+                      <TabContent>
+                        <VideoTab title="Videos" content={bio.videos} tabTitle="videos" />
+                      </TabContent>
                     )}
                     {(bio.tabs) && (
-                    <TabContent>
-                          {filterBody.map((b) => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} tabTitle={urlify(b[1])} />)}
-                        </TabContent>
+                      <TabContent>
+                        {filterBody.map((b) => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} tabTitle={urlify(b[1])} />)}
+                      </TabContent>
                     )}
                     { (bio.clients) && (bio.clients.length > 0) && <FeaturedSlider content={bio.clients} title="Clients" />}
                     { (bio.awards) && (bio.awards.length > 0) && <FeaturedSlider content={bio.awards} title="Awards" />}
@@ -207,11 +203,15 @@ export default function Attorney({ slides, bio }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [bio, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+
+  if(bio.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {

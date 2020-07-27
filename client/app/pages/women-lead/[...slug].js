@@ -1,10 +1,9 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
@@ -16,8 +15,8 @@ import { headers } from 'utils/helpers';
 export default function WomenLeadPost({ slides, post }) {
   const router = useRouter();
 
-  if (!router.isFallback && post.hasOwnProperty('error') === true) {
-    return <ErrorPage statusCode={404} />;
+  if (post.status === 404) {
+    return <Error statusCode={404} />;
   }
 
 
@@ -109,11 +108,15 @@ export default function WomenLeadPost({ slides, post }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [post, slides] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/women-lead`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
+  
+  if(post.status === 404 && res) {
+    res.statusCode = 404;
+  }
 
   return {
     props: {
