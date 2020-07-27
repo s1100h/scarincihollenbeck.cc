@@ -118,7 +118,7 @@ function single_data($request) {
       $categories_to_check[] = $data->slug;
     }
     
-    if(in_category('business-law', $post_id)) {
+    if(in_category($categories_to_check, $post_id)) {
       $post_title = $post[0]->post_title;
       $post_content = $post[0]->post_content;
 
