@@ -107,7 +107,12 @@ function single_data($request) {
   
   $post = get_posts($args);
 
-  if(count($post) > 0 && in_category($category_slug, $post[0]->ID)) {
+  // get the current category children if they exist
+  $current_category_parent_id =  get_category_by_slug($category_slug)->parent;
+  $parent_category_slug = ($current_category_parent_id == 0) ? $category_slug : get_category($current_category_parent_id)->slug;
+
+
+  if(count($post) > 0 && in_category($parent_category_slug, $post[0]->ID)) {
     $post_id = $post[0]->ID;
     $post_title = $post[0]->post_title;
     $post_content = $post[0]->post_content;
@@ -234,6 +239,8 @@ function single_data($request) {
 
     // remove the first h2 text from string
     $post_data = array (
+      "parentCategory" => $parent_category_slug,
+      "parentCategoryId" => $current_category_parent_id,
       "idTrueFalse" => $slugIsID,    
       "id" => $post_id,
       "title" => $post_title,

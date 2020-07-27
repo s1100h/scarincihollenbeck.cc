@@ -42,12 +42,6 @@ export default function QuickNews({
     }
   }, [page]);
 
-  const seo = {
-    title: 'Scarinci Hollenbeck Laywers News & Media Appearances',
-    metaDescription: 'The Scarinci Hollenbeck attorneys have their finger on the pulse of the latest legal issues that affect businesses through New York & New Jersey.',
-    canonicalLink: 'category/quick-news',
-  };
-
   return (
     <>
       {(results.length === 0) ? (
@@ -59,11 +53,7 @@ export default function QuickNews({
 
       ) : (
         <>
-          <NextSeo
-            title={seo.title || ''}
-            description={seo.metaDescription || ''}
-            canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-          />
+          <NextSeo nofollow/>
           <div id="quick-news">
             <ArchiveLayout
               header={(<Breadcrumbs breadCrumb={[term, 1]} categorySlug={term} />)}
