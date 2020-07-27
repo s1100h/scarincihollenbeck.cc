@@ -94,6 +94,17 @@ function get_url_from_avatar($avatar) {
   return $matches[1];
 }
 
+// check if post category id is a child of category slug id
+function category_is_in_slug_category($main_slug, $slug_to_check) {
+  $category = get_category($slug_to_check); 
+
+  if($category->category_parent == $main_slug || $category->term_id == $main_slug) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
 function single_data($request) {
   $slug = $request["slug"];
   $category_slug = $request["category"];
@@ -109,16 +120,19 @@ function single_data($request) {
 
   if(count($post) > 0) {    
     $post_id = $post[0]->ID;
+    $category_slug_id = get_category_by_slug($category_slug)->term_id;
     $category_list =  wp_get_post_categories($post_id);
-    $categories_to_check = array($category_slug);
+    $categories_to_check = array();
 
     // get the list of categories to check
     foreach($category_list as $cat) {
       $data = get_category($cat);
-      $categories_to_check[] = $data->slug;
+      $test_again[] = $data->term_id;
+      $categories_to_check[] = category_is_in_slug_category($category_slug_id, $data->term_id);
     }
-    
-    if(in_category($categories_to_check, $post_id)) {
+
+    // in_array(true, $categories_to_check)
+    if(in_array(true, $categories_to_check)) {
       $post_title = $post[0]->post_title;
       $post_content = $post[0]->post_content;
 
@@ -243,7 +257,7 @@ function single_data($request) {
 
       // remove the first h2 text from string
       $post_data = array (
-        "categoriesToCheck" => $categories_to_check,
+        "checkResults" => $categories_to_check,
         "idTrueFalse" => $slugIsID,    
         "id" => $post_id,
         "title" => $post_title,

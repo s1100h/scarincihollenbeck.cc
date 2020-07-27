@@ -241,6 +241,11 @@
     { "source": "/client-alert/working-capital-adjustments-ma", "destination": "/law-firm-insights/business-law/working-capital-adjustments-ma", "statusCode": 301 },
     { "source": "/client-alert/ip-cases-to-watch-2020", "destination": "/law-firm-insights/intellectual-property/ip-cases-to-watch-2020", "statusCode": 301 },
     { "source": "/client-alert/consumer-fraud-act-counterclaim", "destination": "/law-firm-insights/business-law/consumer-fraud-act-counterclaim", "statusCode": 301 },
-    { "source": "/client-alert/are-your-business-activities-on-the-cfpbs-radar", "destination": "/law-firm-insights/business-law/are-your-business-activities-on-the-cfpbs-radar", "statusCode": 301 }
+    { "source": "/client-alert/are-your-business-activities-on-the-cfpbs-radar", "destination": "/law-firm-insights/business-law/are-your-business-activities-on-the-cfpbs-radar", "statusCode": 301 },
+    { "source": "/client-alert/bankruptcy-ruling-allows-getty-realty-to-repossess-gpmi-portfolio", "destination": "/law-firm-insights/business-law/bankruptcy-creditors-rights/bankruptcy-ruling-allows-getty-realty-to-repossess-gpmi-portfolio", "statusCode": 301 },
+    { "source": "/client-alert/businesses-should-review-arbitration-clauses-in-light-of-recent-nj-supreme-court-decision", "destination": "/law-firm-insights/business-law/clauses-in-light-of-recent-nj-supreme-court-decision", "statusCode": 301 },
+    { "source": "/client-alert/compliance-concerns-force-drug-company-to-shift-business-model", "destination": "/law-firm-insights/business-law/compliance-concerns-drug-company", "statusCode": 301 },
+    { "source": "/client-alert/daily-fantasy-sports-company-scores-legal-win", "destination": "/law-firm-insights/entertainment-and-sports/fantasy-gambling-laws", "statusCode": 301 },
+    { "source": "/client-alert/estate-planning-acronyms-for-the-remainder-of-2012", "destination": "/category/tax", "statusCode": 301 }
   ]
 }
