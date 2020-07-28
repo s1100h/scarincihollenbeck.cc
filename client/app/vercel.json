@@ -263,7 +263,6 @@
     { "source": "/client-alert/compliance-concerns-force-drug-company-to-shift-business-model", "destination": "/law-firm-insights/business-law/compliance-concerns-drug-company", "statusCode": 301 },
     { "source": "/client-alert/daily-fantasy-sports-company-scores-legal-win", "destination": "/law-firm-insights/entertainment-and-sports/fantasy-gambling-laws", "statusCode": 301 },
     { "source": "/client-alert/estate-planning-acronyms-for-the-remainder-of-2012", "destination": "/category/tax", "statusCode": 301 },
-    { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 },
     { "source": "/client-alert/patent-attorney-in-nyc-joins-firm", "destination": "/firm-news/patent-attorney-in-nyc-joins-firm", "statusCode": 301 },
     { "source": "/client-alert/ny-securities-offerings-wealthbridge-ipo", "destination": "/firm-news/ny-securities-offerings-wealthbridge-ipo", "statusCode": 301 },
     { "source": "/client-alert/two-new-attorneys-join-scarinci-hollenbeck", "destination": "/firm-news/two-new-attorneys-join-scarinci-hollenbeck", "statusCode": 301 },
@@ -273,6 +272,7 @@
     { "source": "/client-alert/sh-partner-recertified-as-criminal-trial-attorney", "destination": "/firm-news/sh-partner-recertified-as-criminal-trial-attorney", "statusCode": 301 },
     { "source": "/client-alert/scarinci-hollenbeck-attorney-to-lead-morgan-stanley-roundtable-series", "destination": "/firm-news/scarinci-hollenbeck-attorney-to-lead-morgan-stanley-roundtable-series", "statusCode": 301 },
     { "source": "/client-alert/scarinci-hollenbeck-announces-new-office", "destination": "/firm-news/scarinci-hollenbeck-announces-new-office", "statusCode": 301 },
-    { "source": "/client-alert/director-shares-insights-in-law-practice-today", "destination": "/category/client-alert", "statusCode": 301 }
+    { "source": "/client-alert/director-shares-insights-in-law-practice-today", "destination": "/category/client-alert", "statusCode": 301 },
+    { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 }
   ]
 }
