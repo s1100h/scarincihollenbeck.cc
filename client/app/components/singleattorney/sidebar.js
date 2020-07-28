@@ -41,7 +41,7 @@ export default function SidebarContent(props) {
 
   return (
     <>
-      <Accordion defaultActiveKey={0}>
+      <Accordion defaultActiveKey={2}>
         <div key={title} className="mb-3">
           <SideBarHeaderToggle eventKey={itemKey}>
             <div className="mb-0 pb-0 float-left text-white">{title}</div>
