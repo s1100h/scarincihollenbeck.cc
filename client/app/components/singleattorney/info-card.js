@@ -44,7 +44,7 @@ export default function InfoCard(props) {
       { (chair !== undefined && chair.length > 0) ? (
         <div className="my-3">
           { chair.map((ch) => (
-            <span key={ch.title} className="text-white h5">
+            <h2 key={ch.title} className="text-white ft-style-inherit h5">
               <strong>Chair: </strong>
               <a href={ch.link} className="text-white chair-link h5">
                 {ch.title}
@@ -52,7 +52,7 @@ export default function InfoCard(props) {
                 Practice
               </a>
               <br />
-            </span>
+            </h2>
           ))}
         </div>
       ) : (
