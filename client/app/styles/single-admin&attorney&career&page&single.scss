@@ -145,6 +145,17 @@
       text-decoration: underline;
     }
   }
+
+  .nested-list-items + div {
+    ul {
+      li {
+        line-height: 23px;
+        font-size: 15px;
+        margin-left: -10px;
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
 
 #single-career, #page, #single {

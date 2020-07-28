@@ -51,7 +51,7 @@ export default function SidebarContent(props) {
           <div className="off-white">
             <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
               {content.map((item) => (
-                <li key={item.title}>
+                <li key={item.title}  className="lh-25px mb-2">
                   <a href={item.slug} className="proxima-bold text-capitalize">
                     {item.title.toLowerCase()}
                   </a>

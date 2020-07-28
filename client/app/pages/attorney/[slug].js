@@ -182,7 +182,7 @@ export default function Attorney({ slides, bio }) {
                     <SidebarContent
                       title="Related Practices"
                       content={bio.relatedPractices}
-                      itemKey={0}
+                      itemKey={2}
                     />
                     <br />
                     <SidebarContent

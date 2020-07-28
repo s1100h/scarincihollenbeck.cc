@@ -44,14 +44,18 @@ export default function SidebarContent(props) {
       <Accordion defaultActiveKey={0}>
         <div key={title} className="mb-3">
           <SideBarHeaderToggle eventKey={itemKey}>
-            <h5 className="mb-0 pb-0 float-left">{title}</h5>
+            <div className="mb-0 pb-0 float-left text-white">{title}</div>
           </SideBarHeaderToggle>
           <Accordion.Collapse eventKey={itemKey}>
             <div className="off-white">
-              <ul className="p-1 pt-3 sidebar-content-page">
+              <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
                 {content.map((item) => (Object.keys(item).length > 0) && (
-                  <li key={addRandomKey('bio-info')} className="mb--7px--lh-22--ft-14px">
-                    {(item.link) ? <a href={item.link} className="proxima-bold">{item.title}</a> : <strong>{item.title}</strong>}
+                  <li key={addRandomKey('bio-info')} className="lh-25px mb-2">
+                    {(item.link) ? (
+                      <a href={item.link} className="proxima-bold text-capitalize">{item.title}</a>
+                    ) : (
+                      <span className="proxima-bold text-capitalize nested-list-items">{item.title}</span>
+                    )}
                     {(item.content) && (typeof item.content === 'object') ? item.content.map((i) => (
                       <div key={addRandomKey('sub-bio-info')}>
                         <span className="proxima-bold">{i.title}</span>
