@@ -64,13 +64,13 @@ export default function Body(props) {
         </Col>
         <Col sm={12}>
           <Pagination>
-            <Pagination.First onClick={(e) => handlePagination(e, 1)} />
-            <Pagination.Prev onClick={(e) => handlePagination(e, prev)} />
+            <Pagination.First rel="prev" onClick={(e) => handlePagination(e, 1)} />
+            <Pagination.Prev  rel="prev" onClick={(e) => handlePagination(e, prev)} />
             <Pagination.Item>{1}</Pagination.Item>
             <Pagination.Ellipsis />
             <Pagination.Item onClick={(e) => handlePagination(e, pages)}>{pages}</Pagination.Item>
-            <Pagination.Next onClick={(e) => handlePagination(e, next)} />
-            <Pagination.Last onClick={(e) => handlePagination(e, pages)} />
+            <Pagination.Next rel="next" onClick={(e) => handlePagination(e, next)} />
+            <Pagination.Last rel="next" onClick={(e) => handlePagination(e, pages)} />
           </Pagination>
         </Col>
         <Col sm={12}>
