@@ -98,7 +98,7 @@ export default function InfoCard(props) {
         <Col sm={12} md={6}>
           { (socialMediaLinks) && (
             <>
-              <ul className="ml-0 mt-2">
+              <ul className="ml-0 mt-2 list-unstyled">
                 { socialMediaLinks.map((v) => (
                   <li key={v.channel} className="mb-0 lh-1">
                     <h5>
