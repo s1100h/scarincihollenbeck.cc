@@ -16,11 +16,8 @@ import SubscriptionMessage from 'components/subscription-message';
 import PracticeContent from 'components/practice/practice-content';
 import FeaturedSlider from 'components/practice/featured-slider';
 import RelatedAttorneys from 'components/practice/related-attorneys';
-import RelatedArticlesTab from 'components/practice/related-articles-tab';
 import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
-import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 
 export default function WomenLead({
@@ -96,7 +93,7 @@ export default function WomenLead({
               <Col sm={12} md={3}>
                 <SimpleSearch />
                 <SubscriptionMessage />
-                <SidebarContent title="Diversity" content={fullRelatedPages} tabKey={0} />
+                <SidebarContent title="Diversity" content={fullRelatedPages} tabKey={2} />
                 <SidebarContent title="Firm Resources" content={firmResources} tabKey={1} />
               </Col>
             </Row>

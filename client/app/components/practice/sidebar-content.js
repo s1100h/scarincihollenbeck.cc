@@ -45,15 +45,15 @@ export default function SidebarContent(props) {
     <>
       <Accordion defaultActiveKey={0} className="mt-4">
         <HeaderToggle eventKey={tabKey}>
-          <h5 className="mb-0 pb-0 float-left text-white">{title}</h5>
+          <div className="mb-0 pb-0 float-left text-white">{title}</div>
         </HeaderToggle>
         <Accordion.Collapse eventKey={tabKey}>
           <div className="off-white">
-            <ul className="p-1 pt-3 sidebar-content-page">
+            <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
               {content.map((item) => (
-                <li key={item.title} className="mb--7px--lh-22--ft-14px">
-                  <a href={item.slug} className="proxima-bold">
-                    {item.title}
+                <li key={item.title}>
+                  <a href={item.slug} className="proxima-bold text-capitalize">
+                    {item.title.toLowerCase()}
                   </a>
                 </li>
               ))}

@@ -93,7 +93,7 @@ export default function SinglePractice({ slides, practice, corePractices }) {
                   <Col sm={12} md={3}>
                     <SimpleSearch />
                     <SubscriptionMessage />
-                    <SidebarContent title="Core Practices" content={corePractices} tabKey={0} />
+                    <SidebarContent title="Core Practices" content={corePractices} tabKey={2} />
                     <SidebarContent title="Related Sub-Practices" content={practice.practiceList} tabKey={1} />
                   </Col>
                 </Row>
