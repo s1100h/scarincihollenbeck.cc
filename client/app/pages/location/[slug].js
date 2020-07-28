@@ -61,7 +61,6 @@ export default function Location({
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo

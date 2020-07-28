@@ -105,7 +105,7 @@ export default function Attorney({ slides, bio }) {
                   pdf={bio.pdf}
                   vizibility={bio.vizibility}
                 />
-                )}
+              )}
             />
             <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="biography">
               <Container>
@@ -194,7 +194,6 @@ export default function Attorney({ slides, bio }) {
                 </Row>
               </Container>
             </TabContainer>
-
           </div>
           <Footer slides={slides} />
         </>

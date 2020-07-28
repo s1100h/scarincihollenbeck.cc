@@ -4,7 +4,6 @@ import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Head from 'next/head';
 import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import QuickNewsBody from 'components/quick-news-body';
@@ -50,7 +49,6 @@ export default function QuickNews({
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo nofollow/>

@@ -28,7 +28,6 @@ export default function WomenLeadPost({ slides, post }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo

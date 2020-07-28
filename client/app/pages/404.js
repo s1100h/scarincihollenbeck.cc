@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
@@ -55,67 +52,57 @@ export default function Custom404() {
             </p>            
           </div>
           <SimpleSearch />
-          <div className="off-white w-50 p-3">
-              <h5 className="proxima-bold my-3">
+          <div className="w-50 my-3 p-4 border">
+            <h5>
+              <strong>
                 Or try visiting one of these pages on our site to narrow your search.
-              </h5>
-              <ul className="m-6">
-                <li>
-                  <p className="mb-0">
-                    <Link href="/attorneys">
-                      <a className="u-hover h5">
-                        Attorneys
-                      </a>
-                    </Link>
-                  </p>
-                </li>
-                <li>
-                  <p className="mb-0">
-                    <Link href="/practice">
-                      <a className="u-hover h5">
-                        Practices
-                      </a>
-                    </Link>
-                  </p>
-                </li>
-                <li>
-                  <p className="mb-0">
-                    <Link href="/locations">
-                      <a className="u-hover h5">
-                        Locations
-                      </a>
-                    </Link>
-                  </p>
-                </li>
-                <li>
-                  <p className="mb-0">
-                    <Link href="/category/firm-news">
-                      <a className="u-hover h5">
-                        Firm News
-                      </a>
-                    </Link>
-                  </p>
-                </li>
-                <li>
-                  <p className="mb-0">
-                    <Link href="/category/firm-events">
-                      <a className="u-hover h5">
-                        Firm Events
-                      </a>
-                    </Link>
-                  </p>
-                </li>
-                <li>
-                  <p className="mb-0">
-                    <Link href="/category/firm-insights">
-                      <a className="u-hover h5">
-                        Firm Insights
-                      </a>
-                    </Link>
-                  </p>
-                </li>
-              </ul>
-            </div>
+              </strong>
+            </h5>            
+            <ul className="mb-0">
+              <li>
+                <Link href="/attorneys">
+                  <a className="u-hover h5">
+                    Attorneys
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/practice">
+                  <a className="u-hover h5">
+                    Practices
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/locations">
+                  <a className="u-hover h5">
+                    Locations
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/firm-news">
+                  <a className="u-hover h5">
+                    Firm News
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/firm-events">
+                  <a className="u-hover h5">
+                    Firm Events
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/firm-insights">
+                  <a className="u-hover h5">
+                    Firm Insights
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </div>         
         </FullWidth>
       </div>
       {(slides.length > 0) && <Footer slides={slides} />}

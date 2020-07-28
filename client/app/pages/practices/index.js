@@ -18,7 +18,7 @@ function sortPracticeCategorys(list) {
   };
 }
 
-export default function Administration({
+export default function Practices({
   slides, core, additional, business, seo,
 }) {
   const sortedCore = sortByKey(core, 'title');

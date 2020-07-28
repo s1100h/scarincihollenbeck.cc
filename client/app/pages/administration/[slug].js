@@ -26,7 +26,6 @@ export default function SingleAdmin({ slides, adminJson }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo

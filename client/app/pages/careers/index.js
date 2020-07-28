@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import FullWidth from 'layouts/full-width';
@@ -13,7 +12,6 @@ export default function Careers({ slides, careers, seo }) {
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
   const [sort, setSort] = useState('title');
-  const [positions, setPositions] = useState([]);
   const [career, setCareer] = useState('');
 
   function filterTerm(e) {
@@ -23,7 +21,6 @@ export default function Careers({ slides, careers, seo }) {
 
   function selectOption(e) {
     const { name, innerText } = e.target;
-    console.log();
 
     if (name === 'location') {
       setLocation(innerText);

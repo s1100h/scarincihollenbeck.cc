@@ -29,11 +29,9 @@ export default function Category({
   if (category.status === 404) {
     return <Error statusCode={404} />;
   }
-
-
+  
   return (
     <>
-
       {(router.isFallback) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
@@ -48,10 +46,8 @@ export default function Category({
             canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
           />
           <div id="category">
-            <FullWidth>
-              <Breadcrumbs
-                category={category}
-              />
+            <FullWidth> 
+              <Breadcrumbs category={category} />
             </FullWidth>
             <LargeSidebar
               body={(<CategoryHeader title={categoryTitle} content={category.description} />)}

@@ -4,7 +4,6 @@ import Error from 'pages/_error';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
@@ -28,7 +27,6 @@ export default function FirmEvents({ slides, post }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo
@@ -91,7 +89,7 @@ export default function FirmEvents({ slides, post }) {
                   date={post.date}
                   tags={post.tags}
                 />
-                )}
+              )}
               OneSidebar={(<SocialShareSidebar title={post.title} />)}
               TwoSidebar={(
                 <EventSidebar

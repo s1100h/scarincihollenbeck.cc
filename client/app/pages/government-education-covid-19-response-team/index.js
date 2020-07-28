@@ -35,7 +35,7 @@ export default function GovernmentEducationCovidResponseTeam({
             posts={posts}
             covidPage
           />
-          )}
+        )}
       />
       <Footer slides={slides} />
     </>

@@ -41,7 +41,6 @@ export default function Archive({
     }
   }, [q, page]);
 
-
   return (
     <>
       {(results.length === 0 && slides === undefined) ? (
@@ -76,7 +75,6 @@ export default function Archive({
     </>
   );
 }
-
 
 export async function getServerSideProps() {
   const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([

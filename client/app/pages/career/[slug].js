@@ -49,9 +49,8 @@ export default function Career({ slides, careerJson }) {
                     position={careerJson.positionDescription}
                     contact={careerJson.contact}
                   />
-
                 </>
-)}
+              )}
               sidebar={<Sidebar />}
             />
           </div>

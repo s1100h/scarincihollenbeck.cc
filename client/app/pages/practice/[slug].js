@@ -38,7 +38,6 @@ export default function SinglePractice({ slides, practice, corePractices }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo

@@ -1,4 +1,3 @@
-import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import Body from 'components/pages/body';

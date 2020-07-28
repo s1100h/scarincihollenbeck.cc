@@ -154,13 +154,6 @@ def retrieve_links():
       'priority': '0.4' 
     },
     {
-      'id': 3,
-      'link': 'https://scarincihollenbeck.com/law-practices',
-      'data_modified': '2020-06-07',
-      'change_freq': 'monthly',
-      'priority': '0.4' 
-    },
-    {
       'id': 4,
       'link': 'https://scarincihollenbeck.com/attorneys',
       'data_modified': '2020-06-07',

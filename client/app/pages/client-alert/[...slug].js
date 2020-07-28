@@ -3,7 +3,6 @@ import { NextSeo, ArticleJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -28,7 +27,6 @@ export default function ClientAlert({ slides, post }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo
@@ -72,7 +70,6 @@ export default function ClientAlert({ slides, post }) {
             publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
             description={`${post.seo.metaDescription}`}
           />
-
           <SingleSubHeader
             image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
             title={post.title}
@@ -92,14 +89,14 @@ export default function ClientAlert({ slides, post }) {
                   date={post.date}
                   tags={post.tags}
                 />
-                )}
+              )}
               OneSidebar={(<SocialShareSidebar title={post.title} />)}
               TwoSidebar={(
                 <Sidebar
                   posts={post.posts}
                   attorneys={post.attorneys}
                 />
-)}
+              )}
             />
             <Footer slides={slides} />
           </div>
@@ -114,7 +111,6 @@ export async function getServerSideProps({ params, res }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/client-alert`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-
 
   if(post.status === 404 && res) {
     res.statusCode = 404;

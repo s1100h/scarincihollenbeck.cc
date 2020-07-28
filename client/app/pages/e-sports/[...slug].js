@@ -3,7 +3,6 @@ import { NextSeo, ArticleJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -28,7 +27,6 @@ export default function ESports({ slides, post }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo

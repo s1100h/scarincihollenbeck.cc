@@ -31,12 +31,12 @@ export default function Disclaimer({
           <Body
             content={bodyContent}
           />
-          )}
+        )}
         sidebar={(
           <Sidebar
             posts={posts}
           />
-          )}
+        )}
       />
       <Footer slides={slides} />
     </>

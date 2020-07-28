@@ -1,8 +1,4 @@
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import BarLoader from 'react-spinners/BarLoader';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
@@ -14,7 +10,6 @@ export default function FirmOverview({
 }) {
   const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent[0], '');
-
 
   return (
     <>
@@ -62,7 +57,6 @@ export async function getServerSideProps() {
   const {
     mainTabs, additionalInfo, members, mainContent, seo,
   } = firmOverviewJson;
-
 
   return {
     props: {

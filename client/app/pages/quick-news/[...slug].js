@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
@@ -28,7 +27,6 @@ export default function QuickNewsPost({ slides, post }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo
@@ -90,14 +88,14 @@ export default function QuickNewsPost({ slides, post }) {
                   date={post.date}
                   tags={post.tags}
                 />
-                )}
+              )}
               OneSidebar={(<SocialShareSidebar title={post.title} />)}
               TwoSidebar={(
                 <Sidebar
                   posts={post.posts}
                   attorneys={post.attorneys}
                 />
-)}
+              )}
             />
             <Footer slides={slides} />
           </div>

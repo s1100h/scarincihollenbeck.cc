@@ -75,16 +75,11 @@ export default function WomenLead({
               </Col>
               <Col sm={12} md={9} className="mt-4">
                 {(tabs.length > 0) && tabs.map((tab, index) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content} /></TabContent>)}
-
                 {/** Recent Blog Articles */}
                 {(attorneysMentioned.length > 0) && (
                 <div className="w-100 d-block">
                   <div className="line-header">
-                    <h3>
-                      `Latest From $
-                      {title}
-                      `
-                    </h3>
+                    <h3>Latest From {title}</h3>
                   </div>
                   <FeaturedSlider content={attorneysMentioned} />
                 </div>

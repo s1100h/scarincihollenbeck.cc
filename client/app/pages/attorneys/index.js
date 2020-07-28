@@ -16,7 +16,6 @@ export default function Attorneys({
   const router = useRouter();
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
-  const [attorneyList, setAttorneyList] = useState([]);
 
   /* Click Events */
   function onSelect(e, input) {

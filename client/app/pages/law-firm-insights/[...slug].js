@@ -27,7 +27,6 @@ export default function LawFirmInsightsPost({ slides, post }) {
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
-
       ) : (
         <>
           <NextSeo
@@ -90,14 +89,14 @@ export default function LawFirmInsightsPost({ slides, post }) {
                   date={post.date}
                   tags={post.tags}
                 />
-                )}
+              )}
               OneSidebar={(<SocialShareSidebar title={post.title} />)}
               TwoSidebar={(
                 <Sidebar
                   posts={post.posts}
                   attorneys={post.attorneys}
                 />
-)}
+              )}
             />
             <Footer slides={slides} />
           </div>

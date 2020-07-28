@@ -87,11 +87,7 @@ export default function WomenLead({
                 {(attorneysMentioned.length > 0) && (
                 <div className="w-100 d-block">
                   <div className="line-header">
-                    <h3>
-                      `Latest From $
-                      {title}
-                      `
-                    </h3>
+                    <h3>Latest From {title}</h3>
                   </div>
                   <FeaturedSlider content={attorneysMentioned} />
                 </div>
