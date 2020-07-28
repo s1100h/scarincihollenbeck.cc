@@ -133,6 +133,17 @@
   .read-more-btn {
     background-color: white !important;
     border: 0px solid white !important;
+    margin-left: -7px;
+
+    &:focus, &:active {
+      border: 0px solid white !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
