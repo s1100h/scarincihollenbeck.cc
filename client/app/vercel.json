@@ -237,7 +237,7 @@
     { "source": "/covid-19-education-alert/njdoe-graduation-ceremony-guidelines", "destination": "/law-firm-insights/business-law/securities-law/new-rules-facilitate-intrastate-regional-securities-offerings", "statusCode": 301 },
     { "source": "/contact-attorney", "destination": "/contact", "statusCode": 301 },
     { "source": "/law-practices", "destination": "/practices", "statusCode": 301 },
-    { "source": "/law-firm-insights/intellectual-property/patents/supreme-court-decision-on-genetic-patents-shifts-biotech-ip-landscape(Opens in a new browser tab", "destination": "/law-firm-insights/intellectual-property/patents/genetic-patents-shifts-biotech-ip-landscape", "statusCode": 301}
+    { "source": "/law-firm-insights/intellectual-property/patents/supreme-court-decision-on-genetic-patents-shifts-biotech-ip-landscape(Opens in a new browser tab", "destination": "/law-firm-insights/intellectual-property/patents/genetic-patents-shifts-biotech-ip-landscape", "statusCode": 301},
     { "source": "/client-alert/five-year-tax-abatement", "destination": "/law-firm-insights/five-year-tax-abatement", "statusCode": 301 },
     { "source": "/client-alert/types-of-intellectual-property", "destination": "/law-firm-insights/types-of-intellectual-property", "statusCode": 301 },
     { "source": "/client-alert/2018-attorney-promotions", "destination": "/firm-news/2018-attorney-promotions", "statusCode": 301 },
