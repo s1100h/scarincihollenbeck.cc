@@ -57,8 +57,9 @@ function buildBusinessSchema() {
            }
         ],
         "inLanguage":"en-US"
-     },
+     }
     ]
+  }
 }
 
 export default function Home({
