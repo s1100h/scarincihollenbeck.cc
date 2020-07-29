@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import NewDawnHeader from 'components/frontpage/new-dawn-header';
@@ -5,6 +6,38 @@ import ColumnContent from 'components/frontpage/column-content';
 import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
 import { headers, sortByKey } from 'utils/helpers';
+
+function buildBusinessSchema() {
+  return {
+    "@context": "http://schema.org",
+    "@type": "LegalService",
+    "name": "Scarinci Hollenbeck",
+    "description": "Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.",
+    "url": "https://scarincihollenbeck.com",
+    "priceRange": "$$$$",
+    "telephone": "201-896-4100",
+    "email": "info@sh-law.com",
+    "hasMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.1668721445153!2d-74.11046358459224!3d40.80232667932217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c256174fd409ef%3A0xe46c0af03865c18!2s1100+Valley+Brook+Ave%2C+Lyndhurst%2C+NJ+07071!5e0!3m2!1sen!2sus!4v1537300224657",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lyndhurst",
+      "addressRegion": "NJ",
+      "postalCode": "07071",
+      "streetAddress": "1100 Valley Brook Ave., P.O. Box 790"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "40.802280",
+      "longitude": "-74.108350"
+    },
+    "sameAs": [
+      "https://www.facebook.com/ScarinciHollenbeck/",
+      "https://www.linkedin.com/company/scarinci-hollenbeck-llc",
+      "https://twitter.com/s_h_law"
+    ],
+    "openingHours": "Mo,Tu,We,Th,Fr, 8:300-6:00"      
+  }
+}
 
 export default function Home({
   seo,
@@ -39,6 +72,13 @@ export default function Home({
           cardType: 'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
         }}
       />
+      <Head>
+            <script
+              key="ScarinciHollenbeck"
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
+            />
+          </Head> 
       <NewDawnHeader />
       <Container>
         <ColumnContent corePractices={corePractices} />
