@@ -274,6 +274,7 @@
     { "source": "/client-alert/scarinci-hollenbeck-announces-new-office", "destination": "/firm-news/scarinci-hollenbeck-announces-new-office", "statusCode": 301 },
     { "source": "/client-alert/director-shares-insights-in-law-practice-today", "destination": "/category/client-alert", "statusCode": 301 },
     { "source": "/client-alert/new-california-privacy-law-2020", "destination": "/law-firm-insights/cyber-security/new-california-privacy-law-2020", "statusCode": 301 },
-    { "source": "/client-alert/jersey-city-mixed-use-retail-panel-nov-18", "destination": "/firm-events/jersey-city-mixed-use-retail-panel-nov-18", "statusCode": 301 }
+    { "source": "/client-alert/jersey-city-mixed-use-retail-panel-nov-18", "destination": "/firm-events/jersey-city-mixed-use-retail-panel-nov-18", "statusCode": 301 },
+    { "source": "/firm-news/client-alert/client-alert-covid-19", "destination": "/client-alert/client-alert-covid-19", "statusCode": 301}
   ]
 }
