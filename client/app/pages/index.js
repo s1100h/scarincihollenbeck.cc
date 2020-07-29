@@ -14,6 +14,7 @@ function buildBusinessSchema() {
     "name": "Scarinci Hollenbeck",
     "description": "Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.",
     "url": "https://scarincihollenbeck.com",
+    "image": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png",
     "priceRange": "$$$$",
     "telephone": "201-896-4100",
     "email": "info@sh-law.com",
