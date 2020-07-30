@@ -523,6 +523,10 @@
     { "source": "/client-alert/service-of-process-via-facebook", "destination": "/law-firm-insights/service-of-process-via-facebook", "statusCode": 301},
     { "source": "/firm-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "destination": "/quick-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "statusCode": 301},
     { "source": "/category/just-in", "destination": "/category/law-firm-insights", "statusCode": 301},
-    { "source": "/category/uncategorized", "destination": "/category/law-firm-insights", "statusCode": 301}
+    { "source": "/category/uncategorized", "destination": "/category/law-firm-insights", "statusCode": 301},
+    { "source": "/law-firm-insights/stockton-bankruptcy-may-prompt-police-force-to-quit-leave-city-unprotected", "destination": "/law-firm-insights/police-force-to-quit-leave-city-unprotected", "statusCode": 301},
+    { "source": "/law-firm-insights/environmental/epa-moving-forward-on-sip-calls-to-prevent-excess-emissions-during-periods-of-startup-shutdown-and-malfunction", "destination": "/law-firm-insights/environmental/epa-moving-forward-on-sip-calls-to-prevent-excess-emissions", "statusCode": 301},
+    { "source": "/client-alert/2018-lgbtq-scholarship-winner", "destination": "/firm-news/2018-lgbtq-scholarship-winner", "statusCode": 301}
+
   ]
 }
