@@ -57,7 +57,7 @@ export default function Location({
             <script
               key="ScarinciHollenbeck"
               type='application/ld+json'
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildMainLocationSchema) }}
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildMainLocationSchema()) }}
             />
           </Head> 
           <div id="location">
