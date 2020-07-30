@@ -518,7 +518,7 @@
     { "source": "/client-alert/paying-for-a-passion-finding-investors-for-your-next-entertainment-endeavor", "destination": "/law-firm-insights/paying-for-a-passion-finding-investors-for-your-next-entertainment-endeavor", "statusCode": 301},
     { "source": "/client-alert/caruso-certified-as-nfl-agent", "destination": "/firm-news/caruso-certified-as-nfl-agent", "statusCode": 301},
     { "source": "/client-alert/njsba-forum-2017-program-of-the-year", "destination": "/firm-news/njsba-forum-2017-program-of-the-year", "statusCode": 301},
-    { "source": "/client-alert/what-to-do-while-under-federal-investigation", "destination": "", "statusCode": 301},
+    { "source": "/client-alert/what-to-do-while-under-federal-investigation", "destination": "/law-firm-insights/what-to-do-while-under-federal-investigation", "statusCode": 301},
     { "source": "/client-alert/scotus-foreign-lost-profits-ruling", "destination": "/law-firm-insights/scotus-foreign-lost-profits-ruling", "statusCode": 301},
     { "source": "/client-alert/service-of-process-via-facebook", "destination": "/law-firm-insights/service-of-process-via-facebook", "statusCode": 301},
     { "source": "/firm-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "destination": "/quick-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "statusCode": 301}
