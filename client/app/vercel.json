@@ -521,6 +521,8 @@
     { "source": "/client-alert/what-to-do-while-under-federal-investigation", "destination": "/law-firm-insights/what-to-do-while-under-federal-investigation", "statusCode": 301},
     { "source": "/client-alert/scotus-foreign-lost-profits-ruling", "destination": "/law-firm-insights/scotus-foreign-lost-profits-ruling", "statusCode": 301},
     { "source": "/client-alert/service-of-process-via-facebook", "destination": "/law-firm-insights/service-of-process-via-facebook", "statusCode": 301},
-    { "source": "/firm-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "destination": "/quick-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "statusCode": 301}
+    { "source": "/firm-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "destination": "/quick-news/ma-attorney-jeff-cassin-featured-small-business-insurance-article", "statusCode": 301},
+    { "source": "/category/just-in", "destination": "/category/law-firm-insights", "statusCode": 301},
+    { "source": "/category/uncategorized", "destination": "/category/law-firm-insights", "statusCode": 301}
   ]
 }
