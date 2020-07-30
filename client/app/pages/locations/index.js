@@ -11,11 +11,32 @@ import BodyContent from 'components/locations/body-content';
 import SideBar from 'components/locations/sidebar';
 import { headers } from 'utils/helpers';
 
+function buildMainLocationSchema() {
+  return {
+    "@context": "http://schema.org",
+    "@type":"WebSite",
+    "@id":"https://scarincihollenbeck.com/#website",
+    "url":"https://scarincihollenbeck.com/",
+    "name":"Scarinci Hollenbeck",
+    "description":"Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.",
+    "publisher":{
+       "@id":"https://scarincihollenbeck.com/#organization"
+    },
+    "potentialAction":[
+       {
+          "@type":"SearchAction",
+          "target":"https://scarincihollenbeck.com/search?q={search_term_string}&page=1",
+          "query-input":"required name=search_term_string"
+       }
+    ],
+    "inLanguage":"en-US"
+ }
+}
+
 export default function Location({
   slides, seo, offices, lyndhurst, posts,
 }) {
   const router = useRouter();
-
 
   return (
     <>
@@ -32,6 +53,13 @@ export default function Location({
             description={seo.metaDescription}
             canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
           />
+          <Head>
+            <script
+              key="ScarinciHollenbeck"
+              type='application/ld+json'
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildMainLocationSchema) }}
+            />
+          </Head> 
           <div id="location">
             <SingleSubHeader
               title="Office Locations"

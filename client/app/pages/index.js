@@ -96,12 +96,12 @@ export default function Home({
         }}
       />
       <Head>
-            <script
-              key="ScarinciHollenbeck"
-              type='application/ld+json'
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
-            />
-          </Head> 
+        <script
+          key="ScarinciHollenbeck"
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
+        />
+      </Head> 
       <NewDawnHeader />
       <Container>
         <ColumnContent corePractices={corePractices} />
