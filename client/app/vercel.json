@@ -545,6 +545,10 @@
     { "source": "/client-alert/tcja-able-act", "destination": "/law-firm-insights/tcja-able-act"},
     { "source": "/client-alert/plaintiffs-bad-behavior-dooms-nj-employment-lawsuit", "destination": "/law-firm-insights/plaintiffs-bad-behavior-dooms-nj-employment-lawsuit"},
     { "source": "/client-alert/tiffany-counterfeit-ring-lawsuit", "destination": "/law-firm-insights/tiffany-counterfeit-ring-lawsuit"},
-    { "source": "/client-alert/waters-of-the-united-states-repeal", "destination": "/law-firm-insights/waters-of-the-united-states-repeal"}
+    { "source": "/client-alert/waters-of-the-united-states-repeal", "destination": "/law-firm-insights/waters-of-the-united-states-repeal"},
+    { "source": "/client-alert/scotus-clean-water-act", "destination": "/law-firm-insights/waters-of-the-united-states-repeal"},
+    { "source": "/client-alert/n-j-federal-court-honors-scarinci-hollenbeck", "destination": "/firm-news/congratulations/n-j-federal-court-honors-scarinci-hollenbeck"},
+    { "source": "/client-alert/protect-older-investors", "destination": "/law-firm-insights/protect-older-investors"},
+    { "source": "/client-alert/new-jersey-approves-6-atcs", "destination": "/law-firm-insights/new-jersey-approves-6-atcs"}
   ]
 }
