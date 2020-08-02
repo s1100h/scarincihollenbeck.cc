@@ -103,8 +103,8 @@ export default function Home({
         />
       </Head> 
       <NewDawnHeader />
-      <Container>
-        <ColumnContent corePractices={corePractices} />
+      <Container>      
+        <ColumnContent corePractices={sortByKey(corePractices, 'title')} />
         <FullWidthContent
           sortedPosts={sortByKey(posts, 'date')}
           sortedLocations={sortByKey(locations.offices, 'id')}

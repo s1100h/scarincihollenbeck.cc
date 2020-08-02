@@ -131,8 +131,6 @@ export async function getServerSideProps({ params, res }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-
-  console.log('practice error: ', practice.status);
   
   if(practice.status === 404 && res) {
     res.statusCode = 404;
