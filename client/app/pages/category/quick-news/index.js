@@ -12,34 +12,17 @@ import Footer from 'components/footer';
 import { headers } from 'utils/helpers';
 
 export default function QuickNews({
-  firmNews, firmEvents, firmInsights, slides,
+  slides,
+  firmNews,
+  firmEvents,
+  firmInsights,
+  results,
+  posts,
+  pages,
+  term,
+  page
 }) {
-  const router = useRouter();
-  const { page } = router.query;
-  const [results, setResults] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [pages, setPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [term, setTerm] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const [response] = await Promise.all([
-        fetch(`https://admin.scarincihollenbeck.com/wp-json/archive/query/quick-news/${page}`, { headers }).then((data) => data.json())
-      ]);
-
-      const { results, pages, term, posts } = response;
-      setResults(results);
-      setPages(pages);
-      setTerm(term);
-      setCurrentPage(page);
-      setPosts(posts);
-    };
-
-    if (page !== undefined) {
-      fetchData();
-    }
-  }, [page]);
+  
 
   return (
     <>
@@ -54,13 +37,13 @@ export default function QuickNews({
           <NextSeo nofollow/>
           <div id="quick-news">
             <ArchiveLayout
-              header={(<Breadcrumbs breadCrumb={[term, 1]} categorySlug={term} />)}
+              header={(<Breadcrumbs breadCrumb={[term, page]} categorySlug={term} />)}
               body={(
                 <QuickNewsBody
                   results={results}
                   term={term}
                   pages={pages}
-                  currentPage={currentPage}
+                  currentPage={page}
                   news={firmNews}
                   events={firmEvents}
                   insight={firmInsights}
@@ -76,8 +59,9 @@ export default function QuickNews({
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const [firmNews, firmEvents, firmInsights, slides] = await Promise.all([
+export async function getServerSideProps({ query }) {
+  const [response, firmNews, firmEvents, firmInsights, slides] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/archive/query/quick-news/${query.page}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
@@ -91,6 +75,11 @@ export async function getServerSideProps({ params }) {
       firmEvents: firmEvents.latest || [],
       firmInsights: firmInsights.latest || [],
       slides,
+      results: response.results || [],
+      pages: response.pages || 0,
+      term: response.term || '',
+      posts: response.posts || [],
+      page: query.page || 1
     },
   };
 }

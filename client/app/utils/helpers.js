@@ -154,3 +154,8 @@ export function makeQueryTitle(title) {
   const formatTitle = title.replace(/\+/g, ' ');
   return makeTitle(formatTitle);
 }
+
+export async function fetcher(...args) {
+  const res = await fetch(...args)
+  return res.json()
+}
