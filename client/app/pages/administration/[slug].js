@@ -11,7 +11,7 @@ import MultiSubHeader from 'layouts/multi-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
 
-export default function SingleAdmin({ slides, adminJson }) {
+export default function SingleAdmin({ adminJson }) {
   const router = useRouter();
 
   if (adminJson.status === 404) {
@@ -90,7 +90,7 @@ export default function SingleAdmin({ slides, adminJson }) {
               </div>
             </FullWidth>
           </div>
-          <Footer slides={slides} />
+          <Footer />
         </>
       )}
     </>
@@ -98,9 +98,8 @@ export default function SingleAdmin({ slides, adminJson }) {
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [adminJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [adminJson] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json())
   ]);
 
   if(adminJson.status === 404 && res) {
@@ -109,7 +108,6 @@ export async function getServerSideProps({ params, res }) {
 
   return {
     props: {
-      slides,
       adminJson,
     },
   };

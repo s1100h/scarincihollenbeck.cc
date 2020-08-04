@@ -21,7 +21,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 
 export default function WomenLead({
-  slides, attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
+  attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
 }) {
   const router = useRouter();
 
@@ -100,15 +100,14 @@ export default function WomenLead({
           </Container>
         </TabContainer>
       </div>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [page, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [page] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers }).then((data) => data.json())
   ]);
   const {
     attorneysMentioned, title, description, tabs, members, relatedPages, seo,
@@ -117,7 +116,6 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      slides,
       attorneysMentioned,
       title,
       description,

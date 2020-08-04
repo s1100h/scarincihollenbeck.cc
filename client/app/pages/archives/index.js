@@ -11,7 +11,6 @@ import Sidebar from 'components/archives/sidebar';
 import { headers, makeQueryTitle } from 'utils/helpers';
 
 export default function Archive({
-  slides,
   firmNews,
   firmEvents,
   firmInsights,
@@ -54,7 +53,7 @@ export default function Archive({
           />
         </div>
       )}
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
@@ -64,13 +63,11 @@ export async function getServerSideProps({ query }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json())
   ]);
 
   return {
     props: {
-      slides,
       firmNews: firmNews.latest || [],
       firmEvents: firmEvents.latest || [],
       firmInsights: firmInsights.latest || [],

@@ -45,7 +45,7 @@ function buildLocationSchema(location, map) {
 }
 
 export default function Location({
-  slides, seo, offices, currentOffice, posts,
+ seo, offices, currentOffice, posts,
 }) {
     const router = useRouter();
 
@@ -99,7 +99,7 @@ export default function Location({
                 />
             )}
             />
-            <Footer slides={slides} />
+            <Footer />
           </div>
         </>
       )}
@@ -108,11 +108,10 @@ export default function Location({
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [locations, currentOffice, currentOfficePosts, slides] = await Promise.all([
+  const [locations, currentOffice, currentOfficePosts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json())
   ]);
 
   if(currentOffice.status === 404 && res) {
@@ -123,7 +122,6 @@ export async function getServerSideProps({ params, res }) {
     props: {
       offices: locations.offices || {},
       seo: currentOffice.seo || {},
-      slides,
       currentOffice,
       posts: currentOfficePosts,
     },

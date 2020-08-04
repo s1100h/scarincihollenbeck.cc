@@ -6,7 +6,7 @@ import FullWidth from 'layouts/full-width';
 import ContactForm from 'components/contact-form';
 import { headers } from 'utils/helpers';
 
-export default function Contact({ slides }) {
+export default function Contact() {
   const seo = {
     title: 'Contact | Scarinci Hollenbeck',
     metaDescription: 'Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Washington D.C.',
@@ -68,18 +68,8 @@ export default function Contact({ slides }) {
           </div>
         </FullWidth>
       </div>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
-  const sliderResponse = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers });
-  const slides = await sliderResponse.json();
-
-  return {
-    props: {
-      slides,
-    },
-  };
-}

@@ -1,25 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import SimpleSearch from '../components/simple-search';
-import { headers } from 'utils/helpers';
 
 export default function Custom404() {
-  const [ slides, setSlides ] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const [slides] = await Promise.all([
-        fetch(`http://localhost:8400/wp-json/just-in/posts`, { headers }).then((data) => data.json())
-      ]);
-
-      setSlides(slides);
-    };
-
-    fetchData();
-  }, []);
   
   return (
     <>
@@ -105,7 +90,7 @@ export default function Custom404() {
           </div>         
         </FullWidth>
       </div>
-      {(slides.length > 0) && <Footer slides={slides} />}
+      <Footer />
     </>
   );
 }

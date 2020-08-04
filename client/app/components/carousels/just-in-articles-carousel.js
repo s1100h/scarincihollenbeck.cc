@@ -1,11 +1,12 @@
 
-import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';
+import useSWR from 'swr';
 import 'react-multi-carousel/lib/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
+import { headers } from '../../utils/helpers';
 
 const jiResponsive = {
   superLargeDesktop: {
@@ -33,8 +34,14 @@ function formatDate(date) {
   return d.toLocaleDateString();
 }
 
+async function fetcher(...args) {
+  const res = await fetch(...args);
+  return res.json();
+}
+
 export default function JustInArticlesCarousel(props) {
-  const { slides } = props;
+  const { data: slides=[] } = useSWR(`https://admin.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
+
   return (slides.length > 0) && (
     <Carousel responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (

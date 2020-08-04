@@ -7,7 +7,7 @@ import LargeSidebar from 'layouts/large-sidebar';
 import { headers } from 'utils/helpers';
 
 export default function TermsOfUse({
-  slides, title, content, posts, seo,
+  title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -38,23 +38,21 @@ export default function TermsOfUse({
           />
           )}
       />
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [aJson, postJson, slides] = await Promise.all([
+  const [aJson, postJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/terms-of-use`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
   ]);
   const { posts } = postJson;
   const { title, content, seo } = aJson;
 
   return {
     props: {
-      slides,
       title,
       content,
       posts,

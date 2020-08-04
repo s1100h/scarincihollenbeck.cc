@@ -34,7 +34,7 @@ function buildMainLocationSchema() {
 }
 
 export default function Location({
-  slides, seo, offices, lyndhurst, posts,
+  seo, offices, lyndhurst, posts,
 }) {
   const router = useRouter();
 
@@ -84,7 +84,7 @@ export default function Location({
                 />
             )}
             />
-            <Footer slides={slides} />
+            <Footer />
           </div>
         </>
       )}
@@ -94,18 +94,16 @@ export default function Location({
 
 
 export async function getServerSideProps() {
-  const [locations, lyndhurst, lyndhurstposts, slides] = await Promise.all([
+  const [locations, lyndhurst, lyndhurstposts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/lyndhurst`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json())
   ]);
 
   return {
     props: {
       offices: locations.offices,
       seo: locations.seo,
-      slides,
       lyndhurst,
       posts: lyndhurstposts,
     },

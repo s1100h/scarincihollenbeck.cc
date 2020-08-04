@@ -66,8 +66,7 @@ export default function Home({
   seo,
   posts,
   locations,
-  corePractices,
-  slides,
+  corePractices
 }) {
   return (
     <>
@@ -110,19 +109,18 @@ export default function Home({
           sortedLocations={sortByKey(locations.offices, 'id')}
         />
       </Container>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [seo, news, events, locations, corePractices, slides] = await Promise.all([
+  const [seo, news, events, locations, corePractices] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())    
   ]);
 
   const posts = [...news, ...events];
@@ -132,8 +130,7 @@ export async function getServerSideProps() {
       seo,
       posts,
       locations,
-      corePractices,
-      slides,
+      corePractices
     },
   };
 }

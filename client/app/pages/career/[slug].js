@@ -12,7 +12,7 @@ import Body from 'components/singlecareer/body';
 import Sidebar from 'components/singlecareer/sidebar';
 import { headers } from 'utils/helpers';
 
-export default function Career({ slides, careerJson }) {
+export default function Career({ careerJson }) {
   const router = useRouter();
 
   if (careerJson.status === 404) {
@@ -54,7 +54,7 @@ export default function Career({ slides, careerJson }) {
               sidebar={<Sidebar />}
             />
           </div>
-          <Footer slides={slides} />
+          <Footer />
         </>
       )}
     </>
@@ -62,9 +62,8 @@ export default function Career({ slides, careerJson }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const [careerJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [careerJson] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json())
   ]);
 
   if(careerJson.status === 404 && res) {
@@ -73,7 +72,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      slides,
       careerJson,
     },
   };

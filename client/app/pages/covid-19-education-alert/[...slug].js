@@ -12,7 +12,7 @@ import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function CovidEducationAlerts({ slides, post }) {
+export default function CovidEducationAlerts({ post }) {
   const router = useRouter();
 
   if (post.status === 404) {
@@ -98,7 +98,7 @@ export default function CovidEducationAlerts({ slides, post }) {
                 />
               )}
             />
-            <Footer slides={slides} />
+            <Footer />
           </div>
         </>
       )}
@@ -107,9 +107,8 @@ export default function CovidEducationAlerts({ slides, post }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/covid-19-education-alert`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [post] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/covid-19-education-alert`, { headers }).then((data) => data.json())
   ]);
 
   if(post.status === 404 && res) {
@@ -118,7 +117,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      slides,
       post,
     },
   };

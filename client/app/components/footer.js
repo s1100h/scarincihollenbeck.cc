@@ -6,14 +6,13 @@ import CookieConsentContainer from './cookie-consent';
 import SimpleSearch from './simple-search';
 import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
 
-export default function Footer(props) {
-  const { slides } = props;
+export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <Container fluid className="bk--gray d-print-none">
       <div className="just-in-container w-75">
-        <JustInArticlesCarousel slides={slides} />
+        <JustInArticlesCarousel />
       </div>
       <footer>
         <Container fluid className="h-100 mt-5 w-75 bk--gray">

@@ -25,7 +25,7 @@ import { headers, urlify, makeTitle } from 'utils/helpers';
 
 
 export default function WomenLead({
-  slides, attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
+  attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
 }) {
   const router = useRouter();
 
@@ -96,15 +96,14 @@ export default function WomenLead({
           </Container>
         </TabContainer>
       </div>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps({ params }) {
-  const [page, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/pro-bono`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [page] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/pro-bono`, { headers }).then((data) => data.json())
   ]);
   const {
     attorneysMentioned, title, description, tabs, relatedPages, seo,
@@ -112,7 +111,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      slides,
       attorneysMentioned,
       title,
       description,

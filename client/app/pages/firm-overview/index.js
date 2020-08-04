@@ -6,7 +6,7 @@ import FirmMembers from 'components/firmoverview/firm-members';
 import { headers, createMarkup } from 'utils/helpers';
 
 export default function FirmOverview({
-  slides, mainTabs, additionalInfo, members, mainContent, seo,
+  mainTabs, additionalInfo, members, mainContent, seo,
 }) {
   const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent[0], '');
@@ -44,15 +44,14 @@ export default function FirmOverview({
           </>
         </div>
       </FullWidth>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
   const [firmOverviewJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-overview/content`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-overview/content`, { headers }).then((data) => data.json())
   ]);
   const {
     mainTabs, additionalInfo, members, mainContent, seo,
@@ -60,7 +59,6 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      slides,
       mainTabs,
       additionalInfo,
       members,

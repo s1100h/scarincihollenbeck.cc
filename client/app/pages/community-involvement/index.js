@@ -24,7 +24,7 @@ import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 
 export default function WomenLead({
-  slides, attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
+  attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
 }) {
   const router = useRouter();
 
@@ -88,22 +88,21 @@ export default function WomenLead({
               <Col sm={12} md={3}>
                 <SimpleSearch />
                 <SubscriptionMessage />
-                <SidebarContent title="Diversity" content={fullRelatedPages} tabKey={0} />
+                <SidebarContent title="Diversity" content={fullRelatedPages} tabKey={2} />
                 <SidebarContent title="Firm Resources" content={firmResources} tabKey={1} />
               </Col>
             </Row>
           </Container>
         </TabContainer>
       </div>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps({ params }) {
-  const [page, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/community-involvement`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [page] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/community-involvement`, { headers }).then((data) => data.json())
   ]);
 
   const {
@@ -112,7 +111,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      slides,
       attorneysMentioned,
       title,
       description,

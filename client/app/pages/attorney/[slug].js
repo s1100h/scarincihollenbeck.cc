@@ -25,7 +25,7 @@ import {
   sortByDateKey, urlify, headers, addRandomKey,
 } from 'utils/helpers';
 
-export default function Attorney({ slides, bio }) {
+export default function Attorney({ bio }) {
   const router = useRouter();
   let newsEventArticles = [];
   let filterHeaders;
@@ -195,7 +195,7 @@ export default function Attorney({ slides, bio }) {
               </Container>
             </TabContainer>
           </div>
-          <Footer slides={slides} />
+          <Footer />
         </>
       )}
     </>
@@ -204,8 +204,7 @@ export default function Attorney({ slides, bio }) {
 
 export async function getServerSideProps({ params, res }) {
   const [bio, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json())
   ]);
 
   if(bio.status === 404 && res) {
@@ -214,7 +213,6 @@ export async function getServerSideProps({ params, res }) {
 
   return {
     props: {
-      slides,
       bio,
     },
   };

@@ -11,7 +11,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 
 export default function Attorneys({
-  slides, seo, locations, designations, practices, attorneys,
+  seo, locations, designations, practices, attorneys,
 }) {
   const router = useRouter();
   const [userInput, setUserInput] = useState('');
@@ -123,25 +123,23 @@ export default function Attorneys({
           {/** End of Results */}
         </div>
       </FullWidth>
-      <Footer slides={slides} />
+      <Footer />
 
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [attorneys, locations, designations, practices, seo, slides] = await Promise.all([
+  const [attorneys, locations, designations, practices, seo] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/office-locations`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/designations`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/practices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json())
   ]);
 
   return {
     props: {
-      slides,
       seo,
       locations,
       designations,

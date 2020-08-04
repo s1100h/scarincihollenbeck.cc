@@ -12,7 +12,6 @@ import Sidebar from 'components/archives/sidebar';
 import { headers, urlify, makeQueryTitle } from 'utils/helpers';
 
 export default function SearchPage({
-  slides,
   firmNews,
   firmEvents,
   firmInsights,
@@ -54,7 +53,7 @@ export default function SearchPage({
               sidebar={(<Sidebar trending={posts} />)}
             />
           </div>
-          <Footer slides={slides} />
+          <Footer />
         </>
       )}
     </>
@@ -63,17 +62,15 @@ export default function SearchPage({
 
 
 export async function getServerSideProps({ query }) {
-  const [response, firmNews, firmEvents, firmInsights, slides] = await Promise.all([
+  const [response, firmNews, firmEvents, firmInsights] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json())
   ]);
 
   return {
     props: {
-      slides,
       firmNews: firmNews.latest || [],
       firmEvents: firmEvents.latest || [],
       firmInsights: firmInsights.latest || [],

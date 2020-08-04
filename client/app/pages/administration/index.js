@@ -9,7 +9,7 @@ import AttorneyCard from 'components/attorney-card';
 import { headers } from 'utils/helpers';
 
 
-export default function Administration({ slides, admins, seo }) {
+export default function Administration({ admins, seo }) {
   return (
     <>
       <NextSeo
@@ -43,22 +43,20 @@ export default function Administration({ slides, admins, seo }) {
           </Row>
         </Container>
       </FullWidth>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
   const [aJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json())
   ]);
 
   const { admins, seo } = aJson;
 
   return {
     props: {
-      slides,
       seo,
       admins,
     },

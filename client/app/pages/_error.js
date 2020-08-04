@@ -7,18 +7,9 @@ import SimpleSearch from '../components/simple-search';
 import { headers } from 'utils/helpers';
 
 export default function CustomError({ statusCode }) {
-  const [ slides, setSlides ] = useState([]);
   const [errorMessage, setErrorMessage ] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
-      const [slides] = await Promise.all([
-        fetch(`https://admin.scarincihollenbeck.com/wp-json/just-in/posts`, { headers }).then((data) => data.json())
-      ]);
-
-      setSlides(slides);
-    };
-
     const handleErrorMessage = async () => {
       if(statusCode === 404) {
         setErrorMessage('404: Page Not Found');
@@ -29,7 +20,6 @@ export default function CustomError({ statusCode }) {
       }
     }
 
-    fetchData();
     handleErrorMessage();
   }, [statusCode]);
   
@@ -117,7 +107,7 @@ export default function CustomError({ statusCode }) {
           </div>         
         </FullWidth>
       </div>
-      {(slides.length > 0) && <Footer slides={slides} />}
+      <Footer />
     </>
   );
 }

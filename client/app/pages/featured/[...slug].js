@@ -12,7 +12,7 @@ import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function Featured({ slides, post }) {
+export default function Featured({ post }) {
   const router = useRouter();
 
   if (post.status === 404) {
@@ -98,7 +98,7 @@ export default function Featured({ slides, post }) {
                 />
               )}
             />
-            <Footer slides={slides} />
+            <Footer />
           </div>
         </>
       )}
@@ -108,8 +108,7 @@ export default function Featured({ slides, post }) {
 
 export async function getServerSideProps({ params, res }) {
   const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/featured`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/featured`, { headers }).then((data) => data.json())
   ]);
 
   if(post.status === 404 && res) {
@@ -118,7 +117,6 @@ export async function getServerSideProps({ params, res }) {
 
   return {
     props: {
-      slides,
       post,
     },
   };

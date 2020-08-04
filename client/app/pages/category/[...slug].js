@@ -20,7 +20,7 @@ import {
 } from 'utils/helpers';
 
 export default function Category({
-  category, seo, current, slides, corePractices, firmCategories,
+  category, seo, current, corePractices, firmCategories,
 }) {
   const router = useRouter();
   const categorySlug = router.asPath.split('/');
@@ -107,7 +107,7 @@ export default function Category({
               </p>
             </FullWidth>
           </div>
-          <Footer slides={slides} />
+          <Footer />
         </>
       )}
     </>
@@ -115,11 +115,10 @@ export default function Category({
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [category, firmCategories, corePractices, slides] = await Promise.all([
+  const [category, firmCategories, corePractices] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug[params.slug.length -1]}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())
   ]);
 
   if(category.status === 404 && res) {
@@ -132,8 +131,7 @@ export async function getServerSideProps({ params, res }) {
       current: params.slug,
       seo: category.seo || {},
       firmCategories,
-      corePractices,
-      slides,
+      corePractices
     },
   };
 }

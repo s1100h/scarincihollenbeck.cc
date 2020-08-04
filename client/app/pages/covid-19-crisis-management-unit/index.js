@@ -6,7 +6,7 @@ import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers } from 'utils/helpers';
 
 export default function Covid19CrisisManagementUnit({
-  slides, title, content, posts, covidPosts, seo,
+  title, content, posts, covidPosts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -36,24 +36,22 @@ export default function Covid19CrisisManagementUnit({
           />
           )}
       />
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [aJson, posts, covidPosts, slides] = await Promise.all([
+  const [aJson, posts, covidPosts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json())
   ]);
 
   const { title, content, seo } = aJson;
 
   return {
     props: {
-      slides,
       title,
       content,
       posts,

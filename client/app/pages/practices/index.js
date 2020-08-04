@@ -19,7 +19,7 @@ function sortPracticeCategorys(list) {
 }
 
 export default function Practices({
-  slides, core, additional, business, seo,
+  core, additional, business, seo,
 }) {
   const sortedCore = sortByKey(core, 'title');
   const sortedAdditional = sortByKey(additional, 'title');
@@ -64,22 +64,20 @@ export default function Practices({
           </div>
         </FullWidth>
       </div>
-      <Footer slides={slides} />
+      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [practiceJson, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+  const [practiceJson] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then((data) => data.json())
   ]);
   const results = await sortPracticeCategorys(practiceJson.practices);
   const { core, additional, business } = results;
 
   return {
     props: {
-      slides,
       core,
       additional,
       business,

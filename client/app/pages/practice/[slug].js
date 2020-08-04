@@ -19,7 +19,7 @@ import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, urlify } from 'utils/helpers';
 
-export default function SinglePractice({ slides, practice, corePractices }) {
+export default function SinglePractice({ practice, corePractices }) {
   const router = useRouter();
 
   if (practice.status === 404) {
@@ -100,7 +100,7 @@ export default function SinglePractice({ slides, practice, corePractices }) {
               </Container>
             </TabContainer>
           </div>
-          <Footer slides={slides} />
+          <Footer />
         </>
       )}
     </>
@@ -109,10 +109,9 @@ export default function SinglePractice({ slides, practice, corePractices }) {
 
 
 export async function getServerSideProps({ params, res }) {
-  const [practice, corePractices, slides] = await Promise.all([
+  const [practice, corePractices] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())
   ]);
 
   if(practice.status === 404 && res) {
@@ -121,7 +120,6 @@ export async function getServerSideProps({ params, res }) {
 
   return {
     props: {
-      slides,
       practice,
       corePractices,
     },
