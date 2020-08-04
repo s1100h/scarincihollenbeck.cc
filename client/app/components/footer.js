@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,9 +5,6 @@ import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from './cookie-consent';
 import SimpleSearch from './simple-search';
 import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
-import { headers } from '../utils/helpers';
-
-const request = require('superagent');
 
 export default function Footer(props) {
   const { slides } = props;
