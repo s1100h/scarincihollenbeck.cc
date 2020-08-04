@@ -25,7 +25,7 @@ export default function Archive({
 
   return (
     <>
-      {(results.length === 0 && slides === undefined) ? (
+      {(results.length === 0) ? (
         <Container>
           <Row id="page-loader-container" className="justify-content-center align-self-center">
             <BarLoader color="#DB2220" />
