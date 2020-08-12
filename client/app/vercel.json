@@ -542,7 +542,7 @@
     { "source": "/client-alert/expansion-of-the-nj-medical-marijuana", "destination": "/law-firm-insights/expansion-of-the-nj-medical-marijuana", "statusCode": 301},
     { "source": "/client-alert/international-patent-damages", "destination": "/law-firm-insights/international-patent-damages", "statusCode": 301},
     { "source": "/client-alert/starting-a-red-bank-business", "destination": "/law-firm-insights/starting-a-red-bank-business", "statusCode": 301},
-    { "source": "/client-alert/tcja-able-act", "destination": "/law-firm-insights/tcja-able-act"},
+    { "source": "/client-alert/tcja-able-act", "destination": "/law-firm-insights/tcja-able-act", "statusCode": 301},
     { "source": "/client-alert/plaintiffs-bad-behavior-dooms-nj-employment-lawsuit", "destination": "/law-firm-insights/plaintiffs-bad-behavior-dooms-nj-employment-lawsuit", "statusCode": 301},
     { "source": "/client-alert/tiffany-counterfeit-ring-lawsuit", "destination": "/law-firm-insights/tiffany-counterfeit-ring-lawsuit", "statusCode": 301},
     { "source": "/client-alert/waters-of-the-united-states-repeal", "destination": "/law-firm-insights/waters-of-the-united-states-repeal", "statusCode": 301},
