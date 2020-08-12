@@ -558,7 +558,6 @@
     { "source": "/law-firm-insights/landlords-rent-at-risk-in-bankruptcy-2/", "destination": "/category/bankruptcy-creditors-rights", "statusCode": 301},
     { "source": "/firm-news/uncategorized/official-announcement-of-our-tax-trusts-and-estates-blog/ ", "destination": "/category/firm-news", "statusCode": 301},
     { "source": "/law-firm-insights/business-law/scarinci-hollenbecks-tax-video-series-are-you-overassessed/", "destination": "/", "statusCode": 301},
-    { "source": "/law-firm-insights/business-law/client-alert-process-for-remediating-contaminated-sites-in-new-jersey-set-to-change/", "destination": "/", "statusCode": 301},
-    
+    { "source": "/law-firm-insights/business-law/client-alert-process-for-remediating-contaminated-sites-in-new-jersey-set-to-change/", "destination": "/", "statusCode": 301}    
   ]
 }
