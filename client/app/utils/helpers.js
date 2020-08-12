@@ -134,7 +134,8 @@ export const headers = {
 export function formatDate(date) {
   const dateObj = new Date(date);
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const results = `${month[dateObj.getMonth()]} ${dateObj.getDay()}, ${dateObj.getFullYear()}`;
+  const results = `${month[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+  console.log('date', dateObj);
   return results;
 }
 

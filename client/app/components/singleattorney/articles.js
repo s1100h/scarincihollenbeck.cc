@@ -1,10 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
 import Tab from 'react-bootstrap/Tab';
 import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
 import { List } from 'react-virtualized';
-import { addRandomKey, formatDate } from '../../utils/helpers';
+import { addRandomKey, formatDate } from 'utils/helpers';
 
 function Post(content, {
   key, index, isScrolling, isVisible, style,

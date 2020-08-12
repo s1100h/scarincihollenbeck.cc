@@ -39,7 +39,7 @@ async function fetcher(...args) {
   return res.json();
 }
 
-export default function JustInArticlesCarousel(props) {
+export default function JustInArticlesCarousel() {
   const { data: slides=[] } = useSWR(`https://admin.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
 
   return (slides.length > 0) && (

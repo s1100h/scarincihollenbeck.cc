@@ -130,7 +130,7 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} sm={12}>
-              <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample</Form.Label>
+              <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample. <strong>No more than 4 documents, please.</strong></Form.Label>
               <div className="thumbsContainer">
                 {thumbs}
               </div>
@@ -144,7 +144,9 @@ export default function CareerForm({ contact, title }) {
                 ) : (
                   <div className="red-title my-4 text-center d-block">
                     {/** Document image */}
-                    <span className="small-excerpt">Click here to upload documents or drag them over this area to upload (must be in a .odt,.doc,.docx, or .dotx format)</span>
+                    <span className="small-excerpt">
+                      <strong className="d-block w-100 mb-1">Click here to upload documents or drag them over this area to upload (must be in a .pdf, .odt, .doc, .docx, or .dotx format).</strong>If you are having trouble uploading, please uploading a single document at a time. If the upload is successful you will see the title of the document listed above with a green checkmark next to it.
+                    </span>
                   </div>
                 )}
               </div>
