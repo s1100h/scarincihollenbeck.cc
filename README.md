@@ -6,7 +6,6 @@ This repo contains a family of microservices that make up [scarincihollenbeck.co
 
 ## Microservices
 
-
 ### Admin
 
 Found in the directory ```admin```, this service is a WordPress installation that contains all the data on scarincihollenbeck.com. In addition to blog posts, and pages this WordPress Install also has a list of Custom Post Types.
@@ -24,14 +23,18 @@ The purpose of this service is to allow site admins to go in and manage the cont
 ### API Endpoins
 
 * Get a list of all categories (returns an array)
-- [GET] /wp-json/all-categories/list
+  * [GET] /wp-json/all-categories/list
 * Get the contents on site page /administration (returns an object)
-- [GET] /wp-json/admin-search/admin
+  *[GET] /wp-json/admin-search/admin
 * Get the contents on the site page /attorneys (returns an object)
-- [GET] /wp-json/attorney-search/practices
-- [GET] /wp-json/attorney-search/attorneys
-- [GET] /wp-json/attorney-search/meta
-- [GET] /wp-json/attorney-search/designations
-- [GET] /wp-json/attorney-search/office-locations
+  * [GET] /wp-json/attorney-search/practices
+  * [GET] /wp-json/attorney-search/attorneys
+  * [GET] /wp-json/attorney-search/meta
+  * [GET] /wp-json/attorney-search/designations
+  * [GET] /wp-json/attorney-search/office-locations
+
+### Client
+
+Contains the client side application fo scarincihollenbeck. This app is built using the React.js framework Next.js.
 
 
