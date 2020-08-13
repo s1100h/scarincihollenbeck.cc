@@ -37,13 +37,24 @@ The purpose of this service is to allow site admins to go in and manage the cont
 * Get the contents on the site page /locations (returns an object)
   * **[GET]** ```/wp-json/location-portal/offices```
 * Get the contents on the site page /pratices (returns an object)
-  * **[GET]** ```/wp-json/practice-portal/page``
+  * **[GET]** ```/wp-json/practice-portal/page```
   * **[GET]** ```/wp-json/practice-portal/blog-categories```
   * **[GET]** ```/wp-json/practice-portal/all-links```
-* Get the contents on the site page /archives. This endpoint takes two parameters the first one is <slug> which is the term, and the offset which defaults to 1.
+* Get the contents on the site page /archives. This endpoint takes two parameters the first one is <slug> which is the term, and the offset which defaults to 1 and can be a number.
   * **[GET]** ```/wp-json/archive/query/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)```
-* Get the contents on the site page /author. This endpoint takes two parameters the first one is <slug> which is the term, and the offset which defaults to 1.
+* Get the contents on the site page /author. This endpoint takes two parameters the first one is <slug> which is the term, and the offset which defaults to 1 and can be a number.
   * **[GET]** ```/wp-json/author/posts/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)```
+* Get the contents on the site page /category. The main endpoint takes two parameters the first one is <slug> which is the term, and <offset> which defaults to 1 and can be a number.
+  * **[GET]** ```/wp-json/category/posts/(?P<slug>[a-zA-Z0-9-+.,%20$]+)```
+  * **[GET]** ```/wp-json/category/firm-insights-children```
+  * **[GET]** ```/wp-json/category/all```
+  * **[GET]** ```/wp-json/category/sorted-categories```
+* Get a list of all the firm's core practices (returns an array)
+  * **[GET]** ```/wp-json/core-practices/list```
+* Get the contents on the site page /firm-overview (returns an object)
+  * **[GET]** ```/wp-json/firm-overview/content```
+
+--- Left off on the Front Page endpoint
 
 ### Client
 
