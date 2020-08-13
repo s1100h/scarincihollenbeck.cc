@@ -23,27 +23,27 @@ The purpose of this service is to allow site admins to go in and manage the cont
 ### API Endpoins
 
 * Get a list of all categories (returns an array)
-  * [GET] /wp-json/all-categories/list
+  * **[GET]** ```/wp-json/all-categories/list```
 * Get the contents on site page /administration (returns an object)
-  * [GET] /wp-json/admin-search/admin
+  * **[GET]** ```/wp-json/admin-search/admin```
 * Get the contents on the site page /attorneys (returns an object)
-  * [GET] /wp-json/attorney-search/practices
-  * [GET] /wp-json/attorney-search/attorneys
-  * [GET] /wp-json/attorney-search/meta
-  * [GET] /wp-json/attorney-search/designations
-  * [GET] /wp-json/attorney-search/office-locations
+  * **[GET]** ```/wp-json/attorney-search/practices```
+  * **[GET]** ```/wp-json/attorney-search/attorneys```
+  * **[GET]** ```/wp-json/attorney-search/meta```
+  * **[GET]** ```/wp-json/attorney-search/designations```
+  * **[GET]** ```/wp-json/attorney-search/office-locations```
 * Get the contents on the site page /careers (returns an object)
-  * [GET] /wp-json/career-portal/careers
+  * **[GET]** ```/wp-json/career-portal/careers```
 * Get the contents on the site page /locations (returns an object)
-  * [GET] /wp-json/location-portal/offices
+  * **[GET]** ```/wp-json/location-portal/offices```
 * Get the contents on the site page /pratices (returns an object)
-  * [GET] /wp-json/practice-portal/page
-  * [GET] /wp-json/practice-portal/blog-categories
-  * [GET] /wp-json/practice-portal/all-links
+  * **[GET]** ```/wp-json/practice-portal/page``
+  * **[GET]** ```/wp-json/practice-portal/blog-categories```
+  * **[GET]** ```/wp-json/practice-portal/all-links```
 * Get the contents on the site page /archives. This endpoint takes two parameters the first one is <slug> which is the term, and the offset which defaults to 1.
-  * [GET] /wp-json/archive/query/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)
+  * **[GET]** ```/wp-json/archive/query/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)```
 * Get the contents on the site page /author. This endpoint takes two parameters the first one is <slug> which is the term, and the offset which defaults to 1.
-  * [GET] /wp-json/author/posts/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)
+  * **[GET]** ```/wp-json/author/posts/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)```
 
 ### Client
 
