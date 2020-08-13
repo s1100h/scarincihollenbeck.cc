@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("individual-location", "office/(?P<slug>[a-zA-Z0-9-]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "individual_location_data"
+		"callback" => "individual_location_data",
+    'permission_callback' => '__return_true'
 	));
 });
 
@@ -21,6 +22,7 @@ add_action( 'rest_api_init', function () {
   register_rest_route("individual-location", "posts/(?P<slug>[a-zA-Z0-9-]+)", array(
     'methods' => 'GET',
     'callback' => 'get_location_posts',
+    'permission_callback' => '__return_true'
   ) );
 } );
 

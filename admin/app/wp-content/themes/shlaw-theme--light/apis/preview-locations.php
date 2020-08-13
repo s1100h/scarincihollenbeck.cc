@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("preview-location", "office/(?P<id>\d+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "preview_location"
+		"callback" => "preview_location",
+    'permission_callback' => '__return_true'
 	));
 });
 
@@ -21,6 +22,7 @@ add_action( 'rest_api_init', function () {
   register_rest_route("preview-location", "posts/(?P<id>\d+)", array(
     'methods' => 'GET',
     'callback' => 'preview_location_posts',
+    'permission_callback' => '__return_true'
   ) );
 } );
 

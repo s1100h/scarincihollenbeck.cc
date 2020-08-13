@@ -13,15 +13,18 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("search", "query/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "search_query_data"
+		"callback" => "search_query_data",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("search", "top-queries", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "get_top_queries"
+		"callback" => "get_top_queries",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("search", "post", array(
     "methods" => WP_REST_Server::EDITABLE,
-    "callback" => "add_query_term"
+    "callback" => "add_query_term",
+    'permission_callback' => '__return_true'
   ));
 });
 

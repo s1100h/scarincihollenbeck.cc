@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("archive", "query/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "archive_query_data"
+		"callback" => "archive_query_data",
+    'permission_callback' => '__return_true'
   ));  
 });
 

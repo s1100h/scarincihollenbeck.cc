@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
   {
     register_rest_route("individual-attorney", "attorney/(?P<slug>[a-zA-Z0-9-]+)", array(
       "methods" => WP_REST_SERVER::READABLE,
-      "callback" => "attorney_bio_data"
+      "callback" => "attorney_bio_data",
+      'permission_callback' => '__return_true'
     )); 
   });
   /**

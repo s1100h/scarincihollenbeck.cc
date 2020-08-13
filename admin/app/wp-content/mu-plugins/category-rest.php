@@ -13,21 +13,25 @@ add_action("rest_api_init", function()
 {
 	register_rest_route("category", "posts/(?P<slug>[a-zA-Z0-9-+.,%20$]+)", array(
 		"methods" => "GET",
-		"callback" => "category_data"
+		"callback" => "category_data",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("category", "/firm-insights-children", array(
 		"methods" => "GET",
-		"callback" => "firm_insights_children"
+		"callback" => "firm_insights_children",
+    'permission_callback' => '__return_true'
   ));
   
   register_rest_route("category", "sorted-categories", array (
     "methods" => "GET",
-    "callback" => "category_sorted"
+    "callback" => "category_sorted",
+    'permission_callback' => '__return_true'
   ));
 
   register_rest_route("category", "all", array (
     "methods" => "GET",
-    "callback" => "all_categories"
+    "callback" => "all_categories",
+    'permission_callback' => '__return_true'
   ));    
 });
 

@@ -13,11 +13,13 @@ add_action("rest_api_init", function()
 {
   register_rest_route("single", "post/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<category>[a-zA-Z0-9-+.,%20$]+)", array(
     "methods" => WP_REST_SERVER::READABLE,
-    "callback" => "single_data"
+    "callback" => "single_data",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("single", "list/(?P<slug>[a-zA-Z0-9-+.,%20$]+)", array(
     "methods" => WP_REST_SERVER::READABLE,
-    "callback" => "all_posts_by_category"
+    "callback" => "all_posts_by_category",
+    'permission_callback' => '__return_true'
   ));
 });
 

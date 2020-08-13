@@ -14,7 +14,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("preview-practices", "practice/(?P<id>\d+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "preview_practice"
+		"callback" => "preview_practice",
+    'permission_callback' => '__return_true'
 	));
 });
 

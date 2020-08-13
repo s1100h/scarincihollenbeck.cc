@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("events-gallery", "event/(?P<slug>[a-zA-Z0-9-]+)/(?P<offset>[a-zA-Z0-9-]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "individual_event_data"
+		"callback" => "individual_event_data",
+    'permission_callback' => '__return_true'
 	));
 });
 

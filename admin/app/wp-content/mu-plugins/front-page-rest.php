@@ -11,7 +11,8 @@ add_action("rest_api_init", function()
 {
     register_rest_route("front-page", "meta", array(
         "methods" => "GET",
-        "callback" => "front_page_meta"
+        "callback" => "front_page_meta",
+        'permission_callback' => '__return_true'
     ));
 });
 
@@ -19,7 +20,8 @@ add_action("rest_api_init", function()
 {
     register_rest_route("front-page", "news", array(
         "methods" => "GET",
-        "callback" => "front_page_news"
+        "callback" => "front_page_news",
+        'permission_callback' => '__return_true'
     ));
 });
 
@@ -27,7 +29,8 @@ add_action("rest_api_init", function()
 {
     register_rest_route("front-page", "events", array(
         "methods" => "GET",
-        "callback" => "front_page_events"
+        "callback" => "front_page_events",
+        'permission_callback' => '__return_true'
     ));
 });
 

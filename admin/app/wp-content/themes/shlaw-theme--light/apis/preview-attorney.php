@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
   {
     register_rest_route("preview-attorney", "attorney/(?P<id>\d+)", array(
       "methods" => WP_REST_SERVER::READABLE,
-      "callback" => "preview_attorney"
+      "callback" => "preview_attorney",
+      'permission_callback' => '__return_true'
     )); 
   });
   /**

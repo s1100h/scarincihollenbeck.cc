@@ -13,7 +13,8 @@ add_action("rest_api_init", function()
 {
   register_rest_route("preview-single", "post/(?P<id>\d+)", array(
     "methods" => WP_REST_SERVER::READABLE,
-    "callback" => "preview_single"
+    "callback" => "preview_single",
+    'permission_callback' => '__return_true'
   ));
 });
 

@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("core-practices", "list", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "core_practices"
+		"callback" => "core_practices",
+    'permission_callback' => '__return_true'
   ));
 });
 

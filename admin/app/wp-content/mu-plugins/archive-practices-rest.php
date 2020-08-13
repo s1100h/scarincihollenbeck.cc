@@ -13,15 +13,18 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("practice-portal", "page", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "practice_portal_page"
+		"callback" => "practice_portal_page",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("practice-portal", "blog-categories", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "practice_portal_blogs"
+		"callback" => "practice_portal_blogs",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("practice-portal", "all-links", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "all_practice_links"
+		"callback" => "all_practice_links",
+    'permission_callback' => '__return_true'
 	));
 });
 /** 

@@ -13,15 +13,18 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("author", "/posts/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<offset>[a-zA-Z0-9-]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "author_query_data"
+		"callback" => "author_query_data",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("author", "/bio/(?P<slug>[a-zA-Z0-9-+.,%20$]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "related_author_practices"
+		"callback" => "related_author_practices",
+    'permission_callback' => '__return_true'
   ));
   register_rest_route("author", "/list", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "get_author_list"
+		"callback" => "get_author_list",
+    'permission_callback' => '__return_true'
   ));
 });
 

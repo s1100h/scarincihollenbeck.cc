@@ -11,23 +11,28 @@ add_action("rest_api_init", function()
 {
     register_rest_route("attorney-search", "/practices", array(
         "methods" => "GET",
-        "callback" => "practice_list"
+        "callback" => "practice_list",
+        'permission_callback' => '__return_true'
     ));
     register_rest_route("attorney-search", "/office-locations", array(
         "methods" => "GET",
-        "callback" => "location_list"
+        "callback" => "location_list",
+        'permission_callback' => '__return_true'
     ));
     register_rest_route("attorney-search", "/designations", array(
         "methods" => "GET",
-        "callback" => "designation_list"
+        "callback" => "designation_list",
+        'permission_callback' => '__return_true'
     ));
     register_rest_route("attorney-search", "/attorneys", array(
         "methods" => "GET",
-        "callback" => "attorney_list"
+        "callback" => "attorney_list",
+        'permission_callback' => '__return_true'
     ));
     register_rest_route("attorney-search", "/meta", array(
       "method" => "GET",
-      "callback" => "attorney_meta"
+      "callback" => "attorney_meta",
+      'permission_callback' => '__return_true'
     ));
 });
 

@@ -13,7 +13,8 @@ add_action("rest_api_init", function()
 {
 	register_rest_route("preview", "single/(?P<id>[a-zA-Z0-9-+.,%20$]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "single_preview_data"
+		"callback" => "single_preview_data",
+    'permission_callback' => '__return_true'
   ));
   
 });

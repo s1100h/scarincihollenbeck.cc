@@ -4,6 +4,7 @@ add_action( 'rest_api_init', function () {
 	register_rest_route( 'just-in', '/posts', array(
 		'methods' => 'GET',
 		'callback' => 'get_just_in_posts',
+		'permission_callback' => '__return_true'
 	) );
 } );
 

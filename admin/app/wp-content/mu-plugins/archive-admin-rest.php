@@ -11,7 +11,8 @@ add_action("rest_api_init", function()
 {
     register_rest_route("admin-search", "/admin", array(
         "methods" => "GET",
-        "callback" => "admin_list"
+        "callback" => "admin_list",
+        'permission_callback' => '__return_true'
     ));
 });
 

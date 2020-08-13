@@ -3,6 +3,7 @@ add_action( 'rest_api_init', function () {
   register_rest_route( 'location-portal', '/offices/', array(
     'methods' => 'GET',
     'callback' => 'location_portal_data',
+    'permission_callback' => '__return_true'
   ) );
 } );
 /**

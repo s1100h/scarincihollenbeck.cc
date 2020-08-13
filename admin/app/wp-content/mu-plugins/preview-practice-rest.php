@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("preview", "practice/(?P<id>[a-zA-Z0-9-]+)", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "preview_individual_practice_data"
+		"callback" => "preview_individual_practice_data",
+		'permission_callback' => '__return_true'
 	));
 });
 function prev_sort_obj_res($data)

@@ -13,7 +13,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("career-portal", "careers/", array(
 		"methods" => WP_REST_SERVER::READABLE,
-		"callback" => "career_portal_data"
+		"callback" => "career_portal_data",
+    'permission_callback' => '__return_true'
 	));
 });
 

@@ -14,7 +14,8 @@ add_action('rest_api_init', function()
 {
 	register_rest_route("search-obj", "post", array(
 		"methods" => WP_REST_SERVER::EDITABLE,
-		"callback" => "search_post_data"
+		"callback" => "search_post_data",
+    'permission_callback' => '__return_true'
   ));  
 });
 
