@@ -5,3 +5,5 @@ Disallow: /archives/*
 Disallow: /search/*
 Disallow: /author/*
 Disallow: /category/quick-news/*
+Disallow: /?*
+Disallow: /uncategorized/*
