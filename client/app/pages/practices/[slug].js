@@ -70,6 +70,7 @@ export default function SinglePractice({ practice, corePractices }) {
                       members={practice.attorneyList}
                       chair={practice.chair}
                       handleLink={handleLink}
+                      title="Chair"
                     />
                     {/** Awards */}
                     {(practice.highlightReal.length > 0) && (
