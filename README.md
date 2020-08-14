@@ -53,6 +53,15 @@ The purpose of this service is to allow site admins to go in and manage the cont
   * **[GET]** ```/wp-json/core-practices/list```
 * Get the contents on the site page /firm-overview (returns an object)
   * **[GET]** ```/wp-json/firm-overview/content```
+* Get the contents on the site page / (returns an object)
+  * **[GET]** ```/wp-json/front-page/news```
+  * **[GET]** ```/wp-json/front-page/events```
+  * **[GET]** ```/wp-json/front-page/meta```
+* Get the contents for the article scroller found in the footer (returns an array)
+  * **[GET]** ```/wp-json/just-in/posts```
+* Get the contents on the site page /. The main endpoint take a parameter  <slug> which is the term (returns an object)
+  * **[GET]** ```/wp-json/single-page/page/(?P<slug>[a-zA-Z0-9-]+)```
+  * **[GET]** ```/wp-json/single-page/page-list```
 
 --- Left off on the Front Page endpoint
 

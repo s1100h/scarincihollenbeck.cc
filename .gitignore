@@ -12,6 +12,8 @@ admin/app/wp-content/upgrades/*
 admin/app/wp-content/plugins/*
 admin/app/wp-content/themes/shlaw-theme--light/src/node_modules/*
 admin/app/wp-content/themes/twentytwenty/*
+admin/app/wp-content/themes/hotel-galaxy/*
+admin/app/wp-content/themes/hotel-new-york/*
 admin/app/.htaccess
 admin/app/*.txt
 admin/app/*.html

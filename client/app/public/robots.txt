@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /*
 Disallow: /api/*
-Disallow: /archive/*
+Disallow: /archives/*
 Disallow: /search/*
 Disallow: /author/*
