@@ -610,9 +610,6 @@
     { "source": "/attorneys/partners/christine-m-vanek/", "destination": "/attorney/christine-m-vanek", "statusCode": 301},
     { "source": "/attorneys/counsel/kenneth-c-oh/", "destination": "/attorney/kenneth-c-oh", "statusCode": 301},
     { "source": "/attorneys/partners/patrick-j-mcnamara/", "destination": "/attorney/patrick-j-mcnamara", "statusCode": 301},
-    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
-    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
-    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
     { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301}
   ]
 }
