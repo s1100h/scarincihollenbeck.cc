@@ -602,6 +602,17 @@
     { "source": "/attorneys/partners/fred-d-zemel", "destination": "/attorney/fred-d-zemel", "statusCode": 301},
     { "source": "/attorneys/partners/robert-a-marsico", "destination": "/attorney/robert-a-marsico", "statusCode": 301},
     { "source": "/attorneys/partners/robert-a-marsico", "destination": "/attorney/robert-a-marsico", "statusCode": 301},
+    { "source": "/attorneys/counsel/william-c-sullivan-jr/", "destination": "/attorney/william-c-sullivan-jr", "statusCode": 301},
+    { "source": "/attorneys/partners/charles-a-yuen/", "destination": "/attorney/charles-a-yuen", "statusCode": 301},
+    { "source": "/attorneys/counsel/dan-brecher/", "destination": "/attorney/dan-brecher", "statusCode": 301},
+    { "source": "/attorneys/counsel/michael-a-cifelli/", "destination": "/attorney/michael-a-cifelli", "statusCode": 301},
+    { "source": "/attorneys/partners/robert-e-levy/", "destination": "/attorney/robert-e-levy", "statusCode": 301},
+    { "source": "/attorneys/partners/christine-m-vanek/", "destination": "/attorney/christine-m-vanek", "statusCode": 301},
+    { "source": "/attorneys/counsel/kenneth-c-oh/", "destination": "/attorney/kenneth-c-oh", "statusCode": 301},
+    { "source": "/attorneys/partners/patrick-j-mcnamara/", "destination": "/attorney/patrick-j-mcnamara", "statusCode": 301},
+    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
+    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
+    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
     { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301}
   ]
 }
