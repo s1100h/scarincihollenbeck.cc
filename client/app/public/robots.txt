@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /*
-Disallow: /api/*
-Disallow: /archives/*
-Disallow: /search/*
-Disallow: /author/*
+Disallow: /archives*
+Disallow: /search*
+Disallow: /author*
 Disallow: /category/quick-news/*
 Disallow: /?*
 Disallow: /uncategorized/*
