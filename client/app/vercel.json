@@ -598,7 +598,10 @@
     { "source": "/attorneys/kristin-g-garris", "destination": "/attorneys", "statusCode": 301},
     { "source": "/david-a-einhorn", "destination": "/attorney/david-a-einhorn", "statusCode": 301},
     { "source": "/attorney/jessica-a-faustin", "destination": "/attorneys", "statusCode": 301},
-    { "source": "/attorney/laura-m-miller", "destination": "/attorneys", "statusCode": 301}
-
+    { "source": "/attorneys/partners/mark-k-follender", "destination": "/attorneys", "statusCode": 301},
+    { "source": "/attorneys/partners/fred-d-zemel", "destination": "/attorney/fred-d-zemel", "statusCode": 301},
+    { "source": "/attorneys/partners/robert-a-marsico", "destination": "/attorney/robert-a-marsico", "statusCode": 301},
+    { "source": "/attorneys/partners/robert-a-marsico", "destination": "/attorney/robert-a-marsico", "statusCode": 301},
+    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301}
   ]
 }
