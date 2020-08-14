@@ -3,6 +3,7 @@ Allow: /*
 Disallow: /archives*
 Disallow: /search*
 Disallow: /author*
-Disallow: /category/quick-news/*
+Disallow: /category/quick-news
+Disallow: /quick-news/*
 Disallow: /?*
 Disallow: /uncategorized/*
