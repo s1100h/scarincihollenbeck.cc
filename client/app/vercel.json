@@ -558,6 +558,10 @@
     { "source": "/law-firm-insights/landlords-rent-at-risk-in-bankruptcy-2/", "destination": "/category/bankruptcy-creditors-rights", "statusCode": 301},
     { "source": "/firm-news/uncategorized/official-announcement-of-our-tax-trusts-and-estates-blog/ ", "destination": "/category/firm-news", "statusCode": 301},
     { "source": "/law-firm-insights/business-law/scarinci-hollenbecks-tax-video-series-are-you-overassessed/", "destination": "/", "statusCode": 301},
-    { "source": "/law-firm-insights/business-law/client-alert-process-for-remediating-contaminated-sites-in-new-jersey-set-to-change/", "destination": "/", "statusCode": 301}    
+    { "source": "/law-firm-insights/business-law/client-alert-process-for-remediating-contaminated-sites-in-new-jersey-set-to-change/", "destination": "/", "statusCode": 301},
+    { "source": "/law-firm-insights/environmental-land-use/epa-releases-pfas-action-plan%EF%BB%BF", "destination": "/law-firm-insights/environmental-land-use/epa-releases-pfas-action-plan", "statusCode": 301},
+    { "source": "/law-firm-insights/nine-questions-nj-real-estate-investors-are-asking-about-opportunity-zones%EF%BB%BF", "destination": "/law-firm-insights/nine-questions-nj-real-estate-investors", "statusCode": 301},
+    { "source": "/law-firm-insights/nine-questions-nj-real-estate-investors-are-asking-about-opportunity-zones", "destination": "/law-firm-insights/nine-questions-nj-real-estate-investors", "statusCode": 301},
+    { "source": "/law-firm-insights/%5B...slug%5D", "destination": "/category/law-firm-insights/", "statusCode": 301}   
   ]
 }
