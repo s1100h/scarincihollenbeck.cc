@@ -610,6 +610,11 @@
     { "source": "/attorneys/partners/christine-m-vanek/", "destination": "/attorney/christine-m-vanek", "statusCode": 301},
     { "source": "/attorneys/counsel/kenneth-c-oh/", "destination": "/attorney/kenneth-c-oh", "statusCode": 301},
     { "source": "/attorneys/partners/patrick-j-mcnamara/", "destination": "/attorney/patrick-j-mcnamara", "statusCode": 301},
-    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301}
+    { "source": "/attorneys/partners/ramon-e-rivera", "destination": "/attorney/ramon-a-marsico", "statusCode": 301},
+    { "source": "/client-alert/intra-band-agreement-411", "destination": "/law-firm-insights/entertainment-and-sports/intra-band-agreement-411", "statusCode": 301},
+    { "source": "/careers/education-school-law-attorney-job/", "destination": "/careers", "statusCode": 301},
+    { "source": "/2019-happy-holidays/", "destination": "/", "statusCode": 301},
+    { "source": "/archive", "destination": "/", "statusCode": 301},
+    { "source": "front-page/", "destination": "/", "statusCode": 301}   
   ]
 }
