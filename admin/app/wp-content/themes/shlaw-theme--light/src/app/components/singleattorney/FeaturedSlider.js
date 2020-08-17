@@ -30,11 +30,11 @@ export default function FeaturedSlider(props) {
           </Col>
           {(title === 'Awards') && (
             <Col sm={12}>
-              <Link href="/awards">
+              <a href="/awards">
                 <a className="text-center d-block proxima-bold red-title">
                   Award Methodology
                 </a>
-              </Link>
+              </a>
             </Col>
           )}
         </Row>
