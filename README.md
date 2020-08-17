@@ -53,7 +53,7 @@ The purpose of this service is to allow site admins to go in and manage the cont
   * **[GET]** ```/wp-json/core-practices/list```
 * Get the contents on the site page /firm-overview (returns an object)
   * **[GET]** ```/wp-json/firm-overview/content```
-* Get the contents on the site page / (returns an object)
+* Get the contents on the site's home page (returns an object)
   * **[GET]** ```/wp-json/front-page/news```
   * **[GET]** ```/wp-json/front-page/events```
   * **[GET]** ```/wp-json/front-page/meta```
@@ -62,19 +62,53 @@ The purpose of this service is to allow site admins to go in and manage the cont
 * Get the contents on the site page /. The main endpoint take a parameter  <slug> which is the term (returns an object)
   * **[GET]** ```/wp-json/single-page/page/(?P<slug>[a-zA-Z0-9-]+)```
   * **[GET]** ```/wp-json/single-page/page-list```
-
---- Left off on the Front Page endpoint
+* Get the contents for the quick news category page. The main endpoint take a parameter <offset> which is a number (returns an object)
+  * **[GET]** ```/quick-news/posts/(?P<offset>[a-zA-Z0-9-]+)```
+* Get the contents for a single administration profile. The main endpoint take a parameter <slug> which is a term (returns an object)
+  * **[GET]** ```/individual-admin/admin/(?P<slug>[a-zA-Z0-9-]+)```
+* Get the contents for a single attorney profile. The main endpoint take a parameter <slug> which is a term (returns an object)
+  * **[GET]** ```/individual-attorney/attorney/(?P<slug>[a-zA-Z0-9-]+)```
+* Get the contents for a single career profile. The main endpoint take a parameter <slug> which is a term (returns an object)
+  * **[GET]** ```/individual-career/career/(?P<slug>[a-zA-Z0-9-]+)```
+* Get the contents for a single location profile. The main endpoint take a parameter <slug> which is a term (returns an object)
+  * **[GET]** ```/individual-location/office/(?P<slug>[a-zA-Z0-9-]+)```
+  * **[GET]** ```/individual-location/posts/(?P<slug>[a-zA-Z0-9-]+)```
+* Get the contents for a single practice profile. The main endpoint take a parameter <slug> which is a term (returns an object)
+  * **[GET]** ```/individual-practices/practice/(?P<slug>[a-zA-Z0-9-]+)```
+* Get the contents for a single blog post or news article. The main endpoint take a parameter <slug> which is a term (returns an object)
+  * **[GET]** ```/single/post/(?P<slug>[a-zA-Z0-9-+.,%20$]+)/(?P<category>[a-zA-Z0-9-+.,%20$]+```
 
 ### Client
 
-Found in the ```client``` directory, this microservice servers all the client side code for scarincihollenbeck. This microservice and website is built using the [React.js](https://reactjs.org) framework [Next.js](https://nextjs.org/).
+Found in the ```client``` directory, this microservice serves all the client side code for scarincihollenbeck. This microservice and website is built using the [React.js](https://reactjs.org) framework [Next.js](https://nextjs.org/).
 
 Unlike the rest of the microservices, this service is served and hosted on a Next.js custom hosting service at [Vercel.com](https://vercel.com).
 
 ### Feed
 
+Found in the ```feed``` directory, this microservice serves API endpoints that gather COVID-19 related articles from the following news sources.
+
+* njbiz.com
+* rssfeeds.northjersey.com
+* rssfeeds.app.com
+* observer.com/
+* roi-nj.com
+
 ### Forms
 
+Found in the ```forms``` directory, this microservices servers API endpoints that manage all forms on scarincihollenbeck.com. This service utilizes GMAIL API to send emails to the selected recipients from the Wordpress backend found on admin.scarincihollenbeck.com/wp-admin. These are the endpoints found in the service
+
+* /shlaw/site/career/form
+  * Manages the user's information when they are applying for a job
+* /shlaw/site/contact/form
+  * Managethe user's information when they fill out the contact form on either the blog posts or the contact page
+* /shlaw/site/subscription/form
+  * Manages the user's information when the subscribe to the firm's blogs
+
 ### Sitemaps
+
+Found in the ```sitemaps``` directory, this microservice scrapes all the pages fonud on scarincihollenbeck.com and organizes them into a sitemap file (sitemap.xml). This is a python program that is ran manually from an npm script ```npm run sitemap``` found in the ```client``` directory. Often times, you will run this npm command when you push new code to production, so the live site has an updated copy of the sitemap.xml for indexing.
+
+
 
 
