@@ -182,19 +182,12 @@ add_action("wp_enqueue_scripts", "preview_single_scripts" );
 require_once plugin_dir_path(__FILE__) . "/apis/preview-single.php";
 
 // filter out admin subdomain from get_permalink function
-add_filter( 'post_link', 'filter_permalink_subdomain', 99 );
-function filter_permalink_subdomain( $permalink ) {
+add_filter( 'post_link', 'filter_permalink_subdomain', 10, 2 );
+function filter_permalink_subdomain($permalink, $post) {
   return str_replace( "admin." , "", $permalink);
 }
 
-// make sure the preview mode link has the admin subdomain
-add_filter( 'preview_post_link', 'the_preview_fix' );
-function the_preview_fix() {
-  $slug = str_replace(home_url(), '', get_permalink());
-  return "https://admin.scarincihollenbeck.com$slug";
-}
-
-
+// follow up to make sure that preview post link be fixed 
 
 // redirect if someone isn't logged in
 add_action( 'template_redirect', 'redirect_to_specific_page' );
