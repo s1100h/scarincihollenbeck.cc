@@ -32,8 +32,6 @@ export default function Single() {
         previewId = 37227;
       }
       
-      console.log('previewId: ', previewId);
-
       const [post] = await Promise.all([
         fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/preview-single/post/${previewId}`, { headers }).then((data) => data.json())
       ]);

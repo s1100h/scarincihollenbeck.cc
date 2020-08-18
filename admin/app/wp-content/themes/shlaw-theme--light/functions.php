@@ -187,6 +187,15 @@ function filter_permalink_subdomain( $permalink ) {
   return str_replace( "admin." , "", $permalink);
 }
 
+// make sure the preview mode link has the admin subdomain
+add_filter( 'preview_post_link', 'the_preview_fix' );
+function the_preview_fix() {
+  $slug = str_replace(home_url(), '', get_permalink());
+  return "https://admin.scarincihollenbeck.com$slug";
+}
+
+
+
 // redirect if someone isn't logged in
 add_action( 'template_redirect', 'redirect_to_specific_page' );
 function redirect_to_specific_page() {
