@@ -66,9 +66,8 @@ function ContactForm() {
       event.stopPropagation();
     }
 
-    setValidated(true);
-
-    if (validated === false) {
+    if (form.checkValidity() === true) {
+      setValidated(true);
       sendInquiry(pageTitle, siteUrl);
     }
   };
