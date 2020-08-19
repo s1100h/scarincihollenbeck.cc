@@ -66,8 +66,9 @@ function ContactForm() {
       event.stopPropagation();
     }
 
-    if (form.checkValidity() === true) {
-      setValidated(true);
+    setValidated(true);
+
+    if (validated === false && form.checkValidity() === true) {
       sendInquiry(pageTitle, siteUrl);
     }
   };
@@ -151,7 +152,7 @@ function ContactForm() {
         </Form.Group>
         <FormReCaptcha setCaptcha={setCaptcha} />
         {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p>}
-        <Button variant="danger" className="ml-2 w-25 mt-2" type="submit" disabled={captcha}>Submit form</Button>
+        <Button variant="danger" className="ml-2 w-25 mt-2" type="submit" >Submit form</Button>
       </Form>
     </>
   );
