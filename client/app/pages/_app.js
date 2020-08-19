@@ -1,4 +1,5 @@
 import Router from 'next/router';
+import Head from 'next/head';
 import withGA from 'next-ga';
 import NProgress from 'nprogress'; // nprogress module
 import 'nprogress/nprogress.css';
@@ -49,6 +50,13 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function SHApp({ Component, pageProps, posts }) {
   return (
     <>
+       <Head>
+          <meta charSet="utf-8" />
+          <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
+          <meta name="google-site-verification" content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q" />
+        </Head>
       <NavBar />
       <main>
         <Component {...pageProps} />

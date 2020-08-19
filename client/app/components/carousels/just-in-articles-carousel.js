@@ -6,7 +6,6 @@ import 'react-multi-carousel/lib/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
-import { headers } from '../../utils/helpers';
 
 const jiResponsive = {
   superLargeDesktop: {
