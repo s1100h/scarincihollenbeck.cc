@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
           <meta name="google-site-verification" content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q" />
           <link rel="icon" href="/favicon.ico" type="image/x-icon" />
