@@ -7,10 +7,11 @@ import NavBar from 'components/navbar';
 
 /**
 *
-* Bootstrap Resources
+* 3rd Party Resources
 *
 * */
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-multi-carousel/lib/styles.css';
 
 /**
  * Util Sheets

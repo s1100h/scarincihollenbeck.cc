@@ -2,7 +2,6 @@
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';
 import useSWR from 'swr';
-import 'react-multi-carousel/lib/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
