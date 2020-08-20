@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import Head from 'next/head';
-import withGA from 'next-ga';
+import * as gtag from 'utils/gtag';
 import NProgress from 'nprogress'; // nprogress module
 import 'nprogress/nprogress.css';
 import NavBar from 'components/navbar';
@@ -47,6 +47,13 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
+
+/**
+ * 
+ * Track pageview when route is changed
+ */
+Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
+
 function SHApp({ Component, pageProps, posts }) {
   return (
     <>
@@ -65,4 +72,4 @@ function SHApp({ Component, pageProps, posts }) {
   );
 }
 
-export default withGA('UA-18813670-1', Router)(SHApp);
+export default SHApp;

@@ -6,7 +6,7 @@ export default function FullWidthContent(props) {
 
   return (
     <div className="row">
-      <div className="col-sm-12 mt-5 px-0">
+    <div className="col-sm-12 mt-5 px-0">
         <div className="line-header"><h3>News & Events</h3></div>
       </div>
       <div className="col-sm-12 px-0 pt-5">

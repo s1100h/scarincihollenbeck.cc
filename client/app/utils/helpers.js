@@ -1,5 +1,5 @@
 // sort a list by its key
-export const sortByKey = (list, key) => {
+export function sortByKey(list, key) {
   if (list !== undefined) {
     list.sort((a, b) => {
       if (a[key] > b[key]) {
@@ -13,14 +13,10 @@ export const sortByKey = (list, key) => {
   }
 
   return list;
-};
+}
 
 // add a random key to the end of a string
-export const addRandomKey = (str) => {
-  const results = str.concat('-').concat(Math.floor((Math.random() * 10000) + 1));
-  return results;
-};
-
+export const addRandomKey = (str) => str.concat('-').concat(Math.floor((Math.random() * 10000) + 1));
 
 // take a term lower case and replace white spaces with dashes
 export const urlify = str => str.toLowerCase().replace(/\s/g, '-');
@@ -29,7 +25,7 @@ export const urlify = str => str.toLowerCase().replace(/\s/g, '-');
 export const createMarkup = content => ({ __html: content });
 
 // sort by date & key
-export const sortByDateKey = (list, key) => {
+export function sortByDateKey(list, key) {
   if (list !== undefined) {
     list.sort((a, b) => {
       if (a[key] < b[key]) {
@@ -43,10 +39,10 @@ export const sortByDateKey = (list, key) => {
   }
 
   return list;
-};
+}
 
 // get current directions to office location func
-export const getDirectionsFromLocation = (location) => {
+export function getDirectionsFromLocation(location) {
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -96,7 +92,7 @@ export const getDirectionsFromLocation = (location) => {
 };
 
 // find url parameter for query
-export const splitUrl = (url, term = null) => {
+export function splitUrl(url, term = null) {
   const x = url.split('/');
   let y = x.filter(a => a !== '');
 
@@ -111,7 +107,7 @@ export const splitUrl = (url, term = null) => {
 export const locationUrl = location => location.toLowerCase().replace(/\s/g, '-').replace(/[.]/gm, '');
 
 // filter by key
-export const filterByKey = (list, key) => {
+export function filterByKey(list, key) {
   const results = [];
   for (let i = 0; i < list.length; i += 1) {
     if (list[i].key) {
