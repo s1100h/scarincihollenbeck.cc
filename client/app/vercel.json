@@ -615,6 +615,11 @@
     { "source": "/careers/education-school-law-attorney-job/", "destination": "/careers", "statusCode": 301},
     { "source": "/2019-happy-holidays/", "destination": "/", "statusCode": 301},
     { "source": "/archive", "destination": "/", "statusCode": 301},
-    { "source": "front-page/", "destination": "/", "statusCode": 301}   
+    { "source": "/front-page/", "destination": "/", "statusCode": 301},
+    { "source": "/law-firm-insights/foreclosing-an-assigned-mortgage-2/", "destination": "/category/bankruptcy-creditors-rights", "statusCode": 301},
+    { "source": "/law-firm-insights/business-law/are-new-rules-for-gift-cards-on-the-horizon/", "destination": "/category/business-law", "statusCode": 301},
+    { "source": "/law-firm-insights/entertainment-and-sports/ncaa-changes-transfer-waiver-guidelines", "destination": "/category/entertainment-and-sports", "statusCode": 301},
+    { "source": "/law-firm-insights/environmental/new-jersey-appeals-court-clarifies-methodology-for-valuing-contaminated-property /category/environmental", "destination": "/category/environmental", "statusCode": 301},
+    { "source": "/law-firm-insights/entertainment-and-sports/new-jerseynew-york-sports-and-entertainment-lawyer-anthony-caruso-to-appear-on-radio-america", "destination": "/category/entertainment-and-sports", "statusCode": 301}  
   ]
 }
