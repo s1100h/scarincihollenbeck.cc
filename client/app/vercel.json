@@ -590,6 +590,7 @@
     { "source": "/administration/peter-s-moeller/", "destination": "/administration", "statusCode": 301},
     { "source": "/attorneys/david-einhorn", "destination": "/attorneys/david-a-einhorn", "statusCode": 301},
     { "source": "/attorneys/liana-m-nobile", "destination": "/attorneys", "statusCode": 301},
+    { "source": "/attorneys/jeffrey-k-cassin", "destination": "/attorneys", "statusCode": 301},
     { "source": "/attorneys/sean-d-dias", "destination": "/attorneys", "statusCode": 301},
     { "source": "/attorneys/scott-v-heck", "destination": "/attorneys", "statusCode": 301},
     { "source": "/attorneys/nicholas-j-pellegrino", "destination": "/attorneys", "statusCode": 301},
