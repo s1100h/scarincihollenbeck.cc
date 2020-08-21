@@ -8,3 +8,4 @@ Disallow: /quick-news/*
 Disallow: /?*
 Disallow: /uncategorized/*
 Disallow: /uncategorized
+Disallow: /staging/
