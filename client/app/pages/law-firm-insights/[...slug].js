@@ -108,7 +108,7 @@ export default function LawFirmInsightsPost({ post }) {
 
 export async function getServerSideProps({ params, res }) {
   const [post] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/law-firm-insights`, { headers })
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/${(params.slug.length > 1 ) ? params.slug[0] : 'law-firm-insights'}`, { headers })
       .then((data) => data.json())
       .catch((err) => err)
   ]);
