@@ -7,3 +7,4 @@ Disallow: /category/quick-news
 Disallow: /quick-news/*
 Disallow: /?*
 Disallow: /uncategorized/*
+Disallow: /uncategorized
