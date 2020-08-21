@@ -638,7 +638,7 @@
     { "source": "/client-alert/banana-costume-copyright-lawsuit", "destination": "/law-firm-insights/banana-costume-copyright-lawsuit", "statusCode": 301},
     { "source": "/client-alert/tax-court-rules-that-taxpayer-aspergers-no-excuse-in-case", "destination": "/law-firm-insights/tax-court-rules-that-taxpayer-aspergers-no-excuse-in-case", "statusCode": 301},
     { "source": "/client-alert/could-a-bad-case-of-the-flu-fall-under-the-fmla", "destination": "/law-firm-insights/could-a-bad-case-of-the-flu-fall-under-the-fmla", "statusCode": 301},
-    { "source": "/client-alert/american-airlines-388m-bankruptcy-price-tag-approved": "destination": "/", "statusCode": 301},
+    { "source": "/client-alert/american-airlines-388m-bankruptcy-price-tag-approved", "destination": "/", "statusCode": 301},
     { "source": "/client-alert/analysts-skeptical-about-kodaks-future-post-bankruptcy", "destination": "/", "statusCode": 301},
     { "source": "/client-alert/pinguelo-ediscovery", "destination": "/", "statusCode": 301},
     { "source": "/client-alert/non-compete-agreements-new-jersey", "destination": "/law-firm-insights/non-compete-agreements-new-jersey", "statusCode": 301},
