@@ -75,6 +75,7 @@ export default function Home({
         description={seo.metaDescription}
         canonical="https://scarincihollenbeck.com/"
         openGraph={{
+          type: 'website',
           url: 'https://scarincihollenbeck.com/',
           title: 'Scarinci Hollenbeck',
           description: seo.metaDescription,
@@ -83,7 +84,7 @@ export default function Home({
               url: 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png',
               width: 750,
               height: 350,
-              alt: 'Og Image Alt',
+              alt: 'Scarinci Hollenbeck',
             },
           ],
           site_name: 'Scarinci Hollenbeck',
@@ -92,6 +93,7 @@ export default function Home({
           handle: '@S_H_Law',
           site: 'https://scarincihollenbeck.com',
           cardType: 'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
+          image: 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png'
         }}
       />
       <Head>

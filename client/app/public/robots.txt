@@ -9,3 +9,4 @@ Disallow: /?*
 Disallow: /uncategorized/*
 Disallow: /uncategorized
 Disallow: /staging/
+Sitemap: https://scarincihollenbeck.com/sitemap.xml
