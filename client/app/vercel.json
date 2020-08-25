@@ -793,6 +793,7 @@
     { "source": "/firm-news/congratulations/bergen-lawyers-2017/.get_permalink(%20%20).", "destination": "/firm-news/congratulations/bergen-lawyers-2017", "statusCode": 301},
     { "source": "/category/law-firm-insights/labor-employment/page/7", "destination": "/category/law-firm-insights/labor-employment", "statusCode": 301},
     { "source": "/category/law-firm-insights/labor-employment/page/3", "destination": "/category/law-firm-insights/labor-employment", "statusCode": 301},
-    { "source": "/category/labor-employment/page/3", "destination": "/category/labor-employment", "statusCode": 301}
+    { "source": "/category/labor-employment/page/3", "destination": "/category/labor-employment", "statusCode": 301},
+    { "source": "/client-alert-covid-19", "destination": "/covid-19-crisis-management-unit", "statusCode": 301}
   ]
 }
