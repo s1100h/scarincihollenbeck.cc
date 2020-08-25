@@ -90,11 +90,9 @@ export default function Home({
           site_name: 'Scarinci Hollenbeck',
         }}
         twitter={{
-          title: 'Scarinci Hollenbeck',
           handle: '@S_H_Law',
           site: 'https://scarincihollenbeck.com',
           cardType: 'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
-          image: 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png'
         }}
       />
       <Head>
