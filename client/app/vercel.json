@@ -793,9 +793,10 @@
     { "source": "/category/law-firm-insights/labor-employment/page/3", "destination": "/category/law-firm-insights/labor-employment", "statusCode": 301},
     { "source": "/category/labor-employment/page/3", "destination": "/category/labor-employment", "statusCode": 301},
     { "source": "/client-alert-covid-19", "destination": "/covid-19-crisis-management-unit", "statusCode": 301},
-    { "source": "/client-alert", "destination": "/category/client-alert", "statusCode": 301},
-    { "source": "/covid-19-education-alert", "destination": "/category/covid-19-education-alert", "statusCode": 301},
-    { "source": "/firm-news", "destination": "/category/firm-news", "statusCode": 301},
-    { "source": "/category/", "destination": "/category/law-firm-insights", "statusCode": 301}
+    { "source": "/Red%20Bank", "destination": "/location/red-bank", "statusCode": 301},
+    { "source": "/location/New%20York", "destination": "/location/new-york", "statusCode": 301},
+    { "source": "/attorneys/joel%2Br%2Bglucksman", "destination": "/attorney/joel-r-glucksman", "statusCode": 301},
+    
+    
   ]
 }
