@@ -795,7 +795,7 @@
     { "source": "/client-alert-covid-19", "destination": "/covid-19-crisis-management-unit", "statusCode": 301},
     { "source": "/Red%20Bank", "destination": "/location/red-bank", "statusCode": 301},
     { "source": "/location/New%20York", "destination": "/location/new-york", "statusCode": 301},
-    { "source": "/attorneys/joel%2Br%2Bglucksman", "destination": "/attorney/joel-r-glucksman", "statusCode": 301},
+    { "source": "/attorneys/joel%2Br%2Bglucksman", "destination": "/attorney/joel-r-glucksman", "statusCode": 301}
     
     
   ]
