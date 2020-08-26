@@ -728,7 +728,6 @@
     { "source": "/firm-news/j-kreizman-labcorp-victory/.get_permalink(%2024665%20).", "destination": "/firm-news/j-kreizman-labcorp-victory", "statusCode": 301},
     { "source": "/firm-news/dan-brecher-oral-contract-breach/.get_permalink(%203849%20).", "destination": "/firm-news/dan-brecher-oral-contract-breach", "statusCode": 301},
     { "source": "/attorneys/[slug]", "destination": "/attorneys", "statusCode": 301},
-    { "source": "/attorneys/joel+r+glucksman", "destination": "/attorney/joel-r-glucksman", "statusCode": 301},
     { "source": "/location/washington-d-c", "destination": "/location/washington-dc", "statusCode": 301},
     { "source": "/law-firm-insights/business-law/private-transfers-stock/amp/Section%204(a)(7)%20of%20the%20Securities%20Act/Section%204(a)(7)%20of%20the%20Securities%20Act", "destination": "/law-firm-insights/business-law/private-transfers-stock", "statusCode": 301},
     { "source": "/attorneys/brent-giles-davis", "destination": "/attorneys", "statusCode": 301},
