@@ -726,7 +726,6 @@
     { "source": "/law-firm-insights/cannabis-law/nj-marijuana-reclassification/.get_permalink(%2022024%20).", "destination": "/law-firm-insights/cannabis-law/nj-marijuana-reclassification", "statusCode": 301},
     { "source": "/law-firm-insights/cannabis-law/marijuana-bill-impact-nj/.get_permalink(%20%20).", "destination": "/law-firm-insights/cannabis-law/marijuana-bill-impact-nj", "statusCode": 301},
     { "source": "/firm-news/j-kreizman-labcorp-victory/.get_permalink(%2024665%20).", "destination": "/firm-news/j-kreizman-labcorp-victory", "statusCode": 301},
-    { "source": "/disclaimer", "destination": "/privacy-policy", "statusCode": 301},
     { "source": "/firm-news/dan-brecher-oral-contract-breach/.get_permalink(%203849%20).", "destination": "/firm-news/dan-brecher-oral-contract-breach", "statusCode": 301},
     { "source": "/attorneys/[slug]", "destination": "/attorneys", "statusCode": 301},
     { "source": "/attorneys/joel+r+glucksman", "destination": "/attorney/joel-r-glucksman", "statusCode": 301},

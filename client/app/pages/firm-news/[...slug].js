@@ -12,7 +12,7 @@ import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function FirmNews({ post }) {  
+export default function FirmNews({ post }) {
   const router = useRouter();
 
   if (post.status === 404) {
@@ -32,9 +32,9 @@ export default function FirmNews({ post }) {
           <NextSeo
             title={post.seo.title}
             description={post.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            canonical={`https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`}
             openGraph={{
-              url: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              url: `https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`,
               title: 'Scarinci Hollenbeck',
               description: post.seo.metaDescription,
               type: 'article',
@@ -55,12 +55,12 @@ export default function FirmNews({ post }) {
             }}
             twitter={{
               handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              site: `https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`,
               cardType: post.seo.metaDescription,
             }}
           />
           <NewsArticleJsonLd
-            url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            url={`https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
             images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
             datePublished={post.seo.publishedDate}

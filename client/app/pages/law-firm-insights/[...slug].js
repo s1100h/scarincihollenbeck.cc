@@ -32,9 +32,9 @@ export default function LawFirmInsightsPost({ post }) {
           <NextSeo
             title={post.seo.title}
             description={post.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            canonical={`https://scarincihollenbeck.com/law-firm-insights/${post.seo.canonicalLink}`}
             openGraph={{
-              url: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              url: `https://scarincihollenbeck.com/law-firm-insights/${post.seo.canonicalLink}`,
               title: 'Scarinci Hollenbeck',
               description: post.seo.metaDescription,
               type: 'article',
@@ -55,12 +55,12 @@ export default function LawFirmInsightsPost({ post }) {
             }}
             twitter={{
               handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              site: `https://scarincihollenbeck.com/law-firm-insights/${post.seo.canonicalLink}`,
               cardType: post.seo.metaDescription,
             }}
           />
           <ArticleJsonLd
-            url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            url={`https://scarincihollenbeck.com/law-firm-insights/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
             images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
             datePublished={post.seo.publishedDate}

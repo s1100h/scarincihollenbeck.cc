@@ -13,6 +13,11 @@ import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
 export default function Featured({ post }) {
+  console.log('post');
+  console.log(post);
+  console.log('eventDetails length');
+  console.log(post.eventDetails.length);
+  
   const router = useRouter();
 
   if (post.status === 404) {
@@ -32,9 +37,9 @@ export default function Featured({ post }) {
           <NextSeo
             title={post.seo.title}
             description={post.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            canonical={`https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`}
             openGraph={{
-              url: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              url: `https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`,
               title: post.seo.title,
               description: post.seo.metaDescription,
               type: 'article',
@@ -55,12 +60,12 @@ export default function Featured({ post }) {
             }}
             twitter={{
               handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`,
+              site: `https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`,
               cardType: post.seo.metaDescription,
             }}
           />
           <ArticleJsonLd
-            url={`https://scarincihollenbeck.com/client-alert/${post.seo.canonicalLink}`}
+            url={`https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
             images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
             datePublished={post.seo.publishedDate}
