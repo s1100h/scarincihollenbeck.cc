@@ -8,5 +8,7 @@ Disallow: /quick-news/*
 Disallow: /?*
 Disallow: /uncategorized/*
 Disallow: /uncategorized
+Disallow: /firm-news/uncategorized/*
+Disallow: /firm-news/uncategorized
 Disallow: /staging/
 Sitemap: https://scarincihollenbeck.com/sitemap.xml
