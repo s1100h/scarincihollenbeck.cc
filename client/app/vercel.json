@@ -882,6 +882,7 @@
     { "source": "/firm-news/uncategorized/nj-supreme-court-rules-fitness-centers-cant-disclaim-all-personal-injury-liability", "destination": "/law-firm-insights/nj-supreme-court-rules-fitness-centers-cant-disclaim-all-personal-injury-liability", "statusCode": 301},
     { "source": "/firm-news/uncategorized/sbarro-file-bankruptcy-protection", "destination": "/law-firm-insights/sbarro-file-bankruptcy-protection", "statusCode": 301},
     { "source": "/firm-news/uncategorized/voting-leave-are-employers-required-to-grant-employees-time-off-to-cast-their-ballots", "destination": "/law-firm-insights/voting-leave-are-employers-required-to-grant-employees-time-off-to-cast-their-ballots", "statusCode": 301},
-    { "source": "/firm-news/uncategorized/sec-proposes-new-rules-for-investment-advisers", "destination": "/law-firm-insights/sec-proposes-new-rules-for-investment-advisers", "statusCode": 301}
+    { "source": "/firm-news/uncategorized/sec-proposes-new-rules-for-investment-advisers", "destination": "/law-firm-insights/sec-proposes-new-rules-for-investment-advisers", "statusCode": 301},
+    { "source": "/category/quick-news/page/5", "destination": "/", "statusCode": 301}
   ]
 }
