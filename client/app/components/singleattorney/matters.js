@@ -49,14 +49,14 @@ export default function Matters(props) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>
-      {(content.length > 1) ? (
-        <Accordion defaultActiveKey={0}>
+      {(content.length > 0) ? (
+        <Accordion defaultActiveKey="primary">
           {content.map((m, i) => (
-            <div key={m.title} className="mb-3">
-              <HeaderToggle eventKey={i}>
+            <div key={m.title} className="mb-3" id={i}>
+              <HeaderToggle eventKey={(i === 0) ? 'primary': i}>
                 <h5 className="mb-0 pb-0 float-left">{m.title}</h5>
               </HeaderToggle>
-              <Accordion.Collapse eventKey={i}>
+              <Accordion.Collapse eventKey={(i === 0) ? 'primary': i}>
                 <div className="off-white matters px-2 py-4" dangerouslySetInnerHTML={createMarkup(m.content)} />
               </Accordion.Collapse>
             </div>
