@@ -61,9 +61,9 @@ export default function Attorney({ bio }) {
           <NextSeo
             title={bio.seo.title}
             description={bio.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`}
+            canonical={`https://scarincihollenbeck.com/${bio.seo.canonicalLink}`}
             openGraph={{
-              url: `https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`,
+              url: `https://scarincihollenbeck.com/${bio.seo.canonicalLink}`,
               title: 'Scarinci Hollenbeck',
               description: bio.seo.metaDescription,
               images: [
@@ -78,7 +78,7 @@ export default function Attorney({ bio }) {
             }}
             twitter={{
               handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/attorney/${bio.seo.canonicalLink}`,
+              site: `https://scarincihollenbeck.com/${bio.seo.canonicalLink}`,
               cardType: bio.seo.metaDescription,
             }}
           />
