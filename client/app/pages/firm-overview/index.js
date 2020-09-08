@@ -3,14 +3,15 @@ import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import FirmMembers from 'components/firmoverview/firm-members';
-import { headers, createMarkup } from 'utils/helpers';
+import { headers, createMarkup, sortByKey } from 'utils/helpers';
 
 export default function FirmOverview({
   mainTabs, additionalInfo, members, mainContent, seo,
 }) {
   const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent[0], '');
-
+  const sortedAdmins = sortByKey(members.admin, 'orderBy');
+  
   return (
     <>
       <NextSeo
@@ -39,7 +40,7 @@ export default function FirmOverview({
             <div className="border">
               <FirmMembers title="Managing Partners" members={members.managingPartners} type="/attorney/[slug]/" slug="/attorney" />
               <FirmMembers title="Partners" members={members.partners} type="/attorney/[slug]/" slug="/attorney" />
-              <FirmMembers title="Directors" members={members.admin} type="/administration/[slug]/" slug="/administration" />
+              <FirmMembers title="Directors" members={sortedAdmins} type="/administration/[slug]/" slug="/administration" />
             </div>
           </>
         </div>
@@ -50,7 +51,7 @@ export default function FirmOverview({
 }
 
 export async function getServerSideProps() {
-  const [firmOverviewJson, slides] = await Promise.all([
+  const [firmOverviewJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-overview/content`, { headers }).then((data) => data.json())
   ]);
   const {

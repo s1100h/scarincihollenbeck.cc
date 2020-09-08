@@ -51,7 +51,9 @@ export default function JustInArticlesCarousel() {
                 {' '}
                 {post.category}
               </span>
-              <span className="date">{(formatDate(post.date) === 'Invalid Date') ? '' : formatDate(post.date)}</span>
+              {(formatDate(post.date) !== 'Invalid Date') && (
+                <span className="date">{formatDate(post.date)}</span>
+              )}              
             </p>
             <div className="just-in-content">
               <h5>{post.title}</h5>

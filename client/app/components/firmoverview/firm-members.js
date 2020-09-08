@@ -14,15 +14,14 @@ export default function FirmMembers(props) {
       <Container className="articles-container mt-3">
         <Row>
           {members.map((m) => (
-            <Col sm={12} md={6} lg={4} className="mb-2" key={m.ID}>
+            <Col sm={12} md={6} lg={4} className="mb-2" key={m.id}>
               <AttorneyCard
                 link={`${slug}${m.link}`}
                 image={m.image}
                 name={m.name}
                 title={(title === 'Directors') ? m.title : m.designation}
                 number={(title === 'Directors') ? `201-896-4100 ${m.extension}` : m.phone}
-                email={m.email}
-                height="auto"
+                email={m.email}               
                 width="81px"
                 type={type}
               />

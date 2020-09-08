@@ -90,14 +90,15 @@ function firm_overview_data() {
 
   foreach($admins as $ad) {
     $members['admin'][] = array(
-      "ID" => $ad->ID,
+      "id" => $ad->ID,
+      "orderBy" => (int)get_field("order", $ad->ID),
       "name" => $ad->post_title,
       "title" => get_field("Title", $ad->ID),
       "image" => get_the_post_thumbnail_url($ad->ID),
       "link" => "/".$ad->post_name,
       "extension" => get_field('phone_extension', $ad->ID),
       "email" => get_field('email', $ad->ID),
-      "designation" => get_field('designation', $at->ID)
+      "designation" => "Directors"
     );    
   }
 

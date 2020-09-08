@@ -43,16 +43,17 @@ function admin_list()
       $id = $a->ID;
       $image = get_field("featured_image", $id);
       $admin_list['admins'][] = array(
-        "ID" => $id,
+        "id" => $id,
+        "orderBy" => (int)get_field("order", $id),
         "link" => "/administration/".$a->post_name,
         "name" => get_field("name", $id),
-        "Title" => get_field("Title", $id),
+        "title" => get_field("Title", $id),
         "image" => array(
           "url" => $image["url"],
-          "smallUrl" => get_the_post_thumbnail_url($id),
+          "smallUrl" => get_the_post_thumbnail_url( $id),
           "altTag" => get_field("name", $id)
         ),
-        "phone_extension" => get_field("phone_extension", $id),
+        "phoneExtension" => get_field("phone_extension", $id),
         "email" => get_field("email", $id)        
       );
     }

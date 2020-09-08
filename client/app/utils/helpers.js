@@ -151,3 +151,10 @@ export function makeQueryTitle(title) {
   const formatTitle = title.replace(/\+/g, ' ');
   return makeTitle(formatTitle);
 }
+
+
+export function sortByOrder(admins) {
+  admins.sort((a, b) => {
+    return a.orderBy - b.orderBy
+  });
+}

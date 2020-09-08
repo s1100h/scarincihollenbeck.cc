@@ -6,10 +6,13 @@ import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
-import { headers } from 'utils/helpers';
+import { headers, sortByKey } from 'utils/helpers';
 
 
 export default function Administration({ admins, seo }) {
+  const sortedAdmins = sortByKey(admins, 'orderBy');
+
+
   return (
     <>
       <NextSeo
@@ -25,17 +28,16 @@ export default function Administration({ admins, seo }) {
       <FullWidth>
         <Container id="archive-admin" className="p-3 pt-4 border">
           <Row>
-            {admins.map((admin) => (
-              <Col sm={12} md={6} lg={4} key={admin.ID} className="mb-2">
+            {sortedAdmins.map((admin) => (
+              <Col sm={12} md={6} lg={4} key={admin.id} className="mb-2">
                 <AttorneyCard
-                  image={admin.image.url}
+                  image={admin.image.smallUrl}
                   name={admin.name}
                   link={admin.link}
-                  title={admin.Title}
-                  number={`201-896-4100 ${admin.phone_extension}`}
+                  title={admin.title}
+                  number={`201-896-4100 ${admin.phoneExtension}`}
                   email={admin.email}
-                  height="112px"
-                  width="107px"
+                  width="81px"
                   type="/administration/[admin]"
                 />
               </Col>
@@ -49,7 +51,7 @@ export default function Administration({ admins, seo }) {
 }
 
 export async function getServerSideProps() {
-  const [aJson, slides] = await Promise.all([
+  const [aJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json())
   ]);
 
