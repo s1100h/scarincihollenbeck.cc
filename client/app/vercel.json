@@ -885,5 +885,6 @@
     { "source": "/firm-news/uncategorized/sec-proposes-new-rules-for-investment-advisers", "destination": "/law-firm-insights/sec-proposes-new-rules-for-investment-advisers", "statusCode": 301},
     { "source": "/news/quick-news/roberts-opinion-upholds-obamacare-rejects-strict-interpretation", "destination": "/quick-news/roberts-opinion-upholds-obamacare-rejects-strict-interpretation", "statusCode": 301},
     { "source": "/quick-news/why-intellectual-property-considerations-are-always-important/amp", "destination": "/quick-news/why-intellectual-property-considerations-are-always-important", "statusCode": 301}    
+    
   ]
 }

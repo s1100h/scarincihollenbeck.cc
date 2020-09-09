@@ -145,7 +145,7 @@ export default function CareerForm({ contact, title }) {
                   <div className="red-title my-4 text-center d-block">
                     {/** Document image */}
                     <span className="small-excerpt">
-                      <strong className="d-block w-100 mb-1">Click here to upload documents or drag them over this area to upload (must be in a .pdf, .odt, .doc, .docx, or .dotx format).</strong>If you are having trouble uploading, please uploading a single document at a time. If the upload is successful you will see the title of the document listed above with a green checkmark next to it.
+                      <strong className="d-block w-100 mb-1">Click here to upload documents or drag them over this area to upload (must be in a .pdf, .odt, .doc, .docx, or .dotx format).</strong>If you are having trouble uploading, please upload a single document at a time. If the upload is successful you will see the title of the document listed above with a green checkmark next to it.
                     </span>
                   </div>
                 )}

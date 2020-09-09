@@ -1,5 +1,6 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { NextSeo, SocialProfileJsonLd } from 'next-seo';
+import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
@@ -24,6 +25,40 @@ import RelatedArticles from 'components/singleattorney/related-articles';
 import {
   sortByDateKey, urlify, headers, addRandomKey,
 } from 'utils/helpers';
+import { buildBusinessSchema } from 'utils/json-ld-schemas';
+
+
+// build out attorney profile schema
+function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTitle) {
+  let links; 
+
+  if (socialMediaLinks.length > 0) {
+    links = socialMediaLinks.map((link) => link.url);
+  };
+
+  if(socialMediaLinks.length === 0) {
+    links = [
+      "https://www.facebook.com/ScarinciHollenbeck/",
+      "https://www.linkedin.com/company/scarinci-hollenbeck-llc"
+    ];
+  };
+
+  return {
+    "@graph": [{
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": name,
+      "url": url,
+      "image": imageUrl,
+      "sameAs": links,
+      "jobTitle": jobTitle,
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Scarinci Hollenbceck"
+      }  
+    }]
+  }
+}
 
 export default function Attorney({ bio }) {
   const router = useRouter();
@@ -82,12 +117,24 @@ export default function Attorney({ bio }) {
               cardType: bio.seo.metaDescription,
             }}
           />
-          <SocialProfileJsonLd
-            type="Person"
-            name={bio.seo.fullName}
-            url={`https://scarincihollenbeck.com/${bio.seo.canonicalLink}`}
-            sameAs={bio.seo.socialMedia}
+        <Head>
+          <script
+            key="ScarinciHollenbeck"
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
           />
+          <script
+            key="ScarinciHollenbeck Bio Profile"
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(buildAttorneyProfileSchema(
+              bio.fullName,
+              `https://scarincihollenbeck.com/${bio.seo.canonicalLink}`,
+              bio.profileImage,
+              bio.socialMediaLinks,
+              bio.designation))
+            }}
+          />
+        </Head> 
           <div id="single-attorney">
             <MultiSubHeader
               image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
