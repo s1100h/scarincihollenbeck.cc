@@ -56,7 +56,7 @@ export default function SubscriptionFormColumn(props) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}  id="subscription-form">
+      <Form onSubmit={handleSubmit} role="search" id="subscription-form">
         <Form.Group>
           <Form.Control id="firstName" name="firstName" type="text" placeholder="Enter first name" {...bindFirstNameInput} required />
         </Form.Group>

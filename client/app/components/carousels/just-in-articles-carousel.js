@@ -41,7 +41,7 @@ export default function JustInArticlesCarousel() {
   const { data: slides=[] } = useSWR(`https://admin.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
 
   return (slides.length > 0) && (
-    <Carousel responsive={jiResponsive} infinite arrows swipeable>
+    <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={parseInt(post.id, 10)} className={`JustInCarouselContent card carousel-slide level-${parseInt(post.id, 10)}`}>
           <a href={post.link}>

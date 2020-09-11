@@ -55,7 +55,7 @@ export default function Search() {
 
   return (
     <div className="w-100">
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} role="search">
         <Form.Group controlId="textSearch">
           <Form.Label>
             <span className="sr-only">

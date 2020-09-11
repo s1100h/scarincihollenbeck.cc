@@ -20,8 +20,8 @@ export default function FrontSearch() {
 
   return (
     <div className="mw-447">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="simplsearch">
+      <Form onSubmit={handleSubmit} role="search">
+        <Form.Group controlId="front-search">
           <Form.Label>
             <span className="sr-only">
               Search Site

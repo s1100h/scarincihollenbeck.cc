@@ -34,7 +34,7 @@ export default function SimpleNewsArticlesCarousel(props) {
   const { slides } = props;
 
   return (slides.length > 0) && (
-    <Carousel responsive={responsive} infinite arrows swipeable>
+    <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={parseInt(post.id, 10)} className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}>
           <a href={(post.link) ? post.link : '#'}>

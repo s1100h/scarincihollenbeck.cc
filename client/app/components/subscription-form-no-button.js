@@ -71,7 +71,7 @@ function SubscriptionFormNoButton(props) {
   return (
     <>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} role="search">
         <Form.Group>
           <Form.Control id="firstName" name="firstName" type="text" placeholder="Enter first name" {...bindFirstNameInput} required />
         </Form.Group>

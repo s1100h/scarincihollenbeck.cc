@@ -27,7 +27,7 @@ export default function OfficeLocationCarousel(props) {
   const { slides } = props;
 
   return (slides.length > 0) && (
-    <Carousel responsive={responsive} infinite arrows swipeable>
+    <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={post.title} className="location-card mx-auto d-block border">
           <Link href="/location/[slug]" as={post.slug}>

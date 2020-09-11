@@ -90,7 +90,7 @@ function SubscriptionFormWithButton(props) {
         </Modal.Header>
         <Modal.Body>
           <Button type="button" variant="secondary" className="proxima-bold float-right mb-2 mt-0" onClick={handleClose}>Close</Button>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}  role="search">
             <Form.Group controlId="firstName.ControlInput">
               <Form.Control id="firstName" name="firstName" type="text" placeholder="Enter first name" {...bindFirstNameInput} required />
             </Form.Group>
