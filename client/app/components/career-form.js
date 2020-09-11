@@ -32,9 +32,11 @@ export default function CareerForm({ contact, title }) {
     // read file blob    
     const reader = new FileReader();
     reader.onload = (event) => {
+      
+      console.table(event.target);
       const fileContents = {
         title: acceptedFiles[0].name,
-        contents: event.target.result
+        contents: event.target.result,
       };
 
       setFiles(files => [...files, fileContents]);
@@ -132,7 +134,8 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} sm={12}>
-              <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample. <strong>No more than 4 documents or a total document size larger than 10MB, please.</strong></Form.Label>
+              <Form.Label>Add Cover letter, Resume, and Writing Sample.</Form.Label>
+              <Form.Label className="mb-0">**<strong>Please note</strong> the maximum combined file size allowed for a submssion is 10MB. Any submission over 10MB will not be processed. If your files exceed the maximum size, please email the information to Peter Moeller, Director of Business Development at <a className="red-title" href="mailto:info@sh-law.com"><u>info@sh-law.com</u></a></Form.Label>
               <div className="thumbsContainer">
                 {thumbs}
               </div>
