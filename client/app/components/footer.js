@@ -18,12 +18,12 @@ export default function Footer() {
         <Container fluid className="h-100 mt-5 w-75 bk--gray">
           <Row className="border--red mb-3">
             <Col sm={12} md={{ span: 3, offset: 9 }} className="mb-2 footer-search">
-              <SimpleSearch searchId="footer-simplesearch"/>
+              <SimpleSearch searchId="footer-simple-search"/>
             </Col>
           </Row>
           <Row className="pb-3 mb-0">
             <Col sm={6}>
-              <p className="mr-auto proxima-bold h5 pb-0 mb-0" role="heading">ATTORNEY ADVERTISING</p>
+              <p className="mr-auto proxima-bold h5 pb-0 mb-0">ATTORNEY ADVERTISING</p>
               <p className="mr-auto proxima-regular mt-0 pt-0">
                 Prior results do not guarantee a similar outcome.
                 <br />
@@ -39,17 +39,13 @@ export default function Footer() {
                   <Link href="/contact">
                     <a className="proxima-bold red-title h6">Contact Us</a>
                   </Link>
-                  {' '}
-                  |
-                  {' '}
+                  <span className="ml-2">|</span>
                 </li>
                 <li className="list-inline-item">
                   <Link href="/careers">
                     <a className="proxima-bold red-title h6">Careers</a>
                   </Link>
-                  {' '}
-                  |
-                  {' '}
+                  <span className="ml-2">|</span>
                 </li>
                 <li className="list-inline-item">
                   <Link href="/awards">
@@ -57,22 +53,18 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
-              <ul className="float-right no-dots list-inline mt-0 pt-0">
+              <ul className="float-right no-dots list-inline mt-0 pt-0" role="navigation">
                 <li className="list-inline-item">
                   <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className="proxima-bold red-title h6">
                     Make Payment
                   </a>
-                  {' '}
-                  |
-                  {' '}
+                  <span className="ml-2">|</span>
                 </li>
                 <li className="list-inline-item">
                   <a href="https://scarincihollenbeck.com/sitemap.xml" className="proxima-bold red-title h6">
                     Sitemap
                   </a>
-                  {' '}
-                  |
-                  {' '}
+                  <span className="ml-2">|</span>
                 </li>
                 <li className="list-inline-item">
                   <Link href="/terms-of-use">
@@ -80,9 +72,7 @@ export default function Footer() {
                       Terms of Use
                     </a>
                   </Link>
-                  {' '}
-                  |
-                  {' '}
+                  <span className="ml-2">|</span>
                 </li>
                 <li className="list-inline-item">
                   <Link href="/privacy-policy">
