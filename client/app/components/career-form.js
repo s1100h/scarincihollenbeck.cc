@@ -90,8 +90,7 @@ export default function CareerForm({ contact, title }) {
       resetPhoneInput();
     }
 
-    console.log('status');
-    console.log(status);
+    console.log('status: ', status);
   }
 
   return (
@@ -133,7 +132,7 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} sm={12}>
-              <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample. <strong>No more than 4 documents, please.</strong></Form.Label>
+              <Form.Label className="mb-0">Add Cover letter, Resume, and Writing Sample. <strong>No more than 4 documents or a total document size larger than 10MB, please.</strong></Form.Label>
               <div className="thumbsContainer">
                 {thumbs}
               </div>
@@ -157,9 +156,7 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
           {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
-
-          {/* disabled={captcha} */}
-          <Button type="submit" variant="danger"  className="px-5">Submit</Button>
+          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
       </div>
     </>
