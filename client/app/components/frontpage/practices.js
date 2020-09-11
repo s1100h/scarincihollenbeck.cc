@@ -6,9 +6,9 @@ export default function Practices(props) {
 
   return (
     <div>
-      <h5 className="red-title">Core Practices</h5>
+      <h4 className="red-title h5">Core Practices</h4>
       <hr />
-      <ul className="ml-4">
+      <ul className="ml-4" role="navigation">
         { corePractices.map((p) => (
           <li key={p.title} className="blue-title">
             <Link href="/practices/[slug]" as={p.slug}>

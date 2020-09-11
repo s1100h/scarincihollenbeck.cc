@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { addRandomKey } from '../utils/helpers';
 import useInput from '../utils/input-hook';
 
-export default function SimpleSearch() {
+export default function SimpleSearch({ searchId="simplesearch" }) {
   const { value: searchInput, bind: bindSearchInput, reset: resetSearchInput } = useInput('');
 
   const handleSubmit = (e) => {
@@ -21,8 +21,8 @@ export default function SimpleSearch() {
 
   return (
     <div className="mw-447">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="simplsearch">
+      <Form onSubmit={handleSubmit} role="search">
+        <Form.Group controlId={searchId}>
           <Form.Label>
             <span className="sr-only">
               Search Site

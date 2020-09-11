@@ -18,12 +18,12 @@ export default function Footer() {
         <Container fluid className="h-100 mt-5 w-75 bk--gray">
           <Row className="border--red mb-3">
             <Col sm={12} md={{ span: 3, offset: 9 }} className="mb-2 footer-search">
-              <SimpleSearch />
+              <SimpleSearch searchId="footer-simplesearch"/>
             </Col>
           </Row>
           <Row className="pb-3 mb-0">
             <Col sm={6}>
-              <p className="mr-auto proxima-bold h5 pb-0 mb-0">ATTORNEY ADVERTISING</p>
+              <p className="mr-auto proxima-bold h5 pb-0 mb-0" role="heading">ATTORNEY ADVERTISING</p>
               <p className="mr-auto proxima-regular mt-0 pt-0">
                 Prior results do not guarantee a similar outcome.
                 <br />
@@ -34,7 +34,7 @@ export default function Footer() {
               </p>
             </Col>
             <Col sm={6} className="text-center">
-              <ul className="d-flex justify-content-end no-dots list-inline pb-0 mb-0">
+              <ul className="d-flex justify-content-end no-dots list-inline pb-0 mb-0" role="navigation">
                 <li className="list-inline-item">
                   <Link href="/contact">
                     <a className="proxima-bold red-title h6">Contact Us</a>

@@ -10,7 +10,9 @@ export default function ColumnContent(props) {
   return (
     <Row>
       <Col sm={12} className="px-0">
-        <div className="line-header"><h3>ABOUT OUR FIRM</h3></div>
+        <div className="line-header">
+          <h3>ABOUT OUR FIRM</h3>
+        </div>
       </Col>
       <Col sm={12} md={4} className="mt-5 border-right">
         <About />
