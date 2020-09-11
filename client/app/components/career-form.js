@@ -89,6 +89,9 @@ export default function CareerForm({ contact, title }) {
       resetEmailInput();
       resetPhoneInput();
     }
+
+    console.log('status');
+    console.log(status);
   }
 
   return (
@@ -154,7 +157,9 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
           {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
-          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
+
+          {/* disabled={captcha} */}
+          <Button type="submit" variant="danger"  className="px-5">Submit</Button>
         </Form>
       </div>
     </>
