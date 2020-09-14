@@ -5,8 +5,16 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 import FormReCaptcha from './google-recaptcha-button';
 import useInput from '../utils/input-hook';
+
+function bytesToSize(bytes) {
+  var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes == 0) return '0 Byte';
+  var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
 
 export default function CareerForm({ contact, title }) {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
@@ -17,11 +25,10 @@ export default function CareerForm({ contact, title }) {
   const [preview, setPreview] = useState([]);
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(false);
   const [captcha, setCaptcha] = useState(true);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    if (acceptedFiles.length === 0) {
+  const readUploadedFile = (incomingFile) => {
+    if (incomingFile.length === 0) {
       setFailure(true);
     }
 
@@ -31,18 +38,30 @@ export default function CareerForm({ contact, title }) {
 
     // read file blob    
     const reader = new FileReader();
-    reader.onload = (event) => {
-      
-      console.table(event.target);
+    reader.onload = (event) => {    
+
       const fileContents = {
-        title: acceptedFiles[0].name,
+        title: incomingFile.name,
         contents: event.target.result,
+        size: incomingFile.size,
       };
 
       setFiles(files => [...files, fileContents]);
       
     };
-    reader.readAsDataURL(acceptedFiles[0]);
+    reader.readAsDataURL(incomingFile);
+  }
+
+  const onDrop = useCallback((acceptedFiles) => {
+    console.table(acceptedFiles[0]);
+
+    if(acceptedFiles[0] === undefined) { 
+      alert('Sorry the document you just uploaded exceeds our max limit size. Please upload a document less than 10MB. Thank you.');
+    }else {
+      readUploadedFile(acceptedFiles[0]);
+    }
+
+    
   }, []);
 
   const thumbs = files.map((file) => (
@@ -52,12 +71,25 @@ export default function CareerForm({ contact, title }) {
         {' '}
         -
         {' '}
-        <FontAwesomeIcon icon={faCheck} className="text-success mw-12" />
-      </p>
+        {bytesToSize(file.size)}
+        {' '}
+        {(file.size >= 1000000) && (
+          <>
+            File size exceeds limit
+            <FontAwesomeIcon icon={faExclamationCircle} className="text-danger mw-12" />
+          </>
+        )}
+        {(file.size < 1000000) && <FontAwesomeIcon icon={faCheck} className="text-success mw-12" />}
+      </p>      
     </div>
   ));
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ accept: '.odt,.doc,.docx,.pdf,.dotx', onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    maxSize: 1000000,
+    multiple: true,
+    accept: '.odt,.doc,.docx,.pdf,.dotx',
+    onDrop
+  });
 
 
   async function formSubmit(e) {
@@ -85,14 +117,14 @@ export default function CareerForm({ contact, title }) {
     const status = await request.status;
 
     if (status === 200) {
-      setSuccessMessage(true);
       resetLastNameInput();
       resetFirstNameInput();
       resetEmailInput();
       resetPhoneInput();
+      setFiles([]);
+      alert('Your application submission was successful! We will reach out to you shortly. Please, do not try and resubmit your information again. Thank you have a nice day.');
+      setCaptcha(false);
     }
-
-    console.log('status: ', status);
   }
 
   return (
@@ -157,8 +189,7 @@ export default function CareerForm({ contact, title }) {
               </div>
             </Form.Group>
           </Form.Row>
-          <FormReCaptcha setCaptcha={setCaptcha} />
-          {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for applying one of our representative will reach out to you shortly!</p>}
+          <FormReCaptcha setCaptcha={setCaptcha} /> 
           <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
         </Form>
       </div>
