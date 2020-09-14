@@ -53,8 +53,6 @@ export default function CareerForm({ contact, title }) {
   }
 
   const onDrop = useCallback((acceptedFiles) => {
-    console.table(acceptedFiles[0]);
-
     if(acceptedFiles[0] === undefined) { 
       alert('Sorry the document you just uploaded exceeds our max limit size. Please upload a document less than 10MB. Thank you.');
     }else {
@@ -126,6 +124,8 @@ export default function CareerForm({ contact, title }) {
       setCaptcha(false);
     }
   }
+
+  console.log('captcha: ', captcha);
 
   return (
     <>
