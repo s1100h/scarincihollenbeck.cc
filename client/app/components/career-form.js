@@ -121,11 +121,10 @@ export default function CareerForm({ contact, title }) {
       resetPhoneInput();
       setFiles([]);
       alert('Your application submission was successful! We will reach out to you shortly. Please, do not try and resubmit your information again. Thank you have a nice day.');
-      setCaptcha(false);
+      setCaptcha(true);
     }
   }
 
-  console.log('captcha: ', captcha);
 
   return (
     <>
