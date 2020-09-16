@@ -225,7 +225,7 @@ add_action('rest_api_init', function()
 
         function attorney_practice_sort($a, $b) {
           return strcmp($a['title'], $b['title']);
-      }
+        }
       
       usort($related_pratice_data, "attorney_practice_sort");
 
@@ -234,137 +234,159 @@ add_action('rest_api_init', function()
 
       // office location data for SEO
       $office_id = get_field("office_location", $attorney_id, false);
-      $office_id = (int)$office_id[0];
-
-      // get only social media links
-      $social_media = get_field("social_media_links", $attorney_id);
-      $social_media_links = array();
-
-      foreach($social_media as $sm) {
-        $social_media_links[] = $sm['url'];
-      };
-
-      // get bio
-      $bio = get_field("biography_content", $attorney_id);
-
-      // modify $bio for description schema.org
-      $schema_description = preg_match('/<p>(.*?)<\/p>/s', $bio, $matches);
-
-      $education = get_field("education", $attorney_id);
-      $bar_admissions = get_field("bar_admissions", $attorney_id);
-      $affiliations = get_field("affiliations", $attorney_id);
-      $additional_information = get_field("additional_information", $attorney_id);
-                
-      $biography = array(
-        "authorID" => $author_id->ID,
-        "fullName" => html_entity_decode(htmlspecialchars_decode(get_the_title($attorney_id))),
-        "firstName" => get_field("first_name", $attorney_id),
-        "middleInitial" =>get_field("middle_initial", $attorney_id),
-        "lastName" => get_field("last_name", $attorney_id),
-        "designation" => get_field("designation", $attorney_id),
-        "profileImage" =>$image["url"],
-        "phoneNumber" => get_field("phone_number", $attorney_id),
-        "fax" => get_field("fax_number", $attorney_id),
-        "email" => $email,
-        "pdf" => get_field("pdf_bio", $attorney_id)["url"],
-        "vizibility"=> get_field("vizibility", $attorney_id),
-        "socialMediaLinks" => $social_media,
-        "chair" => $chair_data,
-        "coChair" => $co_chair_data,
-        "biography" => $bio,
-        "publications" => get_field( "attorney_publications", $attorney_id),
-        "presentations" => get_field( "attorney_presentations", $attorney_id),
-        "media" => get_field( "attorney_media", $attorney_id),
-        "tabs" => array(
-          "headers" => array(
-            (get_field("tab_header_1", $attorney_id) != "") ? get_field("tab_header_1", $attorney_id) : hexdec( uniqid() ),
-            (get_field("tab_header_2", $attorney_id) != "") ? get_field("tab_header_2", $attorney_id) : hexdec( uniqid() ),
-            (get_field("tab_header_3", $attorney_id) != "") ? get_field("tab_header_3", $attorney_id) : hexdec( uniqid() ),
-            (get_field("tab_header_4", $attorney_id) != "") ? get_field("tab_header_4", $attorney_id) : hexdec( uniqid() ),
-            (get_field("tab_header_5", $attorney_id) != "") ? get_field("tab_header_5", $attorney_id) : hexdec( uniqid() ),
-          ),
-          "body" => array(
-            array(
-              hexdec( uniqid() ),
-              get_field("tab_header_1" , $attorney_id),
-              get_field("tab_content_1", $attorney_id)
-            ),
-            array(
-              hexdec( uniqid() ),
-              get_field("tab_header_2", $attorney_id),
-              get_field("tab_content_2", $attorney_id)
-            ),
-            array(
-              hexdec( uniqid() ),
-              get_field("tab_header_3", $attorney_id),
-              get_field("tab_content_3", $attorney_id)
-            ),
-            array(
-              hexdec( uniqid() ),
-              get_field("tab_header_4", $attorney_id),
-              get_field("tab_content_4", $attorney_id)
-            ),
-            array(
-              hexdec( uniqid() ),
-              get_field("tab_header_5", $attorney_id),
-              get_field("tab_content_5", $attorney_id)
-            )
-          )
-          ),
-          "representativeMatters" => get_field("rep_matters", $attorney_id),
-          "representativeClients" => get_field("rep_clients", $attorney_id),
-          "relatedPractices" => $related_pratice_data,
-          "blogPosts" => $blog_data,
-          "newsPosts" => $news_data,
-          "eventPosts" => $events_data,
-          "awards" => $awards_data,
-          "clients" => $clients_data,
-          "videos" => get_field("attorney_videos", $attorney_id),
-          "sidebar" => array(
-            ($education != false) ? array(
-              "title" => "Education",
-              "content" => $education
-            ) : [],
-            ($bar_admissions != false) ? array(
-              "title" => "Bar Admissions",
-              "content" => $bar_admissions
-            ) : [],
-            ($affiliations != false) ? array(
-              "title" => "Affiliations",
-              "content" => $affiliations 
-            ) : [],
-            ($additional_information != false) ? array(
-              "title" => "Additional Information",
-              "content" => $additional_information
-            ) : []
-          ),
-          "seo" => (object)array(
-            "office_id" => $office_id,      
-            "title" => get_post_meta($attorney_id, '_yoast_wpseo_title', true),
-            "fullName" => html_entity_decode(htmlspecialchars_decode(get_the_title($attorney_id))),
-            "phone" => get_field("phone_number", $attorney_id),
-            "email" => $email,
-            "map" => get_field("map_link", $office_id),
-            "lat" => get_field("latitude", $office_id),
-            "long" => get_field("longitude", $office_id),
-            "town" => get_field("address_locality", $office_id),
-            "state" => get_field("address_region", $office_id),
-            "zip" => get_field("post_code", $office_id),
-            "address" => get_field("street_address", $office_id),
-            "metaDescription" => get_post_meta($attorney_id, '_yoast_wpseo_metadesc', true),
-            "schemaDescription" => strip_tags($matches[1]),
-            "canonicalLink" => "attorney/".$slug,
-            "featuredImg" => $image["url"],
-            "imgHeight" => $image["sizes"]["medium_large-height"], 
-            "imgWidth" =>  $image["sizes"]["medium_large-width"],
-            "firstName" => get_field("first_name", $attorney_id),
-            "lastName" => get_field("last_name", $attorney_id),
-            "socialMedia" => $social_media_links
-          )
+      $office_args = array(
+        'post_type' => 'location',
+        'post__in' => $office_id
+    );
+    
+    $office_posts = get_posts($office_args);
+    $office_details = [];
+    
+    foreach($office_posts as $office) {
+      $office_details[] = array(
+        'ID' => $office->ID,
+        'name' => $office->post_title,
+        'link' => '/location/'.$office->post_name,
       );
+    }
 
-        return new WP_REST_Response($biography, 200);
-     } else {
-        return new WP_REST_Response(array( 'message'=> 'No attorney found.', 'status' => 404), 404);
-     }  
+    function office_details_sort($a, $b) {
+      return strcmp($a['name'], $b['name']);
+    }
+
+    usort($office_details, "office_details_sort");
+
+
+    // get only social media links
+    $social_media = get_field("social_media_links", $attorney_id);
+    $social_media_links = array();
+
+    foreach($social_media as $sm) {
+      $social_media_links[] = $sm['url'];
+    };
+
+    // get bio
+    $bio = get_field("biography_content", $attorney_id);
+
+    // modify $bio for description schema.org
+    $schema_description = preg_match('/<p>(.*?)<\/p>/s', $bio, $matches);
+
+    $education = get_field("education", $attorney_id);
+    $bar_admissions = get_field("bar_admissions", $attorney_id);
+    $affiliations = get_field("affiliations", $attorney_id);
+    $additional_information = get_field("additional_information", $attorney_id);
+              
+    $biography = array(
+      "authorID" => $author_id->ID,
+      "fullName" => html_entity_decode(htmlspecialchars_decode(get_the_title($attorney_id))),
+      "firstName" => get_field("first_name", $attorney_id),
+      "middleInitial" =>get_field("middle_initial", $attorney_id),
+      "lastName" => get_field("last_name", $attorney_id),
+      "designation" => get_field("designation", $attorney_id),
+      "profileImage" =>$image["url"],
+      "phoneNumber" => get_field("phone_number", $attorney_id),
+      "offices" => $office_details,
+      "fax" => get_field("fax_number", $attorney_id),
+      "email" => $email,
+      "pdf" => get_field("pdf_bio", $attorney_id)["url"],
+      "vizibility"=> get_field("vizibility", $attorney_id),
+      "socialMediaLinks" => $social_media,
+      "chair" => $chair_data,
+      "coChair" => $co_chair_data,
+      "biography" => $bio,
+      "publications" => get_field( "attorney_publications", $attorney_id),
+      "presentations" => get_field( "attorney_presentations", $attorney_id),
+      "media" => get_field( "attorney_media", $attorney_id),
+      "tabs" => array(
+        "headers" => array(
+          (get_field("tab_header_1", $attorney_id) != "") ? get_field("tab_header_1", $attorney_id) : hexdec( uniqid() ),
+          (get_field("tab_header_2", $attorney_id) != "") ? get_field("tab_header_2", $attorney_id) : hexdec( uniqid() ),
+          (get_field("tab_header_3", $attorney_id) != "") ? get_field("tab_header_3", $attorney_id) : hexdec( uniqid() ),
+          (get_field("tab_header_4", $attorney_id) != "") ? get_field("tab_header_4", $attorney_id) : hexdec( uniqid() ),
+          (get_field("tab_header_5", $attorney_id) != "") ? get_field("tab_header_5", $attorney_id) : hexdec( uniqid() ),
+        ),
+        "body" => array(
+          array(
+            hexdec( uniqid() ),
+            get_field("tab_header_1" , $attorney_id),
+            get_field("tab_content_1", $attorney_id)
+          ),
+          array(
+            hexdec( uniqid() ),
+            get_field("tab_header_2", $attorney_id),
+            get_field("tab_content_2", $attorney_id)
+          ),
+          array(
+            hexdec( uniqid() ),
+            get_field("tab_header_3", $attorney_id),
+            get_field("tab_content_3", $attorney_id)
+          ),
+          array(
+            hexdec( uniqid() ),
+            get_field("tab_header_4", $attorney_id),
+            get_field("tab_content_4", $attorney_id)
+          ),
+          array(
+            hexdec( uniqid() ),
+            get_field("tab_header_5", $attorney_id),
+            get_field("tab_content_5", $attorney_id)
+          )
+        )
+        ),
+        "representativeMatters" => get_field("rep_matters", $attorney_id),
+        "representativeClients" => get_field("rep_clients", $attorney_id),
+        "relatedPractices" => $related_pratice_data,
+        "blogPosts" => $blog_data,
+        "newsPosts" => $news_data,
+        "eventPosts" => $events_data,
+        "awards" => $awards_data,
+        "clients" => $clients_data,
+        "videos" => get_field("attorney_videos", $attorney_id),
+        "sidebar" => array(
+          ($education != false) ? array(
+            "title" => "Education",
+            "content" => $education
+          ) : [],
+          ($bar_admissions != false) ? array(
+            "title" => "Bar Admissions",
+            "content" => $bar_admissions
+          ) : [],
+          ($affiliations != false) ? array(
+            "title" => "Affiliations",
+            "content" => $affiliations 
+          ) : [],
+          ($additional_information != false) ? array(
+            "title" => "Additional Information",
+            "content" => $additional_information
+          ) : []
+        ),
+        "seo" => (object)array(
+          "office_id" => $office_id,      
+          "title" => get_post_meta($attorney_id, '_yoast_wpseo_title', true),
+          "fullName" => html_entity_decode(htmlspecialchars_decode(get_the_title($attorney_id))),
+          "phone" => get_field("phone_number", $attorney_id),
+          "email" => $email,
+          "map" => get_field("map_link", $office_id),
+          "lat" => get_field("latitude", $office_id),
+          "long" => get_field("longitude", $office_id),
+          "town" => get_field("address_locality", $office_id),
+          "state" => get_field("address_region", $office_id),
+          "zip" => get_field("post_code", $office_id),
+          "address" => get_field("street_address", $office_id),
+          "metaDescription" => get_post_meta($attorney_id, '_yoast_wpseo_metadesc', true),
+          "schemaDescription" => strip_tags($matches[1]),
+          "canonicalLink" => "attorney/".$slug,
+          "featuredImg" => $image["url"],
+          "imgHeight" => $image["sizes"]["medium_large-height"], 
+          "imgWidth" =>  $image["sizes"]["medium_large-width"],
+          "firstName" => get_field("first_name", $attorney_id),
+          "lastName" => get_field("last_name", $attorney_id),
+          "socialMedia" => $social_media_links
+        )
+    );
+
+      return new WP_REST_Response($biography, 200);
+    } else {
+      return new WP_REST_Response(array( 'message'=> 'No attorney found.', 'status' => 404), 404);
+    }  
 }

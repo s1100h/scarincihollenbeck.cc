@@ -2,8 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const FullWidth = (props) => {
-  const { children } = props;
+const FullWidth = ({ children }) => {
   return (
     <Container>
       <Row>

@@ -25,8 +25,7 @@ function Post(content, {
   );
 }
 
-export default function LargeSidebarWithPosts(props) {
-  const { content, sidebar, posts, postsTitle } = props;
+export default function LargeSidebarWithPosts({ content, sidebar, posts, postsTitle }) {
 
   return (
     <Container>

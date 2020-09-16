@@ -2,8 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export default function NoHeaderMiniSidebar(props) {
-  const { body, sidebar } = props;
+export default function NoHeaderMiniSidebar({ body, sidebar }) {
 
   return (
     <Container className="mt-5">

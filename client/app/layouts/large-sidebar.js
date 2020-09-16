@@ -3,8 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-export default function LargeSidebar(props) {
-  const { body, sidebar } = props;
+export default function LargeSidebar({ body, sidebar }) {
 
   return (
     <Container>

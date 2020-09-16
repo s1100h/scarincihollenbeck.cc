@@ -11,19 +11,20 @@ import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookS
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
-export default function InfoCard(props) {
-  const {
-    fullName,
-    chair,
-    designation,
-    phoneNumber,
-    fax,
-    email,
-    socialMediaLinks,
-    pdf,
-    vizibility,
-  } = props;
+export default function InfoCard({
+  fullName,
+  chair,
+  designation,
+  phoneNumber,
+  fax,
+  email,
+  socialMediaLinks,
+  pdf,
+  vizibility,
+  offices
+}) {
 
 
   return (
@@ -89,6 +90,26 @@ export default function InfoCard(props) {
                   <FontAwesomeIcon icon={faEnvelope} className="text-white icon-w8px-h20px" />
                   <a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-17px">{` ${email}`}</a>
                 </h5>
+              </li>
+            )}
+            {(offices.length > 0) && (
+              
+              <li className="mb-1">
+                <FontAwesomeIcon icon={faBuilding} className="text-white icon-w8px-h20px d-inline" />
+                {' '}
+                {offices.map((office, index) => (                  
+                    <h5 key={office.id} className="d-inline">
+                      <a href={office.link} className="text-white proxima-regular mail-link ft-17px">
+                        {office.name}
+                      </a>
+                      {(offices.length - 1 !== index) && (
+                        <>
+                           ,
+                          {' '}
+                        </>
+                      )}                                         
+                    </h5>           
+                ))}
               </li>
             )}
           </ul>

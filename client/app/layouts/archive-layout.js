@@ -4,8 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-export default function ArchiveLayout(props) {
-  const { header, body, sidebar } = props;
+export default function ArchiveLayout({ header, body, sidebar }) {
 
   return (
     <Container>

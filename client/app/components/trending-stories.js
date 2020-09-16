@@ -19,8 +19,7 @@ function createUserName(username) {
   return urlify(userName.toLowerCase());
 }
 
-export default function TrendingStories(props) {
-  const { title, content } = props;
+export default function TrendingStories({ title, content }) {
 
   return (
     <div className="w-100 mt-4">

@@ -61,6 +61,7 @@ function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTi
 }
 
 export default function Attorney({ bio }) {
+  console.table(bio);
   const router = useRouter();
   let newsEventArticles = [];
   let filterHeaders;
@@ -151,6 +152,7 @@ export default function Attorney({ bio }) {
                   socialMediaLinks={bio.socialMediaLinks}
                   pdf={bio.pdf}
                   vizibility={bio.vizibility}
+                  offices={bio.offices}
                 />
               )}
             />

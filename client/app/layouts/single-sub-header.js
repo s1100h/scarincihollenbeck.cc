@@ -15,8 +15,7 @@ const HeaderBckGround = styled.div`
   ${props => props.height}
 `;
 
-export default function SingleSubHeader(props) {
-  const { title, subtitle, image, height } = props;
+export default function SingleSubHeader({ title, subtitle, image, height }) {
   
   return (
     <HeaderBckGround image={image} height={height} className="jumbotron jumbotron-fluid d-print-none">

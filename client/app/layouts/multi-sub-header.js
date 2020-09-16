@@ -14,8 +14,7 @@ const HeaderBckGround = styled.div`
   min-height: ${props => props.height}
 `;
 
-export default function MultiSubHeader(props) {
-  const { profile, infoCard, image, height } = props;
+export default function MultiSubHeader({ profile, infoCard, image, height }) {
 
   return (
     <HeaderBckGround image={image} height={height} className="jumbotron jumbotron-fluid">
