@@ -885,7 +885,25 @@
     { "source": "/firm-news/uncategorized/sec-proposes-new-rules-for-investment-advisers", "destination": "/law-firm-insights/sec-proposes-new-rules-for-investment-advisers", "statusCode": 301},
     { "source": "/news/quick-news/roberts-opinion-upholds-obamacare-rejects-strict-interpretation", "destination": "/quick-news/roberts-opinion-upholds-obamacare-rejects-strict-interpretation", "statusCode": 301},
     { "source": "/quick-news/why-intellectual-property-considerations-are-always-important/amp", "destination": "/quick-news/why-intellectual-property-considerations-are-always-important", "statusCode": 301},
-    { "source": "/law-firm-insights/business-tax-extenders-may-made-permanent", "destination": "/law-firm-insights/business-tax-extenders-may-made-permanent", "statusCode": 301}     
-    
+    { "source": "/client-alert/parsonage-allowance-issue", "destination": "/law-firm-insights/parsonage-allowance-issue", "statusCode": 301},
+    { "source": "/client-alert/environmental-justice-conference", "destination": "/firm-news/environmental-justice-conference", "statusCode": 301},
+    { "source": "/client-alert/bea-filings-guide", "destination": "/law-firm-insights/bea-filings-guide", "statusCode": 301},
+    { "source": "/client-alert/ncaas-attempt-amateurism", "destination": "/law-firm-insights/ncaas-attempt-amateurism", "statusCode": 301},
+    { "source": "/category/microblog/Congratulations/page/15", "destination": "/category/firm-news/congratulations", "statusCode": 301},
+    { "source": "/client-alert/96th-annual-naffs-convention", "destination": "/firm-news/96th-annual-naffs-convention", "statusCode": 301},
+    { "source": "/client-alert/employee-handbook-updates-2017", "destination": "/law-firm-insights/employee-handbook-updates-2017", "statusCode": 301},
+    { "source": "/news/uncategorized/crowdfunding-benefit-entertainment-industry", "destination": "/law-firm-insights/crowdfunding-benefit-entertainment-industry", "statusCode": 301},
+    { "source": "client-alert/licensed-site-professional-relationships", "destination": "/firm-news/licensed-site-professional-relationships", "statusCode": 301},
+    { "source": "/client-alert/uspto-greenlights-cannabis-trademarks", "destination": "/law-firm-insights/uspto-greenlights-cannabis-trademarks", "statusCode": 301},
+    { "source": "/client-alert/employer-flu-shot-questions", "destination": "/law-firm-insights/employer-flu-shot-questions", "statusCode": 301},
+    { "source": "/client-alert/irs-fbar-penalty-case", "destination": "/law-firm-insights/irs-fbar-penalty-case", "statusCode": 301},            
+    { "source": "/client-alert/sec-guidance-board-diversity", "destination": "/law-firm-insights/sec-guidance-board-diversity", "statusCode": 301},
+    { "source": "/client-alert/radioshack-files-for-bankruptcy", "destination": "/law-firm-insights/radioshack-files-for-bankruptcy", "statusCode": 301},
+    { "source": "/client-alert/martha-stewart-infringement-suit", "destination": "/law-firm-insights/martha-stewart-infringement-suit", "statusCode": 301},
+    { "source": "/client-alert/nfl-fair-labor-standards-act", "destination": "/law-firm-insights/nfl-fair-labor-standards-act", "statusCode": 301},
+    { "source": "/client-alert/ny-expands-workplace-harassment-protections", "destination": "/law-firm-insights/ny-expands-workplace-harassment-protections", "statusCode": 301},
+    { "source": "/client-alert/big-ugly-property-tax-rebate", "destination": "/law-firm-insights/big-ugly-property-tax-rebate", "statusCode": 301},
+    { "source": "/f-squared-filing-for-bankruptcy/f-squared", "destination": "/law-firm-insights/business-law/bankruptcy-creditors-rights/f-squared-filing-for-bankruptcy", "statusCode": 301},
+    { "source": "/client-alert/muslim-discrimination-in-the-workplace", "destination": "/law-firm-insights/muslim-discrimination-in-the-workplace", "statusCode": 301}    
   ]
 }

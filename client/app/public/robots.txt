@@ -11,4 +11,6 @@ Disallow: /uncategorized
 Disallow: /firm-news/uncategorized/*
 Disallow: /firm-news/uncategorized
 Disallow: /staging/
+Disallow: /firm-news/congratulations/*
+Disallow: /news/*
 Sitemap: https://scarincihollenbeck.com/sitemap.xml
