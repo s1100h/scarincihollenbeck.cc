@@ -1,9 +1,7 @@
 
 import Link from 'next/link';
 
-export default function Practices(props) {
-  const { corePractices } = props;
-
+export default function Practices({ corePractices }) {
   return (
     <div>
       <h4 className="red-title h5">Core Practices</h4>

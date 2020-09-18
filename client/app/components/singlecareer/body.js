@@ -1,9 +1,7 @@
 import CareerForm from '../career-form';
 import { createMarkup } from '../../utils/helpers';
 
-export default function Body(props) {
-  const { title, position, contact } = props;
-
+export default function Body({ title, position, contact }) {
   return (
     <>
       <div className="p-2 mt-3 bg-light-gray w-100">

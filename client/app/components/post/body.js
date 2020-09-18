@@ -6,20 +6,17 @@ import SocialShareFooter from './social-share-footer';
 import AuthorBio from './author-bio';
 import { createMarkup, urlify } from '../../utils/helpers';
 
-export default function Body(props) {
-  const {
-    featuredImage,
-    content,
-    author,
-    eventCat,
-    date,
-    title,
-    tags,
-    subTitle,
-    caption
-  } = props;
-
-
+export default function Body({
+  featuredImage,
+  content,
+  author,
+  eventCat,
+  date,
+  title,
+  tags,
+  subTitle,
+  caption
+}) {
   return (
     <>
       <Breadcrumbs title={title} />

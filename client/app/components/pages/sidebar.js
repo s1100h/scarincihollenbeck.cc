@@ -2,9 +2,7 @@ import Search from '../search';
 import TrendingStories from '../trending-stories';
 import SubscriptionMessage from '../subscription-message';
 
-export default function Sidebar(props) {
-  const { posts, covidPage } = props;
-
+export default function Sidebar({ posts, covidPage }) {
   return (
     <>
       <Search />

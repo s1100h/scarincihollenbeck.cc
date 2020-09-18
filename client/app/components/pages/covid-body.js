@@ -1,9 +1,8 @@
 import ContactForm from '../contact-form';
 import { createMarkup } from '../../utils/helper';
 
-export default function CovidBody(props) {
-  const { content, covidPosts, articleTitle } = props;
-
+export default function CovidBody({ content, covidPosts, articleTitle }) {
+  
   return (
     <div>
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />

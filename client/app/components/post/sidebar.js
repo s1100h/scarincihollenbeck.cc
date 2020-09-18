@@ -4,9 +4,7 @@ import Search from '../search';
 import TrendingStories from '../trending-stories';
 import SubscriptionMessage from '../subscription-message';
 
-export default function Sidebar(props) {
-  const { posts, attorneys } = props;
-
+export default function Sidebar({ posts, attorneys }) {
   return (
     <div className="d-print-none">
       <Search />

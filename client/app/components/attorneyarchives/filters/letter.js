@@ -1,9 +1,7 @@
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-export default function Letter(props) {
-  const { alphabet, letterClick } = props;
-
+export default function Letter({ alphabet, letterClick }) {
   return (
     <Col sm={12} md={10}>
       <ul className="list-inline ml-4 mb-0">

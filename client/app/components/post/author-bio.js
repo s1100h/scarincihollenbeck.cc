@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import { createMarkup, addRandomKey } from '../../utils/helpers';
 
-export default function AuthorBio(props) {
-  const { author } = props;
-
+export default function AuthorBio({ author }) {
   return (
     <div className="w-100 d-print-none mt-5">
       {

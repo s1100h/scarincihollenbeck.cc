@@ -4,9 +4,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { createMarkup } from '../../utils/helpers';
 
-export default function AboutAuthor(props) {
-  const { bio } = props;
-
+export default function AboutAuthor({ bio }) {
   return (
     <div className="w-100 mt-5">
       <div className="sidebar-title">

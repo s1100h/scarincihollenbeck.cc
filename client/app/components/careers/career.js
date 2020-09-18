@@ -2,18 +2,16 @@ import { sortByKey } from '../../utils/helpers';
 import FilterForms from './filter-forms';
 import Results from './results';
 
-export default function CareerSection(props) {
-  const {
-    careers,
-    keyword,
-    filterTerm,
-    location,
-    type,
-    selectOption,
-    career,
-    clearFilter,
-  } = props;
-
+export default function CareerSection({
+  careers,
+  keyword,
+  filterTerm,
+  location,
+  type,
+  selectOption,
+  career,
+  clearFilter,
+}) {
   const sortPositions = sortByKey(careers, 'title');
   const locations = careers.map((p) => p.positionLocation);
   const positionType = careers.map((p) => p.positionType);

@@ -3,11 +3,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from '../attorney-card';
 
-export default function FirmMembers(props) {
-  const {
-    title, members, type, slug,
-  } = props;
-
+export default function FirmMembers({
+  title,
+  members,
+  type,
+  slug,
+}) {
   return (
     <div className="w-100 mt-5 px-3">
       <h4 className="red-title border-bottom text-uppercase">{title}</h4>

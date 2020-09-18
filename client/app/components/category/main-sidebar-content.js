@@ -1,6 +1,4 @@
-export default function MainSidebarContent(props) {
-  const { latest } = props;
-
+export default function MainSidebarContent({ latest }) {
   return (
     <ul className="no-dots mx-3 mt-0">
       {latest.map((val) => (

@@ -5,15 +5,14 @@ import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
 import NewsScroller from './news-scroller';
 
-export default function QuickNewsBody(props) {
-  const {
-    results,
-    pages,
-    currentPage,
-    news,
-    insight,
-    events,
-  } = props;
+export default function QuickNewsBody({
+  results,
+  pages,
+  currentPage,
+  news,
+  insight,
+  events,
+}) {
 
   function handlePagination(e, page) {
     e.preventDefault();

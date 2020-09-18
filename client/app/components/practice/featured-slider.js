@@ -4,9 +4,7 @@ import Col from 'react-bootstrap/Col';
 import SimpleNewsArticlesCarousel from '../carousels/simple-news-articles-carousel';
 import { addRandomKey } from '../../utils/helpers';
 
-export default function FeaturedSlider(props) {
-  const { content } = props;
-
+export default function FeaturedSlider({ content }) {
   const firstEightArticles = content.filter((p, i) => i < 8);
 
   return (

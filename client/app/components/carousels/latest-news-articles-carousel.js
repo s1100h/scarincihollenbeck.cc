@@ -30,9 +30,7 @@ function limitTitleLength(title) {
   return title;
 }
 
-export default function LatestNewsArticlesCarousel(props) {
-  const { slides } = props;
-
+export default function LatestNewsArticlesCarousel({ slides }) {
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (

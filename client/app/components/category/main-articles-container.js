@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-export default function MainArticlesContainer(props) {
-  const { main } = props;
-
+export default function MainArticlesContainer({ main }) {
   return (
     <article>
       { main.map((val) => (

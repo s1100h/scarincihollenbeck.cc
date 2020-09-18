@@ -23,9 +23,7 @@ const responsive = {
   },
 };
 
-export default function OfficeLocationCarousel(props) {
-  const { slides } = props;
-
+export default function OfficeLocationCarousel({ slides }) {
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (

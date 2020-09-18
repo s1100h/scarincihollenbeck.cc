@@ -2,13 +2,11 @@ import TabPane from 'react-bootstrap/TabPane';
 import Table from 'react-bootstrap/Table';
 import { createMarkup, addRandomKey } from '../../utils/helpers';
 
-export default function TableTab(props) {
-  const {
-    title,
-    tabTitle,
-    content,
-  } = props;
-
+export default function TableTab({
+  title,
+  tabTitle,
+  content,
+}) {
   return (
     <TabPane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>

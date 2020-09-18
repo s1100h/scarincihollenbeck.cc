@@ -6,14 +6,12 @@ import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 import useInput from '../utils/input-hook';
 
-function SubscriptionPageForm(props) {
+export default function SubscriptionPageForm() {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
-
   const [categories, setCategories] = useState([]);
   const [captcha, setCaptcha] = useState(true);
-  const [message, setMessage] = useState(false);
 
 
   const router = useRouter();
@@ -48,6 +46,8 @@ function SubscriptionPageForm(props) {
       resetEmailInput();
       resetCategoryInput();
       setCategories([]);
+      alert('Thank you for subscribing!');
+      setCaptcha(true);
     }
   };
 
@@ -87,7 +87,6 @@ function SubscriptionPageForm(props) {
         </Form.Group>
         <div className="modal-footer justify-content-start">
           <FormReCaptcha setCaptcha={setCaptcha} />
-          {(message) && <p className="text-success proxima-bold mx-auto">Thank you for subscribing!</p>}
           <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
         </div>
       </Form>
@@ -95,5 +94,3 @@ function SubscriptionPageForm(props) {
 
   );
 }
-
-export default SubscriptionPageForm;

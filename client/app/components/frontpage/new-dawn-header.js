@@ -17,7 +17,7 @@ const HeaderBackground = styled.div`
   clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
 `;
 
-export default function NewDawnHeader(props) {
+export default function NewDawnHeader() {
   return (
     <HeaderBackground image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/07/new-dawn-nj-compressor.jpg" className="jumbotron jumbotron-fluid">
       <Container className="animated fadeInUp fast mt-4 bg-black-background--darker">

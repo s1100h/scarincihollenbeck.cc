@@ -24,9 +24,7 @@ function Post(content, {
   );
 }
 
-export default function RelatedArticlesTab(props) {
-  const { tabTitle, title, content } = props;
-
+export default function RelatedArticlesTab({ tabTitle, title, content }) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>

@@ -1,7 +1,6 @@
 import ReCAPTCHA from 'react-google-recaptcha';
 
-export default function FormReCaptcha(props) {
-  const { setCaptcha } = props;
+export default function FormReCaptcha({ setCaptcha }) {
   function onChange(value) {
     if (value) {
       setCaptcha(false);

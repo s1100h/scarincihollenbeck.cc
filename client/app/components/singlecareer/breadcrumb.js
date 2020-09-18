@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 
-export default function BreadCrumb(props) {
-  const { title } = props;
+export default function BreadCrumb({ title }) {
   const router = useRouter();
 
   return (

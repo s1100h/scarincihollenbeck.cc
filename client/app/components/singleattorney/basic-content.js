@@ -6,9 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { createMarkup } from '../../utils/helpers';
 
 
-export default function BasicContent(props) {
-  const { tabTitle, title, content } = props;
-
+export default function BasicContent({ tabTitle, title, content }) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>

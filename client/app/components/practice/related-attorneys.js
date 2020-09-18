@@ -4,11 +4,12 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import AttorneyCard from '../attorney-card';
 
-export default function RelatedAttorneys(props) {
-  const {
-    members, chair, title, handleLink,
-  } = props;
-
+export default function RelatedAttorneys({
+  members,
+  chair,
+  title,
+  handleLink,
+}) {
   return (
     <>
       { (chair.length > 0) && (

@@ -1,8 +1,7 @@
 import LatestNewsArticlesCarousel from './carousels/latest-news-articles-carousel';
 import { sortByKey } from '../utils/helpers';
 
-export default function NewsScroller(props) {
-  const { title, articles } = props;
+export default function NewsScroller({ title, articles }) {
   const sortedPosts = sortByKey(articles, 'date');
 
   return (

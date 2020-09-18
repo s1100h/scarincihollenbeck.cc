@@ -45,15 +45,12 @@ function LocationHeaderToggle({ children, eventKey, callback }) {
 }
 
 
-export default function SidebarContent(props) {
-  const {
-    offices,
-    posts,
-    title,
-    startingKey,
-  } = props;
-
-
+export default function SidebarContent({
+  offices,
+  posts,
+  title,
+  startingKey,
+}) {
   const officeList = sortByKey(offices, 'title');
   const currentEventKey = useContext(AccordionContext);
 

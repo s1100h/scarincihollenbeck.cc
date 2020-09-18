@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import FormReCaptcha from './google-recaptcha-button';
 import useInput from '../utils/input-hook';
 
-function ContactForm() {
+export default function ContactForm() {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
@@ -44,7 +44,6 @@ function ContactForm() {
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/contact/form', headers);
     const status = await request.status;
     if (status === 200) {
-      setSuccessMessage(true);
       resetDisclaimerInput();
       resetLastNameInput();
       resetFirstNameInput();
@@ -52,6 +51,8 @@ function ContactForm() {
       resetPhoneInput();
       resetSubjectInput();
       resetMessageInput();
+      alert('Thank you for your inquiry one of our representative will reach out to you shortly!');
+      setCaptcha(true);      
     }
   }
 
@@ -151,11 +152,8 @@ function ContactForm() {
           />
         </Form.Group>
         <FormReCaptcha setCaptcha={setCaptcha} />
-        {(successMessage) && <p className="text-success m-2 proxima-bold">Thank you for your inquiry one of our representative will reach out to you shortly!</p>}
         <Button variant="danger" className="ml-2 w-25 mt-2" type="submit" disabled={captcha}>Submit form</Button>
       </Form>
     </>
   );
 }
-
-export default ContactForm;

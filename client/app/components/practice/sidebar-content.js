@@ -36,11 +36,12 @@ function HeaderToggle({ children, eventKey, callback }) {
 }
 
 
-export default function SidebarContent(props) {
-  const {
-    title, content, tabKey, linkType,
-  } = props;
-
+export default function SidebarContent({
+  title,
+  content,
+  tabKey,
+  linkType,
+}) {
   return (
     <>
       <Accordion defaultActiveKey={2} className="mt-4">

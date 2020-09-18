@@ -29,9 +29,7 @@ function AttorneyCards(title, content) {
   );
 }
 
-export default function NotFiltered(props) {
-  const { attorneys } = props;
-
+export default function NotFiltered({ attorneys }) {
   // managing partners
   const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
 

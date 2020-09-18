@@ -11,19 +11,18 @@ import Title from './title';
 import Location from './location';
 import MobileMenu from './mobile-menu';
 
-export default function Filter(props) {
-  const {
-    practices,
-    alphabet,
-    locations,
-    designation,
-    userInput,
-    handleChange,
-    onSelect,
-    letterClick,
-    clearAll,
-    onMobileSelect,
-  } = props;
+export default function Filter({
+  practices,
+  alphabet,
+  locations,
+  designation,
+  userInput,
+  handleChange,
+  onSelect,
+  letterClick,
+  clearAll,
+  onMobileSelect,
+}) {
 
   return (
     <>

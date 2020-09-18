@@ -38,13 +38,12 @@ function HeaderToggle({ children, eventKey, callback }) {
   );
 }
 
-export default function Matters(props) {
+export default function Matters({
+  content,
+  title,
+  tabTitle,
+}) {
   const [repOpen, setRepOpen] = useState(false);
-  const {
-    content,
-    title,
-    tabTitle,
-  } = props;
 
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>

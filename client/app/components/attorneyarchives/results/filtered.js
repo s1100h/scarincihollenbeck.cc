@@ -5,14 +5,12 @@ import AttorneyCard from '../../attorney-card';
 import { filterByKey } from '../../../utils/helpers';
 
 
-export default function Filtered(props) {
-  const {
-    attorneys,
-    userInput,
-    select,
-  } = props;
-
-
+export default function Filtered({
+  attorneys,
+  userInput,
+  select,
+}) {
+  
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');

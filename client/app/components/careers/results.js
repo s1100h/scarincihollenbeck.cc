@@ -4,9 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { urlify } from '../../utils/helpers';
 
-export default function Results(props) {
-  const { positions } = props;
-
+export default function Results({ positions }) {
   return (
     <div className="w-100 border mt-0">
       <Container className="mt-2">

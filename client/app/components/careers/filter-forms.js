@@ -6,20 +6,17 @@ import Form from 'react-bootstrap/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 
-export default function FilterForms(props) {
-  const {
-    locations,
-    positionType,
-    keyword,
-    filterTerm,
-    location,
-    type,
-    selectOption,
-    clearFilter,
-  } = props;
-
+export default function FilterForms({
+  locations,
+  positionType,
+  keyword,
+  filterTerm,
+  location,
+  type,
+  selectOption,
+  clearFilter,
+}) {
   const removeDuplicates = (list) => list.filter((v, i) => list.indexOf(v) === i);
-
   const locs = removeDuplicates(locations);
   const typs = removeDuplicates(positionType);
 

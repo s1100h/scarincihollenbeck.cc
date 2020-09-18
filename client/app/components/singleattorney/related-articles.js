@@ -4,9 +4,7 @@ import Col from 'react-bootstrap/Col';
 import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
 import { addRandomKey } from '../../utils/helpers';
 
-export default function RelatedArticles(props) {
-  const { title, content } = props;
-
+export default function RelatedArticles({ title, content }) {
   return (
     <div className="mt-4 w-100 d-block attorney-news-slider">
       <div className="line-header mb-4">

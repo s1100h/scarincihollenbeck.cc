@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Selected(props) {
-  const {
-    select,
-    userInput,
-    clearQuery,
-  } = props;
-
+export default function Selected({
+  select,
+  userInput,
+  clearQuery,
+}) {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
   return (

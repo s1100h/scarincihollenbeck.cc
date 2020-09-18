@@ -1,9 +1,7 @@
 import ContactForm from '../contact-form';
 import { createMarkup } from 'utils/helpers';
 
-export default function Body(props) {
-  const { content } = props;
-
+export default function Body({ content }) {
   return (
     <>
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />

@@ -2,9 +2,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 
-export default function Location(props) {
-  const { locations, onSelect } = props;
-
+export default function Location({ locations, onSelect }) {
   return (
     <NavDropdown
       title={(

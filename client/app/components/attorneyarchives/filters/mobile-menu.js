@@ -1,12 +1,11 @@
 import Form from 'react-bootstrap/Form';
 
-export default function MobileMenu(props) {
-  const {
-    content,
-    onMobileSelect,
-    title,
-    name,
-  } = props;
+export default function MobileMenu({
+  content,
+  onMobileSelect,
+  title,
+  name,
+}) {
 
   return (
     <Form onChange={onMobileSelect} className="my-2">

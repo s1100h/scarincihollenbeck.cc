@@ -7,14 +7,12 @@ import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 import useInput from '../utils/input-hook';
 
-function SubscriptionFormNoButton(props) {
+export default function SubscriptionFormNoButton() {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
-
   const [categories, setCategories] = useState([]);
   const [captcha, setCaptcha] = useState(true);
-  const [message, setMessage] = useState(false);
 
   const handleClose = () => {
     setShow(false);
@@ -51,6 +49,8 @@ function SubscriptionFormNoButton(props) {
       resetLastNameInput();
       resetEmailInput();
       setCategories([]);
+      alert('Thank you for subscribing!');
+      setCaptcha(true);
     }
   };
 
@@ -108,5 +108,3 @@ function SubscriptionFormNoButton(props) {
 
   );
 }
-
-export default SubscriptionFormNoButton;

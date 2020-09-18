@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import SubscriptionFormColumn from '../subscription-form-column';
 
-export default function ColumnContent(props) {
-  const {
-    colOneTitle, colOneContent, colTwoTitle, colTwoContent,
-  } = props;
-
+export default function ColumnContent({
+  colOneTitle,
+  colOneContent,
+  colTwoTitle,
+  colTwoContent,
+}) {
   return (
     <div className="container mt-5">
       <div className="row">

@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { makeTitle } from '../../utils/helpers';
 
-function Breadcrumbs(props) {
-  const { title } = props;
+function Breadcrumbs({ title }) {
   const router = useRouter();
 
   const currentUrl = router.asPath.split('/');

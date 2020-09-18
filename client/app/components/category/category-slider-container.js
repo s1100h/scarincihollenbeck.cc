@@ -1,8 +1,6 @@
 import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
 
-export default function CategorySliderContainer(props) {
-  const { title, slides } = props;
-
+export default function CategorySliderContainer({ title, slides }) {
   return (
     <div className="mt-5 category-slider-content">
       <div className="line-header">

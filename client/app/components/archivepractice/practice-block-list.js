@@ -5,8 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export default function PracticeBlockList(props) {
-  const { list } = props;
+export default function PracticeBlockList({ list }) {
 
   return (
     <Container className="mt-5">

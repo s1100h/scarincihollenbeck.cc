@@ -6,9 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { addRandomKey } from '../../../utils/helpers';
 
-function PracticeListItem(props) {
-  const { title, onSelect, pChildren } = props;
-
+function PracticeListItem({ title, onSelect, pChildren }) {
   return (
     <>
       <p className="practice-title">

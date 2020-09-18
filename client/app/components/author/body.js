@@ -9,16 +9,15 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
 import NewsScroller from '../news-scroller';
 import { urlify } from '../../utils/helpers';
 
-export default function Body(props) {
-  const {
-    results,
-    pages,
-    term,
-    currentPage,
-    news,
-    insight,
-    events,
-  } = props;
+export default function Body({
+  results,
+  pages,
+  term,
+  currentPage,
+  news,
+  insight,
+  events,
+}) {
 
   function handlePagination(e, page) {
     e.preventDefault();

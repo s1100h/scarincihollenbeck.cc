@@ -140,6 +140,6 @@ export async function getServerSideProps({ params, res }) {
     props: {
       practice,
       corePractices,
-    },
+    }
   };
 }

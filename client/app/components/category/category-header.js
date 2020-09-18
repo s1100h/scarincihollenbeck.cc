@@ -1,7 +1,6 @@
 import { createMarkup, makeTitle } from '../../utils/helpers';
 
-export default function CategoryHeader(props) {
-  const { title, content } = props;
+export default function CategoryHeader({ title, content }) {
   const categorySlug = title.split('/');
   const categoryTitle = categorySlug[categorySlug.length - 1];
 

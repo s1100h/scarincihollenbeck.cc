@@ -6,14 +6,12 @@ import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 import useInput from '../utils/input-hook';
 
-export default function SubscriptionFormColumn(props) {
+export default function SubscriptionFormColumn() {
   const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
   const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
   const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
-
   const [categories, setCategories] = useState([]);
   const [captcha, setCaptcha] = useState(true);
-  const [message, setMessage] = useState(false);
 
   const router = useRouter();
 
@@ -40,12 +38,13 @@ export default function SubscriptionFormColumn(props) {
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/subscription/form', headers);
     const status = await request.status;
 
-    if (status === 200) {
-      setMessage(true);
+    if (status === 200) {      
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
       setCategories([]);
+      alert('Thank you for subscribing!');
+      setCaptcha(true);
     }
   };
 
@@ -84,7 +83,6 @@ export default function SubscriptionFormColumn(props) {
         </Form.Group>
         <div className="modal-footer">
           <FormReCaptcha setCaptcha={setCaptcha} className="float-right" />
-          {(message) && <p className="text-success proxima-bold mx-auto">Thank you for subscribing!</p>}
           <Button type="submit" variant="danger" disabled={captcha}>Submit</Button>
         </div>
       </Form>

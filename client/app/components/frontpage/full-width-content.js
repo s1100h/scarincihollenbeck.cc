@@ -1,9 +1,7 @@
 import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
 import OfficeLocationCarousel from '../carousels/office-location-carousel';
 
-export default function FullWidthContent(props) {
-  const { sortedPosts, sortedLocations } = props;
-
+export default function FullWidthContent({ sortedPosts, sortedLocations }) {
   return (
     <div className="row">
     <div className="col-sm-12 mt-5 px-0">

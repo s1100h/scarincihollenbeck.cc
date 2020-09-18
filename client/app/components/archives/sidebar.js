@@ -2,9 +2,7 @@ import Search from '../search';
 import AboutFirm from '../about-firm';
 import TrendingStories from '../trending-stories';
 
-export default function SideBar(props) {
-  const { trending } = props;
-
+export default function SideBar({ trending }) {
   return (
     <div>
       <Search />

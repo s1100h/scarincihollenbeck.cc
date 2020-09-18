@@ -17,8 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrint } from '@fortawesome/free-solid-svg-icons/faPrint';
 import { printScreen } from '../../utils/helpers';
 
-function SocialShareSidebar(props) {
-  const { title } = props;
+function SocialShareSidebar({ title }) {
   const router = useRouter();
   const to = '';
 

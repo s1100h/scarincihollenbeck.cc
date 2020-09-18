@@ -24,7 +24,7 @@ const HeaderBackground = styled.div`
   clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
 `;
 
-export default function CoronaHeader(props) {
+export default function CoronaHeader() {
 
   return (
     <HeaderBackground image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/corona-virus-background-compressor.png" className="jumbotron jumbotron-fluid">

@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import { makeTitle } from '../../utils/helpers';
 
-export default function BreadCrumb(props) {
-  const { title } = props;
+export default function BreadCrumb({ title }) {
   const router = useRouter();
   const currentPath = router.asPath.split('/');
   const breadCrumbPath = currentPath.filter((path) => path !== '' && path !== 'category');

@@ -4,14 +4,12 @@ import Col from 'react-bootstrap/Col';
 import AttorneyCard from '../attorney-card';
 import { sortByKey } from '../../utils/helpers';
 
-export default function BodyContent(props) {
-  const {
-    attorneys,
-    practices,
-    map,
-    title,
-  } = props;
-
+export default function BodyContent({
+  attorneys,
+  practices,
+  map,
+  title,
+}) {
   const sortedAttorneys = sortByKey(attorneys, 'lastName');
 
   return (

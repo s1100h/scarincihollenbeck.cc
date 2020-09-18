@@ -15,9 +15,9 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
-function SocialShareFooter(props) {
-  const { title } = props;
+function SocialShareFooter({ title }) {
   const router = useRouter();
+ 
   return (
     <>
       <div className="line-header d-print-none mt-5">

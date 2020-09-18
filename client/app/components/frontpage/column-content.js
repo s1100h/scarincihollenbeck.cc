@@ -4,9 +4,7 @@ import About from './about';
 import Practices from './practices';
 import Categories from './categories';
 
-export default function ColumnContent(props) {
-  const { corePractices } = props;
-
+export default function ColumnContent({ corePractices }) {
   return (
     <Row>
       <Col sm={12} className="px-0">

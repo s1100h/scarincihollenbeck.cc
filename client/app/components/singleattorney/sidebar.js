@@ -36,9 +36,7 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
   );
 }
 
-export default function SidebarContent(props) {
-  const { title, content, itemKey } = props;
-
+export default function SidebarContent({ title, content, itemKey }) {
   return (
     <>
       <Accordion defaultActiveKey={2}>

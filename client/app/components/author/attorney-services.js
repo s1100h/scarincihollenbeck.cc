@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-export default function AttorneyServices(props) {
-  const { bio, practices } = props;
-
+export default function AttorneyServices({ bio, practices }) {
   return (
     <div className="w-100 mt-5">
       <div className="sidebar-title">

@@ -3,19 +3,17 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import Link from 'next/link';
 
-export default function AttorneyCard(props) {
-  const {
-    link,
-    image,
-    name,
-    title,
-    number,
-    email,
-    height,
-    width,
-    type,
-  } = props;
-
+export default function AttorneyCard({
+  link,
+  image,
+  name,
+  title,
+  number,
+  email,
+  height,
+  width,
+  type,
+}) {
   return (
     <div className="d-flex flex-row attorney-card" height={height}>
       <Link href={type} as={link}>

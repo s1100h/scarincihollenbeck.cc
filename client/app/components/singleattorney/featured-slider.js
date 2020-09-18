@@ -5,9 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
 
-export default function FeaturedSlider(props) {
-  const { content, title } = props;
-
+export default function FeaturedSlider({ content, title }) {
   return (
     <div className="mt-4 w-100 d-block attorney-news-slider">
       <div className="line-header mb-3">

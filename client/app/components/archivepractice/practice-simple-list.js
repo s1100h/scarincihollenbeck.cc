@@ -1,5 +1,4 @@
-export default function SimpleList(props) {
-  const { list } = props;
+export default function SimpleList({ list }) {
   return (
     <div className="mt-5">
       <ul className="blue-title column-list">

@@ -2,15 +2,14 @@ import { addRandomKey, createMarkup } from '../../utils/helpers';
 import Search from '../search';
 import SubscriptionMessage from '../subscription-message';
 
-export default function EventSidebar(props) {
-  const {
-    attorneys,
-    show,
-    eventDetails,
-    toggleModal,
-  } = props;
-
+export default function EventSidebar({
+  attorneys,
+  show,
+  eventDetails,
+  toggleModal,
+}) {
   const eDetails = eventDetails[0];
+
   return (
     <div className="d-print-none">
       <Search />

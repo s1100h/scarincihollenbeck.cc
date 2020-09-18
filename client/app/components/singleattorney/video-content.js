@@ -16,14 +16,11 @@ function VideoPost(content, {
     </li>
   );
 }
-export default function VideoTab(props) {
-  const {
-    tabTitle,
-    title,
-    content,
-  } = props;
-
-
+export default function VideoTab({
+  tabTitle,
+  title,
+  content,
+}) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>
