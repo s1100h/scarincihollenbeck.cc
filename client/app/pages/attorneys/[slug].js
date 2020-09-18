@@ -154,6 +154,7 @@ export default function Attorney({ bio }) {
                   email={bio.email}
                   socialMediaLinks={bio.socialMediaLinks}
                   pdf={bio.pdf}
+                  offices={bio.offices}
                   vizibility={bio.vizibility}
                 />
               )}

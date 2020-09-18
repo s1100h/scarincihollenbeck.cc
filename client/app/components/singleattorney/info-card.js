@@ -92,8 +92,7 @@ export default function InfoCard({
                 </h5>
               </li>
             )}
-            {(offices.length > 0) && (
-              
+            {(offices.length > 0) && (              
               <li className="mb-1">
                 <FontAwesomeIcon icon={faBuilding} className="text-white icon-w8px-h20px d-inline" />
                 {' '}
