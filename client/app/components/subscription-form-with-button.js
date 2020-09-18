@@ -119,7 +119,6 @@ export default function SubscriptionFormWithButton() {
             </Form.Group>
             <div className="modal-footer">
               <FormReCaptcha setCaptcha={setCaptcha} className="float-right" />
-              {(message) && <p className="text-success proxima-bold mx-auto">Thank you for subscribing!</p>}
               <Button type="button" variant="secondary" className="proxima-bold" onClick={handleClose}>Close</Button>
               <Button type="submit" variant="danger" disabled={captcha}>Submit</Button>
             </div>
