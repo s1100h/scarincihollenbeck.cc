@@ -51,7 +51,6 @@ export default function SubscriptionFormWithButton() {
     const status = await request.status;
 
     if (status === 200) {
-      setMessage(true);
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();

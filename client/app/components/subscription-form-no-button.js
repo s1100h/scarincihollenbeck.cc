@@ -44,7 +44,6 @@ export default function SubscriptionFormNoButton() {
     const status = await request.status;
 
     if (status === 200) {
-      setMessage(true);
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
