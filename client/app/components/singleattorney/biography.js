@@ -1,7 +1,6 @@
  import React, { useContext } from 'react';
 import TabPane from 'react-bootstrap/TabPane';
 import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
 import AccordionContext from 'react-bootstrap/AccordionContext';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { createMarkup } from '../../utils/helpers';

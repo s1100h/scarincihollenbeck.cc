@@ -14,7 +14,7 @@ function BreadCrumbs(props, router) {
       <strong className="text-black mt-2 mx-2 proxima-bold">
         <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
       </strong>
-      { breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
+      {breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
         <span key={val}>
           <span className="red-title proxima-bold text-uppercase">
             { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }

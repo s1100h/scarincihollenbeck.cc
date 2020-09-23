@@ -76,7 +76,7 @@ export default function ContactForm() {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className="d-print-none">
         <Form.Row>
           <Form.Group as={Col} sm={12} md="6" controlId="validationCustom01">
             <Form.Control

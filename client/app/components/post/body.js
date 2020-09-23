@@ -30,7 +30,7 @@ export default function Body({
       {/* Author & date & Category */}
       <ArticleDetails author={author} date={date} />
       <hr />
-      <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
+      <div className="post-content d-print-block" dangerouslySetInnerHTML={createMarkup(content)} />
       {(tags.length > 0) && (
         <div className="small-excerpt ml--21px mb-0 d-print-none">
           <ul className="no-dots list-inline">
@@ -50,9 +50,9 @@ export default function Body({
       {/* Author bios */}
       <AuthorBio author={author} />
       {/* Contact form */}
-      <div className="w-100 mt-5 hide-print">
-        <h4 className="bg-light-gray">{(eventCat) ? 'Contact Us For More Information On This Event' : 'Contact Practice Representative'}</h4>
-        <div className="mt-5">
+      <div className="w-100 mt-5 d-print-none">
+        <h4 className="bg-light-gray d-print-none">{(eventCat) ? 'Contact Us For More Information On This Event' : 'Contact Practice Representative'}</h4>
+        <div className="mt-5 d-print-none">
           <ContactForm />
         </div>
       </div>

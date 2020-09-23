@@ -92,6 +92,7 @@ export default function CareerForm({ contact, title }) {
 
   async function formSubmit(e) {
     e.preventDefault();
+    
     const careerInquiry = {
       firstName: firstNameInput,
       lastName: lastNameInput,
@@ -108,7 +109,7 @@ export default function CareerForm({ contact, title }) {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      },
+      }
     };
 
     const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/career/form', headers);
