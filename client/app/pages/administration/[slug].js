@@ -76,6 +76,7 @@ export default function SingleAdmin({ adminJson }) {
                   designation={adminJson.Title}
                   phoneNumber={`201-896-4100 ${adminJson.phone_extension}`}
                   socialMediaLinks={adminJson.social_media_links}
+                  offices={adminJson.offices}
                 />
             )}
             />

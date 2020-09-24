@@ -56,11 +56,29 @@ add_action('rest_api_init', function()
         $office_locations[] = $l->post_title;
       }
 
+      $office_id = get_field("location", $id, false);
+      $office_args = array(
+        'post_type' => 'location',
+        'post__in' => $office_id
+    );
+    
+    $office_posts = get_posts($office_args);
+    $office_details = [];
+    
+    foreach($office_posts as $office) {
+      $office_details[] = array(
+        'ID' => $office->ID,
+        'name' => $office->post_title,
+        'link' => '/location/'.$office->post_name,
+      );
+    }
+
       $biography = array(
         "ID" => $id,
         "link" => "/administration/".$admin[0]->post_name,
         "name" => $name,
         "Title" => get_field("Title", $id),
+        "offices" =>  $office_details, 
         "image" => array(
           "url" => $image["url"],
           "altTag" => get_field("name", $id)
