@@ -61,7 +61,6 @@ function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTi
 }
 
 export default function Attorney({ bio }) {
-  console.table(bio);
   const router = useRouter();
   let newsEventArticles = [];
   let filterHeaders;
@@ -145,6 +144,7 @@ export default function Attorney({ bio }) {
                 <InfoCard
                   fullName={bio.fullName}
                   chair={bio.chair}
+                  coChair={bio.coChair}
                   designation={bio.designation}
                   phoneNumber={bio.phoneNumber}
                   fax={bio.fax}

@@ -28,6 +28,8 @@ export default function InfoCard({
 }) {
 
   const attorneyIsChair = (chair !== undefined && chair.length > 0) || (coChair !== undefined && coChair.length > 0);
+  console.table(coChair);
+  console.log('attorneyIsChair', attorneyIsChair);
 
 
   return (
