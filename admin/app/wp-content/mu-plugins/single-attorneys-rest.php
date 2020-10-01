@@ -168,7 +168,7 @@ add_action('rest_api_init', function()
           }
         }
         $co_chair_data = array();
-        $co_chair = get_field("co_chair", $attorney_id);
+        $co_chair = get_field("co-chair", $attorney_id);
         if($co_chair) {
           foreach($co_chair as $d) {
             $co_chair_data[] = array(
