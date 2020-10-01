@@ -16,6 +16,7 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 export default function InfoCard({
   fullName,
   chair,
+  coChair,
   designation,
   phoneNumber,
   fax,
@@ -26,6 +27,8 @@ export default function InfoCard({
   offices
 }) {
 
+  const attorneyIsChair = (chair !== undefined && chair.length > 0) || (coChair !== undefined && coChair.length > 0);
+
 
   return (
     <Col sm={12}>
@@ -33,7 +36,7 @@ export default function InfoCard({
         <span id="red-block" />
         <h1 className="text-white border-bottom">
           { (fullName) && `${fullName} `}
-          { (chair !== undefined && chair.length > 0) && (
+          { (attorneyIsChair) && (
           <span className=" h5 text-white">
             -
             {` ${designation}`}
@@ -42,13 +45,24 @@ export default function InfoCard({
         </h1>
       </div>
       {/** Chair section -- start */}
-      { (chair !== undefined && chair.length > 0) ? (
+      { (attorneyIsChair) ? (
         <div className="my-3">
           { chair.map((ch) => (
-            <h2 key={ch.title} className="text-white ft-style-inherit h5">
+            <h2 key={ch.title} className="text-white ft-style-inherit h5" key={ch.title}>
               <strong>Chair: </strong>
               <a href={ch.link} className="text-white chair-link h5">
                 {ch.title}
+                {' '}
+                Practice
+              </a>
+              <br />
+            </h2>
+          ))}
+          {coChair.map((co) => (
+            <h2 key={coChair.title} className="text-white ft-style-inherit h5" key={co.title}>
+              <strong>Co-Chair: </strong>
+              <a href={co.link} className="text-white chair-link h5">
+                {co.title}
                 {' '}
                 Practice
               </a>
@@ -61,7 +75,7 @@ export default function InfoCard({
           <h2 className="text-white ml--10px h4 ft-style-inherit">{designation}</h2>
         </Col>
       )}
-      {/** Chair section -- end */}
+      {/** Chair section -- end */}     
       {/** Col One phone, email, fax -- start */}
       <Row>
         <Col sm={12} md={6}>

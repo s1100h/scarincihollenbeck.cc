@@ -145,6 +145,7 @@ export default function Attorney({ bio }) {
                 <InfoCard
                   fullName={bio.fullName}
                   chair={bio.chair}
+                  coChair={bio.coChair}
                   designation={bio.designation}
                   phoneNumber={bio.phoneNumber}
                   fax={bio.fax}
