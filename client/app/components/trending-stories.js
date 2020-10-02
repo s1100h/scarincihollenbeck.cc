@@ -27,7 +27,7 @@ export default function TrendingStories({ title, content }) {
         {title}
       </div>
       <ArticleContainer className="off-white">
-        {(content.length > 0) ? content.map((p) => (
+        {(content !== undefined && content.length > 0) ? content.map((p) => (
           <div key={p.ID || addRandomKey(p.title)} className="p-2">
             <a href={p.link} className="top-article">
               <p className="proxima-bold mb-0">{p.title}</p>

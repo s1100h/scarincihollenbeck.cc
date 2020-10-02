@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
+import { fetcher } from 'utils/helpers';
 
 const jiResponsive = {
   superLargeDesktop: {
@@ -30,11 +31,6 @@ const jiResponsive = {
 function formatDate(date) {
   const d = new Date(date);
   return d.toLocaleDateString();
-}
-
-async function fetcher(...args) {
-  const res = await fetch(...args);
-  return res.json();
 }
 
 export default function JustInArticlesCarousel() {

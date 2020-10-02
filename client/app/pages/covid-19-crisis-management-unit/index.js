@@ -6,7 +6,7 @@ import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers } from 'utils/helpers';
 
 export default function Covid19CrisisManagementUnit({
-  title, content, posts, covidPosts, seo,
+  title, content, posts, seo, covidPosts
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -42,21 +42,23 @@ export default function Covid19CrisisManagementUnit({
 }
 
 export async function getServerSideProps() {
-  const [aJson, posts, covidPosts] = await Promise.all([
+  const [aJson, posts, externalPosts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json()),
+    fetch('/api/external-void-article-feed').then((data) => data.json())
   ]);
 
   const { title, content, seo } = aJson;
+
+  console.log(externalPosts);
 
   return {
     props: {
       title,
       content,
       posts,
-      covidPosts,
       seo,
+      covidPosts: externalPosts.data || []
     },
   };
 }
