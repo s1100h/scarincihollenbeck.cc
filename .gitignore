@@ -1,11 +1,3 @@
 .vscode
-.env
-admin/*
-feed/*
-forms/*
-client/app/node_modules/*
-sitemaps/app/node_modules/*
-sitemaps/app/__pycache__/*
 sitemaps/app/env/*
 sitemaps/app/venv/*
-docker-compose.yml
