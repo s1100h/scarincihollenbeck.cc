@@ -10,7 +10,7 @@ async function inquiryMailer(inquiry) {
 		port: 465,
 		secure: true,
 		auth: {
-			type: 'OAuth2',
+			type: 'OAuth2',			
 			user: process.env.GMAIL_ADDRESS,
 			clientId: process.env.GMAIL_OAUTH_CLIENT_ID,
 			clientSecret: process.env.GMAIL_OAUTH_CLIENT_SECRET,
@@ -50,7 +50,6 @@ export default async (req, res) => {
 
       res.status(200).json({ status: 200, response: 'Inquiry process was successful'});
     } catch(error) {
-
       res.status(500).json({status: 500, response: error});
     }
   }
