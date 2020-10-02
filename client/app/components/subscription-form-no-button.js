@@ -51,6 +51,14 @@ export default function SubscriptionFormNoButton() {
       alert('Thank you for subscribing!');
       setCaptcha(true);
     }
+
+    if(status === 404) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
+    }
+
+    if(status === 500) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
+    }
   };
 
   function selectCategory(e) {

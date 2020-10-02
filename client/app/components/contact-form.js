@@ -41,8 +41,9 @@ export default function ContactForm() {
       },
     };
 
-    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/contact/form', headers);
+    const request = await fetch('/api/form-submission-inquiry', headers);
     const status = await request.status;
+
     if (status === 200) {
       resetDisclaimerInput();
       resetLastNameInput();
@@ -53,6 +54,14 @@ export default function ContactForm() {
       resetMessageInput();
       alert('Thank you for your inquiry one of our representative will reach out to you shortly!');
       setCaptcha(true);      
+    }
+
+    if(status === 404) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
+    }
+
+    if(status === 500) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
     }
   }
 

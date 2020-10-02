@@ -35,10 +35,8 @@ async function subscriptionMailer(subscriber) {
     </div>
     `
 	};
- 
-	const sendMailer = await smtpTransport.sendMail(subscriberMessage);
   
-  return sendMailer;
+  return smtpTransport.sendMail(subscriberMessage);
 }
 
 export default async (req, res) => {
@@ -46,9 +44,9 @@ export default async (req, res) => {
     try {
       await subscriptionMailer(req.body);
 
-      res.status(200).json({ status: 200, response: 'Response was undefined'});
+      res.status(200).json({ status: 200, response: 'Subscription process was successful'});
     } catch(error) {
-      
+
       res.status(500).json({status: 500, response: error});
     }
   }
