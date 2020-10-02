@@ -46,8 +46,8 @@ export default async (req, res) => {
 
       res.status(200).json({ status: 200, response: 'Subscription process was successful'});
     } catch(error) {
-
-      res.status(500).json({status: 500, response: error});
+      console.error(error);
+      res.status(500).json({ error });
     }
   }
 }

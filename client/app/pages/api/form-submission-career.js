@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer');
 
 async function careerMailer(career) {
-  const { contact, title, email, firstName, lastName, phone, files } = career;
-	
+	const { contact, title, email, firstName, lastName, phone, files } = career;
+
 	// SMTP transporter object
 	const smtpTransport = nodemailer.createTransport({
 		host: 'smtp.gmail.com',
@@ -14,8 +14,7 @@ async function careerMailer(career) {
 			clientId: process.env.GMAIL_OAUTH_CLIENT_ID,
 			clientSecret: process.env.GMAIL_OAUTH_CLIENT_SECRET,
 			refreshToken: process.env.GMAIL_OAUTH_REFRESH_TOKEN,
-			accessToken: process.env.GMAIL_OAUTH_ACCESS_TOKEN,
-			expires: Number.parseInt(process.env.GMAIL_OAUTH_TOKEN_EXPIRE, 10),
+			accessToken: process.env.GMAIL_OAUTH_ACCESS_TOKEN
 		},
 	});
 
@@ -57,8 +56,8 @@ export default async (req, res) => {
 
       res.status(200).json({ status: 200, response: 'Career submission process was successful'});
     } catch(error) {
-
-      res.status(500).json({status: 500, response: error});
+			console.error(error);
+      res.status(500).json({ error });
     }
   }
 }
