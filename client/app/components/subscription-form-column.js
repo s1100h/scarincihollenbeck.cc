@@ -35,7 +35,7 @@ export default function SubscriptionFormColumn() {
       },
     };
 
-    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/subscription/form', headers);
+    const request = await fetch('/api/form-submission-subscription', headers);
     const status = await request.status;
 
     if (status === 200) {      
