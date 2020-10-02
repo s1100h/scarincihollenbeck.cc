@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Scarincihollenbeck.com Front End
-=======
 # Scarincihollenbeck.com Front End Microservices
->>>>>>> 296bf51577245a88f56f619f90eed145febc28b8
 
 ## Description
 
