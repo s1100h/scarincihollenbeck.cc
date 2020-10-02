@@ -40,11 +40,9 @@ export default function SubscriptionPageForm() {
     const status = await request.status;
 
     if (status === 200) {
-      setMessage(true);
       resetFirstNameInput();
       resetLastNameInput();
       resetEmailInput();
-      resetCategoryInput();
       setCategories([]);
       alert('Thank you for subscribing!');
       setCaptcha(true);
