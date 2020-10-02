@@ -81,9 +81,9 @@ export default async (req, res) => {
 
 
     if (feed.length > 0) {      
-      res.status(200).json({status: 200, data: feed});
+      res.status(200).send({status: 200, response: feed});
     } else {
-      res.status(404).json({status: 404, data: 'No feeds found!'});
+      res.status(404).json({status: 404, response: 'No feeds found!'});
     }
 
     } catch (error) {

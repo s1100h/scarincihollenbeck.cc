@@ -5,25 +5,21 @@ import Footer from 'components/footer';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { headers } from 'utils/helpers';
+import { headers, fetcher } from 'utils/helpers';
 
 export default function GovernmentEducationCovidResponseTeam({
-  title, content, posts, covidPosts, seo,
+  title, content, internalCovidPosts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
-    // retrieve external covidPosts 
-    const { data: covidPosts, error } = useSWR(`/api/external-covid-article-feeds`, fetcher);
-
-    if(error) {
-      console.log(error);
-    }
+  // retrieve external posts from internal api
+  const { data: externaCovidPosts } = useSWR('/api/external-covid-feed', fetcher);
 
   return (
     <>
-      <NextSeo
+    <NextSeo
         title={seo.title}
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
@@ -35,12 +31,12 @@ export default function GovernmentEducationCovidResponseTeam({
         height="auto"
       />
       <LargeSidebarWithPosts
-        posts={covidPosts.data}
+        posts={internalCovidPosts}
         postsTitle="Government & Education COVID-19 Articles"
         content={bodyContent}
         sidebar={(
           <Sidebar
-            posts={posts}
+            posts={(externaCovidPosts !== undefined) ? externaCovidPosts.response : []}
             covidPage
           />
         )}
@@ -51,10 +47,9 @@ export default function GovernmentEducationCovidResponseTeam({
 }
 
 export async function getServerSideProps() {
-  const [page, posts] = await Promise.all([
+  const [internalCovidPosts, page, ] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=22896&per_page=100`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_FEED_API}/covid-19-news`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`, { headers }).then((data) => data.json())
   ]);
   const { title, content, seo } = page;
 
@@ -62,7 +57,7 @@ export async function getServerSideProps() {
     props: {
       title,
       content,
-      posts,
+      internalCovidPosts,
       seo,
     },
   };

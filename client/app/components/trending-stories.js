@@ -20,14 +20,13 @@ function createUserName(username) {
 }
 
 export default function TrendingStories({ title, content }) {
-
   return (
     <div className="w-100 mt-4">
       <div className="sidebar-title">
         {title}
       </div>
       <ArticleContainer className="off-white">
-        {(content !== undefined && content.length > 0) ? content.map((p) => (
+        {(content.length > 0) ? content.map((p) => (
           <div key={p.ID || addRandomKey(p.title)} className="p-2">
             <a href={p.link} className="top-article">
               <p className="proxima-bold mb-0">{p.title}</p>
