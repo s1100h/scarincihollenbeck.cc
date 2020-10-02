@@ -36,7 +36,7 @@ export default function SubscriptionPageForm() {
       },
     };
 
-    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/subscription/form', headers);
+    const request = await fetch('/api/form-submission-subscription', headers);
     const status = await request.status;
 
     if (status === 200) {
@@ -48,6 +48,14 @@ export default function SubscriptionPageForm() {
       setCategories([]);
       alert('Thank you for subscribing!');
       setCaptcha(true);
+    }
+
+    if(status === 404) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
+    }
+
+    if(status === 500) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
     }
   };
 

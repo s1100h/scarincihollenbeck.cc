@@ -20,7 +20,6 @@ function createUserName(username) {
 }
 
 export default function TrendingStories({ title, content }) {
-
   return (
     <div className="w-100 mt-4">
       <div className="sidebar-title">

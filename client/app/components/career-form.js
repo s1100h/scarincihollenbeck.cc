@@ -112,7 +112,7 @@ export default function CareerForm({ contact, title }) {
       }
     };
 
-    const request = await fetch('https://forms.scarincihollenbeck.com/shlaw/site/career/form', headers);
+    const request = await fetch('/api/form-submission-career', headers);
     const status = await request.status;
 
     if (status === 200) {
@@ -123,6 +123,14 @@ export default function CareerForm({ contact, title }) {
       setFiles([]);
       alert('Your application submission was successful! We will reach out to you shortly. Please, do not try and resubmit your information again. Thank you have a nice day.');
       setCaptcha(true);
+    }
+
+    if(status === 404) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
+    }
+
+    if(status === 500) {
+      alert('Sorry there was an error with your submission! Please email psmoeller@sh-law.com for further information');
     }
   }
 
@@ -189,8 +197,8 @@ export default function CareerForm({ contact, title }) {
               </div>
             </Form.Group>
           </Form.Row>
-          <FormReCaptcha setCaptcha={setCaptcha} /> 
-          <Button type="submit" variant="danger" disabled={captcha} className="px-5">Submit</Button>
+          <FormReCaptcha setCaptcha={setCaptcha} />
+          <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
         </Form>
       </div>
     </>

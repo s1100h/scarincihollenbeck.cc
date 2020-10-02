@@ -158,3 +158,8 @@ export function sortByOrder(admins) {
     return a.orderBy - b.orderBy
   });
 }
+
+export async function fetcher(...args) {
+  const res = await fetch(...args);
+  return res.json();
+}
