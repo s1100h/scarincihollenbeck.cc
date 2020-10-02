@@ -30,5 +30,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+<<<<<<< HEAD
 # vercel
+=======
+>>>>>>> 296bf51577245a88f56f619f90eed145febc28b8
 .vercel
