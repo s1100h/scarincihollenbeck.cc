@@ -34,7 +34,7 @@ function formatDate(date) {
 }
 
 export default function JustInArticlesCarousel() {
-  const { data: slides=[] } = useSWR(`https://admin.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
+  const { data: slides=[] } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
 
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>
