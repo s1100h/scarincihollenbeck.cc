@@ -47,11 +47,7 @@ export default function SubscriptionFormColumn() {
       setCaptcha(true);
     }
 
-    if(status === 404) {
-      alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
-    }
-
-    if(status === 500) {
+    if(status === 404 || status === 500) {
       alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
     }
   };

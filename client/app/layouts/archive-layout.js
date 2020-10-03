@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 
 
 export default function ArchiveLayout({ header, body, sidebar }) {
-
   return (
     <Container>
       <Row>

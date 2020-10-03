@@ -1,0 +1,15 @@
+.btn-link {
+  padding: 1em;
+  font-size: 1.1rem;
+  border: 1px solid #B50000;
+  color: #B50000;
+  border-radius: .25rem;
+  transition:All 1s ease;
+  -webkit-transition:All 1s ease;
+  -moz-transition:All 1s ease;
+}
+
+.btn-link:hover {
+  background-color: #B50000;
+  color: #FFF;     
+} 
