@@ -113,7 +113,7 @@ export default function CareerForm({ contact, title }) {
       }
     };
 
-    const request = await fetch('https://sh-career-form-uploader.netlify.app/career-form-submission', headers);
+    const request = await fetch('https://sh-career-form-uploader.netlify.app', headers);
     const status = await request.status;
 
     if (status === 200) {
