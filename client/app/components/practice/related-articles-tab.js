@@ -4,7 +4,8 @@ import Tab from 'react-bootstrap/Tab';
 import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import { List } from 'react-virtualized';
-import { addRandomKey, formatDate } from '../../utils/helpers';
+import BigGrayTitle from 'layouts/big-gray-titles';
+import { addRandomKey, formatDate } from 'utils/helpers';
 
 function Post(content, {
   key, index, isScrolling, isVisible, style,
@@ -27,7 +28,7 @@ function Post(content, {
 export default function RelatedArticlesTab({ tabTitle, title, content }) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
-      <h4 className="bg-light-gray">{title}</h4>
+      <BigGrayTitle title={title} />
       <ul>
         <List
           width={800}

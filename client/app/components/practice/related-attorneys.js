@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import AttorneyCard from '../attorney-card';
+import LineHeading from 'layouts/line-heading';
 
 export default function RelatedAttorneys({
   members,
@@ -14,9 +15,7 @@ export default function RelatedAttorneys({
     <>
       { (chair.length > 0) && (
         <Container>
-          <div className="line-header">
-            <h3>{title}</h3>
-          </div>
+          <LineHeading title={title} />
           <Row className="my-5">
             {chair.map((v) => (
               <Col sm={12} md={12} lg={6} key={v.ID}>
@@ -36,12 +35,9 @@ export default function RelatedAttorneys({
           </Row>
         </Container>
       )}
-      {
-        (members) ? (
-          <div className="container">
-            <div className="line-header">
-              <h3>Members</h3>
-            </div>
+      {(members) && (
+          <Container>
+            <LineHeading title="Members" />
             <Form className="w-50 py-4">
               <Form.Group>
                 <Form.Control as="select" onChange={handleLink} className="w-100">
@@ -49,9 +45,9 @@ export default function RelatedAttorneys({
                 </Form.Control>
               </Form.Group>
             </Form>
-            <div className="row mh-75">
+            <Row>
               { members.map((v) => (
-                <div key={v.ID} className="col-sm-12 col-md-12 col-lg-6 mb-3">
+                <Col sm={12} md={12} lg={6} key={v.ID} className="mb-3">
                   <AttorneyCard
                     link={v.link}
                     image={v.image}
@@ -63,11 +59,25 @@ export default function RelatedAttorneys({
                     width="75%"
                     type="/attorney/[slug]"
                   />
-                </div>
+                  <style jsx>{`
+                    @media (min-width: 0px) and (max-width: 400px) {
+                      .attorney-card {
+                        margin-top: 1em;
+                        margin-bottom: 1em;
+                      }
+                    }
+                    @media (min-width: 400px) and (max-width: 769px) {
+                      .attorney-card {
+                        margin-top: 1em;
+                        margin-bottom: 1em;
+                      }
+                    }               
+                  `}</style>
+                </Col>
               ))}
-            </div>
-          </div>
-        ) : ''
+            </Row>
+          </Container>
+        )
       }
     </>
   );

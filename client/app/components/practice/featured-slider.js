@@ -8,7 +8,7 @@ export default function FeaturedSlider({ content }) {
   const firstEightArticles = content.filter((p, i) => i < 8);
 
   return (
-    <div className="mt-4 w-100 d-block practice-news-list">
+    <div className="mt-4 w-100 d-block">
       {(firstEightArticles.length > 3) ? <SimpleNewsArticlesCarousel slides={firstEightArticles} /> : (
         <Container>
           <Row>

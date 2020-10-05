@@ -18,7 +18,9 @@ import RelatedAttorneys from 'components/practice/related-attorneys';
 import RelatedArticlesTab from 'components/practice/related-articles-tab';
 import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
+import LineHeading from 'layouts/line-heading';
 import { headers, urlify } from 'utils/helpers';
+import './nav-link.module.css';
 
 export default function SinglePractice({ practice, corePractices }) {
   const router = useRouter();
@@ -56,9 +58,9 @@ export default function SinglePractice({ practice, corePractices }) {
               <Container>
                 <Row>
                   <Col sm={12}>
-                    <Nav>
-                      {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} key={item.title} className="main-tab">{item.title}</Nav.Link>)}
-                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates" className="main-tab">Related Updates</Nav.Link> }
+                    <Nav id="practice-navigation">
+                      {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} key={item.title}>{item.title}</Nav.Link>)}
+                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates">Related Updates</Nav.Link> }                      
                     </Nav>
                   </Col>
                   <Col sm={12} md={9} className="mt-4">
@@ -75,21 +77,27 @@ export default function SinglePractice({ practice, corePractices }) {
                     {/** Awards */}
                     {(practice.highlightReal.length > 0) && (
                       <>
-                        <div className="line-header">
-                          <h3>Represenative Clients</h3>
-                        </div>
+                        <LineHeading title="Represenative Clients" />
                         <FeaturedSlider content={practice.highlightReal} />
                       </>
                     )}
                     {/** Recent Blog Articles */}
                     {(practice.industryTopics.length > 0) && (
                       <div className="w-100 d-block">
-                        <div className="line-header">
-                          <h3>Latest News & Articles</h3>
-                        </div>
+                        <LineHeading title="Latest News & Articles" />
                         <FeaturedSlider content={practice.industryTopics} />
                       </div>
                     )}
+                    <style jsx>{`
+                      .tab-content {
+                        font-size: 1.125rem;
+                      }
+                      
+                      .tab-content a {
+                        color: blue;
+                        text-decoration: underline;
+                      }
+                    `}</style>
                   </Col>
                   <Col sm={12} md={3}>
                     {(router.query.slug === 'education-law') && (

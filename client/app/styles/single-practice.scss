@@ -1,31 +1,7 @@
 @import "variables";
 
 #single-practice {
-  .main-tab {
-    font-size: 1.1rem;
-    line-height: 26px;
-    text-align: center;
-    border: 1px solid $standard-red;
-    min-width: 250px;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    color: $standard-red !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    text-decoration: none;
-    transition: All 1s ease;
-    -webkit-transition: All 1s ease;
-    -moz-transition:All 1s ease;
-    border-radius: 5px;
-    &:hover {
-      background-color: $standard-red;
-      color: white !important;
-      border: 0px solid white;
-    }
-  }
-  .tab-content {
-    font-size: 1.125rem;
-  }
+
   .rp-practice {
     margin-top: -6px;
   }
@@ -64,14 +40,7 @@
     line-height: 1.7 !important;
   }
 
-  .tab-content {
-    p {
-      a {
-        color: blue;
-        text-decoration: underline;
-      }
-    }
-  }
+
   @media (min-width: 1200px) {
     .max-width-container {
       max-width: 920px;
@@ -95,10 +64,6 @@
     }
     .w-45 {
       width: 100% !important;
-    }
-    .attorney-card {
-      margin-top: 1em;
-      margin-bottom: 1em;
     }
   }
   @media (min-width: 769px) and (max-width: 992px) {
