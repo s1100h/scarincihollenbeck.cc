@@ -105,10 +105,10 @@ export default function CareerForm({ contact, title }) {
 
     const headers = {
       method: 'post',
+      mode: 'cors', 
       body: JSON.stringify(careerInquiry),
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
     };
 
