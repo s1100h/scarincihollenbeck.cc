@@ -112,7 +112,7 @@ export default function CareerForm({ contact, title }) {
       }
     };
 
-    const request = await fetch('/api/form-submission-career', headers);
+    const request = await fetch('https://sh-career-form-uploader.netlify.app/career-form-submission', headers);
     const status = await request.status;
 
     if (status === 200) {
@@ -131,6 +131,10 @@ export default function CareerForm({ contact, title }) {
 
     if(status === 500) {
       alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
+    }
+
+    if (status === 413) {
+      alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
     }
   }
 
@@ -198,8 +202,7 @@ export default function CareerForm({ contact, title }) {
             </Form.Group>
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
-          {/* disabled={captcha} */}
-          <Button type="submit" variant="danger" className="px-5" >Submit</Button>
+          <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
         </Form>
       </div>
     </>
