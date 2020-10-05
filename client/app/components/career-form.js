@@ -108,34 +108,41 @@ export default function CareerForm({ contact, title }) {
       mode: 'cors', 
       body: JSON.stringify(careerInquiry),
       headers: {
+        'Origin': 'https://scarincihollenbeck.com',
         'Content-Type': 'application/json'
       }
     };
 
-    const request = await fetch('https://sh-career-form-uploader.netlify.app/career-form-submission', headers);
-    const status = await request.status;
-
-    if (status === 200) {
-      resetLastNameInput();
-      resetFirstNameInput();
-      resetEmailInput();
-      resetPhoneInput();
-      setFiles([]);
-      alert('Your application submission was successful! We will reach out to you shortly. Please, do not try and resubmit your information again. Thank you have a nice day.');
-      setCaptcha(true);
+    try {
+      const request = await fetch('https://sh-career-form-uploader.netlify.app/career-form-submission', headers);
+      const status = await request.status;
+  
+      if (status === 200) {
+        resetLastNameInput();
+        resetFirstNameInput();
+        resetEmailInput();
+        resetPhoneInput();
+        setFiles([]);
+        alert('Your application submission was successful! We will reach out to you shortly. Please, do not try and resubmit your information again. Thank you have a nice day.');
+        setCaptcha(true);
+      }
+  
+      if(status === 404) {
+        alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
+      }
+  
+      if(status === 500) {
+        alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
+      }
+  
+      if (status === 413) {
+        alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
+      }
+    } catch(error) {
+      console.error(error);
     }
 
-    if(status === 404) {
-      alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
-    }
 
-    if(status === 500) {
-      alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
-    }
-
-    if (status === 413) {
-      alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
-    }
   }
 
 
