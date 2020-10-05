@@ -104,13 +104,12 @@ export default function CareerForm({ contact, title }) {
     };
 
     const headers = {
-      method: 'post',
+      method: 'POST',
       mode: 'cors', 
       body: JSON.stringify(careerInquiry),
       headers: {
-        'Origin': 'https://scarincihollenbeck.com',
         'Content-Type': 'application/json'
-      }
+      }  
     };
 
     const request = await fetch('https://sh-career-form-uploader.netlify.app/.netlify/functions/career-form-submission', headers);
