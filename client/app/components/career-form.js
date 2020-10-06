@@ -105,7 +105,6 @@ export default function CareerForm({ contact, title }) {
 
     const headers = {
       method: 'POST',
-      mode: 'cors', 
       body: JSON.stringify(careerInquiry),
       headers: {
         'Content-Type': 'application/json'
@@ -128,14 +127,10 @@ export default function CareerForm({ contact, title }) {
       setCaptcha(true);
     }
 
-    if(status === 404) {
-      console.log(request);
+    if(status === 404 || status === 500) {
       alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
     }
 
-    if(status === 500) {
-      alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
-    }
 
     if (status === 413) {
       alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
