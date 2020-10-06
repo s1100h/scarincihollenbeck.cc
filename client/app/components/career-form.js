@@ -103,19 +103,16 @@ export default function CareerForm({ contact, title }) {
       title: title
     };
 
-    const headers = {
+    const request = await fetch(' http://localhost:8888/.netlify/functions/server/career-form', {
       method: 'POST',
       body: JSON.stringify(careerInquiry),
       headers: {
-        'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }  
-    };
-
-    const request = await fetch('https://serverless-career-form-uploader.netlify.app/.netlify/functions/server/career-form', headers);
+    });
     const status = await request.status;
-    const res = await request.json();
-    console.log('response from career submission');
-    console.log(res);
 
     if (status === 200) {
       resetLastNameInput();
@@ -135,8 +132,6 @@ export default function CareerForm({ contact, title }) {
     if (status === 413) {
       alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
     }
-
-
   }
 
 
@@ -204,6 +199,7 @@ export default function CareerForm({ contact, title }) {
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
           <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
+          {/* <Button type="submit" variant="danger" className="px-5">Submit</Button> */}
         </Form>
       </div>
     </>
