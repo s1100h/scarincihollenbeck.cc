@@ -112,8 +112,11 @@ export default function CareerForm({ contact, title }) {
       }  
     };
 
-    const request = await fetch('https://sh-career-form-uploader.netlify.app/.netlify/functions/career-form-submission', headers);
+    const request = await fetch('https://serverless-career-form-uploader.netlify.app/.netlify/functions/server/career-form', headers);
     const status = await request.status;
+    const res = await request.json();
+    console.log('res');
+    console.log(res);
 
     if (status === 200) {
       resetLastNameInput();
@@ -205,7 +208,8 @@ export default function CareerForm({ contact, title }) {
             </Form.Group>
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
-          <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
+          {/* disabled={captcha} */}
+          <Button type="submit" variant="danger" className="px-5">Submit</Button>
         </Form>
       </div>
     </>
