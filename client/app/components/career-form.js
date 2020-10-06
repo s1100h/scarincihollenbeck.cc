@@ -103,7 +103,7 @@ export default function CareerForm({ contact, title }) {
       title: title
     };
 
-    const request = await fetch(' http://localhost:8888/.netlify/functions/server/career-form', {
+    const request = await fetch('https://serverless-career-form-uploader.netlify.app/.netlify/functions/server/career-form', {
       method: 'POST',
       body: JSON.stringify(careerInquiry),
       headers: {
