@@ -208,8 +208,7 @@ export default function CareerForm({ contact, title }) {
             </Form.Group>
           </Form.Row>
           <FormReCaptcha setCaptcha={setCaptcha} />
-          {/* disabled={captcha} */}
-          <Button type="submit" variant="danger" className="px-5">Submit</Button>
+          <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
         </Form>
       </div>
     </>
