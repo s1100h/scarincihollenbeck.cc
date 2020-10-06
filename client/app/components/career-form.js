@@ -115,7 +115,7 @@ export default function CareerForm({ contact, title }) {
     const request = await fetch('https://serverless-career-form-uploader.netlify.app/.netlify/functions/server/career-form', headers);
     const status = await request.status;
     const res = await request.json();
-    console.log('res');
+    console.log('response from career submission');
     console.log(res);
 
     if (status === 200) {
