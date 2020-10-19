@@ -65,8 +65,10 @@ export default function Home({
 
 export async function getServerSideProps() {
 
+  console.log(process.env)
   console.log('process.env.REACT_APP_WP_BACKEND')
   console.log(process.env.REACT_APP_WP_BACKEND)
+
   const [seo, news, events, locations, corePractices] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers }).then((data) => data.json()),
