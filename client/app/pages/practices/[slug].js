@@ -20,7 +20,6 @@ import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LineHeading from 'layouts/line-heading';
 import { headers, urlify } from 'utils/helpers';
-import './nav-link.module.css';
 
 export default function SinglePractice({ practice, corePractices }) {
   const router = useRouter();
