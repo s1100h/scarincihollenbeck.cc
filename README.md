@@ -1,6 +1,6 @@
 # Scarincihollenbeck.com - Frontend
 
-Version two of donald's coin catalog website. This application was refactored to be purley front-end. By relying on free third-party services this application maintainance has been reduced as well as its over all cost.
+This repository contains the code base for the frontend of scarincihollenbeck.com. The code base is made up of two applications. The client application contains all code that makes up front end of scarincihollenbeck.com and the second application is a utility application that generates new sitemaps based on the latest content published to the site.
 
 ### [Live Site](https://scarincihollenbeck.com/)
 
