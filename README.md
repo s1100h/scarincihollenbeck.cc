@@ -72,7 +72,7 @@ pip install -r requirements.txt
 
 ## Development
 
-Before you can run the client application you first need to download and configure the scarincihollenbeck.com backend services. Do to so follow this [link](https://github.com/s1100h/admin.scarincihollenbeck.cc/tree/main) and follow the README insturctions.
+Before you can run the client application in development you first need to download and configure the [scarincihollenbeck.com backend services](https://github.com/s1100h/admin.scarincihollenbeck.cc/tree/main). You can find the directions on how to set up that in that repositories README.
 
 After your finish setting up the backend, you can now run the command ```yarn dev``` inside the ```client/app``` directory. This will lauch the local version of the site into the browser on port ```7700```.
 
