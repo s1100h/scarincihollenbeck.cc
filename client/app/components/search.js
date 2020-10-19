@@ -19,7 +19,7 @@ export default function Search() {
       const [attorneys, practices, categories] = await Promise.all([
         fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then((data) => data.json()),
         fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then((data) => data.json()),
-        fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100', { headers}).then((data) => data.json())
+        fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100', { headers }).then((data) => data.json())
       ]);
 
       setAttorneys(attorneys);
