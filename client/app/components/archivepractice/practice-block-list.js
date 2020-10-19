@@ -3,8 +3,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './btnlink.module.css';
-import './dropdown.module.css';
 
 export default function PracticeBlockList({ list }) {
 
