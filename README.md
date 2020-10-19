@@ -1,4 +1,4 @@
-# Scarincihollenbeck. - front end
+# Scarincihollenbeck.com - front end
 
 Version two of donald's coin catalog website. This application was refactored to be purley front-end. By relying on free third-party services this application maintainance has been reduced as well as its over all cost.
 
@@ -12,15 +12,15 @@ Version two of donald's coin catalog website. This application was refactored to
 
 ## Code style
 
-** Client Application**
+#### Client Application
 ![Code Style Airbnb](https://camo.githubusercontent.com/1c5c800fbdabc79cfaca8c90dd47022a5b5c7486/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64652532307374796c652d616972626e622d627269676874677265656e2e7376673f7374796c653d666c61742d737175617265)
 
-** Sitemap Application**
+#### Sitemap Application
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 ## Tech used
 
-** Client Application built with**:
+**Client Application built with**
   * [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
   * [Font Awesome](https://fontawesome.com/)
   * [Google reCaptcha](https://www.google.com/recaptcha/about/)
@@ -43,7 +43,7 @@ Version two of donald's coin catalog website. This application was refactored to
   * [Styled Components](https://styled-components.com/)
   * [SWR](https://swr.vercel.app/)
 
-** Sitemap Application built with**:
+**Sitemap Application built with**
   * [datetime](https://docs.python.org/3/library/datetime.html)
   * [json](https://docs.python.org/3/library/json.html)
   * [Python](https://www.python.org/)
@@ -74,11 +74,11 @@ pip install -r requirements.txt
 
 Before you can run the client application you first need to download and configure the scarincihollenbeck.com backend services. Do to so follow this [link](https://github.com/s1100h/admin.scarincihollenbeck.cc/tree/main) and follow the README insturctions.
 
-After your finish setting up the backend, you can now run the command ```yarn dev`` inside the ```client/app``` directory. This will lauch the local version of the site into the browser on port ```7700``.
+After your finish setting up the backend, you can now run the command ```yarn dev``` inside the ```client/app``` directory. This will lauch the local version of the site into the browser on port ```7700```.
 
 ## Production
 
-To create a production copy of the client application run ```yarn build``` inside the ```client/app`` directory. Then to launch the production server locally run ```yarn start```. This will launch the production verion of the site into the browser running on port ```7300```.
+To create a production copy of the client application run ```yarn build``` inside the ```client/app``` directory. Then to launch the production server locally run ```yarn start```. This will launch the production verion of the site into the browser running on port ```7300```.
 
 ### Deployment
 
