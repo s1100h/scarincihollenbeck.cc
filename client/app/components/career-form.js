@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import BarLoader from 'react-spinners/BarLoader';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -26,6 +27,7 @@ export default function CareerForm({ contact, title }) {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [captcha, setCaptcha] = useState(true);
+  const [sendingMessage, setSendingMessage] = useState(false);
 
   const readUploadedFile = (incomingFile) => {
     if (incomingFile.length === 0) {
@@ -103,19 +105,24 @@ export default function CareerForm({ contact, title }) {
       title: title
     };
 
-    const headers = {
-      method: 'post',
+    const request = await fetch('https://serverless-career-form-uploader.netlify.app/.netlify/functions/server/career-form', {
+      method: 'POST',
       body: JSON.stringify(careerInquiry),
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }
-    };
+        'Access-Control-Allow-Origin': '*'
+      }  
+    })
+    .then(data  => {
+      setSendingMessage(true);
+      return data;
+    });
 
-    const request = await fetch('/api/form-submission-career', headers);
     const status = await request.status;
 
     if (status === 200) {
+      setSendingMessage(false)
       resetLastNameInput();
       resetFirstNameInput();
       resetEmailInput();
@@ -126,7 +133,14 @@ export default function CareerForm({ contact, title }) {
     }
 
     if(status === 404 || status === 500) {
+      setSendingMessage(false);
       alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
+    }
+
+
+    if (status === 413) {
+      setSendingMessage(false);
+      alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
     }
   }
 
@@ -193,9 +207,18 @@ export default function CareerForm({ contact, title }) {
               </div>
             </Form.Group>
           </Form.Row>
-          <FormReCaptcha setCaptcha={setCaptcha} />
-          {/* disabled={captcha} */}
-          <Button type="submit" variant="danger" className="px-5" >Submit</Button>
+          {(sendingMessage) ? (
+            <div className="mb-3">
+              <h5 className="red-title">Sending submission...</h5>
+              <BarLoader color="#DB2220" />
+            </div>
+          ) : (
+            <>
+              <FormReCaptcha setCaptcha={setCaptcha} />
+              <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
+              {/* <Button type="submit" variant="danger" className="px-5">Submit</Button> */}
+            </>
+          )}          
         </Form>
       </div>
     </>
