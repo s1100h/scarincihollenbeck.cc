@@ -25,6 +25,7 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
   * [Font Awesome](https://fontawesome.com/)
   * [Google reCaptcha](https://www.google.com/recaptcha/about/)
   * [Gmail API](https://developers.google.com/gmail/api)
+  * [Netlify](https://www.netlify.com/)
   * [Next](https://nextjs.org/)
   * [Nodemailer](https://nodemailer.com/about/)
   * [Nookies](https://github.com/maticzav/nookies#readme)
