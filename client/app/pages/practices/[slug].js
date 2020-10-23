@@ -58,8 +58,8 @@ export default function SinglePractice({ practice, corePractices }) {
                 <Row>
                   <Col sm={12}>
                     <Nav id="practice-navigation">
-                      {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} key={item.title}>{item.title}</Nav.Link>)}
-                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates">Related Updates</Nav.Link> }                      
+                      {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} className="main-tab" key={item.title}>{item.title}</Nav.Link>)}
+                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates" className="main-tab">Related Updates</Nav.Link> }                      
                     </Nav>
                   </Col>
                   <Col sm={12} md={9} className="mt-4">
