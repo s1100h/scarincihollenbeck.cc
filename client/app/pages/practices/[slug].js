@@ -102,10 +102,9 @@ export default function SinglePractice({ practice, corePractices }) {
                     {(router.query.slug === 'education-law') && (
                       <>
                         <div>
-
                         <img
                           src="https://sh-site-assets.nyc3.digitaloceanspaces.com/1593501004logo-250x250.png"
-                          alt="NJSBA 2020"
+                          alt="NJSBA 2020 event"
                           className="mt-sm-4 mt-lg-0 mx-auto mb-4 d-block"
                         />                        
                         <a
