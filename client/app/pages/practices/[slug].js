@@ -101,6 +101,23 @@ export default function SinglePractice({ practice, corePractices }) {
                   <Col sm={12} md={3}>
                     {(router.query.slug === 'education-law') && (
                       <>
+                        <div>
+
+                        <img
+                          src="https://sh-site-assets.nyc3.digitaloceanspaces.com/1593501004logo-250x250.png"
+                          alt="NJSBA 2020"
+                          className="mt-sm-4 mt-lg-0 mx-auto mb-4 d-block"
+                        />                        
+                        <a
+                          type="button"
+                          class="mx-auto mb-5 p-2 d-block w-75 text-center border-r-5 mb-3 ft-14px btn btn-danger"
+                          href="https://virtualworkshop.njsba.org/en/"
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          Visit Our Booth
+                        </a>
+                        </div>
                         <CovidResourceBox
                           title="COVID-19 Response Team"
                           link="/government-education-covid-19-response-team"
