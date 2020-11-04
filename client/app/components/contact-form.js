@@ -1,164 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import kwesforms from 'kwesforms';
 import { useRouter } from 'next/router';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import FormReCaptcha from './google-recaptcha-button';
-import useInput from '../utils/input-hook';
 
 export default function ContactForm() {
-  const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
-  const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
-  const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
-  const { value: phoneInput, bind: bindPhoneInput, reset: resetPhoneInput } = useInput('');
-  const { value: subjectInput, bind: bindSubjectInput, reset: resetSubjectInput } = useInput('');
-  const { value: messageInput, bind: bindMessageInput, reset: resetMessageInput } = useInput('');
-  const { value: disclaimerInput, bind: bindDisclaimerInput, reset: resetDisclaimerInput } = useInput([]);
   const [captcha, setCaptcha] = useState(true);
-  const [successMessage, setSuccessMessage] = useState(false);
-  const [validated, setValidated] = useState(false);
-
   const router = useRouter();
 
-  async function sendInquiry(pageTitle, siteUrl) {
-    const inquiryData = {
-      firstName: firstNameInput,
-      lastName: lastNameInput,
-      email: emailInput,
-      phone: phoneInput,
-      subject: subjectInput,
-      message: messageInput,
-      pageTitle,
-      siteUrl,
-    };
-
-    const headers = {
-      method: 'post',
-      body: JSON.stringify(inquiryData),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const request = await fetch('/api/form-submission-inquiry', headers);
-    const status = await request.status;
-
-    if (status === 200) {
-      resetDisclaimerInput();
-      resetLastNameInput();
-      resetFirstNameInput();
-      resetEmailInput();
-      resetPhoneInput();
-      resetSubjectInput();
-      resetMessageInput();
-      alert('Thank you for your inquiry one of our representative will reach out to you shortly!');
-      setCaptcha(true);      
-    }
-
-    if(status === 404 || status === 500) {
-      alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
-    }
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const pageTitle = document.querySelector('h1.text-white.proxima-bold').innerText;
-    const siteUrl = `https://scarincihollenbeck.com/${router.asPath}`;
-    const form = event.currentTarget;
-
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-
-    if (validated === false && form.checkValidity() === true) {
-      sendInquiry(pageTitle, siteUrl);
-    }
-  };
-
+  // initalize kwesforms
+  useEffect(() => kwesforms.init());
+  
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleSubmit} className="d-print-none">
-        <Form.Row>
-          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom01">
-            <Form.Control
-              required
-              type="text"
-              placeholder="First name"
-              {...bindFirstNameInput}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom02">
-            <Form.Control
-              required
-              type="text"
-              placeholder="Last name"
-              {...bindLastNameInput}
-
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
-        <Form.Row>
-          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom03">
-            <Form.Control
-              required
-              type="email"
-              placeholder="Email"
-              {...bindEmailInput}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} sm={12} md="6" controlId="validationCustom04">
-            <Form.Control
-              required
-              type="phone"
-              placeholder="phone"
-              {...bindPhoneInput}
-
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
-        <Form.Row>
-          <Form.Group as={Col} sm={12} controlId="validationCustom05">
-            <Form.Control
-              required
-              type="text"
-              placeholder="Subject"
-              {...bindSubjectInput}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} sm={12} controlId="validationCustom06">
-            <Form.Control
-              required
-              as="textarea"
-              rows="3"
-              placeholder="Message"
-              {...bindMessageInput}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
-        <Form.Group>
-          <Form.Label>
-            * The use of the Internet or this form for communication with the firm or any individual member of the firm does not establish an attorney-client relationship. Confidential or time-sensitive information should not be sent through this form.
-          </Form.Label>
-          <Form.Check
-            required
-            label="I have read the disclaimer"
-            feedback="You must agree before submitting."
-            {...bindDisclaimerInput}
-          />
-        </Form.Group>
-        <FormReCaptcha setCaptcha={setCaptcha} />
-        <Button variant="danger" className="ml-2 w-25 mt-2" type="submit" disabled={captcha}>Submit form</Button>
-      </Form>
+      <form action="https://kwes.io/api/foreign/forms/KFt80LlqlILRQAfsfv3I" className="kwes-form d-print-none">
+        <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${router.asPath}`} />
+        <Row className="mb-3">
+          <Col sm={12} md={6} className="mx-0 px-1">
+            <input type="text" className="form-control mx-0" name="firstName" placeholder="First name" rules="required|max:255"></input>
+          </Col>
+          <Col sm={12} md={6} className="mx-0 px-1">
+            <input type="text" className="form-control mx-0" name="lastName" placeholder="Last name" rules="required|max:255"></input>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col sm={12} md={6} className="mx-0 px-1">
+            <input type="email" className="form-control mx-0" name="email" placeholder="Email address" rules="required|max:255"></input>
+          </Col>
+          <Col sm={12} md={6} className="mx-0 px-1">
+            <input type="phone" className="form-control mx-0" name="phone" placeholder="Phone number" rules="required|max:255"></input>
+          </Col>
+        </Row>
+        <Row className="mb-2">
+          <Col sm={12} className="mx-0 px-1 mb-4">
+            <input type="text" className="form-control mx-0" name="subject" placeholder="Subject" rules="required|max:1000"></input>
+          </Col>
+          <Col sm={12} className="mx-0 px-1">
+            <textarea type="textarea" rows="8" cols="4" className="form-control mx-0" name="message" placeholder="Message" rules="required|max:1000"></textarea>
+          </Col>
+        </Row>
+        <Row className="mb-0">
+          <Col sm={12} className="mx-0 px-1">
+            <fieldset data-kw-group="true" rules="required" className="my-1">
+              <label>
+                <small>* The use of the Internet or this form for communication with the firm or any individual member of the firm does not establish an attorney-client relationship. Confidential or time-sensitive information should not be sent through this form.</small>
+              </label>
+              <input
+                type="checkbox"
+                name="disclaimer"
+                feedback="You must agree before submitting."
+                value="disclaimer"
+                label="I have read the disclaimer"
+              />
+              <span className="mx-2 mb-1 mt-0">
+                <small>
+                  I have read the disclaimer
+                </small>
+              </span>
+          </fieldset>
+          </Col>
+          <Col sm={12}>
+            <FormReCaptcha setCaptcha={setCaptcha} />
+          </Col>
+        </Row>{/** disabled={captcha} */}
+        <button className="btn btn-danger w-25 mt-2" type="submit" >Submit form</button>
+      </form>
     </>
   );
 }

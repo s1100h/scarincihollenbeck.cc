@@ -1,96 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import kwesforms from 'kwesforms';
 import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 import useInput from '../utils/input-hook';
 
 export default function SubscriptionFormColumn() {
-  const { value: firstNameInput, bind: bindFirstNameInput, reset: resetFirstNameInput } = useInput('');
-  const { value: lastNameInput, bind: bindLastNameInput, reset: resetLastNameInput } = useInput('');
-  const { value: emailInput, bind: bindEmailInput, reset: resetEmailInput } = useInput('');
-  const [categories, setCategories] = useState([]);
   const [captcha, setCaptcha] = useState(true);
-
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const subscriberData = {
-      firstName: firstNameInput,
-      lastName: lastNameInput,
-      email: emailInput,
-      categoryValues: categories,
-      siteUrl: router.asPath,
-    };
-
-    const headers = {
-      method: 'post',
-      body: JSON.stringify(subscriberData),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const request = await fetch('/api/form-submission-subscription', headers);
-    const status = await request.status;
-
-    if (status === 200) {      
-      resetFirstNameInput();
-      resetLastNameInput();
-      resetEmailInput();
-      setCategories([]);
-      alert('Thank you for subscribing!');
-      setCaptcha(true);
-    }
-
-    if(status === 404 || status === 500) {
-      alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
-    }
-  };
-
-  function selectCategory(e) {
-    const checkedBox = e.target.value;
-    setCategories((categories) => [...categories, checkedBox]);
-  }
-
+  // initalize kwesforms
+  useEffect(() => kwesforms.init());
   return (
-    <>
-      <Form onSubmit={handleSubmit} role="search" id="subscription-form">
-        <Form.Group>
-          <Form.Control id="firstName" name="firstName" type="text" placeholder="Enter first name" {...bindFirstNameInput} required />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control id="lastName" name="lastName" type="text" placeholder="Enter last name" {...bindLastNameInput} required />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control id="email" name="email" type="text" placeholder="Enter email" {...bindEmailInput} required />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="small-excerpt">Please select a category(s) below:</Form.Label>
-          <ul className="no-dots two-column">
-            {checkboxes.map((type, index) => (
-              <li key={type.key}>
-                <Form.Check
-                  type="checkbox"
-                  id={type.key}
-                  label={type.label}
-                  value={type.label}
-                  onClick={selectCategory}
-                />
-              </li>
-            ))}
-          </ul>
-        </Form.Group>
-        <div className="modal-footer">
-          <FormReCaptcha setCaptcha={setCaptcha} className="float-right" />
-          <Button type="submit" variant="danger" disabled={captcha}>Submit</Button>
-        </div>
-      </Form>
-    </>
+    <form className="kwes-form" action="https://kwes.io/api/foreign/forms/IWnueZllGqPnAegRIZUR">
+      <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${router.asPath}`} />
+      <input type="text" className="form-control mb-2" name="firstName" placeholder="First name" rules="required|max:255"></input>
+      <input type="text" className="form-control mb-2" name="lastName" placeholder="Last name" rules="required|max:255"></input>
+      <input type="email" className="form-control mb-2" name="email" placeholder="Email address" rules="required|max:255"></input>
+    <fieldset data-kw-group="true" rules="required">
+      <label className="small-excerpt">Please select a category(s) below:</label>
+      <ul className="no-dots two-column">
+      {checkboxes.map((type) => (
+        <li key={type.key}>
+          <input
+            type="checkbox"
+            id={type.key}
+            name="category"
+            label={type.label}
+            value={type.label}
+          />
+          <span className="mx-2">{type.label}</span>
+        </li>
+      ))}
+      </ul>
+    </fieldset>        
+    <div className="modal-footer justify-content-start">
+      <FormReCaptcha setCaptcha={setCaptcha} />
+      {/** disabled={captcha} */}
+      <button type="submit" className="btn btn-danger px-5" >Submit</button>
+    </div>
+  </form> 
 
   );
 }

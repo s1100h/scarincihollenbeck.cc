@@ -28,7 +28,6 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
   * [Netlify](https://www.netlify.com/)
   * [Next](https://nextjs.org/)
   * [Nodemailer](https://nodemailer.com/about/)
-  * [Nookies](https://github.com/maticzav/nookies#readme)
   * [NProgress](https://ricostacruz.com/nprogress/)
   * [React Bootstrap](https://react-bootstrap.github.io/)
   * [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
