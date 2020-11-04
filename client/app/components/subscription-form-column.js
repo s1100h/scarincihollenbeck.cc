@@ -36,8 +36,7 @@ export default function SubscriptionFormColumn() {
     </fieldset>        
     <div className="modal-footer justify-content-start">
       <FormReCaptcha setCaptcha={setCaptcha} />
-      {/** disabled={captcha} */}
-      <button type="submit" className="btn btn-danger px-5" >Submit</button>
+      <button type="submit" className="btn btn-danger px-5" disabled={captcha}>Submit</button>
     </div>
   </form> 
 

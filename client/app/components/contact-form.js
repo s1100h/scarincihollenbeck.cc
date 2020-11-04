@@ -63,8 +63,8 @@ export default function ContactForm() {
           <Col sm={12}>
             <FormReCaptcha setCaptcha={setCaptcha} />
           </Col>
-        </Row>{/** disabled={captcha} */}
-        <button className="btn btn-danger w-25 mt-2" type="submit" >Submit form</button>
+        </Row>
+        <button className="btn btn-danger w-25 mt-2" type="submit" disabled={captcha}>Submit form</button>
       </form>
     </>
   );

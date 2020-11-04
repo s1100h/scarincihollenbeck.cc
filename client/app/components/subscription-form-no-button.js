@@ -39,8 +39,7 @@ export default function SubscriptionFormNoButton() {
         </fieldset>        
         <div className="modal-footer justify-content-start">
           <FormReCaptcha setCaptcha={setCaptcha} />
-          {/** disabled={captcha} */}
-          <button type="submit" className="btn btn-danger px-5" >Submit</button>
+          <button type="submit" className="btn btn-danger px-5" disabled={captcha}>Submit</button>
           <button className="btn btn-secondary proxima-bold" onClick={() => setShow(false)}>Close</button>
         </div>
       </form> 
