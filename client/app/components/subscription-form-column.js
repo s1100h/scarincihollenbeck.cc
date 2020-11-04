@@ -12,7 +12,7 @@ export default function SubscriptionFormColumn() {
   // initalize kwesforms
   useEffect(() => kwesforms.init());
   return (
-    <form className="kwes-form" action="https://kwes.io/api/foreign/forms/IWnueZllGqPnAegRIZUR">
+    <form className="kwes-form" action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD">
       <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${router.asPath}`} />
       <input type="text" className="form-control mb-2" name="firstName" placeholder="First name" rules="required|max:255"></input>
       <input type="text" className="form-control mb-2" name="lastName" placeholder="Last name" rules="required|max:255"></input>

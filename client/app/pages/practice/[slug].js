@@ -109,7 +109,7 @@ export default function SinglePractice({ practice, corePractices }) {
                         />                        
                         <a
                           type="button"
-                          class="mx-auto mb-5 p-2 d-block w-75 text-center border-r-5 mb-3 ft-14px btn btn-danger"
+                          className="mx-auto mb-5 p-2 d-block w-75 text-center border-r-5 mb-3 ft-14px btn btn-danger"
                           href="https://virtualworkshop.njsba.org/en/"
                           target="_blank"
                           rel="noopener"
