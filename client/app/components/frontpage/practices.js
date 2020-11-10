@@ -1,16 +1,17 @@
-
 import Link from 'next/link';
+import textStyles from '../../styles/Text.module.css'
+import fontStyles from '../../styles/Fonts.module.css'
 
 export default function Practices({ corePractices }) {
   return (
     <div>
-      <h4 className="red-title h5">Core Practices</h4>
+      <h4 className={`${textStyles.redTitle} h5`}>Core Practices</h4>
       <hr />
       <ul className="ml-4" role="navigation">
         { corePractices.map((p) => (
-          <li key={p.title} className="blue-title">
+          <li key={p.title} className={textStyles.blueTitle}>
             <Link href="/practices/[slug]" as={p.slug}>
-              <a className="blue-title proxima-bold">
+              <a className={`${textStyles.blueTitle} ${fontStyles.proximaBold}`}>
                 {p.title}
               </a>
             </Link>
@@ -18,7 +19,7 @@ export default function Practices({ corePractices }) {
         )) }
       </ul>
       <Link href="/practices">
-        <a className="red-title proxima-bold">
+        <a className={`${textStyles.redTitle} ${fontStyles.proximaBold}`}>
           <u>
             All Practices &gt;&gt;
           </u>

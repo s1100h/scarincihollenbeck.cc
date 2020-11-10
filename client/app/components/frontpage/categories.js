@@ -1,6 +1,8 @@
 import Router from 'next/router';
 import Link from 'next/link';
 import Form from 'react-bootstrap/Form';
+import textStyles from '../../styles/Text.module.css'
+import fontStyles from '../../styles/Fonts.module.css'
 
 function onCategorySelection(event) {
   Router.push({ pathname: event.target.value });
@@ -8,7 +10,7 @@ function onCategorySelection(event) {
 
 const Categories = () => (
   <div>
-    <h4 className="red-title h5">Firm Insights</h4>
+    <h4 className={`h5 ${textStyles.redTitle}`}>Firm Insights</h4>
     <hr />
     <p className="text-muted">Firm Insights is Scarinci Hollenbeck&apos;s library of articles written by our attorneys. It is our way of providing you with the most critical legal updates that could impact your business.</p>
     <Form onChange={onCategorySelection}>
@@ -18,7 +20,7 @@ const Categories = () => (
             Know what you&apos;re looking for? Select a category below:
           </p>
         </Form.Label>
-        <Form.Control as="select" className="home-select w-100 p-2">
+        <Form.Control as="select" className="w-100 p-2">
           <option>Select Category</option>
           <option value="/category/business-law/" role="button">Business Law</option>
           <option value="/category/cannabis-law/" role="button">Cannabis Law</option>
@@ -34,9 +36,9 @@ const Categories = () => (
         </Form.Control>
       </Form.Group>
     </Form>
-    <p className="my-3 small-excerpt mb-0">Not sure? Feel free to browse here.</p>
+    <p className={`my-3 mb-0 ${fontStyles.smallExcerpt}`}>Not sure? Feel free to browse here.</p>
     <Link href="/category[slug]" as="/category/law-firm-insights/">
-      <a className="red-title proxima-bold">
+      <a className={`${textStyles.redTitle} ${fontStyles.proximaBold}`}>
         <u>
           Firm Insights &gt;&gt;
         </u>
