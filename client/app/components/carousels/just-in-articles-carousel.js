@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 import { fetcher } from 'utils/helpers';
+import styles from '../../styles/carousels/JustIn.module.css'
 
 const jiResponsive = {
   superLargeDesktop: {
@@ -38,26 +39,26 @@ export default function JustInArticlesCarousel() {
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (
-        <div key={parseInt(post.id, 10)} className={`JustInCarouselContent card carousel-slide level-${parseInt(post.id, 10)}`}>
+        <div key={parseInt(post.id, 10)} className={`${styles.JustInCarouselContent} card carousel-slide level-${parseInt(post.id, 10)}`}>
           <a href={post.link}>
-            <p className="just-in-header">
-              <span className="category">
+            <p className={styles.justInHeader}>
+              <span className={styles.category}>
                 <FontAwesomeIcon icon={faNewspaper} />
                 {' '}
                 {post.category}
               </span>
               {(formatDate(post.date) !== 'Invalid Date') && (
-                <span className="date">{formatDate(post.date)}</span>
+                <span className={styles.date}>{formatDate(post.date)}</span>
               )}              
             </p>
-            <div className="just-in-content">
+            <div className={styles.justInContent}>
               <h5>{post.title}</h5>
               <LazyLoad height={150}>
                 <img rel="preconnect" src={post.image} alt={post.title} className="img-thumbnail d-block mx-auto" />
               </LazyLoad>
             </div>
             <hr />
-            <p className="tag">
+            <p className={styles.tag}>
               <FontAwesomeIcon icon={faPlusCircle} />
               {' '}
               {post.location}

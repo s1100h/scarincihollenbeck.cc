@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';
+import styles from '../../styles/carousels/OfficeLocation.module.css'
 
 const responsive = {
   superLargeDesktop: {
@@ -27,7 +28,7 @@ export default function OfficeLocationCarousel({ slides }) {
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
-        <div key={post.title} className="location-card mx-auto d-block border">
+        <div key={post.title} className={`${styles.locationCard} mx-auto d-block border `}>
           <Link href="/location/[slug]" as={post.slug}>
             <a>
               <LazyLoad height={150}>

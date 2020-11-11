@@ -18,7 +18,7 @@ import 'animate.css'
  * Util Sheets
  */
 // import 'styles/utils/attorney-card.scss';
-// import 'styles/utils/carousel.scss';
+import 'styles/utils/carousel.css';
 // import 'styles/utils/just-in-carousel.scss';
 // import 'styles/utils/location-carousel.scss';
 // import 'styles/utils/spacing-and-fonts.scss';
@@ -38,7 +38,7 @@ import 'styles/dropdown.css'
 // import 'styles/single-practice.scss';
 // import 'styles/subscription-form.scss';
 // import 'styles/firm-page.scss';
-// import 'styles/category.scss';
+// import 'styles/category.css';
 
 
 /**

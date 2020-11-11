@@ -1,0 +1,61 @@
+
+.JustInCarouselContent  {
+  margin: 1rem;
+  padding:.4rem;
+  background-color: white;
+}
+
+.justInHeader {
+  font-size:.7rem;
+  color:white;
+  background: linear-gradient(360deg, #901918 60%, #DD2624 100%);
+  min-height: 38px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.category {
+  float: left;
+  font-size: .8rem;
+}
+
+.category svg {
+  margin-right: 4px;
+  width: 15px
+}
+.date {
+  float:right;
+  font-size: .8rem;
+}
+.justInContent {
+  height:227px; 
+  text-align: center;  
+}
+
+.justInContent img{
+  margin-top: 1rem;
+}
+
+.tag {
+  color:#901918;
+  font-weight:bold;
+  text-transform:uppercase;
+  font-size: 1rem;
+}
+.tag > svg{
+  margin-right: .5rem;
+  margin-bottom: .2rem;
+  width: 25px
+}
+
+.tag {
+  text-align:center;
+}
+
+.justInContent > h5 {
+  font-size: 1rem;
+  color: black;
+  padding: 3px;
+}
+
+

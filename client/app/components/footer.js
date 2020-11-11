@@ -3,28 +3,36 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from './cookie-consent';
-import SimpleSearch from './simple-search';
+import FrontSearch from './frontpage/front-search';
 import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
+import styles from '../styles/Footer.module.css'
+import fontStyles from '../styles/Fonts.module.css'
+import textStyles from '../styles/Text.module.css'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Container fluid className="bk--gray d-print-none">
-      <div className="just-in-container w-75">
+    <Container fluid className={`${styles.bkGray} d-print-none`}>
+      <div className={`${styles.justInContainer} w-75`}>
         <JustInArticlesCarousel />
       </div>
       <footer>
-        <Container fluid className="h-100 mt-5 w-75 bk--gray">
-          <Row className="border--red mb-3">
-            <Col sm={12} md={{ span: 3, offset: 9 }} className="mb-2 footer-search">
-              <SimpleSearch searchId="footer-simple-search"/>
+        <Container fluid className={`h-100 mt-5 w-75 ${styles.bkGray}`}>
+          <Row className={`${styles.borderRed} mb-3`}>
+            <Col sm={12} lg={8}>
+              {' '}
+            </Col>
+            <Col sm={12} lg={4}>
+             <div className="justify-content-end">
+              <FrontSearch/>
+             </div>
             </Col>
           </Row>
           <Row className="pb-3 mb-0">
             <Col sm={6}>
-              <p className="mr-auto proxima-bold h5 pb-0 mb-0">ATTORNEY ADVERTISING</p>
-              <p className="mr-auto proxima-regular mt-0 pt-0">
+              <p className={`mr-auto ${fontStyles.proximaBold} h5 pb-0 mb-0`}>ATTORNEY ADVERTISING</p>
+            <p className={`mr-auto ${fontStyles.proximaRegular} mt-0 pt-0`}>
                 Prior results do not guarantee a similar outcome.
                 <br />
                 ©
@@ -33,55 +41,55 @@ export default function Footer() {
                 , Scarinci Hollenbeck, LLC, all rights reserved.
               </p>
             </Col>
-            <Col sm={6} className="text-center">
-              <ul className="d-flex justify-content-end no-dots list-inline pb-0 mb-0" role="navigation">
-                <li className="list-inline-item">
+            <Col sm={6} className="my-3">
+              <div role="navigation" className={`d-flex ${styles.LinkContainer}`}>
+                <div>
                   <Link href="/contact">
-                    <a className="proxima-bold red-title h6">Contact Us</a>
+                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>Contact Us</a>
                   </Link>
-                  <span className="ml-2">|</span>
-                </li>
-                <li className="list-inline-item">
+                  <span className={styles.LinkSeperator}>|</span>
+                </div>
+                <div>
                   <Link href="/careers">
-                    <a className="proxima-bold red-title h6">Careers</a>
+                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>Careers</a>
                   </Link>
-                  <span className="ml-2">|</span>
-                </li>
-                <li className="list-inline-item">
+                  <span className={styles.LinkSeperator}>|</span>
+                </div>
+                <div>
                   <Link href="/awards">
-                    <a className="proxima-bold red-title h6">Awards </a>
+                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>Awards </a>
                   </Link>
-                </li>
-              </ul>
-              <ul className="float-right no-dots list-inline mt-0 pt-0" role="navigation">
-                <li className="list-inline-item">
-                  <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className="proxima-bold red-title h6">
+                </div>
+              </div>
+              <div className={`d-flex ${styles.LinkContainer}`}>
+                <div>
+                  <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
                     Make Payment
                   </a>
-                  <span className="ml-2">|</span>
-                </li>
-                <li className="list-inline-item">
-                  <a href="https://scarincihollenbeck.com/sitemap.xml" className="proxima-bold red-title h6">
+                  <span className={styles.LinkSeperator}>|</span>
+                </div>
+                <div>
+                  <a href="https://scarincihollenbeck.com/sitemap.xml" className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
                     Sitemap
                   </a>
-                  <span className="ml-2">|</span>
-                </li>
-                <li className="list-inline-item">
+                  <span className={styles.LinkSeperator}>|</span>
+                </div>
+                <div>
                   <Link href="/terms-of-use">
-                    <a className="proxima-bold red-title h6">
+                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
                       Terms of Use
                     </a>
                   </Link>
-                  <span className="ml-2">|</span>
-                </li>
-                <li className="list-inline-item">
+                  <span className={styles.LinkSeperator}>|</span>
+                </div>
+                <div>
                   <Link href="/privacy-policy">
-                    <a className="proxima-bold red-title h6">
+                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
                       Privacy Policy
                     </a>
                   </Link>
-                </li>
-              </ul>
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>
