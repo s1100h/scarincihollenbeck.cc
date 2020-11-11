@@ -1,6 +1,5 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { slide as Menu } from 'react-burger-menu'
 import Link from 'next/link';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -11,6 +10,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import HamburgerMobileMenu from './hamburger-mobile-menu'
 import navBarStyles from '../styles/Navbar.module.css';
 import fontStyles from '../styles/Fonts.module.css';
 import textStyles from '../styles/Text.module.css';
@@ -18,9 +18,9 @@ import textStyles from '../styles/Text.module.css';
 const NavBar = () => (
   <header className="mb-0">
     <Container>
-      <Row>
-      <Col sm={12} className="mt-2 border-bottom d-flex justify-content-end">
-          <p className="mb-1 pb-1 mx-0 px-0">
+      <Row className="mt-2">
+      <Col xs={12} className={`border-bottom d-flex ${navBarStyles.contactBanner}`}>
+          <p className="my-1 pb-1 mx-0 px-0">
             <span>
               <FontAwesomeIcon icon={faPhone} />
               {' '}           
@@ -40,7 +40,7 @@ const NavBar = () => (
             </Link>
           </p>
         </Col>        
-        <Col sm={12} md={6} className="mb-0 mt-3 mx-0 px-0">
+        <Col xs={12} lg={6} className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}>
           <Link href="/">
             <a>
               <LazyLoadImage
@@ -52,9 +52,9 @@ const NavBar = () => (
             </a>
           </Link>
         </Col>
-        <Col sm={12} md={6} className={`${navBarStyles.mainNav} mb-0 mt-4 mx-0 px-0`}>
-          <Navbar className={navBarStyles.navContainer}>
-              <Nav className="mr-auto">
+        <Col xs={12} lg={6} className=" mt-sm-2 mt-lg-3 pr-0 pl-0">
+          <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>
+              <Nav>
                 <NavDropdown title="The Firm" id="basic-nav-dropdown" className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}>
                   <NavDropdown.Item className={navBarStyles.dropDownNavItem} href="/administration">
                     Administration
@@ -63,7 +63,7 @@ const NavBar = () => (
                     Careers
                   </NavDropdown.Item>
                   <NavDropdown.Item className={navBarStyles.dropDownNavItem} href="/community-involvement">
-                    Community Involvement
+                    
                   </NavDropdown.Item>
                   <NavDropdown.Item className={navBarStyles.dropDownNavItem} href="/diversity-group">
                     Diversity Group
@@ -122,52 +122,13 @@ const NavBar = () => (
                 </Nav.Item> 
               </Nav>
           </Navbar>
-          <div className={navBarStyles.mobileMenu} id="outer-container">
-            <Menu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } />
-            <main id="page-wrap">
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-              <li>Item 4</li>
-              <li>Item 5</li>
-              <li>Item 6</li>
-            </main>
+          <div className={navBarStyles.mobileMenu}>
+            <HamburgerMobileMenu />
           </div>
         </Col>
       </Row>
     </Container>
   </header>
-  // <header className="mt-3">
-  //   <Container>
-  //     <Row className="border-bottom">
-  //       <Navbar bg="light">
-  //         <Row className="mb-0">
-  //           <Col sm={5}>
-  //             <div className="pb-1">
-  //               <Link href="/">
-  //                 <a>
-
-  //                 </a>
-  //               </Link>                
-  //             </div>
-  //           </Col>
-  //           <Col sm={7}>
-  //           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  //             <Navbar.Collapse id="basic-navbar-nav" className="my-3">
-  //               <Nav>
-
-
-
-
-                
-  //               </Nav>
-  //             </Navbar.Collapse>
-  //           </Col>
-  //         </Row>         
-  //       </Navbar>
-  //     </Row>
-  //   </Container>
-  // </header>
 );
 
 export default NavBar;
