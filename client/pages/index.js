@@ -7,8 +7,7 @@ import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
 import { headers, sortByKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas'
-
-
+import client from 'utils/graphql-client'
 
 export default function Home({
   seo,
