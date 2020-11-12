@@ -17,7 +17,7 @@ import 'animate.css'
 /**
  * Util Sheets
  */
-// import 'styles/utils/attorney-card.scss';
+
 import 'styles/utils/carousel.css';
 // import 'styles/utils/just-in-carousel.scss';
 // import 'styles/utils/location-carousel.scss';
