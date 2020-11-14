@@ -29,7 +29,7 @@ export default function Administration({ admins, seo }) {
         <Container id="archive-admin" className="p-3 pt-4 border">
           <Row>
             {sortedAdmins.map((admin) => (
-              <Col sm={12} md={6} lg={4} key={admin.id} className="mb-2">
+              <Col sm={12} md={6} lg={4} key={admin.id} className="mb-3">
                 <AttorneyCard
                   image={admin.image.smallUrl}
                   name={admin.name}
