@@ -74,7 +74,7 @@ export default function Filtered({
   return (
     <Row>
       {aFiltered.map((m) => (
-        <Col sm={12} md={6} lg={4} key={m.id} className="mb-2">
+        <Col sm={12} md={6} lg={4} key={m.id} className="mb-3">
           <AttorneyCard
             link={`/attorney${m.link}`}
             image={m.better_featured_image}
