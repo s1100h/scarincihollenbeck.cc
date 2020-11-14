@@ -15,7 +15,7 @@ export default function FirmMembers({
       <Container className="articles-container mt-3">
         <Row>
           {members.map((m) => (
-            <Col sm={12} md={6} lg={4} className="mb-2" key={m.id}>
+            <Col sm={12} md={6} lg={4} className="mb-3" key={m.id}>
               <AttorneyCard
                 link={`${slug}${m.link}`}
                 image={m.image}
