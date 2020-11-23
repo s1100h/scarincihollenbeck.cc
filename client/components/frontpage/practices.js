@@ -9,10 +9,10 @@ export default function Practices({ corePractices }) {
       <hr />
       <ul className="ml-4" role="navigation">
         { corePractices.map((p) => (
-          <li key={p.title} className={textStyles.blueTitle}>
-            <Link href="/practices/[slug]" as={p.slug}>
+          <li key={p.node.title} className={textStyles.blueTitle}>
+            <Link href="/practices/[slug]" as={p.node.uri}>
               <a className={`${textStyles.blueTitle} ${fontStyles.proximaBold}`}>
-                {p.title}
+                {p.node.title}
               </a>
             </Link>
           </li>

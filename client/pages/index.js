@@ -78,15 +78,22 @@ export async function getServerSideProps() {
   const allFirmPractices = await client.query(corePracticesQuery, {});
   const filteredNews = firmNewsContent.data.category.posts.edges.filter((_, i) => i <= 2)
   const filteredEvents = firmEventsContent.data.category.posts.edges.filter((_, i) => i <= 2)
-  const filterCorePractices = allFirmPractices.data.practices.edges.filter((practice) => practice.node.practicePortalPageContent.practicePortalCategories === "Core Practices")
-  console.log(filterCorePractices)
+  const filterCorePractices = allFirmPractices.data.practices.edges.filter((p) => {
+    const practice = p.node.practicePortalPageContent.practicePortalCategories;
+    
+    if(practice !== null) {
+      if(practice[0] ===  'Core Practices') {
+        return practice[0]
+      }
+    }
+  })
 
   return {
     props: {
       seo: metaDataContent.data.page.seo,
       posts: [...filteredEvents, ...filteredNews],
       locations: officeLocationContent.data.officeLocations.nodes,
-      corePractices
+      corePractices: filterCorePractices
     },
   };
 }
