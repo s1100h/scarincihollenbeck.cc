@@ -7,7 +7,8 @@ import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
 import { headers, sortByKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas'
-import client from 'utils/graphql-client'
+import client from 'utils/graphql-client';
+import { metaDataQuery, firmNewsQuery, firmEventsQuery, officeLocationsQuery, corePracticesQuery } from 'queries/home';
 
 export default function Home({
   seo,
@@ -19,13 +20,13 @@ export default function Home({
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescription}
+        description={seo.metaDesc}
         canonical="https://scarincihollenbeck.com/"
         openGraph={{
           type: 'website',
           url: 'https://scarincihollenbeck.com/',
           title: 'Scarinci Hollenbeck',
-          description: seo.metaDescription,
+          description: seo.metaDesc,
           images: [
             {
               url: 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png',
@@ -54,7 +55,7 @@ export default function Home({
         <ColumnContent corePractices={sortByKey(corePractices, 'title')} />
         <FullWidthContent
           sortedPosts={sortByKey(posts, 'date')}
-          sortedLocations={sortByKey(locations.offices, 'id')}
+          sortedLocations={sortByKey(locations, 'id')}
         />
       </Container>
       <Footer />
@@ -63,21 +64,28 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  const [seo, news, events, locations, corePractices] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/meta`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
+  const [corePractices] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())    
   ]);
 
-  const posts = [...news, ...events];
+  /** Adding in graphql queries */
+  // import client from 'utils/graphql-client';
+  // import { metaDataQuery, firmNewsQuery, firmEventsQuery, officeLocationsQuery } from 'queries/home';
+  const metaDataContent = await client.query(metaDataQuery, {});
+  const firmNewsContent = await client.query(firmNewsQuery, {});
+  const firmEventsContent = await client.query(firmEventsQuery, {});
+  const officeLocationContent = await client.query(officeLocationsQuery, {})
+  const allFirmPractices = await client.query(corePracticesQuery, {});
+  const filteredNews = firmNewsContent.data.category.posts.edges.filter((_, i) => i <= 2)
+  const filteredEvents = firmEventsContent.data.category.posts.edges.filter((_, i) => i <= 2)
+  const filterCorePractices = allFirmPractices.data.practices.edges.filter((practice) => practice.node.practicePortalPageContent.practicePortalCategories === "Core Practices")
+  console.log(filterCorePractices)
 
   return {
     props: {
-      seo,
-      posts,
-      locations,
+      seo: metaDataContent.data.page.seo,
+      posts: [...filteredEvents, ...filteredNews],
+      locations: officeLocationContent.data.officeLocations.nodes,
       corePractices
     },
   };

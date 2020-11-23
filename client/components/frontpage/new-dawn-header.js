@@ -23,7 +23,7 @@ export default function NewDawnHeader() {
   return (
     <HeaderBackground image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/07/new-dawn-nj-compressor.jpg" className="jumbotron jumbotron-fluid">
       <Container className={`${styles.bgBlackBackgroundDarker} animate__animated animate__fadeInUp animate__fast mt-4`}>
-        <Row>
+        <Row className="flex-column-reverse flex-lg-row">
           <Col sm={12} lg={6} className={styles.borderRight}>
             <h1 className="text-white mx-5 mt-5 animate__animated animate__fadeInUp animate__fast">Ready to rebuild? Scarinci Hollenbeck is here to help</h1>
             <p className="lead text-white mx-5 animate__animated animate__fadeInUp animate__slow">Scarinci Hollenbeck remains 100% operational and committed to assisting your business with achieving your goals.</p>

@@ -85,5 +85,15 @@ export const officeLocationsQuery = `{
 }`;
 
 export const corePracticesQuery = `{
-  
+  practices(first: 100) {
+    edges {
+      node {
+        title
+        uri
+        practicePortalPageContent {
+          practicePortalCategories
+        }
+      }
+    }
+  }
 }`;

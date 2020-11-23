@@ -29,10 +29,10 @@ export default function OfficeLocationCarousel({ slides }) {
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((post) => (
         <div key={post.title} className={`${styles.locationCard} mx-auto d-block border `}>
-          <Link href="/location/[slug]" as={post.slug}>
+          <Link href="/location/[slug]" as={post.uri}>
             <a>
               <LazyLoad height={150}>
-                <img rel="preconnect" src={post.featuredImg} alt={post.title} className="mw-100 mx-auto d-block" />
+                <img rel="preconnect" src={post.featuredImage.node.sourceUrl} alt={post.title} className="mw-100 mx-auto d-block" />
               </LazyLoad>
               <p className="red-title m-3 text-uppercase">
                 <strong>{post.title}</strong>
