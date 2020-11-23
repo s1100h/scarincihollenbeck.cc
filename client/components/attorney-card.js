@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import Link from 'next/link';
+import Image from 'next/image'
 import styles from 'styles/AttorneyCard.module.css'
 import fontStyles from 'styles/Fonts.module.css'
 import textStyles from 'styles/Text.module.css'
@@ -13,15 +14,19 @@ export default function AttorneyCard({
   title,
   number,
   email,
-  height,
-  width,
   type,
 }) {
   return (
-    <div className={`d-flex flex-row ${styles.attorneyCard}`} height={height}>
+    <div className={`d-flex flex-row ${styles.attorneyCard}`}>
       <Link href={type} as={link}>
-        <a>
-          <img rel="preload" src={image} alt={name} className="mr-1" style={{ width }} />
+        <a>          
+          <Image
+            src={image}
+            alt={name}
+            width={108}
+            height={148}
+            fill="responsive"
+          />
         </a>
       </Link>
       <div className="mt-3 ml-3">

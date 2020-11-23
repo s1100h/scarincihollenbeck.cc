@@ -10,13 +10,25 @@ import InfoCard from 'components/singleattorney/info-card';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { singleAdministraionQuery } from 'queries/administration';
 
-export default function SingleAdmin({ adminJson }) {
+export default function SingleAdmin({ adminJson, admin }) {
   const router = useRouter();
-
+  const { seo, uri, administration } = admin
+  const { name, title, email, phoneExtension, biography } = administration
   if (adminJson.status === 404) {
     return <Error statusCode={404} />;
   }
+
+
+
+  const imageLarge = administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "large")
+  const imageThumb = administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "thumbnail")
+  const seoProfileImage = imageThumb[0]
+  const profileImage = imageLarge[0]
+  console.log(administration)
+
 
   return (
     <>
@@ -29,45 +41,51 @@ export default function SingleAdmin({ adminJson }) {
       ) : (
         <>
           <NextSeo
-            title={adminJson.seo.title}
-            description={adminJson.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/${adminJson.seo.canonicalLink}`}
+            title={seo.title}
+            description={seo.metaDesc}
+            canonical={`https://scarincihollenbeck.com${uri}`}
             openGraph={{
-              url: `https://scarincihollenbeck.com/${adminJson.seo.canonicalLink}`,
+              url: `https://scarincihollenbeck.com${uri}`,
               title: 'Scarinci Hollenbeck',
-              description: adminJson.seo.metaDescription,
+              description: seo.metaDesc,
               images: [
                 {
-                  url: adminJson.seo.featuredImg,
-                  width: 200,
-                  height: 220,
-                  alt: adminJson.seo.title,
+                  url: seoProfileImage.sourceUrl,
+                  width: seoProfileImage.width,
+                  height: seoProfileImage.height,
+                  alt: seo.title,
                 },
               ],
               site_name: 'Scarinci Hollenbeck',
             }}
             twitter={{
               handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/${adminJson.seo.canonicalLink}`,
-              cardType: adminJson.seo.metaDescription,
+              site: `https://scarincihollenbeck.com${uri}`,
+              cardType: seo.metaDesc,
             }}
           />
           <SocialProfileJsonLd
             type="Person"
             name={adminJson.seo.name}
-            url={`https://scarincihollenbeck.com/${adminJson.seo.canonicalLink}`}
+            url={`https://scarincihollenbeck.com${uri}`}
             sameAs={[
               'https://twitter.com/S_H_Law',
               'https://www.facebook.com/ScarinciHollenbeck/',
               'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
             ]}
           />
-          <div id="single-admin">
+          <div>
             <MultiSubHeader
               image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
               height="450px"
               isAdmin={true}
-              profile={(<ProfileImage image={adminJson.image.url} name={adminJson.name} />)}
+              profile={(<ProfileImage
+                  image={administration.featuredImage.sourceUrl}
+                  name={adminJson.name}
+                  width={profileImage.width}
+                  height={profileImage.height}
+                />
+              )}
               infoCard={(
                 <InfoCard
                   email={adminJson.email}
@@ -103,14 +121,17 @@ export async function getServerSideProps({ params, res }) {
   const [adminJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json())
   ]);
-
+  
   if(adminJson.status === 404 && res) {
     res.statusCode = 404;
   }
 
+  const administrationContent = await client.query(singleAdministraionQuery(params.slug), {});
+
   return {
     props: {
       adminJson,
+      admin: administrationContent.data.administrations.edges[0].node
     },
   };
 }

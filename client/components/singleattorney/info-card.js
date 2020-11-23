@@ -27,10 +27,7 @@ export default function InfoCard({
   offices
 }) {
 
-  const attorneyIsChair = (chair !== undefined && chair.length > 0) || (coChair !== undefined && coChair.length > 0);
-  console.table(coChair);
-  console.log('attorneyIsChair', attorneyIsChair);
-
+  const isChair = (chair !== undefined && chair.length > 0) || (coChair !== undefined && coChair.length > 0);
 
   return (
     <Col sm={12}>
@@ -38,7 +35,7 @@ export default function InfoCard({
         <span id="red-block" />
         <h1 className="text-white border-bottom">
           { (fullName) && `${fullName} `}
-          { (attorneyIsChair) && (
+          { (isChair) && (
           <span className=" h5 text-white">
             -
             {` ${designation}`}
@@ -47,7 +44,7 @@ export default function InfoCard({
         </h1>
       </div>
       {/** Chair section -- start */}
-      { (attorneyIsChair) ? (
+      { (isChair) ? (
         <div className="my-3">
           { chair.map((ch) => (
             <h2 key={ch.title} className="text-white ft-style-inherit h5" key={ch.title}>
@@ -113,7 +110,7 @@ export default function InfoCard({
                 <FontAwesomeIcon icon={faBuilding} className="text-white icon-w8px-h20px d-inline" />
                 {' '}
                 {offices.map((office, index) => (                  
-                    <h5 key={office.id} className="d-inline">
+                    <h5 key={office.name} className="d-inline">
                       <a href={office.link} className="text-white proxima-regular mail-link ft-17px">
                         {office.name}
                       </a>

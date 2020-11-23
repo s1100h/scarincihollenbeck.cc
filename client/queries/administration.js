@@ -12,7 +12,7 @@ export const allAdministraionQuery = `{
         uri
         featuredImage {
           node {
-            sourceUrl
+            sourceUrl(size: CATEGORY_THUMB)
           }
         }
       }
@@ -20,14 +20,46 @@ export const allAdministraionQuery = `{
   }
 }`
 
-
-export const adminPageMetaDataQuery = `{
-
-}`
-
-
-export const singleAdministraion = id => {
+export const singleAdministraionQuery = id => {
   return `{
-
+    administrations(where: {name: "${id}"}) {
+      edges {
+        node {
+          administration {
+            name
+            title
+            email
+            phoneExtension
+            location {
+              ... on OfficeLocation {
+                title
+                uri
+              }
+            }
+            biography
+            featuredImage {
+              mediaDetails {
+                sizes {
+                  width
+                  height
+                  name
+                  sourceUrl
+                }
+              }
+              sourceUrl
+            }
+            socialMediaLinks {
+              url
+              channel
+            }
+          }
+          uri
+          seo {
+            title
+            metaDesc
+          }
+        }
+      }
+    }
   }`
 }
