@@ -2,6 +2,7 @@
 export function sortByKey(list, key) {
   if (list !== undefined) {
     list.sort((a, b) => {
+      console.log(a.key)
       if (a[key] > b[key]) {
         return 1;
       }

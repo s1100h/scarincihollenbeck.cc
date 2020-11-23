@@ -5,7 +5,7 @@ import NewDawnHeader from 'components/frontpage/new-dawn-header';
 import ColumnContent from 'components/frontpage/column-content';
 import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
-import { headers, sortByKey } from 'utils/helpers';
+import { sortByKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas'
 import client from 'utils/graphql-client';
 import { metaDataQuery, firmNewsQuery, firmEventsQuery, officeLocationsQuery, corePracticesQuery } from 'queries/home';
@@ -64,13 +64,7 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  const [corePractices] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())    
-  ]);
-
   /** Adding in graphql queries */
-  // import client from 'utils/graphql-client';
-  // import { metaDataQuery, firmNewsQuery, firmEventsQuery, officeLocationsQuery } from 'queries/home';
   const metaDataContent = await client.query(metaDataQuery, {});
   const firmNewsContent = await client.query(firmNewsQuery, {});
   const firmEventsContent = await client.query(firmEventsQuery, {});

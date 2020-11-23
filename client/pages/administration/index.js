@@ -6,12 +6,11 @@ import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
-import { headers, sortByKey } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { allAdministraionQuery } from 'queries/administration';
 
 
 export default function Administration({ admins, seo }) {
-  const sortedAdmins = sortByKey(admins, 'orderBy');
-
 
   return (
     <>
@@ -26,17 +25,17 @@ export default function Administration({ admins, seo }) {
         subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
       />
       <FullWidth>
-        <Container id="archive-admin" className="p-3 pt-4 border">
+        <Container className="p-3 pt-4 border">
           <Row>
-            {sortedAdmins.map((admin) => (
-              <Col sm={12} md={6} lg={4} key={admin.id} className="mb-3">
+            {admins.map((a) => (
+              <Col sm={12} md={6} lg={4} key={a.node.administration.phoneExtension} className="mb-3">
                 <AttorneyCard
-                  image={admin.image.smallUrl}
-                  name={admin.name}
-                  link={admin.link}
-                  title={admin.title}
-                  number={`201-896-4100 ${admin.phoneExtension}`}
-                  email={admin.email}
+                  image={a.node.featuredImage.node.sourceUrl}
+                  name={a.node.administration.name}
+                  link={a.node.uri}
+                  title={a.node.administration.title}
+                  number={`201-896-4100 ${a.node.administration.phoneExtension}`}
+                  email={a.node.administration.email}
                   width="81px"
                   type="/administration/[admin]"
                 />
@@ -51,16 +50,16 @@ export default function Administration({ admins, seo }) {
 }
 
 export async function getServerSideProps() {
-  const [aJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json())
-  ]);
-
-  const { admins, seo } = aJson;
+  const allAdministrationContent = await client.query(allAdministraionQuery, {});
 
   return {
     props: {
-      seo,
-      admins,
+      seo: {
+        "title": "Administration Directors & Managers | Scarinci Hollenbeck",
+        "metaDescription": "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
+        "canonicalLink": "administration"
+      },
+      admins: allAdministrationContent.data.administrations.edges,
     },
   };
 }

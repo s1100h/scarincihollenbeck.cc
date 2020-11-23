@@ -66,6 +66,7 @@ export default function SingleAdmin({ adminJson }) {
             <MultiSubHeader
               image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
               height="450px"
+              isAdmin={true}
               profile={(<ProfileImage image={adminJson.image.url} name={adminJson.name} />)}
               infoCard={(
                 <InfoCard

@@ -20,7 +20,7 @@
     "core-js": "3.6.5",
     "graphql-client": "^2.0.1",
     "kwesforms": "^2.0.3",
-    "next": "9.5.4",
+    "next": "^10.0.2",
     "next-fonts": "^1.4.0",
     "next-ga": "^2.3.4",
     "next-nprogress": "^1.4.0",
