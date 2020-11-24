@@ -17,7 +17,7 @@ export default function AttorneyCard({
   type,
 }) {
   return (
-    <div className={`d-flex flex-row ${styles.attorneyCard}`}>
+    <div className={`d-flex flex-row ${styles.attorneyCard}`} height={148}>
       <Link href={type} as={link}>
         <a>          
           <Image
