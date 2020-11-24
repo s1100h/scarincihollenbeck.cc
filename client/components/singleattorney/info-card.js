@@ -12,6 +12,9 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import fontStyles from 'styles/Fonts.module.css'
+import textStyles from 'styles/Text.module.css'
+import marginStyles from 'styles/Margins.module.css'
 
 export default function InfoCard({
   fullName,
@@ -32,7 +35,6 @@ export default function InfoCard({
   return (
     <Col sm={12}>
       <div className="mt-3">
-        <span id="red-block" />
         <h1 className="text-white border-bottom">
           { (fullName) && `${fullName} `}
           { (isChair) && (
@@ -47,9 +49,9 @@ export default function InfoCard({
       { (isChair) ? (
         <div className="my-3">
           { chair.map((ch) => (
-            <h2 key={ch.title} className="text-white ft-style-inherit h5" key={ch.title}>
+            <h2 key={ch.title} className={`${marginStyles.mlMinus10} text-white ${fontStyles.ftStyleInherit} h5`} key={ch.title}>
               <strong>Chair: </strong>
-              <a href={ch.link} className="text-white chair-link h5">
+              <a href={ch.link} className="text-white h5">
                 {ch.title}
                 {' '}
                 Practice
@@ -58,9 +60,9 @@ export default function InfoCard({
             </h2>
           ))}
           {coChair.map((co) => (
-            <h2 key={coChair.title} className="text-white ft-style-inherit h5" key={co.title}>
+            <h2 key={coChair.title} className={`text-white ${fontStyles.ftStyleInherit} h5`} key={co.title}>
               <strong>Co-Chair: </strong>
-              <a href={co.link} className="text-white chair-link h5">
+              <a href={co.link} className="text-white h5">
                 {co.title}
                 {' '}
                 Practice
@@ -71,48 +73,49 @@ export default function InfoCard({
         </div>
       ) : (
         <Col sm={12} className="mt-3">
-          <h2 className="text-white ml--10px h4 ft-style-inherit">{designation}</h2>
+          <h2 className={`${marginStyles.mlMinus13} text-white ${fontStyles.ftStyleInherit} h4`}>{designation}</h2>
         </Col>
       )}
       {/** Chair section -- end */}     
       {/** Col One phone, email, fax -- start */}
       <Row>
         <Col sm={12} md={6}>
-          <ul className="text-white no-dots mt-2 ml-0">
+          <ul className="text-white list-unstyled mt-2 ml-0">
             { (phoneNumber) && (
-              <li className="mb-1">
-                <h5>
-                  <FontAwesomeIcon icon={faPhone} className="text-white icon-w8px-h20px" />
+              <li className="mb-3">
+                <h6>
+                  <FontAwesomeIcon icon={faPhone} className={`text-white ${fontStyles.ft1rem}`} />
                   {' '}
-                  <span className="proxima-regular ft-17px">{`  ${phoneNumber}`}</span>
-                </h5>
+                  <span>{phoneNumber}</span>
+                </h6>
               </li>
             )}
             { (fax) && (
-              <li className="mb-1">
-                <h5>
-                  <FontAwesomeIcon icon={faFax} className="text-white icon-w8px-h20px" />
+              <li className="mb-3">
+                <h6>
+                  <FontAwesomeIcon icon={faFax} className={`text-white ${fontStyles.ft1rem}`}/>
                   {' '}
-                  <span className="proxima-regular ft-17px">{`  ${fax}`}</span>
-                </h5>
+                  <span>{fax}</span>
+                </h6>
               </li>
             )}
             { (email) && (
-              <li className="mb-1">
-                <h5>
-                  <FontAwesomeIcon icon={faEnvelope} className="text-white icon-w8px-h20px" />
-                  <a href={`mailto:${email}`} className="text-white proxima-regular mail-link ft-17px">{` ${email}`}</a>
-                </h5>
+              <li className="mb-3">
+                <h6>
+                  <FontAwesomeIcon icon={faEnvelope} className={`text-white ${fontStyles.ft1rem}`} />
+                  {' '}
+                  <a href={`mailto:${email}`} className="text-white">{email}</a>
+                </h6>
               </li>
             )}
             {(offices !== undefined && offices.length > 0) && (              
-              <li className="mb-1">
+              <li className="mb-3">
                 <FontAwesomeIcon icon={faBuilding} className="text-white icon-w8px-h20px d-inline" />
                 {' '}
                 {offices.map((office, index) => (                  
-                    <h5 key={office.name} className="d-inline">
-                      <a href={office.link} className="text-white proxima-regular mail-link ft-17px">
-                        {office.name}
+                    <h6 key={office.title} className="d-inline">
+                      <a href={office.uri} className="text-white">
+                        {office.title}
                       </a>
                       {(offices.length - 1 !== index) && (
                         <>
@@ -120,7 +123,7 @@ export default function InfoCard({
                           {' '}
                         </>
                       )}                                         
-                    </h5>           
+                    </h6>           
                 ))}
               </li>
             )}
@@ -133,38 +136,38 @@ export default function InfoCard({
             <>
               <ul className="ml-0 mt-2 list-unstyled">
                 { socialMediaLinks.map((v) => (
-                  <li key={v.channel} className="mb-0 lh-1">
-                    <h5>
-                      {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white icon-w8px-h20px" />}
-                      {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white icon-w8px-h20px" />}
-                      {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white icon-w8px-h20px" />}
-                      {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white icon-w8px-h20px" />}
-                      {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white icon-w8px-h20px" />}
-                      <a href={v.url} className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                  <li key={v.channel} className="mb-3">
+                    <h6>
+                      {(v.channel === 'Twitter') && <FontAwesomeIcon icon={faTwitter} className="text-white" />}
+                      {(v.channel === 'Facebook') && <FontAwesomeIcon icon={faFacebookSquare} className="text-white" />}
+                      {(v.channel === 'LinkedIn') && <FontAwesomeIcon icon={faLinkedin} className="text-white" />}
+                      {(v.channel === 'Skype') && <FontAwesomeIcon icon={faSkype} className="text-white" />}
+                      {(v.channel === 'Instagram') && <FontAwesomeIcon icon={faInstagram} className="text-white" />}
+                      <a href={v.url} className="text-white">
                         {`  Connect on ${v.channel}`}
                       </a>
-                    </h5>
+                    </h6>
                   </li>
                 )) }
                 { (pdf) && (
-                  <li className="mb-0 lh-1">
-                    <h5>
-                      <FontAwesomeIcon icon={faFile} className="text-white icon-w8px-h20px" />
+                  <li className="mb-3">
+                    <h6>
+                      <FontAwesomeIcon icon={faFile} className="text-white" />
                       {' '}
-                      <a href={pdf} rel="nofollow" className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                      <a href={pdf} rel="nofollow" className="text-white">
                         {' Download Biography'}
                       </a>
-                    </h5>
+                    </h6>
                   </li>
                 )}
                 { (vizibility) && (
-                  <li className="mb-0 lh-1">
-                    <h5>
-                      <FontAwesomeIcon icon={faAddressCard} className="text-white icon-w8px-h20px" />
-                      <a href={vizibility} className="text-white mail-link proxima-regular ft-17px position-relative icon">
+                  <li className="mb-3">
+                    <h6>
+                      <FontAwesomeIcon icon={faAddressCard} className="text-white" />
+                      <a href={vizibility} className="text-white">
                         {' Download Contact'}
                       </a>
-                    </h5>
+                    </h6>
                   </li>
                 )}
               </ul>

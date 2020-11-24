@@ -27,7 +27,7 @@ import 'styles/utils/carousel.css';
 /**
 * Custom Style Sheets
 * */
-import 'styles/main.scss';
+// import 'styles/main.scss';
 import 'styles/dropdown.css'
 // import 'styles/navigation.scss';
 // import 'styles/archive-attorney&admin.scss';

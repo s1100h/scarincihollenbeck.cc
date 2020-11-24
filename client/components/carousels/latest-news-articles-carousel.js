@@ -40,7 +40,11 @@ export default function LatestNewsArticlesCarousel({ slides }) {
             <LazyLoad height={150}>
               <img rel="preconnect" src={(post.node.image) ? post.node.image.node.sourceUrl : (post.node.featuredImage) ? post.node.featuredImage.node.sourceUrl : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'} alt={post.node.title} className="img-thumbnail mx-auto d-block" />
             </LazyLoad>
-            <h5 className="mt-3 mb-2 text-center">{post.node.categories.nodes[0].name || '' }</h5>
+            <h5 className="mt-3 mb-2 text-center text-dark">
+              <strong>
+                {post.node.categories.nodes[0].name || '' }
+              </strong>
+            </h5>
             <p className={`${styleFonts.smallExcerpt} text-muted small-excerpt text-center`}>{limitTitleLength(post.node.title)}</p>
           </a>
         </div>

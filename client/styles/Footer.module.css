@@ -61,6 +61,10 @@
     margin-left: .1rem;
     margin-right: .1rem;
   }
+
+  .FooterSearch > div > form {
+    margin-right: 0 !important;
+  }
 }
 
 @media (min-width:1246px) {

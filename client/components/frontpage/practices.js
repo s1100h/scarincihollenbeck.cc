@@ -1,28 +1,30 @@
 import Link from 'next/link';
-import textStyles from '../../styles/Text.module.css'
-import fontStyles from '../../styles/Fonts.module.css'
+import textStyles from 'styles/Text.module.css'
+import marginStyles from 'styles/Margins.module.css'
 
 export default function Practices({ corePractices }) {
   return (
     <div>
-      <h4 className={`${textStyles.redTitle} h5`}>Core Practices</h4>
+      <h4 className={`${textStyles.redTitle} h5`}>
+        <strong>Core Practices</strong>
+      </h4>
       <hr />
-      <ul className="ml-4" role="navigation">
+      <ul className={marginStyles.mlMinus20} role="navigation">
         { corePractices.map((p) => (
-          <li key={p.node.title} className={textStyles.blueTitle}>
+          <li key={p.node.title} className={`${textStyles.blueTitle} mb-2`}>
             <Link href="/practices/[slug]" as={p.node.uri}>
-              <a className={`${textStyles.blueTitle} ${fontStyles.proximaBold}`}>
-                {p.node.title}
+              <a className={`${textStyles.blueTitle}`}>
+                <strong>{p.node.title}</strong>
               </a>
             </Link>
           </li>
         )) }
       </ul>
       <Link href="/practices">
-        <a className={`${textStyles.redTitle} ${fontStyles.proximaBold}`}>
-          <u>
-            All Practices &gt;&gt;
-          </u>
+        <a className={`${textStyles.redTitle}`}>
+          <strong>
+            <u>All Practices &gt;&gt;</u>
+          </strong>          
         </a>
       </Link>
     </div>

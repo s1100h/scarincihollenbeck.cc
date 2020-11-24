@@ -1,5 +1,5 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Image from 'next/image'
 import Link from 'next/link';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -12,14 +12,13 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import HamburgerMobileMenu from './hamburger-mobile-menu'
 import navBarStyles from '../styles/Navbar.module.css';
-import fontStyles from '../styles/Fonts.module.css';
 import textStyles from '../styles/Text.module.css';
 
 const NavBar = () => (
   <header className="mb-0">
     <Container>
-      <Row className="mt-2">
-      <Col xs={12} className={`border-bottom d-flex ${navBarStyles.contactBanner}`}>
+      <Row className="my-2">
+      <Col xs={12} className={`border-bottom d-flex ${navBarStyles.contactBanner} pr-0 justify-content-end`}>
           <p className="my-1 pb-1 mx-0 px-0">
             <span>
               <FontAwesomeIcon icon={faPhone} />
@@ -32,10 +31,8 @@ const NavBar = () => (
               info@sh-law.com
             </span>
             <Link href="/subscribe">
-              <a className={`ml-2 ${textStyles.redTitle} ${fontStyles.proximaBold}`}>
-                <u>
-                Join our mailing list
-                </u>
+              <a className={`ml-2 ${textStyles.redTitle} font-weight-bold`}>
+                <u>Join our mailing list</u>
               </a>
             </Link>
           </p>
@@ -43,10 +40,11 @@ const NavBar = () => (
         <Col xs={12} lg={6} className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}>
           <Link href="/">
             <a>
-              <LazyLoadImage
+              <Image
                 alt="Scarinci Hollenbeck, LLC"
                 height="52"
                 width="338"
+                layout="intrinsic"
                 src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
               />
             </a>
@@ -80,14 +78,14 @@ const NavBar = () => (
                 </NavDropdown>                  
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/attorneys">
-                    <a>
+                    <a className="text-dark">
                       Attorneys
                     </a>
                   </Link>
                 </Nav.Item>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/practices">
-                    <a>
+                    <a className="text-dark">
                       Practices
                     </a>
                   </Link>
@@ -108,14 +106,14 @@ const NavBar = () => (
                 </NavDropdown>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/locations">
-                    <a>
+                    <a className="text-dark">
                       Locations
                     </a>
                   </Link>
                 </Nav.Item>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/contact">
-                    <a>
+                    <a className="text-dark">
                       Contact
                     </a>
                   </Link>

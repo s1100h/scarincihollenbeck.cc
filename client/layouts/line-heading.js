@@ -2,7 +2,11 @@
 export default function LineHeading({title}) {
   return (
     <div>
-      <h3>{title}</h3>
+      <h3>
+        <strong>
+          {title}
+        </strong>
+      </h3>
       <style jsx>{`
         div {
           border-bottom: 1px solid #d1d1d1;

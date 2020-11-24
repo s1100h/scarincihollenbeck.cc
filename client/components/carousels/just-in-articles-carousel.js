@@ -39,7 +39,7 @@ export default function JustInArticlesCarousel() {
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>
       {slides.map((post) => (
-        <div key={parseInt(post.id, 10)} className={`${styles.JustInCarouselContent} card carousel-slide level-${parseInt(post.id, 10)}`}>
+        <div key={parseInt(post.id, 10)} className={styles.JustInCarouselContent}>
           <a href={post.link}>
             <p className={styles.justInHeader}>
               <span className={styles.category}>
@@ -52,7 +52,11 @@ export default function JustInArticlesCarousel() {
               )}              
             </p>
             <div className={styles.justInContent}>
-              <h5>{post.title}</h5>
+              <h5>
+                <strong>
+                  {post.title}
+                </strong>
+              </h5>
               <LazyLoad height={150}>
                 <img rel="preconnect" src={post.image} alt={post.title} className="img-thumbnail d-block mx-auto" />
               </LazyLoad>

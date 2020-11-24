@@ -52,6 +52,7 @@ export const singleAdministraionQuery = id => {
               url
               channel
             }
+            vizibility
           }
           uri
           seo {

@@ -29,13 +29,13 @@ export default function AttorneyCard({
           />
         </a>
       </Link>
-      <div className="mt-3 ml-3">
+      <div className="my-auto ml-3">
         <Link href={type} as={link}>
           <a>
             <p className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}>
               <strong>{name}</strong>
             </p>
-            <p className={`mb-1 ${fontStyles.smallExcerpt}`}>
+            <p className={`mb-1 ${fontStyles.smallExcerpt} text-dark`}>
               <strong>
                 {title}
               </strong>

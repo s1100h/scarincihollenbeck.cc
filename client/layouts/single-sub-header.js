@@ -25,9 +25,12 @@ export default function SingleSubHeader({ title, subtitle, image, height }) {
         <Row>
           <Col sm={12} md={{ span: 7, offset: 2 }} className={`${styles.bgBlackBackground} text-white`}>
             <div className="p-3">
-              <span id="red-block" />
-              <h1 className={`${fontStyles.proximaBold} text-white border-bottom`}>{title}</h1>
-              <h2 className={`${fontStyles.proximaRegular} ${styles.h2Italic} mt-3 mb-5`} dangerouslySetInnerHTML={createMarkup(subtitle)} />
+              <h1 className="text-white border-bottom">
+                <strong>
+                  {title}
+                </strong>
+              </h1>
+              <h2 className={`${styles.h2Italic} mt-3 mb-5`} dangerouslySetInnerHTML={createMarkup(subtitle)} />
             </div>
           </Col>
         </Row>

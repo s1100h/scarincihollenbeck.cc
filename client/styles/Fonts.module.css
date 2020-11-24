@@ -1,53 +1,4 @@
-/** Fonts **/
-@font-face{ 
-	font-family: 'Proxima Nova Regular';
-  src:  url('../fonts/proxima-nova-regular.ttf') format('truetype');
-  font-display: block;
-}
 
-@font-face{ 
-	font-family: 'Proxima Nova Thin';
-  src:  url('../fonts/proxima-nova-thin.ttf') format('truetype');
-  font-display: block;
-}
-
-@font-face{ 
-	font-family: 'Proxima Nova SemiBold';
-  src:  url('../fonts/proxima-nova-semibold.ttf') format('truetype');
-  font-display: block;
-}
-
-@font-face{ 
-	font-family: 'Proxima Nova Bold';
-  src:  url('../fonts/proxima-nova-bold.ttf') format('truetype');
-  font-display: block;
-}
-
-@font-face{ 
-	font-family: 'Proxima Nova Extra Bold';
-  src:  url('../fonts/proxima-nova-extrabold.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face{ 
-	font-family: 'Proxima Nova Italic';
-  src:  url('../fonts/proxima-nova-italic.ttf') format('truetype');
-  font-display: swap;
-}
-
-
-.proximaBold {
-  font-family: 'Proxima Nova Bold';
-  font-weight: bold;
-}
-.proximaRegular {
-  font-family: 'Proxima Nova Regular';
-  font-weight: normal;
-}
-.proximaThin {
-  font-family: 'Proxima Nova Thin';
-  font-weight: thin;
-}
 .smallExcerpt {
   font-size: 13px;
   line-height: 1.5;
@@ -56,4 +7,12 @@
 }
 .smallerExcerpt {
   font-size: 11px; 
+}
+
+.ftStyleInherit {
+  font-style: inherit !important;
+}
+
+.ft1rem {
+  font-size: 1rem;
 }

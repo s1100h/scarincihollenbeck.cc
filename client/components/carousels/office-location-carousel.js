@@ -2,7 +2,8 @@
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';
-import styles from '../../styles/carousels/OfficeLocation.module.css'
+import styles from 'styles/carousels/OfficeLocation.module.css'
+import textStyles from 'styles/Text.module.css'
 
 const responsive = {
   superLargeDesktop: {
@@ -34,7 +35,7 @@ export default function OfficeLocationCarousel({ slides }) {
               <LazyLoad height={150}>
                 <img rel="preconnect" src={post.featuredImage.node.sourceUrl} alt={post.title} className="mw-100 mx-auto d-block" />
               </LazyLoad>
-              <p className="red-title m-3 text-uppercase">
+              <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
                 <strong>{post.title}</strong>
               </p>
             </a>

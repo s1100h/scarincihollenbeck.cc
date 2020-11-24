@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import About from './about';
 import Practices from './practices';
 import Categories from './categories';
-import lineStyles from '../../styles/LineHeader.module.css'
+import lineStyles from 'styles/LineHeader.module.css'
 
 export default function ColumnContent({ corePractices }) {
   return (

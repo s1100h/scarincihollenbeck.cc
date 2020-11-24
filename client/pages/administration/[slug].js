@@ -12,22 +12,20 @@ import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { singleAdministraionQuery } from 'queries/administration';
+import lineStyles from 'styles/LineHeader.module.css'
 
 export default function SingleAdmin({ adminJson, admin }) {
   const router = useRouter();
   const { seo, uri, administration } = admin
-  const { name, title, email, phoneExtension, biography } = administration
-  if (adminJson.status === 404) {
-    return <Error statusCode={404} />;
-  }
-
-
-
+  const { name, title, email, phoneExtension, biography, socialMediaLinks, location, vizibility } = administration
   const imageLarge = administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "large")
   const imageThumb = administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "thumbnail")
   const seoProfileImage = imageThumb[0]
   const profileImage = imageLarge[0]
-  console.log(administration)
+
+  if (adminJson.status === 404) {
+    return <Error statusCode={404} />;
+  }
 
 
   return (
@@ -66,7 +64,7 @@ export default function SingleAdmin({ adminJson, admin }) {
           />
           <SocialProfileJsonLd
             type="Person"
-            name={adminJson.seo.name}
+            name={name}
             url={`https://scarincihollenbeck.com${uri}`}
             sameAs={[
               'https://twitter.com/S_H_Law',
@@ -81,7 +79,7 @@ export default function SingleAdmin({ adminJson, admin }) {
               isAdmin={true}
               profile={(<ProfileImage
                   image={administration.featuredImage.sourceUrl}
-                  name={adminJson.name}
+                  name={name}
                   width={profileImage.width}
                   height={profileImage.height}
                 />
@@ -89,23 +87,22 @@ export default function SingleAdmin({ adminJson, admin }) {
               infoCard={(
                 <InfoCard
                   email={adminJson.email}
-                  social_media_links={adminJson.social_media_links}
-                  vizibility={adminJson.vizibility}
-                  fullName={adminJson.name}
-                  designation={adminJson.Title}
-                  phoneNumber={`201-896-4100 ${adminJson.phone_extension}`}
-                  socialMediaLinks={adminJson.social_media_links}
-                  offices={adminJson.offices}
+                  vizibility={vizibility}
+                  fullName={name}
+                  designation={title}
+                  phoneNumber={`201-896-4100 ${phoneExtension}`}
+                  socialMediaLinks={socialMediaLinks}
+                  offices={location}
                 />
             )}
             />
             <FullWidth>
               <div>
-                <div className="line-header">
+                <div className={lineStyles.lineHeader}>
                   <h3>Biography</h3>
                 </div>
-                <div className="w-100 mt-5">
-                  <div dangerouslySetInnerHTML={createMarkup(adminJson.biography)} />
+                <div className="w-100 my-5">
+                  <div dangerouslySetInnerHTML={createMarkup(biography)} />
                 </div>
               </div>
             </FullWidth>

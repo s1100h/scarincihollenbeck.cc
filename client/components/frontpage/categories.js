@@ -10,7 +10,9 @@ function onCategorySelection(event) {
 
 const Categories = () => (
   <div>
-    <h4 className={`h5 ${textStyles.redTitle}`}>Firm Insights</h4>
+    <h4 className={`h5 ${textStyles.redTitle}`}>
+      <strong>Firm Insights</strong>
+    </h4>
     <hr />
     <p className="text-muted">Firm Insights is Scarinci Hollenbeck&apos;s library of articles written by our attorneys. It is our way of providing you with the most critical legal updates that could impact your business.</p>
     <Form onChange={onCategorySelection}>
@@ -38,10 +40,10 @@ const Categories = () => (
     </Form>
     <p className={`my-3 mb-0 ${fontStyles.smallExcerpt}`}>Not sure? Feel free to browse here.</p>
     <Link href="/category[slug]" as="/category/law-firm-insights/">
-      <a className={`${textStyles.redTitle} ${fontStyles.proximaBold}`}>
-        <u>
-          Firm Insights &gt;&gt;
-        </u>
+      <a className={textStyles.redTitle}>
+        <strong>
+          <u>Firm Insights &gt;&gt;</u>
+        </strong>
       </a>
     </Link>
   </div>

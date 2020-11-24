@@ -6,7 +6,6 @@ import CookieConsentContainer from './cookie-consent';
 import FrontSearch from './frontpage/front-search';
 import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
 import styles from '../styles/Footer.module.css'
-import fontStyles from '../styles/Fonts.module.css'
 import textStyles from '../styles/Text.module.css'
 
 export default function Footer() {
@@ -24,15 +23,17 @@ export default function Footer() {
               {' '}
             </Col>
             <Col sm={12} lg={4}>
-             <div className="justify-content-end">
-              <FrontSearch/>
-             </div>
+              <div className={styles.FooterSearch}>
+                <FrontSearch/>
+              </div>
             </Col>
           </Row>
           <Row className="pb-3 mb-0">
             <Col sm={6}>
-              <p className={`mr-auto ${fontStyles.proximaBold} h5 pb-0 mb-0`}>ATTORNEY ADVERTISING</p>
-            <p className={`mr-auto ${fontStyles.proximaRegular} mt-0 pt-0`}>
+              <p className="mr-auto h5 pb-0 mb-0">
+                <strong>ATTORNEY ADVERTISING</strong>
+              </p>
+              <p className="mr-auto mt-0 pt-0">
                 Prior results do not guarantee a similar outcome.
                 <br />
                 ©
@@ -45,47 +46,55 @@ export default function Footer() {
               <div role="navigation" className={`d-flex ${styles.LinkContainer}`}>
                 <div>
                   <Link href="/contact">
-                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>Contact Us</a>
+                    <a className={`${textStyles.redTitle} h6`}>
+                      <strong>Contact Us</strong>
+                    </a>
                   </Link>
                   <span className={styles.LinkSeperator}>|</span>
                 </div>
                 <div>
                   <Link href="/careers">
-                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>Careers</a>
+                    <a className={`${textStyles.redTitle} h6`}>
+                      <strong>Careers</strong>
+                    </a>
                   </Link>
                   <span className={styles.LinkSeperator}>|</span>
                 </div>
                 <div>
                   <Link href="/awards">
-                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>Awards </a>
+                    <a className={`${textStyles.redTitle} h6`}>
+                      <strong>Awards</strong>
+                    </a>
                   </Link>
                 </div>
               </div>
               <div className={`d-flex ${styles.LinkContainer}`}>
                 <div>
-                  <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
-                    Make Payment
+                  <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className={`${textStyles.redTitle} h6`}>
+                    <strong>Make Payment</strong>
                   </a>
                   <span className={styles.LinkSeperator}>|</span>
                 </div>
                 <div>
-                  <a href="https://scarincihollenbeck.com/sitemap.xml" className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
-                    Sitemap
+                  <a href="https://scarincihollenbeck.com/sitemap.xml" className={`${textStyles.redTitle} h6`}>
+                    <strong>Sitemaps</strong>
                   </a>
                   <span className={styles.LinkSeperator}>|</span>
                 </div>
                 <div>
                   <Link href="/terms-of-use">
-                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
-                      Terms of Use
+                    <a className={`${textStyles.redTitle} h6`}>
+                      <strong>Terms of Use</strong>
                     </a>
                   </Link>
                   <span className={styles.LinkSeperator}>|</span>
                 </div>
                 <div>
                   <Link href="/privacy-policy">
-                    <a className={`${fontStyles.proximaBold} ${textStyles.redTitle} h6`}>
-                      Privacy Policy
+                    <a className={`${textStyles.redTitle} h6`}>
+                      <strong>
+                        Privacy Policy
+                      </strong>
                     </a>
                   </Link>
                 </div>
