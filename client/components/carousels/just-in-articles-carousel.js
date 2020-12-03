@@ -1,11 +1,14 @@
-
-import LazyLoad from 'react-lazyload';
+import Link from 'next/link';
+import Image from 'next/image';
 import Carousel from 'react-multi-carousel';
 import useSWR from 'swr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
-import { fetcher } from 'utils/helpers';
+import { justInQuery } from 'queries/home'
+import { request } from 'graphql-request';
+import SiteLoader from '../site-loader';
+import ErrorMessage from '../error-message';
 import styles from '../../styles/carousels/JustIn.module.css'
 
 const jiResponsive = {
@@ -34,42 +37,53 @@ function formatDate(date) {
 }
 
 export default function JustInArticlesCarousel() {
-  const { data: slides=[] } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
+  const { data: justInSlides, error: justInError } = useSWR(justInQuery, (query) =>
+    request('https://wp.scarincihollenbeck.com/graphql', query)
+  );
 
-  return (slides.length > 0) && (
+  if (justInError) return <ErrorMessage />
+  if (!justInSlides) return <SiteLoader />
+  console.log(justInSlides.category.posts.edges)
+
+  return (
     <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>
-      {slides.map((post) => (
-        <div key={parseInt(post.id, 10)} className={styles.JustInCarouselContent}>
-          <a href={post.link}>
-            <p className={styles.justInHeader}>
-              <span className={styles.category}>
-                <FontAwesomeIcon icon={faNewspaper} />
-                {' '}
-                {post.category}
-              </span>
-              {(formatDate(post.date) !== 'Invalid Date') && (
-                <span className={styles.date}>{formatDate(post.date)}</span>
-              )}              
-            </p>
-            <div className={styles.justInContent}>
-              <h5>
-                <strong>
-                  {post.title}
-                </strong>
-              </h5>
-              <LazyLoad height={150}>
-                <img rel="preconnect" src={post.image} alt={post.title} className="img-thumbnail d-block mx-auto" />
-              </LazyLoad>
-            </div>
-            <hr />
-            <p className={styles.tag}>
-              <FontAwesomeIcon icon={faPlusCircle} />
-              {' '}
-              {post.location}
-            </p>
-          </a>
+      {justInSlides.category.posts.edges.map((slide) => (
+        <div key={slide.node.id} className={styles.JustInCarouselContent}>
+          <Link href={slide.node.link}>
+            <a>
+              <p className={styles.justInHeader}>
+                <span className={styles.category}>
+                  <FontAwesomeIcon icon={faNewspaper} />
+                  {' '}
+                  {(slide.node.categories.nodes.length > 0) ? slide.node.categories.nodes[0].name : '' }
+                </span>
+                {(formatDate(slide.node.date) !== 'Invalid Date') && (
+                  <span className={styles.date}>{formatDate(slide.node.date)}</span>
+                )}  
+              </p>
+              <div className={styles.justInContent}>
+                <h5>
+                  <strong>
+                    {slide.node.title}
+                  </strong>
+                </h5>
+                <Image
+                  src={(slide.node.image) ? slide.node.image.node.sourceUrl : (slide.node.featuredImage) ? slide.node.featuredImage.node.sourceUrl : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'}
+                  alt={slide.node.title}
+                  width={300}
+                  height={150}
+                />
+                <hr />
+                <p className={styles.tag}>
+                  <FontAwesomeIcon icon={faPlusCircle} />
+                  {' '}
+                  {slide.node.postsLocationSelection.locationSelection[0]}
+                </p>
+              </div>
+            </a>
+          </Link>
         </div>
-      ))}
+      ))}     
     </Carousel>
   );
 }

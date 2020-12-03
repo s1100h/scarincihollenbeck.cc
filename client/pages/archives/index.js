@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NextSeo } from 'next-seo';
-import BarLoader from 'react-spinners/BarLoader';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import Body from 'components/archives/body';
+import SiteLoader from 'components/site-loader'
 import Sidebar from 'components/archives/sidebar';
 import { headers, makeQueryTitle } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { firmNewsQuery, firmEventsQuery, firmInsightsQuery } from 'queries/home';
 
 export default function Archive({
   firmNews,
-  firmEvents,
   firmInsights,
+  firmEvents,
   results,
   posts,
   pages,
@@ -21,56 +21,50 @@ export default function Archive({
   page,
   q
 }) {
-  
 
+  if(results.length <=0) {
+    return <SiteLoader />
+  }
+  
   return (
-    <>
-      {(results.length === 0) ? (
-        <Container>
-          <Row id="page-loader-container" className="justify-content-center align-self-center">
-            <BarLoader color="#DB2220" />
-          </Row>
-        </Container>
-      ) : (
-        <div id="archives">
-          <NextSeo nofollow />
-          <ArchiveLayout
-            header={(<Breadcrumbs breadCrumb={[makeQueryTitle(term), page]} categorySlug={term} />)}
-            body={(
-              <Body
-                results={results}
-                term={term}
-                pages={pages}
-                currentPage={page}
-                news={firmNews}
-                events={firmEvents}
-                insight={firmInsights}
-                pathname="/archives"
-                q={q}
-              />
-            )}
-            sidebar={(<Sidebar trending={posts} />)}
+    <div className="mt-3">
+      <NextSeo nofollow />
+      <ArchiveLayout
+        header={(<Breadcrumbs breadCrumb={[makeQueryTitle(term), page]} categorySlug={term} />)}
+        body={(
+          <Body
+            results={results}
+            term={term}
+            pages={pages}
+            currentPage={page}
+            news={firmNews}
+            events={firmEvents}
+            insight={firmInsights}
+            pathname="/archives"
+            q={q}
           />
-        </div>
-      )}
+        )}
+        sidebar={(<Sidebar trending={posts} />)}
+      />
       <Footer />
-    </>
+    </div>
   );
 }
 
 export async function getServerSideProps({ query }) {
-  const [response, firmNews, firmEvents, firmInsights, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json())
-  ]);
+  const response = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`, { headers }).then((data) => data.json())
+  const firmNewsContent = await client.query(firmNewsQuery, {});
+  const firmEventsContent = await client.query(firmEventsQuery, {});
+  const firmInsightsContent = await client.query(firmInsightsQuery, {});
+  const filteredNews = firmNewsContent.data.category.posts.edges.filter((_, i) => i <= 6)
+  const filteredEvents = firmEventsContent.data.category.posts.edges.filter((_, i) => i <= 6)
+  const filteredInsights = firmInsightsContent.data.category.posts.edges.filter((_, i) => i <= 6)
 
   return {
     props: {
-      firmNews: firmNews.latest || [],
-      firmEvents: firmEvents.latest || [],
-      firmInsights: firmInsights.latest || [],
+      firmNews: filteredNews || [],
+      firmEvents: filteredEvents || [],
+      firmInsights: filteredInsights || [],
       results: response.results || [],
       pages: response.pages || 0,
       term: response.term || '',

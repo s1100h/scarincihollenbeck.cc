@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import LazyLoad from 'react-lazyload';
+import Image from 'next/image';
 import Carousel from 'react-multi-carousel';
 import styles from 'styles/carousels/OfficeLocation.module.css'
 import textStyles from 'styles/Text.module.css'
@@ -24,7 +24,7 @@ const responsive = {
     items: 1,
   },
 };
-
+// 333 x 220
 export default function OfficeLocationCarousel({ slides }) {
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
@@ -32,9 +32,14 @@ export default function OfficeLocationCarousel({ slides }) {
         <div key={post.title} className={`${styles.locationCard} mx-auto d-block border `}>
           <Link href="/location/[slug]" as={post.uri}>
             <a>
-              <LazyLoad height={150}>
-                <img rel="preconnect" src={post.featuredImage.node.sourceUrl} alt={post.title} className="mw-100 mx-auto d-block" />
-              </LazyLoad>
+              <Image
+                src={post.featuredImage.node.sourceUrl}
+                alt={post.title}
+                width={333}
+                height={220}
+                alt={post.title}
+                layout="intrinsic"
+              />
               <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
                 <strong>{post.title}</strong>
               </p>

@@ -1,21 +1,22 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import LatestNewsArticlesCarousel from './carousels/latest-news-articles-carousel';
-import { sortByKey } from '../utils/helpers';
+import lineStyles from 'styles/LineHeader.module.css'
 
 export default function NewsScroller({ title, articles }) {
-  const sortedPosts = sortByKey(articles, 'date');
-
   return (
-    <div>
-      <div className="line-header">
-        <h3>{title}</h3>
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12 pt-4">
-            <LatestNewsArticlesCarousel slides={sortedPosts} />
+    <Container>
+      <Row>
+        <Col sm={12} className="mb-3">
+          <div className={lineStyles.lineHeader}>
+            <h3>{title}</h3>
           </div>
-        </div>
-      </div>
-    </div>
+        </Col>
+        <Col sm={12} className="py-4">
+          <LatestNewsArticlesCarousel slides={articles} />
+        </Col>
+      </Row>
+    </Container>
   );
 }

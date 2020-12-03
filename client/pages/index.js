@@ -73,7 +73,7 @@ export async function getServerSideProps() {
   const filteredNews = firmNewsContent.data.category.posts.edges.filter((_, i) => i <= 2)
   const filteredEvents = firmEventsContent.data.category.posts.edges.filter((_, i) => i <= 2)
   const filterCorePractices = allFirmPractices.data.practices.edges.filter((p) => {
-    const practice = p.node.practicePortalPageContent.practicePortalCategories;
+  const practice = p.node.practicePortalPageContent.practicePortalCategories;
     
     if(practice !== null) {
       if(practice[0] ===  'Core Practices') {
