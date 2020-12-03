@@ -20,6 +20,7 @@ import 'animate.css'
  */
 
 import 'styles/utils/carousel.css';
+import 'styles/globals.css';
 // import 'styles/utils/just-in-carousel.scss';
 // import 'styles/utils/location-carousel.scss';
 // import 'styles/utils/spacing-and-fonts.scss';

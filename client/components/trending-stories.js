@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import styles from 'styles/utils/SidebarTitle.module.css';
 import { addRandomKey, createMarkup, urlify } from '../utils/helpers';
 
 const ArticleContainer = styled.div`
@@ -22,22 +23,26 @@ function createUserName(username) {
 export default function TrendingStories({ title, content }) {
   return (
     <div className="w-100 mt-4">
-      <div className="sidebar-title">
+      <div className={styles.header}>
         {title}
       </div>
       <ArticleContainer className="off-white">
         {(content.length > 0) ? content.map((p) => (
           <div key={p.ID || addRandomKey(p.title)} className="p-2">
-            <a href={p.link} className="top-article">
-              <p className="proxima-bold mb-0">{p.title}</p>
-            </a>
+            <strong>
+              <Link href={p.link}>
+                <a className="text-dark d-block">
+                  {p.title}
+                </a>
+              </Link>
+            </strong>           
             {(p.hasOwnProperty('author') || p.author === 'Scarinci Hollenbeck') && (
             <>
               {(typeof p.author === 'string') && (
               <>
                 <strong>Author: </strong>
                 <Link href={`/author/${createUserName(p.author)}`}>
-                  <a>
+                  <a className="text-dark">
                     {p.author}
                   </a>
                 </Link>
@@ -47,7 +52,7 @@ export default function TrendingStories({ title, content }) {
               <>
                 <strong>Author: </strong>
                 <Link href={`/author/${createUserName(p.author[0].name)}`}>
-                  <a>
+                  <a className="text-dark">
                     {p.author[0].name}
                   </a>
                 </Link>
@@ -59,7 +64,7 @@ export default function TrendingStories({ title, content }) {
             {(p.hasOwnProperty('source')) && <div className="mt-0" dangerouslySetInnerHTML={createMarkup(p.source)} />}
           </div>
         ))
-          : <div className="mx-5 p-5"><p>Articles loading...</p></div>}
+        : <div className="mx-5 p-5"><p>Articles loading...</p></div>}
       </ArticleContainer>
     </div>
   );

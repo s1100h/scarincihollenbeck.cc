@@ -8,10 +8,10 @@ export default function ArchiveLayout({ header, body, sidebar }) {
   return (
     <Container>
       <Row>
-        <Col sm={12} md={8}>
+        <Col sm={12} md={8} className="px-0">
           {header}
         </Col>
-        <Col sm={12} md={8}>
+        <Col sm={12} md={8} className="pl-0">
           {body}
         </Col>
         <Col sm={12} md={4}>

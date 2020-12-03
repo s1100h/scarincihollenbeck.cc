@@ -43,7 +43,6 @@ export default function JustInArticlesCarousel() {
 
   if (justInError) return <ErrorMessage />
   if (!justInSlides) return <SiteLoader />
-  console.log(justInSlides.category.posts.edges)
 
   return (
     <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>

@@ -1,37 +1,42 @@
-import { withRouter } from 'next/router';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import PropTypes from 'prop-types';
+import textStyles from 'styles/Text.module.css'
+import widthStyles from 'styles/utils/Spacing.module.css'
 
 function BreadCrumbs(props, router) {
   const { breadCrumb, categorySlug } = props;
 
   return (
     <h6>
-      <span>
-        <a href={`${router.pathname}`} className="red-title proxima-bold">HOME</a>
-      </span>
-      <strong className="text-black mt-2 mx-2 proxima-bold">
-        <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
+      <Link href="/">
+        <a className={textStyles.redTitle}>
+          <strong>
+            HOME
+          </strong>
+        </a>
+      </Link>      
+      <strong className="mt-2 mx-2">
+        <FontAwesomeIcon icon={faCaretRight} className={`${textStyles.redTitle} ${widthStyles.mw6}`} />
       </strong>
       {breadCrumb.map((val, indx) => ((indx < breadCrumb.length - 1) ? (
         <span key={val}>
-          <span className="red-title proxima-bold text-uppercase">
+          <strong className={`${textStyles.redTitle} text-uppercase`}>
             { (val === categorySlug) ? (<u>{categorySlug}</u>) : `${categorySlug}` }
-          </span>
-          <strong className="text-black mt-2 mx-2 proxima-bold">
-            <FontAwesomeIcon icon={faCaretRight} className="red-title mw-6" />
+          </strong>
+          <strong className="text-black mt-2 mx-2">
+            <FontAwesomeIcon icon={faCaretRight} className={`${textStyles.redTitle} ${widthStyles.mw6}`} />
           </strong>
         </span>
       ) : (
         <span key={val}>
-          <span className="red-title proxima-bold">
+          <strong className={textStyles.redTitle}>
             { (val === categorySlug) ? (<u>{val}</u>) : `${val}` }
-          </span>
+          </strong>
         </span>
       )))}
     </h6>
   );
 }
 
-export default withRouter(BreadCrumbs);
+export default BreadCrumbs;

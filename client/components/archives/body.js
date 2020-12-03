@@ -17,14 +17,24 @@ export default function Body({
   pathname,
   q
 }) {
-
+  console.log(pathname)
   function handlePagination(e, page) {
     e.preventDefault();
+    const isAuthorPage = pathname.indexOf('/author/') > -1
+    
+    if(!isAuthorPage) {
+      Router.push({
+        pathname,
+        query: { q, page },
+      });
+    }  
 
-    Router.push({
-      pathname,
-      query: { q, page },
-    });
+    if(isAuthorPage) {
+      Router.push({
+        pathname,
+        query: { page },
+      });
+    }
   }
 
   const next = parseInt(currentPage, 10) + 1;

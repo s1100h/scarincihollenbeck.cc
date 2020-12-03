@@ -1,0 +1,8 @@
+.btn-danger, .red--grad {
+  font-weight: bold;
+  background: linear-gradient(360deg, #901918 60%, #DD2624 100%), #333333;
+}
+
+.off-white {
+  background-color: #fcfaff;
+}

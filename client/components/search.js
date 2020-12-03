@@ -82,7 +82,7 @@ export default function Search() {
             {(categories.length > 0) && categories.map((category) => ((category.name !== 'Uncategorized') && <option key={addRandomKey(category.name)}>{category.name}</option>)) }
           </Form.Control>
         </Form.Group>
-        <Button type="submit" variant="secondary" onClick={() => clearFields()} className="proxima-bold px-5 my-2 mr-2">Clear</Button>
+        <Button type="submit" variant="secondary" onClick={() => clearFields()} className="px-5 my-2 mr-2">Clear</Button>
         <Button type="submit" variant="danger" className="my-2 px-5">Search</Button>
       </Form>
     </div>

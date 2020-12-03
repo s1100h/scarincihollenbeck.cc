@@ -1,30 +1,37 @@
 import Link from 'next/link';
+import styles from 'styles/utils/SidebarTitle.module.css'
 
 const AboutFirm = () => (
   <div className="w-100 mt-5">
-    <div className="sidebar-title">
+    <div className={styles.header}>
       Firm Resources
     </div>
     <div className="off-white">
-      <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
-        <li>
+      <ul className="px-4">
+        <li className="pt-2 pb-1">
           <Link href="/category/firm-news">
-            <a className="proxima-bold">
-              Firm News
+            <a className="text-dark">
+              <strong>
+                Firm News
+              </strong>
             </a>
           </Link>
         </li>
-        <li>
+        <li className="pt-2 pb-1">
           <Link href="/category/law-firm-insights">
-            <a className="proxima-bold">
-              Firm Insights
+            <a className="text-dark">
+              <strong>
+                Firm Insights
+              </strong>              
             </a>
           </Link>
         </li>
-        <li>
+        <li className="pt-2 pb-1">
           <Link href="/category/firm-events">
-            <a className="proxima-bold">
-              Firm Events
+            <a className="text-dark">
+              <strong>
+                Firm Events
+              </strong>
             </a>
           </Link>
         </li>
