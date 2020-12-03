@@ -7,105 +7,37 @@ export const metaDataQuery = `{
   }
 }`;
 
-export const firmInsightsQuery = `{
-  category(id: "599", idType: DATABASE_ID) {
-    posts(first: 10) {
-      edges {
-        node {
-          title
-          id
-          link
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          categories(where: {name: "Firm News"}) {
-            nodes {
-              name
-            }
-          }
-        }
-      }
-    }
-  }
-}`
 
-export const justInQuery = `{
-  category(id: "97", idType: DATABASE_ID) {
-    posts(first: 10) {
-      edges {
-        node {
-          title
-          id
-          link
-          featuredImage {
-            node {
-              sourceUrl
+export const blogArticlesQuery = id => {
+  return  `{
+    category(id: ${id}, idType: DATABASE_ID) {
+      posts(first: 10) {
+        edges {
+          node {
+            title
+            id
+            link
+            featuredImage {
+              node {
+                sourceUrl
+              }
             }
-          }
-          categories(where: {name: "Firm News"}) {
-            nodes {
-              name
+            categories(where: {name: "Firm News"}) {
+              nodes {
+                name
+              }
             }
-          }
-          date
-          postsLocationSelection {
-            locationSelection
+            date
+            postsLocationSelection {
+              locationSelection
+            }
           }
         }
       }
     }
-  }
-}`
+  }`
+}
 
-export const firmNewsQuery = `{
-  category(id: "98", idType: DATABASE_ID) {
-    posts(first: 10) {
-      edges {
-        node {
-          title
-          id
-          link
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          categories(where: {name: "Firm News"}) {
-            nodes {
-              name
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
-
-export const firmEventsQuery = `{
-  category(id: "99", idType: DATABASE_ID) {
-    posts(first: 10) {
-      edges {
-        node {
-          title
-          id
-          link
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          categories(where: {name: "Firm Events"}) {
-            nodes {
-              name
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
 
 export const officeLocationsQuery = `{
   officeLocations {

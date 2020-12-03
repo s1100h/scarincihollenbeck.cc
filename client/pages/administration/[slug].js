@@ -107,8 +107,7 @@ export default function SingleAdmin({ status, response }) {
 export async function getServerSideProps({ params, res }) {
   const administrationContent = await client.query(singleAdministraionQuery(params.slug), {});
   let status = 200
-  console.log(typeof administrationContent.data.administrations.edges)
-
+  
   if(administrationContent.data.administrations.edges.length <= 0 && res) {
     status = 404;
     res.statusCode = 404;

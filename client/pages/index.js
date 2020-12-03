@@ -8,7 +8,7 @@ import Footer from 'components/footer';
 import { sortByKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas'
 import client from 'utils/graphql-client';
-import { metaDataQuery, firmNewsQuery, firmEventsQuery, officeLocationsQuery, corePracticesQuery } from 'queries/home';
+import { metaDataQuery, blogArticlesQuery, officeLocationsQuery, corePracticesQuery } from 'queries/home';
 
 export default function Home({
   seo,
@@ -66,8 +66,8 @@ export default function Home({
 export async function getServerSideProps() {
   /** Adding in graphql queries */
   const metaDataContent = await client.query(metaDataQuery, {});
-  const firmNewsContent = await client.query(firmNewsQuery, {});
-  const firmEventsContent = await client.query(firmEventsQuery, {});
+  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
+  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const officeLocationContent = await client.query(officeLocationsQuery, {})
   const allFirmPractices = await client.query(corePracticesQuery, {});
   const filteredNews = firmNewsContent.data.category.posts.edges.filter((_, i) => i <= 2)

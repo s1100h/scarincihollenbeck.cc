@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
-import { justInQuery } from 'queries/home'
+import { blogArticlesQuery } from 'queries/home'
 import { request } from 'graphql-request';
 import SiteLoader from '../site-loader';
 import ErrorMessage from '../error-message';
@@ -37,7 +37,7 @@ function formatDate(date) {
 }
 
 export default function JustInArticlesCarousel() {
-  const { data: justInSlides, error: justInError } = useSWR(justInQuery, (query) =>
+  const { data: justInSlides, error: justInError } = useSWR(blogArticlesQuery(97), (query) =>
     request('https://wp.scarincihollenbeck.com/graphql', query)
   );
 

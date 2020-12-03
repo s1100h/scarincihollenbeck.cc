@@ -8,7 +8,7 @@ import Sidebar from 'components/author/sidebar';
 import SiteLoader from 'components/site-loader';
 import { headers, makeQueryTitle } from 'utils/helpers';
 import client from 'utils/graphql-client';
-import { firmNewsQuery, firmEventsQuery, firmInsightsQuery } from 'queries/home';
+import { blogArticlesQuery } from 'queries/home';
 
 export default function Author({
   results,
@@ -59,18 +59,15 @@ export async function getServerSideProps({ params, query }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/author/bio/${params.slug}`, { headers }).then((data) => data.json())
   ]);
 
-  const firmNewsContent = await client.query(firmNewsQuery, {});
-  const firmEventsContent = await client.query(firmEventsQuery, {});
-  const firmInsightsContent = await client.query(firmInsightsQuery, {});
-  const filteredNews = firmNewsContent.data.category.posts.edges.filter((_, i) => i <= 6)
-  const filteredEvents = firmEventsContent.data.category.posts.edges.filter((_, i) => i <= 6)
-  const filteredInsights = firmInsightsContent.data.category.posts.edges.filter((_, i) => i <= 6)
+  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
+  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
+  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
 
   return {
     props: {
-      firmNews: filteredNews || [],
-      firmEvents: filteredEvents || [],
-      firmInsights: filteredInsights || [],
+      firmNews: firmNewsContent || [],
+      firmEvents: firmEventsContent || [],
+      firmInsights: firmInsightsContent || [],
       page: query.page || 1,
       pages: response.pages || 1,
       results: response.results || [],
