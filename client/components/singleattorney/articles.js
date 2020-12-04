@@ -1,6 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
 import Tab from 'react-bootstrap/Tab';
-import Image from 'react-bootstrap/Image';
 import { List } from 'react-virtualized';
 import { addRandomKey, formatDate } from 'utils/helpers';
 
@@ -11,11 +11,18 @@ function Post(content, {
 
   return (
     <li key={key} className="my-3 pb-3 border-bottom">
-      <a href={post.link} className="d-flex flex-row">
-        <Image src={post.featuredImg || 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'} className="w-25 mr-3" rounded />
+      <a href={post.node.link} className="d-flex flex-row">
+        <Image
+          src={post.node.featuredImage.node.sourceUrl || 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'
+          } 
+          alt={post.node.title}
+          width={300}
+          height={150}
+          layout="intrinsic"
+          className="mr-3" />
         <div>
-          <h5 className="d-block w-100 mb-0 pt-0">{post.title}</h5>
-          {(post.date !== undefined) && <p className="mt-0 pt-0">{formatDate(post.date)}</p>}
+          <h5 className="d-block w-100 mb-0 pt-0">{post.node.title}</h5>
+          <p className="mt-0 pt-0">{formatDate(post.node.date)}</p>
         </div>
       </a>
     </li>
@@ -23,6 +30,7 @@ function Post(content, {
 }
 
 export default function Articles({ tabTitle, title, content }) {
+  
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className="bg-light-gray">{title}</h4>
@@ -33,7 +41,7 @@ export default function Articles({ tabTitle, title, content }) {
           rowCount={content.length}
           rowHeight={250}
           rowRenderer={(rowArgs) => Post(content, rowArgs)}
-        />
+        /> 
       </ul>
     </Tab.Pane>
   );

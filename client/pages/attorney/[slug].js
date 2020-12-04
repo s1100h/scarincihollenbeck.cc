@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import { request } from 'graphql-request';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
@@ -22,11 +24,10 @@ import BasicContent from 'components/singleattorney/basic-content';
 import SidebarContent from 'components/singleattorney/sidebar';
 import FeaturedSlider from 'components/singleattorney/featured-slider';
 import RelatedArticles from 'components/singleattorney/related-articles';
-import {
-  sortByDateKey, urlify, headers, addRandomKey,
-} from 'utils/helpers';
+import ErrorMessage from 'components/error-message'
+import { headers } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
-import { singleAttorneyQuery } from 'queries/attorneys';
+import { singleAttorneyQuery, attorneysArticles } from 'queries/attorneys';
 import client from 'utils/graphql-client';
 
 
@@ -65,22 +66,25 @@ function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTi
 
 export default function Attorney({ bio, bioT }) {
   const router = useRouter();
-  let newsEventArticles = [];
-  let filterHeaders;
-  let filterBody;
-  console.log(bioT)
-  if (bio !== undefined) {
-    if (bio.newsPosts !== undefined && bio.eventPosts !== undefined) {
-      newsEventArticles = [...bio.newsPosts, ...bio.eventPosts];
-    }
+  const tabs = bioT.attorneyAdditionalTabs;
+  const userId = bioT.attorneyAuthorId.authorId;
 
-    // filter empty tabs
-    if (bio.tabs !== undefined) {
-      const { headers, body } = bio.tabs;
-      filterHeaders = headers.filter((a) => typeof a !== 'number');
-      filterBody = body.filter((a) => a[1] !== '');
-    }
-  }
+  console.log(bioT)
+  const { data: attorneyNews, error: attorneyNewsErr } = useSWR(attorneysArticles("Firm News", bioT.title), (query) =>
+    request('https://wp.scarincihollenbeck.com/graphql', query)
+  );
+
+  const { data: attorneyEvents, error: attorneyEventsErr } = useSWR(attorneysArticles("Firm Events", bioT.title), (query) =>
+    request('https://wp.scarincihollenbeck.com/graphql', query)
+  );
+
+
+const articlesNewsEvents = [...attorneyNews.categories.nodes[0].posts.edges ]
+console.log(articlesNewsEvents)
+
+if (attorneyEventsErr || attorneyNewsErr) return <ErrorMessage />
+if (!attorneyEvents || !attorneyNews) return <SiteLoader />
+
 
   if (bio.status === 404) {
     return <Error statusCode={404} />;
@@ -171,64 +175,95 @@ export default function Attorney({ bio, bioT }) {
                   { (bio.presentations) && <Nav.Link eventKey="presentations" className="main-tab">Presentations</Nav.Link> }
                   { (bio.publications) && <Nav.Link eventKey="publications" className="main-tab">Publications</Nav.Link> }
                   { (bio.media) && <Nav.Link eventKey="media" className="main-tab">Media</Nav.Link> }
-                  { (bio.blogPosts.length > 0) && <Nav.Link eventKey="blogs" className="main-tab">Articles</Nav.Link>}
-                  { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <Nav.Link eventKey="newsevents" className="main-tab">News &amp; Events</Nav.Link> }
+                  { (bioT.attorneyAuthorId.authorId.posts.edges.length > 0) && <Nav.Link eventKey="blogs" className="main-tab">Articles</Nav.Link>}
+                  {/* { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <Nav.Link eventKey="newsevents" className="main-tab">News &amp; Events</Nav.Link> } */}
                   { (bio.videos) && <Nav.Link eventKey="videos" className="main-tab">Videos</Nav.Link> }
-                  { (bio.tabs) && filterHeaders.map((value) => <Nav.Link key={urlify(value)} eventKey={urlify(value)} className="main-tab">{value}</Nav.Link>) }
+                  {(tabs.tabHeader1 !== null) && <Nav.Link key={tabs.tabHeader1} eventKey={tabs.tabHeader1} className="main-tab">{tabs.tabHeader1}</Nav.Link>}
+                  {(tabs.tabHeader2 !== null) && <Nav.Link key={tabs.tabHeader2} eventKey={tabs.tabHeader2} className="main-tab">{tabs.tabHeader2}</Nav.Link>}
+                  {(tabs.tabHeader3 !== null) && <Nav.Link key={tabs.tabHeader3} eventKey={tabs.tabHeader3} className="main-tab">{tabs.tabHeader3}</Nav.Link>}
+                  {(tabs.tabHeader4 !== null) && <Nav.Link key={tabs.tabHeader4} eventKey={tabs.tabHeader4} className="main-tab">{tabs.tabHeader4}</Nav.Link>}
                 </Nav>
               </Col>
               <Col sm={12} md={9} className="mt-4">
                 <TabContent>
                   <Biography tabTitle="biography" title="Biography" content={bio.biography} />
                 </TabContent>
-                {(bio.representativeMatters) && (
+                {(bioT.attorneyRepresentativeMatters.repMatters !== null) && (
                   <TabContent>
-                    <Matters tabTitle="representative-matters" title="Representative Matters" content={bio.representativeMatters} />
+                    <Matters
+                      tabTitle="representative-matters"
+                      title="Representative Matters"
+                      content={bioT.attorneyRepresentativeMatters.repMatters}
+                    />
                   </TabContent>
                 )}
                 {(bio.representativeClients) && (
                   <TabContent>
-                    <Matters tabTitle="representative-clients" title="Representative Clients" content={bio.representativeClients} />
+                    <Matters
+                      tabTitle="representative-clients"
+                      title="Representative Clients"
+                      content={bio.representativeClients}
+                    />
                   </TabContent>
                 )}
                 {(bio.presentations) && (
                   <TabContent>
-                    <TableTab tabTitle="presentations" title="Presentations" content={bio.presentations} />
+                    <TableTab
+                      tabTitle="presentations"
+                      title="Presentations"
+                      content={bio.presentations}
+                    />
                   </TabContent>
                 )}
                 {(bio.publications) && (
                   <TabContent>
-                    <TableTab tabTitle="publications" title="Publications" content={bio.publications} />
+                    <TableTab
+                      tabTitle="publications"
+                      title="Publications"
+                      content={bio.publications}
+                    />
                   </TabContent>
                 )}
                 {(bio.media) && (
                   <TabContent>
-                    <TableTab tabTitle="media" title="Media" content={bio.media} />
+                    <TableTab
+                      tabTitle="media"
+                      title="Media"
+                      content={bio.media}
+                    />
                   </TabContent>
                 )}
-                {(bio.blogPosts.length > 0) && (
+                {(bioT.attorneyAuthorId.authorId.posts.edges.length > 0) && (
                   <TabContent>
-                    <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
+                    <Articles
+                      tabTitle="blogs"
+                      title="Articles"
+                      content={bioT.attorneyAuthorId.authorId.posts.edges}
+                    />
                   </TabContent>
                 )}
-                {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
+                {/* {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
                   <TabContent>
                     <Articles tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} />
                   </TabContent>
-                )}
-                {(bio.videos) && (
+                )} */}
+                {(bioT.attorneyAwardsClientsBlogsVideos.attorneyVideos) && (
                   <TabContent>
-                    <VideoTab title="Videos" content={bio.videos} tabTitle="videos" />
+                    <VideoTab
+                      title="Videos"
+                      content={bioT.attorneyAwardsClientsBlogsVideos.attorneyVideos}
+                      tabTitle="videos"
+                    />
                   </TabContent>
                 )}
-                {(bio.tabs) && (
-                  <TabContent>
-                    {filterBody.map((b) => <BasicContent key={addRandomKey(b[1])} title={b[1]} content={b[2]} tabTitle={urlify(b[1])} />)}
-                  </TabContent>
-                )}
+              {(tabs.tabContent1 !== null) && <BasicContent title={tabs.tabHeader1} content={tabs.tabContent1} tabTitle={tabs.tabHeader1} />} 
+              {(tabs.tabContent2 !== null) && <BasicContent title={tabs.tabHeader2} content={tabs.tabContent2} tabTitle={tabs.tabHeader2} />} 
+              {(tabs.tabContent3 !== null) && <BasicContent title={tabs.tabHeader3} content={tabs.tabContent3} tabTitle={tabs.tabHeader3} />} 
+              {(tabs.tabContent1 !== null) && <BasicContent title={tabs.tabHeader4} content={tabs.tabContent4} tabTitle={tabs.tabHeader4} />} 
+
                 {/* { (bio.clients) && (bio.clients.length > 0) && <FeaturedSlider content={bio.clients} title="Clients" />}
-                { (bio.awards) && (bio.awards.length > 0) && <FeaturedSlider content={bio.awards} title="Awards" />}
-                { (newsEventArticles.length > 0) && <RelatedArticles title="News & Events" content={newsEventArticles} /> }
+                { (bio.awards) && (bio.awards.length > 0) && <FeaturedSlider content={bio.awards} title="Awards" />} */}
+                {/* { (newsEventArticles.length > 0) && <RelatedArticles title="News & Events" content={newsEventArticles} /> }
                 { (bio.blogPosts) && (bio.blogPosts.length > 0) && <RelatedArticles title="Recent Articles" content={sortByDateKey(bio.blogPosts, 'date')} />} */}
               </Col>
               <Col sm={12} md={3} className="mt-4">

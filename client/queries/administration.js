@@ -20,9 +20,9 @@ export const allAdministraionQuery = `{
   }
 }`
 
-export const singleAdministraionQuery = id => {
+export const singleAdministraionQuery = slug => {
   return `{
-    administrations(where: {name: "${id}"}) {
+    administrations(where: {name: "${slug}"}) {
       edges {
         node {
           administration {

@@ -86,9 +86,9 @@ export const allLocationsQuery = `{
   }
 }`
 
-export const singleAttorneyQuery = id => {
+export const singleAttorneyQuery = slug => {
   return `{
-    attorneyProfiles(where: {name: "${id}"}) {
+    attorneyProfiles(where: {name: "${slug}"}) {
       edges {
         node {
           slug
@@ -152,7 +152,6 @@ export const singleAttorneyQuery = id => {
             designation
             email
             faxNumber
-            fieldGroupName
             firstName
             lastName
             middleInitial
@@ -168,12 +167,6 @@ export const singleAttorneyQuery = id => {
               channel
             }
             vizibility
-          }
-          attorneyPresentations {
-            fieldGroupName
-          }
-          attorneyMedia {
-            fieldGroupName
           }
           attorneyPrimaryRelatedPracticesLocationsGroups {
             firmGroups
@@ -200,11 +193,7 @@ export const singleAttorneyQuery = id => {
             }
           }
           attorneyProfileId
-          attorneyPublications {
-            fieldGroupName
-          }
           attorneyRepresentativeClients {
-            fieldGroupName
             repClients {
               content
               title
@@ -220,6 +209,57 @@ export const singleAttorneyQuery = id => {
           seo {
             metaDesc
             title
+          }
+          attorneyAuthorId {
+            authorId {
+              posts {
+                edges {
+                  node {
+                    title
+                    featuredImage {
+                      node {
+                        sourceUrl
+                      }
+                    }
+                    categories {
+                      edges {
+                        node {
+                          name
+                        }
+                      }
+                    }
+                    link
+                    date
+                  }
+                }
+              }
+              databaseId
+            }
+          }
+        }
+      }
+    }
+  }`
+}
+
+
+export const attorneysArticles = (category, name) => {
+  return ` {
+    categories(where: {name: "${category}"}) {
+      nodes {
+        name
+        posts(first: 1000, where: {search: "${name}"}) {
+          edges {
+            node {
+              title
+              link
+              date
+              featuredImage {
+                node {
+                  sourceUrl
+                }
+              }
+            }
           }
         }
       }
