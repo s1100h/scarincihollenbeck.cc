@@ -1,35 +1,58 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
-import { addRandomKey } from '../../utils/helpers';
+import Link from 'next/link'
+import Image from 'next/image'
+import Carousel from 'react-multi-carousel';
+import styleFonts from 'styles/Fonts.module.css'
+import lineStyles from 'styles/LineHeader.module.css'
+import { limitTitleLength } from 'utils/helpers'
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
 export default function RelatedArticles({ title, content }) {
   return (
-    <div className="mt-4 w-100 d-block attorney-news-slider">
-      <div className="line-header mb-4">
+    <div className="mt-4 w-100 d-block">
+      <div className={lineStyles.lineHeader}>
         <h3>{title}</h3>
       </div>
-      {
-        (content.length > 3) ? (
-          <div className="featured-article-attorney-container">
-            <LatestNewsArticlesCarousel slides={content} />
-          </div>
-        ) : (
-          <Container>
-            <Row>
-              { content.map((v) => (
-                <Col sm={12} md={4} key={addRandomKey(v.title)} className="article-card">
-                  <a href={v.link}>
-                    <img src={(v.featuredImg) ? v.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"} alt={v.title} width="230" className="img-thumbnail mt-3" />
-                    <h5 className="my-3 small-excerpt">{v.title}</h5>
-                  </a>
-                </Col>
-              ))}
-            </Row>
-          </Container>
-        )
-      }
+      <div className="mx-auto mt-5">
+        <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
+          {content.map((slide) => (
+            <div key={slide.node.title} className="pb-2 px-4">
+              <Link href={slide.node.link}>
+                <a>
+                  <Image
+                    src={(slide.node.image) ? slide.node.image.node.sourceUrl : (slide.node.featuredImage) ? slide.node.featuredImage.node.sourceUrl : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'}
+                    alt={slide.node.title}
+                    width={300}
+                    height={150}
+                    layout="intrinsic"
+                  />
+                  <p className={`${styleFonts.smallExcerpt} text-muted text-center`}>
+                    {limitTitleLength(slide.node.title)}
+                  </p>            
+                </a>
+              </Link>
+            </div>
+          ))}
+        </Carousel>
+      </div>
     </div>
   );
 }

@@ -128,6 +128,18 @@ export const singleAttorneyQuery = slug => {
                 sourceUrl
               }
             }
+            blogId {
+              constitutionalLawReporter
+              governmentLaw
+              musicEsq
+            }
+            clients {
+              clientImage {
+                sourceUrl
+              }
+              clientLink
+              clientTitle
+            }
           }
           attorneyBiography {
             biographyContent
@@ -222,10 +234,8 @@ export const singleAttorneyQuery = slug => {
                       }
                     }
                     categories {
-                      edges {
-                        node {
-                          name
-                        }
+                      nodes {
+                        name
                       }
                     }
                     link

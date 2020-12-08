@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Carousel from 'react-multi-carousel';
 import styleFonts from 'styles/Fonts.module.css'
+import { limitTitleLength } from 'utils/helpers'
 
 const responsive = {
   superLargeDesktop: {
@@ -23,16 +24,7 @@ const responsive = {
   },
 };
 
-function limitTitleLength(title) {
-  if (title.length > 200) {
-    return `${title.substring(0, 200)} ...`;
-  }
-
-  return title;
-}
-
 export default function LatestNewsArticlesCarousel({ slides }) {
-
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {slides.map((slide) => (

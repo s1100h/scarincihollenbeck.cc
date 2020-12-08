@@ -45,7 +45,7 @@ const NavBar = () => (
                 height="52"
                 width="338"
                 layout="intrinsic"
-                src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
+                src="/images/sh-logo-2020-compressor.png"
               />
             </a>
           </Link>

@@ -163,3 +163,27 @@ export async function fetcher(...args) {
   const res = await fetch(...args);
   return res.json();
 }
+
+export function limitTitleLength(title) {
+  if (title.length > 200) {
+    return `${title.substring(0, 200)} ...`;
+  }
+
+  return title;
+}
+
+export function reFormatExternalPosts(postLinks) {
+  return postLinks.map((post) => {
+    return {
+      link:post.link,
+      title:post.title.rendered,
+      date: post.date,
+      t: post.better_featured_image.source_url,
+      image: {
+        node: {
+          sourceUrl: post.better_featured_image
+        }
+      }
+    }
+  })       
+}

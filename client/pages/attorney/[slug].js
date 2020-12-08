@@ -25,7 +25,7 @@ import SidebarContent from 'components/singleattorney/sidebar';
 import FeaturedSlider from 'components/singleattorney/featured-slider';
 import RelatedArticles from 'components/singleattorney/related-articles';
 import ErrorMessage from 'components/error-message'
-import { headers } from 'utils/helpers';
+import { headers, reFormatExternalPosts } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import { singleAttorneyQuery, attorneysArticles } from 'queries/attorneys';
 import client from 'utils/graphql-client';
@@ -65,11 +65,12 @@ function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTi
 }
 
 export default function Attorney({ bio, bioT }) {
+  let blogs;
   const router = useRouter();
   const tabs = bioT.attorneyAdditionalTabs;
-  const userId = bioT.attorneyAuthorId.authorId;
+  blogs = bioT.attorneyAuthorId.authorId.posts.edges
 
-  console.log(bioT)
+  // console.log(bioT)
   const { data: attorneyNews, error: attorneyNewsErr } = useSWR(attorneysArticles("Firm News", bioT.title), (query) =>
     request('https://wp.scarincihollenbeck.com/graphql', query)
   );
@@ -79,11 +80,12 @@ export default function Attorney({ bio, bioT }) {
   );
 
 
-const articlesNewsEvents = [...attorneyNews.categories.nodes[0].posts.edges ]
-console.log(articlesNewsEvents)
-
-if (attorneyEventsErr || attorneyNewsErr) return <ErrorMessage />
-if (!attorneyEvents || !attorneyNews) return <SiteLoader />
+  if (attorneyEventsErr || attorneyNewsErr) return <ErrorMessage />
+  if (!attorneyEvents || !attorneyNews) return (
+    <div className="my-5 mx-5">
+      <SiteLoader />
+    </div>
+  )
 
 
   if (bio.status === 404) {
@@ -91,9 +93,14 @@ if (!attorneyEvents || !attorneyNews) return <SiteLoader />
   }
 
   if(router.isFallback) {
-    return <SiteLoader />
-  }
-
+    return (
+      <div className="my-5 mx-5">
+        <SiteLoader />
+      </div>
+    )
+  }  
+  const firmNewsAndEventsArr = [].concat(attorneyEvents.categories.nodes[0].posts.edges, attorneyNews.categories.nodes[0].posts.edges)
+  
   return (
     <>
      <NextSeo
@@ -175,8 +182,8 @@ if (!attorneyEvents || !attorneyNews) return <SiteLoader />
                   { (bio.presentations) && <Nav.Link eventKey="presentations" className="main-tab">Presentations</Nav.Link> }
                   { (bio.publications) && <Nav.Link eventKey="publications" className="main-tab">Publications</Nav.Link> }
                   { (bio.media) && <Nav.Link eventKey="media" className="main-tab">Media</Nav.Link> }
-                  { (bioT.attorneyAuthorId.authorId.posts.edges.length > 0) && <Nav.Link eventKey="blogs" className="main-tab">Articles</Nav.Link>}
-                  {/* { (newsEventArticles.length > 0) && (newsEventArticles !== undefined) && <Nav.Link eventKey="newsevents" className="main-tab">News &amp; Events</Nav.Link> } */}
+                  { (blogs.length > 0) && <Nav.Link eventKey="blogs" className="main-tab">Articles</Nav.Link>}
+                  { (firmNewsAndEventsArr.length > 0) && <Nav.Link eventKey="newsevents" className="main-tab">News &amp; Events</Nav.Link> }
                   { (bio.videos) && <Nav.Link eventKey="videos" className="main-tab">Videos</Nav.Link> }
                   {(tabs.tabHeader1 !== null) && <Nav.Link key={tabs.tabHeader1} eventKey={tabs.tabHeader1} className="main-tab">{tabs.tabHeader1}</Nav.Link>}
                   {(tabs.tabHeader2 !== null) && <Nav.Link key={tabs.tabHeader2} eventKey={tabs.tabHeader2} className="main-tab">{tabs.tabHeader2}</Nav.Link>}
@@ -197,12 +204,12 @@ if (!attorneyEvents || !attorneyNews) return <SiteLoader />
                     />
                   </TabContent>
                 )}
-                {(bio.representativeClients) && (
+                {(bioT.attorneyRepresentativeClients.repClients !== null) && (
                   <TabContent>
                     <Matters
                       tabTitle="representative-clients"
                       title="Representative Clients"
-                      content={bio.representativeClients}
+                      content={bioT.attorneyRepresentativeClients.repClients}
                     />
                   </TabContent>
                 )}
@@ -233,20 +240,20 @@ if (!attorneyEvents || !attorneyNews) return <SiteLoader />
                     />
                   </TabContent>
                 )}
-                {(bioT.attorneyAuthorId.authorId.posts.edges.length > 0) && (
+                {(blogs.length > 0) && (
                   <TabContent>
                     <Articles
                       tabTitle="blogs"
                       title="Articles"
-                      content={bioT.attorneyAuthorId.authorId.posts.edges}
+                      content={blogs}
                     />
                   </TabContent>
                 )}
-                {/* {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
+                 {(firmNewsAndEventsArr.length > 0) && (
                   <TabContent>
-                    <Articles tabTitle="newsevents" title="News &amp; Events" content={newsEventArticles} />
+                    <Articles tabTitle="newsevents" title="News &amp; Events" content={firmNewsAndEventsArr} />
                   </TabContent>
-                )} */}
+                )}
                 {(bioT.attorneyAwardsClientsBlogsVideos.attorneyVideos) && (
                   <TabContent>
                     <VideoTab
@@ -263,8 +270,8 @@ if (!attorneyEvents || !attorneyNews) return <SiteLoader />
 
                 {/* { (bio.clients) && (bio.clients.length > 0) && <FeaturedSlider content={bio.clients} title="Clients" />}
                 { (bio.awards) && (bio.awards.length > 0) && <FeaturedSlider content={bio.awards} title="Awards" />} */}
-                {/* { (newsEventArticles.length > 0) && <RelatedArticles title="News & Events" content={newsEventArticles} /> }
-                { (bio.blogPosts) && (bio.blogPosts.length > 0) && <RelatedArticles title="Recent Articles" content={sortByDateKey(bio.blogPosts, 'date')} />} */}
+                { (firmNewsAndEventsArr.length > 0) && <RelatedArticles title="News & Events" content={firmNewsAndEventsArr} /> }
+                { (blogs.length > 0) && <RelatedArticles title="Recent Articles" content={blogs} />}
               </Col>
               <Col sm={12} md={3} className="mt-4">
                 <SidebarContent
@@ -300,6 +307,36 @@ export async function getServerSideProps({ params, res }) {
   if(bio.status === 404 && res) {
     res.statusCode = 404;
   }
+
+  // manage external blog posts
+  if(attorneyBioContent.data.attorneyProfiles.edges[0].node.attorneyAwardsClientsBlogsVideos.blogId !== null) {
+    if(Object.values(attorneyBioContent.data.attorneyProfiles.edges[0].node.attorneyAwardsClientsBlogsVideos.blogId[0]).length > -1) {
+      const externalBlogIdList = attorneyBioContent.data.attorneyProfiles.edges[0].node.attorneyAwardsClientsBlogsVideos.blogId[0]
+
+      // request posts from con law
+      if(externalBlogIdList.constitutionalLawReporter) {
+        const clUrl = `https://constitutionallawreporter.com/wp-json/wp/v2/posts?author=${externalBlogIdList.constitutionalLawReporter}&per_page=10&orderby=date`;
+
+        const [posts] = await Promise.all([
+          fetch(clUrl, { headers }).then((data) => data.json())
+        ]);
+      
+        const conLawReformattedPosts = await reFormatExternalPosts(posts)
+        console.log(conLawReformattedPosts)    
+      }
+
+      // request posts from government&law
+      if(externalBlogIdList.governmentLaw) {
+        console.log(externalBlogIdList.governmentLaw)
+      } 
+
+      // request posts from musicEsq
+      if(externalBlogIdList.musicEsq) {
+        console.log(externalBlogIdList.musicEsq)
+      }
+    }
+  }
+  
 
   return {
     props: {

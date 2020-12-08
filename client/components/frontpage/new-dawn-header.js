@@ -1,10 +1,11 @@
-import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
+import styled from 'styled-components';
 import FrontSearch from './front-search';
 import btnStyles from '../../styles/Buttons.module.css'
 import styles from '../../styles/frontpage/NewDawn.module.css'
@@ -21,7 +22,7 @@ const HeaderBackground = styled.div`
 
 export default function NewDawnHeader() {
   return (
-    <HeaderBackground image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/07/new-dawn-nj-compressor.jpg" className="jumbotron jumbotron-fluid">
+    <HeaderBackground image="/images/new-dawn-nj-compressor.jpg" className="jumbotron jumbotron-fluid">
       <Container className={`${styles.bgBlackBackgroundDarker} animate__animated animate__fadeInUp animate__fast mt-4`}>
         <Row className="flex-column-reverse flex-lg-row">
           <Col sm={12} lg={6} className={styles.borderRight}>
@@ -49,7 +50,15 @@ export default function NewDawnHeader() {
             </Container>
           </Col>
           <Col sm={12} lg={6}>
-            <img rel="preconnect" src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png" alt="scarinci hollenbeck diamond" className="mt-3 p-2 animate__animated animate__fadeInUp animate__slow mx-auto d-block" />
+            <div className="mt-3 p-2 animate__animated animate__fadeInUp animate__slow text-center">
+              <Image
+                src="/images/sh-mini-diamond-PNG.png"
+                width={170}
+                height={147}
+                alt="Scarinci Hollenbeck diamond logo"
+                layout="intrinsic"
+              />
+            </div>            
             <h2 className={`${styles.h2} text-white text-center animate__animated animate__fadeInUp animate__slow h1`}>How can we help?</h2>
             <FrontSearch />
           </Col>

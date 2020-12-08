@@ -1,8 +1,8 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import lineStyles from '../../styles/LineHeader.module.css'
-import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
-import OfficeLocationCarousel from '../carousels/office-location-carousel';
+import lineStyles from 'styles/LineHeader.module.css'
+import LatestNewsArticlesCarousel from 'components/carousels/latest-news-articles-carousel';
+import OfficeLocationCarousel from 'components/carousels/office-location-carousel';
 
 export default function FullWidthContent({ sortedPosts, sortedLocations }) {
   return (

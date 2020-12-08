@@ -13,8 +13,7 @@ function Post(content, {
     <li key={key} className="my-3 pb-3 border-bottom">
       <a href={post.node.link} className="d-flex flex-row">
         <Image
-          src={post.node.featuredImage.node.sourceUrl || 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'
-          } 
+          src={(post.node.image) ? post.node.image.node.sourceUrl : (post.node.featuredImage) ? post.node.featuredImage.node.sourceUrl : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'}
           alt={post.node.title}
           width={300}
           height={150}
