@@ -33,7 +33,7 @@ export default function InfoCard({
   const isChair = (chair !== undefined && chair.length > 0) || (coChair !== undefined && coChair.length > 0);
 
   return (
-    <Col sm={12}>
+    <Col sm={12} className="animate__animated animate__fadeInUp animate__fast">
       <div className="mt-3">
         <h1 className="text-white border-bottom">
           { (fullName) && `${fullName} `}

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import styles from 'styles/utils/SidebarTitle.module.css';
-import { addRandomKey, createMarkup, urlify } from '../utils/helpers';
+import styles from 'styles/SidebarTitle.module.css';
+import { addRandomKey, createMarkup, urlify } from 'utils/helpers';
 
 const ArticleContainer = styled.div`
   height: 470px;

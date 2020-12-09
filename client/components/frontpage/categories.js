@@ -1,8 +1,8 @@
 import Router from 'next/router';
 import Link from 'next/link';
 import Form from 'react-bootstrap/Form';
-import textStyles from '../../styles/Text.module.css'
-import fontStyles from '../../styles/Fonts.module.css'
+import textStyles from 'styles/Text.module.css'
+import fontStyles from 'styles/Fonts.module.css'
 
 function onCategorySelection(event) {
   Router.push({ pathname: event.target.value });

@@ -24,7 +24,7 @@ export default function SingleSubHeader({ title, subtitle, image, height }) {
       <Container>
         <Row>
           <Col sm={12} md={{ span: 7, offset: 2 }} className={`${styles.bgBlackBackground} text-white`}>
-            <div className="p-3">
+            <div className="p-3 animate__animated animate__fadeInUp animate__fast">
               <h1 className="text-white border-bottom">
                 <strong>
                   {title}

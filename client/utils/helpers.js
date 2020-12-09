@@ -177,11 +177,10 @@ export function reFormatExternalPosts(postLinks) {
     return {
       link:post.link,
       title:post.title.rendered,
-      date: post.date,
-      t: post.better_featured_image.source_url,
+      date: post.date,      
       image: {
         node: {
-          sourceUrl: post.better_featured_image
+          sourceUrl: post.better_featured_image.source_url
         }
       }
     }

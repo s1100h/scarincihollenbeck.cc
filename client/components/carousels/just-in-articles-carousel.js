@@ -9,7 +9,7 @@ import { blogArticlesQuery } from 'queries/home'
 import { request } from 'graphql-request';
 import SiteLoader from '../site-loader';
 import ErrorMessage from '../error-message';
-import styles from '../../styles/carousels/JustIn.module.css'
+import styles from 'styles/carousels/JustIn.module.css'
 
 const jiResponsive = {
   superLargeDesktop: {

@@ -1,11 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import Link from 'next/link';
 import Accordion from 'react-bootstrap/Accordion';
 import AccordionContext from 'react-bootstrap/AccordionContext';
+import Button from 'react-bootstrap/Button';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
+import { createMarkup, addRandomKey } from '../../utils/helpers';
+import styles from 'styles/SidebarTitle.module.css'
 
 function SideBarHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
@@ -18,11 +21,9 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
   const isCurrentEventKey = currentEventKey === eventKey;
 
   return (
-    <button
-      type="button"
+    <Button
       variant="link"
-      className="sidebar-title w-100 p-2 text-left"
-
+      className={`${styles.header} w-100 p-2 text-left text-white`}
       onClick={decoratedOnClick}
     >
       {children}
@@ -32,36 +33,33 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
         <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
 
       )}
-    </button>
+    </Button>
   );
 }
 
-export default function SidebarContent({ title, content, itemKey }) {
+export default function SidebarPracticeList({ content, itemKey }) {
+  console.log(content)
   return (
     <>
       <Accordion defaultActiveKey={2}>
-        <div key={title} className="mb-3">
+        <div key="Related Practices" className="mb-3">
           <SideBarHeaderToggle eventKey={itemKey}>
-            <div className="mb-0 pb-0 float-left text-white">{title}</div>
+            <>
+              Related Practices
+            </>
           </SideBarHeaderToggle>
           <Accordion.Collapse eventKey={itemKey}>
             <div className="off-white">
-              <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
-                {content.map((item) => (Object.keys(item).length > 0) && (
-                  <li key={addRandomKey('bio-info')} className="lh-25px mb-2">
-                    {(item.link) ? (
-                      <a href={item.link} className="proxima-bold text-capitalize">{item.title}</a>
-                    ) : (
-                      <span className="proxima-bold text-capitalize nested-list-items">{item.title}</span>
-                    )}
-                    {(item.content) && (typeof item.content === 'object') ? item.content.map((i) => (
-                      <div key={addRandomKey('sub-bio-info')}>
-                        <span className="proxima-bold">{i.title}</span>
-                        <div dangerouslySetInnerHTML={createMarkup(i.content)} />
-                      </div>
-                    )) : <div dangerouslySetInnerHTML={createMarkup(item.content)} /> }
+              <ul className="px-4 py-2">
+                {content.map((c) => (
+                  <li key={c.id} className="mb-2">
+                    <Link href={c.uri}>
+                      <a class={`${styles.lh22px} text-dark`}>
+                        <strong>{c.title}</strong>
+                      </a>
+                    </Link>
                   </li>
-                ))}
+                ))}                
               </ul>
             </div>
           </Accordion.Collapse>

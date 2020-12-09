@@ -8,7 +8,7 @@ const ProfileImage = ({ image, name, width, height }) => (
     width={width}
     height={height}
     layout="intrinsic"
-    className={`${styles.whiteBorderTransparent} mb-3`}
+    className={`${styles.whiteBorderTransparent} mb-3 animate__animated animate__fadeInUp animate__fast`}
   />
 );
 

@@ -9,7 +9,7 @@ import MultiSubHeader from 'layouts/multi-sub-header';
 import FullWidth from 'layouts/full-width';
 import { createMarkup } from 'utils/helpers';
 import client from 'utils/graphql-client';
-import { singleAdministraionQuery } from 'queries/administration';
+import { singleAdministraionQuery, getAllAdministration } from 'queries/administration';
 import lineStyles from 'styles/LineHeader.module.css'
 
 export default function SingleAdmin({ status, response }) {
@@ -20,7 +20,11 @@ export default function SingleAdmin({ status, response }) {
   }
 
   if(router.isFallback) {
-    return <SiteLoader />
+    return (
+      <div className="my-5 py-5">
+        <SiteLoader />
+      </div>
+    )
   }
 
   const imageLarge =  response.administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "large")
@@ -66,7 +70,7 @@ export default function SingleAdmin({ status, response }) {
       />
       <div>
         <MultiSubHeader
-          image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
+          image="/images/Columns-1800x400-JPG.jpg"
           height="450px"
           isAdmin={true}
           profile={(<ProfileImage
@@ -104,13 +108,23 @@ export default function SingleAdmin({ status, response }) {
   );
 }
 
-export async function getServerSideProps({ params, res }) {
+
+export async function getStaticPaths() {
+  const res = await client.query(getAllAdministration, {});
+
+  return {
+    paths: res.data.administrations.nodes.map((a) => `/administration/${a.slug}`) || [],
+    fallback: false
+  };
+}
+
+export async function getStaticProps({ params, res }) {
   const administrationContent = await client.query(singleAdministraionQuery(params.slug), {});
   let status = 200
-  
-  if(administrationContent.data.administrations.edges.length <= 0 && res) {
+
+  if(!res && administrationContent.data.administrations.edges.length <= 0) {
     status = 404;
-    res.statusCode = 404;
+    
     return {
       props: {
         status,     
@@ -124,8 +138,9 @@ export async function getServerSideProps({ params, res }) {
   return {
     props: {
       status,     
-      response: administrationContent.data.administrations.edges[0].node
+      response: administrationContent.data.administrations.edges[0].node,
     },
+    revalidate: 1
   };
 
   

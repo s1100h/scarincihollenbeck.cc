@@ -64,3 +64,12 @@ export const singleAdministraionQuery = slug => {
     }
   }`
 }
+
+export const getAllAdministration = ` {
+  administrations(first: 10) {
+    nodes {
+      slug
+    }
+  }
+}
+`

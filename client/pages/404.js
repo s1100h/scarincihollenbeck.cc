@@ -4,15 +4,14 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import SimpleSearch from '../components/simple-search';
 
-export default function Custom404() {
-  
+export default function Custom404() {  
   return (
     <>
       <div id="404">
         <SingleSubHeader
           title="404: Page Not Found"
           subtitle="Sorry, the page you are looking for cannot be found."
-          image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
+          image="/images/Skyscrapers-up-1800x400-JPG.jpg"
           height="325px"
         />
         <FullWidth>

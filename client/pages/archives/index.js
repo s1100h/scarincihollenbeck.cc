@@ -51,6 +51,8 @@ export default function Archive({
   );
 }
 
+
+// TODO: use SWR to fetch these resources, making 100% client side
 export async function getServerSideProps({ query }) {
   const response = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`, { headers }).then((data) => data.json())
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});

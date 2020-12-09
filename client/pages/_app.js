@@ -19,7 +19,7 @@ import 'animate.css'
  * Util Sheets
  */
 
-import 'styles/utils/carousel.css';
+import 'styles/carousel.css';
 import 'styles/globals.css';
 // import 'styles/utils/just-in-carousel.scss';
 // import 'styles/utils/location-carousel.scss';

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { addRandomKey, headers } from '../utils/helpers';
-import useInput from '../utils/input-hook';
+import { addRandomKey, headers } from 'utils/helpers';
+import useInput from 'utils/input-hook';
 
 export default function Search() {
   const { value: searchInput, bind: bindSearchInput, reset: resetSearchInput } = useInput('');

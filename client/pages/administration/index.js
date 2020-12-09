@@ -20,7 +20,7 @@ export default function Administration({ admins, seo }) {
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
       <SingleSubHeader
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-jpg.jpg"
+        image="/images/attorney-archive-header-jpg.jpg"
         title="Administration"
         subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
       />
@@ -49,7 +49,7 @@ export default function Administration({ admins, seo }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const allAdministrationContent = await client.query(allAdministraionQuery, {});
 
   return {

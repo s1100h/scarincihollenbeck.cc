@@ -276,3 +276,11 @@ export const attorneysArticles = (category, name) => {
     }
   }`
 }
+
+export const getAllAttorneySlugs = `{
+  attorneyProfiles(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`
