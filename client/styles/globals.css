@@ -6,3 +6,14 @@
 .off-white {
   background-color: #fcfaff;
 }
+
+.attorney-bio-sidebar-list ul {
+  margin: 0;
+  font-size: 14px;
+  margin-left: -18px;
+}
+
+.attorney-bio-sidebar-list ul > li {
+  line-height: 20px;
+  margin-bottom: .5rem;
+}

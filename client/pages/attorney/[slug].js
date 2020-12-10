@@ -347,7 +347,7 @@ export async function getStaticProps({ params, res }) {
         bio: [],
         response: [],
       },
-      revalidate: 1
+      notFound: true
     };
   }
 

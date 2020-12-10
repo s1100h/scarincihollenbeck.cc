@@ -7,7 +7,7 @@ import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import { createMarkup, addRandomKey } from '../../utils/helpers';
+import { createMarkup, addRandomKey } from 'utils/helpers';
 import styles from 'styles/SidebarTitle.module.css'
 
 function SideBarHeaderToggle({ children, eventKey, callback }) {
@@ -39,7 +39,7 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
 
 export default function SidebarInformationList({ content, itemKey }) {
   const { affiliations, barAdmissions, education, additionalInformation } = content
-  console.log({ affiliations, barAdmissions, education, additionalInformation })
+
   return (
     <>
       <Accordion defaultActiveKey={2}>
@@ -51,13 +51,35 @@ export default function SidebarInformationList({ content, itemKey }) {
           </SideBarHeaderToggle>
           <Accordion.Collapse eventKey={itemKey}>
             <div className="off-white">
-              <ul className="px-4 py-2">
-                {(additionalInformation) && <>Additional information</>}
-                {(affiliations) && <>affiliations</>}
-                {(barAdmissions) && <>barAdmissions</>}
-                {(education) && <>education</>}
-                {(additionalInformation) && <>additionalInformation</>}               
-              </ul>
+                {(education) && (
+                  <div className="px-2 pt-3" >
+                    <strong>Education</strong>
+                    <div className="attorney-bio-sidebar-list" dangerouslySetInnerHTML={createMarkup(education)} />
+                </div>
+                )} 
+                {(barAdmissions) && (
+                  <div className="px-2" >
+                    <strong>Bar Admissions</strong>
+                    <div className="attorney-bio-sidebar-list" dangerouslySetInnerHTML={createMarkup(barAdmissions)} />
+                </div>
+                )}
+                {(affiliations) && (
+                  <div className="px-2" >
+                    <strong>Affiliations</strong>
+                    <div className="attorney-bio-sidebar-list" dangerouslySetInnerHTML={createMarkup(affiliations)} />
+                </div>
+                )}
+                {(additionalInformation) && (
+                  <div className="px-2 pb-1" >
+                    <strong> Additional Information</strong>
+                    {additionalInformation.map((ad, index) => (
+                      <span key={addRandomKey(index.toString())}>
+                        {(ad.title) && <span className="d-block my-1 mx-2"><strong>{ad.title}</strong></span>}
+                        <div className="attorney-bio-sidebar-list" dangerouslySetInnerHTML={createMarkup(ad.content)} />
+                      </span>
+                    ))}
+                  </div>
+                )}
             </div>
           </Accordion.Collapse>
         </div>

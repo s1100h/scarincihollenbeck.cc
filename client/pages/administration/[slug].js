@@ -130,6 +130,7 @@ export async function getStaticProps({ params, res }) {
         status,     
         response: []
       },
+      notFound: true
     };
   }
 

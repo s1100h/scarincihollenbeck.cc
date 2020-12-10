@@ -54,7 +54,7 @@ export default function SidebarPracticeList({ content, itemKey }) {
                 {content.map((c) => (
                   <li key={c.id} className="mb-2">
                     <Link href={c.uri}>
-                      <a class={`${styles.lh22px} text-dark`}>
+                      <a className={`${styles.lh22px} text-dark`}>
                         <strong>{c.title}</strong>
                       </a>
                     </Link>
