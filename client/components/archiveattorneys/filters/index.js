@@ -10,6 +10,7 @@ import Practices from './practices';
 import Title from './title';
 import Location from './location';
 import MobileMenu from './mobile-menu';
+import styles from 'styles/AttorneyArchives.module.css'
 
 export default function Filter({
   practices,
@@ -20,8 +21,7 @@ export default function Filter({
   handleChange,
   onSelect,
   letterClick,
-  clearAll,
-  onMobileSelect,
+  clearAll
 }) {
 
   return (
@@ -32,12 +32,12 @@ export default function Filter({
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="nav-fill w-100">
             <Practices practices={practices} onSelect={onSelect} />
-            <Location locations={locations} onSelect={onSelect} />
-            <Title designation={designation} onSelect={onSelect} />
+            {/* <Location locations={locations} onSelect={onSelect} />
+            <Title designation={designation} onSelect={onSelect} /> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Container className="drkbckground-gray border">
+      <Container className={`${styles.darkGrayBackground} border`}>
         <Row className="mt-2 mb-0">
           <Letter alphabet={alphabet} letterClick={letterClick} />
           <Col sm={12} md={2}>

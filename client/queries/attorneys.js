@@ -278,7 +278,7 @@ export const attorneysArticles = (category, name) => {
 }
 
 export const getAllAttorneySlugs = `{
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 500) {
     nodes {
       slug
     }

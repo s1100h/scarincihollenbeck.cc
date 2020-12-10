@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { createMarkup } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-import pageContentStyles from 'styles/PageContent.module.css';
+import styles from 'styles/BasicContent.module.css';
 
 
 export default function BasicContent({ tabTitle, title, content }) {
@@ -16,7 +16,7 @@ export default function BasicContent({ tabTitle, title, content }) {
       </h4>
       <Container>
         <Row>
-          <Col sm={12} className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(content)} />
+          <Col sm={12} className={styles.content} dangerouslySetInnerHTML={createMarkup(content)} />
         </Row>
       </Container>
     </Tab.Pane>

@@ -38,7 +38,6 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
 }
 
 export default function SidebarPracticeList({ content, itemKey }) {
-  console.log(content)
   return (
     <>
       <Accordion defaultActiveKey={2}>

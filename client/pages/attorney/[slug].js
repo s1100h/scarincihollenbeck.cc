@@ -22,6 +22,8 @@ import Articles from 'components/singleattorney/articles';
 import NonGraphQlArticles from 'components/singleattorney/non-graphql-articles'
 import VideoTab from 'components/singleattorney/video-content';
 import BasicContent from 'components/singleattorney/basic-content';
+import ClientSlider from 'components/singleattorney/client-slider';
+import AwardSlider from 'components/singleattorney/award-slider';
 import SidebarPracticeList from 'components/singleattorney/sidebar-practice-list';
 import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
 import NonGraphQLSlider from 'components/singleattorney/non-graphql-slider';
@@ -79,11 +81,6 @@ export default function Attorney({ status, bio, response }) {
       </div>
     )
   }
-
-  console.log({ bio, response });
-  console.log('%c videos', 'color: green; background-color: red');
-  console.log(response.attorneyAwardsClientsBlogsVideos.clients)
-  console.log(response.attorneyAwardsClientsBlogsVideos)
 
   const { data: attorneyNews, error: attorneyNewsErr } = useSWR(attorneysArticles("Firm News", response.title), (query) =>
     request('https://wp.scarincihollenbeck.com/graphql', query)
@@ -370,22 +367,35 @@ export default function Attorney({ status, bio, response }) {
                   </TabContent>
                 )}
                 {(tabs.tabHeader1 && tabs.tabContent1) && (
-                  <BasicContent key={tabs.tabHeader1} title={tabs.tabHeader1} content={tabs.tabContent1} tabTitle={tabs.tabHeader1} />
+                  <TabContent>
+                    <BasicContent key={tabs.tabHeader1} title={tabs.tabHeader1} content={tabs.tabContent1} tabTitle={tabs.tabHeader1} />
+                  </TabContent>
+
                 )}
                 {(tabs.tabHeader2 && tabs.tabContent2) && (
-                  <BasicContent key={tabs.tabHeader2} title={tabs.tabHeader2} content={tabs.tabContent2} tabTitle={tabs.tabHeader2} />
+                  <TabContent>
+                    <BasicContent key={tabs.tabHeader2} title={tabs.tabHeader2} content={tabs.tabContent2} tabTitle={tabs.tabHeader2} />
+                  </TabContent>
+
                 )}
                 {(tabs.tabHeader3 && tabs.tabContent3) && (
-                  <BasicContent key={tabs.tabHeader3} title={tabs.tabHeader3} content={tabs.tabContent3} tabTitle={tabs.tabHeader3} />
+                  <TabContent>
+                    <BasicContent key={tabs.tabHeader3} title={tabs.tabHeader3} content={tabs.tabContent3} tabTitle={tabs.tabHeader3} />
+                  </TabContent>
                 )}
                 {(tabs.tabHeader4 && tabs.tabContent4) && (
-                  <BasicContent key={tabs.tabHeader4} title={tabs.tabHeader4} content={tabs.tabContent4} tabTitle={tabs.tabHeader4} />
+                 <TabContent>
+                    <BasicContent key={tabs.tabHeader4} title={tabs.tabHeader4} content={tabs.tabContent4} tabTitle={tabs.tabHeader4} />
+                 </TabContent>
                 )}
                 {(tabs.tabHeader5 && tabs.tabContent5) && (
-                  <BasicContent key={tabs.tabHeader5} title={tabs.tabHeader5} content={tabs.tabContent5} tabTitle={tabs.tabHeader5} />
+                 <TabContent>
+                    <BasicContent key={tabs.tabHeader5} title={tabs.tabHeader5} content={tabs.tabContent5} tabTitle={tabs.tabHeader5} />
+                 </TabContent>
                 )}
                 {/** start of bottom page carousels -- start */}
-
+                {(response.attorneyAwardsClientsBlogsVideos.awards) && <AwardSlider content={response.attorneyAwardsClientsBlogsVideos.awards} />}
+                {(response.attorneyAwardsClientsBlogsVideos.clients) && <ClientSlider content={response.attorneyAwardsClientsBlogsVideos.clients} />}
                 {(firmNewsAndEventsArr.length > 0 && response.title !== "Donald Scarinci") && <RelatedArticles title="News & Events" content={firmNewsAndEventsArr} />}
                 { (bio.blogPosts) && (bio.blogPosts.length > 0) && <NonGraphQLSlider title="Recent Articles" content={sortByDateKey(bio.blogPosts, 'date')} />}
                 {/** start of bottom page carousels -- end */}

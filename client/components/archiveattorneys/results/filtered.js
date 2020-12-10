@@ -1,8 +1,9 @@
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from '../../attorney-card';
-import { filterByKey } from '../../../utils/helpers';
+import AttorneyCard from 'components/attorney-card';
+import { filterByKey } from 'utils/helpers';
+import textStyles from 'styles/Text.module.css'
 
 
 export default function Filtered({
@@ -59,35 +60,42 @@ export default function Filtered({
   // filter by key -- letter
   const filterLetter = (attorney) => {
     if (letter.length > 0) {
-      return attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase();
+      return attorney.attorneyMainInformation.lastName.charAt(0).toLowerCase() === letter[0].toLowerCase();
     }
     return attorney;
   };
 
   const aFiltered = attorneys
-    .filter(filterPractices)
-    .filter(filterLocation)
-    .filter(filterDesignation)
+    // .filter(filterPractices)
+    // .filter(filterLocation)
+    // .filter(filterDesignation)
     .filter(filterLetter)
-    .filter(filterQuery);
+    // .filter(filterQuery);
 
   return (
     <Row>
-      {aFiltered.map((m) => (
-        <Col sm={12} md={6} lg={4} key={m.id} className="mb-3">
+      {aFiltered.map((a) => (
+        <Col sm={12} md={6} lg={4} key={a.title} className="mb-3">
           <AttorneyCard
-            link={`/attorney${m.link}`}
-            image={m.better_featured_image}
-            name={m.title}
-            title={m.designation}
-            number={m.phone}
-            email={m.email}
-            width="81px"
+            link={`/attorney/${a.slug}`}
+            image={a.featuredImage.node.sourceUrl}
+            name={a.title}
+            title={a.attorneyMainInformation.designation}
+            number={a.attorneyMainInformation.phoneNumber}
+            email={a.attorneyMainInformation.email}
+            width="80px"
+            height="112px"
             type="/attorney/[slug]"
           />
         </Col>
       ))}
-      {(aFiltered.length < 1) && <h3 className="text-center red-title d-block mx-auto my-4">Sorry, no attorneys found according to this query.</h3>}
+      {(aFiltered.length < 1) && (
+        <h3 className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}>
+          <strong>
+            Sorry, no attorneys found according to this query.
+          </strong>
+        </h3>
+      )}
     </Row>
   );
 }

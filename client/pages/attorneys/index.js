@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { headers, sortByKey } from 'utils/helpers';
+import SiteLoader from 'components/site-loader';
+import Error from 'pages/_error';
 import Footer from 'components/footer';
-import Selected from 'components/attorneyarchives/selected';
-import Filters from 'components/attorneyarchives/filters';
-import Results from 'components/attorneyarchives/results';
+import Selected from 'components/archiveattorneys/selected';
+import Filters from 'components/archiveattorneys/filters';
+import Results from 'components/archiveattorneys/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
+import { allAttorneys, allLocations, allPractices } from 'queries/attorney-archive';
+import client from 'utils/graphql-client';
 
 export default function Attorneys({
   seo, locations, designations, practices, attorneys,
@@ -16,6 +19,14 @@ export default function Attorneys({
   const router = useRouter();
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
+
+  if(router.isFallback || !locations || !designations || !practices || !attorneys) {
+    return (
+      <div className="my-5 py-5">
+        <SiteLoader />
+      </div>
+    )
+  }
 
   /* Click Events */
   function onSelect(e, input) {
@@ -88,12 +99,12 @@ export default function Attorneys({
       />
       <SingleSubHeader
         title="Attorneys"
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/attorney-archive-header-jpg.jpg"
+        image="/images/attorney-archive-header-jpg.jpg"
         subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
         height="330px"
       />
       <FullWidth>
-        <div id="attorney-archive" className="mb-5">
+        <div className="mb-5">
           {/** Filters */}
           <Filters
             practices={sPractices}
@@ -105,20 +116,13 @@ export default function Attorneys({
             onSelect={onSelect}
             letterClick={letterClick}
             clearAll={clearAll}
-            onMobileSelect={onMobileSelect}
           />
           {/** End of Filters */}
           {/** Results */}
           <div className="w-100 border mt-sm-6 mt-md-0">
-            <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
-            {(attorneys.length > 0) && (
-            <Results attorneys={attorneys} userInput={userInput} select={select} />
-            )}
-            {(attorneys === undefined && router.isFallback) && (
-            <div className="w-100 my-5">
-              <h3 className="text-center red-title">Loading attorney list...</h3>
-            </div>
-            )}
+            {/* <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
+            {(attorneys.length > 0) &&} */}
+             <Results attorneys={attorneys} userInput={userInput} select={select} />
           </div>
           {/** End of Results */}
         </div>
@@ -129,22 +133,52 @@ export default function Attorneys({
   );
 }
 
-export async function getServerSideProps() {
-  const [attorneys, locations, designations, practices, seo] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/office-locations`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/designations`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/practices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json())
-  ]);
+export async function getStaticProps() {
+  // fetch attorney, location, and practice data
+  const allAttorneysContent = await client.query(allAttorneys, {});
+  const allLocationsContent = await client.query(allLocations, {});
+  const allPracticesContent = await client.query(allPractices, {});
+
+  // organize all practices by core practices
+  const filterCorePractices = allPracticesContent.data.practices.nodes.filter((p) => {
+    if(p.practicePortalPageContent.practicePortalCategories !== null) {
+      return p.practicePortalPageContent.practicePortalCategories[0] === 'Core Practices'
+    }
+  });
+
+  // sort the attorneys by their last name
+  const sortedAttorneylist = allAttorneysContent.data.attorneyProfiles.nodes.sort((a, b) => {
+    if (a.attorneyMainInformation.lastName > b.attorneyMainInformation.lastName) {
+      return 1;
+    }
+    if (a.attorneyMainInformation.lastName < b.attorneyMainInformation.lastName) {
+      return -1;
+    }
+    return 0;
+  });
+
 
   return {
     props: {
-      seo,
-      locations,
-      designations,
-      practices,
-      attorneys,
+      seo: {
+        title: "Find an Attorney | Scarinci Hollenbeck, LLC",
+        metaDescription:"In Scarinci Hollenbeck's attorneys archive, you can find one of our skillful attorneys who can service your business legal needs."
+      },
+      practices: filterCorePractices,
+      locations:allLocationsContent.data.officeLocations.nodes,
+      attorneys: sortedAttorneylist,
+      designations : [
+        "Associate",
+        "Senior Associate",
+        "Counsel",
+        "Of Counsel",
+        "Of Counsel/Partner Emeritus",
+        "Partner",
+        "Managing Partner",
+        "NYC Managing Partner",
+        "Washington, D.C. Managing Partner",
+      ],
     },
+    revalidate: 1
   };
 }
