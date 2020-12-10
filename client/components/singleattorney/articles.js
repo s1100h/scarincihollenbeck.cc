@@ -1,8 +1,10 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import Tab from 'react-bootstrap/Tab';
 import { List } from 'react-virtualized';
-import { addRandomKey, formatDate } from 'utils/helpers';
+import { formatDate } from 'utils/helpers';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 function Post(content, {
   key, index, isScrolling, isVisible, style,
@@ -11,19 +13,24 @@ function Post(content, {
 
   return (
     <li key={key} className="my-3 pb-3 border-bottom">
-      <a href={post.node.link} className="d-flex flex-row">
+      <Link href={post.node.link}>
+      <a className="d-flex flex-row text-dark">
         <Image
-          src={(post.node.image) ? post.node.image.node.sourceUrl : (post.node.featuredImage) ? post.node.featuredImage.node.sourceUrl : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'}
+          src={(post.node.image) ? post.node.image.node.sourceUrl : (post.node.featuredImage) ? post.node.featuredImage.node.sourceUrl : '/images/no-image-found-diamond.png'}
           alt={post.node.title}
-          width={300}
-          height={150}
+          width={196}
+          height={98}
           layout="intrinsic"
-          className="mr-3" />
+          className="mr-3"
+        />
         <div>
-          <h5 className="d-block w-100 mb-0 pt-0">{post.node.title}</h5>
+          <h5 className="d-block w-100 mb-0 pt-0">
+            <strong>{post.node.title}</strong>
+          </h5>
           <p className="mt-0 pt-0">{formatDate(post.node.date)}</p>
         </div>
       </a>
+      </Link>
     </li>
   );
 }
@@ -32,7 +39,7 @@ export default function Articles({ tabTitle, title, content }) {
   
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
-      <h4 className="bg-light-gray">{title}</h4>
+      <h4 className={grayTitleStyles.title}>{title}</h4>
       <ul>
         <List
           width={800}

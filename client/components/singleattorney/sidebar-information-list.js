@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { createMarkup, addRandomKey } from 'utils/helpers';
-import styles from 'styles/SidebarTitle.module.css'
+import styles from 'styles/SidebarTitle.module.css';
 
 function SideBarHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);

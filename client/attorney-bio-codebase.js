@@ -111,7 +111,7 @@
                     />
                   </TabContent>
                 )}
-                { (bio.blogPosts.length > 0) && (
+                {(bio.blogPosts.length > 0) && (
                   <Nav.Link
                     eventKey="blogs"
                     className="main-tab">
