@@ -26,29 +26,36 @@ export default function Filter({
 
   return (
     <>
-      <Navbar expand="lg" className="bk--gray border p-2">
+      <Navbar expand="lg" className={`${styles.lightGrayBackground } border p-2`}>
         <Keyword userInput={userInput} handleChange={handleChange} />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="nav-fill w-100">
-            <Practices practices={practices} onSelect={onSelect} />
+            {/* <Practices practices={practices} onSelect={onSelect} /> */}
             {/* <Location locations={locations} onSelect={onSelect} />
-            <Title designation={designation} onSelect={onSelect} /> */}
+            <Title designation={designation} onSelect={onSelect} /> */}            
+            <Button
+              variant="danger"
+              className="mx-2 my-1"
+              onClick={() => clearAll()}
+            >
+              Filter Attorneys
+            </Button>
+            <Button
+              variant="danger"
+              className="mx-2 my-1"
+              onClick={() => clearAll()}
+            >
+              Clear All
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
       <Container className={`${styles.darkGrayBackground} border`}>
         <Row className="mt-2 mb-0">
-          <Letter alphabet={alphabet} letterClick={letterClick} />
-          <Col sm={12} md={2}>
-            <Button
-              variant="danger"
-              className="float-md-right mx-3 mb-2"
-              onClick={() => clearAll()}
-            >
-              Clear All
-            </Button>
-          </Col>
+          <Col sm={12}>
+            <Letter alphabet={alphabet} letterClick={letterClick} />
+          </Col>          
         </Row>
       </Container>
     </>

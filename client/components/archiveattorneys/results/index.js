@@ -1,22 +1,14 @@
+import Container from 'react-bootstrap/Container'
 import Filtered from './filtered';
 import NotFiltered from './non-filtered';
 
 export default function Results({
-  attorneys,
-  select,
-  userInput,
-}) {
+  filtered,
+  attorneys
+}) { 
   return (
-    <div className="container mt-2">
-      {
-        (select.length > 0) ? (
-          <Filtered
-            select={select}
-            attorneys={attorneys}
-            userInput={userInput}
-          />
-        ) : <NotFiltered attorneys={attorneys} />
-      }
-    </div>
+    <Container className="mt-2">
+      {(filtered) ? <Filtered attorneys={attorneys} /> : <NotFiltered attorneys={attorneys} /> }
+    </Container>
   );
 }

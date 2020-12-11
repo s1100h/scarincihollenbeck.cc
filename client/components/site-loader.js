@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 
 export default function SiteLoader() {
   return (
-    <Container>
+    <Container className="m-5 p-5">
       <Row className="justify-content-center align-self-center">
         <BarLoader color="#DB2220" />
       </Row>

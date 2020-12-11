@@ -8,69 +8,7 @@ import textStyles from 'styles/Text.module.css'
 
 export default function Filtered({
   attorneys,
-  userInput,
-  select,
 }) {
-  
-  // filter through results
-  const practices = filterByKey(select, 'practices');
-  const letter = filterByKey(select, 'letter');
-  const desgination = filterByKey(select, 'designation');
-  const location = filterByKey(select, 'location');
-
-  // filter by key -- practice
-  const filterPractices = (attorney) => {
-    if (practices.length > 0) {
-      return attorney.practices_array.indexOf(practices[0]) > -1;
-    }
-    return attorney;
-  };
-
-  // filter by key -- location
-  const filterLocation = (attorney) => {
-    if (location.length > 0) {
-      return attorney.location.indexOf(location[0]) >= 0;
-    }
-    return attorney;
-  };
-
-  // filter by key -- designation
-  const filterDesignation = (attorney) => {
-    if (desgination.length > 0) {
-      return attorney.designation.indexOf(desgination[0]) >= 0;
-    }
-    return attorney;
-  };
-
-  // filter by key -- query
-  const filterQuery = (attorney) => {
-    const practiceList = attorney.practices.replace(/&amp;/g, '&');
-
-    if (userInput) {
-      if (attorney.title.indexOf(userInput) >= 0) {
-        return attorney;
-      } if (practiceList.indexOf(userInput.trim()) >= 0) {
-        return attorney;
-      }
-    } else {
-      return attorney;
-    }
-  };
-
-  // filter by key -- letter
-  const filterLetter = (attorney) => {
-    if (letter.length > 0) {
-      return attorney.attorneyMainInformation.lastName.charAt(0).toLowerCase() === letter[0].toLowerCase();
-    }
-    return attorney;
-  };
-
-  const aFiltered = attorneys
-    // .filter(filterPractices)
-    // .filter(filterLocation)
-    // .filter(filterDesignation)
-    .filter(filterLetter)
-    // .filter(filterQuery);
 
   return (
     <Row>

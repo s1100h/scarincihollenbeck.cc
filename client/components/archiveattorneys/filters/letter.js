@@ -4,15 +4,15 @@ import fontStyles from 'styles/Fonts.module.css'
 
 export default function Letter({ alphabet, letterClick }) {
   return (
-    <Col sm={12} md={10}>
-      <ul className="list-inline ml-2 mb-0">
+    <Col sm={12}>
+      <ul className="list-inline mt-0 mb-1">
         {alphabet.map((val) => (
-          <li key={val} className="list-inline-item p-0 m-0 mt-1">
+          <li key={val} className="list-inline-item">
             <Button
               variant="link"
               onClick={letterClick}
               onKeyDown={letterClick}
-              className={`text-white p-0 mr-3 ${fontStyles.ft13rem}`}
+              className={`text-white m-0 p-0 mr-3 ${fontStyles.ft13rem}`}
             >
               <strong>{val}</strong>
             </Button>
