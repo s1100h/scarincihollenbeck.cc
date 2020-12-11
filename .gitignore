@@ -34,3 +34,8 @@ yarn-error.log*
 .vercel
 sitemaps/app/env/*
 sitemaps/app/venv/*
+
+client/node_modules/*
+client/app/node_modules/*
+
+.next
