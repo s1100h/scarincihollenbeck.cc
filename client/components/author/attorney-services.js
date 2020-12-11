@@ -4,7 +4,7 @@ import styles from 'styles/SidebarTitle.module.css';
 export default function AttorneyServices({ bio, practices }) {
   return (
     <div className="w-100 mt-5">
-      <div className={styles.header}>
+      {/* <div className={styles.header}>
         {bio.map((b) => b.name)}
         {' '}
         Services
@@ -23,7 +23,8 @@ export default function AttorneyServices({ bio, practices }) {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
+      We'll get there..
     </div>
   );
 }

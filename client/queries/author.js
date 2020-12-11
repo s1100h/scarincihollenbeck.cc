@@ -1,23 +1,30 @@
 export const getPostsByAuthor = (author, offset) => {
   const modOffset = parseInt(offset, 10) * 10
   return `{
-    posts(where: {authorName: "${author}", offsetPagination: {offset: ${modOffset}, size: 10000}}) {
+    posts(where: {authorName: "${author}", offsetPagination: {offset: ${modOffset}, size: 10}}) {
       edges {
         node {
           id
           title
           date
           uri
+          excerpt
+          
+        }
+      }
+      pageInfo {
+        offsetPagination {
+          total
         }
       }
     }
-  }`
+  }
+  `
 }
 
 
 export const getAuthorBio = (author) => {
-  const modAuthor = author.slice(1)
-
+  console.log('author', author)
   if(author === "scarincihollenbeck") {
     return {
       data: {
@@ -38,7 +45,7 @@ export const getAuthorBio = (author) => {
   }
 
   return `{
-    attorneyProfiles(where: {search: "${modAuthor}"}) {
+    attorneyProfiles(where: {search: "brecher"}) {
       nodes {
         title
         uri
@@ -48,6 +55,20 @@ export const getAuthorBio = (author) => {
         attorneyMainInformation {
           email
           phoneNumber
+        }
+        attorneyPrimaryRelatedPracticesLocationsGroups {
+          relatedPractices {
+            ... on Practice {
+              id
+              title
+              uri
+            }
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
         }
       }
     }

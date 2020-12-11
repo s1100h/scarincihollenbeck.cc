@@ -67,7 +67,7 @@ function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTi
   };
 }
 
-export default function Attorneys({ status, bio, response }) {
+export default function AttorneysSingleBio({ status, bio, response }) {
   const router = useRouter();
   
   if (status === 404) {

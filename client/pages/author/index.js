@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import useSWR from 'swr';
 import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
@@ -9,9 +10,10 @@ import Body from 'components/archives/body';
 import Sidebar from 'components/author/sidebar';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
-import { headers } from 'utils/helpers';
+
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
+import { getPostsByAuthor, getAuthorBio } from 'queries/author';
 
 
 
@@ -21,46 +23,48 @@ export default function Author({
   firmInsights
 }) {
   const router = useRouter()
-  console.log(router.query)
 
-  if(router.fallBack <=0) {
+  const { data: authorPosts, error: authorPostsError } = useSWR(getPostsByAuthor(router.query.name, router.query.page), (query) =>
+  request('https://wp.scarincihollenbeck.com/graphql', query)
+);
+
+const { data: authorBio, error: authorBioError } = useSWR(getAuthorBio(router.query.name), (query) =>
+request('https://wp.scarincihollenbeck.com/graphql', query)
+);
+
+  if(authorPostsError || authorBioError) return <ErrorMessage />
+
+  if(!authorPosts || !authorBio) {
     return (
       <div className="py-5 my-5">
          <SiteLoader />
       </div>
     )
   }
-
-  
-  // page: query.page || 1,
-  // pages: response.pages || 1,
-  // results: response.results || [],
-  // authorBio
   
   return (
     <div className="mt-3">
-      {/* <NextSeo nofollow />
-      <ArchiveLayout
-        header={(<Breadcrumbs
-          breadCrumb={[currentUser, page]}
-          categorySlug={currentUser}
-        />)}
-        body={(
-          <Body
-            results={results}
-            term={currentUser}
-            pages={pages}
-            currentPage={page}
-            news={firmNews}
-            events={firmEvents}
-            insight={firmInsights}            
-            pathname={`/author/${currentUser}`}
-          />
-        )}
-        sidebar={(<Sidebar bio={bio} practices={practices} />)}
-      /> */}
-      Well get back to this...
-      <Footer />
+      <NextSeo nofollow />
+        <ArchiveLayout
+          header={(<Breadcrumbs
+            breadCrumb={[router.query.name, router.query.page]}
+            categorySlug={router.query.name}
+          />)}
+          body={(
+            <Body
+              results={authorPosts.posts.edges}
+              term={router.query.name}
+              pages={Math.ceil(authorPosts.posts.pageInfo.offsetPagination.total / 10)}
+              currentPage={router.query.page}
+              news={firmNews}
+              events={firmEvents}
+              insight={firmInsights}
+              pathname={`/author/${router.query.name}`}   
+            />
+          )}
+          sidebar={(<Sidebar bio={authorBio.attorneyProfiles.nodes.[0]} practices={authorBio.attorneyProfiles.nodes.[0].attorneyPrimaryRelatedPracticesLocationsGroups} />)}
+        />
+        <Footer />
     </div>
   );
 }
