@@ -61,7 +61,7 @@ function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTi
   }
 }
 
-export default function Attorney({ bio }) {
+export default function AttorneysSlugBio({ bio }) {
   const router = useRouter();
   let newsEventArticles = [];
   let filterHeaders;

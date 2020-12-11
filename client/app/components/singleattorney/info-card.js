@@ -61,7 +61,7 @@ export default function InfoCard({
             </h2>
           ))}
           {coChair.map((co) => (
-            <h2 key={coChair.title} className="text-white ft-style-inherit h5" key={co.title}>
+            <h2 key={co.title} className="text-white ft-style-inherit h5" key={co.title}>
               <strong>Co-Chair: </strong>
               <a href={co.link} className="text-white chair-link h5">
                 {co.title}
