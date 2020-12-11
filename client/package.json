@@ -31,7 +31,6 @@
     "next-transpile-modules": "^4.1.0",
     "nextjs-fonts": "^0.22.0",
     "node-fetch": "^2.6.1",
-    "nodemailer": "^6.4.13",
     "nookies": "^2.3.2",
     "nprogress": "^0.2.0",
     "object-path": "0.11.5",

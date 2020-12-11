@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import { createMarkup } from 'utils/helpers';
-import styles from 'styles/utils/SidebarTitle.module.css';
+import styles from 'styles/SidebarTitle.module.css';
 import textStyles from 'styles/Text.module.css';
 
 export default function AboutAuthor({ bio }) {

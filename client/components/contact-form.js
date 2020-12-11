@@ -14,7 +14,7 @@ export default function ContactForm() {
   
   return (
     <>
-      <form action="https://kwes.io/api/foreign/forms/oIRf8VAo2KnGHucQmZ1m" className="kwes-form d-print-none">
+      <form action="https://kwes.io/api/foreign/forms/oIRf8VAo2KnGHucQmZ1m" className="kwes-form d-print-none px-1">
         <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${router.asPath}`} />
         <Row className="mb-3">
           <Col sm={12} md={6} className="mx-0 px-1">

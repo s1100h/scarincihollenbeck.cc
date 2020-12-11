@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from 'styles/utils/SidebarTitle.module.css';
+import styles from 'styles/SidebarTitle.module.css';
 
 export default function AttorneyServices({ bio, practices }) {
   return (
