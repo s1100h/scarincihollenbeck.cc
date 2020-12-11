@@ -37,3 +37,8 @@ yarn-error.log*
 .vercel
 
 .next
+
+client/.next
+client/.node_modules
+client/app/.next
+client/app/.node_modules
