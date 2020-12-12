@@ -9,7 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { createMarkup } from 'utils/helpers';
 import styles from 'styles/SidebarTitle.module.css';
-import grayTitleStyles from 'components/singlepractice/node_modules/styles/BigGrayTitle.module.css';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 function HeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);

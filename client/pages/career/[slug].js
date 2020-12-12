@@ -2,9 +2,9 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import BreadCrumb from 'components/singlecareer/breadcrumbs';
-import Body from 'components/singlecareer/body';
-import Sidebar from 'components/singlecareer/sidebar';
+import SingleCareerBreadCrumbs from 'components/singlecareer/breadcrumbs';
+import SingleCareerBody from 'components/singlecareer/body';
+import SingleCareerSidebar from 'components/singlecareer/sidebar';
 import { getAllCareers, getSingleCareer } from 'queries/careers';
 import client from 'utils/graphql-client';
 
@@ -24,15 +24,15 @@ export default function CareerPost({ career }) {
       <LargeSidebar
         body={(
           <>
-            <BreadCrumb title={career.title} />
-            <Body
+            <SingleCareerBreadCrumbs title={career.title} />
+            <SingleCareerBody
               title={career.title}
               position={career.careerFields.positionDescription}
               contact={career.careerFields.contact}
             />
           </>
         )}
-        sidebar={<Sidebar />}
+        sidebar={<SingleCareerSidebar />}
       />
       <Footer />
     </>

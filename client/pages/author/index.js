@@ -5,8 +5,8 @@ import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
-import Body from 'components/archives/body';
-import Sidebar from 'components/author/sidebar';
+import ArcivhesBody from 'components/archives/body';
+import ArcivhesSidebar from 'components/author/sidebar';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import client from 'utils/graphql-client';
@@ -49,7 +49,7 @@ export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }
           />
         )}
         body={(
-          <Body
+          <ArcivhesBody
             results={authorPosts.posts.edges}
             term={router.query.name}
             pages={Math.floor(
@@ -63,7 +63,7 @@ export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }
           />
         )}
         sidebar={(
-          <Sidebar
+          <ArcivhesSidebar
             bio={attorneyBioData}
             practices={
               attorneyBioData.attorneyPrimaryRelatedPracticesLocationsGroups

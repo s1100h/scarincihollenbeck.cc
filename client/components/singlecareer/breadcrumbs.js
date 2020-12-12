@@ -5,7 +5,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import textStyles from 'styles/Text.module.css';
 import widthStyles from 'styles/utils/Spacing.module.css';
 
-export default function SingleCareerBreadCrumb({ title }) {
+export default function SingleCareerBreadCrumbs({ title }) {
   const router = useRouter();
 
   return (

@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
-import Body from 'components/pages/body';
-import Sidebar from 'components/pages/sidebar';
+import PagesBody from 'components/pages/body';
+import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import client from 'utils/graphql-client';
@@ -32,8 +32,8 @@ export default function Awards({
         height="auto"
       />
       <LargeSidebar
-        body={<Body content={bodyContent} />}
-        sidebar={<Sidebar posts={posts} covidPage={false} />}
+        body={<PagesBody content={bodyContent} />}
+        sidebar={<PagesSidebar posts={posts} covidPage={false} />}
       />
       <Footer />
     </>

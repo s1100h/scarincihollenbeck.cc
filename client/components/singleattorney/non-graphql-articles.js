@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Tab from 'react-bootstrap/Tab';
 import { List } from 'react-virtualized';
 import { formatDate } from 'utils/helpers';
-import grayTitleStyles from 'components/singlepractice/node_modules/styles/BigGrayTitle.module.css';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 function Post(content, { key, index }) {
   const post = content[index];

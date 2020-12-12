@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { createMarkup } from 'utils/helpers';
-import grayTitleStyles from 'components/singlepractice/node_modules/styles/BigGrayTitle.module.css';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import styles from 'styles/BasicContent.module.css';
 
 export default function SingleAttorneyBasicContent({ tabTitle, title, content }) {

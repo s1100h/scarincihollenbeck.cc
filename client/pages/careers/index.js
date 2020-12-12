@@ -40,7 +40,7 @@ export default function CareersPage({ careers, seo }) {
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical={`http://scarincihollenbeck.com/careers`}
       />
       <div id="careers">
         <SingleSubHeader
