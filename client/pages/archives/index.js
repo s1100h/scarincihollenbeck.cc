@@ -1,28 +1,41 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import useSWR from 'swr';
+import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
-import ArchiveLayout from 'layouts/archive-layout';
-import Body from 'components/archives/body';
 import SiteLoader from 'components/site-loader';
-import Sidebar from 'components/archives/sidebar';
-import { headers, makeQueryTitle } from 'utils/helpers';
+import ErrorMessage from 'components/error-message';
+import ArchivesBody from 'components/archives/body';
+import ArchivesSidebar from 'components/archives/sidebar';
+import ArchiveLayout from 'layouts/archive-layout';
+import { makeQueryTitle } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
+import { getArchivesPosts } from 'queries/archive';
 
-export default function ArchiveLandingPage({
+export default function ArchivesLandingPage({
   firmNews,
   firmInsights,
   firmEvents,
-  results,
   posts,
-  pages,
-  term,
-  page,
-  q,
 }) {
-  if (results.length <= 0) {
-    return <SiteLoader />;
+  const router = useRouter();
+
+  const {
+    data: archivesPosts,
+    error: archivesPostsError,
+  } = useSWR(getArchivesPosts(router.query.q, router.query.page), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
+
+  if (archivesPostsError) return <ErrorMessage />;
+
+  if (!archivesPosts) {
+    return (
+      <div className="py-5 my-5">
+        <SiteLoader />
+      </div>
+    );
   }
 
   return (
@@ -31,51 +44,50 @@ export default function ArchiveLandingPage({
       <ArchiveLayout
         header={(
           <Breadcrumbs
-            breadCrumb={[makeQueryTitle(term), page]}
-            categorySlug={term}
+            breadCrumb={[makeQueryTitle(router.query.q), router.query.page]}
+            categorySlug={router.query.q}
           />
         )}
         body={(
-          <Body
-            results={results}
-            term={term}
-            pages={pages}
-            currentPage={page}
+          <ArchivesBody
+            results={archivesPosts.posts.edges}
+            term={router.query.q}
+            pages={Math.floor(
+              archivesPosts.posts.pageInfo.offsetPagination.total / 10,
+            )}
+            currentPage={router.query.page}
             news={firmNews}
             events={firmEvents}
             insight={firmInsights}
             pathname="/archives"
-            q={q}
+            q={router.query.q}
           />
         )}
-        sidebar={<Sidebar trending={posts} />}
+        sidebar={<ArchivesSidebar trending={posts} />}
       />
       <Footer />
     </div>
   );
 }
 
-// TODO: use SWR to fetch these resources, making 100% client side
-export async function getServerSideProps({ query }) {
-  const response = await fetch(
-    `${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`,
-    { headers },
-  ).then((data) => data.json());
+export async function getStaticProps() {
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+
+  const posts = [].concat(
+    firmNewsContent.data.category.posts.edges,
+    firmEventsContent.data.category.posts.edges,
+    firmInsightsContent.data.category.posts.edges,
+  );
 
   return {
     props: {
       firmNews: firmNewsContent || [],
       firmEvents: firmEventsContent || [],
       firmInsights: firmInsightsContent || [],
-      results: response.results || [],
-      pages: response.pages || 0,
-      term: response.term || '',
-      posts: response.posts || [],
-      page: query.page || 1,
-      q: query.q || '',
+      posts
     },
+    revalidate: 1,
   };
 }
