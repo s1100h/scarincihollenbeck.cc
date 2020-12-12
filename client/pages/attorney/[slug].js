@@ -14,20 +14,20 @@ import SiteLoader from 'components/site-loader';
 import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
-import InfoCard from 'components/singleattorney/info-card';
-import Biography from 'components/singleattorney/biography';
-import Matters from 'components/singleattorney/matters';
-import TableTab from 'components/singleattorney/table';
-import Articles from 'components/singleattorney/articles';
-import NonGraphQlArticles from 'components/singleattorney/non-graphql-articles';
-import VideoTab from 'components/singleattorney/video-content';
-import BasicContent from 'components/singleattorney/basic-content';
-import ClientSlider from 'components/singleattorney/client-slider';
-import AwardSlider from 'components/singleattorney/award-slider';
-import SidebarPracticeList from 'components/singleattorney/sidebar-practice-list';
-import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
-import NonGraphQLSlider from 'components/singleattorney/non-graphql-slider';
-import RelatedArticles from 'components/singleattorney/related-articles';
+import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
+import SingleAttorneyBiography from 'components/singleattorney/SingleAttorneyBiography';
+import SingleAttorneyMatters from 'components/singleattorney/matters';
+import SingleAttorneyTableTab from 'components/singleattorney/table';
+import SingleAttorneyArticles from 'components/singleattorney/articles';
+import SingleAttorneyNonGraphQlArticles from 'components/singleattorney/non-graphql-articles';
+import SingleAttorneyVideoTab from 'components/singleattorney/video-content';
+import SingleAttorneyBasicContent from 'components/singleattorney/basic-content';
+import SingleAttorneyClientSlider from 'components/singleattorney/client-slider';
+import SingleAttorneyAwardSlider from 'components/singleattorney/award-slider';
+import SingleAttorneySidebarPracticeList from 'components/singleattorney/sidebar-practice-list';
+import SingleAttorneySidebarInformationList from 'components/singleattorney/sidebar-information-list';
+import SingleAttorneyNonGraphQLSlider from 'components/singleattorney/non-graphql-slider';
+import SingleAttorneyRelatedArticles from 'components/singleattorney/related-articles';
 import ErrorMessage from 'components/error-message';
 import { headers, sortByDateKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
@@ -186,8 +186,8 @@ export default function AttorneySingleBio({ status, bio, response }) {
           />
         )}
         height="auto"
-        infoCard={(
-          <InfoCard
+        SingleAttorneyInfoCard={(
+          <SingleAttorneyInfoCard
             fullName={response.title}
             chair={bio.chair}
             coChair={bio.coChair}
@@ -211,14 +211,14 @@ export default function AttorneySingleBio({ status, bio, response }) {
       />
       {/** Bio Image & Info Card  -- end */}
       {/** Start of body content -- start */}
-      <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="biography">
+      <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="SingleAttorneyBiography">
         <Container>
           <Row>
             {/** End of navigation -- start */}
             <Col sm={12}>
               <Nav>
-                <Nav.Link eventKey="biography" className={tabStyle.tab}>
-                  Biography
+                <Nav.Link eventKey="SingleAttorneyBiography" className={tabStyle.tab}>
+                  SingleAttorneyBiography
                 </Nav.Link>
                 {response.attorneyRepresentativeMatters.repMatters && (
                   <Nav.Link
@@ -317,15 +317,15 @@ export default function AttorneySingleBio({ status, bio, response }) {
             {/** Body tab content -- start */}
             <Col sm={12} md={9} className="mt-4">
               <TabContent>
-                <Biography
-                  tabTitle="biography"
-                  title="Biography"
-                  content={response.attorneyBiography.biographyContent}
+                <SingleAttorneyBiography
+                  tabTitle="SingleAttorneyBiography"
+                  title="SingleAttorneyBiography"
+                  content={response.attorneySingleAttorneyBiography.SingleAttorneyBiographyContent}
                 />
               </TabContent>
               {response.attorneyRepresentativeMatters.repMatters && (
                 <TabContent>
-                  <Matters
+                  <SingleAttorneyMatters
                     tabTitle="representative-matters"
                     title="Representative Matters"
                     content={response.attorneyRepresentativeMatters.repMatters}
@@ -334,7 +334,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {response.attorneyRepresentativeClients.repClients && (
                 <TabContent>
-                  <Matters
+                  <SingleAttorneyMatters
                     tabTitle="representative-clients"
                     title="Representative Clients"
                     content={response.attorneyRepresentativeClients.repClients}
@@ -343,7 +343,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {bio.presentations && (
                 <TabContent>
-                  <TableTab
+                  <SingleAttorneyTableTab
                     tabTitle="presentations"
                     title="Presentations"
                     content={bio.presentations}
@@ -352,7 +352,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {bio.publications && (
                 <TabContent>
-                  <TableTab
+                  <SingleAttorneyTableTab
                     tabTitle="publications"
                     title="Publications"
                     content={bio.publications}
@@ -361,7 +361,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {bio.media && (
                 <TabContent>
-                  <TableTab
+                  <SingleAttorneyTableTab
                     tabTitle="media"
                     title="Media"
                     content={bio.media}
@@ -370,7 +370,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {bio.blogPosts.length > 0 && (
                 <TabContent>
-                  <NonGraphQlArticles
+                  <SingleAttorneyNonGraphQlArticles
                     tabTitle="blogs"
                     title="Articles"
                     content={sortByDateKey(bio.blogPosts, 'date')}
@@ -379,7 +379,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {firmNewsAndEventsArr.length > 0 && (
                 <TabContent>
-                  <Articles
+                  <SingleAttorneyArticles
                     tabTitle="newsevents"
                     title="News &amp; Events"
                     content={firmNewsAndEventsArr}
@@ -388,7 +388,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {response.attorneyAwardsClientsBlogsVideos.attorneyVideos && (
                 <TabContent>
-                  <VideoTab
+                  <SingleAttorneyVideoTab
                     title="Videos"
                     content={
                       response.attorneyAwardsClientsBlogsVideos.attorneyVideos
@@ -399,7 +399,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {tabs.tabHeader1 && tabs.tabContent1 && (
                 <TabContent>
-                  <BasicContent
+                  <SingleAttorneyBasicContent
                     key={tabs.tabHeader1}
                     title={tabs.tabHeader1}
                     content={tabs.tabContent1}
@@ -409,7 +409,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {tabs.tabHeader2 && tabs.tabContent2 && (
                 <TabContent>
-                  <BasicContent
+                  <SingleAttorneyBasicContent
                     key={tabs.tabHeader2}
                     title={tabs.tabHeader2}
                     content={tabs.tabContent2}
@@ -419,7 +419,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {tabs.tabHeader3 && tabs.tabContent3 && (
                 <TabContent>
-                  <BasicContent
+                  <SingleAttorneyBasicContent
                     key={tabs.tabHeader3}
                     title={tabs.tabHeader3}
                     content={tabs.tabContent3}
@@ -429,7 +429,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {tabs.tabHeader4 && tabs.tabContent4 && (
                 <TabContent>
-                  <BasicContent
+                  <SingleAttorneyBasicContent
                     key={tabs.tabHeader4}
                     title={tabs.tabHeader4}
                     content={tabs.tabContent4}
@@ -439,7 +439,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {tabs.tabHeader5 && tabs.tabContent5 && (
                 <TabContent>
-                  <BasicContent
+                  <SingleAttorneyBasicContent
                     key={tabs.tabHeader5}
                     title={tabs.tabHeader5}
                     content={tabs.tabContent5}
@@ -449,24 +449,24 @@ export default function AttorneySingleBio({ status, bio, response }) {
               )}
               {/** start of bottom page carousels -- start */}
               {response.attorneyAwardsClientsBlogsVideos.awards && (
-                <AwardSlider
+                <SingleAttorneyAwardSlider
                   content={response.attorneyAwardsClientsBlogsVideos.awards}
                 />
               )}
               {response.attorneyAwardsClientsBlogsVideos.clients && (
-                <ClientSlider
+                <SingleAttorneyClientSlider
                   content={response.attorneyAwardsClientsBlogsVideos.clients}
                 />
               )}
               {firmNewsAndEventsArr.length > 0
                 && response.title !== 'Donald Scarinci' && (
-                  <RelatedArticles
+                  <SingleAttorneyRelatedArticles
                     title="News & Events"
                     content={firmNewsAndEventsArr}
                   />
               )}
               {bio.blogPosts && bio.blogPosts.length > 0 && (
-                <NonGraphQLSlider
+                <SingleAttorneyNonGraphQLSlider
                   title="Recent Articles"
                   content={sortByDateKey(bio.blogPosts, 'date')}
                 />
@@ -476,7 +476,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
             {/** Body tab content --end */}
             {/** Sidebar content -- start */}
             <Col sm={12} md={3} className="mt-4">
-              <SidebarPracticeList
+              <SingleAttorneySidebarPracticeList
                 content={
                   response.attorneyPrimaryRelatedPracticesLocationsGroups
                     .relatedPractices
@@ -484,7 +484,7 @@ export default function AttorneySingleBio({ status, bio, response }) {
                 itemKey={2}
               />
               <br />
-              <SidebarInformationList
+              <SingleAttorneySidebarInformationList
                 itemKey={1}
                 content={
                   response.attorneyAdditionalInformationEducationAdmissionsAffiliations
@@ -514,7 +514,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, res }) {
-  const status = 200;
+  let status = 200;
 
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
