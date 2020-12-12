@@ -6,7 +6,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function PassingOfHarveyPoe({
+export default function PassingAttorneyHarveyRPoe({
   title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);

@@ -12,7 +12,7 @@ import Body from 'components/singlecareer/body';
 import Sidebar from 'components/singlecareer/sidebar';
 import { headers } from 'utils/helpers';
 
-export default function Career({ careerJson }) {
+export default function CareerPost({ careerJson }) {
   const router = useRouter();
 
   if (careerJson.status === 404) {

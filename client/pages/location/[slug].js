@@ -46,7 +46,7 @@ function buildLocationSchema(location, map) {
   };
 }
 
-export default function Location({
+export default function SingleLocation({
   seo, offices, currentOffice, posts,
 }) {
   const router = useRouter();

@@ -6,7 +6,7 @@ import TrendingStories from 'components/trending-stories';
 import SubscriptionBody from 'components/subscription-body';
 import { headers } from 'utils/helpers';
 
-export default function Subscription({ seo, posts }) {
+export default function SubscriptionPage({ seo, posts }) {
   return (
     <>
       <NextSeo

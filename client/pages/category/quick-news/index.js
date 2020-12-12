@@ -9,7 +9,7 @@ import Sidebar from 'components/archives/sidebar';
 import Footer from 'components/footer';
 import { headers } from 'utils/helpers';
 
-export default function QuickNews({
+export default function CategoryQuickNews({
   firmNews,
   firmEvents,
   firmInsights,

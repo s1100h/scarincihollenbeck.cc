@@ -13,7 +13,7 @@ import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 import { getPostsByAuthor, getAuthorBio } from 'queries/author';
 
-export default function Author({ firmNews, firmEvents, firmInsights }) {
+export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }) {
   const router = useRouter();
 
   const {

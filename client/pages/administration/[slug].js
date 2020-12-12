@@ -15,7 +15,7 @@ import {
 } from 'queries/administration';
 import lineStyles from 'styles/LineHeader.module.css';
 
-export default function SingleAdmin({ status, response }) {
+export default function AdminSingleBio({ status, response }) {
   const router = useRouter();
 
   if (status === 404) {

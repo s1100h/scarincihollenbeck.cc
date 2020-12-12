@@ -14,7 +14,7 @@ import SidebarContent from 'components/practice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 
-export default function WomenLead({
+export default function ProBono({
   attorneysMentioned,
   title,
   description,

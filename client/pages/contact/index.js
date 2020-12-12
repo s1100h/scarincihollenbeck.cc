@@ -5,7 +5,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import ContactForm from 'components/contact-form';
 
-export default function ContactUs() {
+export default function ContactPage() {
   const seo = {
     title: 'Contact | Scarinci Hollenbeck',
     metaDescription:

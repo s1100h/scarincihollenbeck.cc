@@ -18,10 +18,9 @@ import RelatedAttorneys from 'components/practice/related-attorneys';
 import RelatedArticlesTab from 'components/practice/related-articles-tab';
 import SidebarContent from 'components/practice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import LineHeading from 'layouts/line-heading';
 import { headers, urlify } from 'utils/helpers';
 
-export default function SinglePractice({ practice, corePractices }) {
+export default function PracticesSingle({ practice, corePractices }) {
   const router = useRouter();
 
   if (practice.status === 404) {

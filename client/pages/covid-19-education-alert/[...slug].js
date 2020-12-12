@@ -12,7 +12,7 @@ import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function CovidEducationAlerts({ post }) {
+export default function CovidEducationAlert({ post }) {
   const router = useRouter();
 
   if (post.status === 404) {

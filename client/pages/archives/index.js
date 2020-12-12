@@ -10,7 +10,7 @@ import { headers, makeQueryTitle } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 
-export default function Archive({
+export default function ArchiveLandingPage({
   firmNews,
   firmInsights,
   firmEvents,

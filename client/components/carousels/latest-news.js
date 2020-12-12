@@ -27,46 +27,45 @@ const responsive = {
 export default function CarouselsLatestNews({ slides }) {
   return (
     <Carousel
-        aria-label="carousel"
-        responsive={responsive}
-        infinite
-        arrows
-        swipeable
-      >      
-        {slides.map((slide) => (
-          <div key={slide.node.id} className="pb-2 px-4">
-            <Link href={slide.node.link}>
-              <a>
-                <Image
-                  src={
+      aria-label="carousel"
+      responsive={responsive}
+      infinite
+      arrows
+      swipeable
+    >
+      {slides.map((slide) => (
+        <div key={slide.node.id} className="pb-2 px-4">
+          <Link href={slide.node.link}>
+            <a>
+              <Image
+                src={
                     slide.node.image
                       ? slide.node.image.node.sourceUrl
                       : slide.node.featuredImage
                         ? slide.node.featuredImage.node.sourceUrl
                         : '/images/no-image-found-diamond.png'
                   }
-                  alt={slide.node.title}
-                  width={300}
-                  height={150}
-                  layout="intrinsic"
-                />
-                <h5 className="mt-3 mb-2 text-center text-dark">
-                  <strong>
-                    {slide.node.categories.nodes.length > 0
-                      ? slide.node.categories.nodes[0].name
-                      : ''}
-                  </strong>
-                </h5>
-                <p
-                  className={`${styleFonts.smallExcerpt} text-muted text-center`}
-                >
-                  {limitTitleLength(slide.node.title)}
-                </p>
-              </a>
-            </Link>
-          </div>
-        ))}
-      </Carousel>
-    )
+                alt={slide.node.title}
+                width={300}
+                height={150}
+                layout="intrinsic"
+              />
+              <h5 className="mt-3 mb-2 text-center text-dark">
+                <strong>
+                  {slide.node.categories.nodes.length > 0
+                    ? slide.node.categories.nodes[0].name
+                    : ''}
+                </strong>
+              </h5>
+              <p
+                className={`${styleFonts.smallExcerpt} text-muted text-center`}
+              >
+                {limitTitleLength(slide.node.title)}
+              </p>
+            </a>
+          </Link>
+        </div>
+      ))}
+    </Carousel>
   );
 }

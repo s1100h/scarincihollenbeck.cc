@@ -7,7 +7,6 @@ import { headers, createMarkup, sortByKey } from 'utils/helpers';
 
 export default function FirmOverview({
   mainTabs,
-  additionalInfo,
   members,
   mainContent,
   seo,

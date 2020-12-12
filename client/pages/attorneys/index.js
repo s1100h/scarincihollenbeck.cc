@@ -20,8 +20,6 @@ import {
 
 export default function Attorneys() {
   const router = useRouter();
-  console.log('router');
-  console.log(router);
   const { data: results, error: resultsError } = useSWR(
     attorneySearch(router.query),
     (query) => request('https://wp.scarincihollenbeck.com/graphql', query),

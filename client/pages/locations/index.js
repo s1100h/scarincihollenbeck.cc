@@ -35,7 +35,7 @@ function buildMainLocationSchema() {
   };
 }
 
-export default function Location({
+export default function AllLocations({
   seo, offices, lyndhurst, posts,
 }) {
   const router = useRouter();

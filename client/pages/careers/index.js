@@ -7,7 +7,7 @@ import CareerSection from 'components/careers';
 import EEOpportunityContent from 'components/careers/equal-opportunity';
 import { headers } from 'utils/helpers';
 
-export default function Careers({ careers, seo }) {
+export default function CareersPage({ careers, seo }) {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
@@ -68,7 +68,7 @@ export default function Careers({ careers, seo }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const [careerJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, {
       headers,
@@ -81,5 +81,6 @@ export async function getServerSideProps() {
       seo,
       careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : [],
     },
+    revalidate: 1
   };
 }
