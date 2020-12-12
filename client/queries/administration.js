@@ -18,10 +18,9 @@ export const allAdministraionQuery = `{
       }
     }
   }
-}`
+}`;
 
-export const singleAdministraionQuery = slug => {
-  return `{
+export const singleAdministraionQuery = (slug) => `{
     administrations(where: {name: "${slug}"}) {
       edges {
         node {
@@ -62,8 +61,7 @@ export const singleAdministraionQuery = slug => {
         }
       }
     }
-  }`
-}
+  }`;
 
 export const getAllAdministration = ` {
   administrations(first: 10) {
@@ -72,4 +70,4 @@ export const getAllAdministration = ` {
     }
   }
 }
-`
+`;

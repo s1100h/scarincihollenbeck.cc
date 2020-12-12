@@ -18,7 +18,7 @@ export const allAttorneysQuery = `{
       }
     }
   }
-}`
+}`;
 
 export const allPracticesQuery = `{
   administrations(where: {orderby: {field: DATE, order: DESC}}) {
@@ -40,7 +40,7 @@ export const allPracticesQuery = `{
       }
     }
   }
-}`
+}`;
 
 export const allDesignationsQuery = `{
   administrations(where: {orderby: {field: DATE, order: DESC}}) {
@@ -62,7 +62,7 @@ export const allDesignationsQuery = `{
       }
     }
   }
-}`
+}`;
 
 export const allLocationsQuery = `{
   administrations(where: {orderby: {field: DATE, order: DESC}}) {
@@ -84,10 +84,9 @@ export const allLocationsQuery = `{
       }
     }
   }
-}`
+}`;
 
-export const singleAttorneyQuery = slug => {
-  return `{
+export const singleAttorneyQuery = (slug) => `{
     attorneyProfiles(where: {name: "${slug}"}) {
       edges {
         node {
@@ -249,12 +248,9 @@ export const singleAttorneyQuery = slug => {
         }
       }
     }
-  }`
-}
+  }`;
 
-
-export const attorneysArticles = (category, name) => {
-  return ` {
+export const attorneysArticles = (category, name) => ` {
     categories(where: {name: "${category}"}) {
       nodes {
         name
@@ -274,8 +270,7 @@ export const attorneysArticles = (category, name) => {
         }
       }
     }
-  }`
-}
+  }`;
 
 export const getAllAttorneySlugs = `{
   attorneyProfiles(first: 500) {
@@ -283,4 +278,4 @@ export const getAllAttorneySlugs = `{
       slug
     }
   }
-}`
+}`;

@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 #archive-practice {
   .practice-menu-box {
@@ -6,11 +6,11 @@
     font-size: 1.1rem;
     border: 1px solid $standard-red;
     color: $standard-red;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
 
-     &:hover {
+    &:hover {
       background-color: $standard-red;
-      color: white;     
+      color: white;
     }
   }
   .dropdown-menu {
@@ -18,15 +18,14 @@
     max-width: 100%;
     .dropdown-item {
       white-space: pre-line;
-      white-space: pre-wrap;       /* css-3 */
-      white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-      white-space: -pre-wrap;      /* Opera 4-6 */
-      white-space: -o-pre-wrap;    /* Opera 7 */
-      word-wrap: break-word;       /* Internet Explorer 5.5+ */
+      white-space: pre-wrap; /* css-3 */
+      white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+      white-space: -pre-wrap; /* Opera 4-6 */
+      white-space: -o-pre-wrap; /* Opera 7 */
+      word-wrap: break-word; /* Internet Explorer 5.5+ */
     }
   }
 
- 
   a.practice-menu-box:hover {
     color: white;
   }
@@ -34,23 +33,23 @@
     font-size: 18px;
     line-height: 26px;
     text-align: center;
-    padding:10px;
+    padding: 10px;
     border: 1.5px solid $standard-red;
     width: 19em;
     text-transform: uppercase;
-    transition:All 1s ease;
-    -webkit-transition:All 1s ease;
-    -moz-transition:All 1s ease;
-    
+    transition: All 1s ease;
+    -webkit-transition: All 1s ease;
+    -moz-transition: All 1s ease;
+
     a {
       color: #bd2220;
-      transition:All 1s ease;
-      -webkit-transition:All 1s ease;
-      -moz-transition:All 1s ease
+      transition: All 1s ease;
+      -webkit-transition: All 1s ease;
+      -moz-transition: All 1s ease;
     }
 
     &:hover {
-      background-color: #bd2220
+      background-color: #bd2220;
     }
   }
 
@@ -61,7 +60,7 @@
 
       &:hover {
         ul {
-          display:inherit;
+          display: inherit;
         }
       }
     }
@@ -78,11 +77,11 @@
         background-color: $medium-gray-2;
         border: 0px;
         border-bottom: 3px solid $standard-red;
-        color: white;  
+        color: white;
       }
-     }
+    }
   }
-  
+
   .dropdown-toggle {
     .practice-menu-box {
       &:hover {
@@ -111,40 +110,40 @@
   }
 
   .column-list {
-   -webkit-column-count: 3;
-   -moz-column-count: 3;
-   column-count: 3;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
   }
 
   @media (min-width: 1200px) {
-   .max-width-container {
-     max-width: 920px;
-   }
+    .max-width-container {
+      max-width: 920px;
+    }
   }
-  
+
   @media (min-width: 400px) and (max-width: 769px) {
-   .column-list {
-     -webkit-column-count: 1;
-     -moz-column-count: 1;
-     column-count: 1;
-   }
-   .main-btn {
-     width: 100%; 
-   }
-   .practices {
-     display: block !important;
-     width: 100% !important;
-   }
+    .column-list {
+      -webkit-column-count: 1;
+      -moz-column-count: 1;
+      column-count: 1;
+    }
+    .main-btn {
+      width: 100%;
+    }
+    .practices {
+      display: block !important;
+      width: 100% !important;
+    }
   }
-  
+
   @media (max-width: 767px) {
-   .practice-dropdown {
-     background-color: #fcfaff;
-   }
-   .practice-menu-box:hover > .practice-dropdown.dropdown-menu {
-     display:initial;
-   }
-   .dropdown-menu {
+    .practice-dropdown {
+      background-color: #fcfaff;
+    }
+    .practice-menu-box:hover > .practice-dropdown.dropdown-menu {
+      display: initial;
+    }
+    .dropdown-menu {
       background-color: #fcfaff !important;
       width: 100% !important;
       margin-top: 0px !important;

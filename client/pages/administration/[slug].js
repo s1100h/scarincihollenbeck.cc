@@ -4,33 +4,40 @@ import Error from 'pages/_error';
 import Footer from 'components/footer';
 import ProfileImage from 'components/singleattorney/profile-image';
 import InfoCard from 'components/singleattorney/info-card';
-import SiteLoader from 'components/site-loader'
+import SiteLoader from 'components/site-loader';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import FullWidth from 'layouts/full-width';
 import { createMarkup } from 'utils/helpers';
 import client from 'utils/graphql-client';
-import { singleAdministraionQuery, getAllAdministration } from 'queries/administration';
-import lineStyles from 'styles/LineHeader.module.css'
+import {
+  singleAdministraionQuery,
+  getAllAdministration,
+} from 'queries/administration';
+import lineStyles from 'styles/LineHeader.module.css';
 
 export default function SingleAdmin({ status, response }) {
   const router = useRouter();
-  
+
   if (status === 404) {
     return <Error statusCode={404} />;
   }
 
-  if(router.isFallback) {
+  if (router.isFallback) {
     return (
       <div className="my-5 py-5">
         <SiteLoader />
       </div>
-    )
+    );
   }
 
-  const imageLarge =  response.administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "large")
-  const imageThumb =  response.administration.featuredImage.mediaDetails.sizes.filter(i => i.name === "thumbnail")
-  const seoProfileImage = imageThumb[0]
-  const profileImage = imageLarge[0]
+  const imageLarge = response.administration.featuredImage.mediaDetails.sizes.filter(
+    (i) => i.name === 'large',
+  );
+  const imageThumb = response.administration.featuredImage.mediaDetails.sizes.filter(
+    (i) => i.name === 'thumbnail',
+  );
+  const seoProfileImage = imageThumb[0];
+  const profileImage = imageLarge[0];
 
   return (
     <>
@@ -72,8 +79,9 @@ export default function SingleAdmin({ status, response }) {
         <MultiSubHeader
           image="/images/Columns-1800x400-JPG.jpg"
           height="450px"
-          isAdmin={true}
-          profile={(<ProfileImage
+          isAdmin
+          profile={(
+            <ProfileImage
               image={response.administration.featuredImage.sourceUrl}
               name={response.administration.name}
               width={profileImage.width}
@@ -90,7 +98,7 @@ export default function SingleAdmin({ status, response }) {
               socialMediaLinks={response.administration.socialMediaLinks}
               offices={response.administration.location}
             />
-        )}
+          )}
         />
         <FullWidth>
           <div>
@@ -98,7 +106,11 @@ export default function SingleAdmin({ status, response }) {
               <h3>Biography</h3>
             </div>
             <div className="w-100 my-5">
-              <div dangerouslySetInnerHTML={createMarkup(response.administration.biography)} />
+              <div
+                dangerouslySetInnerHTML={createMarkup(
+                  response.administration.biography,
+                )}
+              />
             </div>
           </div>
         </FullWidth>
@@ -108,41 +120,41 @@ export default function SingleAdmin({ status, response }) {
   );
 }
 
-
 export async function getStaticPaths() {
   const res = await client.query(getAllAdministration, {});
 
   return {
-    paths: res.data.administrations.nodes.map((a) => `/administration/${a.slug}`) || [],
-    fallback: false
+    paths:
+      res.data.administrations.nodes.map((a) => `/administration/${a.slug}`)
+      || [],
+    fallback: false,
   };
 }
 
 export async function getStaticProps({ params, res }) {
-  const administrationContent = await client.query(singleAdministraionQuery(params.slug), {});
-  let status = 200
+  const administrationContent = await client.query(
+    singleAdministraionQuery(params.slug),
+    {},
+  );
+  let status = 200;
 
-  if(!res && administrationContent.data.administrations.edges.length <= 0) {
+  if (!res && administrationContent.data.administrations.edges.length <= 0) {
     status = 404;
-    
+
     return {
       props: {
-        status,     
-        response: []
+        status,
+        response: [],
       },
-      notFound: true
+      notFound: true,
     };
   }
 
-
-
   return {
     props: {
-      status,     
+      status,
       response: administrationContent.data.administrations.edges[0].node,
     },
-    revalidate: 1
+    revalidate: 1,
   };
-
-  
 }

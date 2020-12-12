@@ -7,8 +7,7 @@ import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import { createMarkup, addRandomKey } from '../../utils/helpers';
-import styles from 'styles/SidebarTitle.module.css'
+import styles from 'styles/SidebarTitle.module.css';
 
 function SideBarHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
@@ -27,25 +26,28 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
       onClick={decoratedOnClick}
     >
       {children}
-      {(isCurrentEventKey) ? (
-        <FontAwesomeIcon icon={faMinus} className="text-white float-right icon-w8px-h20px" />
+      {isCurrentEventKey ? (
+        <FontAwesomeIcon
+          icon={faMinus}
+          className="text-white float-right icon-w8px-h20px"
+        />
       ) : (
-        <FontAwesomeIcon icon={faPlus} className="text-white float-right icon-w8px-h20px" />
-
+        <FontAwesomeIcon
+          icon={faPlus}
+          className="text-white float-right icon-w8px-h20px"
+        />
       )}
     </Button>
   );
 }
 
-export default function SidebarPracticeList({ content, itemKey }) {
+export default function SingleAttorneySidebarPracticeList({ content, itemKey }) {
   return (
     <>
       <Accordion defaultActiveKey={2}>
         <div key="Related Practices" className="mb-3">
           <SideBarHeaderToggle eventKey={itemKey}>
-            <>
-              Related Practices
-            </>
+            <>Related Practices</>
           </SideBarHeaderToggle>
           <Accordion.Collapse eventKey={itemKey}>
             <div className="off-white">
@@ -58,7 +60,7 @@ export default function SidebarPracticeList({ content, itemKey }) {
                       </a>
                     </Link>
                   </li>
-                ))}                
+                ))}
               </ul>
             </div>
           </Accordion.Collapse>

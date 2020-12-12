@@ -21,9 +21,12 @@ export default function Career({ careerJson }) {
 
   return (
     <>
-      {(router.isFallback) ? (
+      {router.isFallback ? (
         <Container>
-          <Row id="page-loader-container" className="justify-content-center align-self-center">
+          <Row
+            id="page-loader-container"
+            className="justify-content-center align-self-center"
+          >
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
@@ -63,10 +66,13 @@ export default function Career({ careerJson }) {
 
 export async function getServerSideProps({ params }) {
   const [careerJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json())
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
-  if(careerJson.status === 404 && res) {
+  if (careerJson.status === 404 && res) {
     res.statusCode = 404;
   }
 

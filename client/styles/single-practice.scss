@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 #single-practice {
   .main-tab {
@@ -15,7 +15,7 @@
     text-decoration: none;
     transition: All 1s ease;
     -webkit-transition: All 1s ease;
-    -moz-transition:All 1s ease;
+    -moz-transition: All 1s ease;
     border-radius: 5px;
     &:hover {
       background-color: $standard-red;
@@ -30,13 +30,13 @@
     margin-top: -6px;
   }
   .rp-practice li {
-    margin-bottom:-11px;
+    margin-bottom: -11px;
   }
   .sidebar-content {
     margin-left: 10px;
   }
-  .sidebar-content-practice li  {
-    height: 30px; 
+  .sidebar-content-practice li {
+    height: 30px;
   }
   .sidebar-content li:hover a {
     text-decoration: underline !important;
@@ -107,6 +107,6 @@
     }
     .w-45 {
       width: 100% !important;
-    }  
+    }
   }
 }

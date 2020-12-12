@@ -4,9 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from './cookie-consent';
 import FrontSearch from './frontpage/front-search';
-import JustInArticlesCarousel from './carousels/just-in-articles-carousel';
-import styles from '../styles/Footer.module.css'
-import textStyles from '../styles/Text.module.css'
+import JustInArticlesCarousel from './carousels/just-in';
+import styles from '../styles/Footer.module.css';
+import textStyles from '../styles/Text.module.css';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,7 +24,7 @@ export default function Footer() {
             </Col>
             <Col sm={12} lg={4}>
               <div className={styles.FooterSearch}>
-                <FrontSearch/>
+                <FrontSearch />
               </div>
             </Col>
           </Row>
@@ -37,13 +37,16 @@ export default function Footer() {
                 Prior results do not guarantee a similar outcome.
                 <br />
                 ©
-                {' '}
                 {currentYear}
-                , Scarinci Hollenbeck, LLC, all rights reserved.
+                , Scarinci Hollenbeck, LLC, all rights
+                reserved.
               </p>
             </Col>
             <Col sm={6} className="my-3">
-              <div role="navigation" className={`d-flex ${styles.LinkContainer}`}>
+              <div
+                role="navigation"
+                className={`d-flex ${styles.LinkContainer}`}
+              >
                 <div>
                   <Link href="/contact">
                     <a className={`${textStyles.redTitle} h6`}>
@@ -70,13 +73,19 @@ export default function Footer() {
               </div>
               <div className={`d-flex ${styles.LinkContainer}`}>
                 <div>
-                  <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className={`${textStyles.redTitle} h6`}>
+                  <a
+                    href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
+                    className={`${textStyles.redTitle} h6`}
+                  >
                     <strong>Make Payment</strong>
                   </a>
                   <span className={styles.LinkSeperator}>|</span>
                 </div>
                 <div>
-                  <a href="https://scarincihollenbeck.com/sitemap.xml" className={`${textStyles.redTitle} h6`}>
+                  <a
+                    href="https://scarincihollenbeck.com/sitemap.xml"
+                    className={`${textStyles.redTitle} h6`}
+                  >
                     <strong>Sitemaps</strong>
                   </a>
                   <span className={styles.LinkSeperator}>|</span>
@@ -92,9 +101,7 @@ export default function Footer() {
                 <div>
                   <Link href="/privacy-policy">
                     <a className={`${textStyles.redTitle} h6`}>
-                      <strong>
-                        Privacy Policy
-                      </strong>
+                      <strong>Privacy Policy</strong>
                     </a>
                   </Link>
                 </div>

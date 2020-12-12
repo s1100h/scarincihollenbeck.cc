@@ -16,13 +16,13 @@ export function sortByKey(list, key) {
 }
 
 // add a random key to the end of a string
-export const addRandomKey = (str) => str.concat('-').concat(Math.floor((Math.random() * 10000) + 1));
+export const addRandomKey = (str) => str.concat('-').concat(Math.floor(Math.random() * 10000 + 1));
 
 // take a term lower case and replace white spaces with dashes
-export const urlify = str => str.toLowerCase().replace(/\s/g, '-');
+export const urlify = (str) => str.toLowerCase().replace(/\s/g, '-');
 
 // create mark up
-export const createMarkup = content => ({ __html: content });
+export const createMarkup = (content) => ({ __html: content });
 
 // sort by date & key
 export function sortByDateKey(list, key) {
@@ -79,7 +79,8 @@ export function getDirectionsFromLocation(location) {
     const currentOffice = location.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
 
     // filter through available offices
-    const destination = offices.filter(v => v.title === currentOffice)[0].address;
+    const destination = offices.filter((v) => v.title === currentOffice)[0]
+      .address;
     const map = `https://www.google.com/maps/dir/${lat}+${long}/${destination}`;
     window.open(map, '_blank');
   };
@@ -89,22 +90,22 @@ export function getDirectionsFromLocation(location) {
   };
 
   navigator.geolocation.getCurrentPosition(success, error, options);
-};
+}
 
 // find url parameter for query
 export function splitUrl(url, term = null) {
   const x = url.split('/');
-  let y = x.filter(a => a !== '');
+  let y = x.filter((a) => a !== '');
 
   if (term !== null) {
-    y = y.filter(a => a !== '' && a !== term);
+    y = y.filter((a) => a !== '' && a !== term);
   }
 
   return y;
-};
+}
 
 // urlify locations
-export const locationUrl = location => location.toLowerCase().replace(/\s/g, '-').replace(/[.]/gm, '');
+export const locationUrl = (location) => location.toLowerCase().replace(/\s/g, '-').replace(/[.]/gm, '');
 
 // filter by key
 export function filterByKey(list, key) {
@@ -117,10 +118,10 @@ export function filterByKey(list, key) {
     }
   }
   return results;
-};
+}
 
 // make title
-export const makeTitle = string => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
+export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
 export const headers = {
   Accept: 'application/json',
@@ -129,8 +130,23 @@ export const headers = {
 
 export function formatDate(date) {
   const dateObj = new Date(date);
-  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const results = `${month[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+  const month = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const results = `${
+    month[dateObj.getMonth()]
+  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 
   return results;
 }
@@ -138,8 +154,8 @@ export function formatDate(date) {
 export function formatCorePractices(link) {
   return {
     name: link.title,
-    link: link.slug 
-  }
+    link: link.slug,
+  };
 }
 
 export function printScreen() {
@@ -152,11 +168,8 @@ export function makeQueryTitle(title) {
   return makeTitle(formatTitle);
 }
 
-
 export function sortByOrder(admins) {
-  admins.sort((a, b) => {
-    return a.orderBy - b.orderBy
-  });
+  admins.sort((a, b) => a.orderBy - b.orderBy);
 }
 
 export async function fetcher(...args) {
@@ -173,16 +186,14 @@ export function limitTitleLength(title) {
 }
 
 export function reFormatExternalPosts(postLinks) {
-  return postLinks.map((post) => {
-    return {
-      link:post.link,
-      title:post.title.rendered,
-      date: post.date,      
-      image: {
-        node: {
-          sourceUrl: post.better_featured_image.source_url
-        }
-      }
-    }
-  })       
+  return postLinks.map((post) => ({
+    link: post.link,
+    title: post.title.rendered,
+    date: post.date,
+    image: {
+      node: {
+        sourceUrl: post.better_featured_image.source_url,
+      },
+    },
+  }));
 }

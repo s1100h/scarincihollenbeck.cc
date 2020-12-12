@@ -6,7 +6,7 @@ module.exports = withTM({
       'shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com',
       'musicesq.com',
       'scarincilawyer.com',
-      'conqqqshlskopvv.nyc3.digitaloceanspaces.com'
+      'conqqqshlskopvv.nyc3.digitaloceanspaces.com',
     ],
   },
 });

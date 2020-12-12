@@ -4,14 +4,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { urlify } from '../../utils/helpers';
 
-export default function Results({ positions }) {
+export default function CareersResults({ positions }) {
   return (
     <div className="w-100 border mt-0">
       <Container className="mt-2">
         <Row>
-          {(positions.length < 1) && (
+          {positions.length < 1 && (
             <div className="w-100 my-5">
-              <h3 className="text-center red-title">Sorry, no career positions available...</h3>
+              <h3 className="text-center red-title">
+                Sorry, no career positions available...
+              </h3>
             </div>
           )}
           {positions.map((p) => (

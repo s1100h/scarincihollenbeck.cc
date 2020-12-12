@@ -6,10 +6,26 @@ import { addRandomKey, headers } from 'utils/helpers';
 import useInput from 'utils/input-hook';
 
 export default function Search() {
-  const { value: searchInput, bind: bindSearchInput, reset: resetSearchInput } = useInput('');
-  const { value: practiceInput, bind: bindPracticeInput, reset: resetPracticeInput } = useInput('');
-  const { value: attorneyInput, bind: bindAttorneyInput, reset: resetAttorneyInput } = useInput('');
-  const { value: categoryInput, bind: bindCategoryInput, reset: resetCategoryInput } = useInput('');
+  const {
+    value: searchInput,
+    bind: bindSearchInput,
+    reset: resetSearchInput,
+  } = useInput('');
+  const {
+    value: practiceInput,
+    bind: bindPracticeInput,
+    reset: resetPracticeInput,
+  } = useInput('');
+  const {
+    value: attorneyInput,
+    bind: bindAttorneyInput,
+    reset: resetAttorneyInput,
+  } = useInput('');
+  const {
+    value: categoryInput,
+    bind: bindCategoryInput,
+    reset: resetCategoryInput,
+  } = useInput('');
   const [attorneys, setAttorneys] = useState([]);
   const [practices, setPractices] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -17,9 +33,18 @@ export default function Search() {
   useEffect(() => {
     const fetchData = async () => {
       const [attorneys, practices, categories] = await Promise.all([
-        fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then((data) => data.json()),
-        fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then((data) => data.json()),
-        fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100', { headers }).then((data) => data.json())
+        fetch(
+          'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
+          { headers },
+        ).then((data) => data.json()),
+        fetch(
+          'https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices',
+          { headers },
+        ).then((data) => data.json()),
+        fetch(
+          'https://wp.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100',
+          { headers },
+        ).then((data) => data.json()),
       ]);
 
       setAttorneys(attorneys);
@@ -32,8 +57,20 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const query = `${(searchInput !== '') ? searchInput : ''} ${(practiceInput !== '') ? practiceInput : ''} ${(attorneyInput !== '') ? attorneyInput : ''} ${(categoryInput !== '') ? categoryInput : ''}`;
-    const formatUrl = (str) => str.toLowerCase().replace(',',' ').replace('&', '').replace('’', "'").replace('.', '').replace("'",'').replace(/\s+/g,' ').replace(/\s/g, '+');
+    const query = `${searchInput !== '' ? searchInput : ''} ${
+      practiceInput !== '' ? practiceInput : ''
+    } ${attorneyInput !== '' ? attorneyInput : ''} ${
+      categoryInput !== '' ? categoryInput : ''
+    }`;
+    const formatUrl = (str) => str
+      .toLowerCase()
+      .replace(',', ' ')
+      .replace('&', '')
+      .replace('’', "'")
+      .replace('.', '')
+      .replace("'", '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s/g, '+');
 
     Router.push({
       pathname: '/search',
@@ -58,32 +95,60 @@ export default function Search() {
       <Form onSubmit={handleSubmit} role="search">
         <Form.Group controlId="textSearch">
           <Form.Label>
-            <span className="sr-only">
-              Search Site
-            </span>
+            <span className="sr-only">Search Site</span>
           </Form.Label>
-          <Form.Control type="text" placeholder="Keyword.." {...bindSearchInput} />
+          <Form.Control
+            type="text"
+            placeholder="Keyword.."
+            {...bindSearchInput}
+          />
         </Form.Group>
         <Form.Group controlId="practices.ControlSelect1">
           <Form.Control as="select" {...bindPracticeInput}>
             <option>Filter by practice</option>
-            {(practices.length > 0) && practices.map((practice) => <option key={addRandomKey(practice.title)}>{practice.title}</option>) }
+            {practices.length > 0
+              && practices.map((practice) => (
+                <option key={addRandomKey(practice.title)}>
+                  {practice.title}
+                </option>
+              ))}
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="attorneys.ControlSelect1">
           <Form.Control as="select" {...bindAttorneyInput}>
             <option>Filter by attorney</option>
-            {(attorneys.length > 0) && attorneys.map((attorney) => <option key={addRandomKey(attorney.title)}>{attorney.title}</option>) }
+            {attorneys.length > 0
+              && attorneys.map((attorney) => (
+                <option key={addRandomKey(attorney.title)}>
+                  {attorney.title}
+                </option>
+              ))}
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="category.SelectCategory">
           <Form.Control as="select" {...bindCategoryInput}>
             <option>Filter by category</option>
-            {(categories.length > 0) && categories.map((category) => ((category.name !== 'Uncategorized') && <option key={addRandomKey(category.name)}>{category.name}</option>)) }
+            {categories.length > 0
+              && categories.map(
+                (category) => category.name !== 'Uncategorized' && (
+                <option key={addRandomKey(category.name)}>
+                  {category.name}
+                </option>
+                ),
+              )}
           </Form.Control>
         </Form.Group>
-        <Button type="submit" variant="secondary" onClick={() => clearFields()} className="px-5 my-2 mr-2">Clear</Button>
-        <Button type="submit" variant="danger" className="my-2 px-5">Search</Button>
+        <Button
+          type="submit"
+          variant="secondary"
+          onClick={() => clearFields()}
+          className="px-5 my-2 mr-2"
+        >
+          Clear
+        </Button>
+        <Button type="submit" variant="danger" className="my-2 px-5">
+          Search
+        </Button>
       </Form>
     </div>
   );

@@ -1,17 +1,17 @@
-@import "variables";
+@import 'variables';
 
 #single-attorney {
   h3 {
     strong {
       font-size: 1.3rem;
-    } 
+    }
   }
   .underline-hover:hover {
     color: white !important;
     text-decoration: underline;
   }
   .position-relative.icon {
-    top:-2px;
+    top: -2px;
   }
   .lh-1 {
     line-height: 1;
@@ -25,7 +25,8 @@
   }
 
   .tab-content {
-    p, td {
+    p,
+    td {
       a {
         color: blue;
         text-decoration: underline;
@@ -33,14 +34,14 @@
     }
   }
 
-   // table stylings
+  // table stylings
   td:hover > a {
     cursor: pointer;
     color: $standard-red !important;
     text-decoration: underline !important;
   }
 
-  // rep & client matters stylings  
+  // rep & client matters stylings
   .main-tab {
     font-size: 1.1rem;
     line-height: 26px;
@@ -55,7 +56,7 @@
     text-decoration: none;
     transition: All 1s ease;
     -webkit-transition: All 1s ease;
-    -moz-transition:All 1s ease;
+    -moz-transition: All 1s ease;
     border-radius: 5px;
     &:hover {
       background-color: $standard-red;
@@ -80,7 +81,8 @@
       font-size: 1.3rem;
     }
   }
-  .headline, .bio {
+  .headline,
+  .bio {
     margin-bottom: 1.125rem;
     font-size: 1.05rem;
     line-height: 1.5;
@@ -127,15 +129,15 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
-  
+
   /** read more btn **/
   .read-more-btn {
     background-color: white !important;
     border: 0px solid white !important;
     margin-left: -7px;
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       border: 0px solid white !important;
       outline: none !important;
       box-shadow: none !important;
@@ -158,18 +160,21 @@
   }
 }
 
-#single-career, #page, #single {
+#single-career,
+#page,
+#single {
   h3 {
     strong {
       font-size: 1.3rem;
-    } 
+    }
   }
   .post-content {
     margin-bottom: 1.13rem;
     font-size: 1.1rem;
     line-height: 1.5;
   }
-  .post-content, .author-bio {
+  .post-content,
+  .author-bio {
     a {
       color: blue;
       text-decoration: underline;
@@ -179,7 +184,7 @@
       text-decoration: none !important;
     }
   }
- 
+
   .fb {
     font-size: 1.3rem !important;
     background-color: #3b5998 !important;
@@ -188,9 +193,9 @@
     justify-content: space-around;
     align-items: center;
     &:hover {
-     background-color: #2f4779;
-     cursor: pointer;
-   }
+      background-color: #2f4779;
+      cursor: pointer;
+    }
   }
   .lin {
     font-size: 1.3rem !important;
@@ -200,9 +205,9 @@
     justify-content: space-around;
     align-items: center;
     &:hover {
-     background-color: #0075b4;
-     cursor: pointer;
-   }
+      background-color: #0075b4;
+      cursor: pointer;
+    }
   }
   .tw {
     font-size: 1.2rem !important;
@@ -212,24 +217,24 @@
     justify-content: space-around;
     align-items: center;
     &:hover {
-     background-color: #24b1dd;
-     cursor: pointer;
-   }
+      background-color: #24b1dd;
+      cursor: pointer;
+    }
   }
   .bg-gray {
     font-size: 1.2rem;
     margin-top: 4px;
     background-color: #e9e9e9;
     &:hover {
-     background-color: #a9a9a9;
-     cursor: pointer;
-   }
+      background-color: #a9a9a9;
+      cursor: pointer;
+    }
   }
   .btn-danger {
     &:hover {
-     color: white !important;
-     text-decoration: underline !important;
-   }
+      color: white !important;
+      text-decoration: underline !important;
+    }
   }
   .top-article {
     p {
@@ -238,8 +243,9 @@
       }
     }
   }
- 
-  .top-article h5, .related-attorneys h5 {
+
+  .top-article h5,
+  .related-attorneys h5 {
     font-size: 1.12rem;
   }
   .border-r-5 {
@@ -268,20 +274,20 @@
 }
 
 #single {
-  .sticky-inner-wrapper  {
+  .sticky-inner-wrapper {
     .react-share__ShareButton {
       margin-left: auto;
       margin-right: auto;
-      display:block;
+      display: block;
     }
   }
   .prnt-icon {
     background-color: #7f7f7f;
   }
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     .sticky-outer-wrapper {
-      .sticky-inner-wrapper  {
-        display: flex; 
+      .sticky-inner-wrapper {
+        display: flex;
         position: relative !important;
 
         .ml-10px-mr-10px {
@@ -290,7 +296,7 @@
         }
         .react-share__ShareButton {
           margin-left: 10px;
-    
+
           &:first-child {
             margin-top: 5px;
           }
@@ -300,14 +306,13 @@
   }
 }
 #single-career {
-  .dropzone-center { 
+  .dropzone-center {
     border: 3px dashed rgb(219, 34, 32);
     background-color: rgb(252, 250, 255);
     min-height: 75px;
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 10px;
-  
   }
   .dropzone-center:hover {
     cursor: pointer;
@@ -318,16 +323,18 @@
   .bg-black-background {
     max-height: 300px;
   }
-  
 }
-#single-attorney,#single-career, #single-admin, #single {
+#single-attorney,
+#single-career,
+#single-admin,
+#single {
   // mobie queries
   @media (min-width: 767px) and (max-width: 992px) {
     .sidebar-title {
       height: 70px;
     }
   }
-    
+
   @media (min-width: 0px) and (max-width: 500px) {
     .city-background {
       height: 800px;
@@ -352,26 +359,26 @@
       max-height: 323px;
     }
   }
-  
+
   @media (min-width: 0px) and (max-width: 767px) {
     .white-transparent-border {
       width: 60%;
       display: block;
-      margin-left:auto;
-      margin-right:auto;
+      margin-left: auto;
+      margin-right: auto;
     }
     .line-header {
       text-align: left;
     }
     .line-header h3 {
       width: 100%;
-      display:block;
+      display: block;
     }
     .ss-list {
       margin-left: 0;
       li {
         display: inline;
-        margin-right:5px;
+        margin-right: 5px;
       }
     }
   }
@@ -384,7 +391,7 @@
       width: 100%;
       overflow: initial;
       position: relative;
-      overflow-y: visible; 
+      overflow-y: visible;
     }
   }
 }

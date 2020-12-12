@@ -9,7 +9,7 @@
 }
 
 .bgBlackBackgroundDarker {
-  background-color: rgba(0,0,0, .75);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .Caret {
@@ -30,8 +30,7 @@
   margin-left: 0;
 }
 
-
-@media (min-width:667px) {
+@media (min-width: 667px) {
   .bgBlackBackgroundDarker {
     min-height: 945px;
   }
@@ -50,12 +49,12 @@
   }
 
   .borderRight {
-    border-right: 1px solid #dee2e6!important;
+    border-right: 1px solid #dee2e6 !important;
   }
 
   .marginBottom {
     margin-bottom: 0;
-  }  
+  }
   .marginLeft {
     margin-left: 2em;
   }

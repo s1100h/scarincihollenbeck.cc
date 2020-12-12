@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
@@ -10,61 +9,69 @@ import Body from 'components/archives/body';
 import Sidebar from 'components/author/sidebar';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
-
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 import { getPostsByAuthor, getAuthorBio } from 'queries/author';
 
+export default function Author({ firmNews, firmEvents, firmInsights }) {
+  const router = useRouter();
 
+  const {
+    data: authorPosts,
+    error: authorPostsError,
+  } = useSWR(getPostsByAuthor(router.query.name, router.query.page), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
 
-export default function Author({
-  firmNews,
-  firmEvents,
-  firmInsights
-}) {
-  const router = useRouter()
+  const { data: authorBio, error: authorBioError } = useSWR(
+    getAuthorBio(router.query.name),
+    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
+  );
 
-  const { data: authorPosts, error: authorPostsError } = useSWR(getPostsByAuthor(router.query.name, router.query.page), (query) =>
-  request('https://wp.scarincihollenbeck.com/graphql', query)
-);
+  if (authorPostsError || authorBioError) return <ErrorMessage />;
 
-const { data: authorBio, error: authorBioError } = useSWR(getAuthorBio(router.query.name), (query) =>
-request('https://wp.scarincihollenbeck.com/graphql', query)
-);
-
-  if(authorPostsError || authorBioError) return <ErrorMessage />
-
-  if(!authorPosts || !authorBio) {
+  if (!authorPosts || !authorBio) {
     return (
       <div className="py-5 my-5">
-         <SiteLoader />
+        <SiteLoader />
       </div>
-    )
+    );
   }
-  
+
+  const attorneyBioData = authorBio.attorneyProfiles.nodes[0];
+
   return (
     <div className="mt-3">
       <NextSeo nofollow />
-        <ArchiveLayout
-          header={(<Breadcrumbs
+      <ArchiveLayout
+        header={(
+          <Breadcrumbs
             breadCrumb={[router.query.name, router.query.page]}
             categorySlug={router.query.name}
-          />)}
-          body={(
-            <Body
-              results={authorPosts.posts.edges}
-              term={router.query.name}
-              pages={Math.ceil(authorPosts.posts.pageInfo.offsetPagination.total / 10)}
-              currentPage={router.query.page}
-              news={firmNews}
-              events={firmEvents}
-              insight={firmInsights}
-              pathname={`/author/${router.query.name}`}   
-            />
-          )}
-          sidebar={(<Sidebar bio={authorBio.attorneyProfiles.nodes.[0]} practices={authorBio.attorneyProfiles.nodes.[0].attorneyPrimaryRelatedPracticesLocationsGroups} />)}
-        />
-        <Footer />
+          />
+        )}
+        body={(
+          <Body
+            results={authorPosts.posts.edges}
+            term={router.query.name}
+            pages={Math.ceil(
+              authorPosts.posts.pageInfo.offsetPagination.total / 10,
+            )}
+            currentPage={router.query.page}
+            news={firmNews}
+            events={firmEvents}
+            insight={firmInsights}
+            pathname={`/author/${router.query.name}`}
+          />
+        )}
+        sidebar={(
+          <Sidebar
+            bio={attorneyBioData}
+            practices={
+              attorneyBioData.attorneyPrimaryRelatedPracticesLocationsGroups
+            }
+          />
+        )}
+      />
+      <Footer />
     </div>
   );
 }

@@ -1,15 +1,10 @@
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/attorney-card';
 import { filterByKey } from 'utils/helpers';
-import textStyles from 'styles/Text.module.css'
+import textStyles from 'styles/Text.module.css';
 
-
-export default function Filtered({
-  attorneys,
-}) {
-
+export default function ArchiveAttorneyResultsFiltered({ attorneys }) {
   return (
     <Row>
       {aFiltered.map((a) => (
@@ -27,11 +22,11 @@ export default function Filtered({
           />
         </Col>
       ))}
-      {(aFiltered.length < 1) && (
-        <h3 className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}>
-          <strong>
-            Sorry, no attorneys found according to this query.
-          </strong>
+      {aFiltered.length < 1 && (
+        <h3
+          className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}
+        >
+          <strong>Sorry, no attorneys found according to this query.</strong>
         </h3>
       )}
     </Row>

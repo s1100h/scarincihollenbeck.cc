@@ -1,9 +1,13 @@
 import Form from 'react-bootstrap/Form';
 
-export default function Keyword({ handleChange }) {
+export default function ArchiveAttorneyFitlersKeyword({ handleChange }) {
   return (
     <Form inline>
-      <Form.Control type="text" placeholder="Search by keyword..." onChange={handleChange} />
+      <Form.Control
+        type="text"
+        placeholder="Search by keyword..."
+        onChange={handleChange}
+      />
     </Form>
   );
 }

@@ -1,9 +1,9 @@
-import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
+import CarouselsLatestNews from 'components/carousels/latest-news';
 
-export default function HighlightReal({ highlightReal }) {
+export default function PracticeAwardScoller({ highlightReal }) {
   return (
     <div className="mt-4 w-100 d-block practice-news-list">
-      <LatestNewsArticlesCarousel slides={highlightReal} />
+      <CarouselsLatestNews slides={highlightReal} />
     </div>
   );
 }

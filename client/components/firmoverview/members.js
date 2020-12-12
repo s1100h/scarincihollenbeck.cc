@@ -3,11 +3,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from '../attorney-card';
 
-export default function FirmMembers({
-  title,
-  members,
-  type,
-  slug,
+export default function FirmOverviewMembers({
+  title, members, type, slug,
 }) {
   return (
     <div className="w-100 mt-5 px-3">
@@ -20,9 +17,13 @@ export default function FirmMembers({
                 link={`${slug}${m.link}`}
                 image={m.image}
                 name={m.name}
-                title={(title === 'Directors') ? m.title : m.designation}
-                number={(title === 'Directors') ? `201-896-4100 ${m.extension}` : m.phone}
-                email={m.email}               
+                title={title === 'Directors' ? m.title : m.designation}
+                number={
+                  title === 'Directors'
+                    ? `201-896-4100 ${m.extension}`
+                    : m.phone
+                }
+                email={m.email}
                 width="81px"
                 type={type}
               />

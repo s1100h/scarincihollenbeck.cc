@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import lineStyles from 'styles/LineHeade./carousels/latest-news
 import LatestNewsArticlesCarousel from './carousels/latest-news-articles-carousel';
-import lineStyles from 'styles/LineHeader.module.css'
 
 export default function NewsScroller({ title, articles }) {
   return (

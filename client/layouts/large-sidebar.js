@@ -2,9 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
 export default function LargeSidebar({ body, sidebar }) {
-
   return (
     <Container>
       <Row>
@@ -16,5 +14,5 @@ export default function LargeSidebar({ body, sidebar }) {
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

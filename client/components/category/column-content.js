@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SubscriptionFormColumn from '../subscription-form-column';
 
-export default function ColumnContent({
+export default function CategoryColumnContent({
   colOneTitle,
   colOneContent,
   colTwoTitle,
@@ -16,9 +16,11 @@ export default function ColumnContent({
           <ul className="ml-0 mh-75">
             {colOneContent.map((v) => (
               <li key={v.title || v.name} className="blue-title ml-3">
-                <a href={v.link || v.slug} className="blue-title proxima-bold mb-0">
-                  {v.title || v.name}
-                </a>
+                <Link href={v.link || v.slug}>
+                  <a className="blue-title proxima-bold mb-0">
+                    {v.title || v.name}
+                  </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -29,7 +31,10 @@ export default function ColumnContent({
           <ul className="ml-0 mh-75">
             {colTwoContent.map((v) => (
               <li key={v.name || v.title} className="blue-title ml-3">
-                <a href={v.link || v.slug} className="blue-title proxima-bold mb-0">
+                <a
+                  href={v.link || v.slug}
+                  className="blue-title proxima-bold mb-0"
+                >
                   {v.name || v.title}
                 </a>
               </li>
@@ -40,7 +45,9 @@ export default function ColumnContent({
           <h5 className="red-title">Join our mailing list!</h5>
           <hr />
           <div className="ModalForm-main">
-            <p className="text-center text-muted small-excerpt mb-2">Enter your email and select a category(s) below.</p>
+            <p className="text-center text-muted small-excerpt mb-2">
+              Enter your email and select a category(s) below.
+            </p>
             <SubscriptionFormColumn />
           </div>
         </div>

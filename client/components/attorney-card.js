@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import Link from 'next/link';
-import Image from 'next/image'
-import styles from 'styles/AttorneyCard.module.css'
-import fontStyles from 'styles/Fonts.module.css'
-import textStyles from 'styles/Text.module.css'
+import Image from 'next/image';
+import styles from 'styles/AttorneyCard.module.css';
+import fontStyles from 'styles/Fonts.module.css';
+import textStyles from 'styles/Text.module.css';
 
 export default function AttorneyCard({
   link,
@@ -19,7 +19,7 @@ export default function AttorneyCard({
   return (
     <div className={`d-flex flex-row ${styles.attorneyCard}`} height={148}>
       <Link href={type} as={link}>
-        <a>          
+        <a>
           <Image
             src={image}
             alt={name}
@@ -32,13 +32,13 @@ export default function AttorneyCard({
       <div className="my-auto ml-3">
         <Link href={type} as={link}>
           <a>
-            <p className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}>
+            <p
+              className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}
+            >
               <strong>{name}</strong>
             </p>
             <p className={`mb-1 ${fontStyles.smallExcerpt} text-dark`}>
-              <strong>
-                {title}
-              </strong>
+              <strong>{title}</strong>
             </p>
           </a>
         </Link>
@@ -47,7 +47,10 @@ export default function AttorneyCard({
           {' '}
           {number}
           <br />
-          <FontAwesomeIcon icon={faEnvelope} className={styles.iconW8pxH20px} />
+          <FontAwesomeIcon
+            icon={faEnvelope}
+            className={styles.iconW8pxH20px}
+          />
           {' '}
           {email}
         </div>

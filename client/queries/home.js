@@ -7,9 +7,7 @@ export const metaDataQuery = `{
   }
 }`;
 
-
-export const blogArticlesQuery = id => {
-  return  `{
+export const blogArticlesQuery = (id) => `{
     category(id: ${id}, idType: DATABASE_ID) {
       posts(first: 10) {
         edges {
@@ -35,9 +33,7 @@ export const blogArticlesQuery = id => {
         }
       }
     }
-  }`
-}
-
+  }`;
 
 export const officeLocationsQuery = `{
   officeLocations {

@@ -2,7 +2,7 @@ import { sortByKey } from '../../utils/helpers';
 import FilterForms from './filter-forms';
 import Results from './results';
 
-export default function CareerSection({
+export default function CareerIndex({
   careers,
   keyword,
   filterTerm,
@@ -15,7 +15,6 @@ export default function CareerSection({
   const sortPositions = sortByKey(careers, 'title');
   const locations = careers.map((p) => p.positionLocation);
   const positionType = careers.map((p) => p.positionType);
-
 
   // add location filter to sortPostions
   function filterLocation(position) {
@@ -38,11 +37,14 @@ export default function CareerSection({
     if (keyword) {
       if (position.title.indexOf(keyword) >= 0) {
         return position;
-      } if (position.positionDescription.indexOf(keyword.trim()) >= 0) {
+      }
+      if (position.positionDescription.indexOf(keyword.trim()) >= 0) {
         return position;
-      } if (position.positionLocation.indexOf(keyword) >= 0) {
+      }
+      if (position.positionLocation.indexOf(keyword) >= 0) {
         return position;
-      } if (position.positionType.indexOf(keyword) >= 0) {
+      }
+      if (position.positionType.indexOf(keyword) >= 0) {
         return position;
       }
     } else {
@@ -67,10 +69,7 @@ export default function CareerSection({
         filterTerm={filterTerm}
         clearFilter={clearFilter}
       />
-      <Results
-        positions={p}
-        career={career}
-      />
+      <Results positions={p} career={career} />
     </div>
   );
 }

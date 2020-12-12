@@ -9,7 +9,7 @@
   color: #1a1a1a;
   display: inline-block;
   font-size: 18px;
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   line-height: 26px;
   margin-bottom: 0;
   padding: 0 15px;
@@ -22,12 +22,12 @@
 }
 
 .lineHeader .active {
-    color: #B50000;
-    text-decoration: underline;
-    color: #B50000;
-    text-decoration: underline;
-    font-size: 1.2rem;
-    text-shadow: 1px 2px 4px #999;
+  color: #b50000;
+  text-decoration: underline;
+  color: #b50000;
+  text-decoration: underline;
+  font-size: 1.2rem;
+  text-shadow: 1px 2px 4px #999;
 }
 
 .lineHeader h3:hover {

@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
+import React, { useState, useRef } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
 
 const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: #e9e9e9;
-  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 70vh;
   text-align: left;
   position: absolute;
@@ -15,7 +15,7 @@ const StyledMenu = styled.nav`
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  width:75%;
+  width: 75%;
   border-radius: 3px;
   box-shadow: 0 5px 10px 0 rgb(138 155 165 / 15%);
   margin-top: 1em;
@@ -25,7 +25,7 @@ const StyledMenu = styled.nav`
   li {
     font-size: 1.2rem;
     list-style-type: none;
-    
+
     ul {
       margin-left: 1em;
     }
@@ -36,12 +36,11 @@ const StyledMenu = styled.nav`
     text-decoration: none;
     transition: color 0.3s linear;
 
-
     &:hover {
       color: #db2220;
     }
   }
-`
+`;
 const StyledBurger = styled.button`
   margin-right: 1em;
   display: flex;
@@ -62,23 +61,23 @@ const StyledBurger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ open }) => open ? '#0D0C1D' : '#000'};
+    background: ${({ open }) => (open ? '#0D0C1D' : '#000')};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
 
     :first-child {
-      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+      transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
     }
 
     :nth-child(2) {
-      opacity: ${({ open }) => open ? '0' : '1'};
-      transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
+      opacity: ${({ open }) => (open ? '0' : '1')};
+      transform: ${({ open }) => (open ? 'translateX(20px)' : 'translateX(0)')};
     }
 
     :nth-child(3) {
-      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+      transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
 
@@ -91,135 +90,102 @@ const StyledBurger = styled.button`
   @media (min-width: 768px) {
     top: 0em;
   }
-`
+`;
 
-const Menu = ({ open }) => {
-  return (
-    <StyledMenu open={open}>
-      <ul>
-        <li>
-          The Firm
-          <ul>
-            <li>
-              <Link href="/administration">
-                <a>
-                  Administration
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/careers">
-                <a>
-                  Careers
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/community-involvement">
-                <a>
-                  Community Involvement
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/diversity-group">
-                <a>
-                  Diversity Group
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/firm-overview">
-                <a>
-                  Firm Overview
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/pro-bono">
-                <a>
-                  Pro Bono
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/women-lead">
-                <a>
-                  Women Lead
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <Link href="/attorneys">
-            <a>
-              Attorneys
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/practices">
-            <a>
-              Practices
-            </a>
-          </Link>
-        </li>
-        <li>
-          Library
-          <ul>
-            <li>
-              <Link href="/category/firm-events">
-                <a>
-                  Firm Events
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/category/firm-news">
-                <a>
-                  Firm News
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/category/firm-insights">
-                <a>
-                  Firm Insights
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/category/quick-news">
-                <a>
-                  Quick News
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <Link href="/locations"> 
-            <a>
-              Locations
-            </a>
-          </Link>
-        </li>
-        
-      </ul>
-    </StyledMenu>
-  )
-}
+const Menu = ({ open }) => (
+  <StyledMenu open={open}>
+    <ul>
+      <li>
+        The Firm
+        <ul>
+          <li>
+            <Link href="/administration">
+              <a>Administration</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/careers">
+              <a>Careers</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/community-involvement">
+              <a>Community Involvement</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/diversity-group">
+              <a>Diversity Group</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/firm-overview">
+              <a>Firm Overview</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/pro-bono">
+              <a>Pro Bono</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/women-lead">
+              <a>Women Lead</a>
+            </Link>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <Link href="/attorneys">
+          <a>Attorneys</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/practices">
+          <a>Practices</a>
+        </Link>
+      </li>
+      <li>
+        Library
+        <ul>
+          <li>
+            <Link href="/category/firm-events">
+              <a>Firm Events</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/category/firm-news">
+              <a>Firm News</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/category/firm-insights">
+              <a>Firm Insights</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/category/quick-news">
+              <a>Quick News</a>
+            </Link>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <Link href="/locations">
+          <a>Locations</a>
+        </Link>
+      </li>
+    </ul>
+  </StyledMenu>
+);
 
-const Burger = ({ open, setOpen }) => {
-  return (
-    <StyledBurger open={open} onClick={() => setOpen(!open)}>
-      <div />
-      <div />
-      <div />
-    </StyledBurger>
-  )
-}
+const Burger = ({ open, setOpen }) => (
+  <StyledBurger open={open} onClick={() => setOpen(!open)}>
+    <div />
+    <div />
+    <div />
+  </StyledBurger>
+);
 
 export default function HamburgerMobileMenu() {
   const [open, setOpen] = React.useState(false);
@@ -230,5 +196,5 @@ export default function HamburgerMobileMenu() {
       <Burger open={open} setOpen={setOpen} />
       <Menu open={open} setOpen={setOpen} />
     </div>
-  )
+  );
 }

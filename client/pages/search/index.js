@@ -4,7 +4,7 @@ import Footer from 'components/footer';
 import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import Body from 'components/archives/body';
-import SiteLoader from 'components/site-loader'
+import SiteLoader from 'components/site-loader';
 import Sidebar from 'components/archives/sidebar';
 import { headers, makeQueryTitle } from 'utils/helpers';
 import client from 'utils/graphql-client';
@@ -19,18 +19,22 @@ export default function Search({
   pages,
   term,
   page,
-  q
+  q,
 }) {
-
-  if(results.length <=0) {
-    return <SiteLoader />
+  if (results.length <= 0) {
+    return <SiteLoader />;
   }
-  
+
   return (
     <div className="mt-3">
       <NextSeo nofollow />
       <ArchiveLayout
-        header={(<Breadcrumbs breadCrumb={[makeQueryTitle(term), page]} categorySlug={term} />)}
+        header={(
+          <Breadcrumbs
+            breadCrumb={[makeQueryTitle(term), page]}
+            categorySlug={term}
+          />
+        )}
         body={(
           <Body
             results={results}
@@ -44,7 +48,7 @@ export default function Search({
             q={q}
           />
         )}
-        sidebar={(<Sidebar trending={posts} />)}
+        sidebar={<Sidebar trending={posts} />}
       />
       <Footer />
     </div>
@@ -52,7 +56,10 @@ export default function Search({
 }
 
 export async function getServerSideProps({ query }) {
-  const response = await fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`, { headers }).then((data) => data.json())
+  const response = await fetch(
+    `${process.env.REACT_APP_WP_BACKEND}/wp-json/search/query/${query.q}/${query.page}`,
+    { headers },
+  ).then((data) => data.json());
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
@@ -67,7 +74,7 @@ export async function getServerSideProps({ query }) {
       term: response.term || '',
       posts: response.posts || [],
       page: query.page || 1,
-      q: query.q || ''
+      q: query.q || '',
     },
   };
 }

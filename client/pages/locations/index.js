@@ -7,30 +7,32 @@ import BarLoader from 'react-spinners/BarLoader';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import BodyContent from 'components/locations/body-content';
+import BodyContent from 'components/locations/body';
 import SideBar from 'components/locations/sidebar';
 import { headers } from 'utils/helpers';
 
 function buildMainLocationSchema() {
   return {
-    "@context": "http://schema.org",
-    "@type":"WebSite",
-    "@id":"https://scarincihollenbeck.com/#website",
-    "url":"https://scarincihollenbeck.com/",
-    "name":"Scarinci Hollenbeck",
-    "description":"Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.",
-    "publisher":{
-       "@id":"https://scarincihollenbeck.com/#organization"
+    '@context': 'http://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://scarincihollenbeck.com/#website',
+    url: 'https://scarincihollenbeck.com/',
+    name: 'Scarinci Hollenbeck',
+    description:
+      'Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.',
+    publisher: {
+      '@id': 'https://scarincihollenbeck.com/#organization',
     },
-    "potentialAction":[
-       {
-          "@type":"SearchAction",
-          "target":"https://scarincihollenbeck.com/search?q={search_term_string}&page=1",
-          "query-input":"required name=search_term_string"
-       }
+    potentialAction: [
+      {
+        '@type': 'SearchAction',
+        target:
+          'https://scarincihollenbeck.com/search?q={search_term_string}&page=1',
+        'query-input': 'required name=search_term_string',
+      },
     ],
-    "inLanguage":"en-US"
- }
+    inLanguage: 'en-US',
+  };
 }
 
 export default function Location({
@@ -40,9 +42,12 @@ export default function Location({
 
   return (
     <>
-      {(router.isFallback) ? (
+      {router.isFallback ? (
         <Container>
-          <Row id="page-loader-container" className="justify-content-center align-self-center">
+          <Row
+            id="page-loader-container"
+            className="justify-content-center align-self-center"
+          >
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
@@ -56,10 +61,12 @@ export default function Location({
           <Head>
             <script
               key="ScarinciHollenbeck"
-              type='application/ld+json'
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildMainLocationSchema()) }}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(buildMainLocationSchema()),
+              }}
             />
-          </Head> 
+          </Head>
           <div id="location">
             <SingleSubHeader
               title="Office Locations"
@@ -74,7 +81,7 @@ export default function Location({
                   map={lyndhurst.mapLink}
                   title={lyndhurst.name}
                 />
-            )}
+              )}
               sidebar={(
                 <SideBar
                   title={lyndhurst.name}
@@ -82,7 +89,7 @@ export default function Location({
                   offices={offices}
                   startingKey="lyndhurst"
                 />
-            )}
+              )}
             />
             <Footer />
           </div>
@@ -92,12 +99,20 @@ export default function Location({
   );
 }
 
-
 export async function getServerSideProps() {
   const [locations, lyndhurst, lyndhurstposts] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/lyndhurst`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json())
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/lyndhurst`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   return {

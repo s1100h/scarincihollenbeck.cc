@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Selected({
-  select,
-  userInput,
-  clearQuery,
-}) {
+export default function Selected({ select, userInput, clearQuery }) {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
   return (
     <ul className="no-dots list-inline my-2 mx-0">
-      { (userInput.length > 0) && (
+      {userInput.length > 0 && (
         <li className="list-inline-item">
           <button
             type="button"

@@ -1,7 +1,7 @@
-import CareerForm from '../career-form';
-import { createMarkup } from '../../utils/helpers';
+import CareerForm from 'components/career-form';
+import { createMarkup } from 'utils/helpers';
 
-export default function Body({ title, position, contact }) {
+export default function SingleCareerBody({ title, position, contact }) {
   return (
     <>
       <div className="p-2 mt-3 bg-light-gray w-100">

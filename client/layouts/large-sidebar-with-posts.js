@@ -18,22 +18,31 @@ function Post(content, {
         <Image src={post.fimg_url} className="w-25 mr-3" rounded />
         <div>
           <h5 className="d-block w-100 mb-0 pt-0">{post.title.rendered}</h5>
-          {(post.date !== undefined) && <p className="mt-0 pt-0">{formatDate(post.date)}</p>}
+          {post.date !== undefined && (
+            <p className="mt-0 pt-0">{formatDate(post.date)}</p>
+          )}
         </div>
       </a>
     </li>
   );
 }
 
-export default function LargeSidebarWithPosts({ content, sidebar, posts, postsTitle }) {
-
+export default function LargeSidebarWithPosts({
+  content,
+  sidebar,
+  posts,
+  postsTitle,
+}) {
   return (
     <Container>
       <Row>
         <Col sm={12} md={8}>
-          <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
+          <div
+            className="post-content"
+            dangerouslySetInnerHTML={createMarkup(content)}
+          />
           <h3 className="mt-5">
-            <strong style={{fontSize: "1.8rem"}}>{postsTitle}</strong>
+            <strong style={{ fontSize: '1.8rem' }}>{postsTitle}</strong>
           </h3>
           <hr />
           <ul className="mx-0 w-100">
@@ -46,9 +55,7 @@ export default function LargeSidebarWithPosts({ content, sidebar, posts, postsTi
             />
           </ul>
           <div className="mt-5 w-100">
-            <h4 className="bg-light-gray">
-              Contact A Firm Reprepresentative
-            </h4>
+            <h4 className="bg-light-gray">Contact A Firm Reprepresentative</h4>
             <ContactForm />
           </div>
         </Col>
@@ -57,5 +64,5 @@ export default function LargeSidebarWithPosts({ content, sidebar, posts, postsTi
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

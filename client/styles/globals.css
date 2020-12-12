@@ -1,6 +1,7 @@
-.btn-danger, .red--grad {
+.btn-danger,
+.red--grad {
   font-weight: bold;
-  background: linear-gradient(360deg, #901918 60%, #DD2624 100%), #333333;
+  background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
 }
 
 .off-white {
@@ -15,9 +16,9 @@
 
 .attorney-bio-sidebar-list ul > li {
   line-height: 20px;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
-.mw-45{
+.mw-45 {
   width: 55%;
 }

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from 'styles/SidebarTitle.module.css';
 
-export default function AttorneyServices({ bio, practices }) {
+export default function AuthorServices({ bio, practices }) {
   return (
     <div className="w-100 mt-5">
       {/* <div className={styles.header}>

@@ -1,4 +1,3 @@
-
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import Footer from 'components/footer';
@@ -8,18 +7,24 @@ import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers, fetcher } from 'utils/helpers';
 
 export default function GovernmentEducationCovidResponseTeam({
-  title, content, internalCovidPosts, seo,
+  title,
+  content,
+  internalCovidPosts,
+  seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
   // retrieve external posts from internal api
-  const { data: externaCovidPosts } = useSWR('/api/external-covid-feed', fetcher);
+  const { data: externaCovidPosts } = useSWR(
+    '/api/external-covid-feed',
+    fetcher,
+  );
 
   return (
     <>
-    <NextSeo
+      <NextSeo
         title={seo.title}
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
@@ -36,7 +41,9 @@ export default function GovernmentEducationCovidResponseTeam({
         content={bodyContent}
         sidebar={(
           <Sidebar
-            posts={(externaCovidPosts !== undefined) ? externaCovidPosts.response : []}
+            posts={
+              externaCovidPosts !== undefined ? externaCovidPosts.response : []
+            }
             covidPage
           />
         )}
@@ -47,9 +54,15 @@ export default function GovernmentEducationCovidResponseTeam({
 }
 
 export async function getServerSideProps() {
-  const [internalCovidPosts, page, ] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=22896&per_page=100`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`, { headers }).then((data) => data.json())
+  const [internalCovidPosts, page] = await Promise.all([
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=22896&per_page=100`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
   const { title, content, seo } = page;
 

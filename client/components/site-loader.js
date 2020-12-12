@@ -1,6 +1,6 @@
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
+import Row from 'react-bootstrap/Row';
 
 export default function SiteLoader() {
   return (
@@ -9,5 +9,5 @@ export default function SiteLoader() {
         <BarLoader color="#DB2220" />
       </Row>
     </Container>
-  )
+  );
 }

@@ -8,56 +8,61 @@ import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import BodyContent from 'components/locations/body-content';
+import BodyContent from 'components/locations/body';
 import SideBar from 'components/locations/sidebar';
 import { headers, urlify } from 'utils/helpers';
 
 function buildLocationSchema(location, map) {
   return {
-    "@context" : "http://schema.org",
-    "@type" : "LocalBusiness",
-    "name" : "Scarinci Hollebneck",
-    "url" : "https://scarincihollenbeck.com",
-    "logo": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png",
-    "image": location.image,
-    "address": {
-        "@type" : "PostalAddress",
-        "streetAddress": location.streetAddress,
-        "addressLocality": location.addressLocality,
-        "addressRegion": location.addressRegion,
-        "postalCode": location.postalCode,
-        "addressCountry": location.addressCountry,
-        "telephone" : location.telephone
-        },
-    "openingHours": ["Mo-Fr 08:00-18:00"],
-    "hasmap" : map,
-    "geo" : {
-      "@type" : "GeoCoordinates",
-      "latitude" : location.latitude,
-      "longitude" : location.longitude
+    '@context': 'http://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Scarinci Hollebneck',
+    url: 'https://scarincihollenbeck.com',
+    logo:
+      'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png',
+    image: location.image,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: location.streetAddress,
+      addressLocality: location.addressLocality,
+      addressRegion: location.addressRegion,
+      postalCode: location.postalCode,
+      addressCountry: location.addressCountry,
+      telephone: location.telephone,
     },
-    "priceRange" : "$$$$",
-    "sameAs" : [ "https://www.facebook.com/ScarinciHollenbeck/",
-        "https://www.linkedin.com/company/scarinci-hollenbeck-llc",
-        "https://twitter.com/s_h_law"]
-      
-  }
+    openingHours: ['Mo-Fr 08:00-18:00'],
+    hasmap: map,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: location.latitude,
+      longitude: location.longitude,
+    },
+    priceRange: '$$$$',
+    sameAs: [
+      'https://www.facebook.com/ScarinciHollenbeck/',
+      'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+      'https://twitter.com/s_h_law',
+    ],
+  };
 }
 
 export default function Location({
- seo, offices, currentOffice, posts,
+  seo, offices, currentOffice, posts,
 }) {
-    const router = useRouter();
+  const router = useRouter();
 
-    if (currentOffice.status === 404) {
-      return <Error statusCode={404} />;
-    }
+  if (currentOffice.status === 404) {
+    return <Error statusCode={404} />;
+  }
 
   return (
     <>
-      {(router.isFallback) ? (
+      {router.isFallback ? (
         <Container>
-          <Row id="page-loader-container" className="justify-content-center align-self-center">
+          <Row
+            id="page-loader-container"
+            className="justify-content-center align-self-center"
+          >
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
@@ -71,10 +76,14 @@ export default function Location({
           <Head>
             <script
               key={currentOffice.name}
-              type='application/ld+json'
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)) }}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(
+                  buildLocationSchema(seo, currentOffice.mapLink),
+                ),
+              }}
             />
-          </Head>          
+          </Head>
           <div id="location">
             <SingleSubHeader
               title="Office Locations"
@@ -89,7 +98,7 @@ export default function Location({
                   map={currentOffice.mapLink}
                   title={currentOffice.name}
                 />
-            )}
+              )}
               sidebar={(
                 <SideBar
                   title={currentOffice.name}
@@ -97,7 +106,7 @@ export default function Location({
                   offices={offices}
                   startingKey={urlify(currentOffice.name)}
                 />
-            )}
+              )}
             />
             <Footer />
           </div>
@@ -109,12 +118,21 @@ export default function Location({
 
 export async function getServerSideProps({ params, res }) {
   const [locations, currentOffice, currentOfficePosts] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json())
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
-  if(currentOffice.status === 404 && res) {
+  if (currentOffice.status === 404 && res) {
     res.statusCode = 404;
   }
 

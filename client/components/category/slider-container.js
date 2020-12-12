@@ -1,4 +1,4 @@
-import LatestNewsArticlesCarousel from '../carousels/latest-news-articles-carousel';
+import CarouselLatestNews from 'components/carousels/latest-news';
 
 export default function CategorySliderContainer({ title, slides }) {
   return (
@@ -7,7 +7,7 @@ export default function CategorySliderContainer({ title, slides }) {
         <h3>{title}</h3>
       </div>
       <div className="mt-5">
-        <LatestNewsArticlesCarousel slides={slides} />
+        <CarouselLatestNews slides={slides} />
       </div>
     </div>
   );

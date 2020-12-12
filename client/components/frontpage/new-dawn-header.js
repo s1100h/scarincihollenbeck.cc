@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import styled from 'styled-components';
 import FrontSearch from './front-search';
-import btnStyles from '../../styles/Buttons.module.css'
-import styles from '../../styles/frontpage/NewDawn.module.css'
+import btnStyles from '../../styles/Buttons.module.css';
+import styles from '../../styles/frontpage/NewDawn.module.css';
 
 const HeaderBackground = styled.div`
   background: url(${(props) => props.image}) no-repeat 50%;
@@ -22,27 +22,50 @@ const HeaderBackground = styled.div`
 
 export default function NewDawnHeader() {
   return (
-    <HeaderBackground image="/images/new-dawn-nj-compressor.jpg" className="jumbotron jumbotron-fluid">
-      <Container className={`${styles.bgBlackBackgroundDarker} animate__animated animate__fadeInUp animate__fast mt-4`}>
+    <HeaderBackground
+      image="/images/new-dawn-nj-compressor.jpg"
+      className="jumbotron jumbotron-fluid"
+    >
+      <Container
+        className={`${styles.bgBlackBackgroundDarker} animate__animated animate__fadeInUp animate__fast mt-4`}
+      >
         <Row className="flex-column-reverse flex-lg-row">
           <Col sm={12} lg={6} className={styles.borderRight}>
-            <h1 className="text-white mx-5 mt-5 animate__animated animate__fadeInUp animate__fast">Ready to rebuild? Scarinci Hollenbeck is here to help</h1>
-            <p className="lead text-white mx-5 animate__animated animate__fadeInUp animate__slow">Scarinci Hollenbeck remains 100% operational and committed to assisting your business with achieving your goals.</p>
+            <h1 className="text-white mx-5 mt-5 animate__animated animate__fadeInUp animate__fast">
+              Ready to rebuild? Scarinci Hollenbeck is here to help
+            </h1>
+            <p className="lead text-white mx-5 animate__animated animate__fadeInUp animate__slow">
+              Scarinci Hollenbeck remains 100% operational and committed to
+              assisting your business with achieving your goals.
+            </p>
             <Container className={styles.marginLeft}>
               <Row>
                 <Col sm={12} md={6}>
-                  <Link href="/client-alert/client-alert-covid-19" as="/client-alert/client-alert-covid-19">
-                    <a className={`btn ${btnStyles.btnDanger} w-75 p-2 mb-3 shadow lift ft-11 animate__animated animate__fadeInUp animate__slow`}>
+                  <Link
+                    href="/client-alert/client-alert-covid-19"
+                    as="/client-alert/client-alert-covid-19"
+                  >
+                    <a
+                      className={`btn ${btnStyles.btnDanger} w-75 p-2 mb-3 shadow lift ft-11 animate__animated animate__fadeInUp animate__slow`}
+                    >
                       Client Message
-                      <FontAwesomeIcon icon={faCaretRight} className={`text-white ml-2 ${styles.Caret}`} />
+                      <FontAwesomeIcon
+                        icon={faCaretRight}
+                        className={`text-white ml-2 ${styles.Caret}`}
+                      />
                     </a>
                   </Link>
                 </Col>
                 <Col sm={12} md={6}>
                   <Link href="/covid-19-crisis-management-unit/">
-                    <a className={`btn ${btnStyles.btnDanger} w-75 p-2 mb-3 shadow lift ft-11 animate__animated animate__fadeInUp animate__slow`}>
+                    <a
+                      className={`btn ${btnStyles.btnDanger} w-75 p-2 mb-3 shadow lift ft-11 animate__animated animate__fadeInUp animate__slow`}
+                    >
                       Resources
-                      <FontAwesomeIcon icon={faCaretRight} className={`text-white ml-2 ${styles.Caret}`} />
+                      <FontAwesomeIcon
+                        icon={faCaretRight}
+                        className={`text-white ml-2 ${styles.Caret}`}
+                      />
                     </a>
                   </Link>
                 </Col>
@@ -58,8 +81,12 @@ export default function NewDawnHeader() {
                 alt="Scarinci Hollenbeck diamond logo"
                 layout="intrinsic"
               />
-            </div>            
-            <h2 className={`${styles.h2} text-white text-center animate__animated animate__fadeInUp animate__slow h1`}>How can we help?</h2>
+            </div>
+            <h2
+              className={`${styles.h2} text-white text-center animate__animated animate__fadeInUp animate__slow h1`}
+            >
+              How can we help?
+            </h2>
             <FrontSearch />
           </Col>
         </Row>

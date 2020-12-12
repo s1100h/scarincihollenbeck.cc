@@ -1,4 +1,3 @@
-import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import Body from 'components/pages/body';
@@ -11,7 +10,7 @@ export default function PassingOfHarveyPoe({
   title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
   return (
@@ -28,16 +27,8 @@ export default function PassingOfHarveyPoe({
         height="auto"
       />
       <LargeSidebar
-        body={(
-          <Body
-            content={bodyContent}
-          />
-          )}
-        sidebar={(
-          <Sidebar
-            posts={posts}
-          />
-          )}
+        body={<Body content={bodyContent} />}
+        sidebar={<Sidebar posts={posts} />}
       />
       <Footer />
     </>
@@ -46,8 +37,14 @@ export default function PassingOfHarveyPoe({
 
 export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/passing-attorney-harvey-r-poe`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/passing-attorney-harvey-r-poe`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   const { posts } = postJson;

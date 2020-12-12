@@ -9,7 +9,10 @@ export default function CategoryHeader({ title, content }) {
       <h1 className="proxima-bold red-title mb-2">
         {makeTitle(categoryTitle)}
       </h1>
-      <h2 dangerouslySetInnerHTML={createMarkup(content)} className="proxima-regular category-description" />
+      <h2
+        dangerouslySetInnerHTML={createMarkup(content)}
+        className="proxima-regular category-description"
+      />
       <hr className="mt-1 pt-1" />
     </div>
   );

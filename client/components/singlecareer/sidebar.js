@@ -1,7 +1,7 @@
-import Search from '../search';
-import SubscriptionMessage from '../subscription-message';
+import Search from 'components/search';
+import SubscriptionMessage from 'components/subscription-message';
 
-export default function Sidebar() {
+export default function SingleCareerSidebar() {
   return (
     <div className="hide-print">
       <Search />

@@ -3,9 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import { createMarkup, formatDate } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
-function VideoPost(content, {
-  key, index, isScrolling, isVisible, style,
-}) {
+function VideoPost(content, { key, index }) {
   const video = content[index];
 
   return (
@@ -21,11 +19,7 @@ function VideoPost(content, {
     </li>
   );
 }
-export default function VideoTab({
-  tabTitle,
-  title,
-  content,
-}) {
+export default function SingleAttorneyVideoTab({ tabTitle, title, content }) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className={grayTitleStyles.title}>{title}</h4>

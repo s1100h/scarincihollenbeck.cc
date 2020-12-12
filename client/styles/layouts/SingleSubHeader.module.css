@@ -2,11 +2,11 @@
   border-radius: 4px;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
-  background-color: rgba(0,0,0, .50);  
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .h2Italic {
-  font-style:italic;
+  font-style: italic;
   font-size: 1.4rem;
 }
 
@@ -14,7 +14,7 @@
   height: 400px;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .adminBio {
     height: 325px;
   }

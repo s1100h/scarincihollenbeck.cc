@@ -21,9 +21,12 @@ export default function FirmEvents({ post }) {
 
   return (
     <>
-      {(post === undefined && router.isFallback) ? (
+      {post === undefined && router.isFallback ? (
         <Container>
-          <Row id="page-loader-container" className="justify-content-center align-self-center">
+          <Row
+            id="page-loader-container"
+            className="justify-content-center align-self-center"
+          >
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
@@ -42,11 +45,16 @@ export default function FirmEvents({ post }) {
                 publishedTime: post.seo.publishedDate,
                 modifiedTime: post.seo.updatedDate,
                 authors: post.seo.authors,
-                tags: (post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => t.name) : [],
+                tags:
+                  post.seo.tags !== undefined && post.seo.tags.length > 0
+                    ? post.seo.tags.map((t) => t.name)
+                    : [],
               },
               images: [
                 {
-                  url: (post.seo.featuredImg) ? post.seo.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png",
+                  url: post.seo.featuredImg
+                    ? post.seo.featuredImg
+                    : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
                   width: 750,
                   height: 350,
                   alt: post.seo.title,
@@ -62,7 +70,13 @@ export default function FirmEvents({ post }) {
           <ArticleJsonLd
             url={`https://scarincihollenbeck.com/firm-events/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
-            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
+            images={
+              post.seo.featuredImg
+                ? [post.seo.featuredImg]
+                : [
+                  'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
+                ]
+            }
             datePublished={post.seo.publishedDate}
             dateModified={post.seo.updatedDate}
             authorName={post.seo.author}
@@ -90,7 +104,7 @@ export default function FirmEvents({ post }) {
                   tags={post.tags}
                 />
               )}
-              OneSidebar={(<SocialShareSidebar title={post.title} />)}
+              OneSidebar={<SocialShareSidebar title={post.title} />}
               TwoSidebar={(
                 <EventSidebar
                   eventDetails={post.eventDetails}
@@ -108,12 +122,17 @@ export default function FirmEvents({ post }) {
 
 export async function getServerSideProps({ params, res }) {
   const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/firm-events`, { headers })
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${
+        params.slug[params.slug.length - 1]
+      }/firm-events`,
+      { headers },
+    )
       .then((data) => data.json())
-      .catch((err) => err)
+      .catch((err) => err),
   ]);
 
-  if(post.status === 404 && res) {
+  if (post.status === 404 && res) {
     res.statusCode = 404;
   }
 

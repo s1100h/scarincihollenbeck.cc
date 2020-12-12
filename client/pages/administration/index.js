@@ -9,9 +9,7 @@ import AttorneyCard from 'components/attorney-card';
 import client from 'utils/graphql-client';
 import { allAdministraionQuery } from 'queries/administration';
 
-
 export default function Administration({ admins, seo }) {
-
   return (
     <>
       <NextSeo
@@ -28,7 +26,13 @@ export default function Administration({ admins, seo }) {
         <Container className="p-3 pt-4 border">
           <Row>
             {admins.map((a) => (
-              <Col sm={12} md={6} lg={4} key={a.node.administration.phoneExtension} className="mb-3">
+              <Col
+                sm={12}
+                md={6}
+                lg={4}
+                key={a.node.administration.phoneExtension}
+                className="mb-3"
+              >
                 <AttorneyCard
                   image={a.node.featuredImage.node.sourceUrl}
                   name={a.node.administration.name}
@@ -55,9 +59,10 @@ export async function getStaticProps() {
   return {
     props: {
       seo: {
-        "title": "Administration Directors & Managers | Scarinci Hollenbeck",
-        "metaDescription": "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
-        "canonicalLink": "administration"
+        title: 'Administration Directors & Managers | Scarinci Hollenbeck',
+        metaDescription:
+          "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
+        canonicalLink: 'administration',
       },
       admins: allAdministrationContent.data.administrations.edges,
     },

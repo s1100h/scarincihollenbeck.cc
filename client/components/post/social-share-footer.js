@@ -1,23 +1,17 @@
 import { useRouter } from 'next/router';
 import {
-  EmailShareButton,
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
-  WorkplaceShareButton,
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-  EmailIcon,
 } from 'react-share';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
-function SocialShareFooter({ title }) {
+export default function PostSocialShareFooter({ title }) {
   const router = useRouter();
- 
+
   return (
     <>
       <div className="line-header d-print-none mt-5">
@@ -31,9 +25,15 @@ function SocialShareFooter({ title }) {
               quote={title}
               className="bottom-btn btn-lg fb d-print-none"
             >
-              <FontAwesomeIcon icon={faFacebookSquare} className="text-white icon-w22px-h22px" />
+              <FontAwesomeIcon
+                icon={faFacebookSquare}
+                className="text-white icon-w22px-h22px"
+              />
               {' '}
-              <span className="proxima-thin smaller-excerpt text-white"> Share on Facebook</span>
+              <span className="proxima-thin smaller-excerpt text-white">
+                {' '}
+                Share on Facebook
+              </span>
             </FacebookShareButton>
           </li>
           <li className="list-inline-item m-3 d-print-none">
@@ -42,9 +42,15 @@ function SocialShareFooter({ title }) {
               quote={title}
               className="bottom-btn btn-lg lin d-print-none"
             >
-              <FontAwesomeIcon icon={faLinkedin} className="text-white icon-w22px-h22px" />
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                className="text-white icon-w22px-h22px"
+              />
               {' '}
-              <span className="proxima-thin smaller-excerpt text-white"> Share on LinkedIn</span>
+              <span className="proxima-thin smaller-excerpt text-white">
+                {' '}
+                Share on LinkedIn
+              </span>
             </LinkedinShareButton>
           </li>
           <li className="list-inline-item m-3 d-print-none">
@@ -53,9 +59,15 @@ function SocialShareFooter({ title }) {
               quote={title}
               className="bottom-btn btn-lg tw d-print-none"
             >
-              <FontAwesomeIcon icon={faTwitter} className="text-white icon-w22px-h22px" />
+              <FontAwesomeIcon
+                icon={faTwitter}
+                className="text-white icon-w22px-h22px"
+              />
               {' '}
-              <span className="proxima-thin smaller-excerpt text-white"> Share on Twitter</span>
+              <span className="proxima-thin smaller-excerpt text-white">
+                {' '}
+                Share on Twitter
+              </span>
             </TwitterShareButton>
           </li>
         </ul>
@@ -63,5 +75,3 @@ function SocialShareFooter({ title }) {
     </>
   );
 }
-
-export default SocialShareFooter;

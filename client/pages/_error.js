@@ -3,26 +3,26 @@ import Link from 'next/link';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import SimpleSearch from '../components/simple-search';
 import { headers } from 'utils/helpers';
+import SimpleSearch from '../components/simple-search';
 
 export default function CustomError({ statusCode }) {
-  const [errorMessage, setErrorMessage ] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const handleErrorMessage = async () => {
-      if(statusCode === 404) {
+      if (statusCode === 404) {
         setErrorMessage('404: Page Not Found');
       }
 
-      if(statusCode === 500) {
+      if (statusCode === 500) {
         setErrorMessage('500: Internal Server Error');
       }
-    }
+    };
 
     handleErrorMessage();
   }, [statusCode]);
-  
+
   return (
     <>
       <div id="404">
@@ -35,7 +35,9 @@ export default function CustomError({ statusCode }) {
         <FullWidth>
           <div className="w-100">
             <p className="lead">
-              It&apos;s possible you entered the address incorrectly or we moved the desired page. Try searching our site to find what you are looking for.
+              It&apos;s possible you entered the address incorrectly or we moved
+              the desired page. Try searching our site to find what you are
+              looking for.
             </p>
             <p className="lead">
               {' '}
@@ -50,61 +52,51 @@ export default function CustomError({ statusCode }) {
               contact directly.
             </p>
             <p className="lead">
-              If you are looking to get in touch with an attorney under the terms as to becoming a new client please call 201-896-4100.
-            </p>            
+              If you are looking to get in touch with an attorney under the
+              terms as to becoming a new client please call 201-896-4100.
+            </p>
           </div>
           <SimpleSearch />
           <div className="w-50 my-3 p-4 border">
             <h5>
               <strong>
-                Or try visiting one of these pages on our site to narrow your search.
+                Or try visiting one of these pages on our site to narrow your
+                search.
               </strong>
-            </h5>            
+            </h5>
             <ul className="mb-0">
               <li>
                 <Link href="/attorneys">
-                  <a className="u-hover h5">
-                    Attorneys
-                  </a>
+                  <a className="u-hover h5">Attorneys</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice">
-                  <a className="u-hover h5">
-                    Practices
-                  </a>
+                  <a className="u-hover h5">Practices</a>
                 </Link>
               </li>
               <li>
                 <Link href="/locations">
-                  <a className="u-hover h5">
-                    Locations
-                  </a>
+                  <a className="u-hover h5">Locations</a>
                 </Link>
               </li>
               <li>
                 <Link href="/category/firm-news">
-                  <a className="u-hover h5">
-                    Firm News
-                  </a>
+                  <a className="u-hover h5">Firm News</a>
                 </Link>
               </li>
               <li>
                 <Link href="/category/firm-events">
-                  <a className="u-hover h5">
-                    Firm Events
-                  </a>
+                  <a className="u-hover h5">Firm Events</a>
                 </Link>
               </li>
               <li>
                 <Link href="/category/firm-insights">
-                  <a className="u-hover h5">
-                    Firm Insights
-                  </a>
+                  <a className="u-hover h5">Firm Insights</a>
                 </Link>
               </li>
             </ul>
-          </div>         
+          </div>
         </FullWidth>
       </div>
       <Footer />

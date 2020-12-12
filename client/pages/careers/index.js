@@ -3,20 +3,18 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
-import CareerSection from 'components/careers/career';
-import EEOpportunityContent from 'components/careers/equal-opportunity-content';
+import CareerSection from 'components/careers';
+import EEOpportunityContent from 'components/careers/equal-opportunity';
 import { headers } from 'utils/helpers';
 
 export default function Careers({ careers, seo }) {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
-  const [sort, setSort] = useState('title');
-  const [career, setCareer] = useState('');
 
   function filterTerm(e) {
-    const keyword = e.target.value;
-    setKeyword(keyword);
+    const kw = e.target.value;
+    setKeyword(kw);
   }
 
   function selectOption(e) {
@@ -72,10 +70,11 @@ export default function Careers({ careers, seo }) {
 
 export async function getServerSideProps() {
   const [careerJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, {
+      headers,
+    }).then((data) => data.json()),
   ]);
-  const { seo, careers } = careerJson;
-
+  const { seo } = careerJson;
 
   return {
     props: {

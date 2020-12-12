@@ -12,29 +12,59 @@ import Filters from 'components/archiveattorneys/filters';
 import Results from 'components/archiveattorneys/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import { attorneySearch, allLocations, allPractices } from 'queries/attorney-archive';
+import {
+  attorneySearch,
+  allLocations,
+  allPractices,
+} from 'queries/attorney-archive';
 
 export default function Attorneys() {
   const router = useRouter();
-  console.log('router')
-  console.log(router)
-  const { data: results, error: resultsError } = useSWR(attorneySearch(router.query), (query) =>
-    request('https://wp.scarincihollenbeck.com/graphql', query)
+  console.log('router');
+  console.log(router);
+  const { data: results, error: resultsError } = useSWR(
+    attorneySearch(router.query),
+    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
   );
 
-  if (results) return <ErrorMessage />
-  if (!resultsError) return <SiteLoader />
+  if (results) return <ErrorMessage />;
+  if (!resultsError) return <SiteLoader />;
 
-
-
-  const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  const alphabet = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ];
 
   return (
     <>
       <NextSeo
         title="Find an Attorney | Scarinci Hollenbeck, LLC"
         description="In Scarinci Hollenbeck's attorneys archive, you can find one of our skillful attorneys who can service your business legal needs."
-        canonical={`http://scarincihollenbeck.com/attorneys`}
+        canonical="http://scarincihollenbeck.com/attorneys"
       />
       <SingleSubHeader
         title="Attorneys"
@@ -45,7 +75,6 @@ export default function Attorneys() {
       <FullWidth>
         <div className="mb-5">
           {/** Filters */}
-
           Well get back to filers
           {/* <Filters
             practices={sPractices}
@@ -63,14 +92,13 @@ export default function Attorneys() {
           <div className="w-100 border mt-sm-6 mt-md-0">
             {/* <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
             {(attorneys.length > 0) &&} */}
-             {/* <Results attorneys={attorneys} userInput={userInput} select={select} /> */}
-             Well get back to results
+            {/* <Results attorneys={attorneys} userInput={userInput} select={select} /> */}
+            Well get back to results
           </div>
           {/** End of Results */}
         </div>
       </FullWidth>
       <Footer />
-
     </>
   );
 }

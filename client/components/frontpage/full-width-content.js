@@ -1,19 +1,21 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import lineStyles from 'styles/LineHeader.module.css'
-import LatestNewsArticlesCarousel from 'components/carousels/latest-news-articles-carousel';
-import OfficeLocationCarousel from 'components/carousels/office-location-carousel';
+import lineStyles from 'styles/LineHeader.module.css';
+import CarouselsLatestNews from 'components/carousels/latest-news';
+import CarouselsOfficeLocations from 'components/carousels/office-locations';
 
-export default function FullWidthContent({ sortedPosts, sortedLocations }) {
+export default function FrontPageFullWidthContent({ sortedPosts, sortedLocations }) {
   return (
     <Row className="mb-5">
       <Col sm={12} className="mt-5 px-0">
-          <div className={lineStyles.lineHeader}>
-            <h3>News & Events</h3>
-          </div>
+        <div className={lineStyles.lineHeader}>
+          <h3>News & Events</h3>
+        </div>
       </Col>
       <Col sm={12} className="px-0 pt-5">
-        {(sortedPosts.length > 0) && <LatestNewsArticlesCarousel slides={sortedPosts} />}
+        {sortedPosts.length > 0 && (
+          <CarouselsLatestNews slides={sortedPosts} />
+        )}
       </Col>
       <Col sm={12} className="mt-5 px-0">
         <div className={lineStyles.lineHeader}>
@@ -22,7 +24,9 @@ export default function FullWidthContent({ sortedPosts, sortedLocations }) {
       </Col>
       <Col sm={12} className="px-0 pt-5">
         <div className="location-carousel-container">
-          {(sortedLocations.length > 0) && <OfficeLocationCarousel slides={sortedLocations} />}
+          {sortedLocations.length > 0 && (
+            <CarouselsOfficeLocations slides={sortedLocations} />
+          )}
         </div>
       </Col>
     </Row>

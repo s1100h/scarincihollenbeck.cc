@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Accordion from 'react-bootstrap/Accordion';
 import AccordionContext from 'react-bootstrap/AccordionContext';
@@ -29,39 +29,47 @@ function HeaderToggle({ children, eventKey, callback }) {
       onClick={decoratedOnClick}
     >
       {children}
-      {(isCurrentEventKey) ? (
-        <FontAwesomeIcon icon={faMinus} className="text-white float-right mw-18" />
+      {isCurrentEventKey ? (
+        <FontAwesomeIcon
+          icon={faMinus}
+          className="text-white float-right mw-18"
+        />
       ) : (
-        <FontAwesomeIcon icon={faPlus} className="text-white float-right mw-18" />
-
+        <FontAwesomeIcon
+          icon={faPlus}
+          className="text-white float-right mw-18"
+        />
       )}
     </Button>
   );
 }
 
-export default function Matters({
-  content,
-  title,
-  tabTitle,
-}) {
+export default function SingleAttorneyMatters({ content, title, tabTitle }) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
-      {(title) && <h4 className={grayTitleStyles.title}>{title}</h4>}
-      {(content.length >= 2) ? (
+      {title && <h4 className={grayTitleStyles.title}>{title}</h4>}
+      {content.length >= 2 ? (
         <Accordion defaultActiveKey="primary">
           {content.map((m, i) => (
             <div key={m.title} className="mb-3" id={i}>
-              <HeaderToggle eventKey={(i === 0) ? 'primary': i}>
+              <HeaderToggle eventKey={i === 0 ? 'primary' : i}>
                 <h5 className="mb-0 pb-0 float-left">{m.title}</h5>
               </HeaderToggle>
-              <Accordion.Collapse eventKey={(i === 0) ? 'primary': i}>
-                <div className="off-white px-2 py-4" dangerouslySetInnerHTML={createMarkup(m.content)} />
+              <Accordion.Collapse eventKey={i === 0 ? 'primary' : i}>
+                <div
+                  className="off-white px-2 py-4"
+                  dangerouslySetInnerHTML={createMarkup(m.content)}
+                />
               </Accordion.Collapse>
             </div>
           ))}
         </Accordion>
-      ) : <div className="off-white px-2 py-4" dangerouslySetInnerHTML={createMarkup(content[0].content)} />}
+      ) : (
+        <div
+          className="off-white px-2 py-4"
+          dangerouslySetInnerHTML={createMarkup(content[0].content)}
+        />
+      )}
     </Tab.Pane>
-
   );
 }

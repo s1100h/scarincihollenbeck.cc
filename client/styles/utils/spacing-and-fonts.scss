@@ -32,7 +32,7 @@
   margin-top: -13px;
 }
 .mt---5 {
-  margin-top: -.5em;
+  margin-top: -0.5em;
 }
 .mt---6 {
   margin-top: -6px;
@@ -41,7 +41,7 @@
   margin-top: -1.5em;
 }
 .ml-4em {
-  margin-left:4em;
+  margin-left: 4em;
 }
 .ml-5em {
   margin-left: 5em;
@@ -68,8 +68,8 @@
   margin-left: -21px;
 }
 .ml-10px-mr-10px {
-  margin-left:10px;
-  margin-right:10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /** widths */
@@ -124,14 +124,14 @@
 .mw-10 {
   max-width: 10px;
 }
-.mw-255{
-  min-width:255px;
+.mw-255 {
+  min-width: 255px;
 }
 .mw-250 {
   min-width: 250px;
 }
-.maxw-225{
-  max-width:225px;
+.maxw-225 {
+  max-width: 225px;
 }
 .mh-36px {
   max-height: 36px;
@@ -157,7 +157,7 @@
   height: 20px;
 }
 /** target IE10 and above **/
-@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+@media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
   .mw-19 {
     max-width: 7rem;
   }
@@ -165,7 +165,7 @@
 
 /** padding **/
 .p-25 {
-  padding: .7rem!important;
+  padding: 0.7rem !important;
 }
 
 /** heights **/
@@ -184,7 +184,7 @@
 .mh-75 {
   height: 425px;
   max-width: 100%;
-  overflow:hidden;
+  overflow: hidden;
   overflow-y: auto;
 }
 .mh-375 {
@@ -207,10 +207,10 @@
   font-size: 1.3rem;
 }
 .ft-13 {
-  font-size:1.2rem;
+  font-size: 1.2rem;
 }
 .ft-01 {
-  font-size:1rem;
+  font-size: 1rem;
 }
 .ft-11 {
   font-size: 1rem;
@@ -254,18 +254,18 @@
   margin-bottom: 0;
 }
 .smaller-excerpt {
-  font-size: 11px; 
+  font-size: 11px;
 }
 .ft-style-inherit {
   font-style: inherit !important;
 }
 
- /** titles **/
- h2 {
+/** titles **/
+h2 {
   font-size: 1.4rem;
   color: white;
   font-style: italic;
- }
+}
 
 /** Random **/
 .hs-form-iframe {
@@ -283,26 +283,27 @@
   bottom: 1px;
 }
 
-  // target IE 11 
-  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
-    /* IE10+ specific styles go here */  
+// target IE 11
+@media screen and (-ms-high-contrast: active),
+  screen and (-ms-high-contrast: none) {
+  /* IE10+ specific styles go here */
+}
+@media (min-width: 768px) {
+  .offset-md-3 {
+    margin-left: 21%;
   }
-  @media (min-width: 768px) {
-    .offset-md-3 {
-      margin-left: 21%;
-    }
+}
+@media (max-width: 992px) {
+  .mb--4 {
+    margin-bottom: 0;
   }
-  @media (max-width:992px) {
-    .mb--4  {
-      margin-bottom: 0;
-    }
-    .w-60 {
-      width: 100% !important;
-    }
+  .w-60 {
+    width: 100% !important;
   }
-  
-  @media (min-width:0px) and (max-width: 992px) {
-    .w-40 {
-      width: 100%;
-    }
+}
+
+@media (min-width: 0px) and (max-width: 992px) {
+  .w-40 {
+    width: 100%;
   }
+}

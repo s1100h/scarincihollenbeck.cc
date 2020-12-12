@@ -17,7 +17,7 @@ export default function Featured({ post }) {
   console.log(post);
   console.log('eventDetails length');
   console.log(post.eventDetails.length);
-  
+
   const router = useRouter();
 
   if (post.status === 404) {
@@ -26,9 +26,12 @@ export default function Featured({ post }) {
 
   return (
     <>
-      {(post === undefined && router.isFallback) ? (
+      {post === undefined && router.isFallback ? (
         <Container>
-          <Row id="page-loader-container" className="justify-content-center align-self-center">
+          <Row
+            id="page-loader-container"
+            className="justify-content-center align-self-center"
+          >
             <BarLoader color="#DB2220" />
           </Row>
         </Container>
@@ -37,9 +40,13 @@ export default function Featured({ post }) {
           <NextSeo
             title={post.seo.title}
             description={post.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`}
+            canonical={`https://scarincihollenbeck.com/${
+              post.eventDetails.length > 0 ? 'firm-events' : 'firm-news'
+            }/${post.seo.canonicalLink}`}
             openGraph={{
-              url: `https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`,
+              url: `https://scarincihollenbeck.com/${
+                post.eventDetails.length > 0 ? 'firm-events' : 'firm-news'
+              }/${post.seo.canonicalLink}`,
               title: post.seo.title,
               description: post.seo.metaDescription,
               type: 'article',
@@ -47,11 +54,16 @@ export default function Featured({ post }) {
                 publishedTime: post.seo.publishedDate,
                 modifiedTime: post.seo.updatedDate,
                 authors: post.seo.authors,
-                tags: (post.seo.tags !== undefined && post.seo.tags.length > 0) ? post.seo.tags.map((t) => t.name) : [],
+                tags:
+                  post.seo.tags !== undefined && post.seo.tags.length > 0
+                    ? post.seo.tags.map((t) => t.name)
+                    : [],
               },
               images: [
                 {
-                  url: (post.seo.featuredImg) ? post.seo.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png",
+                  url: post.seo.featuredImg
+                    ? post.seo.featuredImg
+                    : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
                   width: 750,
                   height: 350,
                   alt: post.seo.title,
@@ -60,14 +72,24 @@ export default function Featured({ post }) {
             }}
             twitter={{
               handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`,
+              site: `https://scarincihollenbeck.com/${
+                post.eventDetails.length > 0 ? 'firm-events' : 'firm-news'
+              }/${post.seo.canonicalLink}`,
               cardType: post.seo.metaDescription,
             }}
           />
           <ArticleJsonLd
-            url={`https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`}
+            url={`https://scarincihollenbeck.com/${
+              post.eventDetails.length > 0 ? 'firm-events' : 'firm-news'
+            }/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
-            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
+            images={
+              post.seo.featuredImg
+                ? [post.seo.featuredImg]
+                : [
+                  'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
+                ]
+            }
             datePublished={post.seo.publishedDate}
             dateModified={post.seo.updatedDate}
             authorName={post.seo.author}
@@ -95,13 +117,10 @@ export default function Featured({ post }) {
                   tags={post.tags}
                 />
               )}
-              OneSidebar={(<SocialShareSidebar title={post.title} />)}
-              TwoSidebar={(
-                <Sidebar
-                  posts={post.posts}
-                  attorneys={post.attorneys}
-                />
-              )}
+              OneSidebar={<SocialShareSidebar title={post.title} />}
+              TwoSidebar={
+                <Sidebar posts={post.posts} attorneys={post.attorneys} />
+              }
             />
             <Footer />
           </div>
@@ -113,10 +132,15 @@ export default function Featured({ post }) {
 
 export async function getServerSideProps({ params, res }) {
   const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/featured`, { headers }).then((data) => data.json())
+    fetch(
+      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${
+        params.slug[params.slug.length - 1]
+      }/featured`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
-  if(post.status === 404 && res) {
+  if (post.status === 404 && res) {
     res.statusCode = 404;
   }
 

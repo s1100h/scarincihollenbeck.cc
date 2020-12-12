@@ -1,4 +1,3 @@
-
 @media (min-width: 0px) and (max-width: 338px) {
   .logoBanner img {
     width: 100%;
@@ -6,32 +5,34 @@
   }
 }
 @media (min-width: 0px) and (max-width: 449px) {
-  .navContainer{
+  .navContainer {
     display: none !important;
   }
-  .mobileMenu, .logoBanner, .contactBanner {
+  .mobileMenu,
+  .logoBanner,
+  .contactBanner {
     width: 100%;
-    display:block;
+    display: block;
   }
 
   .mobileMenu div {
-    display:flex;
+    display: flex;
     justify-content: flex-end;
   }
 }
 
 @media (min-width: 449px) and (max-width: 576px) {
-  .navContainer{
+  .navContainer {
     display: none !important;
   }
-  
+
   .mobileMenu {
     display: flex;
     justify-content: flex-start;
   }
-  .contactBanner{
+  .contactBanner {
     justify-content: flex-end;
-  }  
+  }
 }
 @media (min-width: 576px) and (max-width: 992px) {
   .logoBanner img {
@@ -39,7 +40,8 @@
     margin-right: auto;
     display: block;
   }
-  .navContainer, .contactBanner{
+  .navContainer,
+  .contactBanner {
     justify-content: center;
   }
   .navItem {
@@ -48,7 +50,7 @@
 }
 
 @media (min-width: 992px) {
-  .contactBanner{
+  .contactBanner {
     justify-content: flex-end;
   }
 }
@@ -63,65 +65,65 @@
   .navItem {
     margin-right: 1em;
   }
-  
+
   .navItem:last-child {
     margin-right: 0;
   }
 }
-@media (min-width: 576px){ 
+@media (min-width: 576px) {
   .mobileMenu {
-    display: none
-  } 
+    display: none;
+  }
   .navContainer {
     background-color: #fff;
     display: flex !important;
     justify-content: flex-end !important;
     padding-left: 0;
   }
-  
-  .navItem{
+
+  .navItem {
     position: relative;
     font-size: 1.1rem;
     transition: all 200ms linear;
   }
-  
-  .navItem:hover:after{
+
+  .navItem:hover:after {
     bottom: 0;
     opacity: 1;
   }
-  .navItem.active:hover:after{
+  .navItem.active:hover:after {
     opacity: 0;
   }
-  
+
   .navItem a:hover {
     text-decoration: none !important;
-    color:#B50000;
-    cursor:pointer;
+    color: #b50000;
+    cursor: pointer;
   }
-  
-  .navItem:after{
+
+  .navItem:after {
     position: absolute;
     bottom: -5px;
     left: 0;
     width: 100%;
     height: 2px;
     content: '';
-    background-color:#B50000;
+    background-color: #b50000;
     opacity: 0;
     transition: all 200ms linear;
   }
-  
+
   .dropDownItem > a::after {
     display: none;
   }
-  
+
   .dropDownItem > a {
     background-color: #fff;
     padding: 0;
     margin: 0;
     color: #000 !important;
   }
-  
+
   .dropDownNavItem {
     padding: 3px 15px;
     color: #212121;
@@ -130,10 +132,10 @@
     font-size: 1.1rem;
     transition: all 200ms linear;
   }
-  .dropDownNavItem:hover, 
+  .dropDownNavItem:hover,
   .dropDownNavItem:focus {
     color: #fff !important;
     background-color: #a9a9a9 !important;
-    border-bottom: 3px solid #fff !important
+    border-bottom: 3px solid #fff !important;
   }
 }

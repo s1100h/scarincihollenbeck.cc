@@ -1,9 +1,9 @@
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import Image from 'next/image';
 import Carousel from 'react-multi-carousel';
-import styles from 'styles/carousels/OfficeLocation.module.css'
-import textStyles from 'styles/Text.module.css'
+import styles from 'styles/carousels/OfficeLocation.module.css';
+import textStyles from 'styles/Text.module.css';
 
 const responsive = {
   superLargeDesktop: {
@@ -24,13 +24,22 @@ const responsive = {
     items: 1,
   },
 };
-// 333 x 220
-export default function OfficeLocationCarousel({ slides }) {
-  return (slides.length > 0) && (
-    <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
+
+export default function CarouselsOfficeLocations({ slides }) {
+  return (
+    <Carousel
+      aria-label="carousel"
+      responsive={responsive}
+      infinite
+      arrows
+      swipeable
+    >
       {slides.map((post) => (
-        <div key={post.title} className={`${styles.locationCard} mx-auto d-block border `}>
-          <Link href="/location/[slug]" as={post.uri}>
+        <div
+          key={post.title}
+          className={`${styles.locationCard} mx-auto d-block border `}
+        >
+          <Link href={post.uri}>
             <a>
               <Image
                 src={post.featuredImage.node.sourceUrl}
@@ -40,7 +49,9 @@ export default function OfficeLocationCarousel({ slides }) {
                 alt={post.title}
                 layout="intrinsic"
               />
-              <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
+              <p
+                className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}
+              >
                 <strong>{post.title}</strong>
               </p>
             </a>

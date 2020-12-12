@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function NoHeaderMiniSidebar({ body, sidebar }) {
-
   return (
     <Container className="mt-5">
       <Row>
@@ -16,4 +15,4 @@ export default function NoHeaderMiniSidebar({ body, sidebar }) {
       </Row>
     </Container>
   );
-};
+}

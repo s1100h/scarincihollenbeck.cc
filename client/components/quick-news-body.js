@@ -13,7 +13,6 @@ export default function QuickNewsBody({
   insight,
   events,
 }) {
-
   function handlePagination(e, page) {
     e.preventDefault();
     Router.push({
@@ -25,12 +24,12 @@ export default function QuickNewsBody({
   const next = parseInt(currentPage, 10) + 1;
   const prev = parseInt(currentPage, 10) - 1;
 
-
   return (
     <Container>
       <Row>
         <Col sm={12} md={6}>
-          {results.map((r, i) => (i < 5) && (
+          {results.map(
+            (r, i) => i < 5 && (
             <div className="p-2" key={r.id}>
               <a href={r.link} className="top-article">
                 <h5 className="mb-0">{r.title}</h5>
@@ -39,10 +38,12 @@ export default function QuickNewsBody({
                 </p>
               </a>
             </div>
-          ))}
+            ),
+          )}
         </Col>
         <Col sm={12} md={6}>
-          {results.map((r, i) => (i > 5) && (
+          {results.map(
+            (r, i) => i > 5 && (
             <div className="p-2" key={r.id}>
               <a href={r.link} className="top-article">
                 <h5 className="mb-0">{r.title}</h5>
@@ -51,7 +52,8 @@ export default function QuickNewsBody({
                 </p>
               </a>
             </div>
-          ))}
+            ),
+          )}
         </Col>
         <Col sm={12}>
           <Pagination>
@@ -59,7 +61,9 @@ export default function QuickNewsBody({
             <Pagination.Prev onClick={(e) => handlePagination(e, prev)} />
             <Pagination.Item>{1}</Pagination.Item>
             <Pagination.Ellipsis />
-            <Pagination.Item onClick={(e) => handlePagination(e, pages)}>{pages}</Pagination.Item>
+            <Pagination.Item onClick={(e) => handlePagination(e, pages)}>
+              {pages}
+            </Pagination.Item>
             <Pagination.Next onClick={(e) => handlePagination(e, next)} />
             <Pagination.Last onClick={(e) => handlePagination(e, pages)} />
           </Pagination>
