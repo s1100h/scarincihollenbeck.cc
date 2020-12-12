@@ -1,6 +1,6 @@
 import Search from '../search';
 import AboutFirm from '../about-firm';
-import TrendingStories from '../trending-stories';
+import TrendingStories from '../non-graphql-trending-stories';
 
 export default function ArchivesSideBar({ trending }) {
   return (

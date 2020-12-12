@@ -1,4 +1,3 @@
-
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';

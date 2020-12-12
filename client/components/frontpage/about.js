@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import textStyles from 'styles/Text.module.css';
 
-export default function FrontPageAbout() {  
+export default function FrontPageAbout() {
   return (
     <div>
       <h4 className={`h5 ${textStyles.redTitle}`}>
@@ -23,4 +23,5 @@ export default function FrontPageAbout() {
         </a>
       </Link>
     </div>
-)}
+  );
+}

@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
-import NewsScroller from './news-scroller';
+import NewsScroller from 'components/news-scroller';
 
 export default function QuickNewsBody({
   results,

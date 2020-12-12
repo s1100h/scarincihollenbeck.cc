@@ -22,8 +22,6 @@ export default function CommunityInvolvement({
   relatedPages,
   seo,
 }) {
-
-
   const fullRelatedPages = relatedPages.map((page) => ({
     title: makeTitle(page),
     slug: page,
@@ -43,8 +41,6 @@ export default function CommunityInvolvement({
       slug: '/category/firm-insights',
     },
   ];
-
-
 
   return (
     <>

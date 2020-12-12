@@ -52,7 +52,7 @@ export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }
           <Body
             results={authorPosts.posts.edges}
             term={router.query.name}
-            pages={Math.ceil(
+            pages={Math.floor(
               authorPosts.posts.pageInfo.offsetPagination.total / 10,
             )}
             currentPage={router.query.page}
@@ -87,5 +87,6 @@ export async function getStaticProps() {
       firmEvents: firmEventsContent || [],
       firmInsights: firmInsightsContent || [],
     },
+    revalidate: 1,
   };
 }

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import CookieConsent, { Cookies } from 'react-cookie-consent';
 
-function CookieConsentContainer() {
+export default function CookieConsentMessage() {
   return (
     <CookieConsent
       enableDeclineButton
@@ -16,5 +16,3 @@ function CookieConsentContainer() {
     </CookieConsent>
   );
 }
-
-export default CookieConsentContainer;

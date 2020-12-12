@@ -4,58 +4,63 @@ import Body from 'components/pages/body';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import { headers } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { blogArticlesQuery } from 'queries/home';
+import { getPageContents } from 'queries/pages';
 
 export default function Awards({
-  title, content, posts, seo,
+  title,
+  content,
+  posts,
+  seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
+  console.log(posts);
+
   return (
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        description={seo.metaDescr}
+        canonical="http://scarincihollenbeck.com/awards"
       />
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
+        image="/images/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
       <LargeSidebar
         body={<Body content={bodyContent} />}
-        sidebar={<Sidebar posts={posts} />}
+        sidebar={<Sidebar posts={posts} covidPage={false} />}
       />
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
-  const [aJson, postJson] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/awards`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
+export async function getStaticProps() {
+  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
+  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
+  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+  const awardsPageContent = await client.query(getPageContents('awards'), {});
 
-  const { posts } = postJson;
-  const { title, content, seo } = aJson;
+  const posts = [].concat(
+    firmNewsContent.data.category.posts.edges,
+    firmEventsContent.data.category.posts.edges,
+    firmInsightsContent.data.category.posts.edges,
+  );
 
   return {
     props: {
-      title,
-      content,
+      title: awardsPageContent.data.pages.nodes[0].title,
+      content: awardsPageContent.data.pages.nodes[0].content,
+      seo: awardsPageContent.data.pages.nodes[0].seo,
       posts,
-      seo,
     },
+    revalidate: 1,
   };
 }

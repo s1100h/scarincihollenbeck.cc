@@ -1,6 +1,6 @@
 import ReCAPTCHA from 'react-google-recaptcha';
 
-export default function FormReCaptcha({ setCaptcha }) {
+export default function GoogleRecaptchButton({ setCaptcha }) {
   function onChange(value) {
     if (value) {
       setCaptcha(false);

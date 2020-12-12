@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import lineStyles from 'styles/LineHeade./carousels/latest-news
-import LatestNewsArticlesCarousel from './carousels/latest-news-articles-carousel';
+import lineStyles from 'styles/LineHeader.module.css';
+import CarouselsLatestNews from 'components/carousels/latest-news';
 
 export default function NewsScroller({ title, articles }) {
   return (
@@ -14,7 +14,7 @@ export default function NewsScroller({ title, articles }) {
           </div>
         </Col>
         <Col sm={12} className="py-4">
-          <LatestNewsArticlesCarousel slides={articles} />
+          <CarouselsLatestNews slides={articles} />
         </Col>
       </Row>
     </Container>

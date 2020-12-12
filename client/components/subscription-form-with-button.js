@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import kwesforms from 'kwesforms';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { checkboxes } from 'utils/categories';
 import FormReCaptcha from './google-recaptcha-button';
-import { checkboxes } from '../utils/categories';
 
 export default function SubscriptionFormWithButton() {
   const [show, setShow] = useState(false);
@@ -15,30 +17,34 @@ export default function SubscriptionFormWithButton() {
 
   return (
     <>
-      <button
-        className="btn btn-danger mx-auto p-2 d-block w-50 text-center border-r-5 mb-3 ft-14px"
+      <Button
+        variant="danger"
+        className="mx-auto p-2 d-block w-50 text-center border-r-5 mb-3 ft-14px"
         onClick={() => setShow(true)}
       >
         Subscribe Now!
-      </button>
+      </Button>
       <Modal show={show} onHide={() => setShow(false)} id="subscription-form">
         <Modal.Header className="sidebar-title d-flex flex-row">
-          <img
-            src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"
-            alt="Scarinci hollenbeck diamond"
-            className="w-15"
+          <Image
+            src="/images/sh-mini-diamond-PNG.png"
+            width={170}
+            height={147}
+            alt="Scarinci Hollenbeck diamond logo"
+            layout="intrinsic"
           />
           <h5 id="subscriptionModalLabel" className="mt-2">
             Sign up to get the latest from the Scarinci Hollenbeck attorneys!
           </h5>
         </Modal.Header>
         <Modal.Body>
-          <button
-            className="btn btn-secondary proxima-bold float-right mb-2 mt-0"
+          <Button
+            variant="secondary"
+            className="float-right mb-2 mt-0"
             onClick={() => setShow(false)}
           >
-            Close
-          </button>
+            <strong>Close</strong>
+          </Button>
           <form
             className="kwes-form"
             action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
@@ -72,19 +78,21 @@ export default function SubscriptionFormWithButton() {
               />
             </div>
             <fieldset data-kw-group="true" rules="required">
-              <label className="small-excerpt">
+              <span className="small-excerpt">
                 Please select a category(s) below:
-              </label>
+              </span>
               <ul className="no-dots two-column">
                 {checkboxes.map((type) => (
                   <li key={type.key}>
-                    <input
-                      type="checkbox"
-                      id={type.key}
-                      name="category"
-                      label={type.label}
-                      value={type.label}
-                    />
+                    <label htmlFor={type.key} className="sr-only">
+                      <input
+                        type="checkbox"
+                        id={type.key}
+                        name="category"
+                        label={type.label}
+                        value={type.label}
+                      />
+                    </label>
                     <span className="mx-2">{type.label}</span>
                   </li>
                 ))}

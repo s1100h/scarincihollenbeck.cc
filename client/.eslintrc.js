@@ -27,6 +27,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'no-prototype-builtins': 'off',
     'no-nested-ternary': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'no-console': [
       2,
       {

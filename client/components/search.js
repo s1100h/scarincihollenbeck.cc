@@ -32,7 +32,7 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [attorneys, practices, categories] = await Promise.all([
+      const [aResponse, pResponse, cResponse] = await Promise.all([
         fetch(
           'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
           { headers },
@@ -47,9 +47,9 @@ export default function Search() {
         ).then((data) => data.json()),
       ]);
 
-      setAttorneys(attorneys);
-      setCategories(categories);
-      setPractices(practices);
+      setAttorneys(aResponse);
+      setCategories(cResponse);
+      setPractices(pResponse);
     };
 
     fetchData();

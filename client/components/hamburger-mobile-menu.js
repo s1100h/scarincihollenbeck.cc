@@ -188,8 +188,8 @@ const Burger = ({ open, setOpen }) => (
 );
 
 export default function HamburgerMobileMenu() {
-  const [open, setOpen] = React.useState(false);
-  const node = React.useRef();
+  const [open, setOpen] = useState(false);
+  const node = useRef();
 
   return (
     <div ref={node}>

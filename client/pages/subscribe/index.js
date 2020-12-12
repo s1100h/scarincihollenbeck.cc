@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import Search from 'components/search';
 import LargeSidebar from 'layouts/large-sidebar';
-import TrendingStories from 'components/trending-stories';
+import TrendingStories from 'components/non-graphql-trending-stories';
 import SubscriptionBody from 'components/subscription-body';
 import { headers } from 'utils/helpers';
 

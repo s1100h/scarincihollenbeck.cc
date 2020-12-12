@@ -81,6 +81,6 @@ export async function getStaticProps() {
       seo,
       careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : [],
     },
-    revalidate: 1
+    revalidate: 1,
   };
 }

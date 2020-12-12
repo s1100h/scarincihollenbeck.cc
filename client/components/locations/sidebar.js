@@ -8,7 +8,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import TrendingStories from 'components/trending-stories';
+import TrendingStories from 'components/non-graphql-trending-stories';
 
 import {
   sortByKey,

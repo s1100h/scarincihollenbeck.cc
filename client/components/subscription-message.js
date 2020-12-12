@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SubscriptionFormWithButton from './subscription-form-with-button';
 
 export default function SubscriptionMessage() {
@@ -5,10 +6,12 @@ export default function SubscriptionMessage() {
     <div className="w-100 mt-4">
       <div className="sidebar-title">Get the latest from our attorneys!</div>
       <div className="off-white mh-375">
-        <img
-          src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"
-          alt="Subscribe Scarinci Hollenbeck attorneys"
-          className="mx-auto d-block py-4 w-50"
+        <Image
+          src="/images/sh-mini-diamond-PNG.png"
+          width={170}
+          height={147}
+          alt="Scarinci Hollenbeck diamond logo"
+          layout="intrinsic"
         />
         <p className="proxima-bold text-center px-3">
           Please fill out our short form to get the latest articles from the
