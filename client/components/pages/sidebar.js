@@ -4,11 +4,9 @@ import NonGraphQLTrendingStories from 'components/non-graphql-trending-stories';
 import SubscriptionMessage from 'components/subscription-message';
 
 export default function CovidSidebar({ posts, covidPage }) {
-  console.log(posts)
-  console.log(covidPage)
   return (
     <>
-      {/* <Search />
+      <Search />
       {covidPage ? (
         <NonGraphQLTrendingStories
           title="Current Covid-19 News"
@@ -20,9 +18,8 @@ export default function CovidSidebar({ posts, covidPage }) {
           content={posts}
         />
       )}
-
-      <SubscriptionMessage /> */}
-      Sidebar will go here..
+      <br />
+      <SubscriptionMessage />
     </>
   );
 }

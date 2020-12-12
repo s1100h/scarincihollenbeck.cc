@@ -3,6 +3,7 @@ import kwesforms from 'kwesforms';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import FormReCaptcha from './google-recaptcha-button';
 
 export default function ContactForm() {
@@ -13,7 +14,7 @@ export default function ContactForm() {
   useEffect(() => kwesforms.init());
 
   return (
-    <>
+    <div className="px-2 mb-3">
       <form
         action="https://kwes.io/api/foreign/forms/oIRf8VAo2KnGHucQmZ1m"
         className="kwes-form d-print-none px-1"
@@ -88,7 +89,7 @@ export default function ContactForm() {
         <Row className="mb-0">
           <Col sm={12} className="mx-0 px-1">
             <fieldset data-kw-group="true" rules="required" className="my-1">
-              <label>
+              <label htmlFor="disclaimer">
                 <small>
                   * The use of the Internet or this form for communication with
                   the firm or any individual member of the firm does not
@@ -96,14 +97,15 @@ export default function ContactForm() {
                   time-sensitive information should not be sent through this
                   form.
                 </small>
+                <input
+                  type="checkbox"
+                  name="disclaimer"
+                  feedback="You must agree before submitting."
+                  value="disclaimer"
+                  id="disclaimer"
+                  label="I have read the disclaimer"
+                />
               </label>
-              <input
-                type="checkbox"
-                name="disclaimer"
-                feedback="You must agree before submitting."
-                value="disclaimer"
-                label="I have read the disclaimer"
-              />
               <span className="mx-2 mb-1 mt-0">
                 <small>I have read the disclaimer</small>
               </span>
@@ -113,14 +115,15 @@ export default function ContactForm() {
             <FormReCaptcha setCaptcha={setCaptcha} />
           </Col>
         </Row>
-        <button
-          className="btn btn-danger w-25 mt-2"
+        <Button
+          variant="danger"
+          className="mt-2 px-4"
           type="submit"
           disabled={captcha}
         >
           Submit form
-        </button>
+        </Button>
       </form>
-    </>
+    </div>
   );
 }

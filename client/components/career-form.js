@@ -172,7 +172,7 @@ export default function CareerForm({ contact, title }) {
 
   return (
     <>
-      <div className="w-100 border">
+      <div className="w-100 border px-1">
         {success && (
           <div className="alert alert-success w-75 mt-4">
             Great, all documents have been uploaded and sent to the hiring staff

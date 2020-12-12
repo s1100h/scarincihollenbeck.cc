@@ -8,32 +8,39 @@ export const metaDataQuery = `{
 }`;
 
 export const blogArticlesQuery = (id) => `{
-    category(id: ${id}, idType: DATABASE_ID) {
-      posts(first: 10) {
-        edges {
-          node {
-            title
-            id
-            link
-            featuredImage {
-              node {
-                sourceUrl
-              }
+  category(id: ${id}, idType: DATABASE_ID) {
+    posts(first: 10) {
+      edges {
+        node {
+          title
+          id
+          link
+          featuredImage {
+            node {
+              sourceUrl
             }
-            categories(where: {name: "Firm News"}) {
-              nodes {
-                name
-              }
+          }
+          categories {
+            nodes {
+              name
             }
-            date
-            postsLocationSelection {
-              locationSelection
+          }
+          date
+          postsLocationSelection {
+            locationSelection
+          }
+          author {
+            node {
+              name
+              uri
+              email
             }
           }
         }
       }
     }
-  }`;
+  }
+}`;
 
 export const officeLocationsQuery = `{
   officeLocations {

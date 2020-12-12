@@ -7,3 +7,10 @@
   font-size: 1.05rem;
   line-height: 1.5;
 }
+
+
+.content li {
+  margin-bottom: 1.125rem;
+  font-size: 1.05rem;
+  line-height: 1.5; 
+}

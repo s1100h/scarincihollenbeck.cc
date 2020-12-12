@@ -18,8 +18,6 @@ export default function Awards({
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
-  console.log(posts);
-
   return (
     <>
       <NextSeo

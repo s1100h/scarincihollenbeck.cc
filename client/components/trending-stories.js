@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import styles from 'styles/SidebarTitle.module.css';
-import { addRandomKey, createMarkup, urlify } from 'utils/helpers';
+import fontStyles from 'styles/Fonts.module.css';
 
 const ArticleContainer = styled.div`
   height: 470px;
@@ -9,22 +9,36 @@ const ArticleContainer = styled.div`
   overflow-y: auto;
 `;
 
-function formatDate(date) {
-  return date.substring(0, 17);
-}
-
-function createUserName(username) {
-  const userArr = username.split(' ');
-  const userName = userArr[0][0] + userArr[userArr.length - 1];
-  return urlify(userName.toLowerCase());
-}
-
 export default function TrendingStories({ title, content }) {
   return (
     <div className="w-100 mt-4">
       <div className={styles.header}>{title}</div>
       <ArticleContainer className="off-white">
-        {content.length > 0 ? (
+        <ul className="px-4 py-2">
+          {content.map((c) => (
+            <li key={c.node.id} className="mb-2">
+              <Link href={c.node.link}>
+                <a className={`${styles.lh22px} text-dark`}>
+                  <strong>{c.node.title}</strong>
+                </a>
+              </Link>
+              {(c.node.hasOwnProperty('author')) && (
+                <span className={`${fontStyles.smallExcerpt} d-block`}>
+                  <strong>
+                    Author:
+                  </strong>
+                  {' '}
+                  <Link href={(c.node.author.node.uri === '/author/scarinci-hollenbeck/') ? '/' : c.node.author.node.uri}>
+                    <a className="text-dark">
+                      {c.node.author.node.name}
+                    </a>
+                  </Link>
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+        {/* {content.length > 0 ? (
           content.map((p) => (
             <div key={p.ID || addRandomKey(p.title)} className="p-2">
               <strong>
@@ -70,7 +84,7 @@ export default function TrendingStories({ title, content }) {
           <div className="mx-5 p-5">
             <p>Articles loading...</p>
           </div>
-        )}
+        )} */}
       </ArticleContainer>
     </div>
   );
