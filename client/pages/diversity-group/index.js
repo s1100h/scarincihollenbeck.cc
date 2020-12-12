@@ -9,10 +9,10 @@ import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
-import PracticeContent from 'components/practice/content';
-import FeaturedSlider from 'components/practice/featured-slider';
-import RelatedAttorneys from 'components/practice/related-attorneys';
-import SidebarContent from 'components/practice/sidebar';
+import PracticeContent from 'components/singlepractice/content';
+import FeaturedSlider from 'components/singlepractice/featured-slider';
+import RelatedAttorneys from 'components/singlepractice/related-attorneys';
+import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 

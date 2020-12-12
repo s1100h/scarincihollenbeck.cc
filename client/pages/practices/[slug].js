@@ -11,12 +11,12 @@ import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
-import PracticeContent from 'components/practice/content';
-import CovidResourceBox from 'components/practice/covid-resource-box';
-import FeaturedSlider from 'components/practice/featured-slider';
-import RelatedAttorneys from 'components/practice/related-attorneys';
-import RelatedArticlesTab from 'components/practice/related-articles-tab';
-import SidebarContent from 'components/practice/sidebar';
+import PracticeContent from 'components/singlepractice/content';
+import CovidResourceBox from 'components/singlepractice/covid-resource-box';
+import FeaturedSlider from 'components/singlepractice/featured-slider';
+import RelatedAttorneys from 'components/singlepractice/related-attorneys';
+import RelatedArticlesTab from 'components/singlepractice/related-articles-tab';
+import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, urlify } from 'utils/helpers';
 

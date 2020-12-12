@@ -1,6 +1,6 @@
 import TabPane from 'react-bootstrap/TabPane';
 import Table from 'react-bootstrap/Table';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import grayTitleStyles from 'components/singlepractice/node_modules/styles/BigGrayTitle.module.css';
 import { createMarkup, addRandomKey } from 'utils/helpers';
 
 export default function SingleAttorneyTableTab({ title, tabTitle, content }) {

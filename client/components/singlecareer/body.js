@@ -1,14 +1,21 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import CareerForm from 'components/career-form';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import styles from 'styles/BasicContent.module.css';
 import { createMarkup } from 'utils/helpers';
 
 export default function SingleCareerBody({ title, position, contact }) {
   return (
-    <>
-      <div className="p-2 mt-3 bg-light-gray w-100">
-        <h4 className="mt-1 mb-0 w-75">{title}</h4>
-      </div>
-      <div className="w-100" dangerouslySetInnerHTML={createMarkup(position)} />
-      <CareerForm contact={contact} title={title} />
-    </>
+    <Container>
+      <Row>
+        <Col sm={12}>
+          <h4 className={grayTitleStyles.title}>{title}</h4>
+          <div className={styles.content} dangerouslySetInnerHTML={createMarkup(position)} />
+          <CareerForm contact={contact} title={title} />
+        </Col>
+      </Row>
+    </Container>
   );
 }

@@ -3,8 +3,8 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
-import CareerSection from 'components/careers';
-import EEOpportunityContent from 'components/careers/equal-opportunity';
+import CareerSection from 'components/archivecareers';
+import EEOpportunityContent from 'components/archivecareers/equal-opportunity';
 import { headers } from 'utils/helpers';
 
 export default function CareersPage({ careers, seo }) {

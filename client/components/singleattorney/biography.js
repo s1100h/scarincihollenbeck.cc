@@ -5,7 +5,7 @@ import AccordionContext from 'react-bootstrap/AccordionContext';
 import Button from 'react-bootstrap/Button';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { createMarkup } from 'utils/helpers';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import grayTitleStyles from 'components/singlepractice/node_modules/styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
 import textStyles from 'styles/Text.module.css';
 import fontStyles from 'styles/Fonts.module.css';

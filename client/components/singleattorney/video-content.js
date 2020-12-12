@@ -1,7 +1,7 @@
 import { List } from 'react-virtualized';
 import Tab from 'react-bootstrap/Tab';
 import { createMarkup, formatDate } from 'utils/helpers';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import grayTitleStyles from 'components/singlepractice/node_modules/styles/BigGrayTitle.module.css';
 
 function VideoPost(content, { key, index }) {
   const video = content[index];

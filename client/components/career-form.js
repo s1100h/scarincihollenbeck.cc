@@ -7,8 +7,10 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
-import FormReCaptcha from './google-recaptcha-button';
-import useInput from '../utils/input-hook';
+import FormReCaptcha from 'components/google-recaptcha-button';
+import useInput from 'utils/input-hook';
+import styles from 'styles/CareerForm.module.css'
+
 
 function bytesToSize(bytes) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -251,7 +253,7 @@ export default function CareerForm({ contact, title }) {
                 </a>
               </Form.Label>
               <div className="thumbsContainer">{thumbs}</div>
-              <div {...getRootProps()} className="dropzone-center">
+              <div {...getRootProps()} className={`${styles.dottedBorder} dropzone-center`}>
                 <input {...getInputProps()} />
                 {isDragActive ? (
                   <div className="red-title my-4 text-center d-block">
@@ -293,7 +295,6 @@ export default function CareerForm({ contact, title }) {
               >
                 Submit
               </Button>
-              {/* <Button type="submit" variant="danger" className="px-5">Submit</Button> */}
             </>
           )}
         </Form>
