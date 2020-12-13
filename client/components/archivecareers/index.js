@@ -1,5 +1,5 @@
 import { sortByKey } from '../../utils/helpers';
-import FilterForms from './filter-forms';
+import CareersFilterForms from './filter-forms';
 import Results from './results';
 
 export default function CareerIndex({
@@ -50,6 +50,8 @@ export default function CareerIndex({
     } else {
       return position;
     }
+
+    return true;
   }
 
   const p = sortPositions
@@ -59,7 +61,7 @@ export default function CareerIndex({
 
   return (
     <div className="mb-5" id="career-section">
-      <FilterForms
+      <CareersFilterForms
         locations={locations}
         positionType={positionType}
         keyword={keyword}

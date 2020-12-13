@@ -1,6 +1,4 @@
-
-export const getSingleCareer = slug => {
-  return `{
+export const getSingleCareer = (slug) => `{
     careers(where: {name: "${slug}"}) {
       nodes {
         uri
@@ -23,14 +21,24 @@ export const getSingleCareer = slug => {
       }
     }
   }
-  `
-}
+  `;
 
 export const getAllCareers = ` {
   careers {
     nodes {
       title
       slug
+      careerFields {
+        startDate
+        positionType
+        positionLocation
+      }
+      seo {
+        metaDesc
+        title
+        canonical
+      }
     }
   }
-}`
+}
+`;

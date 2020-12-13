@@ -4,10 +4,11 @@ import Footer from 'components/footer';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
 import CareerSection from 'components/archivecareers';
-import EEOpportunityContent from 'components/archivecareers/equal-opportunity';
-import { headers } from 'utils/helpers';
+import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity';
+import client from 'utils/graphql-client';
+import { getAllCareers } from 'queries/careers';
 
-export default function CareersPage({ careers, seo }) {
+export default function CareersPage({ careers }) {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
@@ -38,29 +39,27 @@ export default function CareersPage({ careers, seo }) {
   return (
     <>
       <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/careers`}
+        title="Careers & Positions | Scarinci Hollenbeck, LLC"
+        description="Scarinci Hollenbeck's commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
+        canonical="http://scarincihollenbeck.com/careers"
       />
       <div id="careers">
         <SingleSubHeader
-          image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
+          image="/images/Skyscrapers-up-1800x400-JPG.jpg"
           title="Careers & Available Positions"
           subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
         />
         <FullWidth>
           <CareerSection
-            sort={sort}
             careers={careers}
             keyword={keyword}
             type={type}
-            career={career}
             location={location}
             selectOption={selectOption}
             filterTerm={filterTerm}
             clearFilter={clearFilter}
           />
-          <EEOpportunityContent />
+          <CareersEqualOpportunity />
         </FullWidth>
       </div>
       <Footer />
@@ -69,17 +68,18 @@ export default function CareersPage({ careers, seo }) {
 }
 
 export async function getStaticProps() {
-  const [careerJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-  const { seo } = careerJson;
+  const res = await client.query(getAllCareers, {});
+
+  // const [careerJson] = await Promise.all([
+  //   fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, {
+  //     headers,
+  //   }).then((data) => data.json()),
+  // ]);
+  // const { seo } = careerJson;
 
   return {
     props: {
-      seo,
-      careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : [],
+      careers: res.data.careers.nodes,
     },
     revalidate: 1,
   };

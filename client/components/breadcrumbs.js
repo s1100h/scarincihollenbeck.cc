@@ -17,7 +17,7 @@ export default function BreadCrumbs(props) {
       <strong className="mt-2 mx-2">
         <FontAwesomeIcon
           icon={faCaretRight}
-          className={`${textStyles.redTitle} ${widthStyles.mw6} h6`}
+          className={`${textStyles.redTitle} ${widthStyles.mw6} mb-0 h6`}
         />
       </strong>
       {breadCrumb.map((val, indx) => (indx < breadCrumb.length - 1 ? (
