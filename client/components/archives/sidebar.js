@@ -1,6 +1,6 @@
+import TrendingStories from 'components/trending-stories';
 import Search from '../search';
 import AboutFirm from '../about-firm';
-import TrendingStories from 'components/trending-stories';
 
 export default function ArchivesSideBar({ trending }) {
   return (

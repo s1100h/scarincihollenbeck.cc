@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import SubscriptionFormWithButton from './subscription-form-with-button';
 import styles from 'styles/SidebarTitle.module.css';
+import SubscriptionFormWithButton from './subscription-form-with-button';
 
 export default function SubscriptionMessage() {
   return (
@@ -26,7 +26,7 @@ export default function SubscriptionMessage() {
         </p>
         <div className="mb-3 pb-3">
           <SubscriptionFormWithButton />
-        </div>        
+        </div>
       </div>
     </div>
   );

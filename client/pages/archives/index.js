@@ -86,7 +86,7 @@ export async function getStaticProps() {
       firmNews: firmNewsContent || [],
       firmEvents: firmEventsContent || [],
       firmInsights: firmInsightsContent || [],
-      posts
+      posts,
     },
     revalidate: 1,
   };

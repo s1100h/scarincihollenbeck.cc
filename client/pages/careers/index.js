@@ -1,54 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import useSWR from 'swr';
+import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
 import CareerSection from 'components/archivecareers';
 import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity';
-import client from 'utils/graphql-client';
-import { getAllCareers } from 'queries/careers';
+import SiteLoader from 'components/site-loader';
+import ErrorMessage from 'components/error-message';
+import { queryCareers } from 'queries/careers';
 
-export default function CareersPage({ careers, positionTypes, locations }) {
+export default function CareersPage({ positionTypes, locations }) {
   const router = useRouter();
-  const [parseCheck, setparseCheck] = useState(true);
-  const [filteredCareers, setFilteredCareers] = useState([]);
   const [query, setQuery] = useState('');
+  const [location, setLocation] = useState('');
+  const [positionType, setPositionType] = useState('');
+  const [queryParams, setQueryParams] = useState({});
+
+  // fetch careers
+  const { data: res, error: resError } = useSWR(
+    queryCareers(JSON.stringify(queryParams)),
+    (q) => request('https://wp.scarincihollenbeck.com/graphql', q),
+  );
+
+  if (resError) return <ErrorMessage />;
+  if (!res) return <SiteLoader />;
 
   function executeSearch() {
+    const dynamicQuery = {
+      location,
+      positionType,
+      query,
+    };
+
+    Object.keys(dynamicQuery).forEach((key) => {
+      if (dynamicQuery[key] === '') {
+        delete dynamicQuery[key];
+      }
+    });
+
     router.push({
       pathname: '/careers',
-      query: { query },
+      query: dynamicQuery,
     });
   }
-
-  useEffect(() => {
-    function parseSearchQuery(q) {
-      if (Object.keys(q).length > 0) {
-        console.log(q);
-        console.log(careers);
-        const parseCareersFromQuery = careers.filter((c) => {
-          if (c.careerFields.positionLocation.indexOf(q.location)) {
-            return c;
-          }
-
-          if (c.careerFields.positionType.indexOf(q.positionType)) {
-            return c;
-          }
-          return c;
-        });
-        console.log('filtered');
-        console.log(parseCareersFromQuery);
-        setparseCheck(false);
-      } else {
-        setFilteredCareers(careers);
-      }
-    }
-
-    if (parseCheck) {
-      parseSearchQuery(router.query);
-    }
-  });
 
   return (
     <>
@@ -65,11 +62,13 @@ export default function CareersPage({ careers, positionTypes, locations }) {
         />
         <FullWidth>
           <CareerSection
-            careers={filteredCareers}
-            postionType={positionTypes}
-            location={locations}
+            careers={res.careers || res.searchWP}
+            positionTypes={positionTypes}
+            locations={locations}
             query={query}
             setQuery={setQuery}
+            setLocation={setLocation}
+            setPositionType={setPositionType}
             executeSearch={executeSearch}
           />
           <CareersEqualOpportunity />
@@ -81,12 +80,14 @@ export default function CareersPage({ careers, positionTypes, locations }) {
 }
 
 export async function getStaticProps() {
-  const res = await client.query(getAllCareers, {});
-
   return {
     props: {
-      locations: [],
-      careers: res.data.careers.nodes,
+      locations: [
+        'Lyndhurst, NJ',
+        'Red Bank, NJ',
+        'New York, NY',
+        'Washington D.C.',
+      ],
       positionTypes: [
         'Administration',
         'Attorney',

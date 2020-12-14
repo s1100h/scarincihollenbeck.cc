@@ -8,8 +8,8 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 import { blogArticlesQuery } from 'queries/home';
 import { request } from 'graphql-request';
 import styles from 'styles/carousels/JustIn.module.css';
-import SiteLoader from '../site-loader';
-import ErrorMessage from '../error-message';
+import SiteLoader from 'components/site-loader';
+import ErrorMessage from 'components/error-message';
 
 const jiResponsive = {
   superLargeDesktop: {

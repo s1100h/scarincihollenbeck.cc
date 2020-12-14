@@ -33,9 +33,9 @@ export default function AuthorSideBar({ bio, practices }) {
               {practices.relatedPractices.map((p) => (
                 <li key={p.id}>
                   <Link href={p.uri}>
-                  <a className={`${styles.lh22px} text-dark`}>
-                    <strong>{p.title}</strong>
-                  </a>
+                    <a className={`${styles.lh22px} text-dark`}>
+                      <strong>{p.title}</strong>
+                    </a>
                   </Link>
                 </li>
               ))}

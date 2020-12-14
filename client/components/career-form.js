@@ -9,8 +9,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 import FormReCaptcha from 'components/google-recaptcha-button';
 import useInput from 'utils/input-hook';
-import styles from 'styles/CareerForm.module.css'
-
+import styles from 'styles/CareerForm.module.css';
 
 function bytesToSize(bytes) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];

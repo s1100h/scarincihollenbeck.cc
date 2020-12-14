@@ -1,4 +1,4 @@
-import Navbar from 'react-bootstrap/Navbar';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,8 +11,14 @@ import styles from 'styles/AttorneyArchives.module.css';
 export default function CareersFilterForms({
   setQuery,
   query,
-  executeSearch
+  executeSearch,
+  locations,
+  positionTypes,
+  setPositionType,
+  setLocation,
 }) {
+  const [locationTitle, setLocationTitle] = useState('Filter by location');
+  const [positionTitle, setPositionTitle] = useState('Filter by type');
   return (
     <>
       <Container className={`${styles.lightGrayBackground} border p-2`}>
@@ -29,19 +35,35 @@ export default function CareersFilterForms({
             </Form>
           </Col>
           <Col sm={12} md={3}>
-            <DropdownButton variant="link" title="Filter by location" className={`${styles.filter} my-3 my-md-0`}>
-              <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
-              <Dropdown.Item as="button">Action</Dropdown.Item>
-              <Dropdown.Item as="button">Another action</Dropdown.Item>
-              <Dropdown.Item as="button">Something else</Dropdown.Item>
+            <DropdownButton variant="link" title={locationTitle} className={`${styles.filter} my-3 my-md-0`}>
+              {locations.map((location) => (
+                <Dropdown.Item
+                  key={location}
+                  value={location}
+                  onClick={() => {
+                    setLocationTitle(location);
+                    setLocation(location);
+                  }}
+                >
+                  {location}
+                </Dropdown.Item>
+              ))}
             </DropdownButton>
           </Col>
           <Col sm={12} md={3}>
-            <DropdownButton variant="link" title="Filter by type" className={`${styles.filter} mb-3 mb-md-0`}>
-              <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
-              <Dropdown.Item as="button">Action</Dropdown.Item>
-              <Dropdown.Item as="button">Another action</Dropdown.Item>
-              <Dropdown.Item as="button">Something else</Dropdown.Item>
+            <DropdownButton variant="link" title={positionTitle} className={`${styles.filter} mb-3 mb-md-0`}>
+              {positionTypes.map((position) => (
+                <Dropdown.Item
+                  key={position}
+                  value={position}
+                  onClick={() => {
+                    setPositionTitle(position);
+                    setPositionType(position);
+                  }}
+                >
+                  {position}
+                </Dropdown.Item>
+              ))}
             </DropdownButton>
           </Col>
           <Col sm={12} md={2}>
@@ -53,7 +75,7 @@ export default function CareersFilterForms({
               Search
             </Button>
           </Col>
-         
+
         </Row>
       </Container>
     </>
