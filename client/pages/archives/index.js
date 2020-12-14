@@ -4,13 +4,11 @@ import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import { request } from 'graphql-request';
 import Footer from 'components/footer';
-import Breadcrumbs from 'components/breadcrumbs';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import ArchivesBody from 'components/archives/body';
 import ArchivesSidebar from 'components/archives/sidebar';
 import ArchiveLayout from 'layouts/archive-layout';
-import { makeQueryTitle } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 import { getArchivesPosts } from 'queries/archive';
@@ -42,12 +40,7 @@ export default function ArchivesLandingPage({
     <div className="mt-3">
       <NextSeo nofollow />
       <ArchiveLayout
-        header={(
-          <Breadcrumbs
-            breadCrumb={[makeQueryTitle(router.query.q), router.query.page]}
-            categorySlug={router.query.q}
-          />
-        )}
+        header={''}
         body={(
           <ArchivesBody
             results={archivesPosts.posts.edges}

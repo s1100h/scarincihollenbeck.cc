@@ -57,7 +57,7 @@ export default function ArchivesBody({
   const prev = parseInt(currentPage, 10) - 1;
 
   return (
-    <Container className="px-0">
+    <Container className="px-0 mt-2">
       <Row>
         <Col sm={12} md={6} className="px-0">
           {results.map(

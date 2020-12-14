@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import SingleCareerBreadCrumbs from 'components/singlecareer/breadcrumbs';
+import BreadCrumbs from 'components/breadcrumbs';
 import SingleCareerBody from 'components/singlecareer/body';
 import SingleCareerSidebar from 'components/singlecareer/sidebar';
 import { getAllCareers, getSingleCareer } from 'queries/careers';
@@ -24,7 +24,7 @@ export default function CareerPost({ career }) {
       <LargeSidebar
         body={(
           <>
-            <SingleCareerBreadCrumbs title={career.title} />
+            <BreadCrumbs />
             <SingleCareerBody
               title={career.title}
               position={career.careerFields.positionDescription}

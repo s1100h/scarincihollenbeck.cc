@@ -1,13 +1,11 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Error from 'pages/_error';
-import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import FullWidth from 'layouts/full-width';
 import LargeSidebar from 'layouts/large-sidebar';
 import Search from 'components/search';
-import Breadcrumbs from 'components/category/breadcrumbs';
+import BreadCrumbs from 'components/Breadcrumbs'
 import MainArticlesContainer from 'components/category/main-articles-container';
 import MainSidebarContent from 'components/category/main-sidebar-content';
 import CategoryHeader from 'components/category/header';
@@ -15,28 +13,54 @@ import CategorySliderContainer from 'components/category/slider-container';
 import ColumnContent from 'components/category/column-content';
 import Footer from 'components/footer';
 import {
-  headers,
   sortByKey,
   urlify,
 } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { getAllCategories, getFirst10PostsFromSlug } from 'queries/category';
 
 export default function CategoryLandingPage({
-  category,
-  seo,
-  corePractices,
-  firmCategories,
+  posts, description, name, seo, uri, children
 }) {
-  const router = useRouter();
-  const categorySlug = router.asPath.split('/');
-  const categoryTitle = categorySlug[categorySlug.length - 1];
 
-  if (category.status === 404) {
-    return <Error statusCode={404} />;
-  }
-
+  console.log({
+    posts, description, name, seo, uri, children
+  });
   return (
     <>
-      {router.isFallback ? (
+      <NextSeo
+        title={
+          seo.title || `${name} Legal Blog | Scarinci Hollenbeck`
+        }
+        description={seo.metaDesc || ''}
+        canonical={`http://scarincihollenbeck.com${seo.uri}`}
+      />
+      <FullWidth>
+        <BreadCrumbs />
+      </FullWidth>
+      <LargeSidebar
+        body={(
+          <CategoryHeader
+            title={name}
+            content={description}
+          />
+        )}
+        sidebar={(
+          <>
+            <small className="mb-3">
+              Not what you are looking for? Feel free to see search out
+              site to find the right attorney for your business.
+            </small>
+            <Search />
+          </>
+        )}
+      />
+      <LargeSidebar
+        body={<MainArticlesContainer main={[]} />}
+        sidebar={<MainSidebarContent latest={[]} />}
+      />
+      We'll get there...
+      {/* {router.isFallback ? (
         <Container>
           <Row
             id="page-loader-container"
@@ -47,34 +71,12 @@ export default function CategoryLandingPage({
         </Container>
       ) : (
         <>
-          <NextSeo
-            title={
-              seo.title || `${categoryTitle} Legal Blog | Scarinci Hollenbeck`
-            }
-            description={seo.metaDescription || ''}
-            canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-          />
+
           <div id="category">
             <FullWidth>
               <Breadcrumbs category={category} />
             </FullWidth>
-            <LargeSidebar
-              body={(
-                <CategoryHeader
-                  title={categoryTitle}
-                  content={category.description}
-                />
-              )}
-              sidebar={(
-                <>
-                  <small className="mb-3">
-                    Not what you are looking for? Feel free to see search out
-                    site to find the right attorney for your business.
-                  </small>
-                  <Search />
-                </>
-              )}
-            />
+
             <LargeSidebar
               body={<MainArticlesContainer main={category.main} />}
               sidebar={<MainSidebarContent latest={category.latest} />}
@@ -142,42 +144,38 @@ export default function CategoryLandingPage({
                 </a>
               </p>
             </FullWidth>
-          </div>
-          <Footer />
+          </div> */}
+      {/* <Footer />
         </>
-      )}
+      )} */}
     </>
   );
 }
-
-export async function getServerSideProps({ params, res }) {
-  const [category, firmCategories, corePractices] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${
-        params.slug[params.slug.length - 1]
-      }`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-
-  if (category.status === 404 && res) {
-    res.statusCode = 404;
-  }
+export async function getStaticPaths() {
+  const res = await client.query(getAllCategories, {});
 
   return {
+    paths:
+      res.data.categories.nodes.map((a) => a.uri)
+      || [],
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const categoryFromUrl = params.slug[params.slug.length - 1];
+  const res = await client.query(getFirst10PostsFromSlug(categoryFromUrl), {});
+  console.log('res')
+  console.log(res.data.categories.nodes)
+  return {
     props: {
-      category,
-      current: params.slug,
-      seo: category.seo || {},
-      firmCategories,
-      corePractices,
+      name: res.data.categories.nodes[0].name,
+      description: res.data.categories.nodes[0].description,
+      posts: res.data.categories.nodes[0].posts.edges,
+      seo: res.data.categories.nodes[0].seo,
+      uri: res.data.categories.nodes[0].uri,
+      children: res.data.categories.nodes[0].children.nodes
     },
+    revalidate: 1
   };
 }

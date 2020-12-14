@@ -1,44 +1,55 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import textStyles from 'styles/Text.module.css';
-import widthStyles from 'styles/utils/Spacing.module.css';
+import { makeTitle } from 'utils/helpers';
 
-export default function BreadCrumbs(props) {
-  const { breadCrumb, categorySlug } = props;
+export default function BreadCrumbs() {
+  const router = useRouter();
+  let buildUrl = '/';
+  const breadCrumbArr = router.asPath.split('/').filter((crumb) => {
+    if (crumb !== '') {
+      return crumb;
+    }
+  });
+
+  const formattedBreadCrumbArr = breadCrumbArr.map((crumb, index) => {
+    buildUrl += `${breadCrumbArr[index].toString()}/`;
+
+    return {
+      url: buildUrl,
+      title: makeTitle(crumb),
+    };
+  });
 
   return (
-    <>
-      <Link href="/">
-        <a className={`${textStyles.redTitle} h6`}>
-          <strong>HOME</strong>
-        </a>
-      </Link>
-      <strong className="mt-2 mx-2">
-        <FontAwesomeIcon
-          icon={faCaretRight}
-          className={`${textStyles.redTitle} ${widthStyles.mw6} mb-0 h6`}
-        />
-      </strong>
-      {breadCrumb.map((val, indx) => (indx < breadCrumb.length - 1 ? (
-        <span key={val}>
-          <strong className={`${textStyles.redTitle} text-uppercase h6`}>
-            {val === categorySlug ? <u>{categorySlug}</u> : `${categorySlug}`}
-          </strong>
-          <strong className="text-black mt-2 mx-2">
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={`${textStyles.redTitle} ${widthStyles.mw6}`}
-            />
-          </strong>
-        </span>
-      ) : (
-        <span key={val}>
-          <strong className={`${textStyles.redTitle} h6`}>
-            {val === categorySlug ? <u>{val}</u> : `${val}`}
-          </strong>
-        </span>
-      )))}
-    </>
+    <ul className="list-inline">
+      <li className="list-inline-item">
+        <Link href="/">
+          <a className={`${textStyles.redTitle} text-uppercase`}>
+            <strong>
+              Home
+              {' '}
+              <FontAwesomeIcon icon={faCaretRight} />
+            </strong>
+          </a>
+        </Link>
+      </li>
+      {formattedBreadCrumbArr.map((crumb, index) => 
+        (crumb.title !== 'CATEGORY') && (
+          <li key={crumb.title} className="list-inline-item">
+            <Link href={crumb.url}>
+              <a className={`${textStyles.redTitle} text-uppercase`}>
+                <strong>
+                  {crumb.title}
+                  {' '}
+                  {(breadCrumbArr.length - 1 !== index) && <FontAwesomeIcon icon={faCaretRight} />}
+                </strong>
+              </a>
+            </Link>
+          </li>
+        ))}
+    </ul>
   );
 }

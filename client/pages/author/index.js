@@ -3,7 +3,6 @@ import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import { request } from 'graphql-request';
 import Footer from 'components/footer';
-import Breadcrumbs from 'components/breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import ArcivhesBody from 'components/archives/body';
 import ArcivhesSidebar from 'components/author/sidebar';
@@ -42,12 +41,7 @@ export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }
     <div className="mt-3">
       <NextSeo nofollow />
       <ArchiveLayout
-        header={(
-          <Breadcrumbs
-            breadCrumb={[router.query.name, router.query.page]}
-            categorySlug={router.query.name}
-          />
-        )}
+        header={''}
         body={(
           <ArcivhesBody
             results={authorPosts.posts.edges}

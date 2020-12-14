@@ -1,19 +1,20 @@
-import { createMarkup, makeTitle } from '../../utils/helpers';
+import { createMarkup } from 'utils/helpers';
+import textStyles from 'styles/Text.module.css';
+import fontStyles from 'styles/Fonts.module.css';
 
 export default function CategoryHeader({ title, content }) {
-  const categorySlug = title.split('/');
-  const categoryTitle = categorySlug[categorySlug.length - 1];
-
   return (
-    <div className="w-100" id="category-header">
-      <h1 className="proxima-bold red-title mb-2">
-        {makeTitle(categoryTitle)}
+    <div className="w-100">
+      <h1 className={`${textStyles.redTitle} mb-2 text-uppercase display-4`}>
+        <strong>
+          {title}
+        </strong>
       </h1>
       <h2
         dangerouslySetInnerHTML={createMarkup(content)}
-        className="proxima-regular category-description"
+        className={fontStyles.ft13remLineHeight15}
       />
-      <hr className="mt-1 pt-1" />
+      <hr className="py-2" />
     </div>
   );
 }
