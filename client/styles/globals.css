@@ -22,3 +22,8 @@
 .mw-45 {
   width: 55%;
 }
+
+.show > .btn-primary.dropdown-toggle {
+  background-color: #fff;
+  color: #000;
+}

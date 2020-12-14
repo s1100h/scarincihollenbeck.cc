@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import FullWidth from 'layouts/full-width';
@@ -8,33 +9,46 @@ import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity
 import client from 'utils/graphql-client';
 import { getAllCareers } from 'queries/careers';
 
-export default function CareersPage({ careers }) {
-  const [keyword, setKeyword] = useState('');
-  const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
+export default function CareersPage({ careers, positionTypes, locations }) {
+  const router = useRouter();
+  const [parseCheck, setparseCheck] = useState(true);
+  const [filteredCareers, setFilteredCareers] = useState([]);
+  const [query, setQuery] = useState('');
 
-  function filterTerm(e) {
-    const kw = e.target.value;
-    setKeyword(kw);
+  function executeSearch() {
+    router.push({
+      pathname: '/careers',
+      query: { query },
+    });
   }
 
-  function selectOption(e) {
-    const { name, innerText } = e.target;
+  useEffect(() => {
+    function parseSearchQuery(q) {
+      if (Object.keys(q).length > 0) {
+        console.log(q);
+        console.log(careers);
+        const parseCareersFromQuery = careers.filter((c) => {
+          if (c.careerFields.positionLocation.indexOf(q.location)) {
+            return c;
+          }
 
-    if (name === 'location') {
-      setLocation(innerText);
+          if (c.careerFields.positionType.indexOf(q.positionType)) {
+            return c;
+          }
+          return c;
+        });
+        console.log('filtered');
+        console.log(parseCareersFromQuery);
+        setparseCheck(false);
+      } else {
+        setFilteredCareers(careers);
+      }
     }
 
-    if (name === 'type') {
-      setType(innerText);
+    if (parseCheck) {
+      parseSearchQuery(router.query);
     }
-  }
-
-  function clearFilter() {
-    setKeyword('');
-    setLocation('');
-    setType('');
-  }
+  });
 
   return (
     <>
@@ -51,13 +65,12 @@ export default function CareersPage({ careers }) {
         />
         <FullWidth>
           <CareerSection
-            careers={careers}
-            keyword={keyword}
-            type={type}
-            location={location}
-            selectOption={selectOption}
-            filterTerm={filterTerm}
-            clearFilter={clearFilter}
+            careers={filteredCareers}
+            postionType={positionTypes}
+            location={locations}
+            query={query}
+            setQuery={setQuery}
+            executeSearch={executeSearch}
           />
           <CareersEqualOpportunity />
         </FullWidth>
@@ -70,16 +83,14 @@ export default function CareersPage({ careers }) {
 export async function getStaticProps() {
   const res = await client.query(getAllCareers, {});
 
-  // const [careerJson] = await Promise.all([
-  //   fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, {
-  //     headers,
-  //   }).then((data) => data.json()),
-  // ]);
-  // const { seo } = careerJson;
-
   return {
     props: {
+      locations: [],
       careers: res.data.careers.nodes,
+      positionTypes: [
+        'Administration',
+        'Attorney',
+      ],
     },
     revalidate: 1,
   };
