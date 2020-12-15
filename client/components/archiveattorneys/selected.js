@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import textStyles from 'styles/Text.module.css';
 
 export default function Selected({ select, userInput, clearQuery }) {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
@@ -8,24 +8,26 @@ export default function Selected({ select, userInput, clearQuery }) {
     <ul className="no-dots list-inline my-2 mx-0">
       {userInput.length > 0 && (
         <li className="list-inline-item">
-          <button
-            type="button"
-            className="btn btn-link red-title proxima-bold"
+          <Button
+            variant="link"
+            className={textStyles.redTitle}
             id={userInput}
             onClick={() => clearQuery('query')}
             data-toggle="tooltip"
             data-placement="top"
             title="Click on link to remove filter"
           >
-            {userInput}
-          </button>
+            <strong>
+              {userInput}
+            </strong>
+          </Button>
         </li>
       )}
       {nonUserInputResults.map((s) => (
         <li className=" list-inline-item" key={s.key}>
-          <button
-            type="button"
-            className="btn btn-link red-title proxima-bold"
+          <Button
+            variant="link"
+            className={textStyles.redTitle}
             id={s.selected}
             onClick={() => clearQuery(s.key)}
             data-toggle="tooltip"
@@ -33,8 +35,10 @@ export default function Selected({ select, userInput, clearQuery }) {
             data-html="true"
             title="Click on link to remove filter"
           >
-            {s.selected}
-          </button>
+            <strong>
+              {s.selected}
+            </strong>
+          </Button>
         </li>
       ))}
     </ul>

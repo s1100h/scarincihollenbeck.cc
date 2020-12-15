@@ -15,7 +15,7 @@ import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
 import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
-import SingleAttorneyBiography from 'components/singleattorney/SingleAttorneyBiography';
+import SingleAttorneyBiography from 'components/singleattorney/biography';
 import SingleAttorneyMatters from 'components/singleattorney/matters';
 import SingleAttorneyTableTab from 'components/singleattorney/table';
 import SingleAttorneyArticles from 'components/singleattorney/articles';
@@ -519,7 +519,7 @@ export async function getStaticProps({ params, res }) {
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`,
+      `https://wp.scarincihollenbeck.com/wp-json/individual-attorney/attorney/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);

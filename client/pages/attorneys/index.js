@@ -1,68 +1,78 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import useSWR from 'swr';
-import { headers, sortByKey } from 'utils/helpers';
-import SiteLoader from 'components/site-loader';
-import ErrorMessage from 'components/error-message';
-import Error from 'pages/_error';
 import Footer from 'components/footer';
 import Selected from 'components/archiveattorneys/selected';
 import Filters from 'components/archiveattorneys/filters';
 import Results from 'components/archiveattorneys/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import {
-  attorneySearch,
-  allLocations,
-  allPractices,
-} from 'queries/attorney-archive';
+import { headers, sortByKey } from 'utils/helpers';
 
-export default function Attorneys() {
-  const router = useRouter();
-  const { data: results, error: resultsError } = useSWR(
-    attorneySearch(router.query),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
-  );
 
-  if (results) return <ErrorMessage />;
-  if (!resultsError) return <SiteLoader />;
+export default function Attorneys({ seo, locations, designations, practices, attorneys }) {
+  const [userInput, setUserInput] = useState('');
+  const [select, setSelect] = useState([]);
 
-  const alphabet = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
+  /* Click Events */
+  function onSelect(e, input) {
+    const selected = input;
+    const key = e.target.name;
+    const results = { selected, key };
+    console.log(results)
+    const s = select.filter((a) => a.key !== key);
+    const concatResults = s.concat(results);
+
+    // set new results[] to state select
+    setSelect(concatResults);
+  }
+
+
+  /* Letter Click Event */
+  function letterClick(e) {
+    const selected = e.target.innerHTML;
+    const key = 'letter';
+    const results = { selected, key };
+    const s = select.filter((a) => a.key !== key);
+    const concatResults = s.concat(results);
+
+    // set new results[] to state select
+    setSelect(concatResults);
+  }
+
+  /* Handle User Input Event */
+  function handleChange(e) {
+    const input = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    const results = { selected: userInput, key: 'query' };
+    console.log('results', results)
+    const concatResults = select.concat(results);
+    setUserInput(input);
+    setSelect(concatResults);
+  }
+
+  /** Clear user query */
+  function clearQuery(key) {
+    const rQuery = select.filter((a) => a.key !== key);
+
+    setUserInput('');
+    setSelect(rQuery);
+  }
+
+  /** Clear all queries */
+  function clearAll() {
+    setUserInput('');
+    setSelect([]);
+  }
+
+  // sort practices, designations, location
+  const sPractices = sortByKey(practices, 'title');
+  const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   return (
     <>
       <NextSeo
-        title="Find an Attorney | Scarinci Hollenbeck, LLC"
-        description="In Scarinci Hollenbeck's attorneys archive, you can find one of our skillful attorneys who can service your business legal needs."
-        canonical="http://scarincihollenbeck.com/attorneys"
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/attorneys`}
       />
       <SingleSubHeader
         title="Attorneys"
@@ -71,10 +81,9 @@ export default function Attorneys() {
         height="330px"
       />
       <FullWidth>
-        <div className="mb-5">
+        <div id="attorney-archive" className="mb-5">
           {/** Filters */}
-          Well get back to filers
-          {/* <Filters
+          <Filters
             practices={sPractices}
             alphabet={alphabet}
             locations={locations}
@@ -84,19 +93,41 @@ export default function Attorneys() {
             onSelect={onSelect}
             letterClick={letterClick}
             clearAll={clearAll}
-          /> */}
+          />
           {/** End of Filters */}
           {/** Results */}
           <div className="w-100 border mt-sm-6 mt-md-0">
-            {/* <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
-            {(attorneys.length > 0) &&} */}
-            {/* <Results attorneys={attorneys} userInput={userInput} select={select} /> */}
-            Well get back to results
+            <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
+            {(attorneys.length > 0) && (
+            <Results attorneys={attorneys} userInput={userInput} select={select} />
+            )}
           </div>
           {/** End of Results */}
         </div>
       </FullWidth>
       <Footer />
+
     </>
   );
+}
+
+export async function getStaticProps() {
+  // Keep attorney-search API endpoint
+  const [attorneys, locations, designations, practices, seo] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/office-locations', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/designations', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/meta', { headers }).then((data) => data.json()),
+  ]);
+
+  return {
+    props: {
+      seo,
+      locations,
+      designations,
+      practices,
+      attorneys,
+    },
+  };
 }

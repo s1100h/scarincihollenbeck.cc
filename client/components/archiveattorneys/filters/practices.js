@@ -1,44 +1,40 @@
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
-import { addRandomKey } from '../../../utils/helpers';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import styles from 'styles/AttorneyArchives.module.css';
+import megaMenuStyles from 'styles/MegaMenu.module.css';
 
 function PracticeListItem({ title, onSelect, pChildren }) {
   return (
     <>
-      <p className="practice-title">
-        <button
-          onClick={(e) => onSelect(e, title)}
-          name="practices"
-          type="button"
-          className="proxima-bold practice-link btn btn-link"
-        >
-          {title}
-        </button>
-      </p>
-      <div className="practice-children">
+      <Dropdown.Item
+        name="practices"
+        variant="link"
+        onClick={(e) => onSelect(e, title)}
+        className={styles.practiceTitle}
+      >
+        {title}
+      </Dropdown.Item>
+      <>
         {pChildren.map((fc) => (
-          <button
-            key={addRandomKey(fc.ID.toString())}
-            type="button"
+          <Dropdown.Item
+            key={fc.ID}
+            variant="link"
             name="practices"
             onClick={(e) => onSelect(e, fc.title)}
-            className="dropdown-item btn btn-link"
           >
             {fc.title}
-          </button>
+          </Dropdown.Item>
         ))}
-      </div>
+      </>
     </>
   );
 }
 
-export default function ArchiveAttorneyFitlersPractices(props) {
-  const { practices, onSelect, removeVisibilityClass } = props;
-
+export default function ArchiveAttorneyFitlersPractices({ practices, onSelect }) {
   /**
    *
    * Filter each item into a column
@@ -46,67 +42,55 @@ export default function ArchiveAttorneyFitlersPractices(props) {
    * */
 
   // bankruptcy, intel, public
-  const bce = practices.filter((b) => (b.id === 28345 || b.id === 29587 || b.id === 28276 ? b : ''));
+  const bce = practices.filter((b) => (b.ID === 28345 || b.ID === 29587 || b.ID === 28276 ? b : ''));
 
   // commerical, labor, tax
-  const cl = practices.filter((b) => (b.id === 29624 || b.id === 28271 || b.id === 29588 ? b : ''));
+  const cl = practices.filter((b) => (b.ID === 29624 || b.ID === 28271 || b.ID === 29588 ? b : ''));
 
   // corporate
-  const li = practices.filter((b) => b.id === 28270);
+  const li = practices.filter((b) => b.ID === 28270);
 
   // env, litigation
-  const pt = practices.filter((b) => (b.id === 28273 || b.id === 28274 ? b : ''));
+  const pt = practices.filter((b) => (b.ID === 28273 || b.ID === 28274 ? b : ''));
 
   return (
-    <NavDropdown
-      title={(
-        <>
-          Filter by practice
-          <FontAwesomeIcon
-            icon={faCaretDown}
-            className="ml-5 icon-w8px-h20px"
-          />
-        </>
-      )}
-      id="basic-nav-dropdown"
-      className="bg-white rounded position-static"
-    >
+    <DropdownButton variant="link" title="Filter by practice" className={`${styles.filter} ${megaMenuStyles.menu} my-3 my-md-0`}>
       <Container className="mt--1 p-0" fluid>
         <Row className="rounded-0 m-0 w-100">
-          <Col sm={12} md={3} className=" mt-md-3">
+          <Col sm={12} md={3} className="mt-md-3">
             {bce.map((ft) => (
               <PracticeListItem
-                key={addRandomKey(ft.id.toString())}
+                key={ft.ID}
                 title={ft.title}
                 onSelect={onSelect}
                 pChildren={ft.children}
               />
             ))}
           </Col>
-          <Col sm={12} md={3} className=" mt-md-3">
+          <Col sm={12} md={3} className="mt-md-3">
             {cl.map((ft) => (
               <PracticeListItem
-                key={addRandomKey(ft.id.toString())}
+                key={ft.ID}
                 title={ft.title}
                 onSelect={onSelect}
                 pChildren={ft.children}
               />
             ))}
           </Col>
-          <Col sm={12} md={3} className=" mt-md-3">
+          <Col sm={12} md={3} className="mt-md-3">
             {li.map((ft) => (
               <PracticeListItem
-                key={addRandomKey(ft.id.toString())}
+                key={ft.ID}
                 title={ft.title}
                 onSelect={onSelect}
                 pChildren={ft.children}
               />
             ))}
           </Col>
-          <Col sm={12} md={3} className=" mt-md-3">
+          <Col sm={12} md={3} className="mt-md-3">
             {pt.map((ft) => (
               <PracticeListItem
-                key={addRandomKey(ft.id.toString())}
+                key={ft.ID}
                 title={ft.title}
                 onSelect={onSelect}
                 pChildren={ft.children}
@@ -115,6 +99,6 @@ export default function ArchiveAttorneyFitlersPractices(props) {
           </Col>
         </Row>
       </Container>
-    </NavDropdown>
+    </DropdownButton>
   );
 }

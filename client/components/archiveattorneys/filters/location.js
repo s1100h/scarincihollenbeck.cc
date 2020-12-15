@@ -1,33 +1,21 @@
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
+import React from 'react';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import styles from 'styles/AttorneyArchives.module.css';
 
 export default function ArchiveAttorneyFitlersLocation({ locations, onSelect }) {
   return (
-    <NavDropdown
-      title={(
-        <>
-          Filter by location
-          <FontAwesomeIcon
-            icon={faCaretDown}
-            className="ml-5 icon-w8px-h20px"
-          />
-        </>
-      )}
-      id="basic-nav-dropdown"
-      className="bg-white rounded"
-    >
+    <DropdownButton variant="link" title="Filter by location" className={`${styles.filter} my-3 my-md-0`}>
       {locations.map((location) => (
-        <NavDropdown.Item
+        <Dropdown.Item
           key={location.ID}
-          type="button"
+          value={location.title}
           name="location"
-          className="btn btn-link w-100"
           onClick={(e) => onSelect(e, location.title)}
         >
           {location.title}
-        </NavDropdown.Item>
+        </Dropdown.Item>
       ))}
-    </NavDropdown>
+    </DropdownButton>
   );
 }
