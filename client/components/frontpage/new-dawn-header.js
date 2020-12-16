@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import styled from 'styled-components';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import styled from 'styled-components';
-import FrontSearch from './front-search';
-import btnStyles from '../../styles/Buttons.module.css';
-import styles from '../../styles/frontpage/NewDawn.module.css';
+import FrontSearch from 'components/frontpage/front-search';
+import btnStyles from 'styles/Buttons.module.css';
+import styles from 'styles/NewDawn.module.css';
 
 const HeaderBackground = styled.div`
   background: url(${(props) => props.image}) no-repeat 50%;

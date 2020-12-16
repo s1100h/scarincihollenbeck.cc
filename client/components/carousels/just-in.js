@@ -7,7 +7,7 @@ import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 import { blogArticlesQuery } from 'queries/home';
 import { request } from 'graphql-request';
-import styles from 'styles/carousels/JustIn.module.css';
+import styles from 'styles/JustIn.module.css';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 

@@ -36,8 +36,13 @@
   background-color: #444;
   text-shadow: 1px 2px 1px #000;
   text-transform: uppercase;
-  transition: .3 ease-in;
-  word-wrap: break-word;
+  transition: all 200ms linear;  
+  white-space: pre-line;
+  margin-bottom: 10px;
+  padding: 0;
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 3px;
 }
 
 .practiceTitle:hover {
@@ -49,8 +54,15 @@
   border-bottom: 3px solid #db2220;
 }
 
-.practiceTitle > a {
-  margin-left: 0;
-  margin-right: 0;
-  word-wrap: break-word;
+.childPracticeLink {
+  padding: 0;
+  padding-right: 8px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  white-space: pre-line;
+  font-weight: bold;
+}
+
+.childPracticeLink:hover {
+  text-decoration: underline;
 }

@@ -15,15 +15,15 @@ export default function Attorneys({ seo, locations, designations, practices, att
 
   /* Click Events */
   function onSelect(e, input) {
-    const selected = input;
-    const key = e.target.name;
-    const results = { selected, key };
-    console.log(results)
-    const s = select.filter((a) => a.key !== key);
-    const concatResults = s.concat(results);
+    const results = {
+      selected: input,
+      key: e.target.name
+    };
 
-    // set new results[] to state select
-    setSelect(concatResults);
+ 
+    console.log(select.filter((a) => a.key !== results.key))
+
+    setSelect(select.filter((a) => a.key !== results.key).concat(results));
   }
 
 
@@ -43,8 +43,8 @@ export default function Attorneys({ seo, locations, designations, practices, att
   function handleChange(e) {
     const input = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
     const results = { selected: userInput, key: 'query' };
-    console.log('results', results)
     const concatResults = select.concat(results);
+    
     setUserInput(input);
     setSelect(concatResults);
   }

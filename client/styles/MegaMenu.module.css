@@ -1,4 +1,5 @@
+
+/** Starting at 0 **/
 .menu > div {  
-  min-width: 1109px;
-  left: -382px !important;
+  min-width: 100%;
 }

@@ -10,7 +10,8 @@ export default function ArchiveAttorneyFitlersTitle({ designation, onSelect }) {
         <Dropdown.Item
           key={desig.ID}
           value={desig.title}
-          name="title"
+          name="title"          
+          className="font-weight-bold"
           onClick={(e) => onSelect(e, desig.title)}
         >
           {desig.title}

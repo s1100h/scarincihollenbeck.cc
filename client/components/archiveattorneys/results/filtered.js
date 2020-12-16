@@ -12,7 +12,7 @@ export default function ArchiveAttorneyResultsFiltered({
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');
-  const desgination = filterByKey(select, 'designation');
+  const desgination = filterByKey(select, 'title');
   const location = filterByKey(select, 'location');
 
   // filter by key -- practice

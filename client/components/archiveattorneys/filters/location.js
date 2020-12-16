@@ -10,7 +10,8 @@ export default function ArchiveAttorneyFitlersLocation({ locations, onSelect }) 
         <Dropdown.Item
           key={location.ID}
           value={location.title}
-          name="location"
+          name="location"          
+          className="font-weight-bold"
           onClick={(e) => onSelect(e, location.title)}
         >
           {location.title}

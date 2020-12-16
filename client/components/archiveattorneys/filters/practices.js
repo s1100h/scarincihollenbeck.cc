@@ -9,7 +9,7 @@ import megaMenuStyles from 'styles/MegaMenu.module.css';
 
 function PracticeListItem({ title, onSelect, pChildren }) {
   return (
-    <>
+    <div>
       <Dropdown.Item
         name="practices"
         variant="link"
@@ -18,19 +18,18 @@ function PracticeListItem({ title, onSelect, pChildren }) {
       >
         {title}
       </Dropdown.Item>
-      <>
-        {pChildren.map((fc) => (
-          <Dropdown.Item
-            key={fc.ID}
-            variant="link"
-            name="practices"
-            onClick={(e) => onSelect(e, fc.title)}
-          >
-            {fc.title}
-          </Dropdown.Item>
-        ))}
-      </>
-    </>
+      {pChildren.map((fc) => (
+        <Dropdown.Item
+          key={fc.ID}
+          variant="link"
+          name="practices"
+          className={styles.childPracticeLink}
+          onClick={(e) => onSelect(e, fc.title)}
+        >
+          {fc.title}
+        </Dropdown.Item>
+      ))}
+    </div>
   );
 }
 
@@ -56,8 +55,8 @@ export default function ArchiveAttorneyFitlersPractices({ practices, onSelect })
   return (
     <DropdownButton variant="link" title="Filter by practice" className={`${styles.filter} ${megaMenuStyles.menu} my-3 my-md-0`}>
       <Container className="mt--1 p-0" fluid>
-        <Row className="rounded-0 m-0 w-100">
-          <Col sm={12} md={3} className="mt-md-3">
+        <Row className="rounded-0 m-0">
+          <Col sm={12} lg={3} className="mt-md-3">
             {bce.map((ft) => (
               <PracticeListItem
                 key={ft.ID}
@@ -67,7 +66,7 @@ export default function ArchiveAttorneyFitlersPractices({ practices, onSelect })
               />
             ))}
           </Col>
-          <Col sm={12} md={3} className="mt-md-3">
+          <Col sm={12} lg={3} className="mt-md-3">
             {cl.map((ft) => (
               <PracticeListItem
                 key={ft.ID}
@@ -77,7 +76,7 @@ export default function ArchiveAttorneyFitlersPractices({ practices, onSelect })
               />
             ))}
           </Col>
-          <Col sm={12} md={3} className="mt-md-3">
+          <Col sm={12} lg={3} className="mt-md-3">
             {li.map((ft) => (
               <PracticeListItem
                 key={ft.ID}

@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Carousel from 'react-multi-carousel';
-import styles from 'styles/carousels/OfficeLocation.module.css';
+import styles from 'styles/OfficeLocation.module.css';
 import textStyles from 'styles/Text.module.css';
 
 const responsive = {
@@ -46,7 +46,6 @@ export default function CarouselsOfficeLocations({ slides }) {
                 alt={post.title}
                 width={333}
                 height={220}
-                alt={post.title}
                 layout="intrinsic"
               />
               <p

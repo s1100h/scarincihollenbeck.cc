@@ -4,8 +4,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import Button from 'react-bootstrap/Button';
-import useInput from '../../utils/input-hook';
-import styles from '../../styles/frontpage/FrontSearch.module.css';
+import useInput from 'utils/input-hook';
+import styles from 'styles/FrontSearch.module.css';
 
 export default function FrontSearch() {
   const {
