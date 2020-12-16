@@ -15,7 +15,7 @@ export const getFirst10PostsFromSlug = (slug) => {
         uri
         name
         description
-        posts(first: 3) {
+        posts(first: 4) {
           edges {
             node {
               id
@@ -25,7 +25,20 @@ export const getFirst10PostsFromSlug = (slug) => {
                   sourceUrl
                 }
               }
-              slug
+              link
+              excerpt
+              author {
+                node {
+                  name
+                  url
+                }
+              }
+              categories {
+                nodes {
+                  name
+                  uri
+                }
+              }
             }
           }
         }

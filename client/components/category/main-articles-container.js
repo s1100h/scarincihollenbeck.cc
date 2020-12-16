@@ -1,62 +1,51 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { createMarkup } from 'utils/helpers';
 
 export default function CategoryMainArticlesContainer({ main }) {
+  console.log(main.node.link);
+  const getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace('Feature.png', 'Body.png');
+  const category = main.node.categories.nodes[0];
+
   return (
     <article>
-      {main.map((val) => (
-        <div className="main" key={val.title}>
-          <Link href={val.link}>
-            <a>
-              <Image
-                src={
-                  val.image
+      <Link href={main.node.link}>
+        <a>
+          <Image
+            src={
+                  getFeaturedImage
                   || '/image/no-image-found-diamond.png'
                 }
-                width={300}
-                height={150}
-                layout="intrinsic"
-                alt={val.title}
-              />
-            </a>
-          </Link>
-          <p className="mt-5 mb-4">
-            <Link href={val.category.link}>
-              <a className="text-muted ft-01 text-uppercase">
-                {val.category.name}
-              </a>
-            </Link>
-          </p>
-          <h1 className="mb-4 mt-3 display-4">
-            <Link href={val.link}>
-              <a>{val.title}</a>
-            </Link>
-          </h1>
-          <p className="text-muted mt-4 mb-4 mr-4">{val.excerpt}</p>
-          <hr />
-          <p className="mt-4 mb-4 ft-13">
-            <span className="text-black">BY </span>
-            {val.author.map((a, indx) => (indx < val.author.length - 1 ? (
-              <a
-                key={a.name}
-                href={a.link}
-                className="text-black text-uppercase"
-              >
-                <u>{`${a.name},`}</u>
-                {' '}
-              </a>
-            ) : (
-              <a
-                key={a.name}
-                href={a.link}
-                className="text-black text-uppercase"
-              >
-                <u>{a.name}</u>
-              </a>
-            )))}
-          </p>
-        </div>
-      ))}
+            width={750}
+            height={350}
+            layout="intrinsic"
+            alt={main.node.title}
+          />
+        </a>
+      </Link>
+      <p className="mt-5 mb-4">
+        <Link href={category.uri}>
+          <a className="text-muted ft-01 text-uppercase">
+            {category.name}
+          </a>
+        </Link>
+      </p>
+      <h2 className="mb-4 mt-3 display-4">
+        {main.node.title}
+      </h2>
+      <div
+        className="text-muted mt-4 mb-4 mr-4"
+        dangerouslySetInnerHTML={createMarkup(main.node.excerpt.replace('[', '').replace(']', ''))}
+      />
+      <hr />
+      <p className="mt-4 mb-4">
+        <strong>BY: </strong>
+        <Link href={(main.node.author.node.url || '/')}>
+          <a className="text-dark">
+            {main.node.author.node.name}
+          </a>
+        </Link>
+      </p>
     </article>
   );
 }

@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import FullWidth from 'layouts/full-width';
 import LargeSidebar from 'layouts/large-sidebar';
 import Search from 'components/search';
-import BreadCrumbs from 'components/Breadcrumbs'
+import BreadCrumbs from 'components/Breadcrumbs';
 import MainArticlesContainer from 'components/category/main-articles-container';
 import MainSidebarContent from 'components/category/main-sidebar-content';
 import CategoryHeader from 'components/category/header';
@@ -20,12 +20,15 @@ import client from 'utils/graphql-client';
 import { getAllCategories, getFirst10PostsFromSlug } from 'queries/category';
 
 export default function CategoryLandingPage({
-  posts, description, name, seo, uri, children
+  posts, description, name, seo, uri, children,
 }) {
-
   console.log({
-    posts, description, name, seo, uri, children
+    posts, description, name, seo, uri, children,
   });
+
+  const mainArticle = posts[0];
+  const sideBarArticles = posts.filter((_, index) => index > 0);
+
   return (
     <>
       <NextSeo
@@ -35,6 +38,7 @@ export default function CategoryLandingPage({
         description={seo.metaDesc || ''}
         canonical={`http://scarincihollenbeck.com${seo.uri}`}
       />
+      <br />
       <FullWidth>
         <BreadCrumbs />
       </FullWidth>
@@ -56,20 +60,11 @@ export default function CategoryLandingPage({
         )}
       />
       <LargeSidebar
-        body={<MainArticlesContainer main={[]} />}
-        sidebar={<MainSidebarContent latest={[]} />}
+        body={<MainArticlesContainer main={mainArticle} />}
+        sidebar={<MainSidebarContent latest={sideBarArticles} />}
       />
       We'll get there...
-      {/* {router.isFallback ? (
-        <Container>
-          <Row
-            id="page-loader-container"
-            className="justify-content-center align-self-center"
-          >
-            <BarLoader color="#DB2220" />
-          </Row>
-        </Container>
-      ) : (
+      {/*
         <>
 
           <div id="category">
@@ -165,8 +160,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const categoryFromUrl = params.slug[params.slug.length - 1];
   const res = await client.query(getFirst10PostsFromSlug(categoryFromUrl), {});
-  console.log('res')
-  console.log(res.data.categories.nodes)
+  console.log('res');
+  console.log(res.data.categories.nodes);
   return {
     props: {
       name: res.data.categories.nodes[0].name,
@@ -174,8 +169,8 @@ export async function getStaticProps({ params }) {
       posts: res.data.categories.nodes[0].posts.edges,
       seo: res.data.categories.nodes[0].seo,
       uri: res.data.categories.nodes[0].uri,
-      children: res.data.categories.nodes[0].children.nodes
+      children: res.data.categories.nodes[0].children.nodes,
     },
-    revalidate: 1
+    revalidate: 1,
   };
 }

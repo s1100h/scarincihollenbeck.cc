@@ -1,9 +1,26 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function CategoryMainSidebar({ latest }) {
+  console.log(latest)
   return (
-    <ul className="no-dots mx-3 mt-0">
-      {latest.map((val) => (
+    <ul className="mt-3 p-0">
+      {latest.map((p) => (
+        <li key={p.node.id} className="w-100 mb-5">
+          <Link href={p.node.link}>
+            <a className="text-dark">
+              <Image
+                src={p.node.featuredImage.node.sourceUrl || '/image/no-image-found-diamond.png'}
+                width={300}
+                height={150}
+                layout="intrinsic"
+                alt={p.node.link}
+              />
+            </a>
+          </Link>
+        </li>
+      ))}
+      {/* {latest.map((val) => (
         <li key={val.title} className="w-100 mb-5">
           <a href={val.link}>
             <Image
@@ -20,7 +37,8 @@ export default function CategoryMainSidebar({ latest }) {
             <p className="text-muted small-excerpt">{val.excerpt}</p>
           </a>
         </li>
-      ))}
+      ))} */}
+      <li>We'll get there..</li>
     </ul>
   );
 }
