@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import styles from 'styles/layouts/SingleSubHeader.module.css';
+import styles from 'styles/SingleSubHeader.module.css';
 
 const HeaderBckGround = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),

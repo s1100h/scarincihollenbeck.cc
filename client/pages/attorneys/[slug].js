@@ -181,12 +181,10 @@ export default function AttorneysSingleBio({ status, bio, response }) {
           <ProfileImage
             image={response.attorneyMainInformation.profileImage.sourceUrl}
             name={response.title}
-            width={330}
-            height={350}
           />
         )}
         height="auto"
-        SingleAttorneyInfoCard={(
+        infoCard={(
           <SingleAttorneyInfoCard
             fullName={response.title}
             chair={bio.chair}
@@ -211,14 +209,14 @@ export default function AttorneysSingleBio({ status, bio, response }) {
       />
       {/** Bio Image & Info Card  -- end */}
       {/** Start of body content -- start */}
-      <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="SingleAttorneyBiography">
+      <TabContainer className="mb--1" id="nav-tab" defaultActiveKey="biography">
         <Container>
           <Row>
             {/** End of navigation -- start */}
             <Col sm={12}>
               <Nav>
-                <Nav.Link eventKey="SingleAttorneyBiography" className={tabStyle.tab}>
-                  SingleAttorneyBiography
+                <Nav.Link eventKey="biography" className={tabStyle.tab}>
+                  Biography
                 </Nav.Link>
                 {response.attorneyRepresentativeMatters.repMatters && (
                   <Nav.Link
@@ -318,9 +316,9 @@ export default function AttorneysSingleBio({ status, bio, response }) {
             <Col sm={12} md={9} className="mt-4">
               <TabContent>
                 <SingleAttorneyBiography
-                  tabTitle="SingleAttorneyBiography"
-                  title="SingleAttorneyBiography"
-                  content={response.attorneySingleAttorneyBiography.SingleAttorneyBiographyContent}
+                  tabTitle="biography"
+                  title="Biography"
+                  content={response.attorneyBiography.biographyContent}
                 />
               </TabContent>
               {response.attorneyRepresentativeMatters.repMatters && (
@@ -508,7 +506,7 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      res.data.attorneyProfiles.nodes.map((a) => `/attorney/${a.slug}`) || [],
+      res.data.attorneyProfiles.nodes.map((a) => `/attorneys/${a.slug}`) || [],
     fallback: false,
   };
 }
