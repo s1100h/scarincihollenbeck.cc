@@ -8,8 +8,9 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, sortByKey } from 'utils/helpers';
 
-
-export default function Attorneys({ seo, locations, designations, practices, attorneys }) {
+export default function Attorneys({
+  seo, locations, designations, practices, attorneys,
+}) {
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
 
@@ -17,15 +18,11 @@ export default function Attorneys({ seo, locations, designations, practices, att
   function onSelect(e, input) {
     const results = {
       selected: input,
-      key: e.target.name
+      key: e.target.name,
     };
-
- 
-    console.log(select.filter((a) => a.key !== results.key))
 
     setSelect(select.filter((a) => a.key !== results.key).concat(results));
   }
-
 
   /* Letter Click Event */
   function letterClick(e) {
@@ -44,7 +41,7 @@ export default function Attorneys({ seo, locations, designations, practices, att
     const input = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
     const results = { selected: userInput, key: 'query' };
     const concatResults = select.concat(results);
-    
+
     setUserInput(input);
     setSelect(concatResults);
   }
@@ -72,7 +69,7 @@ export default function Attorneys({ seo, locations, designations, practices, att
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/attorneys`}
+        canonical="http://scarincihollenbeck.com/attorneys"
       />
       <SingleSubHeader
         title="Attorneys"
@@ -92,12 +89,16 @@ export default function Attorneys({ seo, locations, designations, practices, att
             handleChange={handleChange}
             onSelect={onSelect}
             letterClick={letterClick}
-            clearAll={clearAll}
           />
           {/** End of Filters */}
           {/** Results */}
           <div className="w-100 border mt-sm-6 mt-md-0">
-            <Selected select={select} clearQuery={clearQuery} userInput={userInput} />
+            <Selected
+              select={select}
+              clearQuery={clearQuery}
+              userInput={userInput}
+              clearAll={clearAll}
+            />
             {(attorneys.length > 0) && (
             <Results attorneys={attorneys} userInput={userInput} select={select} />
             )}

@@ -18,8 +18,10 @@ export default function ArchiveAttorneyResultsFiltered({
   // filter by key -- practice
   const filterPractices = (attorney) => {
     if (practices.length > 0) {
-      return attorney.practices_array.indexOf(practices[0]) > -1;
+      const prunedPracticeList = attorney.practices_array.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase())
+      return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
     }
+
     return attorney;
   };
 

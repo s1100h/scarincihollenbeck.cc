@@ -12,7 +12,7 @@ export default function ArchiveAttorneyFitlersLetter({ alphabet, letterClick }) 
               variant="link"
               onClick={letterClick}
               onKeyDown={letterClick}
-              className={`text-white m-0 p-0 mr-3 ${fontStyles.ft13rem}`}
+              className={`text-white my-1 p-0 mr-1 ${fontStyles.ft118rem}`}
             >
               <strong>{val}</strong>
             </Button>

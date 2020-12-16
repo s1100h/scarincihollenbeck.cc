@@ -7,7 +7,7 @@ export default function ArchiveAttorneyFitlersKeyword({ handleChange }) {
         type="text"
         placeholder="Search by keyword..."
         onChange={handleChange}
-        className="w-100"
+        className="w-100 mb-2"
       />
     </Form>
   );
