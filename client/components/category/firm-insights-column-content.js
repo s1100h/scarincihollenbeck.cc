@@ -9,33 +9,28 @@ import { getPracticesByInput } from 'queries/practices';
 import { getChildrenCategoriesFromSlug } from 'queries/category';
 import { sortByKey } from 'utils/helpers';
 
-export default function CategoryColumnContent() {
-  const { data: corePractices, error: corePracticesError } = useSWR(
+export default function CategoryLawFirmInsightsColumnContent({ children }) {
+  const { data: authors, error: authorsError } = useSWR(
     getPracticesByInput('Core Practices'),
     (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
   );
 
-  const { data: lawFirmInsightsChildren, error: lawFirmInsightsChildrenError } = useSWR(
-    getChildrenCategoriesFromSlug('law-firm-insights'),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
-  );
+  if (authorsError || authorsError) return <ErrorMessage />;
+  if (!authors || !authors) return <SiteLoader />;
 
-  if (corePracticesError || lawFirmInsightsChildrenError) return <ErrorMessage />;
-  if (!corePractices || !lawFirmInsightsChildren) return <SiteLoader />;
-
-  const sortedCorePractices = sortByKey(corePractices.searchWP.nodes, 'title');
-  const sortedlawFirmInsightsChildren = sortByKey(lawFirmInsightsChildren.categories.nodes[0].children.nodes, 'title');
+  // const sortedAuthors = sortByKey(corePractices.searchWP.nodes, 'title');
+  // const sortedlawFirmInsightsChildren = sortByKey(lawFirmInsightsChildren.categories.nodes[0].children.nodes, 'title');
 
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="col-sm-12 col-md-3 border-right">
           <h5 className={textStyles.redTitle}>
-            <strong>Core Practices</strong>
+            <strong>More from our attorneys</strong>
           </h5>
           <hr />
           <ul className="ml-3 mr-0 px-0">
-            {sortedCorePractices.map((post) => (
+            {/* {sortedCorePractices.map((post) => (
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.uri}>
                   <a className={`${textStyles.blueTitle}`}>
@@ -45,18 +40,18 @@ export default function CategoryColumnContent() {
                   </a>
                 </Link>
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
         <div className="col-sm-12 col-md-4 border-right">
           <h5 className={textStyles.redTitle}>
             <strong>
-              Firm Insight&apos;s Categories
+              More about our areas of law
             </strong>
           </h5>
           <hr />
           <ul className="ml-3 mr-0 px-0">
-            {sortedlawFirmInsightsChildren.map((post) => (
+            {/* {sortedlawFirmInsightsChildren.map((post) => (
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.uri}>
                   <a className={`${textStyles.blueTitle}`}>
@@ -66,7 +61,7 @@ export default function CategoryColumnContent() {
                   </a>
                 </Link>
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
         <div className="col-sm-12 col-md-5">

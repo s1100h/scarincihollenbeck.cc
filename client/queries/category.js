@@ -8,7 +8,25 @@ export const getAllCategories = `{
   }
 }`;
 
-export const getFirst10PostsFromSlug = (slug) => {
+export const getChildrenCategoriesFromSlug = (slug) => {
+  return `{
+    categories(where: {slug: "${slug}"}) {
+      nodes {
+        uri
+        name
+        children {
+          nodes {
+            id
+            name
+            uri
+          }
+        }
+      }
+    }
+  }`
+}
+
+export const getFirst14PostsFromSlug = (slug) => {
   return `{
     categories(where: {slug: "${slug}"}) {
       nodes {

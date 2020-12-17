@@ -35,7 +35,7 @@ export default function HappyHolidays2019({
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerStaticProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(
       `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2019-happy-holidays`,

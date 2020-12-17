@@ -3,7 +3,7 @@ import Footer from 'components/footer';
 import Body from 'components/pages/body';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import LargeSidebar from 'layouts/large-sidebar';
+import FullWidth from 'layouts/full-width';
 import { headers } from 'utils/helpers';
 
 export default function HappyHolidays2020({
@@ -26,16 +26,15 @@ export default function HappyHolidays2020({
         image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
-      <LargeSidebar
-        body={<Body content={bodyContent} />}
-        sidebar={<Sidebar posts={posts} />}
-      />
+      <FullWidth>
+        {bodyContent}
+      </FullWidth>
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerStaticProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(
       `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2020-happy-holidays`,

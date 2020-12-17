@@ -17,25 +17,22 @@ import {
   urlify,
 } from 'utils/helpers';
 import client from 'utils/graphql-client';
-import { getAllCategories, getFirst10PostsFromSlug } from 'queries/category';
-import styles from 'styles/LineHeader.module.css'
+import { getAllCategories, getFirst14PostsFromSlug } from 'queries/category';
+import styles from 'styles/LineHeader.module.css';
 
 export default function CategoryLandingPage({
-  posts, description, name, seo, uri, children,
+  posts, description, name, seo, children,
 }) {
-  const router = useRouter()
-  console.log({
-    posts, description, name, seo, uri, children,
-  });
+  const router = useRouter();
 
   // main articles
   const mainArticle = posts[0];
   const sideBarArticles = posts.filter((_, index) => index > 0 && index <= 3);
   const sliderArticles = posts.filter((_, index) => index >= 4);
-  
+
   // check if is event page
-  const isEventPage = router.asPath.indexOf('firm-events') > 0
-  const isNewsPage = router.asPath.indexOf('firm-news') > 0
+  const isEventPage = router.asPath.indexOf('firm-events') > 0;
+  const isNewsPage = router.asPath.indexOf('firm-news') > 0;
 
   return (
     <>
@@ -83,14 +80,9 @@ export default function CategoryLandingPage({
         </div>
       </FullWidth>
       {/** We'll wrap this in a condition for event and news pages */}
-      <ColumnContent
-        colOneTitle="Scarinci Hollenbeck Core Practices"
-        colOneContent={[]}
-        colTwoTitle="Firm Insight's Categories"
-        colTwoContent={[]}
-      />
+      {(isEventPage || isNewsPage) && <ColumnContent />}
       {/*
-        <>   
+        <>
           {isEventPage || isFirmPage ? (
               <ColumnContent
                 colOneTitle="Scarinci Hollenbeck Core Practices"
@@ -162,7 +154,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const categoryFromUrl = params.slug[params.slug.length - 1];
-  const res = await client.query(getFirst10PostsFromSlug(categoryFromUrl), {});
+  const res = await client.query(getFirst14PostsFromSlug(categoryFromUrl), {});
 
   return {
     props: {
@@ -170,7 +162,6 @@ export async function getStaticProps({ params }) {
       description: res.data.categories.nodes[0].description,
       posts: res.data.categories.nodes[0].posts.edges,
       seo: res.data.categories.nodes[0].seo,
-      uri: res.data.categories.nodes[0].uri,
       children: res.data.categories.nodes[0].children.nodes,
     },
     revalidate: 1,

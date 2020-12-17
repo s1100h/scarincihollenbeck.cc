@@ -13,12 +13,12 @@ import {
   blogArticlesQuery,
   officeLocationsQuery,
 } from 'queries/home';
-import { getCorePractices } from 'queries/practices'
+import { getPracticesByInput } from 'queries/practices';
 
 export default function Home({
   seo, posts, locations, corePractices,
 }) {
-  console.log(sortByKey(corePractices, 'title'))
+  console.log(sortByKey(corePractices, 'title'));
   return (
     <>
       <NextSeo
@@ -70,20 +70,19 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   /** Adding in graphql queries */
   const metaDataContent = await client.query(metaDataQuery, {});
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const officeLocationContent = await client.query(officeLocationsQuery, {});
-  const firmCorePracticesContent = await client.query(getCorePractices, {});
+  const firmCorePracticesContent = await client.query(getPracticesByInput('Core Practices'), {});
   const filteredNews = firmNewsContent.data.category.posts.edges.filter(
     (_, i) => i <= 2,
   );
   const filteredEvents = firmEventsContent.data.category.posts.edges.filter(
     (_, i) => i <= 2,
   );
-
 
   return {
     props: {

@@ -1,0 +1,5 @@
+.twoColumns {
+  column-count: 2;
+  column-gap: 0px;
+  margin-left: 10px;
+}

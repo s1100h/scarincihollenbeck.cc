@@ -73,3 +73,8 @@ export const getAuthorBio = (author) => {
     }
   }`;
 };
+
+
+export const getListOfAuthors = `{
+  
+}`

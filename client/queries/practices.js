@@ -1,5 +1,5 @@
-export const getCorePractices = `{
-  searchWP(where: {input: "Core Practices"}) {
+export const getPracticesByInput = input => `{
+  searchWP(where: {input: "${input}"}) {
     nodes {
       ... on Practice {
         id

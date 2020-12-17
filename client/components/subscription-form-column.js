@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import kwesforms from 'kwesforms';
 import { checkboxes } from 'utils/categories';
+import fontsStyles from 'styles/Fonts.module.css';
+import formsStyles from 'styles/Forms.module.css';
 import FormReCaptcha from './google-recaptcha-button';
+
 
 export default function SubscriptionFormColumn() {
   const [captcha, setCaptcha] = useState(true);
@@ -42,13 +45,13 @@ export default function SubscriptionFormColumn() {
         rules="required|max:255"
       />
       <fieldset data-kw-group="true" rules="required">
-        <span className="small-excerpt">
+        <span className={fontsStyles.smallExcerpt}>
           Please select a category(s) below:
         </span>
-        <ul className="no-dots two-column">
+        <ul className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}>
           {checkboxes.map((type) => (
             <li key={type.key}>
-              <label htmlFor={type.key} className="sr-only">
+              <label htmlFor={type.key}>
                 <input
                   type="checkbox"
                   id={type.key}
@@ -56,8 +59,8 @@ export default function SubscriptionFormColumn() {
                   label={type.label}
                   value={type.label}
                 />
+                <span className="mx-2">{type.label}</span>              
               </label>
-              <span className="mx-2">{type.label}</span>
             </li>
           ))}
         </ul>
