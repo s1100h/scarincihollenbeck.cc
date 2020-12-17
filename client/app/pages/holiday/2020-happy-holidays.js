@@ -34,7 +34,7 @@ export default function HappyHolidaysTwentyTwenty({
 
 export async function getStaticProps() {
   const [aJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2020-happy-holidays`, { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/2020-happy-holidays', { headers }).then((data) => data.json()),
   ]);
 
   const { title, content, seo } = aJson;

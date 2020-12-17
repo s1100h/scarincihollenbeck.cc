@@ -2,10 +2,10 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import { headers } from 'utils/helpers';
+import { headers, createMarkup } from 'utils/helpers';
 
 export default function HappyHolidaysNineteen({
-  title, content, posts, seo,
+  title, content, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -32,10 +32,10 @@ export default function HappyHolidaysNineteen({
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const [aJson, postJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2019-happy-holidays`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/2019-happy-holidays', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
   ]);
 
   const { posts } = postJson;
@@ -48,5 +48,6 @@ export async function getServerSideProps() {
       posts,
       seo,
     },
+    revalidate: 1,
   };
 }
