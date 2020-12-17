@@ -21,8 +21,8 @@ export default function HappyHolidaysTwentyTwenty({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
-        height="auto"
+        image="/images/red-snow1900x400.png"
+        height="325px"
       />
       <FullWidth>
         <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />

@@ -1,9 +1,7 @@
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
-import Body from 'components/pages/body';
-import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import LargeSidebar from 'layouts/large-sidebar';
+import FullWidth from 'layouts/full-width';
 import { headers } from 'utils/helpers';
 
 export default function HappyHolidaysNineteen({
@@ -23,21 +21,12 @@ export default function HappyHolidaysNineteen({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
-        height="auto"
+        image="/images/red-snow1900x400.png"
+        height="400"
       />
-      <LargeSidebar
-        body={(
-          <Body
-            content={bodyContent}
-          />
-          )}
-        sidebar={(
-          <Sidebar
-            posts={posts}
-          />
-          )}
-      />
+      <FullWidth>
+        <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+      </FullWidth>
       <Footer />
     </>
   );
