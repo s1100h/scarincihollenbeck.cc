@@ -3,8 +3,14 @@ import Image from 'next/image';
 import { createMarkup } from 'utils/helpers';
 
 export default function CategoryMainArticlesContainer({ main }) {
-  console.log(main.node.link);
-  const getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace('Feature.png', 'Body.png');
+  let getFeaturedImage;
+
+  if (main.node.featuredImage.node.sourceUrl.indexOf('Feature.png') > 0) {
+    getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace('Feature.png', 'Body.png');
+  } else {
+    getFeaturedImage = main.node.featuredImage.node.sourceUrl;
+  }
+
   const category = main.node.categories.nodes[0];
 
   return (
@@ -14,7 +20,7 @@ export default function CategoryMainArticlesContainer({ main }) {
           <Image
             src={
                   getFeaturedImage
-                  || '/image/no-image-found-diamond.png'
+                  || '/images/no-image-found-diamond.png'
                 }
             width={750}
             height={350}
@@ -40,6 +46,7 @@ export default function CategoryMainArticlesContainer({ main }) {
       <hr />
       <p className="mt-4 mb-4">
         <strong>BY: </strong>
+        {' '}
         <Link href={(main.node.author.node.url || '/')}>
           <a className="text-dark">
             {main.node.author.node.name}

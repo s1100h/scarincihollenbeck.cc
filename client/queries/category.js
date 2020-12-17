@@ -15,7 +15,7 @@ export const getFirst10PostsFromSlug = (slug) => {
         uri
         name
         description
-        posts(first: 4) {
+        posts(first: 14) {
           edges {
             node {
               id

@@ -18,16 +18,24 @@ import {
 } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { getAllCategories, getFirst10PostsFromSlug } from 'queries/category';
+import styles from 'styles/LineHeader.module.css'
 
 export default function CategoryLandingPage({
   posts, description, name, seo, uri, children,
 }) {
+  const router = useRouter()
   console.log({
     posts, description, name, seo, uri, children,
   });
 
+  // main articles
   const mainArticle = posts[0];
-  const sideBarArticles = posts.filter((_, index) => index > 0);
+  const sideBarArticles = posts.filter((_, index) => index > 0 && index <= 3);
+  const sliderArticles = posts.filter((_, index) => index >= 4);
+  
+  // check if is event page
+  const isEventPage = router.asPath.indexOf('firm-events') > 0
+  const isNewsPage = router.asPath.indexOf('firm-news') > 0
 
   return (
     <>
@@ -63,32 +71,27 @@ export default function CategoryLandingPage({
         body={<MainArticlesContainer main={mainArticle} />}
         sidebar={<MainSidebarContent latest={sideBarArticles} />}
       />
-      We'll get there...
+      <FullWidth>
+        <CategorySliderContainer
+          title="MOST RECENT"
+          slides={sliderArticles}
+        />
+      </FullWidth>
+      <FullWidth>
+        <div className={styles.lineHeader}>
+          <h3>Discover</h3>
+        </div>
+      </FullWidth>
+      {/** We'll wrap this in a condition for event and news pages */}
+      <ColumnContent
+        colOneTitle="Scarinci Hollenbeck Core Practices"
+        colOneContent={[]}
+        colTwoTitle="Firm Insight's Categories"
+        colTwoContent={[]}
+      />
       {/*
-        <>
-
-          <div id="category">
-            <FullWidth>
-              <Breadcrumbs category={category} />
-            </FullWidth>
-
-            <LargeSidebar
-              body={<MainArticlesContainer main={category.main} />}
-              sidebar={<MainSidebarContent latest={category.latest} />}
-            />
-            <FullWidth>
-              <CategorySliderContainer
-                title="MOST RECENT"
-                slides={category.archives}
-              />
-            </FullWidth>
-            <FullWidth>
-              <div className="line-header">
-                <h3>DISCOVER</h3>
-              </div>
-            </FullWidth>
-            {category.current_category.slug === 'firm-events'
-            || category.current_category.slug === 'firm-news' ? (
+        <>   
+          {isEventPage || isFirmPage ? (
               <ColumnContent
                 colOneTitle="Scarinci Hollenbeck Core Practices"
                 colOneContent={corePractices}
@@ -160,8 +163,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const categoryFromUrl = params.slug[params.slug.length - 1];
   const res = await client.query(getFirst10PostsFromSlug(categoryFromUrl), {});
-  console.log('res');
-  console.log(res.data.categories.nodes);
+
   return {
     props: {
       name: res.data.categories.nodes[0].name,

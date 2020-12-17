@@ -11,10 +11,10 @@ export default function FrontPagePractices({ corePractices }) {
       <hr />
       <ul className={marginStyles.mlMinus20} role="navigation">
         {corePractices.map((p) => (
-          <li key={p.node.title} className={`${textStyles.blueTitle} mb-2`}>
-            <Link href="/practices/[slug]" as={p.node.uri}>
+          <li key={p.title} className={`${textStyles.blueTitle} mb-2`}>
+            <Link href="/practices/[slug]" as={p.uri}>
               <a className={`${textStyles.blueTitle}`}>
-                <strong>{p.node.title}</strong>
+                <strong>{p.title}</strong>
               </a>
             </Link>
           </li>

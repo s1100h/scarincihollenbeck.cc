@@ -1,9 +1,9 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import lineStyles from 'styles/LineHeader.module.css';
-import About from './about';
-import Practices from './practices';
-import FrontPageCategories from './categories';
+import About from 'components/frontpage/about';
+import Practices from 'components/frontpage/practices';
+import FrontPageCategories from 'components/frontpage/categories';
 
 export default function ColumnContent({ corePractices }) {
   return (

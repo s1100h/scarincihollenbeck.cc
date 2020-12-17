@@ -12,12 +12,13 @@ import {
   metaDataQuery,
   blogArticlesQuery,
   officeLocationsQuery,
-  corePracticesQuery,
 } from 'queries/home';
+import { getCorePractices } from 'queries/practices'
 
 export default function Home({
   seo, posts, locations, corePractices,
 }) {
+  console.log(sortByKey(corePractices, 'title'))
   return (
     <>
       <NextSeo
@@ -75,31 +76,21 @@ export async function getServerSideProps() {
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const officeLocationContent = await client.query(officeLocationsQuery, {});
-  const allFirmPractices = await client.query(corePracticesQuery, {});
+  const firmCorePracticesContent = await client.query(getCorePractices, {});
   const filteredNews = firmNewsContent.data.category.posts.edges.filter(
     (_, i) => i <= 2,
   );
   const filteredEvents = firmEventsContent.data.category.posts.edges.filter(
     (_, i) => i <= 2,
   );
-  const filterCorePractices = allFirmPractices.data.practices.edges.filter(
-    (p) => {
-      const practice = p.node.practicePortalPageContent.practicePortalCategories;
 
-      if (practice !== null) {
-        if (practice[0] === 'Core Practices') {
-          return practice[0];
-        }
-      }
-    },
-  );
 
   return {
     props: {
       seo: metaDataContent.data.page.seo,
       posts: [...filteredEvents, ...filteredNews],
       locations: officeLocationContent.data.officeLocations.nodes,
-      corePractices: filterCorePractices,
+      corePractices: firmCorePracticesContent.data.searchWP.nodes,
     },
   };
 }
