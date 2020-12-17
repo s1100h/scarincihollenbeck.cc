@@ -21,7 +21,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LineHeading from 'layouts/line-heading';
 import { headers, urlify } from 'utils/helpers';
 
-export default function SinglePractice({ practice, corePractices }) {
+export default function PraticeSinglePracticePage({ practice, corePractices }) {
   const router = useRouter();
 
   if (practice.status === 404) {
@@ -59,11 +59,11 @@ export default function SinglePractice({ practice, corePractices }) {
                   <Col sm={12}>
                     <Nav id="practice-navigation">
                       {(practice.content.length > 0) && practice.content.map((item) => <Nav.Link eventKey={urlify(item.title)} className="main-tab" key={item.title}>{item.title}</Nav.Link>)}
-                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates" className="main-tab">Related Updates</Nav.Link> }                      
+                      {(practice.industryTopics.length > 0) && <Nav.Link eventKey="related-updates" className="main-tab">Related Updates</Nav.Link> }
                     </Nav>
                   </Col>
                   <Col sm={12} md={9} className="mt-4">
-                    {(practice.content.length > 0) && practice.content.map((item, index) => <TabContent key={item.title}><PracticeContent tabTitle={urlify(item.title)} title={item.title} content={item.content} /></TabContent>)}
+                    {(practice.content.length > 0) && practice.content.map((item) => <TabContent key={item.title}><PracticeContent tabTitle={urlify(item.title)} title={item.title} content={item.content} /></TabContent>)}
                     {(practice.industryTopics.length > 0) && <TabContent><RelatedArticlesTab tabTitle="related-updates" title="Related Updates" content={practice.industryTopics} /></TabContent>}
                     {/* Related Articles tab */}
                     {/* Attorney list */}
@@ -87,7 +87,8 @@ export default function SinglePractice({ practice, corePractices }) {
                         <FeaturedSlider content={practice.industryTopics} />
                       </div>
                     )}
-                    <style jsx>{`
+                    <style jsx>
+                      {`
                       .tab-content {
                         font-size: 1.125rem;
                       }
@@ -96,26 +97,27 @@ export default function SinglePractice({ practice, corePractices }) {
                         color: blue;
                         text-decoration: underline;
                       }
-                    `}</style>
+                    `}
+                    </style>
                   </Col>
                   <Col sm={12} md={3}>
                     {(router.query.slug === 'education-law') && (
                       <>
                         <div>
-                        <img
-                          src="https://sh-site-assets.nyc3.digitaloceanspaces.com/1593501004logo-250x250.png"
-                          alt="NJSBA 2020 event"
-                          className="mt-sm-4 mt-lg-0 mx-auto mb-4 d-block"
-                        />                        
-                        <a
-                          type="button"
-                          className="mx-auto mb-5 p-2 d-block w-75 text-center border-r-5 mb-3 ft-14px btn btn-danger"
-                          href="https://virtualworkshop.njsba.org/en/"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          Visit Our Booth
-                        </a>
+                          <img
+                            src="https://sh-site-assets.nyc3.digitaloceanspaces.com/1593501004logo-250x250.png"
+                            alt="NJSBA 2020 event"
+                            className="mt-sm-4 mt-lg-0 mx-auto mb-4 d-block"
+                          />
+                          <a
+                            type="button"
+                            className="mx-auto mb-5 p-2 d-block w-75 text-center border-r-5 mb-3 ft-14px btn btn-danger"
+                            href="https://virtualworkshop.njsba.org/en/"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Visit Our Booth
+                          </a>
                         </div>
                         <CovidResourceBox
                           title="COVID-19 Response Team"
@@ -152,10 +154,10 @@ export default function SinglePractice({ practice, corePractices }) {
 export async function getServerSideProps({ params, res }) {
   const [practice, corePractices] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
   ]);
-  
-  if(practice.status === 404 && res) {
+
+  if (practice.status === 404 && res) {
     res.statusCode = 404;
   }
 
@@ -163,6 +165,6 @@ export async function getServerSideProps({ params, res }) {
     props: {
       practice,
       corePractices,
-    }
+    },
   };
 }

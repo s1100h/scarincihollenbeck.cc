@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import AccordionContext from 'react-bootstrap/AccordionContext';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import { createMarkup, addRandomKey, urlify } from '../../utils/helpers';
+import { createMarkup, addRandomKey } from '../../utils/helpers';
 
 function SideBarHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
@@ -22,7 +22,6 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
       type="button"
       variant="link"
       className="sidebar-title w-100 p-2 text-left"
-
       onClick={decoratedOnClick}
     >
       {children}

@@ -3,24 +3,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft';
-import NewsScroller from '../news-scroller';
-import { urlify } from '../../utils/helpers';
+import NewsScroller from 'components/news-scroller';
 
 export default function Body({
   results,
   pages,
-  term,
   currentPage,
   news,
   insight,
   events,
   pathname,
-  q
+  q,
 }) {
-
   function handlePagination(e, page) {
     e.preventDefault();
 
@@ -32,7 +26,6 @@ export default function Body({
 
   const next = parseInt(currentPage, 10) + 1;
   const prev = parseInt(currentPage, 10) - 1;
-
 
   return (
     <Container>
@@ -64,7 +57,7 @@ export default function Body({
         <Col sm={12}>
           <Pagination>
             <Pagination.First rel="prev" onClick={(e) => handlePagination(e, 1)} />
-            <Pagination.Prev  rel="prev" onClick={(e) => handlePagination(e, prev)} />
+            <Pagination.Prev rel="prev" onClick={(e) => handlePagination(e, prev)} />
             <Pagination.Item>{1}</Pagination.Item>
             <Pagination.Ellipsis />
             <Pagination.Item onClick={(e) => handlePagination(e, pages)}>{pages}</Pagination.Item>

@@ -5,18 +5,19 @@ import Col from 'react-bootstrap/Col';
 import { createMarkup } from 'utils/helpers';
 
 const HeaderBckGround = styled.div`
-  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${props => props.image}) no-repeat 50%;
+  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${(props) => props.image}) no-repeat 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
-  ${props => props.height}
+  ${(props) => props.height}
 `;
 
-export default function SingleSubHeader({ title, subtitle, image, height }) {
-  
+export default function SingleSubHeader({
+  title, subtitle, image, height,
+}) {
   return (
     <HeaderBckGround image={image} height={height} className="jumbotron jumbotron-fluid d-print-none">
       <Container>
@@ -32,4 +33,4 @@ export default function SingleSubHeader({ title, subtitle, image, height }) {
       </Container>
     </HeaderBckGround>
   );
-};
+}

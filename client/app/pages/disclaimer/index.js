@@ -12,7 +12,6 @@ export default function Disclaimer({
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
-  console.log(title);
 
   return (
     <>
@@ -47,7 +46,7 @@ export default function Disclaimer({
 export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/disclaimer`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
   ]);
   const { posts } = postJson;
   const { title, content, seo } = aJson;

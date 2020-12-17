@@ -27,40 +27,39 @@ import {
 } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
-
 // build out attorney profile schema
 function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTitle) {
-  let links; 
+  let links;
 
   if (socialMediaLinks.length > 0) {
     links = socialMediaLinks.map((link) => link.url);
-  };
+  }
 
-  if(socialMediaLinks.length === 0) {
+  if (socialMediaLinks.length === 0) {
     links = [
-      "https://www.facebook.com/ScarinciHollenbeck/",
-      "https://www.linkedin.com/company/scarinci-hollenbeck-llc"
+      'https://www.facebook.com/ScarinciHollenbeck/',
+      'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
     ];
-  };
+  }
 
   return {
-    "@graph": [{
-      "@context": "https://schema.org/",
-      "@type": "Person",
-      "name": name,
-      "url": url,
-      "image": imageUrl,
-      "sameAs": links,
-      "jobTitle": jobTitle,
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Scarinci Hollenbceck"
-      }  
-    }]
-  }
+    '@graph': [{
+      '@context': 'https://schema.org/',
+      '@type': 'Person',
+      name,
+      url,
+      image: imageUrl,
+      sameAs: links,
+      jobTitle,
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Scarinci Hollenbceck',
+      },
+    }],
+  };
 }
 
-export default function AttorneySlugBio({ bio }) {
+export default function AttorneyBioPage({ bio }) {
   const router = useRouter();
   let newsEventArticles = [];
   let filterHeaders;
@@ -117,24 +116,26 @@ export default function AttorneySlugBio({ bio }) {
               cardType: bio.seo.metaDescription,
             }}
           />
-        <Head>
-          <script
-            key="ScarinciHollenbeck"
-            type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
-          />
-          <script
-            key="ScarinciHollenbeck Bio Profile"
-            type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(buildAttorneyProfileSchema(
-              bio.fullName,
-              `https://scarincihollenbeck.com/${bio.seo.canonicalLink}`,
-              bio.profileImage,
-              bio.socialMediaLinks,
-              bio.designation))
-            }}
-          />
-        </Head> 
+          <Head>
+            <script
+              key="ScarinciHollenbeck"
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
+            />
+            <script
+              key="ScarinciHollenbeck Bio Profile"
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(buildAttorneyProfileSchema(
+                  bio.fullName,
+                  `https://scarincihollenbeck.com/${bio.seo.canonicalLink}`,
+                  bio.profileImage,
+                  bio.socialMediaLinks,
+                  bio.designation,
+                )),
+              }}
+            />
+          </Head>
           <div id="single-attorney">
             <MultiSubHeader
               image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Columns-1800x400-JPG.jpg"
@@ -203,9 +204,9 @@ export default function AttorneySlugBio({ bio }) {
                       </TabContent>
                     )}
                     {(bio.blogPosts.length > 0) && (
-                     <TabContent>
-                        <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
-                      </TabContent>
+                    <TabContent>
+                      <Articles tabTitle="blogs" title="Articles" content={sortByDateKey(bio.blogPosts, 'date')} />
+                    </TabContent>
                     )}
                     {(newsEventArticles.length > 0) && (newsEventArticles !== undefined) && (
                       <TabContent>
@@ -252,11 +253,11 @@ export default function AttorneySlugBio({ bio }) {
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [bio, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json())
+  const [bio] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-attorney/attorney/${params.slug}`, { headers }).then((data) => data.json()),
   ]);
 
-  if(bio.status === 404 && res) {
+  if (bio.status === 404 && res) {
     res.statusCode = 404;
   }
 

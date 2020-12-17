@@ -7,7 +7,7 @@ import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers, fetcher } from 'utils/helpers';
 
 export default function Covid19CrisisManagementUnit({
-  title, content, internalCovidPosts, seo
+  title, content, internalCovidPosts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -48,7 +48,7 @@ export default function Covid19CrisisManagementUnit({
 export async function getServerSideProps() {
   const [aJson, internalCovidPosts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`, { headers }).then((data) => data.json()),
   ]);
 
   const { title, content, seo } = aJson;
@@ -58,7 +58,7 @@ export async function getServerSideProps() {
       title,
       content,
       internalCovidPosts,
-      seo
+      seo,
     },
   };
 }

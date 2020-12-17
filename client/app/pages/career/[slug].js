@@ -12,7 +12,7 @@ import Body from 'components/singlecareer/body';
 import Sidebar from 'components/singlecareer/sidebar';
 import { headers } from 'utils/helpers';
 
-export default function Career({ careerJson }) {
+export default function CareerDescriptionPage({ careerJson }) {
   const router = useRouter();
 
   if (careerJson.status === 404) {
@@ -61,12 +61,12 @@ export default function Career({ careerJson }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const [careerJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json()),
   ]);
 
-  if(careerJson.status === 404 && res) {
+  if (careerJson.status === 404 && res) {
     res.statusCode = 404;
   }
 

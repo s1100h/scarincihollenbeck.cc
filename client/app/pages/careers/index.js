@@ -7,16 +7,15 @@ import CareerSection from 'components/careers/career';
 import EEOpportunityContent from 'components/careers/equal-opportunity-content';
 import { headers } from 'utils/helpers';
 
-export default function Careers({ careers, seo }) {
+export default function CareersSearchPage({ careers, seo }) {
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
-  const [sort, setSort] = useState('title');
-  const [career, setCareer] = useState('');
+  const [sort] = useState('title');
+  const [career] = useState('');
 
   function filterTerm(e) {
-    const keyword = e.target.value;
-    setKeyword(keyword);
+    setKeyword(e.target.value);
   }
 
   function selectOption(e) {
@@ -70,17 +69,16 @@ export default function Careers({ careers, seo }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const [careerJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/career-portal/careers`, { headers }).then((data) => data.json()),
   ]);
-  const { seo, careers } = careerJson;
-
 
   return {
     props: {
-      seo,
+      seo: careerJson.seo,
       careers: careerJson.hasOwnProperty('careers') ? careerJson.careers : [],
     },
+    revalidate: 1,
   };
 }

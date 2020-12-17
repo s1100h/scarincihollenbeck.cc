@@ -16,15 +16,15 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [attorneys, practices, categories] = await Promise.all([
+      const [a, p, c] = await Promise.all([
         fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then((data) => data.json()),
         fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then((data) => data.json()),
-        fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100', { headers }).then((data) => data.json())
+        fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/categories?per_page=100', { headers }).then((data) => data.json()),
       ]);
 
-      setAttorneys(attorneys);
-      setCategories(categories);
-      setPractices(practices);
+      setAttorneys(a);
+      setCategories(c);
+      setPractices(p);
     };
 
     fetchData();
@@ -33,7 +33,11 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const query = `${(searchInput !== '') ? searchInput : ''} ${(practiceInput !== '') ? practiceInput : ''} ${(attorneyInput !== '') ? attorneyInput : ''} ${(categoryInput !== '') ? categoryInput : ''}`;
-    const formatUrl = (str) => str.toLowerCase().replace(',',' ').replace('&', '').replace('’', "'").replace('.', '').replace("'",'').replace(/\s+/g,' ').replace(/\s/g, '+');
+    const formatUrl = (str) => str.toLowerCase().replace(',', ' ').replace('&', '').replace('’', "'")
+      .replace('.', '')
+      .replace("'", '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s/g, '+');
 
     Router.push({
       pathname: '/search',

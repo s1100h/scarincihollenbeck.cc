@@ -1,8 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from '../attorney-card';
-import { sortByKey } from '../../utils/helpers';
+import AttorneyCard from 'components/attorney-card';
 
 export default function BodyContent({
   attorneys,
@@ -10,8 +9,6 @@ export default function BodyContent({
   map,
   title,
 }) {
-  const sortedAttorneys = sortByKey(attorneys, 'lastName');
-
   return (
     <div id="location-body">
       <h4 className="bg-light-gray text-capitalize">

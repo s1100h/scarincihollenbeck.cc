@@ -9,7 +9,6 @@ import Letter from './letter';
 import Practices from './practices';
 import Title from './title';
 import Location from './location';
-import MobileMenu from './mobile-menu';
 
 export default function Filter({
   practices,
@@ -21,9 +20,7 @@ export default function Filter({
   onSelect,
   letterClick,
   clearAll,
-  onMobileSelect,
 }) {
-
   return (
     <>
       <Navbar expand="lg" className="bk--gray border p-2">

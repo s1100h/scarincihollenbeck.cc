@@ -13,27 +13,27 @@ import { headers } from 'utils/helpers';
 
 function buildMainLocationSchema() {
   return {
-    "@context": "http://schema.org",
-    "@type":"WebSite",
-    "@id":"https://scarincihollenbeck.com/#website",
-    "url":"https://scarincihollenbeck.com/",
-    "name":"Scarinci Hollenbeck",
-    "description":"Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.",
-    "publisher":{
-       "@id":"https://scarincihollenbeck.com/#organization"
+    '@context': 'http://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://scarincihollenbeck.com/#website',
+    url: 'https://scarincihollenbeck.com/',
+    name: 'Scarinci Hollenbeck',
+    description: 'Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.',
+    publisher: {
+      '@id': 'https://scarincihollenbeck.com/#organization',
     },
-    "potentialAction":[
-       {
-          "@type":"SearchAction",
-          "target":"https://scarincihollenbeck.com/search?q={search_term_string}&page=1",
-          "query-input":"required name=search_term_string"
-       }
+    potentialAction: [
+      {
+        '@type': 'SearchAction',
+        target: 'https://scarincihollenbeck.com/search?q={search_term_string}&page=1',
+        'query-input': 'required name=search_term_string',
+      },
     ],
-    "inLanguage":"en-US"
- }
+    inLanguage: 'en-US',
+  };
 }
 
-export default function Location({
+export default function LocationsPage({
   seo, offices, lyndhurst, posts,
 }) {
   const router = useRouter();
@@ -56,10 +56,10 @@ export default function Location({
           <Head>
             <script
               key="ScarinciHollenbeck"
-              type='application/ld+json'
+              type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(buildMainLocationSchema()) }}
             />
-          </Head> 
+          </Head>
           <div id="location">
             <SingleSubHeader
               title="Office Locations"
@@ -92,12 +92,11 @@ export default function Location({
   );
 }
 
-
 export async function getServerSideProps() {
   const [locations, lyndhurst, lyndhurstposts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/lyndhurst`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/lyndhurst`, { headers }).then((data) => data.json()),
   ]);
 
   return {

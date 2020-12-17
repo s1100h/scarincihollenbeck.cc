@@ -4,7 +4,6 @@ import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
-  WorkplaceShareButton,
   FacebookIcon,
   LinkedinIcon,
   TwitterIcon,
@@ -19,7 +18,6 @@ import { printScreen } from '../../utils/helpers';
 
 function SocialShareSidebar({ title }) {
   const router = useRouter();
-  const to = '';
 
   return (
     <Col sm={1} className="d-print-none">

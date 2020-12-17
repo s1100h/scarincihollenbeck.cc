@@ -5,7 +5,8 @@
     "dev": "next dev -p 7700",
     "sitemap": "node sitemap-generator.js",
     "build": "next build",
-    "start": "next start -p 7300"
+    "start": "next start -p 7300",
+    "lint": " eslint . --ext js"
   },
   "license": "ISC",
   "dependencies": {
@@ -14,6 +15,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.5.0",
     "core-js": "3.6.5",

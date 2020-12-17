@@ -1,14 +1,8 @@
 import { useRouter } from 'next/router';
 import {
-  EmailShareButton,
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
-  WorkplaceShareButton,
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-  EmailIcon,
 } from 'react-share';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
@@ -17,7 +11,7 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
 function SocialShareFooter({ title }) {
   const router = useRouter();
- 
+
   return (
     <>
       <div className="line-header d-print-none mt-5">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Error from 'pages/_error';
@@ -16,11 +16,11 @@ import CategorySliderContainer from 'components/category/category-slider-contain
 import ColumnContent from 'components/category/column-content';
 import Footer from 'components/footer';
 import {
-  headers, makeTitle, sortByKey, formatCorePractices, urlify,
+  headers, sortByKey, urlify,
 } from 'utils/helpers';
 
 export default function Category({
-  category, seo, current, corePractices, firmCategories,
+  category, seo, corePractices, firmCategories,
 }) {
   const router = useRouter();
   const categorySlug = router.asPath.split('/');
@@ -29,7 +29,7 @@ export default function Category({
   if (category.status === 404) {
     return <Error statusCode={404} />;
   }
-  
+
   return (
     <>
       {(router.isFallback) ? (
@@ -46,7 +46,7 @@ export default function Category({
             canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
           />
           <div id="category">
-            <FullWidth> 
+            <FullWidth>
               <Breadcrumbs category={category} />
             </FullWidth>
             <LargeSidebar
@@ -116,12 +116,12 @@ export default function Category({
 
 export async function getServerSideProps({ params, res }) {
   const [category, firmCategories, corePractices] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug[params.slug.length -1]}`, { headers }).then((data) => data.json()),
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/${params.slug[params.slug.length - 1]}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/firm-insights-children`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
   ]);
 
-  if(category.status === 404 && res) {
+  if (category.status === 404 && res) {
     res.statusCode = 404;
   }
 
@@ -131,7 +131,7 @@ export async function getServerSideProps({ params, res }) {
       current: params.slug,
       seo: category.seo || {},
       firmCategories,
-      corePractices
+      corePractices,
     },
   };
 }

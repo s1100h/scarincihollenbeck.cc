@@ -3,26 +3,25 @@ import Link from 'next/link';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import SimpleSearch from '../components/simple-search';
-import { headers } from 'utils/helpers';
+import SimpleSearch from 'components/simple-search';
 
 export default function CustomError({ statusCode }) {
-  const [errorMessage, setErrorMessage ] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const handleErrorMessage = async () => {
-      if(statusCode === 404) {
+      if (statusCode === 404) {
         setErrorMessage('404: Page Not Found');
       }
 
-      if(statusCode === 500) {
+      if (statusCode === 500) {
         setErrorMessage('500: Internal Server Error');
       }
-    }
+    };
 
     handleErrorMessage();
   }, [statusCode]);
-  
+
   return (
     <>
       <div id="404">
@@ -51,7 +50,7 @@ export default function CustomError({ statusCode }) {
             </p>
             <p className="lead">
               If you are looking to get in touch with an attorney under the terms as to becoming a new client please call 201-896-4100.
-            </p>            
+            </p>
           </div>
           <SimpleSearch />
           <div className="w-50 my-3 p-4 border">
@@ -59,7 +58,7 @@ export default function CustomError({ statusCode }) {
               <strong>
                 Or try visiting one of these pages on our site to narrow your search.
               </strong>
-            </h5>            
+            </h5>
             <ul className="mb-0">
               <li>
                 <Link href="/attorneys">
@@ -104,28 +103,10 @@ export default function CustomError({ statusCode }) {
                 </Link>
               </li>
             </ul>
-          </div>         
+          </div>
         </FullWidth>
       </div>
       <Footer />
     </>
   );
-}
-
-function getInitialProps({ res, err }) {
-  let statusCode;
-  // If the res variable is defined it means nextjs
-  // is in server side
-  if (res) {
-    statusCode = res.statusCode;
-  } else if (err) {
-    // if there is any error in the app it should
-    // return the status code from here
-    statusCode = err.statusCode;
-  } else {
-    // Something really bad/weird happen and status code
-    // cannot be determined.
-    statusCode = null;
-  }
-  return { statusCode };
 }

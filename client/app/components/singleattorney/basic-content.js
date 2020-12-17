@@ -1,10 +1,8 @@
-import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { createMarkup } from '../../utils/helpers';
-
 
 export default function BasicContent({ tabTitle, title, content }) {
   return (

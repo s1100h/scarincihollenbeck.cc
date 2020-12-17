@@ -1,5 +1,5 @@
-import ContactForm from '../contact-form';
 import { createMarkup } from 'utils/helpers';
+import ContactForm from '../contact-form';
 
 export default function Body({ content }) {
   return (

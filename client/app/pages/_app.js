@@ -38,33 +38,30 @@ import 'styles/subscription-form.scss';
 import 'styles/firm-page.scss';
 import 'styles/category.scss';
 
-
 /**
 * Bind nprogress loader to app
 * */
-const msDelay = 200;
-const options = { trickleSpeed: 50 };
+
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-
 /**
- * 
+ *
  * Track pageview when route is changed
  */
 Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
-function SHApp({ Component, pageProps, posts }) {
+function SHApp({ Component, pageProps }) {
   return (
     <>
-       <Head>
-          <meta charSet="utf-8" />
-          <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
-          <meta name="google-site-verification" content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q" />
-        </Head>
+      <Head>
+        <meta charSet="utf-8" />
+        <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="msvalidate.01" content="D568BE2730F6C27E33061E84F8DE58B1" />
+        <meta name="google-site-verification" content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q" />
+      </Head>
       <NavBar />
       <main>
         <Component {...pageProps} />

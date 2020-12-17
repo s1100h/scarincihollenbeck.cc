@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
@@ -19,10 +18,8 @@ export default function QuickNews({
   posts,
   pages,
   term,
-  page
+  page,
 }) {
-  
-
   return (
     <>
       {(results.length === 0) ? (
@@ -33,7 +30,7 @@ export default function QuickNews({
         </Container>
       ) : (
         <>
-          <NextSeo nofollow/>
+          <NextSeo nofollow />
           <div id="quick-news">
             <ArchiveLayout
               header={(<Breadcrumbs breadCrumb={[term, page]} categorySlug={term} />)}
@@ -63,7 +60,7 @@ export async function getServerSideProps({ query }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/archive/query/quick-news/${query.page}`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
   ]);
 
   return {
@@ -75,7 +72,7 @@ export async function getServerSideProps({ query }) {
       pages: response.pages || 0,
       term: response.term || '',
       posts: response.posts || [],
-      page: query.page || 1
+      page: query.page || 1,
     },
   };
 }

@@ -1,6 +1,6 @@
-import { sortByKey } from '../../utils/helpers';
-import FilterForms from './filter-forms';
-import Results from './results';
+import { sortByKey } from 'utils/helpers';
+import FilterForms from 'components/careers/filter-forms';
+import Results from 'components/careers/results';
 
 export default function CareerSection({
   careers,
@@ -15,7 +15,6 @@ export default function CareerSection({
   const sortPositions = sortByKey(careers, 'title');
   const locations = careers.map((p) => p.positionLocation);
   const positionType = careers.map((p) => p.positionType);
-
 
   // add location filter to sortPostions
   function filterLocation(position) {
@@ -48,6 +47,7 @@ export default function CareerSection({
     } else {
       return position;
     }
+    return true;
   }
 
   const p = sortPositions

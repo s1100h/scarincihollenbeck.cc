@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import { NextSeo } from 'next-seo';
 import BarLoader from 'react-spinners/BarLoader';
 import Container from 'react-bootstrap/Container';
@@ -18,7 +17,7 @@ export default function Author({
   authorJson,
   firmNews,
   firmEvents,
-  firmInsights
+  firmInsights,
 }) {
   return (
     <>
@@ -64,8 +63,6 @@ export async function getServerSideProps({ params, query }) {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/just-in/posts`, { headers }).then((data) => data.json()),
   ]);
-
-  console.log(authorJson);
 
   return {
     props: {

@@ -8,10 +8,8 @@ import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
 import { headers, sortByKey } from 'utils/helpers';
 
-
 export default function Administration({ admins, seo }) {
   const sortedAdmins = sortByKey(admins, 'orderBy');
-
 
   return (
     <>
@@ -52,7 +50,7 @@ export default function Administration({ admins, seo }) {
 
 export async function getServerSideProps() {
   const [aJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/admin-search/admin`, { headers }).then((data) => data.json()),
   ]);
 
   const { admins, seo } = aJson;

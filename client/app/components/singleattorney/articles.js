@@ -2,10 +2,10 @@ import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Image from 'react-bootstrap/Image';
 import { List } from 'react-virtualized';
-import { addRandomKey, formatDate } from 'utils/helpers';
+import { formatDate } from 'utils/helpers';
 
 function Post(content, {
-  key, index, isScrolling, isVisible, style,
+  key, index,
 }) {
   const post = content[index];
 

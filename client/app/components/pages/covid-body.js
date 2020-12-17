@@ -1,8 +1,7 @@
-import ContactForm from '../contact-form';
-import { createMarkup } from '../../utils/helper';
+import ContactForm from 'components/contact-form';
+import { createMarkup } from 'utils/helpers';
 
 export default function CovidBody({ content, covidPosts, articleTitle }) {
-  
   return (
     <div>
       <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
@@ -14,7 +13,7 @@ export default function CovidBody({ content, covidPosts, articleTitle }) {
         <div className="container">
           <div className="row mh-75">
             {(covidPosts.length > 0) && covidPosts.map((post) => (
-              <div className="" key={post.id} className="col-sm-12 col-md-12 col-lg-6 my-3">
+              <div key={post.id} className="col-sm-12 col-md-12 col-lg-6 my-3">
                 <div className="card" id="covid-post">
                   <img style={{ flexShrink: 0, width: '100%' }} src={post.fimg_url} alt={post.title.rendered} />
                   <div className="card-body text-center mt-2">

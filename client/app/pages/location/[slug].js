@@ -14,44 +14,44 @@ import { headers, urlify } from 'utils/helpers';
 
 function buildLocationSchema(location, map) {
   return {
-    "@context" : "http://schema.org",
-    "@type" : "LocalBusiness",
-    "name" : "Scarinci Hollebneck",
-    "url" : "https://scarincihollenbeck.com",
-    "logo": "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png",
-    "image": location.image,
-    "address": {
-        "@type" : "PostalAddress",
-        "streetAddress": location.streetAddress,
-        "addressLocality": location.addressLocality,
-        "addressRegion": location.addressRegion,
-        "postalCode": location.postalCode,
-        "addressCountry": location.addressCountry,
-        "telephone" : location.telephone
-        },
-    "openingHours": ["Mo-Fr 08:00-18:00"],
-    "hasmap" : map,
-    "geo" : {
-      "@type" : "GeoCoordinates",
-      "latitude" : location.latitude,
-      "longitude" : location.longitude
+    '@context': 'http://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Scarinci Hollebneck',
+    url: 'https://scarincihollenbeck.com',
+    logo: 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png',
+    image: location.image,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: location.streetAddress,
+      addressLocality: location.addressLocality,
+      addressRegion: location.addressRegion,
+      postalCode: location.postalCode,
+      addressCountry: location.addressCountry,
+      telephone: location.telephone,
     },
-    "priceRange" : "$$$$",
-    "sameAs" : [ "https://www.facebook.com/ScarinciHollenbeck/",
-        "https://www.linkedin.com/company/scarinci-hollenbeck-llc",
-        "https://twitter.com/s_h_law"]
-      
-  }
+    openingHours: ['Mo-Fr 08:00-18:00'],
+    hasmap: map,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: location.latitude,
+      longitude: location.longitude,
+    },
+    priceRange: '$$$$',
+    sameAs: ['https://www.facebook.com/ScarinciHollenbeck/',
+      'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+      'https://twitter.com/s_h_law'],
+
+  };
 }
 
-export default function Location({
- seo, offices, currentOffice, posts,
+export default function LocationPage({
+  seo, offices, currentOffice, posts,
 }) {
-    const router = useRouter();
+  const router = useRouter();
 
-    if (currentOffice.status === 404) {
-      return <Error statusCode={404} />;
-    }
+  if (currentOffice.status === 404) {
+    return <Error statusCode={404} />;
+  }
 
   return (
     <>
@@ -71,10 +71,10 @@ export default function Location({
           <Head>
             <script
               key={currentOffice.name}
-              type='application/ld+json'
+              type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)) }}
             />
-          </Head>          
+          </Head>
           <div id="location">
             <SingleSubHeader
               title="Office Locations"
@@ -111,10 +111,10 @@ export async function getServerSideProps({ params, res }) {
   const [locations, currentOffice, currentOfficePosts] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json()),
   ]);
 
-  if(currentOffice.status === 404 && res) {
+  if (currentOffice.status === 404 && res) {
     res.statusCode = 404;
   }
 

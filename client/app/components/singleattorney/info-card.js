@@ -24,13 +24,9 @@ export default function InfoCard({
   socialMediaLinks,
   pdf,
   vizibility,
-  offices
+  offices,
 }) {
-
   const attorneyIsChair = (chair !== undefined && chair.length > 0) || (coChair !== undefined && coChair.length > 0);
-  console.table(coChair);
-  console.log('attorneyIsChair', attorneyIsChair);
-
 
   return (
     <Col sm={12}>
@@ -50,7 +46,7 @@ export default function InfoCard({
       { (attorneyIsChair) ? (
         <div className="my-3">
           { chair.map((ch) => (
-            <h2 key={ch.title} className="text-white ft-style-inherit h5" key={ch.title}>
+            <h2 key={ch.title} className="text-white ft-style-inherit h5">
               <strong>Chair: </strong>
               <a href={ch.link} className="text-white chair-link h5">
                 {ch.title}
@@ -61,7 +57,7 @@ export default function InfoCard({
             </h2>
           ))}
           {coChair.map((co) => (
-            <h2 key={co.title} className="text-white ft-style-inherit h5" key={co.title}>
+            <h2 key={co.title} className="text-white ft-style-inherit h5">
               <strong>Co-Chair: </strong>
               <a href={co.link} className="text-white chair-link h5">
                 {co.title}
@@ -77,7 +73,7 @@ export default function InfoCard({
           <h2 className="text-white ml--10px h4 ft-style-inherit">{designation}</h2>
         </Col>
       )}
-      {/** Chair section -- end */}     
+      {/** Chair section -- end */}
       {/** Col One phone, email, fax -- start */}
       <Row>
         <Col sm={12} md={6}>
@@ -108,22 +104,22 @@ export default function InfoCard({
                 </h5>
               </li>
             )}
-            {(offices !== undefined && offices.length > 0) && (              
+            {(offices !== undefined && offices.length > 0) && (
               <li className="mb-1">
                 <FontAwesomeIcon icon={faBuilding} className="text-white icon-w8px-h20px d-inline" />
                 {' '}
-                {offices.map((office, index) => (                  
-                    <h5 key={office.id} className="d-inline">
-                      <a href={office.link} className="text-white proxima-regular mail-link ft-17px">
-                        {office.name}
-                      </a>
-                      {(offices.length - 1 !== index) && (
-                        <>
-                           ,
-                          {' '}
-                        </>
-                      )}                                         
-                    </h5>           
+                {offices.map((office, index) => (
+                  <h5 key={office.name} className="d-inline">
+                    <a href={office.link} className="text-white proxima-regular mail-link ft-17px">
+                      {office.name}
+                    </a>
+                    {(offices.length - 1 !== index) && (
+                    <>
+                      ,
+                      {' '}
+                    </>
+                    )}
+                  </h5>
                 ))}
               </li>
             )}

@@ -22,7 +22,7 @@ export default function FirmMembers({
                 name={m.name}
                 title={(title === 'Directors') ? m.title : m.designation}
                 number={(title === 'Directors') ? `201-896-4100 ${m.extension}` : m.phone}
-                email={m.email}               
+                email={m.email}
                 width="81px"
                 type={type}
               />

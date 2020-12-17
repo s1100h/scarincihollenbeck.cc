@@ -1,11 +1,7 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import BarLoader from 'react-spinners/BarLoader';
-import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
-import TabPane from 'react-bootstrap/TabPane';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -16,14 +12,11 @@ import SubscriptionMessage from 'components/subscription-message';
 import PracticeContent from 'components/practice/practice-content';
 import FeaturedSlider from 'components/practice/featured-slider';
 import RelatedAttorneys from 'components/practice/related-attorneys';
-import RelatedArticlesTab from 'components/practice/related-articles-tab';
 import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
-import NoHeaderMiniSidebar from 'layouts/no-header-mini-sidebar';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 
-export default function WomenLead({
+export default function DiversityGroup({
   attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
 }) {
   const router = useRouter();
@@ -60,7 +53,7 @@ export default function WomenLead({
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
       <SingleSubHeader
-        image={"https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"}
+        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
         title={title}
         subtitle={description}
       />
@@ -74,20 +67,23 @@ export default function WomenLead({
                 </Nav>
               </Col>
               <Col sm={12} md={9} className="mt-4">
-                {(tabs.length > 0) && tabs.map((tab, index) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content} /></TabContent>)}
+                {(tabs.length > 0) && tabs.map((tab) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content} /></TabContent>)}
                 {/* Related Articles tab */}
                 {/* Attorney list */}
                 <RelatedAttorneys
-                   title="Group Leader"
-                   members={(members.length > 0) ? members : []}
-                   chair={(chair.length > 0) ? chair : []}
-                   handleLink={handleLink}
+                  title="Group Leader"
+                  members={(members.length > 0) ? members : []}
+                  chair={(chair.length > 0) ? chair : []}
+                  handleLink={handleLink}
                 />
                 {/** Recent Blog Articles */}
                 {(attorneysMentioned.length > 0) && (
                 <div className="w-100 d-block">
                   <div className="line-header">
-                    <h3>Latest From {title}</h3>
+                    <h3>
+                      Latest From
+                      {title}
+                    </h3>
                   </div>
                   <FeaturedSlider content={attorneysMentioned} />
                 </div>
@@ -110,12 +106,11 @@ export default function WomenLead({
 
 export async function getServerSideProps() {
   const [page] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/diversity-group`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/diversity-group`, { headers }).then((data) => data.json()),
   ]);
   const {
     attorneysMentioned, title, description, tabs, members, relatedPages, seo,
   } = page;
-
 
   return {
     props: {

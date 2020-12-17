@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
-import { addRandomKey } from '../../../utils/helpers';
+import { addRandomKey } from 'utils/helpers';
 
 function PracticeListItem({ title, onSelect, pChildren }) {
   return (
@@ -19,12 +19,8 @@ function PracticeListItem({ title, onSelect, pChildren }) {
   );
 }
 
-function PracticeItemContainer() {
-
-}
-
 export default function Practices(props) {
-  const { practices, onSelect, removeVisibilityClass } = props;
+  const { practices, onSelect } = props;
 
   /**
    *

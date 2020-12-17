@@ -46,7 +46,7 @@ export default function TermsOfUse({
 export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/terms-of-use`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
   ]);
   const { posts } = postJson;
   const { title, content, seo } = aJson;

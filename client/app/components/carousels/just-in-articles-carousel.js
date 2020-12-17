@@ -1,4 +1,3 @@
-
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';
 import useSWR from 'swr';
@@ -33,7 +32,7 @@ function formatDate(date) {
 }
 
 export default function JustInArticlesCarousel() {
-  const { data: slides=[] } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
+  const { data: slides = [] } = useSWR('https://wp.scarincihollenbeck.com/wp-json/just-in/posts', fetcher);
 
   return (slides.length > 0) && (
     <Carousel aria-label="carousel" responsive={jiResponsive} infinite arrows swipeable>
@@ -48,7 +47,7 @@ export default function JustInArticlesCarousel() {
               </span>
               {(formatDate(post.date) !== 'Invalid Date') && (
                 <span className="date">{formatDate(post.date)}</span>
-              )}              
+              )}
             </p>
             <div className="just-in-content">
               <h5>{post.title}</h5>

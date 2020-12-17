@@ -13,11 +13,6 @@ import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
 export default function Featured({ post }) {
-  console.log('post');
-  console.log(post);
-  console.log('eventDetails length');
-  console.log(post.eventDetails.length);
-  
   const router = useRouter();
 
   if (post.status === 404) {
@@ -51,7 +46,7 @@ export default function Featured({ post }) {
               },
               images: [
                 {
-                  url: (post.seo.featuredImg) ? post.seo.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png",
+                  url: (post.seo.featuredImg) ? post.seo.featuredImg : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
                   width: 750,
                   height: 350,
                   alt: post.seo.title,
@@ -67,7 +62,7 @@ export default function Featured({ post }) {
           <ArticleJsonLd
             url={`https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
-            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
+            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ['https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png']}
             datePublished={post.seo.publishedDate}
             dateModified={post.seo.updatedDate}
             authorName={post.seo.author}
@@ -112,11 +107,11 @@ export default function Featured({ post }) {
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [post, slides] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/featured`, { headers }).then((data) => data.json())
+  const [post] = await Promise.all([
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/featured`, { headers }).then((data) => data.json()),
   ]);
 
-  if(post.status === 404 && res) {
+  if (post.status === 404 && res) {
     res.statusCode = 404;
   }
 

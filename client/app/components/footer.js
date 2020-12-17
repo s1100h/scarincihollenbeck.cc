@@ -18,7 +18,7 @@ export default function Footer() {
         <Container fluid className="h-100 mt-5 w-75 bk--gray">
           <Row className="border--red mb-3">
             <Col sm={12} md={{ span: 3, offset: 9 }} className="mb-2 footer-search">
-              <SimpleSearch searchId="footer-simple-search"/>
+              <SimpleSearch searchId="footer-simple-search" />
             </Col>
           </Row>
           <Row className="pb-3 mb-0">

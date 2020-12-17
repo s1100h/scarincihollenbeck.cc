@@ -1,12 +1,10 @@
-import { addRandomKey, createMarkup } from '../../utils/helpers';
-import Search from '../search';
-import SubscriptionMessage from '../subscription-message';
+import { addRandomKey, createMarkup } from 'utils/helpers';
+import Search from 'components/search';
+import SubscriptionMessage from 'components/subscription-message';
 
 export default function EventSidebar({
   attorneys,
-  show,
   eventDetails,
-  toggleModal,
 }) {
   const eDetails = eventDetails[0];
 

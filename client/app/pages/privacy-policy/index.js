@@ -6,7 +6,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import { headers } from 'utils/helpers';
 
-
 export default function PrivacyPolicy({
   title, content, posts, seo,
 }) {
@@ -47,7 +46,7 @@ export default function PrivacyPolicy({
 export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/privacy-policy`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
   ]);
   const { posts } = postJson;
   const { title, content, seo } = aJson;

@@ -1,4 +1,3 @@
-
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import Footer from 'components/footer';
@@ -19,7 +18,7 @@ export default function GovernmentEducationCovidResponseTeam({
 
   return (
     <>
-    <NextSeo
+      <NextSeo
         title={seo.title}
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
@@ -47,9 +46,9 @@ export default function GovernmentEducationCovidResponseTeam({
 }
 
 export async function getServerSideProps() {
-  const [internalCovidPosts, page, ] = await Promise.all([
+  const [internalCovidPosts, page] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=22896&per_page=100`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`, { headers }).then((data) => data.json()),
   ]);
   const { title, content, seo } = page;
 

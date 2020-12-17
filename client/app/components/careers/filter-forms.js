@@ -9,12 +9,9 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 export default function FilterForms({
   locations,
   positionType,
-  keyword,
   filterTerm,
-  location,
-  type,
-  selectOption,
   clearFilter,
+  onSelect,
 }) {
   const removeDuplicates = (list) => list.filter((v, i) => list.indexOf(v) === i);
   const locs = removeDuplicates(locations);

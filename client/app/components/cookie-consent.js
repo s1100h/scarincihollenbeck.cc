@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import CookieConsent, { Cookies } from 'react-cookie-consent';
 
-
 function CookieConsentContainer() {
   return (
     <CookieConsent
@@ -18,6 +17,5 @@ function CookieConsentContainer() {
     </CookieConsent>
   );
 }
-
 
 export default CookieConsentContainer;

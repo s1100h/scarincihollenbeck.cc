@@ -1,4 +1,4 @@
-import SubscriptionFormWithButton from './subscription-form-with-button';
+import SubscriptionFormWithButton from 'components/subscription-form-with-button';
 
 export default function SubscriptionMessage() {
   return (

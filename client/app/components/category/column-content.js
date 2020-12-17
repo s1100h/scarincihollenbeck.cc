@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import SubscriptionFormColumn from '../subscription-form-column';
+import SubscriptionFormColumn from 'components/subscription-form-column';
 
 export default function ColumnContent({
   colOneTitle,

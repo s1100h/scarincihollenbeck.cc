@@ -13,7 +13,6 @@ export default function QuickNewsBody({
   insight,
   events,
 }) {
-
   function handlePagination(e, page) {
     e.preventDefault();
     Router.push({
@@ -24,7 +23,6 @@ export default function QuickNewsBody({
 
   const next = parseInt(currentPage, 10) + 1;
   const prev = parseInt(currentPage, 10) - 1;
-
 
   return (
     <Container>

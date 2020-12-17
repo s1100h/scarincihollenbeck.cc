@@ -1,7 +1,6 @@
 import { withRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import PropTypes from 'prop-types';
 
 function BreadCrumbs(props, router) {
   const { breadCrumb, categorySlug } = props;

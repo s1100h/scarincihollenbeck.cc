@@ -71,7 +71,7 @@ export default function Practices({
 
 export async function getServerSideProps() {
   const [practiceJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/practice-portal/page/`, { headers }).then((data) => data.json()),
   ]);
   const results = await sortPracticeCategorys(practiceJson.practices);
   const { core, additional, business } = results;

@@ -6,15 +6,13 @@ import ColumnContent from 'components/frontpage/column-content';
 import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
 import { headers, sortByKey } from 'utils/helpers';
-import { buildBusinessSchema } from 'utils/json-ld-schemas'
-
-
+import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
 export default function Home({
   seo,
   posts,
   locations,
-  corePractices
+  corePractices,
 }) {
   return (
     <>
@@ -46,12 +44,12 @@ export default function Home({
       <Head>
         <script
           key="ScarinciHollenbeck"
-          type='application/ld+json'
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
         />
-      </Head> 
+      </Head>
       <NewDawnHeader />
-      <Container>      
+      <Container>
         <ColumnContent corePractices={sortByKey(corePractices, 'title')} />
         <FullWidthContent
           sortedPosts={sortByKey(posts, 'date')}
@@ -69,7 +67,7 @@ export async function getServerSideProps() {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/news`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/front-page/events`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json())    
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/core-practices/list`, { headers }).then((data) => data.json()),
   ]);
 
   const posts = [...news, ...events];
@@ -79,7 +77,7 @@ export async function getServerSideProps() {
       seo,
       posts,
       locations,
-      corePractices
+      corePractices,
     },
   };
 }

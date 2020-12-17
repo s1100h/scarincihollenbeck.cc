@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import Carousel from 'react-multi-carousel';

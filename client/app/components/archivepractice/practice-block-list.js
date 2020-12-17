@@ -1,16 +1,13 @@
-import Link from 'next/link';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function PracticeBlockList({ list }) {
-
   return (
     <Container className="mt-5">
       <Row>
-        {(list.length > 0) && list.map((practice, index) => (
+        {(list.length > 0) && list.map((practice) => (
           <Col sm={12} md={4} key={practice.ID} className="mb-3">
             {(practice.children.length > 0) ? (
               <Dropdown>

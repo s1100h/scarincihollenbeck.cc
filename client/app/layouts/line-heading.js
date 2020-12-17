@@ -1,9 +1,9 @@
-
-export default function LineHeading({title}) {
+export default function LineHeading({ title }) {
   return (
     <div>
       <h3>{title}</h3>
-      <style jsx>{`
+      <style jsx>
+        {`
         div {
           border-bottom: 1px solid #d1d1d1;
           text-align: center;
@@ -37,7 +37,8 @@ export default function LineHeading({title}) {
         h3:hover {
           cursor: pointer;
         }
-      `}</style>
+      `}
+      </style>
     </div>
-  )
+  );
 }

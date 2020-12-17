@@ -1,6 +1,5 @@
 import SubscriptionPageForm from './subscription-page-form';
 
-
 export default function SubscriptionBody() {
   return (
     <>
@@ -11,7 +10,7 @@ export default function SubscriptionBody() {
         <ul className="h4 my-4">
           <li className="mb-4">
             When our
-            <strong> attorney's blog posts</strong>
+            <strong> attorneyapos;s blog posts</strong>
           </li>
           <li className="mb-4">
             Various

@@ -100,10 +100,10 @@ export default function SingleAdmin({ adminJson }) {
 
 export async function getServerSideProps({ params, res }) {
   const [adminJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-admin/admin/${params.slug}`, { headers }).then((data) => data.json()),
   ]);
 
-  if(adminJson.status === 404 && res) {
+  if (adminJson.status === 404 && res) {
     res.statusCode = 404;
   }
 

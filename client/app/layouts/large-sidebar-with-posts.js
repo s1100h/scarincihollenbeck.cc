@@ -8,7 +8,7 @@ import ContactForm from 'components/contact-form';
 import { formatDate, createMarkup } from 'utils/helpers';
 
 function Post(content, {
-  key, index, isScrolling, isVisible, style,
+  key, index,
 }) {
   const post = content[index];
 
@@ -25,15 +25,16 @@ function Post(content, {
   );
 }
 
-export default function LargeSidebarWithPosts({ content, sidebar, posts, postsTitle }) {
-
+export default function LargeSidebarWithPosts({
+  content, sidebar, posts, postsTitle,
+}) {
   return (
     <Container>
       <Row>
         <Col sm={12} md={8}>
           <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
           <h3 className="mt-5">
-            <strong style={{fontSize: "1.8rem"}}>{postsTitle}</strong>
+            <strong style={{ fontSize: '1.8rem' }}>{postsTitle}</strong>
           </h3>
           <hr />
           <ul className="mx-0 w-100">
@@ -57,5 +58,5 @@ export default function LargeSidebarWithPosts({ content, sidebar, posts, postsTi
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { createMarkup, addRandomKey } from '../../utils/helpers';
+import { createMarkup, addRandomKey } from 'utils/helpers';
 
 export default function AuthorBio({ author }) {
   return (

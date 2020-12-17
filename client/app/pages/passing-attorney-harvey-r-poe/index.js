@@ -1,4 +1,3 @@
-import { withRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import Body from 'components/pages/body';
@@ -44,10 +43,10 @@ export default function PassingOfHarveyPoe({
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/passing-attorney-harvey-r-poe`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
   ]);
 
   const { posts } = postJson;

@@ -1,16 +1,13 @@
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from '../../attorney-card';
 import { filterByKey } from '../../../utils/helpers';
-
 
 export default function Filtered({
   attorneys,
   userInput,
   select,
 }) {
-  
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');
@@ -51,9 +48,9 @@ export default function Filtered({
       } if (practiceList.indexOf(userInput.trim()) >= 0) {
         return attorney;
       }
-    } else {
-      return attorney;
     }
+
+    return attorney;
   };
 
   // filter by key -- letter

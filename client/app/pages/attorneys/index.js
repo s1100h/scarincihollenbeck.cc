@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { headers, sortByKey } from 'utils/helpers';
@@ -135,7 +134,7 @@ export async function getServerSideProps() {
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/office-locations`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/designations`, { headers }).then((data) => data.json()),
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/practices`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/attorney-search/meta`, { headers }).then((data) => data.json()),
   ]);
 
   return {

@@ -8,7 +8,6 @@ const ArticleContainer = styled.div`
   overflow-y: auto;
 `;
 
-
 function formatDate(date) {
   return date.substring(0, 17);
 }

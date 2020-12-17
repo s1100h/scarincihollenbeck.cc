@@ -6,12 +6,12 @@ import FirmMembers from 'components/firmoverview/firm-members';
 import { headers, createMarkup, sortByKey } from 'utils/helpers';
 
 export default function FirmOverview({
-  mainTabs, additionalInfo, members, mainContent, seo,
+  mainTabs, members, mainContent, seo,
 }) {
   const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent[0], '');
   const sortedAdmins = sortByKey(members.admin, 'orderBy');
-  
+
   return (
     <>
       <NextSeo
@@ -21,7 +21,7 @@ export default function FirmOverview({
       />
       <SingleSubHeader
         title="Firm Overview"
-        subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, "")}
+        subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, '')}
         image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
         height="325px"
       />
@@ -52,7 +52,7 @@ export default function FirmOverview({
 
 export async function getServerSideProps() {
   const [firmOverviewJson] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-overview/content`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-overview/content`, { headers }).then((data) => data.json()),
   ]);
   const {
     mainTabs, additionalInfo, members, mainContent, seo,

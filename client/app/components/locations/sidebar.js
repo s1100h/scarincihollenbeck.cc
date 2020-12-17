@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import Link from 'next/link';
+import React, { useContext } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import AccordionContext from 'react-bootstrap/AccordionContext';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
@@ -9,11 +8,8 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
-import TrendingStories from '../trending-stories';
-import {
-  locationUrl, sortByKey, urlify, getDirectionsFromLocation,
-} from '../../utils/helpers';
-
+import TrendingStories from 'components/trending-stories';
+import { sortByKey, urlify, getDirectionsFromLocation } from 'utils/helpers';
 
 function LocationHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
@@ -30,7 +26,6 @@ function LocationHeaderToggle({ children, eventKey, callback }) {
       type="button"
       variant="link"
       className="sidebar-title w-100 p-2 text-left"
-
       onClick={decoratedOnClick}
     >
       {children}
@@ -44,7 +39,6 @@ function LocationHeaderToggle({ children, eventKey, callback }) {
   );
 }
 
-
 export default function SidebarContent({
   offices,
   posts,
@@ -52,7 +46,6 @@ export default function SidebarContent({
   startingKey,
 }) {
   const officeList = sortByKey(offices, 'title');
-  const currentEventKey = useContext(AccordionContext);
 
   return (
     <div id="practice-sidebar">

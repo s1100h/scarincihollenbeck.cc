@@ -6,7 +6,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function HappyHolidays2019({
+export default function HappyHolidaysNineteen({
   title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -46,7 +46,7 @@ export default function HappyHolidays2019({
 export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2019-happy-holidays`, { headers }).then((data) => data.json()),
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
   ]);
 
   const { posts } = postJson;

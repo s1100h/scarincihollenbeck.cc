@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import { makeTitle } from '../../utils/helpers';
+import { makeTitle } from 'utils/helpers';
 
-export default function BreadCrumb({ title }) {
+export default function BreadCrumb() {
   const router = useRouter();
   const currentPath = router.asPath.split('/');
   const breadCrumbPath = currentPath.filter((path) => path !== '' && path !== 'category');

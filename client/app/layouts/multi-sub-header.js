@@ -4,18 +4,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const HeaderBckGround = styled.div`
-  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${props => props.image}) no-repeat 50%;
+  background: linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)), url(${(props) => props.image}) no-repeat 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
-  min-height: ${props => props.height}
+  min-height: ${(props) => props.height}
 `;
 
-export default function MultiSubHeader({ profile, infoCard, image, height }) {
-
+export default function MultiSubHeader({
+  profile, infoCard, image, height,
+}) {
   return (
     <HeaderBckGround image={image} height={height} className="jumbotron jumbotron-fluid">
       <Container>
@@ -30,4 +31,4 @@ export default function MultiSubHeader({ profile, infoCard, image, height }) {
       </Container>
     </HeaderBckGround>
   );
-};
+}

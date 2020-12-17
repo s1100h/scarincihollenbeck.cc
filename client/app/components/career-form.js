@@ -7,14 +7,14 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
-import FormReCaptcha from './google-recaptcha-button';
-import useInput from '../utils/input-hook';
+import FormReCaptcha from 'components/google-recaptcha-button';
+import useInput from 'utils/input-hook';
 
 function bytesToSize(bytes) {
-  var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  if (bytes == 0) return '0 Byte';
-  var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes === 0) return '0 Byte';
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
+  return `${Math.round(bytes / Math.pow(1024, i), 2)} ${sizes[i]}`;
 }
 
 export default function CareerForm({ contact, title }) {
@@ -24,7 +24,7 @@ export default function CareerForm({ contact, title }) {
   const { value: phoneInput, bind: bindPhoneInput, reset: resetPhoneInput } = useInput('');
   const [files, setFiles] = useState([]);
   const [preview, setPreview] = useState([]);
-  const [success, setSuccess] = useState(false);
+  const [success] = useState(false);
   const [failure, setFailure] = useState(false);
   const [captcha, setCaptcha] = useState(true);
   const [sendingMessage, setSendingMessage] = useState(false);
@@ -38,34 +38,30 @@ export default function CareerForm({ contact, title }) {
       preview: URL.createObjectURL(file),
     })));
 
-    // read file blob    
+    // read file blob
     const reader = new FileReader();
-    reader.onload = (event) => {    
-
+    reader.onload = (event) => {
       const fileContents = {
         title: incomingFile.name,
         contents: event.target.result,
         size: incomingFile.size,
       };
 
-      setFiles(files => [...files, fileContents]);
-      
+      setFiles((f) => [...f, fileContents]);
     };
     reader.readAsDataURL(incomingFile);
-  }
+  };
 
   const onDrop = useCallback((acceptedFiles) => {
-    if(acceptedFiles[0] === undefined) { 
+    if (acceptedFiles[0] === undefined) {
       alert('Sorry the document you just uploaded exceeds our max limit size. Please upload a document less than 10MB. Thank you.');
-    }else {
+    } else {
       readUploadedFile(acceptedFiles[0]);
     }
-
-    
   }, []);
 
   const thumbs = files.map((file) => (
-    <div className="thumbInner" key={file.title} className="my-3">
+    <div className="thumbInner my-3" key={file.title}>
       <p className="my-0 py-0">
         {file.title}
         {' '}
@@ -80,7 +76,7 @@ export default function CareerForm({ contact, title }) {
           </>
         )}
         {(file.size < 1000000) && <FontAwesomeIcon icon={faCheck} className="text-success mw-12" />}
-      </p>      
+      </p>
     </div>
   ));
 
@@ -88,41 +84,40 @@ export default function CareerForm({ contact, title }) {
     maxSize: 1000000,
     multiple: true,
     accept: '.odt,.doc,.docx,.pdf,.dotx',
-    onDrop
+    onDrop,
   });
-
 
   async function formSubmit(e) {
     e.preventDefault();
-    
+
     const careerInquiry = {
       firstName: firstNameInput,
       lastName: lastNameInput,
       email: emailInput,
       phone: phoneInput,
-      files: files,
-      contact: contact,
-      title: title
+      files,
+      contact,
+      title,
     };
 
     const request = await fetch('https://serverless-career-form-uploader.netlify.app/.netlify/functions/server/career-form', {
       method: 'POST',
       body: JSON.stringify(careerInquiry),
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }  
+        'Access-Control-Allow-Origin': '*',
+      },
     })
-    .then(data  => {
-      setSendingMessage(true);
-      return data;
-    });
+      .then((data) => {
+        setSendingMessage(true);
+        return data;
+      });
 
     const status = await request.status;
 
     if (status === 200) {
-      setSendingMessage(false)
+      setSendingMessage(false);
       resetLastNameInput();
       resetFirstNameInput();
       resetEmailInput();
@@ -132,18 +127,16 @@ export default function CareerForm({ contact, title }) {
       setCaptcha(true);
     }
 
-    if(status === 404 || status === 500) {
+    if (status === 404 || status === 500) {
       setSendingMessage(false);
       alert('Sorry there was an error with your submission! Please email info@sh-law.com for further information');
     }
-
 
     if (status === 413) {
       setSendingMessage(false);
       alert('Sorry you seem to uploading documents that max the upload size of 10MB. Please email info@sh-law.com for further information');
     }
   }
-
 
   return (
     <>
@@ -185,7 +178,13 @@ export default function CareerForm({ contact, title }) {
           <Form.Row>
             <Form.Group as={Col} sm={12}>
               <Form.Label>Add Cover letter, Resume, and Writing Sample.</Form.Label>
-              <Form.Label className="mb-0">**<strong>Please note</strong> the maximum combined file size allowed for a submssion is 10MB. Any submission over 10MB will not be processed. If your files exceed the maximum size, please email the information to Peter Moeller, Director of Business Development at <a className="red-title" href="mailto:info@sh-law.com"><u>info@sh-law.com</u></a></Form.Label>
+              <Form.Label className="mb-0">
+                **
+                <strong>Please note</strong>
+                {' '}
+                the maximum combined file size allowed for a submssion is 10MB. Any submission over 10MB will not be processed. If your files exceed the maximum size, please email the information to Peter Moeller, Director of Business Development at
+                <a className="red-title" href="mailto:info@sh-law.com"><u>info@sh-law.com</u></a>
+              </Form.Label>
               <div className="thumbsContainer">
                 {thumbs}
               </div>
@@ -200,7 +199,8 @@ export default function CareerForm({ contact, title }) {
                   <div className="red-title my-4 text-center d-block">
                     {/** Document image */}
                     <span className="small-excerpt">
-                      <strong className="d-block w-100 mb-1">Click here to upload documents or drag them over this area to upload (must be in a .pdf, .odt, .doc, .docx, or .dotx format).</strong>If you are having trouble uploading, please upload a single document at a time. If the upload is successful you will see the title of the document listed above with a green checkmark next to it.
+                      <strong className="d-block w-100 mb-1">Click here to upload documents or drag them over this area to upload (must be in a .pdf, .odt, .doc, .docx, or .dotx format).</strong>
+                      If you are having trouble uploading, please upload a single document at a time. If the upload is successful you will see the title of the document listed above with a green checkmark next to it.
                     </span>
                   </div>
                 )}
@@ -218,7 +218,7 @@ export default function CareerForm({ contact, title }) {
               <Button type="submit" variant="danger" className="px-5" disabled={captcha}>Submit</Button>
               {/* <Button type="submit" variant="danger" className="px-5">Submit</Button> */}
             </>
-          )}          
+          )}
         </Form>
       </div>
     </>

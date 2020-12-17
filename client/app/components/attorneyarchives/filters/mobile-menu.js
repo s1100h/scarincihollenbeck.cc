@@ -3,10 +3,7 @@ import Form from 'react-bootstrap/Form';
 export default function MobileMenu({
   content,
   onMobileSelect,
-  title,
-  name,
 }) {
-
   return (
     <Form onChange={onMobileSelect} className="my-2">
       <Form.Group controlId="desingationForm">

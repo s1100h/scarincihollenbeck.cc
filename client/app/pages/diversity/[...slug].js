@@ -46,7 +46,7 @@ export default function Diversity({ post }) {
               },
               images: [
                 {
-                  url: (post.seo.featuredImg) ? post.seo.featuredImg : "https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png",
+                  url: (post.seo.featuredImg) ? post.seo.featuredImg : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
                   width: 750,
                   height: 350,
                   alt: post.seo.title,
@@ -62,7 +62,7 @@ export default function Diversity({ post }) {
           <ArticleJsonLd
             url={`https://scarincihollenbeck.com/${(post.eventDetails.length > 0) ? 'firm-events' : 'firm-news'}/${post.seo.canonicalLink}`}
             title={`${post.seo.title}`}
-            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ["https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png"]}
+            images={(post.seo.featuredImg) ? [post.seo.featuredImg] : ['https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png']}
             datePublished={post.seo.publishedDate}
             dateModified={post.seo.updatedDate}
             authorName={post.seo.author}
@@ -108,10 +108,10 @@ export default function Diversity({ post }) {
 
 export async function getServerSideProps({ params, res }) {
   const [post] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/diversity`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${params.slug[params.slug.length - 1]}/diversity`, { headers }).then((data) => data.json()),
   ]);
 
-  if(post.status === 404 && res) {
+  if (post.status === 404 && res) {
     res.statusCode = 404;
   }
 

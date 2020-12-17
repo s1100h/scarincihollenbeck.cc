@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function ThreeColMiniSidebar({ body, OneSidebar, TwoSidebar }) {
-
   return (
     <Container className="container mt-5">
       <Row>
@@ -17,4 +16,4 @@ export default function ThreeColMiniSidebar({ body, OneSidebar, TwoSidebar }) {
       </Row>
     </Container>
   );
-};
+}

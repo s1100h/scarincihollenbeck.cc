@@ -1,13 +1,9 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import BarLoader from 'react-spinners/BarLoader';
-import Tab from 'react-bootstrap/Tab';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
-import TabPane from 'react-bootstrap/TabPane';
-import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
@@ -20,7 +16,7 @@ import SidebarContent from 'components/practice/sidebar-content';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 
-export default function WomenLead({
+export default function WomenLeadPage({
   attorneysMentioned, title, description, tabs, members, chair, relatedPages, seo,
 }) {
   const router = useRouter();
@@ -71,7 +67,7 @@ export default function WomenLead({
                 </Nav>
               </Col>
               <Col sm={12} md={9} className="mt-4">
-                {(tabs.length > 0) && tabs.map((tab, index) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content} /></TabContent>)}
+                {(tabs.length > 0) && tabs.map((tab) => <TabContent key={tab.title}><PracticeContent tabTitle={urlify(tab.title)} title={tab.title} content={tab.content} /></TabContent>)}
                 {/* Related Articles tab */}
                 {/* Attorney list */}
                 <RelatedAttorneys
@@ -84,7 +80,10 @@ export default function WomenLead({
                 {(attorneysMentioned.length > 0) && (
                 <div className="w-100 d-block">
                   <div className="line-header">
-                    <h3>Latest From {title}</h3>
+                    <h3>
+                      Latest From
+                      {title}
+                    </h3>
                   </div>
                   <FeaturedSlider content={attorneysMentioned} />
                 </div>
@@ -107,12 +106,11 @@ export default function WomenLead({
 
 export async function getServerSideProps() {
   const [page] = await Promise.all([
-    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers }).then((data) => data.json())
+    fetch(`${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/women-lead`, { headers }).then((data) => data.json()),
   ]);
   const {
     attorneysMentioned, title, description, tabs, members, relatedPages, seo,
   } = page;
-
 
   return {
     props: {
