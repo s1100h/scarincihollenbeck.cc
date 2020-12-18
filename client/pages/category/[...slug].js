@@ -11,6 +11,7 @@ import MainSidebarContent from 'components/category/main-sidebar-content';
 import CategoryHeader from 'components/category/header';
 import CategorySliderContainer from 'components/category/slider-container';
 import ColumnContent from 'components/category/column-content';
+import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content.js';
 import Footer from 'components/footer';
 import {
   sortByKey,
@@ -80,32 +81,10 @@ export default function CategoryLandingPage({
         </div>
       </FullWidth>
       {/** We'll wrap this in a condition for event and news pages */}
-      {(isEventPage || isNewsPage) && <ColumnContent />}
+      {(isEventPage || isNewsPage) ? <ColumnContent /> : <CategoryLawFirmInsightsColumnContent children={children} />}
       {/*
         <>
-          {isEventPage || isFirmPage ? (
-              <ColumnContent
-                colOneTitle="Scarinci Hollenbeck Core Practices"
-                colOneContent={corePractices}
-                colTwoTitle="Firm Insight's Categories"
-                colTwoContent={firmCategories}
-              />
-              ) : (
-                <ColumnContent
-                  colOneTitle="More from our attorneys"
-                  colOneContent={sortByKey(category.authors, 'lastName')}
-                  colTwoTitle={
-                  category.practices.length > 0
-                    ? 'More about our areas of law'
-                    : "Firm Insight's Categories"
-                }
-                  colTwoContent={
-                  category.practices.length > 0
-                    ? category.practices
-                    : firmCategories
-                }
-                />
-              )}
+          
             {category.practices.map(
               (val) => val.name !== 'Uncategorized' && (
               <FullWidth className="col-sm-12 mt-5" key={val.id}>

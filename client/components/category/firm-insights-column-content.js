@@ -1,25 +1,35 @@
 import Link from 'next/link';
 import useSWR from 'swr';
-import { request } from 'graphql-request';
 import SubscriptionFormColumn from 'components/subscription-form-column';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import textStyles from 'styles/Text.module.css';
-import { getPracticesByInput } from 'queries/practices';
-import { getChildrenCategoriesFromSlug } from 'queries/category';
+import styles from 'styles/Category.module.css';
 import { sortByKey } from 'utils/helpers';
 
 export default function CategoryLawFirmInsightsColumnContent({ children }) {
-  const { data: authors, error: authorsError } = useSWR(
-    getPracticesByInput('Core Practices'),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
+  //
+  const { data: authorsPageOne, error: authorsPageOneErr } = useSWR(
+    'https://wp.scarincihollenbeck.com/wp-json/wp/v2/users?per_page=100&page=1',
+    (url) => fetch(url).then((r) => r.json()),
   );
 
-  if (authorsError || authorsError) return <ErrorMessage />;
-  if (!authors || !authors) return <SiteLoader />;
+  if (authorsPageOneErr) return <ErrorMessage />;
+  if (!authorsPageOne) return <SiteLoader />;
 
-  // const sortedAuthors = sortByKey(corePractices.searchWP.nodes, 'title');
-  // const sortedlawFirmInsightsChildren = sortByKey(lawFirmInsightsChildren.categories.nodes[0].children.nodes, 'title');
+  const prunedAuthors = authorsPageOne.filter((author) => author.url !== '');
+
+  const reFormatPrunedAuthorsWithLastname = prunedAuthors.map((pa) => {
+    const splitName = pa.name.split(' ');
+    return {
+      id: pa.id,
+      name: pa.name,
+      link: pa.link,
+      lastName: splitName[splitName.length - 1],
+    };
+  });
+
+  const sortReFormatPruendAuthorsWithLastname = sortByKey(reFormatPrunedAuthorsWithLastname, 'lastName');
 
   return (
     <div className="container mt-5">
@@ -29,18 +39,18 @@ export default function CategoryLawFirmInsightsColumnContent({ children }) {
             <strong>More from our attorneys</strong>
           </h5>
           <hr />
-          <ul className="ml-3 mr-0 px-0">
-            {/* {sortedCorePractices.map((post) => (
+          <ul className={`${styles.listOverflow} ml-3 mr-0 px-0`}>
+            {sortReFormatPruendAuthorsWithLastname.map((post) => (
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
-                <Link href={post.uri}>
+                <Link href={post.link}>
                   <a className={`${textStyles.blueTitle}`}>
                     <strong>
-                      {post.title}
+                      {post.name}
                     </strong>
                   </a>
                 </Link>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
         <div className="col-sm-12 col-md-4 border-right">
@@ -50,10 +60,10 @@ export default function CategoryLawFirmInsightsColumnContent({ children }) {
             </strong>
           </h5>
           <hr />
-          <ul className="ml-3 mr-0 px-0">
-            {/* {sortedlawFirmInsightsChildren.map((post) => (
-              <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
-                <Link href={post.uri}>
+          <ul className={`${styles.listOverflow} ml-3 mr-0 px-0`}>
+            {children.map((post) => (
+              <li key={post.name} className={`${textStyles.blueTitle} mb-2`}>
+                <Link href={post.link}>
                   <a className={`${textStyles.blueTitle}`}>
                     <strong>
                       {post.name}
@@ -61,7 +71,7 @@ export default function CategoryLawFirmInsightsColumnContent({ children }) {
                   </a>
                 </Link>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
         <div className="col-sm-12 col-md-5">

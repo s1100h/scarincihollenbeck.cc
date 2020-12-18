@@ -64,9 +64,10 @@ export const getFirst14PostsFromSlug = (slug) => {
           title
           metaDesc
         }
-        children {
+        children(first: 30) {
           nodes {
             name
+            link
             posts(first: 6) {
               nodes {
                 title
