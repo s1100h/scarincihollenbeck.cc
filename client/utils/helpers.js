@@ -123,11 +123,13 @@ export function filterByKey(list, key) {
 // make title
 export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
+// common headers for fetch
 export const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
 
+// format GMT date
 export function formatDate(date) {
   const dateObj = new Date(date);
   const month = [
@@ -151,6 +153,8 @@ export function formatDate(date) {
   return results;
 }
 
+
+// format core practices
 export function formatCorePractices(link) {
   return {
     name: link.title,
@@ -158,25 +162,31 @@ export function formatCorePractices(link) {
   };
 }
 
+// print screen event
 export function printScreen() {
   window.print();
   return false;
 }
 
+// format title in query params
 export function makeQueryTitle(title) {
   const formatTitle = title.replace(/\+/g, ' ');
   return makeTitle(formatTitle);
 }
 
+// sort by orderBy key
 export function sortByOrder(admins) {
   admins.sort((a, b) => a.orderBy - b.orderBy);
 }
 
+
+// check if we are still using this...
 export async function fetcher(...args) {
   const res = await fetch(...args);
   return res.json();
 }
 
+// limit the string length to 200 characters
 export function limitTitleLength(title) {
   if (title.length > 200) {
     return `${title.substring(0, 200)} ...`;
@@ -185,6 +195,7 @@ export function limitTitleLength(title) {
   return title;
 }
 
+// reformat post links to be the format of graphql response
 export function reFormatExternalPosts(postLinks) {
   return postLinks.map((post) => ({
     link: post.link,

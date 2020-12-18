@@ -13,7 +13,7 @@ import {
   singleAdministraionQuery,
   getAllAdministration,
 } from 'queries/administration';
-import lineStyles from 'styles/LineHeader.module.css';
+import lineStyles from 'styles/LineHeader.module.css'e;
 
 export default function AdminSingleBio({ status, response }) {
   const router = useRouter();
