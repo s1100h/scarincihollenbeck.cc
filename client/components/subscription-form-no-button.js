@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import kwesforms from 'kwesforms';
+import Button from 'react-bootstrap/Button';
 import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 
@@ -46,19 +47,22 @@ export default function SubscriptionFormNoButton() {
           />
         </div>
         <fieldset data-kw-group="true" rules="required">
-          <label className="small-excerpt">
+          <span className="small-excerpt">
             Please select a category(s) below:
-          </label>
+          </span>
           <ul className="no-dots two-column">
             {checkboxes.map((type) => (
               <li key={type.key}>
-                <input
-                  type="checkbox"
-                  id={type.key}
-                  name="category"
-                  label={type.label}
-                  value={type.label}
-                />
+                <label htmlFor={type.key}>
+                  <input
+                    type="checkbox"
+                    id={type.key}
+                    name="category"
+                    label={type.label}
+                    value={type.label}
+                  />
+                  {type.label}
+                </label>
                 <span className="mx-2">{type.label}</span>
               </li>
             ))}
@@ -66,19 +70,17 @@ export default function SubscriptionFormNoButton() {
         </fieldset>
         <div className="modal-footer justify-content-start">
           <FormReCaptcha setCaptcha={setCaptcha} />
-          <button
+          <Button
+            variant="danger"
             type="submit"
-            className="btn btn-danger px-5"
+            className="px-5"
             disabled={captcha}
           >
             Submit
-          </button>
-          <button
-            className="btn btn-secondary proxima-bold"
-            onClick={() => setShow(false)}
-          >
-            Close
-          </button>
+          </Button>
+          <Button variant="secondary">
+            <strong>Close</strong>
+          </Button>
         </div>
       </form>
     </>

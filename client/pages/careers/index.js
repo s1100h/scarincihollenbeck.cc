@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
@@ -17,7 +17,7 @@ export default function CareersPage({ positionTypes, locations }) {
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
-  const [queryParams, setQueryParams] = useState({});
+  const [queryParams] = useState({});
 
   // fetch careers
   const { data: res, error: resError } = useSWR(
@@ -88,10 +88,7 @@ export async function getStaticProps() {
         'New York, NY',
         'Washington D.C.',
       ],
-      positionTypes: [
-        'Administration',
-        'Attorney',
-      ],
+      positionTypes: ['Administration', 'Attorney'],
     },
     revalidate: 1,
   };

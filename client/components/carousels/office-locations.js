@@ -48,9 +48,7 @@ export default function CarouselsOfficeLocations({ slides }) {
                 height={220}
                 layout="intrinsic"
               />
-              <p
-                className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}
-              >
+              <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
                 <strong>{post.title}</strong>
               </p>
             </a>

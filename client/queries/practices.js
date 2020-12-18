@@ -1,4 +1,4 @@
-export const getPracticesByInput = input => `{
+export const getPracticesByInput = (input) => `{
   searchWP(where: {input: "${input}"}) {
     nodes {
       ... on Practice {
@@ -9,4 +9,4 @@ export const getPracticesByInput = input => `{
     }
   }
 }
-`
+`;

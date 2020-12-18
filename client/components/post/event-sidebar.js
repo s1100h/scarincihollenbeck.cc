@@ -2,10 +2,7 @@ import Search from 'components/search';
 import SubscriptionMessage from 'components/subscription-message';
 import { addRandomKey, createMarkup } from 'utils/helpers';
 
-export default function PostsEventSidebar({
-  attorneys,
-  eventDetails,
-}) {
+export default function PostsEventSidebar({ attorneys, eventDetails }) {
   const eDetails = eventDetails[0];
 
   return (

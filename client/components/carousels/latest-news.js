@@ -34,17 +34,17 @@ export default function CarouselsLatestNews({ slides }) {
       swipeable
     >
       {slides.map((slide) => (
-        <div key={slide.node.id} className="pb-2 px-4">
-          <Link href={slide.node.link}>
+        <div key={slide.id || slide.node.id} className="pb-2 px-4">
+          <Link href={slide.slug || slide.node.link}>
             <a>
               <Image
                 src={
-                    slide.node.image
-                      ? slide.node.image.node.sourceUrl
-                      : slide.node.featuredImage
-                        ? slide.node.featuredImage.node.sourceUrl
-                        : '/images/no-image-found-diamond.png'
-                  }
+                  slide.node.image
+                    ? slide.node.image.node.sourceUrl
+                    : slide.node.featuredImage
+                      ? slide.node.featuredImage.node.sourceUrl
+                      : '/images/no-image-found-diamond.png'
+                }
                 alt={slide.node.title}
                 width={300}
                 height={150}

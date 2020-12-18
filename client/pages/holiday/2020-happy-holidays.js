@@ -3,7 +3,7 @@ import Footer from 'components/footer';
 import Body from 'components/pages/body';
 import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
+import LargeSidebar from 'layouts/large-sidebar';
 import { headers } from 'utils/helpers';
 
 export default function HappyHolidays2020({
@@ -26,22 +26,23 @@ export default function HappyHolidays2020({
         image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
-      <FullWidth>
-        {bodyContent}
-      </FullWidth>
+      <LargeSidebar
+        body={<Body content={bodyContent} />}
+        sidebar={<Sidebar posts={posts} />}
+      />
       <Footer />
     </>
   );
 }
 
-export async function getServerStaticProps() {
+export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2020-happy-holidays`,
+      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/2020-happy-holidays',
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
+      'https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights',
       { headers },
     ).then((data) => data.json()),
   ]);

@@ -13,11 +13,6 @@ import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
 export default function Featured({ post }) {
-  console.log('post');
-  console.log(post);
-  console.log('eventDetails length');
-  console.log(post.eventDetails.length);
-
   const router = useRouter();
 
   if (post.status === 404) {
@@ -131,7 +126,7 @@ export default function Featured({ post }) {
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [post, slides] = await Promise.all([
+  const [post] = await Promise.all([
     fetch(
       `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${
         params.slug[params.slug.length - 1]

@@ -22,16 +22,18 @@ export default function TrendingStories({ title, content }) {
                   <strong>{c.node.title}</strong>
                 </a>
               </Link>
-              {(c.node.hasOwnProperty('author')) && (
+              {c.node.hasOwnProperty('author') && (
                 <span className={`${fontStyles.smallExcerpt} d-block`}>
-                  <strong>
-                    Author:
-                  </strong>
+                  <strong>Author:</strong>
                   {' '}
-                  <Link href={(c.node.author.node.uri === '/author/scarinci-hollenbeck/') ? '/' : c.node.author.node.uri}>
-                    <a className="text-dark">
-                      {c.node.author.node.name}
-                    </a>
+                  <Link
+                    href={
+                      c.node.author.node.uri === '/author/scarinci-hollenbeck/'
+                        ? '/'
+                        : c.node.author.node.uri
+                    }
+                  >
+                    <a className="text-dark">{c.node.author.node.name}</a>
                   </Link>
                 </span>
               )}

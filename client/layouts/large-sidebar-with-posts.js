@@ -7,9 +7,7 @@ import { List } from 'react-virtualized';
 import ContactForm from 'components/contact-form';
 import { formatDate, createMarkup } from 'utils/helpers';
 
-function Post(content, {
-  key, index, isScrolling, isVisible, style,
-}) {
+function Post(content, { key, index }) {
   const post = content[index];
 
   return (

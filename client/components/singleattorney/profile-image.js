@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from 'styles/ProfileImage.module.css';
 
-export default function SingleAttorneyProfileImage({image, name }) {
+export default function SingleAttorneyProfileImage({ image, name }) {
   return (
     <Image
       src={image}
@@ -10,6 +10,8 @@ export default function SingleAttorneyProfileImage({image, name }) {
       height={795}
       layout="intrinsic"
       className={`${styles.whiteBorderTransparent} mb-3 animate__animated animate__fadeInUp animate__fast`}
+      priority
+      loading="eager"
     />
   );
 }

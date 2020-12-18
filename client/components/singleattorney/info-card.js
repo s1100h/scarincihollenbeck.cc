@@ -30,7 +30,7 @@ export default function SingleAttorneyInfoCard({
 }) {
   const isChair = (chair !== undefined && chair.length > 0)
     || (coChair !== undefined && coChair.length > 0);
-    
+
   return (
     <Col sm={12} className="animate__animated animate__fadeInUp animate__fast">
       <div className="mt-3">

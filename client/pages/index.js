@@ -18,7 +18,6 @@ import { getPracticesByInput } from 'queries/practices';
 export default function Home({
   seo, posts, locations, corePractices,
 }) {
-  console.log(sortByKey(corePractices, 'title'));
   return (
     <>
       <NextSeo
@@ -76,7 +75,10 @@ export async function getStaticProps() {
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const officeLocationContent = await client.query(officeLocationsQuery, {});
-  const firmCorePracticesContent = await client.query(getPracticesByInput('Core Practices'), {});
+  const firmCorePracticesContent = await client.query(
+    getPracticesByInput('Core Practices'),
+    {},
+  );
   const filteredNews = firmNewsContent.data.category.posts.edges.filter(
     (_, i) => i <= 2,
   );

@@ -66,19 +66,19 @@ export default function PracticeRelatedAttorneys({
                 />
                 <style jsx>
                   {`
-                  @media (min-width: 0px) and (max-width: 400px) {
-                    .attorney-card {
-                      margin-top: 1em;
-                      margin-bottom: 1em;
+                    @media (min-width: 0px) and (max-width: 400px) {
+                      .attorney-card {
+                        margin-top: 1em;
+                        margin-bottom: 1em;
+                      }
                     }
-                  }
-                  @media (min-width: 400px) and (max-width: 769px) {
-                    .attorney-card {
-                      margin-top: 1em;
-                      margin-bottom: 1em;
+                    @media (min-width: 400px) and (max-width: 769px) {
+                      .attorney-card {
+                        margin-top: 1em;
+                        margin-bottom: 1em;
+                      }
                     }
-                  }
-                `}
+                  `}
                 </style>
               </Col>
             ))}

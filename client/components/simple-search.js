@@ -4,10 +4,7 @@ import Button from 'react-bootstrap/Button';
 import useInput from 'utils/input-hook';
 
 export default function SimpleSearch({ searchId = 'simplesearch' }) {
-  const {
-    value: searchInput,
-    bind: bindSearchInput,
-  } = useInput('');
+  const { value: searchInput, bind: bindSearchInput } = useInput('');
 
   const handleSubmit = (e) => {
     e.preventDefault();

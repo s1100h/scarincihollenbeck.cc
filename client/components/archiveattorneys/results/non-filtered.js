@@ -34,19 +34,29 @@ function AttorneyCards(title, content) {
 
 export default function ArchiveAttorneyResultsNonFiltered({ attorneys }) {
   /// managing partners
-  const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
+  const managingPartners = attorneys.filter(
+    (a) => a.designation === 'Managing Partner',
+  );
 
   // partners & nyc managing partner
-  const partners = attorneys.filter((a) => a.designation === 'Partner' || a.designation === 'NYC Managing Partner' || a.designation === 'Washington, D.C. Managing Partner');
+  const partners = attorneys.filter(
+    (a) => a.designation === 'Partner'
+      || a.designation === 'NYC Managing Partner'
+      || a.designation === 'Washington, D.C. Managing Partner',
+  );
 
   // counsel
   const counsel = attorneys.filter((a) => a.designation === 'Counsel');
 
   // of counsel & counsel emeritus
-  const ofCounsel = attorneys.filter((a) => a.designation.indexOf('Of Counsel') > -1);
+  const ofCounsel = attorneys.filter(
+    (a) => a.designation.indexOf('Of Counsel') > -1,
+  );
 
   // senior associates
-  const seniorAssociates = attorneys.filter((a) => a.designation === 'Senior Associate');
+  const seniorAssociates = attorneys.filter(
+    (a) => a.designation === 'Senior Associate',
+  );
 
   // associates
   const associates = attorneys.filter((a) => a.designation === 'Associate');

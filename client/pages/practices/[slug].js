@@ -115,14 +115,14 @@ export default function PracticesSingle({ practice, corePractices }) {
                     {/** Awards */}
                     {practice.highlightReal.length > 0 && (
                       <>
-                        <LineHeading title="Represenative Clients" />
+                        {/* <LineHeading title="Represenative Clients" /> */}
                         <FeaturedSlider content={practice.highlightReal} />
                       </>
                     )}
                     {/** Recent Blog Articles */}
                     {practice.industryTopics.length > 0 && (
                       <div className="w-100 d-block">
-                        <LineHeading title="Latest News & Articles" />
+                        {/* <LineHeading title="Latest News & Articles" /> */}
                         <FeaturedSlider content={practice.industryTopics} />
                       </div>
                     )}

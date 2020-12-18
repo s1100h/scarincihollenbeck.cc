@@ -7,9 +7,14 @@ import textStyles from 'styles/Text.module.css';
 import styles from 'styles/Category.module.css';
 import { sortByKey } from 'utils/helpers';
 
-export default function CategoryLawFirmInsightsColumnContent({ lawFirmInsightsCategoryChildren }) {
+export default function CategoryLawFirmInsightsColumnContent({
+  lawFirmInsightsCategoryChildren,
+}) {
   //
-  const { data: authorsPageOne, error: authorsPageOneErr } = useSWR(
+  const {
+    data: authorsPageOne,
+    error: authorsPageOneErr,
+  } = useSWR(
     'https://wp.scarincihollenbeck.com/wp-json/wp/v2/users?per_page=100&page=1',
     (url) => fetch(url).then((r) => r.json()),
   );
@@ -29,9 +34,10 @@ export default function CategoryLawFirmInsightsColumnContent({ lawFirmInsightsCa
     };
   });
 
-  const sortReFormatPruendAuthorsWithLastname = sortByKey(reFormatPrunedAuthorsWithLastname, 'lastName');
-  const removeLawFirmMarketingFromChildren = lawFirmInsightsCategoryChildren.filter((a) => a.name !== 'Law Firm Marketing');
-  console.log(removeLawFirmMarketingFromChildren)
+  const sortReFormatPruendAuthorsWithLastname = sortByKey(
+    reFormatPrunedAuthorsWithLastname,
+    'lastName',
+  );
 
   return (
     <div className="container mt-5">
@@ -46,9 +52,7 @@ export default function CategoryLawFirmInsightsColumnContent({ lawFirmInsightsCa
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.link}>
                   <a className={`${textStyles.blueTitle}`}>
-                    <strong>
-                      {post.name}
-                    </strong>
+                    <strong>{post.name}</strong>
                   </a>
                 </Link>
               </li>
@@ -57,19 +61,15 @@ export default function CategoryLawFirmInsightsColumnContent({ lawFirmInsightsCa
         </div>
         <div className="col-sm-12 col-md-4 border-right">
           <h5 className={textStyles.redTitle}>
-            <strong>
-              More about our areas of law
-            </strong>
+            <strong>More about our areas of law</strong>
           </h5>
           <hr />
           <ul className={`${styles.listOverflow} ml-3 mr-0 px-0`}>
-            {removeLawFirmMarketingFromChildren.map((post) => (
+            {lawFirmInsightsCategoryChildren.map((post) => (
               <li key={post.name} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.link}>
                   <a className={`${textStyles.blueTitle}`}>
-                    <strong>
-                      {post.name}
-                    </strong>
+                    <strong>{post.name}</strong>
                   </a>
                 </Link>
               </li>
@@ -78,9 +78,7 @@ export default function CategoryLawFirmInsightsColumnContent({ lawFirmInsightsCa
         </div>
         <div className="col-sm-12 col-md-5">
           <h5 className={textStyles.redTitle}>
-            <strong>
-              Join our mailing list!
-            </strong>
+            <strong>Join our mailing list!</strong>
           </h5>
           <hr />
           <div className="ModalForm-main">

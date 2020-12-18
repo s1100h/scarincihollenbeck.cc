@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import kwesforms from 'kwesforms';
+import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
 import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
 import FormReCaptcha from './google-recaptcha-button';
-
 
 export default function SubscriptionFormColumn() {
   const [captcha, setCaptcha] = useState(true);
@@ -48,7 +48,9 @@ export default function SubscriptionFormColumn() {
         <span className={fontsStyles.smallExcerpt}>
           Please select a category(s) below:
         </span>
-        <ul className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}>
+        <ul
+          className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}
+        >
           {checkboxes.map((type) => (
             <li key={type.key}>
               <label htmlFor={type.key} className="mb-0">
@@ -59,7 +61,7 @@ export default function SubscriptionFormColumn() {
                   label={type.label}
                   value={type.label}
                 />
-                <span className="mx-2">{type.label}</span>              
+                <span className="mx-2">{type.label}</span>
               </label>
             </li>
           ))}
@@ -67,13 +69,14 @@ export default function SubscriptionFormColumn() {
       </fieldset>
       <div className="modal-footer justify-content-start">
         <FormReCaptcha setCaptcha={setCaptcha} />
-        <button
+        <Button
+          variant="danger"
           type="submit"
-          className="btn btn-danger px-5"
+          className="px-5"
           disabled={captcha}
         >
           Submit
-        </button>
+        </Button>
       </div>
     </form>
   );

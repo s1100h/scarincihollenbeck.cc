@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -35,7 +35,11 @@ export default function CareersFilterForms({
             </Form>
           </Col>
           <Col sm={12} md={3}>
-            <DropdownButton variant="link" title={locationTitle} className={`${styles.filter} my-3 my-md-0`}>
+            <DropdownButton
+              variant="link"
+              title={locationTitle}
+              className={`${styles.filter} my-3 my-md-0`}
+            >
               {locations.map((location) => (
                 <Dropdown.Item
                   key={location}
@@ -51,7 +55,11 @@ export default function CareersFilterForms({
             </DropdownButton>
           </Col>
           <Col sm={12} md={3}>
-            <DropdownButton variant="link" title={positionTitle} className={`${styles.filter} mb-3 mb-md-0`}>
+            <DropdownButton
+              variant="link"
+              title={positionTitle}
+              className={`${styles.filter} mb-3 mb-md-0`}
+            >
               {positionTypes.map((position) => (
                 <Dropdown.Item
                   key={position}
@@ -67,15 +75,10 @@ export default function CareersFilterForms({
             </DropdownButton>
           </Col>
           <Col sm={12} md={2}>
-            <Button
-              variant="danger"
-              className="w-100"
-              onClick={executeSearch}
-            >
+            <Button variant="danger" className="w-100" onClick={executeSearch}>
               Search
             </Button>
           </Col>
-
         </Row>
       </Container>
     </>

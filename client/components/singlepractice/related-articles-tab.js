@@ -14,11 +14,7 @@ function Post(content, { index }) {
       <Link href={post.link}>
         <a className="d-flex flex-row">
           <Image
-            src={
-              post.image
-                ? post.image
-                : '/images/no-image-found-diamond.png'
-            }
+            src={post.image ? post.image : '/images/no-image-found-diamond.png'}
             width={300}
             height={150}
             layout="intristic"
@@ -33,7 +29,11 @@ function Post(content, { index }) {
   );
 }
 
-export default function PracticeRelatedArticlesTab({ tabTitle, title, content }) {
+export default function PracticeRelatedArticlesTab({
+  tabTitle,
+  title,
+  content,
+}) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <BigGrayTitle title={title} />

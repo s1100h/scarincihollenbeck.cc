@@ -12,7 +12,10 @@ export default function SingleCareerBody({ title, position, contact }) {
       <Row>
         <Col sm={12}>
           <h4 className={grayTitleStyles.title}>{title}</h4>
-          <div className={styles.content} dangerouslySetInnerHTML={createMarkup(position)} />
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={createMarkup(position)}
+          />
           <CareerForm contact={contact} title={title} />
         </Col>
       </Row>

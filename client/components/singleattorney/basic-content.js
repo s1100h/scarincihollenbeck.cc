@@ -6,7 +6,11 @@ import { createMarkup } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import styles from 'styles/BasicContent.module.css';
 
-export default function SingleAttorneyBasicContent({ tabTitle, title, content }) {
+export default function SingleAttorneyBasicContent({
+  tabTitle,
+  title,
+  content,
+}) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className={grayTitleStyles.title}>{title}</h4>

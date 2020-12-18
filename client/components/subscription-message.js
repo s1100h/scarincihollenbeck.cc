@@ -21,7 +21,8 @@ export default function SubscriptionMessage() {
         <p className="px-3">
           <strong>
             Please fill out our short form to get the latest articles from the
-            Scarinci Hollenbeck attorneys weekly on the cutting-edge legal topics.
+            Scarinci Hollenbeck attorneys weekly on the cutting-edge legal
+            topics.
           </strong>
         </p>
         <div className="mb-3 pb-3">

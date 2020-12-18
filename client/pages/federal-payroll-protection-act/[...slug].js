@@ -118,7 +118,7 @@ export default function FederalPayrollProtectionAct({ post }) {
 }
 
 export async function getServerSideProps({ params, res }) {
-  const [post, slides] = await Promise.all([
+  const [post] = await Promise.all([
     fetch(
       `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${
         params.slug[params.slug.length - 1]

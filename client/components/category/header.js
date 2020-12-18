@@ -6,9 +6,7 @@ export default function CategoryHeader({ title, content }) {
   return (
     <div className="w-100">
       <h1 className={`${textStyles.redTitle} mb-2 text-uppercase display-4`}>
-        <strong>
-          {title}
-        </strong>
+        <strong>{title}</strong>
       </h1>
       <h2
         dangerouslySetInnerHTML={createMarkup(content)}

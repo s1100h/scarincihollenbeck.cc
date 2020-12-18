@@ -23,9 +23,7 @@ export default function AuthorSideBar({ bio, practices }) {
       <div className="w-100">
         <h4 className={`${styles.header} w-100 p-2 text-left text-white`}>
           {bio.title}
-          &apos;s
-          {' '}
-          Legal Services
+          &apos;s Legal Services
         </h4>
         <div className="off-white">
           <div className="px-2 pt-3">

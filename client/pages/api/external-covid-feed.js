@@ -1,7 +1,7 @@
 const Parser = require('rss-parser');
 
 // sort and parse results
-async function parseFeedResults(feed, sourceUrl, source = null) {
+async function parseFeedResults(feed, sourceUrl) {
   const results = [];
 
   // check if the source is asbury park press

@@ -40,33 +40,29 @@ export default function CarouselsSimpleNews({ slides }) {
       swipeable
     >
       {slides.map((post) => (
-          <div
-            key={parseInt(post.id, 10)}
-            className={`pb-2 px-4 carousel-slide level-${parseInt(
-              post.id,
-              10,
-            )}`}
-          >
-            <Link href={post.link || '/'}>
-              <a>
-                <Image
-                    src={
-                      post.image
-                        ? post.image
-                        : post.featuredImg
-                          ? post.featuredImg
-                          : '/images/no-image-found-diamond.png'
-                    }
-                    alt={post.title}
-                  />
-                  <p className="text-muted small-excerpt text-center">
-                    {limitTitleLength(post.title)}
-                  </p>
-                </a>
-            </Link>
-          </div>
-        ))}
-      </Carousel>
-    )
+        <div
+          key={parseInt(post.id, 10)}
+          className={`pb-2 px-4 carousel-slide level-${parseInt(post.id, 10)}`}
+        >
+          <Link href={post.link || '/'}>
+            <a>
+              <Image
+                src={
+                  post.image
+                    ? post.image
+                    : post.featuredImg
+                      ? post.featuredImg
+                      : '/images/no-image-found-diamond.png'
+                }
+                alt={post.title}
+              />
+              <p className="text-muted small-excerpt text-center">
+                {limitTitleLength(post.title)}
+              </p>
+            </a>
+          </Link>
+        </div>
+      ))}
+    </Carousel>
   );
 }

@@ -49,10 +49,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const careerContent = await client.query(
-    getSingleCareer(params.slug),
-    {},
-  );
+  const careerContent = await client.query(getSingleCareer(params.slug), {});
 
   if (careerContent.data.careers.nodes.length <= 0) {
     return {

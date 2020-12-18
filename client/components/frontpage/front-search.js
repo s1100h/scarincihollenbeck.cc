@@ -8,10 +8,7 @@ import useInput from 'utils/input-hook';
 import styles from 'styles/FrontSearch.module.css';
 
 export default function FrontSearch() {
-  const {
-    value: searchInput,
-    bind: bindSearchInput,
-  } = useInput('');
+  const { value: searchInput, bind: bindSearchInput } = useInput('');
 
   const handleSubmit = (e) => {
     e.preventDefault();

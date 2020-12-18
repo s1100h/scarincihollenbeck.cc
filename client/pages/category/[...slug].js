@@ -8,15 +8,21 @@ import MainArticlesContainer from 'components/category/main-articles-container';
 import MainSidebarContent from 'components/category/main-sidebar-content';
 import CategoryHeader from 'components/category/header';
 import CategorySliderContainer from 'components/category/slider-container';
+import CategoryChildrenSlider from 'components/category/children-slider';
 import ColumnContent from 'components/category/column-content';
-import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content.js';
+import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content';
 import Footer from 'components/footer';
 import client from 'utils/graphql-client';
 import { getAllCategories, getFirst14PostsFromSlug } from 'queries/category';
 import styles from 'styles/LineHeader.module.css';
 
 export default function CategoryLandingPage({
-  posts, description, name, seo, children,
+  posts,
+  description,
+  name,
+  seo,
+  children,
+  uri,
 }) {
   const router = useRouter();
 
@@ -29,14 +35,14 @@ export default function CategoryLandingPage({
   const isEventPage = router.asPath.indexOf('firm-events') > 0;
   const isNewsPage = router.asPath.indexOf('firm-news') > 0;
 
-  console.log(children);
+  const removeLawFirmMarketingFromChildren = children.filter(
+    (a) => a.name !== 'Law Firm Marketing',
+  );
 
   return (
     <>
       <NextSeo
-        title={
-          seo.title || `${name} Legal Blog | Scarinci Hollenbeck`
-        }
+        title={seo.title || `${name} Legal Blog | Scarinci Hollenbeck`}
         description={seo.metaDesc || ''}
         canonical={`http://scarincihollenbeck.com${seo.uri}`}
       />
@@ -45,17 +51,12 @@ export default function CategoryLandingPage({
         <BreadCrumbs />
       </FullWidth>
       <LargeSidebar
-        body={(
-          <CategoryHeader
-            title={name}
-            content={description}
-          />
-        )}
+        body={<CategoryHeader title={name} content={description} />}
         sidebar={(
           <>
             <small className="mb-3">
-              Not what you are looking for? Feel free to see search out
-              site to find the right attorney for your business.
+              Not what you are looking for? Feel free to see search out site to
+              find the right attorney for your business.
             </small>
             <Search />
           </>
@@ -66,53 +67,47 @@ export default function CategoryLandingPage({
         sidebar={<MainSidebarContent latest={sideBarArticles} />}
       />
       <FullWidth>
-        <CategorySliderContainer
-          title="MOST RECENT"
-          slides={sliderArticles}
-        />
+        <CategorySliderContainer title="MOST RECENT" slides={sliderArticles} />
       </FullWidth>
       <FullWidth>
         <div className={styles.lineHeader}>
           <h3>Discover</h3>
         </div>
       </FullWidth>
-      {(isEventPage || isNewsPage) ? <ColumnContent /> : <CategoryLawFirmInsightsColumnContent lawFirmInsightsCategoryChildren={children} />}
-      {children.map((child) => (
+      {isEventPage || isNewsPage ? (
+        <ColumnContent />
+      ) : (
+        <CategoryLawFirmInsightsColumnContent
+          lawFirmInsightsCategoryChildren={removeLawFirmMarketingFromChildren}
+        />
+      )}
+      {removeLawFirmMarketingFromChildren.map((child) => (
         <FullWidth key={child.name}>
           <div className="mt-5">
-            <CategorySliderContainer
+            <CategoryChildrenSlider
               title={child.name}
               slides={child.posts.nodes}
             />
           </div>
         </FullWidth>
       ))}
-
-      {/*
-        <>
-
-            <FullWidth className="border-top mt-5">
-              <p className="text-center lead mt-4">
-                <small>
-                  <em>
-                    Looking for something specific, feel free to search our
-                    archives.
-                  </em>
-                </small>
-              </p>
-              <p className="text-center">
-                <a
-                  className="red-title"
-                  href={`/archives?q=${urlify(categoryTitle)}&page=1`}
-                >
-                  <u>Site Archives &gt;&gt;</u>
-                </a>
-              </p>
-            </FullWidth>
-          </div> */}
-      {/*
-        </>
-      )} */}
+      <FullWidth className="border-top mt-5">
+        <p className="text-center lead mt-4">
+          <small>
+            <em>
+              Looking for something specific, feel free to search our archives.
+            </em>
+          </small>
+        </p>
+        <p className="text-center">
+          <a
+            className="red-title"
+            href={`/archives?q=${uri.replace('/category/', '')}&page=1`}
+          >
+            <u>Site Archives &gt;&gt;</u>
+          </a>
+        </p>
+      </FullWidth>
       <Footer />
     </>
   );
@@ -121,9 +116,7 @@ export async function getStaticPaths() {
   const res = await client.query(getAllCategories, {});
 
   return {
-    paths:
-      res.data.categories.nodes.map((a) => a.uri)
-      || [],
+    paths: res.data.categories.nodes.map((a) => a.uri) || [],
     fallback: false,
   };
 }
@@ -135,6 +128,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       name: res.data.categories.nodes[0].name,
+      uri: res.data.categories.nodes[0].uri,
       description: res.data.categories.nodes[0].description,
       posts: res.data.categories.nodes[0].posts.edges,
       seo: res.data.categories.nodes[0].seo,

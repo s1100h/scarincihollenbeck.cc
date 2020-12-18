@@ -12,7 +12,11 @@ import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 import { getPostsByAuthor, getAuthorBio } from 'queries/author';
 
-export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }) {
+export default function AuthorLandingPage({
+  firmNews,
+  firmEvents,
+  firmInsights,
+}) {
   const router = useRouter();
 
   const {
@@ -41,7 +45,7 @@ export default function AuthorLandingPage({ firmNews, firmEvents, firmInsights }
     <div className="mt-3">
       <NextSeo nofollow />
       <ArchiveLayout
-        header={''}
+        header=""
         body={(
           <ArcivhesBody
             results={authorPosts.posts.edges}

@@ -45,7 +45,7 @@ export const getAllCareers = `{
 
 export const queryCareers = (query) => {
   const parsedQuery = JSON.parse(query);
-  const input = Object.values(parsedQuery).join(', ')
+  const input = Object.values(parsedQuery).join(', ');
 
   if (Object.keys(parsedQuery).length === 0) {
     return `{

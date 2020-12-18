@@ -23,8 +23,8 @@ export const getChildrenCategoriesFromSlug = (slug) => {
         }
       }
     }
-  }`
-}
+  }`;
+};
 
 export const getFirst14PostsFromSlug = (slug) => {
   return `{
@@ -72,6 +72,7 @@ export const getFirst14PostsFromSlug = (slug) => {
               nodes {
                 title
                 slug
+                link
                 id
                 featuredImage {
                   node {
@@ -86,4 +87,4 @@ export const getFirst14PostsFromSlug = (slug) => {
     }
   }
   `;
-}
+};

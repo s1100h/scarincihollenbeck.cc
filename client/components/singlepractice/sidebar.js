@@ -37,9 +37,7 @@ function HeaderToggle({ children, eventKey, callback }) {
   );
 }
 
-export default function PracticeSidebar({
-  title, content, tabKey,
-}) {
+export default function PracticeSidebar({ title, content, tabKey }) {
   return (
     <>
       <Accordion defaultActiveKey={2} className="mt-4">

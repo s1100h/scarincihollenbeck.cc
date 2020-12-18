@@ -10,11 +10,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import TrendingStories from 'components/non-graphql-trending-stories';
 
-import {
-  sortByKey,
-  urlify,
-  getDirectionsFromLocation,
-} from 'utils/helpers';
+import { sortByKey, urlify, getDirectionsFromLocation } from 'utils/helpers';
 
 function LocationHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
@@ -49,7 +45,10 @@ function LocationHeaderToggle({ children, eventKey, callback }) {
 }
 
 export default function LocationsSidebar({
-  offices, posts, title, startingKey,
+  offices,
+  posts,
+  title,
+  startingKey,
 }) {
   const officeList = sortByKey(offices, 'title');
 

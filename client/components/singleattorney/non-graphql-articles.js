@@ -34,7 +34,11 @@ function Post(content, { key, index }) {
   );
 }
 
-export default function SingleAttorneyNonGraphQlArticles({ tabTitle, title, content }) {
+export default function SingleAttorneyNonGraphQlArticles({
+  tabTitle,
+  title,
+  content,
+}) {
   return (
     <Tab.Pane eventKey={tabTitle} title={title}>
       <h4 className={grayTitleStyles.title}>{title}</h4>

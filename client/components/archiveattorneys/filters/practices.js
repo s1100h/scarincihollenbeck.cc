@@ -33,7 +33,10 @@ function PracticeListItem({ title, onSelect, pChildren }) {
   );
 }
 
-export default function ArchiveAttorneyFitlersPractices({ practices, onSelect }) {
+export default function ArchiveAttorneyFitlersPractices({
+  practices,
+  onSelect,
+}) {
   /**
    *
    * Filter each item into a column
@@ -53,7 +56,11 @@ export default function ArchiveAttorneyFitlersPractices({ practices, onSelect })
   const pt = practices.filter((b) => (b.ID === 28273 || b.ID === 28274 ? b : ''));
 
   return (
-    <DropdownButton variant="link" title="Filter by practice" className={`${styles.filter} ${megaMenuStyles.menu} my-3 my-md-0`}>
+    <DropdownButton
+      variant="link"
+      title="Filter by practice"
+      className={`${styles.filter} ${megaMenuStyles.menu} my-3 my-md-0`}
+    >
       <Container className="mt--1 p-0" fluid>
         <Row className="rounded-0 m-0">
           <Col sm={12} lg={3} className="mt-md-3">

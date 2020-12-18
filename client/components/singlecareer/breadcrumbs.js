@@ -27,16 +27,11 @@ export default function SingleCareerBreadCrumbs({ title }) {
         </a>
       </Link>
       <strong className="text-black mt-2 mx-2">
-        <FontAwesomeIcon
-          icon={faCaretRight}
-          className={textStyles.redTitle}
-        />
+        <FontAwesomeIcon icon={faCaretRight} className={textStyles.redTitle} />
       </strong>
       <Link href="/career/[slug]" as={router.asPath}>
         <a className={`${textStyles.redTitle} text-uppercase`}>
-          <strong>
-            {title}
-          </strong>
+          <strong>{title}</strong>
         </a>
       </Link>
     </div>

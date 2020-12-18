@@ -13,8 +13,8 @@ import styles from 'styles/CareerForm.module.css';
 
 function bytesToSize(bytes) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  if (bytes == 0) return '0 Byte';
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  if (bytes === 0) return '0 Byte';
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
   return `${Math.round(bytes / Math.pow(1024, i), 2)} ${sizes[i]}`;
 }
 
@@ -66,7 +66,7 @@ export default function CareerForm({ contact, title }) {
         size: incomingFile.size,
       };
 
-      setFiles((files) => [...files, fileContents]);
+      setFiles((f) => [...f, fileContents]);
     };
     reader.readAsDataURL(incomingFile);
   };
@@ -82,7 +82,7 @@ export default function CareerForm({ contact, title }) {
   }, []);
 
   const thumbs = files.map((file) => (
-    <div className="thumbInner" key={file.title} className="my-3">
+    <div className="thumbInner my-3" key={file.title}>
       <p className="my-0 py-0">
         {file.title}
         {' '}
@@ -252,7 +252,10 @@ export default function CareerForm({ contact, title }) {
                 </a>
               </Form.Label>
               <div className="thumbsContainer">{thumbs}</div>
-              <div {...getRootProps()} className={`${styles.dottedBorder} dropzone-center`}>
+              <div
+                {...getRootProps()}
+                className={`${styles.dottedBorder} dropzone-center`}
+              >
                 <input {...getInputProps()} />
                 {isDragActive ? (
                   <div className="red-title my-4 text-center d-block">

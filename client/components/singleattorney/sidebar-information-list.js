@@ -41,7 +41,10 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
   );
 }
 
-export default function SingleAttorneySidebarInformationList({ content, itemKey }) {
+export default function SingleAttorneySidebarInformationList({
+  content,
+  itemKey,
+}) {
   const {
     affiliations,
     barAdmissions,

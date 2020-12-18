@@ -16,14 +16,15 @@ export default function CareersEqualOpportunity() {
         <Row>
           <Col sm={12} className={basicStyles.content}>
             <p>
-              Scarinci Hollenbeck is an equal opportunity employer. It is Scarinci
-              Hollenbeck’s policy to consider all applicants for employment solely
-              on the basis of their qualifications for the job without regard to
-              race, color, creed, sex, sexual orientation, gender identity or
-              expression, marital status, age, religion, ancestry, national
-              origin, citizenship, disability, atypical hereditary cellular or
-              blood trait, arrest record, liability for service in the armed
-              forces of the United States or unfavorable military discharge.
+              Scarinci Hollenbeck is an equal opportunity employer. It is
+              Scarinci Hollenbeck’s policy to consider all applicants for
+              employment solely on the basis of their qualifications for the job
+              without regard to race, color, creed, sex, sexual orientation,
+              gender identity or expression, marital status, age, religion,
+              ancestry, national origin, citizenship, disability, atypical
+              hereditary cellular or blood trait, arrest record, liability for
+              service in the armed forces of the United States or unfavorable
+              military discharge.
             </p>
             <p>
               In addition, the Firm attempts to comply with all applicable state
@@ -44,9 +45,7 @@ export default function CareersEqualOpportunity() {
                 {' '}
                 <Link href="/diversity">
                   <a className={textStyles.redTitle}>
-                    <u>
-                      Scarinci Hollenbeck&apos;s commitment to diveristy
-                    </u>
+                    <u>Scarinci Hollenbeck&apos;s commitment to diveristy</u>
                   </a>
                 </Link>
               </strong>

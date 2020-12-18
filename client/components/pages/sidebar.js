@@ -13,10 +13,7 @@ export default function CovidSidebar({ posts, covidPage }) {
           content={posts}
         />
       ) : (
-        <TrendingStories
-          title="Trending Stories"
-          content={posts}
-        />
+        <TrendingStories title="Trending Stories" content={posts} />
       )}
       <br />
       <SubscriptionMessage />

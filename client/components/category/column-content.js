@@ -10,21 +10,24 @@ import { getChildrenCategoriesFromSlug } from 'queries/category';
 import { sortByKey } from 'utils/helpers';
 
 export default function CategoryColumnContent() {
-  const { data: corePractices, error: corePracticesError } = useSWR(
-    getPracticesByInput('Core Practices'),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
-  );
+  const {
+    data: corePractices,
+    error: corePracticesError,
+  } = useSWR(getPracticesByInput('Core Practices'), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
 
-  const { data: lawFirmInsightsChildren, error: lawFirmInsightsChildrenError } = useSWR(
-    getChildrenCategoriesFromSlug('law-firm-insights'),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
-  );
+  const {
+    data: lawFirmInsightsChildren,
+    error: lawFirmInsightsChildrenError,
+  } = useSWR(getChildrenCategoriesFromSlug('law-firm-insights'), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
 
   if (corePracticesError || lawFirmInsightsChildrenError) return <ErrorMessage />;
   if (!corePractices || !lawFirmInsightsChildren) return <SiteLoader />;
 
   const sortedCorePractices = sortByKey(corePractices.searchWP.nodes, 'title');
-  const sortedlawFirmInsightsChildren = sortByKey(lawFirmInsightsChildren.categories.nodes[0].children.nodes, 'title');
+  const sortedlawFirmInsightsChildren = sortByKey(
+    lawFirmInsightsChildren.categories.nodes[0].children.nodes,
+    'title',
+  );
 
   return (
     <div className="container mt-5">
@@ -39,9 +42,7 @@ export default function CategoryColumnContent() {
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.uri}>
                   <a className={`${textStyles.blueTitle}`}>
-                    <strong>
-                      {post.title}
-                    </strong>
+                    <strong>{post.title}</strong>
                   </a>
                 </Link>
               </li>
@@ -50,9 +51,7 @@ export default function CategoryColumnContent() {
         </div>
         <div className="col-sm-12 col-md-4 border-right">
           <h5 className={textStyles.redTitle}>
-            <strong>
-              Firm Insight&apos;s Categories
-            </strong>
+            <strong>Firm Insight&apos;s Categories</strong>
           </h5>
           <hr />
           <ul className="ml-3 mr-0 px-0">
@@ -60,9 +59,7 @@ export default function CategoryColumnContent() {
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.uri}>
                   <a className={`${textStyles.blueTitle}`}>
-                    <strong>
-                      {post.name}
-                    </strong>
+                    <strong>{post.name}</strong>
                   </a>
                 </Link>
               </li>
@@ -71,9 +68,7 @@ export default function CategoryColumnContent() {
         </div>
         <div className="col-sm-12 col-md-5">
           <h5 className={textStyles.redTitle}>
-            <strong>
-              Join our mailing list!
-            </strong>
+            <strong>Join our mailing list!</strong>
           </h5>
           <hr />
           <div className="ModalForm-main">

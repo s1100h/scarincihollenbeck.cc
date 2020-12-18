@@ -9,10 +9,7 @@ import { blogArticlesQuery } from 'queries/home';
 import { getPageContents } from 'queries/pages';
 
 export default function Awards({
-  title,
-  content,
-  posts,
-  seo,
+  title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';

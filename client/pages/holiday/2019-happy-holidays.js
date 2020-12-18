@@ -35,14 +35,14 @@ export default function HappyHolidays2019({
   );
 }
 
-export async function getServerStaticProps() {
+export async function getServerSideProps() {
   const [aJson, postJson] = await Promise.all([
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/2019-happy-holidays`,
+      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/2019-happy-holidays',
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
+      'https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights',
       { headers },
     ).then((data) => data.json()),
   ]);

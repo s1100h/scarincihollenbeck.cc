@@ -74,7 +74,6 @@ export const getAuthorBio = (author) => {
   }`;
 };
 
-
 export const getListOfAuthors = `{
   users(where: {role: AUTHOR}, first: 1000) {
     nodes {
@@ -84,4 +83,4 @@ export const getListOfAuthors = `{
       url
     }
   }
-}`
+}`;

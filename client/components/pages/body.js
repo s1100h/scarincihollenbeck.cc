@@ -6,9 +6,14 @@ import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 export default function PagesBody({ content }) {
   return (
     <>
-      <div className={styles.content} dangerouslySetInnerHTML={createMarkup(content)} />
+      <div
+        className={styles.content}
+        dangerouslySetInnerHTML={createMarkup(content)}
+      />
       <div className="mt-5 w-100">
-        <h4 className={grayTitleStyles.title}>Contact A Firm Reprepresentative</h4>
+        <h4 className={grayTitleStyles.title}>
+          Contact A Firm Reprepresentative
+        </h4>
         <ContactForm />
       </div>
     </>

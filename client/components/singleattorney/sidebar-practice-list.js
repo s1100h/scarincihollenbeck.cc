@@ -41,7 +41,10 @@ function SideBarHeaderToggle({ children, eventKey, callback }) {
   );
 }
 
-export default function SingleAttorneySidebarPracticeList({ content, itemKey }) {
+export default function SingleAttorneySidebarPracticeList({
+  content,
+  itemKey,
+}) {
   return (
     <>
       <Accordion defaultActiveKey={2}>

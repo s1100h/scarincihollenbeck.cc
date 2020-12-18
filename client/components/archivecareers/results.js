@@ -11,17 +11,14 @@ function checkForEmptyResults() {
         <Col sm={12}>
           <div className="my-5">
             <h3 className={`${styles.redTitle} text-center`}>
-              <strong>
-                Sorry, no career positions available
-              </strong>
+              <strong>Sorry, no career positions available</strong>
             </h3>
           </div>
-        </Col>    
+        </Col>
       </Row>
     </Container>
-  )
+  );
 }
-
 
 function renderResults(positions) {
   return (
@@ -35,9 +32,7 @@ function renderResults(positions) {
                   <div className="card d-flex flex-row">
                     <div className="my-2 pl-2">
                       <h5 className={styles.redTitle}>
-                        <strong>
-                          {p.title}
-                        </strong>
+                        <strong>{p.title}</strong>
                       </h5>
                       <hr className="my-0 py-1" />
                       <p className="my-0">
@@ -65,11 +60,13 @@ function renderResults(positions) {
 }
 
 export default function CareersResults({ positions }) {
-  const results = positions.filter((position) => JSON.stringify(position) !== '{}')
+  const results = positions.filter(
+    (position) => JSON.stringify(position) !== '{}',
+  );
 
   if (results <= 0) {
-    return checkForEmptyResults()
+    return checkForEmptyResults();
   }
 
-  return renderResults(results)
+  return renderResults(results);
 }

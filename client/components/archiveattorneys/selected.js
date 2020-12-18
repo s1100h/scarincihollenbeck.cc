@@ -4,7 +4,9 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import textStyles from 'styles/Text.module.css';
 
-export default function Selected({ select, userInput, clearQuery, clearAll }) {
+export default function Selected({
+  select, userInput, clearQuery, clearAll,
+}) {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
   return (
@@ -13,21 +15,19 @@ export default function Selected({ select, userInput, clearQuery, clearAll }) {
         <Col sm={12} md={10}>
           <ul className="no-dots list-inline my-2 mx-0">
             {userInput.length > 0 && (
-            <li className="list-inline-item">
-              <Button
-                variant="link"
-                className={textStyles.redTitle}
-                id={userInput}
-                onClick={() => clearQuery('query')}
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Click on link to remove filter"
-              >
-                <strong>
-                  {userInput}
-                </strong>
-              </Button>
-            </li>
+              <li className="list-inline-item">
+                <Button
+                  variant="link"
+                  className={textStyles.redTitle}
+                  id={userInput}
+                  onClick={() => clearQuery('query')}
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Click on link to remove filter"
+                >
+                  <strong>{userInput}</strong>
+                </Button>
+              </li>
             )}
             {nonUserInputResults.map((s) => (
               <li className=" list-inline-item" key={s.key}>
@@ -41,9 +41,7 @@ export default function Selected({ select, userInput, clearQuery, clearAll }) {
                   data-html="true"
                   title="Click on link to remove filter"
                 >
-                  <strong>
-                    {s.selected}
-                  </strong>
+                  <strong>{s.selected}</strong>
                 </Button>
               </li>
             ))}

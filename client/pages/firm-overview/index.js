@@ -6,10 +6,7 @@ import FirmMembers from 'components/firmoverview/members';
 import { headers, createMarkup, sortByKey } from 'utils/helpers';
 
 export default function FirmOverview({
-  mainTabs,
-  members,
-  mainContent,
-  seo,
+  mainTabs, members, mainContent, seo,
 }) {
   const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent[0], '');

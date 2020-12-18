@@ -9,7 +9,11 @@ import FullWidth from 'layouts/full-width';
 import { headers, sortByKey } from 'utils/helpers';
 
 export default function Attorneys({
-  seo, locations, designations, practices, attorneys,
+  seo,
+  locations,
+  designations,
+  practices,
+  attorneys,
 }) {
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
@@ -38,7 +42,10 @@ export default function Attorneys({
 
   /* Handle User Input Event */
   function handleChange(e) {
-    const input = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    const input = e.target.value.replace(
+      /\w\S*/g,
+      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
+    );
     const results = { selected: userInput, key: 'query' };
     const concatResults = select.concat(results);
 
@@ -62,7 +69,34 @@ export default function Attorneys({
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');
-  const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  const alphabet = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ];
 
   return (
     <>
@@ -99,27 +133,50 @@ export default function Attorneys({
               userInput={userInput}
               clearAll={clearAll}
             />
-            {(attorneys.length > 0) && (
-            <Results attorneys={attorneys} userInput={userInput} select={select} />
+            {attorneys.length > 0 && (
+              <Results
+                attorneys={attorneys}
+                userInput={userInput}
+                select={select}
+              />
             )}
           </div>
           {/** End of Results */}
         </div>
       </FullWidth>
       <Footer />
-
     </>
   );
 }
 
 export async function getStaticProps() {
   // Keep attorney-search API endpoint
-  const [attorneys, locations, designations, practices, seo] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/office-locations', { headers }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/designations', { headers }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/meta', { headers }).then((data) => data.json()),
+  const [
+    attorneys,
+    locations,
+    designations,
+    practices,
+    seo,
+  ] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/office-locations',
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/designations',
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices',
+      { headers },
+    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/meta', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {

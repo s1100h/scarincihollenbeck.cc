@@ -40,7 +40,7 @@ export default function ArchivesLandingPage({
     <div className="mt-3">
       <NextSeo nofollow />
       <ArchiveLayout
-        header={''}
+        header=""
         body={(
           <ArchivesBody
             results={archivesPosts.posts.edges}

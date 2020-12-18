@@ -18,8 +18,12 @@ export default function ArchiveAttorneyResultsFiltered({
   // filter by key -- practice
   const filterPractices = (attorney) => {
     if (practices.length > 0) {
-      const prunedPracticeList = attorney.practices_array.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase())
-      return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
+      const prunedPracticeList = attorney.practices_array.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
+      return (
+        prunedPracticeList.indexOf(
+          practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase(),
+        ) > -1
+      );
     }
 
     return attorney;
@@ -48,18 +52,23 @@ export default function ArchiveAttorneyResultsFiltered({
     if (userInput) {
       if (attorney.title.indexOf(userInput) >= 0) {
         return attorney;
-      } if (practiceList.indexOf(userInput.trim()) >= 0) {
+      }
+      if (practiceList.indexOf(userInput.trim()) >= 0) {
         return attorney;
       }
     } else {
       return attorney;
     }
+
+    return true;
   };
 
   // filter by key -- letter
   const filterLetter = (attorney) => {
     if (letter.length > 0) {
-      return attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase();
+      return (
+        attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase()
+      );
     }
     return attorney;
   };

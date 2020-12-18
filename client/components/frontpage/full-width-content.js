@@ -4,7 +4,10 @@ import lineStyles from 'styles/LineHeader.module.css';
 import CarouselsLatestNews from 'components/carousels/latest-news';
 import CarouselsOfficeLocations from 'components/carousels/office-locations';
 
-export default function FrontPageFullWidthContent({ sortedPosts, sortedLocations }) {
+export default function FrontPageFullWidthContent({
+  sortedPosts,
+  sortedLocations,
+}) {
   return (
     <Row className="mb-5">
       <Col sm={12} className="mt-5 px-0">
@@ -13,9 +16,7 @@ export default function FrontPageFullWidthContent({ sortedPosts, sortedLocations
         </div>
       </Col>
       <Col sm={12} className="px-0 pt-5">
-        {sortedPosts.length > 0 && (
-          <CarouselsLatestNews slides={sortedPosts} />
-        )}
+        {sortedPosts.length > 0 && <CarouselsLatestNews slides={sortedPosts} />}
       </Col>
       <Col sm={12} className="mt-5 px-0">
         <div className={lineStyles.lineHeader}>

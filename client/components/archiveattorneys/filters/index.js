@@ -1,8 +1,6 @@
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import styles from 'styles/AttorneyArchives.module.css';
 import Keyword from './keyword';
 import Letter from './letter';
@@ -18,7 +16,7 @@ export default function ArchiveAttorneyFilters({
   userInput,
   handleChange,
   onSelect,
-  letterClick
+  letterClick,
 }) {
   return (
     <>
@@ -38,10 +36,16 @@ export default function ArchiveAttorneyFilters({
             <Practices practices={practices} onSelect={onSelect} />
           </Col>
           <Col sm={12} md={4}>
-            <ArchiveAttorneyFitlersLocation locations={locations} onSelect={onSelect} />
+            <ArchiveAttorneyFitlersLocation
+              locations={locations}
+              onSelect={onSelect}
+            />
           </Col>
           <Col sm={12} md={4}>
-            <ArchiveAttorneyFitlersTitle designation={designation} onSelect={onSelect} />
+            <ArchiveAttorneyFitlersTitle
+              designation={designation}
+              onSelect={onSelect}
+            />
           </Col>
         </Row>
       </Container>

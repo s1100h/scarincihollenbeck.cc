@@ -4,7 +4,6 @@ import * as gtag from 'utils/gtag';
 import NProgress from 'nprogress'; // nprogress module
 import 'nprogress/nprogress.css';
 import NavBar from 'components/navbar';
-import Footer from 'components/footer';
 
 /**
  *
@@ -16,37 +15,15 @@ import 'react-multi-carousel/lib/styles.css';
 import 'animate.css';
 
 /**
- * Util Sheets
- */
-
-import 'styles/carousel.css';
-import 'styles/globals.css';
-// import 'styles/utils/just-in-carousel.scss';
-// import 'styles/utils/location-carousel.scss';
-// import 'styles/utils/spacing-and-fonts.scss';
-// import 'styles/utils/tabs.scss';
-
-/**
  * Custom Style Sheets
  * */
-// import 'styles/main.scss';
+import 'styles/globals.css';
 import 'styles/dropdown.css';
-// import 'styles/navigation.scss';
-// import 'styles/archive-attorney&admin.scss';
-// import 'styles/archive-location.scss';
-// import 'styles/archive-career.scss';
-// import 'styles/archive-practice.scss';
-// import 'styles/single-admin&attorney&career&page&single.scss';
-// import 'styles/single-practice.scss';
-// import 'styles/subscription-form.scss';
-// import 'styles/firm-page.scss';
-// import 'styles/category.css';
+import 'styles/carousel.css';
 
 /**
  * Bind nprogress loader to app
  * */
-const msDelay = 200;
-const options = { trickleSpeed: 50 };
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
@@ -57,7 +34,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
  */
 Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
-function SHApp({ Component, pageProps, posts }) {
+function SHApp({ Component, pageProps }) {
   return (
     <>
       <Head>
