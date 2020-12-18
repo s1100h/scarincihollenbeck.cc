@@ -7,7 +7,7 @@ import textStyles from 'styles/Text.module.css';
 import styles from 'styles/Category.module.css';
 import { sortByKey } from 'utils/helpers';
 
-export default function CategoryLawFirmInsightsColumnContent({ children }) {
+export default function CategoryLawFirmInsightsColumnContent({ lawFirmInsightsCategoryChildren }) {
   //
   const { data: authorsPageOne, error: authorsPageOneErr } = useSWR(
     'https://wp.scarincihollenbeck.com/wp-json/wp/v2/users?per_page=100&page=1',
@@ -30,6 +30,8 @@ export default function CategoryLawFirmInsightsColumnContent({ children }) {
   });
 
   const sortReFormatPruendAuthorsWithLastname = sortByKey(reFormatPrunedAuthorsWithLastname, 'lastName');
+  const removeLawFirmMarketingFromChildren = lawFirmInsightsCategoryChildren.filter((a) => a.name !== 'Law Firm Marketing');
+  console.log(removeLawFirmMarketingFromChildren)
 
   return (
     <div className="container mt-5">
@@ -61,7 +63,7 @@ export default function CategoryLawFirmInsightsColumnContent({ children }) {
           </h5>
           <hr />
           <ul className={`${styles.listOverflow} ml-3 mr-0 px-0`}>
-            {children.map((post) => (
+            {removeLawFirmMarketingFromChildren.map((post) => (
               <li key={post.name} className={`${textStyles.blueTitle} mb-2`}>
                 <Link href={post.link}>
                   <a className={`${textStyles.blueTitle}`}>

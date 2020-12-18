@@ -51,7 +51,7 @@ export default function SubscriptionFormColumn() {
         <ul className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}>
           {checkboxes.map((type) => (
             <li key={type.key}>
-              <label htmlFor={type.key}>
+              <label htmlFor={type.key} className="mb-0">
                 <input
                   type="checkbox"
                   id={type.key}

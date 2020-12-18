@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 const FullWidth = ({ children }) => (
   <Container>
     <Row>
-      <Col>{children}</Col>
+      <Col sm={12}>{children}</Col>
     </Row>
   </Container>
 );

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { createMarkup } from 'utils/helpers';
+import fontStyles from 'styles/Fonts.module.css';
 
 export default function CategoryMainArticlesContainer({ main }) {
   let getFeaturedImage;
@@ -44,7 +45,7 @@ export default function CategoryMainArticlesContainer({ main }) {
         dangerouslySetInnerHTML={createMarkup(main.node.excerpt.replace('[', '').replace(']', ''))}
       />
       <hr />
-      <p className="mt-4 mb-4">
+      <p className={`${fontStyles.ft12rem} mt-4 mb-4`}>
         <strong>BY: </strong>
         {' '}
         <Link href={(main.node.author.node.url || '/')}>

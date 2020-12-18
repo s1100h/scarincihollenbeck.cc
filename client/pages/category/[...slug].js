@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import FullWidth from 'layouts/full-width';
 import LargeSidebar from 'layouts/large-sidebar';
 import Search from 'components/search';
@@ -13,10 +11,6 @@ import CategorySliderContainer from 'components/category/slider-container';
 import ColumnContent from 'components/category/column-content';
 import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content.js';
 import Footer from 'components/footer';
-import {
-  sortByKey,
-  urlify,
-} from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { getAllCategories, getFirst14PostsFromSlug } from 'queries/category';
 import styles from 'styles/LineHeader.module.css';
@@ -34,6 +28,8 @@ export default function CategoryLandingPage({
   // check if is event page
   const isEventPage = router.asPath.indexOf('firm-events') > 0;
   const isNewsPage = router.asPath.indexOf('firm-news') > 0;
+
+  console.log(children);
 
   return (
     <>
@@ -80,21 +76,21 @@ export default function CategoryLandingPage({
           <h3>Discover</h3>
         </div>
       </FullWidth>
-      {/** We'll wrap this in a condition for event and news pages */}
-      {(isEventPage || isNewsPage) ? <ColumnContent /> : <CategoryLawFirmInsightsColumnContent children={children} />}
+      {(isEventPage || isNewsPage) ? <ColumnContent /> : <CategoryLawFirmInsightsColumnContent lawFirmInsightsCategoryChildren={children} />}
+      {children.map((child) => (
+        <FullWidth key={child.name}>
+          <div className="mt-5">
+            <CategorySliderContainer
+              title={child.name}
+              slides={child.posts.nodes}
+            />
+          </div>
+        </FullWidth>
+      ))}
+
       {/*
         <>
-          
-            {category.practices.map(
-              (val) => val.name !== 'Uncategorized' && (
-              <FullWidth className="col-sm-12 mt-5" key={val.id}>
-                <CategorySliderContainer
-                  title={val.name}
-                  slides={val.posts}
-                />
-              </FullWidth>
-              ),
-            )}
+
             <FullWidth className="border-top mt-5">
               <p className="text-center lead mt-4">
                 <small>
@@ -114,9 +110,10 @@ export default function CategoryLandingPage({
               </p>
             </FullWidth>
           </div> */}
-      {/* <Footer />
+      {/*
         </>
       )} */}
+      <Footer />
     </>
   );
 }
