@@ -49,6 +49,7 @@ export default function Home({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBusinessSchema()) }}
         />
       </Head>
+      <HaroldFriedmanModal />
       <NewDawnHeader />
       <Container>
         <ColumnContent corePractices={sortByKey(corePractices, 'title')} />

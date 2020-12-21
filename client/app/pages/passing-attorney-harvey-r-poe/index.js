@@ -45,8 +45,8 @@ export default function PassingOfHarveyPoe({
 
 export async function getStaticProps() {
   const [aJson, postJson] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/single-page/page/passing-attorney-harvey-r-poe`, { headers }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/passing-attorney-harvey-r-poe', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
   ]);
 
   const { posts } = postJson;
