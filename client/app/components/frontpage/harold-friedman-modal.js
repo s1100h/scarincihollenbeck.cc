@@ -33,7 +33,7 @@ export default function HaroldFriedmanModal() {
         <Modal.Body className="show-grid">
           <Container>
             <Row>
-              <img src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2013/10/Friedman.jpg" alt="Harold Friedman" className="img-thumbnail mx-auto d-block mb-4" width={500} height={543} />
+              <img src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2013/10/Friedman.jpg" alt="Harold Friedman" className="img-thumbnail mx-auto d-block mb-4" width={350} height={380} />
               <Col sm={12}>
                 <p className="lead">
                   Scarinci Hollenbeck is deeply saddened to report the
