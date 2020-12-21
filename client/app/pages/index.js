@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import NewDawnHeader from 'components/frontpage/new-dawn-header';
+import HaroldFriedmanModal from 'components/frontpage/harold-friedman-modal';
 import ColumnContent from 'components/frontpage/column-content';
 import FullWidthContent from 'components/frontpage/full-width-content';
 import Footer from 'components/footer';
