@@ -18,29 +18,36 @@ export const getListOfPostsByName = (slug) => `{
   }`;
 
 export const getPostBySlug = (slug) => `{
-    posts(where: {name: "${slug}"}) {
-      nodes {
-        uri
+  posts(where: {name: "${slug}"}) {
+    nodes {
+      uri
+      title
+      slug
+      seo {
         title
-        slug
-        seo {
-          title
-          metaDesc
-        }
-        content
-        author {
-          node {
-            name
-            url
-            email
-          }
-        }
-        featuredImage {
-          node {
-            sourceUrl
-          }
+        metaDesc
+      }
+      content
+      author {
+        node {
+          name
+          url
+          email
         }
       }
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      tags(first: 10) {
+        nodes {
+          uri
+          name
+        }
+      }
+      date
     }
   }
-  `;
+}
+`;

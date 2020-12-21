@@ -12,20 +12,17 @@ import PracticeContent from 'components/singlepractice/content';
 import FeaturedSlider from 'components/singlepractice/featured-slider';
 import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { headers, urlify, makeTitle } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { getFirmPage } from 'queries/pages';
+import tabStyle from 'styles/BigButtonTabs.module.css';
 
 export default function CommunityInvolvement({
-  attorneysMentioned,
-  title,
-  description,
-  tabs,
-  relatedPages,
-  seo,
+  page,
 }) {
-  const fullRelatedPages = relatedPages.map((page) => ({
-    title: makeTitle(page),
-    slug: page,
-  }));
+  // const fullRelatedPages = relatedPages.map((page) => ({
+  //   title: makeTitle(page),
+  //   slug: page,
+  // }));
 
   const firmResources = [
     {
@@ -42,23 +39,96 @@ export default function CommunityInvolvement({
     },
   ];
 
+  const relatedPages = [
+    {
+      title: 'Pro Bono',
+      slug: '/pro-bono',
+    },
+    {
+      title: 'Women Lead',
+      slug: '/women-lead',
+    },
+    {
+      title: 'Diversity Group',
+      slug: '/diversity-group',
+    },
+  ];
+
+  console.log(page);
+
   return (
     <>
       <NextSeo
         title={
-          seo.title || 'Law Firm Community Involvement | Scarinci Hollenbeck'
+          page.seo.title || 'Law Firm Community Involvement | Scarinci Hollenbeck'
         }
         description={
-          seo.metaDescription
+          page.seo.metaDesc
           || 'Community involvement is a key principle of Scarinci Hollenbeck’s workplace culture.'
         }
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical={`http://scarincihollenbeck.com${page.uri}`}
       />
       <SingleSubHeader
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/City-Night-Background-1800x400-JPG.jpg"
-        title={title}
-        subtitle={description}
+        image="/images/City-Night-Background-1800x400-JPG.jpg"
+        title={page.title}
+        subtitle={page.FirmPagesContentDescription.description}
       />
+      <TabContainer
+        className="mb-0"
+        id="nav-tab"
+        defaultActiveKey={page.FirmPagesContentTabs.tabHeader}
+      >
+        <Container>
+          <Row>
+            <Col sm={12}>
+              <Nav>
+                {page.FirmPagesContentTabs.tabHeader && (
+                <Nav.Link
+                  eventKey={page.FirmPagesContentTabs.tabHeader}
+                  className={tabStyle.tab}
+                >
+                  {page.FirmPagesContentTabs.tabHeader}
+                </Nav.Link>
+                )}
+                {page.FirmPagesContentTabs.tab2Header && (
+                <Nav.Link
+                  eventKey={page.FirmPagesContentTabs.tab2Header}
+                  className={tabStyle.tab}
+                >
+                  {page.FirmPagesContentTabs.tab2Header}
+                </Nav.Link>
+                )}
+                {page.FirmPagesContentTabs.tab3Header && (
+                  <Nav.Link
+                  eventKey={page.FirmPagesContentTabs.tab3Header}
+                  className={tabStyle.tab}
+                >
+                  {page.FirmPagesContentTabs.tab3Header}
+                </Nav.Link>
+                )}
+                {page.FirmPagesContentTabs.tab4Header && (
+                <Nav.Link
+                  eventKey={page.FirmPagesContentTabs.tab4Header}
+                  className={tabStyle.tab}
+                >
+                  {page.FirmPagesContentTabs.tab4Header}
+                </Nav.Link>
+                )}
+                {page.FirmPagesContentTabs.tab5Header && (
+                <Nav.Link
+                  eventKey={page.FirmPagesContentTabs.tab5Header}
+                  className={tabStyle.tab}
+                >
+                  {page.FirmPagesContentTabs.tab5Header}
+                </Nav.Link>
+                )}
+              </Nav>
+            </Col>
+          </Row>
+        </Container>
+      </TabContainer>
+      {/*
+
       <div id="single-practice">
         <TabContainer
           className="mb--1"
@@ -81,7 +151,7 @@ export default function CommunityInvolvement({
                     ))}
                 </Nav>
               </Col>
-              <Col sm={12} md={9} className="mt-4">
+              C<Col sm={12} md={9} className="mt-4">
                 {tabs.length > 0
                   && tabs.map((tab) => (
                     <TabContent key={tab.title}>
@@ -90,10 +160,10 @@ export default function CommunityInvolvement({
                         title={tab.title}
                         content={tab.content}
                       />
-                    </TabContent>
+                    </Tabontent>
                   ))}
                 {/** Recent Blog Articles */}
-                {attorneysMentioned.length > 0 && (
+      {/* {attorneysMentioned.length > 0 && (
                   <div className="w-100 d-block">
                     <div className="line-header">
                       <h3>
@@ -122,37 +192,19 @@ export default function CommunityInvolvement({
             </Row>
           </Container>
         </TabContainer>
-      </div>
+      </div> */}
       <Footer />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const [page] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/firm-page/page/community-involvement`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
-
-  const {
-    attorneysMentioned,
-    title,
-    description,
-    tabs,
-    relatedPages,
-    seo,
-  } = page;
+  const res = await client.query(getFirmPage('community-involvement'), {});
 
   return {
     props: {
-      attorneysMentioned,
-      title,
-      description,
-      tabs,
-      relatedPages,
-      seo,
+      page: res.data.pages.nodes[0],
     },
+    revalidate: 1,
   };
 }

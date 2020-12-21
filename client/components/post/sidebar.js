@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import Search from 'components/search';
-import TrendingStories from 'components/non-graphql-trending-stories';
+import TrendingStories from 'components/trending-stories';
 import SubscriptionMessage from 'components/subscription-message';
 import { addRandomKey } from 'utils/helpers';
 
 export default function PostSidebar({ posts, attorneys }) {
+  console.log('attorneys', attorneys);
+
   return (
     <div className="d-print-none">
       <Search />
       {/** TOP ARTICLES */}
       <TrendingStories title="Trending Stories" content={posts} />
       {/** MENTIONED ATTORNEYS */}
-      {attorneys.length > 0 && (
+      {/* {attorneys.length > 0 && (
         <div className="w-100 mt-4">
           <div className="sidebar-title">Mentioned Attorneys</div>
           <div className="off-white">
@@ -33,8 +35,7 @@ export default function PostSidebar({ posts, attorneys }) {
               ))}
             </ul>
           </div>
-        </div>
-      )}
+        </div> */}
       {/** GET THE LATEST FROM OUR ATTORNEYS */}
       <SubscriptionMessage />
     </div>

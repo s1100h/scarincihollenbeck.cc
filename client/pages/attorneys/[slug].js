@@ -9,7 +9,6 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Error from 'pages/_error';
 import SiteLoader from 'components/site-loader';
 import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';

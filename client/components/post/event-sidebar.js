@@ -9,7 +9,7 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
     <div className="d-print-none">
       <Search />
       {/** Event Details */}
-      <div className="w-100 mt-4">
+      {/* <div className="w-100 mt-4">
         <div className="sidebar-title">Event Details</div>
         <div className="off-white">
           {eDetails !== undefined && (
@@ -31,9 +31,9 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       {/** MENTIONED ATTORNEYS */}
-      {attorneys.length > 0 ? (
+      {/* {attorneys.length > 0 && (
         <div className="w-100 mt-4">
           <div className="sidebar-title">Mentioned Attorneys</div>
           <div className="off-white">
@@ -52,9 +52,7 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
             </ul>
           </div>
         </div>
-      ) : (
-        ''
-      )}
+      ))} */}
       {/** GET THE LATEST FROM OUR ATTORNEYS */}
       <SubscriptionMessage />
     </div>

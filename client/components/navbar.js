@@ -81,7 +81,9 @@ export default function NavBar() {
                   <NavDropdown.Item
                     className={navBarStyles.dropDownNavItem}
                     href="/community-involvement"
-                  />
+                  >
+                    Community Involvement
+                  </NavDropdown.Item>
                   <NavDropdown.Item
                     className={navBarStyles.dropDownNavItem}
                     href="/diversity-group"
