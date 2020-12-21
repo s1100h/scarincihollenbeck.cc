@@ -6,7 +6,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function PassingOfHarveyPoe({
+export default function PassingOfHaroldFriedman({
   title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -45,8 +45,8 @@ export default function PassingOfHarveyPoe({
 
 export async function getStaticProps() {
   const [aJson, postJson] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/single-page/page/passing-attorney-harvey-r-poe`, { headers }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`, { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/the-passing-of-harold-friedman', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
   ]);
 
   const { posts } = postJson;
@@ -59,5 +59,6 @@ export async function getStaticProps() {
       posts,
       seo,
     },
+    revalidate: 1,
   };
 }
