@@ -1,24 +1,28 @@
 import React, { useContext } from 'react';
+import Link from 'next/link';
 import Accordion from 'react-bootstrap/Accordion';
 import AccordionContext from 'react-bootstrap/AccordionContext';
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import Button from 'react-bootstrap/Button';
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
+import styles from 'styles/SidebarTitle.module.css';
 
-function HeaderToggle({ children, eventKey, callback }) {
+function SideBarHeaderToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
+
   const decoratedOnClick = useAccordionToggle(
     eventKey,
     () => callback && callback(eventKey),
   );
+
   const isCurrentEventKey = currentEventKey === eventKey;
 
   return (
     <Button
       variant="link"
-      className="sidebar-title w-100 p-2 text-left"
+      className={`${styles.header} w-100 p-2 text-left text-white`}
       onClick={decoratedOnClick}
     >
       {children}
@@ -40,24 +44,27 @@ function HeaderToggle({ children, eventKey, callback }) {
 export default function PracticeSidebar({ title, content, tabKey }) {
   return (
     <>
-      <Accordion defaultActiveKey={2} className="mt-4">
-        <HeaderToggle eventKey={tabKey}>
-          <div className="mb-0 pb-0 float-left text-white">{title}</div>
-        </HeaderToggle>
+      <Accordion defaultActiveKey={2}>
+        <SideBarHeaderToggle eventKey={tabKey}>
+          {title}
+        </SideBarHeaderToggle>
         <Accordion.Collapse eventKey={tabKey}>
           <div className="off-white">
-            <ul className="pl-0 pt-2 pb-1 pr-1 sidebar-content-page">
-              {content.map((item) => (
-                <li key={item.title} className="lh-25px mb-2">
-                  <a href={item.slug} className="proxima-bold text-capitalize">
-                    {item.title.toLowerCase()}
-                  </a>
+            <ul className="px-4 py-2">
+              {content.map((c) => (
+                <li key={c.id} className="mb-2">
+                  <Link href={c.uri}>
+                    <a className={`${styles.lh22px} text-dark`}>
+                      <strong>{c.title}</strong>
+                    </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </Accordion.Collapse>
       </Accordion>
+
     </>
   );
 }

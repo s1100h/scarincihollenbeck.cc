@@ -25,35 +25,39 @@ export default function CommunityInvolvement({
   // fetch latest blog posts
   const firmResources = [
     {
+      id: 'YFtFOuJeUHBy2WL',
       title: 'Firm News',
-      slug: '/category/firm-news',
+      uri: '/category/firm-news',
     },
     {
+      id: 'pmSgjQiss0Mbz6p',
       title: 'Firm Events',
-      slug: '/category/firm-events',
+      uri: '/category/firm-events',
     },
     {
+      id: '2oTGonRQMAwEDZL',
       title: 'Firm Insights',
-      slug: '/category/firm-insights',
+      uri: '/category/firm-insights',
     },
   ];
 
   const relatedPages = [
     {
+      id: 'WF7jMpVJP3PTnuP',
       title: 'Pro Bono',
-      slug: '/pro-bono',
+      uri: '/pro-bono',
     },
     {
+      id: 'vehm0rQb7cpMH92',
       title: 'Women Lead',
-      slug: '/women-lead',
+      uri: '/women-lead',
     },
     {
+      id: 'SjveurE7BK1R1l2',
       title: 'Diversity Group',
-      slug: '/diversity-group',
+      uri: '/diversity-group',
     },
   ];
-
-  console.log(page);
 
   return (
     <>
