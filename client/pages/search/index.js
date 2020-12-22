@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
-import Breadcrumbs from 'components/breadcrumbs';
+import Breadcrumbs from 'components/basic-breadcrumbs';
 import ArchiveLayout from 'layouts/archive-layout';
 import Body from 'components/archives/body';
 import SiteLoader from 'components/site-loader';

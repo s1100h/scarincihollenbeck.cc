@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import BreadCrumbs from 'components/breadcrumbs';
+import BreadCrumbs from 'components/basic-breadcrumbs';
 import SingleCareerBody from 'components/singlecareer/body';
 import SingleCareerSidebar from 'components/singlecareer/sidebar';
 import { getAllCareers, getSingleCareer } from 'queries/careers';

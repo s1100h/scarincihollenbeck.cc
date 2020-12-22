@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 import FullWidth from 'layouts/full-width';
 import LargeSidebar from 'layouts/large-sidebar';
 import Search from 'components/search';
-import BreadCrumbs from 'components/Breadcrumbs';
+import BasicBreadCrumbs from 'components/basic-breadcrumbs';
 import MainArticlesContainer from 'components/category/main-articles-container';
 import MainSidebarContent from 'components/category/main-sidebar-content';
 import CategoryHeader from 'components/category/header';
@@ -48,7 +48,7 @@ export default function CategoryLandingPage({
       />
       <br />
       <FullWidth>
-        <BreadCrumbs />
+        <BasicBreadCrumbs />
       </FullWidth>
       <LargeSidebar
         body={<CategoryHeader title={name} content={description} />}
@@ -124,6 +124,12 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const categoryFromUrl = params.slug[params.slug.length - 1];
   const res = await client.query(getFirst14PostsFromSlug(categoryFromUrl), {});
+
+  if (res.data.categories.nodes[0].posts.edges.length <= 0) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {

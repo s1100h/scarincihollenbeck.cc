@@ -1,5 +1,5 @@
 import ContactForm from 'components/contact-form';
-import Breadcrumbs from 'components/breadcrumbs';
+import Breadcrumbs from 'components/basic-breadcrumbs';
 import ArticleDetails from 'components/post/article-details';
 import SocialShareFooter from 'components/post/social-share-footer';
 import AuthorBio from 'components/post/author-bio';

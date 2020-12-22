@@ -69,7 +69,7 @@ export default function CommunityInvolvement({
           page.seo.metaDesc
           || 'Community involvement is a key principle of Scarinci Hollenbeck’s workplace culture.'
         }
-        canonical={`http://scarincihollenbeck.com${page.uri}`}
+        canonical="http://scarincihollenbeck.com/community-involvement"
       />
       <SingleSubHeader
         image="/images/City-Night-Background-1800x400-JPG.jpg"

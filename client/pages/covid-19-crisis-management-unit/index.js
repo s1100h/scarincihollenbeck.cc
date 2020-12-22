@@ -1,49 +1,52 @@
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import Footer from 'components/footer';
-import Sidebar from 'components/pages/sidebar';
+import SiteLoader from 'components/site-loader';
+import ErrorMessage from 'components/error-message';
+import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { headers, fetcher } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { fetcher } from 'utils/helpers';
+import { blogArticlesQuery } from 'queries/home';
+import { getPageContents } from 'queries/pages';
 
 export default function Covid19CrisisManagementUnit({
-  title,
-  content,
-  internalCovidPosts,
-  seo,
+  title, content, posts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
   // retrieve external posts from internal api
-  const { data: externaCovidPosts } = useSWR(
+  const { data: externaCovidPosts, error: externaCovidPostsError } = useSWR(
     '/api/external-covid-feed',
     fetcher,
   );
+
+  if (externaCovidPostsError) return <ErrorMessage />;
+  if (!externaCovidPosts) return <SiteLoader />;
 
   return (
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        description={seo.metaDescr}
+        canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
       />
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
+        image="/images/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
       <LargeSidebarWithPosts
-        posts={internalCovidPosts}
+        posts={posts}
         postsTitle="COVID-19 Articles"
         content={bodyContent}
         sidebar={(
-          <Sidebar
-            posts={
-              externaCovidPosts !== undefined ? externaCovidPosts.response : []
-            }
+          <PagesSidebar
+            posts={externaCovidPosts.response}
             covidPage
           />
         )}
@@ -53,19 +56,20 @@ export default function Covid19CrisisManagementUnit({
   );
 }
 
-export async function getServerSideProps() {
-  const [aJson, internalCovidPosts] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/covid-19-crisis-management-unit`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=20250&per_page=100`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
+export async function getStaticProps() {
+  // 20250
+  const covidNewsContent = await client.query(blogArticlesQuery(20250), {});
+  const covid19CrisisManagementUnitContent = await client.query(getPageContents('covid-19-crisis-management-unit'), {});
 
-  const { title, content, seo } = aJson;
+  return {
+    props: {
+      title: covid19CrisisManagementUnitContent.data.pages.nodes[0].title,
+      content: covid19CrisisManagementUnitContent.data.pages.nodes[0].content,
+      seo: covid19CrisisManagementUnitContent.data.pages.nodes[0].seo,
+      posts: covidNewsContent.data.category.posts.edges,
+    },
+    revalidate: 1,
+  };
 
   return {
     props: {

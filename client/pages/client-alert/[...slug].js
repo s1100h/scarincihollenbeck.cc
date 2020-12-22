@@ -1,8 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
-import BarLoader from 'react-spinners/BarLoader';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
@@ -103,6 +100,7 @@ export default function ClientAlert({ post, posts }) {
     </>
   );
 }
+
 export async function getStaticPaths() {
   const res = await client.query(getListOfPostsByName('client-alert'), {});
   

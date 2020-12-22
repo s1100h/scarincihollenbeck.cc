@@ -3,7 +3,7 @@ import TrendingStories from 'components/trending-stories';
 import NonGraphQLTrendingStories from 'components/non-graphql-trending-stories';
 import SubscriptionMessage from 'components/subscription-message';
 
-export default function CovidSidebar({ posts, covidPage }) {
+export default function PagesSidebar({ posts, covidPage }) {
   return (
     <>
       <Search />

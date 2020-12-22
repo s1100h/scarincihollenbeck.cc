@@ -5,7 +5,7 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import textStyles from 'styles/Text.module.css';
 import { makeTitle } from 'utils/helpers';
 
-export default function BreadCrumbs() {
+export default function BasicBreadCrumbs() {
   const router = useRouter();
   let buildUrl = '/';
   const breadCrumbArr = router.asPath.split('/').filter((crumb) => crumb !== '');
