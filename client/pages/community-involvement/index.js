@@ -8,22 +8,19 @@ import Col from 'react-bootstrap/Col';
 import Footer from 'components/footer';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
-import PracticeContent from 'components/singlepractice/content';
+import SinglePracticeContent from 'components/singlepractice/content';
 import FeaturedSlider from 'components/singlepractice/featured-slider';
 import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import client from 'utils/graphql-client';
 import { getFirmPage } from 'queries/pages';
 import tabStyle from 'styles/BigButtonTabs.module.css';
+import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 export default function CommunityInvolvement({
   page,
 }) {
-  // const fullRelatedPages = relatedPages.map((page) => ({
-  //   title: makeTitle(page),
-  //   slug: page,
-  // }));
-
+  // fetch latest blog posts
   const firmResources = [
     {
       title: 'Firm News',
@@ -72,6 +69,7 @@ export default function CommunityInvolvement({
         image="/images/City-Night-Background-1800x400-JPG.jpg"
         title={page.title}
         subtitle={page.FirmPagesContentDescription.description}
+        height="400px"
       />
       <TabContainer
         className="mb-0"
@@ -100,11 +98,11 @@ export default function CommunityInvolvement({
                 )}
                 {page.FirmPagesContentTabs.tab3Header && (
                   <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab3Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab3Header}
-                </Nav.Link>
+                    eventKey={page.FirmPagesContentTabs.tab3Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab3Header}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab4Header && (
                 <Nav.Link
@@ -123,6 +121,58 @@ export default function CommunityInvolvement({
                 </Nav.Link>
                 )}
               </Nav>
+            </Col>
+            <Col sm={12} md={8}>
+              {(page.FirmPagesContentTabs.tabContent) && (
+                <TabContent key={page.FirmPagesContentTabs.tabHeader}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tabHeader}
+                    title={page.FirmPagesContentTabs.tabHeader}
+                    content={page.FirmPagesContentTabs.tabContent}
+                  />
+                </TabContent>
+              )}
+              {(page.FirmPagesContentTabs.tab2Content) && (
+                <TabContent key={page.FirmPagesContentTabs.tab2Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab2Header}
+                    title={page.FirmPagesContentTabs.tab2Header}
+                    content={page.FirmPagesContentTabs.tab2Content}
+                  />
+                </TabContent>
+              )}
+              {(page.FirmPagesContentTabs.tab3Content) && (
+                <TabContent key={page.FirmPagesContentTabs.tab3Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab3Header}
+                    title={page.FirmPagesContentTabs.tab3Header}
+                    content={page.FirmPagesContentTabs.tab3Content}
+                  />
+                </TabContent>
+              )}
+              {(page.FirmPagesContentTabs.tab4Content) && (
+                <TabContent key={page.FirmPagesContentTabs.tab4Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab4Header}
+                    title={page.FirmPagesContentTabs.tab4Header}
+                    content={page.FirmPagesContentTabs.tab4Content}
+                  />
+                </TabContent>
+              )}
+              {(page.FirmPagesContentTabs.tab5Content) && (
+                <TabContent key={page.FirmPagesContentTabs.tab5Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab5Header}
+                    title={page.FirmPagesContentTabs.tab5Header}
+                    content={page.FirmPagesContentTabs.tab5Content}
+                  />
+                </TabContent>
+              )}
+              <>
+                <div className={lineHeaderStyles.lineHeader}>
+                  <h3>Recent from the firm</h3>
+                </div>
+              </>
             </Col>
           </Row>
         </Container>

@@ -3,7 +3,8 @@ import Breadcrumbs from 'components/breadcrumbs';
 import ArticleDetails from 'components/post/article-details';
 import SocialShareFooter from 'components/post/social-share-footer';
 import AuthorBio from 'components/post/author-bio';
-import { createMarkup, urlify } from 'utils/helpers';
+import { createMarkup } from 'utils/helpers';
+import pageContentStyles from 'styles/PageContent.module.css';
 
 export default function PostBody({
   featuredImage,
@@ -27,18 +28,17 @@ export default function PostBody({
         className="w-100 d-print-none"
         alt={title}
       />
-      {caption &&  <div className="mt-0 mb-2" dangerouslySetInnerHTML={createMarkup(caption[1])} /> } 
+      {caption && <div className="mt-0 mb-2" dangerouslySetInnerHTML={createMarkup(caption[1])} /> }
       {/* title and subtitle for print version only */}
-       <div className="d-none d-print-block">
-         <h1>{title}</h1>
-         <h2>{subTitle}</h2>
-       </div>   
-     
+      <div className="d-none d-print-block">
+        <h1>{title}</h1>
+        <h2>{subTitle}</h2>
+      </div>
       {/* Author & date & Category */}
       <ArticleDetails author={author} date={date} />
       <hr />
       <div
-        className="post-content mt-3 d-print-block"
+        className={`${pageContentStyles.p} mt-3 d-print-block`}
         dangerouslySetInnerHTML={createMarkup(content)}
       />
       {/* {tags.length > 0 && (

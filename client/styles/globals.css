@@ -27,13 +27,3 @@
   background-color: #fff;
   color: #000;
 }
-.post-content {
-  font-size: 1.075rem;
-}
-.post-content > ul {
-  margin-left: -1.5em;
-}
-
-.post-content > ul > li {
-  margin-bottom: 1em;
-}
