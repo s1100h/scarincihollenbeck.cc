@@ -43,14 +43,7 @@ export default function HaroldFriedmanModal() {
                   Mr. Friedman served as Partner to the firm since 2011. His legal career spanned nearly sixty years, twenty of which he spent practicing at his previous law firm, Stryker, Tams & Dill, LLP. Mr. Friedman practiced in a broad range of civil practice areas, having served corporate, business clients, insurance carriers and individuals in a variety of complex business transactions, litigation and personal matters. He will be greatly missed by the firm and remembered fondly for his genuine, kind nature.
                 </p>
 
-                <p className="lead proxima-bold"><em>Mr. Friedman is survived by his children, David, Dan and Doug, and their families. We extend our deepest condolences to Mr. Friedman’s family during this difficult time.</em></p>
-                <p className="text-center">
-                  <Link href="/passing-attorney-harold-friedman">
-                    <a className="red-title lead proxima-bold">
-                      Click here to find out more details
-                    </a>
-                  </Link>
-                </p>
+                <p className="lead proxima-bold"><em>Mr. Friedman is survived by his children, David, Dan and Doug, and their families. We extend our deepest condolences to Mr. Friedman’s family during this difficult time.</em></p>               
               </Col>
             </Row>
           </Container>
