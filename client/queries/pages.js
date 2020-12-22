@@ -41,3 +41,30 @@ export const getFirmPage = (slug) => `{
       }
     }
   }`;
+
+
+export const getFirmOverviewPage = `{
+  pages(where: {name: "firm-overview"}) {
+    nodes {
+      firmOverviewPageContentTabs {
+        mainTabs {
+          title
+          subtitle
+          content
+          mainImage {
+            sourceUrl
+          }
+        }
+        additionalContent {
+          title
+          content
+        }
+      }
+      seo {
+        metaDesc
+        title
+      }
+      content
+    }
+  }
+}`
