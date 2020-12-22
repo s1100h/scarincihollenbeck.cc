@@ -35,11 +35,12 @@ export default function ArchivesBody({
   function handlePagination(e, page) {
     e.preventDefault();
     const isAuthorPage = pathname.indexOf('author') > -1;
+    const isQuickNews = pathname.indexOf('quick-news') > -1;
 
-    if (!isAuthorPage) {
+    if (isQuickNews) {
       Router.push({
         pathname,
-        query: { q, page },
+        query: { page },
       });
     }
 
@@ -49,6 +50,13 @@ export default function ArchivesBody({
           name: pathname.split('/')[2],
           page,
         },
+      });
+    }
+
+    if (!isAuthorPage || !isQuickNews) {
+      Router.push({
+        pathname,
+        query: { q, page },
       });
     }
   }

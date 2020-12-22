@@ -1,94 +1,87 @@
+import React from 'react';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import BarLoader from 'react-spinners/BarLoader';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Breadcrumbs from 'components/breadcrumbs';
-import ArchiveLayout from 'layouts/archive-layout';
-import QuickNewsBody from 'components/quick-news-body';
-import Sidebar from 'components/archives/sidebar';
+import useSWR from 'swr';
+import { request } from 'graphql-request';
 import Footer from 'components/footer';
-import { headers } from 'utils/helpers';
+import SiteLoader from 'components/site-loader';
+import ErrorMessage from 'components/error-message';
+import ArchivesBody from 'components/archives/body';
+import ArchivesSidebar from 'components/archives/sidebar';
+import ArchiveLayout from 'layouts/archive-layout';
+import client from 'utils/graphql-client';
+import { blogArticlesQuery } from 'queries/home';
+import { getArchivesPosts } from 'queries/archive';
 
-export default function CategoryQuickNews({
+
+export default function CategoryQuickNewsLandingPage({
   firmNews,
-  firmEvents,
   firmInsights,
-  results,
+  firmEvents,
   posts,
-  pages,
-  term,
-  page,
 }) {
+  const router = useRouter();
+
+  const {
+    data: archivesPosts,
+    error: archivesPostsError,
+  } = useSWR(getArchivesPosts('quick-news', router.query.page), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
+
+  if (archivesPostsError) return <ErrorMessage />;
+
+  if (!archivesPosts) {
+    return (
+      <div className="py-5 my-5">
+        <SiteLoader />
+      </div>
+    );
+  }
+
   return (
-    <>
-      {results.length === 0 ? (
-        <Container>
-          <Row
-            id="page-loader-container"
-            className="justify-content-center align-self-center"
-          >
-            <BarLoader color="#DB2220" />
-          </Row>
-        </Container>
-      ) : (
-        <>
-          <NextSeo nofollow />
-          <div id="quick-news">
-            <ArchiveLayout
-              header={
-                <Breadcrumbs breadCrumb={[term, page]} categorySlug={term} />
-              }
-              body={(
-                <QuickNewsBody
-                  results={results}
-                  term={term}
-                  pages={pages}
-                  currentPage={page}
-                  news={firmNews}
-                  events={firmEvents}
-                  insight={firmInsights}
-                />
-              )}
-              sidebar={<Sidebar trending={posts} />}
-            />
-          </div>
-          <Footer />
-        </>
-      )}
-    </>
+    <div className="mt-3">
+      <NextSeo nofollow />
+      <ArchiveLayout
+        header=""
+        body={(
+          <ArchivesBody
+            results={archivesPosts.posts.edges}
+            term="Quick News"
+            pages={Math.floor(
+              archivesPosts.posts.pageInfo.offsetPagination.total / 10,
+            )}
+            currentPage={router.query.page}
+            news={firmNews}
+            events={firmEvents}
+            insight={firmInsights}
+            pathname="/category/quick-news"
+            q="quick-news"
+          />
+        )}
+        sidebar={<ArchivesSidebar trending={posts} />}
+      />
+      <Footer />
+    </div>
   );
 }
 
-export async function getServerSideProps({ query }) {
-  const [response, firmNews, firmEvents, firmInsights] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/archive/query/quick-news/${query.page}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-news`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/firm-events`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/category/posts/law-firm-insights`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
+export async function getStaticProps() {
+  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
+  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
+  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+
+  const posts = [].concat(
+    firmNewsContent.data.category.posts.edges,
+    firmEventsContent.data.category.posts.edges,
+    firmInsightsContent.data.category.posts.edges,
+  );
 
   return {
     props: {
-      firmNews: firmNews.latest || [],
-      firmEvents: firmEvents.latest || [],
-      firmInsights: firmInsights.latest || [],
-      results: response.results || [],
-      pages: response.pages || 0,
-      term: response.term || '',
-      posts: response.posts || [],
-      page: query.page || 1,
+      firmNews: firmNewsContent || [],
+      firmEvents: firmEventsContent || [],
+      firmInsights: firmInsightsContent || [],
+      posts,
     },
+    revalidate: 1,
   };
 }
