@@ -9,16 +9,18 @@ import Footer from 'components/footer';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import SinglePracticeContent from 'components/singlepractice/content';
-import FeaturedSlider from 'components/singlepractice/featured-slider';
 import SidebarContent from 'components/singlepractice/sidebar';
+import CarouselsLatestNews from 'components/carousels/latest-news';
 import SingleSubHeader from 'layouts/single-sub-header';
 import client from 'utils/graphql-client';
 import { getFirmPage } from 'queries/pages';
+import { blogArticlesQuery } from 'queries/home';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 export default function CommunityInvolvement({
   page,
+  posts,
 }) {
   // fetch latest blog posts
   const firmResources = [
@@ -172,77 +174,28 @@ export default function CommunityInvolvement({
                 <div className={lineHeaderStyles.lineHeader}>
                   <h3>Recent from the firm</h3>
                 </div>
+                <div className="my-5">
+                  <CarouselsLatestNews slides={posts} />
+                </div>
               </>
+            </Col>
+            <Col sm={12} md={3}>
+              <SimpleSearch />
+              <SubscriptionMessage />
+              <SidebarContent
+                title="Diversity"
+                content={relatedPages}
+                tabKey={2}
+              />
+              <SidebarContent
+                title="Firm Resources"
+                content={firmResources}
+                tabKey={1}
+              />
             </Col>
           </Row>
         </Container>
       </TabContainer>
-      {/*
-
-      <div id="single-practice">
-        <TabContainer
-          className="mb--1"
-          id="nav-tab"
-          defaultActiveKey={urlify(tabs[0].title)}
-        >
-          <Container>
-            <Row>
-              <Col sm={12}>
-                <Nav>
-                  {tabs.length > 0
-                    && tabs.map((tab) => (
-                      <Nav.Link
-                        eventKey={urlify(tab.title)}
-                        key={tab.title}
-                        className="main-tab"
-                      >
-                        {tab.title}
-                      </Nav.Link>
-                    ))}
-                </Nav>
-              </Col>
-              C<Col sm={12} md={9} className="mt-4">
-                {tabs.length > 0
-                  && tabs.map((tab) => (
-                    <TabContent key={tab.title}>
-                      <PracticeContent
-                        tabTitle={urlify(tab.title)}
-                        title={tab.title}
-                        content={tab.content}
-                      />
-                    </Tabontent>
-                  ))}
-                {/** Recent Blog Articles */}
-      {/* {attorneysMentioned.length > 0 && (
-                  <div className="w-100 d-block">
-                    <div className="line-header">
-                      <h3>
-                        Latest From
-                        {title}
-                      </h3>
-                    </div>
-                    <FeaturedSlider content={attorneysMentioned} />
-                  </div>
-                )}
-              </Col>
-              <Col sm={12} md={3}>
-                <SimpleSearch />
-                <SubscriptionMessage />
-                <SidebarContent
-                  title="Diversity"
-                  content={fullRelatedPages}
-                  tabKey={2}
-                />
-                <SidebarContent
-                  title="Firm Resources"
-                  content={firmResources}
-                  tabKey={1}
-                />
-              </Col>
-            </Row>
-          </Container>
-        </TabContainer>
-      </div> */}
       <Footer />
     </>
   );
@@ -250,10 +203,20 @@ export default function CommunityInvolvement({
 
 export async function getStaticProps() {
   const res = await client.query(getFirmPage('community-involvement'), {});
+  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
+  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
+  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+
+  const posts = [].concat(
+    firmNewsContent.data.category.posts.edges,
+    firmEventsContent.data.category.posts.edges,
+    firmInsightsContent.data.category.posts.edges,
+  );
 
   return {
     props: {
       page: res.data.pages.nodes[0],
+      posts,
     },
     revalidate: 1,
   };

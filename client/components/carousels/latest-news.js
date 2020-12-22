@@ -50,7 +50,7 @@ export default function CarouselsLatestNews({ slides }) {
                 height={150}
                 layout="intrinsic"
               />
-              <h5 className="mt-3 mb-2 text-center text-dark">
+              <h5 className="mt-1 mb-2 text-center text-dark">
                 <strong>
                   {slide.node.categories.nodes.length > 0
                     ? slide.node.categories.nodes[0].name
