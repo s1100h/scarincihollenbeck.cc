@@ -18,10 +18,7 @@ import { blogArticlesQuery } from 'queries/home';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
-export default function CommunityInvolvement({
-  page,
-  posts,
-}) {
+export default function CommunityInvolvement({ page, posts }) {
   // fetch latest blog posts
   const firmResources = [
     {
@@ -63,7 +60,8 @@ export default function CommunityInvolvement({
     <>
       <NextSeo
         title={
-          page.seo.title || 'Law Firm Community Involvement | Scarinci Hollenbeck'
+          page.seo.title
+          || 'Law Firm Community Involvement | Scarinci Hollenbeck'
         }
         description={
           page.seo.metaDesc
@@ -87,20 +85,20 @@ export default function CommunityInvolvement({
             <Col sm={12}>
               <Nav>
                 {page.FirmPagesContentTabs.tabHeader && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tabHeader}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tabHeader}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tabHeader}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tabHeader}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab2Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab2Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab2Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab2Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab2Header}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab3Header && (
                   <Nav.Link
@@ -111,25 +109,25 @@ export default function CommunityInvolvement({
                   </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab4Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab4Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab4Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab4Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab4Header}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab5Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab5Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab5Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab5Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab5Header}
+                  </Nav.Link>
                 )}
               </Nav>
             </Col>
             <Col sm={12} md={8}>
-              {(page.FirmPagesContentTabs.tabContent) && (
+              {page.FirmPagesContentTabs.tabContent && (
                 <TabContent key={page.FirmPagesContentTabs.tabHeader}>
                   <SinglePracticeContent
                     tabTitle={page.FirmPagesContentTabs.tabHeader}
@@ -138,7 +136,7 @@ export default function CommunityInvolvement({
                   />
                 </TabContent>
               )}
-              {(page.FirmPagesContentTabs.tab2Content) && (
+              {page.FirmPagesContentTabs.tab2Content && (
                 <TabContent key={page.FirmPagesContentTabs.tab2Header}>
                   <SinglePracticeContent
                     tabTitle={page.FirmPagesContentTabs.tab2Header}
@@ -147,7 +145,7 @@ export default function CommunityInvolvement({
                   />
                 </TabContent>
               )}
-              {(page.FirmPagesContentTabs.tab3Content) && (
+              {page.FirmPagesContentTabs.tab3Content && (
                 <TabContent key={page.FirmPagesContentTabs.tab3Header}>
                   <SinglePracticeContent
                     tabTitle={page.FirmPagesContentTabs.tab3Header}
@@ -156,7 +154,7 @@ export default function CommunityInvolvement({
                   />
                 </TabContent>
               )}
-              {(page.FirmPagesContentTabs.tab4Content) && (
+              {page.FirmPagesContentTabs.tab4Content && (
                 <TabContent key={page.FirmPagesContentTabs.tab4Header}>
                   <SinglePracticeContent
                     tabTitle={page.FirmPagesContentTabs.tab4Header}
@@ -165,7 +163,7 @@ export default function CommunityInvolvement({
                   />
                 </TabContent>
               )}
-              {(page.FirmPagesContentTabs.tab5Content) && (
+              {page.FirmPagesContentTabs.tab5Content && (
                 <TabContent key={page.FirmPagesContentTabs.tab5Header}>
                   <SinglePracticeContent
                     tabTitle={page.FirmPagesContentTabs.tab5Header}

@@ -51,11 +51,16 @@ export default function PostSocialShareSidebar({ title }) {
           <EmailIcon size={45} borderRadius={5} />
         </EmailShareButton>
         <Button
-          className="ml-10px-mr-10px mt-2 prnt-icon"
+          variant="success"
+          className="mt-2"
           aria-label="Print Page"
           onClick={() => printScreen()}
         >
-          <FontAwesomeIcon icon={faPrint} className="icon-w20px-h20px" />
+          <FontAwesomeIcon
+            style={{ width: '21.5px' }}
+            icon={faPrint}
+            borderRadius={5}
+          />
         </Button>
       </Sticky>
     </Col>

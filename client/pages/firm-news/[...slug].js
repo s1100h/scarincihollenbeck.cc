@@ -1,127 +1,148 @@
 import { useRouter } from 'next/router';
-import { NextSeo, NewsArticleJsonLd } from 'next-seo';
-import Error from 'pages/_error';
-import BarLoader from 'react-spinners/BarLoader';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
 import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
+import client from 'utils/graphql-client';
 import { headers } from 'utils/helpers';
+import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
+import { blogArticlesQuery } from 'queries/home';
 
-export default function FirmNews({ post }) {
+export default function FirmNews({
+  post, posts, authors, attorneys,
+}) {
   const router = useRouter();
 
-  if (post.status === 404) {
-    return <Error statusCode={404} />;
-  }
+  // extract h2 tag content from text
+  const findH2TagsInContent = post.content.match(/<h2(.*?)>(.*?)<\/h2>/g);
+  const pageSubTitle = findH2TagsInContent[0].replace(/<(?:.|\s)*?>/g, '');
+
+  // extract featured image from text
+  const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
+  const findImgTagsInContent = imgRex.exec(post.content);
+
+  // extract featured image caption
+  const captionRex = /<figcaption(?:.*)>(.*)<\/figcaption>|Ui/g;
+  const findCaptionTagsInContent = captionRex.exec(post.content);
+
+  // check if is event page
+  const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
+
+  // page content
+  const pageContent = post.content
+    .replace(findH2TagsInContent[0], '')
+    .replace(findImgTagsInContent[0], '');
 
   return (
     <>
-      {router.isFallback && Object.entries(post).length === 0 ? (
-        <Container>
-          <Row
-            id="page-loader-container"
-            className="justify-content-center align-self-center"
-          >
-            <BarLoader color="#DB2220" />
-          </Row>
-        </Container>
-      ) : (
-        <>
-          <NextSeo
-            title={post.seo.title}
-            description={post.seo.metaDescription}
-            canonical={`https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`}
-            openGraph={{
-              url: `https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`,
-              title: 'Scarinci Hollenbeck',
-              description: post.seo.metaDescription,
-              type: 'article',
-              article: {
-                publishedTime: post.seo.publishedDate,
-                modifiedTime: post.seo.updatedDate,
-                authors: post.seo.authors,
-                tags:
-                  post.seo.tags !== undefined && post.seo.tags.length > 0
-                    ? post.seo.tags.map((t) => t.name)
-                    : [],
-              },
-              images: [
-                {
-                  url: post.seo.featuredImg
-                    ? post.seo.featuredImg
-                    : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
-                  width: 750,
-                  height: 350,
-                  alt: post.seo.title,
-                },
-              ],
-            }}
-            twitter={{
-              handle: '@S_H_Law',
-              site: `https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`,
-              cardType: post.seo.metaDescription,
-            }}
-          />
-          <NewsArticleJsonLd
-            url={`https://scarincihollenbeck.com/firm-news/${post.seo.canonicalLink}`}
-            title={`${post.seo.title}`}
-            images={
-              post.seo.featuredImg
-                ? [post.seo.featuredImg]
-                : [
-                  'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/sh-mini-diamond-PNG.png',
-                ]
-            }
-            datePublished={post.seo.publishedDate}
-            dateModified={post.seo.updatedDate}
-            authorName={post.seo.author}
-            publisherName="Scarinci Hollenbeck, LLC"
-            publisherLogo="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/sh-logo-2020-compressor.png"
-            description={`${post.seo.metaDescription}`}
-            body={`${post.seo.postContent}`}
-          />
-          <SingleSubHeader
-            image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
+      <NextSeo
+        title={post.seo.title}
+        description={post.seo.metaDesc}
+        canonical={post.uri}
+        openGraph={{
+          url: post.uri,
+          title: post.seo.title,
+          description: post.seo.metaDesc,
+          type: 'article',
+          article: {
+            publishedTime: post.seo.publishedDate,
+            modifiedTime: post.seo.updatedDate,
+            authors: [post.author.node.url || 'https://scarincihollenbeck.com'],
+            tags: post.tags.nodes.map((tag) => tag.name),
+          },
+          images: [
+            {
+              url:
+                post.featuredImage.node.sourceUrl
+                || '/images/sh-mini-diamond-PNG.png',
+              width: 350,
+              height: 150,
+              alt: post.seo.title,
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@S_H_Law',
+          site: post.uri,
+          cardType: post.seo.metaDesc,
+        }}
+      />
+      <ArticleJsonLd
+        url={post.uri}
+        title={post.seo.title}
+        images={[
+          post.featuredImage.node.sourceUrl
+            || '/images/sh-mini-diamond-PNG.png',
+        ]}
+        datePublished={post.seo.publishedDate}
+        dateModified={post.seo.updatedDate}
+        authorName={post.author.node.name}
+        publisherName="Scarinci Hollenbeck, LLC"
+        publisherLogo="/images/sh-logo-2020-compressor.png"
+        description={`${post.seo.metaDesc}`}
+      />
+      <SingleSubHeader
+        image="/images/Legal-Research-1800x400-JPG.jpg"
+        title={post.title}
+        subtitle={pageSubTitle}
+      />
+      <ThreeColMiniSidebar
+        body={(
+          <Body
+            featuredImage={findImgTagsInContent[1]}
+            caption={findCaptionTagsInContent}
+            content={pageContent}
+            eventCat={isEventCategory}
             title={post.title}
-            subtitle={post.subTitle}
+            subTitle={pageSubTitle}
+            author={authors}
+            date={post.date}
+            tags={post.tags.nodes}
           />
-          <div id="single">
-            <ThreeColMiniSidebar
-              body={(
-                <Body
-                  featuredImage={post.featuredImage}
-                  caption={post.featuredImageCaption}
-                  content={post.content}
-                  eventCat={post.isEventCategory}
-                  title={post.title}
-                  subTitle={post.subTitle}
-                  author={post.author}
-                  date={post.date}
-                  tags={post.tags}
-                />
-              )}
-              OneSidebar={<SocialShareSidebar title={post.title} />}
-              TwoSidebar={
-                <Sidebar posts={post.posts} attorneys={post.attorneys} />
-              }
-            />
-          </div>
-          <Footer />
-        </>
-      )}
+        )}
+        OneSidebar={<SocialShareSidebar title={post.title} />}
+        TwoSidebar={<Sidebar posts={posts} attorneys={attorneys} />}
+      />
+      <Footer />
     </>
   );
 }
 
-export async function getServerSideProps({ params, res }) {
-  const [post] = await Promise.all([
+export async function getStaticPaths() {
+  const res = await client.query(getListOfPostsByName('firm-news'), {});
+
+  const urlWithOutBaseUrl = res.data.posts.nodes.map((u) => {
+    if (u.uri.indexOf('/firm-news/') < 0) {
+      const uriSplit = u.uri.split('/').filter((a) => a !== '');
+      const slug = uriSplit[uriSplit.length - 1];
+
+      return `/firm-news/${slug}`;
+    }
+    return u.uri.replace('https://scarincihollenbeck.com', '');
+  });
+
+  return {
+    paths: urlWithOutBaseUrl || [],
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const res = await client.query(
+    getPostBySlug(params.slug[params.slug.length - 1]),
+    {},
+  );
+  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
+  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
+  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+
+  // retrieve the authors for the post
+  const [restResponse] = await Promise.all([
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/${
+      `https://wp.scarincihollenbeck.com/wp-json/single/post/${
         params.slug[params.slug.length - 1]
       }/firm-news`,
       { headers },
@@ -130,13 +151,25 @@ export async function getServerSideProps({ params, res }) {
       .catch((err) => err),
   ]);
 
-  if (post.status === 404 && res) {
-    res.statusCode = 404;
+  const posts = [].concat(
+    firmNewsContent.data.category.posts.edges,
+    firmEventsContent.data.category.posts.edges,
+    firmInsightsContent.data.category.posts.edges,
+  );
+
+  if (res.data.posts.nodes.length <= 0) {
+    return {
+      notFound: true,
+    };
   }
 
   return {
     props: {
-      post: post || {},
+      post: res.data.posts.nodes[0],
+      posts,
+      authors: restResponse.author,
+      attorneys: restResponse.attorneys,
     },
+    revalidate: 1,
   };
 }

@@ -1,6 +1,9 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import Search from 'components/search';
 import SubscriptionMessage from 'components/subscription-message';
-import { addRandomKey, createMarkup } from 'utils/helpers';
+import { createMarkup } from 'utils/helpers';
+import styles from 'styles/SidebarTitle.module.css';
 
 export default function PostsEventSidebar({ attorneys, eventDetails }) {
   const eDetails = eventDetails[0];
@@ -8,13 +11,16 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
   return (
     <div className="d-print-none">
       <Search />
-      {/** Event Details */}
-      {/* <div className="w-100 mt-4">
-        <div className="sidebar-title">Event Details</div>
+      <div className="w-100 mt-4">
+        <div className={styles.header}>Event Details</div>
         <div className="off-white">
-          {eDetails !== undefined && (
+          {eDetails && (
             <div className="p-3">
-              <span dangerouslySetInnerHTML={createMarkup(eDetails.address)} />
+              <strong>
+                <span
+                  dangerouslySetInnerHTML={createMarkup(eDetails.address)}
+                />
+              </strong>
               <p>
                 <strong>Date: </strong>
                 {' '}
@@ -31,28 +37,40 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
             </div>
           )}
         </div>
-      </div> */}
+      </div>
       {/** MENTIONED ATTORNEYS */}
-      {/* {attorneys.length > 0 && (
+      {attorneys.length > 0 && (
         <div className="w-100 mt-4">
-          <div className="sidebar-title">Mentioned Attorneys</div>
+          <div className={styles.header}>Mentioned Attorneys</div>
           <div className="off-white">
-            <ul className="no-dots">
+            <ul className="list-unstyled px-1 mx-1">
               {attorneys.map((a) => (
-                <li key={addRandomKey(a.name)} className="py-2 li-fchild-mt-1">
-                  <a href={a.link} className="m-attorneys d-flex flex-row">
-                    <img src={a.image} alt={a.name} className="mr-2" />
-                    <span className="ml-2 related-attorneys">
-                      <h5 className="proxima-bold mb-0">{a.name}</h5>
-                      <p className="proxima-regular mt---6">{a.designation}</p>
-                    </span>
-                  </a>
+                <li key={a.name} className="py-3">
+                  <Link href={a.link}>
+                    <a className="m-attorneys d-flex flex-row text-dark">
+                      <div className="mx-2 d-block">
+                        <Image
+                          src={a.image}
+                          alt={a.name}
+                          width={49}
+                          height={67}
+                          layout="intrinsic"
+                        />
+                      </div>
+                      <div className="ml-2">
+                        <h5 className="mb-0">
+                          <strong>{a.name}</strong>
+                        </h5>
+                        <p>{a.designation}</p>
+                      </div>
+                    </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-      ))} */}
+      )}
       {/** GET THE LATEST FROM OUR ATTORNEYS */}
       <SubscriptionMessage />
     </div>

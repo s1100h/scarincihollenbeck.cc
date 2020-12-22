@@ -7,10 +7,13 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import client from 'utils/graphql-client';
+import { headers } from 'utils/helpers';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 import { blogArticlesQuery } from 'queries/home';
 
-export default function Covid19Alerts({ post, posts }) {
+export default function Covid19Alerts({
+  post, posts, authors, attorneys,
+}) {
   const router = useRouter();
 
   // extract h2 tag content from text
@@ -29,7 +32,9 @@ export default function Covid19Alerts({ post, posts }) {
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
   // page content
-  const pageContent = post.content.replace(findH2TagsInContent[0], '').replace(findImgTagsInContent[0], '');
+  const pageContent = post.content
+    .replace(findH2TagsInContent[0], '')
+    .replace(findImgTagsInContent[0], '');
 
   return (
     <>
@@ -50,7 +55,9 @@ export default function Covid19Alerts({ post, posts }) {
           },
           images: [
             {
-              url: post.featuredImage.node.sourceUrl || '/images/sh-mini-diamond-PNG.png',
+              url:
+                post.featuredImage.node.sourceUrl
+                || '/images/sh-mini-diamond-PNG.png',
               width: 350,
               height: 150,
               alt: post.seo.title,
@@ -66,7 +73,10 @@ export default function Covid19Alerts({ post, posts }) {
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[post.featuredImage.node.sourceUrl || '/images/sh-mini-diamond-PNG.png']}
+        images={[
+          post.featuredImage.node.sourceUrl
+            || '/images/sh-mini-diamond-PNG.png',
+        ]}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}
         authorName={post.author.node.name}
@@ -88,13 +98,13 @@ export default function Covid19Alerts({ post, posts }) {
             eventCat={isEventCategory}
             title={post.title}
             subTitle={pageSubTitle}
-            author={post.author.node}
+            author={authors}
             date={post.date}
             tags={post.tags.nodes}
           />
         )}
         OneSidebar={<SocialShareSidebar title={post.title} />}
-        TwoSidebar={<Sidebar posts={posts} attorneys={post.attorneys} />}
+        TwoSidebar={<Sidebar posts={posts} attorneys={attorneys} />}
       />
       <Footer />
     </>
@@ -122,10 +132,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await client.query(getPostBySlug(params.slug[params.slug.length - 1]), {});
+  const res = await client.query(
+    getPostBySlug(params.slug[params.slug.length - 1]),
+    {},
+  );
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+
+  // retrieve the authors for the post
+  const [restResponse] = await Promise.all([
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/single/post/${
+        params.slug[params.slug.length - 1]
+      }/covid-19-alerts`,
+      { headers },
+    )
+      .then((data) => data.json())
+      .catch((err) => err),
+  ]);
 
   const posts = [].concat(
     firmNewsContent.data.category.posts.edges,
@@ -137,6 +162,8 @@ export async function getStaticProps({ params }) {
     props: {
       post: res.data.posts.nodes[0],
       posts,
+      authors: restResponse.author,
+      attorneys: restResponse.attorneys,
     },
     revalidate: 1,
   };

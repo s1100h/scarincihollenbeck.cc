@@ -13,7 +13,6 @@ import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 import { getArchivesPosts } from 'queries/archive';
 
-
 export default function CategoryQuickNewsLandingPage({
   firmNews,
   firmInsights,

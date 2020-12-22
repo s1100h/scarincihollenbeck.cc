@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
-import Error from 'pages/_error';
 import Footer from 'components/footer';
 import ProfileImage from 'components/singleattorney/profile-image';
 import InfoCard from 'components/singleattorney/info-card';
@@ -13,14 +12,10 @@ import {
   singleAdministraionQuery,
   getAllAdministration,
 } from 'queries/administration';
-import lineStyles from 'styles/LineHeader.module.css'e;
+import lineStyles from 'styles/LineHeader.module.css';
 
-export default function AdminSingleBio({ status, response }) {
+export default function AdminSingleBio({ response }) {
   const router = useRouter();
-
-  if (status === 404) {
-    return <Error statusCode={404} />;
-  }
 
   if (router.isFallback) {
     return (
@@ -136,23 +131,15 @@ export async function getStaticProps({ params, res }) {
     singleAdministraionQuery(params.slug),
     {},
   );
-  let status = 200;
 
   if (!res && administrationContent.data.administrations.edges.length <= 0) {
-    status = 404;
-
     return {
-      props: {
-        status,
-        response: [],
-      },
       notFound: true,
     };
   }
 
   return {
     props: {
-      status,
       response: administrationContent.data.administrations.edges[0].node,
     },
     revalidate: 1,

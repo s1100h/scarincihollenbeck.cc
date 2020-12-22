@@ -153,7 +153,6 @@ export function formatDate(date) {
   return results;
 }
 
-
 // format core practices
 export function formatCorePractices(link) {
   return {
@@ -178,7 +177,6 @@ export function makeQueryTitle(title) {
 export function sortByOrder(admins) {
   admins.sort((a, b) => a.orderBy - b.orderBy);
 }
-
 
 // check if we are still using this...
 export async function fetcher(...args) {

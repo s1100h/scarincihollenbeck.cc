@@ -78,12 +78,8 @@ function buildAttorneyProfileSchema(
   };
 }
 
-export default function AttorneySingleBio({ status, bio, response }) {
+export default function AttorneySingleBio({ bio, response }) {
   const router = useRouter();
-
-  if (status === 404) {
-    return <Error statusCode={404} />;
-  }
 
   if (router.isFallback) {
     return (
@@ -511,8 +507,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, res }) {
-  let status = 200;
-
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
@@ -532,20 +526,13 @@ export async function getStaticProps({ params, res }) {
     && attorneyBioContent.data.attorneyProfiles.edges[0].node.length <= 0
     && bio.status === 404
   ) {
-    status = 404;
     return {
-      props: {
-        status,
-        bio: [],
-        response: [],
-      },
       notFound: true,
     };
   }
 
   return {
     props: {
-      status,
       bio,
       response: attorneyBioContent.data.attorneyProfiles.edges[0].node,
     },

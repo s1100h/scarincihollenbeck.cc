@@ -41,7 +41,10 @@ export async function getStaticProps() {
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-  const awardsPageContent = await client.query(getPageContents('disclaimer'), {});
+  const awardsPageContent = await client.query(
+    getPageContents('disclaimer'),
+    {},
+  );
 
   const posts = [].concat(
     firmNewsContent.data.category.posts.edges,

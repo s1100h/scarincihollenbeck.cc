@@ -29,9 +29,7 @@ export default function ContactPage() {
             <Link href="/category/law-firm-insights">
               <a className={textStyles.blueTitle}>
                 <strong>
-                  <u>
-                    Firm Insights.
-                  </u>
+                  <u>Firm Insights.</u>
                 </strong>
               </a>
             </Link>
@@ -41,9 +39,7 @@ export default function ContactPage() {
             <Link href="/careers">
               <a className={textStyles.blueTitle}>
                 <strong>
-                  <u>
-                    Careers page.
-                  </u>
+                  <u>Careers page.</u>
                 </strong>
               </a>
             </Link>
@@ -55,9 +51,7 @@ export default function ContactPage() {
             <Link href="/attorneys">
               <a className={textStyles.blueTitle}>
                 <strong>
-                  <u>
-                    Scarinci Hollenbeck attorney
-                  </u>
+                  <u>Scarinci Hollenbeck attorney</u>
                 </strong>
               </a>
             </Link>
@@ -65,12 +59,10 @@ export default function ContactPage() {
             contact directly.
           </p>
           <p className="lead mb-5">
-            If you are looking to get in touch with an attorney under the
-            terms as to becoming a new client please call
+            If you are looking to get in touch with an attorney under the terms
+            as to becoming a new client please call
             {' '}
-            <strong>
-              201-896-4100.
-            </strong>
+            <strong>201-896-4100.</strong>
           </p>
           <h4 className={`${grayTitleStyles.title} mb-5`}>
             All other inquires please fill out the form below.

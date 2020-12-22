@@ -12,7 +12,10 @@ import { blogArticlesQuery } from 'queries/home';
 import { getPageContents } from 'queries/pages';
 
 export default function Covid19CrisisManagementUnit({
-  title, content, posts, seo,
+  title,
+  content,
+  posts,
+  seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -44,12 +47,7 @@ export default function Covid19CrisisManagementUnit({
         posts={posts}
         postsTitle="COVID-19 Articles"
         content={bodyContent}
-        sidebar={(
-          <PagesSidebar
-            posts={externaCovidPosts.response}
-            covidPage
-          />
-        )}
+        sidebar={<PagesSidebar posts={externaCovidPosts.response} covidPage />}
       />
       <Footer />
     </>
@@ -59,7 +57,10 @@ export default function Covid19CrisisManagementUnit({
 export async function getStaticProps() {
   // 20250
   const covidNewsContent = await client.query(blogArticlesQuery(20250), {});
-  const covid19CrisisManagementUnitContent = await client.query(getPageContents('covid-19-crisis-management-unit'), {});
+  const covid19CrisisManagementUnitContent = await client.query(
+    getPageContents('covid-19-crisis-management-unit'),
+    {},
+  );
 
   return {
     props: {
@@ -69,14 +70,5 @@ export async function getStaticProps() {
       posts: covidNewsContent.data.category.posts.edges,
     },
     revalidate: 1,
-  };
-
-  return {
-    props: {
-      title,
-      content,
-      internalCovidPosts,
-      seo,
-    },
   };
 }

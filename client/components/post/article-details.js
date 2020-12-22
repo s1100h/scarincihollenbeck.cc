@@ -1,6 +1,8 @@
+import { formatDate } from 'utils/helpers';
+
 export default function PostArticleDetails({ author, date }) {
   return (
-    <>
+    <div className="mt-3 mb-0">
       <strong>Author: </strong>
       {author.length > 0
         ? author.map((a, i) => (i === 0 && author.length > 1 ? (
@@ -16,7 +18,7 @@ export default function PostArticleDetails({ author, date }) {
         )))
         : ''}
       <span className="mx-3">|</span>
-      {date || ''}
-    </>
+      {formatDate(date) || ''}
+    </div>
   );
 }

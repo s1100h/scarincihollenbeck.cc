@@ -14,7 +14,7 @@ const HeaderBckGround = styled.div`
   background-size: cover;
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
   clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
-  height: ${(props) => props.height}
+  height: ${(props) => props.height};
 `;
 
 export default function SingleSubHeader({

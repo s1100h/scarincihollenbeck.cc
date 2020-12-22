@@ -89,11 +89,10 @@ export default function ContactForm() {
         <Row className="mb-0">
           <Col sm={12} className="mx-0 px-1">
             <p className="mb-1">
-              * The use of the Internet or this form for communication with
-              the firm or any individual member of the firm does not
-              establish an attorney-client relationship. Confidential or
-              time-sensitive information should not be sent through this
-              form.
+              * The use of the Internet or this form for communication with the
+              firm or any individual member of the firm does not establish an
+              attorney-client relationship. Confidential or time-sensitive
+              information should not be sent through this form.
             </p>
             <fieldset data-kw-group="true" rules="required" className="mb-2">
               <label htmlFor="disclaimer">

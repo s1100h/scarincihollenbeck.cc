@@ -128,7 +128,7 @@ export async function getStaticProps({ params }) {
   if (res.data.categories.nodes[0].posts.edges.length <= 0) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
