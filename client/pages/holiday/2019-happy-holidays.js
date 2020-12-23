@@ -1,13 +1,13 @@
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
-import Body from 'components/pages/body';
-import Sidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
-import LargeSidebar from 'layouts/large-sidebar';
-import { headers } from 'utils/helpers';
+import FullWidth from 'layouts/full-width';
+import client from 'utils/graphql-client';
+import { getPageContents } from 'queries/pages';
+import { createMarkup } from 'utils/helpers';
 
 export default function HappyHolidays2019({
-  title, content, posts, seo,
+  title, content, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -18,44 +18,31 @@ export default function HappyHolidays2019({
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical="http://scarincihollenbeck.com/holiday/2019-happy-holidays"
       />
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
-        height="auto"
+        image="/images/red-snow1900x400.png"
+        height="400px"
       />
-      <LargeSidebar
-        body={<Body content={bodyContent} />}
-        sidebar={<Sidebar posts={posts} />}
-      />
+      <FullWidth>
+        <div className="mb-5" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+      </FullWidth>
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
-  const [aJson, postJson] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/2019-happy-holidays',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights',
-      { headers },
-    ).then((data) => data.json()),
-  ]);
-
-  const { posts } = postJson;
-  const { title, content, seo } = aJson;
+export async function getStaticProps() {
+  const Holidays2019PageContent = await client.query(getPageContents('2019-happy-holidays'), {});
 
   return {
     props: {
-      title,
-      content,
-      posts,
-      seo,
+      title: Holidays2019PageContent.data.pages.nodes[0].title,
+      content: Holidays2019PageContent.data.pages.nodes[0].content,
+      seo: Holidays2019PageContent.data.pages.nodes[0].seo,
     },
+    revalidate: 1,
   };
 }
