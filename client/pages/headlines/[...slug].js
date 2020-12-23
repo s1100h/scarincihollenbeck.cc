@@ -11,7 +11,9 @@ import { headers } from 'utils/helpers';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 import { blogArticlesQuery } from 'queries/home';
 
-export default function Headlines({ post, posts, authors, attorneys, }) {
+export default function Headlines({
+  post, posts, authors, attorneys,
+}) {
   const router = useRouter();
 
   // extract h2 tag content from text

@@ -63,9 +63,13 @@ export async function getStaticProps() {
 
   return {
     props: {
-      title: governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].title,
-      content: governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].content,
-      seo: governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].seo,
+      title:
+        governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].title,
+      content:
+        governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0]
+          .content,
+      seo:
+        governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].seo,
       posts: covidNewsContent.data.category.posts.edges,
     },
     revalidate: 1,

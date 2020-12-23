@@ -11,7 +11,9 @@ import { headers } from 'utils/helpers';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 import { blogArticlesQuery } from 'queries/home';
 
-export default function JustIn({ post, posts, authors, attorneys, }) {
+export default function JustIn({
+  post, posts, authors, attorneys,
+}) {
   const router = useRouter();
 
   // extract h2 tag content from text
@@ -109,7 +111,6 @@ export default function JustIn({ post, posts, authors, attorneys, }) {
   );
 }
 
-
 export async function getStaticPaths() {
   const res = await client.query(getListOfPostsByName('just-in'), {});
 
@@ -172,4 +173,3 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   };
 }
-

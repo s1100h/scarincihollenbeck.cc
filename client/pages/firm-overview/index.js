@@ -23,24 +23,25 @@ function formatAttorneyList(list) {
 
 function formatAdministrationList(list) {
   return list.map((item, index) => ({
-    id: `${index}x${item.node.administration.name}0${index * Math.floor(Math.random() * 10000) + 1 }`,
+    id: `${index}x${item.node.administration.name}0${
+      index * Math.floor(Math.random() * 10000) + 1
+    }`,
     name: item.node.administration.name,
     image: item.node.featuredImage.node.sourceUrl,
     number: `201-896-4100 ${item.node.administration.phoneExtension}`,
     email: item.node.administration.email,
     title: item.node.administration.title,
     uri: item.node.uri,
-  }))
+  }));
 }
 export default function FirmOverview({
-  partners, managingPartners, administration, page,
+  partners,
+  managingPartners,
+  administration,
+  page,
 }) {
   const subHeaderContent = page.content.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = page.content.replace(subHeaderContent[0], '');
-
-  console.log({
-    administration,
-  });
 
   return (
     <>
@@ -76,20 +77,17 @@ export default function FirmOverview({
             title="Managing Partners"
             members={formatAttorneyList(managingPartners)}
             type="/attorney/[slug]/"
-            slug="/attorney"
           />
           <FirmMembers
             title="Partners"
             members={formatAttorneyList(partners)}
             type="/attorney/[slug]/"
-            slug="/attorney"
           />
           <FirmMembers
             title="Directors"
             members={formatAdministrationList(administration)}
             type="/administration/[slug]/"
-            slug="/administration"
-          /> 
+          />
         </div>
       </FullWidth>
       <Footer />
@@ -103,16 +101,24 @@ export async function getStaticProps() {
 
   // get a list of managing partners & partners
   const [attorneyResponse] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', {
-      headers,
-    }).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
+      {
+        headers,
+      },
+    ).then((data) => data.json()),
   ]);
 
   // managing partners
-  const managingPartners = attorneyResponse.filter((a) => a.designation === 'Managing Partner');
+  const managingPartners = attorneyResponse.filter(
+    (a) => a.designation === 'Managing Partner',
+  );
 
   // partners
-  const partners = attorneyResponse.filter((a) => a.designation.indexOf('Partner') > -1 && a.designation !== 'Managing Partner');
+  const partners = attorneyResponse.filter(
+    (a) => a.designation.indexOf('Partner') > -1
+      && a.designation !== 'Managing Partner',
+  );
 
   // get a list of administration
   const allAdministrationContent = await client.query(allAdministraionQuery, {});

@@ -42,7 +42,6 @@ export const getFirmPage = (slug) => `{
     }
   }`;
 
-
 export const getFirmOverviewPage = `{
   pages(where: {name: "firm-overview"}) {
     nodes {
@@ -67,4 +66,4 @@ export const getFirmOverviewPage = `{
       content
     }
   }
-}`
+}`;

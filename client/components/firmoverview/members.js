@@ -5,9 +5,8 @@ import AttorneyCard from 'components/attorney-card';
 import textStyles from 'styles/Text.module.css';
 
 export default function FirmOverviewMembers({
-  title, members, type, slug,
+  title, members, type
 }) {
-  console.log(members);
   return (
     <div className="w-100 mt-5 px-3">
       <h3
@@ -28,7 +27,7 @@ export default function FirmOverviewMembers({
                 email={m.email}
                 width={80}
                 height={112}
-                type="/attorney/[slug]"
+                type={type}
               />
             </Col>
           ))}

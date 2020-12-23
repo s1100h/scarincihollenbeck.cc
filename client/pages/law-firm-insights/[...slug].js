@@ -11,7 +11,12 @@ import { headers } from 'utils/helpers';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 import { blogArticlesQuery } from 'queries/home';
 
-export default function LawFirmInsightsPost({ post, posts, authors, attorneys, }) {
+export default function LawFirmInsightsPost({
+  post,
+  posts,
+  authors,
+  attorneys,
+}) {
   const router = useRouter();
 
   // extract h2 tag content from text
@@ -171,4 +176,3 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   };
 }
-

@@ -11,8 +11,9 @@ import { headers } from 'utils/helpers';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 import { blogArticlesQuery } from 'queries/home';
 
-
-export default function QuickNewsPost({ post, posts, authors, attorneys, }) {
+export default function QuickNewsPost({
+  post, posts, authors, attorneys,
+}) {
   const router = useRouter();
 
   // extract h2 tag content from text
@@ -54,9 +55,7 @@ export default function QuickNewsPost({ post, posts, authors, attorneys, }) {
           },
           images: [
             {
-              url:
-                post.featuredImage
-                || '/images/sh-mini-diamond-PNG.png',
+              url: post.featuredImage || '/images/sh-mini-diamond-PNG.png',
               width: 350,
               height: 150,
               alt: post.seo.title,
@@ -72,10 +71,7 @@ export default function QuickNewsPost({ post, posts, authors, attorneys, }) {
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[
-          post.featuredImage
-            || '/images/sh-mini-diamond-PNG.png',
-        ]}
+        images={[post.featuredImage || '/images/sh-mini-diamond-PNG.png']}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}
         authorName={post.author.node.name}
@@ -161,7 +157,7 @@ export async function getStaticProps({ params }) {
       notFound: true,
     };
   }
-  
+
   return {
     props: {
       post: res.data.posts.nodes[0],
@@ -172,4 +168,3 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   };
 }
-
