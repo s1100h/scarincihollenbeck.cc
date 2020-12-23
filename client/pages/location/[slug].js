@@ -3,23 +3,23 @@ import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import BarLoader from 'react-spinners/BarLoader';
-import Error from 'pages/_error';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import BodyContent from 'components/locations/body';
 import SideBar from 'components/locations/sidebar';
-import { headers, urlify } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { allLocations, getLocationByName } from 'queries/locations';
+import { headers } from 'utils/helpers';
 
-function buildLocationSchema(location, map) {
+function buildLocationSchema(location) {
   return {
     '@context': 'http://schema.org',
     '@type': 'LocalBusiness',
     name: 'Scarinci Hollebneck',
     url: 'https://scarincihollenbeck.com',
     logo:
-      'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png',
+      '/images/no-image-found-diamond.png',
     image: location.image,
     address: {
       '@type': 'PostalAddress',
@@ -31,7 +31,7 @@ function buildLocationSchema(location, map) {
       telephone: location.telephone,
     },
     openingHours: ['Mo-Fr 08:00-18:00'],
-    hasmap: map,
+    hasmap: location.mapLink,
     geo: {
       '@type': 'GeoCoordinates',
       latitude: location.latitude,
@@ -47,17 +47,36 @@ function buildLocationSchema(location, map) {
 }
 
 export default function SingleLocation({
-  seo, offices, currentOffice, posts,
+  offices, location, attorneys,
 }) {
-  const router = useRouter();
-
-  if (currentOffice.status === 404) {
-    return <Error statusCode={404} />;
-  }
+  console.log({
+    offices, location, attorneys,
+  });
 
   return (
     <>
-      {router.isFallback ? (
+      <NextSeo
+        title={location.seo.title}
+        description={location.seo.metaDesc}
+        canonical={`http://scarincihollenbeck.com/${location.uri}`}
+      />
+      <Head>
+        <script
+          key={location.title}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildLocationSchema(location.officeMainInformation),
+            ),
+          }}
+        />
+      </Head>
+      <SingleSubHeader
+        title="Office Locations"
+        subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
+        image="/images/Skyscrapers-up-1800x400-JPG.jpg"
+      />
+      {/* {router.isFallback ? (
         <Container>
           <Row
             id="page-loader-container"
@@ -85,23 +104,19 @@ export default function SingleLocation({
             />
           </Head>
           <div id="location">
-            <SingleSubHeader
-              title="Office Locations"
-              subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
-              image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Skyscrapers-up-1800x400-JPG.jpg"
-            />
+
             <LargeSidebar
               body={(
                 <BodyContent
-                  attorneys={currentOffice.attorneys}
+                  attorneys={attorneys}
                   practices={currentOffice.practices}
-                  map={currentOffice.mapLink}
-                  title={currentOffice.name}
+                  map={location.officeMainInformation.mapLink}
+                  title={location.title}
                 />
               )}
               sidebar={(
                 <SideBar
-                  title={currentOffice.name}
+                  title={location.title}
                   posts={posts}
                   offices={offices}
                   startingKey={urlify(currentOffice.name)}
@@ -111,37 +126,53 @@ export default function SingleLocation({
             <Footer />
           </div>
         </>
-      )}
+      )} */}
     </>
   );
 }
 
-export async function getServerSideProps({ params, res }) {
-  const [locations, currentOffice, currentOfficePosts] = await Promise.all([
+export async function getStaticPaths() {
+  const res = await client.query(allLocations, {});
+
+  return {
+    paths: res.data.officeLocations.nodes.map((a) => a.uri) || [],
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  // get location content
+  const locationContent = await client.query(
+    getLocationByName(params.slug),
+    {},
+  );
+
+  // get a list of all offices
+  const allOfficeLocations = await client.query(allLocations, {});
+
+  // get all attorneys
+  const [attorneys] = await Promise.all([
     fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/location-portal/offices`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/office/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/individual-location/posts/${params.slug}`,
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
       { headers },
     ).then((data) => data.json()),
   ]);
 
-  if (currentOffice.status === 404 && res) {
-    res.statusCode = 404;
+  // filter attorney by location
+  const attorneysByLocation = attorneys.filter((a) => a.location.toLowerCase().replace(' ', '-').replace('.', '').indexOf(params.slug) > -1);
+
+  if (locationContent.data.officeLocations.nodes.length <= 0) {
+    return {
+      notFound: true,
+    };
   }
 
   return {
     props: {
-      offices: locations.offices || {},
-      seo: currentOffice.seo || {},
-      currentOffice,
-      posts: currentOfficePosts,
+      location: locationContent.data.officeLocations.nodes[0],
+      offices: allOfficeLocations.data.officeLocations.nodes,
+      attorneys: attorneysByLocation,
     },
+    revalidate: 1,
   };
 }
