@@ -1,15 +1,20 @@
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import Footer from 'components/footer';
-import Sidebar from 'components/pages/sidebar';
+import SiteLoader from 'components/site-loader';
+import ErrorMessage from 'components/error-message';
+import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { headers, fetcher } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { fetcher } from 'utils/helpers';
+import { blogArticlesQuery } from 'queries/home';
+import { getPageContents } from 'queries/pages';
 
 export default function GovernmentEducationCovidResponseTeam({
   title,
   content,
-  internalCovidPosts,
+  posts,
   seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -17,61 +22,52 @@ export default function GovernmentEducationCovidResponseTeam({
   const bodyContent = content.replace(subTitle, '');
 
   // retrieve external posts from internal api
-  const { data: externaCovidPosts } = useSWR(
+  const { data: externaCovidPosts, error: externaCovidPostsError } = useSWR(
     '/api/external-covid-feed',
     fetcher,
   );
+
+  if (externaCovidPostsError) return <ErrorMessage />;
+  if (!externaCovidPosts) return <SiteLoader />;
 
   return (
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        description={seo.metaDescr}
+        canonical="http://scarincihollenbeck.com/government-education-covid-19-response-team"
       />
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
+        image="/images/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
       <LargeSidebarWithPosts
-        posts={internalCovidPosts}
-        postsTitle="Government & Education COVID-19 Articles"
+        posts={posts}
+        postsTitle="COVID-19 Articles"
         content={bodyContent}
-        sidebar={(
-          <Sidebar
-            posts={
-              externaCovidPosts !== undefined ? externaCovidPosts.response : []
-            }
-            covidPage
-          />
-        )}
+        sidebar={<PagesSidebar posts={externaCovidPosts.response} covidPage />}
       />
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
-  const [internalCovidPosts, page] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/wp/v2/posts?categories=22896&per_page=100`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/government-education-covid-19-response-team`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
-  const { title, content, seo } = page;
+export async function getStaticProps() {
+  const covidNewsContent = await client.query(blogArticlesQuery(20250), {});
+  const governmentEducationCovid19ResponseTeamContent = await client.query(
+    getPageContents('government-education-covid-19-response-team'),
+    {},
+  );
 
   return {
     props: {
-      title,
-      content,
-      internalCovidPosts,
-      seo,
+      title: governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].title,
+      content: governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].content,
+      seo: governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].seo,
+      posts: covidNewsContent.data.category.posts.edges,
     },
+    revalidate: 1,
   };
 }

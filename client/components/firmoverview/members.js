@@ -2,30 +2,33 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/attorney-card';
+import textStyles from 'styles/Text.module.css';
 
 export default function FirmOverviewMembers({
   title, members, type, slug,
 }) {
+  console.log(members);
   return (
     <div className="w-100 mt-5 px-3">
-      <h4 className="red-title border-bottom text-uppercase">{title}</h4>
+      <h3
+        className={`${textStyles.redTitle} text-uppercase border-bottom mb-0`}
+      >
+        <strong>{title}</strong>
+      </h3>
       <Container className="articles-container mt-3">
         <Row>
           {members.map((m) => (
             <Col sm={12} md={6} lg={4} className="mb-3" key={m.id}>
               <AttorneyCard
-                link={`${slug}${m.link}`}
+                link={m.uri}
                 image={m.image}
                 name={m.name}
-                title={title === 'Directors' ? m.title : m.designation}
-                number={
-                  title === 'Directors'
-                    ? `201-896-4100 ${m.extension}`
-                    : m.phone
-                }
+                title={m.title}
+                number={m.number}
                 email={m.email}
-                width="81px"
-                type={type}
+                width={80}
+                height={112}
+                type="/attorney/[slug]"
               />
             </Col>
           ))}

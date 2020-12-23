@@ -9,6 +9,29 @@ import { allAdministraionQuery } from 'queries/administration';
 import { headers, createMarkup } from 'utils/helpers';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
+function formatAttorneyList(list) {
+  return list.map((item) => ({
+    id: item.id,
+    name: item.title,
+    image: item.better_featured_image,
+    number: item.phone,
+    email: item.email,
+    title: item.designation,
+    uri: `/attorney${item.link}`,
+  }));
+}
+
+function formatAdministrationList(list) {
+  return list.map((item, index) => ({
+    id: `${index}x${item.node.administration.name}0${index * Math.floor(Math.random() * 10000) + 1 }`,
+    name: item.node.administration.name,
+    image: item.node.featuredImage.node.sourceUrl,
+    number: `201-896-4100 ${item.node.administration.phoneExtension}`,
+    email: item.node.administration.email,
+    title: item.node.administration.title,
+    uri: item.node.uri,
+  }))
+}
 export default function FirmOverview({
   partners, managingPartners, administration, page,
 }) {
@@ -16,7 +39,7 @@ export default function FirmOverview({
   const bodyContent = page.content.replace(subHeaderContent[0], '');
 
   console.log({
-    partners, managingPartners, administration, page,
+    administration,
   });
 
   return (
@@ -51,22 +74,22 @@ export default function FirmOverview({
         <div className="border">
           <FirmMembers
             title="Managing Partners"
-            members={managingPartners}
+            members={formatAttorneyList(managingPartners)}
             type="/attorney/[slug]/"
             slug="/attorney"
           />
           <FirmMembers
             title="Partners"
-            members={partners}
+            members={formatAttorneyList(partners)}
             type="/attorney/[slug]/"
             slug="/attorney"
           />
           <FirmMembers
             title="Directors"
-            members={administration}
+            members={formatAdministrationList(administration)}
             type="/administration/[slug]/"
             slug="/administration"
-          />
+          /> 
         </div>
       </FullWidth>
       <Footer />
@@ -89,7 +112,7 @@ export async function getStaticProps() {
   const managingPartners = attorneyResponse.filter((a) => a.designation === 'Managing Partner');
 
   // partners
-  const partners = attorneyResponse.filter((a) => a.designation.indexOf('Partner') > 0);
+  const partners = attorneyResponse.filter((a) => a.designation.indexOf('Partner') > -1 && a.designation !== 'Managing Partner');
 
   // get a list of administration
   const allAdministrationContent = await client.query(allAdministraionQuery, {});
