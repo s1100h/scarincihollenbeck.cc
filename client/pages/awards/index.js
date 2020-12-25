@@ -5,7 +5,7 @@ import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import client from 'utils/graphql-client';
-import { blogArticlesQuery } from 'queries/home';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 import { getPageContents } from 'queries/pages';
 
 export default function Awards({
@@ -38,9 +38,7 @@ export default function Awards({
 }
 
 export async function getStaticProps() {
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+  const posts = await fetchFirmPosts();
   const awardsPageContent = await client.query(getPageContents('awards'), {});
 
   const posts = [].concat(

@@ -55,7 +55,6 @@ export default function Covid19CrisisManagementUnit({
 }
 
 export async function getStaticProps() {
-  // 20250
   const covidNewsContent = await client.query(blogArticlesQuery(20250), {});
   const covid19CrisisManagementUnitContent = await client.query(
     getPageContents('covid-19-crisis-management-unit'),

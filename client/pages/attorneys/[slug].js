@@ -506,7 +506,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params, res }) {
+export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
@@ -521,9 +521,7 @@ export async function getStaticProps({ params, res }) {
     {},
   );
 
-  if (
-    !res
-    && attorneyBioContent.data.attorneyProfiles.edges[0].node.length <= 0
+  if (attorneyBioContent.data.attorneyProfiles.edges[0].node.length <= 0
     && bio.status === 404
   ) {
     return {
