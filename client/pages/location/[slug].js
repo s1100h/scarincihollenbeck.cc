@@ -1,8 +1,5 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -11,48 +8,11 @@ import SideBar from 'components/locations/sidebar';
 import client from 'utils/graphql-client';
 import { allLocations, getLocationByName } from 'queries/locations';
 import { headers } from 'utils/helpers';
-
-function buildLocationSchema(location) {
-  return {
-    '@context': 'http://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Scarinci Hollebneck',
-    url: 'https://scarincihollenbeck.com',
-    logo:
-      '/images/no-image-found-diamond.png',
-    image: location.image,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: location.streetAddress,
-      addressLocality: location.addressLocality,
-      addressRegion: location.addressRegion,
-      postalCode: location.postalCode,
-      addressCountry: location.addressCountry,
-      telephone: location.telephone,
-    },
-    openingHours: ['Mo-Fr 08:00-18:00'],
-    hasmap: location.mapLink,
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: location.latitude,
-      longitude: location.longitude,
-    },
-    priceRange: '$$$$',
-    sameAs: [
-      'https://www.facebook.com/ScarinciHollenbeck/',
-      'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
-      'https://twitter.com/s_h_law',
-    ],
-  };
-}
+import { buildLocationSchema } from 'utils/json-ld-schemas';
 
 export default function SingleLocation({
-  offices, location, attorneys,
+  offices, location, attorneys, posts,
 }) {
-  console.log({
-    offices, location, attorneys,
-  });
-
   return (
     <>
       <NextSeo
@@ -88,11 +48,11 @@ export default function SingleLocation({
         sidebar={(
           <SideBar
             title={location.title}
-            posts={[]}
+            posts={posts}
             offices={offices}
             startingKey={location.uri}
           />
-              )}
+        )}
       />
       <Footer />
     </>
@@ -118,10 +78,14 @@ export async function getStaticProps({ params }) {
   // get a list of all offices
   const allOfficeLocations = await client.query(allLocations, {});
 
-  // get all attorneys
-  const [attorneys] = await Promise.all([
+  // get all attorneys & posts related to each location
+  const [attorneys, postsByLocation] = await Promise.all([
     fetch(
       'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);
@@ -140,6 +104,7 @@ export async function getStaticProps({ params }) {
       location: locationContent.data.officeLocations.nodes[0],
       offices: allOfficeLocations.data.officeLocations.nodes,
       attorneys: attorneysByLocation,
+      posts: postsByLocation,
     },
     revalidate: 1,
   };

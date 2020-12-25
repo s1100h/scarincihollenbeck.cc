@@ -57,3 +57,38 @@ export function buildBusinessSchema() {
     ],
   };
 }
+
+
+export function buildLocationSchema(location) {
+  return {
+    '@context': 'http://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Scarinci Hollebneck',
+    url: 'https://scarincihollenbeck.com',
+    logo:
+      '/images/no-image-found-diamond.png',
+    image: location.image,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: location.streetAddress,
+      addressLocality: location.addressLocality,
+      addressRegion: location.addressRegion,
+      postalCode: location.postalCode,
+      addressCountry: location.addressCountry,
+      telephone: location.telephone,
+    },
+    openingHours: ['Mo-Fr 08:00-18:00'],
+    hasmap: location.mapLink,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: location.latitude,
+      longitude: location.longitude,
+    },
+    priceRange: '$$$$',
+    sameAs: [
+      'https://www.facebook.com/ScarinciHollenbeck/',
+      'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+      'https://twitter.com/s_h_law',
+    ],
+  };
+}

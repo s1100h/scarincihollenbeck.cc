@@ -1,48 +1,13 @@
-import React, { useContext } from 'react';
+import Link from 'next/link';
 import Accordion from 'react-bootstrap/Accordion';
-import AccordionContext from 'react-bootstrap/AccordionContext';
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
-import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import TrendingStories from 'components/non-graphql-trending-stories';
-
-import { sortByKey, urlify, getDirectionsFromLocation } from 'utils/helpers';
-
-function LocationHeaderToggle({ children, eventKey, callback }) {
-  const currentEventKey = useContext(AccordionContext);
-
-  const decoratedOnClick = useAccordionToggle(
-    eventKey,
-    () => callback && callback(eventKey),
-  );
-
-  const isCurrentEventKey = currentEventKey === eventKey;
-
-  return (
-    <Button
-      variant="link"
-      className="sidebar-title w-100 p-2 text-left"
-      onClick={decoratedOnClick}
-    >
-      {children}
-      {isCurrentEventKey ? (
-        <FontAwesomeIcon
-          icon={faMinus}
-          className="text-white float-right icon-w8px-h20px"
-        />
-      ) : (
-        <FontAwesomeIcon
-          icon={faPlus}
-          className="text-white float-right icon-w8px-h20px"
-        />
-      )}
-    </Button>
-  );
-}
+import SideBarHeaderToggle from 'components/sidebar-header-toggle';
+import textStyles from 'styles/Text.module.css';
+import { getDirectionsFromLocation, sortByKey } from 'utils/helpers';
 
 export default function LocationsSidebar({
   offices,
@@ -53,51 +18,81 @@ export default function LocationsSidebar({
   const officeList = sortByKey(offices, 'title');
 
   return (
-    <div id="practice-sidebar">
-      {/* {officeList.map((office) => (
-        <Accordion key={office.title} defaultActiveKey={startingKey}>
-          <div key={office.title} className="mb-3">
-            <LocationHeaderToggle eventKey={urlify(office.title)}>
-              <h5 className="mb-0 pb-0 float-left">{office.title}</h5>
-            </LocationHeaderToggle>
-            <Accordion.Collapse eventKey={urlify(office.title)}>
-              <div className="off-white p-3">
-                <ul className="no-dots ml-0">
-                  {office.address.map((a) => (
-                    <li key={a} className="mb--10">
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mb-0">
-                  <FontAwesomeIcon icon={faPhone} className="icon-w8px-h20px" />
-                  <span className="proxima-regular">{`  ${office.phone}`}</span>
-                </p>
-                <p className="mb-2">
-                  <FontAwesomeIcon icon={faFax} className="icon-w8px-h20px" />
-                  <span className="proxima-regular">{`  ${office.fax}`}</span>
-                </p>
-                <div className="m-2">
-                  <a href={office.slug} className="red-title proxima-bold">
-                    {`${office.title} Office Details `}
-                  </a>
+    <>
+      {officeList.map((o) => (
+        <Accordion key={o.title} className="mb-3" defaultActiveKey={startingKey}>
+          <SideBarHeaderToggle eventKey={o.uri}>
+            <>{o.title}</>
+          </SideBarHeaderToggle>
+          <Accordion.Collapse eventKey={o.uri}>
+            <div className="off-white p-3">
+              <ul className="list-unstyled ml-0">
+                {(o.officeMainInformation.officeBuildingTitle) && (
+                  <li className="mb-0">
+                    {o.officeMainInformation.officeBuildingTitle}
+                  </li>
+                )}
+                <li className="mb-0">
+                  {o.officeMainInformation.streetAddress}
+                </li>
+                {(o.officeMainInformation.poBox) && (
+                  <li className="mb-0">
+                    {o.officeMainInformation.poBox}
+                  </li>
+                )}
+                {(o.officeMainInformation.floor) && (
+                  <li className="mb-0">
+                    {o.officeMainInformation.floor}
+                  </li>
+                )}
+                <li className="mb-0">
+                  {`${o.officeMainInformation.addressLocality}, ${o.officeMainInformation.addressRegion}, ${o.officeMainInformation.postCode}`}
+                </li>
+                <li className="mt-3 mb-0">
+                  <FontAwesomeIcon icon={faPhone} />
+                  {' '}
+                  <strong>
+                    {o.officeMainInformation.phone}
+                  </strong>
+                </li>
+                {(o.officeMainInformation.fax) && (
+                  <li className="my-0">
+                    <FontAwesomeIcon icon={faFax} />
+                    {' '}
+                    <strong>
+                      {o.officeMainInformation.fax}
+                    </strong>
+                  </li>
+                )}
+                <li className="mt-3 mb-0">
+                  <Link href={o.uri}>
+                    <a className={textStyles.redTitle}>
+                      <strong>
+                        {`${o.title} Office Details `}
+                      </strong>
+                    </a>
+                  </Link>
+                </li>
+                <li className="mb-2">
                   <Button
                     variant="transparent"
-                    className="red-title proxima-bold ml--10"
-                    onClick={() => getDirectionsFromLocation(urlify(office.title))}
+                    className={`${textStyles.redTitle} p-0`}
+                    onClick={() => getDirectionsFromLocation(o.uri)}
                   >
-                    Directions to
-                    {' '}
-                    {office.title}
+                    <strong>
+                      Directions to
+                      {' '}
+                      {o.title}
+                    </strong>
                   </Button>
-                </div>
-              </div>
-            </Accordion.Collapse>
-          </div>
+                </li>
+              </ul>
+            </div>
+          </Accordion.Collapse>
         </Accordion>
       ))}
-      <TrendingStories title={`News from ${title}`} content={posts} /> */}
-      sidebar we'll get there :)
-    </div>
+      <TrendingStories title={`News from ${title}`} content={posts} />
+    </>
+
   );
 }

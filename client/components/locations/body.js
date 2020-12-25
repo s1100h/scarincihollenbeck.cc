@@ -10,7 +10,6 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function LocationsBody({
   attorneys, practices, map, title,
 }) {
-  console.log(practices);
   return (
     <>
       <h4 className={grayTitleStyles.title}>{title}</h4>

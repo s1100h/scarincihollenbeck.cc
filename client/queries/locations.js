@@ -3,6 +3,21 @@ export const allLocations = `{
     nodes {
       uri
       title
+      officeMainInformation {
+        addressCountry
+        addressLocality
+        fax
+        addressRegion
+        floor
+        latitude
+        longitude
+        mapLink
+        officeBuildingTitle
+        phone
+        poBox
+        postCode
+        streetAddress
+      }
     }
   }
 }
