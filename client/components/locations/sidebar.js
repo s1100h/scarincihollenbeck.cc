@@ -54,7 +54,7 @@ export default function LocationsSidebar({
 
   return (
     <div id="practice-sidebar">
-      {officeList.map((office) => (
+      {/* {officeList.map((office) => (
         <Accordion key={office.title} defaultActiveKey={startingKey}>
           <div key={office.title} className="mb-3">
             <LocationHeaderToggle eventKey={urlify(office.title)}>
@@ -96,7 +96,8 @@ export default function LocationsSidebar({
           </div>
         </Accordion>
       ))}
-      <TrendingStories title={`News from ${title}`} content={posts} />
+      <TrendingStories title={`News from ${title}`} content={posts} /> */}
+      sidebar we'll get there :)
     </div>
   );
 }

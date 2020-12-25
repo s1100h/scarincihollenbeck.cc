@@ -27,7 +27,7 @@ export const getLocationByName = slug => {
           officePractices {
             ... on Practice {
               id
-              link
+              uri
               title
             }
           }

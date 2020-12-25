@@ -76,57 +76,25 @@ export default function SingleLocation({
         subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
         image="/images/Skyscrapers-up-1800x400-JPG.jpg"
       />
-      {/* {router.isFallback ? (
-        <Container>
-          <Row
-            id="page-loader-container"
-            className="justify-content-center align-self-center"
-          >
-            <BarLoader color="#DB2220" />
-          </Row>
-        </Container>
-      ) : (
-        <>
-          <NextSeo
-            title={seo.title}
-            description={seo.metaDescription}
-            canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+      <LargeSidebar
+        body={(
+          <BodyContent
+            attorneys={attorneys}
+            practices={location.officeMainInformation.officePractices}
+            map={location.officeMainInformation.mapLink}
+            title={location.title}
           />
-          <Head>
-            <script
-              key={currentOffice.name}
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify(
-                  buildLocationSchema(seo, currentOffice.mapLink),
-                ),
-              }}
-            />
-          </Head>
-          <div id="location">
-
-            <LargeSidebar
-              body={(
-                <BodyContent
-                  attorneys={attorneys}
-                  practices={currentOffice.practices}
-                  map={location.officeMainInformation.mapLink}
-                  title={location.title}
-                />
               )}
-              sidebar={(
-                <SideBar
-                  title={location.title}
-                  posts={posts}
-                  offices={offices}
-                  startingKey={urlify(currentOffice.name)}
-                />
+        sidebar={(
+          <SideBar
+            title={location.title}
+            posts={[]}
+            offices={offices}
+            startingKey={location.uri}
+          />
               )}
-            />
-            <Footer />
-          </div>
-        </>
-      )} */}
+      />
+      <Footer />
     </>
   );
 }
