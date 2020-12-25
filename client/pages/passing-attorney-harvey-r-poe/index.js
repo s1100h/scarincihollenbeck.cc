@@ -5,8 +5,8 @@ import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import client from 'utils/graphql-client';
-import { blogArticlesQuery } from 'queries/home';
 import { getPageContents } from 'queries/pages';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 
 export default function PassingAttorneyHarveyRPoe({
   title, content, posts, seo,
@@ -38,22 +38,14 @@ export default function PassingAttorneyHarveyRPoe({
 }
 
 export async function getStaticProps() {
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-  const awardsPageContent = await client.query(getPageContents('passing-attorney-harvey-r-poe'), {});
-
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
+  const harveyPoeContent = await client.query(getPageContents('passing-attorney-harvey-r-poe'), {});
+  const posts = await fetchFirmPosts();
 
   return {
     props: {
-      title: awardsPageContent.data.pages.nodes[0].title,
-      content: awardsPageContent.data.pages.nodes[0].content,
-      seo: awardsPageContent.data.pages.nodes[0].seo,
+      title: harveyPoeContent.data.pages.nodes[0].title,
+      content: harveyPoeContent.data.pages.nodes[0].content,
+      seo: harveyPoeContent.data.pages.nodes[0].seo,
       posts,
     },
     revalidate: 1,

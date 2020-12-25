@@ -1,10 +1,12 @@
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
-import Body from 'components/pages/body';
-import Sidebar from 'components/pages/sidebar';
+import PagesBody from 'components/pages/body';
+import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import { headers } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import { getPageContents } from 'queries/pages';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 
 export default function PrivacyPolicy({
   title, content, posts, seo,
@@ -17,44 +19,35 @@ export default function PrivacyPolicy({
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        description={seo.metaDescr}
+        canonical="http://scarincihollenbeck.com/privacy-policy"
       />
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/05/Legal-Research-1800x400-JPG.jpg"
+        image="/images/Legal-Research-1800x400-JPG.jpg"
         height="auto"
       />
       <LargeSidebar
-        body={<Body content={bodyContent} />}
-        sidebar={<Sidebar posts={posts} />}
+        body={<PagesBody content={bodyContent} />}
+        sidebar={<PagesSidebar posts={posts} covidPage={false} />}
       />
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
-  const [aJson, postJson] = await Promise.all([
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single-page/page/privacy-policy`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `${process.env.REACT_APP_WP_BACKEND}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
-  const { posts } = postJson;
-  const { title, content, seo } = aJson;
+export async function getStaticProps() {
+  const privacyPolicyContent = await client.query(getPageContents('privacy-policy'), {});
+  const posts = await fetchFirmPosts();
 
   return {
     props: {
-      title,
-      content,
+      title: privacyPolicyContent.data.pages.nodes[0].title,
+      content: privacyPolicyContent.data.pages.nodes[0].content,
+      seo: privacyPolicyContent.data.pages.nodes[0].seo,
       posts,
-      seo,
     },
+    revalidate: 1,
   };
 }

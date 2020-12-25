@@ -14,31 +14,18 @@ import CarouselsLatestNews from 'components/carousels/latest-news';
 import SingleSubHeader from 'layouts/single-sub-header';
 import client from 'utils/graphql-client';
 import { getFirmPage } from 'queries/pages';
-import { blogArticlesQuery } from 'queries/home';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { firmResources } from 'utils/common-lists';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
-export default function CommunityInvolvement({ page, posts }) {
-  // fetch latest blog posts
-  const firmResources = [
-    {
-      id: 'YFtFOuJeUHBy2WL',
-      title: 'Firm News',
-      uri: '/category/firm-news',
-    },
-    {
-      id: 'pmSgjQiss0Mbz6p',
-      title: 'Firm Events',
-      uri: '/category/firm-events',
-    },
-    {
-      id: '2oTGonRQMAwEDZL',
-      title: 'Firm Insights',
-      uri: '/category/firm-insights',
-    },
-  ];
-
+export default function CommunityInvolvement({ page, posts }) {  
   const relatedPages = [
+    {
+      id: 'SjveurE7BK1R1l2',
+      title: 'Diversity Group',
+      uri: '/diversity-group',
+    },
     {
       id: 'WF7jMpVJP3PTnuP',
       title: 'Pro Bono',
@@ -49,24 +36,13 @@ export default function CommunityInvolvement({ page, posts }) {
       title: 'Women Lead',
       uri: '/women-lead',
     },
-    {
-      id: 'SjveurE7BK1R1l2',
-      title: 'Diversity Group',
-      uri: '/diversity-group',
-    },
   ];
 
   return (
     <>
       <NextSeo
-        title={
-          page.seo.title
-          || 'Law Firm Community Involvement | Scarinci Hollenbeck'
-        }
-        description={
-          page.seo.metaDesc
-          || 'Community involvement is a key principle of Scarinci Hollenbeck’s workplace culture.'
-        }
+        title={page.seo.title}
+        description={page.seo.metaDesc}
         canonical="http://scarincihollenbeck.com/community-involvement"
       />
       <SingleSubHeader
@@ -205,15 +181,7 @@ export default function CommunityInvolvement({ page, posts }) {
 
 export async function getStaticProps() {
   const res = await client.query(getFirmPage('community-involvement'), {});
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
+  const posts = fetchFirmPosts();
 
   return {
     props: {

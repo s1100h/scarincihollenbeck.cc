@@ -14,30 +14,12 @@ import CarouselsLatestNews from 'components/carousels/latest-news';
 import SingleSubHeader from 'layouts/single-sub-header';
 import client from 'utils/graphql-client';
 import { getFirmPage } from 'queries/pages';
-import { blogArticlesQuery } from 'queries/home';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { firmResources } from 'utils/common-lists';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 export default function DiversityGroup({ page, posts }) {
-  // fetch latest blog posts
-  const firmResources = [
-    {
-      id: 'YFtFOuJeUHBy2WL',
-      title: 'Firm News',
-      uri: '/category/firm-news',
-    },
-    {
-      id: 'pmSgjQiss0Mbz6p',
-      title: 'Firm Events',
-      uri: '/category/firm-events',
-    },
-    {
-      id: '2oTGonRQMAwEDZL',
-      title: 'Firm Insights',
-      uri: '/category/firm-insights',
-    },
-  ];
-
   const relatedPages = [
     {
       id: 'WF7jMpVJP3PTnuP',
@@ -205,15 +187,7 @@ export default function DiversityGroup({ page, posts }) {
 
 export async function getStaticProps() {
   const res = await client.query(getFirmPage('diversity-group'), {});
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
+  const posts = await fetchFirmPosts();
 
   return {
     props: {
