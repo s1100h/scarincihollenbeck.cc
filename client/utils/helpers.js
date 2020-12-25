@@ -206,3 +206,14 @@ export function reFormatExternalPosts(postLinks) {
     },
   }));
 }
+
+// reformat posts slugs for getStaticPaths
+export const urlWithOutBaseUrl = (posts, term) => posts.map((u) => {
+  if (u.uri.indexOf(`/${term}/`) < 0) {
+    const uriSplit = u.uri.split('/').filter((a) => a !== '');
+    const slug = uriSplit[uriSplit.length - 1];
+
+    return `/${term}/${slug}`;
+  }
+  return u.uri.replace('https://scarincihollenbeck.com', '');
+});

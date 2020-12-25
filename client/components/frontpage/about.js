@@ -8,7 +8,7 @@ export default function FrontPageAbout() {
         <strong>Firm Overview</strong>
       </h4>
       <hr />
-      <p className="text-muted">
+      <p className="text-dark">
         With a growing practice of more than 70+ experienced attorneys, Scarinci
         Hollenbeck is an alternative to a National 250 law firm. With offices in
         New Jersey, New York City, and the District of Columbia, we serve the

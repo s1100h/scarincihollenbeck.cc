@@ -7,9 +7,9 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import client from 'utils/graphql-client';
-import { headers } from 'utils/helpers';
+import { headers, urlWithOutBaseUrl } from 'utils/helpers';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
-import { blogArticlesQuery } from 'queries/home';
 
 export default function LawFirmInsightsPost({
   post,
@@ -116,19 +116,10 @@ export default function LawFirmInsightsPost({
 
 export async function getStaticPaths() {
   const res = await client.query(getListOfPostsByName('law-firm-insights'), {});
-
-  const urlWithOutBaseUrl = res.data.posts.nodes.map((u) => {
-    if (u.uri.indexOf('/law-firm-insights/') < 0) {
-      const uriSplit = u.uri.split('/').filter((a) => a !== '');
-      const slug = uriSplit[uriSplit.length - 1];
-
-      return `/law-firm-insights/${slug}`;
-    }
-    return u.uri.replace('https://scarincihollenbeck.com', '');
-  });
+  const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'law-firm-insights');
 
   return {
-    paths: urlWithOutBaseUrl || [],
+    paths: slugs || [],
     fallback: false,
   };
 }
@@ -138,9 +129,7 @@ export async function getStaticProps({ params }) {
     getPostBySlug(params.slug[params.slug.length - 1]),
     {},
   );
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+  const posts = await fetchFirmPosts();
 
   // retrieve the authors for the post
   const [restResponse] = await Promise.all([
@@ -153,12 +142,6 @@ export async function getStaticProps({ params }) {
       .then((data) => data.json())
       .catch((err) => err),
   ]);
-
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
 
   if (res.data.posts.nodes.length <= 0) {
     return {

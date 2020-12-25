@@ -49,6 +49,9 @@ function SHApp({ Component, pageProps }) {
           name="google-site-verification"
           content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q"
         />
+        <link rel="preload" href="/fonts/proxima-nova-regular.ttf" as="font" crossOrigin=" " />
+        <link rel="preload" href="/fonts/proxima-nova-bold.ttf" as="font" crossOrigin=" " />
+        <link rel="preload" href="/fonts/proxima-nova-italic.ttf" as="font" crossOrigin=" " />
       </Head>
       <NavBar />
       <main>

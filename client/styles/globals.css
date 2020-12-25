@@ -1,3 +1,39 @@
+/** Fonts **/
+@font-face{ 
+  font-family: "Proxima Nova Regular";
+  src: url("/fonts/proxima-nova-regular.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face{ 
+  font-family: "Proxima Nova Bold";
+  src: url("/fonts/proxima-nova-bold.ttf");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face{ 
+  font-family: 'Proxima Nova Italic';
+  font-style: italic;
+  font-weight: 500;
+  src: url('/fonts/proxima-nova-italic.ttf');
+  font-display: swap;
+} 
+body {
+  font-family: 'Proxima Nova Regular' !important;  
+  font-weight: 500;
+}
+
+strong {
+  font-family: 'Proxima Nova Bold';
+}
+
+em {
+  font-family: 'Proxima Nova Italic';
+}
+
 .btn-danger,
 .red--grad {
   font-weight: bold;

@@ -15,7 +15,7 @@ export default function FrontPageCategories() {
         <strong>Firm Insights</strong>
       </h4>
       <hr />
-      <p className="text-muted">
+      <p className="text-dark">
         Firm Insights is Scarinci Hollenbeck&apos;s library of articles written
         by our attorneys. It is our way of providing you with the most critical
         legal updates that could impact your business.
