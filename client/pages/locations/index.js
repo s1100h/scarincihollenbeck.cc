@@ -44,7 +44,7 @@ export default function AllLocations({
             map={location.officeMainInformation.mapLink}
             title={location.title}
           />
-            )}
+        )}
         sidebar={(
           <SideBar
             title={location.title}
@@ -52,7 +52,7 @@ export default function AllLocations({
             offices={offices}
             startingKey={location.uri}
           />
-      )}
+        )}
       />
       <Footer />
     </>
@@ -61,10 +61,7 @@ export default function AllLocations({
 
 export async function getStaticProps() {
   // get location content
-  const locationContent = await client.query(
-    getLocationByName('lyndhurst'),
-    {},
-  );
+  const locationContent = await client.query(getLocationByName('lyndhurst'), {});
 
   // get a list of all offices
   const allOfficeLocations = await client.query(allLocations, {});
@@ -82,7 +79,13 @@ export async function getStaticProps() {
   ]);
 
   // filter attorney by location
-  const attorneysByLocation = attorneys.filter((a) => a.location.toLowerCase().replace(' ', '-').replace('.', '').indexOf('lyndhurst') > -1);
+  const attorneysByLocation = attorneys.filter(
+    (a) => a.location
+      .toLowerCase()
+      .replace(' ', '-')
+      .replace('.', '')
+      .indexOf('lyndhurst') > -1,
+  );
 
   if (locationContent.data.officeLocations.nodes.length <= 0) {
     return {

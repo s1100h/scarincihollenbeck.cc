@@ -119,7 +119,10 @@ export async function getStaticPaths() {
     getListOfPostsByName('cyber-security-client-alert'),
     {},
   );
-  const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'cyber-security-client-alert');
+  const slugs = urlWithOutBaseUrl(
+    res.data.posts.nodes,
+    'cyber-security-client-alert',
+  );
 
   return {
     paths: slugs || [],

@@ -175,7 +175,7 @@ export function makeQueryTitle(title) {
 
 // sort by orderBy key
 export function sortByOrder(admins) {
-  admins.sort((a, b) => a.orderBy - b.orderBy);
+  return admins.sort((a, b) => a.orderBy - b.orderBy);
 }
 
 // check if we are still using this...
@@ -208,12 +208,30 @@ export function reFormatExternalPosts(postLinks) {
 }
 
 // reformat posts slugs for getStaticPaths
-export const urlWithOutBaseUrl = (posts, term) => posts.map((u) => {
-  if (u.uri.indexOf(`/${term}/`) < 0) {
-    const uriSplit = u.uri.split('/').filter((a) => a !== '');
-    const slug = uriSplit[uriSplit.length - 1];
+export function urlWithOutBaseUrl(posts, term) {
+  return posts.map((u) => {
+    if (u.uri.indexOf(`/${term}/`) < 0) {
+      const uriSplit = u.uri.split('/').filter((a) => a !== '');
+      const slug = uriSplit[uriSplit.length - 1];
 
-    return `/${term}/${slug}`;
-  }
-  return u.uri.replace('https://scarincihollenbeck.com', '');
-});
+      return `/${term}/${slug}`;
+    }
+    return u.uri.replace('https://scarincihollenbeck.com', '');
+  });
+}
+
+export function sortByMainInformationLastName(attorneys) {
+  return attorneys.sort((a, b) => {
+    if (
+      a.attorneyMainInformation.lastName < b.attorneyMainInformation.lastName
+    ) {
+      return -1;
+    }
+    if (
+      a.attorneyMainInformation.lastName > b.attorneyMainInformation.lastName
+    ) {
+      return 1;
+    }
+    return 0;
+  });
+}

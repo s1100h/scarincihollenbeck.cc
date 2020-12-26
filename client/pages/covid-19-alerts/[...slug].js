@@ -11,7 +11,6 @@ import { headers, urlWithOutBaseUrl } from 'utils/helpers';
 import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 
-
 export default function Covid19Alerts({
   post, posts, authors, attorneys,
 }) {

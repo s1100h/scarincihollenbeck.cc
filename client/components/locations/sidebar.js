@@ -20,14 +20,18 @@ export default function LocationsSidebar({
   return (
     <>
       {officeList.map((o) => (
-        <Accordion key={o.title} className="mb-3" defaultActiveKey={startingKey}>
+        <Accordion
+          key={o.title}
+          className="mb-3"
+          defaultActiveKey={startingKey}
+        >
           <SideBarHeaderToggle eventKey={o.uri}>
             <>{o.title}</>
           </SideBarHeaderToggle>
           <Accordion.Collapse eventKey={o.uri}>
             <div className="off-white p-3">
               <ul className="list-unstyled ml-0">
-                {(o.officeMainInformation.officeBuildingTitle) && (
+                {o.officeMainInformation.officeBuildingTitle && (
                   <li className="mb-0">
                     {o.officeMainInformation.officeBuildingTitle}
                   </li>
@@ -35,15 +39,11 @@ export default function LocationsSidebar({
                 <li className="mb-0">
                   {o.officeMainInformation.streetAddress}
                 </li>
-                {(o.officeMainInformation.poBox) && (
-                  <li className="mb-0">
-                    {o.officeMainInformation.poBox}
-                  </li>
+                {o.officeMainInformation.poBox && (
+                  <li className="mb-0">{o.officeMainInformation.poBox}</li>
                 )}
-                {(o.officeMainInformation.floor) && (
-                  <li className="mb-0">
-                    {o.officeMainInformation.floor}
-                  </li>
+                {o.officeMainInformation.floor && (
+                  <li className="mb-0">{o.officeMainInformation.floor}</li>
                 )}
                 <li className="mb-0">
                   {`${o.officeMainInformation.addressLocality}, ${o.officeMainInformation.addressRegion}, ${o.officeMainInformation.postCode}`}
@@ -51,25 +51,19 @@ export default function LocationsSidebar({
                 <li className="mt-3 mb-0">
                   <FontAwesomeIcon icon={faPhone} />
                   {' '}
-                  <strong>
-                    {o.officeMainInformation.phone}
-                  </strong>
+                  <strong>{o.officeMainInformation.phone}</strong>
                 </li>
-                {(o.officeMainInformation.fax) && (
+                {o.officeMainInformation.fax && (
                   <li className="my-0">
                     <FontAwesomeIcon icon={faFax} />
                     {' '}
-                    <strong>
-                      {o.officeMainInformation.fax}
-                    </strong>
+                    <strong>{o.officeMainInformation.fax}</strong>
                   </li>
                 )}
                 <li className="mt-3 mb-0">
                   <Link href={o.uri}>
                     <a className={textStyles.redTitle}>
-                      <strong>
-                        {`${o.title} Office Details `}
-                      </strong>
+                      <strong>{`${o.title} Office Details `}</strong>
                     </a>
                   </Link>
                 </li>
@@ -81,7 +75,6 @@ export default function LocationsSidebar({
                   >
                     <strong>
                       Directions to
-                      {' '}
                       {o.title}
                     </strong>
                   </Button>
@@ -93,6 +86,5 @@ export default function LocationsSidebar({
       ))}
       <TrendingStories title={`News from ${title}`} content={posts} />
     </>
-
   );
 }

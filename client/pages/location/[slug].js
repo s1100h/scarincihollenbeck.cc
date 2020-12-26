@@ -11,7 +11,10 @@ import { headers } from 'utils/helpers';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 
 export default function SingleLocation({
-  offices, location, attorneys, posts,
+  offices,
+  location,
+  attorneys,
+  posts,
 }) {
   return (
     <>
@@ -44,7 +47,7 @@ export default function SingleLocation({
             map={location.officeMainInformation.mapLink}
             title={location.title}
           />
-              )}
+        )}
         sidebar={(
           <SideBar
             title={location.title}
@@ -70,10 +73,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // get location content
-  const locationContent = await client.query(
-    getLocationByName(params.slug),
-    {},
-  );
+  const locationContent = await client.query(getLocationByName(params.slug), {});
 
   // get a list of all offices
   const allOfficeLocations = await client.query(allLocations, {});
@@ -91,7 +91,13 @@ export async function getStaticProps({ params }) {
   ]);
 
   // filter attorney by location
-  const attorneysByLocation = attorneys.filter((a) => a.location.toLowerCase().replace(' ', '-').replace('.', '').indexOf(params.slug) > -1);
+  const attorneysByLocation = attorneys.filter(
+    (a) => a.location
+      .toLowerCase()
+      .replace(' ', '-')
+      .replace('.', '')
+      .indexOf(params.slug) > -1,
+  );
 
   if (locationContent.data.officeLocations.nodes.length <= 0) {
     return {

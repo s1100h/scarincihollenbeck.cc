@@ -4,9 +4,7 @@ import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/attorney-card';
 import textStyles from 'styles/Text.module.css';
 
-export default function FirmOverviewMembers({
-  title, members, type
-}) {
+export default function FirmOverviewMembers({ title, members, type }) {
   return (
     <div className="w-100 mt-5 px-3">
       <h3

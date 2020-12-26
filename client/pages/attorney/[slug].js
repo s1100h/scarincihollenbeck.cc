@@ -521,7 +521,9 @@ export async function getStaticProps({ params }) {
     {},
   );
 
-  if (attorneyBioContent.data.attorneyProfiles.edges[0].node.length <= 0 && bio.status === 404
+  if (
+    attorneyBioContent.data.attorneyProfiles.edges[0].node.length <= 0
+    && bio.status === 404
   ) {
     return {
       notFound: true,

@@ -6,9 +6,7 @@ import client from 'utils/graphql-client';
 import { getPageContents } from 'queries/pages';
 import { createMarkup } from 'utils/helpers';
 
-export default function HappyHolidays2020({
-  title, content, seo,
-}) {
+export default function HappyHolidays2020({ title, content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -27,7 +25,10 @@ export default function HappyHolidays2020({
         height="400px"
       />
       <FullWidth>
-        <div className="mb-5" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+        <div
+          className="mb-5"
+          dangerouslySetInnerHTML={createMarkup(bodyContent)}
+        />
       </FullWidth>
       <Footer />
     </>
@@ -35,7 +36,10 @@ export default function HappyHolidays2020({
 }
 
 export async function getStaticProps() {
-  const Holidays2020PageContent = await client.query(getPageContents('2020-happy-holidays'), {});
+  const Holidays2020PageContent = await client.query(
+    getPageContents('2020-happy-holidays'),
+    {},
+  );
 
   return {
     props: {

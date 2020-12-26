@@ -119,7 +119,10 @@ export async function getStaticPaths() {
     getListOfPostsByName('covid-19-education-alert'),
     {},
   );
-  const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'covid-19-education-alert');
+  const slugs = urlWithOutBaseUrl(
+    res.data.posts.nodes,
+    'covid-19-education-alert',
+  );
 
   return {
     paths: slugs || [],

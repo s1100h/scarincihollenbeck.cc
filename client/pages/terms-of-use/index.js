@@ -38,7 +38,10 @@ export default function TermsOfUse({
 }
 
 export async function getStaticProps() {
-  const privacyPolicyContent = await client.query(getPageContents('terms-of-use'), {});
+  const privacyPolicyContent = await client.query(
+    getPageContents('terms-of-use'),
+    {},
+  );
   const posts = await fetchFirmPosts();
 
   return {

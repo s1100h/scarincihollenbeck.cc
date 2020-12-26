@@ -1,8 +1,7 @@
 import Router from 'next/router';
 import Head from 'next/head';
 import * as gtag from 'utils/gtag';
-import NProgress from 'nprogress'; // nprogress module
-import 'nprogress/nprogress.css';
+import NProgress from 'nprogress';
 import NavBar from 'components/navbar';
 
 /**
@@ -12,7 +11,8 @@ import NavBar from 'components/navbar';
  * */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-multi-carousel/lib/styles.css';
-import 'animate.css';
+import 'nprogress/nprogress.css';
+import 'animate.css/animate.min.css';
 
 /**
  * Custom Style Sheets
@@ -49,9 +49,24 @@ function SHApp({ Component, pageProps }) {
           name="google-site-verification"
           content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q"
         />
-        <link rel="preload" href="/fonts/proxima-nova-regular.ttf" as="font" crossOrigin=" " />
-        <link rel="preload" href="/fonts/proxima-nova-bold.ttf" as="font" crossOrigin=" " />
-        <link rel="preload" href="/fonts/proxima-nova-italic.ttf" as="font" crossOrigin=" " />
+        <link
+          rel="preload"
+          href="/fonts/proxima-nova-regular.ttf"
+          as="font"
+          crossOrigin=" "
+        />
+        <link
+          rel="preload"
+          href="/fonts/proxima-nova-bold.ttf"
+          as="font"
+          crossOrigin=" "
+        />
+        <link
+          rel="preload"
+          href="/fonts/proxima-nova-italic.ttf"
+          as="font"
+          crossOrigin=" "
+        />
       </Head>
       <NavBar />
       <main>

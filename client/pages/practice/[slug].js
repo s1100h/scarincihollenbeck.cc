@@ -7,12 +7,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import PracticeContent from 'components/singlepractice/content';
 import RelatedArticlesTab from 'components/singlepractice/related-articles-tab';
+import RelatedAttorneys from 'components/singlepractice/related-attorneys';
 import Footer from 'components/footer';
 // import SimpleSearch from 'components/simple-search';
 // import SubscriptionMessage from 'components/subscription-message';
 // import CovidResourceBox from 'components/singlepractice/covid-resource-box';
 // import FeaturedSlider from 'components/singlepractice/featured-slider';
-// import RelatedAttorneys from 'components/singlepractice/related-attorneys';
+
 // import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify } from 'utils/helpers';
@@ -22,7 +23,6 @@ import tabStyle from 'styles/BigButtonTabs.module.css';
 
 export default function PracticeSingle({ practice }) {
   console.log(practice);
-  console.log(practice.practicesIncluded.contentSection[0].title);
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -42,7 +42,9 @@ export default function PracticeSingle({ practice }) {
       />
       <TabContainer
         id="nav-tab"
-        defaultActiveKey={urlify(practice.practicesIncluded.contentSection[0].title)}
+        defaultActiveKey={urlify(
+          practice.practicesIncluded.contentSection[0].title,
+        )}
       >
         <Container>
           <Row>
@@ -58,11 +60,9 @@ export default function PracticeSingle({ practice }) {
                       {item.title}
                     </Nav.Link>
                   ))}
-                {practice.practicesIncluded.relatedBlogCategory[0].posts.nodes.length > 0 && (
-                  <Nav.Link
-                    eventKey="related-updates"
-                    className={tabStyle.tab}
-                  >
+                {practice.practicesIncluded.relatedBlogCategory[0].posts.nodes
+                  .length > 0 && (
+                  <Nav.Link eventKey="related-updates" className={tabStyle.tab}>
                     Related Updates
                   </Nav.Link>
                 )}
@@ -79,15 +79,26 @@ export default function PracticeSingle({ practice }) {
                     />
                   </TabContent>
                 ))}
-              {practice.practicesIncluded.relatedBlogCategory[0].posts.nodes.length > 0 && (
-              <TabContent>
-                <RelatedArticlesTab
-                  tabTitle="related-updates"
-                  title="Related Updates"
-                  content={practice.practicesIncluded.relatedBlogCategory[0].posts.nodes}
-                />
-              </TabContent>
+              {practice.practicesIncluded.relatedBlogCategory[0].posts.nodes
+                .length > 0 && (
+                <TabContent>
+                  <RelatedArticlesTab
+                    tabTitle="related-updates"
+                    title="Related Updates"
+                    content={
+                      practice.practicesIncluded.relatedBlogCategory[0].posts
+                        .nodes
+                    }
+                  />
+                </TabContent>
               )}
+              {/** related attorneys */}
+              <RelatedAttorneys
+                members={practice.practicesIncluded.includeAttorney}
+                chair={practice.practicesIncluded.sectionChief}
+                handleLink={handleLink}
+                title="Chair"
+              />
             </Col>
           </Row>
         </Container>

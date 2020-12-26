@@ -38,7 +38,10 @@ export default function PrivacyPolicy({
 }
 
 export async function getStaticProps() {
-  const privacyPolicyContent = await client.query(getPageContents('privacy-policy'), {});
+  const privacyPolicyContent = await client.query(
+    getPageContents('privacy-policy'),
+    {},
+  );
   const posts = await fetchFirmPosts();
 
   return {

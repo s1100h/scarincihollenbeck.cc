@@ -119,7 +119,10 @@ export async function getStaticPaths() {
     getListOfPostsByName('federal-payroll-protection-act'),
     {},
   );
-  const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'federal-payroll-protection-act');
+  const slugs = urlWithOutBaseUrl(
+    res.data.posts.nodes,
+    'federal-payroll-protection-act',
+  );
 
   return {
     paths: slugs || [],

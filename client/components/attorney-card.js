@@ -43,14 +43,11 @@ export default function AttorneyCard({
           </a>
         </Link>
         <div className={fontStyles.smallExcerpt}>
-          <FontAwesomeIcon icon={faPhone} className={styles.iconW8pxH20px} />
+          <FontAwesomeIcon icon={faPhone} />
           {' '}
           {number}
           <br />
-          <FontAwesomeIcon
-            icon={faEnvelope}
-            className={styles.iconW8pxH20px}
-          />
+          <FontAwesomeIcon icon={faEnvelope} />
           {' '}
           {email}
         </div>

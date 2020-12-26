@@ -49,36 +49,40 @@ export default function LocationsBody({
         <Row>
           <Col sm={12} md={6} className="col-sm-12 col-md-6">
             <ul className={`${textStyles.blueTitle} mx-0 px-0`}>
-              {practices.map((p, i) => (practices.length / 2 > i && (
+              {practices.map(
+                (p, i) => practices.length / 2 > i && (
                 <li key={p.id} className="mb-3">
                   <Link href={p.uri}>
-                    <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
+                    <a
+                      className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}
+                    >
                       <strong>
-                        <u>
-                          {p.title}
-                        </u>
+                        <u>{p.title}</u>
                       </strong>
                     </a>
                   </Link>
                 </li>
-              )))}
+                ),
+              )}
             </ul>
           </Col>
           <Col sm={12} md={6}>
             <ul className={`${textStyles.blueTitle} mx-0 px-0`}>
-              {practices.map((p, i) => (practices.length / 2 <= i && (
+              {practices.map(
+                (p, i) => practices.length / 2 <= i && (
                 <li key={p.id} className="mb-3">
                   <Link href={p.uri}>
-                    <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
+                    <a
+                      className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}
+                    >
                       <strong>
-                        <u>
-                          {p.title}
-                        </u>
+                        <u>{p.title}</u>
                       </strong>
                     </a>
                   </Link>
                 </li>
-              )))}
+                ),
+              )}
             </ul>
           </Col>
         </Row>

@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from 'styles/SidebarTitle.module.css';

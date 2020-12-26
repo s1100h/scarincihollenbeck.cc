@@ -19,7 +19,7 @@ import { firmResources } from 'utils/common-lists';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
-export default function CommunityInvolvement({ page, posts }) {  
+export default function CommunityInvolvement({ page, posts }) {
   const relatedPages = [
     {
       id: 'SjveurE7BK1R1l2',

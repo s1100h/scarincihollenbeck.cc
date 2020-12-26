@@ -46,8 +46,10 @@ export const getPracticeBySlug = (slug) => `{
             id
             title
             attorneyMainInformation {
+              designation
               email
               phoneNumber
+              lastName
             }
             slug
             featuredImage {
@@ -84,6 +86,23 @@ export const getPracticeBySlug = (slug) => `{
               }
             }
           }
+          link
+        }
+        sectionChief {
+          ... on AttorneyProfile {
+            id
+            title
+            attorneyMainInformation {
+              email
+              designation
+              phoneNumber
+            }
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
         }
       }
       seo {
@@ -92,5 +111,4 @@ export const getPracticeBySlug = (slug) => `{
       }
     }
   }
-}
-`;
+}`;

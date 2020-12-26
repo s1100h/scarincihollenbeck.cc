@@ -58,15 +58,13 @@ export function buildBusinessSchema() {
   };
 }
 
-
 export function buildLocationSchema(location) {
   return {
     '@context': 'http://schema.org',
     '@type': 'LocalBusiness',
     name: 'Scarinci Hollebneck',
     url: 'https://scarincihollenbeck.com',
-    logo:
-      '/images/no-image-found-diamond.png',
+    logo: '/images/no-image-found-diamond.png',
     image: location.image,
     address: {
       '@type': 'PostalAddress',

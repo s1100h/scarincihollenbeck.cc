@@ -14,7 +14,11 @@ function Post(content, { index }) {
       <Link href={post.link}>
         <a className="d-flex flex-row text-dark">
           <Image
-            src={post.featuredImage ? post.featuredImage.node.sourceUrl : '/images/no-image-found-diamond.png'}
+            src={
+              post.featuredImage
+                ? post.featuredImage.node.sourceUrl
+                : '/images/no-image-found-diamond.png'
+            }
             width={196}
             height={98}
             layout="intrinsic"
@@ -22,9 +26,7 @@ function Post(content, { index }) {
           />
           <div>
             <h5 className="d-block w-100 mb-0 pt-0">
-              <strong>
-                {post.title}
-              </strong>
+              <strong>{post.title}</strong>
             </h5>
             <p className="mt-0 pt-0">{formatDate(post.date)}</p>
           </div>

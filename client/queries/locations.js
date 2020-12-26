@@ -21,10 +21,9 @@ export const allLocations = `{
     }
   }
 }
-`
+`;
 
-export const getLocationByName = slug => {
-  return `{
+export const getLocationByName = (slug) => `{
     officeLocations(where: {name: "${slug}"}) {
       nodes {
         uri
@@ -58,5 +57,4 @@ export const getLocationByName = slug => {
       }
     }
   }
-  `
-}
+  `;

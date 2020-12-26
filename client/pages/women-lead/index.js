@@ -61,92 +61,92 @@ export default function WomenLead({ page, posts }) {
             <Col sm={12}>
               <Nav>
                 {page.FirmPagesContentTabs.tabHeader && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tabHeader}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tabHeader}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tabHeader}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tabHeader}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab2Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab2Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab2Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab2Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab2Header}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab3Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab3Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab3Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab3Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab3Header}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab4Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab4Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab4Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab4Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab4Header}
+                  </Nav.Link>
                 )}
                 {page.FirmPagesContentTabs.tab5Header && (
-                <Nav.Link
-                  eventKey={page.FirmPagesContentTabs.tab5Header}
-                  className={tabStyle.tab}
-                >
-                  {page.FirmPagesContentTabs.tab5Header}
-                </Nav.Link>
+                  <Nav.Link
+                    eventKey={page.FirmPagesContentTabs.tab5Header}
+                    className={tabStyle.tab}
+                  >
+                    {page.FirmPagesContentTabs.tab5Header}
+                  </Nav.Link>
                 )}
               </Nav>
             </Col>
             <Col sm={12} md={8}>
               {page.FirmPagesContentTabs.tabContent && (
-              <TabContent key={page.FirmPagesContentTabs.tabHeader}>
-                <SinglePracticeContent
-                  tabTitle={page.FirmPagesContentTabs.tabHeader}
-                  title={page.FirmPagesContentTabs.tabHeader}
-                  content={page.FirmPagesContentTabs.tabContent}
-                />
-              </TabContent>
+                <TabContent key={page.FirmPagesContentTabs.tabHeader}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tabHeader}
+                    title={page.FirmPagesContentTabs.tabHeader}
+                    content={page.FirmPagesContentTabs.tabContent}
+                  />
+                </TabContent>
               )}
               {page.FirmPagesContentTabs.tab2Content && (
-              <TabContent key={page.FirmPagesContentTabs.tab2Header}>
-                <SinglePracticeContent
-                  tabTitle={page.FirmPagesContentTabs.tab2Header}
-                  title={page.FirmPagesContentTabs.tab2Header}
-                  content={page.FirmPagesContentTabs.tab2Content}
-                />
-              </TabContent>
+                <TabContent key={page.FirmPagesContentTabs.tab2Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab2Header}
+                    title={page.FirmPagesContentTabs.tab2Header}
+                    content={page.FirmPagesContentTabs.tab2Content}
+                  />
+                </TabContent>
               )}
               {page.FirmPagesContentTabs.tab3Content && (
-              <TabContent key={page.FirmPagesContentTabs.tab3Header}>
-                <SinglePracticeContent
-                  tabTitle={page.FirmPagesContentTabs.tab3Header}
-                  title={page.FirmPagesContentTabs.tab3Header}
-                  content={page.FirmPagesContentTabs.tab3Content}
-                />
-              </TabContent>
+                <TabContent key={page.FirmPagesContentTabs.tab3Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab3Header}
+                    title={page.FirmPagesContentTabs.tab3Header}
+                    content={page.FirmPagesContentTabs.tab3Content}
+                  />
+                </TabContent>
               )}
               {page.FirmPagesContentTabs.tab4Content && (
-              <TabContent key={page.FirmPagesContentTabs.tab4Header}>
-                <SinglePracticeContent
-                  tabTitle={page.FirmPagesContentTabs.tab4Header}
-                  title={page.FirmPagesContentTabs.tab4Header}
-                  content={page.FirmPagesContentTabs.tab4Content}
-                />
-              </TabContent>
+                <TabContent key={page.FirmPagesContentTabs.tab4Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab4Header}
+                    title={page.FirmPagesContentTabs.tab4Header}
+                    content={page.FirmPagesContentTabs.tab4Content}
+                  />
+                </TabContent>
               )}
               {page.FirmPagesContentTabs.tab5Content && (
-              <TabContent key={page.FirmPagesContentTabs.tab5Header}>
-                <SinglePracticeContent
-                  tabTitle={page.FirmPagesContentTabs.tab5Header}
-                  title={page.FirmPagesContentTabs.tab5Header}
-                  content={page.FirmPagesContentTabs.tab5Content}
-                />
-              </TabContent>
+                <TabContent key={page.FirmPagesContentTabs.tab5Header}>
+                  <SinglePracticeContent
+                    tabTitle={page.FirmPagesContentTabs.tab5Header}
+                    title={page.FirmPagesContentTabs.tab5Header}
+                    content={page.FirmPagesContentTabs.tab5Content}
+                  />
+                </TabContent>
               )}
               <>
                 <div className={lineHeaderStyles.lineHeader}>
