@@ -181,7 +181,7 @@ export default function CommunityInvolvement({ page, posts }) {
 
 export async function getStaticProps() {
   const res = await client.query(getFirmPage('community-involvement'), {});
-  const posts = fetchFirmPosts();
+  const posts = await fetchFirmPosts();
 
   return {
     props: {

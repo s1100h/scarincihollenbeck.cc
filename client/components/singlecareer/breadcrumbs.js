@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import textStyles from 'styles/Text.module.css';
-import widthStyles from 'styles/utils/Spacing.module.css';
+import widthStyles from 'styles/Spacing.module.css';
 
 export default function SingleCareerBreadCrumbs({ title }) {
   const router = useRouter();
