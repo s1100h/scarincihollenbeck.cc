@@ -12,6 +12,7 @@ import ArchiveLayout from 'layouts/archive-layout';
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
 import { getArchivesPosts } from 'queries/archive';
+import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 
 export default function ArchivesLandingPage({
   firmNews,
@@ -67,12 +68,7 @@ export async function getStaticProps() {
   const firmNewsContent = await client.query(blogArticlesQuery(98), {});
   const firmEventsContent = await client.query(blogArticlesQuery(99), {});
   const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
+  const posts = await fetchFirmPosts();
 
   return {
     props: {

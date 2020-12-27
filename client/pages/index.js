@@ -91,7 +91,7 @@ export async function getStaticProps() {
       seo: metaDataContent.data.page.seo,
       posts: [...filteredEvents, ...filteredNews],
       locations: officeLocationContent.data.officeLocations.nodes,
-      corePractices: firmCorePracticesContent.data.searchWP.nodes,
+      corePractices: firmCorePracticesContent.data.searchWP.nodes.filter((value) => JSON.stringify(value) !== '{}'),
     },
   };
 }

@@ -17,18 +17,19 @@ import CarouselsSimpleNews from 'components/carousels/simple-news';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CovidResourceBox from 'components/singlepractice/covid-resource-box';
-import SidebarContent from 'components/singlepractice/sidebar';
+import PracticeSidebar from 'components/singlepractice/sidebar';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { urlify } from 'utils/helpers';
+import { urlify, sortByKey } from 'utils/helpers';
 import client from 'utils/graphql-client';
-import { getAllPractices, getPracticeBySlug } from 'queries/practices';
+import { getAllPractices, getPracticeBySlug, getPracticesByInput } from 'queries/practices';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
-export default function PracticeSingle({ practice }) {
+export default function PracticeSingle({ practice, corePractices }) {
   const router = useRouter();
-  console.log(practice);
+  const sortedCorePractices = sortByKey(corePractices, 'title');
+  const sortedChildPractices = sortByKey(practice.practicesIncluded.childPractice, 'title');
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -163,16 +164,16 @@ export default function PracticeSingle({ practice }) {
               )}
               <SimpleSearch />
               <SubscriptionMessage />
-              {/* <SidebarContent
-                  title="Core Practices"
-                  content={corePractices}
-                  tabKey={2}
-                />
-                <SidebarContent
-                  title="Related Sub-Practices"
-                  content={practice.practiceList}
-                  tabKey={1}
-                /> */}
+              <PracticeSidebar
+                title="Core Practices"
+                content={sortedCorePractices}
+                tabKey={2}
+              />
+              <PracticeSidebar
+                title="Related Sub-Practices"
+                content={sortedChildPractices}
+                tabKey={1}
+              />
             </Col>
           </Row>
         </Container>
@@ -197,6 +198,11 @@ export async function getStaticProps({ params }) {
     {},
   );
 
+  const firmCorePracticesContent = await client.query(
+    getPracticesByInput('Core Practices'),
+    {},
+  );
+
   if (practicePageContent.data.practices.nodes.length <= 0) {
     return {
       notFound: true,
@@ -206,6 +212,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       practice: practicePageContent.data.practices.nodes[0],
+      corePractices: firmCorePracticesContent.data.searchWP.nodes,
     },
     revalidate: 1,
   };

@@ -16,7 +16,7 @@ export default function PracticeRelatedAttorneys({
 
   return (
     <>
-      {chair.length > 0 && (
+      {chair && (
         <Container>
           <div className={lineHeadingStyles.lineHeader}>
             <h3>{title}</h3>

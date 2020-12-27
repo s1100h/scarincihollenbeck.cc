@@ -1,10 +1,19 @@
 export const getPracticesByInput = (input) => `{
-  searchWP(where: {input: "${input}"}) {
+  searchWP(where: {input: "${input}"}, first: 1000) {
     nodes {
       ... on Practice {
         id
         title
         uri
+        practicesIncluded {
+          childPractice {
+            ... on Practice {
+              id
+              uri
+              title
+            }
+          }
+        }
       }
     }
   }
@@ -34,6 +43,7 @@ export const getPracticeBySlug = (slug) => `{
             id
             title
             slug
+            uri
           }
         }
         contentSection {
