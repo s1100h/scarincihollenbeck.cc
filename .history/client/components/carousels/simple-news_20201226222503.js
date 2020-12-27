@@ -25,6 +25,7 @@ const responsive = {
 };
 
 export default function CarouselsSimpleNews({ slides }) {
+  console.log(slides)
   return (
     <Carousel
       aria-label="carousel"
@@ -41,8 +42,8 @@ export default function CarouselsSimpleNews({ slides }) {
           <Link href={slide.link || '/'}>
             <a>
               <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
+                src={slide.featuredImg
+                  ? slide.featuredImg.node.sourceUrl
                   : '/images/no-image-found-diamond.png'}
                 width={300}
                 height={150}

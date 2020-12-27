@@ -25,6 +25,7 @@ const responsive = {
 };
 
 export default function CarouselsSimpleNews({ slides }) {
+  console.log(slides);
   return (
     <Carousel
       aria-label="carousel"
@@ -33,7 +34,7 @@ export default function CarouselsSimpleNews({ slides }) {
       arrows
       swipeable
     >
-      {slides.map((slide) => (
+      {/* {slides.map((slide) => (
         <div
           key={slide.title}
           className="pb-2 px-4"
@@ -41,9 +42,13 @@ export default function CarouselsSimpleNews({ slides }) {
           <Link href={slide.link || '/'}>
             <a>
               <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'}
+                src={
+                  slide.image
+                    ? slide.image
+                    : slide.featuredImg
+                      ? slide.featuredImg
+                      : '/images/no-image-found-diamond.png'
+                }
                 width={300}
                 height={150}
                 layout="intrinsic"
@@ -55,7 +60,8 @@ export default function CarouselsSimpleNews({ slides }) {
             </a>
           </Link>
         </div>
-      ))}
+      ))} */}
+      1
     </Carousel>
   );
 }

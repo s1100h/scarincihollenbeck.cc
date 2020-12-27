@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
-import fontStyles from 'styles/Fonts.module.css';
-import { limitTitleLength } from 'utils/helpers';
+import textStyles from 'styles/Text.module.css';
 
 const responsive = {
   superLargeDesktop: {
@@ -24,6 +23,14 @@ const responsive = {
   },
 };
 
+function limitTitleLength(title) {
+  if (title.length > 200) {
+    return `${title.substring(0, 200)} ...`;
+  }
+
+  return title;
+}
+
 export default function CarouselsSimpleNews({ slides }) {
   return (
     <Carousel
@@ -33,24 +40,25 @@ export default function CarouselsSimpleNews({ slides }) {
       arrows
       swipeable
     >
-      {slides.map((slide) => (
+      {slides.map((post) => (
         <div
-          key={slide.title}
+          key={post.title}
           className="pb-2 px-4"
         >
-          <Link href={slide.link || '/'}>
+          <Link href={post.link || '/'}>
             <a>
               <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'}
-                width={300}
-                height={150}
-                layout="intrinsic"
-                alt={slide.title}
+                src={
+                  post.image
+                    ? post.image
+                    : post.featuredImg
+                      ? post.featuredImg
+                      : '/images/no-image-found-diamond.png'
+                }
+                alt={post.title}
               />
-              <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>
-                {limitTitleLength(slide.title)}
+              <p className={`${textStyles.smallExcerpt} text-center text-dark`}>
+                {limitTitleLength(post.title)}
               </p>
             </a>
           </Link>

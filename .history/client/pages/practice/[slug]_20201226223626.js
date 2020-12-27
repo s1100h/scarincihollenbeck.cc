@@ -152,27 +152,8 @@ export default function PracticeSingle({ practice }) {
                 />
               </>
               )}
-              {router.query.slug === 'crisis-risk-management' && (
-              <>
-                <CovidResourceBox
-                  title="COVID-19 Crisis Management Unit"
-                  link="/covid-19-crisis-management-unit"
-                  message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
-                />
-              </>
-              )}
               <SimpleSearch />
               <SubscriptionMessage />
-              {/* <SidebarContent
-                  title="Core Practices"
-                  content={corePractices}
-                  tabKey={2}
-                />
-                <SidebarContent
-                  title="Related Sub-Practices"
-                  content={practice.practiceList}
-                  tabKey={1}
-                /> */}
             </Col>
           </Row>
         </Container>

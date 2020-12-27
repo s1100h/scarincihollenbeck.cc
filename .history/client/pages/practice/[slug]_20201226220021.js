@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';
@@ -8,27 +6,25 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import PracticeContent from 'components/singlepractice/content';
 import RelatedArticlesTab from 'components/singlepractice/related-articles-tab';
 import RelatedAttorneys from 'components/singlepractice/related-attorneys';
 import PracticeClientSlider from 'components/singlepractice/client-slider';
-import CarouselsSimpleNews from 'components/carousels/simple-news';
-import SimpleSearch from 'components/simple-search';
-import SubscriptionMessage from 'components/subscription-message';
-import CovidResourceBox from 'components/singlepractice/covid-resource-box';
-import SidebarContent from 'components/singlepractice/sidebar';
+// import SimpleSearch from 'components/simple-search';
+// import SubscriptionMessage from 'components/subscription-message';
+// import CovidResourceBox from 'components/singlepractice/covid-resource-box';
+// import SidebarContent from 'components/singlepractice/sidebar';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import { getAllPractices, getPracticeBySlug } from 'queries/practices';
 import tabStyle from 'styles/BigButtonTabs.module.css';
-import lineStyles from 'styles/LineHeader.module.css';
 
 export default function PracticeSingle({ practice }) {
   const router = useRouter();
   console.log(practice);
+  console.log(practice.practicesIncluded.relatedBlogCategory)
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -105,74 +101,12 @@ export default function PracticeSingle({ practice }) {
                 handleLink={handleLink}
                 title="Chair"
               />
-              {practice.practicesIncluded.highlightScroller && (
-                <>
-                  <div className={`${lineStyles.lineHeader} my-4`}>
-                    <h3>Representative Clients</h3>
+              {practice.practicesIncluded.highlightScroller.length > 0 && <PracticeClientSlider content={practice.practicesIncluded.highlightScroller} />} 
+              {/* {practice.industryTopics.length > 0 && (
+                  <div className="w-100 d-block">
+                    <FeaturedSlider content={practice.industryTopics} />
                   </div>
-                  <PracticeClientSlider content={practice.practicesIncluded.highlightScroller} />
-                </>
-              )}
-              {practice.practicesIncluded.highlightScroller && (
-                <>
-                  <div className={`${lineStyles.lineHeader} my-4`}>
-                    <h3>Latest News & Articles</h3>
-                  </div>
-                  <CarouselsSimpleNews slides={practice.practicesIncluded.relatedBlogCategory[0].posts.nodes} />
-                </>
-              )}
-            </Col>
-            <Col sm={12} md={3}>
-              {router.query.slug === 'education-law' && (
-              <>
-                <div>
-                  <div className="mx-auto d-block">
-                    <Image
-                      src="/images/1593501004logo-250x250.png"
-                      width={200}
-                      height={200}
-                      alt="NJSBA 2020 event"
-                    />
-                  </div>
-                  <Link href="https://virtualworkshop.njsba.org/en/" className="mb-4" target="_blank" rel="noreferrer">
-                    <a>
-                      <Button
-                        variant="danger"
-                        className="mx-auto d-block"
-                      >
-                        Visit Our Booth
-                      </Button>
-                    </a>
-                  </Link>
-                </div>
-                <CovidResourceBox
-                  title="COVID-19 Response Team"
-                  link="/government-education-covid-19-response-team"
-                  message="Learn more about the Government & Education Law Practice's COVID-19 focused response team."
-                />
-              </>
-              )}
-              {router.query.slug === 'crisis-risk-management' && (
-              <>
-                <CovidResourceBox
-                  title="COVID-19 Crisis Management Unit"
-                  link="/covid-19-crisis-management-unit"
-                  message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
-                />
-              </>
-              )}
-              <SimpleSearch />
-              <SubscriptionMessage />
-              {/* <SidebarContent
-                  title="Core Practices"
-                  content={corePractices}
-                  tabKey={2}
-                />
-                <SidebarContent
-                  title="Related Sub-Practices"
-                  content={practice.practiceList}
-                  tabKey={1}
-                /> */}
+                )} */}
             </Col>
           </Row>
         </Container>

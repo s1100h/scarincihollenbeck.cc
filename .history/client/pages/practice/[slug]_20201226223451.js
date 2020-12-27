@@ -126,7 +126,7 @@ export default function PracticeSingle({ practice }) {
               {router.query.slug === 'education-law' && (
               <>
                 <div>
-                  <div className="mx-auto d-block">
+                  <div className="mx-auto d-block mb-4">
                     <Image
                       src="/images/1593501004logo-250x250.png"
                       width={200}
@@ -134,11 +134,10 @@ export default function PracticeSingle({ practice }) {
                       alt="NJSBA 2020 event"
                     />
                   </div>
-                  <Link href="https://virtualworkshop.njsba.org/en/" className="mb-4" target="_blank" rel="noreferrer">
+                  <Link href="https://virtualworkshop.njsba.org/en/" target="_blank" rel="noreferrer">
                     <a>
                       <Button
                         variant="danger"
-                        className="mx-auto d-block"
                       >
                         Visit Our Booth
                       </Button>
@@ -152,27 +151,8 @@ export default function PracticeSingle({ practice }) {
                 />
               </>
               )}
-              {router.query.slug === 'crisis-risk-management' && (
-              <>
-                <CovidResourceBox
-                  title="COVID-19 Crisis Management Unit"
-                  link="/covid-19-crisis-management-unit"
-                  message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
-                />
-              </>
-              )}
               <SimpleSearch />
               <SubscriptionMessage />
-              {/* <SidebarContent
-                  title="Core Practices"
-                  content={corePractices}
-                  tabKey={2}
-                />
-                <SidebarContent
-                  title="Related Sub-Practices"
-                  content={practice.practiceList}
-                  tabKey={1}
-                /> */}
             </Col>
           </Row>
         </Container>

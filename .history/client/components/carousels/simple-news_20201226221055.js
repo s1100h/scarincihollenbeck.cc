@@ -25,6 +25,7 @@ const responsive = {
 };
 
 export default function CarouselsSimpleNews({ slides }) {
+  console.log(slides);
   return (
     <Carousel
       aria-label="carousel"
@@ -33,29 +34,34 @@ export default function CarouselsSimpleNews({ slides }) {
       arrows
       swipeable
     >
-      {slides.map((slide) => (
+      {/* {slides.map((post) => (
         <div
-          key={slide.title}
+          key={post.title}
           className="pb-2 px-4"
         >
-          <Link href={slide.link || '/'}>
+          <Link href={post.link || '/'}>
             <a>
               <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'}
+                src={
+                  post.image
+                    ? post.image
+                    : post.featuredImg
+                      ? post.featuredImg
+                      : '/images/no-image-found-diamond.png'
+                }
                 width={300}
                 height={150}
                 layout="intrinsic"
-                alt={slide.title}
+                alt={post.title}
               />
               <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>
-                {limitTitleLength(slide.title)}
+                {limitTitleLength(post.title)}
               </p>
             </a>
           </Link>
         </div>
-      ))}
+      ))} */}
+      1
     </Carousel>
   );
 }

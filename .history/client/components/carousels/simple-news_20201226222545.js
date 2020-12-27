@@ -25,6 +25,7 @@ const responsive = {
 };
 
 export default function CarouselsSimpleNews({ slides }) {
+  console.log(slides)
   return (
     <Carousel
       aria-label="carousel"

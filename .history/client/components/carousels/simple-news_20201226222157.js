@@ -41,9 +41,13 @@ export default function CarouselsSimpleNews({ slides }) {
           <Link href={slide.link || '/'}>
             <a>
               <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'}
+                src={
+                  slide.image
+                    ? slide.image
+                    : slide.featuredImg
+                      ? slide.featuredImg.sourceUrl
+                      : '/images/no-image-found-diamond.png'
+                }
                 width={300}
                 height={150}
                 layout="intrinsic"

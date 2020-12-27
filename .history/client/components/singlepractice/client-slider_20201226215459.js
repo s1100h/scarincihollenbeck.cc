@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
 import fontStyles from 'styles/Fonts.module.css';
-import { limitTitleLength } from 'utils/helpers';
+import fontStyles from 'styles/Fonts.module.css';
 
 const responsive = {
   superLargeDesktop: {
@@ -24,7 +23,8 @@ const responsive = {
   },
 };
 
-export default function CarouselsSimpleNews({ slides }) {
+export default function PracticeClientSlider({ content }) {
+  console.log(content)
   return (
     <Carousel
       aria-label="carousel"
@@ -33,27 +33,22 @@ export default function CarouselsSimpleNews({ slides }) {
       arrows
       swipeable
     >
-      {slides.map((slide) => (
+      {content.map((slide) => (
         <div
           key={slide.title}
           className="pb-2 px-4"
         >
-          <Link href={slide.link || '/'}>
-            <a>
-              <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'}
-                width={300}
-                height={150}
-                layout="intrinsic"
-                alt={slide.title}
-              />
-              <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>
-                {limitTitleLength(slide.title)}
-              </p>
-            </a>
-          </Link>
+        <Image
+          src={(slide.image.sourceUrl) ? slide.image.sourceUrl : '/images/no-image-found-diamond.png'
+          }
+          width={300}
+          height={150}
+          layout="intrinsic"
+          alt={slide.title}
+        />
+        <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>
+          {limitTitleLength(slide.title)}
+        </p>
         </div>
       ))}
     </Carousel>
