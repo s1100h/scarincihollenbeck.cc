@@ -41,3 +41,5 @@ yarn-error.log*
 client/.next
 client/.node_modules
 client/app
+
+.history
