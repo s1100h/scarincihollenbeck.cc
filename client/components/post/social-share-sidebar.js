@@ -26,21 +26,21 @@ export default function PostSocialShareSidebar({ title }) {
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <FacebookIcon size={45} borderRadius={5} />
+          <FacebookIcon size={45} borderradius={5} />
         </FacebookShareButton>
         <LinkedinShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
           className="mt-2"
         >
-          <LinkedinIcon size={45} borderRadius={5} />
+          <LinkedinIcon size={45} borderradius={5} />
         </LinkedinShareButton>
         <TwitterShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
           className="mt-2"
         >
-          <TwitterIcon size={45} borderRadius={5} />
+          <TwitterIcon size={45} borderradius={5} />
         </TwitterShareButton>
         <EmailShareButton
           className="mt-2"
@@ -48,7 +48,7 @@ export default function PostSocialShareSidebar({ title }) {
           body={`https://scarincihollenbeck.com${router.asPath}`}
           separator=""
         >
-          <EmailIcon size={45} borderRadius={5} />
+          <EmailIcon size={45} borderradius={5} />
         </EmailShareButton>
         <Button
           variant="success"
@@ -59,7 +59,7 @@ export default function PostSocialShareSidebar({ title }) {
           <FontAwesomeIcon
             style={{ width: '21.5px' }}
             icon={faPrint}
-            borderRadius={5}
+            borderradius={5}
           />
         </Button>
       </Sticky>

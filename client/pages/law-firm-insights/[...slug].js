@@ -35,9 +35,17 @@ export default function LawFirmInsightsPost({
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
   // page content
-  const pageContent = post.content
-    .replace(findH2TagsInContent[0], '')
-    .replace(findImgTagsInContent[0], '');
+  let pageContent = post.content;
+
+  if (findH2TagsInContent) {
+    pageContent = pageContent
+      .replace(findH2TagsInContent[0], '');
+  }
+
+  if (findImgTagsInContent) {
+    pageContent = pageContent
+      .replace(findImgTagsInContent[0], '');
+  }
 
   return (
     <>
@@ -58,9 +66,7 @@ export default function LawFirmInsightsPost({
           },
           images: [
             {
-              url:
-                post.featuredImage.node.sourceUrl
-                || '/images/sh-mini-diamond-PNG.png',
+              url:(post.featuredImage) ? post.featuredImage.node.sourceUrl : '/images/sh-mini-diamond-PNG.png',
               width: 350,
               height: 150,
               alt: post.seo.title,
@@ -76,9 +82,7 @@ export default function LawFirmInsightsPost({
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[
-          post.featuredImage.node.sourceUrl
-            || '/images/sh-mini-diamond-PNG.png',
+        images={[(post.featuredImage) ? post.featuredImage.node.sourceUrl : '/images/sh-mini-diamond-PNG.png',
         ]}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}

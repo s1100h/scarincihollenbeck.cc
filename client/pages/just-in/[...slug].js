@@ -32,9 +32,17 @@ export default function JustIn({
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
   // page content
-  const pageContent = post.content
-    .replace(findH2TagsInContent[0], '')
-    .replace(findImgTagsInContent[0], '');
+  let pageContent = post.content;
+
+  if (findH2TagsInContent) {
+    pageContent = pageContent
+      .replace(findH2TagsInContent[0], '');
+  }
+
+  if (findImgTagsInContent) {
+    pageContent = pageContent
+      .replace(findImgTagsInContent[0], '');
+  }
 
   return (
     <>
@@ -55,9 +63,7 @@ export default function JustIn({
           },
           images: [
             {
-              url:
-                post.featuredImage.node.sourceUrl
-                || '/images/sh-mini-diamond-PNG.png',
+              url: post.featuredImage || '/images/no-image-found-diamond-750x350.png',
               width: 350,
               height: 150,
               alt: post.seo.title,
@@ -73,10 +79,7 @@ export default function JustIn({
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[
-          post.featuredImage.node.sourceUrl
-            || '/images/sh-mini-diamond-PNG.png',
-        ]}
+        images={[post.featuredImage || '/images/no-image-found-diamond-750x350.png']}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}
         authorName={post.author.node.name}
@@ -92,7 +95,7 @@ export default function JustIn({
       <ThreeColMiniSidebar
         body={(
           <Body
-            featuredImage={findImgTagsInContent[1]}
+            featuredImage={(findImgTagsInContent) ? findImgTagsInContent[1] : '/images/no-image-found-diamond-750x350.png'}
             caption={findCaptionTagsInContent}
             content={pageContent}
             eventCat={isEventCategory}

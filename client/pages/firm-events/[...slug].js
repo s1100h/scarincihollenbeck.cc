@@ -17,7 +17,11 @@ export default function FirmEvents({
 
   // extract h2 tag content from text
   const findH2TagsInContent = post.content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const pageSubTitle = findH2TagsInContent[0].replace(/<(?:.|\s)*?>/g, '');
+  let pageSubTitle = '';
+
+  if (findH2TagsInContent) {
+    pageSubTitle = findH2TagsInContent[0].replace(/<(?:.|\s)*?>/g, '');
+  }
 
   // extract featured image from text
   const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
@@ -26,15 +30,21 @@ export default function FirmEvents({
   // extract featured image caption
   const captionRex = /<figcaption(?:.*)>(.*)<\/figcaption>|Ui/g;
   const findCaptionTagsInContent = captionRex.exec(post.content);
-
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
   // page content
-  const pageContent = post.content
-    .replace(findH2TagsInContent[0], '')
-    .replace(findImgTagsInContent[0], '');
+  let pageContent = post.content;
 
+  if (findH2TagsInContent) {
+    pageContent = pageContent
+      .replace(findH2TagsInContent[0], '');
+  }
+
+  if (findImgTagsInContent) {
+    pageContent = pageContent
+      .replace(findImgTagsInContent[0], '');
+  }
   return (
     <>
       <NextSeo
@@ -54,9 +64,7 @@ export default function FirmEvents({
           },
           images: [
             {
-              url:
-                post.featuredImage.node.sourceUrl
-                || '/images/sh-mini-diamond-PNG.png',
+              url: post.featuredImage || '/images/no-image-found-diamond-750x350.png',
               width: 350,
               height: 150,
               alt: post.seo.title,
@@ -72,10 +80,7 @@ export default function FirmEvents({
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[
-          post.featuredImage.node.sourceUrl
-            || '/images/sh-mini-diamond-PNG.png',
-        ]}
+        images={[post.featuredImage || '/images/no-image-found-diamond-750x350.png']}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}
         authorName={post.author.node.name}
@@ -91,7 +96,7 @@ export default function FirmEvents({
       <ThreeColMiniSidebar
         body={(
           <Body
-            featuredImage={findImgTagsInContent[1]}
+            featuredImage={(findImgTagsInContent) ? findImgTagsInContent[1] : '/images/no-image-found-diamond-750x350.png'}
             caption={findCaptionTagsInContent}
             content={pageContent}
             eventCat={isEventCategory}

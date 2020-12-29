@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ContactForm from 'components/contact-form';
 import PostBreadcrumbs from 'components/post/post-breadcrumbs';
 import ArticleDetails from 'components/post/article-details';
@@ -27,9 +28,10 @@ export default function PostBody({
   return (
     <>
       <PostBreadcrumbs />
-      <img
-        src={featuredImage || '/images/no-image-found-diamond.png'}
-        className="w-100 d-print-none"
+      <Image
+        src={featuredImage}
+        width={750}
+        height={350}
         alt={title}
       />
       {caption && (

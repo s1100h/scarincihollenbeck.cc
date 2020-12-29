@@ -6,13 +6,17 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function CategoryMainArticlesContainer({ main }) {
   let getFeaturedImage;
 
-  if (main.node.featuredImage.node.sourceUrl.indexOf('Feature.png') > 0) {
-    getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace(
-      'Feature.png',
-      'Body.png',
-    );
+  if (main.node.featuredImage) {
+    if (main.node.featuredImage.node.sourceUrl.indexOf('Feature.png') > 0) {
+      getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace(
+        'Feature.png',
+        'Body.png',
+      );
+    } else {
+      getFeaturedImage = main.node.featuredImage.node.sourceUrl;
+    }
   } else {
-    getFeaturedImage = main.node.featuredImage.node.sourceUrl;
+    getFeaturedImage = '/images/no-image-found-diamond-750x350.png';
   }
 
   const category = main.node.categories.nodes[0];
@@ -22,7 +26,7 @@ export default function CategoryMainArticlesContainer({ main }) {
       <Link href={main.node.link}>
         <a>
           <Image
-            src={getFeaturedImage || '/images/no-image-found-diamond.png'}
+            src={getFeaturedImage}
             width={750}
             height={350}
             layout="intrinsic"

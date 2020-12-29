@@ -32,9 +32,17 @@ export default function Headlines({
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
   // page content
-  const pageContent = post.content
-    .replace(findH2TagsInContent[0], '')
-    .replace(findImgTagsInContent[0], '');
+  let pageContent = post.content;
+
+  if (findH2TagsInContent) {
+    pageContent = pageContent
+      .replace(findH2TagsInContent[0], '');
+  }
+
+  if (findImgTagsInContent) {
+    pageContent = pageContent
+      .replace(findImgTagsInContent[0], '');
+  }
 
   return (
     <>

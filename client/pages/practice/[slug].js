@@ -30,13 +30,8 @@ import {
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
-export default function PracticeSingle({ practice, corePractices }) {
+export default function PracticeSingle({ practice, corePractices, practiceChildren }) {
   const router = useRouter();
-  const sortedCorePractices = sortByKey(corePractices, 'title');
-  const sortedChildPractices = sortByKey(
-    practice.practicesIncluded.childPractice,
-    'title',
-  );
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -182,14 +177,16 @@ export default function PracticeSingle({ practice, corePractices }) {
               <SubscriptionMessage />
               <PracticeSidebar
                 title="Core Practices"
-                content={sortedCorePractices}
+                content={corePractices}
                 tabKey={2}
               />
-              <PracticeSidebar
-                title="Related Sub-Practices"
-                content={sortedChildPractices}
-                tabKey={1}
-              />
+              {(practiceChildren.length > 0) && (
+                <PracticeSidebar
+                  title="Related Sub-Practices"
+                  content={practiceChildren}
+                  tabKey={1}
+                />
+              )}
             </Col>
           </Row>
         </Container>
@@ -228,7 +225,13 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       practice: practicePageContent.data.practices.nodes[0],
-      corePractices: firmCorePracticesContent.data.searchWP.nodes,
+      practiceChildren: (practicePageContent.data.practices.nodes[0].practicesIncluded.childPractice) ? sortByKey(
+        practicePageContent.data.practices.nodes[0].practicesIncluded.childPractice,
+        'title',
+      ) : [],
+      corePractices: sortByKey(firmCorePracticesContent.data.searchWP.nodes.filter(
+        (value) => JSON.stringify(value) !== '{}',
+      ), 'title'),
     },
     revalidate: 1,
   };
