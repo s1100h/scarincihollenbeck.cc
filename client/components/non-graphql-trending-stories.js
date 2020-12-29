@@ -69,9 +69,7 @@ export default function NonGraphQLTrendingStories({ title, content }) {
         ) : (
           <div>
             <p className="text-center my-5 py-5">
-              <strong>
-                Sorry, no articles available
-              </strong>
+              <strong>Sorry, no articles available</strong>
             </p>
           </div>
         )}

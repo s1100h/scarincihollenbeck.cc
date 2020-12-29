@@ -10,7 +10,9 @@ import { getPracticesByInput } from 'queries/practices';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 export default function PracticesPage({
-  corePractices, additionalPractices, businessRelatedPractices,
+  corePractices,
+  additionalPractices,
+  businessRelatedPractices,
 }) {
   const sortedCorePractices = sortByKey(corePractices, 'title');
   const sortedAdditionalPractices = sortByKey(additionalPractices, 'title');
@@ -31,13 +33,12 @@ export default function PracticesPage({
       />
       <FullWidth>
         <p className="text-muted lead text-center w-100">
-          As you scroll through the law practices and locate the
-          sub-practice groups that most closely identifies with your need,
-          feel free to contact any of the attorneys identified within the
-          sub-practice group. Feel free to contact any of the Section Chiefs
-          identified under each of the named law practices. They will be
-          happy to assist you and guide you to the appropriate attorney for
-          resolution of your issue.
+          As you scroll through the law practices and locate the sub-practice
+          groups that most closely identifies with your need, feel free to
+          contact any of the attorneys identified within the sub-practice group.
+          Feel free to contact any of the Section Chiefs identified under each
+          of the named law practices. They will be happy to assist you and guide
+          you to the appropriate attorney for resolution of your issue.
         </p>
         <div className="mt-4 px-0">
           <div className={lineHeaderStyles.lineHeader}>
@@ -81,9 +82,15 @@ export async function getStaticProps() {
 
   return {
     props: {
-      corePractices: firmCorePracticesContent.data.searchWP.nodes.filter((value) => JSON.stringify(value) !== '{}'),
-      additionalPractices: firmAdditionalContent.data.searchWP.nodes.filter((value) => JSON.stringify(value) !== '{}'),
-      businessRelatedPractices: firmBusinessRelatedContent.data.searchWP.nodes.filter((value) => JSON.stringify(value) !== '{}'),
+      corePractices: firmCorePracticesContent.data.searchWP.nodes.filter(
+        (value) => JSON.stringify(value) !== '{}',
+      ),
+      additionalPractices: firmAdditionalContent.data.searchWP.nodes.filter(
+        (value) => JSON.stringify(value) !== '{}',
+      ),
+      businessRelatedPractices: firmBusinessRelatedContent.data.searchWP.nodes.filter(
+        (value) => JSON.stringify(value) !== '{}',
+      ),
     },
     revalidate: 1,
   };

@@ -34,16 +34,15 @@ export default function CarouselsSimpleNews({ slides }) {
       swipeable
     >
       {slides.map((slide) => (
-        <div
-          key={slide.title}
-          className="pb-2 px-4"
-        >
+        <div key={slide.title} className="pb-2 px-4">
           <Link href={slide.link || '/'}>
             <a>
               <Image
-                src={slide.featuredImage
-                  ? slide.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'}
+                src={
+                  slide.featuredImage
+                    ? slide.featuredImage.node.sourceUrl
+                    : '/images/no-image-found-diamond.png'
+                }
                 width={300}
                 height={150}
                 layout="intrinsic"

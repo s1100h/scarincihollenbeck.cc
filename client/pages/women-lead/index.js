@@ -181,7 +181,10 @@ export default function WomenLead({ page, posts }) {
 
 export async function getStaticProps() {
   const res = await client.query(getFirmPage('women-lead'), {});
-  const womenLeadPostsContent = await client.query(getFirst14PostsFromSlug('women-lead'), {});
+  const womenLeadPostsContent = await client.query(
+    getFirst14PostsFromSlug('women-lead'),
+    {},
+  );
 
   return {
     props: {

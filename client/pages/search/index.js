@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
-import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
@@ -11,7 +10,6 @@ import ArchivesSidebar from 'components/archives/sidebar';
 import ArchiveLayout from 'layouts/archive-layout';
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
-import { searchAllPosts } from 'queries/search';
 import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 import { fetcher } from 'utils/helpers';
 
@@ -23,10 +21,12 @@ export default function SearchLandingPage({
 }) {
   const router = useRouter();
   // (
-  const {
-    data: searchPosts,
-    error: searchPostsError,
-  } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/search/query/${decodeURI(router.query.q)}/${router.query.page}`, fetcher);
+  const { data: searchPosts, error: searchPostsError } = useSWR(
+    `https://wp.scarincihollenbeck.com/wp-json/search/query/${decodeURI(
+      router.query.q,
+    )}/${router.query.page}`,
+    fetcher,
+  );
 
   if (searchPostsError) return <ErrorMessage />;
 
@@ -54,9 +54,7 @@ export default function SearchLandingPage({
       <ArchiveLayout
         header={(
           <div>
-            <strong>
-              Query:
-            </strong>
+            <strong>Query:</strong>
             {' '}
             {searchPosts.term}
           </div>

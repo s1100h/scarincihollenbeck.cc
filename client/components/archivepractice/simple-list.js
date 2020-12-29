@@ -10,9 +10,7 @@ export default function ArchivePracticeSimpleList({ list }) {
           <li key={item.id} className="mb-3">
             <Link href={item.uri}>
               <a className={textStyles.blueTitle}>
-                <strong>
-                  {item.title}
-                </strong>
+                <strong>{item.title}</strong>
               </a>
             </Link>
           </li>

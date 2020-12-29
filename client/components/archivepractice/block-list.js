@@ -9,7 +9,7 @@ export default function ArchivePracticeBlockList({ list }) {
   return (
     <Container className="mt-5">
       <Row>
-        {list.map((item) => ((item.practicesIncluded.childPractice) ? (
+        {list.map((item) => (item.practicesIncluded.childPractice ? (
           <Col sm={12} md={4} key={item.id} className="mb-3">
             <Dropdown>
               <Dropdown.Toggle

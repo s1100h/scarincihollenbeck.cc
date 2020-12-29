@@ -75,8 +75,15 @@ export default function Search() {
       queryUrl += categoryInput;
     }
 
-    const formatUrl = (str) => str.toLowerCase().replace(',',' ').replace('&', '').replace('’', "'").replace('.', '').replace("'",'').replace(/\s+/g,' ').replace(/\s/g, '+');
-
+    const formatUrl = (str) => str
+      .toLowerCase()
+      .replace(',', ' ')
+      .replace('&', '')
+      .replace('’', "'")
+      .replace('.', '')
+      .replace("'", '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s/g, '+');
 
     Router.push({
       pathname: '/search',

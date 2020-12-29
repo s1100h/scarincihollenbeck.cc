@@ -14,7 +14,7 @@ export default function CareerForm({ contact, title }) {
   useEffect(() => kwesforms.init());
 
   return (
-    <div className="px-2 mb-3">
+    <div className="px-2 my-3 border-top">
       <form
         method="POST"
         action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW"
@@ -26,16 +26,8 @@ export default function CareerForm({ contact, title }) {
           name="currentPage"
           value={`https://scarincihollenbeck.com${router.asPath}`}
         />
-        <input
-          type="hidden"
-          name="currentTitle"
-          value={title}
-        />
-        <input
-          type="hidden"
-          name="currentContact"
-          value={contact}
-        />
+        <input type="hidden" name="currentTitle" value={title} />
+        <input type="hidden" name="currentContact" value={contact} />
         <Row className="mb-3">
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
@@ -80,45 +72,34 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} className="mx-0 px-1">
             <label htmlFor="coverLetter">
               <span className="d-block w-100 my-2">
-                <strong>
-                  Upload your cover letter
-                </strong>
+                <strong>Upload your cover letter</strong>
               </span>
               <input
                 type="file"
                 name="coverLetter"
                 id="coverLetter"
-                rules="mimetypes:application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                rules="required"
               />
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
             <label htmlFor="resume">
               <span className="d-block w-100 my-2">
-                <strong>
-                  Upload your resume
-                </strong>
+                <strong>Upload your resume</strong>
               </span>
-              <input
-                type="file"
-                name="resume"
-                id="resume"
-                rules="mimetypes:application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-              />
+              <input type="file" name="resume" id="resume" rules="required" />
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
             <label htmlFor="additionalWriting">
               <span className="d-block w-100 my-2">
-                <strong>
-                  Upload any additional writing
-                </strong>
+                <strong>Upload any additional writing</strong>
               </span>
               <input
                 type="file"
                 name="additionalWriting"
                 id="additionalWriting"
-                rules="mimetypes:application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                rules="required"
               />
             </label>
           </Col>
@@ -149,12 +130,11 @@ export default function CareerForm({ contact, title }) {
             <FormReCaptcha setCaptcha={setCaptcha} />
           </Col>
         </Row>
-        {/** disabled={captcha} */}
-        <Button
+        <Button 
           variant="danger"
           className="mt-2 px-4"
+          disabled={captcha}
           type="submit"
-
         >
           Submit form
         </Button>

@@ -12,7 +12,7 @@ export default function PracticeCovidResourceBox({ title, link, message }) {
             {' '}
             {message}
           </strong>
-          </p>
+        </p>
         <Link href={link}>
           <Button
             variant="danger"

@@ -22,14 +22,21 @@ import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, sortByKey } from 'utils/helpers';
 import client from 'utils/graphql-client';
-import { getAllPractices, getPracticeBySlug, getPracticesByInput } from 'queries/practices';
+import {
+  getAllPractices,
+  getPracticeBySlug,
+  getPracticesByInput,
+} from 'queries/practices';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
 export default function PracticeSingle({ practice, corePractices }) {
   const router = useRouter();
   const sortedCorePractices = sortByKey(corePractices, 'title');
-  const sortedChildPractices = sortByKey(practice.practicesIncluded.childPractice, 'title');
+  const sortedChildPractices = sortByKey(
+    practice.practicesIncluded.childPractice,
+    'title',
+  );
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -111,7 +118,9 @@ export default function PracticeSingle({ practice, corePractices }) {
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Representative Clients</h3>
                   </div>
-                  <PracticeClientSlider content={practice.practicesIncluded.highlightScroller} />
+                  <PracticeClientSlider
+                    content={practice.practicesIncluded.highlightScroller}
+                  />
                 </>
               )}
               {practice.practicesIncluded.highlightScroller && (
@@ -119,48 +128,55 @@ export default function PracticeSingle({ practice, corePractices }) {
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
                   </div>
-                  <CarouselsSimpleNews slides={practice.practicesIncluded.relatedBlogCategory[0].posts.nodes} />
+                  <CarouselsSimpleNews
+                    slides={
+                      practice.practicesIncluded.relatedBlogCategory[0].posts
+                        .nodes
+                    }
+                  />
                 </>
               )}
             </Col>
             <Col sm={12} md={3}>
               {router.query.slug === 'education-law' && (
-              <>
-                <div>
-                  <div className="mx-auto d-block">
-                    <Image
-                      src="/images/1593501004logo-250x250.png"
-                      width={200}
-                      height={200}
-                      alt="NJSBA 2020 event"
-                    />
+                <>
+                  <div>
+                    <div className="mx-auto d-block">
+                      <Image
+                        src="/images/1593501004logo-250x250.png"
+                        width={200}
+                        height={200}
+                        alt="NJSBA 2020 event"
+                      />
+                    </div>
+                    <Link
+                      href="https://virtualworkshop.njsba.org/en/"
+                      className="mb-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <a>
+                        <Button variant="danger" className="mx-auto d-block">
+                          Visit Our Booth
+                        </Button>
+                      </a>
+                    </Link>
                   </div>
-                  <Link href="https://virtualworkshop.njsba.org/en/" className="mb-4" target="_blank" rel="noreferrer">
-                    <a>
-                      <Button
-                        variant="danger"
-                        className="mx-auto d-block"
-                      >
-                        Visit Our Booth
-                      </Button>
-                    </a>
-                  </Link>
-                </div>
-                <CovidResourceBox
-                  title="COVID-19 Response Team"
-                  link="/government-education-covid-19-response-team"
-                  message="Learn more about the Government & Education Law Practice's COVID-19 focused response team."
-                />
-              </>
+                  <CovidResourceBox
+                    title="COVID-19 Response Team"
+                    link="/government-education-covid-19-response-team"
+                    message="Learn more about the Government & Education Law Practice's COVID-19 focused response team."
+                  />
+                </>
               )}
               {router.query.slug === 'crisis-risk-management' && (
-              <>
-                <CovidResourceBox
-                  title="COVID-19 Crisis Management Unit"
-                  link="/covid-19-crisis-management-unit"
-                  message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
-                />
-              </>
+                <>
+                  <CovidResourceBox
+                    title="COVID-19 Crisis Management Unit"
+                    link="/covid-19-crisis-management-unit"
+                    message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
+                  />
+                </>
               )}
               <SimpleSearch />
               <SubscriptionMessage />

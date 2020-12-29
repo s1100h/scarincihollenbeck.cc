@@ -6,14 +6,12 @@ export default function SubscriptionBody() {
     <>
       <div className="w-100 my-4">
         <h1>
-          <strong>
-            Scarinci Hollenbeck Mailing List
-          </strong>
+          <strong>Scarinci Hollenbeck Mailing List</strong>
         </h1>
         <h2 className={`${textStyles.redTitle} my-4`}>
           <strong>
-            As the legal world continues to evolve, it is important to stay aware
-            of its various and regular updates.
+            As the legal world continues to evolve, it is important to stay
+            aware of its various and regular updates.
           </strong>
         </h2>
         <p className="h4">Be the the first to know when: </p>
@@ -35,9 +33,7 @@ export default function SubscriptionBody() {
           </li>
         </ul>
         <h4 className={`${textStyles.redTitle} mb-4`}>
-          <strong>
-            Sign up Today!
-          </strong>
+          <strong>Sign up Today!</strong>
         </h4>
       </div>
       <SubscriptionFormColumn />

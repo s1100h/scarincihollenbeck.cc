@@ -19,10 +19,7 @@ export default function SubscriptionPage({ posts }) {
         sidebar={(
           <div>
             <Search />
-            <TrendingStories
-              title="Latest From The Firm"
-              content={posts}
-            />
+            <TrendingStories title="Latest From The Firm" content={posts} />
           </div>
         )}
       />
