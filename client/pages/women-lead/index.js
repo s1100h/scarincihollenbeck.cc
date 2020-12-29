@@ -14,7 +14,7 @@ import CarouselsLatestNews from 'components/carousels/latest-news';
 import SingleSubHeader from 'layouts/single-sub-header';
 import client from 'utils/graphql-client';
 import { getFirmPage } from 'queries/pages';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { getFirst14PostsFromSlug } from 'queries/category';
 import { firmResources } from 'utils/common-lists';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
@@ -181,12 +181,12 @@ export default function WomenLead({ page, posts }) {
 
 export async function getStaticProps() {
   const res = await client.query(getFirmPage('women-lead'), {});
-  const posts = await fetchFirmPosts();
+  const womenLeadPostsContent = await client.query(getFirst14PostsFromSlug('women-lead'), {});
 
   return {
     props: {
       page: res.data.pages.nodes[0],
-      posts,
+      posts: womenLeadPostsContent.data.categories.nodes[0].posts.edges,
     },
     revalidate: 1,
   };

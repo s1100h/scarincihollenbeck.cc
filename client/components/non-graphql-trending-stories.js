@@ -67,8 +67,12 @@ export default function NonGraphQLTrendingStories({ title, content }) {
             </div>
           ))
         ) : (
-          <div className="mx-5 p-5">
-            <p>Articles loading...</p>
+          <div>
+            <p className="text-center my-5 py-5">
+              <strong>
+                Sorry, no articles available
+              </strong>
+            </p>
           </div>
         )}
       </ArticleContainer>
