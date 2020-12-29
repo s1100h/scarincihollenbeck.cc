@@ -57,24 +57,30 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const query = `${searchInput !== '' ? searchInput : ''} ${
-      practiceInput !== '' ? practiceInput : ''
-    } ${attorneyInput !== '' ? attorneyInput : ''} ${
-      categoryInput !== '' ? categoryInput : ''
-    }`;
-    const formatUrl = (str) => str
-      .toLowerCase()
-      .replace(',', ' ')
-      .replace('&', '')
-      .replace('’', "'")
-      .replace('.', '')
-      .replace("'", '')
-      .replace(/\s+/g, ' ')
-      .replace(/\s/g, '+');
+    let queryUrl = '';
+
+    if (searchInput) {
+      queryUrl += `${searchInput} `;
+    }
+
+    if (practiceInput) {
+      queryUrl += `${practiceInput} `;
+    }
+
+    if (attorneyInput) {
+      queryUrl += `${attorneyInput} `;
+    }
+
+    if (categoryInput) {
+      queryUrl += categoryInput;
+    }
+
+    const formatUrl = (str) => str.toLowerCase().replace(',',' ').replace('&', '').replace('’', "'").replace('.', '').replace("'",'').replace(/\s+/g,' ').replace(/\s/g, '+');
+
 
     Router.push({
       pathname: '/search',
-      query: { q: formatUrl(query), page: 1 },
+      query: { q: formatUrl(queryUrl.trim()), page: 1 },
     });
 
     resetSearchInput();

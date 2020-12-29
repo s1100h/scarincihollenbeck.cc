@@ -11,8 +11,9 @@ import ArchivesSidebar from 'components/archives/sidebar';
 import ArchiveLayout from 'layouts/archive-layout';
 import client from 'utils/graphql-client';
 import { blogArticlesQuery } from 'queries/home';
-import { getArchivesPosts } from 'queries/archive';
+import { searchAllPosts } from 'queries/search';
 import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { fetcher } from 'utils/helpers';
 
 export default function SearchLandingPage({
   firmNews,
@@ -21,15 +22,15 @@ export default function SearchLandingPage({
   posts,
 }) {
   const router = useRouter();
-
+  // (
   const {
-    data: archivesPosts,
-    error: archivesPostsError,
-  } = useSWR(getArchivesPosts(router.query.q, router.query.page), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
+    data: searchPosts,
+    error: searchPostsError,
+  } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/search/query/${decodeURI(router.query.q)}/${router.query.page}`, fetcher);
 
-  if (archivesPostsError) return <ErrorMessage />;
+  if (searchPostsError) return <ErrorMessage />;
 
-  if (!archivesPosts) {
+  if (!searchPosts) {
     return (
       <div className="py-5 my-5">
         <SiteLoader />
@@ -37,18 +38,34 @@ export default function SearchLandingPage({
     );
   }
 
+  const formatedSearchResults = searchPosts.results.map((post) => ({
+    node: {
+      id: post.id,
+      uri: post.link,
+      title: post.title,
+      excerpt: post.description,
+      date: post.date,
+    },
+  }));
+
   return (
     <div className="mt-3">
       <NextSeo nofollow />
       <ArchiveLayout
-        header=""
+        header={(
+          <div>
+            <strong>
+              Query:
+            </strong>
+            {' '}
+            {searchPosts.term}
+          </div>
+        )}
         body={(
           <ArchivesBody
-            results={archivesPosts.posts.edges}
+            results={formatedSearchResults}
             term={router.query.q}
-            pages={Math.floor(
-              archivesPosts.posts.pageInfo.offsetPagination.total / 10,
-            )}
+            pages={searchPosts.pages || 0}
             currentPage={router.query.page}
             news={firmNews}
             events={firmEvents}
