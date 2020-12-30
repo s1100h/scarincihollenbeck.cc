@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import FullWidth from 'layouts/full-width';
 import LargeSidebar from 'layouts/large-sidebar';
 import Search from 'components/search';
+import SiteLoader from 'components/site-loader';
 import BasicBreadCrumbs from 'components/basic-breadcrumbs';
 import MainArticlesContainer from 'components/category/main-articles-container';
 import MainSidebarContent from 'components/category/main-sidebar-content';
@@ -25,6 +26,10 @@ export default function CategoryLandingPage({
   uri,
 }) {
   const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
 
   // main articles
   const mainArticle = posts[0];
@@ -117,7 +122,7 @@ export async function getStaticPaths() {
 
   return {
     paths: res.data.categories.nodes.map((a) => a.uri) || [],
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -125,7 +130,7 @@ export async function getStaticProps({ params }) {
   const categoryFromUrl = params.slug[params.slug.length - 1];
   const res = await client.query(getFirst14PostsFromSlug(categoryFromUrl), {});
 
-  if (res.data.categories.nodes[0].posts.edges.length <= 0) {
+  if (res.data.categories.nodes.length === 0) {
     return {
       notFound: true,
     };

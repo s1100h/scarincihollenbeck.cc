@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import SiteLoader from 'components/site-loader';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -13,6 +15,12 @@ import { headers } from 'utils/helpers';
 export default function AllLocations({
   offices, location, attorneys, posts,
 }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
   return (
     <>
       <NextSeo
@@ -66,6 +74,18 @@ export async function getStaticProps() {
   // get a list of all offices
   const allOfficeLocations = await client.query(allLocations, {});
 
+  if (locationContent.data.officeLocations.nodes.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (allOfficeLocations.data.officeLocations.nodes.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
   // get all attorneys & posts related to each location
   const [attorneys, postsByLocation] = await Promise.all([
     fetch(
@@ -86,12 +106,6 @@ export async function getStaticProps() {
       .replace('.', '')
       .indexOf('lyndhurst') > -1,
   );
-
-  if (locationContent.data.officeLocations.nodes.length <= 0) {
-    return {
-      notFound: true,
-    };
-  }
 
   return {
     props: {

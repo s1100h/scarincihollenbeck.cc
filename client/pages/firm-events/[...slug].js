@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import Footer from 'components/footer';
+import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
 import Body from 'components/post/body';
@@ -21,6 +22,10 @@ export default function FirmEvents({
   const [caption, setCaption] = useState('');
   const [mounted, setMounted] = useState(true);
   const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
 
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
@@ -119,7 +124,7 @@ export async function getStaticPaths() {
 
   return {
     paths: slugs || [],
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -141,7 +146,13 @@ export async function getStaticProps({ params }) {
       .catch((err) => err),
   ]);
 
-  if (res.data.posts.nodes.length <= 0) {
+  if (!res.data.posts.nodes[0]) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (restResponse.status === 404) {
     return {
       notFound: true,
     };

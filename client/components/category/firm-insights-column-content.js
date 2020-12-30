@@ -67,7 +67,7 @@ export default function CategoryLawFirmInsightsColumnContent({
           <ul className={`${styles.listOverflow} ml-3 mr-0 px-0`}>
             {lawFirmInsightsCategoryChildren.map((post) => (
               <li key={post.name} className={`${textStyles.blueTitle} mb-2`}>
-                <Link href={post.link}>
+                <Link href={post.uri}>
                   <a className={`${textStyles.blueTitle}`}>
                     <strong>{post.name}</strong>
                   </a>

@@ -41,7 +41,7 @@ export default function CategoryChildrenSlider({ title, slides }) {
         >
           {slides.map((slide) => (
             <div key={slide.id} className="pb-2 px-4">
-              <Link href={slide.link}>
+              <Link href={slide.uri}>
                 <a>
                   <Image
                     src={

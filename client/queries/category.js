@@ -44,6 +44,7 @@ export const getFirst14PostsFromSlug = (slug) => {
                 }
               }
               link
+              uri
               excerpt
               author {
                 node {
@@ -68,11 +69,13 @@ export const getFirst14PostsFromSlug = (slug) => {
           nodes {
             name
             link
+            uri
             posts(first: 6) {
               nodes {
                 title
                 slug
                 link
+                uri
                 id
                 featuredImage {
                   node {

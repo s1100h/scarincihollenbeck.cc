@@ -19,6 +19,7 @@ import SubscriptionMessage from 'components/subscription-message';
 import CovidResourceBox from 'components/singlepractice/covid-resource-box';
 import PracticeSidebar from 'components/singlepractice/sidebar';
 import Footer from 'components/footer';
+import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, sortByKey } from 'utils/helpers';
 import client from 'utils/graphql-client';
@@ -36,6 +37,10 @@ export default function PracticesSingle({
   practiceChildren,
 }) {
   const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -221,6 +226,12 @@ export async function getStaticProps({ params }) {
   );
 
   if (practicePageContent.data.practices.nodes.length <= 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (firmCorePracticesContent.data.searchWP.nodes.length === 0) {
     return {
       notFound: true,
     };

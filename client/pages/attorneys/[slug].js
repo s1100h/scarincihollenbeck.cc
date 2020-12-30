@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import { request } from 'graphql-request';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
@@ -27,7 +25,7 @@ import SingleAttorneySidebarPracticeList from 'components/singleattorney/sidebar
 import SingleAttorneySidebarInformationList from 'components/singleattorney/sidebar-information-list';
 import SingleAttorneyNonGraphQLSlider from 'components/singleattorney/non-graphql-slider';
 import SingleAttorneyRelatedArticles from 'components/singleattorney/related-articles';
-import ErrorMessage from 'components/error-message';
+
 import { headers, sortByDateKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import {
@@ -78,7 +76,7 @@ function buildAttorneyProfileSchema(
   };
 }
 
-export default function AttorneysSingleBio({ bio, response }) {
+export default function AttorneysSingleBio({ bio, response, firmNewsAndEventsArr }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -88,31 +86,6 @@ export default function AttorneysSingleBio({ bio, response }) {
       </div>
     );
   }
-
-  const {
-    data: attorneyNews,
-    error: attorneyNewsErr,
-  } = useSWR(attorneysArticles('Firm News', response.title), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
-
-  const {
-    data: attorneyEvents,
-    error: attorneyEventsErr,
-  } = useSWR(attorneysArticles('Firm Events', response.title), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
-
-  if (attorneyEventsErr || attorneyNewsErr) return <ErrorMessage />;
-  if (!attorneyEvents || !attorneyNews) {
-    return (
-      <div className="my-5 py-5">
-        <SiteLoader />
-      </div>
-    );
-  }
-
-  // concat all the firm events and firm news into a single array
-  const firmNewsAndEventsArr = [].concat(
-    attorneyEvents.categories.nodes[0].posts.edges,
-    attorneyNews.categories.nodes[0].posts.edges,
-  );
 
   // set bio tabs
   const tabs = response.attorneyAdditionalTabs;
@@ -502,11 +475,23 @@ export async function getStaticPaths() {
   return {
     paths:
       res.data.attorneyProfiles.nodes.map((a) => `/attorneys/${a.slug}`) || [],
-    fallback: false,
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
+  // fetch everything else from graphql
+  const attorneyBioContent = await client.query(
+    singleAttorneyQuery(params.slug),
+    {},
+  );
+
+  if (attorneyBioContent.data.attorneyProfiles.edges.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
@@ -515,25 +500,28 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
   ]);
 
-  // fetch everything else from graphql
-  const attorneyBioContent = await client.query(
-    singleAttorneyQuery(params.slug),
+  // attorney news & events articles request
+  const attorneyNewsContent = await client.query(
+    attorneysArticles('Firm News', attorneyBioContent.data.attorneyProfiles.edges[0].node.title),
     {},
   );
 
-  if (
-    attorneyBioContent.data.attorneyProfiles.edges[0].node.length <= 0
-    && bio.status === 404
-  ) {
-    return {
-      notFound: true,
-    };
-  }
+  const attorneyEventsContent = await client.query(
+    attorneysArticles('Firm Events', attorneyBioContent.data.attorneyProfiles.edges[0].node.title),
+    {},
+  );
+
+  // concat all the firm events and firm news into a single array
+  const firmNewsAndEventsArr = [].concat(
+    attorneyEventsContent.data.categories.nodes[0].posts.edges,
+    attorneyNewsContent.data.categories.nodes[0].posts.edges,
+  );
 
   return {
     props: {
       bio,
       response: attorneyBioContent.data.attorneyProfiles.edges[0].node,
+      firmNewsAndEventsArr,
     },
     revalidate: 1,
   };
