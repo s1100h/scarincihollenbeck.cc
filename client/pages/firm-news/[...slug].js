@@ -7,7 +7,9 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import client from 'utils/graphql-client';
-import { headers, urlWithOutBaseUrl } from 'utils/helpers';
+import {
+  headers, urlWithOutBaseUrl, extractH2FromText, extractImgFromText,
+} from 'utils/helpers';
 import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 
@@ -16,13 +18,11 @@ export default function FirmNews({
 }) {
   const router = useRouter();
 
-  // extract h2 tag content from text
-  const findH2TagsInContent = post.content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const pageSubTitle = findH2TagsInContent[0].replace(/<(?:.|\s)*?>/g, '');
+  // get h2 tag text
+  const extractH2Text = extractH2FromText(post.content);
 
-  // extract featured image from text
-  const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
-  const findImgTagsInContent = imgRex.exec(post.content);
+  // get featured image
+  const extractFeaturedImg = extractImgFromText(post.content);
 
   // extract featured image caption
   const captionRex = /<figcaption(?:.*)>(.*)<\/figcaption>|Ui/g;
@@ -32,17 +32,7 @@ export default function FirmNews({
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
   // page content
-  let pageContent = post.content;
-
-  if (findH2TagsInContent) {
-    pageContent = pageContent
-      .replace(findH2TagsInContent[0], '');
-  }
-
-  if (findImgTagsInContent) {
-    pageContent = pageContent
-      .replace(findImgTagsInContent[0], '');
-  }
+  const pageContent = post.content;
 
   return (
     <>
@@ -63,9 +53,7 @@ export default function FirmNews({
           },
           images: [
             {
-              url:
-                post.featuredImage.node.sourceUrl
-                || '/images/sh-mini-diamond-PNG.png',
+              url: (post.featuredImage) ? post.featuredImage.node.sourceUrl : '/images/no-image-found-diamond-750x350.png',
               width: 350,
               height: 150,
               alt: post.seo.title,
@@ -81,10 +69,7 @@ export default function FirmNews({
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[
-          post.featuredImage.node.sourceUrl
-            || '/images/sh-mini-diamond-PNG.png',
-        ]}
+        images={[(post.featuredImage) ? post.featuredImage.node.sourceUrl : '/images/no-image-found-diamond-750x350.png']}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}
         authorName={post.author.node.name}
@@ -95,17 +80,17 @@ export default function FirmNews({
       <SingleSubHeader
         image="/images/Legal-Research-1800x400-JPG.jpg"
         title={post.title}
-        subtitle={pageSubTitle}
+        subtitle={extractH2Text}
       />
       <ThreeColMiniSidebar
         body={(
           <Body
-            featuredImage={findImgTagsInContent[1]}
+            featuredImage={(extractFeaturedImg.source) ? extractFeaturedImg.source : '/images/no-image-found-diamond-750x350.png'}
             caption={findCaptionTagsInContent}
             content={pageContent}
             eventCat={isEventCategory}
             title={post.title}
-            subTitle={pageSubTitle}
+            subTitle={extractH2Text}
             author={authors}
             date={post.date}
             tags={post.tags.nodes}

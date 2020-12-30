@@ -30,16 +30,8 @@ import {
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
-export default function PracticesSingle({ practice, corePractices }) {
+export default function PracticesSingle({ practice, corePractices, practiceChildren }) {
   const router = useRouter();
-  // const sortedCorePractices = sortByKey(corePractices, 'title');
-  // const sortedChildPractices = sortByKey(
-  //   practice.practicesIncluded.childPractice,
-  //   'title',
-  // );
-
-  console.log(practice.practicesIncluded.childPractice)
-  console.log(corePractices);
 
   function handleLink(e) {
     router.push(e.target.value);
@@ -183,16 +175,18 @@ export default function PracticesSingle({ practice, corePractices }) {
               )}
               <SimpleSearch />
               <SubscriptionMessage />
-              {/* <PracticeSidebar
+              <PracticeSidebar
                 title="Core Practices"
-                content={sortedCorePractices}
+                content={corePractices}
                 tabKey={2}
-              /> */}
-              {/* <PracticeSidebar
-                title="Related Sub-Practices"
-                content={sortedChildPractices}
-                tabKey={1}
-              /> */}
+              />
+              {(practiceChildren.length > 0) && (
+                <PracticeSidebar
+                  title="Related Sub-Practices"
+                  content={practiceChildren}
+                  tabKey={1}
+                />
+              )}
             </Col>
           </Row>
         </Container>
@@ -201,7 +195,6 @@ export default function PracticesSingle({ practice, corePractices }) {
     </>
   );
 }
-
 
 export async function getStaticPaths() {
   const res = await client.query(getAllPractices, {});
@@ -232,9 +225,13 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       practice: practicePageContent.data.practices.nodes[0],
-      corePractices: firmCorePracticesContent.data.searchWP.nodes.filter(
+      practiceChildren: (practicePageContent.data.practices.nodes[0].practicesIncluded.childPractice) ? sortByKey(
+        practicePageContent.data.practices.nodes[0].practicesIncluded.childPractice,
+        'title',
+      ) : [],
+      corePractices: sortByKey(firmCorePracticesContent.data.searchWP.nodes.filter(
         (value) => JSON.stringify(value) !== '{}',
-      ),
+      ), 'title'),
     },
     revalidate: 1,
   };

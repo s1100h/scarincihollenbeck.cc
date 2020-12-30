@@ -47,8 +47,8 @@ export default function AdminSingleBio({ response }) {
           images: [
             {
               url: seoProfileImage.sourceUrl,
-              width: seoProfileImage.width,
-              height: seoProfileImage.height,
+              width: 743,
+              height: 795,
               alt: response.seo.title,
             },
           ],
@@ -79,8 +79,6 @@ export default function AdminSingleBio({ response }) {
             <ProfileImage
               image={response.administration.featuredImage.sourceUrl}
               name={response.administration.name}
-              width={profileImage.width}
-              height={profileImage.height}
             />
           )}
           infoCard={(
