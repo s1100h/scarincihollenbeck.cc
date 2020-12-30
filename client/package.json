@@ -21,6 +21,7 @@
     "graphql": "^15.4.0",
     "graphql-client": "^2.0.1",
     "graphql-request": "^3.3.0",
+    "kwesforms": "2.0.3",
     "next": "^10.0.2",
     "next-fonts": "^1.4.0",
     "next-ga": "^2.3.4",

@@ -23,9 +23,13 @@ export default function CategoryColumnContent() {
   if (corePracticesError || lawFirmInsightsChildrenError) return <ErrorMessage />;
   if (!corePractices || !lawFirmInsightsChildren) return <SiteLoader />;
 
-  const sortedCorePractices = sortByKey(corePractices.searchWP.nodes, 'title');
+  const sortedCorePractices = sortByKey(corePractices.searchWP.nodes.filter(
+    (value) => JSON.stringify(value) !== '{}',
+  ), 'title');
   const sortedlawFirmInsightsChildren = sortByKey(
-    lawFirmInsightsChildren.categories.nodes[0].children.nodes,
+    lawFirmInsightsChildren.categories.nodes[0].children.nodes.filter(
+      (value) => JSON.stringify(value) !== '{}',
+    ),
     'title',
   );
 
