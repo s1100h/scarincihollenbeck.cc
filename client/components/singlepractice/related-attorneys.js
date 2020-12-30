@@ -12,8 +12,6 @@ export default function PracticeRelatedAttorneys({
   title,
   handleLink,
 }) {
-  const sortedByLastName = sortByMainInformationLastName(members);
-
   return (
     <>
       {chair && (
@@ -22,7 +20,7 @@ export default function PracticeRelatedAttorneys({
             <h3>{title}</h3>
           </div>
           <Row className="my-5">
-            {chair.map((m) => (
+            {sortByMainInformationLastName(chair).map((m) => (
               <Col sm={12} md={12} lg={6} key={m.id}>
                 <AttorneyCard
                   link={`/attorney/${m.slug}`}
@@ -48,7 +46,7 @@ export default function PracticeRelatedAttorneys({
           <Form className="w-50 py-4">
             <Form.Group>
               <Form.Control as="select" onChange={handleLink} className="w-100">
-                {sortedByLastName.map((m) => (
+                {sortByMainInformationLastName(members).map((m) => (
                   <option
                     value={`/attorney/${m.slug}`}
                     key={m.id}

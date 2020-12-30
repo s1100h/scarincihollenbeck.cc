@@ -24,16 +24,19 @@ export default function PostBody({
     name: tag.name,
     uri: `/archives?q=${tag.uri.replace('/tag/', '')}&page=1`,
   }));
-
+  
   return (
     <>
       <PostBreadcrumbs />
-      <Image
-        src={featuredImage}
-        width={750}
-        height={350}
-        alt={title}
-      />
+      {featuredImage && (
+        <Image
+          src={featuredImage}
+          width={750}
+          height={350}
+          alt={title}
+          layout="intrinsic"
+        />
+      )}
       {caption && (
         <div
           className="mt-0 mb-2"

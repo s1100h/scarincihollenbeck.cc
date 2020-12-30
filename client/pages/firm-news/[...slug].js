@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import Footer from 'components/footer';
@@ -7,32 +8,39 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import client from 'utils/graphql-client';
-import {
-  headers, urlWithOutBaseUrl, extractH2FromText, extractImgFromText,
-} from 'utils/helpers';
+import { headers, urlWithOutBaseUrl } from 'utils/helpers';
+import { parseBlogBodyContent } from 'utils/post-parser';
 import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
 
 export default function FirmNews({
   post, posts, authors, attorneys,
 }) {
+  const [featuredImage, setFeaturedImage] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const [subTitle, setSubTitle] = useState('');
+  const [caption, setCaption] = useState('');
+  const [mounted, setMounted] = useState(true);
   const router = useRouter();
-
-  // get h2 tag text
-  const extractH2Text = extractH2FromText(post.content);
-
-  // get featured image
-  const extractFeaturedImg = extractImgFromText(post.content);
-
-  // extract featured image caption
-  const captionRex = /<figcaption(?:.*)>(.*)<\/figcaption>|Ui/g;
-  const findCaptionTagsInContent = captionRex.exec(post.content);
 
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
-  // page content
-  const pageContent = post.content;
+  useEffect(() => {
+    function parseAndSetBlogPostContent() {
+      const blogPostElms = parseBlogBodyContent(post.content);
+
+      setSubTitle(blogPostElms.h2TagText);
+      setCaption(blogPostElms.captionText);
+      setPostContent(blogPostElms.postContent);
+      setFeaturedImage(blogPostElms.imgSrc);
+      setMounted(false);
+    }
+
+    if (mounted) {
+      parseAndSetBlogPostContent();
+    }
+  });
 
   return (
     <>
@@ -53,9 +61,9 @@ export default function FirmNews({
           },
           images: [
             {
-              url: (post.featuredImage) ? post.featuredImage.node.sourceUrl : '/images/no-image-found-diamond-750x350.png',
-              width: 350,
-              height: 150,
+              url: featuredImage,
+              width: 750,
+              height: 350,
               alt: post.seo.title,
             },
           ],
@@ -69,7 +77,7 @@ export default function FirmNews({
       <ArticleJsonLd
         url={post.uri}
         title={post.seo.title}
-        images={[(post.featuredImage) ? post.featuredImage.node.sourceUrl : '/images/no-image-found-diamond-750x350.png']}
+        images={[featuredImage]}
         datePublished={post.seo.publishedDate}
         dateModified={post.seo.updatedDate}
         authorName={post.author.node.name}
@@ -80,17 +88,17 @@ export default function FirmNews({
       <SingleSubHeader
         image="/images/Legal-Research-1800x400-JPG.jpg"
         title={post.title}
-        subtitle={extractH2Text}
+        subtitle={subTitle}
       />
       <ThreeColMiniSidebar
         body={(
           <Body
-            featuredImage={(extractFeaturedImg.source) ? extractFeaturedImg.source : '/images/no-image-found-diamond-750x350.png'}
-            caption={findCaptionTagsInContent}
-            content={pageContent}
+            featuredImage={featuredImage}
+            caption={caption}
+            content={postContent}
             eventCat={isEventCategory}
             title={post.title}
-            subTitle={extractH2Text}
+            subTitle={subTitle}
             author={authors}
             date={post.date}
             tags={post.tags.nodes}

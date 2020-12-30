@@ -235,30 +235,3 @@ export function sortByMainInformationLastName(attorneys) {
     return 0;
   });
 }
-
-export const extractH2FromText = (content) => {
-  if (process.browser) {
-    const tempElm = document.createElement('div');
-    tempElm.innerHTML = content;
-
-    const h2 = tempElm.querySelector('h2');
-
-    return h2.innerText;
-  }
-};
-
-export const extractImgFromText = (content) => {
-  if (process.browser) {
-    const tempElm = document.createElement('div');
-    tempElm.innerHTML = content;
-
-    const img = tempElm.querySelector('img');
-
-    return {
-      code: img,
-      source: img.src,
-    };
-  }
-};
-
-// e
