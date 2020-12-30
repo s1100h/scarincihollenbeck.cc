@@ -130,7 +130,7 @@ export default function CareerForm({ contact, title }) {
             <FormReCaptcha setCaptcha={setCaptcha} />
           </Col>
         </Row>
-        <Button 
+        <Button
           variant="danger"
           className="mt-2 px-4"
           disabled={captcha}

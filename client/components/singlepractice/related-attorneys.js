@@ -59,7 +59,7 @@ export default function PracticeRelatedAttorneys({
             </Form.Group>
           </Form>
           <Row>
-            {sortedByLastName.map((m) => (
+            {sortByMainInformationLastName(members).map((m) => (
               <Col sm={12} md={12} lg={6} key={m.id} className="mb-3">
                 <AttorneyCard
                   link={`/attorney/${m.slug}`}

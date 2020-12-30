@@ -17,9 +17,9 @@ export function parseBlogBodyContent(content) {
   }
 
   return {
-    h2TagText: (h2Tag) ? h2Tag.innerText : '',
-    imgSrc: (img) ? img.src : '/images/no-image-found-diamond-750x350.png',
-    captionText: (figCaption) ? figCaption.innerText : '',
+    h2TagText: h2Tag ? h2Tag.innerText : '',
+    imgSrc: img ? img.src : '/images/no-image-found-diamond-750x350.png',
+    captionText: figCaption ? figCaption.innerText : '',
     postContent: doc.body.innerHTML || '',
   };
 }

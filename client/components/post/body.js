@@ -24,7 +24,7 @@ export default function PostBody({
     name: tag.name,
     uri: `/archives?q=${tag.uri.replace('/tag/', '')}&page=1`,
   }));
-  
+
   return (
     <>
       <PostBreadcrumbs />

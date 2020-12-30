@@ -75,6 +75,7 @@ export default function LocationsSidebar({
                   >
                     <strong>
                       Directions to
+                      {' '}
                       {o.title}
                     </strong>
                   </Button>

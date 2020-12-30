@@ -144,7 +144,7 @@ export default function NavBar() {
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     className={navBarStyles.dropDownNavItem}
-                    href="/category/quick-news?page=1"
+                    href="/quick-news?page=1"
                   >
                     Quick News
                   </NavDropdown.Item>

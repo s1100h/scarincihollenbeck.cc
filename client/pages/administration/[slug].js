@@ -25,15 +25,6 @@ export default function AdminSingleBio({ response }) {
     );
   }
 
-  const imageLarge = response.administration.featuredImage.mediaDetails.sizes.filter(
-    (i) => i.name === 'large',
-  );
-  const imageThumb = response.administration.featuredImage.mediaDetails.sizes.filter(
-    (i) => i.name === 'thumbnail',
-  );
-  const seoProfileImage = imageThumb[0];
-  const profileImage = imageLarge[0];
-
   return (
     <>
       <NextSeo
@@ -46,7 +37,7 @@ export default function AdminSingleBio({ response }) {
           description: response.seo.metaDesc,
           images: [
             {
-              url: seoProfileImage.sourceUrl,
+              url: response.administration.featuredImage.sourceUrl,
               width: 743,
               height: 795,
               alt: response.seo.title,
