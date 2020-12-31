@@ -19,11 +19,11 @@ export default function ArchivePracticeBlockList({ list }) {
                 {item.title}
               </Dropdown.Toggle>
               <Dropdown.Menu className="w-100">
-                <Dropdown.Item key={item.id} href={item.uri}>
+                <Dropdown.Item key={item.id} href={item.uri.replace('https://scarincihollenbeck.com', '')}>
                   Overview
                 </Dropdown.Item>
                 {item.practicesIncluded.childPractice.map((child) => (
-                  <Dropdown.Item key={child.id} href={child.uri}>
+                  <Dropdown.Item key={child.id} href={child.uri.replace('https://scarincihollenbeck.com', '')}>
                     {child.title}
                   </Dropdown.Item>
                 ))}
@@ -32,7 +32,7 @@ export default function ArchivePracticeBlockList({ list }) {
           </Col>
         ) : (
           <Col sm={12} md={4} key={item.id} className="mb-3">
-            <Link href={item.uri}>
+            <Link href={item.uri.replace('https://scarincihollenbeck.com', '')}>
               <a className={`${bigButtonStyles.tab} w-100 d-block`}>
                 {item.title}
               </a>

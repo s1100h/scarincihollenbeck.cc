@@ -24,7 +24,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, sortByKey } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import {
-  getAllPractices,
   getPracticeBySlug,
   getPracticesByInput,
 } from 'queries/practices';
@@ -110,7 +109,6 @@ export default function PracticeSingle({
                   />
                 </TabContent>
               )}
-              {/** related attorneys */}
               <RelatedAttorneys
                 members={practice.practicesIncluded.includeAttorney}
                 chair={practice.practicesIncluded.sectionChief}
@@ -127,7 +125,7 @@ export default function PracticeSingle({
                   />
                 </>
               )}
-              {practice.practicesIncluded.highlightScroller && (
+              {practice.practicesIncluded.relatedBlogCategory && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
@@ -205,16 +203,16 @@ export default function PracticeSingle({
   );
 }
 
-export async function getStaticPaths() {
-  const res = await client.query(getAllPractices, {});
+// export async function getStaticPaths() {
+//   const res = await client.query(getAllPractices, {});
 
-  return {
-    paths: res.data.practices.nodes.map((a) => `/practice/${a.slug}`) || [],
-    fallback: false,
-  };
-}
+//   return {
+//     paths: res.data.practices.nodes.map((a) => `/practice/${a.slug}`) || [],
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const practicePageContent = await client.query(
     getPracticeBySlug(params.slug),
     {},
@@ -226,17 +224,19 @@ export async function getStaticProps({ params }) {
   );
 
   if (practicePageContent.data.practices.nodes.length === 0) {
+    res.statusCode = 404;
     return {
       notFound: true,
     };
   }
 
   if (firmCorePracticesContent.data.searchWP.nodes.length === 0) {
+    res.statusCode = 404;
     return {
       notFound: true,
     };
   }
-
+  // revalidate: 1,
   return {
     props: {
       practice: practicePageContent.data.practices.nodes[0],
@@ -255,6 +255,5 @@ export async function getStaticProps({ params }) {
         'title',
       ),
     },
-    revalidate: 1,
   };
 }
