@@ -14,6 +14,7 @@ export default function PostAuthorBio({ author }) {
           <div key={a.name} className="mb-2">
             <h4 className={grayTitleStyles.title}>
               About Author
+              {' '}
               {a.name}
             </h4>
             <div className="card flex-row flex-wrap mt-4 mh-160">

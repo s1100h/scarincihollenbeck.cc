@@ -23,7 +23,7 @@ export default function PracticeRelatedAttorneys({
             {sortByMainInformationLastName(chair).map((m) => (
               <Col sm={12} md={12} lg={6} key={m.id}>
                 <AttorneyCard
-                  link={`/attorney/${m.slug}`}
+                  link={m.uri}
                   image={m.featuredImage.node.sourceUrl}
                   name={m.title}
                   title={m.attorneyMainInformation.designation}
@@ -31,7 +31,7 @@ export default function PracticeRelatedAttorneys({
                   email={m.attorneyMainInformation.email}
                   width={80}
                   height={112}
-                  type="/attorney/[slug]"
+                  type="/attorneys/[slug]"
                 />
               </Col>
             ))}
@@ -48,7 +48,7 @@ export default function PracticeRelatedAttorneys({
               <Form.Control as="select" onChange={handleLink} className="w-100">
                 {sortByMainInformationLastName(members).map((m) => (
                   <option
-                    value={`/attorney/${m.slug}`}
+                    value={m.uri}
                     key={m.id}
                     className="w-100"
                   >
@@ -62,7 +62,7 @@ export default function PracticeRelatedAttorneys({
             {sortByMainInformationLastName(members).map((m) => (
               <Col sm={12} md={12} lg={6} key={m.id} className="mb-3">
                 <AttorneyCard
-                  link={`/attorney/${m.slug}`}
+                  link={m.uri}
                   image={m.featuredImage.node.sourceUrl}
                   name={m.title}
                   title={m.attorneyMainInformation.designation}
@@ -70,7 +70,7 @@ export default function PracticeRelatedAttorneys({
                   email={m.attorneyMainInformation.email}
                   width={80}
                   height={112}
-                  type="/attorney/[slug]"
+                  type="/attorneys/[slug]"
                 />
               </Col>
             ))}

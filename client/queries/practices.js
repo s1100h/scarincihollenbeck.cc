@@ -55,6 +55,7 @@ export const getPracticeBySlug = (slug) => `{
           ... on AttorneyProfile {
             id
             title
+            uri
             attorneyMainInformation {
               designation
               email
@@ -102,6 +103,7 @@ export const getPracticeBySlug = (slug) => `{
           ... on AttorneyProfile {
             id
             title
+            uri
             attorneyMainInformation {
               email
               designation
