@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import { request } from 'graphql-request';
 import Footer from 'components/footer';
+import SiteLoader from 'components/site-loader';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
 import CareerSection from 'components/archivecareers';
@@ -18,6 +19,10 @@ export default function CareersPage({ positionTypes, locations }) {
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
   const [queryParams] = useState({});
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
 
   // fetch careers
   const { data: res, error: resError } = useSWR(
