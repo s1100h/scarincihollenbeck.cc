@@ -9,9 +9,9 @@ import Body from 'components/post/body';
 import EventSidebar from 'components/post/event-sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import client from 'utils/graphql-client';
-import { headers, urlWithOutBaseUrl } from 'utils/helpers';
+import { headers } from 'utils/helpers';
 import { parseBlogBodyContent } from 'utils/post-parser';
-import { getListOfPostsByName, getPostBySlug } from 'queries/posts';
+import { getPostBySlug } from 'queries/posts';
 
 export default function FirmEvents({
   post, authors, eventDetails, attorneys,
@@ -118,18 +118,18 @@ export default function FirmEvents({
   );
 }
 
-export async function getStaticPaths() {
-  const res = await client.query(getListOfPostsByName('firm-events'), {});
-  const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'firm-events');
+// export async function getStaticPaths() {
+//   const res = await client.query(getListOfPostsByName('firm-events'), {});
+//   const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'firm-events');
 
-  return {
-    paths: slugs || [],
-    fallback: true,
-  };
-}
+//   return {
+//     paths: slugs || [],
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const res = await client.query(
+export async function getServerSideProps({ params, res }) {
+  const graphQLResponse = await client.query(
     getPostBySlug(params.slug[params.slug.length - 1]),
     {},
   );
@@ -146,25 +146,27 @@ export async function getStaticProps({ params }) {
       .catch((err) => err),
   ]);
 
-  if (!res.data.posts.nodes[0]) {
+  if (!graphQLResponse.data.posts.nodes[0]) {
+    res.statusCode = 404;
     return {
       notFound: true,
     };
   }
 
   if (restResponse.status === 404) {
+    res.statusCode = 404;
     return {
       notFound: true,
     };
   }
 
+  // , revalidate: 1,
   return {
     props: {
-      post: res.data.posts.nodes[0],
+      post: graphQLResponse.data.posts.nodes[0],
       authors: restResponse.author,
       eventDetails: restResponse.eventDetails,
       attorneys: restResponse.attorneys,
     },
-    revalidate: 1,
   };
 }

@@ -14,7 +14,7 @@ import ColumnContent from 'components/category/column-content';
 import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content';
 import Footer from 'components/footer';
 import client from 'utils/graphql-client';
-import { getAllCategories, getFirst14PostsFromSlug } from 'queries/category';
+import { getFirst14PostsFromSlug } from 'queries/category';
 import styles from 'styles/LineHeader.module.css';
 
 export default function CategoryLandingPage({
@@ -117,16 +117,16 @@ export default function CategoryLandingPage({
     </>
   );
 }
-export async function getStaticPaths() {
-  const res = await client.query(getAllCategories, {});
+// export async function getStaticPaths() {
+//   const res = await client.query(getAllCategories, {});
 
-  return {
-    paths: res.data.categories.nodes.map((a) => a.uri) || [],
-    fallback: true,
-  };
-}
+//   return {
+//     paths: res.data.categories.nodes.map((a) => a.uri) || [],
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const categoryFromUrl = params.slug[params.slug.length - 1];
   const res = await client.query(getFirst14PostsFromSlug(categoryFromUrl), {});
 
@@ -142,6 +142,7 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  //  revalidate: 1,
   return {
     props: {
       name: res.data.categories.nodes[0].name,
@@ -151,6 +152,5 @@ export async function getStaticProps({ params }) {
       seo: res.data.categories.nodes[0].seo,
       children: res.data.categories.nodes[0].children.nodes,
     },
-    revalidate: 1,
   };
 }

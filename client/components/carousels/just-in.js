@@ -10,6 +10,7 @@ import { request } from 'graphql-request';
 import styles from 'styles/JustIn.module.css';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
+import { fetcher } from 'utils/helpers';
 
 const jiResponsive = {
   superLargeDesktop: {
@@ -37,10 +38,7 @@ function formatDate(date) {
 }
 
 export default function CarouselsJustIn() {
-  const { data: justInSlides, error: justInError } = useSWR(
-    blogArticlesQuery(97),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
-  );
+  const { data: justInSlides, error: justInError } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/just-in/posts`, fetcher);
 
   if (justInError) return <ErrorMessage />;
   if (!justInSlides) return <SiteLoader />;
@@ -53,37 +51,29 @@ export default function CarouselsJustIn() {
       arrows
       swipeable
     >
-      {justInSlides.category.posts.edges.map((slide) => (
-        <div key={slide.node.id} className={styles.JustInCarouselContent}>
-          <Link href={slide.node.link}>
+      {justInSlides.map((slide) => (
+        <div key={slide.id} className={styles.JustInCarouselContent}>
+          <Link href={slide.link}>
             <a>
               <p className={styles.justInHeader}>
                 <span className={styles.category}>
                   <FontAwesomeIcon icon={faNewspaper} />
                   {' '}
-                  {slide.node.categories.nodes.length > 0
-                    ? slide.node.categories.nodes[0].name
-                    : ''}
+                  {slide.category}
                 </span>
-                {formatDate(slide.node.date) !== 'Invalid Date' && (
+                {formatDate(slide.date) !== 'Invalid Date' && (
                   <span className={styles.date}>
-                    {formatDate(slide.node.date)}
+                    {formatDate(slide.date)}
                   </span>
                 )}
               </p>
               <div className={styles.justInContent}>
                 <h5>
-                  <strong>{slide.node.title}</strong>
+                  <strong>{slide.title}</strong>
                 </h5>
                 <Image
-                  src={
-                    slide.node.image
-                      ? slide.node.image.node.sourceUrl
-                      : slide.node.featuredImage
-                        ? slide.node.featuredImage.node.sourceUrl
-                        : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'
-                  }
-                  alt={slide.node.title}
+                  src={slide.image ||'/images/no-image-found-diamond-750x350.png'}
+                  alt={slide.title}
                   width={300}
                   height={150}
                 />
@@ -91,7 +81,7 @@ export default function CarouselsJustIn() {
                 <p className={styles.tag}>
                   <FontAwesomeIcon icon={faPlusCircle} />
                   {' '}
-                  {slide.node.postsLocationSelection.locationSelection[0]}
+                  {slide.location}
                 </p>
               </div>
             </a>

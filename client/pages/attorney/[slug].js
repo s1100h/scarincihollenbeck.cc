@@ -485,12 +485,6 @@ export async function getStaticProps({ params }) {
     {},
   );
 
-  if (attorneyBioContent.data.attorneyProfiles.edges.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
-
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
@@ -498,6 +492,18 @@ export async function getStaticProps({ params }) {
       { headers },
     ).then((data) => data.json()),
   ]);
+
+  if (attorneyBioContent.data.attorneyProfiles.edges.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (bio.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
 
   // attorney news & events articles request
   const attorneyNewsContent = await client.query(
