@@ -136,12 +136,18 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  if (res.data.categories.nodes[0].posts.edges.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       name: res.data.categories.nodes[0].name,
       uri: res.data.categories.nodes[0].uri,
       description: res.data.categories.nodes[0].description,
-      posts: res.data.categories.nodes[0].posts.edges,
+      posts: res.data.categories.nodes[0].posts.edges || [],
       seo: res.data.categories.nodes[0].seo,
       children: res.data.categories.nodes[0].children.nodes,
     },

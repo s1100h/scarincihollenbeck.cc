@@ -45,15 +45,15 @@ function buildAttorneyProfileSchema(
 ) {
   let links;
 
-  if (socialMediaLinks.length > 0) {
+  if (socialMediaLinks) {
     links = socialMediaLinks.map((link) => link.url);
-  }
 
-  if (socialMediaLinks.length === 0) {
-    links = [
-      'https://www.facebook.com/ScarinciHollenbeck/',
-      'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
-    ];
+    if (socialMediaLinks.length === 0) {
+      links = [
+        'https://www.facebook.com/ScarinciHollenbeck/',
+        'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+      ];
+    }
   }
 
   return {
