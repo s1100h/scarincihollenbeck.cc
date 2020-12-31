@@ -31,7 +31,6 @@ import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import {
   singleAttorneyQuery,
   attorneysArticles,
-  getAllAttorneySlugs,
 } from 'queries/attorneys';
 import client from 'utils/graphql-client';
 import tabStyle from 'styles/BigButtonTabs.module.css';
@@ -470,11 +469,15 @@ export default function AttorneysSingleBio({ bio, response, firmNewsAndEventsArr
 }
 
 export async function getStaticPaths() {
-  const res = await client.query(getAllAttorneySlugs, {});
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
 
   return {
-    paths:
-      res.data.attorneyProfiles.nodes.map((a) => `/attorneys/${a.slug}`) || [],
+    paths: res.map((a) => `/attorneys${a.link}`) || [],
     fallback: true,
   };
 }

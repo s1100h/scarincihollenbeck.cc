@@ -7,7 +7,8 @@ import LargeSidebar from 'layouts/large-sidebar';
 import BreadCrumbs from 'components/basic-breadcrumbs';
 import SingleCareerBody from 'components/singlecareer/body';
 import SingleCareerSidebar from 'components/singlecareer/sidebar';
-import { getAllCareers, getSingleCareer } from 'queries/careers';
+import { getSingleCareer } from 'queries/careers';
+import { headers } from 'utils/helpers';
 import client from 'utils/graphql-client';
 
 export default function CareerPost({ career }) {
@@ -48,10 +49,15 @@ export default function CareerPost({ career }) {
 }
 
 export async function getStaticPaths() {
-  const res = await client.query(getAllCareers, {});
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/career-portal/careers',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
 
   return {
-    paths: res.data.careers.nodes.map((c) => `/career/${c.slug}`) || [],
+    paths: res.careers.map((c) => `/career${c.slug}`) || [],
     fallback: true,
   };
 }

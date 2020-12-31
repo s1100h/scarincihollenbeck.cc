@@ -71,11 +71,16 @@ export default function SingleLocation({
 }
 
 export async function getStaticPaths() {
-  const res = await client.query(allLocations, {});
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/location-portal/offices',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
 
   return {
-    paths: res.data.officeLocations.nodes.map((a) => a.uri) || [],
-    fallback: true,
+    paths: res.offices.map((o) => o.slug) || [],
+    fallback: false,
   };
 }
 

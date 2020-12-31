@@ -21,7 +21,7 @@ import PracticeSidebar from 'components/singlepractice/sidebar';
 import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { urlify, sortByKey } from 'utils/helpers';
+import { urlify, sortByKey, headers } from 'utils/helpers';
 import client from 'utils/graphql-client';
 import {
   getPracticeBySlug,
@@ -204,16 +204,21 @@ export default function PracticesSingle({
   );
 }
 
-// export async function getStaticPaths() {
-//   const res = await client.query(getAllPractices, {});
+export async function getStaticPaths() {
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
 
-//   return {
-//     paths: res.data.practices.nodes.map((a) => `/practices/${a.slug}`) || [],
-//     fallback: false,
-//   };
-// }
+  return {
+    paths: res.map((slug) => `/practices/${slug}`) || [],
+    fallback: false,
+  };
+}
 
-export async function getServerSideProps({ params, res }) {
+export async function getStaticProps({ params }) {
   const practicePageContent = await client.query(
     getPracticeBySlug(params.slug),
     {},
@@ -224,21 +229,18 @@ export async function getServerSideProps({ params, res }) {
     {},
   );
 
-  if (practicePageContent.data.practices.nodes.length <= 0) {
-    res.statusCode = 404;
+  if (practicePageContent.data.practices.nodes.length === 0) {
     return {
       notFound: true,
     };
   }
 
   if (firmCorePracticesContent.data.searchWP.nodes.length === 0) {
-    res.statusCode = 404;
     return {
       notFound: true,
     };
   }
 
-  // revalidate: 1,
   return {
     props: {
       practice: practicePageContent.data.practices.nodes[0],
@@ -257,5 +259,6 @@ export async function getServerSideProps({ params, res }) {
         'title',
       ),
     },
+    revalidate: 1,
   };
 }
