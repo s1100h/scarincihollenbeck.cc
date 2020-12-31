@@ -496,6 +496,9 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
   ]);
 
+  console.log('ATTORNEY BIO CONTENT');
+  console.log(attorneyBioContent);
+
   if (attorneyBioContent.data.attorneyProfiles.edges.length === 0) {
     return {
       notFound: true,
@@ -518,6 +521,11 @@ export async function getStaticProps({ params }) {
     attorneysArticles('Firm Events', attorneyBioContent.data.attorneyProfiles.edges[0].node.title),
     {},
   );
+
+  console.log('ATTORNEY NEWS CONTENT');
+  console.log(attorneyNewsContent);
+  console.log('ATTORNEY EVENTS CONTENT');
+  console.log(attorneyEventsContent);
 
   // concat all the firm events and firm news into a single array
   const firmNewsAndEventsArr = [].concat(

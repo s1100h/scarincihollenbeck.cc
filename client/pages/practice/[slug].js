@@ -228,6 +228,11 @@ export async function getStaticProps({ params }) {
     {},
   );
 
+  console.log('PRACTICE PAGE CONTENT');
+  console.log(practicePageContent);
+  console.log('FIRM CORE PRACTICES CONTENT');
+  console.log(firmCorePracticesContent);
+
   if (practicePageContent.data.practices.nodes.length === 0) {
     return {
       notFound: true,
