@@ -1,0 +1,92 @@
+.justInContainer {
+  max-width: 1416px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2em;
+}
+
+.borderRed {
+  border-bottom: 0.5px solid #901918;
+}
+
+.bkGray {
+  background: #e9e9e9;
+}
+
+.LinkContainer {
+  flex-direction: column;
+}
+
+.LinkSeperator {
+  display: none;
+}
+
+@media (max-width: 675px) {
+  .LinkContainer div a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (min-width: 576px) and (max-width: 675px) {
+  .LinkContainer {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 675px) and (max-width: 1092px) {
+  .LinkContainer {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .LinkContainer div a {
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+}
+
+@media (min-width: 1092px) {
+  .LinkContainer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .LinkSeperator {
+    display: initial;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+  }
+
+  .FooterSearch > div > form {
+    margin-right: 0 !important;
+  }
+}
+
+@media (min-width: 1246px) {
+  .LinkSeperator {
+    display: initial;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+@media (min-width: 2004px) {
+  .justInContainer .react-multiple-carousel__arrow--right {
+    right: -1% !important;
+  }
+
+  .justInContainer .react-multiple-carousel__arrow--left {
+    left: -1% !important;
+  }
+}
+
+@media (min-width: 2475px) {
+  .justInContainer .react-multiple-carousel__arrow--right {
+    right: -0.5% !important;
+  }
+  .justInContainer .react-multiple-carousel__arrow--left {
+    left: -0.5% !important;
+  }
+}

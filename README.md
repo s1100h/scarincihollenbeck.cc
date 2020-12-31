@@ -39,9 +39,9 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
   * [React Stickynode](https://github.com/yahoo/react-stickynode)
   * [React Virtualized](http://bvaughn.github.io/react-virtualized/#/components/List)
   * [RSS Parser](https://github.com/rbren/rss-parser#readme)
-  * [SaSS](https://sass-lang.com/)
   * [Styled Components](https://styled-components.com/)
   * [SWR](https://swr.vercel.app/)
+  * [GraphQL](https://graphql.org/)
 
 **Sitemap Application built with**
   * [datetime](https://docs.python.org/3/library/datetime.html)

@@ -1,0 +1,136 @@
+import { useRouter } from 'next/router';
+import { NextSeo, SocialProfileJsonLd } from 'next-seo';
+import Footer from 'components/footer';
+import ProfileImage from 'components/singleattorney/profile-image';
+import InfoCard from 'components/singleattorney/info-card';
+import SiteLoader from 'components/site-loader';
+import MultiSubHeader from 'layouts/multi-sub-header';
+import FullWidth from 'layouts/full-width';
+import { createMarkup } from 'utils/helpers';
+import client from 'utils/graphql-client';
+import {
+  singleAdministraionQuery,
+  getAllAdministration,
+} from 'queries/administration';
+import lineStyles from 'styles/LineHeader.module.css';
+
+export default function AdminSingleBio({ response }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div className="my-5 py-5">
+        <SiteLoader />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <NextSeo
+        title={response.seo.title}
+        description={response.seo.metaDesc}
+        canonical={`https://scarincihollenbeck.com${response.uri}`}
+        openGraph={{
+          url: `https://scarincihollenbeck.com${response.uri}`,
+          title: 'Scarinci Hollenbeck',
+          description: response.seo.metaDesc,
+          images: [
+            {
+              url: response.administration.featuredImage.sourceUrl,
+              width: 743,
+              height: 795,
+              alt: response.seo.title,
+            },
+          ],
+          site_name: 'Scarinci Hollenbeck',
+        }}
+        twitter={{
+          handle: '@S_H_Law',
+          site: `https://scarincihollenbeck.com${response.uri}`,
+          cardType: response.seo.metaDesc,
+        }}
+      />
+      <SocialProfileJsonLd
+        type="Person"
+        name={response.administration.name}
+        url={`https://scarincihollenbeck.com${response.uri}`}
+        sameAs={[
+          'https://twitter.com/S_H_Law',
+          'https://www.facebook.com/ScarinciHollenbeck/',
+          'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
+        ]}
+      />
+      <div>
+        <MultiSubHeader
+          image="/images/Columns-1800x400-JPG.jpg"
+          height="450px"
+          isAdmin
+          profile={(
+            <ProfileImage
+              image={response.administration.featuredImage.sourceUrl}
+              name={response.administration.name}
+            />
+          )}
+          infoCard={(
+            <InfoCard
+              email={response.administration.email}
+              vizibility={response.administration.vizibility}
+              fullName={response.administration.name}
+              designation={response.administration.title}
+              phoneNumber={`201-896-4100 ${response.administration.phoneExtension}`}
+              socialMediaLinks={response.administration.socialMediaLinks}
+              offices={response.administration.location}
+            />
+          )}
+        />
+        <FullWidth>
+          <div>
+            <div className={lineStyles.lineHeader}>
+              <h3>Biography</h3>
+            </div>
+            <div className="w-100 my-5">
+              <div
+                dangerouslySetInnerHTML={createMarkup(
+                  response.administration.biography,
+                )}
+              />
+            </div>
+          </div>
+        </FullWidth>
+      </div>
+      <Footer />
+    </>
+  );
+}
+
+export async function getStaticPaths() {
+  const res = await client.query(getAllAdministration, {});
+
+  return {
+    paths:
+      res.data.administrations.nodes.map((a) => `/administration/${a.slug}`)
+      || [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const administrationContent = await client.query(
+    singleAdministraionQuery(params.slug),
+    {},
+  );
+
+  if (administrationContent.data.administrations.edges.length <= 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      response: administrationContent.data.administrations.edges[0].node,
+    },
+    revalidate: 1,
+  };
+}

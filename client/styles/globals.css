@@ -1,0 +1,70 @@
+/** Fonts **/
+@font-face {
+  font-family: 'Proxima Nova Regular';
+  src: url('/fonts/proxima-nova-regular.ttf');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Bold';
+  src: url('/fonts/proxima-nova-bold.ttf');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Italic';
+  font-style: italic;
+  font-weight: 500;
+  src: url('/fonts/proxima-nova-italic.ttf');
+  font-display: swap;
+}
+
+body {
+  font-family: 'Proxima Nova Regular' !important;
+  font-weight: 500;
+}
+
+strong {
+  font-family: 'Proxima Nova Bold';
+}
+
+em {
+  font-family: 'Proxima Nova Italic';
+}
+
+.btn-danger,
+.red--grad {
+  font-weight: bold;
+  background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
+}
+
+.off-white {
+  background-color: #fcfaff;
+}
+
+.attorney-bio-sidebar-list ul {
+  margin: 0;
+  font-size: 14px;
+  margin-left: -18px;
+}
+
+.attorney-bio-sidebar-list ul > li {
+  line-height: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.mw-45 {
+  width: 55%;
+}
+
+.show > .btn-primary.dropdown-toggle {
+  background-color: #fff;
+  color: #000;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
