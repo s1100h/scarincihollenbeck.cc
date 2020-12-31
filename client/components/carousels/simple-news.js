@@ -35,7 +35,7 @@ export default function CarouselsSimpleNews({ slides }) {
     >
       {slides.map((slide) => (
         <div key={slide.title} className="pb-2 px-4">
-          <Link href={slide.link || '/'}>
+          <Link href={(slide.link) ? slide.link.replace('https://scarincihollenbeck.com', '') : '/'}>
             <a>
               <Image
                 src={

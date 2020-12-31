@@ -35,7 +35,7 @@ export default function CarouselsLatestNews({ slides }) {
     >
       {slides.map((slide) => (
         <div key={slide.id || slide.node.id} className="pb-2 px-4">
-          <Link href={slide.slug || slide.node.link}>
+          <Link href={(slide.slug) ? slide.slug.replace('https://scarincihollenbeck.com', '') : slide.node.link.replace('https://scarincihollenbeck.com', '')}>
             <a>
               <Image
                 src={

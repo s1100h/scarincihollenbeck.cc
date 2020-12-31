@@ -15,6 +15,7 @@ export const blogArticlesQuery = (id) => `{
           title
           id
           link
+          uri
           featuredImage {
             node {
               sourceUrl

@@ -127,7 +127,7 @@ export default function PracticesSingle({
                   />
                 </>
               )}
-              {practice.practicesIncluded.highlightScroller && (
+              {practice.practicesIncluded.relatedBlogCategory && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
