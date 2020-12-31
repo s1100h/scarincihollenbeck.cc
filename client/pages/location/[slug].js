@@ -1,6 +1,8 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
+import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import BodyContent from 'components/locations/body';
@@ -16,6 +18,12 @@ export default function SingleLocation({
   attorneys,
   posts,
 }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
   return (
     <>
       <NextSeo
@@ -67,7 +75,7 @@ export async function getStaticPaths() {
 
   return {
     paths: res.data.officeLocations.nodes.map((a) => a.uri) || [],
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -77,6 +85,18 @@ export async function getStaticProps({ params }) {
 
   // get a list of all offices
   const allOfficeLocations = await client.query(allLocations, {});
+
+  if (locationContent.data.officeLocations.nodes.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (allOfficeLocations.data.officeLocations.nodes.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
 
   // get all attorneys & posts related to each location
   const [attorneys, postsByLocation] = await Promise.all([
@@ -98,12 +118,6 @@ export async function getStaticProps({ params }) {
       .replace('.', '')
       .indexOf(params.slug) > -1,
   );
-
-  if (locationContent.data.officeLocations.nodes.length <= 0) {
-    return {
-      notFound: true,
-    };
-  }
 
   return {
     props: {

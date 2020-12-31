@@ -111,17 +111,17 @@ export async function getStaticPaths() {
     paths:
       res.data.administrations.nodes.map((a) => `/administration/${a.slug}`)
       || [],
-    fallback: false,
+    fallback: true,
   };
 }
 
-export async function getStaticProps({ params, res }) {
+export async function getStaticProps({ params }) {
   const administrationContent = await client.query(
     singleAdministraionQuery(params.slug),
     {},
   );
 
-  if (!res && administrationContent.data.administrations.edges.length <= 0) {
+  if (administrationContent.data.administrations.edges.length <= 0) {
     return {
       notFound: true,
     };

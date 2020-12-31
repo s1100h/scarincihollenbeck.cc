@@ -128,7 +128,7 @@ export default function SingleAttorneyInfoCard({
                 </h6>
               </li>
             )}
-            {offices !== undefined && offices.length > 0 && (
+            {offices && (
               <li className="mb-3">
                 <FontAwesomeIcon
                   icon={faBuilding}

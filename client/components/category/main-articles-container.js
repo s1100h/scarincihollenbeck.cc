@@ -4,19 +4,19 @@ import { createMarkup } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function CategoryMainArticlesContainer({ main }) {
-  let getFeaturedImage;
+  let getFeaturedImage = '/images/no-image-found-diamond-750x350.png';
 
-  if (main.node.featuredImage) {
-    if (main.node.featuredImage.node.sourceUrl.indexOf('Feature.png') > 0) {
-      getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace(
-        'Feature.png',
-        'Body.png',
-      );
-    } else {
-      getFeaturedImage = main.node.featuredImage.node.sourceUrl;
+  if (main) {
+    if (main.node.featuredImage) {
+      if (main.node.featuredImage.node.sourceUrl.indexOf('Feature.png') > 0) {
+        getFeaturedImage = main.node.featuredImage.node.sourceUrl.replace(
+          'Feature.png',
+          'Body.png',
+        );
+      } else {
+        getFeaturedImage = main.node.featuredImage.node.sourceUrl;
+      }
     }
-  } else {
-    getFeaturedImage = '/images/no-image-found-diamond-750x350.png';
   }
 
   const category = main.node.categories.nodes[0];

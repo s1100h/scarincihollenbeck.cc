@@ -28,6 +28,7 @@ module.exports = {
     'no-prototype-builtins': 'off',
     'no-nested-ternary': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'linebreak-style': 'off',
     'no-console': [
       2,
       {

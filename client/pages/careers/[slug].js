@@ -1,5 +1,7 @@
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
+import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import SingleCareerBreadCrumbs from 'components/singlecareer/breadcrumbs';
@@ -9,6 +11,12 @@ import { getAllCareers, getSingleCareer } from 'queries/careers';
 import client from 'utils/graphql-client';
 
 export default function CareersPost({ career }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
   return (
     <>
       <NextSeo

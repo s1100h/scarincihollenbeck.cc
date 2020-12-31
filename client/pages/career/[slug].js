@@ -1,5 +1,7 @@
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
+import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import BreadCrumbs from 'components/basic-breadcrumbs';
@@ -9,6 +11,12 @@ import { getAllCareers, getSingleCareer } from 'queries/careers';
 import client from 'utils/graphql-client';
 
 export default function CareerPost({ career }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
   return (
     <>
       <NextSeo
@@ -44,18 +52,15 @@ export async function getStaticPaths() {
 
   return {
     paths: res.data.careers.nodes.map((c) => `/career/${c.slug}`) || [],
-    fallback: false,
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
   const careerContent = await client.query(getSingleCareer(params.slug), {});
 
-  if (careerContent.data.careers.nodes.length <= 0) {
+  if (careerContent.data.careers.nodes.length === 0) {
     return {
-      props: {
-        career: [],
-      },
       notFound: true,
     };
   }
