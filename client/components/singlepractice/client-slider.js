@@ -34,11 +34,7 @@ export default function PracticeClientSlider({ content }) {
       {content.map((slide) => (
         <div key={slide.title} className="pb-2 px-4">
           <Image
-            src={
-              slide.image.sourceUrl
-                ? slide.image.sourceUrl
-                : '/images/no-image-found-diamond.png'
-            }
+            src={slide.image || '/images/no-image-found-diamond.png'}
             width={300}
             height={300}
             layout="intrinsic"

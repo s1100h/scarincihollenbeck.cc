@@ -14,11 +14,7 @@ function Post(content, { index }) {
       <Link href={post.link}>
         <a className="d-flex flex-row text-dark">
           <Image
-            src={
-              post.featuredImage
-                ? post.featuredImage.node.sourceUrl
-                : '/images/no-image-found-diamond.png'
-            }
+            src={post.image || '/images/no-image-found-diamond.png'}
             width={196}
             height={98}
             layout="intrinsic"

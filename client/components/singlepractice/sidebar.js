@@ -13,8 +13,8 @@ export default function PracticeSidebar({ title, content, tabKey }) {
           <div className="off-white">
             <ul className="px-4 py-2">
               {content.map((c) => (
-                <li key={c.id} className="mb-2">
-                  <Link href={c.uri}>
+                <li key={c.ID || c.id} className="mb-2">
+                  <Link href={c.slug || '/'}>
                     <a className={`${styles.lh22px} text-dark`}>
                       <strong>{c.title}</strong>
                     </a>

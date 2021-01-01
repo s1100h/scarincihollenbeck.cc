@@ -18,8 +18,8 @@ export default function SingleAttorneySidebarPracticeList({
             <div className="off-white">
               <ul className="px-4 py-2">
                 {content.map((c) => (
-                  <li key={c.id} className="mb-2">
-                    <Link href={c.uri}>
+                  <li key={c.title} className="mb-2">
+                    <Link href={c.link}>
                       <a className={`${styles.lh22px} text-dark`}>
                         <strong>{c.title}</strong>
                       </a>

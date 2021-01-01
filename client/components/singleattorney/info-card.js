@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -136,10 +137,12 @@ export default function SingleAttorneyInfoCard({
                 />
                 {' '}
                 {offices.map((office, index) => (
-                  <h6 key={office.title} className="d-inline">
-                    <a href={office.uri} className="text-white">
-                      {office.title}
-                    </a>
+                  <h6 key={office.name} className="d-inline">
+                    <Link href={office.link}>
+                      <a className="text-white">
+                        {office.name}
+                      </a>
+                    </Link>
                     {offices.length - 1 !== index && <>, </>}
                   </h6>
                 ))}

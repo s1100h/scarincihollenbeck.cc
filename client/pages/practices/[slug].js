@@ -18,21 +18,18 @@ import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CovidResourceBox from 'components/singlepractice/covid-resource-box';
 import PracticeSidebar from 'components/singlepractice/sidebar';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
+import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, sortByKey, headers } from 'utils/helpers';
+import { getPracticesByInput } from 'queries/practices';
 import client from 'utils/graphql-client';
-import {
-  getPracticeBySlug,
-  getPracticesByInput,
-} from 'queries/practices';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
 export default function PracticesSingle({
-  practice,
   corePractices,
+  practice,
   practiceChildren,
 }) {
   const router = useRouter();
@@ -49,26 +46,26 @@ export default function PracticesSingle({
     <>
       <NextSeo
         title={practice.seo.title}
-        description={practice.seo.metaDesc}
-        canonical={`http://scarincihollenbeck.com/${practice.slug}`}
+        description={practice.seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/practice${practice.slug}`}
       />
       <SingleSubHeader
         image="/images/City-Night-Background-1800x400-JPG.jpg"
         title={practice.title}
-        subtitle={practice.practicesIncluded.description}
+        subtitle={practice.description}
       />
       <TabContainer
         id="nav-tab"
         defaultActiveKey={urlify(
-          practice.practicesIncluded.contentSection[0].title,
+          practice.content[0].title,
         )}
       >
         <Container>
           <Row>
             <Col sm={12}>
               <Nav id="practice-navigation">
-                {practice.practicesIncluded.contentSection.length > 0
-                  && practice.practicesIncluded.contentSection.map((item) => (
+                {practice.content.length > 0
+                  && practice.content.map((item) => (
                     <Nav.Link
                       eventKey={urlify(item.title)}
                       className={tabStyle.tab}
@@ -77,8 +74,7 @@ export default function PracticesSingle({
                       {item.title}
                     </Nav.Link>
                   ))}
-                {practice.practicesIncluded.relatedBlogCategory[0].posts.nodes
-                  .length > 0 && (
+                {practice.industryTopics.length > 0 && (
                   <Nav.Link eventKey="related-updates" className={tabStyle.tab}>
                     Related Updates
                   </Nav.Link>
@@ -86,8 +82,8 @@ export default function PracticesSingle({
               </Nav>
             </Col>
             <Col sm={12} md={9} className="mt-4">
-              {practice.practicesIncluded.contentSection.length > 0
-                && practice.practicesIncluded.contentSection.map((item) => (
+              {practice.content.length > 0
+                && practice.content.map((item) => (
                   <TabContent key={item.title}>
                     <PracticeContent
                       tabTitle={urlify(item.title)}
@@ -96,47 +92,37 @@ export default function PracticesSingle({
                     />
                   </TabContent>
                 ))}
-              {practice.practicesIncluded.relatedBlogCategory[0].posts.nodes
-                .length > 0 && (
+              {practice.industryTopics.length > 0 && (
                 <TabContent>
                   <RelatedArticlesTab
                     tabTitle="related-updates"
                     title="Related Updates"
-                    content={
-                      practice.practicesIncluded.relatedBlogCategory[0].posts
-                        .nodes
-                    }
+                    content={practice.industryTopics}
                   />
                 </TabContent>
               )}
-              {/** related attorneys */}
               <RelatedAttorneys
-                members={practice.practicesIncluded.includeAttorney}
-                chair={practice.practicesIncluded.sectionChief}
+                members={practice.attorneyList}
+                chair={practice.chair}
                 handleLink={handleLink}
                 title="Chair"
               />
-              {practice.practicesIncluded.highlightScroller && (
+              {practice.highlightReal && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Representative Clients</h3>
                   </div>
                   <PracticeClientSlider
-                    content={practice.practicesIncluded.highlightScroller}
+                    content={practice.highlightReal}
                   />
                 </>
               )}
-              {practice.practicesIncluded.relatedBlogCategory && (
+              {practice.industryTopics && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
                   </div>
-                  <CarouselsSimpleNews
-                    slides={
-                      practice.practicesIncluded.relatedBlogCategory[0].posts
-                        .nodes
-                    }
-                  />
+                  <CarouselsSimpleNews slides={practice.industryTopics} />
                 </>
               )}
             </Col>
@@ -219,22 +205,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const practicePageContent = await client.query(
-    getPracticeBySlug(params.slug),
-    {},
-  );
-
+  const [res] = await Promise.all([
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/individual-practices/practice/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
+  ]);
   const firmCorePracticesContent = await client.query(
     getPracticesByInput('Core Practices'),
     {},
   );
-  
-  console.log('PRACTICE PAGE CONTENT');
-  console.log(practicePageContent);
-  console.log('FIRM CORE PRACTICES CONTENT');
-  console.log(firmCorePracticesContent);
 
-  if (practicePageContent.data.practices.nodes.length === 0) {
+  if (res.status === 404) {
     return {
       notFound: true,
     };
@@ -248,15 +230,8 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      practice: practicePageContent.data.practices.nodes[0],
-      practiceChildren: practicePageContent.data.practices.nodes[0]
-        .practicesIncluded.childPractice
-        ? sortByKey(
-          practicePageContent.data.practices.nodes[0].practicesIncluded
-            .childPractice,
-          'title',
-        )
-        : [],
+      practice: res,
+      practiceChildren: res.children || [],
       corePractices: sortByKey(
         firmCorePracticesContent.data.searchWP.nodes.filter(
           (value) => JSON.stringify(value) !== '{}',

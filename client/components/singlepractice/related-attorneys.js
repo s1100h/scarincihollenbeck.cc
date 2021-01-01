@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import AttorneyCard from 'components/attorney-card';
 import lineHeadingStyles from 'styles/LineHeader.module.css';
-import { sortByMainInformationLastName } from 'utils/helpers';
+import { sortByKey } from 'utils/helpers';
 
 export default function PracticeRelatedAttorneys({
   members,
@@ -20,18 +20,18 @@ export default function PracticeRelatedAttorneys({
             <h3>{title}</h3>
           </div>
           <Row className="my-5">
-            {sortByMainInformationLastName(chair).map((m) => (
-              <Col sm={12} md={12} lg={6} key={m.id}>
+            {sortByKey(chair, 'lastName').map((m) => (
+              <Col sm={12} md={12} lg={6} key={m.ID}>
                 <AttorneyCard
-                  link={m.uri}
-                  image={m.featuredImage.node.sourceUrl}
-                  name={m.title}
-                  title={m.attorneyMainInformation.designation}
-                  number={m.attorneyMainInformation.phoneNumber}
-                  email={m.attorneyMainInformation.email}
+                  link={m.link}
+                  image={m.image}
+                  name={m.name}
+                  title={m.designation}
+                  number={m.contact}
+                  email={m.email}
                   width={80}
                   height={112}
-                  type="/attorneys/[slug]"
+                  type="/attorney/[slug]"
                 />
               </Col>
             ))}
@@ -46,31 +46,31 @@ export default function PracticeRelatedAttorneys({
           <Form className="w-50 py-4">
             <Form.Group>
               <Form.Control as="select" onChange={handleLink} className="w-100">
-                {sortByMainInformationLastName(members).map((m) => (
+                {sortByKey(members, 'lastName').map((m) => (
                   <option
-                    value={m.uri}
-                    key={m.id}
+                    value={m.link}
+                    key={m.ID}
                     className="w-100"
                   >
-                    {m.title}
+                    {m.name}
                   </option>
                 ))}
               </Form.Control>
             </Form.Group>
           </Form>
           <Row>
-            {sortByMainInformationLastName(members).map((m) => (
-              <Col sm={12} md={12} lg={6} key={m.id} className="mb-3">
+            {sortByKey(members, 'lastName').map((m) => (
+              <Col sm={12} md={12} lg={6} key={m.ID} className="mb-3">
                 <AttorneyCard
-                  link={m.uri}
-                  image={m.featuredImage.node.sourceUrl}
-                  name={m.title}
-                  title={m.attorneyMainInformation.designation}
-                  number={m.attorneyMainInformation.phoneNumber}
-                  email={m.attorneyMainInformation.email}
+                  link={m.link}
+                  image={m.image}
+                  name={m.name}
+                  title={m.designation}
+                  number={m.contact}
+                  email={m.email}
                   width={80}
                   height={112}
-                  type="/attorneys/[slug]"
+                  type="/attorney/[slug]"
                 />
               </Col>
             ))}

@@ -9,7 +9,7 @@ function VideoPost(content, { key, index }) {
   return (
     <li key={key} className="my-5 pb-5 border-bottom">
       <div
-        dangerouslySetInnerHTML={createMarkup(video.embedVideo)}
+        dangerouslySetInnerHTML={createMarkup(video.embed_video)}
         className="mx-auto d-block mb-0 pb-0 w-500 text-center"
       />
       <h5 className="text-center my-0 py-0 text-dark">

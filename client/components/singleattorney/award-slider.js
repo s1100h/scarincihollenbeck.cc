@@ -38,10 +38,10 @@ export default function SingleAttorneyAwardSlider({ content }) {
           swipeable
         >
           {content.map((c) => (
-            <div key={c.awardTitle} className="pb-2 px-4">
+            <div key={c.title} className="pb-2 px-4">
               <Image
-                src={c.awardImage.sourceUrl}
-                alt={c.awardTitle}
+                src={c.featuredImg}
+                alt={c.title}
                 width={210}
                 height={210}
                 layout="intrinsic"
