@@ -20,9 +20,9 @@ export default function PostBody({
   subTitle,
   caption,
 }) {
-  const modTags = tags.map((tag) => ({
-    name: tag.name,
-    uri: `/archives?q=${tag.uri.replace('/tag/', '')}&page=1`,
+  const modTags = tags.split('').map((tag) => ({
+    name: tag,
+    uri: `/archives?q=${tag}&page=1`,
   }));
 
   return (

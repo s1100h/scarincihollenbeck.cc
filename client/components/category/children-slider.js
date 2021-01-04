@@ -40,17 +40,11 @@ export default function CategoryChildrenSlider({ title, slides }) {
           swipeable
         >
           {slides.map((slide) => (
-            <div key={slide.id} className="pb-2 px-4">
-              <Link href={slide.uri}>
+            <div key={slide.title} className="pb-2 px-4">
+              <Link href={slide.link.replace('https://scarincihollenbeck.com', '')}>
                 <a>
                   <Image
-                    src={
-                      slide.image
-                        ? slide.image.node.sourceUrl
-                        : slide.featuredImage
-                          ? slide.featuredImage.node.sourceUrl
-                          : '/images/no-image-found-diamond.png'
-                    }
+                    src={slide.image || '/images/no-image-found-diamond.png'}
                     alt={slide.title}
                     width={300}
                     height={150}

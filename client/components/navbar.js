@@ -26,7 +26,7 @@ export default function NavBar() {
             <p className="my-1 pb-1 mx-0 px-0">
               <span>
                 <FontAwesomeIcon
-                  style={{ fontSize: '1rem' }}
+                  size="sm"
                   icon={faPhone}
                 />
                 {' '}
@@ -34,7 +34,7 @@ export default function NavBar() {
               </span>
               <span className="ml-3">
                 <FontAwesomeIcon
-                  style={{ fontSize: '1rem' }}
+                  size="sm"
                   icon={faEnvelope}
                 />
                 {' '}

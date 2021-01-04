@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import Footer from 'components/footer';
@@ -8,20 +8,23 @@ import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
 import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
-import client from 'utils/graphql-client';
 import { headers } from 'utils/helpers';
-import { parseBlogBodyContent } from 'utils/post-parser';
 import { fetchFirmPosts } from 'utils/fetch-firm-posts';
-import { getPostBySlug } from 'queries/posts';
 
 export default function Headlines({
-  post, posts, authors, attorneys,
+  title,
+  postContent,
+  subTitle,
+  posts,
+  featuredImage,
+  featuredImageCaption,
+  seo,
+  tags,
+  authorLinks,
+  date,
+  authors,
+  attorneys,
 }) {
-  const [featuredImage, setFeaturedImage] = useState('');
-  const [postContent, setPostContent] = useState('');
-  const [subTitle, setSubTitle] = useState('');
-  const [caption, setCaption] = useState('');
-  const [mounted, setMounted] = useState(true);
   const router = useRouter();
 
   if (router.isFallback) {
@@ -31,85 +34,69 @@ export default function Headlines({
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
 
-  useEffect(() => {
-    function parseAndSetBlogPostContent() {
-      const blogPostElms = parseBlogBodyContent(post.content);
-
-      setSubTitle(blogPostElms.h2TagText);
-      setCaption(blogPostElms.captionText);
-      setPostContent(blogPostElms.postContent);
-      setFeaturedImage(blogPostElms.imgSrc);
-      setMounted(false);
-    }
-
-    if (mounted) {
-      parseAndSetBlogPostContent();
-    }
-  });
-
   return (
     <>
       <NextSeo
-        title={post.seo.title}
-        description={post.seo.metaDesc}
-        canonical={post.uri}
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={router.asPath}
         openGraph={{
-          url: post.uri,
-          title: post.seo.title,
-          description: post.seo.metaDesc,
+          url: router.asPath,
+          title: seo.title,
+          description: seo.metaDescription,
           type: 'article',
           article: {
-            publishedTime: post.seo.publishedDate,
-            modifiedTime: post.seo.updatedDate,
-            authors: [post.author.node.url || 'https://scarincihollenbeck.com'],
-            tags: post.tags.nodes.map((tag) => tag.name),
+            publishedTime: seo.publishedDate,
+            modifiedTime: seo.updatedDate,
+            authors: authorLinks,
+            tags: tags.split('').map((tag) => tag),
           },
           images: [
             {
               url: featuredImage,
               width: 750,
               height: 350,
-              alt: post.seo.title,
+              alt: seo.title,
             },
           ],
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: post.uri,
-          cardType: post.seo.metaDesc,
+          site: router.asPath,
+          cardType: seo.metaDescription,
         }}
       />
       <ArticleJsonLd
-        url={post.uri}
-        title={post.seo.title}
+        url={router.asPath}
+        title={seo.title}
         images={[featuredImage]}
-        datePublished={post.seo.publishedDate}
-        dateModified={post.seo.updatedDate}
-        authorName={post.author.node.name}
+        datePublished={seo.publishedDate}
+        dateModified={seo.updatedDate}
+        authorName={authors.map((author) => author.name)}
         publisherName="Scarinci Hollenbeck, LLC"
         publisherLogo="/images/sh-logo-2020-compressor.png"
-        description={`${post.seo.metaDesc}`}
+        description={`${seo.metaDescription}`}
       />
       <SingleSubHeader
         image="/images/Legal-Research-1800x400-JPG.jpg"
-        title={post.title}
+        title={title}
         subtitle={subTitle}
       />
       <ThreeColMiniSidebar
         body={(
           <Body
             featuredImage={featuredImage}
-            caption={caption}
+            caption={featuredImageCaption}
             content={postContent}
             eventCat={isEventCategory}
-            title={post.title}
+            title={title}
             subTitle={subTitle}
             author={authors}
-            date={post.date}
-            tags={post.tags.nodes}
+            date={date}
+            tags={tags}
           />
         )}
-        OneSidebar={<SocialShareSidebar title={post.title} />}
+        OneSidebar={<SocialShareSidebar title={title} />}
         TwoSidebar={<Sidebar posts={posts} attorneys={attorneys} />}
       />
       <Footer />
@@ -117,22 +104,7 @@ export default function Headlines({
   );
 }
 
-// export async function getStaticPaths() {
-//   const res = await client.query(getListOfPostsByName('headlines'), {});
-//   const slugs = urlWithOutBaseUrl(res.data.posts.nodes, 'headlines');
-
-//   return {
-//     paths: slugs || [],
-//     fallback: true,
-//   };
-// }
-
 export async function getServerSideProps({ params, res }) {
-  const graphQLResponse = await client.query(
-    getPostBySlug(params.slug[params.slug.length - 1]),
-    {},
-  );
-
   // retrieve the authors for the post
   const [restResponse] = await Promise.all([
     fetch(
@@ -145,25 +117,26 @@ export async function getServerSideProps({ params, res }) {
       .catch((err) => err),
   ]);
 
-  if (!graphQLResponse.data.posts.nodes[0]) {
-    res.statusCode = 404;
-    return {
-      notFound: true,
-    };
-  }
-
   if (restResponse.status === 404) {
     res.statusCode = 404;
     return {
       notFound: true,
     };
   }
-  // revalidate: 1,
+
   const posts = await fetchFirmPosts();
 
   return {
     props: {
-      post: graphQLResponse.data.posts.nodes[0],
+      seo: restResponse.seo,
+      title: restResponse.title,
+      subTitle: restResponse.subTitle,
+      tags: restResponse.tags,
+      date: restResponse.date,
+      featuredImage: restResponse.featuredImage || '/images/no-image-found-diamond-750x350.png',
+      featuredImageCaption: restResponse.featuredImageCaption,
+      postContent: restResponse.content,
+      authorLinks: restResponse.author.map((author) => author.link) || ['https://scarincihollenbeck.com'],
       posts,
       authors: restResponse.author || [],
       attorneys: restResponse.attorneys || [],

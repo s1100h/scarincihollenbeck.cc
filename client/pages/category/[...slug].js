@@ -8,33 +8,28 @@ import BasicBreadCrumbs from 'components/basic-breadcrumbs';
 import MainArticlesContainer from 'components/category/main-articles-container';
 import MainSidebarContent from 'components/category/main-sidebar-content';
 import CategoryHeader from 'components/category/header';
-import CategorySliderContainer from 'components/category/slider-container';
 import CategoryChildrenSlider from 'components/category/children-slider';
 import ColumnContent from 'components/category/column-content';
 import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content';
+import { headers, makeTitle } from 'utils/helpers';
 import Footer from 'components/footer';
-import client from 'utils/graphql-client';
-import { getFirst14PostsFromSlug } from 'queries/category';
 import styles from 'styles/LineHeader.module.css';
 
 export default function CategoryLandingPage({
-  posts,
   description,
   name,
   seo,
   children,
   uri,
+  mainArticle,
+  sideBarArticles,
+  sliderArticles,
 }) {
   const router = useRouter();
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
-
-  // main articles
-  const mainArticle = posts[0];
-  const sideBarArticles = posts.filter((_, index) => index > 0 && index <= 3);
-  const sliderArticles = posts.filter((_, index) => index >= 4);
 
   // check if is event page
   const isEventPage = router.asPath.indexOf('firm-events') > 0;
@@ -72,7 +67,7 @@ export default function CategoryLandingPage({
         sidebar={<MainSidebarContent latest={sideBarArticles} />}
       />
       <FullWidth>
-        <CategorySliderContainer title="MOST RECENT" slides={sliderArticles} />
+        <CategoryChildrenSlider title="MOST RECENT" slides={sliderArticles} />
       </FullWidth>
       <FullWidth>
         <div className={styles.lineHeader}>
@@ -91,7 +86,7 @@ export default function CategoryLandingPage({
           <div className="mt-5">
             <CategoryChildrenSlider
               title={child.name}
-              slides={child.posts.nodes}
+              slides={child.posts}
             />
           </div>
         </FullWidth>
@@ -117,40 +112,35 @@ export default function CategoryLandingPage({
     </>
   );
 }
-// export async function getStaticPaths() {
-//   const res = await client.query(getAllCategories, {});
 
-//   return {
-//     paths: res.data.categories.nodes.map((a) => a.uri) || [],
-//     fallback: true,
-//   };
-// }
+export async function getServerSideProps({ params, res }) {
+  // retrieve the authors for the post
+  const [restResponse] = await Promise.all([
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/category/posts/${params.slug[params.slug.length - 1]}`,
+      { headers },
+    )
+      .then((data) => data.json())
+      .catch((err) => err),
+  ]);
 
-export async function getServerSideProps({ params }) {
-  const categoryFromUrl = params.slug[params.slug.length - 1];
-  const res = await client.query(getFirst14PostsFromSlug(categoryFromUrl), {});
-
-  if (res.data.categories.nodes.length === 0) {
+  if (restResponse.status === 404) {
+    res.statusCode = 404;
     return {
       notFound: true,
     };
   }
 
-  if (res.data.categories.nodes[0].posts.edges.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
-
-  //  revalidate: 1,
   return {
     props: {
-      name: res.data.categories.nodes[0].name,
-      uri: res.data.categories.nodes[0].uri,
-      description: res.data.categories.nodes[0].description,
-      posts: res.data.categories.nodes[0].posts.edges || [],
-      seo: res.data.categories.nodes[0].seo,
-      children: res.data.categories.nodes[0].children.nodes,
+      name: makeTitle(params.slug[params.slug.length - 1]),
+      uri: restResponse.seo.canonicalLink || '',
+      description: restResponse.description || '',
+      mainArticle: restResponse.main[0] || {},
+      sideBarArticles: restResponse.latest || [],
+      sliderArticles: restResponse.archives || [],
+      seo: restResponse.seo || {},
+      children: restResponse.practices || [],
     },
   };
 }
