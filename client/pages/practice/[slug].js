@@ -21,9 +21,7 @@ import PracticeSidebar from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
 import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { urlify, sortByKey, headers } from 'utils/helpers';
-import { getPracticesByInput } from 'queries/practices';
-import client from 'utils/graphql-client';
+import { urlify, headers, sortByKey } from 'utils/helpers';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
@@ -205,16 +203,16 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [res] = await Promise.all([
+  const [res, practices] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/individual-practices/practice/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/practice-portal/page',
+      { headers },
+    ).then((data) => data.json()),
   ]);
-  const firmCorePracticesContent = await client.query(
-    getPracticesByInput('Core Practices'),
-    {},
-  );
 
   if (res.status === 404) {
     return {
@@ -222,22 +220,13 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  if (firmCorePracticesContent.data.searchWP.nodes.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
+  const corePractices = practices.practices.filter((practice) => practice.category === 'Core Practices');
 
   return {
     props: {
       practice: res,
       practiceChildren: res.children || [],
-      corePractices: sortByKey(
-        firmCorePracticesContent.data.searchWP.nodes.filter(
-          (value) => JSON.stringify(value) !== '{}',
-        ),
-        'title',
-      ),
+      corePractices: sortByKey(corePractices, 'title'),
     },
     revalidate: 1,
   };

@@ -4,9 +4,7 @@ import PagesBody from 'components/pages/body';
 import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import client from 'utils/graphql-client';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
-import { getPageContents } from 'queries/pages';
+import { headers } from 'utils/helpers';
 
 export default function Awards({
   title, content, posts, seo,
@@ -19,7 +17,7 @@ export default function Awards({
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescr}
+        description={seo.metaDescription}
         canonical="http://scarincihollenbeck.com/awards"
       />
       <SingleSubHeader
@@ -38,15 +36,20 @@ export default function Awards({
 }
 
 export async function getStaticProps() {
-  const posts = await fetchFirmPosts();
-  const awardsPageContent = await client.query(getPageContents('awards'), {});
+  const [aJson, postJson] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/awards', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
+
+  const { posts } = postJson;
+  const { title, content, seo } = aJson;
 
   return {
     props: {
-      title: awardsPageContent.data.pages.nodes[0].title,
-      content: awardsPageContent.data.pages.nodes[0].content,
-      seo: awardsPageContent.data.pages.nodes[0].seo,
+      title,
+      content,
       posts,
+      seo,
     },
     revalidate: 1,
   };

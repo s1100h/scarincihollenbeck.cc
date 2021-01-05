@@ -1,16 +1,13 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
-import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import ArchiveLayout from 'layouts/archive-layout';
 import ArcivhesBody from 'components/archives/body';
 import ArcivhesSidebar from 'components/author/sidebar';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
-import client from 'utils/graphql-client';
-import { blogArticlesQuery } from 'queries/home';
-import { getPostsByAuthor, getAuthorBio } from 'queries/author';
+import { fetcher, headers } from 'utils/helpers';
 
 export default function AuthorLandingPage({
   firmNews,
@@ -22,12 +19,9 @@ export default function AuthorLandingPage({
   const {
     data: authorPosts,
     error: authorPostsError,
-  } = useSWR(getPostsByAuthor(router.query.name, router.query.page), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
+  } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/author/posts/${router.query.name}/${router.query.page}`, fetcher);
 
-  const { data: authorBio, error: authorBioError } = useSWR(
-    getAuthorBio(router.query.name),
-    (query) => request('https://wp.scarincihollenbeck.com/graphql', query),
-  );
+  const { data: authorBio, error: authorBioError } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/author/bio/${router.query.name}`, fetcher);
 
   if (authorPostsError || authorBioError) return <ErrorMessage />;
 
@@ -39,8 +33,6 @@ export default function AuthorLandingPage({
     );
   }
 
-  const attorneyBioData = authorBio.attorneyProfiles.nodes[0];
-
   return (
     <div className="mt-3">
       <NextSeo nofollow />
@@ -48,11 +40,9 @@ export default function AuthorLandingPage({
         header=""
         body={(
           <ArcivhesBody
-            results={authorPosts.posts.edges}
+            results={authorPosts.results}
             term={router.query.name}
-            pages={Math.floor(
-              authorPosts.posts.pageInfo.offsetPagination.total / 10,
-            )}
+            pages={authorPosts.pages || 0}
             currentPage={router.query.page}
             news={firmNews}
             events={firmEvents}
@@ -62,10 +52,8 @@ export default function AuthorLandingPage({
         )}
         sidebar={(
           <ArcivhesSidebar
-            bio={attorneyBioData}
-            practices={
-              attorneyBioData.attorneyPrimaryRelatedPracticesLocationsGroups
-            }
+            bio={authorBio.bio[0]}
+            practices={authorBio.practices}
           />
         )}
       />
@@ -75,15 +63,17 @@ export default function AuthorLandingPage({
 }
 
 export async function getStaticProps() {
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
+  const [firmNews, firmEvents, firmInsights] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-news', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-events', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
 
   return {
     props: {
-      firmNews: firmNewsContent || [],
-      firmEvents: firmEventsContent || [],
-      firmInsights: firmInsightsContent || [],
+      firmNews: firmNews.latest || [],
+      firmEvents: firmEvents.latest || [],
+      firmInsights: firmInsights.latest || [],
     },
     revalidate: 1,
   };

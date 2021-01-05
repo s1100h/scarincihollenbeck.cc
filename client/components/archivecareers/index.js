@@ -22,7 +22,7 @@ export default function CareerIndex({
         setLocation={setLocation}
         executeSearch={executeSearch}
       />
-      <Results positions={careers.nodes} />
+      <Results positions={careers} />
     </div>
   );
 }

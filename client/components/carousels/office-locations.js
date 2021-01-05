@@ -39,10 +39,10 @@ export default function CarouselsOfficeLocations({ slides }) {
           key={post.title}
           className={`${styles.locationCard} mx-auto d-block border `}
         >
-          <Link href={post.uri}>
+          <Link href="/location/[slug]" as={post.slug}>
             <a>
               <Image
-                src={post.featuredImage.node.sourceUrl}
+                src={post.featuredImg}
                 alt={post.title}
                 width={333}
                 height={220}

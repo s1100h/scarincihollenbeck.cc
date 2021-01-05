@@ -7,9 +7,7 @@ import LargeSidebar from 'layouts/large-sidebar';
 import BreadCrumbs from 'components/basic-breadcrumbs';
 import SingleCareerBody from 'components/singlecareer/body';
 import SingleCareerSidebar from 'components/singlecareer/sidebar';
-import { getSingleCareer } from 'queries/careers';
 import { headers } from 'utils/helpers';
-import client from 'utils/graphql-client';
 
 export default function CareerPost({ career }) {
   const router = useRouter();
@@ -36,8 +34,8 @@ export default function CareerPost({ career }) {
             <BreadCrumbs />
             <SingleCareerBody
               title={career.title}
-              position={career.careerFields.positionDescription}
-              contact={career.careerFields.contact}
+              position={career.positionDescription}
+              contact={career.contact}
             />
           </>
         )}
@@ -63,9 +61,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const careerContent = await client.query(getSingleCareer(params.slug), {});
+  const [careerJson] = await Promise.all([
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json()),
+  ]);
 
-  if (careerContent.data.careers.nodes.length === 0) {
+  if (careerJson.status === 404) {
     return {
       notFound: true,
     };
@@ -73,7 +73,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      career: careerContent.data.careers.nodes[0],
+      career: careerJson,
     },
     revalidate: 1,
   };

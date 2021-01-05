@@ -7,13 +7,11 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
 import BodyContent from 'components/locations/body';
 import SideBar from 'components/locations/sidebar';
-import client from 'utils/graphql-client';
-import { allLocations, getLocationByName } from 'queries/locations';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { headers } from 'utils/helpers';
 
 export default function AllLocations({
-  offices, location, attorneys, posts,
+  seo, offices, lyndhurst, posts,
 }) {
   const router = useRouter();
 
@@ -24,17 +22,17 @@ export default function AllLocations({
   return (
     <>
       <NextSeo
-        title={location.seo.title}
-        description={location.seo.metaDesc}
-        canonical={`http://scarincihollenbeck.com/${location.uri}`}
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
       />
       <Head>
         <script
-          key={location.title}
+          key="lyndhurst"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(
-              buildLocationSchema(location.officeMainInformation),
+              buildLocationSchema(seo, lyndhurst.mapLink),
             ),
           }}
         />
@@ -47,18 +45,18 @@ export default function AllLocations({
       <LargeSidebar
         body={(
           <BodyContent
-            attorneys={attorneys}
-            practices={location.officeMainInformation.officePractices}
-            map={location.officeMainInformation.mapLink}
-            title={location.title}
+            attorneys={lyndhurst.attorneys}
+            practices={lyndhurst.practices}
+            map={lyndhurst.mapLink}
+            title={lyndhurst.name}
           />
         )}
         sidebar={(
           <SideBar
-            title={location.title}
+            title={lyndhurst.name}
             posts={posts}
             offices={offices}
-            startingKey={location.uri}
+            startingKey="lyndhurst"
           />
         )}
       />
@@ -68,51 +66,17 @@ export default function AllLocations({
 }
 
 export async function getStaticProps() {
-  // get location content
-  const locationContent = await client.query(getLocationByName('lyndhurst'), {});
-
-  // get a list of all offices
-  const allOfficeLocations = await client.query(allLocations, {});
-
-  if (locationContent.data.officeLocations.nodes.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (allOfficeLocations.data.officeLocations.nodes.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
-
-  // get all attorneys & posts related to each location
-  const [attorneys, postsByLocation] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/lyndhurst',
-      { headers },
-    ).then((data) => data.json()),
+  const [locations, lyndhurst, lyndhurstposts] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/individual-location/office/lyndhurst', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/lyndhurst', { headers }).then((data) => data.json()),
   ]);
-
-  // filter attorney by location
-  const attorneysByLocation = attorneys.filter(
-    (a) => a.location
-      .toLowerCase()
-      .replace(' ', '-')
-      .replace('.', '')
-      .indexOf('lyndhurst') > -1,
-  );
-
   return {
     props: {
-      location: locationContent.data.officeLocations.nodes[0],
-      offices: allOfficeLocations.data.officeLocations.nodes,
-      attorneys: attorneysByLocation,
-      posts: postsByLocation,
+      offices: locations.offices,
+      seo: locations.seo,
+      lyndhurst,
+      posts: lyndhurstposts,
     },
     revalidate: 1,
   };

@@ -40,18 +40,12 @@ export default function SingleAttorneyRelatedArticles({ title, content }) {
           swipeable
         >
           {content.map((slide) => (
-            <div key={slide.node.title} className="pb-2 px-4">
-              <Link href={slide.node.link}>
+            <div key={slide.title} className="pb-2 px-4">
+              <Link href={slide.link}>
                 <a>
                   <Image
-                    src={
-                      slide.node.image
-                        ? slide.node.image.node.sourceUrl
-                        : slide.node.featuredImage
-                          ? slide.node.featuredImage.node.sourceUrl
-                          : 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2020/04/no-image-found-diamond.png'
-                    }
-                    alt={slide.node.title}
+                    src={slide.featuredImg || '/images/no-image-found-diamond.png'}
+                    alt={slide.title}
                     width={300}
                     height={150}
                     layout="intrinsic"
@@ -59,7 +53,7 @@ export default function SingleAttorneyRelatedArticles({ title, content }) {
                   <p
                     className={`${styleFonts.smallExcerpt} text-muted text-center`}
                   >
-                    {limitTitleLength(slide.node.title)}
+                    {limitTitleLength(slide.title)}
                   </p>
                 </a>
               </Link>

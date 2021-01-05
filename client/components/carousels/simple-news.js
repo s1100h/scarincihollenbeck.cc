@@ -38,10 +38,7 @@ export default function CarouselsSimpleNews({ slides }) {
           <Link href={(slide.link) ? slide.link.replace('https://scarincihollenbeck.com', '') : '/'}>
             <a>
               <Image
-                src={
-                  slide.featuredImage
-                    ? slide.featuredImage.node.sourceUrl : slide.image ? slide.image : '/images/no-image-found-diamond.png'
-                }
+                src={(slide.image) ? slide.image : (slide.featuredImg) ? slide.featuredImg : '/images/no-image-found-diamond.png'}
                 width={300}
                 height={150}
                 layout="intrinsic"

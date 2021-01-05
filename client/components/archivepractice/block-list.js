@@ -9,8 +9,8 @@ export default function ArchivePracticeBlockList({ list }) {
   return (
     <Container className="mt-5">
       <Row>
-        {list.map((item) => (item.practicesIncluded.childPractice ? (
-          <Col sm={12} md={4} key={item.id} className="mb-3">
+        {list.map((item) => (item.children ? (
+          <Col sm={12} md={4} key={item.title} className="mb-3">
             <Dropdown>
               <Dropdown.Toggle
                 variant="link"
@@ -19,11 +19,11 @@ export default function ArchivePracticeBlockList({ list }) {
                 {item.title}
               </Dropdown.Toggle>
               <Dropdown.Menu className="w-100">
-                <Dropdown.Item key={item.id} href={item.uri.replace('https://scarincihollenbeck.com', '')}>
+                <Dropdown.Item key={item.ID} href={item.slug.replace('https://scarincihollenbeck.com', '')}>
                   Overview
                 </Dropdown.Item>
-                {item.practicesIncluded.childPractice.map((child) => (
-                  <Dropdown.Item key={child.id} href={child.uri.replace('https://scarincihollenbeck.com', '')}>
+                {item.children.map((child) => (
+                  <Dropdown.Item key={child.ID} href={child.slug.replace('https://scarincihollenbeck.com', '')}>
                     {child.title}
                   </Dropdown.Item>
                 ))}
@@ -31,8 +31,8 @@ export default function ArchivePracticeBlockList({ list }) {
             </Dropdown>
           </Col>
         ) : (
-          <Col sm={12} md={4} key={item.id} className="mb-3">
-            <Link href={item.uri.replace('https://scarincihollenbeck.com', '')}>
+          <Col sm={12} md={4} key={item.title} className="mb-3">
+            <Link href={item.slug.replace('https://scarincihollenbeck.com', '')}>
               <a className={`${bigButtonStyles.tab} w-100 d-block`}>
                 {item.title}
               </a>

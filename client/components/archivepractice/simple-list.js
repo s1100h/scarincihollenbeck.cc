@@ -7,8 +7,8 @@ export default function ArchivePracticeSimpleList({ list }) {
     <div className="mt-5">
       <ul className={`${textStyles.blueTitle} ${formsStyles.threeColumns}`}>
         {list.map((item) => (
-          <li key={item.id} className="mb-3">
-            <Link href={item.uri.replace('https://scarincihollenbeck.com', '')}>
+          <li key={item.ID} className="mb-3">
+            <Link href={item.slug.replace('https://scarincihollenbeck.com', '')}>
               <a className={textStyles.blueTitle}>
                 <strong>{item.title}</strong>
               </a>

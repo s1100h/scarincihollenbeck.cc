@@ -4,9 +4,7 @@ import PagesBody from 'components/pages/body';
 import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import client from 'utils/graphql-client';
-import { getPageContents } from 'queries/pages';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { headers } from 'utils/helpers';
 
 export default function TermsOfUse({
   title, content, posts, seo,
@@ -19,8 +17,8 @@ export default function TermsOfUse({
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescr}
-        canonical="http://scarincihollenbeck.com/terms-of-use"
+        description={seo.metaDescription}
+        canonical="http://scarincihollenbeck.com/disclaimer"
       />
       <SingleSubHeader
         title={title}
@@ -38,18 +36,20 @@ export default function TermsOfUse({
 }
 
 export async function getStaticProps() {
-  const privacyPolicyContent = await client.query(
-    getPageContents('terms-of-use'),
-    {},
-  );
-  const posts = await fetchFirmPosts();
+  const [aJson, postJson] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/terms-of-use', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
+
+  const { posts } = postJson;
+  const { title, content, seo } = aJson;
 
   return {
     props: {
-      title: privacyPolicyContent.data.pages.nodes[0].title,
-      content: privacyPolicyContent.data.pages.nodes[0].content,
-      seo: privacyPolicyContent.data.pages.nodes[0].seo,
+      title,
+      content,
       posts,
+      seo,
     },
     revalidate: 1,
   };

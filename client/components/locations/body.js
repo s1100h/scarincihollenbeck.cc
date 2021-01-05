@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/attorney-card';
+import { sortByKey } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import textStyles from 'styles/Text.module.css';
 import fontStyles from 'styles/Fonts.module.css';
@@ -27,14 +28,14 @@ export default function LocationsBody({
       <h4 className={grayTitleStyles.title}>{`${title} Attorneys`}</h4>
       <Container>
         <Row>
-          {attorneys.map((m) => (
-            <Col sm={12} md={12} lg={6} className="mb-4" key={m.id}>
+          {sortByKey(attorneys, 'lastName').map((m) => (
+            <Col sm={12} md={12} lg={6} className="mb-4" key={m.name}>
               <AttorneyCard
-                link={`/attorney${m.link}`}
-                image={m.better_featured_image}
-                name={m.title}
+                link={m.link}
+                image={m.image}
+                name={m.name}
                 title={m.designation}
-                number={m.phone}
+                number={m.contact}
                 email={m.email}
                 width={80}
                 height={112}
@@ -51,8 +52,8 @@ export default function LocationsBody({
             <ul className={`${textStyles.blueTitle} mx-0 px-0`}>
               {practices.map(
                 (p, i) => practices.length / 2 > i && (
-                <li key={p.id} className="mb-3">
-                  <Link href={p.uri}>
+                <li key={p.title} className="mb-3">
+                  <Link href={p.slug}>
                     <a
                       className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}
                     >
@@ -70,8 +71,8 @@ export default function LocationsBody({
             <ul className={`${textStyles.blueTitle} mx-0 px-0`}>
               {practices.map(
                 (p, i) => practices.length / 2 <= i && (
-                <li key={p.id} className="mb-3">
-                  <Link href={p.uri}>
+                <li key={p.title} className="mb-3">
+                  <Link href={p.slug}>
                     <a
                       className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}
                     >

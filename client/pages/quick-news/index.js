@@ -2,29 +2,22 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
-import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import ArchivesBody from 'components/archives/body';
 import ArchivesSidebar from 'components/archives/sidebar';
 import ArchiveLayout from 'layouts/archive-layout';
-import client from 'utils/graphql-client';
-import { blogArticlesQuery } from 'queries/home';
-import { getArchivesPosts } from 'queries/archive';
+import { fetcher, headers } from 'utils/helpers';
 
 export default function CategoryQuickNewsLandingPage({
   firmNews,
   firmInsights,
   firmEvents,
-  posts,
 }) {
   const router = useRouter();
 
-  const {
-    data: archivesPosts,
-    error: archivesPostsError,
-  } = useSWR(getArchivesPosts('quick-news', router.query.page), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
+  const { data: archivesPosts, error: archivesPostsError } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/archive/query/quick-news/${router.query.page}`, fetcher);
 
   if (archivesPostsError) return <ErrorMessage />;
 
@@ -43,20 +36,18 @@ export default function CategoryQuickNewsLandingPage({
         header=""
         body={(
           <ArchivesBody
-            results={archivesPosts.posts.edges}
+            results={archivesPosts.results}
             term="Quick News"
-            pages={Math.floor(
-              archivesPosts.posts.pageInfo.offsetPagination.total / 10,
-            )}
+            pages={archivesPosts.pages || 0}
             currentPage={router.query.page}
             news={firmNews}
             events={firmEvents}
             insight={firmInsights}
-            pathname="/category/quick-news"
+            pathname="/quick-news"
             q="quick-news"
           />
         )}
-        sidebar={<ArchivesSidebar trending={posts} />}
+        sidebar={<ArchivesSidebar trending={archivesPosts.posts} />}
       />
       <Footer />
     </div>
@@ -64,22 +55,17 @@ export default function CategoryQuickNewsLandingPage({
 }
 
 export async function getStaticProps() {
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
+  const [firmNews, firmEvents, firmInsights] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-news', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-events', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
 
   return {
     props: {
-      firmNews: firmNewsContent || [],
-      firmEvents: firmEventsContent || [],
-      firmInsights: firmInsightsContent || [],
-      posts,
+      firmNews: firmNews.latest || [],
+      firmEvents: firmEvents.latest || [],
+      firmInsights: firmInsights.latest || [],
     },
     revalidate: 1,
   };

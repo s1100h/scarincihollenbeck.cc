@@ -27,8 +27,6 @@ import SingleAttorneyNonGraphQLSlider from 'components/singleattorney/non-graphq
 import SingleAttorneyRelatedArticles from 'components/singleattorney/related-articles';
 import { headers, sortByDateKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
-import { attorneysArticles } from 'queries/attorneys';
-import client from 'utils/graphql-client';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 
 // build out attorney profile schema
@@ -435,22 +433,8 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  // attorney news & events articles request
-  const attorneyNewsContent = await client.query(
-    attorneysArticles('Firm News', params.slug),
-    {},
-  );
-
-  const attorneyEventsContent = await client.query(
-    attorneysArticles('Firm Events', params.slug),
-    {},
-  );
-
   // concat all the firm events and firm news into a single array
-  const firmNewsAndEventsArr = [].concat(
-    attorneyEventsContent.data.categories.nodes[0].posts.edges,
-    attorneyNewsContent.data.categories.nodes[0].posts.edges,
-  );
+  const firmNewsAndEventsArr = [].concat(bio.newsPosts, bio.eventPosts);
 
   return {
     props: {

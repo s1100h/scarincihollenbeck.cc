@@ -8,7 +8,7 @@ import { makeTitle } from 'utils/helpers';
 export default function PostBreadCrumbs() {
   const router = useRouter();
   let buildUrl = '/';
-  const breadCrumbArr = router.asPath.split('/').filter((crumb) => crumb !== '' || crumb !== 'https:');
+  const breadCrumbArr = router.asPath.split('/').filter((crumb) => crumb !== '');
 
   const formattedBreadCrumbArr = breadCrumbArr.map((crumb, index) => {
     buildUrl += `${breadCrumbArr[index].toString()}/`;

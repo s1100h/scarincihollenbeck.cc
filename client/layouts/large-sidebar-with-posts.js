@@ -15,17 +15,11 @@ function Post(content, { key, index }) {
 
   return (
     <li key={key} className="my-3 pb-3 border-bottom">
-      <Link href={post.node.link}>
+      <Link href={post.link}>
         <a className="d-flex flex-row text-dark">
           <Image
-            src={
-              post.node.image
-                ? post.node.image.node.sourceUrl
-                : post.node.featuredImage
-                  ? post.node.featuredImage.node.sourceUrl
-                  : '/images/no-image-found-diamond.png'
-            }
-            alt={post.node.title}
+            src={post.fimg_url || '/images/no-image-found-diamond.png'}
+            alt={post.title.rendered}
             width={196}
             height={98}
             layout="intrinsic"
@@ -33,9 +27,9 @@ function Post(content, { key, index }) {
           />
           <div>
             <h5 className="d-block w-100 mb-0 pt-0">
-              <strong>{post.node.title}</strong>
+              <strong>{post.title.rendered}</strong>
             </h5>
-            <p className="mt-0 pt-0">{formatDate(post.node.date)}</p>
+            <p className="mt-0 pt-0">{formatDate(post.date)}</p>
           </div>
         </a>
       </Link>

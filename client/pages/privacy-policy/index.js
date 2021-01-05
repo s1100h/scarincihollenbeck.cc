@@ -4,9 +4,7 @@ import PagesBody from 'components/pages/body';
 import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import client from 'utils/graphql-client';
-import { getPageContents } from 'queries/pages';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { headers } from 'utils/helpers';
 
 export default function PrivacyPolicy({
   title, content, posts, seo,
@@ -19,8 +17,8 @@ export default function PrivacyPolicy({
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescr}
-        canonical="http://scarincihollenbeck.com/privacy-policy"
+        description={seo.metaDescription}
+        canonical="http://scarincihollenbeck.com/disclaimer"
       />
       <SingleSubHeader
         title={title}
@@ -38,18 +36,20 @@ export default function PrivacyPolicy({
 }
 
 export async function getStaticProps() {
-  const privacyPolicyContent = await client.query(
-    getPageContents('privacy-policy'),
-    {},
-  );
-  const posts = await fetchFirmPosts();
+  const [aJson, postJson] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/privacy-policy', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
+
+  const { posts } = postJson;
+  const { title, content, seo } = aJson;
 
   return {
     props: {
-      title: privacyPolicyContent.data.pages.nodes[0].title,
-      content: privacyPolicyContent.data.pages.nodes[0].content,
-      seo: privacyPolicyContent.data.pages.nodes[0].seo,
+      title,
+      content,
       posts,
+      seo,
     },
     revalidate: 1,
   };

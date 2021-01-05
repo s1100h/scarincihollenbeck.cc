@@ -6,8 +6,7 @@ import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
-import client from 'utils/graphql-client';
-import { allAdministraionQuery } from 'queries/administration';
+import { headers, sortByKey } from 'utils/helpers';
 
 export default function Administration({ admins, seo }) {
   return (
@@ -25,22 +24,21 @@ export default function Administration({ admins, seo }) {
       <FullWidth>
         <Container className="p-3 pt-4 border">
           <Row>
-            {admins.map((a) => (
+            {sortByKey(admins, 'orderBy').map((admin) => (
               <Col
                 sm={12}
                 md={6}
                 lg={4}
-                key={a.node.administration.phoneExtension}
+                key={admin.id}
                 className="mb-3"
               >
                 <AttorneyCard
-                  image={a.node.featuredImage.node.sourceUrl}
-                  name={a.node.administration.name}
-                  link={a.node.uri}
-                  title={a.node.administration.title}
-                  number={`201-896-4100 ${a.node.administration.phoneExtension}`}
-                  email={a.node.administration.email}
-                  width="81px"
+                  image={admin.image.smallUrl}
+                  name={admin.name}
+                  link={admin.link}
+                  title={admin.title}
+                  number={`201-896-4100 ${admin.phoneExtension}`}
+                  email={admin.email}
                   type="/administration/[admin]"
                 />
               </Col>
@@ -54,7 +52,9 @@ export default function Administration({ admins, seo }) {
 }
 
 export async function getStaticProps() {
-  const allAdministrationContent = await client.query(allAdministraionQuery, {});
+  const [restResponse] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/admin-search/admin', { headers }).then((data) => data.json()),
+  ]);
 
   return {
     props: {
@@ -64,7 +64,7 @@ export async function getStaticProps() {
           "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
         canonicalLink: 'administration',
       },
-      admins: allAdministrationContent.data.administrations.edges,
+      admins: restResponse.admins,
     },
   };
 }

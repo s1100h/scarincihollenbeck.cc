@@ -8,25 +8,15 @@ import ErrorMessage from 'components/error-message';
 import ArchivesBody from 'components/archives/body';
 import ArchivesSidebar from 'components/archives/sidebar';
 import ArchiveLayout from 'layouts/archive-layout';
-import client from 'utils/graphql-client';
-import { blogArticlesQuery } from 'queries/home';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
-import { fetcher } from 'utils/helpers';
+import { fetcher, headers } from 'utils/helpers';
 
 export default function SearchLandingPage({
   firmNews,
   firmInsights,
   firmEvents,
-  posts,
 }) {
   const router = useRouter();
-  // (
-  const { data: searchPosts, error: searchPostsError } = useSWR(
-    `https://wp.scarincihollenbeck.com/wp-json/search/query/${decodeURI(
-      router.query.q,
-    )}/${router.query.page}`,
-    fetcher,
-  );
+  const { data: searchPosts, error: searchPostsError } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/search/query/${router.query.q}/${router.query.page}`, fetcher);
 
   if (searchPostsError) return <ErrorMessage />;
 
@@ -37,16 +27,6 @@ export default function SearchLandingPage({
       </div>
     );
   }
-
-  const formatedSearchResults = searchPosts.results.map((post) => ({
-    node: {
-      id: post.id,
-      uri: post.link,
-      title: post.title,
-      excerpt: post.description,
-      date: post.date,
-    },
-  }));
 
   return (
     <div className="mt-3">
@@ -61,7 +41,7 @@ export default function SearchLandingPage({
         )}
         body={(
           <ArchivesBody
-            results={formatedSearchResults}
+            results={searchPosts.results}
             term={router.query.q}
             pages={searchPosts.pages || 0}
             currentPage={router.query.page}
@@ -72,7 +52,7 @@ export default function SearchLandingPage({
             q={router.query.q}
           />
         )}
-        sidebar={<ArchivesSidebar trending={posts} />}
+        sidebar={<ArchivesSidebar trending={searchPosts.posts} />}
       />
       <Footer />
     </div>
@@ -80,17 +60,17 @@ export default function SearchLandingPage({
 }
 
 export async function getStaticProps() {
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-  const posts = await fetchFirmPosts();
+  const [firmNews, firmEvents, firmInsights] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-news', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-events', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
 
   return {
     props: {
-      firmNews: firmNewsContent || [],
-      firmEvents: firmEventsContent || [],
-      firmInsights: firmInsightsContent || [],
-      posts,
+      firmNews: firmNews.latest || [],
+      firmEvents: firmEvents.latest || [],
+      firmInsights: firmInsights.latest || [],
     },
     revalidate: 1,
   };

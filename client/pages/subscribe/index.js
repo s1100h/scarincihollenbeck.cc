@@ -2,9 +2,9 @@ import { NextSeo } from 'next-seo';
 import Footer from 'components/footer';
 import Search from 'components/search';
 import LargeSidebar from 'layouts/large-sidebar';
-import TrendingStories from 'components/trending-stories';
+import TrendingStories from 'components/non-graphql-trending-stories';
 import SubscriptionBody from 'components/subscription-body';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
+import { headers } from 'utils/helpers';
 
 export default function SubscriptionPage({ posts }) {
   return (
@@ -29,7 +29,13 @@ export default function SubscriptionPage({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = await fetchFirmPosts();
+  const [json] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
+  const { main, latest, archives } = json;
+  const firstTwoArchives = archives.filter((a, i) => (i <= 1) && a);
+
+  const posts = [].concat(main, latest, firstTwoArchives);
 
   return {
     props: {

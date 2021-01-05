@@ -70,11 +70,11 @@ export default function ArchivesBody({
         <Col sm={12} md={6} className="px-0">
           {results.map(
             (r, i) => i < 5 && (
-            <div className="p-2" key={r.node.id}>
+            <div className="p-2" key={r.id}>
               <ArticleDetails
-                uri={r.node.uri}
-                title={r.node.title}
-                excerpt={r.node.excerpt}
+                uri={r.link}
+                title={r.title}
+                excerpt={r.description}
               />
             </div>
             ),
@@ -83,11 +83,11 @@ export default function ArchivesBody({
         <Col sm={12} md={6} className="px-0">
           {results.map(
             (r, i) => i > 5 && (
-            <div className="p-2" key={r.node.id}>
+            <div className="p-2" key={r.id}>
               <ArticleDetails
-                uri={r.node.uri}
-                title={r.node.title}
-                excerpt={r.node.excerpt}
+                uri={r.link}
+                title={r.title}
+                excerpt={r.description}
               />
             </div>
             ),
@@ -121,15 +121,15 @@ export default function ArchivesBody({
         <Col sm={12}>
           <NewsScroller
             title="Firm News"
-            articles={news.data.category.posts.edges}
+            articles={news}
           />
           <NewsScroller
             title="Firm Events"
-            articles={events.data.category.posts.edges}
+            articles={events}
           />
           <NewsScroller
             title="Firm Insights"
-            articles={insight.data.category.posts.edges}
+            articles={insight}
           />
         </Col>
       </Row>

@@ -1,54 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import useSWR from 'swr';
-import { request } from 'graphql-request';
 import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
 import CareerSection from 'components/archivecareers';
 import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity';
-import ErrorMessage from 'components/error-message';
-import { queryCareers } from 'queries/careers';
+import { headers } from 'utils/helpers';
 
-export default function CareersPage({ positionTypes, locations }) {
+export default function CareersPage({ positionTypes, locations, careerList }) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
-  const [queryParams] = useState({});
+  const [careers, setCareers] = useState([]);
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
 
-  // fetch careers
-  const { data: res, error: resError } = useSWR(
-    queryCareers(JSON.stringify(queryParams)),
-    (q) => request('https://wp.scarincihollenbeck.com/graphql', q),
-  );
-
-  if (resError) return <ErrorMessage />;
-  if (!res) return <SiteLoader />;
+  useEffect(() => {
+    setCareers(careerList);
+  }, [careerList]);
 
   function executeSearch() {
-    const dynamicQuery = {
-      location,
-      positionType,
-      query,
-    };
-
-    Object.keys(dynamicQuery).forEach((key) => {
-      if (dynamicQuery[key] === '') {
-        delete dynamicQuery[key];
+    function filterPostionType(career) {
+      if (positionType) {
+        return career.positionType.indexOf(positionType) >= 0;
       }
-    });
 
-    router.push({
-      pathname: '/careers',
-      query: dynamicQuery,
-    });
+      return career;
+    }
+
+    function filterPositionLocation(career) {
+      if (location) {
+        return career.positionLocation.indexOf(location) >= 0;
+      }
+
+      return career;
+    }
+
+    const careerListFiltered = careers.filter(filterPostionType).filter(filterPositionLocation);
+
+    setCareers(careerListFiltered);
   }
 
   return (
@@ -65,16 +60,18 @@ export default function CareersPage({ positionTypes, locations }) {
           subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
         />
         <FullWidth>
-          <CareerSection
-            careers={res.careers || res.searchWP}
-            positionTypes={positionTypes}
-            locations={locations}
-            query={query}
-            setQuery={setQuery}
-            setLocation={setLocation}
-            setPositionType={setPositionType}
-            executeSearch={executeSearch}
-          />
+          {careers && (
+            <CareerSection
+              careers={careers}
+              positionTypes={positionTypes}
+              locations={locations}
+              query={query}
+              setQuery={setQuery}
+              setLocation={setLocation}
+              setPositionType={setPositionType}
+              executeSearch={executeSearch}
+            />
+          )}
           <CareersEqualOpportunity />
         </FullWidth>
       </div>
@@ -84,8 +81,16 @@ export default function CareersPage({ positionTypes, locations }) {
 }
 
 export async function getStaticProps() {
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/career-portal/careers',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
+
   return {
     props: {
+      careerList: res.careers,
       locations: [
         'Lyndhurst, NJ',
         'Red Bank, NJ',

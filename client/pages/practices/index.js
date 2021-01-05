@@ -4,19 +4,29 @@ import ArchivePracticeSimpleList from 'components/archivepractice/simple-list';
 import ArchivePracticeBlockList from 'components/archivepractice/block-list';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import { sortByKey } from 'utils/helpers';
-import client from 'utils/graphql-client';
-import { getPracticesByInput } from 'queries/practices';
+import { sortByKey, headers } from 'utils/helpers';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
+function sortPracticeCategorys(list) {
+  const core = list.filter((e) => e.category === 'Core Practices');
+  const additional = list.filter((e) => e.category === 'Additional Practices');
+  const business = list.filter((e) => e.category === 'Business Related Practices');
+
+  return {
+    core,
+    additional,
+    business,
+  };
+}
+
 export default function PracticesPage({
-  corePractices,
-  additionalPractices,
-  businessRelatedPractices,
+  core,
+  additional,
+  business,
 }) {
-  const sortedCorePractices = sortByKey(corePractices, 'title');
-  const sortedAdditionalPractices = sortByKey(additionalPractices, 'title');
-  const sortedBusienssPractices = sortByKey(businessRelatedPractices, 'title');
+  const sortedCorePractices = sortByKey(core, 'title');
+  const sortedAdditionalPractices = sortByKey(additional, 'title');
+  const sortedBusienssPractices = sortByKey(business, 'title');
 
   return (
     <>
@@ -65,32 +75,17 @@ export default function PracticesPage({
 }
 
 export async function getStaticProps() {
-  const firmCorePracticesContent = await client.query(
-    getPracticesByInput('Core Practices'),
-    {},
-  );
-
-  const firmBusinessRelatedContent = await client.query(
-    getPracticesByInput('Business Related Practices'),
-    {},
-  );
-
-  const firmAdditionalContent = await client.query(
-    getPracticesByInput('Additional Practices'),
-    {},
-  );
+  const [practiceJson] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page/', { headers }).then((data) => data.json()),
+  ]);
+  const results = await sortPracticeCategorys(practiceJson.practices);
+  const { core, additional, business } = results;
 
   return {
     props: {
-      corePractices: firmCorePracticesContent.data.searchWP.nodes.filter(
-        (value) => JSON.stringify(value) !== '{}',
-      ),
-      additionalPractices: firmAdditionalContent.data.searchWP.nodes.filter(
-        (value) => JSON.stringify(value) !== '{}',
-      ),
-      businessRelatedPractices: firmBusinessRelatedContent.data.searchWP.nodes.filter(
-        (value) => JSON.stringify(value) !== '{}',
-      ),
+      core,
+      additional,
+      business,
     },
     revalidate: 1,
   };

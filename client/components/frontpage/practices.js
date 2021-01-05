@@ -12,7 +12,7 @@ export default function FrontPagePractices({ corePractices }) {
       <ul className={marginStyles.mlMinus20} role="navigation">
         {corePractices.map((p) => (
           <li key={p.title} className={`${textStyles.blueTitle} mb-2`}>
-            <Link href="/practices/[slug]" as={p.uri}>
+            <Link href="/practices/[slug]" as={p.slug}>
               <a className={`${textStyles.blueTitle}`}>
                 <strong>{p.title}</strong>
               </a>

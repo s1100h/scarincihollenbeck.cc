@@ -37,15 +37,15 @@ function renderResults(positions) {
                       <hr className="my-0 py-1" />
                       <p className="my-0">
                         <strong>Location: </strong>
-                        {p.careerFields.positionLocation}
+                        {p.positionLocation}
                       </p>
                       <p className="my-0">
                         <strong>Type: </strong>
-                        {p.careerFields.positionType}
+                        {p.positionType}
                       </p>
                       <p className="my-0">
                         <strong>Start: </strong>
-                        {p.careerFields.startDate}
+                        {p.startDate}
                       </p>
                     </div>
                   </div>
@@ -60,13 +60,9 @@ function renderResults(positions) {
 }
 
 export default function CareersResults({ positions }) {
-  const results = positions.filter(
-    (position) => JSON.stringify(position) !== '{}',
-  );
-
-  if (results <= 0) {
+  if (positions <= 0) {
     return checkForEmptyResults();
   }
 
-  return renderResults(results);
+  return renderResults(positions);
 }

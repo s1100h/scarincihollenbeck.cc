@@ -9,28 +9,28 @@ export default function AuthorSideBar({ bio, practices }) {
       <Search />
       <br />
       <AttorneyCard
-        link={`/attorney/${bio.slug}`}
-        image={bio.featuredImage.node.sourceUrl}
-        name={bio.title}
-        title={bio.attorneyMainInformation.designation}
-        number={bio.attorneyMainInformation.phoneNumber}
-        email={bio.attorneyMainInformation.email}
+        link={bio.link}
+        image={bio.image}
+        name={bio.name}
+        title=""
+        number={bio.phone}
+        email={bio.email}
         width={80}
         height={100}
-        type="/attorney/[slug]"
+        type="/attorneys/[slug]"
       />
       <br />
       <div className="w-100">
         <h4 className={`${styles.header} w-100 p-2 text-left text-white`}>
-          {bio.title}
+          {bio.name}
           &apos;s Legal Services
         </h4>
         <div className="off-white">
-          <div className="px-2 pt-3">
+          <div className="px-2">
             <ul className="px-4 py-2">
-              {practices.relatedPractices.map((p) => (
-                <li key={p.id}>
-                  <Link href={p.uri}>
+              {practices.map((p) => (
+                <li key={p.title} className="mb-2">
+                  <Link href={p.link}>
                     <a className={`${styles.lh22px} text-dark`}>
                       <strong>{p.title}</strong>
                     </a>

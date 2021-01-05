@@ -25,43 +25,27 @@ export default function LocationsSidebar({
           className="mb-3"
           defaultActiveKey={startingKey}
         >
-          <SideBarHeaderToggle eventKey={o.uri}>
+          <SideBarHeaderToggle eventKey={o.title}>
             <>{o.title}</>
           </SideBarHeaderToggle>
-          <Accordion.Collapse eventKey={o.uri}>
+          <Accordion.Collapse eventKey={o.title}>
             <div className="off-white p-3">
               <ul className="list-unstyled ml-0">
-                {o.officeMainInformation.officeBuildingTitle && (
-                  <li className="mb-0">
-                    {o.officeMainInformation.officeBuildingTitle}
-                  </li>
-                )}
-                <li className="mb-0">
-                  {o.officeMainInformation.streetAddress}
-                </li>
-                {o.officeMainInformation.poBox && (
-                  <li className="mb-0">{o.officeMainInformation.poBox}</li>
-                )}
-                {o.officeMainInformation.floor && (
-                  <li className="mb-0">{o.officeMainInformation.floor}</li>
-                )}
-                <li className="mb-0">
-                  {`${o.officeMainInformation.addressLocality}, ${o.officeMainInformation.addressRegion}, ${o.officeMainInformation.postCode}`}
-                </li>
+                {o.address.map((a) => <li key={a} className="mb-0">{a}</li>)}
                 <li className="mt-3 mb-0">
                   <FontAwesomeIcon icon={faPhone} />
                   {' '}
-                  <strong>{o.officeMainInformation.phone}</strong>
+                  <strong>{o.phone}</strong>
                 </li>
-                {o.officeMainInformation.fax && (
+                {o.fax && (
                   <li className="my-0">
                     <FontAwesomeIcon icon={faFax} />
                     {' '}
-                    <strong>{o.officeMainInformation.fax}</strong>
+                    <strong>{o.fax}</strong>
                   </li>
                 )}
                 <li className="mt-3 mb-0">
-                  <Link href={o.uri}>
+                  <Link href={o.slug}>
                     <a className={textStyles.redTitle}>
                       <strong>{`${o.title} Office Details `}</strong>
                     </a>
@@ -71,7 +55,7 @@ export default function LocationsSidebar({
                   <Button
                     variant="transparent"
                     className={`${textStyles.redTitle} p-0`}
-                    onClick={() => getDirectionsFromLocation(o.uri)}
+                    onClick={() => getDirectionsFromLocation(o.slug)}
                   >
                     <strong>
                       Directions to

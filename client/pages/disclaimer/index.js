@@ -4,9 +4,7 @@ import PagesBody from 'components/pages/body';
 import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
-import client from 'utils/graphql-client';
-import { blogArticlesQuery } from 'queries/home';
-import { getPageContents } from 'queries/pages';
+import { headers } from 'utils/helpers';
 
 export default function Disclaimer({
   title, content, posts, seo,
@@ -19,7 +17,7 @@ export default function Disclaimer({
     <>
       <NextSeo
         title={seo.title}
-        description={seo.metaDescr}
+        description={seo.metaDescription}
         canonical="http://scarincihollenbeck.com/awards"
       />
       <SingleSubHeader
@@ -38,26 +36,20 @@ export default function Disclaimer({
 }
 
 export async function getStaticProps() {
-  const firmNewsContent = await client.query(blogArticlesQuery(98), {});
-  const firmEventsContent = await client.query(blogArticlesQuery(99), {});
-  const firmInsightsContent = await client.query(blogArticlesQuery(599), {});
-  const awardsPageContent = await client.query(
-    getPageContents('disclaimer'),
-    {},
-  );
+  const [aJson, postJson] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/disclaimer', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights', { headers }).then((data) => data.json()),
+  ]);
 
-  const posts = [].concat(
-    firmNewsContent.data.category.posts.edges,
-    firmEventsContent.data.category.posts.edges,
-    firmInsightsContent.data.category.posts.edges,
-  );
+  const { posts } = postJson;
+  const { title, content, seo } = aJson;
 
   return {
     props: {
-      title: awardsPageContent.data.pages.nodes[0].title,
-      content: awardsPageContent.data.pages.nodes[0].content,
-      seo: awardsPageContent.data.pages.nodes[0].seo,
+      title,
+      content,
       posts,
+      seo,
     },
     revalidate: 1,
   };
