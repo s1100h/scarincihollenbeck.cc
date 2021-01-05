@@ -1,16 +1,19 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import styles from 'styles/HideMobile.module.css';
 
 export default function ThreeColMiniSidebar({ body, OneSidebar, TwoSidebar }) {
   return (
-    <Container className="container mt-5">
+    <Container className="mt-5">
       <Row>
-        {OneSidebar}
-        <Col sm={12} md={7}>
+        <Col sm={12} lg={1} className={styles.hideMobile}>
+          {OneSidebar}
+        </Col>
+        <Col sm={12} lg={7}>
           {body}
         </Col>
-        <Col sm={12} md={4}>
+        <Col sm={12} lg={4}>
           {TwoSidebar}
         </Col>
       </Row>
