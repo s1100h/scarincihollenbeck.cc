@@ -1,37 +1,32 @@
 import Link from 'next/link';
 import useSWR from 'swr';
-import { request } from 'graphql-request';
 import SubscriptionFormColumn from 'components/subscription-form-column';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import textStyles from 'styles/Text.module.css';
-import { getPracticesByInput } from 'queries/practices';
-import { getChildrenCategoriesFromSlug } from 'queries/category';
 import { sortByKey } from 'utils/helpers';
 
 export default function CategoryColumnContent() {
   const {
-    data: corePractices,
-    error: corePracticesError,
-  } = useSWR(getPracticesByInput('Core Practices'), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
+    data: practices,
+    error: practicesError,
+  } = useSWR(
+    'https://wp.scarincihollenbeck.com/wp-json/practice-portal/page',
+    (url) => fetch(url).then((r) => r.json()),
+  );
 
   const {
     data: lawFirmInsightsChildren,
     error: lawFirmInsightsChildrenError,
-  } = useSWR(getChildrenCategoriesFromSlug('law-firm-insights'), (query) => request('https://wp.scarincihollenbeck.com/graphql', query));
-
-  if (corePracticesError || lawFirmInsightsChildrenError) return <ErrorMessage />;
-  if (!corePractices || !lawFirmInsightsChildren) return <SiteLoader />;
-
-  const sortedCorePractices = sortByKey(corePractices.searchWP.nodes.filter(
-    (value) => JSON.stringify(value) !== '{}',
-  ), 'title');
-  const sortedlawFirmInsightsChildren = sortByKey(
-    lawFirmInsightsChildren.categories.nodes[0].children.nodes.filter(
-      (value) => JSON.stringify(value) !== '{}',
-    ),
-    'title',
+  } = useSWR(
+    'https://wp.scarincihollenbeck.com/wp-json/category/firm-insights-children',
+    (url) => fetch(url).then((r) => r.json()),
   );
+
+  if (practicesError || lawFirmInsightsChildrenError) return <ErrorMessage />;
+  if (!practices || !lawFirmInsightsChildren) return <SiteLoader />;
+
+  const corePractices = practices.practices.filter((practice) => practice.category === 'Core Practices');
 
   return (
     <div className="container mt-5">
@@ -42,9 +37,9 @@ export default function CategoryColumnContent() {
           </h5>
           <hr />
           <ul className="ml-3 mr-0 px-0">
-            {sortedCorePractices.map((post) => (
-              <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
-                <Link href={post.uri}>
+            {sortByKey(corePractices, 'title').map((post) => (
+              <li key={post.ID} className={`${textStyles.blueTitle} mb-2`}>
+                <Link href={post.slug}>
                   <a className={`${textStyles.blueTitle}`}>
                     <strong>{post.title}</strong>
                   </a>
@@ -59,9 +54,9 @@ export default function CategoryColumnContent() {
           </h5>
           <hr />
           <ul className="ml-3 mr-0 px-0">
-            {sortedlawFirmInsightsChildren.map((post) => (
+            {lawFirmInsightsChildren.map((post) => (
               <li key={post.id} className={`${textStyles.blueTitle} mb-2`}>
-                <Link href={post.uri}>
+                <Link href={post.link}>
                   <a className={`${textStyles.blueTitle}`}>
                     <strong>{post.name}</strong>
                   </a>

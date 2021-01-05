@@ -9,7 +9,6 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
-import { fetchFirmPosts } from 'utils/fetch-firm-posts';
 
 export default function QuickNewsPost({
   title,
@@ -124,8 +123,6 @@ export async function getServerSideProps({ params, res }) {
     };
   }
 
-  const posts = await fetchFirmPosts();
-
   return {
     props: {
       seo: restResponse.seo,
@@ -137,7 +134,7 @@ export async function getServerSideProps({ params, res }) {
       featuredImageCaption: restResponse.featuredImageCaption,
       postContent: restResponse.content,
       authorLinks: restResponse.author.map((author) => author.link) || ['https://scarincihollenbeck.com'],
-      posts,
+      posts: restResponse.posts,
       authors: restResponse.author || [],
       attorneys: restResponse.attorneys || [],
     },

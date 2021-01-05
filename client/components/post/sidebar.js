@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Search from 'components/search';
-import TrendingStories from 'components/trending-stories';
+import TrendingStories from 'components/non-graphql-trending-stories';
 import SubscriptionMessage from 'components/subscription-message';
 import styles from 'styles/SidebarTitle.module.css';
 

@@ -113,7 +113,21 @@ export default function CategoryLandingPage({
   );
 }
 
-export async function getServerSideProps({ params, res }) {
+export async function getStaticPaths() {
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/category/all',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
+
+  return {
+    paths: res.map((c) => c.link) || [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   // retrieve the authors for the post
   const [restResponse] = await Promise.all([
     fetch(
@@ -124,8 +138,7 @@ export async function getServerSideProps({ params, res }) {
       .catch((err) => err),
   ]);
 
-  if (restResponse.status === 404) {
-    res.statusCode = 404;
+  if (restResponse.main[0].length === 0) {
     return {
       notFound: true,
     };
@@ -142,5 +155,6 @@ export async function getServerSideProps({ params, res }) {
       seo: restResponse.seo || {},
       children: restResponse.practices || [],
     },
+    revalidate: 1,
   };
 }

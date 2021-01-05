@@ -10,7 +10,6 @@ import { sortByKey } from 'utils/helpers';
 export default function CategoryLawFirmInsightsColumnContent({
   lawFirmInsightsCategoryChildren,
 }) {
-  //
   const {
     data: authorsPageOne,
     error: authorsPageOneErr,
