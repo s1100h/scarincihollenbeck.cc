@@ -105,7 +105,7 @@ export default function PracticesSingle({
                 handleLink={handleLink}
                 title="Chair"
               />
-              {practice.highlightReal && (
+              {practice.highlightReal.length > 0 && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Representative Clients</h3>
@@ -115,7 +115,7 @@ export default function PracticesSingle({
                   />
                 </>
               )}
-              {practice.industryTopics && (
+              {practice.industryTopics.length > 0 && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
