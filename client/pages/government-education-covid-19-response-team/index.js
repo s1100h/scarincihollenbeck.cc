@@ -6,16 +6,10 @@ import ErrorMessage from 'components/error-message';
 import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import client from 'utils/graphql-client';
-import { fetcher } from 'utils/helpers';
-import { blogArticlesQuery } from 'queries/home';
-import { getPageContents } from 'queries/pages';
+import { fetcher, headers } from 'utils/helpers';
 
 export default function GovernmentEducationCovidResponseTeam({
-  title,
-  content,
-  posts,
-  seo,
+  title, content, internalCovidPosts, seo,
 }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -35,7 +29,7 @@ export default function GovernmentEducationCovidResponseTeam({
       <NextSeo
         title={seo.title}
         description={seo.metaDescr}
-        canonical="http://scarincihollenbeck.com/government-education-covid-19-response-team"
+        canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
       />
       <SingleSubHeader
         title={title}
@@ -44,7 +38,7 @@ export default function GovernmentEducationCovidResponseTeam({
         height="auto"
       />
       <LargeSidebarWithPosts
-        posts={posts}
+        posts={internalCovidPosts}
         postsTitle="COVID-19 Articles"
         content={bodyContent}
         sidebar={<PagesSidebar posts={externaCovidPosts.response} covidPage />}
@@ -55,22 +49,19 @@ export default function GovernmentEducationCovidResponseTeam({
 }
 
 export async function getStaticProps() {
-  const covidNewsContent = await client.query(blogArticlesQuery(20250), {});
-  const governmentEducationCovid19ResponseTeamContent = await client.query(
-    getPageContents('government-education-covid-19-response-team'),
-    {},
-  );
+  const [requestResponse, internalCovidPosts] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/government-education-covid-19-response-team', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=20250&per_page=100', { headers }).then((data) => data.json()),
+  ]);
+
+  const { title, content, seo } = requestResponse;
 
   return {
     props: {
-      title:
-        governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].title,
-      content:
-        governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0]
-          .content,
-      seo:
-        governmentEducationCovid19ResponseTeamContent.data.pages.nodes[0].seo,
-      posts: covidNewsContent.data.category.posts.edges,
+      title,
+      content,
+      internalCovidPosts,
+      seo,
     },
     revalidate: 1,
   };
