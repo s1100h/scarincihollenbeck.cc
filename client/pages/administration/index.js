@@ -66,5 +66,6 @@ export async function getStaticProps() {
       },
       admins: restResponse.admins,
     },
+    revalidate: 1,
   };
 }
