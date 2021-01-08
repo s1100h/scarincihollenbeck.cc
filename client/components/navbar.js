@@ -34,7 +34,7 @@ export default function NavBar() {
                   icon={faPhone}
                 />
                 {' '}
-                201-895-4100
+                201-896-4100
               </span>
               <span className="ml-3">
                 <FontAwesomeIcon
