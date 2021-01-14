@@ -27,7 +27,7 @@ function renderResults(positions) {
         <Row>
           {positions.map((p) => (
             <Col sm={12} md={4} key={p.title} className="mt-3 mb-2">
-              <Link href="/career/[slug]" as={`/career/${p.slug}`}>
+              <Link href="/career/[slug]" as={`/career${p.slug}`}>
                 <a className="text-dark">
                   <div className="card d-flex flex-row">
                     <div className="my-2 pl-2">

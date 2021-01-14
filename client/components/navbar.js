@@ -7,8 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
@@ -16,7 +16,7 @@ import HamburgerMobileMenu from './hamburger-mobile-menu';
 import navBarStyles from '../styles/Navbar.module.css';
 import textStyles from '../styles/Text.module.css';
 
-config.autoAddCss = false 
+config.autoAddCss = false;
 
 export default function NavBar() {
   return (

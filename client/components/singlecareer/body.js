@@ -8,7 +8,7 @@ import { createMarkup } from 'utils/helpers';
 
 export default function SingleCareerBody({ title, position, contact }) {
   return (
-    <Container>
+    <Container className="px-0">
       <Row>
         <Col sm={12}>
           <h4 className={grayTitleStyles.title}>{title}</h4>
