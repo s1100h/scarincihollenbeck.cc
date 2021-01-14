@@ -7,19 +7,9 @@ import { makeTitle } from 'utils/helpers';
 
 export default function PostBreadCrumbs() {
   const router = useRouter();
-  let buildUrl = '/';
-  const breadCrumbArr = router.asPath.split('/').filter((crumb) => crumb !== '');
-
-  const formattedBreadCrumbArr = breadCrumbArr.map((crumb, index) => {
-    buildUrl += `${breadCrumbArr[index].toString()}/`;
-    return {
-      url:
-        index === breadCrumbArr.length - 1
-          ? `${buildUrl}`
-          : `/category${buildUrl}`,
-      title: makeTitle(crumb),
-    };
-  });
+  console.log(router);
+  const crumbs = router.asPath.split('/').filter((crumb) => crumb !== '');
+  console.log('secondCrumb', crumbs[0]);
 
   return (
     <ul className="list-inline">
@@ -34,7 +24,40 @@ export default function PostBreadCrumbs() {
           </a>
         </Link>
       </li>
-      {formattedBreadCrumbArr.map(
+      <li className="list-inline-item">
+        <Link href={`/${crumbs[0]}`}>
+          <a className={`${textStyles.redTitle} text-uppercase`}>
+            <strong>
+              {crumbs[0].replace('-', ' ')}
+              {' '}
+              <FontAwesomeIcon icon={faCaretRight} />
+            </strong>
+          </a>
+        </Link>
+      </li>
+      {crumbs[1] && (
+        <li className="list-inline-item">
+          <Link href={`/${crumbs[1]}`}>
+            <a className={`${textStyles.redTitle} text-uppercase`}>
+              <strong>
+                {crumbs[1].replace('-', ' ')}
+                {' '}
+                <FontAwesomeIcon icon={faCaretRight} />
+              </strong>
+            </a>
+          </Link>
+        </li>
+      )}
+      <li className="list-inline-item">
+        <Link href={router.asPath}>
+          <a className={`${textStyles.redTitle} text-uppercase`}>
+            <strong>
+              {router.query.slug[router.query.slug.length - 1]}
+            </strong>
+          </a>
+        </Link>
+      </li>
+      {/* {formattedBreadCrumbArr.map(
         (crumb, index) => crumb.title !== 'CATEGORY' && (
         <li key={crumb.title} className="list-inline-item">
           <Link href={crumb.url}>
@@ -50,7 +73,7 @@ export default function PostBreadCrumbs() {
           </Link>
         </li>
         ),
-      )}
+      )} */}
     </ul>
   );
 }
