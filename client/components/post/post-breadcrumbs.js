@@ -32,7 +32,7 @@ export default function PostBreadCrumbs() {
           </a>
         </Link>
       </li>
-      {/* {crumbs[1] && (
+      {/* {(crumbs[1] !== router.query.slug.length - 1) && (
         <li className="list-inline-item">
           <Link href={`/${crumbs[1]}`}>
             <a className={`${textStyles.redTitle} text-uppercase`}>
