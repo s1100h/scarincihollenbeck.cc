@@ -3,13 +3,10 @@ import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import textStyles from 'styles/Text.module.css';
-import { makeTitle } from 'utils/helpers';
 
 export default function PostBreadCrumbs() {
   const router = useRouter();
-  console.log(router);
   const crumbs = router.asPath.split('/').filter((crumb) => crumb !== '');
-  console.log('secondCrumb', crumbs[0]);
 
   return (
     <ul className="list-inline">
@@ -35,7 +32,7 @@ export default function PostBreadCrumbs() {
           </a>
         </Link>
       </li>
-      {crumbs[1] && (
+      {/* {crumbs[1] && (
         <li className="list-inline-item">
           <Link href={`/${crumbs[1]}`}>
             <a className={`${textStyles.redTitle} text-uppercase`}>
@@ -47,7 +44,7 @@ export default function PostBreadCrumbs() {
             </a>
           </Link>
         </li>
-      )}
+      )} */}
       <li className="list-inline-item">
         <Link href={router.asPath}>
           <a className={`${textStyles.redTitle} text-uppercase`}>
