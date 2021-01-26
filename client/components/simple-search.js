@@ -16,8 +16,8 @@ export default function SimpleSearch({ searchId = 'simplesearch' }) {
   };
 
   return (
-    <>
-      <Form onSubmit={handleSubmit} role="search">
+    <div className="my-0 py-0">
+      <Form onSubmit={handleSubmit} role="search"  className="my-0 py-0">
         <Form.Group controlId={searchId}>
           <Form.Label>
             <span className="sr-only">Search Site</span>
@@ -32,6 +32,6 @@ export default function SimpleSearch({ searchId = 'simplesearch' }) {
           Search
         </Button>
       </Form>
-    </>
+    </div>
   );
 }

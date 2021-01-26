@@ -47,7 +47,7 @@ export default function FirmEvents({
             publishedTime: seo.publishedDate,
             modifiedTime: seo.updatedDate,
             authors: authorLinks,
-            tags: tags.split('').map((tag) => tag),
+            tags: tags.map((tag) => tag.name),
           },
           images: [
             {
@@ -129,7 +129,7 @@ export async function getServerSideProps({ params, res }) {
       seo: restResponse.seo,
       title: restResponse.title,
       subTitle: restResponse.subTitle,
-      tags: restResponse.tags,
+      tags: restResponse.tags || [],
       date: restResponse.date,
       featuredImage: restResponse.featuredImage || '/images/no-image-found-diamond-750x350.png',
       featuredImageCaption: restResponse.featuredImageCaption,

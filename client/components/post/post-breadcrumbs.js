@@ -6,7 +6,7 @@ import textStyles from 'styles/Text.module.css';
 
 export default function PostBreadCrumbs() {
   const router = useRouter();
-  const crumbs = router.asPath.split('/').filter((crumb) => crumb !== '');
+  const crumbs = router.asPath.split('/').filter((crumb) => crumb !== '').filter((crumb) => crumb.indexOf('https:') < 0);
 
   return (
     <ul className="list-inline">

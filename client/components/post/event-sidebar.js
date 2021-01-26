@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Search from 'components/search';
 import SubscriptionMessage from 'components/subscription-message';
 import { createMarkup } from 'utils/helpers';
 import styles from 'styles/SidebarTitle.module.css';
@@ -10,7 +9,8 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
 
   return (
     <div className="d-print-none">
-      <Search />
+      {/** GET THE LATEST FROM OUR ATTORNEYS */}
+      <SubscriptionMessage />
       <div className="w-100 mt-4">
         <div className={styles.header}>Event Details</div>
         <div className="off-white">
@@ -71,8 +71,6 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
           </div>
         </div>
       )}
-      {/** GET THE LATEST FROM OUR ATTORNEYS */}
-      <SubscriptionMessage />
     </div>
   );
 }

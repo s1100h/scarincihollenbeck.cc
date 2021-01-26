@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Search from 'components/search';
 import TrendingStories from 'components/non-graphql-trending-stories';
 import SubscriptionMessage from 'components/subscription-message';
 import styles from 'styles/SidebarTitle.module.css';
@@ -8,7 +7,8 @@ import styles from 'styles/SidebarTitle.module.css';
 export default function PostSidebar({ posts, attorneys }) {
   return (
     <div className="d-print-none">
-      <Search />
+      {/** GET THE LATEST FROM OUR ATTORNEYS */}
+      <SubscriptionMessage />
       {/** TOP ARTICLES */}
       <TrendingStories title="Trending Stories" content={posts} />
       {/** MENTIONED ATTORNEYS */}
@@ -44,8 +44,6 @@ export default function PostSidebar({ posts, attorneys }) {
           </div>
         </div>
       )}
-      {/** GET THE LATEST FROM OUR ATTORNEYS */}
-      <SubscriptionMessage />
     </div>
   );
 }

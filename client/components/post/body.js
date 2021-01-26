@@ -20,11 +20,6 @@ export default function PostBody({
   subTitle,
   caption,
 }) {
-  const modTags = tags.split('').map((tag) => ({
-    name: tag,
-    uri: `/archives?q=${tag}&page=1`,
-  }));
-
   return (
     <>
       <PostBreadcrumbs />
@@ -55,18 +50,18 @@ export default function PostBody({
         className={`${pageContentStyles.p} mt-3 d-print-block`}
         dangerouslySetInnerHTML={createMarkup(content)}
       />
-      {modTags.length > 0 && (
+      {tags && (
         <div className="small-excerpt ml--21px mb-0 d-print-none">
           <ul className="no-dots list-inline">
             <li className="list-inline-item">
               <strong>Tags: </strong>
             </li>
-            {modTags.map((tag, index) => (
+            {tags.map((tag, index) => (
               <li key={tag.name} className="list-inline-item">
-                <Link href={tag.uri}>
+                <Link href={`/archives?q=${tag.name}&page=1`}>
                   <a>
                     {tag.name.toLowerCase()}
-                    {modTags.length - 1 !== index && ', '}
+                    {tags.length - 1 !== index && ', '}
                   </a>
                 </Link>
               </li>
