@@ -1,0 +1,13 @@
+
+.mainArticleTitle {
+  color: #DB2220;
+}
+
+.articleDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link:hover {
+  color: #DB2220;
+}
