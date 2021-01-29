@@ -193,18 +193,13 @@ export function limitTitleLength(title) {
   return title;
 }
 
-// reformat post links to be the format of graphql response
-export function reFormatExternalPosts(postLinks) {
-  return postLinks.map((post) => ({
-    link: post.link,
-    title: post.title.rendered,
-    date: post.date,
-    image: {
-      node: {
-        sourceUrl: post.better_featured_image.source_url,
-      },
-    },
-  }));
+// limit the string length to 200 characters
+export function setTextLen(title, len) {
+  if (title.length > len) {
+    return `${title.substring(0, len)} ...`;
+  }
+
+  return title;
 }
 
 // reformat posts slugs for getStaticPaths
@@ -217,21 +212,5 @@ export function urlWithOutBaseUrl(posts, term) {
       return `/${term}/${slug}`;
     }
     return u.uri.replace('https://scarincihollenbeck.com', '');
-  });
-}
-
-export function sortByMainInformationLastName(attorneys) {
-  return attorneys.sort((a, b) => {
-    if (
-      a.attorneyMainInformation.lastName < b.attorneyMainInformation.lastName
-    ) {
-      return -1;
-    }
-    if (
-      a.attorneyMainInformation.lastName > b.attorneyMainInformation.lastName
-    ) {
-      return 1;
-    }
-    return 0;
   });
 }

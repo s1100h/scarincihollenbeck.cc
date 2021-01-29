@@ -5,16 +5,16 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from 'styles/ArticleHero.module.css';
-import { formatDate, createMarkup } from 'utils/helpers';
+import { formatDate, createMarkup, setTextLen } from 'utils/helpers';
 
 export default function ArticleHero(content) {
   const { articles } = content;
-  const articleList = articles.filter((a,i) => i !== 0);
-  console.log(articleList);
+  const articleList = articles.filter((_, i) => i !== 0);
+
   return (
     <Container>
       <Row>
-        <Col sm={12} md={7}>
+        <Col sm={12} md={6}>
           <Link href={articles[0].link}>
             <a className={styles.link}>
               <Image src={articles[0].better_featured_image.source_url.replace('Feature', 'Body')} alt={articles[0].title.rendered} width={750} height={350} layout="intrinsic" />
@@ -40,14 +40,30 @@ export default function ArticleHero(content) {
           <hr />
           <p dangerouslySetInnerHTML={createMarkup(articles[0].excerpt.rendered.replace('[…]', '...'))} />
         </Col>
-        <Col sm={12} md={5}>
+        <Col sm={12} md={6}>
           <ul className="list-unstyled">
             {articleList.map((article) => (
-              <li key={article.id} className="mb-4 d-flex">
+              <li key={article.id} className="d-flex mb-2">
                 <Link href={article.link}>
-                  <a className={styles.link}>
-                    <Image src={article.better_featured_image.source_url} alt={article.title.rendered} width={125} height={58} layout="intrinsic" className="rounded" />
-                    <div><h5><strong>{article.title.rendered}</strong></h5></div>
+                  <a className={`${styles.link} ${styles.list}`}>
+                    <img
+                      src={article.better_featured_image.source_url}
+                      alt={article.title.rendered}
+                      width="125px"
+                      height="58px"
+                      layout="intrinsic"
+                      className="rounded"
+                    />
+                    <div className={styles.listArticleTitle}>
+                      <h5 className="mb-1">
+                        <strong>{article.title.rendered}</strong>
+                      </h5>
+                      <p className="mt-0 pt-0">
+                        <small>
+                          {setTextLen(article.excerpt.rendered.replace('<p>', '').replace('</p>',''), 100)}
+                        </small>
+                      </p>
+                    </div>
                   </a>
                 </Link>
               </li>

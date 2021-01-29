@@ -70,7 +70,7 @@ export async function getStaticProps() {
   return {
     props: {
       seo,
-      posts: posts.splice(0, 6),
+      posts: posts.splice(0, 5),
       locations,
       corePractices,
     },
