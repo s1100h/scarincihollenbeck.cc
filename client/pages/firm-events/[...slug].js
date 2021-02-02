@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
@@ -99,7 +98,6 @@ export default function FirmEvents({
           <EventSidebar eventDetails={eventDetails} attorneys={attorneys} />
         }
       />
-      <Footer />
     </>
   );
 }
@@ -131,10 +129,14 @@ export async function getServerSideProps({ params, res }) {
       subTitle: restResponse.subTitle,
       tags: restResponse.tags || [],
       date: restResponse.date,
-      featuredImage: restResponse.featuredImage || '/images/no-image-found-diamond-750x350.png',
+      featuredImage:
+        restResponse.featuredImage
+        || '/images/no-image-found-diamond-750x350.png',
       featuredImageCaption: restResponse.featuredImageCaption,
       postContent: restResponse.content,
-      authorLinks: restResponse.author.map((author) => author.link) || ['https://scarincihollenbeck.com'],
+      authorLinks: restResponse.author.map((author) => author.link) || [
+        'https://scarincihollenbeck.com',
+      ],
       eventDetails: restResponse.eventDetails,
       authors: restResponse.author || [],
       attorneys: restResponse.attorneys || [],

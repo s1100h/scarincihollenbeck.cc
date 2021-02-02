@@ -139,9 +139,7 @@ export default function SingleAttorneyInfoCard({
                 {offices.map((office, index) => (
                   <h6 key={office.name} className="d-inline">
                     <Link href={office.link}>
-                      <a className="text-white">
-                        {office.name}
-                      </a>
+                      <a className="text-white">{office.name}</a>
                     </Link>
                     {offices.length - 1 !== index && <>, </>}
                   </h6>

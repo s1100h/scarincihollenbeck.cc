@@ -1,14 +1,14 @@
+import React, { useState } from 'react';
 import Router from 'next/router';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import Button from 'react-bootstrap/Button';
-import useInput from 'utils/input-hook';
 import styles from 'styles/FrontSearch.module.css';
 
 export default function FrontSearch() {
-  const { value: searchInput, bind: bindSearchInput } = useInput('');
+  const [term, setTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ export default function FrontSearch() {
 
     Router.push({
       pathname: '/search',
-      query: { q: formatUrl(searchInput), page: 1 },
+      query: { q: formatUrl(term), page: 1 },
     });
   };
 
@@ -35,7 +35,8 @@ export default function FrontSearch() {
             <Form.Control
               type="text"
               placeholder="Keyword.."
-              {...bindSearchInput}
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
             />
             <InputGroup.Append>
               <Button type="Submit" variant="danger">

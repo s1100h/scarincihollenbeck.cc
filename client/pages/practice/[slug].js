@@ -19,7 +19,6 @@ import SubscriptionMessage from 'components/subscription-message';
 import CovidResourceBox from 'components/singlepractice/covid-resource-box';
 import PracticeSidebar from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
 import tabStyle from 'styles/BigButtonTabs.module.css';
@@ -54,9 +53,7 @@ export default function PracticeSingle({
       />
       <TabContainer
         id="nav-tab"
-        defaultActiveKey={urlify(
-          practice.content[0].title,
-        )}
+        defaultActiveKey={urlify(practice.content[0].title)}
       >
         <Container>
           <Row>
@@ -110,9 +107,7 @@ export default function PracticeSingle({
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Representative Clients</h3>
                   </div>
-                  <PracticeClientSlider
-                    content={practice.highlightReal}
-                  />
+                  <PracticeClientSlider content={practice.highlightReal} />
                 </>
               )}
               {practice.industryTopics.length > 0 && (
@@ -183,7 +178,6 @@ export default function PracticeSingle({
           </Row>
         </Container>
       </TabContainer>
-      <Footer />
     </>
   );
 }
@@ -208,10 +202,9 @@ export async function getStaticProps({ params }) {
       `https://wp.scarincihollenbeck.com/wp-json/individual-practices/practice/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/practice-portal/page',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   if (res.status === 404) {
@@ -220,7 +213,9 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const corePractices = practices.practices.filter((practice) => practice.category === 'Core Practices');
+  const corePractices = practices.practices.filter(
+    (practice) => practice.category === 'Core Practices',
+  );
 
   return {
     props: {

@@ -31,7 +31,11 @@ export default function LocationsSidebar({
           <Accordion.Collapse eventKey={o.title}>
             <div className="off-white p-3">
               <ul className="list-unstyled ml-0">
-                {o.address.map((a) => <li key={a} className="mb-0">{a}</li>)}
+                {o.address.map((a) => (
+                  <li key={a} className="mb-0">
+                    {a}
+                  </li>
+                ))}
                 <li className="mt-3 mb-0">
                   <FontAwesomeIcon icon={faPhone} />
                   {' '}
@@ -59,7 +63,6 @@ export default function LocationsSidebar({
                   >
                     <strong>
                       Directions to
-                      {' '}
                       {o.title}
                     </strong>
                   </Button>

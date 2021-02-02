@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
-import FrontSearch from 'components/frontpage/front-search';
+// import FrontSearch from 'components/frontpage/front-search';
 import btnStyles from 'styles/Buttons.module.css';
 import styles from 'styles/NewDawn.module.css';
 
@@ -87,7 +87,7 @@ export default function NewDawnHeader() {
             >
               How can we help?
             </h2>
-            <FrontSearch />
+            {/* <FrontSearch /> */}
           </Col>
         </Row>
       </Container>

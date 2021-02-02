@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
-import Footer from 'components/footer';
 import ProfileImage from 'components/singleattorney/profile-image';
 import InfoCard from 'components/singleattorney/info-card';
 import SiteLoader from 'components/site-loader';
@@ -61,12 +60,9 @@ export default function AdminSingleBio({ response }) {
           image="/images/Columns-1800x400-JPG.jpg"
           height="450px"
           isAdmin
-          profile={(
-            <ProfileImage
-              image={response.image.url}
-              name={response.name}
-            />
-          )}
+          profile={
+            <ProfileImage image={response.image.url} name={response.name} />
+          }
           infoCard={(
             <InfoCard
               email={response.email}
@@ -85,26 +81,20 @@ export default function AdminSingleBio({ response }) {
               <h3>Biography</h3>
             </div>
             <div className="w-100 my-5">
-              <div
-                dangerouslySetInnerHTML={createMarkup(
-                  response.biography,
-                )}
-              />
+              <div dangerouslySetInnerHTML={createMarkup(response.biography)} />
             </div>
           </div>
         </FullWidth>
       </div>
-      <Footer />
     </>
   );
 }
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/admin-search/admin',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/admin-search/admin', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {

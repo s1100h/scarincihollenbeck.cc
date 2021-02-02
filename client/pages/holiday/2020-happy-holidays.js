@@ -1,14 +1,11 @@
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
 
-export default function HappyHolidaysTwentyTwenty({
-  title, content, seo,
-}) {
+export default function HappyHolidaysTwentyTwenty({ title, content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = (extractSubTitle !== null) ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
 
   return (
@@ -27,14 +24,16 @@ export default function HappyHolidaysTwentyTwenty({
       <FullWidth>
         <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
       </FullWidth>
-      <Footer />
     </>
   );
 }
 
 export async function getStaticProps() {
   const [aJson] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/2020-happy-holidays', { headers }).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/2020-happy-holidays',
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   const { title, content, seo } = aJson;

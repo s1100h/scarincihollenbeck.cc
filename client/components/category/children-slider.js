@@ -41,7 +41,9 @@ export default function CategoryChildrenSlider({ title, slides }) {
         >
           {slides.map((slide) => (
             <div key={slide.title} className="pb-2 px-4">
-              <Link href={slide.link.replace('https://scarincihollenbeck.com', '')}>
+              <Link
+                href={slide.link.replace('https://scarincihollenbeck.com', '')}
+              >
                 <a>
                   <Image
                     src={slide.image || '/images/no-image-found-diamond.png'}

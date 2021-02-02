@@ -19,11 +19,23 @@ export default function ArchivePracticeBlockList({ list }) {
                 {item.title}
               </Dropdown.Toggle>
               <Dropdown.Menu className="w-100">
-                <Dropdown.Item key={item.ID} href={item.slug.replace('https://scarincihollenbeck.com', '')}>
+                <Dropdown.Item
+                  key={item.ID}
+                  href={item.slug.replace(
+                    'https://scarincihollenbeck.com',
+                    '',
+                  )}
+                >
                   Overview
                 </Dropdown.Item>
                 {item.children.map((child) => (
-                  <Dropdown.Item key={child.ID} href={child.slug.replace('https://scarincihollenbeck.com', '')}>
+                  <Dropdown.Item
+                    key={child.ID}
+                    href={child.slug.replace(
+                      'https://scarincihollenbeck.com',
+                      '',
+                    )}
+                  >
                     {child.title}
                   </Dropdown.Item>
                 ))}
@@ -32,7 +44,9 @@ export default function ArchivePracticeBlockList({ list }) {
           </Col>
         ) : (
           <Col sm={12} md={4} key={item.title} className="mb-3">
-            <Link href={item.slug.replace('https://scarincihollenbeck.com', '')}>
+            <Link
+              href={item.slug.replace('https://scarincihollenbeck.com', '')}
+            >
               <a className={`${bigButtonStyles.tab} w-100 d-block`}>
                 {item.title}
               </a>

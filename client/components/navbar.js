@@ -29,18 +29,12 @@ export default function NavBar() {
           >
             <p className="my-1 pb-1 mx-0 px-0">
               <span>
-                <FontAwesomeIcon
-                  size="sm"
-                  icon={faPhone}
-                />
+                <FontAwesomeIcon size="sm" icon={faPhone} />
                 {' '}
                 201-896-4100
               </span>
               <span className="ml-3">
-                <FontAwesomeIcon
-                  size="sm"
-                  icon={faEnvelope}
-                />
+                <FontAwesomeIcon size="sm" icon={faEnvelope} />
                 {' '}
                 info@sh-law.com
               </span>

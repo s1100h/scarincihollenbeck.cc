@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import kwesforms from 'kwesforms';
 import Button from 'react-bootstrap/Button';
-import FormReCaptcha from './google-recaptcha-button';
 import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
+import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 
 export default function SubscriptionFormNoButton() {
@@ -49,28 +49,28 @@ export default function SubscriptionFormNoButton() {
           />
         </div>
         <fieldset data-kw-group="true" rules="required">
-        <span className={fontsStyles.smallExcerpt}>
-          Please select a category(s) below:
-        </span>
-        <ul
-          className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}
-        >
-          {checkboxes.map((type) => (
-            <li key={type.key}>
-              <label htmlFor={type.key} className="mb-0">
-                <input
-                  type="checkbox"
-                  id={type.key}
-                  name="category"
-                  label={type.label}
-                  value={type.label}
-                />
-                <span className="mx-2">{type.label}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-      </fieldset>
+          <span className={fontsStyles.smallExcerpt}>
+            Please select a category(s) below:
+          </span>
+          <ul
+            className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}
+          >
+            {checkboxes.map((type) => (
+              <li key={type.key}>
+                <label htmlFor={type.key} className="mb-0">
+                  <input
+                    type="checkbox"
+                    id={type.key}
+                    name="category"
+                    label={type.label}
+                    value={type.label}
+                  />
+                  <span className="mx-2">{type.label}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </fieldset>
         <div className="modal-footer justify-content-start">
           <FormReCaptcha setCaptcha={setCaptcha} />
           <Button

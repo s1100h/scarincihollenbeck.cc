@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import styles from 'styles/AttorneyArchives.module.css';
 
-export default function CareersFilterForms({
+export default function ArchiveCareersFilterForms({
   setQuery,
   query,
   executeSearch,

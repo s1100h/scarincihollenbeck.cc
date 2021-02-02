@@ -59,7 +59,7 @@ function renderResults(positions) {
   );
 }
 
-export default function CareersResults({ positions }) {
+export default function ArchiveCareersResults({ positions }) {
   if (positions <= 0) {
     return checkForEmptyResults();
   }

@@ -6,7 +6,10 @@ import textStyles from 'styles/Text.module.css';
 
 export default function PostBreadCrumbs() {
   const router = useRouter();
-  const crumbs = router.asPath.split('/').filter((crumb) => crumb !== '').filter((crumb) => crumb.indexOf('https:') < 0);
+  const crumbs = router.asPath
+    .split('/')
+    .filter((crumb) => crumb !== '')
+    .filter((crumb) => crumb.indexOf('https:') < 0);
 
   return (
     <ul className="list-inline">
@@ -48,9 +51,7 @@ export default function PostBreadCrumbs() {
       <li className="list-inline-item">
         <Link href={router.asPath}>
           <a className={`${textStyles.redTitle} text-uppercase`}>
-            <strong>
-              {router.query.slug[router.query.slug.length - 1]}
-            </strong>
+            <strong>{router.query.slug[router.query.slug.length - 1]}</strong>
           </a>
         </Link>
       </li>

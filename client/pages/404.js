@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import SimpleSearch from 'components/simple-search';
 
-export default function Custom404() {
+export default function PageNotFoundLandingPage() {
   return (
     <>
       <div id="404">
@@ -81,7 +80,6 @@ export default function Custom404() {
           </div>
         </FullWidth>
       </div>
-      <Footer />
     </>
   );
 }

@@ -119,18 +119,9 @@ export default function ArchivesBody({
           </Pagination>
         </Col>
         <Col sm={12}>
-          <NewsScroller
-            title="Firm News"
-            articles={news}
-          />
-          <NewsScroller
-            title="Firm Events"
-            articles={events}
-          />
-          <NewsScroller
-            title="Firm Insights"
-            articles={insight}
-          />
+          <NewsScroller title="Firm News" articles={news} />
+          <NewsScroller title="Firm Events" articles={events} />
+          <NewsScroller title="Firm Insights" articles={insight} />
         </Col>
       </Row>
     </Container>

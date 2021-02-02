@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import SiteLoader from 'components/site-loader';
-import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
 import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
@@ -135,12 +134,7 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
       {/** Bio Image & Info Card  -- start */}
       <MultiSubHeader
         image="/images/Columns-1800x400-JPG.jpg"
-        profile={(
-          <ProfileImage
-            image={bio.profileImage}
-            name={bio.fullName}
-          />
-        )}
+        profile={<ProfileImage image={bio.profileImage} name={bio.fullName} />}
         height="auto"
         infoCard={(
           <SingleAttorneyInfoCard
@@ -234,33 +228,32 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
                   </Nav.Link>
                 )}
                 {typeof bio.tabs.headers[2] === 'string' && (
-                <Nav.Link
-                  key={bio.tabs.headers[2]}
-                  eventKey={bio.tabs.headers[2]}
-                  className={tabStyle.tab}
-                >
-                  {bio.tabs.headers[2]}
-                </Nav.Link>
+                  <Nav.Link
+                    key={bio.tabs.headers[2]}
+                    eventKey={bio.tabs.headers[2]}
+                    className={tabStyle.tab}
+                  >
+                    {bio.tabs.headers[2]}
+                  </Nav.Link>
                 )}
                 {typeof bio.tabs.headers[3] === 'string' && (
-                <Nav.Link
-                  key={bio.tabs.headers[3]}
-                  eventKey={bio.tabs.headers[3]}
-                  className={tabStyle.tab}
-                >
-                  {bio.tabs.headers[3]}
-                </Nav.Link>
+                  <Nav.Link
+                    key={bio.tabs.headers[3]}
+                    eventKey={bio.tabs.headers[3]}
+                    className={tabStyle.tab}
+                  >
+                    {bio.tabs.headers[3]}
+                  </Nav.Link>
                 )}
                 {typeof bio.tabs.headers[4] === 'string' && (
-                <Nav.Link
-                  key={bio.tabs.headers[4]}
-                  eventKey={bio.tabs.headers[4]}
-                  className={tabStyle.tab}
-                >
-                  {bio.tabs.headers[4]}
-                </Nav.Link>
+                  <Nav.Link
+                    key={bio.tabs.headers[4]}
+                    eventKey={bio.tabs.headers[4]}
+                    className={tabStyle.tab}
+                  >
+                    {bio.tabs.headers[4]}
+                  </Nav.Link>
                 )}
-
               </Nav>
             </Col>
             {/** Navigation -- end */}
@@ -345,24 +338,24 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
                   />
                 </TabContent>
               )}
-              {bio.tabs.headers.length > 0 && bio.tabs.body.length > 0 && bio.tabs.body.map((tab) => (
-                <TabContent key={tab[0]}>
-                  <SingleAttorneyBasicContent
-                    key={tab[0]}
-                    title={tab[1]}
-                    content={tab[2]}
-                    tabTitle={tab[1]}
-                  />
-                </TabContent>
-              ))}
+              {bio.tabs.headers.length > 0
+                && bio.tabs.body.length > 0
+                && bio.tabs.body.map((tab) => (
+                  <TabContent key={tab[0]}>
+                    <SingleAttorneyBasicContent
+                      key={tab[0]}
+                      title={tab[1]}
+                      content={tab[2]}
+                      tabTitle={tab[1]}
+                    />
+                  </TabContent>
+                ))}
               {/** start of bottom page carousels -- start */}
               {bio.awards.length > 0 && (
                 <SingleAttorneyAwardSlider content={bio.awards} />
               )}
               {bio.clients.length > 0 && (
-                <SingleAttorneyClientSlider
-                  content={bio.clients}
-                />
+                <SingleAttorneyClientSlider content={bio.clients} />
               )}
               {firmNewsAndEventsArr.length > 0
                 && bio.fullName !== 'Donald Scarinci' && (
@@ -397,9 +390,6 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
         </Container>
       </TabContainer>
       {/** End of body content -- end */}
-      {/** Footer -- start */}
-      <Footer />
-      {/** Footer -- end */}
     </>
   );
 }

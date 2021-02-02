@@ -1,7 +1,7 @@
 import CareersFilterForms from './filter-forms';
 import Results from './results';
 
-export default function CareerIndex({
+export default function ArchiveCareers({
   careers,
   query,
   locations,

@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -41,17 +40,15 @@ export default function CareerPost({ career }) {
         )}
         sidebar={<SingleCareerSidebar />}
       />
-      <Footer />
     </>
   );
 }
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/career-portal/careers',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/career-portal/careers', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {
@@ -62,7 +59,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [careerJson] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-career/career/${params.slug}`, { headers }).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/individual-career/career/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   if (careerJson.status === 404) {

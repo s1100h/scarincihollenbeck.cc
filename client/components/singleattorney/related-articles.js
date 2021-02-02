@@ -44,7 +44,9 @@ export default function SingleAttorneyRelatedArticles({ title, content }) {
               <Link href={slide.link}>
                 <a>
                   <Image
-                    src={slide.featuredImg || '/images/no-image-found-diamond.png'}
+                    src={
+                      slide.featuredImg || '/images/no-image-found-diamond.png'
+                    }
                     alt={slide.title}
                     width={300}
                     height={150}

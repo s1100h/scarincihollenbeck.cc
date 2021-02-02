@@ -19,7 +19,9 @@ export default function CategoryMainArticlesContainer({ main }) {
       </Link>
       <p className="mt-5 mb-4">
         <Link href={main.category.link}>
-          <a className="text-muted ft-01 text-uppercase">{main.category.name}</a>
+          <a className="text-muted ft-01 text-uppercase">
+            {main.category.name}
+          </a>
         </Link>
       </p>
       <h2 className="mb-4 mt-3 display-4">{main.title}</h2>
@@ -32,7 +34,10 @@ export default function CategoryMainArticlesContainer({ main }) {
         <strong>BY: </strong>
         {' '}
         {main.author.map((a) => (
-          <Link key={a.name} href={a.link.replace('https://scarincihollenbeck.com', '')}>
+          <Link
+            key={a.name}
+            href={a.link.replace('https://scarincihollenbeck.com', '')}
+          >
             <a className="text-dark">{a.name}</a>
           </Link>
         ))}

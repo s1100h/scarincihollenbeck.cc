@@ -1,8 +1,6 @@
-import Router from 'next/router';
 import Head from 'next/head';
-import * as gtag from 'utils/gtag';
-import NProgress from 'nprogress';
 import NavBar from 'components/navbar';
+import Footer from 'components/footer';
 
 /**
  *
@@ -11,7 +9,6 @@ import NavBar from 'components/navbar';
  * */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-multi-carousel/lib/styles.css';
-import 'nprogress/nprogress.css';
 import 'animate.css/animate.min.css';
 
 /**
@@ -20,19 +17,6 @@ import 'animate.css/animate.min.css';
 import 'styles/globals.css';
 import 'styles/dropdown.css';
 import 'styles/carousel.css';
-
-/**
- * Bind nprogress loader to app
- * */
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
-
-/**
- *
- * Track pageview when route is changed
- */
-Router.events.on('routeChangeComplete', (url) => gtag.pageview(url));
 
 function SHApp({ Component, pageProps }) {
   return (
@@ -72,6 +56,7 @@ function SHApp({ Component, pageProps }) {
       <main>
         <Component {...pageProps} />
       </main>
+      <Footer />
     </>
   );
 }

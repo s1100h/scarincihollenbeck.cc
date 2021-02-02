@@ -26,7 +26,9 @@ export default function CategoryColumnContent() {
   if (practicesError || lawFirmInsightsChildrenError) return <ErrorMessage />;
   if (!practices || !lawFirmInsightsChildren) return <SiteLoader />;
 
-  const corePractices = practices.practices.filter((practice) => practice.category === 'Core Practices');
+  const corePractices = practices.practices.filter(
+    (practice) => practice.category === 'Core Practices',
+  );
 
   return (
     <div className="container mt-5">

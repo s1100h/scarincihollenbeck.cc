@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -30,7 +29,11 @@ export default function SingleLocation({
         <script
           key={currentOffice.name}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              buildLocationSchema(seo, currentOffice.mapLink),
+            ),
+          }}
         />
       </Head>
       <SingleSubHeader
@@ -56,17 +59,15 @@ export default function SingleLocation({
           />
         )}
       />
-      <Footer />
     </>
   );
 }
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/location-portal/offices',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {
@@ -77,9 +78,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [locations, currentOffice, currentOfficePosts] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', { headers }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-location/office/${params.slug}`, { headers }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/${params.slug}`, { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
+      headers,
+    }).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/individual-location/office/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   if (currentOffice.status === 404) {

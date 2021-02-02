@@ -35,10 +35,22 @@ export default function CarouselsSimpleNews({ slides }) {
     >
       {slides.map((slide) => (
         <div key={slide.title} className="pb-2 px-4">
-          <Link href={(slide.link) ? slide.link.replace('https://scarincihollenbeck.com', '') : '/'}>
+          <Link
+            href={
+              slide.link
+                ? slide.link.replace('https://scarincihollenbeck.com', '')
+                : '/'
+            }
+          >
             <a>
               <Image
-                src={(slide.image) ? slide.image : (slide.featuredImg) ? slide.featuredImg : '/images/no-image-found-diamond.png'}
+                src={
+                  slide.image
+                    ? slide.image
+                    : slide.featuredImg
+                      ? slide.featuredImg
+                      : '/images/no-image-found-diamond.png'
+                }
                 width={300}
                 height={150}
                 layout="intrinsic"

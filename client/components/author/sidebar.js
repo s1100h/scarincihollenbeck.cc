@@ -1,12 +1,10 @@
 import Link from 'next/link';
-import Search from 'components/search';
 import AttorneyCard from 'components/attorney-card';
 import styles from 'styles/SidebarTitle.module.css';
 
 export default function AuthorSideBar({ bio, practices }) {
   return (
     <div>
-      <Search />
       <br />
       <AttorneyCard
         link={bio.link}

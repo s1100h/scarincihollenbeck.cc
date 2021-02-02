@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import ArchivesBody from 'components/archives/body';
@@ -17,7 +16,10 @@ export default function CategoryQuickNewsLandingPage({
 }) {
   const router = useRouter();
 
-  const { data: archivesPosts, error: archivesPostsError } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/archive/query/quick-news/${router.query.page}`, fetcher);
+  const { data: archivesPosts, error: archivesPostsError } = useSWR(
+    `https://wp.scarincihollenbeck.com/wp-json/archive/query/quick-news/${router.query.page}`,
+    fetcher,
+  );
 
   if (archivesPostsError) return <ErrorMessage />;
 
@@ -49,16 +51,24 @@ export default function CategoryQuickNewsLandingPage({
         )}
         sidebar={<ArchivesSidebar trending={archivesPosts.posts} />}
       />
-      <Footer />
     </div>
   );
 }
 
 export async function getStaticProps() {
   const [firmNews, firmEvents, firmInsights] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-news', { headers }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-events', { headers }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/category/posts/law-firm-insights', { headers }).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-news',
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/category/posts/firm-events',
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/category/posts/law-firm-insights',
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   return {

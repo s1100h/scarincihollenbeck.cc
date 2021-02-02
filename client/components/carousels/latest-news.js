@@ -35,10 +35,22 @@ export default function CarouselsLatestNews({ slides }) {
     >
       {slides.map((slide) => (
         <div key={slide.title} className="pb-2 px-4">
-          <Link href={(slide.slug) ? slide.slug.replace('https://scarincihollenbeck.com', '') : slide.link.replace('https://scarincihollenbeck.com', '')}>
+          <Link
+            href={
+              slide.slug
+                ? slide.slug.replace('https://scarincihollenbeck.com', '')
+                : slide.link.replace('https://scarincihollenbeck.com', '')
+            }
+          >
             <a>
               <Image
-                src={(slide.image) ? slide.image : (slide.featuredImg) ? slide.featuredImg : '/images/no-image-found-diamond.png'}
+                src={
+                  slide.image
+                    ? slide.image
+                    : slide.featuredImg
+                      ? slide.featuredImg
+                      : '/images/no-image-found-diamond.png'
+                }
                 alt={slide.title}
                 width={300}
                 height={150}
@@ -46,9 +58,7 @@ export default function CarouselsLatestNews({ slides }) {
               />
               {slide.category && (
                 <h5 className="mt-1 mb-2 text-center text-dark">
-                  <strong>
-                    {slide.category}
-                  </strong>
+                  <strong>{slide.category}</strong>
                 </h5>
               )}
               <p

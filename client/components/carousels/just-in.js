@@ -35,7 +35,10 @@ function formatDate(date) {
 }
 
 export default function CarouselsJustIn() {
-  const { data: justInSlides } = useSWR('https://wp.scarincihollenbeck.com/wp-json/just-in/posts', fetcher);
+  const { data: justInSlides } = useSWR(
+    'https://wp.scarincihollenbeck.com/wp-json/just-in/posts',
+    fetcher,
+  );
 
   if (!justInSlides) return <SiteLoader />;
 
@@ -58,9 +61,7 @@ export default function CarouselsJustIn() {
                   {slide.category}
                 </span>
                 {formatDate(slide.date) !== 'Invalid Date' && (
-                  <span className={styles.date}>
-                    {formatDate(slide.date)}
-                  </span>
+                  <span className={styles.date}>{formatDate(slide.date)}</span>
                 )}
               </p>
               <div className={styles.justInContent}>
@@ -68,7 +69,9 @@ export default function CarouselsJustIn() {
                   <strong>{slide.title}</strong>
                 </h5>
                 <Image
-                  src={slide.image || '/images/no-image-found-diamond-750x350.png'}
+                  src={
+                    slide.image || '/images/no-image-found-diamond-750x350.png'
+                  }
                   alt={slide.title}
                   width={300}
                   height={150}

@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
@@ -25,13 +24,7 @@ export default function Administration({ admins, seo }) {
         <Container className="p-3 pt-4 border">
           <Row>
             {sortByKey(admins, 'orderBy').map((admin) => (
-              <Col
-                sm={12}
-                md={6}
-                lg={4}
-                key={admin.id}
-                className="mb-3"
-              >
+              <Col sm={12} md={6} lg={4} key={admin.id} className="mb-3">
                 <AttorneyCard
                   image={admin.image.smallUrl}
                   name={admin.name}
@@ -46,14 +39,15 @@ export default function Administration({ admins, seo }) {
           </Row>
         </Container>
       </FullWidth>
-      <Footer />
     </>
   );
 }
 
 export async function getStaticProps() {
   const [restResponse] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/admin-search/admin', { headers }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/admin-search/admin', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {

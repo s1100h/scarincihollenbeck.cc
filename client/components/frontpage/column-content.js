@@ -5,7 +5,7 @@ import About from 'components/frontpage/about';
 import Practices from 'components/frontpage/practices';
 import FrontPageCategories from 'components/frontpage/categories';
 
-export default function ColumnContent({ corePractices }) {
+export default function FrontPageColumnContent({ corePractices }) {
   return (
     <Row>
       <Col sm={12} className="px-0">

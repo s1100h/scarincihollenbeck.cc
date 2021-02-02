@@ -4,8 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import textStyles from 'styles/Text.module.css';
 
-export default function Selected({
-  select, userInput, clearQuery, clearAll,
+export default function ArchiveAttorneySelected({
+  select,
+  userInput,
+  clearQuery,
+  clearAll,
 }) {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 

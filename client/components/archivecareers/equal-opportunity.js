@@ -6,7 +6,7 @@ import lineStyles from 'styles/LineHeader.module.css';
 import basicStyles from 'styles/BasicContent.module.css';
 import textStyles from 'styles/Text.module.css';
 
-export default function CareersEqualOpportunity() {
+export default function ArchiveCareersEqualOpportunity() {
   return (
     <>
       <div className={lineStyles.lineHeader}>

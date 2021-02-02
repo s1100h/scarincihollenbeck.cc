@@ -47,11 +47,7 @@ export default function PracticeRelatedAttorneys({
             <Form.Group>
               <Form.Control as="select" onChange={handleLink} className="w-100">
                 {sortByKey(members, 'lastName').map((m) => (
-                  <option
-                    value={m.link}
-                    key={m.ID}
-                    className="w-100"
-                  >
+                  <option value={m.link} key={m.ID} className="w-100">
                     {m.name}
                   </option>
                 ))}

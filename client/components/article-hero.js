@@ -17,11 +17,18 @@ export default function ArticleHero(content) {
         <Col sm={12} md={6}>
           <Link href={articles[0].link}>
             <a className={styles.link}>
-              <Image src={articles[0].better_featured_image.source_url.replace('Feature', 'Body')} alt={articles[0].title.rendered} width={750} height={350} layout="intrinsic" />
+              <Image
+                src={articles[0].better_featured_image.source_url.replace(
+                  'Feature',
+                  'Body',
+                )}
+                alt={articles[0].title.rendered}
+                width={750}
+                height={350}
+                layout="intrinsic"
+              />
               <h3 className={`${styles.mainArticleTitle} mt-3 mb-2`}>
-                <strong>
-                  {articles[0].title.rendered}
-                </strong>
+                <strong>{articles[0].title.rendered}</strong>
               </h3>
             </a>
           </Link>
@@ -31,14 +38,16 @@ export default function ArticleHero(content) {
             <strong>Author: </strong>
             {articles[0]._embedded.author.map((a) => (
               <Link key={a.name} href={a.link.replace('wp.', '')}>
-                <a className={styles.link}>
-                  {a.name}
-                </a>
+                <a className={styles.link}>{a.name}</a>
               </Link>
             ))}
           </p>
           <hr />
-          <p dangerouslySetInnerHTML={createMarkup(articles[0].excerpt.rendered.replace('[…]', '...'))} />
+          <p
+            dangerouslySetInnerHTML={createMarkup(
+              articles[0].excerpt.rendered.replace('[…]', '...'),
+            )}
+          />
         </Col>
         <Col sm={12} md={6}>
           <ul className="list-unstyled">
@@ -60,7 +69,12 @@ export default function ArticleHero(content) {
                       </h5>
                       <p className="mt-0 pt-0">
                         <small>
-                          {setTextLen(article.excerpt.rendered.replace('<p>', '').replace('</p>',''), 100)}
+                          {setTextLen(
+                            article.excerpt.rendered
+                              .replace('<p>', '')
+                              .replace('</p>', ''),
+                            100,
+                          )}
                         </small>
                       </p>
                     </div>

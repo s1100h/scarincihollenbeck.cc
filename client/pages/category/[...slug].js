@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import FullWidth from 'layouts/full-width';
 import LargeSidebar from 'layouts/large-sidebar';
-import Search from 'components/search';
+
 import SiteLoader from 'components/site-loader';
 import BasicBreadCrumbs from 'components/basic-breadcrumbs';
 import MainArticlesContainer from 'components/category/main-articles-container';
@@ -52,15 +52,7 @@ export default function CategoryLandingPage({
       </FullWidth>
       <LargeSidebar
         body={<CategoryHeader title={name} content={description} />}
-        sidebar={(
-          <>
-            <small className="mb-3">
-              Not what you are looking for? Feel free to see search out site to
-              find the right attorney for your business.
-            </small>
-            <Search />
-          </>
-        )}
+        sidebar={<></>}
       />
       <LargeSidebar
         body={<MainArticlesContainer main={mainArticle} />}
@@ -84,10 +76,7 @@ export default function CategoryLandingPage({
       {removeLawFirmMarketingFromChildren.map((child) => (
         <FullWidth key={child.name}>
           <div className="mt-5">
-            <CategoryChildrenSlider
-              title={child.name}
-              slides={child.posts}
-            />
+            <CategoryChildrenSlider title={child.name} slides={child.posts} />
           </div>
         </FullWidth>
       ))}
@@ -115,10 +104,9 @@ export default function CategoryLandingPage({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/category/all',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/all', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {
@@ -131,7 +119,9 @@ export async function getStaticProps({ params }) {
   // retrieve the authors for the post
   const [restResponse] = await Promise.all([
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/category/posts/${params.slug[params.slug.length - 1]}`,
+      `https://wp.scarincihollenbeck.com/wp-json/category/posts/${
+        params.slug[params.slug.length - 1]
+      }`,
       { headers },
     )
       .then((data) => data.json())
