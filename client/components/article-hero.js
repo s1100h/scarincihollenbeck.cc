@@ -67,7 +67,7 @@ export default function ArticleHero(content) {
                       <h5 className="mb-1">
                         <strong>{article.title.rendered}</strong>
                       </h5>
-                      <p className="mt-0 pt-0">
+                      <p className={`mt-0 pt-0 ${styles.listArticleExcerpt}`}>
                         <small>
                           {setTextLen(
                             article.excerpt.rendered

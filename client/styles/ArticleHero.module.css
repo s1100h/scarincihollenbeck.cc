@@ -11,6 +11,10 @@
   font-size: 18px !important;
 }
 
+.listArticleExcerpt {
+  line-height: 1;
+}
+
 .articleDetails > div {
   float: left;
 }
