@@ -21,7 +21,7 @@ export default function FirmOverviewMembers({ title, members, type }) {
                 image={m.image}
                 name={m.name}
                 title={m.title}
-                number={m.number}
+                number={m.phone || `201-896-4100 ${m.extension}`}
                 email={m.email}
                 width={80}
                 height={112}
