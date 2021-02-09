@@ -37,8 +37,9 @@
     "react-stickynode": "^3.0.3",
     "react-virtualized": "^9.21.2",
     "rss-parser": "^3.9.0",
-    "styled-components": "^5.2.1",
-    "swr": "^0.4.1"
+    "styled-components": "4.4.1",
+    "swr": "^0.3.0",
+    "yargs-parser": "13.1.2"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
