@@ -21,17 +21,17 @@ export default function WomenLead({ page }) {
     {
       id: 'SjveurE3BK1R1l2',
       title: 'Community Involvement',
-      uri: '/community-involvement',
+      slug: '/community-involvement',
     },
     {
       id: 'WF7jMpVJP3PTnx9',
-      title: 'diversity-group',
-      uri: '/diversity-group',
+      title: 'Diversity Group',
+      slug: '/diversity-group',
     },
     {
       id: 'vehm0rQb7cpfd23',
       title: 'Pro Bono',
-      uri: '/pro-bono',
+      slug: '/pro-bono',
     },
   ];
 

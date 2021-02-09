@@ -21,17 +21,17 @@ export default function DiversityGroup({ page }) {
     {
       id: 'WF7jMpVJP3PTnuP',
       title: 'Pro Bono',
-      uri: '/pro-bono',
+      slug: '/pro-bono',
     },
     {
       id: 'vehm0rQb7cpMH92',
       title: 'Women Lead',
-      uri: '/women-lead',
+      slug: '/women-lead',
     },
     {
       id: 'SjveurE3BK1R1l2',
       title: 'Community Involvement',
-      uri: '/community-involvement',
+      slug: '/community-involvement',
     },
   ];
 
