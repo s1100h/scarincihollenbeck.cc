@@ -45,7 +45,7 @@ export default function CareersEqualOpportunity() {
                 {' '}
                 <Link href="/diversity">
                   <a className={textStyles.redTitle}>
-                    <u>Scarinci Hollenbeck&apos;s commitment to diveristy</u>
+                    <u>Scarinci Hollenbeck&apos;s commitment to diversity</u>
                   </a>
                 </Link>
               </strong>
