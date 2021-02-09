@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import SiteLoader from 'components/site-loader';
-import Footer from 'components/footer';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
 import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
@@ -398,7 +397,7 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
       </TabContainer>
       {/** End of body content -- end */}
       {/** Footer -- start */}
-      <Footer />
+
       {/** Footer -- end */}
     </>
   );

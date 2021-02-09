@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
-import Footer from 'components/footer';
 import ProfileImage from 'components/singleattorney/profile-image';
 import InfoCard from 'components/singleattorney/info-card';
 import SiteLoader from 'components/site-loader';
@@ -94,7 +93,6 @@ export default function AdminSingleBio({ response }) {
           </div>
         </FullWidth>
       </div>
-      <Footer />
     </>
   );
 }

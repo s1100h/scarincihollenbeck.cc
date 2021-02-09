@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import Selected from 'components/archiveattorneys/selected';
 import Filters from 'components/archiveattorneys/filters';
 import Results from 'components/archiveattorneys/results';
@@ -144,7 +143,6 @@ export default function Attorneys({
           {/** End of Results */}
         </div>
       </FullWidth>
-      <Footer />
     </>
   );
 }

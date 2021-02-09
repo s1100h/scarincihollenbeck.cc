@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import ContactForm from 'components/contact-form';
@@ -70,7 +69,6 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </FullWidth>
-      <Footer />
     </>
   );
 }

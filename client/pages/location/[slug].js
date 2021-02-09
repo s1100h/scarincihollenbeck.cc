@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebar from 'layouts/large-sidebar';
@@ -56,7 +55,6 @@ export default function SingleLocation({
           />
         )}
       />
-      <Footer />
     </>
   );
 }

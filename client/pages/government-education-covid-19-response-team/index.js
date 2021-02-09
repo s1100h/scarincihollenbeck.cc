@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
 import PagesSidebar from 'components/pages/sidebar';
@@ -43,7 +42,6 @@ export default function GovernmentEducationCovidResponseTeam({
         content={bodyContent}
         sidebar={<PagesSidebar posts={externaCovidPosts.response} covidPage />}
       />
-      <Footer />
     </>
   );
 }

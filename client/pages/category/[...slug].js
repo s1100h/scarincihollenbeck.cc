@@ -12,7 +12,6 @@ import CategoryChildrenSlider from 'components/category/children-slider';
 import ColumnContent from 'components/category/column-content';
 import CategoryLawFirmInsightsColumnContent from 'components/category/firm-insights-column-content';
 import { headers, makeTitle } from 'utils/helpers';
-import Footer from 'components/footer';
 import styles from 'styles/LineHeader.module.css';
 
 export default function CategoryLandingPage({
@@ -108,7 +107,6 @@ export default function CategoryLandingPage({
           </a>
         </p>
       </FullWidth>
-      <Footer />
     </>
   );
 }

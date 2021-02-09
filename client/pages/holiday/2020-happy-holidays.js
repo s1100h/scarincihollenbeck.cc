@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
@@ -27,7 +26,6 @@ export default function HappyHolidaysTwentyTwenty({
       <FullWidth>
         <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
       </FullWidth>
-      <Footer />
     </>
   );
 }

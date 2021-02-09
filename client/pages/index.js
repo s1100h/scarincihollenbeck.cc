@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import NewDawnHeader from 'components/frontpage/new-dawn-header';
 import ColumnContent from 'components/frontpage/column-content';
 import FullWidthContent from 'components/frontpage/full-width-content';
-import Footer from 'components/footer';
 import { sortByKey, headers } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
@@ -55,7 +54,6 @@ export default function Home({
           sortedLocations={sortByKey(locations.offices, 'id')}
         />
       </Container>
-      <Footer />
     </>
   );
 }

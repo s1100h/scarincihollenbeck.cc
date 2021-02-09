@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
@@ -97,7 +96,6 @@ export default function Featured({
         OneSidebar={<SocialShareSidebar title={title} />}
         TwoSidebar={<Sidebar posts={posts} attorneys={attorneys} />}
       />
-      <Footer />
     </>
   );
 }

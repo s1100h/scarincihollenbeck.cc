@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import ArchivePracticeSimpleList from 'components/archivepractice/simple-list';
 import ArchivePracticeBlockList from 'components/archivepractice/block-list';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -69,7 +68,6 @@ export default function PracticesPage({
         </div>
         <ArchivePracticeSimpleList list={sortedBusienssPractices} />
       </FullWidth>
-      <Footer />
     </>
   );
 }

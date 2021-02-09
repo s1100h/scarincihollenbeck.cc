@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import PagesBody from 'components/pages/body';
 import PagesSidebar from 'components/pages/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -30,7 +29,6 @@ export default function Disclaimer({
         body={<PagesBody content={bodyContent} />}
         sidebar={<PagesSidebar posts={posts} covidPage={false} />}
       />
-      <Footer />
     </>
   );
 }

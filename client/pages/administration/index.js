@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
@@ -46,7 +45,6 @@ export default function Administration({ admins, seo }) {
           </Row>
         </Container>
       </FullWidth>
-      <Footer />
     </>
   );
 }

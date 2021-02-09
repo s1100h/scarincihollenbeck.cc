@@ -81,7 +81,6 @@ export default function Custom404() {
           </div>
         </FullWidth>
       </div>
-      <Footer />
     </>
   );
 }

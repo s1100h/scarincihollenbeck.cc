@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
-import Footer from 'components/footer';
 import ArchiveLayout from 'layouts/archive-layout';
 import ArcivhesBody from 'components/archives/body';
 import ArcivhesSidebar from 'components/author/sidebar';
@@ -57,7 +56,6 @@ export default function AuthorLandingPage({
           />
         )}
       />
-      <Footer />
     </div>
   );
 }

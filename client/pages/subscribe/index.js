@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import Search from 'components/search';
 import LargeSidebar from 'layouts/large-sidebar';
 import TrendingStories from 'components/non-graphql-trending-stories';
@@ -23,7 +22,6 @@ export default function SubscriptionPage({ posts }) {
           </div>
         )}
       />
-      <Footer />
     </>
   );
 }

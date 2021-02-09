@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SiteLoader from 'components/site-loader';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -75,7 +74,6 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
           <CareersEqualOpportunity />
         </FullWidth>
       </div>
-      <Footer />
     </>
   );
 }

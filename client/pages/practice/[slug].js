@@ -19,7 +19,6 @@ import SubscriptionMessage from 'components/subscription-message';
 import CovidResourceBox from 'components/singlepractice/covid-resource-box';
 import PracticeSidebar from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
 import tabStyle from 'styles/BigButtonTabs.module.css';
@@ -183,7 +182,6 @@ export default function PracticeSingle({
           </Row>
         </Container>
       </TabContainer>
-      <Footer />
     </>
   );
 }

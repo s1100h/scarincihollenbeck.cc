@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import FirmMembers from 'components/firmoverview/members';
@@ -60,7 +59,6 @@ export default function FirmOverview({
           />
         </div>
       </FullWidth>
-      <Footer />
     </>
   );
 }
