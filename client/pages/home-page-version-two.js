@@ -12,8 +12,9 @@ import HomeReviews from 'components/home/reviews';
 import HomeWhoWeAreSection from 'components/home/who-we-are-section';
 import HomePageLink from 'components/home/page-link';
 import ArticleHero from 'components/article-hero';
-import { headers } from 'utils/helpers';
+import { sortByKey, headers } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
+import marginStyles from 'styles/Margins.module.css';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
 export default function HomePageTwo({
@@ -115,9 +116,11 @@ export default function HomePageTwo({
         <HomePageLink link="/attorneys" title="Meet more of our team" />
         <HomeReviews />
         <HomePageLink link="/awards" title="See more of our awards & accolades" />
-        <HomeLocations />
-        <HomePageLink link="/locations" title="Get more details on our office locations" />
-        <ArticleHero articles={posts} />
+        <HomeLocations locations={sortByKey(locations.offices, 'id')} />
+        <HomePageLink link="/locations" title="Get more details on our office locations" margins="mb-5 mt-2" />
+        <div className={marginStyles.mt6}>
+          <ArticleHero articles={posts} />
+        </div>
         <HomePageLink link="/library?q=firm-news" title="Read more articles about our attorneys" />
       </Container>
     </>
@@ -148,16 +151,32 @@ export async function getStaticProps() {
 
   const posts = [...news, ...events];
 
-  const leadership = attorneys.filter((a) => a.acf.chair.length > 0).map((leader) => ({
-    name: leader.title.rendered,
-    link: leader.link,
-    title: `Chair, ${leader.acf.chair.map((chair) => chair.post_title)}`,
-  }));
+  const leadership = attorneys.filter((a) => a.acf.chair.length > 0)
+    .map((leader) => ({
+      name: leader.title.rendered,
+      link: leader.link,
+      image: leader.better_featured_image.source_url,
+      title: leader.acf.chair.map((chair) => chair.post_title).sort((a, b) => {
+        if (a.title > b.title) {
+          return 1;
+        }
+
+        return -1;
+      }),
+    }))
+    .sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      }
+
+      return -1;
+    });
 
   const donaldScarinci = attorneys.filter((a) => a.acf.designation === 'Managing Partner').map((ds) => ({
     name: ds.title.rendered,
     link: ds.link,
-    title: 'Managing Partner',
+    image: ds.better_featured_image.source_url,
+    title: ['Managing Partner'],
   }));
 
   return {

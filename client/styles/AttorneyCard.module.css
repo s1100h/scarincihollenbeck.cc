@@ -19,3 +19,7 @@
   height: 14px;
   margin-bottom: 1.9px;
 }
+
+.circle {
+  border-radius:4%;
+}

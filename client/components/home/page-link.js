@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-export default function HomePageLink({ link, title }) {
+export default function HomePageLink({ link, title, margins = 'my-5' }) {
   return (
-    <div className="mx-auto d-block w-100 text-center my-5">
+    <div className={`mx-auto d-block w-100 text-center ${margins}`}>
       <Link href={link}>
         <a>
           <strong><u>{title}</u></strong>
