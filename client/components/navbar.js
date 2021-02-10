@@ -7,16 +7,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import HamburgerMobileMenu from './hamburger-mobile-menu';
 import navBarStyles from '../styles/Navbar.module.css';
 import textStyles from '../styles/Text.module.css';
-
-config.autoAddCss = false;
 
 export default function NavBar() {
   return (
@@ -27,16 +20,18 @@ export default function NavBar() {
             xs={12}
             className={`border-bottom d-flex ${navBarStyles.contactBanner} pr-0 justify-content-end`}
           >
-            <p className="my-1 pb-1 mx-0 px-0">
+            <p className="my-1 pb-1 mx-0 px-0 mr-2">
               <span>
-                <FontAwesomeIcon size="sm" icon={faPhone} />
                 {' '}
-                201-896-4100
+                <strong>201-896-4100</strong>
+                {' '}
               </span>
-              <span className="ml-3">
-                <FontAwesomeIcon size="sm" icon={faEnvelope} />
+              <span className="px-1">
+                <strong> | </strong>
+              </span>
+              <span>
                 {' '}
-                info@sh-law.com
+                <strong>info@sh-law.com</strong>
               </span>
               <Link href="/subscribe">
                 <a className={`ml-2 ${textStyles.redTitle} font-weight-bold`}>
@@ -57,7 +52,7 @@ export default function NavBar() {
                   height="52"
                   width="338"
                   layout="intrinsic"
-                  src="/images/sh-logo-2020-compressor.png"
+                  src="/images/scarinci-hollenbeck-logo-SVG.svg"
                 />
               </a>
             </Link>

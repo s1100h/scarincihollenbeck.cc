@@ -1,0 +1,21 @@
+/** Banner Image **/
+.banner {
+  background: url(/images/new-dawn-nj-compressor.jpg)
+  no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:40vh;
+}
+
+
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,23 @@
+.honeyCombContent > h4 {
+  color: #db2220;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.honeyCombContent > p {
+  font-size: 1.3rem;
+}
+
+.honeyCombContent > a {
+  background: linear-gradient(1turn,#901918 60%,#dd2624),#333;
+  color: white;
+  padding: .5em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  display: block;
+  border-radius:8px;
+  width: 220px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}

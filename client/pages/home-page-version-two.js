@@ -1,13 +1,23 @@
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
-import NewDawnHeader from 'components/frontpage/new-dawn-header';
+import HomeBanner from 'components/home/banner';
+import HomeHoneyCombSection from 'components/home/honey-comb-section';
+import HomeLocations from 'components/home/locations';
+import HomeMainTag from 'components/home/main-tag';
+import HomeOurLeadership from 'components/home/our-leadership';
+import HomeReviews from 'components/home/reviews';
+import HomeWhoWeAreSection from 'components/home/who-we-are-section';
+import HomePageLink from 'components/home/page-link';
 import ArticleHero from 'components/article-hero';
 import { headers } from 'utils/helpers';
+import styles from 'styles/Home.module.css';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
 export default function HomePageTwo({
-  seo, posts, locations, corePractices,
+  seo, posts, locations, leadership,
 }) {
   return (
     <>
@@ -46,11 +56,69 @@ export default function HomePageTwo({
           }}
         />
       </Head>
-      <NewDawnHeader />
+      <HomeBanner />
       <Container>
+        <HomeMainTag />
+        <HomeHoneyCombSection
+          contentOne={(
+            <Image
+              src="/images/goalssh.png"
+              alt="meet our attorneys"
+              width={400}
+              height={400}
+              layout="intrinsic"
+            />
+          )}
+          contentTwo={(
+            <div className={`${styles.honeyCombContent} float-right`}>
+              <h4>
+                <strong>MEET OUR TEAM</strong>
+              </h4>
+              <p>Our attorneys collaborate across the firm’s practice areas to achieve the best combination of knowledge, experience, and efficiency. We are dedicated to delivering outstanding client service.</p>
+              <Link href="/attorneys">
+                <a>
+                  Meet our attorneys
+                </a>
+              </Link>
+            </div>
+          )}
+        />
+        <HomeHoneyCombSection
+          contentOne={(
+            <div className={`${styles.honeyCombContent} mr-5`}>
+              <h4>
+                <strong>OUR SERVICES</strong>
+              </h4>
+              <p>We help our clients achieve their goals by providing tailored services with the focused experience of a boutique firm by drawing upon the resources of the firm’s core practice areas.</p>
+              <Link href="/practices">
+                <a>
+                  See what we can do
+                </a>
+              </Link>
+            </div>
+          )}
+          contentTwo={(
+            <div className="float-right">
+              <Image
+                src="/images/colabsh2.png"
+                alt="meet our attorneys"
+                width={400}
+                height={400}
+                layout="intrinsic"
+              />
+            </div>
+          )}
+        />
+        <HomeWhoWeAreSection />
+        <HomePageLink link="/firm-overview" title="More from our firm" />
+        <HomeOurLeadership attorneys={leadership} />
+        <HomePageLink link="/attorneys" title="Meet more of our team" />
+        <HomeReviews />
+        <HomePageLink link="/awards" title="See more of our awards & accolades" />
+        <HomeLocations />
+        <HomePageLink link="/locations" title="Get more details on our office locations" />
         <ArticleHero articles={posts} />
-        {JSON.stringify(locations)}
-        {JSON.stringify(corePractices)}
+        <HomePageLink link="/library?q=firm-news" title="Read more articles about our attorneys" />
       </Container>
     </>
   );
@@ -58,7 +126,7 @@ export default function HomePageTwo({
 
 export async function getStaticProps() {
   /** Adding in graphql queries */
-  const [seo, news, events, locations, corePractices] = await Promise.all([
+  const [seo, news, events, locations, attorneys] = await Promise.all([
     fetch('https://wp.scarincihollenbeck.com/wp-json/front-page/meta', {
       headers,
     }).then((data) => data.json()),
@@ -73,19 +141,31 @@ export async function getStaticProps() {
     fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/core-practices/list', {
+    fetch('http://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100', {
       headers,
     }).then((data) => data.json()),
   ]);
 
   const posts = [...news, ...events];
 
+  const leadership = attorneys.filter((a) => a.acf.chair.length > 0).map((leader) => ({
+    name: leader.title.rendered,
+    link: leader.link,
+    title: `Chair, ${leader.acf.chair.map((chair) => chair.post_title)}`,
+  }));
+
+  const donaldScarinci = attorneys.filter((a) => a.acf.designation === 'Managing Partner').map((ds) => ({
+    name: ds.title.rendered,
+    link: ds.link,
+    title: 'Managing Partner',
+  }));
+
   return {
     props: {
       seo,
       posts: posts.splice(0, 5),
       locations,
-      corePractices,
+      leadership: [...donaldScarinci, ...leadership],
     },
     revalidate: 1,
   };
