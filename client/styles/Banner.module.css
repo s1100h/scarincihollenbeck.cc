@@ -1,6 +1,6 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/new-dawn-nj-compressor.jpg)
+  background: url(/images/newyork-newjersey-sunrise-banner.jpg)
   no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:40vh;
+  height:45vh;
 }
 
 .bannerContainer {
@@ -18,11 +18,17 @@
   border: 2px solid #000;
   border-radius: 2px;
   color: #fff;
-  padding: 2em;
+  padding: 1em;
 }
 
 .h2Text {
   margin-bottom: -18px;
+  font-size: 3rem;
+}
+
+.h3Text {
+  font-size: 3.8rem;
+  text-shadow: 3px 3px 3px #000;
 }
 
 @media (max-width: 768px) {
