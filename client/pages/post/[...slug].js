@@ -1,18 +1,20 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
 import Body from 'components/post/body';
+import Sidebar from 'components/post/sidebar';
 import EventSidebar from 'components/post/event-sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function FirmEvents({
+export default function LawFirmInsightsPost({
   title,
   postContent,
   subTitle,
-  eventDetails,
+  posts,
   featuredImage,
   featuredImageCaption,
   seo,
@@ -21,6 +23,7 @@ export default function FirmEvents({
   date,
   authors,
   attorneys,
+  eventDetails,
 }) {
   const router = useRouter();
 
@@ -46,7 +49,7 @@ export default function FirmEvents({
             publishedTime: seo.publishedDate,
             modifiedTime: seo.updatedDate,
             authors: authorLinks,
-            tags: tags.map((tag) => tag.name),
+            tags: tags.split('').map((tag) => tag),
           },
           images: [
             {
@@ -94,21 +97,19 @@ export default function FirmEvents({
           />
         )}
         OneSidebar={<SocialShareSidebar title={title} />}
-        TwoSidebar={
-          <EventSidebar eventDetails={eventDetails} attorneys={attorneys} />
-        }
+        TwoSidebar={(isEventCategory && eventDetails.length > 0) ? <EventSidebar eventDetails={eventDetails} attorneys={attorneys} /> : <Sidebar posts={posts} attorneys={attorneys} />}
       />
     </>
   );
 }
 
-export async function getServerSideProps({ params, res }) {
+export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
   const [restResponse] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/single/post/${
         params.slug[params.slug.length - 1]
-      }/firm-events`,
+      }/${query.category}`,
       { headers },
     )
       .then((data) => data.json())
@@ -127,7 +128,7 @@ export async function getServerSideProps({ params, res }) {
       seo: restResponse.seo,
       title: restResponse.title,
       subTitle: restResponse.subTitle,
-      tags: restResponse.tags || [],
+      tags: restResponse.tags,
       date: restResponse.date,
       featuredImage:
         restResponse.featuredImage
@@ -137,9 +138,10 @@ export async function getServerSideProps({ params, res }) {
       authorLinks: restResponse.author.map((author) => author.link) || [
         'https://scarincihollenbeck.com',
       ],
-      eventDetails: restResponse.eventDetails,
+      posts: restResponse.posts,
       authors: restResponse.author || [],
       attorneys: restResponse.attorneys || [],
+      eventDetails: restResponse.eventDetails || [],
     },
   };
 }
