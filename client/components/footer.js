@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -256,19 +257,51 @@ export default function Footer() {
       <Container className={styles.footerDetails}>
         <Row>
           <Col sm={12} md={8}>
-            <p className="my-0 py-0"><strong>ATTORNEY ADVERTISING</strong></p>
-            <p className="my-0 py-0">
-              <small>
-                <strong>
-                  Prior results do not guarantee a similar outcome. @
-                  {currentYear}
-                  , Scarinci Hollenbeck, LLC, all rights reserved
-                </strong>
-              </small>
-            </p>
+            <div className="d-flex">
+              <Image
+                src="/images/scarinci-hollenbeck-diamond-badge-SVG.svg"
+                alt="sh diamond logo favicon"
+                width={32}
+                height={32}
+              />
+              <div className="mx-1">
+                <p className="py-1">
+                  <strong className={styles.bottomTag}>ATTORNEY ADVERTISING</strong>
+                  <small>
+                    <strong>
+                      Prior results do not guarantee a similar outcome. @
+                      {currentYear}
+                      , Scarinci Hollenbeck, LLC, all rights reserved
+                    </strong>
+                  </small>
+                </p>
+              </div>
+            </div>
           </Col>
           <Col sm={12} md={4}>
-            Links
+            <ul className={`${styles.bottomLinks} float-right`}>
+              <li className="list-inline-item">
+                <Link href="/privacy-policy">
+                  <a className="text-dark">
+                    <u>Privacy policy</u>
+                  </a>
+                </Link>
+              </li>
+              <li className="list-inline-item">
+                <Link href="/terms-of-use">
+                  <a className="text-dark">
+                    <u>Terms of use</u>
+                  </a>
+                </Link>
+              </li>
+              <li className="list-inline-item">
+                <Link href="/sitemap.xml">
+                  <a className="text-dark">
+                    <u>Sitemap</u>
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </Col>
         </Row>
       </Container>

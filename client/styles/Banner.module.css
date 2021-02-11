@@ -12,7 +12,18 @@
   height:40vh;
 }
 
+.bannerContainer {
+  background-color: rgba(0,0,0,.5);
+  box-shadow: 3px 5px 10px #000;
+  border: 2px solid #000;
+  border-radius: 2px;
+  color: #fff;
+  padding: 2em;
+}
 
+.h2Text {
+  margin-bottom: -18px;
+}
 
 @media (max-width: 768px) {
   .banner {

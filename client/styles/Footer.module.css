@@ -134,3 +134,12 @@
   width: 100%;
   display:block;
 }
+
+.bottomTag {
+  margin-bottom: -10px;
+  margin-top: 1em;
+  display:block;
+}
+.bottomLinks {
+  margin-top:2em;
+}

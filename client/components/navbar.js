@@ -45,17 +45,19 @@ export default function NavBar() {
             lg={6}
             className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}
           >
-            <Link href="/">
-              <a>
-                <Image
-                  alt="Scarinci Hollenbeck, LLC"
-                  height="52"
-                  width="338"
-                  layout="intrinsic"
-                  src="/images/scarinci-hollenbeck-logo-SVG.svg"
-                />
-              </a>
-            </Link>
+            <h1>
+              <Link href="/">
+                <a>
+                  <Image
+                    alt="Scarinci Hollenbeck, LLC"
+                    height="52"
+                    width="338"
+                    layout="intrinsic"
+                    src="/images/scarinci-hollenbeck-logo-SVG.svg"
+                  />
+                </a>
+              </Link>
+            </h1>
           </Col>
           <Col xs={12} lg={6} className=" mt-sm-2 mt-lg-3 pr-0 pl-0">
             <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>
