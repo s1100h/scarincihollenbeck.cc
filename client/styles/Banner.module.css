@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:45vh;
+  height:50vh;
 }
 
 .bannerContainer {
@@ -27,7 +27,7 @@
 }
 
 .h3Text {
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   text-shadow: 3px 3px 3px #000;
 }
 

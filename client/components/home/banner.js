@@ -1,18 +1,18 @@
 import Image from 'next/image';
 import styles from 'styles/Banner.module.css';
-import FrontSearch from 'components/front-search';
+import FrontSearch from 'components/home/front-search';
 
 export default function HomeBanner() {
   return (
     <div className={styles.banner}>
       <div className={`${styles.bannerContainer} animate__animated animate__fadeInUp animate__fast`}>
-        <div className="d-flex border p-5">
+        <div className="d-flex border p-4">
           <Image
             src="/images/scarinci-hollenbeck-diamond-badge-SVG.svg"
             alt="scarinci hollenbeck diamond logo"
-            width={150}
-            height={130}
-            className="mb-3 mr-2"
+            width={110}
+            height={95}
+            className="mr-2 mb-3"
           />
           <div>
             <h2 className={styles.h2Text}>

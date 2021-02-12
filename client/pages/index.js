@@ -113,11 +113,9 @@ export default function HomePageTwo({
         <HomeWhoWeAreSection />
         <HomePageLink link="/firm-overview" title="More from our firm" />
         <HomeOurLeadership attorneys={leadership} />
-        <HomePageLink link="/attorneys" title="Meet more of our team" />
         <HomeReviews />
         <HomePageLink link="/awards" title="See more of our awards & accolades" />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
-        <HomePageLink link="/locations" title="Get more details on our office locations" margins="mb-5 mt-2" />
         <div className={marginStyles.mt6}>
           <ArticleHero articles={posts} />
         </div>

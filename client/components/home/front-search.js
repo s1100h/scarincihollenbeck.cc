@@ -29,11 +29,11 @@ export default function FrontSearch() {
               value={term}
               onChange={(e) => setTerm(e.target.value)}
               placeholder="Keyword"
-              size="lg"
+              size="md"
             />
           </Col>
           <Col sm="auto" className="my-1">
-            <Button type="submit" size="lg" variant="danger">Submit</Button>
+            <Button type="submit" size="md" variant="danger">Submit</Button>
           </Col>
         </Form.Row>
       </Form>

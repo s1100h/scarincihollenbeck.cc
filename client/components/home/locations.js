@@ -36,7 +36,7 @@ export default function HomeLocations({ locations }) {
     <Row className="mt-5">
       <Col sm={12} className="mt-5 mb-0 pb-0">
         <div className={lineStyles.lineHeader}>
-          <h3>Our Locations</h3>
+          <h3>Office Locations</h3>
         </div>
       </Col>
       {locations.map((location) => <LocationCard key={location.id} location={location} />)}
