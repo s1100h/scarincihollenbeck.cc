@@ -3,14 +3,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import lineStyles from 'styles/LineHeader.module.css';
 
-function Accolade({ image, title }) {
+function Accolade({ image, title, width, height }) {
   return (
-    <Col sm={12} md={3}>
+    <Col sm={12} md={3} className="mt-5">
       <Image
         src={image}
         alt={title}
-        width={150}
-        height={150}
+        width={width}
+        height={height}
         layout="intrinsic"
       />
     </Col>
@@ -21,8 +21,8 @@ export default function HomeReviews() {
     {
       image: '/images/reviews/superlawyerslogo.png',
       title: 'Super Lawyers',
-      height: 195,
-      width: 164,
+      height: 164,
+      width: 195,
       ratings: 5,
     },
     {
@@ -40,7 +40,15 @@ export default function HomeReviews() {
           <h3>Reviews & Accolades</h3>
         </div>
       </Col>
-      {accolades.map((accolade) => <Accolade key={accolade.title} image={accolade.image} title={accolade.title} />)}
+      {accolades.map((accolade) => (
+        <Accolade
+          key={accolade.title}
+          image={accolade.image}
+          title={accolade.title}
+          width={accolade.width}
+          height={accolade.height}
+        />
+      ))}
     </Row>
   );
 }
