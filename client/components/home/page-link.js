@@ -12,7 +12,7 @@ export default function HomePageLink({ link, title, margins = 'my-5' }) {
         {`
         a {
           color: #db2220;
-          font-size: 1.5rem;
+          font-size: 1.275rem;
         }
       `}
       </style>
