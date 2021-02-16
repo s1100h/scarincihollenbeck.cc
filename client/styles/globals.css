@@ -59,6 +59,15 @@ em {
 .mw-45 {
   width: 55%;
 }
+.mt-6 {
+  margin-top: 6em;
+}
+
+.mx-6 {
+  padding-left: 3.3em;
+  padding-right: 3.3em;
+  margin-top: 4.8em;
+}
 
 .show > .btn-primary.dropdown-toggle {
   background-color: #fff;

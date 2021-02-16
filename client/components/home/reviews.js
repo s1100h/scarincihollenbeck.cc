@@ -8,7 +8,11 @@ function Accolade({
   image, title, width, height, rating, styleName,
 }) {
   return (
-    <Col sm={12} md={3} className="mt-5 mx-auto">
+    <Col
+      sm={12}
+      md={3}
+      className={(title === 'Lawyers.com') ? 'mt-6 mx-auto' : (title === 'Martindale Hubbell') ? 'mx-6' : 'mt-5 mx-auto'}
+    >
       <Image
         src={image}
         alt={title}
@@ -66,7 +70,7 @@ export default function HomeReviews() {
     },
   ];
   return (
-    <Row className="mt-5">
+    <Row className="mt-5 px-2">
       <Col sm={12} className="mt-5 mb-0 pb-0">
         <div className={lineStyles.lineHeader}>
           <h3>Reviews & Accolades</h3>
