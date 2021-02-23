@@ -12,8 +12,6 @@ const HeaderBckGround = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
-  clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
   height: ${(props) => props.height};
 `;
 

@@ -96,12 +96,14 @@ export default function PracticeSingle({
                   />
                 </TabContent>
               )}
+              {(practice.attorneyList.length > 0) && (
               <RelatedAttorneys
                 members={practice.attorneyList}
                 chair={practice.chair}
                 handleLink={handleLink}
                 title="Chair"
               />
+              )}
               {practice.highlightReal.length > 0 && (
                 <>
                   <div className={`${lineStyles.lineHeader} my-4`}>

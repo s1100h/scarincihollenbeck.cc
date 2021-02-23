@@ -111,7 +111,7 @@ export default function Attorneys({
         height="330px"
       />
       <FullWidth>
-        <div id="attorney-archive" className="mb-5">
+        <div className="mb-5">
           {/** Filters */}
           <Filters
             practices={sPractices}
