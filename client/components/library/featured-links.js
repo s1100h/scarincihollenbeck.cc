@@ -27,13 +27,13 @@ export default function FeaturedLinks() {
             </a>
           </Link>
         </li>
-        <li className="list-inline-item">
+        {/* <li className="list-inline-item">
           <Link href="/library?term=quick-news">
             <a className={`${styles.link} text-dark`}>
               <strong><u>Quick News</u></strong>
             </a>
           </Link>
-        </li>
+        </li> */}
       </ul>
       <style jsx>
         {`

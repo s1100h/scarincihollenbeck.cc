@@ -120,36 +120,11 @@ export default function NavBar() {
                     <a className="text-dark">Practices</a>
                   </Link>
                 </Nav.Item>
-                <NavDropdown
-                  title="Library"
-                  id="basic-nav-dropdown"
-                  className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
-                >
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/category/firm-news"
-                  >
-                    Firm News
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/category/firm-events"
-                  >
-                    Firm Events
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/category/law-firm-insights"
-                  >
-                    Firm Insights
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/quick-news?page=1"
-                  >
-                    Quick News
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Item className={navBarStyles.navItem}>
+                  <Link href="/library">
+                    <a className="text-dark">Library</a>
+                  </Link>
+                </Nav.Item>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/locations">
                     <a className="text-dark">Locations</a>

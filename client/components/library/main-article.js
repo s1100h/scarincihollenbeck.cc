@@ -20,21 +20,19 @@ export default function MainArticle({
             width={750}
             height={350}
           />
-                  </a>
+        </a>
       </Link>
-          <p className={`${fontStyles.ft12rem} my-3`}>
-            <strong>Author: </strong>
-            {' '}
-            {author}
-            <span className="ml-5">
-              <strong>Date:</strong>
-              {' '}
-              {date}
-            </span>
-          </p>
-          {description.map((content) => <div key={content} className={`${fontStyles.ft11rem} pr-4`} dangerouslySetInnerHTML={createMarkup(content)} />)}
-
-
+      <p className={`${fontStyles.ft12rem} my-3`}>
+        <strong>Author: </strong>
+        {' '}
+        {author}
+        <span className="ml-5">
+          <strong>Date:</strong>
+          {' '}
+          {date}
+        </span>
+      </p>
+      {description.map((content) => <div key={content} className={`${fontStyles.ft11rem} pr-4`} dangerouslySetInnerHTML={createMarkup(content)} />)}
       <Button
         variant="danger"
         className={`${fontStyles.ft12rem} px-4`}

@@ -1,5 +1,7 @@
+import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,6 +10,7 @@ import MainArticle from 'components/library/main-article';
 import FeaturedArticle from 'components/library/featured-article';
 import FeaturedLinks from 'components/library/featured-links';
 import SearchBar from 'components/library/search-bar';
+import SubscriptionContainer from 'components/library/subscription-container';
 import { headers, urlify, makeTitle } from 'utils/helpers';
 import styles from 'styles/Library.module.css';
 import marginStyles from 'styles/Margins.module.css';
@@ -20,15 +23,28 @@ export default function Library({
   childrenOfCurrentCategory,
   pageTitle,
 }) {
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState('');
   const mainArticle = results.results[0];
   const featuredArticles = results.results.filter((_, i) => i > 0 && i <= 4);
+
+  // on submit
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const santizeTerm = urlify(searchTerm.replace(/[^a-zA-Z ]/g, ''));
+
+    router.push({
+      pathname: '/library',
+      query: { term: santizeTerm },
+    });
+  };
 
   return (
     <>
       <NextSeo nofollow />
       <Container className="border mb-5">
         <Row>
-          <SearchBar />
+          <SearchBar onChange={(e) => setSearchTerm(e)} searchTerm={searchTerm} onSubmit={onSubmit} />
           <FeaturedLinks />
           <Col sm={12} md={9}>
             <div className="my-3">
@@ -42,11 +58,13 @@ export default function Library({
             </div>
             {(results.results.length > 0 && results.results) ? (
               <>
-                <MainArticle title={mainArticle.title} link={mainArticle.link} description={mainArticle.longerDescription} date={mainArticle.date} image={mainArticle.image.replace('Feature', 'Body')} author={mainArticle.author} />
+                <MainArticle title={mainArticle.title} link={mainArticle.link} description={mainArticle.longerDescription} date={mainArticle.date} image={mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body')} author={mainArticle.author} />
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
                   <FeaturedArticle articles={featuredArticles} />
                 </ul>
-                <span>Subscription will go here</span>
+                <div className={`${marginStyles.mt65}`}>
+                  <SubscriptionContainer />
+                </div>
                 <span>Archives will go here...</span>
               </>
             ) : (
@@ -70,7 +88,7 @@ export default function Library({
             <ul className={styles.authorList}>
               {authors.map((author) => (
                 <li key={author.lastName} className={`${styles.author} list-unstyled`}>
-                  <Link href={`/library?term=${encodeURIComponent(author.fullName)}`}>
+                  <Link href={`/library?term=${urlify(author.fullName.replace(/[^a-zA-Z ]/g, ''))}`}>
                     <a className="text-dark">
                       {author.fullName}
                     </a>
