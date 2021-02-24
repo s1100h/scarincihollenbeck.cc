@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import PopularList from 'components/library/popular-list';
 import MainArticle from 'components/library/main-article';
 import FeaturedArticle from 'components/library/featured-article';
+import OlderArticles from 'components/library/older-articles';
 import FeaturedLinks from 'components/library/featured-links';
 import SearchBar from 'components/library/search-bar';
 import SubscriptionContainer from 'components/library/subscription-container';
@@ -27,6 +28,7 @@ export default function Library({
   const [searchTerm, setSearchTerm] = useState('');
   const mainArticle = results.results[0];
   const featuredArticles = results.results.filter((_, i) => i > 0 && i <= 4);
+  const olderArticles = results.results.filter((_, i) => i > 4);
 
   // on submit
   const onSubmit = (e) => {
@@ -62,10 +64,12 @@ export default function Library({
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
                   <FeaturedArticle articles={featuredArticles} />
                 </ul>
-                <div className={`${marginStyles.mt65}`}>
+                <div className={marginStyles.mt65}>
                   <SubscriptionContainer />
                 </div>
-                <span>Archives will go here...</span>
+                <div className="mt-5">
+                  <OlderArticles term={pageTitle} initialArticles={olderArticles} />
+                </div>
               </>
             ) : (
               <div className="text-center m-3">
