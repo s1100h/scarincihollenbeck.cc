@@ -1,9 +1,10 @@
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
-import Image from 'next/image';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import PopularList from 'components/library/popular-list';
+import MainArticle from 'components/library/main-article';
 import { headers, urlify } from 'utils/helpers';
 import styles from 'styles/Library.module.css';
 import fontStyles from 'styles/Fonts.module.css';
@@ -20,56 +21,24 @@ export default function Library({
   return (
     <>
       <NextSeo nofollow />
-      <Container>
+      <Container className="border">
         <Row>
           <Col sm={12}>
             Bread crumbs
           </Col>
-          <Col sm={12} md={3}>
-            <p className={fontStyles.ft12rem}>
-              <strong>{`${pageTitle} Categories`}</strong>
-            </p>
-            <ul className={styles.authorList}>
-              {childrenOfCurrentCategory.map((category) => (
-                <li key={category.id} className="list-unstyled">
-                  <Link href={`/library?term=${category.slug}&page=1`}>
-                    <a className="text-dark">
-                      {category.name}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className={fontStyles.ft12rem}><strong>Popular Categories</strong></p>
-            <ul className={styles.authorList}>
-              {popularCategories.map((popular) => (
-                <li key={popular.id} className="list-unstyled">
-                  <Link href={`/library?term=${popular.slug}&page=1`}>
-                    <a className="text-dark">
-                      {popular.name}
-                      {' '}
-                      <strong>
-                        <small>
-                          {popular.postCount}
-                        </small>
-                      </strong>
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <Col sm={12} md={4} className="d-flex flex-column justify-content-start">
+            {childrenOfCurrentCategory.length > 0 && <PopularList term="Related Categories" list={childrenOfCurrentCategory} />}
+            <PopularList term="Popular Categories" list={popularCategories} />
           </Col>
-          <Col sm={12} md={7}>
-            <div>
-              
-            </div>
+          <Col sm={12} md={6}>
+            <MainArticle title={mainArticle.title} link={mainArticle.link} description={mainArticle.longerDescription} date={mainArticle.date} image={mainArticle.image.replace('Feature', 'Body')} author="Temp Author" />
           </Col>
-          <Col sm={12} md={2}>
-            <p className={fontStyles.ft12rem}><strong>Firm Authors</strong></p>
+          <Col sm={12} md={2} className="d-flex flex-column justify-content-end text-right">
+            <p className={`${fontStyles.ft12rem} d-block w-100`}><strong>Firm Authors</strong></p>
             <ul className={styles.authorList}>
               {authors.map((author) => (
                 <li key={author.lastName} className={`${styles.author} list-unstyled`}>
-                  <Link href={`/library?term=${author.username}&page=1`}>
+                  <Link href={`/library?term=${author.username}`}>
                     <a className="text-dark">
                       {author.fullName}
                     </a>
@@ -85,9 +54,9 @@ export default function Library({
 }
 
 export async function getServerSideProps({ query }) {
-  const { page, term } = query;
+  const { term } = query;
   const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${urlify(term)}/${page}`, {
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${urlify(term)}/1`, {
       headers,
     }).then((data) => data.json()),
     fetch(
