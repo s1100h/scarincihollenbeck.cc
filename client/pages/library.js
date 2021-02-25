@@ -11,12 +11,12 @@ import FeaturedArticle from 'components/library/featured-article';
 import OlderArticles from 'components/library/older-articles';
 import FeaturedLinks from 'components/library/featured-links';
 import SearchBar from 'components/library/search-bar';
+import Breadcrumbs from 'components/library/breadcrumbs';
 import SubscriptionContainer from 'components/library/subscription-container';
-import { headers, urlify, makeTitle } from 'utils/helpers';
+import { headers, urlify } from 'utils/helpers';
 import styles from 'styles/Library.module.css';
 import marginStyles from 'styles/Margins.module.css';
 import fontStyles from 'styles/Fonts.module.css';
-import textStyles from 'styles/Text.module.css';
 
 export default function Library({
   results,
@@ -50,15 +50,7 @@ export default function Library({
           <SearchBar onChange={(e) => setSearchTerm(e)} searchTerm={searchTerm} onSubmit={onSubmit} />
           <FeaturedLinks />
           <Col sm={12} md={9}>
-            <div className="my-3">
-              <p className={`${fontStyles.ft12rem} ${textStyles.redTitle} d-block w-100`}>
-                <strong>
-                  Home | Library |
-                  {' '}
-                  <span className="text-capitalize">{pageTitle.replace(/-/g, ' ')}</span>
-                </strong>
-              </p>
-            </div>
+            <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} />
             {(results.results.length > 0 && results.results) ? (
               <>
                 <MainArticle title={mainArticle.title} link={mainArticle.link} description={mainArticle.longerDescription} date={mainArticle.date} image={mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body')} author={mainArticle.author} />

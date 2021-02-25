@@ -25,13 +25,13 @@ export default function OlderArticles({ term, initialArticles }) {
   const [articleList, setArticleList] = useState(initialArticles || []);
 
   async function handleClick() {
-    setPageIndex((index) => index += 1);
+    setPageIndex(newIndex => newIndex += 1);
     const getOlderPosts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) || 'firm-news'}/${pageIndex}`)
       .then((data) => data.json())
       .catch((error) => {
         console.log(new Error(error));
         setError(true);
-      })
+      });
     if (getOlderPosts.results) {
       getOlderPosts.results.shift();
       setArticleList((articles) => [...articles, ...getOlderPosts.results]);
