@@ -16,6 +16,7 @@ import { headers, urlify, makeTitle } from 'utils/helpers';
 import styles from 'styles/Library.module.css';
 import marginStyles from 'styles/Margins.module.css';
 import fontStyles from 'styles/Fonts.module.css';
+import textStyles from 'styles/Text.module.css';
 
 export default function Library({
   results,
@@ -50,7 +51,7 @@ export default function Library({
           <FeaturedLinks />
           <Col sm={12} md={9}>
             <div className="my-3">
-              <p className={`${fontStyles.ft12rem} d-block w-100`}>
+              <p className={`${fontStyles.ft12rem} ${textStyles.redTitle} d-block w-100`}>
                 <strong>
                   Home | Library |
                   {' '}
@@ -74,10 +75,10 @@ export default function Library({
             ) : (
               <div className="text-center m-3">
                 <h4>
-                  <strong>
+                  <strong className="text-capitalize">
                     Sorry, no results found for
                     {' '}
-                    {pageTitle}
+                    <u>{pageTitle.replace(/-/g, ' ')}</u>
                     {' '}
                     query.
                   </strong>

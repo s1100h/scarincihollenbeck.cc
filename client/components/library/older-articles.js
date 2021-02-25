@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import useSWR from 'swr';
 import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import { createMarkup, fetcher, urlify } from 'utils/helpers';
+import { createMarkup } from 'utils/helpers';
 
 function ArticleDetails({ uri, title, excerpt }) {
   return (
@@ -21,16 +20,23 @@ function ArticleDetails({ uri, title, excerpt }) {
 }
 
 export default function OlderArticles({ term, initialArticles }) {
-  const { data, error } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) || 'firm-news'}/2`, fetcher);
-
   const [pageIndex, setPageIndex] = useState(2);
+  const [error, setError] = useState(false);
   const [articleList, setArticleList] = useState(initialArticles || []);
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-
-  console.log('data');
-  console.log(data);
+  async function handleClick() {
+    setPageIndex((index) => index += 1);
+    const getOlderPosts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) || 'firm-news'}/${pageIndex}`)
+      .then((data) => data.json())
+      .catch((error) => {
+        console.log(new Error(error));
+        setError(true);
+      })
+    if (getOlderPosts.results) {
+      getOlderPosts.results.shift();
+      setArticleList((articles) => [...articles, ...getOlderPosts.results]);
+    }
+  }
 
   return (
     <Row>
@@ -43,13 +49,19 @@ export default function OlderArticles({ term, initialArticles }) {
           </strong>
         </h4>
       </Col>
-      {articleList && articleList.map((article) => (
+      {error ? (
+        <p><strong>There was an error loading more posts...</strong></p>
+      ) : articleList && articleList.map((article) => (
         <Col key={article.imgAlt} sm={12} md={10} className="mx-3 mb-3">
           <ArticleDetails uri={article.link} title={article.title} excerpt={article.description} />
         </Col>
       ))}
       <Col sm={12}>
-        <Button variant="danger" className="px-4 mx-3 mb-3">
+        <Button
+          variant="danger"
+          className="px-4 mx-3 mb-3"
+          onClick={() => handleClick()}
+        >
           Load more posts
         </Button>
       </Col>
