@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
 import TrendingStories from 'components/non-graphql-trending-stories';
 import SideBarHeaderToggle from 'components/sidebar-header-toggle';
 import textStyles from 'styles/Text.module.css';
@@ -37,13 +34,13 @@ export default function LocationsSidebar({
                   </li>
                 ))}
                 <li className="mt-3 mb-0">
-                  <FontAwesomeIcon icon={faPhone} />
+                  <strong>Phone: </strong>
                   {' '}
                   <strong>{o.phone}</strong>
                 </li>
                 {o.fax && (
                   <li className="my-0">
-                    <FontAwesomeIcon icon={faFax} />
+                    <strong>Fax: </strong>
                     {' '}
                     <strong>{o.fax}</strong>
                   </li>

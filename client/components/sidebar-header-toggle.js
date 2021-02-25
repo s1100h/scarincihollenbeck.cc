@@ -2,9 +2,6 @@ import React, { useContext } from 'react';
 import AccordionContext from 'react-bootstrap/AccordionContext';
 import Button from 'react-bootstrap/Button';
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
-import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import styles from 'styles/SidebarTitle.module.css';
 
 export default function SideBarHeaderToggle({ children, eventKey, callback }) {
@@ -24,17 +21,7 @@ export default function SideBarHeaderToggle({ children, eventKey, callback }) {
       onClick={decoratedOnClick}
     >
       {children}
-      {isCurrentEventKey ? (
-        <FontAwesomeIcon
-          icon={faMinus}
-          className="text-white float-right icon-w8px-h20px"
-        />
-      ) : (
-        <FontAwesomeIcon
-          icon={faPlus}
-          className="text-white float-right icon-w8px-h20px"
-        />
-      )}
+      {isCurrentEventKey ? <strong className={styles.toggleIconOpen}>+</strong> : <strong className={styles.toggleIconClose}>-</strong>}
     </Button>
   );
 }

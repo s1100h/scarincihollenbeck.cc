@@ -12,7 +12,9 @@ const HeaderBckGround = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: ${(props) => props.height};
+  height: 45vh;
+  border-top: 5px solid #000;
+  border-bottom: 5px solid #000;
 `;
 
 export default function SingleSubHeader({

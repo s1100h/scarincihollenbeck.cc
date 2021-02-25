@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import SingleSubHeader from 'layouts/single-sub-header';
 import PopularList from 'components/library/popular-list';
 import MainArticle from 'components/library/main-article';
 import FeaturedArticle from 'components/library/featured-article';
@@ -45,6 +46,11 @@ export default function Library({
   return (
     <>
       <NextSeo nofollow />
+      <SingleSubHeader
+        image="/images/Legal-Research-1800x400-JPG.jpg"
+        title="Article Library"
+        subtitle="Scarinci Hollenbeck regularly publishes articles pertaining to legal updates affecting individuals and institutions in New York and New Jersey, and the world at large. Here you can find coverage for when we welcome new attorneys, significant wins we’ve secured on behalf of our clients, and general announcements. "
+      />
       <Container className="border mb-5">
         <Row>
           <SearchBar onChange={(e) => setSearchTerm(e)} searchTerm={searchTerm} onSubmit={onSubmit} />

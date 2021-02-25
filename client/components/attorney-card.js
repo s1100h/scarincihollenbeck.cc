@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from 'styles/AttorneyCard.module.css';
@@ -43,11 +40,11 @@ export default function AttorneyCard({
           </a>
         </Link>
         <div className={fontStyles.smallExcerpt}>
-          <FontAwesomeIcon icon={faPhone} />
+         <strong>Phone: </strong>
           {' '}
           {number}
           <br />
-          <FontAwesomeIcon icon={faEnvelope} />
+          <strong>Email: </strong>
           {' '}
           {email}
         </div>

@@ -1,18 +1,6 @@
 import Link from 'next/link';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
-import { faFax } from '@fortawesome/free-solid-svg-icons/faFax';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
-import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
-import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import fontStyles from 'styles/Fonts.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
@@ -94,10 +82,7 @@ export default function SingleAttorneyInfoCard({
             {phoneNumber && (
               <li className="mb-3">
                 <h6>
-                  <FontAwesomeIcon
-                    icon={faPhone}
-                    className={`text-white ${fontStyles.ft1rem}`}
-                  />
+                  <strong>Phone: </strong>
                   {' '}
                   <span>{phoneNumber}</span>
                 </h6>
@@ -106,10 +91,7 @@ export default function SingleAttorneyInfoCard({
             {fax && (
               <li className="mb-3">
                 <h6>
-                  <FontAwesomeIcon
-                    icon={faFax}
-                    className={`text-white ${fontStyles.ft1rem}`}
-                  />
+                  <strong>Fax: </strong>
                   {' '}
                   <span>{fax}</span>
                 </h6>
@@ -118,10 +100,7 @@ export default function SingleAttorneyInfoCard({
             {email && (
               <li className="mb-3">
                 <h6>
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    className={`text-white ${fontStyles.ft1rem}`}
-                  />
+                  <strong>Email: </strong>
                   {' '}
                   <a href={`mailto:${email}`} className="text-white">
                     {email}
@@ -131,10 +110,7 @@ export default function SingleAttorneyInfoCard({
             )}
             {offices && (
               <li className="mb-3">
-                <FontAwesomeIcon
-                  icon={faBuilding}
-                  className="text-white icon-w8px-h20px d-inline"
-                />
+                <strong>Office: </strong>
                 {' '}
                 {offices.map((office, index) => (
                   <h6 key={office.name} className="d-inline">
@@ -157,38 +133,8 @@ export default function SingleAttorneyInfoCard({
                 {socialMediaLinks.map((v) => (
                   <li key={v.channel} className="mb-3">
                     <h6>
-                      {v.channel === 'Twitter' && (
-                        <FontAwesomeIcon
-                          icon={faTwitter}
-                          className="text-white"
-                        />
-                      )}
-                      {v.channel === 'Facebook' && (
-                        <FontAwesomeIcon
-                          icon={faFacebookSquare}
-                          className="text-white"
-                        />
-                      )}
-                      {v.channel === 'LinkedIn' && (
-                        <FontAwesomeIcon
-                          icon={faLinkedin}
-                          className="text-white"
-                        />
-                      )}
-                      {v.channel === 'Skype' && (
-                        <FontAwesomeIcon
-                          icon={faSkype}
-                          className="text-white"
-                        />
-                      )}
-                      {v.channel === 'Instagram' && (
-                        <FontAwesomeIcon
-                          icon={faInstagram}
-                          className="text-white"
-                        />
-                      )}
                       <a href={v.url} className="text-white">
-                        {`  Connect on ${v.channel}`}
+                        <u>{`  Connect on ${v.channel}`}</u>
                       </a>
                     </h6>
                   </li>
@@ -196,10 +142,8 @@ export default function SingleAttorneyInfoCard({
                 {pdf && (
                   <li className="mb-3">
                     <h6>
-                      <FontAwesomeIcon icon={faFile} className="text-white" />
-                      {' '}
                       <a href={pdf} rel="nofollow" className="text-white">
-                        {' Download Biography'}
+                        <u>Download Biography</u>
                       </a>
                     </h6>
                   </li>
@@ -207,12 +151,8 @@ export default function SingleAttorneyInfoCard({
                 {vizibility && (
                   <li className="mb-3">
                     <h6>
-                      <FontAwesomeIcon
-                        icon={faAddressCard}
-                        className="text-white"
-                      />
                       <a href={vizibility} className="text-white">
-                        {' Download Contact'}
+                        <u>Download Contact</u>
                       </a>
                     </h6>
                   </li>

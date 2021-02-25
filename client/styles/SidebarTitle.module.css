@@ -12,3 +12,17 @@
 .lh22px {
   line-height: 22px;
 }
+
+.toggleIconClose {
+  font-size: 2rem;
+  float: right;
+  margin-top: -16px;
+  margin-bottom: -12px;
+}
+
+.toggleIconOpen {
+  font-size: 1.6rem;
+  float: right;
+  margin-top: -7px;
+  margin-bottom: -11px;
+}

@@ -11,9 +11,9 @@ const HeaderBckGround = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
-  clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
-  min-height: ${(props) => props.height};
+  min-height: 50vh;
+  border-top: 5px solid #000;
+  border-bottom: 5px solid #000;
 `;
 
 export default function MultiSubHeader({

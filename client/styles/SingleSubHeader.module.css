@@ -1,8 +1,7 @@
 .bgBlackBackground {
   border-radius: 4px;
-  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
-  clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 1% 90%, 0 0);
-  background-color: rgba(0, 0, 0, 0.5);
+ 
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .h2Italic {
