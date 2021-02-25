@@ -7,36 +7,35 @@ import Col from 'react-bootstrap/Col';
 import styles from 'styles/ArticleHero.module.css';
 import { formatDate, createMarkup, setTextLen } from 'utils/helpers';
 
-export default function ArticleHero(content) {
-  const { articles } = content;
-  const articleList = articles.filter((_, i) => i !== 0);
+export default function ArticleHero({ content }) {
+  const articleList = content.filter((_, i) => i !== 0);
 
   return (
     <Container>
       <Row>
         <Col sm={12} md={6}>
-          <Link href={articles[0].link}>
+          <Link href={content[0].link}>
             <a className={styles.link}>
               <Image
-                src={articles[0].better_featured_image.source_url.replace(
+                src={content[0].better_featured_image.source_url.replace(
                   'Feature',
                   'Body',
                 )}
-                alt={articles[0].title.rendered}
+                alt={content[0].title.rendered}
                 width={750}
                 height={350}
                 layout="intrinsic"
               />
               <h3 className={`${styles.mainArticleTitle} mt-3 mb-2`}>
-                <strong>{articles[0].title.rendered}</strong>
+                <strong>{content[0].title.rendered}</strong>
               </h3>
             </a>
           </Link>
           <p>
             <strong>Published: </strong>
-            <span className="mr-3">{formatDate(articles[0].date)}</span>
+            <span className="mr-3">{formatDate(content[0].date)}</span>
             <strong>Author: </strong>
-            {articles[0]._embedded.author.map((a) => (
+            {content[0]._embedded.author.map((a) => (
               <Link key={a.name} href={a.link.replace('wp.', '')}>
                 <a className={styles.link}>{a.name}</a>
               </Link>
@@ -45,7 +44,7 @@ export default function ArticleHero(content) {
           <hr />
           <p
             dangerouslySetInnerHTML={createMarkup(
-              articles[0].excerpt.rendered.replace('[…]', '...'),
+              content[0].excerpt.rendered.replace('[…]', '...'),
             )}
           />
         </Col>

@@ -7,7 +7,7 @@ export default function FeaturedArticle({ articles }) {
       <Link href={article.link}>
         <a className={`${styles.link} ${styles.list}`}>
           <img
-            src={article.image}
+            src={(article.image) ? article.image : '/images/no-image-found-diamond-750x350.png'}
             alt={article.title}
             width="300px"
             height="139px"

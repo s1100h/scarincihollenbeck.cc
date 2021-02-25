@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { urlify } from 'utils/helpers';
 
 export default function SimpleSearch({ searchId = 'simplesearch' }) {
+  const router = useRouter();
   const [term, setTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
-    Router.push({
-      pathname: '/search',
-      query: { q: formatUrl(term), page: 1 },
-    }).then(() => window.scrollTo(0, 0));
+    const santizeTerm = urlify(term.replace(/[^a-zA-Z ]/g, ''));
+
+    router.push({
+      pathname: '/library',
+      query: { term: santizeTerm },
+    });
   };
 
   return (

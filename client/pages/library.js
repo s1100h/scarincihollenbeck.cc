@@ -59,7 +59,14 @@ export default function Library({
             <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} />
             {(results.results.length > 0 && results.results) ? (
               <>
-                <MainArticle title={mainArticle.title} link={mainArticle.link} description={mainArticle.longerDescription} date={mainArticle.date} image={mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body')} author={mainArticle.author} />
+                <MainArticle
+                  title={mainArticle.title}
+                  link={mainArticle.link}
+                  description={mainArticle.longerDescription}
+                  date={mainArticle.date}
+                  image={(mainArticle.image) ? mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
+                  author={mainArticle.author}
+                />
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
                   <FeaturedArticle articles={featuredArticles} />
                 </ul>

@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { urlify } from 'utils/helpers';
 
 export default function FrontSearch() {
+  const router = useRouter();
   const [term, setTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formatUrl = (str) => str.toLowerCase().replace(/\s/g, '+');
-    Router.push({
+    const santizeTerm = urlify(term.replace(/[^a-zA-Z ]/g, ''));
+
+    router.push({
       pathname: '/library',
-      query: { q: formatUrl(term), page: 1 },
-    }).then(() => window.scrollTo(0, 0));
+      query: { term: santizeTerm },
+    });
   };
 
   return (
     <div className="my-0 py-0">
-      <Form>
-        <Form.Row onSubmit={handleSubmit} role="search" className="align-items-center">
+      <Form onSubmit={handleSubmit}>
+        <Form.Row role="search" className="align-items-center">
           <Col sm={9} className="my-1">
             <Form.Label htmlFor="frontSearch" srOnly>
               Search

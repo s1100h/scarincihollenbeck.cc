@@ -117,7 +117,7 @@ export default function HomePageTwo({
         <HomePageLink link="/awards" title="See more of our awards & accolades" />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
         <div className={marginStyles.mt6}>
-          <ArticleHero articles={posts} />
+          <ArticleHero content={posts} />
         </div>
         <HomePageLink link="/library?q=firm-news" title="Read more articles about our attorneys" />
       </Container>
