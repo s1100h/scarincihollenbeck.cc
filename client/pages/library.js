@@ -28,6 +28,7 @@ export default function Library({
 }) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false);
   const mainArticle = results.results[0];
   const featuredArticles = results.results.filter((_, i) => i > 0 && i <= 4);
   const olderArticles = results.results.filter((_, i) => i > 4);
@@ -36,12 +37,13 @@ export default function Library({
   const onSubmit = (e) => {
     e.preventDefault();
     const santizeTerm = urlify(searchTerm.replace(/[^a-zA-Z ]/g, ''));
+    setLoading(true);
 
     router.push({
       pathname: '/library',
       query: { term: santizeTerm },
     });
-  };
+  }; 
 
   return (
     <>
@@ -53,7 +55,12 @@ export default function Library({
       />
       <Container className="border mb-5">
         <Row>
-          <SearchBar onChange={(e) => setSearchTerm(e)} searchTerm={searchTerm} onSubmit={onSubmit} />
+          <SearchBar
+            onChange={(e) => setSearchTerm(e)}
+            searchTerm={searchTerm}
+            onSubmit={onSubmit}
+            loading={loading}
+          />
           <FeaturedLinks />
           <Col sm={12} md={9}>
             <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} />

@@ -8,10 +8,12 @@ import { urlify } from 'utils/helpers';
 export default function FrontSearch() {
   const router = useRouter();
   const [term, setTerm] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const santizeTerm = urlify(term.replace(/[^a-zA-Z ]/g, ''));
+    setLoading(true);
 
     router.push({
       pathname: '/library',
@@ -36,7 +38,9 @@ export default function FrontSearch() {
             />
           </Col>
           <Col sm="auto" className="my-1">
-            <Button type="submit" size="md" variant="danger">Submit</Button>
+            <Button type="submit" size="md" variant="danger">
+              {loading ? <>...</> :  <>Search</>}
+            </Button>
           </Col>
         </Form.Row>
       </Form>

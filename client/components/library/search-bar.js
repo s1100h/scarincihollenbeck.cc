@@ -3,7 +3,9 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-export default function SearchBar({ onChange, onSubmit, searchTerm }) {
+export default function SearchBar({
+  onChange, onSubmit, searchTerm, loading,
+}) {
   return (
     <Col sm={12} style={{ backgroundColor: '#495057' }}>
       <Row>
@@ -20,7 +22,9 @@ export default function SearchBar({ onChange, onSubmit, searchTerm }) {
                 <Form.Control value={searchTerm} onChange={(e) => onChange(e.target.value)} id="inlineFormInputSearchTerm" placeholder="Enter search term..." />
               </Col>
               <Col xs={12} md="auto" className="my-1">
-                <Button variant="danger" type="submit">Search</Button>
+                <Button variant="danger" type="submit">
+                  {loading ? <>...</> : <>Search</>}
+                </Button>
               </Col>
             </Form.Row>
           </Form>

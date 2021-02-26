@@ -20,20 +20,26 @@ function ArticleDetails({ uri, title, excerpt }) {
 }
 
 export default function OlderArticles({ term, initialArticles }) {
+  const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(2);
   const [error, setError] = useState(false);
   const [articleList, setArticleList] = useState(initialArticles || []);
 
   async function handleClick() {
-    setPageIndex(newIndex => newIndex += 1);
+    setLoading(true);
+    setPageIndex((newIndex) => newIndex += 1);
+
     const getOlderPosts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) || 'firm-news'}/${pageIndex}`)
       .then((data) => data.json())
-      .catch((error) => {
-        console.log(new Error(error));
-        setError(true);
-      });
+      .catch((err) => setError(err));d
+
+    if (!getOlderPosts.results) {
+      setLoading(false);
+    }
+
     if (getOlderPosts.results) {
       getOlderPosts.results.shift();
+      setLoading(false);
       setArticleList((articles) => [...articles, ...getOlderPosts.results]);
     }
   }
@@ -62,7 +68,7 @@ export default function OlderArticles({ term, initialArticles }) {
           className="px-4 mx-3 mb-3"
           onClick={() => handleClick()}
         >
-          Load more posts
+          {loading ? <>Loading...</> : <>Load more posts</>}
         </Button>
       </Col>
     </Row>
