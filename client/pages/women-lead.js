@@ -13,7 +13,7 @@ import CarouselsLatestNews from 'components/carousels/latest-news';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
 import { firmResources } from 'utils/common-lists';
-import tabStyle from 'styles/BigButtonTabs.module.css';
+import tabStyle from 'pages/attorney/[...slug]/node_modules/styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 export default function WomenLead({ page }) {

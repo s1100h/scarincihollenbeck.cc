@@ -1,34 +1,16 @@
-import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import styles from 'styles/SingleSubHeader.module.css';
-
-const HeaderBckGround = styled.div`
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url(/images/header-pillar-background-1920x805.jpg) no-repeat 50%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 50vh;
-  border-top: 5px solid #000;
-  border-bottom: 5px solid #000;
-`;
+import styles from 'styles/Banner.module.css';
 
 export default function MultiSubHeader({
   profile,
   infoCard,
-  image,
-  height,
   isAdmin,
 }) {
   return (
-    <HeaderBckGround
-      image={image}
-      height={height}
-      className="jumbotron jumbotron-fluid"
-    >
+    <div className={styles.backPageBanner}>
+      <div className={`${styles.bannerContainer} animate__animated animate__fadeInUp animate__fast`}>
       <Container>
         <Row>
           <Col sm={12} md={4} className="mr-4">
@@ -45,6 +27,7 @@ export default function MultiSubHeader({
           </Col>
         </Row>
       </Container>
-    </HeaderBckGround>
+      </div>
+    </div>
   );
 }

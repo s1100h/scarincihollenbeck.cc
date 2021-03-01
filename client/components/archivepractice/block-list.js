@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import bigButtonStyles from 'styles/BigButtonTabs.module.css';
+import bigButtonStyles from 'pages/attorney/[...slug]/node_modules/styles/BigButtonTabs.module.css';
 
 export default function ArchivePracticeBlockList({ list }) {
   return (
