@@ -1,50 +1,17 @@
-import styled from 'styled-components';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { createMarkup } from 'utils/helpers';
-import styles from 'styles/SingleSubHeader.module.css';
-
-const HeaderBckGround = styled.div`
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url(${(props) => props.image}) no-repeat 50%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 45vh;
-  border-top: 5px solid #000;
-  border-bottom: 5px solid #000;
-`;
+import styles from 'styles/Banner.module.css';
 
 export default function SingleSubHeader({
-  title, subtitle, image, height,
+  title, subtitle,
 }) {
   return (
-    <HeaderBckGround
-      image={image}
-      height={height}
-      className="jumbotron jumbotron-fluid d-print-none"
-    >
-      <Container>
-        <Row>
-          <Col
-            sm={12}
-            md={{ span: 7, offset: 2 }}
-            className={`${styles.bgBlackBackground} text-white`}
-          >
-            <div className="p-3 animate__animated animate__fadeInUp animate__fast">
-              <h1 className="text-white border-bottom">
-                <strong>{title}</strong>
-              </h1>
-              <h2
-                className={`${styles.h2Italic} mt-3 mb-5`}
-                dangerouslySetInnerHTML={createMarkup(subtitle)}
-              />
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </HeaderBckGround>
+    <div className={styles.backPageBanner}>
+      <div className={`${styles.bannerContainer} animate__animated animate__fadeInUp animate__fast`}>
+        <div className="d-flex border flex-column p-4" style={{ width: 900 }}>
+          <h1 className="text-white border-bottom display-4 pb-2 mb-4"><strong>{title}</strong></h1>
+          <h2 cassName="mt-3 mb-5" style={{ fontSize: '1.4rem' }} dangerouslySetInnerHTML={createMarkup(subtitle)} />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -4,10 +4,6 @@ import {
   LinkedinShareButton,
   TwitterShareButton,
 } from 'react-share';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 import socialIconStyles from 'styles/SocialFooterIcons.module.css';
@@ -28,8 +24,7 @@ export default function PostSocialShareFooter({ title }) {
               quote={title}
               className={`${socialIconStyles.facebook} ${socialIconStyles.icon} ${fontStyles.smallExcerpt}  text-white`}
             >
-              <FontAwesomeIcon icon={faFacebookSquare} />
-              {' '}
+
               Share on Facebook
             </FacebookShareButton>
           </li>
@@ -39,11 +34,7 @@ export default function PostSocialShareFooter({ title }) {
               quote={title}
               className={`${socialIconStyles.linkedin} ${socialIconStyles.icon} ${fontStyles.smallExcerpt} text-white`}
             >
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                className={`${fontStyles.smallExcerpt} text-white`}
-              />
-              {' '}
+
               Share on LinkedIn
             </LinkedinShareButton>
           </li>
@@ -53,11 +44,7 @@ export default function PostSocialShareFooter({ title }) {
               quote={title}
               className={`${socialIconStyles.twitter} ${socialIconStyles.icon} ${fontStyles.smallExcerpt} text-white`}
             >
-              <FontAwesomeIcon
-                icon={faTwitter}
-                className={`${fontStyles.smallExcerpt} text-white`}
-              />
-              {' '}
+
               Share on Twitter
             </TwitterShareButton>
           </li>

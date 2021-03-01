@@ -15,7 +15,7 @@ export default function ArchiveCareersEqualOpportunity() {
       <Container className="mt-4">
         <Row>
           <Col sm={12} className={basicStyles.content}>
-            <p>
+            <p  style={{ fontSize: '1.6rem'}}>
               Scarinci Hollenbeck is an equal opportunity employer. It is
               Scarinci Hollenbeck’s policy to consider all applicants for
               employment solely on the basis of their qualifications for the job

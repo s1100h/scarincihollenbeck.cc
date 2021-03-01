@@ -22,26 +22,16 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 
 **Client Application built with**
   * [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
-  * [Font Awesome](https://fontawesome.com/)
   * [Google reCaptcha](https://www.google.com/recaptcha/about/)
-  * [Gmail API](https://developers.google.com/gmail/api)
   * [Netlify](https://www.netlify.com/)
   * [Next](https://nextjs.org/)
-  * [Nodemailer](https://nodemailer.com/about/)
-  * [NProgress](https://ricostacruz.com/nprogress/)
   * [React Bootstrap](https://react-bootstrap.github.io/)
   * [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
-  * [React Dropzone](https://react-dropzone.js.org/)
-  * [React LazyLoad](https://github.com/twobin/react-lazyload)
-  * [React Multi-Carousel](https://w3js.com/react-multi-carousel)
   * [React Share](https://github.com/nygardk/react-share#readme)
-  * [React Spinners](https://www.davidhu.io/react-spinners/)
   * [React Stickynode](https://github.com/yahoo/react-stickynode)
   * [React Virtualized](http://bvaughn.github.io/react-virtualized/#/components/List)
   * [RSS Parser](https://github.com/rbren/rss-parser#readme)
-  * [Styled Components](https://styled-components.com/)
   * [SWR](https://swr.vercel.app/)
-  * [GraphQL](https://graphql.org/)
 
 **Sitemap Application built with**
   * [datetime](https://docs.python.org/3/library/datetime.html)

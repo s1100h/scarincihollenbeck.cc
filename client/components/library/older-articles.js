@@ -31,7 +31,7 @@ export default function OlderArticles({ term, initialArticles }) {
 
     const getOlderPosts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) || 'firm-news'}/${pageIndex}`)
       .then((data) => data.json())
-      .catch((err) => setError(err));d
+      .catch((err) => setError(err));
 
     if (!getOlderPosts.results) {
       setLoading(false);

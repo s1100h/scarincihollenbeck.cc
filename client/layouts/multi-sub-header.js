@@ -6,7 +6,7 @@ import styles from 'styles/SingleSubHeader.module.css';
 
 const HeaderBckGround = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url(${(props) => props.image}) no-repeat 50%;
+    url(/images/header-pillar-background-1920x805.jpg) no-repeat 50%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -31,7 +31,7 @@ export default function MultiSubHeader({
     >
       <Container>
         <Row>
-          <Col sm={12} md={4} className="mr-4 mh-325">
+          <Col sm={12} md={4} className="mr-4">
             {profile}
           </Col>
           <Col

@@ -37,6 +37,7 @@ export default function FirmOverview({
             </div>
             <div
               className="lead my-4 text-center body-text"
+              style={{ fontSize: '1.6rem'}}
               dangerouslySetInnerHTML={createMarkup(tab.content)}
             />
           </div>
