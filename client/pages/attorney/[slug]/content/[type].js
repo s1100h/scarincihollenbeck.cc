@@ -1,4 +1,4 @@
-export default function Content({ contentSection, results }) {
+export default function AttorneyContent({ contentSection, results }) {
   return (
     <div>
       Get more from this attorney

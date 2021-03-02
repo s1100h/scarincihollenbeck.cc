@@ -25,7 +25,7 @@ export default function ContactPage() {
           <p className="lead">
             For media inquiries, please visit
             {' '}
-            <Link href="/category/law-firm-insights">
+            <Link href="/library?term=law-firm-insights">
               <a className={textStyles.blueTitle}>
                 <strong>
                   <u>Firm Insights.</u>

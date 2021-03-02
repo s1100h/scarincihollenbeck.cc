@@ -39,7 +39,7 @@ export default function PracticesPage({ core, additional, business }) {
         height="400px"
       />
       <FullWidth>
-        <p className="text-muted lead text-center w-100" style={{ fontSize: '1.6rem'}}>
+        <p className="text-muted lead text-center w-100" style={{ fontSize: '1.6rem' }}>
           As you scroll through the law practices and locate the sub-practice
           groups that most closely identifies with your need, feel free to
           contact any of the attorneys identified within the sub-practice group.
