@@ -14,7 +14,7 @@
 }
 
 .backPageBanner {
-  background: url(/images/header-pillar-background-1920x805.jpg) no-repeat center center;
+  background: url(/images/back-page-banner-2000x663.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -29,7 +29,7 @@
 }
 
 .bannerContainer {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.256);
   box-shadow: 3px 5px 10px #000;
   border: 2px solid #000;
   border-radius: 2px;
