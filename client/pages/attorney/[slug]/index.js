@@ -12,6 +12,7 @@ import ContactBtn from 'components/singleattorney/contact-btn';
 import SidebarLinks from 'components/singleattorney/sidebar-links';
 import BasicContent from 'components/singleattorney/basic-content';
 import ArticleCards from 'components/singleattorney/article-cards';
+import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
 import { headers, sortByDateKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
@@ -71,9 +72,11 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
   const excerpt = c[0].replace('</p>', '');
   const excerptTwo = c[1];
 
-  console.log(firmNewsAndEventsArr);
   // get the first three blog posts
   const firstThreeArticles = firmNewsAndEventsArr.filter((_, i) => i <= 3);
+
+  // get all the sidebar content
+  console.log(bio);
 
   return (
     <>
@@ -143,7 +146,7 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
       />
       <Container className="mt-0 pt-0">
         <Row>
-          <Col sm={12} md={{ offset: 9, span: 4}} style={{marginTop: '-70px'}}>
+          <Col sm={12} md={{ offset: 9, span: 4 }} style={{ marginTop: '-70px' }}>
             <ContactBtn link={`${router.asPath}/contact`} name={bio.fullName} />
           </Col>
         </Row>
@@ -159,8 +162,9 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
               }}
             />
             <ArticleCards articles={firstThreeArticles} />
+            <SidebarInformationList content={bio.sidebar} />
           </Col>
-          <Col sm={12} md={3}>            
+          <Col sm={12} md={3}>
             <SidebarLinks links={sidebarLinks} />
           </Col>
         </Row>

@@ -1,46 +1,28 @@
-import Accordion from 'react-bootstrap/Accordion';
-import { createMarkup, sortByKey } from 'utils/helpers';
-import SideBarHeaderToggle from 'components/sidebar-header-toggle';
+import lineStyles from 'styles/LineHeader.module.css';
+import { createMarkup } from 'utils/helpers';
 
-export default function SingleAttorneySidebarInformationList({
+export default function SidebarInformationList({
   content,
-  itemKey,
 }) {
   const filteredSideBarItems = content.filter((a) => JSON.stringify(a) !== '[]');
+  console.log(filteredSideBarItems);
+  console.log(filteredSideBarItems.map((i) => typeof i.content));
   return (
     <>
-      <Accordion defaultActiveKey={2}>
-        <div key="Additional Information" className="mb-3">
-          <SideBarHeaderToggle eventKey={itemKey}>
-            <>Additional Information</>
-          </SideBarHeaderToggle>
-          <Accordion.Collapse eventKey={itemKey}>
-            <div className="off-white">
-              {sortByKey(filteredSideBarItems, 'title').map((item) => (
-                <div className="px-2 pt-3 pt-2" key={item.title}>
-                  <strong>{item.title}</strong>
-                  {typeof item.content !== 'string' ? (
-                    item.content.map((i) => (
-                      <div className="d-block w-100 ml-2" key={i.title}>
-                        <strong>{i.title}</strong>
-                        <div
-                          className="attorney-bio-sidebar-list"
-                          dangerouslySetInnerHTML={createMarkup(i.content)}
-                        />
-                      </div>
-                    ))
-                  ) : (
-                    <div
-                      className="attorney-bio-sidebar-list"
-                      dangerouslySetInnerHTML={createMarkup(item.content)}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </Accordion.Collapse>
+      {filteredSideBarItems.map((item) => (
+        <div key={item} id={item.title.toLowerCase().replace(/\s/g, '-')}>
+          <div className={lineStyles.lineHeader}>
+            <h3>{item.title}</h3>
+          </div>
+          {typeof item.content === 'string' && <div className="my-4" dangerouslySetInnerHTML={createMarkup(item.content)} />}
+          {typeof item.content === 'object' && item.content.map((subItem) => (
+            <>
+              <p><strong>{subItem.title}</strong></p>
+              <div className="my-4" dangerouslySetInnerHTML={createMarkup(subItem.content)} />
+            </>
+          ))}
         </div>
-      </Accordion>
+      ))}
     </>
   );
 }
