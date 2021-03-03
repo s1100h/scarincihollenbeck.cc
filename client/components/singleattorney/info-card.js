@@ -9,160 +9,95 @@ export default function SingleAttorneyInfoCard({
   chair,
   coChair,
   designation,
-  phoneNumber,
-  fax,
-  email,
-  socialMediaLinks,
   pdf,
   vizibility,
+  services,
   offices,
 }) {
-  const isChair = (chair !== undefined && chair.length > 0)
-    || (coChair !== undefined && coChair.length > 0);
+  console.log(pdf);
 
   return (
-    <Col sm={12} className="animate__animated animate__fadeInUp animate__fast">
-      <div className="mt-3">
-        <h1 className="text-white border-bottom">
-          {fullName && `${fullName} `}
-          {isChair && (
-            <span className=" h5 text-white">
-              -
-              {` ${designation}`}
-            </span>
-          )}
-        </h1>
-      </div>
-      {/** Chair section -- start */}
-      {isChair ? (
-        <div className="my-3">
-          {chair.map((ch) => (
-            <h2
-              key={ch.title}
-              className={`${marginStyles.mlMinus10} text-white ${fontStyles.ftStyleInherit} h5`}
-            >
-              <strong>Chair: </strong>
-              <a href={ch.link} className="text-white h5">
-                {ch.title}
-                {' '}
-                Practice
-              </a>
-              <br />
-            </h2>
-          ))}
-          {coChair.map((co) => (
-            <h2
-              key={coChair.title}
-              className={`text-white ${fontStyles.ftStyleInherit} h5`}
-            >
-              <strong>Co-Chair: </strong>
-              <a href={co.link} className="text-white h5">
-                {co.title}
-                {' '}
-                Practice
-              </a>
-              <br />
-            </h2>
-          ))}
-        </div>
-      ) : (
-        <Col sm={12} className="mt-3">
-          <h2
-            className={`${marginStyles.mlMinus13} text-white ${fontStyles.ftStyleInherit} h4`}
-          >
-            {designation}
-          </h2>
-        </Col>
+    <div className="d-flex flex-column text-white">
+      <h1 style={{ fontSize: '3rem' }}>
+        <strong>
+          {fullName}
+        </strong>
+      </h1>
+      <div
+        className="w-100 d-block"
+        style={{
+          height: '7px',
+          backgroundColor: '#db2220',
+          boxShadow: '2px 3px 3px #000',
+        }}
+      />
+      <h2 className="mt-4 mb-0">
+        <strong style={{ fontSize: '2.5rem' }}>{designation}</strong>
+      </h2>
+      {chair.length > 0 && (
+      <h3 className="text-white mt-2" style={{ fontSize: '1.6rem' }}>
+        <strong>Chair: </strong>
+        {' '}
+        {chair.map((c) => (
+          <Link href={c.link.replace('wp.', '')} key={c.title}>
+            <a className="text-white" style={{ fontSize: '1.39rem' }}>
+              {c.title}
+            </a>
+          </Link>
+        ))}
+      </h3>
       )}
-      {/** Chair section -- end */}
-      {/** Col One phone, email, fax -- start */}
-      <Row>
-        <Col sm={12} md={6}>
-          <ul className="text-white list-unstyled mt-2 ml-0">
-            {phoneNumber && (
-              <li className="mb-3">
-                <h6>
-                  <strong>Phone: </strong>
-                  {' '}
-                  <span>{phoneNumber}</span>
-                </h6>
-              </li>
-            )}
-            {fax && (
-              <li className="mb-3">
-                <h6>
-                  <strong>Fax: </strong>
-                  {' '}
-                  <span>{fax}</span>
-                </h6>
-              </li>
-            )}
-            {email && (
-              <li className="mb-3">
-                <h6>
-                  <strong>Email: </strong>
-                  {' '}
-                  <a href={`mailto:${email}`} className="text-white">
-                    {email}
-                  </a>
-                </h6>
-              </li>
-            )}
-            {offices && (
-              <li className="mb-3">
-                <strong>Office: </strong>
-                {' '}
-                {offices.map((office, index) => (
-                  <h6 key={office.name} className="d-inline">
-                    <Link href={office.link}>
-                      <a className="text-white">{office.name}</a>
-                    </Link>
-                    {offices.length - 1 !== index && <>, </>}
-                  </h6>
-                ))}
-              </li>
-            )}
-          </ul>
-        </Col>
-        {/** Col One phone, email, fax -- end */}
-        {/** Col Two socila media, vizibility, pdf bio  -- start */}
-        <Col sm={12} md={6}>
-          {socialMediaLinks && (
-            <>
-              <ul className="ml-0 mt-2 list-unstyled">
-                {socialMediaLinks.map((v) => (
-                  <li key={v.channel} className="mb-3">
-                    <h6>
-                      <a href={v.url} className="text-white">
-                        <u>{`  Connect on ${v.channel}`}</u>
-                      </a>
-                    </h6>
-                  </li>
-                ))}
-                {pdf && (
-                  <li className="mb-3">
-                    <h6>
-                      <a href={pdf} rel="nofollow" className="text-white">
-                        <u>Download Biography</u>
-                      </a>
-                    </h6>
-                  </li>
-                )}
-                {vizibility && (
-                  <li className="mb-3">
-                    <h6>
-                      <a href={vizibility} className="text-white">
-                        <u>Download Contact</u>
-                      </a>
-                    </h6>
-                  </li>
-                )}
-              </ul>
-            </>
-          )}
-        </Col>
-        {/** Col Two socila media, vizibility, pdf bio  -- end */}
-      </Row>
-    </Col>
+      {coChair.length > 0 && (
+      <h3 className="text-white" style={{ fontSize: '1.4rem' }}>
+        Co-chair:
+        {' '}
+        {coChair.map((c) => (
+          <Link href={c.link.replace('wp.', '')} key={c.title}>
+            <a className="text-white"  style={{ fontSize: '1.39rem' }}>
+              {c.title}
+            </a>
+          </Link>
+        ))}
+      </h3>
+      )}
+      {offices.length > 0 && (
+        <h3 style={{ fontSize: '1.4rem' }}>
+          <strong>Office: </strong>
+          {offices.map((office) => (
+            <Link href={office.link} key={office.link}>
+              <a className="text-white" style={{ fontSize: '1.39rem' }}>
+                {office.name}
+              </a>
+            </Link>
+          ))}
+        </h3>
+      )}
+      {services.length > 0 && (
+        <h3 style={{ fontSize: '1.4rem' }}>
+          <strong>Services: </strong>
+          {services.map((service, index) => (
+            <Link href={service.link} key={service.link}>
+              <a className="text-white" style={{ fontSize: '1.18rem' }}>
+                {service.title}
+                {index !== services.length - 1 && ', '}
+              </a>
+            </Link>
+          ))}
+        </h3>
+      )}
+      <ul className="list-inline list-unstyled" style={{ fontSize: '1.4rem' }}>
+        <li className="list-inline-item mr-3">
+          <a className="text-white" href={pdf} download>
+            <strong><u>Download Biography</u></strong>
+            {' '}
+          </a>
+        </li>
+        <li className="list-inline-item">
+          <a className="text-white" href={pdf} download>
+            <strong><u>Download Contact</u></strong>
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 }

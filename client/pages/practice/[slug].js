@@ -21,7 +21,7 @@ import PracticeSidebar from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
-import tabStyle from 'pages/attorney/[...slug]/node_modules/styles/BigButtonTabs.module.css';
+import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
 export default function PracticeSingle({
