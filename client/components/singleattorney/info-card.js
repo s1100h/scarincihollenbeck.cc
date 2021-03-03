@@ -1,8 +1,4 @@
 import Link from 'next/link';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import fontStyles from 'styles/Fonts.module.css';
-import marginStyles from 'styles/Margins.module.css';
 
 export default function SingleAttorneyInfoCard({
   fullName,
@@ -14,8 +10,6 @@ export default function SingleAttorneyInfoCard({
   services,
   offices,
 }) {
-  console.log(pdf);
-
   return (
     <div className="d-flex flex-column text-white">
       <h1 style={{ fontSize: '3rem' }}>
@@ -53,7 +47,7 @@ export default function SingleAttorneyInfoCard({
         {' '}
         {coChair.map((c) => (
           <Link href={c.link.replace('wp.', '')} key={c.title}>
-            <a className="text-white"  style={{ fontSize: '1.39rem' }}>
+            <a className="text-white" style={{ fontSize: '1.39rem' }}>
               {c.title}
             </a>
           </Link>
@@ -93,7 +87,7 @@ export default function SingleAttorneyInfoCard({
           </a>
         </li>
         <li className="list-inline-item">
-          <a className="text-white" href={pdf} download>
+          <a className="text-white" href={vizibility} download>
             <strong><u>Download Contact</u></strong>
           </a>
         </li>

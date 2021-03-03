@@ -10,10 +10,10 @@ export default function ThreeColMiniSidebar({ body, OneSidebar, TwoSidebar }) {
         <Col sm={12} lg={1} className={styles.hideMobile}>
           {OneSidebar}
         </Col>
-        <Col sm={12} lg={7}>
+        <Col sm={12} lg={8}>
           {body}
         </Col>
-        <Col sm={12} lg={4}>
+        <Col sm={12} lg={3}>
           {TwoSidebar}
         </Col>
       </Row>

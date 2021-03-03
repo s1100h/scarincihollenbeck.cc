@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +8,9 @@ import SiteLoader from 'components/site-loader';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
 import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
+import ContactBtn from 'components/singleattorney/contact-btn';
+import SidebarLinks from 'components/singleattorney/sidebar-links';
+import BasicContent from 'components/singleattorney/basic-content';
 import { headers, sortByDateKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
@@ -52,7 +54,7 @@ function buildAttorneyProfileSchema(
   };
 }
 
-export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
+export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLinks }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -62,6 +64,10 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
       </div>
     );
   }
+
+  const c = bio.biography.split(/<p[^>]*>/).filter((a) => a !== '');
+  const excerpt = c[0].replace('</p>', '');
+  const excerptTwo = c[1];
 
   return (
     <>
@@ -129,31 +135,32 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr }) {
           />
         )}
       />
-      <Container>
+      <Container className="mt-0 pt-0">
         <Row>
-          <Col sm={12} md={{offset: 9, span: 3}} className="m-0 pb-4">
-            <div>
-              <Link href={`${router.asPath}/contact`}>
-                <a className="btn btn-danger p-3" style={{fontSize: '1.5rem', marginTop: '-64px'}}>
-                  <strong>
-                    Contact {bio.fullName}
-                  </strong>
-                </a>
-              </Link>
-            </div>
+          <Col sm={12} md={{ offset: 9, span: 4}} style={{marginTop: '-70px'}}>
+            <ContactBtn link={`${router.asPath}/contact`} name={bio.fullName} />
           </Col>
+        </Row>
+        <Row>
           <Col sm={12} md={9}>
-            Meat
+            <BasicContent
+              title=""
+              id="biography"
+              content={`<p>${excerpt}</p><p>${excerptTwo}</p>`}
+              links={{
+                label: 'Read More',
+                link: `${router.asPath}/content/biography`,
+              }}
+            />
           </Col>
-          <Col sm={12} md={3} className="border">
-            Sidebar
+          <Col sm={12} md={3}>            
+            <SidebarLinks links={sidebarLinks} />
           </Col>
         </Row>
       </Container>
     </>
   );
 }
-
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
@@ -186,13 +193,44 @@ export async function getStaticProps({ params }) {
 
   // concat all the firm events and firm news into a single array
   const firmNewsAndEventsArr = [].concat(bio.newsPosts, bio.eventPosts);
+  const sidebarLinks = [
+    {
+      title: 'Biography',
+    },
+    {
+      title: 'News & Articles',
+    },
+    ...bio.sidebar,
+  ].filter((a) => JSON.stringify(a) !== '[]');
+
+  if (bio.presentations) {
+    sidebarLinks.push({ title: 'Presentations' });
+  }
+
+  if (bio.publications) {
+    sidebarLinks.push({ title: 'Publications' });
+  }
+
+  if (bio.media) {
+    sidebarLinks.push({ title: 'Media' });
+  }
+
+  if (bio.videos) {
+    sidebarLinks.push({ title: 'Videos' });
+  }
+
+  bio.tabs.headers.map((header) => {
+    if (typeof header === 'string') {
+      sidebarLinks.push({ title: header });
+    }
+  });
 
   return {
     props: {
       bio,
       firmNewsAndEventsArr,
+      sidebarLinks,
     },
     revalidate: 1,
   };
 }
-
