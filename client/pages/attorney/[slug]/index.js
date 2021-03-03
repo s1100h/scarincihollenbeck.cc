@@ -11,6 +11,7 @@ import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
 import ContactBtn from 'components/singleattorney/contact-btn';
 import SidebarLinks from 'components/singleattorney/sidebar-links';
 import BasicContent from 'components/singleattorney/basic-content';
+import ArticleCards from 'components/singleattorney/article-cards';
 import { headers, sortByDateKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
@@ -65,9 +66,14 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
     );
   }
 
+  // get the first two paragraphs in the biography
   const c = bio.biography.split(/<p[^>]*>/).filter((a) => a !== '');
   const excerpt = c[0].replace('</p>', '');
   const excerptTwo = c[1];
+
+  console.log(firmNewsAndEventsArr);
+  // get the first three blog posts
+  const firstThreeArticles = firmNewsAndEventsArr.filter((_, i) => i <= 3);
 
   return (
     <>
@@ -152,6 +158,7 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
                 link: `${router.asPath}/content/biography`,
               }}
             />
+            <ArticleCards articles={firstThreeArticles} />
           </Col>
           <Col sm={12} md={3}>            
             <SidebarLinks links={sidebarLinks} />
