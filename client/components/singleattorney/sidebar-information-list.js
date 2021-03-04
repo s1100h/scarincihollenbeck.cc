@@ -5,8 +5,7 @@ export default function SidebarInformationList({
   content,
 }) {
   const filteredSideBarItems = content.filter((a) => JSON.stringify(a) !== '[]');
-  console.log(filteredSideBarItems);
-  console.log(filteredSideBarItems.map((i) => typeof i.content));
+
   return (
     <>
       {filteredSideBarItems.map((item) => (
