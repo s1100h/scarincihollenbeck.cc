@@ -9,6 +9,7 @@ import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons/faAddressCard';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faWeixin } from '@fortawesome/free-brands-svg-icons/faWeixin';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { faSkype } from '@fortawesome/free-brands-svg-icons/faSkype';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
@@ -186,6 +187,12 @@ export default function SingleAttorneyInfoCard({
                       {v.channel === 'Instagram' && (
                         <FontAwesomeIcon
                           icon={faInstagram}
+                          className="text-white"
+                        />
+                      )}
+                      {v.channel === 'WeChat' && (
+                        <FontAwesomeIcon
+                          icon={faWeixin}
                           className="text-white"
                         />
                       )}
