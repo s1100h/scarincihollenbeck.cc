@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import lineStyles from 'styles/LineHeader.module.css';
 
 export default function ArticleCards({ articles }) {
-  console.log(articles);
   return (
     <div id="news-&-articles">
       <div className={lineStyles.lineHeader}>
@@ -13,7 +12,7 @@ export default function ArticleCards({ articles }) {
       </div>
       <Row className="my-4">
         {articles.map((article) => (
-          <Col sm={12} md={4} key={article.title} className="mx-0 px-0 my-3">
+          <Col sm={12} md={4} key={article.title} className="my-3">
             <Link href={article.link}>
               <a>
                 <Image
@@ -21,6 +20,7 @@ export default function ArticleCards({ articles }) {
                   src={article.featuredImg}
                   width={300}
                   height={150}
+                  className="rounded"
                 />
               </a>
             </Link>

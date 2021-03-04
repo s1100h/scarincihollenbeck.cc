@@ -1,0 +1,17 @@
+.title {
+  font-size: 1.4rem;
+  margin-left: 1em;
+  margin-bottom: -10px;
+  margin-top: 1em;
+}
+
+.lists ul {
+  margin-top: 2.2em;
+  margin-bottom: 2.2em;
+}
+
+.lists li {
+  padding-bottom: 6px;
+  padding-top: 10px;
+  font-size: 1.2rem;
+}

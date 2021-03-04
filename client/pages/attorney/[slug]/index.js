@@ -13,7 +13,8 @@ import SidebarLinks from 'components/singleattorney/sidebar-links';
 import BasicContent from 'components/singleattorney/basic-content';
 import ArticleCards from 'components/singleattorney/article-cards';
 import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
-import { headers, sortByDateKey } from 'utils/helpers';
+import Table from 'components/singleattorney/table';
+import { headers } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
 // build out attorney profile schema
@@ -73,7 +74,7 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
   const excerptTwo = c[1];
 
   // get the first three blog posts
-  const firstThreeArticles = firmNewsAndEventsArr.filter((_, i) => i <= 3);
+  const firstThreeArticles = firmNewsAndEventsArr.filter((_, i) => i <= 2);
 
   // get all the sidebar content
   console.log(bio);
@@ -163,6 +164,13 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
             />
             <ArticleCards articles={firstThreeArticles} />
             <SidebarInformationList content={bio.sidebar} />
+            {/** Representative Matters */}
+            {/** Representative Clients */}
+            {/** Presentations */}
+            {/** Publications */}
+            {/** Media */}
+            {/** Video */}
+            {/** Additional Tabs */}
           </Col>
           <Col sm={12} md={3}>
             <SidebarLinks links={sidebarLinks} />
@@ -211,8 +219,16 @@ export async function getStaticProps({ params }) {
     {
       title: 'News & Articles',
     },
-    ...bio.sidebar,
+    ...bio.sidebar
   ].filter((a) => JSON.stringify(a) !== '[]');
+
+  if (bio.representativeMatters) {
+    sidebarLinks.push({ title: 'Representative Matters' });
+  }
+
+  if (bio.representativeClients) {
+    sidebarLinks.push({ title: 'Representative Clients' });
+  }
 
   if (bio.presentations) {
     sidebarLinks.push({ title: 'Presentations' });
@@ -224,6 +240,14 @@ export async function getStaticProps({ params }) {
 
   if (bio.media) {
     sidebarLinks.push({ title: 'Media' });
+  }
+
+  if (bio.clients.length > 0) {
+    sidebarLinks.push({ title: 'Clients' });
+  }
+
+  if (bio.awards.length > 0) {
+    sidebarLinks.push({ title: 'Awards' });
   }
 
   if (bio.videos) {
