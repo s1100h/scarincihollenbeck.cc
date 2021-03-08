@@ -17,7 +17,7 @@ export default function SingleSubHeader({
               boxShadow: '2px 3px 3px #000',
             }}
           />
-          <h2 cassName="mt-3 mb-5" style={{ fontSize: '1.4rem' }} dangerouslySetInnerHTML={createMarkup(subtitle)} />
+          <h2 className="mt-3 mb-5" style={{ fontSize: '1.4rem' }} dangerouslySetInnerHTML={createMarkup(subtitle)} />
         </div>
       </div>
     </div>

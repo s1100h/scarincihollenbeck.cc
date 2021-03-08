@@ -33,7 +33,7 @@ export default function ArchiveAttorneySelected({
               </li>
             )}
             {nonUserInputResults.map((s) => (
-              <li className=" list-inline-item" key={s.key}>
+              <li className="list-inline-item" key={s.key}>
                 <Button
                   variant="link"
                   className={textStyles.redTitle}
