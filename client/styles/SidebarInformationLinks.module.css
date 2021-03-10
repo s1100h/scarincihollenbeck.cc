@@ -8,6 +8,7 @@
 .lists ul {
   margin-top: 2.2em;
   margin-bottom: 2.2em;
+  margin-left: -20px;
 }
 
 .lists li {

@@ -8,6 +8,10 @@
   line-height: 1.68;
 }
 
+.content p strong {
+  font-size: 1.518rem;
+}
+
 .content p a {
   text-decoration: underline;
   color: blue;

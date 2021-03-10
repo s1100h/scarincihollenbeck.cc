@@ -57,10 +57,11 @@ export default function SingleAttorneyInfoCard({
       {offices.length > 0 && (
         <h3 style={{ fontSize: '1.4rem' }}>
           <strong>Office: </strong>
-          {offices.map((office) => (
+          {offices.map((office, index) => (
             <Link href={office.link} key={office.link}>
               <a className="text-white" style={{ fontSize: '1.39rem' }}>
                 {office.name}
+                {index < offices.length - 1 && ', '}
               </a>
             </Link>
           ))}

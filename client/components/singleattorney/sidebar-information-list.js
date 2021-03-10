@@ -4,25 +4,15 @@ import { createMarkup } from 'utils/helpers';
 
 export default function SidebarInformationList({
   content,
+  title,
+  id,
 }) {
-  const filteredSideBarItems = content.filter((a) => JSON.stringify(a) !== '[]');
-
   return (
-    <>
-      {filteredSideBarItems.map((item) => (
-        <div key={item} id={item.title.toLowerCase().replace(/\s/g, '-')}>
-          <div className={lineStyles.lineHeader}>
-            <h3>{item.title}</h3>
-          </div>
-          {typeof item.content === 'string' && <div className={styles.lists} dangerouslySetInnerHTML={createMarkup(item.content)} />}
-          {typeof item.content === 'object' && item.content.map((subItem) => (
-            <>
-              <p className={styles.title}><strong>{subItem.title}</strong></p>
-              <div className={styles.lists} dangerouslySetInnerHTML={createMarkup(subItem.content)} />
-            </>
-          ))}
-        </div>
-      ))}
-    </>
+    <div id={id}>
+      <div className={lineStyles.lineHeader}>
+        <h3>{title}</h3>
+      </div>
+      <div className={styles.lists} dangerouslySetInnerHTML={createMarkup(content)} />
+    </div>
   );
 }

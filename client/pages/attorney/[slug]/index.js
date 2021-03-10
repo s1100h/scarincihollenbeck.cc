@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Row from 'react-bootstrap/Row';
@@ -13,7 +14,7 @@ import SidebarLinks from 'components/singleattorney/sidebar-links';
 import BasicContent from 'components/singleattorney/basic-content';
 import ArticleCards from 'components/singleattorney/article-cards';
 import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
-import Table from 'components/singleattorney/table';
+import SidebarInformationListObject from 'components/singleattorney/sidebar-information-list-object';
 import { headers } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
@@ -57,7 +58,7 @@ function buildAttorneyProfileSchema(
   };
 }
 
-export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLinks }) {
+export default function AttorneySingleBio({ bio }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -68,20 +69,10 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
     );
   }
 
-  // get the first two paragraphs in the biography
-  const c = bio.biography.split(/<p[^>]*>/).filter((a) => a !== '');
-  const excerpt = c[0].replace('</p>', '');
-  const excerptTwo = c[1];
-
-  // get the first three blog posts
-  const firstThreeArticles = firmNewsAndEventsArr.filter((_, i) => i <= 2);
-
-  // get all the sidebar content
   console.log(bio);
 
   return (
     <>
-      {/** Bio head tag information -- start */}
       <NextSeo
         title={bio.seo.title}
         description={bio.seo.metaDescription}
@@ -131,24 +122,24 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
         />
       </Head>
       <MultiSubHeader
-        profile={<ProfileImage image={bio.profileImage} name={bio.fullName} />}
+        profile={<ProfileImage image={bio.headerContent.profileImage} name={bio.headerContent.name} />}
         infoCard={(
           <SingleAttorneyInfoCard
-            fullName={bio.fullName}
-            chair={bio.chair}
-            coChair={bio.coChair}
-            designation={bio.designation}
-            pdf={bio.pdf}
-            vizibility={bio.vizibility}
-            services={bio.relatedPractices}
-            offices={bio.offices}
+            fullName={bio.headerContent.name}
+            chair={bio.headerContent.chair}
+            coChair={bio.headerContent.coChair}
+            designation={bio.headerContent.title}
+            pdf={bio.headerContent.pdf}
+            vizibility={bio.headerContent.vizibility}
+            services={bio.headerContent.practices}
+            offices={bio.headerContent.offices}
           />
         )}
       />
       <Container className="mt-0 pt-0">
         <Row>
           <Col sm={12} md={{ offset: 9, span: 4 }} style={{ marginTop: '-70px' }}>
-            <ContactBtn link={`${router.asPath}/contact`} name={bio.fullName} />
+            <ContactBtn link={`${router.asPath}/contact`} name={bio.headerContent.name} />
           </Col>
         </Row>
         <Row>
@@ -156,24 +147,72 @@ export default function AttorneySingleBio({ bio, firmNewsAndEventsArr, sidebarLi
             <BasicContent
               title=""
               id="biography"
-              content={`<p>${excerpt}</p><p>${excerptTwo}</p>`}
+              content={bio.mainPageContent.biography.join('')}
               links={{
-                label: 'Read More',
+                label: 'Read more',
                 link: `${router.asPath}/content/biography`,
               }}
             />
-            <ArticleCards articles={firstThreeArticles} />
-            <SidebarInformationList content={bio.sidebar} />
-            {/** Representative Matters */}
-            {/** Representative Clients */}
-            {/** Presentations */}
-            {/** Publications */}
-            {/** Media */}
-            {/** Video */}
-            {/** Additional Tabs */}
+            <ArticleCards
+              title="News & Events"
+              articles={bio.mainPageContent.attorneyNewsEvents}
+              type="articles"
+              id="news-events"
+            />
+            <ArticleCards
+              title="Blog Articles"
+              articles={bio.mainPageContent.attorneyBlogs}
+              type="articles"
+              id="articles"
+            />
+            <Link href={`/library?term=${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}`}>
+              <a className="btn btn-danger px-3 my-4 d-block" style={{ fontSize: '1.3rem', maxWidth: '300px' }}>
+                More on
+                {' '}
+                {bio.headerContent.name}
+              </a>
+            </Link>
+            {bio.mainPageContent.awards.length > 0 && (
+              <ArticleCards
+                title="Awards"
+                articles={bio.mainPageContent.awards}
+                type="awards"
+              />
+            )}
+            {bio.mainPageContent.clients.length > 0 && (
+              <ArticleCards
+                title="Clients"
+                articles={bio.mainPageContent.clients}
+                type="awards"
+              />
+            )}
+            <SidebarInformationList
+              title="Education"
+              id="education"
+              content={bio.mainPageContent.education}
+            />
+            <SidebarInformationList
+              title="Bar Admissions"
+              id="bar-admission"
+              content={bio.mainPageContent.barAdmissions}
+            />
+            {bio.mainPageContent.additionalInformation.length > 0 && (
+              <SidebarInformationListObject
+                title="Additional Information"
+                id="additional-information"
+                content={bio.mainPageContent.additionalInformation}
+              />
+            )}
+            {bio.mainPageContent.affiliations && (
+            <SidebarInformationList
+              title="Affiliations"
+              id="affiliations"
+              content={bio.mainPageContent.affiliations}
+            />
+            )}
           </Col>
           <Col sm={12} md={3}>
-            <SidebarLinks links={sidebarLinks} />
+            <SidebarLinks links={bio.sidebarLinks} />
           </Col>
         </Row>
       </Container>
@@ -199,7 +238,7 @@ export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-attorney/attorney/${params.slug}`,
+      `http://localhost:8400/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);
@@ -210,61 +249,9 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  // concat all the firm events and firm news into a single array
-  const firmNewsAndEventsArr = [].concat(bio.newsPosts, bio.eventPosts);
-  const sidebarLinks = [
-    {
-      title: 'Biography',
-    },
-    {
-      title: 'News & Articles',
-    },
-    ...bio.sidebar
-  ].filter((a) => JSON.stringify(a) !== '[]');
-
-  if (bio.representativeMatters) {
-    sidebarLinks.push({ title: 'Representative Matters' });
-  }
-
-  if (bio.representativeClients) {
-    sidebarLinks.push({ title: 'Representative Clients' });
-  }
-
-  if (bio.presentations) {
-    sidebarLinks.push({ title: 'Presentations' });
-  }
-
-  if (bio.publications) {
-    sidebarLinks.push({ title: 'Publications' });
-  }
-
-  if (bio.media) {
-    sidebarLinks.push({ title: 'Media' });
-  }
-
-  if (bio.clients.length > 0) {
-    sidebarLinks.push({ title: 'Clients' });
-  }
-
-  if (bio.awards.length > 0) {
-    sidebarLinks.push({ title: 'Awards' });
-  }
-
-  if (bio.videos) {
-    sidebarLinks.push({ title: 'Videos' });
-  }
-
-  bio.tabs.headers.map((header) => {
-    if (typeof header === 'string') {
-      sidebarLinks.push({ title: header });
-    }
-  });
-
   return {
     props: {
       bio,
-      firmNewsAndEventsArr,
-      sidebarLinks,
     },
     revalidate: 1,
   };
