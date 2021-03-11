@@ -3,7 +3,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 export default function SidebarLinks({ links }) {
   const router = useRouter();
-  console.log(router);
 
   return (
     <ListGroup className="mt-4" variant="flush" style={{ minWidth: '300px' }}>

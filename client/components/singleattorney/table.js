@@ -1,15 +1,10 @@
 import Table from 'react-bootstrap/Table';
-
-import lineStyles from 'styles/LineHeader.module.css';
 import { createMarkup, addRandomKey } from 'utils/helpers';
 
-export default function SingleAttorneyTableTab({ title, content }) {
+export default function SingleAttorneyTableTab({ content }) {
   return (
-    <div id={title.toLowerCase().replace(/\s/g, '-')}>
-      <div className={lineStyles.lineHeader}>
-        <h3>{title}</h3>
-      </div>
-      <Table responsive="sm" size="sm" className="mb-5">
+    <div>
+      <Table responsive="sm" size="sm">
         <thead className="thead-dark">
           <tr>
             {content.header

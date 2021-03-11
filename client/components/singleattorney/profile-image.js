@@ -9,7 +9,7 @@ export default function SingleAttorneyProfileImage({ image, name }) {
       width={743}
       height={795}
       layout="intrinsic"
-      className={`${styles.whiteBorderTransparent} mb-3 animate__animated animate__fadeInUp animate__fast`}
+      className={`${styles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
       priority
       loading="eager"
     />
