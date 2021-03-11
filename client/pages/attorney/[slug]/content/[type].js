@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router';
-import SiteLoader from 'components/site-loader';
+import Error from 'next/error';
 import AttorneyProfile from 'layouts/attorney-profile';
 import BasicContent from 'components/singleattorney/basic-content';
 import SingleAttorneyMatters from 'components/singleattorney/matters';
 import SingleAttorneyTableTab from 'components/singleattorney/table';
 import SingleAttorneyVideoTab from 'components/singleattorney/video-content';
+import CustomContent from 'components/singleattorney/custom-content';
+import ImageContent from 'components/singleattorney/image-content';
 import { headers } from 'utils/helpers';
 
 export default function Content({
@@ -12,21 +13,11 @@ export default function Content({
   bio,
   type,
 }) {
-  const router = useRouter();
   let contentComponent = <div className="text-center m-5"><h3><strong>No content found...</strong></h3></div>;
 
-  if (router.isFallback) {
-    return (
-      <div className="my-5 py-5">
-        <SiteLoader />
-      </div>
-    );
+  if (content.status === 404) {
+    return <Error statusCode={404} />;
   }
-
-  // render content based on type
-  console.log(type);
-  console.log(bio);
-  console.log(content);
 
   if (type === 'representative-matters') {
     contentComponent = <SingleAttorneyMatters content={content} />;
@@ -42,18 +33,21 @@ export default function Content({
     contentComponent = <SingleAttorneyTableTab content={content} />;
   } else if (type === 'videos') {
     contentComponent = <SingleAttorneyVideoTab content={content} />;
+  } else if (type === 'clients') {
+    contentComponent = <ImageContent content={content} />;
+  } else if (content.length > 0) {
+    contentComponent = <CustomContent content={content} />;
   }
 
   return (
     <AttorneyProfile
-      path={router.asPath}
       bio={bio}
       content={contentComponent}
     />
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   // modify single attorney endpoint to grab specific content
   // do some major refactoring on the single attorney bio API endpoint
   const [bio, content] = await Promise.all([
@@ -66,6 +60,18 @@ export async function getServerSideProps({ params }) {
       { headers },
     ).then((data) => data.json()),
   ]);
+
+  if (content.status === 404) {
+    res.statusCode = 404;
+
+    return {
+      props: {
+        content,
+        bio,
+        type: params.type,
+      },
+    };
+  }
 
   return {
     props: {

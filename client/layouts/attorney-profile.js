@@ -4,7 +4,6 @@ import { NextSeo } from 'next-seo';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import SiteLoader from 'components/site-loader';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
 import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
@@ -55,7 +54,7 @@ function buildAttorneyProfileSchema(
   };
 }
 
-export default function AttorneyProfile({ bio, content, path }) {
+export default function AttorneyProfile({ bio, content }) {
   return (
     <>
       <NextSeo
@@ -124,7 +123,10 @@ export default function AttorneyProfile({ bio, content, path }) {
       <Container className="mt-0 pt-0">
         <Row>
           <Col sm={12} md={{ offset: 9, span: 4 }} style={{ marginTop: '-70px' }}>
-            <ContactBtn link={`${path}/contact`} name={bio.headerContent.name} />
+            <ContactBtn
+              link={`/attorney/${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}/contact`}
+              name={bio.headerContent.name}
+            />
           </Col>
         </Row>
         <Row>
@@ -142,7 +144,9 @@ export default function AttorneyProfile({ bio, content, path }) {
               type="articles"
               id="articles"
             />
-            <Link href={`/library?term=${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}`}>
+            <Link
+              href={`/library?term=${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}`}
+            >
               <a className="btn btn-danger px-2 my-4 d-block" style={{ fontSize: '1.3rem', maxWidth: '200px' }}>
                 More articles
               </a>
