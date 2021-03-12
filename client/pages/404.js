@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Footer from 'components/footer';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import SimpleSearch from 'components/simple-search';

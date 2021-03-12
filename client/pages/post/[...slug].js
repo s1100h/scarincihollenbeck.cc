@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import SiteLoader from 'components/site-loader';
@@ -6,10 +5,11 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
 import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
+import EventSidebar from 'components/post/event-sidebar';
 import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
-export default function JustIn({
+export default function PostTemplate({
   title,
   postContent,
   subTitle,
@@ -22,6 +22,7 @@ export default function JustIn({
   date,
   authors,
   attorneys,
+  eventDetails,
 }) {
   const router = useRouter();
 
@@ -95,19 +96,19 @@ export default function JustIn({
           />
         )}
         OneSidebar={<SocialShareSidebar title={title} />}
-        TwoSidebar={<Sidebar posts={posts} attorneys={attorneys} />}
+        TwoSidebar={(isEventCategory && eventDetails.length > 0) ? <EventSidebar eventDetails={eventDetails} attorneys={attorneys} /> : <Sidebar posts={posts} attorneys={attorneys} />}
       />
     </>
   );
 }
 
-export async function getServerSideProps({ params, res }) {
+export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
   const [restResponse] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/single/post/${
         params.slug[params.slug.length - 1]
-      }/just-in`,
+      }/${query.category}`,
       { headers },
     )
       .then((data) => data.json())
@@ -128,13 +129,18 @@ export async function getServerSideProps({ params, res }) {
       subTitle: restResponse.subTitle,
       tags: restResponse.tags,
       date: restResponse.date,
-      featuredImage: restResponse.featuredImage || '/images/no-image-found-diamond-750x350.png',
+      featuredImage:
+        restResponse.featuredImage
+        || '/images/no-image-found-diamond-750x350.png',
       featuredImageCaption: restResponse.featuredImageCaption,
       postContent: restResponse.content,
-      authorLinks: restResponse.author.map((author) => author.link) || ['https://scarincihollenbeck.com'],
+      authorLinks: restResponse.author.map((author) => author.link) || [
+        'https://scarincihollenbeck.com',
+      ],
       posts: restResponse.posts,
       authors: restResponse.author || [],
       attorneys: restResponse.attorneys || [],
+      eventDetails: restResponse.eventDetails || [],
     },
   };
 }
