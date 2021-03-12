@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import Head from 'next/head';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
@@ -125,7 +126,7 @@ export default function AttorneyProfile({ bio, content }) {
           <Col sm={12} md={{ offset: 9, span: 4 }} style={{ marginTop: '-70px' }}>
             <ContactBtn
               link={`/attorney/${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}/contact`}
-              name={bio.headerContent.name}
+              name={bio.headerContent.firstName}
             />
           </Col>
         </Row>

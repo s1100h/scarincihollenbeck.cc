@@ -72,7 +72,11 @@ module.exports = {
       {
         source: '/quick-news/:slug*',
         destination: '/post/:slug*?category=quick-news',
-      }
+      },
+      {
+        source: '/mandarin/:slug*',
+        destination: '/post/:slug*?category=mandarin',
+      },
     ];
   },
 };
