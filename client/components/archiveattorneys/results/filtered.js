@@ -56,9 +56,9 @@ export default function ArchiveAttorneyResultsFiltered({
       if (practiceList.indexOf(userInput.trim()) >= 0) {
         return attorney;
       }
+    } else {
+      return attorney;
     }
-
-    return true;
   };
 
   // filter by key -- letter

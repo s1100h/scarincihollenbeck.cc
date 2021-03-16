@@ -92,6 +92,7 @@ export default function WomenLead({ page }) {
                 content={firmResources}
                 tabKey={1}
               />
+              <br />
             </Col>
           </Row>
         </Container>
