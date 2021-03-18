@@ -18,9 +18,10 @@ export default function ArchivePracticeBlockList({ list }) {
               >
                 {item.title}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="w-100">
+              <Dropdown.Menu className="mw-100">
                 <Dropdown.Item
                   key={item.ID}
+                  style={{ fontSize: '1rem' }}
                   href={item.slug.replace(
                     'https://scarincihollenbeck.com',
                     '',
@@ -31,6 +32,12 @@ export default function ArchivePracticeBlockList({ list }) {
                 {item.children.map((child) => (
                   <Dropdown.Item
                     key={child.ID}
+                    style={{
+                      fontSize: '1rem',
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'pre-wrap',
+                      display: 'block',
+                    }}
                     href={child.slug.replace(
                       'https://scarincihollenbeck.com',
                       '',

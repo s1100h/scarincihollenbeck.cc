@@ -21,7 +21,7 @@ export default function SubscriptionFormWithButton() {
     <>
       <Button
         variant="danger"
-        className="mx-auto p-1 d-block w-50 text-center border-r-5 mb-3 ft-14px"
+        className="p-1 d-block w-50 text-center border-r-5 mb-3 ft-14px"
         onClick={() => setShow(true)}
       >
         Subscribe Now!

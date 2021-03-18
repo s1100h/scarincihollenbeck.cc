@@ -8,12 +8,10 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import PracticeContent from 'components/singlepractice/content';
-import RelatedArticlesTab from 'components/singlepractice/related-articles-tab';
 import RelatedAttorneys from 'components/singlepractice/related-attorneys';
 import PracticeClientSlider from 'components/singlepractice/client-slider';
-import CarouselsSimpleNews from 'components/carousels/simple-news';
+import ArticleHeroPractice from 'components/singlepractice/practice-article-hero';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CovidResourceBox from 'components/singlepractice/covid-resource-box';
@@ -23,6 +21,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
+import textStyles from 'styles/Text.module.css';
 
 export default function PracticeSingle({
   corePractices,
@@ -30,6 +29,7 @@ export default function PracticeSingle({
   practiceChildren,
 }) {
   const router = useRouter();
+  const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -70,7 +70,7 @@ export default function PracticeSingle({
                     </Nav.Link>
                   ))}
                 {practice.industryTopics.length > 0 && (
-                  <Nav.Link eventKey="related-updates" className={tabStyle.tab}>
+                  <Nav.Link href={`/library?term=${urlify(practiceUrl)}`} className={tabStyle.tab}>
                     Related Updates
                   </Nav.Link>
                 )}
@@ -87,22 +87,13 @@ export default function PracticeSingle({
                     />
                   </TabContent>
                 ))}
-              {practice.industryTopics.length > 0 && (
-                <TabContent>
-                  <RelatedArticlesTab
-                    tabTitle="related-updates"
-                    title="Related Updates"
-                    content={practice.industryTopics}
-                  />
-                </TabContent>
-              )}
               {(practice.attorneyList.length > 0) && (
-              <RelatedAttorneys
-                members={practice.attorneyList}
-                chair={practice.chair}
-                handleLink={handleLink}
-                title="Chair"
-              />
+                <RelatedAttorneys
+                  members={practice.attorneyList}
+                  chair={practice.chair}
+                  handleLink={handleLink}
+                  title="Chair"
+                />
               )}
               {practice.highlightReal.length > 0 && (
                 <>
@@ -117,7 +108,7 @@ export default function PracticeSingle({
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
                   </div>
-                  <CarouselsSimpleNews slides={practice.industryTopics} />
+                  <ArticleHeroPractice link={urlify(practiceUrl)} content={practice.industryTopics} />
                 </>
               )}
             </Col>
@@ -133,18 +124,19 @@ export default function PracticeSingle({
                         alt="NJSBA 2020 event"
                       />
                     </div>
-                    <Link
-                      href="https://virtualworkshop.njsba.org/en/"
-                      className="mb-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <a>
-                        <Button variant="danger" className="mx-auto d-block">
-                          Visit Our Booth
-                        </Button>
-                      </a>
-                    </Link>
+                    <h5>
+                      <Link
+                        href="https://virtualworkshop.njsba.org/en/"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <a className={textStyles.redTitle}>
+                          <strong>
+                            <u>Visit our booth</u>
+                          </strong>
+                        </a>
+                      </Link>
+                    </h5>
                   </div>
                   <CovidResourceBox
                     title="COVID-19 Response Team"
@@ -171,7 +163,7 @@ export default function PracticeSingle({
               />
               {practiceChildren.length > 0 && (
                 <PracticeSidebar
-                  title="Related Sub-Practices"
+                  title="Related Practices"
                   content={practiceChildren}
                   tabKey={1}
                 />

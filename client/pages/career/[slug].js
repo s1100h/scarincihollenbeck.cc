@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
-import LargeSidebar from 'layouts/large-sidebar';
 import BreadCrumbs from 'components/basic-breadcrumbs';
 import SingleCareerBody from 'components/singlecareer/body';
-import SingleCareerSidebar from 'components/singlecareer/sidebar';
 import { headers } from 'utils/helpers';
 
 export default function CareerPost({ career }) {
@@ -27,19 +28,18 @@ export default function CareerPost({ career }) {
         title={career.title}
         subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
       />
-      <LargeSidebar
-        body={(
-          <>
+      <Container>
+        <Row>
+          <Col sm={12}>
             <BreadCrumbs />
             <SingleCareerBody
               title={career.title}
               position={career.positionDescription}
               contact={career.contact}
             />
-          </>
-        )}
-        sidebar={<SingleCareerSidebar />}
-      />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

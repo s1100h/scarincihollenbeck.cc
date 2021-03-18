@@ -15,7 +15,8 @@ export default function ArchivePracticeSimpleList({ list }) {
                 <strong>{item.title}</strong>
               </a>
             </Link>
-          </li>
+            <style jsx>{' li { font-size: 1.2rem }'}</style>
+          </li>          
         ))}
       </ul>
     </div>

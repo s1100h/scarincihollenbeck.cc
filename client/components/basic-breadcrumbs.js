@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight';
 import textStyles from 'styles/Text.module.css';
 import { makeTitle } from 'utils/helpers';
 
@@ -27,7 +25,8 @@ export default function BasicBreadCrumbs() {
             <strong>
               Home
               {' '}
-              <FontAwesomeIcon icon={faCaretRight} />
+              |
+              {' '}
             </strong>
           </a>
         </Link>
@@ -41,7 +40,11 @@ export default function BasicBreadCrumbs() {
                 {crumb.title}
                 {' '}
                 {breadCrumbArr.length - 1 !== index && (
-                <FontAwesomeIcon icon={faCaretRight} />
+                <>
+                  {' '}
+                  |
+                  {' '}
+                </>
                 )}
               </strong>
             </a>
