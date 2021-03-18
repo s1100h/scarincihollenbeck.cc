@@ -1,14 +1,15 @@
 import Link from 'next/link';
 
-export default function ContactBtn({ link, name }) {
+export default function ContactBtn({ link }) {
   return (
     <Link href={link}>
-      <a className="btn btn-danger p-3" style={{ fontSize: '1.5rem' }}>
+      <a className="btn btn-danger w-75 py-3">
         <strong>
-          Get in touch with
-          {' '}
-          {name}
+          Get in touch
         </strong>
+        <style jsx>
+          {' a { font-size: 1.5rem; } '}
+        </style>
       </a>
     </Link>
   );

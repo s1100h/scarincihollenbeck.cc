@@ -43,7 +43,7 @@ export default function Library({
       pathname: '/library',
       query: { term: santizeTerm },
     });
-  }; 
+  };
 
   return (
     <>
@@ -66,14 +66,36 @@ export default function Library({
             <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} />
             {(results.results.length > 0 && results.results) ? (
               <>
-                <MainArticle
-                  title={mainArticle.title}
-                  link={mainArticle.link}
-                  description={mainArticle.longerDescription}
-                  date={mainArticle.date}
-                  image={(mainArticle.image) ? mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
-                  author={mainArticle.author}
-                />
+                {(mainArticle.link.indexOf('attorneys') >= 0) ? (
+                  <Link href={mainArticle.link}>
+                    <a className="border-bottom d-block pb-5">
+                      <strong className="lead mt-5 d-block">
+                        {mainArticle.title}
+                        {' '}
+                        - Attorney profile
+                      </strong>
+                    </a>
+                  </Link>
+                ) : (mainArticle.link.indexOf('practices') >= 0) ? (
+                  <Link href={mainArticle.link}>
+                    <a className="border-bottom d-block pb-5">
+                      <strong className="lead mt-5 d-block">
+                        {mainArticle.title}
+                        {' '}
+                        - Legal practice details
+                      </strong>
+                    </a>
+                  </Link>
+                ) : (
+                  <MainArticle
+                    title={mainArticle.title}
+                    link={mainArticle.link}
+                    description={mainArticle.longerDescription}
+                    date={mainArticle.date}
+                    image={(mainArticle.image) ? mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
+                    author={mainArticle.author}
+                  />
+                )}
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
                   <FeaturedArticle articles={featuredArticles} />
                 </ul>
@@ -123,7 +145,7 @@ export default function Library({
 export async function getServerSideProps({ query }) {
   const { term } = query;
   const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) ? urlify(term) : 'firm-news'}/1`, {
+    fetch(`http://localhost:8400/wp-json/search/query/${(term) ? urlify(term) : 'firm-news'}/1`, {
       headers,
     }).then((data) => data.json()),
     fetch(

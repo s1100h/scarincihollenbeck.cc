@@ -126,7 +126,6 @@ export default function AttorneyProfile({ bio, content }) {
           <Col sm={12} md={{ offset: 9, span: 4 }} style={{ marginTop: '-70px' }}>
             <ContactBtn
               link={`/attorney/${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}/contact`}
-              name={bio.headerContent.firstName}
             />
           </Col>
         </Row>
