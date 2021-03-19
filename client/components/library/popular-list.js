@@ -10,7 +10,7 @@ export default function PopularList({ term, list }) {
       <ul>
         {list.map((item) => (
           <li key={item.id} className="list-unstyled">
-            <Link href={`/library?term=${item.slug}`}>
+            <Link href={`/library?category=${item.slug}&offset=1`}>
               <a className="text-dark">
                 {item.name}
                 {' '}

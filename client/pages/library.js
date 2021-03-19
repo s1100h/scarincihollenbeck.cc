@@ -63,7 +63,7 @@ export default function Library({
           />
           <FeaturedLinks />
           <Col sm={12} md={9}>
-            <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} />
+            {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
             {(results.results.length > 0 && results.results) ? (
               <>
                 {(mainArticle.link.indexOf('attorneys') >= 0) ? (
@@ -87,14 +87,16 @@ export default function Library({
                     </a>
                   </Link>
                 ) : (
-                  <MainArticle
-                    title={mainArticle.title}
-                    link={mainArticle.link}
-                    description={mainArticle.longerDescription}
-                    date={mainArticle.date}
-                    image={(mainArticle.image) ? mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
-                    author={mainArticle.author}
-                  />
+                  <div className="mt-4">
+                    <MainArticle
+                      title={mainArticle.title}
+                      link={mainArticle.link}
+                      description={mainArticle.longerDescription}
+                      date={mainArticle.date}
+                      image={(mainArticle.image) ? mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
+                      author={mainArticle.author}
+                    />
+                  </div>
                 )}
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
                   <FeaturedArticle articles={featuredArticles} />
@@ -143,9 +145,28 @@ export default function Library({
 }
 
 export async function getServerSideProps({ query }) {
-  const { term } = query;
+  const { term, category, author } = query;
+  // eslint-disable-next-line quotes
+  let tempStr = ``;
+
+  if (term) {
+    tempStr += `offset=1&term=${term}`;
+  };
+
+  if (term && category) {
+    tempStr += `offset=1&term=${term}&category=${category}`;
+  };
+
+  if (category) {
+    tempStr += `offset=1&category=${category}`;
+  };
+
+  if (author) {
+    tempStr += `offset=1&author=${author}`;
+  };
+
   const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`http://localhost:8400/wp-json/search/query/${(term) ? urlify(term) : 'firm-news'}/1`, {
+    fetch(`http://localhost:8400/wp-json/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
     fetch(
