@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import lineHeaderStyles from 'styles/LineHeader.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 
 import { createMarkup } from 'utils/helpers';
@@ -12,10 +12,13 @@ export default function PostAuthorBio({ author }) {
       {author
         && author.map((a) => (
           <div key={a.name} className="mb-2">
-            <h4 className={grayTitleStyles.title}>
-              About Author
-              {a.name}
-            </h4>
+            <div className={`${lineHeaderStyles.lineHeader} d-print-none mt-3`}>
+              <h3>
+                About
+                {' '}
+                {a.name}
+              </h3>
+            </div>
             <div className="card flex-row flex-wrap mt-4 mh-160">
               <div className="mx-2 mt-4 d-block">
                 <Image src={a.image} alt={a.name} width={110} height={147} />

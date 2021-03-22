@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
-import ThreeColMiniSidebar from 'layouts/three-col-mini-sidebar';
 import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import EventSidebar from 'components/post/event-sidebar';
-import SocialShareSidebar from 'components/post/social-share-sidebar';
 import { headers } from 'utils/helpers';
 
 export default function LawFirmInsightsPost({
@@ -81,23 +82,26 @@ export default function LawFirmInsightsPost({
         title={title}
         subtitle={subTitle}
       />
-      <ThreeColMiniSidebar
-        body={(
-          <Body
-            featuredImage={featuredImage}
-            caption={featuredImageCaption}
-            content={postContent}
-            eventCat={isEventCategory}
-            title={title}
-            subTitle={subTitle}
-            author={authors}
-            date={date}
-            tags={tags}
-          />
-        )}
-        OneSidebar={<SocialShareSidebar title={title} />}
-        TwoSidebar={(isEventCategory && eventDetails.length > 0) ? <EventSidebar eventDetails={eventDetails} attorneys={attorneys} /> : <Sidebar posts={posts} attorneys={attorneys} />}
-      />
+      <Container>
+        <Row>
+          <Col sm={12} md={9}>
+            <Body
+              featuredImage={featuredImage}
+              caption={featuredImageCaption}
+              content={postContent}
+              eventCat={isEventCategory}
+              title={title}
+              subTitle={subTitle}
+              author={authors}
+              date={date}
+              tags={tags}
+            />
+          </Col>
+          <Col sm={12} md={3}>
+            {(isEventCategory && eventDetails.length > 0) ? <EventSidebar eventDetails={eventDetails} title={title} attorneys={attorneys} /> : <Sidebar posts={posts} title={title} attorneys={attorneys} />}
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

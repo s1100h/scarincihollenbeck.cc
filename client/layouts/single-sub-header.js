@@ -8,7 +8,7 @@ export default function SingleSubHeader({
     <div className={styles.backPageBanner}>
       <div className={`${styles.bannerContainer} animate__animated animate__fadeInUp animate__fast`}>
         <div className="d-flex border flex-column p-4" style={{ width: 900 }}>
-          <h1 className="text-white display-4 mb-0"><strong>{title}</strong></h1>
+          <h1 className="text-white mb-0"><strong>{title}</strong></h1>
           <div
             className="w-100 d-block my-2"
             style={{

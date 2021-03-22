@@ -4,6 +4,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from 'styles/Text.module.css';
 
+const checkAllOffices = (location) => {
+  const splitLocs = location.split(',').filter((i) => i.trim() !== 'NJ');
+
+  if (splitLocs.length > 1) {
+    return 'Multiple locations';
+  }
+
+  return location;
+};
+
 function checkForEmptyResults() {
   return (
     <Container className="mt-2">
@@ -37,7 +47,7 @@ function renderResults(positions) {
                       <hr className="my-0 py-1" />
                       <p className="my-0">
                         <strong>Location: </strong>
-                        {p.positionLocation}
+                        {checkAllOffices(p.positionLocation)}
                       </p>
                       <p className="my-0">
                         <strong>Type: </strong>

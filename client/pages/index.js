@@ -119,7 +119,7 @@ export default function HomePageTwo({
         <div className={marginStyles.mt6}>
           <ArticleHero content={posts} />
         </div>
-        <HomePageLink link="/library?q=firm-news" title="Read more articles about our attorneys" />
+        <HomePageLink link="/library?category=firm-news" title="Read more articles about our attorneys" />
       </Container>
     </>
   );

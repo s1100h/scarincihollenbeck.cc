@@ -45,7 +45,7 @@ export default function LargeSidebarWithPosts({
   return (
     <Container>
       <Row>
-        <Col sm={12} md={8}>
+        <Col sm={12} md={9}>
           <div
             className={styles.content}
             dangerouslySetInnerHTML={createMarkup(content)}
@@ -70,7 +70,7 @@ export default function LargeSidebarWithPosts({
             <ContactForm />
           </div>
         </Col>
-        <Col sm={12} md={4}>
+        <Col sm={12} md={3}>
           {sidebar}
         </Col>
       </Row>

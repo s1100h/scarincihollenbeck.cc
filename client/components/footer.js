@@ -58,7 +58,7 @@ export default function Footer() {
                   <span className="mx-3">|</span>
                 </li>
                 <li className="list-inline-item">
-                  <Link href="/library?term=firm-news">
+                  <Link href="/library?category=firm-news">
                     <a className={styles.mainLink}>
                       <u>Library</u>
                     </a>
@@ -116,12 +116,12 @@ export default function Footer() {
             <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}><strong>Social Media</strong></p>
             <ul className={styles.linkList}>
               <li>
-                <a href="https://www.linkedin.com/company/scarinci-hollenbeck-llc" className="text-dark">
+                <a href="https://www.linkedin.com/company/scarinci-hollenbeck-llc" target="_blank" rel="noreferrer" className="text-dark">
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/ScarinciHollenbeck" className="text-dark">
+                <a href="https://www.facebook.com/ScarinciHollenbeck" target="_blank" rel="noreferrer" className="text-dark">
                   Facebook
                 </a>
               </li>

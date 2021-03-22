@@ -17,15 +17,14 @@ export default function PostSocialShareFooter({ title }) {
         <h3>Please Share This article</h3>
       </div>
       <div className="d-flex hide-print">
-        <ul className="d-print-none list-inline my-5 text-center">
+        <ul className="d-print-none list-inline mt-5 text-center d-block mx-auto">
           <li className="list-inline-item m-3 d-print-none">
             <FacebookShareButton
               url={`https://scarincihollenbeck.com${router.asPath}`}
               quote={title}
               className={`${socialIconStyles.facebook} ${socialIconStyles.icon} ${fontStyles.smallExcerpt}  text-white`}
             >
-
-              Share on Facebook
+              <strong>Share on Facebook</strong>
             </FacebookShareButton>
           </li>
           <li className="list-inline-item m-3 d-print-none">
@@ -34,8 +33,7 @@ export default function PostSocialShareFooter({ title }) {
               quote={title}
               className={`${socialIconStyles.linkedin} ${socialIconStyles.icon} ${fontStyles.smallExcerpt} text-white`}
             >
-
-              Share on LinkedIn
+              <strong>Share on LinkedIn</strong>
             </LinkedinShareButton>
           </li>
           <li className="list-inline-item m-3 d-print-none">
@@ -44,8 +42,7 @@ export default function PostSocialShareFooter({ title }) {
               quote={title}
               className={`${socialIconStyles.twitter} ${socialIconStyles.icon} ${fontStyles.smallExcerpt} text-white`}
             >
-
-              Share on Twitter
+              <strong>Share on Twitter</strong>
             </TwitterShareButton>
           </li>
         </ul>

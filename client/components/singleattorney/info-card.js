@@ -28,7 +28,7 @@ export default function SingleAttorneyInfoCard({
       <h2 className="mt-4 mb-0">
         <strong style={{ fontSize: '2.5rem' }}>{designation}</strong>
       </h2>
-      {chair.length > 0 && (
+      {(chair.length > 0) && (
       <h3 className="text-white mt-2" style={{ fontSize: '1.6rem' }}>
         <strong>Chair: </strong>
         {' '}
@@ -41,7 +41,7 @@ export default function SingleAttorneyInfoCard({
         ))}
       </h3>
       )}
-      {coChair.length > 0 && (
+      {(coChair.length > 0) && (
       <h3 className="text-white" style={{ fontSize: '1.4rem' }}>
         Co-chair:
         {' '}
@@ -54,7 +54,7 @@ export default function SingleAttorneyInfoCard({
         ))}
       </h3>
       )}
-      {offices.length > 0 && (
+      {offices && offices.length > 0 && (
         <h3 style={{ fontSize: '1.4rem' }}>
           <strong>Office: </strong>
           {offices.map((office, index) => (
@@ -81,17 +81,21 @@ export default function SingleAttorneyInfoCard({
         </h3>
       )}
       <ul className="list-inline list-unstyled" style={{ fontSize: '1.4rem' }}>
+        {pdf && (
         <li className="list-inline-item mr-3">
           <a className="text-white" href={pdf} download>
             <strong><u>Download Biography</u></strong>
             {' '}
           </a>
         </li>
+        )}
+        {vizibility && (
         <li className="list-inline-item">
           <a className="text-white" href={vizibility} download>
             <strong><u>Download Contact</u></strong>
           </a>
         </li>
+        )}
       </ul>
     </div>
   );

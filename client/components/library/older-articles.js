@@ -19,7 +19,7 @@ function ArticleDetails({ uri, title, excerpt }) {
   );
 }
 
-export default function OlderArticles({ term, initialArticles }) {
+export default function OlderArticles({ initialArticles, query }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(2);
   const [error, setError] = useState(false);
@@ -28,12 +28,13 @@ export default function OlderArticles({ term, initialArticles }) {
   async function handleClick() {
     setLoading(true);
     setPageIndex((newIndex) => newIndex += 1);
+    const url = `http://localhost:8400/wp-json/search/query?offset=${pageIndex}&${query}`;
 
-    const getOlderPosts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/search/query/${(term) || 'firm-news'}/${pageIndex}`)
+    const getOlderPosts = await fetch(url)
       .then((data) => data.json())
       .catch((err) => setError(err));
 
-    if (!getOlderPosts.results) {
+    if (!getOlderPosts) {
       setLoading(false);
     }
 
@@ -41,7 +42,7 @@ export default function OlderArticles({ term, initialArticles }) {
       getOlderPosts.results.shift();
       setLoading(false);
       setArticleList((articles) => [...articles, ...getOlderPosts.results]);
-    }
+    }    
   }
 
   return (
@@ -49,8 +50,6 @@ export default function OlderArticles({ term, initialArticles }) {
       <Col sm={12}>
         <h4 className="mt-2 mb-4 mx-3">
           <strong className="text-capitalize">
-            {term.replace(/-/g, ' ')}
-            {' '}
             Archives
           </strong>
         </h4>

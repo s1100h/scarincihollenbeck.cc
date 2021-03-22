@@ -11,9 +11,8 @@ import MainArticle from 'components/library/main-article';
 import FeaturedArticle from 'components/library/featured-article';
 import OlderArticles from 'components/library/older-articles';
 import FeaturedLinks from 'components/library/featured-links';
-import SearchBar from 'components/library/search-bar';
-import Breadcrumbs from 'components/library/breadcrumbs';
 import SubscriptionContainer from 'components/library/subscription-container';
+import SearchBar from 'components/library/search-bar';
 import { headers, urlify } from 'utils/helpers';
 import styles from 'styles/Library.module.css';
 import marginStyles from 'styles/Margins.module.css';
@@ -25,6 +24,7 @@ export default function Library({
   popularCategories,
   childrenOfCurrentCategory,
   pageTitle,
+  query
 }) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -105,7 +105,10 @@ export default function Library({
                   <SubscriptionContainer />
                 </div>
                 <div className="mt-5">
-                  <OlderArticles term={pageTitle} initialArticles={olderArticles} />
+                  <OlderArticles
+                    query={query}
+                    initialArticles={olderArticles}
+                  />
                 </div>
               </>
             ) : (
@@ -129,7 +132,7 @@ export default function Library({
             <ul className={styles.authorList}>
               {authors.map((author) => (
                 <li key={author.lastName} className={`${styles.author} list-unstyled`}>
-                  <Link href={`/library?term=${urlify(author.fullName.replace(/[^a-zA-Z ]/g, ''))}`}>
+                  <Link href={`/library?author=${urlify(author.username)}`}>
                     <a className="text-dark">
                       {author.fullName}
                     </a>
@@ -148,22 +151,33 @@ export async function getServerSideProps({ query }) {
   const { term, category, author } = query;
   // eslint-disable-next-line quotes
   let tempStr = ``;
+  // eslint-disable-next-line quotes
+  let tempChildCat = ``;
 
   if (term) {
     tempStr += `offset=1&term=${term}`;
-  };
+    tempChildCat += term;
+  }
 
   if (term && category) {
     tempStr += `offset=1&term=${term}&category=${category}`;
-  };
+    tempChildCat += category;
+  }
 
   if (category) {
     tempStr += `offset=1&category=${category}`;
-  };
+    tempChildCat += category;
+  }
 
   if (author) {
     tempStr += `offset=1&author=${author}`;
-  };
+    tempChildCat += 'firm-news';
+  }
+
+  if (!term && !category && !author) {
+    tempStr += 'offset=1&category=firm-news';
+    tempChildCat += 'firm-news';
+  }
 
   const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
     fetch(`http://localhost:8400/wp-json/search/query?${tempStr}`, {
@@ -174,7 +188,7 @@ export async function getServerSideProps({ query }) {
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/category/children/${(term) ? urlify(term) : 'firm-news'}`,
+      `https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`,
       { headers },
     ).then((data) => data.json()),
     fetch(
@@ -185,6 +199,7 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
+      query: tempStr.replace('offset=1&', ''),
       pageTitle: (term) ? urlify(term) : 'firm-news',
       results: results || [],
       authors: authors || [],

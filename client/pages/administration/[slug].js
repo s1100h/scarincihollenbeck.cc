@@ -72,6 +72,10 @@ export default function AdminSingleBio({ response }) {
               phoneNumber={`201-896-4100 ${response.phoneExtension}`}
               socialMediaLinks={response.socialMediaLinks}
               offices={response.offices}
+              chair={0}
+              coChair={0}
+              pdf=""
+              services=""
             />
           )}
         />
@@ -81,7 +85,14 @@ export default function AdminSingleBio({ response }) {
               <h3>Biography</h3>
             </div>
             <div className="w-100 my-5">
-              <div dangerouslySetInnerHTML={createMarkup(response.biography)} />
+              <div
+                style={{
+                  marginBottom: '1.125rem',
+                  fontSize: '1.36rem',
+                  lineHeight: '1.68',
+                }}
+                dangerouslySetInnerHTML={createMarkup(response.biography)}
+              />
             </div>
           </div>
         </FullWidth>
