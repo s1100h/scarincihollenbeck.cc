@@ -215,6 +215,8 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
   ]);
 
+  console.log(res);
+
   if (res.status === 404) {
     return {
       notFound: true,
