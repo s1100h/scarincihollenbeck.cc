@@ -83,11 +83,11 @@ export async function getServerSideProps({ params, res }) {
   // do some major refactoring on the single attorney bio API endpoint
   const [bio, contact] = await Promise.all([
     fetch(
-      `http://localhost:8400/wp-json/attorney-profile/main/${params.slug}`,
+      `http://localhost:8000/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `http://localhost:8400/wp-json/attorney-profile/contact/${params.slug}`,
+      `http://localhost:8000/wp-json/attorney-profile/contact/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);
