@@ -107,7 +107,12 @@ export default function AttorneyProfile({ bio, content }) {
         />
       </Head>
       <MultiSubHeader
-        profile={<ProfileImage image={bio.headerContent.profileImage} name={bio.headerContent.name} />}
+        profile={(
+          <ProfileImage
+            image={bio.headerContent.profileImage}
+            name={bio.headerContent.name}
+          />
+        )}
         infoCard={(
           <SingleAttorneyInfoCard
             fullName={bio.headerContent.name}
@@ -123,9 +128,16 @@ export default function AttorneyProfile({ bio, content }) {
       />
       <Container className="mt-0 pt-0">
         <Row>
-          <Col sm={12} md={{ offset: 9, span: 4 }} style={{ marginTop: '-70px' }}>
+          <Col
+            sm={12}
+            md={{ offset: 9, span: 4 }}
+            style={{ marginTop: '-70px' }}
+          >
             <ContactBtn
-              link={`/attorney/${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}/contact`}
+              link={`/attorney/${bio.headerContent.name
+                .replace(/\s+/g, '-')
+                .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+                .toLowerCase()}/contact`}
             />
           </Col>
         </Row>
@@ -145,9 +157,15 @@ export default function AttorneyProfile({ bio, content }) {
               id="articles"
             />
             <Link
-              href={`/library?term=${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}`}
+              href={`/library?term=${bio.headerContent.name
+                .replace(/\s+/g, '-')
+                .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+                .toLowerCase()}`}
             >
-              <a className="btn btn-danger px-2 my-4 d-block" style={{ fontSize: '1.3rem', maxWidth: '200px' }}>
+              <a
+                className="btn btn-danger px-2 my-4 d-block"
+                style={{ fontSize: '1.3rem', maxWidth: '200px' }}
+              >
                 More articles
               </a>
             </Link>
@@ -165,8 +183,16 @@ export default function AttorneyProfile({ bio, content }) {
                   articles={bio.mainPageContent.clients}
                   type="awards"
                 />
-                <Link href={`/attorney/${bio.headerContent.name.replace(/\s+/g, '-').replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase()}/content/clients`}>
-                  <a className="btn btn-danger px-2 my-4 d-block" style={{ fontSize: '1.3rem', maxWidth: '200px' }}>
+                <Link
+                  href={`/attorney/${bio.headerContent.name
+                    .replace(/\s+/g, '-')
+                    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+                    .toLowerCase()}/content/clients`}
+                >
+                  <a
+                    className="btn btn-danger px-2 my-4 d-block"
+                    style={{ fontSize: '1.3rem', maxWidth: '200px' }}
+                  >
                     More Clients
                   </a>
                 </Link>
@@ -190,11 +216,11 @@ export default function AttorneyProfile({ bio, content }) {
               />
             )}
             {bio.mainPageContent.affiliations && (
-            <SidebarInformationList
-              title="Affiliations"
-              id="affiliations"
-              content={bio.mainPageContent.affiliations}
-            />
+              <SidebarInformationList
+                title="Affiliations"
+                id="affiliations"
+                content={bio.mainPageContent.affiliations}
+              />
             )}
           </Col>
           <Col sm={12} md={3}>

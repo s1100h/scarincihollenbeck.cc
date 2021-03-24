@@ -19,6 +19,5 @@ export default function PracticeCovidResourceBox({ title, link, message }) {
         </Link>
       </h5>
     </div>
-
   );
 }

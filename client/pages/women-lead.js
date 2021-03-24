@@ -83,11 +83,14 @@ export default function WomenLead({ page }) {
               {page.attorneysMentioned.length > 0 && (
                 <>
                   <div className={lineHeaderStyles.lineHeader}>
-                  <h3>Recent from the firm</h3>
-                </div>
-                <div className="my-5">
-                  <PageArticleHero link={page.title.replace(/\s+/g, '-').toLowerCase()} content={page.attorneysMentioned} />
-                </div>
+                    <h3>Recent from the firm</h3>
+                  </div>
+                  <div className="my-5">
+                    <PageArticleHero
+                      link={page.title.replace(/\s+/g, '-').toLowerCase()}
+                      content={page.attorneysMentioned}
+                    />
+                  </div>
                 </>
               )}
             </Col>

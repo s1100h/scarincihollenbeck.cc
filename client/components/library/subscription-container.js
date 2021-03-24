@@ -14,7 +14,8 @@ export default function SubscriptionContainer() {
         <strong>Get the latest from our attorneys!</strong>
       </h4>
       <h6 className="mb-4 mt-2 mx-5" style={{ color: '#444' }}>
-        As the legal world continues to evolve, it is important to stay aware of its various and regular updates.
+        As the legal world continues to evolve, it is important to stay aware of
+        its various and regular updates.
       </h6>
       <Link href="/subscribe">
         <a className="btn btn-danger px-4">

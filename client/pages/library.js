@@ -24,13 +24,11 @@ export default function Library({
   popularCategories,
   childrenOfCurrentCategory,
   pageTitle,
-  query
+  query,
 }) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
-  const featuredArticles = results.results.filter((_, i) => i > 0 && i <= 4);
-  const olderArticles = results.results.filter((_, i) => i > 4);
 
   // on submit
   const onSubmit = (e) => {
@@ -63,9 +61,9 @@ export default function Library({
           <FeaturedLinks />
           <Col sm={12} md={9}>
             {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
-            {(results.results.length > 0 && results.results) ? (
+            {(results && results.results && results.results.length > 0) ? (
               <>
-                {(results.results[0].link.indexOf('attorneys') >= 0) ? (
+                {results.results[0].link.indexOf('attorneys') >= 0 ? (
                   <Link href={results.results[0].link}>
                     <a className="border-bottom d-block pb-5">
                       <strong className="lead mt-5 d-block">
@@ -75,7 +73,7 @@ export default function Library({
                       </strong>
                     </a>
                   </Link>
-                ) : (results.results[0].link.indexOf('practices') >= 0) ? (
+                ) : results.results[0].link.indexOf('practices') >= 0 ? (
                   <Link href={results.results[0].link}>
                     <a className="border-bottom d-block pb-5">
                       <strong className="lead mt-5 d-block">
@@ -90,25 +88,35 @@ export default function Library({
                     <MainArticle
                       title={results.results[0].title}
                       link={results.results[0].link}
-                      description={mresults.results[0].longerDescription}
+                      description={results.results[0].longerDescription}
                       date={results.results[0].date}
-                      image={(results.results[0].image) ? results.results[0].image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
+                      image={
+                        results.results[0].image
+                          ? results.results[0].image
+                            .replace('Feature', 'Body')
+                            .replace('Featured', 'Body')
+                          : '/images/no-image-found-diamond-750x350.png'
+                      }
                       author={results.results[0].author}
                     />
                   </div>
                 )}
-                <ul className={`${marginStyles.mt65} list-unstyled`}>
-                  <FeaturedArticle articles={featuredArticles} />
-                </ul>
+                {(results && results.results && results.results.length > 0) && (
+                  <ul className={`${marginStyles.mt65} list-unstyled`}>
+                    <FeaturedArticle articles={results.results.filter((_, i) => i > 0 && i <= 4)} />
+                  </ul>
+                )}
                 <div className={marginStyles.mt65}>
                   <SubscriptionContainer />
                 </div>
-                <div className="mt-5">
-                  <OlderArticles
-                    query={query}
-                    initialArticles={olderArticles}
-                  />
-                </div>
+                {(results && results.results && results.results.length > 0) && (
+                  <div className="mt-5">
+                    <OlderArticles
+                      query={query}
+                      initialArticles={results.results.filter((_, i) => i > 4)}
+                    />
+                  </div>
+                )}
               </>
             ) : (
               <div className="text-center m-3">
@@ -124,17 +132,29 @@ export default function Library({
               </div>
             )}
           </Col>
-          <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">
-            {childrenOfCurrentCategory.length > 0 && <PopularList term="Related Categories" list={childrenOfCurrentCategory} />}
+          <Col
+            sm={12}
+            md={3}
+            className="d-flex flex-column justify-content-start mt-3"
+          >
+            {childrenOfCurrentCategory.length > 0 && (
+              <PopularList
+                term="Related Categories"
+                list={childrenOfCurrentCategory}
+              />
+            )}
             <PopularList term="Popular Categories" list={popularCategories} />
-            <p className={`${fontStyles.ft12rem} d-block w-100`}><strong>Firm Authors</strong></p>
+            <p className={`${fontStyles.ft12rem} d-block w-100`}>
+              <strong>Firm Authors</strong>
+            </p>
             <ul className={styles.authorList}>
               {authors.map((author) => (
-                <li key={author.lastName} className={`${styles.author} list-unstyled`}>
+                <li
+                  key={author.lastName}
+                  className={`${styles.author} list-unstyled`}
+                >
                   <Link href={`/library?author=${urlify(author.username)}`}>
-                    <a className="text-dark">
-                      {author.fullName}
-                    </a>
+                    <a className="text-dark">{author.fullName}</a>
                   </Link>
                 </li>
               ))}
@@ -178,14 +198,18 @@ export async function getServerSideProps({ query }) {
     tempChildCat += 'firm-news';
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
+  const [
+    results,
+    authors,
+    childrenOfCurrentCategory,
+    popularCategories,
+  ] = await Promise.all([
     fetch(`http://localhost:8000/wp-json/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/author/full-list',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
+      headers,
+    }).then((data) => data.json()),
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`,
       { headers },
@@ -199,7 +223,7 @@ export async function getServerSideProps({ query }) {
   return {
     props: {
       query: tempStr.replace('offset=1&', ''),
-      pageTitle: (term) ? urlify(term) : 'firm-news',
+      pageTitle: tempChildCat,
       results: results || [],
       authors: authors || [],
       popularCategories: popularCategories || [],

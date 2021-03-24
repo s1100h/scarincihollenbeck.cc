@@ -60,7 +60,6 @@ export default function PostSocialShareSidebar({ title }) {
           <u>Print</u>
         </Button>
       </p>
-
     </div>
   );
 }

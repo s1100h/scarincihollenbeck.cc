@@ -22,12 +22,7 @@ export default function BasicBreadCrumbs() {
       <li className="list-inline-item">
         <Link href="/">
           <a className={`${textStyles.redTitle} text-uppercase`}>
-            <strong>
-              Home
-              {' '}
-              |
-              {' '}
-            </strong>
+            <strong>Home | </strong>
           </a>
         </Link>
       </li>
@@ -39,13 +34,7 @@ export default function BasicBreadCrumbs() {
               <strong>
                 {crumb.title}
                 {' '}
-                {breadCrumbArr.length - 1 !== index && (
-                <>
-                  {' '}
-                  |
-                  {' '}
-                </>
-                )}
+                {breadCrumbArr.length - 1 !== index && <> | </>}
               </strong>
             </a>
           </Link>

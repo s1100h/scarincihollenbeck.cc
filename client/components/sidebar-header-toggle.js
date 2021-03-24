@@ -21,7 +21,11 @@ export default function SideBarHeaderToggle({ children, eventKey, callback }) {
       onClick={decoratedOnClick}
     >
       {children}
-      {isCurrentEventKey ? <strong className={styles.toggleIconOpen}>+</strong> : <strong className={styles.toggleIconClose}>-</strong>}
+      {isCurrentEventKey ? (
+        <strong className={styles.toggleIconOpen}>+</strong>
+      ) : (
+        <strong className={styles.toggleIconClose}>-</strong>
+      )}
     </Button>
   );
 }

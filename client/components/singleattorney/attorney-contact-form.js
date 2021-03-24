@@ -24,11 +24,7 @@ export default function AttorneyContactForm({ attorneyEmail }) {
           name="currentPage"
           value={`https://scarincihollenbeck.com${router.asPath}`}
         />
-        <input
-          type="hidden"
-          name="attorneyEmail"
-          value={attorneyEmail}
-        />
+        <input type="hidden" name="attorneyEmail" value={attorneyEmail} />
         <Row className="mb-3">
           <Col sm={12} md={6} className="mx-0 px-1">
             <input

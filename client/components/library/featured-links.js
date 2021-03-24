@@ -9,21 +9,27 @@ export default function FeaturedLinks() {
         <li className="list-inline-item">
           <Link href="/library?category=firm-news">
             <a className={`${styles.link} text-dark`}>
-              <strong><u>Firm News</u></strong>
+              <strong>
+                <u>Firm News</u>
+              </strong>
             </a>
           </Link>
         </li>
         <li className="list-inline-item">
           <Link href="/library?category=firm-events">
             <a className={`${styles.link} text-dark`}>
-              <strong><u>Firm Events</u></strong>
+              <strong>
+                <u>Firm Events</u>
+              </strong>
             </a>
           </Link>
         </li>
         <li className="list-inline-item">
           <Link href="/library?category=law-firm-insights">
             <a className={`${styles.link} text-dark`}>
-              <strong><u>Firm Insights</u></strong>
+              <strong>
+                <u>Firm Insights</u>
+              </strong>
             </a>
           </Link>
         </li>

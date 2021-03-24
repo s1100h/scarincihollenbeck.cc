@@ -52,11 +52,7 @@ export default function AllLocations({
             />
           </Col>
           <Col sm={12} md={3}>
-            <SideBar
-              title={lyndhurst.name}
-              posts={posts}
-              offices={offices}
-            />
+            <SideBar title={lyndhurst.name} posts={posts} offices={offices} />
           </Col>
         </Row>
       </Container>

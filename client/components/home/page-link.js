@@ -5,16 +5,18 @@ export default function HomePageLink({ link, title, margins = 'my-5' }) {
     <div className={`mx-auto d-block w-100 text-center ${margins}`}>
       <Link href={link}>
         <a>
-          <strong><u>{title}</u></strong>
+          <strong>
+            <u>{title}</u>
+          </strong>
         </a>
       </Link>
       <style jsx>
         {`
-        a {
-          color: #db2220;
-          font-size: 1.275rem;
-        }
-      `}
+          a {
+            color: #db2220;
+            font-size: 1.275rem;
+          }
+        `}
       </style>
     </div>
   );

@@ -29,7 +29,9 @@ export default function PracticeSingle({
   practiceChildren,
 }) {
   const router = useRouter();
-  const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
+  const practiceUrl = router.asPath
+    .replace('/practices/', '')
+    .replace('/practice/', '');
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -70,7 +72,10 @@ export default function PracticeSingle({
                     </Nav.Link>
                   ))}
                 {practice.industryTopics.length > 0 && (
-                  <Nav.Link href={`/library?term=${urlify(practiceUrl)}`} className={tabStyle.tab}>
+                  <Nav.Link
+                    href={`/library?term=${urlify(practiceUrl)}`}
+                    className={tabStyle.tab}
+                  >
                     Related Updates
                   </Nav.Link>
                 )}
@@ -87,7 +92,7 @@ export default function PracticeSingle({
                     />
                   </TabContent>
                 ))}
-              {(practice.attorneyList.length > 0) && (
+              {practice.attorneyList.length > 0 && (
                 <RelatedAttorneys
                   members={practice.attorneyList}
                   chair={practice.chair}
@@ -108,7 +113,10 @@ export default function PracticeSingle({
                   <div className={`${lineStyles.lineHeader} my-4`}>
                     <h3>Latest News & Articles</h3>
                   </div>
-                  <ArticleHeroPractice link={urlify(practiceUrl)} content={practice.industryTopics} />
+                  <ArticleHeroPractice
+                    link={urlify(practiceUrl)}
+                    content={practice.industryTopics}
+                  />
                 </>
               )}
             </Col>

@@ -7,7 +7,11 @@ export default function FeaturedArticle({ articles }) {
       <Link href={article.link}>
         <a className={`${styles.link} ${styles.list}`}>
           <img
-            src={(article.image) ? article.image : '/images/no-image-found-diamond-750x350.png'}
+            src={
+              article.image
+                ? article.image
+                : '/images/no-image-found-diamond-750x350.png'
+            }
             alt={article.title}
             width="300px"
             height="139px"
@@ -18,9 +22,7 @@ export default function FeaturedArticle({ articles }) {
             <h4 className="mb-1">
               <strong>{article.title}</strong>
             </h4>
-            <p className="mt-0 pt-0">
-              {article.description}
-            </p>
+            <p className="mt-0 pt-0">{article.description}</p>
           </div>
         </a>
       </Link>

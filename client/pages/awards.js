@@ -6,9 +6,7 @@ import PagesBody from 'components/pages/body';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
 
-export default function Awards({
-  content, seo,
-}) {
+export default function Awards({ content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -38,9 +36,12 @@ export default function Awards({
 }
 
 export async function getStaticProps() {
-  const request = await fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/awards', {
-    headers,
-  }).then((data) => data.json());
+  const request = await fetch(
+    'https://wp.scarincihollenbeck.com/wp-json/single-page/page/awards',
+    {
+      headers,
+    },
+  ).then((data) => data.json());
 
   const { title, content, seo } = request;
 

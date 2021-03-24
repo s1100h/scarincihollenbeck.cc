@@ -8,12 +8,14 @@ import CustomContent from 'components/singleattorney/custom-content';
 import ImageContent from 'components/singleattorney/image-content';
 import { headers } from 'utils/helpers';
 
-export default function Content({
-  content,
-  bio,
-  type,
-}) {
-  let contentComponent = <div className="text-center m-5"><h3><strong>No content found...</strong></h3></div>;
+export default function Content({ content, bio, type }) {
+  let contentComponent = (
+    <div className="text-center m-5">
+      <h3>
+        <strong>No content found...</strong>
+      </h3>
+    </div>
+  );
 
   if (content.status === 404) {
     return <Error statusCode={404} />;
@@ -26,7 +28,9 @@ export default function Content({
   } else if (type === 'media') {
     contentComponent = <SingleAttorneyTableTab content={content} />;
   } else if (type === 'biography') {
-    contentComponent = <BasicContent title="" id="biography" content={content} links="" />;
+    contentComponent = (
+      <BasicContent title="" id="biography" content={content} links="" />
+    );
   } else if (type === 'presentations') {
     contentComponent = <SingleAttorneyTableTab content={content} />;
   } else if (type === 'publications') {
@@ -39,12 +43,7 @@ export default function Content({
     contentComponent = <CustomContent content={content} />;
   }
 
-  return (
-    <AttorneyProfile
-      bio={bio}
-      content={contentComponent}
-    />
-  );
+  return <AttorneyProfile bio={bio} content={contentComponent} />;
 }
 
 export async function getServerSideProps({ params, res }) {

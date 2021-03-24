@@ -17,9 +17,7 @@ export default function PopularList({ term, list }) {
                 |
                 {' '}
                 <strong>
-                  <small>
-                    {item.postCount}
-                  </small>
+                  <small>{item.postCount}</small>
                 </strong>
               </a>
             </Link>
@@ -35,7 +33,8 @@ export default function PopularList({ term, list }) {
 
           ul li {
             margin-bottom: 6px;
-          }`}
+          }
+        `}
       </style>
     </>
   );

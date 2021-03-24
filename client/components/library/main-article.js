@@ -5,7 +5,12 @@ import { createMarkup } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function MainArticle({
-  title, link, description, date, image, author,
+  title,
+  link,
+  description,
+  date,
+  image,
+  author,
 }) {
   return (
     <>
@@ -14,12 +19,7 @@ export default function MainArticle({
           <h3 className={`mb-4 ${fontStyles.ft22rem}`}>
             <strong>{title}</strong>
           </h3>
-          <Image
-            src={image}
-            alt={title}
-            width={750}
-            height={350}
-          />
+          <Image src={image} alt={title} width={750} height={350} />
         </a>
       </Link>
       <p className={`${fontStyles.ft12rem} my-3`}>
@@ -32,15 +32,16 @@ export default function MainArticle({
           {date}
         </span>
       </p>
-      {description.map((content) => <div key={content} className={`${fontStyles.ft11rem} pr-4`} dangerouslySetInnerHTML={createMarkup(content)} />)}
-      <Button
-        variant="danger"
-        className={`${fontStyles.ft12rem} px-4`}
-      >
+      {description.map((content) => (
+        <div
+          key={content}
+          className={`${fontStyles.ft11rem} pr-4`}
+          dangerouslySetInnerHTML={createMarkup(content)}
+        />
+      ))}
+      <Button variant="danger" className={`${fontStyles.ft12rem} px-4`}>
         <Link href={link}>
-          <a className="text-white">
-            Continue Reading
-          </a>
+          <a className="text-white">Continue Reading</a>
         </Link>
       </Button>
     </>

@@ -75,11 +75,14 @@ export default function HomePageTwo({
               <h4>
                 <strong>MEET OUR TEAM</strong>
               </h4>
-              <p>Our attorneys collaborate across the firm’s practice areas to achieve the best combination of knowledge, experience, and efficiency. We are dedicated to delivering outstanding client service.</p>
+              <p>
+                Our attorneys collaborate across the firm’s practice areas to
+                achieve the best combination of knowledge, experience, and
+                efficiency. We are dedicated to delivering outstanding client
+                service.
+              </p>
               <Link href="/attorneys">
-                <a>
-                  Meet our attorneys
-                </a>
+                <a>Meet our attorneys</a>
               </Link>
             </div>
           )}
@@ -90,11 +93,13 @@ export default function HomePageTwo({
               <h4>
                 <strong>OUR SERVICES</strong>
               </h4>
-              <p>We help our clients achieve their goals by providing tailored services with the focused experience of a boutique firm by drawing upon the resources of the firm’s core practice areas.</p>
+              <p>
+                We help our clients achieve their goals by providing tailored
+                services with the focused experience of a boutique firm by
+                drawing upon the resources of the firm’s core practice areas.
+              </p>
               <Link href="/practices">
-                <a>
-                  See what we can do
-                </a>
+                <a>See what we can do</a>
               </Link>
             </div>
           )}
@@ -114,12 +119,18 @@ export default function HomePageTwo({
         <HomePageLink link="/firm-overview" title="More from our firm" />
         <HomeOurLeadership attorneys={leadership} />
         <HomeReviews />
-        <HomePageLink link="/awards" title="See more of our awards & accolades" />
+        <HomePageLink
+          link="/awards"
+          title="See more of our awards & accolades"
+        />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
         <div className={marginStyles.mt6}>
           <ArticleHero content={posts} />
         </div>
-        <HomePageLink link="/library?category=firm-news" title="Read more articles about our attorneys" />
+        <HomePageLink
+          link="/library?category=firm-news"
+          title="Read more articles about our attorneys"
+        />
       </Container>
     </>
   );
@@ -142,25 +153,31 @@ export async function getStaticProps() {
     fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
       headers,
     }).then((data) => data.json()),
-    fetch('http://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100', {
-      headers,
-    }).then((data) => data.json()),
+    fetch(
+      'http://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100',
+      {
+        headers,
+      },
+    ).then((data) => data.json()),
   ]);
 
   const posts = [...news, ...events];
 
-  const leadership = attorneys.filter((a) => a.acf.chair.length > 0)
+  const leadership = attorneys
+    .filter((a) => a.acf.chair.length > 0)
     .map((leader) => ({
       name: leader.title.rendered,
       link: leader.link,
       image: leader.better_featured_image.source_url,
-      title: leader.acf.chair.map((chair) => chair.post_title).sort((a, b) => {
-        if (a.title > b.title) {
-          return 1;
-        }
+      title: leader.acf.chair
+        .map((chair) => chair.post_title)
+        .sort((a, b) => {
+          if (a.title > b.title) {
+            return 1;
+          }
 
-        return -1;
-      }),
+          return -1;
+        }),
     }))
     .sort((a, b) => {
       if (a.title > b.title) {
@@ -170,12 +187,14 @@ export async function getStaticProps() {
       return -1;
     });
 
-  const donaldScarinci = attorneys.filter((a) => a.acf.designation === 'Managing Partner').map((ds) => ({
-    name: ds.title.rendered,
-    link: ds.link,
-    image: ds.better_featured_image.source_url,
-    title: ['Managing Partner'],
-  }));
+  const donaldScarinci = attorneys
+    .filter((a) => a.acf.designation === 'Managing Partner')
+    .map((ds) => ({
+      name: ds.title.rendered,
+      link: ds.link,
+      image: ds.better_featured_image.source_url,
+      title: ['Managing Partner'],
+    }));
 
   return {
     props: {

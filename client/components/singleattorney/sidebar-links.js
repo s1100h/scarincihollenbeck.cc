@@ -6,13 +6,22 @@ export default function SidebarLinks({ links }) {
 
   return (
     <ListGroup className="mt-4" variant="flush" style={{ minWidth: '300px' }}>
-      {links && links.map((l) => (
-        <ListGroup.Item key={l.link}>
-          <a className="text-dark" href={l.link.includes('/content/') ? `/attorney/${router.query.slug}${l.link}` : `#${l.link}`} style={{ fontSize: '1.3rem' }}>
-            <strong>{l.label}</strong>
-          </a>
-        </ListGroup.Item>
-      ))}
+      {links
+        && links.map((l) => (
+          <ListGroup.Item key={l.link}>
+            <a
+              className="text-dark"
+              href={
+                l.link.includes('/content/')
+                  ? `/attorney/${router.query.slug}${l.link}`
+                  : `#${l.link}`
+              }
+              style={{ fontSize: '1.3rem' }}
+            >
+              <strong>{l.label}</strong>
+            </a>
+          </ListGroup.Item>
+        ))}
     </ListGroup>
   );
 }

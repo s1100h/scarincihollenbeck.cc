@@ -28,7 +28,7 @@ export default function FirmOverview({
       <FullWidth>
         <div
           className="text-muted lead"
-          style={{ fontSize: '1.5rem'}}
+          style={{ fontSize: '1.5rem' }}
           dangerouslySetInnerHTML={createMarkup(bodyContent)}
         />
         {mainTabs.map((tab) => (
@@ -38,7 +38,7 @@ export default function FirmOverview({
             </div>
             <div
               className="lead my-4 body-text"
-              style={{ fontSize: '1.5rem'}}
+              style={{ fontSize: '1.5rem' }}
               dangerouslySetInnerHTML={createMarkup(tab.content)}
             />
           </div>

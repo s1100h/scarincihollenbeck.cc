@@ -9,7 +9,9 @@ function ArticleDetails({ uri, title, excerpt }) {
   return (
     <Link href={uri}>
       <a className="text-dark">
-        <h5 className="mb-0"><strong>{title}</strong></h5>
+        <h5 className="mb-0">
+          <strong>{title}</strong>
+        </h5>
         <div
           className="mt-1 mb-3"
           dangerouslySetInnerHTML={createMarkup(excerpt)}
@@ -27,7 +29,7 @@ export default function OlderArticles({ initialArticles, query }) {
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex((newIndex) => newIndex += 1);
+    setPageIndex((newIndex) => (newIndex += 1));
     const url = `http://localhost:8400/wp-json/search/query?offset=${pageIndex}&${query}`;
 
     const getOlderPosts = await fetch(url)
@@ -42,25 +44,32 @@ export default function OlderArticles({ initialArticles, query }) {
       getOlderPosts.results.shift();
       setLoading(false);
       setArticleList((articles) => [...articles, ...getOlderPosts.results]);
-    }    
+    }
   }
 
   return (
     <Row>
       <Col sm={12}>
         <h4 className="mt-2 mb-4 mx-3">
-          <strong className="text-capitalize">
-            Archives
-          </strong>
+          <strong className="text-capitalize">Archives</strong>
         </h4>
       </Col>
       {error ? (
-        <p><strong>There was an error loading more posts...</strong></p>
-      ) : articleList && articleList.map((article) => (
-        <Col key={article.imgAlt} sm={12} md={10} className="mx-3 mb-3">
-          <ArticleDetails uri={article.link} title={article.title} excerpt={article.description} />
-        </Col>
-      ))}
+        <p>
+          <strong>There was an error loading more posts...</strong>
+        </p>
+      ) : (
+        articleList
+        && articleList.map((article) => (
+          <Col key={article.imgAlt} sm={12} md={10} className="mx-3 mb-3">
+            <ArticleDetails
+              uri={article.link}
+              title={article.title}
+              excerpt={article.description}
+            />
+          </Col>
+        ))
+      )}
       <Col sm={12}>
         <Button
           variant="danger"

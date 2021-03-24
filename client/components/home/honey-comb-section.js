@@ -13,13 +13,13 @@ export default function HomeHoneyCombSection({ contentOne, contentTwo }) {
       </Col>
       <style jsx>
         {`
-        div.row {
-          margin-top:10rem;
-        }
-        h4 {
-          color: #db2220;
-        }
-      `}
+          div.row {
+            margin-top: 10rem;
+          }
+          h4 {
+            color: #db2220;
+          }
+        `}
       </style>
     </Row>
   );

@@ -35,7 +35,7 @@ export default function SimpleSearch({ searchId = 'simplesearch' }) {
           />
         </Form.Group>
         <Button type="submit" variant="danger">
-          {loading ? <>...</> :  <>Search</>}
+          {loading ? <>...</> : <>Search</>}
         </Button>
       </Form>
     </div>

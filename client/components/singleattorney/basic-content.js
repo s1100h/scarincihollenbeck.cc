@@ -4,10 +4,7 @@ import styles from 'styles/BasicContent.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 
 export default function BasicContent({
-  title,
-  content,
-  links,
-  id,
+  title, content, links, id,
 }) {
   return (
     <>
@@ -22,11 +19,14 @@ export default function BasicContent({
         dangerouslySetInnerHTML={createMarkup(content)}
       />
       {Object.keys(links).length > 0 && (
-      <Link href={links.link}>
-        <a className="btn btn-danger px-3 mb-4" style={{ fontSize: '1.3rem' }}>
-          {links.label}
-        </a>
-      </Link>
+        <Link href={links.link}>
+          <a
+            className="btn btn-danger px-3 mb-4"
+            style={{ fontSize: '1.3rem' }}
+          >
+            {links.label}
+          </a>
+        </Link>
       )}
     </>
   );

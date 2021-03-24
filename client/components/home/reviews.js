@@ -11,7 +11,13 @@ function Accolade({
     <Col
       sm={12}
       md={3}
-      className={(title === 'Lawyers.com') ? 'mt-6 mx-auto' : (title === 'Martindale Hubbell') ? 'mx-6' : 'mt-5 mx-auto'}
+      className={
+        title === 'Lawyers.com'
+          ? 'mt-6 mx-auto'
+          : title === 'Martindale Hubbell'
+            ? 'mx-6'
+            : 'mt-5 mx-auto'
+      }
     >
       <Image
         src={image}

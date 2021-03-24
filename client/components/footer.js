@@ -16,7 +16,9 @@ export default function Footer() {
         <Container className="py-3">
           <Row>
             <Col sm={12}>
-              <ul className={`${styles.mainLinks} list-inline text-center mb-0`}>
+              <ul
+                className={`${styles.mainLinks} list-inline text-center mb-0`}
+              >
                 <li className="list-inline-item">
                   <Link href="/attorneys">
                     <a className={styles.mainLink}>
@@ -72,96 +74,103 @@ export default function Footer() {
       <Container className={styles.footerBody}>
         <Row>
           <Col sm={12} md={2} className="px-2">
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}><strong>Firm Pages</strong></p>
+            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
+              <strong>Firm Pages</strong>
+            </p>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/community-involvement">
-                  <a className="text-dark">
-                    Community Involvement
-                  </a>
+                  <a className="text-dark">Community Involvement</a>
                 </Link>
               </li>
               <li>
                 <Link href="/diversity-group">
-                  <a className="text-dark">
-                    Diversity Group
-                  </a>
+                  <a className="text-dark">Diversity Group</a>
                 </Link>
               </li>
               <li>
                 <Link href="/pro-bono">
-                  <a className="text-dark">
-                    Pro Bono
-                  </a>
+                  <a className="text-dark">Pro Bono</a>
                 </Link>
               </li>
               <li>
                 <Link href="/women-lead">
-                  <a className="text-dark">
-                    Women Lead
-                  </a>
+                  <a className="text-dark">Women Lead</a>
                 </Link>
               </li>
             </ul>
           </Col>
           <Col sm={12} md={2} className="px-4">
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}><strong>Client Services</strong></p>
+            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
+              <strong>Client Services</strong>
+            </p>
             <ul className={styles.linkList}>
               <li>
-                <a href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" className="text-dark">
+                <a
+                  href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
+                  className="text-dark"
+                >
                   Make a payment
                 </a>
               </li>
             </ul>
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}><strong>Social Media</strong></p>
+            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
+              <strong>Social Media</strong>
+            </p>
             <ul className={styles.linkList}>
               <li>
-                <a href="https://www.linkedin.com/company/scarinci-hollenbeck-llc" target="_blank" rel="noreferrer" className="text-dark">
+                <a
+                  href="https://www.linkedin.com/company/scarinci-hollenbeck-llc"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-dark"
+                >
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/ScarinciHollenbeck" target="_blank" rel="noreferrer" className="text-dark">
+                <a
+                  href="https://www.facebook.com/ScarinciHollenbeck"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-dark"
+                >
                   Facebook
                 </a>
               </li>
             </ul>
           </Col>
           <Col sm={12} md={2} className="px-3">
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}><strong>Office Locations</strong></p>
+            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
+              <strong>Office Locations</strong>
+            </p>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/location/lyndhurst">
-                  <a className="text-dark">
-                    Lyndhurst
-                  </a>
+                  <a className="text-dark">Lyndhurst</a>
                 </Link>
               </li>
               <li>
                 <Link href="/location/red-bank">
-                  <a className="text-dark">
-                    Red Bank
-                  </a>
+                  <a className="text-dark">Red Bank</a>
                 </Link>
               </li>
               <li>
                 <Link href="/location/new-york">
-                  <a className="text-dark">
-                    New York, NY
-                  </a>
+                  <a className="text-dark">New York, NY</a>
                 </Link>
               </li>
               <li>
                 <Link href="/location/washington-dc">
-                  <a className="text-dark">
-                    Washington, D.C.
-                  </a>
+                  <a className="text-dark">Washington, D.C.</a>
                 </Link>
               </li>
             </ul>
           </Col>
           <Col sm={12} md={2} className="px-0">
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}><strong>Contact Information</strong></p>
+            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}>
+              <strong>Contact Information</strong>
+            </p>
             <ul className={styles.linkList}>
               <li>
                 <strong>Phone: </strong>
@@ -181,41 +190,33 @@ export default function Footer() {
             </ul>
           </Col>
           <Col sm={12} md={2} className="px-2">
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}><strong>Core Practices</strong></p>
+            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}>
+              <strong>Core Practices</strong>
+            </p>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/practice/commercial-real-estate">
-                  <a className="text-dark">
-                    Commercial Real Estate
-                  </a>
+                  <a className="text-dark">Commercial Real Estate</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/corporate-transactions-business">
-                  <a className="text-dark">
-                    Corporate Transactions
-                  </a>
+                  <a className="text-dark">Corporate Transactions</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/education-law">
-                  <a className="text-dark">
-                    Education Law
-                  </a>
+                  <a className="text-dark">Education Law</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/government-strategies">
-                  <a className="text-dark">
-                    Government Strategies
-                  </a>
+                  <a className="text-dark">Government Strategies</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/intellectual-property">
-                  <a className="text-dark">
-                    Intellectual Property
-                  </a>
+                  <a className="text-dark">Intellectual Property</a>
                 </Link>
               </li>
             </ul>
@@ -224,30 +225,22 @@ export default function Footer() {
             <ul className={styles.linkList}>
               <li>
                 <Link href="/practice/labor-employment">
-                  <a className="text-dark">
-                    Labor & Employment
-                  </a>
+                  <a className="text-dark">Labor & Employment</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/litigation">
-                  <a className="text-dark">
-                    Litigation
-                  </a>
+                  <a className="text-dark">Litigation</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/public-law">
-                  <a className="text-dark">
-                    Public Law
-                  </a>
+                  <a className="text-dark">Public Law</a>
                 </Link>
               </li>
               <li>
                 <Link href="/practice/tax-trusts-estates">
-                  <a className="text-dark">
-                    Tax, Trusts, & Estates
-                  </a>
+                  <a className="text-dark">Tax, Trusts, & Estates</a>
                 </Link>
               </li>
             </ul>
@@ -266,12 +259,15 @@ export default function Footer() {
               />
               <div className="mx-1">
                 <p className="py-1">
-                  <strong className={styles.bottomTag}>ATTORNEY ADVERTISING</strong>
+                  <strong className={styles.bottomTag}>
+                    ATTORNEY ADVERTISING
+                  </strong>
                   <small>
                     <strong>
                       Prior results do not guarantee a similar outcome. @
                       {currentYear}
-                      , Scarinci Hollenbeck, LLC, all rights reserved
+                      , Scarinci Hollenbeck, LLC, all rights
+                      reserved
                     </strong>
                   </small>
                 </p>

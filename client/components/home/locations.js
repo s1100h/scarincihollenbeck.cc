@@ -7,11 +7,7 @@ import textStyles from 'styles/Text.module.css';
 
 function LocationCard({ location }) {
   return (
-    <Col
-      sm={12}
-      md={3}
-      className="mx-auto d-block my-5"
-    >
+    <Col sm={12} md={3} className="mx-auto d-block my-5">
       <div className="border">
         <Link href={location.slug}>
           <a>
@@ -39,7 +35,9 @@ export default function HomeLocations({ locations }) {
           <h3>Office Locations</h3>
         </div>
       </Col>
-      {locations.map((location) => <LocationCard key={location.id} location={location} />)}
+      {locations.map((location) => (
+        <LocationCard key={location.id} location={location} />
+      ))}
     </Row>
   );
 }

@@ -6,7 +6,7 @@ export default function ArchiveAttorneyFitlersTitle({ designation, onSelect }) {
   return (
     <DropdownButton
       variant="link"
-      title="Filter by Title"
+      title="Filter by title"
       className={`${styles.filter} my-3 my-md-0`}
     >
       {designation.map((desig) => (

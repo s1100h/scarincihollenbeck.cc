@@ -4,10 +4,7 @@ import AttorneyProfile from 'layouts/attorney-profile';
 import AttorneyContactForm from 'components/singleattorney/attorney-contact-form';
 import { headers } from 'utils/helpers';
 
-export default function Contact({
-  contact,
-  bio,
-}) {
+export default function Contact({ contact, bio }) {
   if (!contact) {
     return <Error status={404} />;
   }
@@ -22,7 +19,6 @@ export default function Contact({
               <h3>
                 <strong>
                   Get in touch with
-                  {' '}
                   {bio.headerContent.name}
                 </strong>
               </h3>
@@ -49,29 +45,34 @@ export default function Contact({
                 </p>
                 <p className="mb-0">
                   <a href={contact.pdf} download>
-                    <strong><u>Download profile</u></strong>
+                    <strong>
+                      <u>Download profile</u>
+                    </strong>
                   </a>
                 </p>
                 <p className="mb-0">
                   <a href={contact.vizibility} download>
-                    <strong><u>Download contact</u></strong>
+                    <strong>
+                      <u>Download contact</u>
+                    </strong>
                   </a>
                 </p>
                 <p className="mb-0">
                   <strong>Social media: </strong>
-                  {contact.socialMedia.length > 0 && contact.socialMedia.map((item, index) => (
-                    <Link href={item.url} key={item.channel}>
-                      <a>
-                        <u>{item.channel}</u>
-                        {(index < (contact.socialMedia.length - 1)) && ', '}
-                      </a>
-                    </Link>
-                  ))}
+                  {contact.socialMedia.length > 0
+                    && contact.socialMedia.map((item, index) => (
+                      <Link href={item.url} key={item.channel}>
+                        <a>
+                          <u>{item.channel}</u>
+                          {index < contact.socialMedia.length - 1 && ', '}
+                        </a>
+                      </Link>
+                    ))}
                 </p>
               </div>
             </div>
           </div>
-      )}
+        )}
       />
       Contact form :)
     </>

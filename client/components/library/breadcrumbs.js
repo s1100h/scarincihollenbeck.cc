@@ -8,30 +8,20 @@ export default function Breadcrumbs({ pageTitle, parentCategory }) {
       <p className={`${fontStyles.ft12rem} d-block w-100`}>
         <strong className="text-capitalize">
           <Link href="/">
-            <a className={textStyles.redTitle}>
-              Home
-              {' '}
-              |
-              {' '}
-            </a>
+            <a className={textStyles.redTitle}>Home | </a>
           </Link>
           <Link href="/library">
-            <a className={textStyles.redTitle}>
-              Library
-              {' '}
-              |
-              {' '}
-            </a>
+            <a className={textStyles.redTitle}>Library | </a>
           </Link>
           {parentCategory && (
-          <Link href={`/library?term=${parentCategory.slug}`}>
-            <a className={textStyles.redTitle}>
-              {parentCategory.name}
-              {' '}
-              |
-              {' '}
-            </a>
-          </Link>
+            <Link href={`/library?term=${parentCategory.slug}`}>
+              <a className={textStyles.redTitle}>
+                {parentCategory.name}
+                {' '}
+                |
+                {' '}
+              </a>
+            </Link>
           )}
           <Link href={`/library?term=${pageTitle}`}>
             <a className={textStyles.redTitle}>

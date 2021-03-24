@@ -80,16 +80,19 @@ export default function DiversityGroup({ page }) {
                     />
                   </TabContent>
                 ))}
-                {page.attorneysMentioned.length > 0 && (
+              {page.attorneysMentioned.length > 0 && (
                 <>
                   <div className={lineHeaderStyles.lineHeader}>
-                  <h3>Recent from the firm</h3>
-                </div>
-                <div className="my-5">
-                  <PageArticleHero link={page.title.replace(/\s+/g, '-').toLowerCase()} content={page.attorneysMentioned} />
-                </div>
+                    <h3>Recent from the firm</h3>
+                  </div>
+                  <div className="my-5">
+                    <PageArticleHero
+                      link={page.title.replace(/\s+/g, '-').toLowerCase()}
+                      content={page.attorneysMentioned}
+                    />
+                  </div>
                 </>
-              )}          
+              )}
             </Col>
             <Col sm={12} md={3}>
               <SimpleSearch />

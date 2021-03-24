@@ -39,7 +39,7 @@ export default function FrontSearch() {
           </Col>
           <Col sm="auto" className="my-1">
             <Button type="submit" size="md" variant="danger">
-              {loading ? <>...</> :  <>Search</>}
+              {loading ? <>...</> : <>Search</>}
             </Button>
           </Col>
         </Form.Row>

@@ -6,9 +6,7 @@ import PagesBody from 'components/pages/body';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
 
-export default function TermsOfUse({
-  content, seo,
-}) {
+export default function TermsOfUse({ content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');

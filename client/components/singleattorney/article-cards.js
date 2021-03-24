@@ -27,20 +27,18 @@ export default function ArticleCards({
                       className="rounded"
                     />
                     <small className="text-dark">
-                      <strong>
-                        {article.title}
-                      </strong>
+                      <strong>{article.title}</strong>
                     </small>
                   </>
                 )}
                 {type === 'awards' && (
-                <Image
-                  alt={article.title}
-                  src={article.featuredImg}
-                  width={200}
-                  height={200}
-                  className="rounded"
-                />
+                  <Image
+                    alt={article.title}
+                    src={article.featuredImg}
+                    width={200}
+                    height={200}
+                    className="rounded"
+                  />
                 )}
               </a>
             </Link>

@@ -8,7 +8,9 @@ import styles from 'styles/AttorneyCard.module.css';
 function AttorneyProfile({ attorney }) {
   return (
     <Col sm={12} md={3} className="my-4">
-      <Link href={attorney.link.replace('https://wp.scarincihollenbeck.com', '')}>
+      <Link
+        href={attorney.link.replace('https://wp.scarincihollenbeck.com', '')}
+      >
         <a className="text-dark text-center">
           <div className="mx-auto d-block text-center">
             <Image
@@ -20,14 +22,17 @@ function AttorneyProfile({ attorney }) {
               className={styles.circle}
             />
           </div>
-          <p className="mb-0"><strong>{attorney.name}</strong></p>
-          {(attorney.title.indexOf('Managing Partner') > -1) ? (
-            <p><strong>{attorney.title[0]}</strong></p>
+          <p className="mb-0">
+            <strong>{attorney.name}</strong>
+          </p>
+          {attorney.title.indexOf('Managing Partner') > -1 ? (
+            <p>
+              <strong>{attorney.title[0]}</strong>
+            </p>
           ) : (
             <p>
               <strong>
                 Chair,
-                {' '}
                 {attorney.title.join(',')}
               </strong>
             </p>
@@ -45,7 +50,9 @@ export default function HomeOurLeadership({ attorneys }) {
           <h3>Our Leadership</h3>
         </div>
       </Col>
-      {attorneys.map((attorney) => <AttorneyProfile key={attorney.name} attorney={attorney} />)}
+      {attorneys.map((attorney) => (
+        <AttorneyProfile key={attorney.name} attorney={attorney} />
+      ))}
     </Row>
   );
 }

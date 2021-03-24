@@ -1,6 +1,7 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center center;
+  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center
+    center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -8,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:60vh;
+  height: 60vh;
   border-top: 5px solid #000;
   border-bottom: 5px solid #000;
 }
@@ -22,14 +23,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:125vh;
+  height: 125vh;
   border-top: 5px solid #000;
   border-bottom: 5px solid #000;
   margin-bottom: 2em;
 }
 
 .bannerContainer {
-  background-color: rgba(0,0,0,.556);
+  background-color: rgba(0, 0, 0, 0.556);
   box-shadow: 3px 5px 10px #000;
   border: 2px solid #000;
   border-radius: 2px;
@@ -55,6 +56,6 @@
 
 @media (min-width: 768px) {
   .backPageBanner {
-    height:60vh;
+    height: 60vh;
   }
 }

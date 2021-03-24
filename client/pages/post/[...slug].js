@@ -98,7 +98,15 @@ export default function LawFirmInsightsPost({
             />
           </Col>
           <Col sm={12} md={3}>
-            {(isEventCategory && eventDetails.length > 0) ? <EventSidebar eventDetails={eventDetails} title={title} attorneys={attorneys} /> : <Sidebar posts={posts} title={title} attorneys={attorneys} />}
+            {isEventCategory && eventDetails.length > 0 ? (
+              <EventSidebar
+                eventDetails={eventDetails}
+                title={title}
+                attorneys={attorneys}
+              />
+            ) : (
+              <Sidebar posts={posts} title={title} attorneys={attorneys} />
+            )}
           </Col>
         </Row>
       </Container>

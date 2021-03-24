@@ -11,9 +11,7 @@ export default function PracticeSidebar({ title, content }) {
         {content.map((c) => (
           <li key={c.ID || c.id} className="list-unstyled">
             <Link href={c.slug || '/'}>
-              <a className="text-dark">
-                {c.title}
-              </a>
+              <a className="text-dark">{c.title}</a>
             </Link>
           </li>
         ))}
@@ -27,7 +25,8 @@ export default function PracticeSidebar({ title, content }) {
 
           ul li {
             margin-bottom: 6px;
-          }`}
+          }
+        `}
       </style>
     </>
   );

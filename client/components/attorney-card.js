@@ -40,7 +40,7 @@ export default function AttorneyCard({
           </a>
         </Link>
         <div className={fontStyles.smallExcerpt}>
-         <strong>Phone: </strong>
+          <strong>Phone: </strong>
           {' '}
           {number}
           <br />
