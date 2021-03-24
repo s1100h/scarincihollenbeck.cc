@@ -2,6 +2,14 @@
 
 This repository contains the code base for the frontend of scarincihollenbeck.com. The code base is made up of two applications. The client application contains all code that makes up front end of scarincihollenbeck.com and the second application is a utility application that generates new sitemaps based on the latest content published to the site.
 
+## To do
+1. Continue to fix up library results page
+2. Make banners mobile responsive
+3. Fix Carousels on Firm pages
+4. Overall mobile review
+5. Fix overflow issue on attorney bio
+6. Really push myself to clean up attorney bio layout
+
 ### [Live Site](https://scarincihollenbeck.com/)
 
 ## Build status

@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:50vh;
+  height:60vh;
   border-top: 5px solid #000;
   border-bottom: 5px solid #000;
 }
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:30vh;
+  height:125vh;
   border-top: 5px solid #000;
   border-bottom: 5px solid #000;
   margin-bottom: 2em;
@@ -50,5 +50,11 @@
 @media (max-width: 768px) {
   .banner {
     flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .backPageBanner {
+    height:60vh;
   }
 }

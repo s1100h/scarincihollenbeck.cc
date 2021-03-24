@@ -15,7 +15,7 @@ export default function ArticleHeroPractice({ link, content }) {
               <a className="text-center mx-auto d-block">
                 <Image
                   alt={article.title}
-                  src={article.image}
+                  src={article.image || '/images/no-image-found-diamond.png'}
                   width={300}
                   height={150}
                   className="rounded"

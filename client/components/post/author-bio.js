@@ -19,7 +19,7 @@ export default function PostAuthorBio({ author }) {
                 {a.name}
               </h3>
             </div>
-            <div className="card flex-row flex-wrap mt-4 mh-160">
+            <div className="d-flex flex-row flex-wrap mt-4 mh-160">
               <div className="mx-2 mt-4 d-block">
                 <Image src={a.image} alt={a.name} width={110} height={147} />
               </div>
@@ -29,7 +29,7 @@ export default function PostAuthorBio({ author }) {
                   className="d-block"
                 />
                 {a.name !== 'Scarinci Hollenbeck' && (
-                  <Button variant="danger" size="sm">
+                  <Button variant="danger" className="mt-3" size="sm">
                     <Link href={a.link ? a.link : '/attorneys/'}>
                       <a className={`${fontStyles.smallExcerpt} text-white`}>
                         Full Biography &gt;&gt;

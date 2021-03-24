@@ -6,30 +6,50 @@ import PostSocialShareSidebar from 'components/post/social-share-sidebar';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function PostSidebar({ title, posts, attorneys }) {
+  console.table(attorneys);
   return (
     <div className="d-print-none">
       <SimpleSearch />
       <SubscriptionMessage />
       <PostSocialShareSidebar title={title} />
+      <br />
       <TrendingStories title="Trending Stories" content={posts} />
       {attorneys.length > 0 && (
         <div className="w-100 mt-4">
           <p className={fontStyles.ft12rem}>
             <strong>Mentioned Attorneys</strong>
           </p>
-          <ul className="list-unstyled px-1 mx-1">
-            {attorneys.map((a) => (
-              <li key={a.name} className="py-3">
-                <Link href={a.link}>
-                  <a className="m-attorneys d-flex flex-row text-dark">
-                    <p className="mb-0">
-                      <strong>{a.name}</strong>
-                    </p>
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ul>
+        {attorneys.map((a) => (
+          <li key={a.name} className="list-unstyled">
+            <Link href={a.link}>
+              <a className="text-dark">
+              {a.name}
+              </a>
+            </Link>
+            {a.designation && <div className="my-0 py-0 d-block"><small><strong>Title: </strong> {a.designation}</small></div>}
+          </li>
+        ))}
+      </ul>
+      <style jsx>
+        {`
+        ul {
+          margin-left: -2.48em;
+          margin-top: -10px;
+        }
+
+        ul li {
+          margin-bottom: 6px;
+          padding-bottom: 10px;
+          padding-top: 10px;
+          line-height: 1.4;
+          color: #444;
+        }
+        ul li:not(:last-child) {
+          border-bottom: .5px solid #e9e9e9;
+        }        
+        `}
+      </style>         
         </div>
       )}
     </div>

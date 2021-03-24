@@ -180,7 +180,7 @@ export async function getServerSideProps({ query }) {
   }
 
   const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`http://localhost:8400/wp-json/search/query?${tempStr}`, {
+    fetch(`http://localhost:8000/wp-json/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
     fetch(
