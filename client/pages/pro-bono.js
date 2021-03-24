@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SimpleSearch from 'components/simple-search';
+import PageArticleHero from 'components/pages/page-article-hero';
 import SubscriptionMessage from 'components/subscription-message';
 import SinglePracticeContent from 'components/singlepractice/content';
 import SidebarContent from 'components/singlepractice/sidebar';
-import CarouselsLatestNews from 'components/carousels/latest-news';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
 import { firmResources } from 'utils/common-lists';
@@ -80,14 +80,16 @@ export default function ProBono({ page }) {
                     />
                   </TabContent>
                 ))}
-              <>
-                <div className={lineHeaderStyles.lineHeader}>
+              {page.attorneysMentioned.length > 0 && (
+                <>
+                  <div className={lineHeaderStyles.lineHeader}>
                   <h3>Recent from the firm</h3>
                 </div>
                 <div className="my-5">
-                  <CarouselsLatestNews slides={page.attorneysMentioned} />
+                  <PageArticleHero link={page.title.replace(/\s+/g, '-').toLowerCase()} content={page.attorneysMentioned} />
                 </div>
-              </>
+                </>
+              )}
             </Col>
             <Col sm={12} md={3}>
               <SimpleSearch />
