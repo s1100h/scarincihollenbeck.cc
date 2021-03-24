@@ -29,7 +29,6 @@ export default function Library({
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
-  const mainArticle = results.results[0];
   const featuredArticles = results.results.filter((_, i) => i > 0 && i <= 4);
   const olderArticles = results.results.filter((_, i) => i > 4);
 
@@ -66,21 +65,21 @@ export default function Library({
             {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
             {(results.results.length > 0 && results.results) ? (
               <>
-                {(mainArticle.link.indexOf('attorneys') >= 0) ? (
-                  <Link href={mainArticle.link}>
+                {(results.results[0].link.indexOf('attorneys') >= 0) ? (
+                  <Link href={results.results[0].link}>
                     <a className="border-bottom d-block pb-5">
                       <strong className="lead mt-5 d-block">
-                        {mainArticle.title}
+                        {results.results[0].title}
                         {' '}
                         - Attorney profile
                       </strong>
                     </a>
                   </Link>
-                ) : (mainArticle.link.indexOf('practices') >= 0) ? (
-                  <Link href={mainArticle.link}>
+                ) : (results.results[0].link.indexOf('practices') >= 0) ? (
+                  <Link href={results.results[0].link}>
                     <a className="border-bottom d-block pb-5">
                       <strong className="lead mt-5 d-block">
-                        {mainArticle.title}
+                        {results.results[0].title}
                         {' '}
                         - Legal practice details
                       </strong>
@@ -89,12 +88,12 @@ export default function Library({
                 ) : (
                   <div className="mt-4">
                     <MainArticle
-                      title={mainArticle.title}
-                      link={mainArticle.link}
-                      description={mainArticle.longerDescription}
-                      date={mainArticle.date}
-                      image={(mainArticle.image) ? mainArticle.image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
-                      author={mainArticle.author}
+                      title={results.results[0].title}
+                      link={results.results[0].link}
+                      description={mresults.results[0].longerDescription}
+                      date={results.results[0].date}
+                      image={(results.results[0].image) ? results.results[0].image.replace('Feature', 'Body').replace('Featured', 'Body') : '/images/no-image-found-diamond-750x350.png'}
+                      author={results.results[0].author}
                     />
                   </div>
                 )}
