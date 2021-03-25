@@ -25,7 +25,7 @@ export default function ArticleHeroPage({ link, content }) {
                     height={150}
                     className="rounded"
                   />
-                  <small className="text-dark">
+                  <small className="text-dark d-block">
                     <strong>{article.title}</strong>
                   </small>
                 </a>

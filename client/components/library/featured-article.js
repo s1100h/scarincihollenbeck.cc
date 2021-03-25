@@ -3,7 +3,7 @@ import styles from 'styles/ArticleHero.module.css';
 
 export default function FeaturedArticle({ articles }) {
   return articles.map((article) => (
-    <li key={article.id} className="d-flex mb-5">
+    <li key={article.id} className="mb-5">
       <Link href={article.link}>
         <a className={`${styles.link} ${styles.list}`}>
           <img
@@ -15,14 +15,13 @@ export default function FeaturedArticle({ articles }) {
             alt={article.title}
             width="300px"
             height="139px"
-            layout="intrinsic"
             className="rounded"
           />
           <div className={styles.listArticleTitle}>
-            <h4 className="mb-1">
+            <h4 className="mb-1 mt-2 px-0 py-0">
               <strong>{article.title}</strong>
             </h4>
-            <p className="mt-0 pt-0">{article.description}</p>
+            <p className="mt-0 pt-0 px-0 mx-0">{article.description}</p>
           </div>
         </a>
       </Link>

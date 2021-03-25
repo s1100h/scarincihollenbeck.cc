@@ -5,7 +5,7 @@ export default function SidebarLinks({ links }) {
   const router = useRouter();
 
   return (
-    <ListGroup className="mt-4" variant="flush" style={{ minWidth: '300px' }}>
+    <ListGroup className="mt-4" variant="flush">
       {links
         && links.map((l) => (
           <ListGroup.Item key={l.link}>

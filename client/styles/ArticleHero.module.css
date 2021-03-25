@@ -4,7 +4,6 @@
 
 .listArticleTitle {
   color: black;
-  margin-left: 1em;
 }
 
 .listArticleTitle > h5 {
@@ -22,8 +21,18 @@
 .list {
   display: flex;
   font-size: 16px;
+  flex-direction: column;
 }
 
 .link:hover {
   color: #db2220;
+}
+
+@media (min-width: 1200px) {
+  .list {
+    flex-direction: row;
+  }
+  .listArticleTitle {
+    margin-left: 1em;
+  }  
 }

@@ -126,7 +126,7 @@ export default function AttorneyProfile({ bio, content }) {
           />
         )}
       />
-      <Container className="mt-0 pt-0">
+      <Container className="mt-0 pt-0" style={{ overflowX: 'hidden'}}>
         <Row>
           <Col
             sm={12}
