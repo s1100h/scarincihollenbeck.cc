@@ -14,7 +14,7 @@
   border-bottom: 5px solid #000;
 }
 
-.backPageBanner {
+.backPageBanner, .attorneyProfileBanner {
   background: url(/images/back-page-banner-2000x663.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -56,6 +56,9 @@
 
 @media (min-width: 768px) {
   .backPageBanner {
-    height: 60vh;
+    height: 40vh;
+  }
+  .attorneyProfileBanner {
+    height: 50vh;
   }
 }

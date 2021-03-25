@@ -61,7 +61,7 @@ export default function Library({
           <FeaturedLinks />
           <Col sm={12} md={9}>
             {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
-            {(results && results.results && results.results.length > 0) ? (
+            {(results.results && results.results.length > 0) ? (
               <>
                 {results.results[0].link.indexOf('attorneys') >= 0 ? (
                   <Link href={results.results[0].link}>
@@ -101,7 +101,7 @@ export default function Library({
                     />
                   </div>
                 )}
-                {(results && results.results && results.results.length > 0) && (
+                {(results.results && results.results.length > 0) && (
                   <ul className={`${marginStyles.mt65} list-unstyled`}>
                     <FeaturedArticle articles={results.results.filter((_, i) => i > 0 && i <= 4)} />
                   </ul>
@@ -109,7 +109,7 @@ export default function Library({
                 <div className={marginStyles.mt65}>
                   <SubscriptionContainer />
                 </div>
-                {(results && results.results && results.results.length > 0) && (
+                {(results.results && results.results.length > 0) && (
                   <div className="mt-5">
                     <OlderArticles
                       query={query}

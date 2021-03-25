@@ -33,7 +33,8 @@ function AttorneyProfile({ attorney }) {
             <p>
               <strong>
                 Chair,
-                {attorney.title.join(',')}
+                {' '}
+                {attorney.title.join(', ')}
               </strong>
             </p>
           )}

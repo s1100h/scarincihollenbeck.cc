@@ -35,7 +35,7 @@ export default function PostBody({
       {caption && (
         <div
           className="mt-0 mb-2"
-          dangerouslySetInnerHTML={createMarkup(caption[1])}
+          dangerouslySetInnerHTML={createMarkup(caption)}
         />
       )}
       {/* title and subtitle for print version only */}

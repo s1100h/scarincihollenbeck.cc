@@ -12,7 +12,6 @@ export default function PostSidebar({ title, posts, attorneys }) {
       <SimpleSearch />
       <SubscriptionMessage />
       <PostSocialShareSidebar title={title} />
-      <br />
       <TrendingStories title="Trending Stories" content={posts} />
       {attorneys.length > 0 && (
         <div className="w-100 mt-4">

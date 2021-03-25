@@ -5,7 +5,7 @@ import styles from 'styles/Banner.module.css';
 
 export default function MultiSubHeader({ profile, infoCard, isAdmin }) {
   return (
-    <div className={styles.backPageBanner}>
+    <div className={styles.attorneyProfileBanner}>
       <div className="animate__animated animate__fadeInUp animate__fast">
         <Container>
           <Row>

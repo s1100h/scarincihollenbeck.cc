@@ -7,6 +7,7 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 2. Overall mobile review
 3. Fix overflow issue on attorney bio
 4. Really push myself to clean up attorney bio layout
+5. Get rid of react-virtualized
 
 ### [Live Site](https://scarincihollenbeck.com/)
 

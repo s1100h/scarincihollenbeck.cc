@@ -4,12 +4,12 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function NonGraphQLTrendingStories({ title, content }) {
   return (
     <>
-      <p className={fontStyles.ft12rem}>
+      <p className={`${fontStyles.ft12rem} mb-2`}>
         <strong>{title}</strong>
       </p>
       <ul>
         {content.map((c) => (
-          <li key={c.ID || c.id} className="list-unstyled">
+          <li key={c.title} className="list-unstyled">
             <Link href={c.slug || c.link || '/'}>
               <a className="text-dark">{c.title}</a>
             </Link>

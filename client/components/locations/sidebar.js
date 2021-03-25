@@ -8,8 +8,6 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function LocationsSidebar({ offices, posts, title }) {
   const officeList = sortByKey(offices, 'title');
 
-  console.log(posts);
-
   return (
     <>
       <ul>

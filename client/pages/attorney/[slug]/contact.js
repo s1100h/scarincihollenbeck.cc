@@ -16,16 +16,7 @@ export default function Contact({ contact, bio }) {
         content={(
           <div>
             <div className="border-bottom pb-4">
-              <h3>
-                <strong>
-                  Get in touch with
-                  {bio.headerContent.name}
-                </strong>
-              </h3>
-              <AttorneyContactForm attorneyEmail={contact.email} />
-            </div>
-            <div className="border-bottom mt-4 mb-5">
-              <h3 className="mt-3">
+            <h3 className="mt-3">
                 <strong>
                   {bio.headerContent.name}
                   {' '}
@@ -70,6 +61,16 @@ export default function Contact({ contact, bio }) {
                     ))}
                 </p>
               </div>
+            </div>
+            <div className="border-bottom mt-4 mb-5">
+              <h3>
+                <strong>
+                  Get in touch with
+                  {' '}
+                  {bio.headerContent.name}
+                </strong>
+              </h3>
+              <AttorneyContactForm attorneyEmail={contact.email} />
             </div>
           </div>
         )}
