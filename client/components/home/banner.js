@@ -6,7 +6,7 @@ export default function HomeBanner() {
   return (
     <div className={styles.banner}>
       <div
-        className={`${styles.bannerContainer} animate__animated animate__fadeInUp animate__fast`}
+        className={`${styles.bannerContainer} ${styles.homeBanner} animate__animated animate__fadeInUp animate__fast`}
       >
         <div className="d-flex border p-4">
           <Image

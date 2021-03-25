@@ -44,7 +44,9 @@ export default function LocationsSidebar({ offices, posts, title }) {
               <li className="my-0">
                 <Link href={office.slug}>
                   <a className={textStyles.redTitle}>
-                    <strong>{`${office.title} Office Details `}</strong>
+                    <strong>
+                      <u>Office details</u>
+                    </strong>
                   </a>
                 </Link>
               </li>
@@ -55,8 +57,11 @@ export default function LocationsSidebar({ offices, posts, title }) {
                   onClick={() => getDirectionsFromLocation(office.slug)}
                 >
                   <strong>
+                    <u>
                     Directions to
+                    {' '}
                     {office.title}
+                    </u>
                   </strong>
                 </Button>
               </li>

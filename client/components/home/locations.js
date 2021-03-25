@@ -16,7 +16,7 @@ function LocationCard({ location }) {
               alt={location.title}
               width={253}
               height={167}
-              layout="intrinsic"
+              layout="responsive"
             />
             <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
               <strong>{location.title}</strong>

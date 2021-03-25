@@ -1,21 +1,13 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center
-    center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  border-top: 5px solid #000;
-  border-bottom: 5px solid #000;
+  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center center;
 }
 
-.backPageBanner, .attorneyProfileBanner {
+.backPageBanner {
   background: url(/images/back-page-banner-2000x663.jpg) no-repeat center center;
+}
+
+.banner, .backPageBanner {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -23,10 +15,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 125vh;
   border-top: 5px solid #000;
   border-bottom: 5px solid #000;
   margin-bottom: 2em;
+  height: auto;
 }
 
 .bannerContainer {
@@ -36,6 +28,16 @@
   border-radius: 2px;
   color: #fff;
   padding: 1em;
+}
+
+.homeBanner {
+  margin-top: 6.5em;
+  margin-bottom: 6.5em;
+}
+
+.backBanner {
+  margin-top: 4.75em;
+  margin-bottom: 4.75em;
 }
 
 .h2Text {
@@ -51,14 +53,5 @@
 @media (max-width: 768px) {
   .banner {
     flex-direction: column;
-  }
-}
-
-@media (min-width: 768px) {
-  .backPageBanner {
-    height: 40vh;
-  }
-  .attorneyProfileBanner {
-    height: 50vh;
   }
 }

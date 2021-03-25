@@ -5,7 +5,7 @@ export default function SingleSubHeader({ title, subtitle }) {
   return (
     <div className={styles.backPageBanner}>
       <div
-        className={`${styles.bannerContainer} animate__animated animate__fadeInUp animate__fast`}
+        className={`${styles.bannerContainer} ${styles.backBanner} animate__animated animate__fadeInUp animate__fast`}
       >
         <div
           className="d-flex border flex-column p-4"

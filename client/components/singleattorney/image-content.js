@@ -9,7 +9,13 @@ export default function ImageContent({ content }) {
       <Row>
         {content.map((c) => (
           <Col key={c.title} sm={12} md={4}>
-            <Image src={c.featuredImg} alt={c.title} width={200} height={200} />
+            <Image
+              src={c.featuredImg}
+              alt={c.title}
+              width={200}
+              height={200}
+              layout="intrinsic"
+            />
           </Col>
         ))}
       </Row>

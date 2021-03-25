@@ -101,7 +101,7 @@ export default function Library({
                     />
                   </div>
                 )}
-                {(results.results && results.results.length > 0) && (
+                {(results.results && results.results.length > 1) && (
                   <ul className={`${marginStyles.mt65} list-unstyled`}>
                     <FeaturedArticle articles={results.results.filter((_, i) => i > 0 && i <= 4)} />
                   </ul>
@@ -109,7 +109,7 @@ export default function Library({
                 <div className={marginStyles.mt65}>
                   <SubscriptionContainer />
                 </div>
-                {(results.results && results.results.length > 0) && (
+                {(results.results && results.results.length > 4) && (
                   <div className="mt-5">
                     <OlderArticles
                       query={query}
