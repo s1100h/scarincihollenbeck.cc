@@ -52,7 +52,7 @@ export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
   const [bio] = await Promise.all([
     fetch(
-      `http://localhost:8000/wp-json/attorney-profile/main/${params.slug}`,
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);

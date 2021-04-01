@@ -3,10 +3,9 @@
 This repository contains the code base for the frontend of scarincihollenbeck.com. The code base is made up of two applications. The client application contains all code that makes up front end of scarincihollenbeck.com and the second application is a utility application that generates new sitemaps based on the latest content published to the site.
 
 ## To do
-2. Overall mobile review
-3. Fix overflow issue on attorney bio
-4. Really push myself to clean up attorney bio layout
-5. Get rid of react-virtualized
+1. Overall mobile review -- continue
+2. Really push myself to clean up attorney bio layout -- review by aamil before showing pete on staging site
+3. Get rid of react-virtualized
 
 ### [Live Site](https://scarincihollenbeck.com/)
 

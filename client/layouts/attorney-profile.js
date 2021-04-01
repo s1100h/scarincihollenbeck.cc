@@ -144,31 +144,37 @@ export default function AttorneyProfile({ bio, content }) {
         <Row>
           <Col sm={12} md={9}>
             {content}
-            <ArticleCards
-              title="News & Events"
-              articles={bio.mainPageContent.attorneyNewsEvents}
-              type="articles"
-              id="news-events"
-            />
-            <ArticleCards
-              title="Blog Articles"
-              articles={bio.mainPageContent.attorneyBlogs}
-              type="articles"
-              id="articles"
-            />
-            <Link
-              href={`/library?term=${bio.headerContent.name
-                .replace(/\s+/g, '-')
-                .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-                .toLowerCase()}`}
-            >
-              <a
-                className="btn btn-danger px-2 my-4 d-block"
-                style={{ fontSize: '1.3rem', maxWidth: '200px' }}
-              >
-                More articles
-              </a>
-            </Link>
+            {bio.mainPageContent.attorneyNewsEvents.length > 0 && (
+              <ArticleCards
+                title="News & Events"
+                articles={bio.mainPageContent.attorneyNewsEvents}
+                type="articles"
+                id="news-events"
+              />
+            )}
+            {bio.mainPageContent.attorneyBlogs.length > 0 && (
+              <>
+                <ArticleCards
+                  title="Blog Articles"
+                  articles={bio.mainPageContent.attorneyBlogs}
+                  type="articles"
+                  id="articles"
+                />
+                <Link
+                  href={`/library?term=${bio.headerContent.name
+                    .replace(/\s+/g, '-')
+                    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+                    .toLowerCase()}`}
+                >
+                  <a
+                    className="btn btn-danger px-2 my-4 d-block"
+                    style={{ fontSize: '1.3rem', maxWidth: '200px' }}
+                  >
+                    More articles
+                  </a>
+                </Link>
+            </>
+            )}            
             {bio.mainPageContent.awards.length > 0 && (
               <ArticleCards
                 title="Awards"

@@ -101,12 +101,7 @@ export default function WomenLead({ page }) {
                 title="Diversity"
                 content={relatedPages}
                 tabKey={2}
-              />
-              <SidebarContent
-                title="Firm Resources"
-                content={firmResources}
-                tabKey={1}
-              />
+              />              
             </Col>
           </Row>
         </Container>

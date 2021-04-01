@@ -30,7 +30,7 @@ export default function OlderArticles({ initialArticles, query }) {
   async function handleClick() {
     setLoading(true);
     setPageIndex((newIndex) => (newIndex += 1));
-    const url = `http://localhost:8400/wp-json/search/query?offset=${pageIndex}&${query}`;
+    const url = `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&${query}`;
 
     const getOlderPosts = await fetch(url)
       .then((data) => data.json())

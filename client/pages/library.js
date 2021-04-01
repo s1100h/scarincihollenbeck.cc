@@ -11,6 +11,7 @@ import MainArticle from 'components/library/main-article';
 import FeaturedArticle from 'components/library/featured-article';
 import OlderArticles from 'components/library/older-articles';
 import FeaturedLinks from 'components/library/featured-links';
+import QueryTitle from 'components/library/query-title';
 import SubscriptionContainer from 'components/library/subscription-container';
 import SearchBar from 'components/library/search-bar';
 import { headers, urlify } from 'utils/helpers';
@@ -60,6 +61,7 @@ export default function Library({
           />
           <FeaturedLinks />
           <Col sm={12} md={9}>
+            <QueryTitle title={pageTitle.replace(/-/g, ' ')} />
             {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
             {(results.results && results.results.length > 0) ? (
               <>
@@ -190,7 +192,6 @@ export async function getServerSideProps({ query }) {
 
   if (author) {
     tempStr += `offset=1&author=${author}`;
-    tempChildCat += 'firm-news';
   }
 
   if (!term && !category && !author) {
@@ -204,7 +205,7 @@ export async function getServerSideProps({ query }) {
     childrenOfCurrentCategory,
     popularCategories,
   ] = await Promise.all([
-    fetch(`http://localhost:8000/wp-json/search/query?${tempStr}`, {
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
@@ -219,6 +220,11 @@ export async function getServerSideProps({ query }) {
       { headers },
     ).then((data) => data.json()),
   ]);
+
+  // get authors full name to display
+  if(author && results.results.length > 0) {
+    tempChildCat += results.results[0].author;
+  }
 
   return {
     props: {

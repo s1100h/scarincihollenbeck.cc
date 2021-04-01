@@ -51,11 +51,11 @@ export async function getServerSideProps({ params, res }) {
   // do some major refactoring on the single attorney bio API endpoint
   const [bio, content] = await Promise.all([
     fetch(
-      `http://localhost:8000/wp-json/attorney-profile/main/${params.slug}`,
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `http://localhost:8000/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
       { headers },
     ).then((data) => data.json()),
   ]);
