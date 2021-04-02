@@ -31,7 +31,6 @@
     "react-share": "^4.2.1",
     "react-spinners": "^0.10.4",
     "react-star-rating-component": "^1.4.1",
-    "react-virtualized": "^9.22.3",
     "rss-parser": "^3.9.0",
     "styled-components": "^5.2.1",
     "swr": "^0.4.1"

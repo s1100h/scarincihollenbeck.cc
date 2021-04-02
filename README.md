@@ -4,8 +4,7 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 
 ## To do
 1. Overall mobile review -- continue
-2. Really push myself to clean up attorney bio layout -- review by aamil before showing pete on staging site
-3. Get rid of react-virtualized
+
 
 ### [Live Site](https://scarincihollenbeck.com/)
 

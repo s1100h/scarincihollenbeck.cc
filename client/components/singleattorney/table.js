@@ -8,7 +8,7 @@ export default function SingleAttorneyTableTab({ content }) {
     <Row>
       <Col className={styles.content} sm={12}>
         {content.body.map((b) => (
-          <div key={b[0].c} className="border-bottom mb-3">
+          <div key={b[0].c} className="mb-3">
             <p className="mb-0">
               <strong>
                 <u>
