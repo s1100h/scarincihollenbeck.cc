@@ -20,7 +20,7 @@ export default function Contact({ contact, bio }) {
                 <strong>
                   {bio.headerContent.name}
                   {' '}
-                  Contact Information
+                  contact information
                 </strong>
               </h3>
               <div style={{ fontSize: '1.3rem' }} className="border p-3 mt-4">
@@ -75,12 +75,24 @@ export default function Contact({ contact, bio }) {
           </div>
         )}
       />
-      Contact form :)
     </>
   );
 }
+export async function getStaticPaths() {
+  const [res] = await Promise.all([
+    fetch(
+      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
+      { headers },
+    ).then((data) => data.json()),
+  ]);
 
-export async function getServerSideProps({ params, res }) {
+  return {
+    paths: res.map((a) => `/attorney${a.link}/contact`) || [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   // modify single attorney endpoint to grab specific content
   // do some major refactoring on the single attorney bio API endpoint
   const [bio, contact] = await Promise.all([
@@ -95,13 +107,8 @@ export async function getServerSideProps({ params, res }) {
   ]);
 
   if (!contact) {
-    res.statusCode = 404;
-
     return {
-      props: {
-        contact,
-        bio,
-      },
+      notFound: true,
     };
   }
 
