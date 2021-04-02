@@ -80,9 +80,8 @@ em {
 .dv-star-rating {
   margin-top: 0;
   margin-bottom: 1em;
-  margin-left: 10px;
-  margin-right: 10px;
 }
+
 .dv-star-rating-star i {
-  font-size: 2rem;
+  font-size: 1.3rem;
 }

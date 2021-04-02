@@ -126,12 +126,13 @@ export default function AttorneyProfile({ bio, content }) {
           />
         )}
       />
-      <Container className="mt-0 pt-0" style={{ overflowX: 'hidden'}}>
+      <Container className="mt-0 pt-0">
         <Row>
           <Col
             sm={12}
-            md={{ offset: 9, span: 4 }}
+            md={{ offset: 9, span: 3 }}
             style={{ marginTop: '-70px' }}
+            className="px-0"
           >
             <ContactBtn
               link={`/attorney/${bio.headerContent.name
@@ -162,8 +163,8 @@ export default function AttorneyProfile({ bio, content }) {
                 />
                 <Link
                   href={`/library?term=${bio.headerContent.name
+                    .replace(/[^a-zA-Z0-9]/g, ' ')
                     .replace(/\s+/g, '-')
-                    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
                     .toLowerCase()}`}
                 >
                   <a
@@ -229,7 +230,7 @@ export default function AttorneyProfile({ bio, content }) {
               />
             )}
           </Col>
-          <Col sm={12} md={3}>
+          <Col sm={12} md={3} className="px-0">
             <SidebarLinks links={bio.sidebarLinks} />
           </Col>
         </Row>

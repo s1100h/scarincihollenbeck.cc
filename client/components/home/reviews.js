@@ -28,7 +28,7 @@ function Accolade({
         className={styleName}
       />
       {rating && (
-        <div className="mx-2">
+        <div className="mx-auto d-block text-center">
           <StarRatingComponent
             name={title}
             editing={false}
