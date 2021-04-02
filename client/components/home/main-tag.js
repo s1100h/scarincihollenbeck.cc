@@ -17,9 +17,9 @@ export default function HomeMainTag() {
       <style jsx>
         {`
           h3 {
-            font-size: 2.9rem;
+            font-size: 2.3rem;
+            line-height: 1.2
             font-weight: 300;
-            line-height: 1.1;
           }
           h4 {
             color: #db2220;

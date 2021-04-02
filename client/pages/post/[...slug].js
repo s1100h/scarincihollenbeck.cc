@@ -81,6 +81,7 @@ export default function LawFirmInsightsPost({
         image="/images/Legal-Research-1800x400-JPG.jpg"
         title={title}
         subtitle={subTitle}
+        isBlog={true}
       />
       <Container>
         <Row>
