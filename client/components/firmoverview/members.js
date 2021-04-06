@@ -5,6 +5,7 @@ import AttorneyCard from 'components/attorney-card';
 import textStyles from 'styles/Text.module.css';
 
 export default function FirmOverviewMembers({ title, members, type }) {
+  console.table(members);
   return (
     <div className="w-100 mt-5 px-3">
       <h3
@@ -17,7 +18,7 @@ export default function FirmOverviewMembers({ title, members, type }) {
           {members.map((m) => (
             <Col sm={12} md={6} lg={4} className="mb-3" key={m.name}>
               <AttorneyCard
-                link={m.uri}
+                link={m.link}
                 image={m.image}
                 name={m.name}
                 title={m.title}

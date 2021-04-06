@@ -39,7 +39,6 @@ export default function LocationsBody({
                 email={m.email}
                 width={80}
                 height={112}
-                type="/attorney/[slug]"
               />
             </Col>
           ))}

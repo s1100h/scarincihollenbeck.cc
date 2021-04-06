@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Error from 'next/error';
 import AttorneyProfile from 'layouts/attorney-profile';
 import AttorneyContactForm from 'components/singleattorney/attorney-contact-form';
+import textStyles from 'styles/Text.module.css';
 import { headers } from 'utils/helpers';
 
 export default function Contact({ contact, bio }) {
@@ -35,14 +36,14 @@ export default function Contact({ contact, bio }) {
                   {contact.email}
                 </p>
                 <p className="mb-0">
-                  <a href={contact.pdf} download>
+                  <a href={contact.pdf} className={textStyles.redTitle} download>
                     <strong>
                       <u>Download profile</u>
                     </strong>
                   </a>
                 </p>
                 <p className="mb-0">
-                  <a href={contact.vizibility} download>
+                  <a href={contact.vizibility} className={textStyles.redTitle} download>
                     <strong>
                       <u>Download contact</u>
                     </strong>
@@ -53,7 +54,7 @@ export default function Contact({ contact, bio }) {
                   {contact.socialMedia.length > 0
                     && contact.socialMedia.map((item, index) => (
                       <Link href={item.url} key={item.channel}>
-                        <a>
+                        <a className={textStyles.redTitle}>
                           <u>{item.channel}</u>
                           {index < contact.socialMedia.length - 1 && ', '}
                         </a>

@@ -91,7 +91,6 @@ export default function ArchiveAttorneyResultsFiltered({
             email={m.email}
             width={80}
             height={112}
-            type="/attorney/[slug]"
           />
         </Col>
       ))}

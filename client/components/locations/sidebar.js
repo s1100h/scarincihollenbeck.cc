@@ -14,11 +14,11 @@ export default function LocationsSidebar({ offices, posts, title }) {
         {officeList.map((office) => (
           <li
             key={office.ID || office.id}
-            className="list-unstyled border-bottom"
+            className="list-unstyled border-bottom py-2"
           >
             <Link href={office.slug || '/'}>
               <a className="text-dark">
-                <p className={fontStyles.ft12rem}>
+                <p style={{fontSize: '1.13rem', marginBottom: '13px'}}>
                   <strong>{office.title}</strong>
                 </p>
               </a>
@@ -81,7 +81,6 @@ export default function LocationsSidebar({ offices, posts, title }) {
           `}
         </style>
       </ul>
-      <TrendingStories title={`News from ${title}`} content={posts} />
     </>
   );
 }

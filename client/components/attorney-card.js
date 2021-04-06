@@ -11,11 +11,10 @@ export default function AttorneyCard({
   title,
   number,
   email,
-  type,
 }) {
   return (
     <div className={`d-flex flex-row ${styles.attorneyCard}`} height={148}>
-      <Link href={type} as={link}>
+      <Link href={link}>
         <a>
           <Image
             src={image}
@@ -27,7 +26,7 @@ export default function AttorneyCard({
         </a>
       </Link>
       <div className="my-auto ml-3">
-        <Link href={type} as={link}>
+        <Link href={link}>
           <a>
             <p
               className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}

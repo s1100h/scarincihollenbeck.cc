@@ -24,7 +24,6 @@ function AttorneyCards(title, content) {
             email={m.email}
             width={80}
             height={112}
-            type="/attorney/[slug]"
           />
         </Col>
       ))}

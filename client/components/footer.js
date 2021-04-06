@@ -109,6 +109,8 @@ export default function Footer() {
                 <a
                   href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
                   className="text-dark"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Make a payment
                 </a>

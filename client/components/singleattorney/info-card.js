@@ -18,12 +18,11 @@ export default function SingleAttorneyInfoCard({
       <div
         className="w-100 d-block"
         style={{
-          height: '7px',
+          height: '3px',
           backgroundColor: '#db2220',
-          boxShadow: '2px 3px 3px #000',
         }}
       />
-      <h2 className="mt-4 mb-0">
+      <h2 className="mt-3 mb-0">
         <strong style={{ fontSize: '2.5rem' }}>{designation}</strong>
       </h2>
       {chair.length > 0 && (
