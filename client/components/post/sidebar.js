@@ -6,7 +6,6 @@ import PostSocialShareSidebar from 'components/post/social-share-sidebar';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function PostSidebar({ title, posts, attorneys }) {
-  console.table(attorneys);
   return (
     <div className="d-print-none">
       <SimpleSearch />
