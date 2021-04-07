@@ -31,7 +31,6 @@ export default function CareerPost({ career }) {
       <Container>
         <Row>
           <Col sm={12}>
-            <BreadCrumbs />
             <SingleCareerBody
               title={career.title}
               position={career.positionDescription}
