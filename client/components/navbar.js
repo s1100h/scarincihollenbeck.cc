@@ -38,7 +38,12 @@ export default function NavBar() {
                   <u>Join our mailing list</u>
                 </a>
               </Link>
-                <a className={`ml-2 ${textStyles.redTitle} font-weight-bold`}>
+                <a
+                  href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`ml-2 ${textStyles.redTitle} font-weight-bold`}
+                >
                   <u>Make payment</u>
                 </a>
             </p>

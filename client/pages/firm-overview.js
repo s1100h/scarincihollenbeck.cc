@@ -23,12 +23,10 @@ export default function FirmOverview({
         title="Firm Overview"
         subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, '')}
         image="/images/City-Night-Background-1800x400-JPG.jpg"
-        height="390px"
       />
       <FullWidth>
         <div
           className="text-muted lead"
-          style={{ fontSize: '1.4rem' }}
           dangerouslySetInnerHTML={createMarkup(bodyContent)}
         />
         {mainTabs.map((tab) => (
@@ -38,7 +36,6 @@ export default function FirmOverview({
             </div>
             <div
               className="lead my-4 body-text"
-              style={{ fontSize: '1.4rem' }}
               dangerouslySetInnerHTML={createMarkup(tab.content)}
             />
           </div>

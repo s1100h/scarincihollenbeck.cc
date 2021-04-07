@@ -22,42 +22,36 @@ export default function ContactPage() {
       />
       <FullWidth>
         <div className="w-100">
-          <p className="lead">
-            For media inquiries, please visit
+          <p className="lead py-3 mb-2 text-center">
+            <strong>For media inquiries,</strong> please visit
             {' '}
             <Link href="/library?category=law-firm-insights">
-              <a className={textStyles.blueTitle}>
-                <strong>
-                  <u>Firm Insights.</u>
-                </strong>
+              <a className={textStyles.redTitle}>
+                <u>Firm Insights.</u>
               </a>
             </Link>
-            {' '}
-            For job opportunities please visit our
+            </p>
+            <p className="lead py-4 mb-0 text-center border-top">
+            <strong>For job opportunities,</strong> please visit our
             {' '}
             <Link href="/careers">
-              <a className={textStyles.blueTitle}>
-                <strong>
-                  <u>Careers page.</u>
-                </strong>
+              <a className={textStyles.redTitle}>                
+                <u>Careers page.</u>                
               </a>
             </Link>
           </p>
-          <p className="lead">
-            {' '}
-            If you are a client, please get in touch with your
-            {' '}
+          <p className="lead border-top py-4 mb-0 text-center">
+            <strong>If you are a client,</strong> please get in touch with your
             <Link href="/attorneys">
-              <a className={textStyles.blueTitle}>
-                <strong>
-                  <u>Scarinci Hollenbeck attorney</u>
-                </strong>
+              <a className={textStyles.redTitle}>
+                {' '}
+                <u>Scarinci Hollenbeck attorney</u>
               </a>
             </Link>
             {' '}
             contact directly.
           </p>
-          <p className="lead mb-5">
+          <p className="lead border-top border-bottom py-4 mb-5 text-center">
             If you are looking to get in touch with an attorney under the terms
             as to becoming a new client please call
             {' '}
@@ -68,6 +62,7 @@ export default function ContactPage() {
           </h4>
           <ContactForm />
         </div>
+        <style jsx>{`p {font-size: 1.5rem}`}</style>
       </FullWidth>
     </>
   );
