@@ -69,7 +69,7 @@ export default function AdminSingleBio({ response }) {
               vizibility={response.vizibility}
               fullName={response.name}
               designation={response.Title}
-              phoneNumber={`201-896-4100 ${response.phoneExtension}`}
+              phoneNumber={`201-896-4100 ${response.phone_extension}`}
               socialMediaLinks={response.socialMediaLinks}
               offices={response.offices}
               chair={0}

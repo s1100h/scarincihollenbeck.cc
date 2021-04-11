@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -14,15 +15,22 @@ export default function PostSocialShareSidebar({ title }) {
 
   return (
     <div className="mb-4 social-share-container">
-      <p className={`${fontStyles.ft12rem} mb-1`}>
+      <p className={`${fontStyles.ft12rem} mb-2`}>
         <strong>Share this article</strong>
       </p>
-      <p className="mb-2">
+      <p className="mb-2 mt-3">
         <LinkedinShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <u>LinkedIn</u>
+          <Image
+           src="/images/linkedin-icon.png"
+           alt="linkedin icon"
+           width={25}
+           height={21}
+          />
+          {' '}
+          <u className="link"><strong>LinkedIn</strong></u>
         </LinkedinShareButton>
       </p>
       <p className="mb-2">
@@ -30,7 +38,14 @@ export default function PostSocialShareSidebar({ title }) {
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <u>Facebook</u>
+        <Image
+           src="/images/facebook-icon.png"
+           alt="facebook icon"
+           width={25}
+           height={25}
+          />
+          {' '}
+          <u className="link"><strong>Facebook</strong></u>
         </FacebookShareButton>
       </p>
       <p className="mb-2">
@@ -38,7 +53,14 @@ export default function PostSocialShareSidebar({ title }) {
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <u>Twitter</u>
+        <Image
+           src="/images/twitter-icon.svg"
+           alt="twitter icon"
+           width={30}
+           height={25}
+          />
+          {' '}
+          <u className="link"><strong>Twitter</strong></u>
         </TwitterShareButton>
       </p>
       <p className="mb-2">
@@ -47,7 +69,14 @@ export default function PostSocialShareSidebar({ title }) {
           body={`https://scarincihollenbeck.com${router.asPath}`}
           separator=""
         >
-          <u>Email</u>
+        <Image
+           src="/images/email-icon.png"
+           alt="email icon"
+           width={24}
+           height={18}
+          />
+          {' '}
+          <u className="link"><strong>Email</strong></u>
         </EmailShareButton>
       </p>
       <p className="mb-2">
@@ -57,10 +86,17 @@ export default function PostSocialShareSidebar({ title }) {
           aria-label="Print Page"
           onClick={() => printScreen()}
         >
-          <u>Print</u>
+        <Image
+           src="/images/printer-icon.png"
+           alt="print icon"
+           width={24}
+           height={26}
+          />
+          {' '}
+          <u className="link"><strong>Print</strong></u>
         </Button>
       </p>
-      <style jsx>{`.social-share-container { margin-top: -12px; }`}</style>
+      <style jsx>{`.social-share-container { margin-top: -12px; } .link {position: relative; bottom: 5px;}`}</style>
     </div>
   );
 }
