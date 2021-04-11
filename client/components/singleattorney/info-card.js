@@ -12,21 +12,21 @@ export default function SingleAttorneyInfoCard({
 }) {
   return (
     <div className="d-flex flex-column text-white">
-      <h1 style={{ fontSize: '3rem' }}>
+      <h1 style={{ fontSize: '3rem' }} className="animate__animated animate__fadeInDown animate__slow">
         <strong>{fullName}</strong>
       </h1>
       <div
-        className="w-100 d-block"
+        className="w-100 d-block animate__animated animate__fadeInDown animate__slow"
         style={{
           height: '3px',
           backgroundColor: '#db2220',
         }}
       />
-      <h2 className="mt-3 mb-0">
+      <h2 className="mt-3 mb-0 animate__animated animate__fadeInUp animate__slow">
         <strong style={{ fontSize: '2.5rem' }}>{designation}</strong>
       </h2>
       {chair.length > 0 && (
-        <h3 className="text-white mt-2" style={{ fontSize: '1.6rem' }}>
+        <h3 className="text-white mt-2 animate__animated animate__fadeInUp animate__slow" style={{ fontSize: '1.6rem' }}>
           <strong>Chair: </strong>
           {' '}
           {chair.map((c) => (
@@ -39,7 +39,7 @@ export default function SingleAttorneyInfoCard({
         </h3>
       )}
       {coChair.length > 0 && (
-        <h3 className="text-white" style={{ fontSize: '1.4rem' }}>
+        <h3 className="text-white animate__animated animate__fadeInUp animate__slow" style={{ fontSize: '1.4rem' }}>
           Co-chair:
           {' '}
           {coChair.map((c) => (
@@ -52,7 +52,7 @@ export default function SingleAttorneyInfoCard({
         </h3>
       )}
       {offices && offices.length > 0 && (
-        <h3 style={{ fontSize: '1.4rem' }}>
+        <h3 className="animate__animated animate__fadeInUp animate__slow" style={{ fontSize: '1.4rem' }}>
           <strong>Office: </strong>
           {offices.map((office, index) => (
             <Link href={office.link} key={office.link}>
@@ -65,7 +65,7 @@ export default function SingleAttorneyInfoCard({
         </h3>
       )}
       {services.length > 0 && (
-        <h3 style={{ fontSize: '1.4rem' }}>
+        <h3 className="animate__animated animate__fadeInUp animate__slow" style={{ fontSize: '1.4rem' }}>
           <strong>Services: </strong>
           {services.map((service, index) => (
             <Link href={service.link} key={service.link}>
@@ -77,7 +77,7 @@ export default function SingleAttorneyInfoCard({
           ))}
         </h3>
       )}
-      <ul className="list-inline list-unstyled" style={{ fontSize: '1.4rem' }}>
+      <ul className="list-inline list-unstyled animate__animated animate__fadeInUp animate__slow" style={{ fontSize: '1.4rem' }}>
         {pdf && (
           <li className="list-inline-item mr-3">
             <a className="text-white" href={pdf} download>

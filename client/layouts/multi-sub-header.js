@@ -6,10 +6,10 @@ import styles from 'styles/Banner.module.css';
 export default function MultiSubHeader({ profile, infoCard, isAdmin }) {
   return (
     <div className={styles.backPageBanner}>
-      <div className={`animate__animated animate__fadeInUp animate__fast ${styles.backBanner}`}>
+      <div className={styles.backBanner}>
         <Container>
           <Row>
-            <Col sm={12} md={4} className="mr-4 my-3">
+            <Col sm={12} md={4} className="mr-4 my-3 ">
               {profile}
             </Col>
             <Col sm={12} md={6} className={isAdmin ? styles.adminBio : ''}>
