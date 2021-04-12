@@ -26,8 +26,9 @@ export default function PostSocialShareSidebar({ title }) {
           <Image
            src="/images/linkedin-icon.png"
            alt="linkedin icon"
-           width={25}
-           height={21}
+           width={20}
+           height={17}
+           layout="fixed"
           />
           {' '}
           <u className="link"><strong>LinkedIn</strong></u>
@@ -41,8 +42,9 @@ export default function PostSocialShareSidebar({ title }) {
         <Image
            src="/images/facebook-icon.png"
            alt="facebook icon"
-           width={25}
-           height={25}
+           width={18}
+           height={18}
+           layout="fixed"
           />
           {' '}
           <u className="link"><strong>Facebook</strong></u>
@@ -56,11 +58,13 @@ export default function PostSocialShareSidebar({ title }) {
         <Image
            src="/images/twitter-icon.svg"
            alt="twitter icon"
-           width={30}
-           height={25}
+           className="twitter-icon"
+           width={23}
+           height={19}
+           layout="fixed"
           />
           {' '}
-          <u className="link"><strong>Twitter</strong></u>
+          <u className="link twitter"><strong>Twitter</strong></u>
         </TwitterShareButton>
       </p>
       <p className="mb-2">
@@ -72,8 +76,9 @@ export default function PostSocialShareSidebar({ title }) {
         <Image
            src="/images/email-icon.png"
            alt="email icon"
-           width={24}
-           height={18}
+           width={18}
+           height={14}
+           layout="fixed"
           />
           {' '}
           <u className="link"><strong>Email</strong></u>
@@ -89,14 +94,28 @@ export default function PostSocialShareSidebar({ title }) {
         <Image
            src="/images/printer-icon.png"
            alt="print icon"
-           width={24}
-           height={26}
+           width={18}
+           height={20}
+           layout="fixed"
           />
           {' '}
           <u className="link"><strong>Print</strong></u>
         </Button>
       </p>
-      <style jsx>{`.social-share-container { margin-top: -12px; } .link {position: relative; bottom: 5px;}`}</style>
+      <style jsx>{`
+        .social-share-container {
+          margin-top: -12px;
+        }
+        .link {
+          position: relative;
+          bottom: 4px;
+          font-size: 14px;
+          margin-left:3px;
+        }
+        .twitter-icon {
+          left: -5px !important;
+        }`
+      }</style>
     </div>
   );
 }

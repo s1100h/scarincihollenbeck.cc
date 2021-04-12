@@ -8,7 +8,7 @@ export default function HomeBanner() {
       <div
         className={`${styles.homeBannerContainer} ${styles.homeBanner}`}
       >
-        <div className="d-flex p-4">
+        <div className="d-flex flex-sm-column flex-md-row p-4">
           <Image
             src="/images/scarinci-hollenbeck-diamond-badge-SVG.svg"
             alt="scarinci hollenbeck diamond logo"
@@ -21,7 +21,7 @@ export default function HomeBanner() {
             <h3 className={`${styles.h3Text} animate__animated animate__fadeInDown animate__slow`}>
               <strong>We are here to help</strong>
             </h3>
-            <div className="animate__animated animate__fadeInUp animate__slow">
+            <div className="animate__animated animate__fadeInUp animate__slow my-2">              
               <FrontSearch />
             </div>
           </div>

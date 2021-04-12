@@ -54,12 +54,13 @@
 }
 
 .h2Text {
-  margin-bottom: -18px;
-  font-size: 3rem;
+  margin-bottom: -15px;
+  font-size: 4rem;
+  text-shadow: 3px 3px 3px #000;
 }
 
 .h3Text {
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   text-shadow: 3px 3px 3px #000;
 }
 
