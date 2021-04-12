@@ -89,7 +89,7 @@ export default function HomePageTwo({
         />
         <HomeHoneyCombSection
           contentOne={(
-            <div className={`${styles.honeyCombContent} mr-5`}>
+            <div className={styles.honeyCombContent}>
               <h4>
                 <strong>OUR SERVICES</strong>
               </h4>
