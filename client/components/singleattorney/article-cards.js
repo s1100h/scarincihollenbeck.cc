@@ -21,7 +21,7 @@ export default function ArticleCards({
                   <>
                     <Image
                       alt={article.title}
-                      src={article.featuredImg}
+                      src={article.featuredImg || '/images/no-image-found-diamond.png'}
                       width={300}
                       height={150}
                       className="rounded"
