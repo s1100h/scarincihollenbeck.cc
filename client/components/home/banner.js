@@ -32,7 +32,7 @@ export default function HomeBanner() {
               alt="scarinci hollenbeck diamond logo"
               width={110}
               height={95}
-              className="mr-2 mb-3 animate__animated animate__fadeInLeft animate__slow"
+              className="mr-2 mb-3 animate__animated animate__fadeInLeft animate__fast"
             />
             <div>
               <h2 className={`${styles.h2Text} animate__animated animate__fadeInDown animate__slow`}>Ready to rebuild?</h2>
