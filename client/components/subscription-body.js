@@ -31,7 +31,7 @@ export default function SubscriptionBody() {
           or when there legal updates that may <strong>impact to your business</strong>
         </p>
         <p className="lead border-top border-bottom py-4 mb-5 text-center">
-          or any <strong>annocuements and press releases</strong> from the attorneys at Scarinci Hollenbeck
+          or any <strong>announcements and press releases</strong> from the attorneys at Scarinci Hollenbeck
         </p>
         <h4 className={`${grayTitleStyles.title} mb-5`}>
             Sign up today!
