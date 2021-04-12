@@ -9,8 +9,8 @@ export default function PostSidebar({ title, posts, attorneys }) {
   return (
     <div className="d-print-none">
       <SimpleSearch />
-      <SubscriptionMessage />
       <PostSocialShareSidebar title={title} />
+      <SubscriptionMessage />      
       <TrendingStories title="Trending Stories" content={posts} />
       {attorneys.length > 0 && (
         <div className="w-100 mt-4">

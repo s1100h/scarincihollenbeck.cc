@@ -23,7 +23,7 @@ export default function PostBreadCrumbs() {
         </Link>
       </li>
       <li className="list-inline-item">
-        <Link href={`/${crumbs[0]}`}>
+        <Link href={`/library?category=${crumbs[0]}`}>
           <a className={`${textStyles.redTitle} text-uppercase`}>
             <strong>
               {crumbs[0].replace('-', ' ')}

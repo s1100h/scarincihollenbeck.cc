@@ -3,7 +3,7 @@ import SubscriptionFormWithButton from 'components/subscription-form-with-button
 
 export default function SubscriptionMessage() {
   return (
-    <div className="my-5">
+    <div className="mt-4 mb-5">
       <p className={`${fontStyles.ft12rem} mb-2`}>
         <strong>Get the latest from our attorneys!</strong>
       </p>

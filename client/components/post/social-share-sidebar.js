@@ -9,12 +9,13 @@ import {
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
+// import styles from 'styles/SocialIcon.module.css';
 
 export default function PostSocialShareSidebar({ title }) {
   const router = useRouter();
 
   return (
-    <div className="mb-4 social-share-container">
+    <div className="mt-4">
       <p className={`${fontStyles.ft12rem} mb-2`}>
         <strong>Share this article</strong>
       </p>
@@ -58,7 +59,7 @@ export default function PostSocialShareSidebar({ title }) {
         <Image
            src="/images/twitter-icon.svg"
            alt="twitter icon"
-           className="twitter-icon"
+           className="twittericon"
            width={23}
            height={19}
            layout="fixed"
@@ -103,17 +104,18 @@ export default function PostSocialShareSidebar({ title }) {
         </Button>
       </p>
       <style jsx>{`
-        .social-share-container {
-          margin-top: -12px;
-        }
+
         .link {
           position: relative;
           bottom: 4px;
           font-size: 14px;
           margin-left:3px;
         }
-        .twitter-icon {
+        .twittericon {
           left: -5px !important;
+        }
+        .twitter {
+          margin-left: 0px !important;
         }`
       }</style>
     </div>
