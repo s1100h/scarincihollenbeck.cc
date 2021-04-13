@@ -75,6 +75,7 @@ export default function PracticeSingle({
                   <Nav.Link
                     href={`/library?term=${urlify(practiceUrl)}`}
                     className={tabStyle.tab}
+                    eventKey={urlify(practice.content[0].title)}
                   >
                     Related Updates
                   </Nav.Link>
