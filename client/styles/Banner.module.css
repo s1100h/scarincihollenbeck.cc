@@ -31,6 +31,33 @@
   border-radius: 2px;
 }
 
+.redBanner{
+  background-image: url(/images/red-banner-900x526.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .redBanner { 
+    width: 80%;
+  }
+}
+
+
+@media (min-width: 1400px) {
+  .redBanner { 
+    width: 70%;
+  }
+}
+
+@media (min-width: 1650px) {
+  .redBanner { 
+    width: 60%;
+  }
+}
+
 .homeBannerContainer, .bannerContainer {
   color: #fff;
   padding: 1em;
@@ -55,11 +82,10 @@
 
 .h2Text {
   margin-bottom: -15px;
-  font-size: 4rem;
-  text-shadow: 3px 3px 3px #000;
+
 }
 
-.h3Text {
+.h3Text, .h2Text {
   font-size: 3.4rem;
   text-shadow: 3px 3px 3px #000;
 }

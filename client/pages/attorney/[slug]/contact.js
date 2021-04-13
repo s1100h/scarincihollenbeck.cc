@@ -15,16 +15,16 @@ export default function Contact({ contact, bio }) {
       <AttorneyProfile
         bio={bio}
         content={(
-          <div>
-            <div className="border-bottom pb-4">
-            <h3 className="mt-3">
+          <>
+            <div>
+            <h3 className="mt-3 border-bottom pb-2 mb-3">
                 <strong>
                   {bio.headerContent.name}
                   {' '}
                   contact information
                 </strong>
               </h3>
-              <div style={{ fontSize: '1.3rem' }} className="border p-3 mt-4">
+              <div style={{ fontSize: '1.2rem' }}>
                 <p className="mb-0">
                   <strong>Phone: </strong>
                   {' '}
@@ -63,8 +63,8 @@ export default function Contact({ contact, bio }) {
                 </p>
               </div>
             </div>
-            <div className="border-bottom mt-4 mb-5">
-              <h3>
+            <div>
+              <h3 className="mt-4 border-bottom pb-2 mb-3">
                 <strong>
                   Get in touch with
                   {' '}
@@ -73,7 +73,7 @@ export default function Contact({ contact, bio }) {
               </h3>
               <AttorneyContactForm attorneyEmail={contact.email} />
             </div>
-          </div>
+          </>
         )}
       />
     </>
