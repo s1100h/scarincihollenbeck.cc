@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from 'styles/Banner.module.css';
 import FrontSearch from 'components/home/front-search';
 
@@ -17,7 +16,7 @@ export default function HomeBanner() {
               <h3 className={`${styles.h3Text} animate__animated animate__fadeInDown animate__slow`}>
                 <strong>We are here to help</strong>
               </h3>
-              <div className="animate__animated animate__fadeInUp animate__slow my-2">              
+              <div className="animate__animated animate__fadeInUp animate__slow my-2">
                 <FrontSearch />
               </div>
             </div>

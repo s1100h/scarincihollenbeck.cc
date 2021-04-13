@@ -4,7 +4,7 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function PopularList({ term, list }) {
   // if the title of the item in the list is in the url
   // then apply a bold to the text to show its selected
-  
+
   return (
     <>
       <p className={fontStyles.ft12rem}>

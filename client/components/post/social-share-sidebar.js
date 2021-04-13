@@ -25,11 +25,11 @@ export default function PostSocialShareSidebar({ title }) {
           quote={title}
         >
           <Image
-           src="/images/linkedin-icon.png"
-           alt="linkedin icon"
-           width={20}
-           height={17}
-           layout="fixed"
+            src="/images/linkedin-icon.png"
+            alt="linkedin icon"
+            width={20}
+            height={17}
+            layout="fixed"
           />
           {' '}
           <u className="link"><strong>LinkedIn</strong></u>
@@ -40,12 +40,12 @@ export default function PostSocialShareSidebar({ title }) {
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-        <Image
-           src="/images/facebook-icon.png"
-           alt="facebook icon"
-           width={18}
-           height={18}
-           layout="fixed"
+          <Image
+            src="/images/facebook-icon.png"
+            alt="facebook icon"
+            width={18}
+            height={18}
+            layout="fixed"
           />
           {' '}
           <u className="link"><strong>Facebook</strong></u>
@@ -56,13 +56,13 @@ export default function PostSocialShareSidebar({ title }) {
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-        <Image
-           src="/images/twitter-icon.svg"
-           alt="twitter icon"
-           className="twittericon"
-           width={23}
-           height={19}
-           layout="fixed"
+          <Image
+            src="/images/twitter-icon.svg"
+            alt="twitter icon"
+            className="twittericon"
+            width={23}
+            height={19}
+            layout="fixed"
           />
           {' '}
           <u className="link twitter"><strong>Twitter</strong></u>
@@ -74,12 +74,12 @@ export default function PostSocialShareSidebar({ title }) {
           body={`https://scarincihollenbeck.com${router.asPath}`}
           separator=""
         >
-        <Image
-           src="/images/email-icon.png"
-           alt="email icon"
-           width={18}
-           height={14}
-           layout="fixed"
+          <Image
+            src="/images/email-icon.png"
+            alt="email icon"
+            width={18}
+            height={14}
+            layout="fixed"
           />
           {' '}
           <u className="link"><strong>Email</strong></u>
@@ -92,18 +92,19 @@ export default function PostSocialShareSidebar({ title }) {
           aria-label="Print Page"
           onClick={() => printScreen()}
         >
-        <Image
-           src="/images/printer-icon.png"
-           alt="print icon"
-           width={18}
-           height={20}
-           layout="fixed"
+          <Image
+            src="/images/printer-icon.png"
+            alt="print icon"
+            width={18}
+            height={20}
+            layout="fixed"
           />
           {' '}
           <u className="link"><strong>Print</strong></u>
         </Button>
       </p>
-      <style jsx>{`
+      <style jsx>
+        {`
 
         .link {
           position: relative;
@@ -116,8 +117,8 @@ export default function PostSocialShareSidebar({ title }) {
         }
         .twitter {
           margin-left: 0px !important;
-        }`
-      }</style>
+        }`}
+      </style>
     </div>
   );
 }

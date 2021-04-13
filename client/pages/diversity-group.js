@@ -101,7 +101,7 @@ export default function DiversityGroup({ page }) {
                 title="Diversity"
                 content={relatedPages}
                 tabKey={2}
-              />             
+              />
             </Col>
           </Row>
         </Container>

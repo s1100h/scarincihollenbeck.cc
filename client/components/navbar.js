@@ -20,7 +20,7 @@ export default function NavBar() {
             sm={12}
             md={6}
           >
-             <p className="my-1 pb-1 mx-0 px-0 mr-2">
+            <p className="my-1 pb-1 mx-0 px-0 mr-2">
               <Link href="/covid-19-crisis-management-unit">
                 <a className={`ml-0 ${textStyles.redTitle} font-weight-bold`}>
                   <u>COVID-19 Crisis Management Unit</u>
@@ -51,19 +51,19 @@ export default function NavBar() {
                   <u>Join our mailing list</u>
                 </a>
               </Link>
-                <a
-                  href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`ml-2 ${textStyles.redTitle} font-weight-bold`}
-                >
-                  <u>Make payment</u>
-                </a>
+              <a
+                href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
+                target="_blank"
+                rel="noreferrer"
+                className={`ml-2 ${textStyles.redTitle} font-weight-bold`}
+              >
+                <u>Make payment</u>
+              </a>
             </p>
-          </Col>          
+          </Col>
         </Row>
         <Row>
-        <Col
+          <Col
             xs={12}
             lg={6}
             className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}

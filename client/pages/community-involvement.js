@@ -12,7 +12,6 @@ import SidebarContent from 'components/singlepractice/sidebar';
 import PageArticleHero from 'components/pages/page-article-hero';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
-import { firmResources } from 'utils/common-lists';
 import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 

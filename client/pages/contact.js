@@ -23,25 +23,31 @@ export default function ContactPage() {
       <FullWidth>
         <div className="w-100">
           <p className="lead py-3 mb-2 text-center">
-            <strong>For media inquiries,</strong> please visit
+            <strong>For media inquiries,</strong>
+            {' '}
+            please visit
             {' '}
             <Link href="/library?category=law-firm-insights">
               <a className={textStyles.redTitle}>
                 <u>Firm Insights.</u>
               </a>
             </Link>
-            </p>
-            <p className="lead py-4 mb-0 text-center border-top">
-            <strong>For job opportunities,</strong> please visit our
+          </p>
+          <p className="lead py-4 mb-0 text-center border-top">
+            <strong>For job opportunities,</strong>
+            {' '}
+            please visit our
             {' '}
             <Link href="/careers">
-              <a className={textStyles.redTitle}>                
-                <u>Careers page.</u>                
+              <a className={textStyles.redTitle}>
+                <u>Careers page.</u>
               </a>
             </Link>
           </p>
           <p className="lead border-top py-4 mb-0 text-center">
-            <strong>If you are a client,</strong> please get in touch with your
+            <strong>If you are a client,</strong>
+            {' '}
+            please get in touch with your
             <Link href="/attorneys">
               <a className={textStyles.redTitle}>
                 {' '}
@@ -62,7 +68,7 @@ export default function ContactPage() {
           </h4>
           <ContactForm />
         </div>
-        <style jsx>{`p {font-size: 1.5rem}`}</style>
+        <style jsx>{'p {font-size: 1.5rem}'}</style>
       </FullWidth>
     </>
   );

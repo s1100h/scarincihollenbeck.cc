@@ -9,14 +9,14 @@ export default function SingleAttorneyVideoTab({ content }) {
       <Row>
         {content.map((c) => (
           <Col sm={12} key={c.title}>
-          <div
-            dangerouslySetInnerHTML={createMarkup(c.embed_video)}
-          />
-          <h5 className="my-0 py-0 text-dark">
-            <strong>{c.title}</strong>
-          </h5>
-          <p className="mt-2 text-dark">{formatDate(c.date)}</p>
-        </Col>
+            <div
+              dangerouslySetInnerHTML={createMarkup(c.embed_video)}
+            />
+            <h5 className="my-0 py-0 text-dark">
+              <strong>{c.title}</strong>
+            </h5>
+            <p className="mt-2 text-dark">{formatDate(c.date)}</p>
+          </Col>
         ))}
       </Row>
     </Container>

@@ -174,8 +174,8 @@ export default function AttorneyProfile({ bio, content }) {
                     More articles
                   </a>
                 </Link>
-            </>
-            )}            
+              </>
+            )}
             {bio.mainPageContent.awards.length > 0 && (
               <ArticleCards
                 title="Awards"

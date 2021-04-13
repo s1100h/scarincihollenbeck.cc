@@ -21,7 +21,7 @@ export default function NonGraphQLTrendingStories({ title, content }) {
                   {c.author}
                 </small>
               </div>
-            )}            
+            )}
           </li>
         ))}
       </ul>

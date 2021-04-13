@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
-import BreadCrumbs from 'components/basic-breadcrumbs';
 import SingleCareerBody from 'components/singlecareer/body';
 import { headers } from 'utils/helpers';
 

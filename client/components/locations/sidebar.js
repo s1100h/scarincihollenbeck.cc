@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import TrendingStories from 'components/non-graphql-trending-stories';
 import textStyles from 'styles/Text.module.css';
 import { getDirectionsFromLocation, sortByKey } from 'utils/helpers';
-import fontStyles from 'styles/Fonts.module.css';
 
-export default function LocationsSidebar({ offices, posts, title }) {
+export default function LocationsSidebar({ offices }) {
   const officeList = sortByKey(offices, 'title');
 
   return (
@@ -18,7 +16,7 @@ export default function LocationsSidebar({ offices, posts, title }) {
           >
             <Link href={office.slug || '/'}>
               <a className="text-dark">
-                <p style={{fontSize: '1.13rem', marginBottom: '13px'}}>
+                <p style={{ fontSize: '1.13rem', marginBottom: '13px' }}>
                   <strong>{office.title}</strong>
                 </p>
               </a>
@@ -58,9 +56,9 @@ export default function LocationsSidebar({ offices, posts, title }) {
                 >
                   <strong>
                     <u>
-                    Directions to
-                    {' '}
-                    {office.title}
+                      Directions to
+                      {' '}
+                      {office.title}
                     </u>
                   </strong>
                 </Button>

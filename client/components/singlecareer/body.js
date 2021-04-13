@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CareerForm from 'components/career-form';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import styles from 'styles/BasicContent.module.css';
 import { createMarkup } from 'utils/helpers';
 

@@ -222,7 +222,7 @@ export async function getServerSideProps({ query }) {
   ]);
 
   // get authors full name to display
-  if(author && results.results.length > 0) {
+  if (author && results.results.length > 0) {
     tempChildCat += results.results[0].author;
   }
 

@@ -117,7 +117,7 @@ export default function AttorneyContactForm({ attorneyEmail }) {
           variant="danger"
           className="mt-2 px-4"
           type="submit"
-          // disabled={captcha}
+          disabled={captcha}
         >
           Submit form
         </Button>

@@ -25,18 +25,26 @@ export default function SubscriptionBody() {
           </li>
         </ul> */}
         <p className="lead py-3 mb-2 text-center">
-          <strong>Be the the first to know when,</strong> our attorney's publish blog posts
+          <strong>Be the the first to know when,</strong>
+          {' '}
+          our attorney&apos;s publish blog posts
         </p>
         <p className="lead py-4 mb-0 text-center border-top">
-          or when there legal updates that may <strong>impact to your business</strong>
+          or when there legal updates that may
+          {' '}
+          <strong>impact to your business</strong>
         </p>
         <p className="lead border-top border-bottom py-4 mb-5 text-center">
-          or any <strong>announcements and press releases</strong> from the attorneys at Scarinci Hollenbeck
+          or any
+          {' '}
+          <strong>announcements and press releases</strong>
+          {' '}
+          from the attorneys at Scarinci Hollenbeck
         </p>
         <h4 className={`${grayTitleStyles.title} mb-5`}>
-            Sign up today!
+          Sign up today!
         </h4>
-        <style jsx>{`p {font-size: 1.5rem}`}</style>
+        <style jsx>{'p {font-size: 1.5rem}'}</style>
       </div>
       <SubscriptionFormColumn />
     </>

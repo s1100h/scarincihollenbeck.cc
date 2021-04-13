@@ -17,7 +17,7 @@ export default function Contact({ contact, bio }) {
         content={(
           <>
             <div>
-            <h3 className="mt-3 border-bottom pb-2 mb-3">
+              <h3 className="mt-3 border-bottom pb-2 mb-3">
                 <strong>
                   {bio.headerContent.name}
                   {' '}
