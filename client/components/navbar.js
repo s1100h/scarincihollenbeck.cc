@@ -15,10 +15,23 @@ export default function NavBar() {
   return (
     <header className="mb-0">
       <Container>
-        <Row className="my-2">
+        <Row className="my-2  border-bottom ">
           <Col
-            xs={12}
-            className={`border-bottom d-flex ${navBarStyles.contactBanner} pr-0 justify-content-end`}
+            sm={12}
+            md={6}
+          >
+             <p className="my-1 pb-1 mx-0 px-0 mr-2">
+              <Link href="/covid-19-crisis-management-unit">
+                <a className={`ml-0 ${textStyles.redTitle} font-weight-bold`}>
+                  <u>COVID-19 Crisis Management Unit</u>
+                </a>
+              </Link>
+            </p>
+          </Col>
+          <Col
+            sm={12}
+            md={6}
+            className={`d-flex ${navBarStyles.contactBanner} pr-0`}
           >
             <p className="my-1 pb-1 mx-0 px-0 mr-2">
               <span>
@@ -47,8 +60,10 @@ export default function NavBar() {
                   <u>Make payment</u>
                 </a>
             </p>
-          </Col>
-          <Col
+          </Col>          
+        </Row>
+        <Row>
+        <Col
             xs={12}
             lg={6}
             className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}
