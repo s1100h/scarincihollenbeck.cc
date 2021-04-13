@@ -73,10 +73,10 @@ export default function NavBar() {
                 <a>
                   <Image
                     alt="Scarinci Hollenbeck, LLC"
-                    height="52"
-                    width="338"
+                    height={65}
+                    width={360}
                     layout="intrinsic"
-                    src="/images/scarinci-hollenbeck-logo-SVG.svg"
+                    src="/images/sh-logo-diamond.svg"
                   />
                 </a>
               </Link>

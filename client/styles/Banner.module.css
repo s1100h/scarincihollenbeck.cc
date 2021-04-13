@@ -32,7 +32,7 @@
 }
 
 .redBanner{
-  background-image: url(/images/red-banner-900x526.png);
+  background-image: url(/images/red-banner-opacity.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

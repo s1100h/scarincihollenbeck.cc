@@ -11,14 +11,7 @@ export default function HomeBanner() {
         <div
           className={`${styles.homeBannerContainer} ${styles.homeBanner}`}
         >
-          <div className="d-flex flex-column flex-md-row p-4">
-            <img
-              src="/images/scarinci-hollenbeck-diamond-badge-SVG.svg"
-              alt="scarinci hollenbeck diamond logo"
-              width={120}
-              height={150}
-              className="mr-2 my-4 animate__animated animate__fadeInLeft animate__fast"
-            />
+          <div className="d-flex p-4">
             <div>
               <h2 className={`${styles.h2Text} animate__animated animate__fadeInDown animate__slow`}>Ready to rebuild?</h2>
               <h3 className={`${styles.h3Text} animate__animated animate__fadeInDown animate__slow`}>
