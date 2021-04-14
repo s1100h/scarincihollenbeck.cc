@@ -30,18 +30,18 @@ function AttorneyProfile({ attorney }) {
               {attorney.title[0]}
             </p>
           ) : attorney.title[0].includes('Managing Partner') ? (
-              <p>
+            <p>
               {attorney.title}
             </p>
           ) : attorney.title[0].includes('Executive Director') ? (
             <p>
-            {attorney.title}
-          </p>
-        ) : (
+              {attorney.title}
+            </p>
+          ) : (
             <p>
               Chair,
-                {' '}
-                {attorney.title.join(', ')}
+              {' '}
+              {attorney.title.join(', ')}
             </p>
           )}
         </a>

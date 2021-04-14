@@ -203,7 +203,7 @@ export async function getStaticProps() {
       title: ['Managing Partner'],
     }));
 
-    const donPepe = attorneys
+  const donPepe = attorneys
     .filter((a) => a.acf.designation === 'Red Bank, NJ Managing Partner')
     .map((ds) => ({
       name: ds.title.rendered,
@@ -212,38 +212,38 @@ export async function getStaticProps() {
       title: ['Red Bank, NJ Managing Partner'],
     }));
 
-    const howardBader = attorneys
-      .filter((a) => a.acf.designation === 'NYC Managing Partner')
-      .map((ds) => ({
-        name: ds.title.rendered,
-        link: ds.link,
-        image: ds.better_featured_image.source_url,
-        title: ['NYC Managing Partner'],
-      }));
+  const howardBader = attorneys
+    .filter((a) => a.acf.designation === 'NYC Managing Partner')
+    .map((ds) => ({
+      name: ds.title.rendered,
+      link: ds.link,
+      image: ds.better_featured_image.source_url,
+      title: ['NYC Managing Partner'],
+    }));
 
-    const teddyEnynon = attorneys
-      .filter((a) => a.acf.designation === 'Washington, D.C. Managing Partner')
-      .map((ds) => ({
-        name: ds.title.rendered.replace(/&#8220;/g, '"').replace(/&#8221;/g, '"'),
-        link: ds.link,
-        image: ds.better_featured_image.source_url,
-        title: ['Washington, D.C. Managing Partner'],
-      }));
+  const teddyEnynon = attorneys
+    .filter((a) => a.acf.designation === 'Washington, D.C. Managing Partner')
+    .map((ds) => ({
+      name: ds.title.rendered.replace(/&#8220;/g, '"').replace(/&#8221;/g, '"'),
+      link: ds.link,
+      image: ds.better_featured_image.source_url,
+      title: ['Washington, D.C. Managing Partner'],
+    }));
 
-      const katerinTraugh = administration
-        .filter((a) => a.acf.Title === 'Executive Director')
-        .map((ks) => ({
-          name: ks.title.rendered,
-          link: ks.link,
-          image: ks.better_featured_image.source_url,
-          title: ['Executive Director'],
-        }));
+  const katerinTraugh = administration
+    .filter((a) => a.acf.Title === 'Executive Director')
+    .map((ks) => ({
+      name: ks.title.rendered,
+      link: ks.link,
+      image: ks.better_featured_image.source_url,
+      title: ['Executive Director'],
+    }));
   return {
     props: {
       seo,
       posts: posts.splice(0, 5),
       locations,
-      leadership: [...katerinTraugh, ...donaldScarinci, ...donPepe,...howardBader, ...teddyEnynon, ...leadership],
+      leadership: [...katerinTraugh, ...donaldScarinci, ...donPepe, ...howardBader, ...teddyEnynon, ...leadership],
     },
     revalidate: 1,
   };

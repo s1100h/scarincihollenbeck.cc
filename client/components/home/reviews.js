@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import lineStyles from 'styles/LineHeader.module.css';
 
 function Accolade({
-  image, title, width, height, rating, styleName,
+  image, title, width, height, styleName,
 }) {
   return (
     <Col
@@ -25,7 +25,7 @@ function Accolade({
         height={height}
         layout="intrinsic"
         className={styleName}
-      />      
+      />
     </Col>
   );
 }
@@ -62,7 +62,7 @@ export default function HomeReviews() {
       height: 100,
       rating: 5,
       styleName: 'yelp-icon',
-    }
+    },
   ];
   return (
     <Row className="mt-5 px-2">
