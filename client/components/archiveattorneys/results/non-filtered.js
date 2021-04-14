@@ -41,7 +41,8 @@ export default function ArchiveAttorneyResultsNonFiltered({ attorneys }) {
   const partners = attorneys.filter(
     (a) => a.designation === 'Partner'
       || a.designation === 'NYC Managing Partner'
-      || a.designation === 'Washington, D.C. Managing Partner',
+      || a.designation === 'Washington, D.C. Managing Partner'
+      || a.designation === 'Red Bank, NJ Managing Partner'
   );
 
   // counsel
