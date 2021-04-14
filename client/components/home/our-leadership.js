@@ -25,17 +25,23 @@ function AttorneyProfile({ attorney }) {
           <p className="mb-0">
             <strong>{attorney.name}</strong>
           </p>
-          {attorney.title.indexOf('Managing Partner') > -1 ? (
+          {attorney.title.includes('Managing Partner') ? (
             <p>
-              <strong>{attorney.title[0]}</strong>
+              {attorney.title[0]}
             </p>
-          ) : (
+          ) : attorney.title[0].includes('Managing Partner') ? (
+              <p>
+              {attorney.title}
+            </p>
+          ) : attorney.title[0].includes('Executive Director') ? (
             <p>
-              <strong>
-                Chair,
+            {attorney.title}
+          </p>
+        ) : (
+            <p>
+              Chair,
                 {' '}
                 {attorney.title.join(', ')}
-              </strong>
             </p>
           )}
         </a>

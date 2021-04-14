@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import StarRatingComponent from 'react-star-rating-component';
 import lineStyles from 'styles/LineHeader.module.css';
 
 function Accolade({
@@ -26,22 +25,20 @@ function Accolade({
         height={height}
         layout="intrinsic"
         className={styleName}
-      />
-      {rating && (
-        <div className="mx-auto d-block text-center">
-          <StarRatingComponent
-            name={title}
-            editing={false}
-            starCount={5}
-            value={rating}
-          />
-        </div>
-      )}
+      />      
     </Col>
   );
 }
 export default function HomeReviews() {
   const accolades = [
+    {
+      image: '/images/reviews/superlawyerslogo.png',
+      title: 'Super Lawyers',
+      height: 164,
+      width: 195,
+      rating: null,
+      styleName: 'superlawyers-icon',
+    },
     {
       image: '/images/reviews/lawyerscom-logo.jpg',
       title: 'Lawyers.com',
@@ -65,15 +62,7 @@ export default function HomeReviews() {
       height: 100,
       rating: 5,
       styleName: 'yelp-icon',
-    },
-    {
-      image: '/images/reviews/superlawyerslogo.png',
-      title: 'Super Lawyers',
-      height: 164,
-      width: 195,
-      rating: null,
-      styleName: 'superlawyers-icon',
-    },
+    }
   ];
   return (
     <Row className="mt-5 px-2">

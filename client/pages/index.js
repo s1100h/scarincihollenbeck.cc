@@ -138,7 +138,7 @@ export default function HomePageTwo({
 
 export async function getStaticProps() {
   /** Adding in graphql queries */
-  const [seo, news, events, locations, attorneys] = await Promise.all([
+  const [seo, news, events, locations, attorneys, administration] = await Promise.all([
     fetch('https://wp.scarincihollenbeck.com/wp-json/front-page/meta', {
       headers,
     }).then((data) => data.json()),
@@ -159,12 +159,19 @@ export async function getStaticProps() {
         headers,
       },
     ).then((data) => data.json()),
+    fetch(
+      'http://wp.scarincihollenbeck.com/wp-json/wp/v2/administration?per_page=10',
+      {
+        headers,
+      },
+    ).then((data) => data.json()),
   ]);
 
   const posts = [...news, ...events];
 
   const leadership = attorneys
     .filter((a) => a.acf.chair.length > 0)
+    .filter((a) => a.title.rendered !== 'Donald M. Pepe')
     .map((leader) => ({
       name: leader.title.rendered,
       link: leader.link,
@@ -196,12 +203,47 @@ export async function getStaticProps() {
       title: ['Managing Partner'],
     }));
 
+    const donPepe = attorneys
+    .filter((a) => a.acf.designation === 'Red Bank, NJ Managing Partner')
+    .map((ds) => ({
+      name: ds.title.rendered,
+      link: ds.link,
+      image: ds.better_featured_image.source_url,
+      title: ['Red Bank, NJ Managing Partner'],
+    }));
+
+    const howardBader = attorneys
+      .filter((a) => a.acf.designation === 'NYC Managing Partner')
+      .map((ds) => ({
+        name: ds.title.rendered,
+        link: ds.link,
+        image: ds.better_featured_image.source_url,
+        title: ['NYC Managing Partner'],
+      }));
+
+    const teddyEnynon = attorneys
+      .filter((a) => a.acf.designation === 'Washington, D.C. Managing Partner')
+      .map((ds) => ({
+        name: ds.title.rendered.replace(/&#8220;/g, '"').replace(/&#8221;/g, '"'),
+        link: ds.link,
+        image: ds.better_featured_image.source_url,
+        title: ['Washington, D.C. Managing Partner'],
+      }));
+
+      const katerinTraugh = administration
+        .filter((a) => a.acf.Title === 'Executive Director')
+        .map((ks) => ({
+          name: ks.title.rendered,
+          link: ks.link,
+          image: ks.better_featured_image.source_url,
+          title: ['Executive Director'],
+        }));
   return {
     props: {
       seo,
       posts: posts.splice(0, 5),
       locations,
-      leadership: [...donaldScarinci, ...leadership],
+      leadership: [...katerinTraugh, ...donaldScarinci, ...donPepe,...howardBader, ...teddyEnynon, ...leadership],
     },
     revalidate: 1,
   };
