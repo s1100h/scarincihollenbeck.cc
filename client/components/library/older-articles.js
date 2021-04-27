@@ -5,19 +5,43 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { createMarkup } from 'utils/helpers';
 
-function ArticleDetails({ uri, title, excerpt }) {
+function ArticleDetails({
+  uri, title, excerpt, date,
+}) {
   return (
-    <Link href={uri}>
-      <a className="text-dark">
-        <h5 className="mb-0">
-          <strong>{title}</strong>
-        </h5>
-        <div
-          className="mt-1 mb-3"
-          dangerouslySetInnerHTML={createMarkup(excerpt)}
-        />
-      </a>
-    </Link>
+    <Row className="my-4">
+      {articles.map((article) => (
+        <Col sm={12} md={4} key={article.title} className="my-3">
+          <Link href={article.link}>
+            <a className="text-center mx-auto d-block">
+              {type === 'articles' && (
+              <>
+                <Image
+                  alt={article.title}
+                  src={article.featuredImg || '/images/no-image-found-diamond.png'}
+                  width={300}
+                  height={150}
+                  className="rounded"
+                />
+                <small className="text-dark d-block">
+                  <strong>{article.title}</strong>
+                </small>
+              </>
+              )}
+              {type === 'awards' && (
+              <Image
+                alt={article.title}
+                src={article.featuredImg}
+                width={200}
+                height={200}
+                className="rounded"
+              />
+              )}
+            </a>
+          </Link>
+        </Col>
+      ))}
+    </Row>
   );
 }
 
@@ -40,13 +64,15 @@ export default function OlderArticles({ initialArticles, query }) {
       setLoading(false);
     }
 
+    console.log('articleList');
+    console.log(articleList);
+
     if (getOlderPosts.results) {
       getOlderPosts.results.shift();
       setLoading(false);
       setArticleList((articles) => [...articles, ...getOlderPosts.results]);
     }
   }
-
   return (
     <Row>
       <Col sm={12}>
@@ -66,6 +92,7 @@ export default function OlderArticles({ initialArticles, query }) {
               uri={article.link}
               title={article.title}
               excerpt={article.description}
+              date={article.date}
             />
           </Col>
         ))
