@@ -45,14 +45,8 @@ export default function FirmOverview({
             title="Managing Partners"
             members={members.managingPartners}
           />
-          <FirmMembers
-            title="Partners"
-            members={members.partners}
-          />
-          <FirmMembers
-            title="Directors"
-            members={sortedAdmins}
-          />
+          <FirmMembers title="Partners" members={members.partners} />
+          <FirmMembers title="Directors" members={sortedAdmins} />
         </div>
       </FullWidth>
     </>

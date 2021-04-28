@@ -27,7 +27,8 @@ export default function SubscriptionBody() {
         <p className="lead py-3 mb-2 text-center">
           <strong>Be the the first to know when,</strong>
           {' '}
-          our attorney&apos;s publish blog posts
+          our attorney&apos;s
+          publish blog posts
         </p>
         <p className="lead py-4 mb-0 text-center border-top">
           or when there legal updates that may
@@ -39,11 +40,10 @@ export default function SubscriptionBody() {
           {' '}
           <strong>announcements and press releases</strong>
           {' '}
-          from the attorneys at Scarinci Hollenbeck
+          from the
+          attorneys at Scarinci Hollenbeck
         </p>
-        <h4 className={`${grayTitleStyles.title} mb-5`}>
-          Sign up today!
-        </h4>
+        <h4 className={`${grayTitleStyles.title} mb-5`}>Sign up today!</h4>
         <style jsx>{'p {font-size: 1.5rem}'}</style>
       </div>
       <SubscriptionFormColumn />

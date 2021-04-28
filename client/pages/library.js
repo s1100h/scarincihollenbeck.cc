@@ -63,7 +63,7 @@ export default function Library({
           <Col sm={12} md={9}>
             <QueryTitle title={pageTitle.replace(/-/g, ' ')} />
             {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
-            {(results.results && results.results.length > 0) ? (
+            {results.results && results.results.length > 0 ? (
               <>
                 {results.results[0].link.indexOf('attorneys') >= 0 ? (
                   <Link href={results.results[0].link}>
@@ -103,15 +103,19 @@ export default function Library({
                     />
                   </div>
                 )}
-                {(results.results && results.results.length > 1) && (
+                {results.results && results.results.length > 1 && (
                   <ul className={`${marginStyles.mt65} list-unstyled`}>
-                    <FeaturedArticle articles={results.results.filter((_, i) => i > 0 && i <= 4)} />
+                    <FeaturedArticle
+                      articles={results.results.filter(
+                        (_, i) => i > 0 && i <= 4,
+                      )}
+                    />
                   </ul>
                 )}
                 <div className={marginStyles.mt65}>
                   <SubscriptionContainer />
                 </div>
-                {(results.results && results.results.length > 4) && (
+                {results.results && results.results.length > 4 && (
                   <div className="mt-5">
                     <OlderArticles
                       query={query}
@@ -205,9 +209,12 @@ export async function getServerSideProps({ query }) {
     childrenOfCurrentCategory,
     popularCategories,
   ] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
-      headers,
-    }).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`,
+      {
+        headers,
+      },
+    ).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
       headers,
     }).then((data) => data.json()),

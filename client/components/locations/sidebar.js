@@ -16,7 +16,7 @@ export default function LocationsSidebar({ offices }) {
           >
             <Link href={office.slug || '/'}>
               <a className="text-dark">
-                {(office.title === 'Washington D.C.') ? (
+                {office.title === 'Washington D.C.' ? (
                   <p style={{ fontSize: '1.13rem', marginBottom: '13px' }}>
                     <strong>Washington, D.C.</strong>
                   </p>
@@ -25,7 +25,6 @@ export default function LocationsSidebar({ offices }) {
                     <strong>{office.title}</strong>
                   </p>
                 )}
-
               </a>
             </Link>
             <ul className="list-unstyled ml-0">
@@ -64,7 +63,6 @@ export default function LocationsSidebar({ offices }) {
                   <strong>
                     <u>
                       Directions to
-                      {' '}
                       {office.title}
                     </u>
                   </strong>

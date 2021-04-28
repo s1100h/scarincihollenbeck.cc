@@ -6,13 +6,14 @@
 }
 
 .lists ul {
-  margin-top: 2.2em;
-  margin-bottom: 2.2em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   margin-left: -20px;
+  font-size: 1.1rem;
+  line-height: 15px;
 }
 
 .lists li {
   padding-bottom: 6px;
   padding-top: 10px;
-  font-size: 1.2rem;
 }

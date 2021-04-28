@@ -5,23 +5,26 @@ export default function SidebarLinks({ links }) {
   const router = useRouter();
 
   return (
-    <ListGroup className="mt-4" variant="flush">
-      {links
-        && links.map((l) => (
-          <ListGroup.Item key={l.link}>
-            <a
-              className="text-dark"
-              href={
-                l.link.includes('/content/')
-                  ? `/attorney/${router.query.slug}${l.link}`
-                  : `#${l.link}`
-              }
-              style={{ fontSize: '1.3rem' }}
-            >
-              <strong>{l.label}</strong>
-            </a>
-          </ListGroup.Item>
-        ))}
-    </ListGroup>
+    <ul>
+      {links.map((l) => (
+        <li key={l.link} className="list-unstyled">
+          <a className="text-dark" href={l.link.includes('/content/') ? `/attorney/${router.query.slug}${l.link}` : `#${l.link}`}>
+            {l.label}
+          </a>
+        </li>
+      ))}
+      <style jsx>
+        {`
+          ul {
+            margin-left: -2.48em;
+            margin-top: -10px;
+          }
+
+          ul li {
+            margin-bottom: 6px;
+          }
+        `}
+      </style>
+    </ul>
   );
 }

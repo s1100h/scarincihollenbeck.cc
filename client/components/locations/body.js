@@ -11,12 +11,10 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function LocationsBody({
   attorneys, practices, map, title,
 }) {
-  const officeTitle = (title === 'Washington D.C.') ? 'Washington, D.C.' : title;
+  const officeTitle = title === 'Washington D.C.' ? 'Washington, D.C.' : title;
   return (
     <>
-      <h4 className={grayTitleStyles.title}>
-        {officeTitle}
-      </h4>
+      <h4 className={grayTitleStyles.title}>{officeTitle}</h4>
       <div className="w-100 d-block mb-4">
         <iframe
           rel="preconnect"

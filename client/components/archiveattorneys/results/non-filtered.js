@@ -42,7 +42,7 @@ export default function ArchiveAttorneyResultsNonFiltered({ attorneys }) {
     (a) => a.designation === 'Partner'
       || a.designation === 'NYC Managing Partner'
       || a.designation === 'Washington, D.C. Managing Partner'
-      || a.designation === 'Red Bank, NJ Managing Partner'
+      || a.designation === 'Red Bank, NJ Managing Partner',
   );
 
   // counsel

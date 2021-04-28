@@ -36,14 +36,22 @@ export default function Contact({ contact, bio }) {
                   {contact.email}
                 </p>
                 <p className="mb-0">
-                  <a href={contact.pdf} className={textStyles.redTitle} download>
+                  <a
+                    href={contact.pdf}
+                    className={textStyles.redTitle}
+                    download
+                  >
                     <strong>
                       <u>Download profile</u>
                     </strong>
                   </a>
                 </p>
                 <p className="mb-0">
-                  <a href={contact.vizibility} className={textStyles.redTitle} download>
+                  <a
+                    href={contact.vizibility}
+                    className={textStyles.redTitle}
+                    download
+                  >
                     <strong>
                       <u>Download contact</u>
                     </strong>
@@ -67,7 +75,6 @@ export default function Contact({ contact, bio }) {
               <h3 className="mt-4 border-bottom pb-2 mb-3">
                 <strong>
                   Get in touch with
-                  {' '}
                   {bio.headerContent.name}
                 </strong>
               </h3>

@@ -1,28 +1,13 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import { createMarkup } from 'utils/helpers';
 
-function ArticleDetails({ uri, title, excerpt, date }) {
-  return (
-    <Link href={uri}>
-      <a className="text-dark">
-        <h5 className="mb-0">
-          <strong>{title}</strong>
-        </h5>
-        {date && <p className="mb-0"><small>{date}</small></p>}
-        <div
-          className="mt-1 mb-3"
-          dangerouslySetInnerHTML={createMarkup(excerpt)}
-        />
-      </a>
-    </Link>
-  );
-}
-
-export default function AttorneyArticleList({initalArticles, term }) {
+export default function AttorneyArticleList({ initalArticles, term }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(2);
   const [error, setError] = useState(false);
@@ -48,10 +33,6 @@ export default function AttorneyArticleList({initalArticles, term }) {
     }
   }
 
-  console.log('articleList');
-  console.log('===========');
-  console.log(articleList);
-
   return (
     <Row>
       {error ? (
@@ -59,17 +40,29 @@ export default function AttorneyArticleList({initalArticles, term }) {
           <strong>There was an error loading more posts...</strong>
         </p>
       ) : (
-        articleList
-        && articleList.map((article) => (
-          <Col key={article.title} sm={12} md={10} className="mx-3 mb-2">
-            <ArticleDetails
-              uri={article.link}
-              title={article.title}
-              excerpt={article.description}
-              date={article.date}
-            />
-          </Col>
-        ))
+        <Row className="my-4">
+          {articleList
+            && articleList.map((article) => (
+              <Col sm={12} md={4} key={article.title} className="my-3">
+                <Link href={article.link}>
+                  <a className="text-center mx-auto d-block">
+                    <Image
+                      alt={article.title}
+                      src={
+                        article.image || '/images/no-image-found-diamond.png'
+                      }
+                      width={300}
+                      height={150}
+                      className="rounded"
+                    />
+                    <small className="text-dark d-block">
+                      <strong>{article.title}</strong>
+                    </small>
+                  </a>
+                </Link>
+              </Col>
+            ))}
+        </Row>
       )}
       <Col sm={12}>
         <Button

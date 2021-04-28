@@ -138,7 +138,14 @@ export default function HomePageTwo({
 
 export async function getStaticProps() {
   /** Adding in graphql queries */
-  const [seo, news, events, locations, attorneys, administration] = await Promise.all([
+  const [
+    seo,
+    news,
+    events,
+    locations,
+    attorneys,
+    administration,
+  ] = await Promise.all([
     fetch('https://wp.scarincihollenbeck.com/wp-json/front-page/meta', {
       headers,
     }).then((data) => data.json()),
@@ -243,7 +250,14 @@ export async function getStaticProps() {
       seo,
       posts: posts.splice(0, 5),
       locations,
-      leadership: [...katerinTraugh, ...donaldScarinci, ...donPepe, ...howardBader, ...teddyEnynon, ...leadership],
+      leadership: [
+        ...katerinTraugh,
+        ...donaldScarinci,
+        ...donPepe,
+        ...howardBader,
+        ...teddyEnynon,
+        ...leadership,
+      ],
     },
     revalidate: 1,
   };

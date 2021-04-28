@@ -4,14 +4,15 @@ import styles from 'styles/Banner.module.css';
 export default function SingleSubHeader({ title, subtitle, isBlog }) {
   return (
     <div className={styles.backPageBanner}>
-      <div
-        className={styles.backBanner}
-      >
-        <div
-          className="d-flex flex-column p-4"
-          style={{ maxWidth: 900 }}
-        >
-          <h1 className="text-white mb-0 animate__animated animate__fadeInDown animate__fast" style={{ fontSize: !isBlog ? '4rem' : null, textShadow: '2px 3px 3px #000' }}>
+      <div className={styles.backBanner}>
+        <div className="d-flex flex-column p-4" style={{ maxWidth: 900 }}>
+          <h1
+            className="text-white mb-0 animate__animated animate__fadeInDown animate__fast"
+            style={{
+              fontSize: !isBlog ? '4rem' : null,
+              textShadow: '2px 3px 3px #000',
+            }}
+          >
             <strong>{title}</strong>
           </h1>
           <div
@@ -19,7 +20,6 @@ export default function SingleSubHeader({ title, subtitle, isBlog }) {
             style={{
               height: '3px',
               backgroundColor: '#db2220',
-
             }}
           />
           <h2

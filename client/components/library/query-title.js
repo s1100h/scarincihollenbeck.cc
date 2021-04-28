@@ -3,9 +3,7 @@ const QueryTitle = ({ title }) => (
     Results for
     {' '}
     <u className="text-capitalize">
-      <strong>
-        {title}
-      </strong>
+      <strong>{title}</strong>
     </u>
     {' '}
     articles

@@ -1,13 +1,15 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center center;
+  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center
+    center;
 }
 
 .backPageBanner {
   background: url(/images/back-page-banner-2000x663.jpg) no-repeat center center;
 }
 
-.banner, .backPageBanner {
+.banner,
+.backPageBanner {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -31,7 +33,7 @@
   border-radius: 2px;
 }
 
-.redBanner{
+.redBanner {
   background-image: url(/images/red-banner-opacity.png);
   background-position: center;
   background-size: cover;
@@ -40,25 +42,25 @@
 }
 
 @media (min-width: 1200px) {
-  .redBanner { 
+  .redBanner {
     width: 80%;
   }
 }
 
-
 @media (min-width: 1400px) {
-  .redBanner { 
+  .redBanner {
     width: 70%;
   }
 }
 
 @media (min-width: 1650px) {
-  .redBanner { 
+  .redBanner {
     width: 60%;
   }
 }
 
-.homeBannerContainer, .bannerContainer {
+.homeBannerContainer,
+.bannerContainer {
   color: #fff;
   padding: 1em;
 }
@@ -69,23 +71,22 @@
   }
 }
 
-
 .homeBanner {
   margin-top: 6.5em;
   margin-bottom: 6.5em;
 }
 
 .backBanner {
-  margin-top: 4.75em;
-  margin-bottom: 4.75em;
+  margin-top: 3.4em;
+  margin-bottom: 3.4em;
 }
 
 .h2Text {
   margin-bottom: -15px;
-
 }
 
-.h3Text, .h2Text {
+.h3Text,
+.h2Text {
   font-size: 3.4rem;
   text-shadow: 3px 3px 3px #000;
 }

@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 import MultiSubHeader from 'layouts/multi-sub-header';
 import ProfileImage from 'components/singleattorney/profile-image';
 import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
-import ContactBtn from 'components/singleattorney/contact-btn';
 import SidebarLinks from 'components/singleattorney/sidebar-links';
 import ArticleCards from 'components/singleattorney/article-cards';
 import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
@@ -127,21 +126,6 @@ export default function AttorneyProfile({ bio, content }) {
         )}
       />
       <Container className="mt-0 pt-0">
-        <Row>
-          <Col
-            sm={12}
-            md={{ offset: 9, span: 3 }}
-            style={{ marginTop: '-70px' }}
-            className="px-0"
-          >
-            <ContactBtn
-              link={`/attorney/${bio.headerContent.name
-                .replace(/\s+/g, '-')
-                .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-                .toLowerCase()}/contact`}
-            />
-          </Col>
-        </Row>
         <Row>
           <Col sm={12} md={9}>
             {content}

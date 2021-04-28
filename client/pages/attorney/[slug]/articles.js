@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Error from 'next/error';
 import AttorneyProfile from 'layouts/attorney-profile';
 import AttorneyArticleList from 'components/singleattorney/article-list';
@@ -55,8 +54,9 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const initialArticles = [].concat(bio.mainPageContent.externalBlogs, articles.results)
-    .sort((a, b) => ((a.date < b.date) ? 1 : -1));
+  const initialArticles = []
+    .concat(bio.mainPageContent.externalBlogs, articles.results)
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return {
     props: {

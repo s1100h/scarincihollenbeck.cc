@@ -17,7 +17,7 @@ export default function FeaturedLinks() {
             href="/library?category=firm-news"
             className={`${styles.link} text-dark`}
             style={{
-              color: (isNews || isNone) ? '#ad1616 !important' : null,
+              color: isNews || isNone ? '#ad1616 !important' : null,
             }}
           >
             <strong>

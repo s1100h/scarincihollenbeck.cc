@@ -3,47 +3,6 @@ import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import { createMarkup } from 'utils/helpers';
-
-function ArticleDetails({
-  uri, title, excerpt, date,
-}) {
-  return (
-    <Row className="my-4">
-      {articles.map((article) => (
-        <Col sm={12} md={4} key={article.title} className="my-3">
-          <Link href={article.link}>
-            <a className="text-center mx-auto d-block">
-              {type === 'articles' && (
-              <>
-                <Image
-                  alt={article.title}
-                  src={article.featuredImg || '/images/no-image-found-diamond.png'}
-                  width={300}
-                  height={150}
-                  className="rounded"
-                />
-                <small className="text-dark d-block">
-                  <strong>{article.title}</strong>
-                </small>
-              </>
-              )}
-              {type === 'awards' && (
-              <Image
-                alt={article.title}
-                src={article.featuredImg}
-                width={200}
-                height={200}
-                className="rounded"
-              />
-              )}
-            </a>
-          </Link>
-        </Col>
-      ))}
-    </Row>
-  );
-}
 
 export default function OlderArticles({ initialArticles, query }) {
   const [loading, setLoading] = useState(false);
@@ -88,12 +47,17 @@ export default function OlderArticles({ initialArticles, query }) {
         articleList
         && articleList.map((article) => (
           <Col key={article.imgAlt} sm={12} md={10} className="mx-3 mb-3">
-            <ArticleDetails
-              uri={article.link}
-              title={article.title}
-              excerpt={article.description}
-              date={article.date}
-            />
+            <Link href={article.link}>
+              <a className="text-dark">
+                <h5 className="mb-0">
+                  <strong>{article.title}</strong>
+                </h5>
+                <p className="d-block mt-1 mb-2">{article.date}</p>
+                <p style={{ lineHeight: '1.25', color: '#444' }}>
+                  {article.description}
+                </p>
+              </a>
+            </Link>
           </Col>
         ))
       )}

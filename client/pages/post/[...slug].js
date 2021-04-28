@@ -134,18 +134,20 @@ export async function getServerSideProps({ params, res, query }) {
     };
   }
 
-  const defaultTag = [{
-    term_id: 157,
-    name: 'Scarinci Hollenbeck',
-    slug: 'scarinci-hollenbeck',
-    term_group: 0,
-    term_taxonomy_id: 163,
-    taxonomy: 'post_tag',
-    description: '',
-    parent: 0,
-    count: 1202,
-    filter: 'raw',
-  }];
+  const defaultTag = [
+    {
+      term_id: 157,
+      name: 'Scarinci Hollenbeck',
+      slug: 'scarinci-hollenbeck',
+      term_group: 0,
+      term_taxonomy_id: 163,
+      taxonomy: 'post_tag',
+      description: '',
+      parent: 0,
+      count: 1202,
+      filter: 'raw',
+    },
+  ];
 
   return {
     props: {

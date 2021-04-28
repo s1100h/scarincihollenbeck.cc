@@ -19,9 +19,11 @@ function LocationCard({ location }) {
               layout="responsive"
             />
             <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
-              {(location.title === 'Washington D.C.') ? (
+              {location.title === 'Washington D.C.' ? (
                 <strong>Washington, D.C.</strong>
-              ) : <strong>{location.title}</strong> }
+              ) : (
+                <strong>{location.title}</strong>
+              )}
             </p>
           </a>
         </Link>

@@ -32,7 +32,9 @@ export default function PostSocialShareSidebar({ title }) {
             layout="fixed"
           />
           {' '}
-          <u className="link"><strong>LinkedIn</strong></u>
+          <u className="link">
+            <strong>LinkedIn</strong>
+          </u>
         </LinkedinShareButton>
       </p>
       <p className="mb-2">
@@ -48,7 +50,9 @@ export default function PostSocialShareSidebar({ title }) {
             layout="fixed"
           />
           {' '}
-          <u className="link"><strong>Facebook</strong></u>
+          <u className="link">
+            <strong>Facebook</strong>
+          </u>
         </FacebookShareButton>
       </p>
       <p className="mb-2">
@@ -65,7 +69,9 @@ export default function PostSocialShareSidebar({ title }) {
             layout="fixed"
           />
           {' '}
-          <u className="link twitter"><strong>Twitter</strong></u>
+          <u className="link twitter">
+            <strong>Twitter</strong>
+          </u>
         </TwitterShareButton>
       </p>
       <p className="mb-2">
@@ -82,7 +88,9 @@ export default function PostSocialShareSidebar({ title }) {
             layout="fixed"
           />
           {' '}
-          <u className="link"><strong>Email</strong></u>
+          <u className="link">
+            <strong>Email</strong>
+          </u>
         </EmailShareButton>
       </p>
       <p className="mb-2">
@@ -100,24 +108,26 @@ export default function PostSocialShareSidebar({ title }) {
             layout="fixed"
           />
           {' '}
-          <u className="link"><strong>Print</strong></u>
+          <u className="link">
+            <strong>Print</strong>
+          </u>
         </Button>
       </p>
       <style jsx>
         {`
-
-        .link {
-          position: relative;
-          bottom: 4px;
-          font-size: 14px;
-          margin-left:3px;
-        }
-        .twittericon {
-          left: -5px !important;
-        }
-        .twitter {
-          margin-left: 0px !important;
-        }`}
+          .link {
+            position: relative;
+            bottom: 4px;
+            font-size: 14px;
+            margin-left: 3px;
+          }
+          .twittericon {
+            left: -5px !important;
+          }
+          .twitter {
+            margin-left: 0px !important;
+          }
+        `}
       </style>
     </div>
   );
