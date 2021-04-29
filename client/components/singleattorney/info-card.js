@@ -99,12 +99,7 @@ export default function SingleAttorneyInfoCard({
             </li>
             )}
           </ul>
-          <ContactBtn
-            link={`/attorney/${fullName
-              .replace(/\s+/g, '-')
-              .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-              .toLowerCase()}/contact`}
-          />
+          
         </Col>
         <Col sm={12} md={6} className="mt-3 mb-0">
           {services.length > 0 && (

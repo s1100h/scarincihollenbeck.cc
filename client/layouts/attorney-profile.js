@@ -12,6 +12,7 @@ import SidebarLinks from 'components/singleattorney/sidebar-links';
 import ArticleCards from 'components/singleattorney/article-cards';
 import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
 import SidebarInformationListObject from 'components/singleattorney/sidebar-information-list-object';
+import ContactBtn from 'components/singleattorney/contact-btn';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 
 // build out attorney profile schema
@@ -122,6 +123,15 @@ export default function AttorneyProfile({ bio, content }) {
             vizibility={bio.headerContent.vizibility}
             services={bio.headerContent.practices}
             offices={bio.headerContent.offices}
+          />
+        )}
+
+        contact={(
+          <ContactBtn
+            link={`/attorney/${bio.headerContent.name
+              .replace(/\s+/g, '-')
+              .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+              .toLowerCase()}/contact`}
           />
         )}
       />
