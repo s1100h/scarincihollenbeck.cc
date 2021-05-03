@@ -15,7 +15,7 @@ export default function MultiSubHeader({ profile, infoCard, isAdmin, contact}) {
             <Col sm={12} md={5} className={isAdmin ? styles.adminBio : ''}>
               {infoCard}
             </Col>
-            <Col sm={12} md={2}>
+            <Col sm={12} md={4}>
               {contact}
             </Col>
           </Row>

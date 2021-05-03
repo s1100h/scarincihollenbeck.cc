@@ -121,18 +121,36 @@ export default function AttorneyProfile({ bio, content }) {
             designation={bio.headerContent.title}
             pdf={bio.headerContent.pdf}
             vizibility={bio.headerContent.vizibility}
-            services={bio.headerContent.practices}
             offices={bio.headerContent.offices}
           />
         )}
-
         contact={(
-          <ContactBtn
-            link={`/attorney/${bio.headerContent.name
-              .replace(/\s+/g, '-')
-              .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-              .toLowerCase()}/contact`}
-          />
+          <>
+            {bio.headerContent.practices.length > 0 && (
+            <h3
+              className="animate__animated animate__fadeInUp animate__slow"
+            >
+              <strong style={{ fontSize: '1,4rem', color: '#fff' }}>How can I help you?</strong>
+              <ul className="mt-2 ml-1 list-unstyled">
+                {bio.headerContent.practices.map((service) => (
+                  <li key={service.link}>
+                    <Link href={service.link}>
+                      <a className="text-white mb-2 d-block" style={{fontSize: '16px'}}>
+                        {service.title}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </h3>
+            )}
+            <ContactBtn
+              link={`/attorney/${bio.headerContent.name
+                .replace(/\s+/g, '-')
+                .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+                .toLowerCase()}/contact`}
+            />
+          </>
         )}
       />
       <Container className="mt-0 pt-0">
