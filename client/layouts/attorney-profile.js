@@ -119,31 +119,31 @@ export default function AttorneyProfile({ bio, content }) {
             chair={bio.headerContent.chair}
             coChair={bio.headerContent.coChair}
             designation={bio.headerContent.title}
-            pdf={bio.headerContent.pdf}
-            vizibility={bio.headerContent.vizibility}
             offices={bio.headerContent.offices}
+            services={bio.headerContent.practices}
           />
         )}
         contact={(
           <>
-            {bio.headerContent.practices.length > 0 && (
-            <h3
-              className="animate__animated animate__fadeInUp animate__slow"
+           Like Beinstock...fdksjfklsd
+            <ul
+              className="list-unstyled animate__animated animate__fadeInUp animate__slow"
             >
-              <strong style={{ fontSize: '1,4rem', color: '#fff' }}>How can I help you?</strong>
-              <ul className="mt-2 ml-1 list-unstyled">
-                {bio.headerContent.practices.map((service) => (
-                  <li key={service.link}>
-                    <Link href={service.link}>
-                      <a className="text-white mb-2 d-block" style={{fontSize: '16px'}}>
-                        {service.title}
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </h3>
-            )}
+              {bio.headerContent.pdf && (
+              <li>
+                <a className="text-white" href={bio.headerContent.pdf} download>
+                  <u>PDF Biography</u>
+                </a>
+              </li>
+              )}
+              {bio.headerContent.vizibility && (
+              <li>
+                <a className="text-white" href={bio.headerContent.vizibility} download>
+                  <u>Vizibility Contact</u>
+                </a>
+              </li>
+              )}
+            </ul>
             <ContactBtn
               link={`/attorney/${bio.headerContent.name
                 .replace(/\s+/g, '-')

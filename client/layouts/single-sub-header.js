@@ -9,7 +9,7 @@ export default function SingleSubHeader({ title, subtitle, isBlog }) {
           <h1
             className="text-white mb-0 animate__animated animate__fadeInDown animate__fast"
             style={{
-              fontSize: !isBlog ? '4rem' : null,
+              fontSize: !isBlog ? '3.3rem' : null,
               textShadow: '2px 3px 3px #000',
             }}
           >
