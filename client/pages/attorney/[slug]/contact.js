@@ -16,7 +16,7 @@ export default function Contact({ contact, bio }) {
         bio={bio}
         content={(
           <>
-            <div>
+            <div className="px-3">
               <h3 className="mt-3 border-bottom pb-2 mb-3">
                 <strong>
                   {bio.headerContent.name}
@@ -24,7 +24,7 @@ export default function Contact({ contact, bio }) {
                   contact information
                 </strong>
               </h3>
-              <div style={{ fontSize: '1.2rem' }}>
+              <div style={{ fontSize: '1.1rem', marginLeft: '10px' }}>
                 <p className="mb-0">
                   <strong>Phone: </strong>
                   {' '}
@@ -69,16 +69,8 @@ export default function Contact({ contact, bio }) {
                       </Link>
                     ))}
                 </p>
+                <AttorneyContactForm attorneyEmail={contact.email} />
               </div>
-            </div>
-            <div>
-              <h3 className="mt-4 border-bottom pb-2 mb-3">
-                <strong>
-                  Get in touch with
-                  {bio.headerContent.name}
-                </strong>
-              </h3>
-              <AttorneyContactForm attorneyEmail={contact.email} />
             </div>
           </>
         )}
