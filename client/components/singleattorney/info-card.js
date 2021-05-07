@@ -46,7 +46,7 @@ export default function SingleAttorneyInfoCard({
       <div className="w-100 d-block animate__animated animate__fadeInDown animate__slow redBanner" />
       <Row>
         <Col sm={12} className="mt-1 mb-0">
-          <div className="mt-3 card px-3 pt-2 pb-0 rounded">
+          <div className="mt-3 px-3 pt-2 pb-0 rounded">
             <h3 className="animate__animated animate__fadeInUp animate__slow">
               <strong className="help">How I can help you</strong>
             </h3>

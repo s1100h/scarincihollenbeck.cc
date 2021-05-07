@@ -14,7 +14,7 @@ export default function ArchivePracticeBlockList({ list }) {
             <Dropdown>
               <Dropdown.Toggle
                 variant="link"
-                className={`${bigButtonStyles.tab} w-100`}
+                className={`${bigButtonStyles.tab} ${bigButtonStyles.onMainPracticePage} w-100`}
               >
                 {item.title}
               </Dropdown.Toggle>

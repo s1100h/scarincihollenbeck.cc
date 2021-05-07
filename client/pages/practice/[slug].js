@@ -65,7 +65,7 @@ export default function PracticeSingle({
                   && practice.content.map((item) => (
                     <Nav.Link
                       eventKey={urlify(item.title)}
-                      className={tabStyle.tab}
+                      className={`${tabStyle.tab} ${tabStyle.onSinglePracticePage}`}
                       key={item.title}
                     >
                       {item.title}
@@ -74,7 +74,7 @@ export default function PracticeSingle({
                 {practice.industryTopics.length > 0 && (
                   <Nav.Link
                     href={`/library?term=${urlify(practiceUrl)}`}
-                    className={tabStyle.tab}
+                    className={`${tabStyle.tab} ${tabStyle.onSinglePracticePage}`}
                     eventKey={urlify(practice.content[0].title)}
                   >
                     Related Updates
@@ -82,7 +82,7 @@ export default function PracticeSingle({
                 )}
               </Nav>
             </Col>
-            <Col sm={12} md={9} className="mt-4">
+            <Col sm={12} md={9} className="mt-2">
               {practice.content.length > 0
                 && practice.content.map((item) => (
                   <TabContent key={item.title}>

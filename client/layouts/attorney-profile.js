@@ -124,8 +124,7 @@ export default function AttorneyProfile({ bio, content }) {
           />
         )}
         contact={(
-          <>
-           Like Beinstock...fdksjfklsd
+          <div className="card">
             <ul
               className="list-unstyled animate__animated animate__fadeInUp animate__slow"
             >
@@ -138,7 +137,7 @@ export default function AttorneyProfile({ bio, content }) {
               )}
               {bio.headerContent.vizibility && (
               <li>
-                <a className="text-white" href={bio.headerContent.vizibility} download>
+                <a href={bio.headerContent.vizibility} download>
                   <u>Vizibility Contact</u>
                 </a>
               </li>
@@ -150,7 +149,7 @@ export default function AttorneyProfile({ bio, content }) {
                 .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
                 .toLowerCase()}/contact`}
             />
-          </>
+          </div>
         )}
       />
       <Container className="mt-0 pt-0">

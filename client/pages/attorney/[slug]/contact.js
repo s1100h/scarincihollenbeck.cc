@@ -69,7 +69,7 @@ export default function Contact({ contact, bio }) {
                       </Link>
                     ))}
                 </p>
-                <AttorneyContactForm attorneyEmail={contact.email} />
+                <AttorneyContactForm attorneyEmail={contact.forwardedEmailAddresses} />
               </div>
             </div>
           </>
@@ -101,7 +101,7 @@ export async function getStaticProps({ params }) {
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`,
+      `http://localhost:7806/wp-json/attorney-profile/contact/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);

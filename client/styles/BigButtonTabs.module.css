@@ -1,4 +1,4 @@
-.tab {
+/* .tab {
   font-size: 1.1rem;
   line-height: 26px;
   text-align: center;
@@ -14,6 +14,30 @@
   -webkit-transition: All 1s ease;
   -moz-transition: All 1s ease;
   border-radius: 5px;
+} */
+
+.tab {
+  font-size: 1rem;
+    line-height: 26px;
+    text-align: center;
+    border: 1px solid #db2200;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    color: #db2200!important;
+    text-decoration: none;
+    transition: All 1s ease;
+    -webkit-transition: All 1s ease;
+    -moz-transition: All 1s ease;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.onMainPracticePage {
+  min-width: 310px;
+}
+
+.onSinglePracticePage {
+  min-width: 200px;
 }
 
 .tab:hover {
