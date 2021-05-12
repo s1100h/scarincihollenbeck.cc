@@ -61,7 +61,7 @@ export default function ProBono({ page }) {
                     <Nav.Link
                       eventKey={tab.title}
                       key={tab.title}
-                      className={tabStyle.tab}
+                      className={`${tabStyle.tab} ${tabStyle.onSinglePracticePage}`}
                     >
                       {tab.title}
                     </Nav.Link>

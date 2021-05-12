@@ -122,6 +122,8 @@ export default function PracticeSingle({
               )}
             </Col>
             <Col sm={12} md={3}>
+              <SimpleSearch />
+              <hr />
               {router.query.slug === 'education-law' && (
                 <>
                   <div>
@@ -146,12 +148,14 @@ export default function PracticeSingle({
                         </a>
                       </Link>
                     </h5>
+                    <hr />
                   </div>
                   <CovidResourceBox
                     title="COVID-19 Response Team"
                     link="/government-education-covid-19-response-team"
                     message="Learn more about the Government & Education Law Practice's COVID-19 focused response team."
                   />
+                  <hr />
                 </>
               )}
               {router.query.slug === 'crisis-risk-management' && (
@@ -161,21 +165,26 @@ export default function PracticeSingle({
                     link="/covid-19-crisis-management-unit"
                     message="Learn more about the Crisis & Risk Management Law Practice's COVID-19 Strategic Response Unit."
                   />
+                  <hr />
                 </>
               )}
-              <SimpleSearch />
+
               <SubscriptionMessage />
+              <hr />
               <PracticeSidebar
                 title="Core Practices"
                 content={corePractices}
                 tabKey={2}
               />
               {practiceChildren.length > 0 && (
-                <PracticeSidebar
-                  title="Related Practices"
-                  content={practiceChildren}
-                  tabKey={1}
-                />
+                <>
+                  <hr />
+                  <PracticeSidebar
+                    title="Related Practices"
+                    content={practiceChildren}
+                    tabKey={1}
+                  />
+                </>
               )}
             </Col>
           </Row>

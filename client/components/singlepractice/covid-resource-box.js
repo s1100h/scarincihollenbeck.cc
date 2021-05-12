@@ -4,7 +4,7 @@ import textStyles from 'styles/Text.module.css';
 
 export default function PracticeCovidResourceBox({ title, link, message }) {
   return (
-    <div className="mt-5">
+    <div className="mt-4">
       <p className={`${fontStyles.ft12rem} mb-1`}>
         <strong>{title}</strong>
       </p>

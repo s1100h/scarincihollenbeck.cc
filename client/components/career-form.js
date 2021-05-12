@@ -14,12 +14,12 @@ export default function CareerForm({ contact, title }) {
   useEffect(() => kwesforms.init());
 
   return (
-    <div className="px-2 my-3 border-top">
+    <div className="px-2 my-3">
       <form
         method="POST"
         action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW"
         encType="multipart/form-data"
-        className="kwes-form d-print-none px-1"
+        className="kwes-form d-print-none px-1 w-75"
       >
         <input
           type="hidden"
@@ -32,7 +32,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="text"
-              className="form-control mx-0"
+              className="form-control mx-0 mb-2"
               name="firstName"
               placeholder="First name"
               rules="required|max:255"
@@ -41,7 +41,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="text"
-              className="form-control mx-0"
+              className="form-control mx-0 mb-2"
               name="lastName"
               placeholder="Last name"
               rules="required|max:255"
@@ -52,7 +52,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="email"
-              className="form-control mx-0"
+              className="form-control mx-0 mb-2"
               name="email"
               placeholder="Email address"
               rules="required|max:255"
@@ -61,7 +61,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="phone"
-              className="form-control mx-0"
+              className="form-control mx-0 mb-2"
               name="phone"
               placeholder="Phone number"
               rules="required|max:255"

@@ -17,7 +17,7 @@ export default function ContactForm() {
     <div className="px-2 mb-3">
       <form
         action="https://kwes.io/api/foreign/forms/oIRf8VAo2KnGHucQmZ1m"
-        className="kwes-form d-print-none px-1"
+        className="kwes-form d-print-none px-1 w-75"
       >
         <input
           type="hidden"

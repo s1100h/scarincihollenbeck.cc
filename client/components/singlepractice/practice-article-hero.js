@@ -31,10 +31,14 @@ export default function ArticleHeroPractice({ link, content }) {
           ))}
         <Link href={`/library?term=${link}`}>
           <a
-            className="btn btn-danger px-2 my-4 d-block"
-            style={{ fontSize: '1.3rem', maxWidth: '200px' }}
+            className=" mx-auto d-block w-100 text-center my-4"
+            style={{ color: '#db2220', fontSize: '1.275rem' }}
           >
-            More articles
+            <strong>
+              <u>
+                More articles
+              </u>
+            </strong>
           </a>
         </Link>
       </Row>
