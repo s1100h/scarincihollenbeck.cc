@@ -13,47 +13,7 @@ import ArticleCards from 'components/singleattorney/article-cards';
 import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
 import SidebarInformationListObject from 'components/singleattorney/sidebar-information-list-object';
 import ContactBtn from 'components/singleattorney/contact-btn';
-import { buildBusinessSchema } from 'utils/json-ld-schemas';
-
-// build out attorney profile schema
-function buildAttorneyProfileSchema(
-  name,
-  url,
-  imageUrl,
-  socialMediaLinks,
-  jobTitle,
-) {
-  let links;
-
-  if (socialMediaLinks) {
-    links = socialMediaLinks.map((link) => link.url);
-
-    if (socialMediaLinks.length === 0) {
-      links = [
-        'https://www.facebook.com/ScarinciHollenbeck/',
-        'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
-      ];
-    }
-  }
-
-  return {
-    '@graph': [
-      {
-        '@context': 'https://schema.org/',
-        '@type': 'Person',
-        name,
-        url,
-        image: imageUrl,
-        sameAs: links,
-        jobTitle,
-        worksFor: {
-          '@type': 'Organization',
-          name: 'Scarinci Hollenbceck',
-        },
-      },
-    ],
-  };
-}
+import { buildBusinessSchema, buildAttorneyProfileSchema } from 'utils/json-ld-schemas';
 
 export default function AttorneyProfile({ bio, content }) {
   return (
@@ -122,34 +82,6 @@ export default function AttorneyProfile({ bio, content }) {
             offices={bio.headerContent.offices}
             services={bio.headerContent.practices}
           />
-        )}
-        contact={(
-          <div className="card">
-            <ul
-              className="list-unstyled animate__animated animate__fadeInUp animate__slow"
-            >
-              {bio.headerContent.pdf && (
-              <li>
-                <a className="text-white" href={bio.headerContent.pdf} download>
-                  <u>PDF Biography</u>
-                </a>
-              </li>
-              )}
-              {bio.headerContent.vizibility && (
-              <li>
-                <a href={bio.headerContent.vizibility} download>
-                  <u>Vizibility Contact</u>
-                </a>
-              </li>
-              )}
-            </ul>
-            <ContactBtn
-              link={`/attorney/${bio.headerContent.name
-                .replace(/\s+/g, '-')
-                .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-                .toLowerCase()}/contact`}
-            />
-          </div>
         )}
       />
       <Container className="mt-0 pt-0">

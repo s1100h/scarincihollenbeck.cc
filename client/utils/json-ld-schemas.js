@@ -90,3 +90,42 @@ export function buildLocationSchema(location) {
     ],
   };
 }
+
+export function buildAttorneyProfileSchema(
+  name,
+  url,
+  imageUrl,
+  socialMediaLinks,
+  jobTitle,
+) {
+  let links;
+
+  if (socialMediaLinks) {
+    links = socialMediaLinks.map((link) => link.url);
+
+    if (socialMediaLinks.length === 0) {
+      links = [
+        'https://www.facebook.com/ScarinciHollenbeck/',
+        'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+      ];
+    }
+  }
+
+  return {
+    '@graph': [
+      {
+        '@context': 'https://schema.org/',
+        '@type': 'Person',
+        name,
+        url,
+        image: imageUrl,
+        sameAs: links,
+        jobTitle,
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Scarinci Hollenbceck',
+        },
+      },
+    ],
+  };
+}

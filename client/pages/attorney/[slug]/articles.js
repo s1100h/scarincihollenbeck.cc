@@ -40,7 +40,7 @@ export async function getStaticProps({ params }) {
   // do some major refactoring on the single attorney bio API endpoint
   const [bio, articles] = await Promise.all([
     fetch(
-      `http://localhost:7806/wp-json/attorney-profile/main/${params.slug}`,
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
     fetch(

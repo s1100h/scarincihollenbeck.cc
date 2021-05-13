@@ -101,7 +101,7 @@ export async function getStaticProps({ params }) {
       { headers },
     ).then((data) => data.json()),
     fetch(
-      `http://localhost:7806/wp-json/attorney-profile/contact/${params.slug}`,
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
   ]);
