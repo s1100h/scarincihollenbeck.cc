@@ -4,7 +4,9 @@ import { headers } from 'utils/helpers';
 
 import Attorney2Profile from 'layouts/attorney2-profile';
 
-export default function AttorneyBioProfile({ bio, contact, content }) {
+export default function AttorneyBioProfile({
+  bio, contact, content, slug,
+}) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -18,6 +20,7 @@ export default function AttorneyBioProfile({ bio, contact, content }) {
   return (
     <>
       <Attorney2Profile
+        slug={slug}
         head={bio.seo}
         body={{
           bio,
@@ -74,6 +77,7 @@ export async function getStaticProps({ params }) {
       bio,
       contact,
       content,
+      slug: params.slug,
     },
     revalidate: 1,
   };

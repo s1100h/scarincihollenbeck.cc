@@ -5,13 +5,34 @@ import Button from 'react-bootstrap/Button';
 import profileStyles from 'styles/ProfileImage.module.css';
 import styles from 'styles/Banner.module.css';
 
+import { useState, useEffect } from 'react';
+
 export default function AttorneyProfileHeader({ image, profile }) {
+  const [designation, setDesiganation] = useState(profile.title);
   const {
     name, title, chair, coChair, offices, phoneNumber, email, pdf, vizibility, socialMedia,
   } = profile;
   const router = useRouter();
 
   const linkedIn = socialMedia.filter((a) => a.channel === 'LinkedIn')[0];
+
+  useEffect(() => {
+    if (title === 'Red Bank, NJ Managing Partner') {
+      setDesiganation('Red Bank, NJ  Office Managing Partner');
+    }
+
+    if (title === 'NYC Managing Partner') {
+      setDesiganation('NYC Office Managing Partner');
+    }
+
+    if (title === 'Managing Partner') {
+      setDesiganation('Firm Managing Partner');
+    }
+
+    if (title === 'Washington, D.C. Managing Partner') {
+      setDesiganation('Washington, D.C. Office Managing Partner');
+    }
+  });
 
   return (
     <>
@@ -35,7 +56,7 @@ export default function AttorneyProfileHeader({ image, profile }) {
               <h2 className="animate__animated animate__fadeInDown animate__slow mb-0">
                 <strong className="name">{name}</strong>
               </h2>
-              <p className="title">{title}</p>
+              <p className="title">{designation}</p>
               <div
                 className="red-border d-block animate__animated animate__fadeInDown animate__fast"
                 style={{

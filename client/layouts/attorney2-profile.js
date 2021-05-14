@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,11 +7,18 @@ import Col from 'react-bootstrap/Col';
 import AttorneyProfileHeader from 'components/singleattorney2/header';
 import AttorneyBioLinks from 'components/singleattorney2/links';
 import AttorneyProfileBody from 'components/singleattorney2/body';
+import AttorneyProfileSidebar from 'components/singleattorney2/sidebar';
+import AttorneyProfileFooter from 'components/singleattorney2/footer';
 import { buildBusinessSchema, buildAttorneyProfileSchema } from 'utils/json-ld-schemas';
 
 export default function Attorney2Profile({
-  head, header, body,
+  head, header, body, slug,
 }) {
+  const router = useRouter();
+
+  /** *
+   *  TODO: Update the backend to have a strict order these are going to be sorted and remove this filter and hardcode these titles
+   */
   const modHeaderLinks = body.bio.sidebarLinks.filter((l) => {
     if (l.label !== 'Education' && l.label !== 'Bar Admissions' && l.label !== 'Articles' && l.label !== 'Additional Information' && l.label !== 'News & Events') {
       return true;
@@ -29,7 +37,7 @@ export default function Attorney2Profile({
       label: 'News, Events & Articles',
       link: '/articles',
     },
-  ].sort((a, b) => ((a.label > b.label) ? 1 : -1));
+  ];
 
   return (
     <>
@@ -80,6 +88,8 @@ export default function Attorney2Profile({
             ),
           }}
         />
+        <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
       </Head>
       <AttorneyProfileHeader image={header.image} profile={header.profile} />
       <Container>
@@ -91,14 +101,14 @@ export default function Attorney2Profile({
             <AttorneyProfileBody content={body.content} />
           </Col>
           <Col sm={12} md={3}>
-            <ol>
-              <li>Sidebar</li>
-            </ol>
+            <AttorneyProfileSidebar
+              services={body.bio.headerContent.practices}
+              contact={`${router.asPath}/contact`}
+              awards={body.bio.mainPageContent.awards}
+            />
           </Col>
           <Col sm={12}>
-            <ol>
-              <li>Footer</li>
-            </ol>
+            <AttorneyProfileFooter slug={slug} clients={body.bio.mainPageContent.clients} />
           </Col>
         </Row>
       </Container>
