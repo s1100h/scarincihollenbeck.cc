@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { createMarkup, formatDate } from 'utils/helpers';
 
-export default function SingleAttorneyVideoTab({ content }) {
+export default function AttorneyProfileVideo({ content }) {
   return (
     <Container>
       <Row>

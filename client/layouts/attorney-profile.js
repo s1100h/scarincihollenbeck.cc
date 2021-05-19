@@ -1,45 +1,90 @@
-/* eslint-disable no-useless-escape */
 import Head from 'next/head';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import MultiSubHeader from 'layouts/multi-sub-header';
-import ProfileImage from 'components/singleattorney/profile-image';
-import SingleAttorneyInfoCard from 'components/singleattorney/info-card';
-import SidebarLinks from 'components/singleattorney/sidebar-links';
-import ArticleCards from 'components/singleattorney/article-cards';
-import SidebarInformationList from 'components/singleattorney/sidebar-information-list';
-import SidebarInformationListObject from 'components/singleattorney/sidebar-information-list-object';
-import ContactBtn from 'components/singleattorney/contact-btn';
-import { buildBusinessSchema, buildAttorneyProfileSchema } from 'utils/json-ld-schemas';
+import AttorneyProfileHeader from 'components/singleattorney/header';
+import AttorneyBioLinks from 'components/singleattorney/links';
+import AttorneyProfileBody from 'components/singleattorney/body';
+import AttorneyProfileArticles from 'components/singleattorney/articles';
+import AttorneyProfileClients from 'components/singleattorney/clients';
+import AttorneyProfileSidebar from 'components/singleattorney/sidebar';
+import AttorneyProfileTab from 'components/singleattorney/table';
+import AttorneyProfileMatters from 'components/singleattorney/matters';
+import AttorneyProfileVideo from 'components/singleattorney/video';
+import AttorneyProfileEducation from 'components/singleattorney/education';
+import AttorneyProfileFooter from 'components/singleattorney/footer';
+import {
+  buildBusinessSchema,
+  buildAttorneyProfileSchema,
+} from 'utils/json-ld-schemas';
 
-export default function AttorneyProfile({ bio, content }) {
+function renderBody(param, content, slug) {
+  switch (param) {
+    case 'biography':
+      return <AttorneyProfileBody content={content} />;
+    case 'clients':
+      return <AttorneyProfileClients clients={content} />;
+    case 'presentations':
+      return <AttorneyProfileTab content={content} />;
+    case 'publications':
+      return <AttorneyProfileTab content={content} />;
+    case 'media':
+      return <AttorneyProfileTab content={content} />;
+    case 'representative-matters':
+      return <AttorneyProfileMatters content={content} />;
+    case 'representative-clients':
+      return <AttorneyProfileMatters content={content} />;
+    case 'awards':
+      return <AttorneyProfileClients clients={content} />;
+    case 'articles':
+      return <AttorneyProfileArticles initalArticles={content} term={slug} />;
+    case 'education-admissions':
+      return <AttorneyProfileEducation content={content} />;
+    case 'videos':
+      return <AttorneyProfileVideo content={content} />;
+    case 'audio':
+      return <AttorneyProfileBody content={content[0].body} />;
+    default:
+      if (Array.isArray(content)) {
+        return <AttorneyProfileBody content={content[0].body} />;
+      }
+      return <AttorneyProfileBody content={content} />;
+  }
+}
+export default function AttorneyProfile({
+  head, header, body, slug,
+}) {
+  const router = useRouter();
+
+  const paramArr = router.asPath.split('/').filter((a) => a !== '');
+  const paramLen = paramArr.length;
+
   return (
     <>
       <NextSeo
-        title={bio.seo.title}
-        description={bio.seo.metaDescription}
-        canonical={`https://scarincihollenbeck.com${bio.seo.canonicalLink}`}
+        title={head.title}
+        description={head.metaDescription}
+        canonical={`https://scarincihollenbeck.com${head.canonicalLink}`}
         openGraph={{
-          url: `https://scarincihollenbeck.com${bio.seo.canonicalLink}}`,
+          url: `https://scarincihollenbeck.com${head.canonicalLink}}`,
           title: 'Scarinci Hollenbeck',
-          description: bio.seo.metaDescription,
+          description: head.metaDescription,
           images: [
             {
-              url: bio.profileImage,
+              url: header.image,
               width: 743,
               height: 795,
-              alt: bio.seo.title,
+              alt: head.title,
             },
           ],
           site_name: 'Scarinci Hollenbeck',
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: `https://scarincihollenbeck.com${bio.seo.canonicalLink}}`,
-          cardType: bio.seo.metaDescription,
+          site: `https://scarincihollenbeck.com${head.canonicalLink}}`,
+          cardType: head.metaDescription,
         }}
       />
       <Head>
@@ -56,125 +101,48 @@ export default function AttorneyProfile({ bio, content }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(
               buildAttorneyProfileSchema(
-                bio.seo.title,
-                `https://scarincihollenbeck.com${bio.seo.canonicalLink}}`,
-                bio.profileImage,
-                bio.socialMediaLinks,
-                bio.designation,
+                head.title,
+                `https://scarincihollenbeck.com${head.canonicalLink}}`,
+                header.image,
+                body.bio.socialMediaLinks,
+                header.profile.designation,
               ),
             ),
           }}
         />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charset="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
       </Head>
-      <MultiSubHeader
-        profile={(
-          <ProfileImage
-            image={bio.headerContent.profileImage}
-            name={bio.headerContent.name}
-          />
-        )}
-        infoCard={(
-          <SingleAttorneyInfoCard
-            fullName={bio.headerContent.name}
-            chair={bio.headerContent.chair}
-            coChair={bio.headerContent.coChair}
-            designation={bio.headerContent.title}
-            offices={bio.headerContent.offices}
-            services={bio.headerContent.practices}
-          />
-        )}
-      />
-      <Container className="mt-0 pt-0">
+      <AttorneyProfileHeader image={header.image} profile={header.profile} />
+      <Container>
         <Row>
-          <Col sm={12} md={9}>
-            {content}
-            {bio.mainPageContent.attorneyNewsEvents.length > 0 && (
-              <ArticleCards
-                title="News & Events"
-                articles={bio.mainPageContent.attorneyNewsEvents}
-                type="articles"
-                id="news-events"
-              />
-            )}
-            {bio.mainPageContent.attorneyBlogs.length > 0 && (
-              <>
-                <ArticleCards
-                  title="Blog Articles"
-                  articles={bio.mainPageContent.attorneyBlogs}
-                  type="articles"
-                  id="articles"
-                />
-                <Link
-                  href={`/library?term=${bio.headerContent.name
-                    .replace(/[^a-zA-Z0-9]/g, ' ')
-                    .replace(/\s+/g, '-')
-                    .toLowerCase()}`}
-                >
-                  <a
-                    className="btn btn-danger px-2 my-4 d-block"
-                    style={{ fontSize: '1.3rem', maxWidth: '200px' }}
-                  >
-                    More articles
-                  </a>
-                </Link>
-              </>
-            )}
-            {bio.mainPageContent.awards.length > 0 && (
-              <ArticleCards
-                title="Awards"
-                articles={bio.mainPageContent.awards}
-                type="awards"
-              />
-            )}
-            {bio.mainPageContent.clients.length > 0 && (
-              <>
-                <ArticleCards
-                  title="Clients"
-                  articles={bio.mainPageContent.clients}
-                  type="awards"
-                />
-                <Link
-                  href={`/attorney/${bio.headerContent.name
-                    .replace(/\s+/g, '-')
-                    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-                    .toLowerCase()}/content/clients`}
-                >
-                  <a
-                    className="btn btn-danger px-2 my-4 d-block"
-                    style={{ fontSize: '1.3rem', maxWidth: '200px' }}
-                  >
-                    More Clients
-                  </a>
-                </Link>
-              </>
-            )}
-            <SidebarInformationList
-              title="Education"
-              id="education"
-              content={bio.mainPageContent.education}
-            />
-            <SidebarInformationList
-              title="Bar Admissions"
-              id="bar-admission"
-              content={bio.mainPageContent.barAdmissions}
-            />
-            {bio.mainPageContent.additionalInformation.length > 0 && (
-              <SidebarInformationListObject
-                title="Additional Information"
-                id="additional-information"
-                content={bio.mainPageContent.additionalInformation}
-              />
-            )}
-            {bio.mainPageContent.affiliations && (
-              <SidebarInformationList
-                title="Affiliations"
-                id="affiliations"
-                content={bio.mainPageContent.affiliations}
-              />
-            )}
+          <Col sm={12}>
+            <AttorneyBioLinks links={body.bio.sidebarLinks} slug={slug} />
           </Col>
-          <Col sm={12} md={3} className="px-0">
-            <SidebarLinks links={bio.sidebarLinks} />
+          <Col sm={12} md={9}>
+            {renderBody(paramArr[paramLen - 1], body.content, slug)}
+          </Col>
+          <Col sm={12} md={3}>
+            <AttorneyProfileSidebar
+              services={body.bio.headerContent.practices}
+              contact={`${router.asPath}/contact`}
+              awards={body.bio.mainPageContent.awards}
+            />
+          </Col>
+          <Col sm={12}>
+            <AttorneyProfileFooter
+              slug={slug}
+              clients={body.bio.mainPageContent.clients}
+            />
           </Col>
         </Row>
       </Container>

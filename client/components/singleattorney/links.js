@@ -1,15 +1,12 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import bigButtonStyles from 'styles/BigButtonTabs.module.css';
 
-export default function AttorneyBioLinks({ links }) {
-  const router = useRouter();
-
+export default function AttorneyBioLinks({ links, slug }) {
   return (
     <div className="d-flex flex-column flex-md-row flex-wrap">
       {links.map((l) => (
         <div key={l.label}>
-          <Link key={l.label} href={`${router.asPath}${l.link}`}>
+          <Link key={l.label} href={`/attorney/${slug}${l.link}`}>
             <a
               className={`${bigButtonStyles.tab} ${bigButtonStyles.onMainPracticePage} mr-0 mb-3 mr-md-3 mb-3 tab-link`}
             >

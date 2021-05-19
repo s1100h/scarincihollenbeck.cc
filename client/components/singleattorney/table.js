@@ -3,9 +3,9 @@ import Col from 'react-bootstrap/Col';
 import { createMarkup } from 'utils/helpers';
 import styles from 'styles/Table.module.css';
 
-export default function SingleAttorneyTableTab({ content }) {
+export default function AttorneyProfileTab({ content }) {
   return (
-    <Row>
+    <Row className="mt-4">
       <Col className={styles.content} sm={12}>
         {content.body.map((b) => (
           <div key={b[0].c} className="mb-3">

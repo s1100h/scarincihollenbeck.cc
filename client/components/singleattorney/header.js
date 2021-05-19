@@ -68,7 +68,7 @@ export default function AttorneyProfileHeader({ image, profile }) {
                 {chair.length > 0 && (
                   <>
                     <p className="mb-2">
-                      <strong>Chair: </strong>
+                      <strong className="cred-title">Chair: </strong>
                       {chair.map((c, i) => (
                         <Link key={c.title} href={c.link.replace('https://wp.scarincihollenbeck.com/', '')}>
                           <a className="text-white">
@@ -83,7 +83,7 @@ export default function AttorneyProfileHeader({ image, profile }) {
                 {coChair.length > 0 && (
                   <>
                     <p className="mb-2">
-                      <strong>Co-Chair: </strong>
+                      <strong className="cred-title">Co-Chair: </strong>
                       {coChair.map((c, i) => (
                         <Link key={c.title} href={c.link.replace('https://wp.scarincihollenbeck.com/', '')}>
                           <a className="text-white">
@@ -95,10 +95,16 @@ export default function AttorneyProfileHeader({ image, profile }) {
                     </p>
                   </>
                 )}
+                <p className="mb-2">
+                  <strong className="cred-title">Contact: </strong>
+                  {phoneNumber}
+                  <strong className="mx-2">|</strong>
+                  {email}
+                </p>
                 {offices.length > 0 && (
                 <>
                   <p className="mb-2">
-                    <strong>Offices: </strong>
+                    <strong className="cred-title">Offices: </strong>
                     {offices.map((o, i) => (
                       <Link key={o.ID} href={o.link}>
                         <a className="text-white">
@@ -110,12 +116,6 @@ export default function AttorneyProfileHeader({ image, profile }) {
                   </p>
                 </>
                 )}
-                <p className="mb-2">
-                  <strong>Contact: </strong>
-                  {phoneNumber}
-                  <strong className="mx-2">|</strong>
-                  {email}
-                </p>
               </div>
               <div className="my-3 d-flex flex-row flex-wrap">
                 <Button
@@ -171,6 +171,9 @@ export default function AttorneyProfileHeader({ image, profile }) {
           strong.name {
             font-size: 2.5rem;
           }
+          strong.cred-title {
+            font-size: 1.2rem;
+          }
           p.title {
             font-size: 1.45rem;
             margin-top: -5px;
@@ -178,7 +181,7 @@ export default function AttorneyProfileHeader({ image, profile }) {
           }
 
           div.credentials {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
           }
           div.profile {
             width: 100%;

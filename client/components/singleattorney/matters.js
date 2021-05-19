@@ -2,9 +2,9 @@ import { createMarkup } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import styles from 'styles/Matters.module.css';
 
-export default function SingleAttorneyMatters({ content }) {
+export default function AttorneyProfileMatters({ content }) {
   return (
-    <div>
+    <div className="mt-3">
       {content.length > 0
         && content.map((c) => (
           <div key={c.content}>

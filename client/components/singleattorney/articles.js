@@ -7,11 +7,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
-export default function AttorneyArticleList({ initalArticles, term }) {
+export default function AttorneyProfileArticles({ initalArticles, term }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(2);
   const [error, setError] = useState(false);
-  const [articleList, setArticleList] = useState(initalArticles || []);
+  const [articleList, setArticleList] = useState(initalArticles.filter((_, i) => i <= 5) || []);
 
   async function handleClick() {
     setLoading(true);
@@ -34,36 +34,31 @@ export default function AttorneyArticleList({ initalArticles, term }) {
   }
 
   return (
-    <Row>
+    <Row className="mt-2">
       {error ? (
         <p>
           <strong>There was an error loading more posts...</strong>
         </p>
-      ) : (
-        <Row className="my-4">
-          {articleList
-            && articleList.map((article) => (
-              <Col sm={12} md={4} key={article.title} className="my-3">
-                <Link href={article.link}>
-                  <a className="text-center mx-auto d-block">
-                    <Image
-                      alt={article.title}
-                      src={
-                        article.image || '/images/no-image-found-diamond.png'
-                      }
-                      width={300}
-                      height={150}
-                      className="rounded"
-                    />
-                    <small className="text-dark d-block">
-                      <strong>{article.title}</strong>
-                    </small>
-                  </a>
-                </Link>
-              </Col>
-            ))}
-        </Row>
-      )}
+      ) : articleList.map((article) => (
+        <Col sm={12} md={4} key={article.title} className="my-3">
+          <Link href={article.link}>
+            <a className="text-center mx-auto d-block">
+              <Image
+                alt={article.title}
+                src={
+                    article.image || article.featuredImg || '/images/no-image-found-diamond.png'
+                  }
+                width={300}
+                height={150}
+                className="rounded"
+              />
+              <small className="text-dark d-block">
+                <strong>{article.title}</strong>
+              </small>
+            </a>
+          </Link>
+        </Col>
+      ))}
       <Col sm={12}>
         <Button
           variant="danger"

@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
-import AttorneyProfile from 'layouts/attorney-profile';
-import BasicContent from 'components/singleattorney/basic-content';
 import { headers } from 'utils/helpers';
 
-export default function AttorneySingleBio({ bio }) {
+import AttorneyProfile from 'layouts/attorney-profile';
+
+export default function AttorneyBioProfile({
+  bio, contact, content, slug,
+}) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -16,21 +18,20 @@ export default function AttorneySingleBio({ bio }) {
   }
 
   return (
-    <AttorneyProfile
-      path={router.asPath}
-      bio={bio}
-      content={(
-        <BasicContent
-          title=""
-          id="biography"
-          content={bio.mainPageContent.biography.join('')}
-          links={{
-            label: 'Read more',
-            link: `${router.asPath}/content/biography`,
-          }}
-        />
-      )}
-    />
+    <>
+      <AttorneyProfile
+        slug={slug}
+        head={bio.seo}
+        body={{
+          bio,
+          content,
+        }}
+        header={{
+          image: bio.headerContent.profileImage,
+          profile: { ...bio.headerContent, ...contact },
+        }}
+      />
+    </>
   );
 }
 
@@ -50,9 +51,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
-  const [bio] = await Promise.all([
+  const [bio, contact, content] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/biography`,
       { headers },
     ).then((data) => data.json()),
   ]);
@@ -66,6 +75,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       bio,
+      contact,
+      content,
+      slug: params.slug,
     },
     revalidate: 1,
   };
