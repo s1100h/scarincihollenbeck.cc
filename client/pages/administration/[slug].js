@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
 import { NextSeo, SocialProfileJsonLd } from 'next-seo';
-import ProfileImage from 'components/singleattorney/profile-image';
-import InfoCard from 'components/singleattorney/info-card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import AdminProfileHeader from 'components/singleadmin/header';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import SiteLoader from 'components/site-loader';
-import MultiSubHeader from 'layouts/multi-sub-header';
-import FullWidth from 'layouts/full-width';
 import { createMarkup, headers } from 'utils/helpers';
-import lineStyles from 'styles/LineHeader.module.css';
 
 export default function AdminSingleBio({ response }) {
   const router = useRouter();
@@ -18,6 +18,16 @@ export default function AdminSingleBio({ response }) {
       </div>
     );
   }
+
+  const profile = {
+    email: response.email,
+    vizibility: response.vizibility,
+    name: response.name,
+    designation: response.Title,
+    phoneNumber: `201-896-4100 ${response.phone_extension}`,
+    socialMedia: response.social_media_links,
+    offices: response.offices,
+  };
 
   return (
     <>
@@ -55,8 +65,19 @@ export default function AdminSingleBio({ response }) {
           'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
         ]}
       />
-      <div>
-        <MultiSubHeader
+      <AdminProfileHeader profile={profile} image={response.image.url} />
+      <Container>
+        <Row>
+          <Col sm={12}>
+            <h4 className={grayTitleStyles.title}>Biography</h4>
+            <div
+              className="mb-5"
+              dangerouslySetInnerHTML={createMarkup(response.biography)}
+            />
+          </Col>
+        </Row>
+      </Container>
+      {/* <MultiSubHeader
           image="/images/Columns-1800x400-JPG.jpg"
           height="450px"
           isAdmin
@@ -84,19 +105,10 @@ export default function AdminSingleBio({ response }) {
             <div className={lineStyles.lineHeader}>
               <h3>Biography</h3>
             </div>
-            <div className="w-100 my-5">
-              <div
-                style={{
-                  marginBottom: '1.125rem',
-                  fontSize: '1.36rem',
-                  lineHeight: '1.68',
-                }}
-                dangerouslySetInnerHTML={createMarkup(response.biography)}
-              />
-            </div>
+            <div className="w-100 my-5" />
           </div>
         </FullWidth>
-      </div>
+      </div> */}
     </>
   );
 }

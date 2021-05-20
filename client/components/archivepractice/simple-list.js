@@ -4,7 +4,7 @@ import formsStyles from 'styles/Forms.module.css';
 
 export default function ArchivePracticeSimpleList({ list }) {
   return (
-    <div className="mt-5">
+    <div className="my-5">
       <ul className={`${textStyles.blueTitle} ${formsStyles.threeColumns}`}>
         {list.map((item) => (
           <li key={item.ID} className="mb-3">
@@ -15,7 +15,6 @@ export default function ArchivePracticeSimpleList({ list }) {
                 <strong>{item.title}</strong>
               </a>
             </Link>
-            <style jsx>{' li { font-size: 1.2rem }'}</style>
           </li>
         ))}
       </ul>

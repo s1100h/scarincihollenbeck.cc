@@ -6,24 +6,6 @@ export default function SubscriptionBody() {
   return (
     <>
       <div className="w-100 my-4">
-        {/* <p className="h4">Be the the first to know when: </p>
-        <ul className="h4 my-4">
-          <li className="mb-2">
-            When our
-            <strong> attorney&apos;s blog posts</strong>
-          </li>
-          <li className="mb-2">
-            Various
-            {' '}
-            <strong>legal updates</strong>
-            {' '}
-            that may pertain to your
-            business
-          </li>
-          <li className="mb-3">
-            Any annoucements and press releases from the attorneys at the firm
-          </li>
-        </ul> */}
         <p className="lead py-3 mb-2 text-center">
           <strong>Be the the first to know when,</strong>
           {' '}

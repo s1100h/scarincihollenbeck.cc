@@ -130,6 +130,7 @@ export default function HomePageTwo({
         <HomePageLink
           link="/library?category=firm-news"
           title="Read more articles about our attorneys"
+          margins="my-5"
         />
       </Container>
     </>

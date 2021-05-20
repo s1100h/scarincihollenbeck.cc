@@ -1,4 +1,4 @@
-export default function HomePageLink({ link, title, margins = 'my-5' }) {
+export default function HomePageLink({ link, title, margins = 'my-3' }) {
   return (
     <div className={`mx-auto d-block w-100 text-center ${margins}`}>
       <a href={link}>

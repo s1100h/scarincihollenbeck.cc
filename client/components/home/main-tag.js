@@ -17,7 +17,7 @@ export default function HomeMainTag() {
       <style jsx>
         {`
           h3 {
-            font-size: 2.3rem;
+            font-size: 2rem;
             line-height: 1.2
             font-weight: 300;
           }

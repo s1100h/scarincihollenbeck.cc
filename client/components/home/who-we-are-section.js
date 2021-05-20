@@ -11,7 +11,7 @@ export default function HomeWhoWeAreSection() {
         </div>
       </Col>
       <Col sm={12} className="text-center mt-5 mb-0 pb-0">
-        <p className="lead">
+        <p>
           With a growing practice of more than 60 experienced attorneys,
           Scarinci Hollenbeck is a regional alternative to a National 250 law
           firm. With offices in New Jersey, New York City, and the District of
@@ -19,12 +19,13 @@ export default function HomeWhoWeAreSection() {
           institutions, corporations, entities, and the people who own and
           control them.
         </p>
-        <p className="lead">
+        <p>
           Since the firm was founded in 1988, we have maintained our reputation
           for getting things done. Most attorneys at Scarinci Hollenbeck have
           significant experience in their practice areas, and have published and
           lectured on current topics in their field.
         </p>
+        <style jsx>{'p{ font-size: 1.1rem }'}</style>
       </Col>
     </Row>
   );

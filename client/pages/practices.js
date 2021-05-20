@@ -47,7 +47,6 @@ export default function PracticesPage({ core, additional, business }) {
           of the named law practices. They will be happy to assist you and guide
           you to the appropriate attorney for resolution of your issue.
         </p>
-        <style jsx>{' p { font-size: 1.4rem '}</style>
         <div className="mt-4 px-0">
           <div className={lineHeaderStyles.lineHeader}>
             <h3>Core Practices</h3>

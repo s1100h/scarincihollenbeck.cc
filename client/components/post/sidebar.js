@@ -15,9 +15,9 @@ export default function PostSidebar({ title, posts, attorneys }) {
       <SubscriptionMessage />
       <hr />
       <TrendingStories title="Trending Stories" content={posts} />
-      <hr />
       {attorneys.length > 0 && (
         <div className="w-100 mt-4">
+          <hr />
           <p className={fontStyles.ft12rem}>
             <strong>Mentioned Attorneys</strong>
           </p>
