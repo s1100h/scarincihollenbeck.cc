@@ -1,0 +1,15 @@
+.tab {
+  color: #fff;
+  /* rgba(255,0,0,0), rgba(255,0,0,1) */
+  background: linear-gradient(360deg, rgba(144, 25, 24, .70) 60%, rgba(221, 38, 36, .70) 100%), #333333;
+  margin-right: 8px;
+}
+
+.tab > a {
+  color: #fff;
+}
+
+.tab > .nav-link.active {
+  color: #db2220 !important;
+  background: rbga(255, 255, 255, .4)
+}

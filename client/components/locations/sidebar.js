@@ -49,12 +49,11 @@ export default function LocationsSidebar({ offices }) {
                 <Link href={office.slug}>
                   <a className={textStyles.redTitle}>
                     <strong>
-                      <u>Office details</u>
+                      <u>Details</u>
                     </strong>
                   </a>
                 </Link>
-              </li>
-              <li className="mb-2">
+                <span className="px-0"> | </span>
                 <Button
                   variant="transparent"
                   className={`${textStyles.redTitle} p-0`}
@@ -62,8 +61,7 @@ export default function LocationsSidebar({ offices }) {
                 >
                   <strong>
                     <u>
-                      Directions to
-                      {office.title}
+                      Directions
                     </u>
                   </strong>
                 </Button>

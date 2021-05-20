@@ -14,13 +14,14 @@ import AttorneyProfileTab from 'components/singleattorney/table';
 import AttorneyProfileMatters from 'components/singleattorney/matters';
 import AttorneyProfileVideo from 'components/singleattorney/video';
 import AttorneyProfileEducation from 'components/singleattorney/education';
+import AttorneyProfileContact from 'components/singleattorney/contact';
 import AttorneyProfileFooter from 'components/singleattorney/footer';
 import {
   buildBusinessSchema,
   buildAttorneyProfileSchema,
 } from 'utils/json-ld-schemas';
 
-function renderBody(param, content, slug) {
+function renderBody(param, content, slug, header) {
   switch (param) {
     case 'biography':
       return <AttorneyProfileBody content={content} />;
@@ -46,6 +47,8 @@ function renderBody(param, content, slug) {
       return <AttorneyProfileVideo content={content} />;
     case 'audio':
       return <AttorneyProfileBody content={content[0].body} />;
+    case 'contact':
+      return <AttorneyProfileContact content={header} />;
     default:
       if (Array.isArray(content)) {
         return <AttorneyProfileBody content={content[0].body} />;
@@ -122,14 +125,14 @@ export default function AttorneyProfile({
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
-      <AttorneyProfileHeader image={header.image} profile={header.profile} />
+      <AttorneyProfileHeader image={header.image} profile={header.profile} slug={slug} />
       <Container>
         <Row>
           <Col sm={12}>
             <AttorneyBioLinks links={body.bio.sidebarLinks} slug={slug} />
           </Col>
           <Col sm={12} md={9}>
-            {renderBody(paramArr[paramLen - 1], body.content, slug)}
+            {renderBody(paramArr[paramLen - 1], body.content, slug, header)}
           </Col>
           <Col sm={12} md={3}>
             <AttorneyProfileSidebar

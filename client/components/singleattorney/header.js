@@ -1,18 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import profileStyles from 'styles/ProfileImage.module.css';
 import styles from 'styles/Banner.module.css';
 
 import { useState, useEffect } from 'react';
 
-export default function AttorneyProfileHeader({ image, profile }) {
+export default function AttorneyProfileHeader({ image, profile, slug }) {
   const [designation, setDesiganation] = useState(profile.title);
   const {
     name, title, chair, coChair, offices, phoneNumber, email, pdf, vizibility, socialMedia,
   } = profile;
-  const router = useRouter();
 
   const linkedIn = socialMedia.filter((a) => a.channel === 'LinkedIn')[0];
 
@@ -119,7 +117,7 @@ export default function AttorneyProfileHeader({ image, profile }) {
               </div>
               <div className="my-3 d-flex flex-row flex-wrap">
                 <Button
-                  href={`${router.asPath}/contact`}
+                  href={`/attorney/${slug}/contact`}
                   size="sm"
                   variant="danger"
                   style={{ width: '100px' }}
