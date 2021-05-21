@@ -7,8 +7,6 @@ import HomePageLink from 'components/home/page-link';
 import lineStyles from 'styles/LineHeader.module.css';
 
 function ClientSection({ slug, clients }) {
-  /** TODO: Change this to four clients */
-
   return (
     <>
       <div className={lineStyles.lineHeader}>

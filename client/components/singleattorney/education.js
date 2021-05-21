@@ -1,6 +1,7 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import marginStyles from 'styles/Margins.module.css';
 import { createMarkup } from 'utils/helpers';
 
 export default function AttorneyProfileEducation({ content }) {
@@ -9,7 +10,7 @@ export default function AttorneyProfileEducation({ content }) {
   } = content;
 
   return (
-    <Row className="mt-4">
+    <Row className={marginStyles.mtMinusMd2}>
       {education.length > 0 && (
         <Col sm={12}>
           <h4 className={grayTitleStyles.title}>Education</h4>

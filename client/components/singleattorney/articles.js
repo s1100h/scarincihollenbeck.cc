@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import marginStyles from 'styles/Margins.module.css';
 
 export default function AttorneyProfileArticles({ initalArticles, term }) {
   const [loading, setLoading] = useState(false);
@@ -34,7 +36,10 @@ export default function AttorneyProfileArticles({ initalArticles, term }) {
   }
 
   return (
-    <Row className="mt-2">
+    <Row className={marginStyles.mtMinusMd2}>
+      <Col sm={12}>
+        <h4 className={grayTitleStyles.title}>News, Events, & Articles</h4>
+      </Col>
       {error ? (
         <p>
           <strong>There was an error loading more posts...</strong>

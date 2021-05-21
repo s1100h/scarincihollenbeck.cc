@@ -1,15 +1,36 @@
+.tabContainer {
+  position: relative;
+  top: -4.1em;
+}
 .tab {
-  color: #fff;
-  /* rgba(255,0,0,0), rgba(255,0,0,1) */
-  background: linear-gradient(360deg, rgba(144, 25, 24, .70) 60%, rgba(221, 38, 36, .70) 100%), #333333;
+  background: linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
   margin-right: 8px;
+  max-width: 200px;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, .98); 
+  border-top: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
+  border-right: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
+  border-left: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
+  margin-right: 8px;
+  max-width: 200px;
 }
 
 .tab > a {
   color: #fff;
 }
+.tabActive > a {
+  color: rgba(221, 38, 36, .90);
+  font-weight: 900;
+  border-top: 2px solid rgba(221, 38, 36, .90);
+  border-right: 2px solid rgba(221, 38, 36, .90);
+  border-left: 2px solid rgba(221, 38, 36, .90);
+}
 
-.tab > .nav-link.active {
-  color: #db2220 !important;
-  background: rbga(255, 255, 255, .4)
+.tabsBtn {
+  width: 200px;
+  border: 0;
+  height: 42px;
+  border-radius: 0px;
 }

@@ -1,10 +1,15 @@
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
+import marginStyles from 'styles/Margins.module.css';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 export default function AttorneyProfileClients({ clients }) {
   return (
-    <Row>
+    <Row className={marginStyles.mtMinusMd2}>
+      <Col sm={12}>
+        <h4 className={grayTitleStyles.title}>Clients</h4>
+      </Col>
       {clients.map((client) => (
         <Col sm={12} md={4} className="my-4" key={client.title}>
           <Image

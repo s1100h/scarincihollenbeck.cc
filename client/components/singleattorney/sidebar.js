@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 
 import fontStyles from 'styles/Fonts.module.css';
+import marginStyles from 'styles/Margins.module.css';
 /** *
  * TODO: Fix award image sizes
  */
@@ -17,7 +18,7 @@ export default function AttorneyProfileSidebar({ services, contact, awards }) {
   };
 
   return (
-    <div className="mt-3">
+    <div className={marginStyles.mtMinusMd2}>
       <p className={fontStyles.ft12rem}>
         <strong>How I can help</strong>
       </p>

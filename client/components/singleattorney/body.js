@@ -1,8 +1,11 @@
 import { createMarkup } from 'utils/helpers';
+import marginStyles from 'styles/Margins.module.css';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
-export default function AttorneyProfileBody({ content }) {
+export default function AttorneyProfileBody({ content, title }) {
   return (
-    <div className="mt-3 mb-5">
+    <div className={marginStyles.mtMinusMd2}>
+      <h4 className={`${grayTitleStyles.title} text-capitalize w-100`}>{title}</h4>
       <div dangerouslySetInnerHTML={createMarkup(content)} />
       <style jsx>{' div { font-size: 1rem;  } '}</style>
     </div>

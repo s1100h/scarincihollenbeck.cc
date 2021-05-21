@@ -21,24 +21,24 @@ import {
   buildAttorneyProfileSchema,
 } from 'utils/json-ld-schemas';
 
-function renderBody(param, content, slug, header) {
+function renderBody(param, content, slug, header, defaultTabTitle) {
   switch (param) {
     case 'biography':
-      return <AttorneyProfileBody content={content} />;
+      return <AttorneyProfileBody title="Biography" content={content} />;
     case 'clients':
-      return <AttorneyProfileClients clients={content} />;
+      return <AttorneyProfileClients title="Clients" clients={content} />;
     case 'presentations':
-      return <AttorneyProfileTab content={content} />;
+      return <AttorneyProfileTab title="Presentations" content={content} />;
     case 'publications':
-      return <AttorneyProfileTab content={content} />;
+      return <AttorneyProfileTab title="Publications" content={content} />;
     case 'media':
-      return <AttorneyProfileTab content={content} />;
+      return <AttorneyProfileTab title="Media" content={content} />;
     case 'representative-matters':
-      return <AttorneyProfileMatters content={content} />;
+      return <AttorneyProfileMatters title="Representative Matters" content={content} />;
     case 'representative-clients':
-      return <AttorneyProfileMatters content={content} />;
+      return <AttorneyProfileMatters title="Representative Clients" content={content} />;
     case 'awards':
-      return <AttorneyProfileClients clients={content} />;
+      return <AttorneyProfileClients title="Awards" clients={content} />;
     case 'articles':
       return <AttorneyProfileArticles initalArticles={content} term={slug} />;
     case 'education-admissions':
@@ -46,14 +46,14 @@ function renderBody(param, content, slug, header) {
     case 'videos':
       return <AttorneyProfileVideo content={content} />;
     case 'audio':
-      return <AttorneyProfileBody content={content[0].body} />;
+      return <AttorneyProfileBody title="Audio" content={content[0].body} />;
     case 'contact':
       return <AttorneyProfileContact content={header} />;
     default:
       if (Array.isArray(content)) {
-        return <AttorneyProfileBody content={content[0].body} />;
+        return <AttorneyProfileBody title={defaultTabTitle} content={content[0].body} />;
       }
-      return <AttorneyProfileBody content={content} />;
+      return <AttorneyProfileBody title={defaultTabTitle} content={content} />;
   }
 }
 export default function AttorneyProfile({
@@ -63,6 +63,46 @@ export default function AttorneyProfile({
 
   const paramArr = router.asPath.split('/').filter((a) => a !== '');
   const paramLen = paramArr.length;
+  let defaultTabTitle = 'Biography';
+
+  if (router.asPath.includes('content')) {
+    defaultTabTitle = router.asPath.split('/').pop().replace(/-/g, ' ');
+  }
+
+  /** Reformat the menu items */
+  const getCoreMenuItems = body.bio.sidebarLinks.filter((item, index) => {
+    if (item.label === 'Education & Admissions') {
+      return false;
+    }
+
+    if (item.label === 'News, Events & Articles') {
+      return false;
+    }
+
+    if (index >= 6) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const getAdditionalMenuItems = body.bio.sidebarLinks.filter((item, index) => {
+    if (item.label === 'Education & Admissions') {
+      return true;
+    }
+
+    if (item.label === 'News, Events & Articles') {
+      return true;
+    }
+
+    if (index >= 6) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const bioMenuItems = { main: getCoreMenuItems, more: getAdditionalMenuItems };
 
   return (
     <>
@@ -129,10 +169,10 @@ export default function AttorneyProfile({
       <Container>
         <Row>
           <Col sm={12}>
-            <AttorneyBioLinks links={body.bio.sidebarLinks} slug={slug} />
+            <AttorneyBioLinks links={bioMenuItems} slug={slug} />
           </Col>
           <Col sm={12} md={9}>
-            {renderBody(paramArr[paramLen - 1], body.content, slug, header)}
+            {renderBody(paramArr[paramLen - 1], body.content, slug, header, defaultTabTitle)}
           </Col>
           <Col sm={12} md={3}>
             <AttorneyProfileSidebar

@@ -71,6 +71,8 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                         <Link key={c.title} href={c.link.replace('https://wp.scarincihollenbeck.com/', '')}>
                           <a className="text-white">
                             {c.title}
+                            {' '}
+                            Section
                             {i < chair.length - 1 && <strong className="mx-2">|</strong>}
                           </a>
                         </Link>

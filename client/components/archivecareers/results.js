@@ -39,22 +39,24 @@ function renderResults(positions) {
             <Col sm={12} md={4} key={p.title} className="mt-3 mb-2">
               <Link href="/career/[slug]" as={`/career${p.slug}`}>
                 <a className="text-dark">
-                  <div className="card d-flex flex-row">
-                    <div className="my-2 pl-2">
-                      <h5 className={styles.redTitle}>
+                  <div className="card d-flex flex-column">
+                    <div className="p-2">
+                      <p className={`${styles.redTitle} mb-2 border-bottom`}>
                         <strong>{p.title}</strong>
-                      </h5>
-                      <hr className="my-0 py-1" />
+                      </p>
                       <p className="my-0">
-                        <strong>Location: </strong>
+                        Location:
+                        {' '}
                         {checkAllOffices(p.positionLocation)}
                       </p>
                       <p className="my-0">
-                        <strong>Type: </strong>
+                        Type:
+                        {' '}
                         {p.positionType}
                       </p>
                       <p className="my-0">
-                        <strong>Start: </strong>
+                        Start:
+                        {' '}
                         {p.startDate}
                       </p>
                     </div>

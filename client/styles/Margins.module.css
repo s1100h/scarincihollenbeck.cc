@@ -14,3 +14,14 @@
 .mt65 {
   margin-top: 6.5em;
 }
+
+.mtMinusMd2 {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .mtMinusMd2 {
+    margin-top: -2em;
+  }
+}
+
