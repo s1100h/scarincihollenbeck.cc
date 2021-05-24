@@ -1,6 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import Button from 'react-bootstrap/Button';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { BsChatDots, BsCloudDownload, BsCardText } from 'react-icons/bs';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ProfileDetails from 'components/singleattorney/profile-details';
 import profileStyles from 'styles/ProfileImage.module.css';
 import styles from 'styles/Banner.module.css';
 
@@ -9,8 +12,19 @@ import { useState, useEffect } from 'react';
 export default function AttorneyProfileHeader({ image, profile, slug }) {
   const [designation, setDesiganation] = useState(profile.title);
   const {
-    name, title, chair, coChair, offices, phoneNumber, email, pdf, vizibility, socialMedia,
+    name,
+    title,
+    chair,
+    coChair,
+    offices,
+    phoneNumber,
+    email,
+    pdf,
+    vizibility,
+    socialMedia,
   } = profile;
+
+  const contact = { phoneNumber, email };
 
   const linkedIn = socialMedia.filter((a) => a.channel === 'LinkedIn')[0];
 
@@ -62,112 +76,79 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                   backgroundColor: '#db2220',
                 }}
               />
-              <div className="my-4 credentials">
-                {chair.length > 0 && (
-                  <>
-                    <p className="mb-2">
-                      <strong className="cred-title">Chair: </strong>
-                      {chair.map((c, i) => (
-                        <Link key={c.title} href={c.link.replace('https://wp.scarincihollenbeck.com/', '')}>
-                          <a className="text-white">
-                            {c.title}
-                            {' '}
-                            Section
-                            {i < chair.length - 1 && <strong className="mx-2">|</strong>}
-                          </a>
-                        </Link>
-                      ))}
-                    </p>
-                  </>
-                )}
-                {coChair.length > 0 && (
-                  <>
-                    <p className="mb-2">
-                      <strong className="cred-title">Co-Chair: </strong>
-                      {coChair.map((c, i) => (
-                        <Link key={c.title} href={c.link.replace('https://wp.scarincihollenbeck.com/', '')}>
-                          <a className="text-white">
-                            {c.title}
-                            {i < chair.length - 1 && <strong className="mx-2">|</strong>}
-                          </a>
-                        </Link>
-                      ))}
-                    </p>
-                  </>
-                )}
-                <p className="mb-2">
-                  <strong className="cred-title">Contact: </strong>
-                  {phoneNumber}
-                  <strong className="mx-2">|</strong>
-                  {email}
-                </p>
-                {offices.length > 0 && (
-                <>
-                  <p className="mb-2">
-                    <strong className="cred-title">Offices: </strong>
-                    {offices.map((o, i) => (
-                      <Link key={o.ID} href={o.link}>
-                        <a className="text-white">
-                          {o.name}
-                          {i < offices.length - 1 && <strong className="mx-2">|</strong>}
-                        </a>
-                      </Link>
-                    ))}
-                  </p>
-                </>
-                )}
-              </div>
-              <div className="my-3 d-flex flex-row flex-wrap">
-                <Button
-                  href={`/attorney/${slug}/contact`}
-                  size="sm"
-                  variant="danger"
-                  style={{ width: '100px' }}
-                  className="mr-1 mb-2  mr-md-2"
+              <Row className="ml-0 my-3">
+                <Col
+                  sm={12}
+                  md={6}
+                  className="credentials border-right mx-0 px-0 py-2 pr-2 mr-4"
                 >
-                  <strong>Get In Touch</strong>
-                </Button>
-                <Button
-                  href={linkedIn.url}
-                  size="sm"
-                  variant="danger"
-                  style={{ width: '100px' }}
-                  className="mr-1 mb-2  mr-md-2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <strong>LinkedIn</strong>
-                </Button>
-                <Button
-                  href={pdf}
-                  size="sm"
-                  variant="danger"
-                  style={{ width: '100px' }}
-                  className="mr-1 mb-2  mr-md-2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <strong>PDF Bio</strong>
-                </Button>
-                <Button
-                  href={vizibility}
-                  size="sm"
-                  variant="danger"
-                  style={{ width: '100px' }}
-                  className="mr-1 mb-2  mr-md-2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <strong>V-Card</strong>
-                </Button>
-              </div>
+                  <ProfileDetails
+                    offices={offices}
+                    contact={contact}
+                    chair={chair}
+                    coChair={coChair}
+                  />
+                </Col>
+                <Col sm={12} md={2} className="mx-0 px-0">
+                  <a
+                    href={`/attorney/${slug}/contact`}
+                    rel="noopener noreferrer"
+                    style={{ height: '30px' }}
+                    variant="link"
+                    className="d-block mb-1 text-left text-white w-100"
+                  >
+                    <strong>
+                      <BsChatDots style={{ marginTop: '-4px' }} />
+                      <span className="ml-2 d-inline-block">Get In Touch</span>
+                    </strong>
+                  </a>
+                  <a
+                    href={(linkedIn) ? linkedIn.url : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'}
+                    size="sm"
+                    rel="noopener noreferrer"
+                    style={{ height: '30px' }}
+                    variant="link"
+                    className="d-block mb-1 text-left text-white w-100"
+                  >
+                    <strong>
+                      <FaLinkedinIn style={{ marginTop: '-4px' }} />
+                      <span className="ml-2 d-inline-block">LinkedIn</span>
+                    </strong>
+                  </a>
+                  <a
+                    href={pdf}
+                    size="sm"
+                    rel="noopener noreferrer"
+                    style={{ height: '30px' }}
+                    variant="link"
+                    className="d-block mb-1 text-left text-white w-100"
+                  >
+                    <strong>
+                      <BsCloudDownload style={{ marginTop: '-4px' }} />
+                      <span className="ml-2 d-inline-block">Print Profile</span>
+                    </strong>
+                  </a>
+                  <a
+                    href={vizibility}
+                    size="sm"
+                    rel="noopener noreferrer"
+                    style={{ height: '30px' }}
+                    variant="link"
+                    className="d-block mb-1 text-left text-white w-100"
+                  >
+                    <strong>
+                      <BsCardText style={{ marginTop: '-4px' }} />
+                      <span className="ml-2 d-inline-block">Contact Card</span>
+                    </strong>
+                  </a>
+                </Col>
+              </Row>
             </div>
           </div>
         </div>
       </div>
       <style jsx>
-        {
-        `
+        {`
           strong.name {
             font-size: 2.5rem;
           }
@@ -180,9 +161,6 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
             margin-bottom: 6px;
           }
 
-          div.credentials {
-            font-size: 1.1rem;
-          }
           div.profile {
             width: 100%;
           }
@@ -193,7 +171,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
           a.button-size {
             width: 100px;
           }
-          @media (min-width: 768px){
+          @media (min-width: 768px) {
             div.profile-image {
               min-width: 250px;
             }
@@ -202,7 +180,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
             }
           }
 
-          @media (min-width: 992px){
+          @media (min-width: 992px) {
             div.profile {
               min-width: 550px;
             }
@@ -210,7 +188,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
               width: 75%;
             }
           }
-          @media (min-width: 1200px){
+          @media (min-width: 1200px) {
             div.profile-image {
               min-width: 300px;
             }
@@ -218,8 +196,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
               min-width: 720px;
             }
           }
-        `
-      }
+        `}
       </style>
     </>
   );
