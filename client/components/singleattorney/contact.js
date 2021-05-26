@@ -12,28 +12,9 @@ export default function AttorneyProfileContact({ content }) {
     <div className={marginStyles.mtMinusMd2}>
       <h4 className={grayTitleStyles.title}>
         Get in touch with
+        {' '}
         {name}
       </h4>
-      <p>
-        <strong>
-          Contact:
-        </strong>
-        { phoneNumber}
-        {' '}
-        |
-        {email}
-        {' '}
-        |
-        {socialMedia.map((social) => (
-          <a key={social.channel} href={social.url}>
-            {social.channel}
-            {' '}
-          </a>
-        ))}
-        {' '}
-        |
-        <a href={vizibility}>Vizibility Card</a>
-      </p>
       <AttorneyProfileContactForm />
     </div>
   );

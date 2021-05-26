@@ -64,7 +64,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                 loading="eager"
               />
             </div>
-            <div className="ml-0 ml-md-5 profile">
+            <div className="ml-0 ml-md-5 profile mt-4">
               <h2 className="animate__animated animate__fadeInDown animate__slow mb-0">
                 <strong className="name">{name}</strong>
               </h2>
@@ -80,7 +80,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                 <Col
                   sm={12}
                   md={6}
-                  className="credentials border-right mx-0 px-0 py-2 pr-2 mr-4"
+                  className="credentials mx-0 px-0 mr-3"
                 >
                   <ProfileDetails
                     offices={offices}
@@ -89,7 +89,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     coChair={coChair}
                   />
                 </Col>
-                <Col sm={12} md={2} className="mx-0 px-0">
+                <Col sm={12} md={3} className="mx-0 px-0 border-left pl-3">
                   <a
                     href={`/attorney/${slug}/contact`}
                     rel="noopener noreferrer"
@@ -124,7 +124,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     className="d-block mb-1 text-left text-white w-100"
                   >
                     <strong>
-                      <BsCloudDownload style={{ marginTop: '-4px' }} />
+                      <BsCloudDownload style={{ marginTop: '-2px' }} />
                       <span className="ml-2 d-inline-block">Print Profile</span>
                     </strong>
                   </a>

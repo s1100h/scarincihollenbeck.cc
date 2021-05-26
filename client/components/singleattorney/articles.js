@@ -11,28 +11,14 @@ import marginStyles from 'styles/Margins.module.css';
 
 export default function AttorneyProfileArticles({ initalArticles, term }) {
   const [loading, setLoading] = useState(false);
-  const [pageIndex, setPageIndex] = useState(2);
+  const [pageIndex, setPageIndex] = useState(11);
   const [error, setError] = useState(false);
-  const [articleList, setArticleList] = useState(initalArticles.filter((_, i) => i <= 5) || []);
+  const [articleList, setArticleList] = useState(initalArticles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1)) || []);
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex((newIndex) => (newIndex += 1));
-    const url = `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&term=${term}`;
-
-    const getOlderPosts = await fetch(url)
-      .then((data) => data.json())
-      .catch((err) => setError(err));
-
-    if (!getOlderPosts) {
-      setLoading(false);
-    }
-
-    if (getOlderPosts.results) {
-      getOlderPosts.results.shift();
-      setLoading(false);
-      setArticleList((articles) => [...articles, ...getOlderPosts.results]);
-    }
+    setPageIndex(pageIndex => pageIndex += 11);
+    setLoading(false);
   }
 
   return (
@@ -44,7 +30,7 @@ export default function AttorneyProfileArticles({ initalArticles, term }) {
         <p>
           <strong>There was an error loading more posts...</strong>
         </p>
-      ) : articleList.map((article) => (
+      ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
         <Col sm={12} md={4} key={article.title} className="my-3">
           <Link href={article.link}>
             <a className="text-center mx-auto d-block">
