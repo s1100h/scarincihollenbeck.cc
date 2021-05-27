@@ -15,10 +15,12 @@
 
 .tabActive {
   background: rgba(255, 255, 255, 1); 
-  border-top: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
-  border-right: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
-  border-left: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
-  height: 42px;
+  border-top: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%);
+  border-right: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%);
+  border-left: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%);
+  border-bottom: 3px solid #fff;
+  position: relative;
+  top: -2px;
 }
 
 .tab, .tabActive {
