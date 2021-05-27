@@ -1,6 +1,6 @@
 .tabContainer {
   position: relative;
-  top: -4.1em;
+  bottom: 4.2em;
 }
 
 .mobileTabContainer {
@@ -10,6 +10,7 @@
 
 .tab {
   background: linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
+  max-height: 42px;
 }
 
 .tabActive {
@@ -17,13 +18,13 @@
   border-top: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
   border-right: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
   border-left: 3px solid linear-gradient(360deg, rgba(144, 25, 24, .90) 60%, rgba(221, 38, 36, .90) 100%), #333333;
+  height: 42px;
 }
 
 .tab, .tabActive {
   margin-right: 8px;
-  max-width: 200px;
+  max-width: 210px;
   font-size:1rem;
-  max-height: 42px;
 }
 
 .tab > a {
@@ -35,6 +36,7 @@
   border-top: 2px solid rgba(221, 38, 36, .90);
   border-right: 2px solid rgba(221, 38, 36, .90);
   border-left: 2px solid rgba(221, 38, 36, .90);
+  border-bottom: 3px solid rgba(255, 255, 255, 1); 
 }
 
 .tabsBtn {

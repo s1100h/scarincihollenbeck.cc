@@ -73,18 +73,12 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
   ]);
 
-  if (content.status === 404) {
-    res.statusCode = 404;
-
+  if (bio.status === 404) {
     return {
-      props: {
-        bio,
-        contact,
-        content,
-        slug: params.slug,
-      },
+      notFound: true,
     };
   }
+
   return {
     props: {
       bio,
@@ -92,5 +86,6 @@ export async function getStaticProps({ params }) {
       content,
       slug: params.slug,
     },
+    revalidate: 1,
   };
 }
