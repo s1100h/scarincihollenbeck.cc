@@ -53,7 +53,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
         <Container className={styles.multiBackBanner}>
           <Row>
             <Col sm={12} md={8}>
-              <div className="text-white d-flex flex-column flex-md-row justify-content-start">
+              <div className="text-white d-flex flex-column flex-md-row">
                 <div className="profile-image">
                   <Image
                     src={image}
@@ -73,84 +73,100 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                   </h2>
                   <p className="title">{designation}</p>
                   <div
-                    className="red-border d-block animate__animated animate__fadeInDown animate__fast"
+                    className="animate__animated animate__fadeInDown animate__fast"
                     style={{
                       height: '3px',
                       backgroundColor: '#db2220',
+                      maxWidth: '65%'
                     }}
                   />
                   <Row className="ml-0 my-3">
-                    <Col
-                      sm={12}
-                      className="credentials mx-0 px-0 mr-3"
-                    >
+                    <Col sm={12} className="credentials mx-0 px-0 mr-3">
                       <ProfileDetails
                         offices={offices}
                         contact={contact}
                         chair={chair}
                         coChair={coChair}
                       />
-                      <ul className="list-unstyled mt-1">
-                        <li className="list-inline-item">
-                          <a
-                            href={`/attorney/${slug}/contact`}
-                            rel="noopener noreferrer"
-                            style={{ height: '30px' }}
-                            variant="link"
-                            className="d-block mb-1 text-left text-white w-100"
-                          >
-                            <strong className="pr-1">
-                              <BsChatDots style={{ marginTop: '-4px' }} />
-                              <span className="ml-2 d-inline-block">Get In Touch</span>
-                            </strong>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a
-                            href={(linkedIn) ? linkedIn.url : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'}
-                            size="sm"
-                            rel="noopener noreferrer"
-                            style={{ height: '30px' }}
-                            variant="link"
-                            className="d-block mb-1 text-left text-white w-100"
-                          >
-                            <strong className="pr-1">
-                              <FaLinkedinIn style={{ marginTop: '-4px' }} />
-                              <span className="ml-2 d-inline-block">LinkedIn Profile</span>
-                            </strong>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a
-                            href={pdf}
-                            size="sm"
-                            rel="noopener noreferrer"
-                            style={{ height: '30px' }}
-                            variant="link"
-                            className="d-block mb-1 text-left text-white w-100"
-                          >
-                            <strong className="">
-                              <BsCloudDownload style={{ marginTop: '-2px' }} />
-                              <span className="ml-2 d-inline-block">Print Bio</span>
-                            </strong>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a
-                            href={vizibility}
-                            size="sm"
-                            rel="noopener noreferrer"
-                            style={{ height: '30px' }}
-                            variant="link"
-                            className="d-block mb-1 text-left text-white w-100"
-                          >
-                            <strong className="pl-1">
-                              <BsCardText style={{ marginTop: '-4px' }} />
-                              <span className="ml-2 d-inline-block">Business Card</span>
-                            </strong>
-                          </a>
-                        </li>
-                      </ul>
+                      <div className="d-flex flex-column flex-md-row">
+                        <ul className="list-unstyled mt-2 mr-0 mr-md-4">
+                          <li>
+                            <a
+                              href={`/attorney/${slug}/contact`}
+                              rel="noopener noreferrer"
+                              style={{ height: '30px' }}
+                              variant="link"
+                              className="d-block mb-1 text-left text-white w-100"
+                            >
+                              <strong className="pr-1">
+                                <BsChatDots style={{ marginTop: '-4px' }} />
+                                <span className="ml-2 d-inline-block">
+                                  Get In Touch
+                                </span>
+                              </strong>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href={
+                                linkedIn
+                                  ? linkedIn.url
+                                  : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'
+                              }
+                              size="sm"
+                              rel="noopener noreferrer"
+                              style={{ height: '30px' }}
+                              variant="link"
+                              className="d-block mb-1 text-left text-white w-100"
+                            >
+                              <strong className="pr-1">
+                                <FaLinkedinIn style={{ marginTop: '-4px' }} />
+                                <span className="ml-2 d-inline-block">
+                                  LinkedIn Profile
+                                </span>
+                              </strong>
+                            </a>
+                          </li>
+                        </ul>
+                        <ul className="list-unstyled mt-2">
+                          <li>
+                            <a
+                              href={pdf}
+                              size="sm"
+                              rel="noopener noreferrer"
+                              style={{ height: '30px' }}
+                              variant="link"
+                              className="d-block mb-1 text-left text-white w-100"
+                            >
+                              <strong className="">
+                                <BsCloudDownload
+                                  style={{ marginTop: '-2px' }}
+                                />
+                                <span className="ml-2 d-inline-block">
+                                  Print Bio
+                                </span>
+                              </strong>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href={vizibility}
+                              size="sm"
+                              rel="noopener noreferrer"
+                              style={{ height: '30px' }}
+                              variant="link"
+                              className="d-block mb-1 text-left text-white w-100"
+                            >
+                              <strong className="pl-1">
+                                <BsCardText style={{ marginTop: '-4px' }} />
+                                <span className="ml-2 d-inline-block">
+                                  Business Card
+                                </span>
+                              </strong>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </Col>
                   </Row>
                 </div>
@@ -176,9 +192,9 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
           div.profile {
             width: 100%;
           }
-          .red-border {
-            width: 100%;
-          }
+          // .red-border {
+          //   max-width: 100%;
+          // }
 
           a.button-size {
             width: 100px;
@@ -196,9 +212,9 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
             div.profile {
               min-width: 550px;
             }
-            div.red-border {
-              width: 75%;
-            }
+            // div.red-border {
+            //   max-width: 75%;
+            // }
           }
           @media (min-width: 1200px) {
             div.profile-image {
