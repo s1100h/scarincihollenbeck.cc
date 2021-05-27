@@ -21,10 +21,10 @@
   height: auto;
 }
 
-.backPageBanner {
+/* .backPageBanner {
   justify-content: center;
   align-items: center;
-}
+} */
 
 .bannerContainer {
   background-color: rgba(0, 0, 0, 0.556);
@@ -77,8 +77,8 @@
 }
 
 .backBanner {
-  margin-top: 3.4em;
-  margin-bottom: 3.4em;
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 .multiBackBanner {

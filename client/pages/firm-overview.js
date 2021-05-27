@@ -3,7 +3,6 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import FirmMembers from 'components/firmoverview/members';
 import { headers, createMarkup, sortByKey } from 'utils/helpers';
-import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 export default function FirmOverview({
   mainTabs, members, mainContent, seo,
@@ -25,20 +24,13 @@ export default function FirmOverview({
         image="/images/City-Night-Background-1800x400-JPG.jpg"
       />
       <FullWidth>
-        <div
-          className="text-muted lead"
-          dangerouslySetInnerHTML={createMarkup(bodyContent)}
-        />
+        <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
         {mainTabs.map((tab) => (
-          <div key={tab.title}>
-            <div className={lineHeaderStyles.lineHeader}>
-              <h3>{tab.subtitle}</h3>
-            </div>
-            <div
-              className="lead my-4 body-text"
-              dangerouslySetInnerHTML={createMarkup(tab.content)}
-            />
-          </div>
+          <div
+            key={tab.title}
+            className="mt-4"
+            dangerouslySetInnerHTML={createMarkup(tab.content)}
+          />
         ))}
         <div className="border">
           <FirmMembers

@@ -1,23 +1,22 @@
 import SubscriptionFormColumn from 'components/subscription-form-column';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-// import textStyles from 'styles/Text.module.css';
 
 export default function SubscriptionBody() {
   return (
     <>
-      <div className="w-100 my-4">
-        <p className="lead py-3 mb-2 text-center">
+      <div className="w-100">
+        <p>
           <strong>Be the the first to know when,</strong>
           {' '}
           our attorney&apos;s
           publish blog posts
         </p>
-        <p className="lead py-4 mb-0 text-center border-top">
+        <p>
           or when there legal updates that may
           {' '}
           <strong>impact to your business</strong>
         </p>
-        <p className="lead border-top border-bottom py-4 mb-5 text-center">
+        <p>
           or any
           {' '}
           <strong>announcements and press releases</strong>
@@ -26,7 +25,8 @@ export default function SubscriptionBody() {
           attorneys at Scarinci Hollenbeck
         </p>
         <h4 className={`${grayTitleStyles.title} mb-5`}>Sign up today!</h4>
-        <style jsx>{'p {font-size: 1.5rem}'}</style>
+        <style jsx>{'p { font-size: 1.3rem }; strong { font-size: 1.3rem }'}</style>
+
       </div>
       <SubscriptionFormColumn />
     </>

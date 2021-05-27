@@ -26,50 +26,26 @@ export default function PostBreadCrumbs() {
         <Link href={`/library?category=${crumbs[0]}`}>
           <a className={`${textStyles.redTitle} text-uppercase`}>
             <strong>
-              {crumbs[0].replace('-', ' ')}
+              {crumbs[0].replace(/-/g, ' ')}
               {' '}
               <span className="mx-2"> | </span>
             </strong>
           </a>
         </Link>
       </li>
-      {/* {(crumbs[1] !== router.query.slug.length - 1) && (
-        <li className="list-inline-item">
-          <Link href={`/${crumbs[1]}`}>
-            <a className={`${textStyles.redTitle} text-uppercase`}>
-              <strong>
-                {crumbs[1].replace('-', ' ')}
-                {' '}
-                <span className="mx-2"> | </span>
-              </strong>
-            </a>
-          </Link>
-        </li>
-      )} */}
+
       <li className="list-inline-item">
         <Link href={router.asPath}>
           <a className={`${textStyles.redTitle} text-uppercase`}>
-            <strong>{router.query.slug[router.query.slug.length - 1]}</strong>
+            <strong>
+              {router.query.slug[router.query.slug.length - 1].replace(
+                /-/g,
+                ' ',
+              )}
+            </strong>
           </a>
         </Link>
       </li>
-      {/* {formattedBreadCrumbArr.map(
-        (crumb, index) => crumb.title !== 'CATEGORY' && (
-        <li key={crumb.title} className="list-inline-item">
-          <Link href={crumb.url}>
-            <a className={`${textStyles.redTitle} text-uppercase`}>
-              <strong>
-                {crumb.title}
-                {' '}
-                {breadCrumbArr.length - 1 !== index && (
-                <span className="mx-2"> | </span>
-                )}
-              </strong>
-            </a>
-          </Link>
-        </li>
-        ),
-      )} */}
     </ul>
   );
 }

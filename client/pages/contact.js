@@ -22,7 +22,7 @@ export default function ContactPage() {
       />
       <FullWidth>
         <div className="w-100">
-          <p className="lead py-3 mb-2 text-center">
+          <p>
             <strong>For media inquiries,</strong>
             {' '}
             please visit
@@ -32,8 +32,7 @@ export default function ContactPage() {
                 <u>Firm Insights.</u>
               </a>
             </Link>
-          </p>
-          <p className="lead py-4 mb-0 text-center border-top">
+            {' '}
             <strong>For job opportunities,</strong>
             {' '}
             please visit our
@@ -44,7 +43,7 @@ export default function ContactPage() {
               </a>
             </Link>
           </p>
-          <p className="lead border-top py-4 mb-0 text-center">
+          <p>
             <strong>If you are a client,</strong>
             {' '}
             please get in touch with your
@@ -57,7 +56,7 @@ export default function ContactPage() {
             {' '}
             contact directly.
           </p>
-          <p className="lead border-top border-bottom py-4 mb-5 text-center">
+          <p className="mb-4">
             If you are looking to get in touch with an attorney under the terms
             as to becoming a new client please call
             {' '}
@@ -68,7 +67,7 @@ export default function ContactPage() {
           </h4>
           <ContactForm />
         </div>
-        <style jsx>{'p {font-size: 1.5rem}'}</style>
+        <style jsx>{'p { font-size: 1.3rem }; strong { font-size: 1.3rem }'}</style>
       </FullWidth>
     </>
   );

@@ -1,42 +1,36 @@
 import Nav from 'react-bootstrap/Nav';
+import Link from 'next/link';
 import styles from 'styles/Tabs.module.css';
 import { urlify } from 'utils/helpers';
 
 export default function PracticeLinks({ links, practiceUrl }) {
   const tabLinks = links.content;
-  console.log(practiceUrl);
 
   return (
-    // <Nav id="practice-navigation" className={styles.tabContainer}>
-    //   {links.content.map((item) => (
-    //     <Nav.Link
-    //       eventKey={urlify(item.title)}
-    //       className={`${styles.tab} ${styles.practice} text-white`}
-    //       key={item.title}
-    //     >
-    //       {item.title}
-    //     </Nav.Link>
-    //   ))}
-    //    <Nav.Link
-
-    //   >
-    //     Related Updates
-    //   </Nav.Link>
-    // </Nav>
-    <Nav defaultActiveKey="/home" as="ul" className={styles.tabContainer}>
+    <Nav
+      defaultActiveKey={urlify(tabLinks[0].title)}
+      as="ul"
+      className={styles.tabContainer}
+    >
+      {tabLinks.map((tab) => (
+        <Nav.Item as="li" key={tab.title}>
+          <Nav.Link
+            eventKey={urlify(tab.title)}
+            className={`${styles.tab} ${styles.practice} text-white`}
+          >
+            {tab.title}
+          </Nav.Link>
+        </Nav.Item>
+      ))}
       <Nav.Item as="li">
-        <Nav.Link href="/home">Active</Nav.Link>
-      </Nav.Item>
-      <Nav.Item as="li">
-        <Nav.Link eventKey="link-1">Link</Nav.Link>
-      </Nav.Item>
-      <Nav.Item as="li">
-        <Nav.Link
-          href={`/library?term=${urlify(practiceUrl)}`}
-          className={`${styles.tab} ${styles.practice} text-white`}
-        >
-          Related Updates
-        </Nav.Link>
+        <Link href={`/library?term=${urlify(practiceUrl)}`}>
+          <a
+            className={`${styles.tab} ${styles.practice} text-white`}
+            style={{ display: 'block', padding: '.5rem 1rem' }}
+          >
+            Related Updates
+          </a>
+        </Link>
       </Nav.Item>
     </Nav>
   );

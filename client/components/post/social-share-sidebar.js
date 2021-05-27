@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -11,7 +10,7 @@ import {
   FaFacebookSquare,
   FaTwitterSquare,
   FaEnvelope,
-  FaPrint
+  FaPrint,
 } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';

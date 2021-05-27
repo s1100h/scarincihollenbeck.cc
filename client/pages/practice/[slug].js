@@ -58,7 +58,7 @@ export default function PracticeSingle({
       >
         <Container>
           <Row>
-            <Col sm={12} >
+            <Col sm={12}>
               <PracticeLinks links={practice} practiceUrl={practiceUrl} />
             </Col>
             <Col sm={12} md={9} style={{ position: 'relative', bottom: '2.5em' }}>
@@ -100,7 +100,7 @@ export default function PracticeSingle({
                 </>
               )}
             </Col>
-            <Col sm={12} md={3}  style={{ position: 'relative', bottom: '2.85em' }}>
+            <Col sm={12} md={3} style={{ position: 'relative', bottom: '2.85em' }}>
               <SimpleSearch />
               <hr />
               {router.query.slug === 'education-law' && (
