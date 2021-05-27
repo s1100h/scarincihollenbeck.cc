@@ -91,7 +91,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                         coChair={coChair}
                       />
                       <ul className="list-unstyled mt-1">
-                        <li>
+                        <li className="list-inline-item">
                           <a
                             href={`/attorney/${slug}/contact`}
                             rel="noopener noreferrer"
@@ -105,7 +105,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                             </strong>
                           </a>
                         </li>
-                        <li>
+                        <li className="list-inline-item">
                           <a
                             href={(linkedIn) ? linkedIn.url : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'}
                             size="sm"
@@ -120,7 +120,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                             </strong>
                           </a>
                         </li>
-                        <li>
+                        <li className="list-inline-item">
                           <a
                             href={pdf}
                             size="sm"
@@ -129,13 +129,13 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                             variant="link"
                             className="d-block mb-1 text-left text-white w-100"
                           >
-                            <strong className="pr-1">
+                            <strong className="">
                               <BsCloudDownload style={{ marginTop: '-2px' }} />
-                              <span className="ml-2 d-inline-block">Print Biography</span>
+                              <span className="ml-2 d-inline-block">Print Bio</span>
                             </strong>
                           </a>
                         </li>
-                        <li>
+                        <li className="list-inline-item">
                           <a
                             href={vizibility}
                             size="sm"
