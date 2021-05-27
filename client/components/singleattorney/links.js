@@ -6,7 +6,7 @@ import styles from 'styles/Tabs.module.css';
 export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
   const router = useRouter();
   const activeKey = !router.asPath.includes('content') ? `${router.asPath}/content/biography` : router.asPath;
-  
+
   return (
     <>
       <div className="d-none d-md-block">

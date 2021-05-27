@@ -9,7 +9,7 @@ export default function SingleSubHeader({ title, subtitle, isBlog }) {
     <div className={styles.backPageBanner}>
       <Container className={styles.backBanner}>
         <Row>
-          <Col sm={9}>
+          <Col sm={12} md={{ span: 7, offset: 2 }}>
             <h1
               className="text-white mb-0 animate__animated animate__fadeInDown animate__fast"
               style={{

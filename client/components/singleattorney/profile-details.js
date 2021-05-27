@@ -8,19 +8,20 @@ export default function ProfileDetails({
   return (
     <div className="d-flex flex-column">
       <div>
-        {chair.map((c) => (
-          <p className="mb-0" key={c.title}>
+        {chair.length > 0 && (
+          <p className="my-1">
             <strong>Chair:</strong>
             {' '}
-            <Link href={c.link} key={c.title}>
-              <a className="text-white">
-                {c.title}
-                {' '}
-                Section
-              </a>
-            </Link>
+            {chair.map((c, i) => (
+              <Link href={c.link} key={c.title}>
+                <a className="text-white">
+                  {c.title}
+                  {i < chair.length - 1 && ', '}
+                </a>
+              </Link>
+            ))}
           </p>
-        ))}
+        )}
       </div>
       <div>
         {coChair.map((c) => (
@@ -50,7 +51,6 @@ export default function ProfileDetails({
         </p>
       </div>
       <div>
-
         <p className="my-1">
           <strong>Offices:</strong>
           {' '}
@@ -63,7 +63,6 @@ export default function ProfileDetails({
             </Link>
           ))}
         </p>
-
       </div>
       <style jsx>{'strong{font-size: 1.1rem}'}</style>
     </div>
