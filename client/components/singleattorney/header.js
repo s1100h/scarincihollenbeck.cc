@@ -77,7 +77,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     style={{
                       height: '3px',
                       backgroundColor: '#db2220',
-                      maxWidth: '65%'
+                      maxWidth: '65%',
                     }}
                   />
                   <Row className="ml-0 my-3">
