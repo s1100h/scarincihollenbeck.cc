@@ -9,7 +9,7 @@ export default function ProfileDetails({
     <div className="d-flex flex-column">
       <div>
         {chair.map((c) => (
-          <p className="mb-0">
+          <p className="mb-0" key={c.title}>
             <strong>Chair:</strong>
             {' '}
             <Link href={c.link} key={c.title}>
@@ -24,7 +24,7 @@ export default function ProfileDetails({
       </div>
       <div>
         {coChair.map((c) => (
-          <p className="my-1">
+          <p className="my-1" key={c.title}>
             <strong>Co-Chair:</strong>
             {' '}
             <Link href={c.link} key={c.title}>

@@ -19,6 +19,10 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .mobileMenu {
+    margin-bottom: 1em;
+  }
 }
 
 @media (min-width: 449px) and (max-width: 576px) {

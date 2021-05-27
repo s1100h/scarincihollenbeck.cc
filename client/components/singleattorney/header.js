@@ -50,7 +50,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
     <>
       <div className={styles.backPageBanner}>
         <div className={styles.multiBackBanner}>
-          <div className="text-white d-flex flex-column flex-md-row justify-content-start">
+          <div className="text-white d-flex flex-column mx-3 mx-md-0 flex-md-row justify-content-start">
             <div className="profile-image">
               <Image
                 src={image}
@@ -79,7 +79,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
               <Row className="ml-0 my-3">
                 <Col
                   sm={12}
-                  md={6}
+                  md={5}
                   className="credentials mx-0 px-0 mr-3"
                 >
                   <ProfileDetails
@@ -89,7 +89,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     coChair={coChair}
                   />
                 </Col>
-                <Col sm={12} md={3} className="mx-0 px-0 border-left pl-3">
+                <Col sm={12} md={3} className="mx-0 px-0 pl-md-3 mt-1 mt-md-0">
                   <a
                     href={`/attorney/${slug}/contact`}
                     rel="noopener noreferrer"

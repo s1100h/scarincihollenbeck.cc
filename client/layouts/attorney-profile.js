@@ -169,7 +169,7 @@ export default function AttorneyProfile({
       <Container>
         <Row>
           <Col sm={12}>
-            <AttorneyBioLinks links={bioMenuItems} slug={slug} />
+            <AttorneyBioLinks links={bioMenuItems} slug={slug} mobileLinks={body.bio.sidebarLinks} />
           </Col>
           <Col sm={12} md={9}>
             {renderBody(paramArr[paramLen - 1], body.content, slug, header, defaultTabTitle)}

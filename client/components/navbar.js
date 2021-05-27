@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import HamburgerMobileMenu from './hamburger-mobile-menu';
+import HamburgerMobileMenu from 'components/hamburger-mobile-menu';
 import navBarStyles from '../styles/Navbar.module.css';
 import textStyles from '../styles/Text.module.css';
 
