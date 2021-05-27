@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,9 +5,6 @@ import { createMarkup } from 'utils/helpers';
 import styles from 'styles/Banner.module.css';
 
 export default function SingleSubHeader({ title, subtitle, isBlog }) {
-  const router = useRouter();
-  const isPractice = (router.asPath.includes('practices') && title !== 'Legal Practices') ? 0 : 2;
-
   return (
     <div className={styles.backPageBanner}>
       <Container className={styles.backBanner}>
