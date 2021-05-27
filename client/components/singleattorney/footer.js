@@ -66,7 +66,7 @@ function ArticleSection({ articles, slug }) {
         </Col>
       ))}
       <HomePageLink
-        link={`/attorney/${slug}/articles`}
+        link={`/attorney/${slug}/content/articles`}
         title="See More Articles"
       />
     </Row>

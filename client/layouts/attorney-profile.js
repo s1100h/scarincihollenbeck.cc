@@ -177,7 +177,7 @@ export default function AttorneyProfile({
           <Col sm={12} md={3}>
             <AttorneyProfileSidebar
               services={body.bio.headerContent.practices}
-              contact={`${router.asPath}/contact`}
+              contact={`${slug}/contact`}
               awards={body.bio.mainPageContent.awards}
             />
           </Col>

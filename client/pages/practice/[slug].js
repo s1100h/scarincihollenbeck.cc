@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';
 import TabContent from 'react-bootstrap/TabContent';
-import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import PracticeLinks from 'components/singlepractice/links';
 import PracticeContent from 'components/singlepractice/content';
 import RelatedAttorneys from 'components/singlepractice/related-attorneys';
 import PracticeClientSlider from 'components/singlepractice/client-slider';
@@ -19,7 +19,6 @@ import PracticeSidebar from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
-import tabStyle from 'styles/BigButtonTabs.module.css';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 
@@ -59,30 +58,10 @@ export default function PracticeSingle({
       >
         <Container>
           <Row>
-            <Col sm={12}>
-              <Nav id="practice-navigation">
-                {practice.content.length > 0
-                  && practice.content.map((item) => (
-                    <Nav.Link
-                      eventKey={urlify(item.title)}
-                      className={`${tabStyle.tab} ${tabStyle.onSinglePracticePage}`}
-                      key={item.title}
-                    >
-                      {item.title}
-                    </Nav.Link>
-                  ))}
-                {practice.industryTopics.length > 0 && (
-                  <Nav.Link
-                    href={`/library?term=${urlify(practiceUrl)}`}
-                    className={`${tabStyle.tab} ${tabStyle.onSinglePracticePage}`}
-                    eventKey={urlify(practice.content[0].title)}
-                  >
-                    Related Updates
-                  </Nav.Link>
-                )}
-              </Nav>
+            <Col sm={12} >
+              <PracticeLinks links={practice} practiceUrl={practiceUrl} />
             </Col>
-            <Col sm={12} md={9} className="mt-2">
+            <Col sm={12} md={9} style={{ position: 'relative', bottom: '2.5em' }}>
               {practice.content.length > 0
                 && practice.content.map((item) => (
                   <TabContent key={item.title}>
@@ -121,7 +100,7 @@ export default function PracticeSingle({
                 </>
               )}
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={3}  style={{ position: 'relative', bottom: '2.85em' }}>
               <SimpleSearch />
               <hr />
               {router.query.slug === 'education-law' && (
@@ -168,7 +147,6 @@ export default function PracticeSingle({
                   <hr />
                 </>
               )}
-
               <SubscriptionMessage />
               <hr />
               <PracticeSidebar

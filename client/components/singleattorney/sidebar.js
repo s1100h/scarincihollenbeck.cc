@@ -48,7 +48,7 @@ export default function AttorneyProfileSidebar({ services, contact, awards }) {
         <strong>Let&apos;s get in touch</strong>
       </p>
       <p className="mt-2 mb-0">And we can discuss how my legal services can benefit you.</p>
-      <Link href={contact}>
+      <Link href={`/attorney/${contact}`}>
         <a className="btn btn-danger px-4 my-2">
           Contact
         </a>

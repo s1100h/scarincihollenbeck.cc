@@ -6,6 +6,13 @@ import {
   LinkedinShareButton,
   TwitterShareButton,
 } from 'react-share';
+import {
+  FaLinkedin,
+  FaFacebookSquare,
+  FaTwitterSquare,
+  FaEnvelope,
+  FaPrint
+} from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
@@ -19,56 +26,34 @@ export default function PostSocialShareSidebar({ title }) {
       <p className={`${fontStyles.ft12rem} mb-2`}>
         <strong>Share this article</strong>
       </p>
-      <p className="mb-2 mt-3">
+      <p className="mb-1">
         <LinkedinShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <Image
-            src="/images/linkedin-icon.png"
-            alt="linkedin icon"
-            width={20}
-            height={17}
-            layout="fixed"
-          />
-          {' '}
+          <FaLinkedin style={{ fontSize: '1.2rem' }} />
           <u className="link">
             <strong>LinkedIn</strong>
           </u>
         </LinkedinShareButton>
       </p>
-      <p className="mb-2">
+      <p className="mb-1">
         <FacebookShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <Image
-            src="/images/facebook-icon.png"
-            alt="facebook icon"
-            width={18}
-            height={18}
-            layout="fixed"
-          />
-          {' '}
+          <FaFacebookSquare style={{ fontSize: '1.1rem' }} />
           <u className="link">
             <strong>Facebook</strong>
           </u>
         </FacebookShareButton>
       </p>
-      <p className="mb-2">
+      <p className="mb-1">
         <TwitterShareButton
           url={`https://scarincihollenbeck.com${router.asPath}`}
           quote={title}
         >
-          <Image
-            src="/images/twitter-icon.svg"
-            alt="twitter icon"
-            className="twittericon"
-            width={23}
-            height={19}
-            layout="fixed"
-          />
-          {' '}
+          <FaTwitterSquare style={{ fontSize: '1.1rem' }} />
           <u className="link twitter">
             <strong>Twitter</strong>
           </u>
@@ -80,13 +65,7 @@ export default function PostSocialShareSidebar({ title }) {
           body={`https://scarincihollenbeck.com${router.asPath}`}
           separator=""
         >
-          <Image
-            src="/images/email-icon.png"
-            alt="email icon"
-            width={18}
-            height={14}
-            layout="fixed"
-          />
+          <FaEnvelope />
           {' '}
           <u className="link">
             <strong>Email</strong>
@@ -100,14 +79,7 @@ export default function PostSocialShareSidebar({ title }) {
           aria-label="Print Page"
           onClick={() => printScreen()}
         >
-          <Image
-            src="/images/printer-icon.png"
-            alt="print icon"
-            width={18}
-            height={20}
-            layout="fixed"
-          />
-          {' '}
+          <FaPrint />
           <u className="link">
             <strong>Print</strong>
           </u>
@@ -117,15 +89,8 @@ export default function PostSocialShareSidebar({ title }) {
         {`
           .link {
             position: relative;
-            bottom: 4px;
             font-size: 14px;
-            margin-left: 3px;
-          }
-          .twittericon {
-            left: -5px !important;
-          }
-          .twitter {
-            margin-left: 0px !important;
+            margin-left: 10px;
           }
         `}
       </style>
