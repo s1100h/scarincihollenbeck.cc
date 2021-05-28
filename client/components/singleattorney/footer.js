@@ -67,11 +67,13 @@ function ArticleSection({ articles, slug }) {
   );
 }
 
-export default function AttorneyProfileFooter({ clients, slug }) {
+export default function AttorneyProfileFooter({ clients, slug, t }) {
   const fetcher = (url) => fetch(url).then((data) => data.json());
+
   const { data, error } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${slug}`, fetcher);
   console.log('data', data);
-  
+  console.log("t", t)
+
   if (error && clients.length <= 0) {
     return <></>;
   }
