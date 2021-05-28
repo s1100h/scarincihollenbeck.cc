@@ -176,10 +176,10 @@ export async function getStaticProps() {
   ]);
 
   const posts = [...news, ...events];
-
   const leadership = attorneys
     .filter((a) => a.acf.chair.length > 0)
-    .filter((a) => a.title.rendered !== 'Donald M. Pepe')
+    .filter((a) => a.acf.last_name !== 'Pepe')
+    .filter((a) => a.acf.last_name !== 'Eynon')
     .map((leader) => ({
       name: leader.title.rendered,
       link: leader.link,
@@ -217,7 +217,7 @@ export async function getStaticProps() {
       name: ds.title.rendered,
       link: ds.link,
       image: ds.better_featured_image.source_url,
-      title: ['Red Bank, NJ Managing Partner'],
+      title: ['Red Bank, NJ Office Managing Partner'],
     }));
 
   const howardBader = attorneys
@@ -226,7 +226,7 @@ export async function getStaticProps() {
       name: ds.title.rendered,
       link: ds.link,
       image: ds.better_featured_image.source_url,
-      title: ['NYC Managing Partner'],
+      title: ['NYC Office Managing Partner'],
     }));
 
   const teddyEnynon = attorneys
@@ -235,7 +235,7 @@ export async function getStaticProps() {
       name: ds.title.rendered.replace(/&#8220;/g, '"').replace(/&#8221;/g, '"'),
       link: ds.link,
       image: ds.better_featured_image.source_url,
-      title: ['Washington, D.C. Managing Partner'],
+      title: ['Washington, D.C. Office Managing Partner'],
     }));
 
   const katerinTraugh = administration
