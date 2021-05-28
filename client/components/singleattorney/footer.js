@@ -70,7 +70,8 @@ function ArticleSection({ articles, slug }) {
 export default function AttorneyProfileFooter({ clients, slug }) {
   const fetcher = (url) => fetch(url).then((data) => data.json());
   const { data, error } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${slug}`, fetcher);
-
+  console.log('data', data);
+  
   if (error && clients.length <= 0) {
     return <></>;
   }
@@ -85,7 +86,7 @@ export default function AttorneyProfileFooter({ clients, slug }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <p>Articles loading...</p>
+        <p className="text-center my-4">Articles loading...</p>
       </>
     );
   }
@@ -97,7 +98,7 @@ export default function AttorneyProfileFooter({ clients, slug }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <p>Articles loading...</p>
+        <p className="text-center my-4">Articles loading...</p>
       </>
     );
   }
