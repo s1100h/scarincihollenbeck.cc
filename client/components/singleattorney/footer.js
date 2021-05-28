@@ -70,9 +70,8 @@ function ArticleSection({ articles, slug }) {
 export default function AttorneyProfileFooter({ clients, slug, t }) {
   const fetcher = (url) => fetch(url).then((data) => data.json());
 
-  const { data, error } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${slug}`, fetcher);
-  console.log('data', data);
-  console.log("t", t)
+  const { data, error } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${t}`, fetcher);
+
 
   if (error && clients.length <= 0) {
     return <></>;
@@ -128,32 +127,4 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
       </>
     );
   }
-
-  // if
-  // if (error || clients.length > 0) {
-  //   return <ClientSection clients={clients} />
-  // }
-
-  // if (!data || clients.length > 0) {
-  //   return (
-  //     <>
-  //       <ClientSection clients={clients} />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>News, Events & Articles</h3>
-  //       </div>
-  //       <p>Articles loading...</p>
-  //     </>
-  //   );
-  // }
-
-  // if (data || clients.length > 0) {
-  //   return (
-  //     <>
-  //       <ClientSection clients={clients} />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>News, Events & Articles</h3>
-  //       </div>
-  //       <p>We have articles</p>
-  //     </>
-  //   );
 }
