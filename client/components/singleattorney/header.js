@@ -21,6 +21,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
     phoneNumber,
     email,
     pdf,
+    fax,
     vizibility,
     socialMedia,
   } = profile;
@@ -87,6 +88,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                         contact={contact}
                         chair={chair}
                         coChair={coChair}
+                        fax={fax}
                       />
                       <div className="d-flex flex-column flex-md-row">
                         <ul className="list-unstyled mt-2 mr-0 mr-md-4">
@@ -115,6 +117,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                               }
                               size="sm"
                               rel="noopener noreferrer"
+                              target="_blank"
                               style={{ height: '30px' }}
                               variant="link"
                               className="d-block mb-1 text-left text-white w-100"
@@ -134,6 +137,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                               href={pdf}
                               size="sm"
                               rel="noopener noreferrer"
+                              target="_blank"
                               style={{ height: '30px' }}
                               variant="link"
                               className="d-block mb-1 text-left text-white w-100"
@@ -153,6 +157,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                               href={vizibility}
                               size="sm"
                               rel="noopener noreferrer"
+                              target="_blank"
                               style={{ height: '30px' }}
                               variant="link"
                               className="d-block mb-1 text-left text-white w-100"
