@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import useSWR from 'swr';
+import BeatLoader from 'react-spinners/BeatLoader';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import useSWR from 'swr';
 import HomePageLink from 'components/home/page-link';
 import lineStyles from 'styles/LineHeader.module.css';
 
@@ -20,8 +21,8 @@ function ClientSection({ slug, clients }) {
                 <Image
                   alt={article.title}
                   src={
-              article.featuredImg || '/images/no-image-found-diamond.png'
-            }
+                    article.featuredImg || '/images/no-image-found-diamond.png'
+                  }
                   width={200}
                   height={200}
                   className="rounded"
@@ -48,9 +49,7 @@ function ArticleSection({ articles, slug }) {
             <a className="text-center mx-auto d-block">
               <Image
                 alt={article.title}
-                src={
-              article.image || '/images/no-image-found-diamond.png'
-            }
+                src={article.image || '/images/no-image-found-diamond.png'}
                 width={300}
                 height={150}
                 className="rounded"
@@ -70,8 +69,10 @@ function ArticleSection({ articles, slug }) {
 export default function AttorneyProfileFooter({ clients, slug, t }) {
   const fetcher = (url) => fetch(url).then((data) => data.json());
 
-  const { data, error } = useSWR(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${t}`, fetcher);
-
+  const { data, error } = useSWR(
+    `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${t}`,
+    fetcher,
+  );
 
   if (error && clients.length <= 0) {
     return <></>;
@@ -87,7 +88,9 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <p className="text-center my-4">Articles loading...</p>
+        <div className="mx-auto text-center my-4 d-block">
+          <BeatLoader color="#db2200" />
+        </div>
       </>
     );
   }
@@ -99,7 +102,9 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <p className="text-center my-4">Articles loading...</p>
+        <div className="mx-auto text-center my-4 d-block">
+          <BeatLoader color="#db2200" />
+        </div>
       </>
     );
   }
@@ -110,7 +115,10 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <ArticleSection slug={slug} articles={data.results.filter((_, i) => i <= 3)} />
+        <ArticleSection
+          slug={slug}
+          articles={data.results.filter((_, i) => i <= 3)}
+        />
       </>
     );
   }
@@ -123,7 +131,10 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <ArticleSection slug={slug} articles={data.results.filter((_, i) => i <= 3)} />
+        <ArticleSection
+          slug={slug}
+          articles={data.results.filter((_, i) => i <= 3)}
+        />
       </>
     );
   }
