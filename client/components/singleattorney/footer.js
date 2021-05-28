@@ -88,7 +88,9 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <SiteLoader />
+        <div className="my-4">
+          <SiteLoader />
+        </div>
       </>
     );
   }
@@ -100,7 +102,9 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <SiteLoader />
+        <div className="my-4">
+          <SiteLoader />
+        </div>
       </>
     );
   }

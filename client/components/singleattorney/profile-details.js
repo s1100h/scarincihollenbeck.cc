@@ -31,8 +31,6 @@ export default function ProfileDetails({
             <Link href={c.link} key={c.title}>
               <a className="text-white">
                 {c.title}
-                {' '}
-                Section
               </a>
             </Link>
           </p>
