@@ -25,8 +25,7 @@ export default function SubscriptionBody() {
           attorneys at Scarinci Hollenbeck
         </p>
         <h4 className={`${grayTitleStyles.title} mb-5`}>Sign up today!</h4>
-        <style jsx>{'p { font-size: 1.3rem }; strong { font-size: 1.3rem }'}</style>
-
+        <style jsx>{' p{ font-size: 1.15rem }; strong { font-size: 1.15rem }'}</style>
       </div>
       <SubscriptionFormColumn />
     </>

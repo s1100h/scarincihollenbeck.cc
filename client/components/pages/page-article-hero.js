@@ -33,18 +33,15 @@ export default function ArticleHeroPage({ link, content }) {
             </Col>
           ))}
         {content.length >= 3 && (
-          <Link href={`/library?term=${link}`}>
-            <a
-              className=" mx-auto d-block w-100 text-center my-4"
-              style={{ color: '#db2220', fontSize: '1.275rem' }}
-            >
-              <strong>
-                <u>
-                  More articles
-                </u>
-              </strong>
-            </a>
-          </Link>
+          <a
+            href={`/library?term=${link}`}
+            className=" mx-auto d-block w-100 text-center my-4"
+            style={{ color: '#db2220', fontSize: '1.275rem' }}
+          >
+            <strong>
+              <u>More articles</u>
+            </strong>
+          </a>
         )}
       </Row>
     </Container>

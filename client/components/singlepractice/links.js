@@ -1,5 +1,4 @@
 import Nav from 'react-bootstrap/Nav';
-import Link from 'next/link';
 import styles from 'styles/Tabs.module.css';
 import { urlify } from 'utils/helpers';
 
@@ -23,14 +22,13 @@ export default function PracticeLinks({ links, practiceUrl }) {
         </Nav.Item>
       ))}
       <Nav.Item as="li">
-        <Link href={`/library?term=${urlify(practiceUrl)}`}>
-          <a
-            className={`${styles.tab} ${styles.practice} text-white`}
-            style={{ display: 'block', padding: '.5rem 1rem' }}
-          >
-            Related Updates
-          </a>
-        </Link>
+        <a
+          href={`/library?term=${urlify(practiceUrl)}`}
+          className={`${styles.tab} ${styles.practice} text-white`}
+          style={{ display: 'block', padding: '.5rem 1rem' }}
+        >
+          Related Updates
+        </a>
       </Nav.Item>
     </Nav>
   );

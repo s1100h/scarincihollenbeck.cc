@@ -15,6 +15,7 @@ export default function PostAuthorBio({ author }) {
             <div className={`${lineHeaderStyles.lineHeader} d-print-none mt-3`}>
               <h3>
                 About
+                {' '}
                 {a.name}
               </h3>
             </div>

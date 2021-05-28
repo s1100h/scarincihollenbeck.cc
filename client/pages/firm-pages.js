@@ -24,11 +24,12 @@ export default function FirmPages({ page, relatedPages }) {
         subtitle={page.description}
         span={9}
         offset={0}
+        isBlog
       />
 
       <Container>
         <Row>
-          <Col sm={12} md={8}>
+          <Col sm={12} md={9}>
             {page.tabs.map((tab) => (
               <div key={tab.title}>
                 <h4

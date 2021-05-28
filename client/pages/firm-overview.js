@@ -25,14 +25,18 @@ export default function FirmOverview({
         offset={2}
       />
       <FullWidth>
-        <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+        <div
+          className="featured"
+          dangerouslySetInnerHTML={createMarkup(bodyContent)}
+        />
         {mainTabs.map((tab) => (
           <div
             key={tab.title}
-            className="mt-4"
+            className="mt-4 featured"
             dangerouslySetInnerHTML={createMarkup(tab.content)}
           />
         ))}
+        <style jsx>{' div.featured{ font-size: 1.15rem }'}</style>
         <div className="border">
           <FirmMembers
             title="Managing Partners"

@@ -29,18 +29,15 @@ export default function ArticleHeroPractice({ link, content }) {
               </Link>
             </Col>
           ))}
-        <Link href={`/library?term=${link}`}>
-          <a
-            className=" mx-auto d-block w-100 text-center my-4"
-            style={{ color: '#db2220', fontSize: '1.275rem' }}
-          >
-            <strong>
-              <u>
-                More articles
-              </u>
-            </strong>
-          </a>
-        </Link>
+        <a
+          className=" mx-auto d-block w-100 text-center my-4"
+          style={{ color: '#db2220', fontSize: '1.275rem' }}
+          href={`/library?term=${link}`}
+        >
+          <strong>
+            <u>More articles</u>
+          </strong>
+        </a>
       </Row>
     </Container>
   );
