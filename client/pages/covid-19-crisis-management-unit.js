@@ -2,7 +2,9 @@ import { NextSeo } from 'next-seo';
 import useSWR from 'swr';
 import SiteLoader from 'components/site-loader';
 import ErrorMessage from 'components/error-message';
-import PagesSidebar from 'components/pages/sidebar';
+import SimpleSearch from 'components/simple-search';
+import SubscriptionMessage from 'components/subscription-message';
+import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { fetcher, headers } from 'utils/helpers';
@@ -16,6 +18,46 @@ export default function Covid19CrisisManagementUnit({
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
+  const firmLibrary = [
+    {
+      id: '9TZ8Zz7xy95BVp',
+      title: 'Firm News',
+      slug: 'library?category=firm-news',
+    },
+    {
+      id: 'RMtQjkqW3jAVvC',
+      title: 'Firm Events',
+      slug: 'library?category=firm-events',
+    },
+    {
+      id: 'KNDpxvUhdm73hf',
+      title: 'Firm Insights',
+      slug: 'library?category=firm-insights',
+    },
+  ];
+
+  const firmPages = [
+    {
+      id: 'WF7jMpVJP3PTnuP',
+      title: 'Pro Bono',
+      slug: 'pro-bono',
+    },
+    {
+      id: 'vehm0rQb7cpMH92',
+      title: 'Women Lead',
+      slug: 'women-lead',
+    },
+    {
+      id: 'SjveurE3BK1R1l2',
+      title: 'Community Involvement',
+      slug: 'community-involvement',
+    },
+    {
+      id: 'SjveurE7BK1R1l2',
+      title: 'Diversity Group',
+      slug: 'diversity-group',
+    },
+  ];
 
   // retrieve external posts from internal api
   const { data: externaCovidPosts, error: externaCovidPostsError } = useSWR(
@@ -25,7 +67,14 @@ export default function Covid19CrisisManagementUnit({
 
   if (externaCovidPostsError) return <ErrorMessage />;
   if (!externaCovidPosts) return <SiteLoader />;
-
+  const sidebar = (
+    <>
+      <SimpleSearch />
+      <SubscriptionMessage />
+      <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
+      <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
+    </>
+  );
   return (
     <>
       <NextSeo
@@ -33,17 +82,12 @@ export default function Covid19CrisisManagementUnit({
         description={seo.metaDescr}
         canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
       />
-      <SingleSubHeader
-        title={title}
-        subtitle={subTitle}
-        span={9}
-        offset={0}
-      />
+      <SingleSubHeader title={title} subtitle={subTitle} span={9} offset={0} />
       <LargeSidebarWithPosts
         posts={internalCovidPosts}
         postsTitle="COVID-19 Articles"
         content={bodyContent}
-        sidebar={<PagesSidebar posts={externaCovidPosts.response} covidPage />}
+        sidebar={sidebar}
       />
     </>
   );

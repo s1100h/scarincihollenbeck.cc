@@ -30,3 +30,7 @@
 .p a {
   color: #0c64ea;
 }
+
+.p > h3 {
+  font-size: 1.4rem;
+}

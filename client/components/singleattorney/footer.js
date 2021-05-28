@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import useSWR from 'swr';
-import BeatLoader from 'react-spinners/BeatLoader';
+import SiteLoader from 'components/site-loader';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import HomePageLink from 'components/home/page-link';
@@ -75,7 +75,7 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
   );
 
   if (error && clients.length <= 0) {
-    return <></>;
+    return <SiteLoader />;
   }
 
   if (error && clients.length > 0) {
@@ -88,9 +88,7 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <div className="mx-auto text-center my-4 d-block">
-          <BeatLoader color="#db2200" />
-        </div>
+        <SiteLoader />
       </>
     );
   }
@@ -102,9 +100,7 @@ export default function AttorneyProfileFooter({ clients, slug, t }) {
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>
-        <div className="mx-auto text-center my-4 d-block">
-          <BeatLoader color="#db2200" />
-        </div>
+        <SiteLoader />
       </>
     );
   }
