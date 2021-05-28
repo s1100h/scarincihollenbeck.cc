@@ -36,8 +36,8 @@ export default function Covid19CrisisManagementUnit({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="/images/Legal-Research-1800x400-JPG.jpg"
-        height="auto"
+        span={9}
+        offset={0}
       />
       <LargeSidebarWithPosts
         posts={internalCovidPosts}

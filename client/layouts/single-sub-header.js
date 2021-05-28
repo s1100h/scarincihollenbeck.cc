@@ -4,13 +4,14 @@ import Col from 'react-bootstrap/Col';
 import { createMarkup } from 'utils/helpers';
 import styles from 'styles/Banner.module.css';
 
-export default function SingleSubHeader({ title, subtitle, isBlog }) {
+export default function SingleSubHeader({
+  title, subtitle, isBlog, isHoliday, span, offset,
+}) {
   return (
-    <div className={styles.backPageBanner}>
-      <Container className={styles.backBanner}>
+    <div className={!isHoliday ? styles.backPageBanner : styles.holidayBanner}>
+      <Container className={(span === 9 && !isBlog) ? styles.tabBanner : styles.noTabBanner}>
         <Row>
-          {/** set it to offset 0 with practice apges  */}
-          <Col sm={12} md={{ span: 9, offset: 0 }}>
+          <Col sm={12} md={{ span, offset }}>
             <h1
               className="text-white mb-0 animate__animated animate__fadeInDown animate__fast"
               style={{

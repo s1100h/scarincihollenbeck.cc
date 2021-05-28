@@ -14,8 +14,8 @@ export default function SubscriptionPage() {
       <SingleSubHeader
         title="Firm Mailing List"
         subtitle="Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements."
-        image="/images/Skyscrapers-up-1800x400-JPG.jpg"
-        height="390px"
+        span={8}
+        offset={2}
       />
       <FullWidth>
         <SubscriptionBody />

@@ -77,38 +77,6 @@ export default function AdminSingleBio({ response }) {
           </Col>
         </Row>
       </Container>
-      {/* <MultiSubHeader
-          image="/images/Columns-1800x400-JPG.jpg"
-          height="450px"
-          isAdmin
-          profile={
-            <ProfileImage image={response.image.url} name={response.name} />
-          }
-          infoCard={(
-            <InfoCard
-              email={response.email}
-              vizibility={response.vizibility}
-              fullName={response.name}
-              designation={response.Title}
-              phoneNumber={`201-896-4100 ${response.phone_extension}`}
-              socialMediaLinks={response.socialMediaLinks}
-              offices={response.offices}
-              chair={0}
-              coChair={0}
-              pdf=""
-              services=""
-            />
-          )}
-        />
-        <FullWidth>
-          <div>
-            <div className={lineStyles.lineHeader}>
-              <h3>Biography</h3>
-            </div>
-            <div className="w-100 my-5" />
-          </div>
-        </FullWidth>
-      </div> */}
     </>
   );
 }

@@ -26,6 +26,8 @@ export default function CareerPost({ career }) {
         image="/images/Legal-Research-1800x400-JPG.jpg"
         title={career.title}
         subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
+        offset={0}
+        span={9}
       />
       <Container>
         <Row>

@@ -56,9 +56,10 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
       />
       <div id="careers">
         <SingleSubHeader
-          image="/images/Skyscrapers-up-1800x400-JPG.jpg"
           title="Careers & Available Positions"
           subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
+          offset={2}
+          span={8}
         />
         <FullWidth>
           {careers && (

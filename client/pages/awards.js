@@ -21,8 +21,8 @@ export default function Awards({ content, seo }) {
       <SingleSubHeader
         title="Awards"
         subtitle={subTitle}
-        image="/images/Legal-Research-1800x400-JPG.jpg"
-        height="auto"
+        offset={2}
+        span={8}
       />
       <Container>
         <Row>

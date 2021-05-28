@@ -39,7 +39,8 @@ export default function AllLocations({
       <SingleSubHeader
         title="Office Locations"
         subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
-        image="/images/Skyscrapers-up-1800x400-JPG.jpg"
+        span={8}
+        offset={2}
       />
       <Container>
         <Row>

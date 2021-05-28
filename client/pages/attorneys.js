@@ -106,9 +106,9 @@ export default function Attorneys({
       />
       <SingleSubHeader
         title="Attorneys"
-        image="/images/attorney-archive-header-jpg.jpg"
         subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
-        height="330px"
+        offset={2}
+        span={8}
       />
       <FullWidth>
         <div className="mb-5">

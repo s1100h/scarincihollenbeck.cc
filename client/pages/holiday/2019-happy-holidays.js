@@ -18,8 +18,9 @@ export default function HappyHolidaysNineteen({ title, content, seo }) {
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="/images/red-snow1900x400.png"
-        height="400"
+        span={8}
+        offset={2}
+        isHoliday
       />
       <FullWidth>
         <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />

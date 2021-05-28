@@ -77,10 +77,11 @@ export default function LawFirmInsightsPost({
         description={`${seo.metaDescription}`}
       />
       <SingleSubHeader
-        image="/images/Legal-Research-1800x400-JPG.jpg"
         title={title}
         subtitle={subTitle}
         isBlog
+        offset={0}
+        span={9}
       />
       <Container>
         <Row>

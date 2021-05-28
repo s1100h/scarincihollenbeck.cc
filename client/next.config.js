@@ -80,6 +80,22 @@ module.exports = {
         source: '/mandarin/:slug*',
         destination: '/post/:slug*?category=mandarin',
       },
+      {
+        source: '/diversity-group',
+        destination: '/firm-pages?page=diversity-group',
+      },
+      {
+        source: '/community-involvement',
+        destination: '/firm-pages?page=community-involvement',
+      },
+      {
+        source: '/pro-bono',
+        destination: '/firm-pages?page=pro-bono',
+      },
+      {
+        source: '/women-lead',
+        destination: '/firm-pages?page=women-lead',
+      }
     ];
   },
 };

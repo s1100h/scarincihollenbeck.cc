@@ -17,8 +17,8 @@ export default function ContactPage() {
       <SingleSubHeader
         title="Contact Us"
         subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
-        image="/images/Skyscrapers-up-1800x400-JPG.jpg"
-        height="390px"
+        span={8}
+        offset={2}
       />
       <FullWidth>
         <div className="w-100">

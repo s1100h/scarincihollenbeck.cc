@@ -67,7 +67,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     loading="eager"
                   />
                 </div>
-                <div className="ml-0 ml-md-5 profile mt-4">
+                <div className="ml-0 ml-md-5 profile my-2">
                   <h2 className="animate__animated animate__fadeInDown animate__slow mb-0">
                     <strong className="name">{name}</strong>
                   </h2>

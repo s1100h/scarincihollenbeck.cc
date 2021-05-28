@@ -21,7 +21,8 @@ export default function FirmOverview({
       <SingleSubHeader
         title="Firm Overview"
         subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, '')}
-        image="/images/City-Night-Background-1800x400-JPG.jpg"
+        span={8}
+        offset={2}
       />
       <FullWidth>
         <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />

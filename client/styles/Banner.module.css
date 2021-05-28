@@ -8,6 +8,10 @@
   background: url(/images/back-page-banner-2000x663.jpg) no-repeat center center;
 }
 
+.holidayBanner {  
+  background: url(/images/red-snow1900x400.png) no-repeat center center;
+}
+
 .banner,
 .backPageBanner {
   -webkit-background-size: cover;
@@ -20,11 +24,6 @@
   margin-bottom: 1.5em;
   height: auto;
 }
-
-/* .backPageBanner {
-  justify-content: center;
-  align-items: center;
-} */
 
 .bannerContainer {
   background-color: rgba(0, 0, 0, 0.556);
@@ -76,10 +75,18 @@
   margin-bottom: 6.5em;
 }
 
-.backBanner {
+.tabBanner, .noTabBanner {
   margin-top: 3.5em;
+}
+
+.tabBanner {
+  margin-bottom: 5em;
+}
+
+.noTabBanner {
   margin-bottom: 3.5em;
 }
+
 
 .multiBackBanner {
   margin-top: 2.5em;

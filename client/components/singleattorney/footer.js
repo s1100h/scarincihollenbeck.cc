@@ -12,9 +12,9 @@ function ClientSection({ slug, clients }) {
       <div className={lineStyles.lineHeader}>
         <h3>Clients</h3>
       </div>
-      <Row className="mt-2 mb-3">
+      <Row className="mt-2">
         {clients.map((article) => (
-          <Col sm={12} md={3} key={article.title}>
+          <Col sm={12} md={4} key={article.title}>
             <Link href={article.link}>
               <a className="text-center mx-auto d-block">
                 <Image
@@ -22,13 +22,10 @@ function ClientSection({ slug, clients }) {
                   src={
               article.featuredImg || '/images/no-image-found-diamond.png'
             }
-                  width={300}
-                  height={300}
+                  width={200}
+                  height={200}
                   className="rounded"
                 />
-                <small className="text-dark d-block">
-                  <strong>{article.title}</strong>
-                </small>
               </a>
             </Link>
           </Col>
@@ -46,7 +43,7 @@ function ArticleSection({ articles, slug }) {
   return (
     <Row className="mt-5 mb-3">
       {articles.map((article) => (
-        <Col sm={12} md={3} key={article.title}>
+        <Col sm={12} md={3} key={article.title} className="mb-4">
           <Link href={article.link}>
             <a className="text-center mx-auto d-block">
               <Image
@@ -58,9 +55,6 @@ function ArticleSection({ articles, slug }) {
                 height={150}
                 className="rounded"
               />
-              <small className="text-dark d-block">
-                <strong>{article.title}</strong>
-              </small>
             </a>
           </Link>
         </Col>
@@ -123,6 +117,7 @@ export default function AttorneyProfileFooter({ clients, slug }) {
     return (
       <>
         <ClientSection slug={slug} clients={clients} />
+        <br />
         <div className={lineStyles.lineHeader}>
           <h3>News, Events & Articles</h3>
         </div>

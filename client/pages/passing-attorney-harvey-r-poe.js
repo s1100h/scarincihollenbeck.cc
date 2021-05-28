@@ -25,8 +25,8 @@ export default function PassingAttorneyHarveyRPoe({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        image="/images/Legal-Research-1800x400-JPG.jpg"
-        height="auto"
+        span={8}
+        offset={2}
       />
       <LargeSidebar
         body={<PagesBody content={bodyContent} />}

@@ -48,9 +48,10 @@ export default function PracticeSingle({
         canonical={`http://scarincihollenbeck.com/practice${practice.slug}`}
       />
       <SingleSubHeader
-        image="/images/City-Night-Background-1800x400-JPG.jpg"
         title={practice.title}
         subtitle={practice.description}
+        offset={0}
+        span={9}
       />
       <TabContainer
         id="nav-tab"
