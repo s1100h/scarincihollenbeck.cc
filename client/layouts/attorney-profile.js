@@ -76,10 +76,6 @@ export default function AttorneyProfile({
       return false;
     }
 
-    if (item.label === 'News, Events & Articles') {
-      return false;
-    }
-
     if (index >= 6) {
       return false;
     }
@@ -88,14 +84,6 @@ export default function AttorneyProfile({
   });
 
   const getAdditionalMenuItems = body.bio.sidebarLinks.filter((item, index) => {
-    if (item.label === 'Education & Admissions') {
-      return true;
-    }
-
-    if (item.label === 'News, Events & Articles') {
-      return true;
-    }
-
     if (index >= 6) {
       return true;
     }
@@ -180,6 +168,7 @@ export default function AttorneyProfile({
               services={body.bio.headerContent.practices}
               contact={`${slug}/contact`}
               awards={body.bio.mainPageContent.awards}
+              educationLink={`/attorney/${slug}/content/education-admissions`}
             />
           </Col>
           <Col sm={12}>

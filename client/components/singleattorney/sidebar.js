@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
-
 import fontStyles from 'styles/Fonts.module.css';
 import marginStyles from 'styles/Margins.module.css';
 /** *
  * TODO: Fix award image sizes
  */
 
-export default function AttorneyProfileSidebar({ services, contact, awards }) {
+export default function AttorneyProfileSidebar({
+  services, contact, educationLink, awards,
+}) {
   const settings = {
     dots: true,
     fade: true,
@@ -53,6 +54,16 @@ export default function AttorneyProfileSidebar({ services, contact, awards }) {
           Contact
         </a>
       </Link>
+      <hr />
+      <p className={`${fontStyles.ft12rem} mb-0`}>
+        <strong>Education & Admissions</strong>
+      </p>
+      <p className="mt-2 mb-0">List of education, bar admissions, affilliations, memberships,  etc.</p>
+      <Link scroll={false} href={educationLink}>
+        <a className="btn btn-danger px-4 my-2">
+          Credentials
+        </a>
+      </Link>
       {awards.length > 0 && (
         <div>
           <hr />
@@ -66,7 +77,7 @@ export default function AttorneyProfileSidebar({ services, contact, awards }) {
             ))}
           </Slider>
           <small>
-            <Link href="/awards">
+            <Link scroll={false} href="/awards">
               <a>Award Methodology</a>
             </Link>
           </small>

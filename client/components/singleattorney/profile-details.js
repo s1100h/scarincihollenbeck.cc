@@ -1,7 +1,11 @@
 import Link from 'next/link';
 
 export default function ProfileDetails({
-  chair, coChair, contact, offices, fax
+  chair,
+  coChair,
+  contact,
+  offices,
+  fax,
 }) {
   const { phoneNumber, email } = contact;
 
@@ -29,9 +33,7 @@ export default function ProfileDetails({
             <strong>Co-Chair:</strong>
             {' '}
             <Link href={c.link} key={c.title}>
-              <a className="text-white">
-                {c.title}
-              </a>
+              <a className="text-white">{c.title}</a>
             </Link>
           </p>
         ))}
@@ -54,7 +56,7 @@ export default function ProfileDetails({
         </p>
       </div>
       <div>
-        <p className="my-1">          
+        <p className="my-1">
           {offices.length > 1 && <strong>Offices:</strong>}
           {offices.length <= 1 && <strong>Office:</strong>}
           {' '}

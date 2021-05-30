@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -16,7 +17,9 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
               key={l.label}
               className={(activeKey === `/attorney/${slug}${l.link}`) ? styles.tabActive : styles.tab}
             >
-              <Nav.Link href={`/attorney/${slug}${l.link}`}>{l.label}</Nav.Link>
+              <Link scroll={false} href={`/attorney/${slug}${l.link}`}>
+                <a className="nav-link">{l.label}</a>
+              </Link>
             </Nav.Item>
           ))}
           <Dropdown>
@@ -25,7 +28,15 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              {links.more.map((m) => <Dropdown.Item key={m.label} href={`/attorney/${slug}${m.link}`}>{m.label}</Dropdown.Item>)}
+              {links.more.map((m) => (
+                <Dropdown.Item key={m.label}>
+                  <Link scroll={false} href={`/attorney/${slug}${m.link}`}>
+                    <a className="text-dark">
+                      {m.label}
+                    </a>
+                  </Link>
+                </Dropdown.Item>
+              ))}
             </Dropdown.Menu>
           </Dropdown>
 
@@ -46,14 +57,6 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-      {/* <style jsx>
-        {`
-        div.mobile-menu {
-          position: relative;
-          bottom 2.4em;
-        }
-      `}
-      </style> */}
     </>
   );
 }

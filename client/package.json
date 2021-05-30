@@ -29,10 +29,12 @@
     "react-icons": "^4.2.0",
     "react-multi-carousel": "^2.5.5",
     "react-recaptcha-google": "^1.0.1",
+    "react-redux": "^7.2.4",
     "react-share": "^4.2.1",
     "react-slick": "^0.28.1",
     "react-spinners": "^0.10.4",
     "react-star-rating-component": "^1.4.1",
+    "redux": "^4.1.0",
     "rss-parser": "^3.9.0",
     "styled-components": "^5.2.1",
     "swr": "^0.4.1"
