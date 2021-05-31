@@ -41,15 +41,11 @@ export async function getStaticPaths() {
       { headers },
     ).then((data) => data.json()),
   ]);
-  const attorneyPackPageLinks = [];
+  const attorneyBackPageLinks = [];
+  res.forEach((attorney) => attorney.sidebarLinks.forEach((link) => attorneyBackPageLinks.push(link)));
 
-  res.forEach((attorney) => {
-    attorney.sidebarLinks.forEach((contentLink) => {
-      attorneyPackPageLinks.push(`/attorney${attorney.link}${contentLink}`);
-    });
-  });
   return {
-    paths: attorneyPackPageLinks || [],
+    paths: attorneyBackPageLinks || [],
     fallback: true,
   };
 }
