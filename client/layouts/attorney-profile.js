@@ -54,7 +54,7 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
       return <AttorneyProfileArticles initalArticles={content} term={slug} />;
     case 'education-admissions':
       return <AttorneyProfileEducation content={content} />;
-    case 'videos':
+    case 'video':
       return <AttorneyProfileVideo content={content} />;
     case 'audio':
       return <AttorneyProfileBody title="Audio" content={content.body} />;

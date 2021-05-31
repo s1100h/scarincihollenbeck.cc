@@ -24,7 +24,7 @@ export default function ProfileDetails({
                 </a>
               </Link>
             ))}
-            {coChair && (
+            {coChair.length > 0 && (
               <>
                 <strong className="px-2">|</strong>
                 {coChair.map((c) => (
