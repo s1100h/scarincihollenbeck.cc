@@ -149,12 +149,12 @@ export default function Footer() {
             <ul className={styles.linkList}>
               <li>
                 <Link href="/location/lyndhurst">
-                  <a className="text-dark">Lyndhurst</a>
+                  <a className="text-dark">Lyndhurst, NJ</a>
                 </Link>
               </li>
               <li>
                 <Link href="/location/red-bank">
-                  <a className="text-dark">Red Bank</a>
+                  <a className="text-dark">Red Bank, NJ</a>
                 </Link>
               </li>
               <li>
@@ -197,6 +197,11 @@ export default function Footer() {
             </p>
             <ul className={styles.linkList}>
               <li>
+                <Link href="/practice/bankruptcy-and-creditors-rights">
+                  <a className="text-dark">Bankruptcy & Creditors’ Rights</a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/practice/commercial-real-estate">
                   <a className="text-dark">Commercial Real Estate</a>
                 </Link>
@@ -216,15 +221,15 @@ export default function Footer() {
                   <a className="text-dark">Government Strategies</a>
                 </Link>
               </li>
+            </ul>
+          </Col>
+          <Col sm={12} md={2} style={{ marginTop: '1.9em' }}>
+            <ul className={styles.linkList}>
               <li>
                 <Link href="/practice/intellectual-property">
                   <a className="text-dark">Intellectual Property</a>
                 </Link>
               </li>
-            </ul>
-          </Col>
-          <Col sm={12} md={2} className="mt-4">
-            <ul className={styles.linkList}>
               <li>
                 <Link href="/practice/labor-employment">
                   <a className="text-dark">Labor & Employment</a>

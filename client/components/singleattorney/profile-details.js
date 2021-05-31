@@ -24,20 +24,25 @@ export default function ProfileDetails({
                 </a>
               </Link>
             ))}
+            {coChair && (
+              <>
+                <strong className="px-2">|</strong>
+                {coChair.map((c) => (
+                  <span className="my-1" key={c.title}>
+                    <strong>Co-Chair:</strong>
+                    {' '}
+                    <Link href={c.link} key={c.title}>
+                      <a className="text-white">{c.title}</a>
+                    </Link>
+                  </span>
+                ))}
+              </>
+            )}
+
           </p>
         )}
       </div>
-      <div>
-        {coChair.map((c) => (
-          <p className="my-1" key={c.title}>
-            <strong>Co-Chair:</strong>
-            {' '}
-            <Link href={c.link} key={c.title}>
-              <a className="text-white">{c.title}</a>
-            </Link>
-          </p>
-        ))}
-      </div>
+      <div />
       <div>
         <p className="my-1">
           <strong>Phone:</strong>

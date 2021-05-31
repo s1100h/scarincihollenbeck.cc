@@ -34,29 +34,7 @@ export default function AttorneyBioProfile({
   );
 }
 
-export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
-      { headers },
-    ).then((data) => data.json()),
-  ]);
-
-  const attorneyBackPages = [];
-
-  res.forEach((l) => {
-    l.sidebarLinks.forEach((sl) => {
-      attorneyBackPages.push(`/attorney${l.link}${sl}`);
-    });
-  });
-
-  return {
-    paths: attorneyBackPages || [],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   // keep bio for presentations, publications & blogs
   const [bio, contact, content] = await Promise.all([
     fetch(
@@ -86,6 +64,5 @@ export async function getStaticProps({ params }) {
       content,
       slug: params.slug,
     },
-    revalidate: 1,
   };
 }

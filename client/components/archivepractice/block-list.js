@@ -18,10 +18,10 @@ export default function ArchivePracticeBlockList({ list }) {
               >
                 {item.title}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="mw-100">
+              <Dropdown.Menu className="w-100">
                 <Dropdown.Item
                   key={item.ID}
-                  style={{ fontSize: '1rem' }}
+                  style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}
                   href={item.slug.replace(
                     'https://scarincihollenbeck.com',
                     '',

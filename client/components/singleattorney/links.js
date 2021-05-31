@@ -6,40 +6,57 @@ import styles from 'styles/Tabs.module.css';
 
 export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
   const router = useRouter();
-  const activeKey = !router.asPath.includes('content') ? `${router.asPath}/content/biography` : router.asPath;
+  const activeKey = !router.asPath.includes('content')
+    ? `${router.asPath}/content/biography`
+    : router.asPath;
 
   return (
     <>
       <div className="d-none d-md-block">
-        <Nav justify defaultActiveKey={activeKey} className={styles.tabContainer}>
+        <Nav
+          justify
+          defaultActiveKey={activeKey}
+          className={styles.tabContainer}
+        >
           {links.main.map((l) => (
             <Nav.Item
               key={l.label}
-              className={(activeKey === `/attorney/${slug}${l.link}`) ? styles.tabActive : styles.tab}
+              className={
+                activeKey === `/attorney/${slug}${l.link}`
+                  ? styles.tabActive
+                  : styles.tab
+              }
             >
               <Link scroll={false} href={`/attorney/${slug}${l.link}`}>
                 <a className="nav-link">{l.label}</a>
               </Link>
             </Nav.Item>
           ))}
-          <Dropdown>
-            <Dropdown.Toggle className={`${styles.tab} ${styles.tabsBtn}`} id="nav-dropdown">
-              More +
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {links.more.map((m) => (
-                <Dropdown.Item key={m.label}>
-                  <Link scroll={false} href={`/attorney/${slug}${m.link}`}>
-                    <a className="text-dark">
+          {links.more.length > 0 && (
+            <Dropdown>
+              <Dropdown.Toggle
+                className={`${styles.tab} ${styles.tabsBtn}`}
+                id="nav-dropdown"
+              >
+                More +
+              </Dropdown.Toggle>
+              <Dropdown.Menu
+                style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}
+              >
+                {links.more.map((m) => (
+                  <Link
+                    key={m.label}
+                    scroll={false}
+                    href={`/attorney/${slug}${m.link}`}
+                  >
+                    <a className="text-dark dropdown-item" role="button">
                       {m.label}
                     </a>
                   </Link>
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
         </Nav>
       </div>
       <div className="d-block d-md-none mobile-menu">
@@ -53,7 +70,11 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
             <style jsx>{'strong{ font-size: 1.25rem}'}</style>
           </Dropdown.Toggle>
           <Dropdown.Menu classNmae="w-100">
-            {mobileLinks.map((l) => <Dropdown.Item key={l.label} href={`/attorney/${slug}${l.link}`}>{l.label}</Dropdown.Item>)}
+            {mobileLinks.map((l) => (
+              <Dropdown.Item key={l.label} href={`/attorney/${slug}${l.link}`}>
+                {l.label}
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
       </div>

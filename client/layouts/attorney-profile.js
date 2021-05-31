@@ -35,9 +35,19 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
     case 'media':
       return <AttorneyProfileTab title="Media" content={content} />;
     case 'representative-matters':
-      return <AttorneyProfileMatters title="Representative Matters" content={content} />;
+      return (
+        <AttorneyProfileMatters
+          title="Representative Matters"
+          content={content}
+        />
+      );
     case 'representative-clients':
-      return <AttorneyProfileMatters title="Representative Clients" content={content} />;
+      return (
+        <AttorneyProfileMatters
+          title="Representative Clients"
+          content={content}
+        />
+      );
     case 'awards':
       return <AttorneyProfileClients title="Awards" clients={content} />;
     case 'articles':
@@ -47,12 +57,23 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
     case 'videos':
       return <AttorneyProfileVideo content={content} />;
     case 'audio':
-      return <AttorneyProfileBody title="Audio" content={content[0].body} />;
+      return <AttorneyProfileBody title="Audio" content={content.body} />;
     case 'contact':
       return <AttorneyProfileContact content={header} />;
     default:
       if (Array.isArray(content)) {
-        return <AttorneyProfileBody title={defaultTabTitle} content={content[0].body} />;
+        return (
+          <AttorneyProfileBody
+            title={defaultTabTitle}
+            content={content[0].body}
+          />
+        );
+      }
+
+      if (typeof content === 'object') {
+        return (
+          <AttorneyProfileBody title={defaultTabTitle} content={content.body} />
+        );
       }
       return <AttorneyProfileBody title={defaultTabTitle} content={content} />;
   }
@@ -70,28 +91,16 @@ export default function AttorneyProfile({
     defaultTabTitle = router.asPath.split('/').pop().replace(/-/g, ' ');
   }
 
-  /** Reformat the menu items */
-  const getCoreMenuItems = body.bio.sidebarLinks.filter((item, index) => {
-    if (item.label === 'Education & Admissions') {
-      return false;
-    }
+  const bioMenuItems = {
+    main: body.bio.sidebarLinks.main || [],
+    more: body.bio.sidebarLinks.more || [],
+  };
 
-    if (index >= 6) {
-      return false;
-    }
+  let bioMobileMenuItems = [...body.bio.sidebarLinks.main];
 
-    return true;
-  });
-
-  const getAdditionalMenuItems = body.bio.sidebarLinks.filter((item, index) => {
-    if (index >= 6) {
-      return true;
-    }
-
-    return false;
-  });
-
-  const bioMenuItems = { main: getCoreMenuItems, more: getAdditionalMenuItems };
+  if ('more' in body.bio.sidebarLinks) {
+    bioMobileMenuItems = [...body.bio.sidebarLinks.more];
+  }
 
   return (
     <>
@@ -154,14 +163,28 @@ export default function AttorneyProfile({
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
-      <AttorneyProfileHeader image={header.image} profile={header.profile} slug={slug} />
+      <AttorneyProfileHeader
+        image={header.image}
+        profile={header.profile}
+        slug={slug}
+      />
       <Container>
         <Row>
           <Col sm={12}>
-            <AttorneyBioLinks links={bioMenuItems} slug={slug} mobileLinks={body.bio.sidebarLinks} />
+            <AttorneyBioLinks
+              links={bioMenuItems}
+              slug={slug}
+              mobileLinks={bioMobileMenuItems}
+            />
           </Col>
           <Col sm={12} md={9}>
-            {renderBody(paramArr[paramLen - 1], body.content, slug, header, defaultTabTitle)}
+            {renderBody(
+              paramArr[paramLen - 1],
+              body.content,
+              slug,
+              header,
+              defaultTabTitle,
+            )}
           </Col>
           <Col sm={12} md={3}>
             <AttorneyProfileSidebar
