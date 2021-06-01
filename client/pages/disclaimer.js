@@ -21,7 +21,7 @@ export default function Disclaimer({ content, seo }) {
       <SingleSubHeader
         title="Disclaimer"
         subtitle="This Terms of Use Agreement (the “Agreement”) and the Privacy Policy state the terms and conditions under which you may view, access or otherwise use the website located at http://www.sh-law.com."
-        span={8}
+        span={7}
         offset={2}
       />
       <Container>

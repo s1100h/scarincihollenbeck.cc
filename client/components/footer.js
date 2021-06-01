@@ -72,8 +72,8 @@ export default function Footer() {
         </Container>
       </Container>
       <Container className={styles.footerBody}>
-        <Row>
-          <Col sm={12} md={2} className="px-2">
+        <div className="d-flex flex-column flex-md-row justify-content-md-between">
+          <div className="mr-0 mr-md-2 mr-lg-0">
             <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
               <strong>Firm Pages</strong>
             </p>
@@ -99,8 +99,8 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </Col>
-          <Col sm={12} md={2} className="px-4">
+          </div>
+          <div className="mr-0 mr-md-2 mr-lg-0">
             <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
               <strong>Client Services</strong>
             </p>
@@ -141,8 +141,8 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </Col>
-          <Col sm={12} md={2} className="px-3">
+          </div>
+          <div className="mr-0 mr-md-2 mr-lg-0">
             <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-0`}>
               <strong>Office Locations</strong>
             </p>
@@ -168,8 +168,8 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </Col>
-          <Col sm={12} md={2} className="px-0">
+          </div>
+          <div className="mr-0 mr-md-2 mr-lg-0">
             <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}>
               <strong>Contact Information</strong>
             </p>
@@ -190,69 +190,85 @@ export default function Footer() {
                 info@sh-law.com
               </li>
             </ul>
-          </Col>
-          <Col sm={12} md={2} className="px-2">
-            <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}>
-              <strong>Core Practices</strong>
-            </p>
-            <ul className={styles.linkList}>
-              <li>
-                <Link href="/practice/bankruptcy-and-creditors-rights">
-                  <a className="text-dark">Bankruptcy & Creditors’ Rights</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/commercial-real-estate">
-                  <a className="text-dark">Commercial Real Estate</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/corporate-transactions-business">
-                  <a className="text-dark">Corporate Transactions</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/education-law">
-                  <a className="text-dark">Education Law</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/government-strategies">
-                  <a className="text-dark">Government Strategies</a>
-                </Link>
-              </li>
-            </ul>
-          </Col>
-          <Col sm={12} md={2} style={{ marginTop: '1.9em' }}>
-            <ul className={styles.linkList}>
-              <li>
-                <Link href="/practice/intellectual-property">
-                  <a className="text-dark">Intellectual Property</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/labor-employment">
-                  <a className="text-dark">Labor & Employment</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/litigation">
-                  <a className="text-dark">Litigation</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/public-law">
-                  <a className="text-dark">Public Law</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practice/tax-trusts-estates">
-                  <a className="text-dark">Tax, Trusts, & Estates</a>
-                </Link>
-              </li>
-            </ul>
-          </Col>
-        </Row>
+          </div>
+          <div className="d-flex flex-column flex-md-row">
+            <div c className="mr-0 mr-md-2 mr-lg-3">
+              <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}>
+                <strong>Core Practices</strong>
+              </p>
+              <ul className={styles.linkList}>
+                <li>
+                  <Link href="/practice/bankruptcy-and-creditors-rights">
+                    <a className="text-dark">Bankruptcy & Creditors’ Rights</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/commercial-real-estate">
+                    <a className="text-dark">Commercial Real Estate</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/corporate-transactions-business">
+                    <a className="text-dark">Corporate Transactions</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/education-law">
+                    <a className="text-dark">Education Law</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/environmental">
+                    <a className="text-dark">Environmental</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/government-strategies">
+                    <a className="text-dark">Government Strategies</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="sub-list">
+              <ul className={styles.linkList}>
+                <li>
+                  <Link href="/practice/intellectual-property">
+                    <a className="text-dark">Intellectual Property</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/labor-employment">
+                    <a className="text-dark">Labor & Employment</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/litigation">
+                    <a className="text-dark">Litigation</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/public-law">
+                    <a className="text-dark">Public Law</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/practice/tax-trusts-estates">
+                    <a className="text-dark">Tax, Trusts, & Estates</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <style jsx>
+          {`
+          @media (min-width: 768px) {
+            div.sub-list {
+              margin-top: 1.9em;
+            }
+          }
+        `}
+        </style>
       </Container>
       <Container className={styles.footerDetails}>
         <Row>

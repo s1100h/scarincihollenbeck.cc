@@ -44,7 +44,7 @@ export default function ArticleHero({ content }) {
           <hr />
           <p
             dangerouslySetInnerHTML={createMarkup(
-              content[0].excerpt.rendered.replace('[…]', '...'),
+              setTextLen(content[0].excerpt.rendered, 220),
             )}
           />
         </Col>
@@ -57,24 +57,29 @@ export default function ArticleHero({ content }) {
                     <img
                       src={article.better_featured_image.source_url}
                       alt={article.title.rendered}
-                      width="125px"
-                      height="58px"
-                      layout="intrinsic"
+                      width={125}
+                      height={58}
                       className="rounded"
                     />
                     <div className={styles.listArticleTitle}>
                       <h5 className="mb-1">
-                        <strong>{article.title.rendered}</strong>
+                        <strong
+                          dangerouslySetInnerHTML={createMarkup(
+                            article.title.rendered.toString(),
+                          )}
+                        />
                       </h5>
                       <p className={`mt-0 pt-0 ${styles.listArticleExcerpt}`}>
-                        <small>
-                          {setTextLen(
-                            article.excerpt.rendered
-                              .replace('<p>', '')
-                              .replace('</p>', ''),
-                            100,
+                        <small
+                          dangerouslySetInnerHTML={createMarkup(
+                            setTextLen(
+                              article.excerpt.rendered
+                                .replace('<p>', '')
+                                .replace('</p>', ''),
+                              130,
+                            ),
                           )}
-                        </small>
+                        />
                       </p>
                     </div>
                   </a>

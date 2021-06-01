@@ -47,7 +47,7 @@ export default function Library({
     <>
       <NextSeo nofollow />
       <SingleSubHeader
-        span={8}
+        span={7}
         offset={2}
         title="Article Library"
         subtitle="Scarinci Hollenbeck regularly publishes articles pertaining to legal updates affecting individuals and institutions in New York and New Jersey, and the world at large. Here you can find coverage for when we welcome new attorneys, significant wins we’ve secured on behalf of our clients, and general announcements. "

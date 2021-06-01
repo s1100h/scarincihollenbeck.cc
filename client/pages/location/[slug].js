@@ -40,7 +40,7 @@ export default function SingleLocation({
         title="Office Locations"
         subtitle={`To best serve our clients, Scarinci Hollenbeck has ${offices.length.toString()} offices strategically located around the New York/New Jersey Metropolitan area, as well as Washington D.C., with our head quarters in Lyndhurst, NJ.`}
         offset={2}
-        span={8}
+        span={7}
       />
       <LargeSidebar
         body={(

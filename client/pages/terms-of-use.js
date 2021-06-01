@@ -21,7 +21,7 @@ export default function TermsOfUse({ content, seo }) {
       <SingleSubHeader
         title="Terms of use"
         subtitle="This Terms of Use Agreement (the “Agreement”) and the Privacy Policy state the terms and conditions under which you may view, access or otherwise use the blog and all content available therein (the “Blog”)."
-        span={8}
+        span={7}
         offset={2}
       />
       <Container>

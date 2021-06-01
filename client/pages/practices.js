@@ -35,7 +35,7 @@ export default function PracticesPage({ core, additional, business }) {
       <SingleSubHeader
         title="Legal Practices"
         subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today's businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."
-        span={8}
+        span={7}
         offset={2}
       />
       <FullWidth>

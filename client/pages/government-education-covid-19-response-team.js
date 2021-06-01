@@ -59,20 +59,14 @@ export default function GovernmentEducationCovidResponseTeam({
     },
   ];
 
-  // retrieve external posts from internal api
-  const { data: externaCovidPosts, error: externaCovidPostsError } = useSWR(
-    '/api/external-covid-feed',
-    fetcher,
-  );
-
-  if (externaCovidPostsError) return <ErrorMessage />;
-  if (!externaCovidPosts) return <SiteLoader />;
-
   const sidebar = (
     <>
       <SimpleSearch />
+      <hr />
       <SubscriptionMessage />
+      <hr />
       <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
+      <hr />
       <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
     </>
   );

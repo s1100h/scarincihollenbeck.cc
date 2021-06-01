@@ -162,7 +162,7 @@ export async function getStaticProps() {
       headers,
     }).then((data) => data.json()),
     fetch(
-      'http://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100',
+      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100',
       {
         headers,
       },

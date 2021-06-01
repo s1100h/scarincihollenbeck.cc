@@ -25,7 +25,7 @@ export default function PassingAttorneyHarveyRPoe({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        span={8}
+        span={7}
         offset={2}
       />
       <LargeSidebar
