@@ -59,7 +59,7 @@ export default function SubscriptionPage() {
       <SingleSubHeader
         title="Firm Mailing List"
         subtitle="Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements."
-        span={8}
+        span={7}
         offset={2}
       />
       <Container>
@@ -69,12 +69,13 @@ export default function SubscriptionPage() {
           </Col>
           <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
             <SimpleSearch />
-            <br />
+            <hr />
             <SidebarContent
               title="Firm Library"
               content={firmLibrary}
               tabKey={2}
             />
+            <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>
         </Row>

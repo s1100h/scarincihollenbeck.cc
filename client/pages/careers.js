@@ -59,7 +59,7 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
           title="Careers & Available Positions"
           subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
           offset={2}
-          span={8}
+          span={7}
         />
         <FullWidth>
           {careers && (

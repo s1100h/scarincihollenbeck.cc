@@ -13,7 +13,7 @@ export default function SingleSubHeader({
         <Row>
           <Col sm={12} md={{ span, offset }}>
             <h1
-              className="text-white mb-0 animate__animated animate__fadeInDown animate__fast"
+              className="text-white animate__animated animate__fadeInDown animate__fast"
               style={{
                 fontSize: !isBlog ? '3rem' : null,
                 textShadow: '2px 3px 3px #000',
@@ -21,19 +21,21 @@ export default function SingleSubHeader({
             >
               <strong>{title}</strong>
             </h1>
-            <div
-              className="w-100 d-block my-2 animate__animated animate__fadeInDown animate__fast"
-              style={{
-                height: '3px',
-                backgroundColor: '#db2220',
-              }}
-            />
             <h2
-              className="my-3 text-white animate__animated animate__fadeInUp animate__fast"
+              className="text-white animate__animated animate__fadeInUp animate__fast"
               style={{ fontSize: '1.2rem' }}
               dangerouslySetInnerHTML={createMarkup(subtitle)}
             />
           </Col>
+          <style jsx>
+            {`
+            h1 {
+              border-bottom: 3px solid #db2220;
+              margin-bottom: 20px;
+              display: block;
+            }
+          `}
+          </style>
         </Row>
       </Container>
     </div>

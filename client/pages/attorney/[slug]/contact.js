@@ -5,7 +5,10 @@ import { headers } from 'utils/helpers';
 import AttorneyProfile from 'layouts/attorney-profile';
 
 export default function AttorneyBioProfileContact({
-  bio, contact, content, slug,
+  bio,
+  contact,
+  content,
+  slug,
 }) {
   const router = useRouter();
 
@@ -18,20 +21,18 @@ export default function AttorneyBioProfileContact({
   }
 
   return (
-    <>
-      <AttorneyProfile
-        slug={slug}
-        head={bio.seo}
-        body={{
-          bio,
-          content,
-        }}
-        header={{
-          image: bio.headerContent.profileImage,
-          profile: { ...bio.headerContent, ...contact },
-        }}
-      />
-    </>
+    <AttorneyProfile
+      slug={slug}
+      head={bio.seo}
+      body={{
+        bio,
+        content,
+      }}
+      header={{
+        image: bio.headerContent.profileImage,
+        profile: { ...bio.headerContent, ...contact },
+      }}
+    />
   );
 }
 

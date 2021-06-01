@@ -20,7 +20,6 @@ export default function LargeSidebarWithPosts({
           <div
             className={pageContentStyles.p}
             dangerouslySetInnerHTML={createMarkup(content)}
-
           />
           <h3 className="mt-5">
             <strong style={{ fontSize: '1.3rem' }}>{postsTitle}</strong>
@@ -28,14 +27,14 @@ export default function LargeSidebarWithPosts({
           <hr />
           <ul className="my-0 py-0 list-unstyled">
             {posts.map((post) => (
-              <li key={post.title.rendered}>
+              <li key={post.title}>
                 <Link href={post.link}>
                   <a className="d-flex flex-row text-dark">
                     <div>
                       <h5 className="d-block w-100 mb-0 pt-0">
-                        <strong>{post.title.rendered}</strong>
+                        <strong>{post.title}</strong>
                       </h5>
-                      <p className="mt-0 pt-0">{formatDate(post.date)}</p>
+                      <p className="mt-0 pt-0">{formatDate(post.isoDate)}</p>
                     </div>
                   </a>
                 </Link>

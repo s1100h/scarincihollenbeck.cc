@@ -22,7 +22,7 @@ export default function Awards({ content, seo }) {
         title="Awards"
         subtitle={subTitle}
         offset={2}
-        span={8}
+        span={7}
       />
       <Container>
         <Row>

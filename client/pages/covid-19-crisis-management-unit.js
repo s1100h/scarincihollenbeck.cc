@@ -1,13 +1,10 @@
 import { NextSeo } from 'next-seo';
-import useSWR from 'swr';
-import SiteLoader from 'components/site-loader';
-import ErrorMessage from 'components/error-message';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import SidebarContent from 'components/singlepractice/sidebar';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { fetcher, headers } from 'utils/helpers';
+import { headers } from 'utils/helpers';
 
 export default function Covid19CrisisManagementUnit({
   title,
@@ -53,25 +50,20 @@ export default function Covid19CrisisManagementUnit({
       slug: 'community-involvement',
     },
     {
-      id: 'SjveurE7BK1R1l2',
+      id: 'p4mdVc653adf98fbn',
       title: 'Diversity Group',
       slug: 'diversity-group',
     },
   ];
 
-  // retrieve external posts from internal api
-  const { data: externaCovidPosts, error: externaCovidPostsError } = useSWR(
-    '/api/external-covid-feed',
-    fetcher,
-  );
-
-  if (externaCovidPostsError) return <ErrorMessage />;
-  if (!externaCovidPosts) return <SiteLoader />;
   const sidebar = (
     <>
       <SimpleSearch />
+      <hr />
       <SubscriptionMessage />
+      <hr />
       <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
+      <hr />
       <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
     </>
   );
@@ -94,7 +86,7 @@ export default function Covid19CrisisManagementUnit({
 }
 
 export async function getStaticProps() {
-  const [requestResponse, internalCovidPosts] = await Promise.all([
+  const [requestResponse, cPosts] = await Promise.all([
     fetch(
       'https://wp.scarincihollenbeck.com/wp-json/single-page/page/covid-19-crisis-management-unit',
       { headers },
@@ -106,6 +98,12 @@ export async function getStaticProps() {
   ]);
 
   const { title, content, seo } = requestResponse;
+  const internalCovidPosts = cPosts.map((post) => ({
+    isoDate: post.date,
+    title: post.title.rendered,
+    link: post.link,
+    source: 'Scarinci Hollenbeck',
+  }));
 
   return {
     props: {

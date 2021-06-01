@@ -20,7 +20,6 @@ import {
   buildBusinessSchema,
   buildAttorneyProfileSchema,
 } from 'utils/json-ld-schemas';
-import { urlify } from 'utils/helpers';
 
 function renderBody(param, content, slug, header, defaultTabTitle) {
   switch (param) {
@@ -196,8 +195,7 @@ export default function AttorneyProfile({
           </Col>
           <Col sm={12}>
             <AttorneyProfileFooter
-              t={slug}
-              slug={urlify(body.bio.headerContent.name)}
+              slug={slug}
               clients={body.bio.mainPageContent.clients}
             />
           </Col>

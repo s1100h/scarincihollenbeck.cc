@@ -1,7 +1,6 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center
-    center;
+  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center center;
 }
 
 .backPageBanner {
@@ -13,7 +12,8 @@
 }
 
 .banner,
-.backPageBanner {
+.backPageBanner,
+.holidayBanner {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

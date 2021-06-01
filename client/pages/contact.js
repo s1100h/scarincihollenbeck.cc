@@ -62,7 +62,7 @@ export default function ContactPage() {
       <SingleSubHeader
         title="Contact Us"
         subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
-        span={8}
+        span={7}
         offset={2}
       />
       <Container>
@@ -119,12 +119,15 @@ export default function ContactPage() {
           </Col>
           <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
             <SimpleSearch />
+            <hr />
             <SubscriptionMessage />
+            <hr />
             <SidebarContent
               title="Firm Library"
               content={firmLibrary}
               tabKey={2}
             />
+            <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>
         </Row>

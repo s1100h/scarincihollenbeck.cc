@@ -19,7 +19,7 @@ export default function Administration({ admins, seo }) {
         title="Administration"
         subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
         offset={2}
-        span={8}
+        span={7}
       />
       <FullWidth>
         <Container className="p-3 pt-4 border">

@@ -22,7 +22,7 @@ export default function FirmPages({ page, relatedPages }) {
       <SingleSubHeader
         title={page.title}
         subtitle={page.description}
-        span={9}
+        span={8}
         offset={0}
         isBlog
       />
@@ -56,7 +56,9 @@ export default function FirmPages({ page, relatedPages }) {
           </Col>
           <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
             <SimpleSearch />
+            <hr />
             <SubscriptionMessage />
+            <hr />
             <SidebarContent
               title="Diversity"
               content={relatedPages}
