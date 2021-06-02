@@ -96,52 +96,6 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
           </Row>
         </Container>
       </div>
-      {/* <style jsx>
-        {`
-          strong.name {
-            font-size: 2.5rem;
-          }
-          strong.cred-title {
-            font-size: 1rem;
-          }
-          p.title {
-            font-size: 1.2rem;
-            margin-top: -2px;
-            margin-bottom: 6px;
-          }
-
-          div.profile {
-            width: 100%;
-          }
-
-          a.button-size {
-            width: 100px;
-          }
-          @media (min-width: 768px) {
-            div.profile-image {
-              min-width: 250px;
-            }
-            div.profile {
-              min-width: 300px;
-            }
-          }
-
-          @media (min-width: 992px) {
-            div.profile {
-              min-width: 550px;
-            }
-
-          }
-          @media (min-width: 1200px) {
-            div.profile-image {
-              min-width: 300px;
-            }
-            div.profile {
-              min-width: 720px;
-            }
-          }
-        `}
-      </style> */}
     </>
   );
 }

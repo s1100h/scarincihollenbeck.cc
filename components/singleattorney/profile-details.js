@@ -10,11 +10,13 @@ export default function ProfileDetails({ contact, offices, fax }) {
         {' '}
         {phoneNumber}
       </p>
-      <p>
-        <strong>Fax:</strong>
-        {' '}
-        {fax}
-      </p>
+      {fax && (
+        <p>
+          <strong>Fax:</strong>
+          {' '}
+          {fax}
+        </p>
+      )}
       <p>
         <strong>Email:</strong>
         {' '}

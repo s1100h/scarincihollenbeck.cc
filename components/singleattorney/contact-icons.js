@@ -7,18 +7,20 @@ export default function ContactIcons({
   return (
     <ul className="list-unstyled mr-0 ml-md-5">
       <li>
-        <a
-          href={`/attorney/${slug}/contact`}
-          rel="noopener noreferrer"
-          style={{ height: '30px' }}
-          variant="link"
-          className="d-block text-left text-white w-100"
-        >
-          <strong className="pr-1">
-            <BsChatDots style={{ marginTop: '-4px' }} />
-            <span className="ml-2 d-inline-block">Get In Touch</span>
-          </strong>
-        </a>
+        {slug && (
+          <a
+            href={`/attorney/${slug}/contact`}
+            rel="noopener noreferrer"
+            style={{ height: '30px' }}
+            variant="link"
+            className="d-block text-left text-white w-100"
+          >
+            <strong className="pr-1">
+              <BsChatDots style={{ marginTop: '-4px' }} />
+              <span className="ml-2 d-inline-block">Get In Touch</span>
+            </strong>
+          </a>
+        )}
       </li>
       <li>
         <a
@@ -40,22 +42,24 @@ export default function ContactIcons({
           </strong>
         </a>
       </li>
-      <li>
-        <a
-          href={pdf}
-          size="sm"
-          rel="noopener noreferrer"
-          target="_blank"
-          style={{ height: '30px' }}
-          variant="link"
-          className="d-block text-left text-white w-100"
-        >
-          <strong className="">
-            <BsCloudDownload style={{ marginTop: '-2px' }} />
-            <span className="ml-2 d-inline-block">Print Bio</span>
-          </strong>
-        </a>
-      </li>
+      {pdf && (
+        <li>
+          <a
+            href={pdf}
+            size="sm"
+            rel="noopener noreferrer"
+            target="_blank"
+            style={{ height: '30px' }}
+            variant="link"
+            className="d-block text-left text-white w-100"
+          >
+            <strong className="">
+              <BsCloudDownload style={{ marginTop: '-2px' }} />
+              <span className="ml-2 d-inline-block">Print Bio</span>
+            </strong>
+          </a>
+        </li>
+      )}
       <li>
         <a
           href={vizibility}

@@ -17,7 +17,7 @@ export default function FirmOverviewMembers({ title, members, type }) {
           {members.map((m) => (
             <Col sm={12} md={6} lg={4} className="mb-3" key={m.name}>
               <AttorneyCard
-                link={m.link}
+                link={(type === 'admin') ? `/administration${m.link}` : `/attorney${m.link}`}
                 image={m.image}
                 name={m.name}
                 title={m.title}

@@ -39,11 +39,12 @@ export default function FirmOverview({
         <style jsx>{' div.featured{ font-size: 1.15rem }'}</style>
         <div className="border">
           <FirmMembers
+            type="attorney"
             title="Managing Partners"
             members={members.managingPartners}
           />
-          <FirmMembers title="Partners" members={members.partners} />
-          <FirmMembers title="Directors" members={sortedAdmins} />
+          <FirmMembers type="attorney" title="Partners" members={members.partners} />
+          <FirmMembers type="admin" title="Directors" members={sortedAdmins} />
         </div>
       </FullWidth>
     </>
