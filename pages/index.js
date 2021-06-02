@@ -99,7 +99,7 @@ export default function HomePageTwo({
                 drawing upon the resources of the firm’s core practice areas.
               </p>
               <Link href="/practices">
-                <a>See what we can do</a>
+                <a>See what we do</a>
               </Link>
             </div>
           )}
@@ -183,6 +183,7 @@ export async function getStaticProps() {
     .map((leader) => ({
       name: leader.title.rendered,
       link: leader.link,
+      lastName: leader.acf.last_name,
       image: leader.better_featured_image.source_url,
       title: leader.acf.chair
         .map((chair) => chair.post_title)
@@ -195,7 +196,7 @@ export async function getStaticProps() {
         }),
     }))
     .sort((a, b) => {
-      if (a.title > b.title) {
+      if (a.lastName > b.lastName) {
         return 1;
       }
 
@@ -208,7 +209,7 @@ export async function getStaticProps() {
       name: ds.title.rendered,
       link: ds.link,
       image: ds.better_featured_image.source_url,
-      title: ['Managing Partner'],
+      title: ['Firm Managing Partner'],
     }));
 
   const donPepe = attorneys
@@ -254,8 +255,8 @@ export async function getStaticProps() {
       leadership: [
         ...katerinTraugh,
         ...donaldScarinci,
-        ...donPepe,
         ...howardBader,
+        ...donPepe,
         ...teddyEnynon,
         ...leadership,
       ],
