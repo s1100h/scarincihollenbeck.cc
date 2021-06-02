@@ -255,8 +255,8 @@ export async function getStaticProps() {
       leadership: [
         ...katerinTraugh,
         ...donaldScarinci,
-        ...howardBader,
         ...donPepe,
+        ...howardBader,
         ...teddyEnynon,
         ...leadership,
       ],
