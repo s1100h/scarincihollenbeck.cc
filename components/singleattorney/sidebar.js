@@ -71,7 +71,7 @@ export default function AttorneyProfileSidebar({
             {awards.map((award) => (
               <div key={award.title}>
                 <a href={award.link}>
-                  <img src={award.featuredImg} alt={award.title} />
+                  <img src={award.featuredImg} alt={award.title} className="img-fluid" />
                 </a>
               </div>
             ))}

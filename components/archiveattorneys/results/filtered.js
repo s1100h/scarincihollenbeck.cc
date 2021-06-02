@@ -40,7 +40,10 @@ export default function ArchiveAttorneyResultsFiltered({
   // filter by key -- designation
   const filterDesignation = (attorney) => {
     if (desgination.length > 0) {
-      return attorney.designation.indexOf(desgination[0]) >= 0;
+      if (desgination[0] === 'Of Counsel') {
+        return attorney.designation.indexOf(desgination[0]) === 0 && attorney.designation !== 'Of Counsel/Partner Emeritus';
+      }
+      return attorney.designation.indexOf(desgination[0]) === 0;
     }
     return attorney;
   };

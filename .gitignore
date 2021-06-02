@@ -1,7 +1,3 @@
-.vscode
-sitemaps/app/env/*
-sitemaps/app/venv/*
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -33,14 +29,5 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-.env
 
 .vercel
-
-.next
-
-client/.next
-client/.node_modules
-client/app
-
-.history

@@ -29,10 +29,12 @@ export default function ProfileTitle({
         )}
         {coChair.length > 0 && (
           <>
-            <strong className="px-2">|</strong>
+            <span className="mx-1">
+              <strong>|</strong>
+            </span>
             {coChair.map((c) => (
               <span className="my-1" key={c.title}>
-                <strong>Co-Chair:</strong>
+                Co-Chair:
                 {' '}
                 <Link href={c.link} key={c.title}>
                   <a className="text-white">{c.title}</a>

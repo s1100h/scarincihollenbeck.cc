@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import textStyles from 'styles/Text.module.css';
+import { createMarkup } from 'utils/helpers';
 
 export default function ArchiveAttorneySelected({
   select,
@@ -28,7 +29,7 @@ export default function ArchiveAttorneySelected({
                   data-placement="top"
                   title="Click on link to remove filter"
                 >
-                  <strong>{userInput}</strong>
+                  <strong dangerouslySetInnerHTML={createMarkup(userInput)} />
                 </Button>
               </li>
             )}

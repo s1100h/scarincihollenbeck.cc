@@ -192,7 +192,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="d-flex flex-column flex-md-row">
-            <div c className="mr-0 mr-md-2 mr-lg-3">
+            <div className="mr-0 mr-md-2 mr-lg-3">
               <p className={`${textStyles.redTitle} ${styles.linkTitle} mb-1`}>
                 <strong>Core Practices</strong>
               </p>
@@ -262,12 +262,12 @@ export default function Footer() {
         </div>
         <style jsx>
           {`
-          @media (min-width: 768px) {
-            div.sub-list {
-              margin-top: 1.9em;
+            @media (min-width: 768px) {
+              div.sub-list {
+                margin-top: 1.9em;
+              }
             }
-          }
-        `}
+          `}
         </style>
       </Container>
       <Container className={styles.footerDetails}>
