@@ -21,8 +21,8 @@ export default function Awards({ content, seo }) {
       <SingleSubHeader
         title="Awards"
         subtitle={subTitle}
-        offset={2}
-        span={7}
+        offset={3}
+        span={6}
       />
       <Container>
         <Row>

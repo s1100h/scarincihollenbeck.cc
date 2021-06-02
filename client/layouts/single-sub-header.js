@@ -5,11 +5,17 @@ import { createMarkup } from 'utils/helpers';
 import styles from 'styles/Banner.module.css';
 
 export default function SingleSubHeader({
-  title, subtitle, isBlog, isHoliday, span, offset,
+  title,
+  subtitle,
+  isBlog,
+  isHoliday,
+  isTabs = false,
+  span,
+  offset,
 }) {
   return (
     <div className={!isHoliday ? styles.backPageBanner : styles.holidayBanner}>
-      <Container className={(span === 9 && !isBlog) ? styles.tabBanner : styles.noTabBanner}>
+      <Container className={isTabs ? styles.tabBanner : styles.noTabBanner}>
         <Row>
           <Col sm={12} md={{ span, offset }}>
             <h1
@@ -29,12 +35,12 @@ export default function SingleSubHeader({
           </Col>
           <style jsx>
             {`
-            h1 {
-              border-bottom: 3px solid #db2220;
-              margin-bottom: 20px;
-              display: block;
-            }
-          `}
+              h1 {
+                border-bottom: 3px solid #db2220;
+                margin-bottom: 20px;
+                display: block;
+              }
+            `}
           </style>
         </Row>
       </Container>

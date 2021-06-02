@@ -51,7 +51,8 @@ export default function PracticeSingle({
         title={practice.title}
         subtitle={practice.description}
         offset={0}
-        span={9}
+        span={8}
+        isTabs
       />
       <TabContainer
         id="nav-tab"

@@ -74,7 +74,7 @@ export default function Covid19CrisisManagementUnit({
         description={seo.metaDescr}
         canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
       />
-      <SingleSubHeader title={title} subtitle={subTitle} span={9} offset={0} />
+      <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <LargeSidebarWithPosts
         posts={internalCovidPosts}
         postsTitle="COVID-19 Articles"

@@ -1,13 +1,10 @@
 import { NextSeo } from 'next-seo';
-import useSWR from 'swr';
-import SiteLoader from 'components/site-loader';
-import ErrorMessage from 'components/error-message';
 import SingleSubHeader from 'layouts/single-sub-header';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import SidebarContent from 'components/singlepractice/sidebar';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { fetcher, headers } from 'utils/helpers';
+import { headers } from 'utils/helpers';
 
 export default function GovernmentEducationCovidResponseTeam({
   title,
@@ -81,7 +78,7 @@ export default function GovernmentEducationCovidResponseTeam({
       <SingleSubHeader
         title={title}
         subtitle={subTitle}
-        span={9}
+        span={8}
         offset={0}
       />
       <LargeSidebarWithPosts
@@ -95,7 +92,7 @@ export default function GovernmentEducationCovidResponseTeam({
 }
 
 export async function getStaticProps() {
-  const [requestResponse, internalCovidPosts] = await Promise.all([
+  const [requestResponse, cPosts] = await Promise.all([
     fetch(
       'https://wp.scarincihollenbeck.com/wp-json/single-page/page/government-education-covid-19-response-team',
       { headers },
@@ -107,6 +104,12 @@ export async function getStaticProps() {
   ]);
 
   const { title, content, seo } = requestResponse;
+  const internalCovidPosts = cPosts.map((post) => ({
+    isoDate: post.date,
+    title: post.title.rendered,
+    link: post.link,
+    source: 'Scarinci Hollenbeck',
+  }));
 
   return {
     props: {

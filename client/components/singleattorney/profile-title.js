@@ -12,7 +12,7 @@ export default function ProfileTitle({
         {designation}
         {chair.length > 0 && (
           <>
-            <span className="mx-2">
+            <span className="mx-1">
               <strong>|</strong>
             </span>
             Chair:
@@ -48,6 +48,7 @@ export default function ProfileTitle({
             margin-top: 0px;
             padding-bottom: 5px;
             border-bottom: 3.5px solid #db2220;
+            font-size: 15px;
           }
         `}
       </style>

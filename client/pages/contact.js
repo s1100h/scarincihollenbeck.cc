@@ -63,7 +63,7 @@ export default function ContactPage() {
         title="Contact Us"
         subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
         span={7}
-        offset={2}
+        offset={0}
       />
       <Container>
         <Row>

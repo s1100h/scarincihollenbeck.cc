@@ -60,7 +60,7 @@ export default function SubscriptionPage() {
         title="Firm Mailing List"
         subtitle="Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements."
         span={7}
-        offset={2}
+        offset={0}
       />
       <Container>
         <Row>

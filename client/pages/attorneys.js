@@ -107,8 +107,8 @@ export default function Attorneys({
       <SingleSubHeader
         title="Attorneys"
         subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
-        offset={2}
-        span={7}
+        offset={3}
+        span={6}
       />
       <FullWidth>
         <div className="mb-5">

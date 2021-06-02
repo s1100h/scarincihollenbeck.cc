@@ -21,8 +21,8 @@ export default function FirmOverview({
       <SingleSubHeader
         title="Firm Overview"
         subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, '')}
-        span={7}
-        offset={2}
+        span={6}
+        offset={3}
       />
       <FullWidth>
         <div

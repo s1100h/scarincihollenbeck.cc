@@ -6,10 +6,53 @@ import Col from 'react-bootstrap/Col';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import SingleCareerBody from 'components/singlecareer/body';
+import SimpleSearch from 'components/simple-search';
+import SubscriptionMessage from 'components/subscription-message';
+import SidebarContent from 'components/singlepractice/sidebar';
 import { headers } from 'utils/helpers';
 
 export default function CareerPost({ career }) {
   const router = useRouter();
+  const firmLibrary = [
+    {
+      id: '9TZ8Zz7xy95BVp',
+      title: 'Firm News',
+      slug: 'library?category=firm-news',
+    },
+    {
+      id: 'RMtQjkqW3jAVvC',
+      title: 'Firm Events',
+      slug: 'library?category=firm-events',
+    },
+    {
+      id: 'KNDpxvUhdm73hf',
+      title: 'Firm Insights',
+      slug: 'library?category=firm-insights',
+    },
+  ];
+
+  const firmPages = [
+    {
+      id: 'WF7jMpVJP3PTnuP',
+      title: 'Pro Bono',
+      slug: 'pro-bono',
+    },
+    {
+      id: 'vehm0rQb7cpMH92',
+      title: 'Women Lead',
+      slug: 'women-lead',
+    },
+    {
+      id: 'SjveurE3BK1R1l2',
+      title: 'Community Involvement',
+      slug: 'community-involvement',
+    },
+    {
+      id: 'p4mdVc653adf98fbn',
+      title: 'Diversity Group',
+      slug: 'diversity-group',
+    },
+  ];
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -27,16 +70,29 @@ export default function CareerPost({ career }) {
         title={career.title}
         subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
         offset={0}
-        span={9}
+        span={8}
       />
       <Container>
         <Row>
-          <Col sm={12}>
+          <Col sm={12} md={9} className="mt-3">
             <SingleCareerBody
               title={career.title}
               position={career.positionDescription}
               contact={career.contact}
             />
+          </Col>
+          <Col sm={12} md={3}>
+            <SimpleSearch />
+            <hr />
+            <SubscriptionMessage />
+            <hr />
+            <SidebarContent
+              title="Firm Library"
+              content={firmLibrary}
+              tabKey={2}
+            />
+            <hr />
+            <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>
         </Row>
       </Container>

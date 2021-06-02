@@ -81,7 +81,7 @@ export default function LawFirmInsightsPost({
         subtitle={subTitle}
         isBlog
         offset={0}
-        span={9}
+        span={8}
       />
       <Container>
         <Row>

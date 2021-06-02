@@ -22,7 +22,7 @@ export default function FirmPages({ page, relatedPages }) {
       <SingleSubHeader
         title={page.title}
         subtitle={page.description}
-        span={8}
+        span={6}
         offset={0}
         isBlog
       />

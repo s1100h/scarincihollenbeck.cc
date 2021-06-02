@@ -68,7 +68,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     loading="eager"
                   />
                 </Col>
-                <Col sm={12} md={8}>
+                <Col sm={12} md={7}>
                   <div className="my-3">
                     <ProfileTitle
                       name={name}

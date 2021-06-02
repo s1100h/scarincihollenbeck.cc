@@ -3,6 +3,10 @@
 This repository contains the code base for the frontend of scarincihollenbeck.com. The code base is made up of two applications. The client application contains all code that makes up front end of scarincihollenbeck.com and the second application is a utility application that generates new sitemaps based on the latest content published to the site.
 
 
+
+SH - 8AM - 12PM - Clean up attorney and practice back pages in wordpress, add all awards to the sidebar in attorney profile
+
+
 ## This is a new release of the site
 -- Updated UI 
 -- Reduced pages 
