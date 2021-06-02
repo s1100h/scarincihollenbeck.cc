@@ -70,6 +70,12 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  if (content.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       bio,
