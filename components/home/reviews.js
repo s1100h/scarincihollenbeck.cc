@@ -3,83 +3,72 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import lineStyles from 'styles/LineHeader.module.css';
 
+const logos = [
+  {
+    url: '/images/reviews/201-magazine.jpeg',
+    alt: '201 Magazine',
+    caption: "Bergen's top lawyers",
+    width: 225,
+    height: 150,
+  },
+  {
+    url: '/images/reviews/meadowlands.jpeg',
+    alt: 'Madowlands Chamber of Commerce',
+    caption: 'Member of the month',
+    width: 265,
+    height: 150,
+  },
+  {
+    url: '/images/reviews/trailblazers.jpeg',
+    alt: 'National Law Journal',
+    caption: 'National Law Journal Trailblazers',
+    width: 315,
+    height: 150,
+  },
+  {
+    url: '/images/reviews/superlawyerslogo.png',
+    alt: 'Super Lawyers',
+    caption: 'Super Lawyers',
+    width: 195,
+    height: 164,
+  },
+];
 function Accolade({
-  image, title, width, height, styleName,
+  url, alt, caption, width, height,
 }) {
   return (
-    <Col
-      sm={12}
-      md={3}
-      className={
-        title === 'Lawyers.com'
-          ? 'mt-6 mx-auto'
-          : title === 'Martindale Hubbell'
-            ? 'mx-6'
-            : 'mt-5 mx-auto'
-      }
-    >
-      <Image
-        src={image}
-        alt={title}
-        width={width}
-        height={height}
-        layout="intrinsic"
-        className={styleName}
-      />
+    <Col sm={12} md={4} className="mt-5">
+      <figure>
+        <img
+          src={url}
+          alt={alt}
+          width={width}
+          height={height}
+          className="mx-auto d-block"
+        />
+        <figcaption className="mt-3 text-center">{caption}</figcaption>
+      </figure>
     </Col>
   );
 }
 export default function HomeReviews() {
-  const accolades = [
-    {
-      image: '/images/reviews/superlawyerslogo.png',
-      title: 'Super Lawyers',
-      height: 164,
-      width: 195,
-      rating: null,
-      styleName: 'superlawyers-icon',
-    },
-    {
-      image: '/images/reviews/lawyerscom-logo.jpg',
-      title: 'Lawyers.com',
-      width: 300,
-      height: 63,
-      rating: 4.6,
-      styleName: 'lawyerscom-icon',
-    },
-    {
-      image: '/images/reviews/martindale-hubbell.jpg',
-      title: 'Martindale Hubbell',
-      width: 150,
-      height: 103,
-      rating: 5,
-      styleName: 'martindale-hubbell-icon',
-    },
-    {
-      image: '/images/reviews/yelp-logo.jpg',
-      title: 'Yelp',
-      width: 200,
-      height: 100,
-      rating: 5,
-      styleName: 'yelp-icon',
-    },
-  ];
   return (
     <Row className="mt-5 px-2">
       <Col sm={12} className="mt-5 mb-0 pb-0">
         <div className={lineStyles.lineHeader}>
-          <h3>Reviews & Accolades</h3>
+          <h3>Awards & Accolades</h3>
         </div>
       </Col>
-      {accolades.map((accolade) => (
+      {logos.map(({
+        url, alt, caption, width, height,
+      }) => (
         <Accolade
-          key={accolade.title}
-          image={accolade.image}
-          title={accolade.title}
-          width={accolade.width}
-          height={accolade.height}
-          rating={accolade.rating}
-          styleName={accolade.styleName}
+          key={alt}
+          url={url}
+          alt={alt}
+          caption={caption}
+          width={width}
+          height={height}
         />
       ))}
     </Row>

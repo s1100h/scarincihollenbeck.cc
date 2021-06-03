@@ -121,7 +121,7 @@ export default function HomePageTwo({
         <HomeReviews />
         <HomePageLink
           link="/awards"
-          title="See more of our awards & accolades"
+          title="Award Methodology"
         />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
         <div className={marginStyles.mt6}>
