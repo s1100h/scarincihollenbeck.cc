@@ -26,11 +26,11 @@ const logos = [
     height: 150,
   },
   {
-    url: '/images/reviews/superlawyerslogo.png',
+    url: '/images/reviews/sl-badge-l-g-2021.png',
     alt: 'Super Lawyers',
     caption: 'Super Lawyers',
-    width: 195,
-    height: 164,
+    width: 180,
+    height: 150,
   },
 ];
 function Accolade({
