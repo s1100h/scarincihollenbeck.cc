@@ -5,6 +5,27 @@ import lineStyles from 'styles/LineHeader.module.css';
 
 const logos = [
   {
+    url: '/images/reviews/BestLawFirmsStandardBadge.png',
+    alt: 'Best Lawyers',
+    caption: 'U.S. News & World Report',
+    width: 203,
+    height: 200,
+  },  
+  {
+    url: '/images/reviews/trailblazers.jpeg',
+    alt: 'National Law Journal',
+    caption: 'National Law Journal Trailblazers',
+    width: 315,
+    height: 150,
+  },
+  {
+    url: '/images/reviews/sl-badge-l-g-2021.png',
+    alt: 'Super Lawyers',
+    caption: 'Super Lawyers',
+    width: 179,
+    height: 149,
+  },  
+  {
     url: '/images/reviews/201-magazine.jpeg',
     alt: '201 Magazine',
     caption: "Bergen's top lawyers",
@@ -17,21 +38,7 @@ const logos = [
     caption: 'Member of the month',
     width: 265,
     height: 150,
-  },
-  {
-    url: '/images/reviews/trailblazers.jpeg',
-    alt: 'National Law Journal',
-    caption: 'National Law Journal Trailblazers',
-    width: 315,
-    height: 150,
-  },
-  {
-    url: '/images/reviews/sl-badge-l-g-2021.png',
-    alt: 'Super Lawyers',
-    caption: 'Super Lawyers',
-    width: 180,
-    height: 150,
-  },
+  }
 ];
 function Accolade({
   url, alt, caption, width, height,
@@ -46,7 +53,7 @@ function Accolade({
           height={height}
           className="mx-auto d-block"
         />
-        <figcaption className="mt-3 text-center">{caption}</figcaption>
+        {/* <figcaption className="mt-3 text-center">{caption}</figcaption> */}
       </figure>
     </Col>
   );
