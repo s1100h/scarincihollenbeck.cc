@@ -14,12 +14,12 @@ export default function CareerForm({ contact, title }) {
   useEffect(() => kwesforms.init());
 
   return (
-    <div className="px-2 my-3">
+    <div className="px-2 my-3 border-top">
       <form
         method="POST"
         action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW"
         encType="multipart/form-data"
-        className="kwes-form d-print-none px-1 w-75"
+        className="kwes-form d-print-none px-1"
       >
         <input
           type="hidden"
@@ -32,7 +32,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="text"
-              className="form-control mx-0 mb-2"
+              className="form-control mx-0"
               name="firstName"
               placeholder="First name"
               rules="required|max:255"
@@ -41,7 +41,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="text"
-              className="form-control mx-0 mb-2"
+              className="form-control mx-0"
               name="lastName"
               placeholder="Last name"
               rules="required|max:255"
@@ -52,7 +52,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="email"
-              className="form-control mx-0 mb-2"
+              className="form-control mx-0"
               name="email"
               placeholder="Email address"
               rules="required|max:255"
@@ -61,7 +61,7 @@ export default function CareerForm({ contact, title }) {
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
               type="phone"
-              className="form-control mx-0 mb-2"
+              className="form-control mx-0"
               name="phone"
               placeholder="Phone number"
               rules="required|max:255"
@@ -91,15 +91,27 @@ export default function CareerForm({ contact, title }) {
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
-            <label htmlFor="additionalWriting">
+            <label htmlFor="writingSample">
               <span className="d-block w-100 my-2">
-                <strong>Upload any additional writing</strong>
+                <strong>Upload a writing sample</strong>
               </span>
               <input
                 type="file"
-                name="additionalWriting"
-                id="additionalWriting"
+                name="writingSample"
+                id="writingSample"
                 rules="required"
+              />
+            </label>
+          </Col>
+          <Col sm={12} className="mx-0 px-1">
+            <label htmlFor="transcript">
+              <span className="d-block w-100 my-2">
+                <strong>Upload a transcript</strong>
+              </span>
+              <input
+                type="file"
+                name="transcript"
+                id="transcript"
               />
             </label>
           </Col>

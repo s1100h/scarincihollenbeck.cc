@@ -15,8 +15,8 @@ const logos = [
     url: '/images/reviews/trailblazers.jpeg',
     alt: 'National Law Journal',
     caption: 'National Law Journal Trailblazers',
-    width: 315,
-    height: 150,
+    width: 263,
+    height: 125,
   },
   {
     url: '/images/reviews/sl-badge-l-g-2021.png',
@@ -25,13 +25,6 @@ const logos = [
     width: 179,
     height: 149,
   },  
-  {
-    url: '/images/reviews/201-magazine.jpeg',
-    alt: '201 Magazine',
-    caption: "Bergen's top lawyers",
-    width: 225,
-    height: 150,
-  },
   {
     url: '/images/reviews/meadowlands.jpeg',
     alt: 'Madowlands Chamber of Commerce',
@@ -44,14 +37,13 @@ function Accolade({
   url, alt, caption, width, height,
 }) {
   return (
-    <Col sm={12} md={4} className="mt-5">
-      <figure>
+    <Col sm={12} md={3} className="mt-5">
+      <figure className={`mx-auto d-block text-center ${(alt === 'National Law Journal') ? 'my-4' : 'my-0'}`}>
         <img
           src={url}
           alt={alt}
           width={width}
           height={height}
-          className="mx-auto d-block"
         />
         {/* <figcaption className="mt-3 text-center">{caption}</figcaption> */}
       </figure>
