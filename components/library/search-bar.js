@@ -2,6 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 export default function SearchBar({
   onChange, onSubmit, searchTerm, loading,
@@ -30,7 +31,7 @@ export default function SearchBar({
               </Col>
               <Col xs={12} md="auto" className="my-1">
                 <Button variant="danger" type="submit">
-                  {loading ? <>...</> : <>Search</>}
+                  {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Search</>}
                 </Button>
               </Col>
             </Form.Row>

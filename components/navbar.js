@@ -87,48 +87,41 @@ export default function NavBar() {
                   id="basic-nav-dropdown"
                   className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
                 >
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/administration"
-                  >
-                    Administration
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/careers"
-                  >
-                    Careers
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/community-involvement"
-                  >
-                    Community Involvement
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/diversity-group"
-                  >
-                    Diversity Group
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/firm-overview"
-                  >
-                    Firm Overview
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/pro-bono"
-                  >
+                  <Link href="/administration">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                      Administration
+                    </a>
+                  </Link>
+                  <Link href="/careers">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                      Careers
+                    </a>
+                  </Link>
+                  <Link href="/community-involvement">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                      Community Involvement
+                    </a>
+                  </Link>
+                  <Link href="/diversity-group">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                      Diversity Group
+                    </a>
+                  </Link>
+                  <Link href="/firm-overview">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                      Firm Overview
+                    </a>
+                  </Link>
+                  <Link href="/pro-bono">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
                     Pro Bono
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className={navBarStyles.dropDownNavItem}
-                    href="/women-lead"
-                  >
+                    </a>
+                  </Link>
+                  <Link href="/women-lead">
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
                     Women Lead
-                  </NavDropdown.Item>
+                    </a>
+                  </Link>
                 </NavDropdown>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/attorneys">

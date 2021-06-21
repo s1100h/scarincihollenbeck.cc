@@ -9,6 +9,7 @@ export default function AttorneyBioProfileContact({
   contact,
   content,
   slug,
+  footerArticles
 }) {
   const router = useRouter();
 
@@ -28,6 +29,7 @@ export default function AttorneyBioProfileContact({
         bio,
         content,
       }}
+      footerArticles={footerArticles}
       header={{
         image: bio.headerContent.profileImage,
         profile: { ...bio.headerContent, ...contact },
@@ -52,7 +54,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
-  const [bio, contact, content] = await Promise.all([
+  const [bio, contact, content, attorneyArticles] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
@@ -65,6 +67,10 @@ export async function getStaticProps({ params }) {
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/biography`,
       { headers },
     ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   if (bio.status === 404) {
@@ -73,12 +79,15 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  const footerArticles = attorneyArticles.results.filter((_, i) => i <= 3);
+
   return {
     props: {
       bio,
       contact,
       content,
       slug: params.slug,
+      footerArticles: footerArticles || []
     },
     revalidate: 1,
   };

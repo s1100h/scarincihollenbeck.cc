@@ -3,10 +3,11 @@ import SiteLoader from 'components/site-loader';
 import { headers } from 'utils/helpers';
 import AttorneyProfile from 'layouts/attorney-profile';
 
-export default function AttorneyBioProfile({
-  bio, contact, content, slug,
+export default function AttorneyBioProfileContent({
+  bio, contact, content, slug, footerArticles
 }) {
   const router = useRouter();
+
 
   if (router.isFallback) {
     return (
@@ -24,6 +25,7 @@ export default function AttorneyBioProfile({
         bio,
         content,
       }}
+      footerArticles={footerArticles}
       header={{
         image: bio.headerContent.profileImage,
         profile: { ...bio.headerContent, ...contact },
@@ -49,7 +51,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [bio, contact, content] = await Promise.all([
+  const [bio, contact, content, attorneyArticles] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
@@ -62,6 +64,10 @@ export async function getStaticProps({ params }) {
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
       { headers },
     ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${params.slug}`,
+      { headers },
+    ).then((data) => data.json()),
   ]);
 
   if (bio.status === 404) {
@@ -70,11 +76,7 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  // if (content.status === 404) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  const footerArticles = attorneyArticles.results.filter((_, i) => i <= 3);
 
   return {
     props: {
@@ -82,6 +84,7 @@ export async function getStaticProps({ params }) {
       contact,
       content,
       slug: params.slug,
+      footerArticles: footerArticles || []
     },
     revalidate: 1,
   };

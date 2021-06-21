@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { urlify } from 'utils/helpers';
 
 export default function FrontSearch() {
@@ -10,12 +11,12 @@ export default function FrontSearch() {
   const [term, setTerm] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const santizeTerm = urlify(term.replace(/[^a-zA-Z ]/g, ''));
     setLoading(true);
 
-    router.push({
+    await router.push({
       pathname: '/library',
       query: { term: santizeTerm },
     });
@@ -39,7 +40,7 @@ export default function FrontSearch() {
           </Col>
           <Col sm="auto" className="my-1">
             <Button type="submit" size="md" variant="danger">
-              {loading ? <>...</> : <>Search</>}
+              {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Search</>}
             </Button>
           </Col>
         </Form.Row>

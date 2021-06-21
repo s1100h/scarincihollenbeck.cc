@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -25,22 +25,24 @@ export default function Library({
   popularCategories,
   childrenOfCurrentCategory,
   pageTitle,
-  query,
+  query
 }) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
 
   // on submit
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const santizeTerm = urlify(searchTerm.replace(/[^a-zA-Z ]/g, ''));
     setLoading(true);
 
-    router.push({
+    await router.push({
       pathname: '/library',
       query: { term: santizeTerm },
     });
+
+    await setLoading(false);
   };
 
   return (
@@ -63,7 +65,6 @@ export default function Library({
           <FeaturedLinks />
           <Col sm={12} md={9}>
             <QueryTitle title={pageTitle.replace(/-/g, ' ')} />
-            {/* <Breadcrumbs parentCategory={results.parentCategory} pageTitle={pageTitle} /> */}
             {results.results && results.results.length > 0 ? (
               <>
                 {results.results[0].link.indexOf('attorneys') >= 0 ? (
@@ -241,7 +242,7 @@ export async function getServerSideProps({ query }) {
       results: results || [],
       authors: authors || [],
       popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
+      childrenOfCurrentCategory: childrenOfCurrentCategory || []
     },
   };
 }
