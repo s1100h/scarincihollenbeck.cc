@@ -1,9 +1,19 @@
+import { useRouter } from 'next/router';
 import Nav from 'react-bootstrap/Nav';
 import styles from 'styles/Tabs.module.css';
 import { urlify } from 'utils/helpers';
 
 export default function PracticeLinks({ links, practiceUrl }) {
+  const router = useRouter();
   const tabLinks = links.content;
+  const relatedArticlesLink = urlify(practiceUrl);
+
+  function handleRelatedArticlesLink(term) {
+    router.push({
+      pathname: '/library',
+      query: { term },
+    })
+  }
 
   return (
     <Nav
@@ -22,13 +32,13 @@ export default function PracticeLinks({ links, practiceUrl }) {
         </Nav.Item>
       ))}
       <Nav.Item as="li">
-        <a
-          href={`/library?term=${urlify(practiceUrl)}`}
+        <button
+          onClick={() => handleRelatedArticlesLink(relatedArticlesLink)}
           className={`${styles.tab} ${styles.practice} text-white`}
-          style={{ display: 'block', padding: '.5rem 1rem' }}
+          style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
         >
           Related Updates
-        </a>
+        </button>
       </Nav.Item>
     </Nav>
   );
