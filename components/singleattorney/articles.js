@@ -9,10 +9,9 @@ import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
-export default function AttorneyProfileArticles({ initalArticles, term }) {
+export default function AttorneyProfileArticles({ initalArticles }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(11);
-  const [error, setError] = useState(false);
   const [articleList, setArticleList] = useState(initalArticles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1)) || []);
 
   async function handleClick() {
@@ -26,10 +25,12 @@ export default function AttorneyProfileArticles({ initalArticles, term }) {
       <Col sm={12}>
         <h4 className={grayTitleStyles.title}>News, Events, & Articles</h4>
       </Col>
-      {error ? (
-        <p>
-          <strong>There was an error loading more posts...</strong>
-        </p>
+      {initalArticles.length <= 0 ? (
+         <Col sm={12} className="my-3">
+          <p className="text-center">
+            <strong>This attorney does not have any published articles or blog posts.</strong>
+          </p>
+        </Col>
       ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
         <Col sm={12} md={4} key={article.title} className="my-3">
           <Link href={article.link}>
@@ -50,7 +51,8 @@ export default function AttorneyProfileArticles({ initalArticles, term }) {
           </Link>
         </Col>
       ))}
-      <Col sm={12}>
+      {initalArticles.length > 0 && (
+        <Col sm={12}>
         <Button
           variant="danger"
           className="px-4 mx-3 mb-3"
@@ -59,6 +61,7 @@ export default function AttorneyProfileArticles({ initalArticles, term }) {
           {loading ? <>Loading...</> : <>Load more posts</>}
         </Button>
       </Col>
+      )}
     </Row>
   );
 }

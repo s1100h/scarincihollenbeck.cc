@@ -52,6 +52,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
+  let noArticles = false;
   const [bio, contact, content, attorneyArticles] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
@@ -77,13 +78,17 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  if(content.status === 404) {
+    noArticles = true;
+  }
+
   const footerArticles = attorneyArticles.results.filter((_, i) => i <= 3);
 
   return {
     props: {
       bio,
       contact,
-      content,
+      content: (noArticles) ? [] : content,
       slug: params.slug,
       footerArticles: footerArticles || []
     },
