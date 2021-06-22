@@ -38,6 +38,7 @@ export default function PracticeLinks({ links, practiceUrl }) {
       ))}
       <Nav.Item as="li">
         <button
+          type="submit"
           onClick={() => handleRelatedArticlesLink(relatedArticlesLink)}
           className={`${styles.tab} ${styles.practice} text-white`}
           style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
