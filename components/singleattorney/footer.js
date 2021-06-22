@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import useSWR from 'swr';
 import SiteLoader from 'components/site-loader';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -66,54 +65,20 @@ function ArticleSection({ articles, slug }) {
   );
 }
 
-export default function AttorneyProfileFooter({ clients, slug }) {
-  const fetcher = (url) => fetch(url).then((data) => data.json());
-
-  const { data, error } = useSWR(
-    `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${slug}`,
-    fetcher,
-  );
-
-  if (error && clients.length <= 0) {
+export default function AttorneyProfileFooter({ clients, articles, slug }) {
+   if (articles.length <= 0 && clients.length <= 0) {
     return (
-      <div className="my-5">
+      <div style={{ minHeight: '20vh'}}>
         <SiteLoader />
       </div>
     );
   }
 
-  if (error && clients.length > 0) {
+  if (articles.length <= 0 && clients.length > 0) {
     return <ClientSection slug={slug} clients={clients} />;
   }
 
-  if (!data && clients.length <= 0) {
-    return (
-      <>
-        <div className={lineStyles.lineHeader}>
-          <h3>News, Events & Articles</h3>
-        </div>
-        <div className="my-4">
-          <SiteLoader />
-        </div>
-      </>
-    );
-  }
-
-  if (!data && clients.length > 0) {
-    return (
-      <>
-        <ClientSection slug={slug} clients={clients} />
-        <div className={lineStyles.lineHeader}>
-          <h3>News, Events & Articles</h3>
-        </div>
-        <div className="my-4">
-          <SiteLoader />
-        </div>
-      </>
-    );
-  }
-
-  if (data && clients.length <= 0) {
+  if (articles.length > 0 && clients.length <= 0) {
     return (
       <>
         <div className={lineStyles.lineHeader}>
@@ -121,13 +86,13 @@ export default function AttorneyProfileFooter({ clients, slug }) {
         </div>
         <ArticleSection
           slug={slug}
-          articles={data.results.filter((_, i) => i <= 3)}
+          articles={articles}
         />
       </>
     );
   }
 
-  if (data && clients.length > 0) {
+  if (articles.length > 0 && clients.length > 0) {
     return (
       <>
         <ClientSection slug={slug} clients={clients} />
@@ -137,7 +102,7 @@ export default function AttorneyProfileFooter({ clients, slug }) {
         </div>
         <ArticleSection
           slug={slug}
-          articles={data.results.filter((_, i) => i <= 3)}
+          articles={articles}
         />
       </>
     );

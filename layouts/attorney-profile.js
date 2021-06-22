@@ -78,7 +78,7 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
   }
 }
 export default function AttorneyProfile({
-  head, header, body, slug,
+  head, header, body, slug, footerArticles
 }) {
   const router = useRouter();
 
@@ -197,6 +197,7 @@ export default function AttorneyProfile({
             <AttorneyProfileFooter
               slug={slug}
               clients={body.bio.mainPageContent.clients}
+              articles={footerArticles}
             />
           </Col>
         </Row>
