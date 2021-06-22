@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import Link from "next/link";
 import Nav from 'react-bootstrap/Nav';
 import ClipLoader from 'react-spinners/ClipLoader';
 import styles from 'styles/Tabs.module.css';
@@ -11,21 +12,26 @@ export default function PracticeLinks({ links, practiceUrl }) {
   const tabLinks = links.content;
   const relatedArticlesLink = urlify(practiceUrl);
 
-  function handleRelatedArticlesLink(term) {
+  function handleRelatedArticlesLink(e) {
+    e.preventDefault()
     setLoading(true);
 
     router.push({
       pathname: '/library',
-      query: { term },
-    },
-    undefined,
-    { shallow: true })
-  }
+      query: { 
+        term: relatedArticlesLink
+      },
+    });
+  };
+
+  useEffect(() => {
+    router.prefetch(`/library?term=${relatedArticlesLink}`);
+  }, []);
 
   return (
     <Nav
       defaultActiveKey={urlify(tabLinks[0].title)}
-      as="ul"
+      role="tablist"
       className={styles.tabContainer}
     >
       {tabLinks.map((tab) => (
@@ -39,14 +45,17 @@ export default function PracticeLinks({ links, practiceUrl }) {
         </Nav.Item>
       ))}
       <Nav.Item as="li">
-        <button
-          type="submit"
-          onClick={() => handleRelatedArticlesLink(relatedArticlesLink)}
-          className={`${styles.tab} ${styles.practice} text-white`}
-          style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
+        <Link
+          href={`/library?term=${relatedArticlesLink}`}
+          onClick={handleRelatedArticlesLink}          
         >
-          {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Related Updates</>}
-        </button>
+          <a
+            className={`${styles.tab} ${styles.practice} text-white`}
+            style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
+          >
+            {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Related Updates</>}
+          </a>
+        </Link>
       </Nav.Item>
     </Nav>
   );
