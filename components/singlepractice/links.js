@@ -17,7 +17,9 @@ export default function PracticeLinks({ links, practiceUrl }) {
     router.push({
       pathname: '/library',
       query: { term },
-    })
+    },
+    undefined,
+    { shallow: true })
   }
 
   return (
@@ -42,7 +44,7 @@ export default function PracticeLinks({ links, practiceUrl }) {
           onClick={() => handleRelatedArticlesLink(relatedArticlesLink)}
           className={`${styles.tab} ${styles.practice} text-white`}
           style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
-        >          
+        >
           {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Related Updates</>}
         </button>
       </Nav.Item>
