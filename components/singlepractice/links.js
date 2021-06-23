@@ -45,17 +45,13 @@ export default function PracticeLinks({ links, practiceUrl }) {
         </Nav.Item>
       ))}
       <Nav.Item as="li">
-        <Link
-          href={`/library?term=${relatedArticlesLink}`}
-          onClick={handleRelatedArticlesLink}          
-        >
-          <a
+          <button
+            onClick={handleRelatedArticlesLink} 
             className={`${styles.tab} ${styles.practice} text-white`}
             style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
           >
             {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Related Updates</>}
-          </a>
-        </Link>
+          </button>
       </Nav.Item>
     </Nav>
   );
