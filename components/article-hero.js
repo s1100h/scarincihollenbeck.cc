@@ -49,8 +49,7 @@ export default function ArticleHero({ content }) {
           <ul className="list-unstyled">
             {articleList.map((article) => (
               <li key={article.id} className="d-flex mb-2">
-                <Link href={article.link}>
-                  <a className={`${styles.link} ${styles.list}`}>
+                  <a href={article.link} className={`${styles.link} ${styles.list}`}>
                     <img
                       src={article.better_featured_image.source_url}
                       alt={article.title.rendered}
@@ -80,7 +79,6 @@ export default function ArticleHero({ content }) {
                       </p>
                     </div>
                   </a>
-                </Link>
               </li>
             ))}
           </ul>

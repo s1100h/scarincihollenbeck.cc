@@ -117,16 +117,14 @@ export default function LawFirmInsightsPost({
 
 export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
-  const [restResponse] = await Promise.all([
-    fetch(
+  const [restResponse] = fetch(
       `https://wp.scarincihollenbeck.com/wp-json/single/post/${
         params.slug[params.slug.length - 1]
       }/${query.category}`,
       { headers },
     )
       .then((data) => data.json())
-      .catch((err) => err),
-  ]);
+      .catch((err) => err)
 
   if (restResponse.status === 404) {
     res.statusCode = 404;
