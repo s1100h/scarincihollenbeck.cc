@@ -117,7 +117,7 @@ export default function LawFirmInsightsPost({
 
 export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
-  const [restResponse] = fetch(
+  const restResponse = await fetch(
       `https://wp.scarincihollenbeck.com/wp-json/single/post/${
         params.slug[params.slug.length - 1]
       }/${query.category}`,
