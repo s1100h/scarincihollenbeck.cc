@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import React, { useState } from 'react';
-import useSWR from 'swr';
 import Link from 'next/link';
 import Image from 'next/image';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -9,7 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-const fetcher = (...args) => fetch(...args).then(res => res.json())
 const sortedArticles = articles => articles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 const pruneArticles = articles => articles.filter((a, b) => {
   if (a.link.indexOf('practices') > 0) {
@@ -25,80 +23,88 @@ const pruneArticles = articles => articles.filter((a, b) => {
 
 export default function AttorneyProfilePractice({ initalArticles, term }) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [pageIndex, setPageIndex] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [articleList, setArticleList] = useState(sortedArticles(initalArticles) || []);
-  const { data, error } = useSWR(loading ? null : `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&term=${term}`, fetcher)
 
-  async function handleClick() {
+
+  async function handleClick(term) {
     await setPageIndex(pageIndex => pageIndex + 1);
     await setLoading(true);
 
-    if(data) {
-      if (totalPages <= 1) {
-        await setTotalPages(data.pages)
-      }
+    const request = await fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&term=${term}`)
+      .then((data) => data.json())
+      .catch((err) => setError(err));
+    
+    const prunedArticles = await pruneArticles([...articleList, ...request.results]);
+    const prunedArticlesOfDuplicates = await prunedArticles.filter((thing, index, self) =>
+      index === self.findIndex((t) => (
+        t.id === thing.id
+      ))
+    );
 
-      if (pageIndex <= totalPages) {
-        const prunedArticles = pruneArticles([...articleList, ...data.results]);
-        const prunedArticlesOfDuplicates = prunedArticles.filter((thing, index, self) =>
-          index === self.findIndex((t) => (
-            t.id === thing.id
-          ))
-        );
-        setArticleList(prunedArticlesOfDuplicates);
-      }
-    }
-
-
-
-
-
+    await setTotalPages(request.pages);
+    await setArticleList(prunedArticlesOfDuplicates);
     await setLoading(false);
   };
 
-  return (
-    <Row>
-      <Col sm={12}>
-        <h4 className={grayTitleStyles.title}>News, Events, & Articles</h4>
-      </Col>
-      {initalArticles.length <= 0 ? (
+  if (error) {
+    return (
+      <Row>
         <Col sm={12} className="my-3">
           <p className="text-center">
-            <strong>This attorney does not have any published articles or blog posts.</strong>
+            <strong>{error}</strong>
           </p>
         </Col>
-      ) : articleList.map((article) => (
-        <Col sm={12} md={4} key={article.title} className="my-3">
-          <Link href={article.link}>
-            <a className="text-center mx-auto d-block">
-              <Image
-                alt={article.title}
-                src={
-                  article.image || article.featuredImg || '/images/no-image-found-diamond.png'
-                }
-                width={300}
-                height={150}
-                className="rounded"
-              />
-              <small className="text-dark d-block">
-                <strong>{article.title}</strong>
-              </small>
-            </a>
-          </Link>
-        </Col>
-      ))}
-      {pageIndex <= totalPages && (
+      </Row>
+    )
+  } else {
+    return (
+      <Row>
         <Col sm={12}>
-          <Button
-            variant="danger"
-            className="px-4 mx-3 mb-3"
-            onClick={() => handleClick()}
-          >
-            {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
-          </Button>
+          <h4 className={grayTitleStyles.title}>News, Events, & Articles</h4>
         </Col>
-      )}
-    </Row>
-  );
+        {initalArticles.length <= 0 ? (
+          <Col sm={12} className="my-3">
+            <p className="text-center">
+              <strong>This attorney does not have any published articles or blog posts.</strong>
+            </p>
+          </Col>
+        ) : articleList.map((article) => (
+          <Col sm={12} md={4} key={article.title} className="my-3">
+            <Link href={article.link}>
+              <a className="text-center mx-auto d-block">
+                <Image
+                  alt={article.title}
+                  src={
+                    article.image || article.featuredImg || '/images/no-image-found-diamond.png'
+                  }
+                  width={300}
+                  height={150}
+                  className="rounded"
+                />
+                <small className="text-dark d-block">
+                  <strong>{article.title}</strong>
+                </small>
+              </a>
+            </Link>
+          </Col>
+        ))}
+        {pageIndex <= totalPages && (
+          <Col sm={12}>
+            <Button
+              variant="danger"
+              className="px-4 mx-3 mb-3"
+              onClick={() => handleClick(term)}
+            >
+              {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
+            </Button>
+          </Col>
+        )}
+      </Row>
+    );
+  }
+
+
 }

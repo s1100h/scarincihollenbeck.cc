@@ -21,11 +21,12 @@ import { urlify, headers, sortByKey } from 'utils/helpers';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 
-export default function PracticeSingle({
+export default function PracticeSingleArticles({
   corePractices,
   practice,
   practiceChildren,
-  posts
+  posts,
+  term
 }) {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -64,7 +65,7 @@ export default function PracticeSingle({
               <PracticeLinks links={practice} practiceUrl={practiceUrl} />
             </Col>
             <Col sm={12} md={9}>
-              <AttorneyProfilePractice initalArticles={posts} />
+              <AttorneyProfilePractice initalArticles={posts} term={term} />
               {practice.attorneyList.length > 0 && (
                 <RelatedAttorneys
                   members={practice.attorneyList}
