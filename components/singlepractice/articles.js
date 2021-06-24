@@ -34,19 +34,25 @@ export default function AttorneyProfilePractice({ initalArticles, term }) {
     await setPageIndex(pageIndex => pageIndex + 1);
     await setLoading(true);
 
-    if (totalPages <= 1) {
-      await setTotalPages(data.pages)
+    if(data) {
+      if (totalPages <= 1) {
+        await setTotalPages(data.pages)
+      }
+
+      if (pageIndex <= totalPages) {
+        const prunedArticles = pruneArticles([...articleList, ...data.results]);
+        const prunedArticlesOfDuplicates = prunedArticles.filter((thing, index, self) =>
+          index === self.findIndex((t) => (
+            t.id === thing.id
+          ))
+        );
+        setArticleList(prunedArticlesOfDuplicates);
+      }
     }
 
-    if (pageIndex <= totalPages) {
-      const prunedArticles = pruneArticles([...articleList, ...data.results]);
-      const prunedArticlesOfDuplicates = prunedArticles.filter((thing, index, self) =>
-        index === self.findIndex((t) => (
-          t.id === thing.id
-        ))
-      );
-      setArticleList(prunedArticlesOfDuplicates);
-    }
+
+
+
 
     await setLoading(false);
   };
