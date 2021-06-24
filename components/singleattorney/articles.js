@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import ClipLoader from 'react-spinners/ClipLoader';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
@@ -33,8 +33,8 @@ export default function AttorneyProfileArticles({ initalArticles }) {
         </Col>
       ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
         <Col sm={12} md={4} key={article.title} className="my-3">
-          <Link href={article.link}>
-            <a className="text-center mx-auto d-block">
+          
+            <a href={article.link} className="text-center mx-auto d-block">
               <Image
                 alt={article.title}
                 src={
@@ -48,7 +48,6 @@ export default function AttorneyProfileArticles({ initalArticles }) {
                 <strong>{article.title}</strong>
               </small>
             </a>
-          </Link>
         </Col>
       ))}
       {initalArticles.length > 0 && (
@@ -58,7 +57,7 @@ export default function AttorneyProfileArticles({ initalArticles }) {
           className="px-4 mx-3 mb-3"
           onClick={() => handleClick()}
         >
-          {loading ? <>Loading...</> : <>Load more posts</>}
+          {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
         </Button>
       </Col>
       )}

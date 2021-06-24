@@ -25,8 +25,7 @@ export default function PracticeSingleArticles({
   corePractices,
   practice,
   practiceChildren,
-  posts,
-  term
+  posts
 }) {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -65,7 +64,7 @@ export default function PracticeSingleArticles({
               <PracticeLinks links={practice} practiceUrl={practiceUrl} />
             </Col>
             <Col sm={12} md={9}>
-              <AttorneyProfilePractice initalArticles={posts} term={term} />
+              <AttorneyProfilePractice initalArticles={posts} title={practice.title} />
               {practice.attorneyList.length > 0 && (
                 <RelatedAttorneys
                   members={practice.attorneyList}
@@ -181,17 +180,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [res, practices, posts] = await Promise.all([
+  const [res, practices] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/individual-practices/practice/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page', {
       headers,
-    }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
+    }).then((data) => data.json())
   ]);
 
   if (res.status === 404) {
@@ -204,12 +200,17 @@ export async function getStaticProps({ params }) {
     (practice) => practice.category === 'Core Practices',
   );
 
+  /** get parent category */
+  const blogId = res.blog_data_id[0];
+  const practiceSlug = res.slug;
+  const posts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`).then(data => data.json());
+
   return {
     props: {
       practice: res,
       practiceChildren: res.children || [],
       corePractices: sortByKey(corePractices, 'title'),
-      posts: posts.results || [],
+      posts: posts || [],
       term: params.slug
     },
     revalidate: 1,
