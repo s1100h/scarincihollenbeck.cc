@@ -11,6 +11,7 @@ export default function PracticeLinks({ links, practiceUrl }) {
   const [loading, setLoading] = useState(false);
   const tabLinks = links.content;
   const relatedArticlesLink = urlify(practiceUrl);
+  const isArticlesPage = router.asPath.includes('articles');
 
   function handleRelatedArticlesLink(e) {
     e.preventDefault()
@@ -45,7 +46,7 @@ export default function PracticeLinks({ links, practiceUrl }) {
         </Nav.Item>
       ))}
       <Nav.Item as="li">
-          <Link href={`/practice/${relatedArticlesLink}/articles`}>
+          <Link href={isArticlesPage ? `/practice/${relatedArticlesLink}` : `/practice/${relatedArticlesLink}/articles`}>
             <a
               className={`${styles.tab} ${styles.practice} text-white`}
               style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}

@@ -5,14 +5,15 @@ import Image from 'next/image';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import TabPane from 'react-bootstrap/TabPane';
 import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
-
-export default function AttorneyProfilePractice({ initalArticles, title }) {
+const removeDuplicates = arr => arr.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
+export default function AttorneyProfilePractice({ initalArticles, title, tabTitle }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(11);
-  const [articleList, setArticleList] = useState(initalArticles || []);
+  const [articleList, setArticleList] = useState(removeDuplicates(initalArticles) || []);
 
   async function handleClick() {
     setLoading(true);
@@ -20,25 +21,26 @@ export default function AttorneyProfilePractice({ initalArticles, title }) {
     setLoading(false);
   }
   return (
-    <Row className={marginStyles.mtMinusMd2}>
-      <Col sm={12}>
-        <h4 className={grayTitleStyles.title}>{title} Articles</h4>
-      </Col>
-      {initalArticles.length <= 0 ? (
-         <Col sm={12} className="my-3">
-          <p className="text-center">
-            <strong>This attorney does not have any published articles or blog posts.</strong>
-          </p>
+    <TabPane eventKey="related-articles" title={title}>
+      <Row className={marginStyles.mtMinusMd2}>
+        <Col sm={12}>
+          <h4 className={grayTitleStyles.title}>{title} Articles</h4>
         </Col>
-      ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
-        <Col sm={12} md={4} key={article.title} className="my-3">
-          
+        {initalArticles.length <= 0 ? (
+          <Col sm={12} className="my-3">
+            <p className="text-center">
+              <strong>Thare are no articles or blow posts for this practice area.</strong>
+            </p>
+          </Col>
+        ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
+          <Col sm={12} md={4} key={article.title} className="my-3">
+
             <a href={article.link} className="text-center mx-auto d-block">
               <Image
                 alt={article.title}
                 src={
-                    article.image || article.featuredImg || '/images/no-image-found-diamond.png'
-                  }
+                  article.image || article.featuredImg || '/images/no-image-found-diamond.png'
+                }
                 width={300}
                 height={150}
                 className="rounded"
@@ -47,19 +49,21 @@ export default function AttorneyProfilePractice({ initalArticles, title }) {
                 <strong>{article.title}</strong>
               </small>
             </a>
-        </Col>
-      ))}
-      {initalArticles.length > 0 && (
-        <Col sm={12}>
-        <Button
-          variant="danger"
-          className="px-4 mx-3 mb-3"
-          onClick={() => handleClick()}
-        >
-          {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
-        </Button>
-      </Col>
-      )}
-    </Row>
+          </Col>
+        ))}
+        {initalArticles.length > 0 && (
+          <Col sm={12}>
+            <Button
+              variant="danger"
+              className="px-4 mx-3 mb-3"
+              onClick={() => handleClick()}
+            >
+              {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
+            </Button>
+          </Col>
+        )}
+      </Row>
+
+    </TabPane>
   );
 }

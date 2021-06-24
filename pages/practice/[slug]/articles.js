@@ -3,9 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';
+import TabContent from 'react-bootstrap/TabContent';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import PracticeContent from 'components/singlepractice/content';
 import PracticeLinks from 'components/singlepractice/links';
 import RelatedAttorneys from 'components/singlepractice/related-attorneys';
 import PracticeClientSlider from 'components/singlepractice/client-slider';
@@ -56,7 +58,7 @@ export default function PracticeSingleArticles({
       />
       <TabContainer
         id="nav-tab"
-        defaultActiveKey={urlify(practice.content[0].title)}
+        defaultActiveKey="related-articles"
       >
         <Container>
           <Row>
@@ -64,7 +66,22 @@ export default function PracticeSingleArticles({
               <PracticeLinks links={practice} practiceUrl={practiceUrl} />
             </Col>
             <Col sm={12} md={9}>
-              <AttorneyProfilePractice initalArticles={posts} title={practice.title} />
+              <TabContent key="related-articles">
+                <AttorneyProfilePractice tabTitle="related-articles" initalArticles={posts} title={practice.title} />
+              </TabContent>
+              <div style={{ position: 'relative', bottom: '2.5em' }}>
+              {practice.content.length > 0
+                && practice.content.map((item) => (
+                  <TabContent key={item.title}>
+                    <PracticeContent
+                      tabTitle={urlify(item.title)}
+                      title={item.title}
+                      content={item.content}
+                    />
+                  </TabContent>
+                ))}
+              </div>
+              
               {practice.attorneyList.length > 0 && (
                 <RelatedAttorneys
                   members={practice.attorneyList}
