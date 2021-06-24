@@ -11,16 +11,12 @@ import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 const sortedArticles = articles => articles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
-const removeCareersAndPractices = articles => articles.filter((a, b) => {
-  if(a.link.indexOf('practices') > 0) {
+const pruneArticles = articles => articles.filter((a, b) => {
+  if (a.link.indexOf('practices') > 0) {
     return false;
   }
 
-  if(a.link.indexOf('careers') > 0) {
-    return false;
-  }
-
-  if(a.id === b.id) {
+  if (a.link.indexOf('careers') > 0) {
     return false;
   }
 
@@ -42,9 +38,14 @@ export default function AttorneyProfilePractice({ initalArticles, term }) {
       await setTotalPages(data.pages)
     }
 
-    if(pageIndex < totalPages) {
-      data.results.pop();
-      setArticleList(prevArticles => [...prevArticles, ...data.results]);
+    if (pageIndex <= totalPages) {
+      const prunedArticles = pruneArticles([...articleList, ...data.results]);
+      const prunedArticlesOfDuplicates = prunedArticles.filter((thing, index, self) =>
+        index === self.findIndex((t) => (
+          t.id === thing.id
+        ))
+      );
+      setArticleList(prunedArticlesOfDuplicates);
     }
 
     await setLoading(false);
@@ -61,7 +62,7 @@ export default function AttorneyProfilePractice({ initalArticles, term }) {
             <strong>This attorney does not have any published articles or blog posts.</strong>
           </p>
         </Col>
-      ) : removeCareersAndPractices(articleList).map((article) => (
+      ) : articleList.map((article) => (
         <Col sm={12} md={4} key={article.title} className="my-3">
           <Link href={article.link}>
             <a className="text-center mx-auto d-block">
