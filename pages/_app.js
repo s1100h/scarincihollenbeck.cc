@@ -24,15 +24,6 @@ import 'styles/carousel.css';
 /** 
  *  Initialize web vital reporting
  */
-// export function reportWebVitals(metric) {
-//   if(metric.name === "TTFB") {
-//     var minutes = Math.floor(metric.value / 60000);
-//     var seconds = ((metric.value % 60000) / 1000).toFixed(0);
-//     console.table({
-//       timeLapsed: `${minutes}: ${(seconds < 10 ? '0' : '') + seconds}`
-//     });
-//   }
-// }
 
 function SHApp({ Component, pageProps }) {
   const router = useRouter();

@@ -2,6 +2,7 @@
 /* eslint-disable no-return-assign */
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
@@ -33,8 +34,8 @@ export default function AttorneyProfileArticles({ initalArticles }) {
         </Col>
       ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
         <Col sm={12} md={4} key={article.title} className="my-3">
-          
-            <a href={article.link} className="text-center mx-auto d-block">
+          <Link href={article.link}>
+            <a className="text-center mx-auto d-block">
               <Image
                 alt={article.title}
                 src={
@@ -48,6 +49,7 @@ export default function AttorneyProfileArticles({ initalArticles }) {
                 <strong>{article.title}</strong>
               </small>
             </a>
+          </Link>            
         </Col>
       ))}
       {initalArticles.length > 0 && (

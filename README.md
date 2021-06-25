@@ -12,34 +12,22 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 
 ## Code style
 
-#### Client Application
 ![Code Style Airbnb](https://camo.githubusercontent.com/1c5c800fbdabc79cfaca8c90dd47022a5b5c7486/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64652532307374796c652d616972626e622d627269676874677265656e2e7376673f7374796c653d666c61742d737175617265)
 
-#### Sitemap Application
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
 
 ## Tech used
 
 **Client Application built with**
   * [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
   * [Google reCaptcha](https://www.google.com/recaptcha/about/)
-  * [Netlify](https://www.netlify.com/)
   * [Next](https://nextjs.org/)
   * [React Bootstrap](https://react-bootstrap.github.io/)
   * [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
   * [React Share](https://github.com/nygardk/react-share#readme)
-  * [React Stickynode](https://github.com/yahoo/react-stickynode)
-  * [React Virtualized](http://bvaughn.github.io/react-virtualized/#/components/List)
   * [RSS Parser](https://github.com/rbren/rss-parser#readme)
   * [SWR](https://swr.vercel.app/)
 
-**Sitemap Application built with**
-  * [datetime](https://docs.python.org/3/library/datetime.html)
-  * [json](https://docs.python.org/3/library/json.html)
-  * [Python](https://www.python.org/)
-  * [Requests](https://requests.readthedocs.io/en/master/)
-  * [Virtualenv](https://virtualenv.pypa.io/en/latest/)
-  * [The ElementTree XML API](https://docs.python.org/3/library/xml.etree.elementtree.html)
 
 ## Install
 
@@ -53,12 +41,6 @@ cd scarincihollenbeck.cc/client/app
 yarn install
 ```
 
-**Sitemap Application**
-```
-cd scarincihollenbeck.cc/sitemap/app
-python3 -m venv venv
-pip install -r requirements.txt 
-```
 
 ## Development
 
