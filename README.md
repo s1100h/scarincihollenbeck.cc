@@ -37,7 +37,7 @@ git clone https://github.com/s1100h/scarincihollenbeck.cc.git
 
 **Client Application**
 ```
-cd scarincihollenbeck.cc/client/app
+cd scarincihollenbeck.frontend.cc
 yarn install
 ```
 
