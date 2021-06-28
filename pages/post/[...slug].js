@@ -115,6 +115,9 @@ export default function LawFirmInsightsPost({
   );
 }
 
+// We need to get a every blog post by category 
+
+
 export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
   const restResponse = await fetch(
