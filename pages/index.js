@@ -168,7 +168,7 @@ export async function getStaticProps() {
       },
     ).then((data) => data.json()),
     fetch(
-      'http://wp.scarincihollenbeck.com/wp-json/wp/v2/administration?per_page=10',
+      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/administration?per_page=10',
       {
         headers,
       },
