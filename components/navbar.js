@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,6 +12,7 @@ import navBarStyles from '../styles/Navbar.module.css';
 import textStyles from '../styles/Text.module.css';
 
 export default function NavBar() {
+  const [hideDropDown, setHideDropDown] = useState(false);
   return (
     <header className="mb-0">
       <Container>
@@ -97,31 +98,24 @@ export default function NavBar() {
                       Careers
                     </a>
                   </Link>
-                  <Link href="/community-involvement">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Community Involvement
-                    </a>
-                  </Link>
-                  <Link href="/diversity-group">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Diversity Group
-                    </a>
-                  </Link>
+                  <a href="/community-involvement" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                    Community Involvement
+                  </a>
+
+                  <a href="/diversity-group" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                    Diversity Group
+                  </a>
                   <Link href="/firm-overview">
                     <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
                       Firm Overview
                     </a>
                   </Link>
-                  <Link href="/pro-bono">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  <a href="/pro-bono" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
                     Pro Bono
-                    </a>
-                  </Link>
-                  <Link href="/women-lead">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  </a>
+                  <a href="/women-lead" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
                     Women Lead
-                    </a>
-                  </Link>
+                  </a>
                 </NavDropdown>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/attorneys">

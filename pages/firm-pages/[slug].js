@@ -11,6 +11,29 @@ import { headers, createMarkup } from 'utils/helpers';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
+const pages = [
+  {
+    id: 'WF7jMpVJP3PTnuP',
+    title: 'Pro Bono',
+    slug: 'pro-bono',
+  },
+  {
+    id: 'vehm0rQb7cpMH92',
+    title: 'Women Lead',
+    slug: 'women-lead',
+  },
+  {
+    id: 'SjveurE3BK1R1l2',
+    title: 'Community Involvement',
+    slug: 'community-involvement',
+  },
+  {
+    id: 'SjveurE7BK1R1l2',
+    title: 'Diversity Group',
+    slug: 'diversity-group',
+  },
+];
+
 export default function FirmPages({ page, relatedPages }) {
   return (
     <>
@@ -71,42 +94,25 @@ export default function FirmPages({ page, relatedPages }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
-  const currentPage = query.page;
+export async function getStaticPaths() {
+  return {
+    paths: pages.map((a) => `/firm-pages/${a.slug}`) || [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const [restResponse] = await Promise.all([
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/firm-page/page/${currentPage}`,
+      `https://wp.scarincihollenbeck.com/wp-json/firm-page/page/${params.slug}`,
       { headers },
     ).then((data) => data.json()),
-  ]);
-
-  const pages = [
-    {
-      id: 'WF7jMpVJP3PTnuP',
-      title: 'Pro Bono',
-      slug: 'pro-bono',
-    },
-    {
-      id: 'vehm0rQb7cpMH92',
-      title: 'Women Lead',
-      slug: 'women-lead',
-    },
-    {
-      id: 'SjveurE3BK1R1l2',
-      title: 'Community Involvement',
-      slug: 'community-involvement',
-    },
-    {
-      id: 'SjveurE7BK1R1l2',
-      title: 'Diversity Group',
-      slug: 'diversity-group',
-    },
-  ];
+  ]);  
 
   return {
     props: {
       page: restResponse,
-      relatedPages: pages.filter((a) => a.slug !== currentPage),
+      relatedPages: pages.filter((a) => a.slug !== params.slug),
     },
   };
 }

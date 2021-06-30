@@ -82,19 +82,19 @@ module.exports = {
       },
       {
         source: '/diversity-group',
-        destination: '/firm-pages?page=diversity-group',
+        destination: '/firm-pages/diversity-group',
       },
       {
         source: '/community-involvement',
-        destination: '/firm-pages?page=community-involvement',
+        destination: '/firm-pages/community-involvement',
       },
       {
         source: '/pro-bono',
-        destination: '/firm-pages?page=pro-bono',
+        destination: '/firm-pages/pro-bono',
       },
       {
         source: '/women-lead',
-        destination: '/firm-pages?page=women-lead',
+        destination: '/firm-pages/women-lead',
       }
     ];
   },
