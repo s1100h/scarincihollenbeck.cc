@@ -37,6 +37,10 @@ module.exports = {
         destination: '/post/:slug*?category=firm-news',
       },
       {
+        source: '/news/:slug*',
+        destination: '/post/:slug*?category=firm-news',
+      },
+      {
         source: '/client-alert/:slug*',
         destination: '/post/:slug*?category=client-alert',
       },

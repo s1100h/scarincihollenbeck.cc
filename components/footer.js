@@ -36,9 +36,9 @@ export default function Footer() {
                   <span className="mx-3">|</span>
                 </li>
                 <li className="list-inline-item">
-                  <Link href="/contacts">
+                  <Link href="/contact">
                     <a className={styles.mainLink}>
-                      <u>Contacts</u>
+                      <u>Contact</u>
                     </a>
                   </Link>
                   <span className="mx-3">|</span>

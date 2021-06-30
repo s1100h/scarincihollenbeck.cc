@@ -11,7 +11,7 @@ export default function CookieConsentMessage() {
       further concerns please review our
       {' '}
       <Link href="/privacy-policy">
-        <a>privacy policy.</a>
+        <a className="text-white"><u>privacy policy.</u></a>
       </Link>
     </CookieConsent>
   );

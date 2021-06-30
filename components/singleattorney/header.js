@@ -61,7 +61,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                     alt={profile.name}
                     width={260}
                     height={279}
-                    layout="fixed"
+                    layout="intrinsic"
                     quality={100}
                     className={`${profileStyles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
                     priority
