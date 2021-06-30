@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
+import NProgress from 'nprogress';
 import NavBar from 'components/navbar';
 import Footer from 'components/footer';
 import * as gtag from 'utils/gtag';
+
+import 'nprogress/nprogress.css';
 
 /**
  *
@@ -22,8 +25,10 @@ import 'styles/dropdown.css';
 import 'styles/carousel.css';
 
 /** 
- *  Initialize web vital reporting
+ *  Add page transition loader
  */
+Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());  
+
 
 function SHApp({ Component, pageProps }) {
   const router = useRouter();

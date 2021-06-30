@@ -14,8 +14,8 @@ export default function ArticleHero({ content }) {
     <Container>
       <Row>
         <Col sm={12} md={6}>
-
-            <a href={content[0].link} className={styles.link}>
+          <Link href={content[0].link}>
+            <a className={styles.link}>
               <Image
                 src={content[0].better_featured_image.source_url.replace(
                   'Feature',
@@ -30,6 +30,7 @@ export default function ArticleHero({ content }) {
                 <strong>{content[0].title.rendered}</strong>
               </h3>
             </a>
+          </Link>           
           <p>
             <strong>Published: </strong>
             <span className="mr-3">{formatDate(content[0].date)}</span>

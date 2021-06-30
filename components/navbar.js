@@ -128,7 +128,9 @@ export default function NavBar() {
                   </Link>
                 </Nav.Item>
                 <Nav.Item className={navBarStyles.navItem}>
-                  <a href="/library" className="text-dark">Library</a>
+                  <Link href="/library">
+                    <a className="text-dark">Library</a>
+                  </Link>
                 </Nav.Item>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/locations">
