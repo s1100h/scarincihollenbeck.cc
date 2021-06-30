@@ -21,7 +21,12 @@ export default function PostAuthorBio({ author }) {
             </div>
             <div className="d-flex flex-row flex-wrap mt-4 mh-160">
               <div className="mx-2 mt-4 d-block">
-                <Image src={a.image} alt={a.name} width={110} height={147} />
+                <Image
+                  src={a.image}
+                  alt={a.name}
+                  width={108}
+                  height={148}
+                  />
               </div>
               <p className={`${fontStyles.smallExcerpt} w-75 m-auto`}>
                 <span
