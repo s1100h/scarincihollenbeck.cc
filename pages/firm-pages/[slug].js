@@ -1,7 +1,9 @@
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import SiteLoader from 'components/site-loader';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import SidebarContent from 'components/singlepractice/sidebar';
@@ -35,6 +37,11 @@ const pages = [
 ];
 
 export default function FirmPages({ page, relatedPages }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
   return (
     <>
       <NextSeo
@@ -114,5 +121,6 @@ export async function getStaticProps({ params }) {
       page: restResponse,
       relatedPages: pages.filter((a) => a.slug !== params.slug),
     },
+    revalidate: 1,
   };
 }
