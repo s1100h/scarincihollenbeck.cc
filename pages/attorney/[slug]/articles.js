@@ -92,17 +92,23 @@ export async function getStaticProps({ params }) {
     noArticles = true;
   }
 
-  const attorneyFooterBlogArticles = [];
-  const attorneyFooterNewsArticles = [];
+  let attorneyFooterBlogArticles = [];
+  let attorneyFooterNewsArticles = [];
 
-  if(typeof attorneyBlogArticles !== 'object' && attorneyBlogArticles.status !== 404) {
-    const firstThreeBlogs = attorneyBlogArticles.filter((_, i) => i <= 3);
-    attorneyFooterBlogArticles.push(firstThreeBlogs)
+  if(!Object.keys(attorneyBlogArticles).includes('status')) {
+    const firstThreeBlogs = attorneyBlogArticles
+    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+    .filter((_, i) => i <= 3);
+
+    attorneyFooterBlogArticles = [...firstThreeBlogs]
   }
 
-  if(typeof attorneyNewsArticles !== 'object' && attorneyNewsArticles.status !== 404) {
-    const firstThreeNews = attorneyNewsArticles.filter((_, i) => i <= 3);
-    attorneyFooterNewsArticles.push(firstThreeNews)
+  if(!Object.keys(attorneyNewsArticles).includes('status')) {
+    const firstThreeNews = attorneyNewsArticles     
+     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+     .filter((_, i) => i <= 3);
+
+    attorneyFooterNewsArticles = [...firstThreeNews]
   }
 
 

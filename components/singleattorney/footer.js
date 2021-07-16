@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import SiteLoader from 'components/site-loader';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import HomePageLink from 'components/home/page-link';
@@ -53,6 +52,11 @@ function ArticleSection({ articles, slug, title, type }) {
                 height={150}
                 className="rounded"
               />
+              {!article.link.includes('scarincihollenbeck.com') && (
+                <small className="text-dark d-block">
+                  <strong>{article.title}</strong>
+                </small>
+              )}
             </a>
           </Link>
         </Col>
@@ -72,11 +76,10 @@ export default function AttorneyProfileFooter({
   attorneyFooterNewsArticles
 }) {
 
-
   return (
     <div style={{ minHeight: '20vh' }}>
       {(clients.length > 0) && <ClientSection slug={slug} clients={clients} />}
-      {(clients.length > 0) && (
+      {(attorneyFooterNewsArticles.length > 0) && (
         <>
           <div className={lineStyles.lineHeader}>
             <h3>News & Press Releases</h3>
@@ -89,7 +92,7 @@ export default function AttorneyProfileFooter({
           />
         </>
       )}
-      {(clients.length > 0) && (
+      {(attorneyFooterBlogArticles.length > 0) && (
         <>
           <div className={lineStyles.lineHeader}>
             <h3>Blogs</h3>
@@ -105,94 +108,4 @@ export default function AttorneyProfileFooter({
       )}
     </div>
   )
-
-
-
-  //  if (clients.length <= 0 && attorneyFooterBlogArticles.length <= 0 && attorneyFooterNewsArticles.length <= 0) {
-  //   return (
-
-  //   );
-  // }
-
-  // if (attorneyFooterNewsArticles.length <= 0 && attorneyFooterBlogArticles.length <= 0 && clients.length > 0) {
-  //   return <ClientSection slug={slug} clients={clients} />;
-  // }
-
-  // if (attorneyFooterBlogArticles.length > 0 && attorneyFooterNewsArticles.length <= 0 && clients.length <= 0) {
-  //   return (
-  //     <>
-
-  //     </>
-  //   );
-  // }
-
-  // if (attorneyFooterBlogArticles.length > 0 && attorneyFooterNewsArticles.length > 0 && clients.length <= 0) {
-  //   return (
-  //     <>
-
-  //       <br />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>Blogs</h3>
-  //       </div>
-  //       <ArticleSection
-  //         slug={slug}
-  //         articles={attorneyFooterBlogArticles}
-  //         title="Blogs"
-  //         type="blogs"
-  //       />
-  //     </>
-  //   );
-  // }
-
-  // if (clients.length > 0 && attorneyFooterBlogArticles.length > 0 && attorneyFooterNewsArticles.length > 0) {
-  //   return (
-  //     <>
-  //       <ClientSection slug={slug} clients={clients} />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>News & Press Releases</h3>
-  //       </div>
-  //       <ArticleSection
-  //         slug={slug}
-  //         articles={attorneyFooterNewsArticles}
-  //         title="News & Press Releases"
-  //         type="news-press-releases"
-  //       />        
-  //       <br />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>Blogs</h3>
-  //       </div>
-  //       <ArticleSection
-  //         slug={slug}
-  //         articles={attorneyFooterBlogArticles}
-  //         title="Blogs"
-  //         type="blogs"
-  //       />
-  //     </>
-  //   );
-  // }
-
-  // if (attorneyFooterNewsArticles.length > 0 && attorneyFooterBlogArticles.length > 0 && clients.length > 0) {
-  //   return (
-  //     <>
-  //       <ClientSection slug={slug} clients={clients} />
-  //       <br />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>News & Press Releases</h3>
-  //       </div>
-  //       <ArticleSection
-  //         slug={slug}
-  //         articles={attorneyFooterNewsArticles}
-  //       />
-  //       <br />
-  //       <div className={lineStyles.lineHeader}>
-  //         <h3>Blogs</h3>
-  //       </div>
-  //       <ArticleSection
-  //         slug={slug}
-  //         articles={attorneyFooterBlogArticles}
-  //       />
-  //     </>
-  //   );
-  // }
-
 }

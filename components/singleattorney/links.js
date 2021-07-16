@@ -27,9 +27,16 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
                   : styles.tab
               }
             >
-              <Link scroll={false} href={`/attorney/${slug}${l.link}`}>
-                <a className="nav-link">{(l.label === 'News Press Releases') ? 'News & Press Releases' : l.label}</a>
-              </Link>
+              {(l.label === 'News Press Releases' || l.label === 'Blogs') ? (
+                <a href={`/attorney/${slug}${l.link}`} className="nav-link">
+                  {(l.label === 'News Press Releases') ? 'News & Press Releases' : l.label}
+                </a>
+              ) : (
+                <Link scroll={false} href={`/attorney/${slug}${l.link}`}>
+                  <a className="nav-link">{l.label}</a>
+                </Link>
+              )}
+
             </Nav.Item>
           ))}
           {links.more.length > 0 && (
@@ -50,7 +57,7 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
                     href={`/attorney/${slug}${m.link}`}
                   >
                     <a className="text-dark dropdown-item" role="button">
-                    {(m.label === 'News Press Releases') ? 'News & Press Releases' : m.label}
+                      {(m.label === 'News Press Releases') ? 'News & Press Releases' : m.label}
                     </a>
                   </Link>
                 ))}
