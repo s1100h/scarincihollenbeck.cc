@@ -5,7 +5,12 @@ import { headers } from 'utils/helpers';
 import AttorneyProfile from 'layouts/attorney-profile';
 
 export default function AttorneyBioArticles({
-  bio, contact, content, slug, footerArticles
+  bio,
+  contact,
+  content,
+  slug,
+  attorneyFooterBlogArticles,
+  attorneyFooterNewsArticles
 }) {
   const router = useRouter();
 
@@ -26,7 +31,8 @@ export default function AttorneyBioArticles({
           bio,
           content,
         }}
-        footerArticles={footerArticles}
+        attorneyFooterBlogArticles={attorneyFooterBlogArticles}
+        attorneyFooterNewsArticles={attorneyFooterNewsArticles}
         header={{
           image: bio.headerContent.profileImage,
           profile: { ...bio.headerContent, ...contact },
@@ -53,7 +59,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
   let noArticles = false;
-  const [bio, contact, content, attorneyArticles] = await Promise.all([
+  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
       { headers },
@@ -67,7 +73,11 @@ export async function getStaticProps({ params }) {
       { headers },
     ).then((data) => data.json()),   
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=1&term=${params.slug}`,
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/blogs`,
+      { headers },
+    ).then((data) => data.json()),
+    fetch(
+      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/news-press-releases`,
       { headers },
     ).then((data) => data.json()),
   ]);
@@ -82,7 +92,19 @@ export async function getStaticProps({ params }) {
     noArticles = true;
   }
 
-  const footerArticles = attorneyArticles.results.filter((_, i) => i <= 3);
+  const attorneyFooterBlogArticles = [];
+  const attorneyFooterNewsArticles = [];
+
+  if(typeof attorneyBlogArticles !== 'object' && attorneyBlogArticles.status !== 404) {
+    const firstThreeBlogs = attorneyBlogArticles.filter((_, i) => i <= 3);
+    attorneyFooterBlogArticles.push(firstThreeBlogs)
+  }
+
+  if(typeof attorneyNewsArticles !== 'object' && attorneyNewsArticles.status !== 404) {
+    const firstThreeNews = attorneyNewsArticles.filter((_, i) => i <= 3);
+    attorneyFooterNewsArticles.push(firstThreeNews)
+  }
+
 
   return {
     props: {
@@ -90,7 +112,8 @@ export async function getStaticProps({ params }) {
       contact,
       content: (noArticles) ? [] : content,
       slug: params.slug,
-      footerArticles: footerArticles || []
+      attorneyFooterBlogArticles,
+      attorneyFooterNewsArticles
     },
     revalidate: 1,
   };
