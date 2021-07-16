@@ -51,6 +51,10 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
       return <AttorneyProfileClients title="Awards" clients={content} />;
     case 'articles':
       return <AttorneyProfileArticles initalArticles={content} term={slug} />;
+    case 'blogs':
+      return <AttorneyProfileArticles initalArticles={content} title="Blogs" />;
+    case 'news-press-releases':
+      return <AttorneyProfileArticles initalArticles={content} title="News & Press Releases" />;
     case 'education-admissions':
       return <AttorneyProfileEducation content={content} />;
     case 'video':
@@ -78,7 +82,7 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
   }
 }
 export default function AttorneyProfile({
-  head, header, body, slug, footerArticles
+  head, header, body, slug, attorneyFooterBlogArticles, attorneyFooterNewsArticles
 }) {
   const router = useRouter();
 
@@ -197,7 +201,8 @@ export default function AttorneyProfile({
             <AttorneyProfileFooter
               slug={slug}
               clients={body.bio.mainPageContent.clients}
-              articles={footerArticles}
+              attorneyFooterBlogArticles={attorneyFooterBlogArticles}
+              attorneyFooterNewsArticles={attorneyFooterNewsArticles}
             />
           </Col>
         </Row>

@@ -12,7 +12,7 @@ function ClientSection({ slug, clients }) {
       <div className={lineStyles.lineHeader}>
         <h3>Clients</h3>
       </div>
-      <Row className="mt-2">
+      <Row className="mt-2 mb-3">
         {clients.map((article) => (
           <Col sm={12} md={4} key={article.title}>
             <Link href={article.link}>
@@ -39,7 +39,7 @@ function ClientSection({ slug, clients }) {
   );
 }
 
-function ArticleSection({ articles, slug }) {
+function ArticleSection({ articles, slug, title, type }) {
   return (
     <Row className="mt-5 mb-3">
       {articles.map((article) => (
@@ -48,7 +48,7 @@ function ArticleSection({ articles, slug }) {
             <a className="text-center mx-auto d-block">
               <Image
                 alt={article.title}
-                src={article.image || '/images/no-image-found-diamond.png'}
+                src={article.featuredImg || '/images/no-image-found-diamond.png'}
                 width={300}
                 height={150}
                 className="rounded"
@@ -58,53 +58,141 @@ function ArticleSection({ articles, slug }) {
         </Col>
       ))}
       <HomePageLink
-        link={`/attorney/${slug}/articles`}
-        title="See More Articles"
+        link={`/attorney/${slug}/content/${type}`}
+        title={`More ${title}`}
       />
     </Row>
   );
 }
 
-export default function AttorneyProfileFooter({ clients, articles, slug }) {
-   if (articles.length <= 0 && clients.length <= 0) {
-    return (
-      <div style={{ minHeight: '20vh'}}>
-        
-      </div>
-    );
-  }
+export default function AttorneyProfileFooter({
+  clients,
+  slug,
+  attorneyFooterBlogArticles,
+  attorneyFooterNewsArticles
+}) {
 
-  if (articles.length <= 0 && clients.length > 0) {
-    return <ClientSection slug={slug} clients={clients} />;
-  }
 
-  if (articles.length > 0 && clients.length <= 0) {
-    return (
-      <>
-        <div className={lineStyles.lineHeader}>
-          <h3>News, Events & Articles</h3>
-        </div>
-        <ArticleSection
-          slug={slug}
-          articles={articles}
-        />
-      </>
-    );
-  }
+  return (
+    <div style={{ minHeight: '20vh' }}>
+      {(clients.length > 0) && <ClientSection slug={slug} clients={clients} />}
+      {(clients.length > 0) && (
+        <>
+          <div className={lineStyles.lineHeader}>
+            <h3>News & Press Releases</h3>
+          </div>
+          <ArticleSection
+            slug={slug}
+            articles={attorneyFooterNewsArticles}
+            title="News & Press Releases"
+            type="news-press-releases"
+          />
+        </>
+      )}
+      {(clients.length > 0) && (
+        <>
+          <div className={lineStyles.lineHeader}>
+            <h3>Blogs</h3>
+          </div>
+          <ArticleSection
+            slug={slug}
+            articles={attorneyFooterBlogArticles}
+            title="Blogs"
+            type="blogs"
+          />
 
-  if (articles.length > 0 && clients.length > 0) {
-    return (
-      <>
-        <ClientSection slug={slug} clients={clients} />
-        <br />
-        <div className={lineStyles.lineHeader}>
-          <h3>News, Events & Articles</h3>
-        </div>
-        <ArticleSection
-          slug={slug}
-          articles={articles}
-        />
-      </>
-    );
-  }
+        </>
+      )}
+    </div>
+  )
+
+
+
+  //  if (clients.length <= 0 && attorneyFooterBlogArticles.length <= 0 && attorneyFooterNewsArticles.length <= 0) {
+  //   return (
+
+  //   );
+  // }
+
+  // if (attorneyFooterNewsArticles.length <= 0 && attorneyFooterBlogArticles.length <= 0 && clients.length > 0) {
+  //   return <ClientSection slug={slug} clients={clients} />;
+  // }
+
+  // if (attorneyFooterBlogArticles.length > 0 && attorneyFooterNewsArticles.length <= 0 && clients.length <= 0) {
+  //   return (
+  //     <>
+
+  //     </>
+  //   );
+  // }
+
+  // if (attorneyFooterBlogArticles.length > 0 && attorneyFooterNewsArticles.length > 0 && clients.length <= 0) {
+  //   return (
+  //     <>
+
+  //       <br />
+  //       <div className={lineStyles.lineHeader}>
+  //         <h3>Blogs</h3>
+  //       </div>
+  //       <ArticleSection
+  //         slug={slug}
+  //         articles={attorneyFooterBlogArticles}
+  //         title="Blogs"
+  //         type="blogs"
+  //       />
+  //     </>
+  //   );
+  // }
+
+  // if (clients.length > 0 && attorneyFooterBlogArticles.length > 0 && attorneyFooterNewsArticles.length > 0) {
+  //   return (
+  //     <>
+  //       <ClientSection slug={slug} clients={clients} />
+  //       <div className={lineStyles.lineHeader}>
+  //         <h3>News & Press Releases</h3>
+  //       </div>
+  //       <ArticleSection
+  //         slug={slug}
+  //         articles={attorneyFooterNewsArticles}
+  //         title="News & Press Releases"
+  //         type="news-press-releases"
+  //       />        
+  //       <br />
+  //       <div className={lineStyles.lineHeader}>
+  //         <h3>Blogs</h3>
+  //       </div>
+  //       <ArticleSection
+  //         slug={slug}
+  //         articles={attorneyFooterBlogArticles}
+  //         title="Blogs"
+  //         type="blogs"
+  //       />
+  //     </>
+  //   );
+  // }
+
+  // if (attorneyFooterNewsArticles.length > 0 && attorneyFooterBlogArticles.length > 0 && clients.length > 0) {
+  //   return (
+  //     <>
+  //       <ClientSection slug={slug} clients={clients} />
+  //       <br />
+  //       <div className={lineStyles.lineHeader}>
+  //         <h3>News & Press Releases</h3>
+  //       </div>
+  //       <ArticleSection
+  //         slug={slug}
+  //         articles={attorneyFooterNewsArticles}
+  //       />
+  //       <br />
+  //       <div className={lineStyles.lineHeader}>
+  //         <h3>Blogs</h3>
+  //       </div>
+  //       <ArticleSection
+  //         slug={slug}
+  //         articles={attorneyFooterBlogArticles}
+  //       />
+  //     </>
+  //   );
+  // }
+
 }

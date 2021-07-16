@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
@@ -10,10 +10,10 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
-export default function AttorneyProfileArticles({ initalArticles }) {
+export default function AttorneyProfileArticles({ title, initalArticles }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(11);
-  const [articleList, setArticleList] = useState(initalArticles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1)) || []);
+  const [articleList, setArticleList] = useState([]);
 
   async function handleClick() {
     setLoading(true);
@@ -21,10 +21,17 @@ export default function AttorneyProfileArticles({ initalArticles }) {
     setLoading(false);
   }
 
+  useEffect(() => {
+    if (initalArticles.length > 0) {
+      const sortArticles = initalArticles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
+      setArticleList(sortArticles);
+    }
+  }, [])
+
   return (
     <Row className={marginStyles.mtMinusMd2}>
       <Col sm={12}>
-        <h4 className={grayTitleStyles.title}>News, Events, & Articles</h4>
+        <h4 className={grayTitleStyles.title}>{title}</h4>
       </Col>
       {initalArticles.length <= 0 ? (
          <Col sm={12} className="my-3">
@@ -59,7 +66,7 @@ export default function AttorneyProfileArticles({ initalArticles }) {
           className="px-4 mx-3 mb-3"
           onClick={() => handleClick()}
         >
-          {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
+          {loading  ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
         </Button>
       </Col>
       )}
