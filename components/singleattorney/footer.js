@@ -52,11 +52,9 @@ function ArticleSection({ articles, slug, title, type }) {
                 height={150}
                 className="rounded"
               />
-              {!article.link.includes('scarincihollenbeck.com') && (
-                <small className="text-dark d-block">
-                  <strong>{article.title}</strong>
-                </small>
-              )}
+              <small className="text-dark d-block">
+                <strong>{article.title}</strong>
+              </small>
             </a>
           </Link>
         </Col>

@@ -50,17 +50,24 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
               <Dropdown.Menu
                 style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}
               >
-                {links.more.map((m) => (
+                {links.more.map((m) => (m.label === 'News Press Releases' || m.label === 'Blogs') ? (
+                  <a href={`/attorney/${slug}${m.link}`} className="text-dark dropdown-item" role="button">
+                  {(m.label === 'News Press Releases') ? 'News & Press Releases' : m.label}
+                  </a>
+                ) :(
                   <Link
-                    key={m.label}
-                    scroll={false}
-                    href={`/attorney/${slug}${m.link}`}
-                  >
-                    <a className="text-dark dropdown-item" role="button">
-                      {(m.label === 'News Press Releases') ? 'News & Press Releases' : m.label}
-                    </a>
-                  </Link>
+                  key={m.label}
+                  scroll={false}
+                  href={`/attorney/${slug}${m.link}`}
+                >
+                  <a className="text-dark dropdown-item" role="button">
+                  {m.label}
+                  </a>
+                </Link>
                 ))}
+
+
+
               </Dropdown.Menu>
             </Dropdown>
           )}
