@@ -6,12 +6,15 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FormReCaptcha from 'components/google-recaptcha-button';
 
-export default function AttorneyProfileContactForm({ contacts }) {
+export default function AttorneyProfileContactForm({ forwardEmail, currentAttorney }) {
   const [captcha, setCaptcha] = useState(true);
   const router = useRouter();
+  const forwardEmailStr = forwardEmail.join(',')
 
   // initalize kwesforms
   useEffect(() => kwesforms.init());
+
+  
 
   return (
     <div className="px-2 mb-3">
@@ -27,8 +30,13 @@ export default function AttorneyProfileContactForm({ contacts }) {
         />
         <input
           type="hidden"
-          name="currentPage"
-          value={`https://scarincihollenbeck.com${router.asPath}`}
+          name="forwardEmail"
+          value={forwardEmailStr}
+        />
+        <input
+          type="hidden"
+          name="currentAttorney"
+          value={currentAttorney}
         />
         <Row className="mb-3">
           <Col sm={12} md={6} className="mx-0 px-1">

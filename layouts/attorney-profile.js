@@ -62,7 +62,7 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
     case 'audio':
       return <AttorneyProfileBody title="Audio" content={content.body} />;
     case 'contact':
-      return <AttorneyProfileContact content={header} />;
+      return <AttorneyProfileContact content={header} forwardEmail={header.profile.forwardedEmailAddresses} />;
     default:
       if (Array.isArray(content)) {
         return (

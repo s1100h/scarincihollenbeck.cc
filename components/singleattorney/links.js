@@ -51,7 +51,7 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
                 style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}
               >
                 {links.more.map((m) => (m.label === 'News Press Releases' || m.label === 'Blogs') ? (
-                  <a href={`/attorney/${slug}${m.link}`} className="text-dark dropdown-item" role="button">
+                  <a key={m.label} href={`/attorney/${slug}${m.link}`} className="text-dark dropdown-item" role="button">
                   {(m.label === 'News Press Releases') ? 'News & Press Releases' : m.label}
                   </a>
                 ) :(
