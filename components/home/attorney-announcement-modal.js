@@ -6,8 +6,6 @@ import Image from 'react-bootstrap/Image'
 export default function AttorneyAnnoucenmentModal() {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(false);
-
   return (
     <>
       <Modal
@@ -16,8 +14,7 @@ export default function AttorneyAnnoucenmentModal() {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        <Modal.Header closeButton>
-       
+        <Modal.Header closeButton>       
         </Modal.Header>
         <Modal.Body>
           <h3 className="text-center">
@@ -46,7 +43,7 @@ export default function AttorneyAnnoucenmentModal() {
             </a>
           </Link>
         </Modal.Body>
-      </Modal>
+      </Modal>      
     </>
   );
 }

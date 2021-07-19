@@ -90,3 +90,5 @@ em {
   padding-left: 0;
   padding-right: 0;
 }
+
+.modal{ overflow: visible !important; }
