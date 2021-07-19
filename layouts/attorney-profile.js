@@ -102,7 +102,7 @@ export default function AttorneyProfile({
   let bioMobileMenuItems = [...body.bio.sidebarLinks.main];
 
   if ('more' in body.bio.sidebarLinks) {
-    bioMobileMenuItems = [...body.bio.sidebarLinks.more];
+    bioMobileMenuItems = [...bioMobileMenuItems, ...body.bio.sidebarLinks.more];
   }
 
   return (

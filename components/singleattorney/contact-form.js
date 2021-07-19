@@ -14,14 +14,12 @@ export default function AttorneyProfileContactForm({ forwardEmail, currentAttorn
   // initalize kwesforms
   useEffect(() => kwesforms.init());
 
-  
-
   return (
     <div className="px-2 mb-3">
       <form
         action="https://kwes.io/api/foreign/forms/m015EzO4b4EtOvYSTRlK"
         className="kwes-form d-print-none px-1"
-        style={{ maxWidth: '90%'}}
+        style={{ maxWidth: '90%' }}
       >
         <input
           type="hidden"

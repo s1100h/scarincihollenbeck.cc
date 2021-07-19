@@ -83,7 +83,7 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
             <strong>Menu Options</strong>
             <style jsx>{'strong{ font-size: 1.25rem}'}</style>
           </Dropdown.Toggle>
-          <Dropdown.Menu classNmae="w-100">
+          <Dropdown.Menu className="w-100">
             {mobileLinks.map((l) => (
               <Dropdown.Item key={l.label} href={`/attorney/${slug}${l.link}`}>
                 {(l.label === 'News Press Releases') ? 'News & Press Releases' : l.label}
