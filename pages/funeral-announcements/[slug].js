@@ -1,4 +1,5 @@
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,16 +8,36 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import SidebarContent from 'components/singlepractice/sidebar';
+import SiteLoader from 'components/site-loader';
 import { headers } from 'utils/helpers';
 
-export default function PassingAttorneyHarveyRPoe({
+const slugs = [
+  '/funeral-announcements/passing-attorney-harvey-r-poe',
+  '/funeral-announcements/passing-attorney-david-a-einhorn'
+];
+
+export default function FuneralAnnouncement({
   title,
   content,
   seo,
 }) {
-  const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
-  const bodyContent = content.replace(subTitle, '');
+
+  const router = useRouter();
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+  
+  let extractSubTitle = "";
+  let subTitle = "";
+  let bodyContent ="";
+
+  if(content) {
+    extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
+    subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+    bodyContent = content.replace(subTitle, '');
+  }
+
+
 
   const firmLibrary = [
     {
@@ -97,13 +118,8 @@ export default function PassingAttorneyHarveyRPoe({
 }
 
 export async function getStaticPaths() {
-  const slugs = [
-    'passing-attorney-harvey-r-poe',
-    'passing-attorney-david-a-einhorn'
-  ];
-
   return {
-    paths: slugs.map((slug) => `/funeral-announcements/${slug}`) || [],
+    paths: slugs.map(slug => slug),
     fallback: true,
   };
 }
@@ -114,7 +130,6 @@ export async function getStaticProps({ params }) {
     `https://wp.scarincihollenbeck.com/wp-json/single-page/page/${params.slug}`,
     { headers },
   ).then((data) => data.json());
-
 
   const { title, content, seo } = request;
 

@@ -109,12 +109,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [restResponse] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/firm-page/page/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);  
+  const restResponse = await fetch(
+    `https://wp.scarincihollenbeck.com/wp-json/firm-page/page/${params.slug}`,
+    { headers },
+  ).then((data) => data.json())
 
   return {
     props: {
