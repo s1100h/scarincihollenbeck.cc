@@ -99,6 +99,14 @@ module.exports = {
       {
         source: '/women-lead',
         destination: '/firm-pages/women-lead',
+      },
+      {
+        source: '/passing-attorney-harvey-r-poe',
+        destination: '/funeral-announcements/passing-attorney-harvey-r-poe',
+      },
+      {
+        source: '/passing-attorney-david-a-einhorn',
+        destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
       }
     ];
   },
