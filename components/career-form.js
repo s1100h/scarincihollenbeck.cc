@@ -99,7 +99,6 @@ export default function CareerForm({ contact, title }) {
                 type="file"
                 name="writingSample"
                 id="writingSample"
-                rules="required"
               />
             </label>
           </Col>
