@@ -91,14 +91,14 @@ export default function CareerForm({ contact, title }) {
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
-            <label htmlFor="writingSample">
+            <label htmlFor="writing">
               <span className="d-block w-100 my-2">
                 <strong>Upload a writing sample</strong>
               </span>
               <input
                 type="file"
-                name="writingSample"
-                id="writingSample"
+                name="writing"
+                id="writing"
               />
             </label>
           </Col>
@@ -141,10 +141,11 @@ export default function CareerForm({ contact, title }) {
             <FormReCaptcha setCaptcha={setCaptcha} />
           </Col>
         </Row>
+        {/** disabled={captcha} */}
         <Button
           variant="danger"
           className="mt-2 px-4"
-          disabled={captcha}
+          
           type="submit"
         >
           Submit form
