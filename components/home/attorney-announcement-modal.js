@@ -11,14 +11,14 @@ export default function AttorneyAnnoucenmentModal() {
       <Modal
         show={show}
         onHide={() => setShow(false)}
-        dialogClassName="modal-90w"
+        // dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>       
         </Modal.Header>
         <Modal.Body>
           <h3 className="text-center">
-            <strong> The Passing of David A. Einhorn</strong>
+            <strong>The Passing of David A. Einhorn</strong>
           </h3>
           <div className="px-5 py-3">
           <Image

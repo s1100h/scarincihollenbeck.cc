@@ -6,6 +6,7 @@ import AttorneyProfile from 'layouts/attorney-profile';
 
 export default function AttorneyBioProfile({
   bio,
+  seo,
   contact,
   content,
   slug,
@@ -26,7 +27,7 @@ export default function AttorneyBioProfile({
     <>
       <AttorneyProfile
         slug={slug}
-        head={bio.seo}
+        seo={seo}
         body={{
           bio,
           content,
@@ -106,9 +107,19 @@ export async function getStaticProps({ params }) {
     attorneyFooterNewsArticles = [...firstThreeNews]
   }
 
+  const seo = {
+    title: bio.seo.title,
+    canonicalLink: bio.seo.canonicalLink,
+    metaDescription: bio.seo.metaDescription,
+    image: bio.seo.featuredImg,
+    designation: bio.headerContent.title,
+    socialMediaLinks: bio.seo.socialMedia
+  };
+  
   return {
     props: {
       bio,
+      seo,
       contact,
       content,
       slug: params.slug,

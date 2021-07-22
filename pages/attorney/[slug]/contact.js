@@ -6,6 +6,7 @@ import AttorneyProfile from 'layouts/attorney-profile';
 
 export default function AttorneyBioProfileContact({
   bio,
+  seo,
   contact,
   content,
   slug,
@@ -25,7 +26,7 @@ export default function AttorneyBioProfileContact({
   return (
     <AttorneyProfile
       slug={slug}
-      head={bio.seo}
+      seo={seo}
       body={{
         bio,
         content,
@@ -88,26 +89,35 @@ export async function getStaticProps({ params }) {
   let attorneyFooterBlogArticles = [];
   let attorneyFooterNewsArticles = [];
 
-  if(!Object.keys(attorneyBlogArticles).includes('status')) {
+  if (!Object.keys(attorneyBlogArticles).includes('status')) {
     const firstThreeBlogs = attorneyBlogArticles
-    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-    .filter((_, i) => i <= 3);
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .filter((_, i) => i <= 3);
 
     attorneyFooterBlogArticles = [...firstThreeBlogs]
   }
 
-  if(!Object.keys(attorneyNewsArticles).includes('status')) {
-    const firstThreeNews = attorneyNewsArticles     
-     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-     .filter((_, i) => i <= 3);
+  if (!Object.keys(attorneyNewsArticles).includes('status')) {
+    const firstThreeNews = attorneyNewsArticles
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .filter((_, i) => i <= 3);
 
     attorneyFooterNewsArticles = [...firstThreeNews]
   }
 
+  const seo = {
+    title: `Contact ${bio.seo.title}`,
+    canonicalLink: bio.seo.canonicalLink,
+    metaDescription: `Get in touch with ${bio.seo.title} by filling out the contact form. We look forward to learning more about your legal needs.`,
+    image: bio.seo.featuredImg,
+    designation: bio.headerContent.title,
+    socialMediaLinks: bio.seo.socialMedia
+  };
 
   return {
     props: {
       bio,
+      seo,
       contact,
       content,
       slug: params.slug,
