@@ -9,7 +9,8 @@ import FormReCaptcha from 'components/google-recaptcha-button';
 export default function AttorneyProfileContactForm({ forwardEmail, currentAttorney }) {
   const [captcha, setCaptcha] = useState(true);
   const router = useRouter();
-  const forwardEmailStr = forwardEmail.join(',')
+  const forwardEmailStr = forwardEmail.join(',');
+  const emailVarName = ['One', 'Two', 'Three', 'Four'];
 
   // initalize kwesforms
   useEffect(() => kwesforms.init());
@@ -26,11 +27,14 @@ export default function AttorneyProfileContactForm({ forwardEmail, currentAttorn
           name="currentPage"
           value={`https://scarincihollenbeck.com${router.asPath}`}
         />
-        <input
-          type="hidden"
-          name="forwardEmail"
-          value={forwardEmailStr}
-        />
+        {forwardEmail.map((email, index) => (
+          <input
+            key={email}
+            type="hidden"
+            name={`forwardAddress${emailVarName[index]}`}
+            value={email}
+          />
+        ))}
         <input
           type="hidden"
           name="currentAttorney"
@@ -128,7 +132,7 @@ export default function AttorneyProfileContactForm({ forwardEmail, currentAttorn
           variant="danger"
           className="mt-2 px-4"
           type="submit"
-          disabled={captcha}
+         
         >
           Submit form
         </Button>
