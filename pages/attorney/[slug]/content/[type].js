@@ -5,6 +5,7 @@ import AttorneyProfile from 'layouts/attorney-profile';
 
 export default function AttorneyBioProfileContent({
   bio,
+  seo,
   contact,
   content,
   slug,
@@ -12,7 +13,6 @@ export default function AttorneyBioProfileContent({
   attorneyFooterNewsArticles
 }) {
   const router = useRouter();
-
 
   if (router.isFallback) {
     return (
@@ -25,7 +25,7 @@ export default function AttorneyBioProfileContent({
   return (
     <AttorneyProfile
       slug={slug}
-      head={bio.seo}
+      seo={seo}
       body={{
         bio,
         content,
@@ -105,11 +105,29 @@ export async function getStaticProps({ params }) {
     attorneyFooterNewsArticles = [...firstThreeNews]
   }
 
+  let typeToTerm = '';
 
+  if(params.type === 'news-press-releases') {
+    typeToTerm = 'News & Press Releases';
+  } else {
+    const splitType = params.type.split('-');
+    const capitalizeEachWord = splitType.map((word) => `${word[0].toUpperCase()}${word.slice(1, word.length)}`).join(' ');
+    typeToTerm = capitalizeEachWord;
+  };
+
+  const seo = {
+    title: `${bio.seo.title} ${typeToTerm}`,
+    canonicalLink: bio.seo.canonicalLink,
+    metaDescription: `Learn more about ${bio.seo.title}'s ${typeToTerm}. Please get in touch if you have any questions.`,
+    image: bio.seo.featuredImg,
+    designation: bio.headerContent.title,
+    socialMediaLinks: bio.seo.socialMedia
+  };
 
   return {
     props: {
       bio,
+      seo,
       contact,
       content,
       slug: params.slug,
