@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import kwesforms from 'kwesforms';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
@@ -20,13 +21,18 @@ export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
 			setAttorney('');
 			setWriteInAttorney(true);
 		}
-	}, [attorney])
+	}, [attorney]);
+
+
 	return (
 		<Container>
 			<NextSeo
 				noindex={true}
 				title="Updating your website profile"
 			/>
+			<Head>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"></script>
+      </Head>
 			<Row>
 				<Col sm={12} className="my-4">
 					<h1 className={`border-bottom pb-1 mb-4 ${textStyles.redTitle}`}>
@@ -48,7 +54,12 @@ export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
 				</Col>
 			</Row>
 			<Row>
-				<form className="mt-2 kwes-form" action="https://kwes.io/api/foreign/forms/JuFmpokXEypi5BKw2mXO">
+				<form 
+					className="mt-2 kwes-form"
+					action="https://kwes.io/api/foreign/forms/JuFmpokXEypi5BKw2mXO"
+					has-recaptcha-v3="true"
+					recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
+				>
 					<label htmlFor="attorney-selected"><h3><strong>1. Please select your name?</strong></h3></label>
 					<select
 						id="attorney-selected"

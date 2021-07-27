@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import kwesforms from 'kwesforms';
 import Button from 'react-bootstrap/Button';
 import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
-import FormReCaptcha from './google-recaptcha-button';
 import { checkboxes } from '../utils/categories';
 
 export default function SubscriptionFormNoButton() {
-  const [captcha, setCaptcha] = useState(true);
   const router = useRouter();
 
   // initalize kwesforms
@@ -16,9 +15,14 @@ export default function SubscriptionFormNoButton() {
 
   return (
     <>
+      <Head>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"></script>
+      </Head>
       <form
         className="kwes-form"
         action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
+        has-recaptcha-v3="true"
+        recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
       >
         <div className="modal-body justify-content-start">
           <input
@@ -72,12 +76,10 @@ export default function SubscriptionFormNoButton() {
           </ul>
         </fieldset>
         <div className="modal-footer justify-content-start">
-          <FormReCaptcha setCaptcha={setCaptcha} />
           <Button
             variant="danger"
             type="submit"
             className="px-5"
-            disabled={captcha}
           >
             Submit
           </Button>
