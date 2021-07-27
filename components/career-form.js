@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import kwesforms from 'kwesforms';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import FormReCaptcha from './google-recaptcha-button';
 
 export default function CareerForm({ contact, title }) {
-  const [captcha, setCaptcha] = useState(true);
   const router = useRouter();
 
   // initalize kwesforms
@@ -15,11 +14,16 @@ export default function CareerForm({ contact, title }) {
 
   return (
     <div className="px-2 my-3 border-top">
+      <Head>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"></script>
+      </Head>
       <form
         method="POST"
         action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW"
         encType="multipart/form-data"
         className="kwes-form d-print-none px-1"
+        has-recaptcha-v3="true"
+        recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
       >
         <input
           type="hidden"
@@ -137,15 +141,10 @@ export default function CareerForm({ contact, title }) {
               </label>
             </fieldset>
           </Col>
-          <Col sm={12}>
-            <FormReCaptcha setCaptcha={setCaptcha} />
-          </Col>
         </Row>
-        {/** disabled={captcha} */}
         <Button
           variant="danger"
-          className="mt-2 px-4"
-          
+          className="mt-2 px-4"          
           type="submit"
         >
           Submit form
