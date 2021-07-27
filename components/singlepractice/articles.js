@@ -10,7 +10,9 @@ import TabPane from 'react-bootstrap/TabPane';
 import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
+
 const removeDuplicates = arr => arr.filter((v, i, a) => a.findIndex(t => (t.id === v.id)) === i)
+
 export default function AttorneyProfilePractice({ initalArticles, title, tabTitle }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(11);

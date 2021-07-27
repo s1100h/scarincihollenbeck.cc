@@ -15,7 +15,6 @@ import {
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
-// import styles from 'styles/SocialIcon.module.css';
 
 export default function PostSocialShareSidebar({ title }) {
   const router = useRouter();

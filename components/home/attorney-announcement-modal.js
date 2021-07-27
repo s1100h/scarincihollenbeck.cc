@@ -11,7 +11,6 @@ export default function AttorneyAnnoucenmentModal() {
       <Modal
         show={show}
         onHide={() => setShow(false)}
-        // dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>       
