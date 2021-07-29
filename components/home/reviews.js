@@ -5,6 +5,13 @@ import lineStyles from 'styles/LineHeader.module.css';
 
 const logos = [
   {
+    url: '/images/reviews/Power50-ScarinciHollenbeck.png',
+    alt: 'NJBiz\'s 2021 Law Power 50 List ',
+    caption: 'NJBiz\'s 2021 Law Power 50 List ',
+    width: 190,
+    height: 190,
+  },
+  {
     url: '/images/reviews/BestLawFirmsStandardBadge.png',
     alt: 'Best Lawyers',
     caption: 'U.S. News & World Report',
@@ -25,13 +32,13 @@ const logos = [
     width: 179,
     height: 149,
   },  
-  {
-    url: '/images/reviews/meadowlands.jpeg',
-    alt: 'Madowlands Chamber of Commerce',
-    caption: 'Member of the month',
-    width: 265,
-    height: 150,
-  }
+  // {
+  //   url: '/images/reviews/meadowlands.jpeg',
+  //   alt: 'Madowlands Chamber of Commerce',
+  //   caption: 'Member of the month',
+  //   width: 265,
+  //   height: 150,
+  // }
 ];
 function Accolade({
   url, alt, caption, width, height,
