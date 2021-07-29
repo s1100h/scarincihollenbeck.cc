@@ -43,17 +43,17 @@ export default function FuneralAnnouncement({
     {
       id: '9TZ8Zz7xy95BVp',
       title: 'Firm News',
-      slug: 'library?category=firm-news',
+      slug: '/library?category=firm-news',
     },
     {
       id: 'RMtQjkqW3jAVvC',
       title: 'Firm Events',
-      slug: 'library?category=firm-events',
+      slug: '/library?category=firm-events',
     },
     {
       id: 'KNDpxvUhdm73hf',
       title: 'Firm Insights',
-      slug: 'library?category=firm-insights',
+      slug: '/library?category=firm-insights',
     },
   ];
 
