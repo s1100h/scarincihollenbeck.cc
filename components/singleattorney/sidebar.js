@@ -1,21 +1,22 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Slider from 'react-slick';
 import fontStyles from 'styles/Fonts.module.css';
 import marginStyles from 'styles/Margins.module.css';
-/** *
- * TODO: Fix award image sizes
- */
 
 export default function AttorneyProfileSidebar({
   services, contact, educationLink, awards,
 }) {
   const settings = {
-    dots: true,
+    dots: false,
     fade: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 4000,
+    cssEase: "linear"
   };
 
   return (
@@ -71,7 +72,11 @@ export default function AttorneyProfileSidebar({
             {awards.map((award) => (
               <div key={award.title}>
                 <a href={award.link}>
-                  <img src={award.featuredImg} alt={award.title} className="img-fluid" />
+                  <img
+                    src={award.featuredImg}
+                    alt={award.title}
+                    className="award-image"
+                  />
                 </a>
               </div>
             ))}
@@ -81,9 +86,10 @@ export default function AttorneyProfileSidebar({
               <a>Award Methodology</a>
             </Link>
           </small>
+          
         </div>
       )}
-
+      <style jsx>{' img.award-image{ height: 180px }'}</style>
     </div>
   );
 }
