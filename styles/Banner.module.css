@@ -1,14 +1,23 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/newyork-newjersey-sunrise-banner.jpg) no-repeat center center;
+  background: url(/images/nynj-sunrise-banner.webp) no-repeat center center;
 }
 
 .backPageBanner {
-  background: url(/images/back-page-banner-2000x663.jpg) no-repeat center center;
+  background: url(/images/dark-blue-banner.webp) no-repeat center center;
 }
 
 .holidayBanner {  
-  background: url(/images/red-snow1900x400.png) no-repeat center center;
+  background: url(/images/red-holiday-banner.webp) no-repeat center center;
+}
+
+/* /images/red-banner-opacity.png */
+.redBanner {
+  background-image: url(/images/red-banner-home.webp);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
 }
 
 .banner,
@@ -32,13 +41,7 @@
   border-radius: 2px;
 }
 
-.redBanner {
-  background-image: url(/images/red-banner-opacity.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-}
+
 
 @media (min-width: 1200px) {
   .redBanner {

@@ -7,53 +7,50 @@ const logos = [
   {
     url: '/images/reviews/Power50-ScarinciHollenbeck.png',
     alt: 'NJBiz\'s 2021 Law Power 50 List ',
-    caption: 'NJBiz\'s 2021 Law Power 50 List ',
     width: 190,
     height: 190,
   },
   {
     url: '/images/reviews/BestLawFirmsStandardBadge.png',
-    alt: 'Best Lawyers',
-    caption: 'U.S. News & World Report',
+    alt: 'U.S. News & World Report',
     width: 203,
     height: 200,
   },  
   {
     url: '/images/reviews/trailblazers.jpeg',
-    alt: 'National Law Journal',
-    caption: 'National Law Journal Trailblazers',
+    alt: 'National Law Journal Trailblazers',
     width: 263,
     height: 125,
   },
   {
     url: '/images/reviews/sl-badge-l-g-2021.png',
     alt: 'Super Lawyers',
-    caption: 'Super Lawyers',
     width: 179,
     height: 149,
-  },  
-  // {
-  //   url: '/images/reviews/meadowlands.jpeg',
-  //   alt: 'Madowlands Chamber of Commerce',
-  //   caption: 'Member of the month',
-  //   width: 265,
-  //   height: 150,
-  // }
+  }
 ];
 function Accolade({
   url, alt, caption, width, height,
 }) {
   return (
     <Col sm={12} md={3} className="mt-5">
-      <figure className={`mx-auto d-block text-center ${(alt === 'National Law Journal') ? 'my-4' : 'my-0'}`}>
-        <img
+      <div className={alt === 'National Law Journal Trailblazers' ? 'mx-auto d-block text-center additional-positioning' : 'mx-auto d-block text-center'}>
+        <Image
           src={url}
           alt={alt}
           width={width}
           height={height}
+          layout="intrinsic"
         />
-        {/* <figcaption className="mt-3 text-center">{caption}</figcaption> */}
-      </figure>
+      </div>
+      <style jsx>{`
+        @media (min-width: 1200px) {
+          .additional-positioning {
+            position: relative;
+            right: 0px;
+          }
+        }
+      `}</style>
     </Col>
   );
 }

@@ -53,7 +53,7 @@ export default function FuneralAnnouncement({
     {
       id: 'KNDpxvUhdm73hf',
       title: 'Firm Insights',
-      slug: '/library?category=firm-insights',
+      slug: '/library?category=law-firm-insights',
     },
   ];
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Modal from 'react-bootstrap/Modal'
-import Image from 'react-bootstrap/Image'
+import Image from 'next/image';
 
 export default function AttorneyAnnoucenmentModal() {
   const [show, setShow] = useState(true);
@@ -19,12 +19,12 @@ export default function AttorneyAnnoucenmentModal() {
           <h3 className="text-center">
             <strong>The Passing of David A. Einhorn</strong>
           </h3>
-          <div className="px-5 py-3">
+          <div className="px-5 py-3 mx-auto d-block text-center">
           <Image
             src="https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2017/03/Einhorn-Large-2.jpg"
             alt="David A. Einhorn"
-            rounded
-            thumbnail
+            width={300}
+            height={347}
           />
           </div>
           <p className="text-center">

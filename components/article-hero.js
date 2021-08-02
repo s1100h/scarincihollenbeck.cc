@@ -30,7 +30,7 @@ export default function ArticleHero({ content }) {
                 <strong>{content[0].title.rendered}</strong>
               </h3>
             </a>
-          </Link>           
+          </Link>
           <p>
             <strong>Published: </strong>
             <span className="mr-3">{formatDate(content[0].date)}</span>
@@ -50,36 +50,47 @@ export default function ArticleHero({ content }) {
           <ul className="list-unstyled">
             {articleList.map((article) => (
               <li key={article.id} className="d-flex mb-2">
-                  <a href={article.link} className={`${styles.link} ${styles.list}`}>
-                    <img
+                <a href={article.link} className={`${styles.link} ${styles.list}`}>
+                  <div className="d-none d-md-block">
+                    <Image
                       src={article.better_featured_image.source_url}
                       alt={article.title.rendered}
-                      width={125}
-                      height={58}
-                      className="rounded"
+                      width={120}
+                      height={60}
+                      layout="fixed"
                     />
-                    <div className={styles.listArticleTitle}>
-                      <h5 className="mb-1">
-                        <strong
-                          dangerouslySetInnerHTML={createMarkup(
-                            article.title.rendered.toString(),
-                          )}
-                        />
-                      </h5>
-                      <p className={`mt-0 pt-0 ${styles.listArticleExcerpt}`}>
-                        <small
-                          dangerouslySetInnerHTML={createMarkup(
-                            setTextLen(
-                              article.excerpt.rendered
-                                .replace('<p>', '')
-                                .replace('</p>', ''),
-                              130,
-                            ),
-                          )}
-                        />
-                      </p>
-                    </div>
-                  </a>
+                  </div>
+                  <div className="d-block d-md-none my-3">
+                    <Image
+                      src={article.better_featured_image.source_url}
+                      alt={article.title.rendered}
+                      width={300}
+                      height={150}
+                      layout="fixed"
+                    />
+                  </div>
+                  <div className={styles.listArticleTitle}>
+                    <h5 className="mb-1">
+                      <strong
+                        dangerouslySetInnerHTML={createMarkup(
+                          article.title.rendered.toString(),
+                        )}
+                      />
+                    </h5>
+                    <p className={`mt-0 pt-0 ${styles.listArticleExcerpt}`}>
+                      <small
+                        dangerouslySetInnerHTML={createMarkup(
+                          setTextLen(
+                            article.excerpt.rendered
+                              .replace('<p>', '')
+                              .replace('</p>', ''),
+                            130,
+                          ),
+                        )}
+                      />
+                    </p>
+                  </div>
+                </a>
               </li>
             ))}
           </ul>
