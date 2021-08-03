@@ -12,9 +12,9 @@ export default function AttorneyProfileHead({ seo }) {
       <NextSeo
         title={title}
         description={metaDescription}
-        canonical={`https://scarincihollenbeck.com${canonicalLink}`}
+        canonical={`https://scarincihollenbeck.com/${canonicalLink}`}
         openGraph={{
-          url: `https://scarincihollenbeck.com${canonicalLink}}`,
+          url: `https://scarincihollenbeck.com/${canonicalLink}}`,
           title: 'Scarinci Hollenbeck',
           description: metaDescription,
           images: [
@@ -29,7 +29,7 @@ export default function AttorneyProfileHead({ seo }) {
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: `https://scarincihollenbeck.com${canonicalLink}}`,
+          site: `https://scarincihollenbeck.com/${canonicalLink}}`,
           cardType: metaDescription,
         }}
       />
@@ -48,7 +48,7 @@ export default function AttorneyProfileHead({ seo }) {
             __html: JSON.stringify(
               buildAttorneyProfileSchema(
                 title,
-                `https://scarincihollenbeck.com${canonicalLink}}`,
+                `https://scarincihollenbeck.com/${canonicalLink}}`,
                 image,
                 socialMediaLinks,
                 designation,

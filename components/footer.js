@@ -19,47 +19,47 @@ export default function Footer() {
               <ul
                 className={`${styles.mainLinks} list-inline text-left text-md-center mb-0`}
               >
-                <li className="list-inline-item">
+                <li className="list-inline-item p-2 p-md-0">
                   <Link href="/attorneys">
                     <a className={styles.mainLink}>
                       <u>Attorneys</u>
                     </a>
                   </Link>
-                  <span className="mx-3">|</span>
+                  <span className="mx-3 d-none d-md-inline-block">|</span>
                 </li>
-                <li className="list-inline-item">
+                <li className="list-inline-item p-2 p-md-0">
                   <Link href="/careers">
                     <a className={styles.mainLink}>
                       <u>Careers</u>
                     </a>
                   </Link>
-                  <span className="mx-3">|</span>
+                  <span className="mx-3 d-none d-md-inline-block">|</span>
                 </li>
-                <li className="list-inline-item">
+                <li className="list-inline-item p-2 p-md-0">
                   <Link href="/contact">
                     <a className={styles.mainLink}>
                       <u>Contact</u>
                     </a>
                   </Link>
-                  <span className="mx-3">|</span>
+                  <span className="mx-3 d-none d-md-inline-block">|</span>
                 </li>
-                <li className="list-inline-item">
+                <li className="list-inline-item p-2 p-md-0">
                   <Link href="/firm-overview">
                     <a className={styles.mainLink}>
                       <u>Firm Overview</u>
                     </a>
                   </Link>
-                  <span className="mx-3">|</span>
+                  <span className="mx-3 d-none d-md-inline-block">|</span>
                 </li>
-                <li className="list-inline-item">
+                <li className="list-inline-item p-2 p-md-0">
                   <Link href="/practices">
                     <a className={styles.mainLink}>
                       <u>Practices</u>
                     </a>
                   </Link>
-                  <span className="mx-3">|</span>
+                  <span className="mx-3 d-none d-md-inline-block">|</span>
                 </li>
-                <li className="list-inline-item">
+                <li className="list-inline-item p-2 p-md-0">
                   <Link href="/library?category=firm-news">
                     <a className={styles.mainLink}>
                       <u>Library</u>
