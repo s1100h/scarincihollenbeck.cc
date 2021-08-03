@@ -17,7 +17,7 @@ export default function Footer() {
           <Row>
             <Col sm={12}>
               <ul
-                className={`${styles.mainLinks} list-inline text-center mb-0`}
+                className={`${styles.mainLinks} list-inline text-left text-md-center mb-0`}
               >
                 <li className="list-inline-item">
                   <Link href="/attorneys">

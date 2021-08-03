@@ -24,10 +24,6 @@
   flex-direction: column;
 }
 
-.link:hover {
-  color: #db2220;
-}
-
 @media (min-width: 1200px) {
   .list {
     flex-direction: row;

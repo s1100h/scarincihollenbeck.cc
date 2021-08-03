@@ -183,6 +183,7 @@ const Burger = ({ open, setOpen }) => (
     <div />
     <div />
     <div />
+    <span className="sr-only">Mobile Menu</span>
   </StyledBurger>
 );
 

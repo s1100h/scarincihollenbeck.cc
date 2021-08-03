@@ -92,3 +92,7 @@ em {
 }
 
 .modal{ overflow: visible !important; }
+
+a {
+  color: #3344dd;
+}
