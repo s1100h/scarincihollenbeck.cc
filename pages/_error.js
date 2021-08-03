@@ -63,17 +63,17 @@ export default function Error({ statusCode }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/category/firm-news">
+                  <Link href="/library?category=firm-news">
                     <a className="u-hover h5">Firm News</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/category/firm-events">
+                  <Link href="/library?category=firm-events">
                     <a className="u-hover h5">Firm Events</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/category/firm-insights">
+                  <Link href="/library?category=law-firm-insights">
                     <a className="u-hover h5">Firm Insights</a>
                   </Link>
                 </li>
