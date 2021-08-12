@@ -76,7 +76,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                       chair={chair}
                       coChair={coChair}
                     />
-                    <div className="d-flex flex-column flex-md-row">
+                    <div className="d-flex flex-column flex-md-row mt-2">
                       <ProfileDetails
                         offices={offices}
                         contact={contact}
