@@ -6,7 +6,7 @@ import { createMarkup } from 'utils/helpers';
 
 export default function AttorneyProfileEducation({ content }) {
   const {
-    additionalInformation, barAdmissions, education, affiliations
+    additionalInformation, barAdmissions, education, affiliations,
   } = content;
 
   return (

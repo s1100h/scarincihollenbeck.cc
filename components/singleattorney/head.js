@@ -6,7 +6,9 @@ import {
 } from 'utils/json-ld-schemas';
 
 export default function AttorneyProfileHead({ seo }) {
-  const { title, canonicalLink, metaDescription, image, designation, socialMediaLinks } = seo;
+  const {
+    title, canonicalLink, metaDescription, image, designation, socialMediaLinks,
+  } = seo;
   return (
     <>
       <NextSeo
@@ -32,7 +34,7 @@ export default function AttorneyProfileHead({ seo }) {
           handle: '@S_H_Law',
           site: `https://scarincihollenbeck.com/${canonicalLink}}`,
           cardType: metaDescription,
-          twitter:image
+          twitter: image,
         }}
       />
       <Head>
@@ -71,5 +73,5 @@ export default function AttorneyProfileHead({ seo }) {
         />
       </Head>
     </>
-  )
+  );
 }

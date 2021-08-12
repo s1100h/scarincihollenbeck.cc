@@ -27,7 +27,7 @@ export default function PracticeSingleArticles({
   corePractices,
   practice,
   practiceChildren,
-  posts
+  posts,
 }) {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -70,7 +70,7 @@ export default function PracticeSingleArticles({
                 <AttorneyProfilePractice tabTitle="related-articles" initalArticles={posts} title={practice.title} />
               </TabContent>
               <div style={{ position: 'relative', bottom: '2.5em' }}>
-              {practice.content.length > 0
+                {practice.content.length > 0
                 && practice.content.map((item) => (
                   <TabContent key={item.title}>
                     <PracticeContent
@@ -81,7 +81,7 @@ export default function PracticeSingleArticles({
                   </TabContent>
                 ))}
               </div>
-              
+
               {practice.attorneyList.length > 0 && (
                 <RelatedAttorneys
                   members={practice.attorneyList}
@@ -204,7 +204,7 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page', {
       headers,
-    }).then((data) => data.json())
+    }).then((data) => data.json()),
   ]);
 
   if (res.status === 404) {
@@ -220,7 +220,7 @@ export async function getStaticProps({ params }) {
   /** get parent category */
   const blogId = res.blog_data_id[0];
   const practiceSlug = res.slug;
-  const posts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`).then(data => data.json());
+  const posts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`).then((data) => data.json());
 
   return {
     props: {
@@ -228,7 +228,7 @@ export async function getStaticProps({ params }) {
       practiceChildren: res.children || [],
       corePractices: sortByKey(corePractices, 'title'),
       posts: posts || [],
-      term: params.slug
+      term: params.slug,
     },
     revalidate: 1,
   };

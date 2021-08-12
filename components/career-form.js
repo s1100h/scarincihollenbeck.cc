@@ -15,7 +15,7 @@ export default function CareerForm({ contact, title }) {
   return (
     <div className="px-2 my-3 border-top">
       <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
       </Head>
       <form
         method="POST"
@@ -144,7 +144,7 @@ export default function CareerForm({ contact, title }) {
         </Row>
         <Button
           variant="danger"
-          className="mt-2 px-4"          
+          className="mt-2 px-4"
           type="submit"
         >
           Submit form

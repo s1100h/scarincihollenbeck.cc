@@ -16,7 +16,7 @@ export default function SubscriptionFormNoButton() {
   return (
     <>
       <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
       </Head>
       <form
         className="kwes-form"

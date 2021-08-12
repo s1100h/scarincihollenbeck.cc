@@ -10,7 +10,7 @@ export default function AttorneyBioProfileContent({
   content,
   slug,
   attorneyFooterBlogArticles,
-  attorneyFooterNewsArticles
+  attorneyFooterNewsArticles,
 }) {
   const router = useRouter();
 
@@ -85,35 +85,35 @@ export async function getStaticProps({ params }) {
       notFound: true,
     };
   }
-  
+
   let attorneyFooterBlogArticles = [];
   let attorneyFooterNewsArticles = [];
 
-  if(!Object.keys(attorneyBlogArticles).includes('status')) {
+  if (!Object.keys(attorneyBlogArticles).includes('status')) {
     const firstThreeBlogs = attorneyBlogArticles
-    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-    .filter((_, i) => i <= 3);
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .filter((_, i) => i <= 3);
 
-    attorneyFooterBlogArticles = [...firstThreeBlogs]
+    attorneyFooterBlogArticles = [...firstThreeBlogs];
   }
 
-  if(!Object.keys(attorneyNewsArticles).includes('status')) {
-    const firstThreeNews = attorneyNewsArticles     
-     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-     .filter((_, i) => i <= 3);
+  if (!Object.keys(attorneyNewsArticles).includes('status')) {
+    const firstThreeNews = attorneyNewsArticles
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .filter((_, i) => i <= 3);
 
-    attorneyFooterNewsArticles = [...firstThreeNews]
+    attorneyFooterNewsArticles = [...firstThreeNews];
   }
 
   let typeToTerm = '';
 
-  if(params.type === 'news-press-releases') {
+  if (params.type === 'news-press-releases') {
     typeToTerm = 'News & Press Releases';
   } else {
     const splitType = params.type.split('-');
     const capitalizeEachWord = splitType.map((word) => `${word[0].toUpperCase()}${word.slice(1, word.length)}`).join(' ');
     typeToTerm = capitalizeEachWord;
-  };
+  }
 
   const seo = {
     title: `${bio.seo.title} ${typeToTerm}`,
@@ -121,7 +121,7 @@ export async function getStaticProps({ params }) {
     metaDescription: `Learn more about ${bio.seo.title}'s ${typeToTerm}. Please get in touch if you have any questions.`,
     image: bio.seo.featuredImg,
     designation: bio.headerContent.title,
-    socialMediaLinks: bio.seo.socialMedia
+    socialMediaLinks: bio.seo.socialMedia,
   };
 
   return {
@@ -132,7 +132,7 @@ export async function getStaticProps({ params }) {
       content,
       slug: params.slug,
       attorneyFooterBlogArticles,
-      attorneyFooterNewsArticles
+      attorneyFooterNewsArticles,
     },
     revalidate: 1,
   };

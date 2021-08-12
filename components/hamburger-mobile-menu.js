@@ -144,10 +144,10 @@ const Menu = ({ open }) => (
           <a>Practices</a>
         </Link>
       </li>
-      <li>        
+      <li>
         <Link href="/library">
           <a>Library</a>
-        </Link>        
+        </Link>
       </li>
       <li>
         <Link href="/locations">

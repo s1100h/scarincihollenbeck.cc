@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -25,7 +25,7 @@ export default function Library({
   popularCategories,
   childrenOfCurrentCategory,
   pageTitle,
-  query
+  query,
 }) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -242,7 +242,7 @@ export async function getServerSideProps({ query }) {
       results: results || [],
       authors: authors || [],
       popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || []
+      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
     },
   };
 }

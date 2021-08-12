@@ -68,6 +68,6 @@ export async function getStaticProps() {
       mainContent,
       seo,
     },
-    revalidate: 1
+    revalidate: 1,
   };
 }

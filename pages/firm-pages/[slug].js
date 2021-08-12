@@ -112,7 +112,7 @@ export async function getStaticProps({ params }) {
   const restResponse = await fetch(
     `https://wp.scarincihollenbeck.com/wp-json/firm-page/page/${params.slug}`,
     { headers },
-  ).then((data) => data.json())
+  ).then((data) => data.json());
 
   return {
     props: {

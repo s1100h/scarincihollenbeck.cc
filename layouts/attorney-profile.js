@@ -77,7 +77,7 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
   }
 }
 export default function AttorneyProfile({
-  seo, header, body, slug, attorneyFooterBlogArticles, attorneyFooterNewsArticles
+  seo, header, body, slug, attorneyFooterBlogArticles, attorneyFooterNewsArticles,
 }) {
   const router = useRouter();
 

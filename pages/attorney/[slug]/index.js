@@ -11,7 +11,7 @@ export default function AttorneyBioProfile({
   content,
   slug,
   attorneyFooterBlogArticles,
-  attorneyFooterNewsArticles
+  attorneyFooterNewsArticles,
 }) {
   const router = useRouter();
 
@@ -71,7 +71,7 @@ export async function getStaticProps({ params }) {
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/biography`,
       { headers },
-    ).then((data) => data.json()),   
+    ).then((data) => data.json()),
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/blogs`,
       { headers },
@@ -86,25 +86,25 @@ export async function getStaticProps({ params }) {
     return {
       notFound: true,
     };
-  }  
+  }
 
   let attorneyFooterBlogArticles = [];
   let attorneyFooterNewsArticles = [];
 
-  if(!Object.keys(attorneyBlogArticles).includes('status')) {
+  if (!Object.keys(attorneyBlogArticles).includes('status')) {
     const firstThreeBlogs = attorneyBlogArticles
-    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-    .filter((_, i) => i <= 3);
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .filter((_, i) => i <= 3);
 
-    attorneyFooterBlogArticles = [...firstThreeBlogs]
+    attorneyFooterBlogArticles = [...firstThreeBlogs];
   }
 
-  if(!Object.keys(attorneyNewsArticles).includes('status')) {
-    const firstThreeNews = attorneyNewsArticles     
-     .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
-     .filter((_, i) => i <= 3);
+  if (!Object.keys(attorneyNewsArticles).includes('status')) {
+    const firstThreeNews = attorneyNewsArticles
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .filter((_, i) => i <= 3);
 
-    attorneyFooterNewsArticles = [...firstThreeNews]
+    attorneyFooterNewsArticles = [...firstThreeNews];
   }
 
   const seo = {
@@ -113,9 +113,9 @@ export async function getStaticProps({ params }) {
     metaDescription: bio.seo.metaDescription,
     image: bio.seo.featuredImg,
     designation: bio.headerContent.title,
-    socialMediaLinks: bio.seo.socialMedia
+    socialMediaLinks: bio.seo.socialMedia,
   };
-  
+
   return {
     props: {
       bio,
@@ -124,7 +124,7 @@ export async function getStaticProps({ params }) {
       content,
       slug: params.slug,
       attorneyFooterBlogArticles,
-      attorneyFooterNewsArticles
+      attorneyFooterNewsArticles,
     },
     revalidate: 1,
   };

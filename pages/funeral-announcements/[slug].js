@@ -13,7 +13,7 @@ import { headers } from 'utils/helpers';
 
 const slugs = [
   '/funeral-announcements/passing-attorney-harvey-r-poe',
-  '/funeral-announcements/passing-attorney-david-a-einhorn'
+  '/funeral-announcements/passing-attorney-david-a-einhorn',
 ];
 
 export default function FuneralAnnouncement({
@@ -21,23 +21,20 @@ export default function FuneralAnnouncement({
   content,
   seo,
 }) {
-
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
   }
-  
-  let extractSubTitle = "";
-  let subTitle = "";
-  let bodyContent ="";
 
-  if(content) {
+  let extractSubTitle = '';
+  let subTitle = '';
+  let bodyContent = '';
+
+  if (content) {
     extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
     subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
     bodyContent = content.replace(subTitle, '');
   }
-
-
 
   const firmLibrary = [
     {
@@ -119,11 +116,10 @@ export default function FuneralAnnouncement({
 
 export async function getStaticPaths() {
   return {
-    paths: slugs.map(slug => slug),
+    paths: slugs.map((slug) => slug),
     fallback: true,
   };
 }
-
 
 export async function getStaticProps({ params }) {
   const request = await fetch(

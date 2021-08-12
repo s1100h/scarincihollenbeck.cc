@@ -107,7 +107,7 @@ module.exports = {
       {
         source: '/passing-attorney-david-a-einhorn',
         destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
-      }
+      },
     ];
   },
 };

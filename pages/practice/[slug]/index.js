@@ -67,7 +67,7 @@ export default function PracticeSingle({
         twitter={{
           handle: '@S_H_Law',
           site: canoncialUrl,
-          cardType: practice.seo.metaDescription
+          cardType: practice.seo.metaDescription,
         }}
       />
       <Head>

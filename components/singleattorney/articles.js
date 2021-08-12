@@ -17,7 +17,7 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex(pageIndex => pageIndex += 11);
+    setPageIndex((pi) => pi += 11);
     setLoading(false);
   }
 
@@ -26,7 +26,7 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
       const sortArticles = initalArticles.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
       setArticleList(sortArticles);
     }
-  }, [])
+  }, []);
 
   return (
     <Row className={marginStyles.mtMinusMd2}>
@@ -34,7 +34,7 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
         <h4 className={grayTitleStyles.title}>{title}</h4>
       </Col>
       {initalArticles.length <= 0 ? (
-         <Col sm={12} className="my-3">
+        <Col sm={12} className="my-3">
           <p className="text-center">
             <strong>This attorney does not have any published articles or blog posts.</strong>
           </p>
@@ -56,19 +56,19 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
                 <strong>{article.title}</strong>
               </small>
             </a>
-          </Link>            
+          </Link>
         </Col>
       ))}
       {initalArticles.length > 0 && (
         <Col sm={12}>
-        <Button
-          variant="danger"
-          className="px-4 mx-3 mb-3"
-          onClick={() => handleClick()}
-        >
-          {loading  ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
-        </Button>
-      </Col>
+          <Button
+            variant="danger"
+            className="px-4 mx-3 mb-3"
+            onClick={() => handleClick()}
+          >
+            {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
+          </Button>
+        </Col>
       )}
     </Row>
   );

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Slider from 'react-slick';
 import fontStyles from 'styles/Fonts.module.css';
 import marginStyles from 'styles/Margins.module.css';
@@ -16,7 +15,7 @@ export default function AttorneyProfileSidebar({
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 4000,
-    cssEase: "linear"
+    cssEase: 'linear',
   };
 
   return (
@@ -86,7 +85,7 @@ export default function AttorneyProfileSidebar({
               <a>Award Methodology</a>
             </Link>
           </small>
-          
+
         </div>
       )}
       <style jsx>{' img.award-image{ height: 180px }'}</style>

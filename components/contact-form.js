@@ -15,7 +15,7 @@ export default function ContactForm() {
   return (
     <div className="px-2 mb-3">
       <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
       </Head>
       <form
         action="https://kwes.io/api/foreign/forms/oIRf8VAo2KnGHucQmZ1m"

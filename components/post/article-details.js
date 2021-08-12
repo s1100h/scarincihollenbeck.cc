@@ -6,7 +6,7 @@ export default function PostArticleDetails({ author, date }) {
       <strong>Author: </strong>
       {author.length > 0
         ? author.map((a, i) => (i === 0 && author.length > 1 ? (
-          <a            
+          <a
             href={a.link}
             key={a.name}
             className="text-underline"
@@ -16,7 +16,7 @@ export default function PostArticleDetails({ author, date }) {
             {' '}
           </a>
         ) : (
-          <a            
+          <a
             href={a.link}
             key={a.name}
             className="text-underline"

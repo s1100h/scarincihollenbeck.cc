@@ -15,7 +15,7 @@ const logos = [
     alt: 'U.S. News & World Report',
     width: 203,
     height: 200,
-  },  
+  },
   {
     url: '/images/reviews/trailblazers.jpeg',
     alt: 'National Law Journal Trailblazers',
@@ -27,10 +27,10 @@ const logos = [
     alt: 'Super Lawyers',
     width: 179,
     height: 149,
-  }
+  },
 ];
 function Accolade({
-  url, alt, caption, width, height,
+  url, alt, width, height,
 }) {
   return (
     <Col sm={12} md={3} className="mt-5">
@@ -43,14 +43,16 @@ function Accolade({
           layout="intrinsic"
         />
       </div>
-      <style jsx>{`
+      <style jsx>
+        {`
         @media (min-width: 1200px) {
           .additional-positioning {
             position: relative;
             right: 0px;
           }
         }
-      `}</style>
+      `}
+      </style>
     </Col>
   );
 }
@@ -63,13 +65,12 @@ export default function HomeReviews() {
         </div>
       </Col>
       {logos.map(({
-        url, alt, caption, width, height,
+        url, alt, width, height,
       }) => (
         <Accolade
           key={alt}
           url={url}
           alt={alt}
-          caption={caption}
           width={width}
           height={height}
         />

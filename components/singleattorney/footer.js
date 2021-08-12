@@ -38,7 +38,9 @@ function ClientSection({ slug, clients }) {
   );
 }
 
-function ArticleSection({ articles, slug, title, type }) {
+function ArticleSection({
+  articles, slug, title, type,
+}) {
   return (
     <Row className="mt-5 mb-3">
       {articles.map((article) => (
@@ -71,9 +73,8 @@ export default function AttorneyProfileFooter({
   clients,
   slug,
   attorneyFooterBlogArticles,
-  attorneyFooterNewsArticles
+  attorneyFooterNewsArticles,
 }) {
-
   return (
     <div style={{ minHeight: '20vh' }}>
       {(clients.length > 0) && <ClientSection slug={slug} clients={clients} />}
@@ -105,5 +106,5 @@ export default function AttorneyProfileFooter({
         </>
       )}
     </div>
-  )
+  );
 }

@@ -24,11 +24,10 @@ import 'styles/globals.css';
 import 'styles/dropdown.css';
 import 'styles/carousel.css';
 
-/** 
+/**
  *  Add page transition loader
  */
-Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());  
-
+Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());
 
 function SHApp({ Component, pageProps }) {
   const router = useRouter();

@@ -29,6 +29,9 @@ module.exports = {
     'no-nested-ternary': 'off',
     'react/jsx-props-no-spreading': 'off',
     'linebreak-style': 'off',
+    'no-tabs': 'off',
+    'no-return-assign': 'off',
+    'no-param-reassign': 'off',
     'no-console': [
       2,
       {

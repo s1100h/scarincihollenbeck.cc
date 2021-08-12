@@ -2,7 +2,6 @@ import Link from 'next/link';
 import fontStyles from 'styles/Fonts.module.css';
 import SubscriptionMessage from 'components/subscription-message';
 import { createMarkup } from 'utils/helpers';
-import styles from 'styles/SidebarTitle.module.css';
 
 export default function PostsEventSidebar({ attorneys, eventDetails }) {
   const eDetails = eventDetails[0];

@@ -11,7 +11,7 @@ export default function AttorneyBioProfileContact({
   content,
   slug,
   attorneyFooterBlogArticles,
-  attorneyFooterNewsArticles
+  attorneyFooterNewsArticles,
 }) {
   const router = useRouter();
 
@@ -94,7 +94,7 @@ export async function getStaticProps({ params }) {
       .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
       .filter((_, i) => i <= 3);
 
-    attorneyFooterBlogArticles = [...firstThreeBlogs]
+    attorneyFooterBlogArticles = [...firstThreeBlogs];
   }
 
   if (!Object.keys(attorneyNewsArticles).includes('status')) {
@@ -102,7 +102,7 @@ export async function getStaticProps({ params }) {
       .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
       .filter((_, i) => i <= 3);
 
-    attorneyFooterNewsArticles = [...firstThreeNews]
+    attorneyFooterNewsArticles = [...firstThreeNews];
   }
 
   const seo = {
@@ -111,7 +111,7 @@ export async function getStaticProps({ params }) {
     metaDescription: `Get in touch with ${bio.seo.title} by filling out the contact form. We look forward to learning more about your legal needs.`,
     image: bio.seo.featuredImg,
     designation: bio.headerContent.title,
-    socialMediaLinks: bio.seo.socialMedia
+    socialMediaLinks: bio.seo.socialMedia,
   };
 
   return {
@@ -122,7 +122,7 @@ export async function getStaticProps({ params }) {
       content,
       slug: params.slug,
       attorneyFooterBlogArticles,
-      attorneyFooterNewsArticles
+      attorneyFooterNewsArticles,
     },
     revalidate: 1,
   };

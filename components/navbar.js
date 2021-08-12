@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,7 +11,6 @@ import navBarStyles from '../styles/Navbar.module.css';
 import textStyles from '../styles/Text.module.css';
 
 export default function NavBar() {
-  const [hideDropDown, setHideDropDown] = useState(false);
   return (
     <header className="mb-0">
       <Container>
@@ -67,16 +65,16 @@ export default function NavBar() {
             className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}
           >
             <Link href="/">
-                <a>
-                  <Image
-                    alt="Scarinci Hollenbeck, LLC"
-                    height={65}
-                    width={360}
-                    layout="intrinsic"
-                    src="/images/sh-logo-diamond.svg"
-                  />
-                </a>
-              </Link>
+              <a>
+                <Image
+                  alt="Scarinci Hollenbeck, LLC"
+                  height={65}
+                  width={360}
+                  layout="intrinsic"
+                  src="/images/sh-logo-diamond.svg"
+                />
+              </a>
+            </Link>
           </Col>
           <Col xs={12} lg={6} className=" mt-sm-2 mt-lg-3 pr-0 pl-0">
             <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>

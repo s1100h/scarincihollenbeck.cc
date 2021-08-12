@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import ArchivePracticeSimpleList from 'components/archivepractice/simple-list';
 import ArchivePracticeBlockList from 'components/archivepractice/block-list';
@@ -26,9 +26,9 @@ export default function PracticesPage({ core, additional, business }) {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
   const sortedBusienssPractices = sortByKey(business, 'title');
-  const title = "Attorney Legal Practices | Scarinci Hollenbeck";
+  const title = 'Attorney Legal Practices | Scarinci Hollenbeck';
   const metaDesc = "Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area.";
-  
+
   return (
     <>
       <NextSeo
@@ -38,7 +38,7 @@ export default function PracticesPage({ core, additional, business }) {
         openGraph={{
           type: 'website',
           url: 'https://scarincihollenbeck.com/',
-          title: title,
+          title,
           description: metaDesc,
           images: [
             {

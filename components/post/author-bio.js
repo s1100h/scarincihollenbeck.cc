@@ -24,10 +24,10 @@ export default function PostAuthorBio({ author }) {
                   />
                   {a.name !== 'Scarinci Hollenbeck' && (
                     <Link href={a.link ? a.link : '/attorneys/'}>
-                    <a className="my-2 d-block">
-                    Full Biography
-                    </a>
-                  </Link>
+                      <a className="my-2 d-block">
+                        Full Biography
+                      </a>
+                    </Link>
                   )}
                 </p>
               </div>

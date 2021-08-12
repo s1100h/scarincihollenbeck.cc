@@ -57,10 +57,10 @@ export default function HomePageTwo({
             __html: JSON.stringify(buildBusinessSchema()),
           }}
         />
-      </Head>      
+      </Head>
       <HomeBanner />
-      <AttorneyAnnoucenmentModal /> 
-      <Container>      
+      <AttorneyAnnoucenmentModal />
+      <Container>
         <HomeMainTag />
         <HomeHoneyCombSection
           contentOne={(

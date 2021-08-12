@@ -115,19 +115,18 @@ export default function LawFirmInsightsPost({
   );
 }
 
-// We need to get a every blog post by category 
-
+// We need to get a every blog post by category
 
 export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
   const restResponse = await fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/single/post/${
-        params.slug[params.slug.length - 1]
-      }/${query.category}`,
-      { headers },
-    )
-      .then((data) => data.json())
-      .catch((err) => err)
+    `https://wp.scarincihollenbeck.com/wp-json/single/post/${
+      params.slug[params.slug.length - 1]
+    }/${query.category}`,
+    { headers },
+  )
+    .then((data) => data.json())
+    .catch((err) => err);
 
   if (restResponse.status === 404) {
     res.statusCode = 404;

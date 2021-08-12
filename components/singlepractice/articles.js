@@ -11,23 +11,27 @@ import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
-const removeDuplicates = arr => arr.filter((v, i, a) => a.findIndex(t => (t.id === v.id)) === i)
+const removeDuplicates = (arr) => arr.filter((v, i, a) => a.findIndex((t) => (t.id === v.id)) === i);
 
-export default function AttorneyProfilePractice({ initalArticles, title, tabTitle }) {
+export default function AttorneyProfilePractice({ initalArticles, title }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(11);
-  const [articleList, setArticleList] = useState(removeDuplicates(initalArticles) || []);
+  const [articleList] = useState(removeDuplicates(initalArticles) || []);
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex(pageIndex => pageIndex += 11);
+    setPageIndex((pi) => pi += 11);
     setLoading(false);
   }
   return (
     <TabPane eventKey="related-articles" title={title}>
       <Row className={marginStyles.mtMinusMd2}>
         <Col sm={12}>
-          <h4 className={grayTitleStyles.title}>{title} Articles</h4>
+          <h4 className={grayTitleStyles.title}>
+            {title}
+            {' '}
+            Articles
+          </h4>
         </Col>
         {initalArticles.length <= 0 ? (
           <Col sm={12} className="my-3">

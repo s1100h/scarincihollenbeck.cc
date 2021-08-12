@@ -12,7 +12,7 @@ export default function OlderArticles({ initialArticles, query }) {
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex((newIndex) => (newIndex += 1));
+    setPageIndex((pi) => pi += 1);
     const url = `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&${query}`;
 
     const getOlderPosts = await fetch(url)
@@ -22,9 +22,6 @@ export default function OlderArticles({ initialArticles, query }) {
     if (!getOlderPosts) {
       setLoading(false);
     }
-
-    console.log('articleList');
-    console.log(articleList);
 
     if (getOlderPosts.results) {
       getOlderPosts.results.shift();
