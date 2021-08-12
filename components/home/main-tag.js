@@ -8,20 +8,20 @@ export default function HomeMainTag() {
           broad range of legal services to a diverse group of clients.
         </strong>
       </h1>
-      <h4 className="my-4">
+      <h2 className="my-4 h4">
         <strong>
           We support and advance our clients’ initiatives through innovative
           solutions to complex legal problems.
         </strong>
-      </h4>
+      </h2>
       <style jsx>
         {`
-          h3 {
+          h1 {
             font-size: 2rem;
             line-height: 1.2
             font-weight: 300;
           }
-          h4 {
+          h2 {
             color: #db2220;
           }
         `}

@@ -57,8 +57,8 @@ export default function PracticeSingle({
           images: [
             {
               url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
-              width: 750,
-              height: 350,
+              width: 300,
+              height: 140,
               alt: practice.seo.title,
             },
           ],

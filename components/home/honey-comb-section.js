@@ -16,7 +16,7 @@ export default function HomeHoneyCombSection({ contentOne, contentTwo }) {
           div.row {
             margin-top: 10rem;
           }
-          h4 {
+          h3 {
             color: #db2220;
           }
         `}

@@ -35,8 +35,8 @@ export default function HomePageTwo({
           images: [
             {
               url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
-              width: 750,
-              height: 350,
+              width: 300,
+              height: 140,
               alt: 'Scarinci Hollenbeck',
             },
           ],
@@ -74,9 +74,9 @@ export default function HomePageTwo({
           )}
           contentTwo={(
             <div className={`${styles.honeyCombContent} float-right`}>
-              <h4>
+              <p className={styles.honeycombTitle}>
                 <strong>MEET OUR TEAM</strong>
-              </h4>
+              </p>
               <p>
                 Our attorneys collaborate across the firm’s practice areas to
                 achieve the best combination of knowledge, experience, and
@@ -92,9 +92,9 @@ export default function HomePageTwo({
         <HomeHoneyCombSection
           contentOne={(
             <div className={styles.honeyCombContent}>
-              <h4>
+              <p className={styles.honeycombTitle}>
                 <strong>OUR SERVICES</strong>
-              </h4>
+              </p>
               <p>
                 We help our clients achieve their goals by providing tailored
                 services with the focused experience of a boutique firm by

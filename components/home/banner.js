@@ -10,16 +10,16 @@ export default function HomeBanner() {
         <div className={`${styles.homeBannerContainer} ${styles.homeBanner}`}>
           <div className="d-flex p-4">
             <div>
-              <h2
+              <p className="h2"
                 className={`${styles.h2Text} animate__animated animate__fadeInDown animate__slow`}
               >
                 Ready to rebuild?
-              </h2>
-              <h3
+              </p>
+              <p className="h3"
                 className={`${styles.h3Text} animate__animated animate__fadeInDown animate__slow`}
               >
                 <strong>We are here to help</strong>
-              </h3>
+              </p>
               <div className="animate__animated animate__fadeInUp animate__slow my-2">
                 <FrontSearch />
               </div>

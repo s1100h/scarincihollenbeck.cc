@@ -1,6 +1,6 @@
-.honeyCombContent > h4 {
+.honeycombTitle {
   color: #db2220;
-  font-size: 2.5rem;
+  font-size: 2.5rem !important;
   margin-bottom: 1.5rem;
 }
 
