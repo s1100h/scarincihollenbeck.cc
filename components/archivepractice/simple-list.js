@@ -7,7 +7,7 @@ export default function ArchivePracticeSimpleList({ list }) {
     <div className="my-5">
       <ul className={`${textStyles.blueTitle} ${formsStyles.threeColumns}`}>
         {list.map((item) => (
-          <li key={item.ID} className="mb-3">
+          <li key={item.ID} className="mb-2 mr-4">
             <Link
               href={item.slug.replace('https://scarincihollenbeck.com', '')}
             >
@@ -18,6 +18,7 @@ export default function ArchivePracticeSimpleList({ list }) {
           </li>
         ))}
       </ul>
+      <style jsx>{' li { font-size: 16px; }'}</style>
     </div>
   );
 }

@@ -66,8 +66,7 @@ export default function NavBar() {
             lg={6}
             className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}
           >
-            <h1>
-              <Link href="/">
+            <Link href="/">
                 <a>
                   <Image
                     alt="Scarinci Hollenbeck, LLC"
@@ -78,7 +77,6 @@ export default function NavBar() {
                   />
                 </a>
               </Link>
-            </h1>
           </Col>
           <Col xs={12} lg={6} className=" mt-sm-2 mt-lg-3 pr-0 pl-0">
             <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>

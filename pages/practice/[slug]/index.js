@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import TabContainer from 'react-bootstrap/TabContainer';
@@ -19,6 +20,7 @@ import PracticeSidebar from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
+import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 
@@ -31,6 +33,7 @@ export default function PracticeSingle({
   const practiceUrl = router.asPath
     .replace('/practices/', '')
     .replace('/practice/', '');
+  const canoncialUrl = `https://scarincihollenbeck.com/practice/${practice.slug}`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -45,8 +48,37 @@ export default function PracticeSingle({
       <NextSeo
         title={practice.seo.title}
         description={practice.seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/practice${practice.slug}`}
+        canonical={canoncialUrl}
+        openGraph={{
+          type: 'website',
+          url: canoncialUrl,
+          title: practice.seo.title,
+          description: practice.seo.metaDescription,
+          images: [
+            {
+              url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
+              width: 750,
+              height: 350,
+              alt: practice.seo.title,
+            },
+          ],
+          site_name: canoncialUrl,
+        }}
+        twitter={{
+          handle: '@S_H_Law',
+          site: canoncialUrl,
+          cardType: practice.seo.metaDescription
+        }}
       />
+      <Head>
+        <script
+          key="ScarinciHollenbeck"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildBusinessSchema()),
+          }}
+        />
+      </Head>
       <SingleSubHeader
         title={practice.title}
         subtitle={practice.description}

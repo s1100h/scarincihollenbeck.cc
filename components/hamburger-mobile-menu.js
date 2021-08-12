@@ -144,30 +144,10 @@ const Menu = ({ open }) => (
           <a>Practices</a>
         </Link>
       </li>
-      <li>
-        Library
-        <ul>
-          <li>
-            <Link href="/category/firm-events">
-              <a>Firm Events</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/category/firm-news">
-              <a>Firm News</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/category/firm-insights">
-              <a>Firm Insights</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/category/quick-news">
-              <a>Quick News</a>
-            </Link>
-          </li>
-        </ul>
+      <li>        
+        <Link href="/library">
+          <a>Library</a>
+        </Link>        
       </li>
       <li>
         <Link href="/locations">

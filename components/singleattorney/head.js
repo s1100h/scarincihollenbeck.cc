@@ -17,6 +17,7 @@ export default function AttorneyProfileHead({ seo }) {
           url: `https://scarincihollenbeck.com/${canonicalLink}}`,
           title: 'Scarinci Hollenbeck',
           description: metaDescription,
+          type: 'website',
           images: [
             {
               url: image,
@@ -31,6 +32,7 @@ export default function AttorneyProfileHead({ seo }) {
           handle: '@S_H_Law',
           site: `https://scarincihollenbeck.com/${canonicalLink}}`,
           cardType: metaDescription,
+          twitter:image
         }}
       />
       <Head>

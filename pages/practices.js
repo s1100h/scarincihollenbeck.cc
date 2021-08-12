@@ -1,9 +1,11 @@
+import Head from 'next/head'
 import { NextSeo } from 'next-seo';
 import ArchivePracticeSimpleList from 'components/archivepractice/simple-list';
 import ArchivePracticeBlockList from 'components/archivepractice/block-list';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { sortByKey, headers } from 'utils/helpers';
+import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 
 function sortPracticeCategorys(list) {
@@ -24,14 +26,46 @@ export default function PracticesPage({ core, additional, business }) {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
   const sortedBusienssPractices = sortByKey(business, 'title');
-
+  const title = "Attorney Legal Practices | Scarinci Hollenbeck";
+  const metaDesc = "Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area.";
+  
   return (
     <>
       <NextSeo
-        title="Attorney Legal Practices | Scarinci Hollenbeck"
-        description="Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area."
-        canonical="http://scarincihollenbeck.com/practices"
+        title={title}
+        description={metaDesc}
+        canonical="https://scarincihollenbeck.com/practices"
+        openGraph={{
+          type: 'website',
+          url: 'https://scarincihollenbeck.com/',
+          title: title,
+          description: metaDesc,
+          images: [
+            {
+              url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
+              width: 750,
+              height: 350,
+              alt: 'Scarinci Hollenbeck',
+            },
+          ],
+          site_name: 'Scarinci Hollenbeck',
+        }}
+        twitter={{
+          handle: '@S_H_Law',
+          site: 'https://scarincihollenbeck.com',
+          cardType:
+            'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
+        }}
       />
+      <Head>
+        <script
+          key="ScarinciHollenbeck"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildBusinessSchema()),
+          }}
+        />
+      </Head>
       <SingleSubHeader
         title="Legal Practices"
         subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today's businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."

@@ -34,7 +34,7 @@ export default function HomePageTwo({
           description: seo.metaDescription,
           images: [
             {
-              url: '/images/no-image-found-diamond.png',
+              url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
               width: 750,
               height: 350,
               alt: 'Scarinci Hollenbeck',
