@@ -22,10 +22,7 @@ export default function ArchivePracticeBlockList({ list }) {
                 <Dropdown.Item
                   key={item.ID}
                   style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}
-                  href={item.slug.replace(
-                    'https://scarincihollenbeck.com',
-                    '',
-                  )}
+                  href={item.slug}
                 >
                   Overview
                 </Dropdown.Item>
@@ -38,10 +35,7 @@ export default function ArchivePracticeBlockList({ list }) {
                       whiteSpace: 'pre-wrap',
                       display: 'block',
                     }}
-                    href={child.slug.replace(
-                      'https://scarincihollenbeck.com',
-                      '',
-                    )}
+                    href={child.slug}
                   >
                     {child.title}
                   </Dropdown.Item>
@@ -51,9 +45,7 @@ export default function ArchivePracticeBlockList({ list }) {
           </Col>
         ) : (
           <Col sm={12} md={4} key={item.title} className="mb-3">
-            <Link
-              href={item.slug.replace('https://scarincihollenbeck.com', '')}
-            >
+            <Link href={item.slug}>
               <a className={`${bigButtonStyles.tab} w-100 d-block`}>
                 {item.title}
               </a>

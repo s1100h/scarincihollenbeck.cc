@@ -5,11 +5,11 @@ export default function ProfileTitle({
 }) {
   return (
     <>
-      <h2 className="animate__animated animate__fadeInDown animate__slow mb-0">
+      <h1 className="h2 animate__animated animate__fadeInDown animate__slow mb-0">
         <strong className="name">{name}</strong>
-      </h2>
-      <p className="bottom">
-        {designation}
+      </h1>
+      <div className="bottom">
+        <h2>{designation}</h2>
         {chair.length > 0 && (
           <>
             <span className="mx-1">
@@ -18,7 +18,7 @@ export default function ProfileTitle({
             Chair:
             {' '}
             {chair.map((c, i) => (
-              <Link href={c.link} key={c.title}>
+              <Link href={c.link.replace('https://wp.scarincihollenbeck.com/', '')} key={c.title}>
                 <a className="text-white">
                   {c.title}
                   {i < chair.length - 1 && ', '}
@@ -36,17 +36,21 @@ export default function ProfileTitle({
               <span className="my-1" key={c.title}>
                 Co-Chair:
                 {' '}
-                <Link href={c.link} key={c.title}>
+                <Link href={c.link.replace('https://wp.scarincihollenbeck.com/', '')} key={c.title}>
                   <a className="text-white">{c.title}</a>
                 </Link>
               </span>
             ))}
           </>
         )}
-      </p>
+      </div>
       <style jsx>
         {`
-          p.bottom {
+          h2 {
+            display: inline;
+            font-size: 15px;
+          }
+          .bottom {
             margin-top: 0px;
             padding-bottom: 5px;
             border-bottom: 3.5px solid #db2220;
