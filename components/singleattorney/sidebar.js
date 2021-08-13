@@ -75,6 +75,8 @@ export default function AttorneyProfileSidebar({
                     src={award.featuredImg}
                     alt={award.title}
                     className="award-image"
+                    width="300px"
+                    height="auto"
                   />
                 </a>
               </div>
@@ -88,7 +90,7 @@ export default function AttorneyProfileSidebar({
 
         </div>
       )}
-      <style jsx>{' img.award-image{ height: 180px }'}</style>
+      <style jsx>{' img.award-image{ height: 120px; width: auto; }'}</style>
     </div>
   );
 }
