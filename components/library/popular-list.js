@@ -13,7 +13,7 @@ export default function PopularList({ term, list }) {
       <ul>
         {list.map((item) => (item.postCount > 1) && (
           <li key={item.id} className="list-unstyled">
-            <Link href={`/library?category=${item.slug}`}>
+            <Link href={`/library/category/${item.slug}`}>
               <a className="text-dark">
                 {item.name}
                 {' '}
