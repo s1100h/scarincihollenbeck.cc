@@ -67,10 +67,10 @@ export async function getStaticPaths() {
     }).then((data) => data.json()),
   ]);
 
-  const fullList = res.filter((a, b) => a.link !== b.link);
+  const fullList = res.filter((a, b) => a.link !== b.link).map((a) => `/library/category/${a.link}`);
 
   return {
-    paths: fullList.map((a) => `/library/category/${a.link}`) || [],
+    paths: fullList || [],
     fallback: true,
   };
 }
@@ -117,6 +117,12 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
   ]);
 
+  if ('status' in categoryDetails && categoryDetails.status === 404) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       query: tempStr.replace('offset=1&', ''),
@@ -129,5 +135,6 @@ export async function getStaticProps({ params }) {
       description: categoryDetails.description,
       name: categoryDetails.current_category.name
     },
+    revalidate: 10,
   };
 }

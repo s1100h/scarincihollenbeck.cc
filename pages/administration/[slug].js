@@ -88,8 +88,10 @@ export async function getStaticPaths() {
     }).then((data) => data.json()),
   ]);
 
+  const fullAdminList = res.admins.map((a) => a.link)
+
   return {
-    paths: res.admins.map((a) => a.link) || [],
+    paths: fullAdminList || [],
     fallback: true,
   };
 }

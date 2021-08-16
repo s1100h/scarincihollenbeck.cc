@@ -49,8 +49,10 @@ export async function getStaticPaths() {
     ).then((data) => data.json()),
   ]);
 
+  const fullAttorneyList = res.map((a) => `/attorney${a.link}/contact`);
+
   return {
-    paths: res.map((a) => `/attorney${a.link}/contact`) || [],
+    paths: fullAttorneyList || [],
     fallback: true,
   };
 }

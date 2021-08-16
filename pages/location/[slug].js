@@ -71,8 +71,10 @@ export async function getStaticPaths() {
     }).then((data) => data.json()),
   ]);
 
+  const fullOfficeList = res.offices.map((o) => o.slug);
+
   return {
-    paths: res.offices.map((o) => o.slug) || [],
+    paths: fullOfficeList || [],
     fallback: false,
   };
 }

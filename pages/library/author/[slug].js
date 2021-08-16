@@ -54,14 +54,18 @@ export default function LibraryAuthor({
 }
 
 export async function getStaticPaths() {
+
   const [res] = await Promise.all([
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/list', {
       headers,
     }).then((data) => data.json()),
   ]);
 
+  const fullAuthorList = res.map((a) => `/library/author/${a}`);
+
+
   return {
-    paths: res.map((a) => `/library/author/${a.link}`) || [],
+    paths: fullAuthorList || [],
     fallback: true,
   };
 }
@@ -108,6 +112,12 @@ export async function getStaticProps({ params }) {
     ).then((data) => data.json()),
   ]);
 
+  if (authorBio.bio[0].name.length <= 0) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       query: tempStr.replace('offset=1&', ''),
@@ -120,7 +130,8 @@ export async function getStaticProps({ params }) {
       slug,
       topicOne: authorBio.practices[0].title.toLowerCase(),
       topicTwo: authorBio.practices[1].title.toLowerCase(),
-      topicThree: authorBio.practices[2].title.toLowerCase(),
+      topicThree: (authorBio.practices[2]) ? authorBio.practices[2].title.toLowerCase() : 'public law',
     },
+    revalidate: 10,
   };
 }
