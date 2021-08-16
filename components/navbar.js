@@ -128,22 +128,15 @@ export default function NavBar() {
                   id="basic-nav-dropdown"
                   className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
                 >
-                  <Link href="/library/category/firm-news">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Firm News
-                    </a>
-                  </Link>
-                  <Link href="/library/category/firm-events">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Firm Events
-                    </a>
-                  </Link>
-                  <Link href="/library/category/law-firm-insights">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Firm Insights
-                    </a>
-                  </Link>
-
+                  <a href="/library/category/firm-news" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                    Firm News
+                  </a>
+                  <a href="/library/category/firm-events" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                    Firm Events
+                  </a>
+                  <a href="/library/category/law-firm-insights" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                    Firm Insights
+                  </a>
                 </NavDropdown>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/locations">
