@@ -103,7 +103,7 @@ export default function FirmPages({ page, relatedPages }) {
 
 export async function getStaticPaths() {
   const fullPageList = pages.map((a) => `/firm-pages/${a.slug}`);
-  
+
   return {
     paths: fullPageList || [],
     fallback: true,

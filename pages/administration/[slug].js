@@ -88,7 +88,7 @@ export async function getStaticPaths() {
     }).then((data) => data.json()),
   ]);
 
-  const fullAdminList = res.admins.map((a) => a.link)
+  const fullAdminList = res.admins.map((a) => a.link);
 
   return {
     paths: fullAdminList || [],

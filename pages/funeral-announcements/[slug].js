@@ -115,10 +115,10 @@ export default function FuneralAnnouncement({
 }
 
 export async function getStaticPaths() {
-  const fullFuneralList = slugs.map(slug => slug);
-  
+  const fullFuneralList = slugs.map((slug) => slug);
+
   return {
-    paths: fullFuneralList ,
+    paths: fullFuneralList,
     fallback: true,
   };
 }

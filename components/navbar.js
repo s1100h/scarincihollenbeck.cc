@@ -143,7 +143,7 @@ export default function NavBar() {
                       Firm Insights
                     </a>
                   </Link>
-                  
+
                 </NavDropdown>
                 <Nav.Item className={navBarStyles.navItem}>
                   <Link href="/locations">

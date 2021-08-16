@@ -3,25 +3,23 @@ import styles from 'styles/FeaturedLinks.module.css';
 import Button from 'react-bootstrap/Button';
 
 export default function FeaturedLinks() {
- 
-
   return (
     <Col sm={12} className={`${styles.linksContainer} px-0 mx-0`}>
       <ul className="list-unstyled list-inline text-center my-3">
         <li className="list-inline-item">
           <Button variant="danger" href="/library/category/firm-news">
             Firm News
-          </Button>          
+          </Button>
         </li>
         <li className="list-inline-item">
           <Button variant="danger" href="/library/category/firm-events">
             Firm Events
-          </Button>  
+          </Button>
         </li>
         <li className="list-inline-item">
           <Button variant="danger" href="/library/category/law-firm-insights">
             Firm Insights
-          </Button>  
+          </Button>
         </li>
       </ul>
       <style jsx>

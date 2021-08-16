@@ -1,4 +1,3 @@
-
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
@@ -16,7 +15,7 @@ export default function LibraryAuthor({
   authorDescription,
   topicOne,
   topicTwo,
-  topicThree
+  topicThree,
 }) {
   const router = useRouter();
 
@@ -31,10 +30,10 @@ export default function LibraryAuthor({
   return (
     <>
       <NextSeo
-         title={`Legal Blog Articles by ${authorName}`}
-         description={`${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`}
-         canonical={`https://scarincihollenbeck.com/library/author/${slug}`}
-       />
+        title={`Legal Blog Articles by ${authorName}`}
+        description={`${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`}
+        canonical={`https://scarincihollenbeck.com/library/author/${slug}`}
+      />
       <SingleSubHeader
         span={8}
         offset={1}
@@ -47,14 +46,13 @@ export default function LibraryAuthor({
         popularCategories={popularCategories}
         childrenOfCurrentCategory={childrenOfCurrentCategory}
         pageTitle={authorName}
-  
+
       />
     </>
   );
 }
 
 export async function getStaticPaths() {
-
   const [res] = await Promise.all([
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/list', {
       headers,
@@ -63,7 +61,6 @@ export async function getStaticPaths() {
 
   const fullAuthorList = res.map((a) => `/library/author/${a}`);
 
-
   return {
     paths: fullAuthorList || [],
     fallback: true,
@@ -71,23 +68,22 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const slug = params.slug;
+  const { slug } = params;
   // eslint-disable-next-line quotes
   let tempStr = ``;
   // eslint-disable-next-line quotes
-  let tempChildCat = ``;
+  const tempChildCat = ``;
 
   if (slug) {
     tempStr += `offset=1&author=${slug}`;
   }
-
 
   const [
     results,
     authors,
     childrenOfCurrentCategory,
     popularCategories,
-    authorBio
+    authorBio,
   ] = await Promise.all([
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`,
@@ -115,7 +111,7 @@ export async function getStaticProps({ params }) {
   if (authorBio.bio[0].name.length <= 0) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {

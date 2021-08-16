@@ -1,4 +1,3 @@
-
 import { NextSeo } from 'next-seo';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -45,8 +44,7 @@ export async function getServerSideProps({ query }) {
   if (term) {
     tempStr += `offset=1&term=${term}`;
     tempChildCat += term;
-  } 
-
+  }
 
   const [
     results,
@@ -72,7 +70,6 @@ export async function getServerSideProps({ query }) {
       { headers },
     ).then((data) => data.json()),
   ]);
-
 
   return {
     props: {

@@ -27,17 +27,17 @@ export default function FeaturedArticle({ articles }) {
       <Link href={article.link}>
         <a className="d-flex flex-column flex-md-row text-dark mx-3 mx-md-0">
           <ArticleImage>
-          <Image
-            src={
+            <Image
+              src={
               article.image
                 ? article.image
                 : '/images/no-image-found-diamond-750x350.png'
             }
-            alt={article.title}
-            width={300}
-            height={150}
-            layout="fixed"
-          />
+              alt={article.title}
+              width={300}
+              height={150}
+              layout="fixed"
+            />
           </ArticleImage>
           <ArticleContainer>
             <h4 className="mb-1 mt-2 px-0 py-0">

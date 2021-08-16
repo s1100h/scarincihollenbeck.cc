@@ -1,4 +1,3 @@
-
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
@@ -15,7 +14,7 @@ export default function LibraryCategory({
   seo,
   pageTitle,
   query,
-  name
+  name,
 }) {
   const router = useRouter();
 
@@ -27,18 +26,18 @@ export default function LibraryCategory({
     );
   }
 
-  const splitDescription = description.split(".");
+  const splitDescription = description.split('.');
   const modDescription = `${splitDescription[0]}. ${splitDescription[1]}.`;
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
 
   return (
     <>
       {Object.keys(seo).length > 0 && (
-         <NextSeo
-         title={seo.title}
-         description={seo.metaDescription}
-         canonical={`https://scarincihollenbeck.com/library/${seo.canonicalLink}`}
-       />
+      <NextSeo
+        title={seo.title}
+        description={seo.metaDescription}
+        canonical={`https://scarincihollenbeck.com/library/${seo.canonicalLink}`}
+      />
       )}
       <SingleSubHeader
         span={8}
@@ -75,7 +74,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  const slug = params.slug;
+  const { slug } = params;
   // eslint-disable-next-line quotes
   let tempStr = ``;
   // eslint-disable-next-line quotes
@@ -85,7 +84,6 @@ export async function getStaticProps({ params }) {
     tempStr += `offset=1&category=${slug}`;
     tempChildCat += slug;
   }
-
 
   const [
     results,
@@ -120,7 +118,7 @@ export async function getStaticProps({ params }) {
   if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
@@ -133,7 +131,7 @@ export async function getStaticProps({ params }) {
       childrenOfCurrentCategory: childrenOfCurrentCategory || [],
       seo: categoryDetails.seo,
       description: categoryDetails.description,
-      name: categoryDetails.current_category.name
+      name: categoryDetails.current_category.name,
     },
     revalidate: 10,
   };
