@@ -14,8 +14,6 @@ Disallow: /staging/
 Disallow: /firm-news/congratulations/*
 Disallow: /news/*
 Disallow: /category/*
-Disallow: /library
-Disallow: /library?*
 Disallow: /site-forms
 Disallow: /site-forms/*
 Sitemap: https://scarincihollenbeck.com/sitemap.xml

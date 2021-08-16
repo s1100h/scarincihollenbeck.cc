@@ -214,8 +214,10 @@ export async function getStaticPaths() {
     ).then((data) => data.json()),
   ]);
 
+  const fullPracticeList = res.map((slug) => `/practice/${slug}`);
+
   return {
-    paths: res.map((slug) => `/practice/${slug}`) || [],
+    paths: fullPracticeList || [],
     fallback: false,
   };
 }
