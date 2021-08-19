@@ -1,7 +1,7 @@
 module.exports = {
-  // future: {
-  //   webpack5: true,
-  // },
+  env: {
+    NEXT_PUBLIC_GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_TRACKING_ID,
+  },
   images: {
     domains: [
       'shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com',

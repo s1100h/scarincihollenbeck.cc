@@ -59,8 +59,8 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                   <Image
                     src={image}
                     alt={profile.name}
-                    width={260}
-                    height={279}
+                    width={640}
+                    height={685}
                     layout="intrinsic"
                     quality={100}
                     className={`${profileStyles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
@@ -76,7 +76,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                       chair={chair}
                       coChair={coChair}
                     />
-                    <div className="d-flex flex-column flex-md-row mt-2">
+                    <div className="d-flex flex-column flex-lg-row mt-2">
                       <ProfileDetails
                         offices={offices}
                         contact={contact}

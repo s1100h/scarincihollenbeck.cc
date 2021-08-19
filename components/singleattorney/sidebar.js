@@ -3,6 +3,9 @@ import Slider from 'react-slick';
 import fontStyles from 'styles/Fonts.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export default function AttorneyProfileSidebar({
   services, contact, educationLink, awards,
 }) {

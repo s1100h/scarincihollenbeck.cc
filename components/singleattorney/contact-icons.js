@@ -5,7 +5,7 @@ export default function ContactIcons({
   slug, linkedIn, pdf, vizibility,
 }) {
   return (
-    <ul className="list-unstyled mr-0 ml-md-5">
+    <ul className="list-unstyled mr-0 ml-lg-5">
       <li>
         {slug && (
           <a

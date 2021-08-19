@@ -33,15 +33,16 @@ export default function LawFirmInsightsPost({
 
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
+  const postUrl = `https://scarincihollenbeck.com${router.asPath}`;
 
   return (
     <>
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={router.asPath}
+        canonical={postUrl}
         openGraph={{
-          url: router.asPath,
+          url: postUrl,
           title: seo.title,
           description: seo.metaDescription,
           type: 'article',
@@ -61,12 +62,12 @@ export default function LawFirmInsightsPost({
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: router.asPath,
+          site: postUrl,
           cardType: seo.metaDescription,
         }}
       />
       <ArticleJsonLd
-        url={router.asPath}
+        url={postUrl}
         title={seo.title}
         images={[featuredImage]}
         datePublished={seo.publishedDate}

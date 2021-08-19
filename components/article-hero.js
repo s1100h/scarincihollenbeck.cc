@@ -14,7 +14,7 @@ export default function ArticleHero({ content }) {
     <Container>
       <Row>
         <Col sm={12} md={6}>
-          <Link href={content[0].link}>
+          <Link href={content[0].link.replace('https://scarincihollenbeck.com','')}>
             <a className={styles.link}>
               <Image
                 src={content[0].better_featured_image.source_url.replace(
@@ -26,9 +26,9 @@ export default function ArticleHero({ content }) {
                 height={350}
                 layout="intrinsic"
               />
-              <h3 className={`${styles.mainArticleTitle} mt-3 mb-2`}>
+              <p className={`${styles.mainArticleTitle} mt-3 mb-2 h3`}>
                 <strong>{content[0].title.rendered}</strong>
-              </h3>
+              </p>
             </a>
           </Link>
           <p>
@@ -50,7 +50,8 @@ export default function ArticleHero({ content }) {
           <ul className="list-unstyled">
             {articleList.map((article) => (
               <li key={article.id} className="d-flex mb-2">
-                <a href={article.link} className={`${styles.link} ${styles.list}`}>
+                <Link href={article.link.replace('https://scarincihollenbeck.com','')}>
+                <a className={styles.list}>
                   <div className="d-none d-md-block">
                     <Image
                       src={article.better_featured_image.source_url}
@@ -70,13 +71,13 @@ export default function ArticleHero({ content }) {
                     />
                   </div>
                   <div className={styles.listArticleTitle}>
-                    <h5 className="mb-1">
+                    <p className="h5 mb-1">
                       <strong
                         dangerouslySetInnerHTML={createMarkup(
                           article.title.rendered.toString(),
                         )}
                       />
-                    </h5>
+                    </p>
                     <p className={`mt-0 pt-0 ${styles.listArticleExcerpt}`}>
                       <small
                         dangerouslySetInnerHTML={createMarkup(
@@ -91,6 +92,8 @@ export default function ArticleHero({ content }) {
                     </p>
                   </div>
                 </a>
+                </Link>
+
               </li>
             ))}
           </ul>

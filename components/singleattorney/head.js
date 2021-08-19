@@ -9,14 +9,16 @@ export default function AttorneyProfileHead({ seo }) {
   const {
     title, canonicalLink, metaDescription, image, designation, socialMediaLinks,
   } = seo;
+
+  const fullCanonicalUrl = `https://scarincihollenbeck.com/${canonicalLink}`;
   return (
     <>
       <NextSeo
         title={title}
         description={metaDescription}
-        canonical={`https://scarincihollenbeck.com/${canonicalLink}`}
+        canonical={fullCanonicalUrl}
         openGraph={{
-          url: `https://scarincihollenbeck.com/${canonicalLink}}`,
+          url: fullCanonicalUrl,
           title: 'Scarinci Hollenbeck',
           description: metaDescription,
           type: 'website',
@@ -32,7 +34,7 @@ export default function AttorneyProfileHead({ seo }) {
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: `https://scarincihollenbeck.com/${canonicalLink}}`,
+          site: fullCanonicalUrl,
           cardType: metaDescription,
           twitter: image,
         }}
@@ -52,24 +54,13 @@ export default function AttorneyProfileHead({ seo }) {
             __html: JSON.stringify(
               buildAttorneyProfileSchema(
                 title,
-                `https://scarincihollenbeck.com/${canonicalLink}}`,
+                fullCanonicalUrl,
                 image,
                 socialMediaLinks,
                 designation,
               ),
             ),
           }}
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          charSet="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
     </>
