@@ -40,9 +40,9 @@ export default function FeaturedArticle({ articles }) {
             />
           </ArticleImage>
           <ArticleContainer>
-            <h4 className="mb-1 mt-2 px-0 py-0">
+            <p className="h4 mb-1 mt-2 px-0 py-0">
               <strong>{article.title}</strong>
-            </h4>
+            </p>
             <p className="mt-0 pt-0 px-0 mx-0">{article.description}</p>
           </ArticleContainer>
         </a>

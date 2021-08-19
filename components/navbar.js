@@ -81,7 +81,7 @@ export default function NavBar() {
               <Nav>
                 <NavDropdown
                   title="The Firm"
-                  id="basic-nav-dropdown"
+                  id="the-firm-dropdown"
                   className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
                 >
                   <Link href="/administration">
@@ -125,7 +125,7 @@ export default function NavBar() {
                 </Nav.Item>
                 <NavDropdown
                   title="Library"
-                  id="basic-nav-dropdown"
+                  id="the-library-dropdown"
                   className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
                 >
                   <a href="/library/category/firm-news" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>

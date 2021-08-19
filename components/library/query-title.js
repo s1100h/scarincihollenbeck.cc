@@ -1,5 +1,5 @@
 const QueryTitle = ({ title }) => (
-  <h4 className="mt-4 mb-0 d-block">
+  <p className="mt-4 mb-0 d-block">
     Results for
     {' '}
     <u className="text-capitalize">
@@ -7,8 +7,8 @@ const QueryTitle = ({ title }) => (
     </u>
     {' '}
     articles
-    <style jsx>{' h4{ font-size: 1.25rem}'}</style>
-  </h4>
+    <style jsx>{' p{ font-size: 1.25rem}'}</style>
+  </p>
 );
 
 export default QueryTitle;

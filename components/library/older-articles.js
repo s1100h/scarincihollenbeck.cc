@@ -46,9 +46,9 @@ export default function OlderArticles({ initialArticles, query }) {
           <Col key={article.imgAlt} sm={12} md={10} className="mx-3 mb-3">
             <Link href={article.link}>
               <a className="text-dark">
-                <h5 className="mb-0">
+                <p className="h5 mb-0">
                   <strong>{article.title}</strong>
-                </h5>
+                </p>
                 <p className="d-block mt-1 mb-2">{article.date}</p>
                 <p style={{ lineHeight: '1.25', color: '#444' }}>
                   {article.description}
