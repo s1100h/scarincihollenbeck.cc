@@ -8,12 +8,13 @@ import AttorneyCard from 'components/attorney-card';
 import { headers, sortByKey } from 'utils/helpers';
 
 export default function Administration({ admins, seo }) {
+  const canonicalUrl = `http://scarincihollenbeck.com/${seo.canonicalLink}`;
   return (
     <>
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical={canonicalUrl}
       />
       <SingleSubHeader
         title="Administration"

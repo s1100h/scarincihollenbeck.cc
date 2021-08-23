@@ -13,7 +13,7 @@ export default function HappyHolidaysTwentyTwenty({ title, content, seo }) {
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical="http://scarincihollenbeck.com/holiday/2020-happy-holidays"
       />
       <SingleSubHeader
         title={title}

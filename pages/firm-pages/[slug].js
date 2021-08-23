@@ -17,22 +17,22 @@ const pages = [
   {
     id: 'WF7jMpVJP3PTnuP',
     title: 'Pro Bono',
-    slug: 'pro-bono',
+    slug: '/pro-bono',
   },
   {
     id: 'vehm0rQb7cpMH92',
     title: 'Women Lead',
-    slug: 'women-lead',
+    slug: '/women-lead',
   },
   {
     id: 'SjveurE3BK1R1l2',
     title: 'Community Involvement',
-    slug: 'community-involvement',
+    slug: '/community-involvement',
   },
   {
     id: 'SjveurE7BK1R1l2',
     title: 'Diversity Group',
-    slug: 'diversity-group',
+    slug: '/diversity-group',
   },
 ];
 

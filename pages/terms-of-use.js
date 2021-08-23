@@ -16,7 +16,7 @@ export default function TermsOfUse({ content, seo }) {
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/disclaimer"
+        canonical="http://scarincihollenbeck.com/terms-of-use"
       />
       <SingleSubHeader
         title="Terms of use"

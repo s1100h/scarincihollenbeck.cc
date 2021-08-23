@@ -7,13 +7,13 @@ export default function HappyHolidaysNineteen({ title, content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
-
+  const canonicalUrl = `http://scarincihollenbeck.com/holiday/${seo.canonicalLink}`;
   return (
     <>
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        ccanonical="http://scarincihollenbeck.com/holiday/2019-happy-holidays"
       />
       <SingleSubHeader
         title={title}

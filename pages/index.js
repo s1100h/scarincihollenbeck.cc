@@ -59,7 +59,6 @@ export default function HomePageTwo({
         />
       </Head>
       <HomeBanner />
-      <AttorneyAnnoucenmentModal />
       <Container>
         <HomeMainTag />
         <HomeHoneyCombSection

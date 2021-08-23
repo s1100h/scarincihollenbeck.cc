@@ -16,7 +16,7 @@ export default function PrivacyPolicy({ title, content, seo }) {
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/disclaimer"
+        canonical="http://scarincihollenbeck.com/privacy-policy"
       />
       <SingleSubHeader
         title={title}

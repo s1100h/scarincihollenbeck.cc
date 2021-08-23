@@ -4496,6 +4496,16 @@
       "source": "/client-alert/muslim-discrimination-in-the-workplace",
       "destination": "/law-firm-insights/muslim-discrimination-in-the-workplace",
       "statusCode": 301
+    },
+    {
+      "source": "/attorney/david-a-einhorn",
+      "destination": "/passing-attorney-david-a-einhorn",
+      "statusCode": 301
+    },
+    {
+      "source": "/attorney/harvey-r-poe",
+      "destination": "/passing-attorney-harvey-r-poe",
+      "statusCode": 301
     }
   ]
 }

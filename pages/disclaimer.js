@@ -16,7 +16,7 @@ export default function Disclaimer({ content, seo }) {
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/awards"
+        canonical="http://scarincihollenbeck.com/disclaimer"
       />
       <SingleSubHeader
         title="Disclaimer"

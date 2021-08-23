@@ -9,7 +9,7 @@ import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import SidebarContent from 'components/singlepractice/sidebar';
 import SiteLoader from 'components/site-loader';
-import { headers } from 'utils/helpers';
+import { headers, urlify } from 'utils/helpers';
 
 const slugs = [
   '/funeral-announcements/passing-attorney-harvey-r-poe',
@@ -58,31 +58,33 @@ export default function FuneralAnnouncement({
     {
       id: 'WF7jMpVJP3PTnuP',
       title: 'Pro Bono',
-      slug: 'pro-bono',
+      slug: '/pro-bono',
     },
     {
       id: 'vehm0rQb7cpMH92',
       title: 'Women Lead',
-      slug: 'women-lead',
+      slug: '/women-lead',
     },
     {
       id: 'SjveurE3BK1R1l2',
       title: 'Community Involvement',
-      slug: 'community-involvement',
+      slug: '/community-involvement',
     },
     {
       id: 'SjveurE7BK1R1l2',
       title: 'Diversity Group',
-      slug: 'diversity-group',
+      slug: '/diversity-group',
     },
   ];
+
+  const canonicalUrl = urlify(title.replace('The','').trim());
 
   return (
     <>
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/passing-attorney-harvey-r-poe"
+        canonical={`http://scarincihollenbeck.com/${canonicalUrl}`}
       />
       <SingleSubHeader
         title={title}

@@ -29,14 +29,16 @@ export default function AdminSingleBio({ response }) {
     offices: response.offices,
   };
 
+  const canonicalUrl = `https://scarincihollenbeck.com/${response.seo.canonicalLink}`;
+
   return (
     <>
       <NextSeo
         title={response.seo.title}
         description={response.seo.metaDescription}
-        canonical={`https://scarincihollenbeck.com${response.seo.canonicalLink}`}
+        canonical={canonicalUrl}
         openGraph={{
-          url: `https://scarincihollenbeck.com${response.seo.canonicalLink}`,
+          url: canonicalUrl,
           title: 'Scarinci Hollenbeck',
           description: response.seo.metaDescription,
           images: [
@@ -51,14 +53,14 @@ export default function AdminSingleBio({ response }) {
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: `https://scarincihollenbeck.com${response.seo.canonicalLink}`,
+          site: canonicalUrl,
           cardType: response.seo.metaDescription,
         }}
       />
       <SocialProfileJsonLd
         type="Person"
         name={response.name}
-        url={`https://scarincihollenbeck.com${response.seo.canonicalLink}`}
+        url={canonicalUrl}
         sameAs={[
           'https://twitter.com/S_H_Law',
           'https://www.facebook.com/ScarinciHollenbeck/',

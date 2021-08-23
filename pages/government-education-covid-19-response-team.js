@@ -19,17 +19,17 @@ export default function GovernmentEducationCovidResponseTeam({
     {
       id: '9TZ8Zz7xy95BVp',
       title: 'Firm News',
-      slug: 'library/category/firm-news',
+      slug: '/library/category/firm-news',
     },
     {
       id: 'RMtQjkqW3jAVvC',
       title: 'Firm Events',
-      slug: 'library/category/firm-events',
+      slug: '/library/category/firm-events',
     },
     {
       id: 'KNDpxvUhdm73hf',
       title: 'Firm Insights',
-      slug: 'library/category/law-firm-insights',
+      slug: '/library/category/law-firm-insights',
     },
   ];
 
@@ -37,22 +37,22 @@ export default function GovernmentEducationCovidResponseTeam({
     {
       id: 'WF7jMpVJP3PTnuP',
       title: 'Pro Bono',
-      slug: 'pro-bono',
+      slug: '/pro-bono',
     },
     {
       id: 'vehm0rQb7cpMH92',
       title: 'Women Lead',
-      slug: 'women-lead',
+      slug: '/women-lead',
     },
     {
       id: 'SjveurE3BK1R1l2',
       title: 'Community Involvement',
-      slug: 'community-involvement',
+      slug: '/community-involvement',
     },
     {
       id: 'SjveurE7BK1R1l2',
       title: 'Diversity Group',
-      slug: 'diversity-group',
+      slug: '/diversity-group',
     },
   ];
 
