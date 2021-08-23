@@ -29,19 +29,9 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
     case 'media':
       return <AttorneyProfileTab title="Media" content={content} />;
     case 'representative-matters':
-      return (
-        <AttorneyProfileMatters
-          title="Representative Matters"
-          content={content}
-        />
-      );
+      return <AttorneyProfileMatters title="Representative Matters" content={content} />;
     case 'representative-clients':
-      return (
-        <AttorneyProfileMatters
-          title="Representative Clients"
-          content={content}
-        />
-      );
+      return <AttorneyProfileMatters title="Representative Clients" content={content} />;
     case 'awards':
       return <AttorneyProfileClients title="Awards" clients={content} />;
     case 'articles':
@@ -57,27 +47,30 @@ function renderBody(param, content, slug, header, defaultTabTitle) {
     case 'audio':
       return <AttorneyProfileBody title="Audio" content={content.body} />;
     case 'contact':
-      return <AttorneyProfileContact content={header} forwardEmail={header.profile.forwardedEmailAddresses} />;
+      return (
+        <AttorneyProfileContact
+          content={header}
+          forwardEmail={header.profile.forwardedEmailAddresses}
+        />
+      );
     default:
       if (Array.isArray(content)) {
-        return (
-          <AttorneyProfileBody
-            title={defaultTabTitle}
-            content={content[0].body}
-          />
-        );
+        return <AttorneyProfileBody title={defaultTabTitle} content={content[0].body} />;
       }
 
       if (typeof content === 'object') {
-        return (
-          <AttorneyProfileBody title={defaultTabTitle} content={content.body} />
-        );
+        return <AttorneyProfileBody title={defaultTabTitle} content={content.body} />;
       }
       return <AttorneyProfileBody title={defaultTabTitle} content={content} />;
   }
 }
 export default function AttorneyProfile({
-  seo, header, body, slug, attorneyFooterBlogArticles, attorneyFooterNewsArticles,
+  seo,
+  header,
+  body,
+  slug,
+  attorneyFooterBlogArticles,
+  attorneyFooterNewsArticles,
 }) {
   const router = useRouter();
 
@@ -103,28 +96,14 @@ export default function AttorneyProfile({
   return (
     <>
       <AttorneyProfileHead seo={seo} />
-      <AttorneyProfileHeader
-        image={header.image}
-        profile={header.profile}
-        slug={slug}
-      />
+      <AttorneyProfileHeader image={header.image} profile={header.profile} slug={slug} />
       <Container>
         <Row>
           <Col sm={12}>
-            <AttorneyBioLinks
-              links={bioMenuItems}
-              slug={slug}
-              mobileLinks={bioMobileMenuItems}
-            />
+            <AttorneyBioLinks links={bioMenuItems} slug={slug} mobileLinks={bioMobileMenuItems} />
           </Col>
           <Col sm={12} md={9}>
-            {renderBody(
-              paramArr[paramLen - 1],
-              body.content,
-              slug,
-              header,
-              defaultTabTitle,
-            )}
+            {renderBody(paramArr[paramLen - 1], body.content, slug, header, defaultTabTitle)}
           </Col>
           <Col sm={12} md={3}>
             <AttorneyProfileSidebar

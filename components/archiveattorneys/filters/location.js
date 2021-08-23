@@ -2,10 +2,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import styles from 'styles/AttorneyArchives.module.css';
 
-export default function ArchiveAttorneyFitlersLocation({
-  locations,
-  onSelect,
-}) {
+export default function ArchiveAttorneyFitlersLocation({ locations, onSelect }) {
   return (
     <DropdownButton
       variant="link"

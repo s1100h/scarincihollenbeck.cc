@@ -8,19 +8,13 @@ import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
 
 export default function LargeSidebarWithPosts({
-  content,
-  sidebar,
-  posts,
-  postsTitle,
+  content, sidebar, posts, postsTitle,
 }) {
   return (
     <Container>
       <Row>
         <Col sm={12} md={9}>
-          <div
-            className={pageContentStyles.p}
-            dangerouslySetInnerHTML={createMarkup(content)}
-          />
+          <div className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(content)} />
           <h3 className="mt-5">
             <strong style={{ fontSize: '1.3rem' }}>{postsTitle}</strong>
           </h3>
@@ -41,9 +35,7 @@ export default function LargeSidebarWithPosts({
               </li>
             ))}
           </ul>
-          <h4 className={grayTitleStyles.title}>
-            Contact A Firm Reprepresentative
-          </h4>
+          <h4 className={grayTitleStyles.title}>Contact A Firm Reprepresentative</h4>
           <ContactForm />
         </Col>
         <Col sm={12} md={3}>

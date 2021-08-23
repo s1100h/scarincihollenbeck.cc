@@ -10,13 +10,7 @@ import styles from 'styles/Banner.module.css';
 
 export default function AdminProfileHeader({ image, profile }) {
   const {
-    name,
-    designation,
-    offices,
-    phoneNumber,
-    email,
-    vizibility,
-    socialMedia,
+    name, designation, offices, phoneNumber, email, vizibility, socialMedia,
   } = profile;
 
   const contact = { phoneNumber, email };
@@ -44,24 +38,10 @@ export default function AdminProfileHeader({ image, profile }) {
                 </Col>
                 <Col sm={12} md={7}>
                   <div className="my-3">
-                    <ProfileTitle
-                      name={name}
-                      designation={designation}
-                      chair={[]}
-                      coChair={[]}
-                    />
+                    <ProfileTitle name={name} designation={designation} chair={[]} coChair={[]} />
                     <div className="d-flex flex-column flex-md-row">
-                      <ProfileDetails
-                        offices={offices}
-                        contact={contact}
-                        fax=""
-                      />
-                      <ContactIcons
-                        slug=""
-                        linkedIn={linkedIn}
-                        pdf=""
-                        vizibility={vizibility}
-                      />
+                      <ProfileDetails offices={offices} contact={contact} fax="" />
+                      <ContactIcons slug="" linkedIn={linkedIn} pdf="" vizibility={vizibility} />
                     </div>
                   </div>
                 </Col>

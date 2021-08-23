@@ -18,12 +18,7 @@ export default function PrivacyPolicy({ title, content, seo }) {
         description={seo.metaDescription}
         canonical="http://scarincihollenbeck.com/privacy-policy"
       />
-      <SingleSubHeader
-        title={title}
-        subtitle={subTitle}
-        span={7}
-        offset={2}
-      />
+      <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} />
       <Container>
         <Row>
           <Col sm={12}>

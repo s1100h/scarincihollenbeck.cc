@@ -25,10 +25,7 @@ export default function FirmOverview({
         offset={3}
       />
       <FullWidth>
-        <div
-          className="featured"
-          dangerouslySetInnerHTML={createMarkup(bodyContent)}
-        />
+        <div className="featured" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
         {mainTabs.map((tab) => (
           <div
             key={tab.title}

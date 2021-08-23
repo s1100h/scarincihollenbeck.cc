@@ -17,7 +17,7 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex((pi) => pi += 11);
+    setPageIndex((pi) => (pi += 11));
     setLoading(false);
   }
 
@@ -39,34 +39,38 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
             <strong>This attorney does not have any published articles or blog posts.</strong>
           </p>
         </Col>
-      ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
-        <Col sm={12} md={4} key={article.title} className="my-3">
-          <Link href={article.link}>
-            <a className="text-center mx-auto d-block">
-              <Image
-                alt={article.title}
-                src={
-                    article.image || article.featuredImg || '/images/no-image-found-diamond.png'
-                  }
-                width={300}
-                height={150}
-                className="rounded"
-              />
-              <small className="text-dark d-block">
-                <strong>{article.title}</strong>
-              </small>
-            </a>
-          </Link>
-        </Col>
-      ))}
+      ) : (
+        articleList
+          .filter((_, i) => i <= pageIndex)
+          .map((article) => (
+            <Col sm={12} md={4} key={article.title} className="my-3">
+              <Link href={article.link}>
+                <a className="text-center mx-auto d-block">
+                  <Image
+                    alt={article.title}
+                    src={
+                      article.image || article.featuredImg || '/images/no-image-found-diamond.png'
+                    }
+                    width={300}
+                    height={150}
+                    className="rounded"
+                  />
+                  <small className="text-dark d-block">
+                    <strong>{article.title}</strong>
+                  </small>
+                </a>
+              </Link>
+            </Col>
+          ))
+      )}
       {initalArticles.length > 0 && (
         <Col sm={12}>
-          <Button
-            variant="danger"
-            className="px-4 mx-3 mb-3"
-            onClick={() => handleClick()}
-          >
-            {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
+          <Button variant="danger" className="px-4 mx-3 mb-3" onClick={() => handleClick()}>
+            {loading ? (
+              <ClipLoader loading={loading} size={12} color="#FFF" />
+            ) : (
+              <>Load more posts</>
+            )}
           </Button>
         </Col>
       )}

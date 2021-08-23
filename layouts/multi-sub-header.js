@@ -2,9 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from 'styles/Banner.module.css';
 
-export default function MultiSubHeader({
-  profile, infoCard, isAdmin,
-}) {
+export default function MultiSubHeader({ profile, infoCard, isAdmin }) {
   return (
     <div className={styles.backPageBanner}>
       <div className={styles.multiBackBanner}>

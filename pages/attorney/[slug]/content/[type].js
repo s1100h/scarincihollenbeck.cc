@@ -42,10 +42,9 @@ export default function AttorneyBioProfileContent({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then(
+      (data) => data.json(),
+    ),
   ]);
   const attorneyBackPageLinks = [];
   res.forEach((attorney) => attorney.sidebarLinks.forEach((link) => attorneyBackPageLinks.push(link)));
@@ -58,14 +57,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
       { headers },
@@ -111,7 +108,9 @@ export async function getStaticProps({ params }) {
     typeToTerm = 'News & Press Releases';
   } else {
     const splitType = params.type.split('-');
-    const capitalizeEachWord = splitType.map((word) => `${word[0].toUpperCase()}${word.slice(1, word.length)}`).join(' ');
+    const capitalizeEachWord = splitType
+      .map((word) => `${word[0].toUpperCase()}${word.slice(1, word.length)}`)
+      .join(' ');
     typeToTerm = capitalizeEachWord;
   }
 

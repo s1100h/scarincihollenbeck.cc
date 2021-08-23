@@ -79,8 +79,7 @@ export function getDirectionsFromLocation(location) {
     const currentOffice = location.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
 
     // filter through available offices
-    const destination = offices.filter((v) => v.title === currentOffice)[0]
-      .address;
+    const destination = offices.filter((v) => v.title === currentOffice)[0].address;
     const map = `https://www.google.com/maps/dir/${lat}+${long}/${destination}`;
     window.open(map, '_blank');
   };
@@ -146,9 +145,7 @@ export function formatDate(date) {
     'November',
     'December',
   ];
-  const results = `${
-    month[dateObj.getMonth()]
-  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+  const results = `${month[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 
   return results;
 }

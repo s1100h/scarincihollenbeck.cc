@@ -70,11 +70,7 @@ export default function SubscriptionPage() {
           <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
             <SimpleSearch />
             <hr />
-            <SidebarContent
-              title="Firm Library"
-              content={firmLibrary}
-              tabKey={2}
-            />
+            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
             <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>

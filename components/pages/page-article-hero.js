@@ -17,10 +17,7 @@ export default function ArticleHeroPage({ link, content }) {
                 <a className="text-center mx-auto d-block">
                   <Image
                     alt={article.title}
-                    src={
-                      article.featuredImg
-                      || '/images/no-image-found-diamond.png'
-                    }
+                    src={article.featuredImg || '/images/no-image-found-diamond.png'}
                     width={300}
                     height={150}
                     className="rounded"

@@ -76,10 +76,9 @@ export default function HomePageTwo({
                 <strong>MEET OUR TEAM</strong>
               </p>
               <p>
-                Our attorneys collaborate across the firm’s practice areas to
-                achieve the best combination of knowledge, experience, and
-                efficiency. We are dedicated to delivering outstanding client
-                service.
+                Our attorneys collaborate across the firm’s practice areas to achieve the best
+                combination of knowledge, experience, and efficiency. We are dedicated to delivering
+                outstanding client service.
               </p>
               <Link href="/attorneys">
                 <a>Meet our attorneys</a>
@@ -94,9 +93,9 @@ export default function HomePageTwo({
                 <strong>OUR SERVICES</strong>
               </p>
               <p>
-                We help our clients achieve their goals by providing tailored
-                services with the focused experience of a boutique firm by
-                drawing upon the resources of the firm’s core practice areas.
+                We help our clients achieve their goals by providing tailored services with the
+                focused experience of a boutique firm by drawing upon the resources of the firm’s
+                core practice areas.
               </p>
               <Link href="/practices">
                 <a>See what we do</a>
@@ -119,10 +118,7 @@ export default function HomePageTwo({
         <HomePageLink link="/firm-overview" title="More from our firm" />
         <HomeOurLeadership attorneys={leadership} />
         <HomeReviews />
-        <HomePageLink
-          link="/awards"
-          title="Award Methodology"
-        />
+        <HomePageLink link="/awards" title="Award Methodology" />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
         <div className={marginStyles.mt6}>
           <ArticleHero content={posts} />
@@ -139,40 +135,25 @@ export default function HomePageTwo({
 
 export async function getStaticProps() {
   /** Adding in graphql queries */
-  const [
-    seo,
-    news,
-    events,
-    locations,
-    attorneys,
-    administration,
-  ] = await Promise.all([
+  const [seo, news, events, locations, attorneys, administration] = await Promise.all([
     fetch('https://wp.scarincihollenbeck.com/wp-json/front-page/meta', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=98&_embed',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=99&_embed',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=98&_embed', {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=99&_embed', {
+      headers,
+    }).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100',
-      {
-        headers,
-      },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/administration?per_page=10',
-      {
-        headers,
-      },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100', {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/administration?per_page=10', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   const posts = [...news, ...events];

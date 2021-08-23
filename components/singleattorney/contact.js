@@ -10,7 +10,6 @@ export default function AttorneyProfileContact({ content, forwardEmail }) {
     <div className={marginStyles.mtMinusMd2}>
       <h4 className={grayTitleStyles.title}>
         Get in touch with
-        {' '}
         {name}
       </h4>
       <AttorneyProfileContactForm forwardEmail={forwardEmail} currentAttorney={name} />

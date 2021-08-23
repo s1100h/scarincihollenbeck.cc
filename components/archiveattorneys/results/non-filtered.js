@@ -7,9 +7,7 @@ function AttorneyCards(title, content) {
   return (
     <Row>
       <Col sm={12} className="my-4">
-        <h3
-          className={`${textStyles.redTitle} text-uppercase border-bottom mb-0`}
-        >
+        <h3 className={`${textStyles.redTitle} text-uppercase border-bottom mb-0`}>
           <strong>{title}</strong>
         </h3>
       </Col>
@@ -33,9 +31,7 @@ function AttorneyCards(title, content) {
 
 export default function ArchiveAttorneyResultsNonFiltered({ attorneys }) {
   /// managing partners
-  const managingPartners = attorneys.filter(
-    (a) => a.designation === 'Managing Partner',
-  );
+  const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
 
   // partners & nyc managing partner
   const partners = attorneys.filter(
@@ -49,14 +45,10 @@ export default function ArchiveAttorneyResultsNonFiltered({ attorneys }) {
   const counsel = attorneys.filter((a) => a.designation === 'Counsel');
 
   // of counsel & counsel emeritus
-  const ofCounsel = attorneys.filter(
-    (a) => a.designation.indexOf('Of Counsel') > -1,
-  );
+  const ofCounsel = attorneys.filter((a) => a.designation.indexOf('Of Counsel') > -1);
 
   // senior associates
-  const seniorAssociates = attorneys.filter(
-    (a) => a.designation === 'Senior Associate',
-  );
+  const seniorAssociates = attorneys.filter((a) => a.designation === 'Senior Associate');
 
   // associates
   const associates = attorneys.filter((a) => a.designation === 'Associate');

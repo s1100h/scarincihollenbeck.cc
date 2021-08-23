@@ -24,15 +24,9 @@ import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 
-export default function PracticeSingle({
-  corePractices,
-  practice,
-  practiceChildren,
-}) {
+export default function PracticeSingle({ corePractices, practice, practiceChildren }) {
   const router = useRouter();
-  const practiceUrl = router.asPath
-    .replace('/practices/', '')
-    .replace('/practice/', '');
+  const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
   const canoncialUrl = `https://scarincihollenbeck.com/practice/${practice.slug}`;
 
   if (router.isFallback) {
@@ -86,10 +80,7 @@ export default function PracticeSingle({
         span={8}
         isTabs
       />
-      <TabContainer
-        id="nav-tab"
-        defaultActiveKey={urlify(practice.content[0].title)}
-      >
+      <TabContainer id="nav-tab" defaultActiveKey={urlify(practice.content[0].title)}>
         <Container>
           <Row>
             <Col sm={12}>
@@ -183,11 +174,7 @@ export default function PracticeSingle({
               )}
               <SubscriptionMessage />
               <hr />
-              <PracticeSidebar
-                title="Core Practices"
-                content={corePractices}
-                tabKey={2}
-              />
+              <PracticeSidebar title="Core Practices" content={corePractices} tabKey={2} />
               {practiceChildren.length > 0 && (
                 <>
                   <hr />
@@ -208,10 +195,9 @@ export default function PracticeSingle({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links', { headers }).then(
+      (data) => data.json(),
+    ),
   ]);
 
   const fullPracticeList = res.map((slug) => `/practice/${slug}`);

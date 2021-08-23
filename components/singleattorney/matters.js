@@ -11,12 +11,11 @@ export default function AttorneyProfileMatters({ content, title }) {
         && content.map((c) => (
           <div key={c.content}>
             {c.title.length > 0 && (
-              <h5 className="mb-3"><strong>{c.title}</strong></h5>
+              <h5 className="mb-3">
+                <strong>{c.title}</strong>
+              </h5>
             )}
-            <div
-              className={styles.container}
-              dangerouslySetInnerHTML={createMarkup(c.content)}
-            />
+            <div className={styles.container} dangerouslySetInnerHTML={createMarkup(c.content)} />
           </div>
         ))}
     </div>

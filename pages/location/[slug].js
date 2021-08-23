@@ -30,9 +30,7 @@ export default function SingleLocation({
           key={currentOffice.name}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              buildLocationSchema(seo, currentOffice.mapLink),
-            ),
+            __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)),
           }}
         />
       </Head>
@@ -84,14 +82,12 @@ export async function getStaticProps({ params }) {
     fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-location/office/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-location/office/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   if (currentOffice.status === 404) {

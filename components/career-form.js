@@ -78,12 +78,7 @@ export default function CareerForm({ contact, title }) {
               <span className="d-block w-100 my-2">
                 <strong>Upload your cover letter</strong>
               </span>
-              <input
-                type="file"
-                name="coverLetter"
-                id="coverLetter"
-                rules="required"
-              />
+              <input type="file" name="coverLetter" id="coverLetter" rules="required" />
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
@@ -99,11 +94,7 @@ export default function CareerForm({ contact, title }) {
               <span className="d-block w-100 my-2">
                 <strong>Upload a writing sample</strong>
               </span>
-              <input
-                type="file"
-                name="writing"
-                id="writing"
-              />
+              <input type="file" name="writing" id="writing" />
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
@@ -111,21 +102,16 @@ export default function CareerForm({ contact, title }) {
               <span className="d-block w-100 my-2">
                 <strong>Upload a transcript</strong>
               </span>
-              <input
-                type="file"
-                name="transcript"
-                id="transcript"
-              />
+              <input type="file" name="transcript" id="transcript" />
             </label>
           </Col>
         </Row>
         <Row className="mb-0">
           <Col sm={12} className="mx-0 px-1">
             <p className="mb-1">
-              * The use of the Internet or this form for communication with the
-              firm or any individual member of the firm does not establish an
-              attorney-client relationship. Confidential or time-sensitive
-              information should not be sent through this form.
+              * The use of the Internet or this form for communication with the firm or any
+              individual member of the firm does not establish an attorney-client relationship.
+              Confidential or time-sensitive information should not be sent through this form.
             </p>
             <fieldset data-kw-group="true" rules="required" className="mb-2">
               <label htmlFor="disclaimer">
@@ -142,11 +128,7 @@ export default function CareerForm({ contact, title }) {
             </fieldset>
           </Col>
         </Row>
-        <Button
-          variant="danger"
-          className="mt-2 px-4"
-          type="submit"
-        >
+        <Button variant="danger" className="mt-2 px-4" type="submit">
           Submit form
         </Button>
       </form>

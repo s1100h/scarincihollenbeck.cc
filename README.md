@@ -14,20 +14,18 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 
 ![Code Style Airbnb](https://camo.githubusercontent.com/1c5c800fbdabc79cfaca8c90dd47022a5b5c7486/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64652532307374796c652d616972626e622d627269676874677265656e2e7376673f7374796c653d666c61742d737175617265)
 
-
-
 ## Tech used
 
 **Client Application built with**
-  * [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
-  * [Google reCaptcha](https://www.google.com/recaptcha/about/)
-  * [Next](https://nextjs.org/)
-  * [React Bootstrap](https://react-bootstrap.github.io/)
-  * [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
-  * [React Share](https://github.com/nygardk/react-share#readme)
-  * [RSS Parser](https://github.com/rbren/rss-parser#readme)
-  * [SWR](https://swr.vercel.app/)
 
+- [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+- [Google reCaptcha](https://www.google.com/recaptcha/about/)
+- [Next](https://nextjs.org/)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+- [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
+- [React Share](https://github.com/nygardk/react-share#readme)
+- [RSS Parser](https://github.com/rbren/rss-parser#readme)
+- [SWR](https://swr.vercel.app/)
 
 ## Install
 
@@ -36,22 +34,22 @@ git clone https://github.com/s1100h/scarincihollenbeck.cc.git
 ```
 
 **Client Application**
+
 ```
 cd scarincihollenbeck.frontend.cc
 yarn install
 ```
 
-
 ## Development
 
 Before you can run the client application in development you first need to download and configure the [scarincihollenbeck.com backend services](https://github.com/s1100h/admin.scarincihollenbeck.cc/tree/main). You can find the directions on how to set up that in that repositories README.
 
-After your finish setting up the backend, you can now run the command ```yarn dev``` inside the ```client/app``` directory. This will lauch the local version of the site into the browser on port ```7700```.
+After your finish setting up the backend, you can now run the command `yarn dev` inside the `client/app` directory. This will lauch the local version of the site into the browser on port `7700`.
 
 ## Production
 
-To create a production copy of the client application run ```yarn build``` inside the ```client/app``` directory. Then to launch the production server locally run ```yarn start```. This will launch the production verion of the site into the browser running on port ```7300```.
+To create a production copy of the client application run `yarn build` inside the `client/app` directory. Then to launch the production server locally run `yarn start`. This will launch the production verion of the site into the browser running on port `7300`.
 
 ### Deployment
 
-To deploy changes to the live domain [scarincihollenbeck.com](https://scarinciholleneck.com) commit your changes to the ```client-prod``` branch. To send changes to the live preview domain [https://scarincihollenbeck-cc-git-production.s1100h.vercel.app/](https://scarincihollenbeck-cc-git-production.s1100h.vercel.app/) commit your changes to ```production``` branch.
+To deploy changes to the live domain [scarincihollenbeck.com](https://scarinciholleneck.com) commit your changes to the `client-prod` branch. To send changes to the live preview domain [https://scarincihollenbeck-cc-git-production.s1100h.vercel.app/](https://scarincihollenbeck-cc-git-production.s1100h.vercel.app/) commit your changes to `production` branch.

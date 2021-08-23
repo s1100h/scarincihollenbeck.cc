@@ -36,37 +36,24 @@ const pages = [
   },
 ];
 
-export default function FirmPages({ page, relatedPages }) {
+export default function FirmPages({ page, relatedPages, currentPage }) {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
   }
 
+  const canonicalUrl = `http://scarincihollenbeck.com/${currentPage}`;
+
   return (
     <>
-      <NextSeo
-        title={page.seo.title}
-        description={page.seo.metaDesc}
-        canonical="http://scarincihollenbeck.com/community-involvement"
-      />
-      <SingleSubHeader
-        title={page.title}
-        subtitle={page.description}
-        span={6}
-        offset={0}
-        isBlog
-      />
-
+      <NextSeo title={page.seo.title} description={page.seo.metaDesc} canonical={canonicalUrl} />
+      <SingleSubHeader title={page.title} subtitle={page.description} span={6} offset={0} isBlog />
       <Container>
         <Row>
           <Col sm={12} md={9}>
             {page.tabs.map((tab) => (
               <div key={tab.title}>
-                <h4
-                  className={`${grayTitleStyles.title} text-capitalize w-100`}
-                >
-                  {tab.title}
-                </h4>
+                <h4 className={`${grayTitleStyles.title} text-capitalize w-100`}>{tab.title}</h4>
                 <div dangerouslySetInnerHTML={createMarkup(tab.content)} />
               </div>
             ))}
@@ -89,11 +76,7 @@ export default function FirmPages({ page, relatedPages }) {
             <hr />
             <SubscriptionMessage />
             <hr />
-            <SidebarContent
-              title="Diversity"
-              content={relatedPages}
-              tabKey={2}
-            />
+            <SidebarContent title="Diversity" content={relatedPages} tabKey={2} />
           </Col>
         </Row>
       </Container>
@@ -102,7 +85,7 @@ export default function FirmPages({ page, relatedPages }) {
 }
 
 export async function getStaticPaths() {
-  const fullPageList = pages.map((a) => `/firm-pages/${a.slug}`);
+  const fullPageList = pages.map((a) => `/firm-pages${a.slug}`);
 
   return {
     paths: fullPageList || [],
@@ -120,6 +103,7 @@ export async function getStaticProps({ params }) {
     props: {
       page: restResponse,
       relatedPages: pages.filter((a) => a.slug !== params.slug),
+      currentPage: params.slug,
     },
     revalidate: 1,
   };

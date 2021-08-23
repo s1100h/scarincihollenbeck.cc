@@ -16,28 +16,26 @@ export default function PostsEventSidebar({ attorneys, eventDetails }) {
           <strong>Event Details</strong>
         </p>
         {eDetails && (
-        <>
-          <div style={{ marginTop: '-10px', marginBottom: '-15px' }}>
-            <strong>
-              <span
-                dangerouslySetInnerHTML={createMarkup(eDetails.address)}
-              />
-            </strong>
-          </div>
-          <p>
-            <strong>Date: </strong>
-            {' '}
-            {eDetails.date}
-            <br />
-            <strong>Start: </strong>
-            {' '}
-            {eDetails.start}
-            <br />
-            <strong>End: </strong>
-            {' '}
-            {eDetails.end}
-          </p>
-        </>
+          <>
+            <div style={{ marginTop: '-10px', marginBottom: '-15px' }}>
+              <strong>
+                <span dangerouslySetInnerHTML={createMarkup(eDetails.address)} />
+              </strong>
+            </div>
+            <p>
+              <strong>Date: </strong>
+              {' '}
+              {eDetails.date}
+              <br />
+              <strong>Start: </strong>
+              {' '}
+              {eDetails.start}
+              <br />
+              <strong>End: </strong>
+              {' '}
+              {eDetails.end}
+            </p>
+          </>
         )}
       </div>
       {/** MENTIONED ATTORNEYS */}

@@ -91,7 +91,9 @@ em {
   padding-right: 0;
 }
 
-.modal{ overflow: visible !important; }
+.modal {
+  overflow: visible !important;
+}
 
 a {
   color: #3344dd;

@@ -2,11 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Filtered from './filtered';
 import NotFiltered from './non-filtered';
 
-export default function ArchiveAttorneyResults({
-  attorneys,
-  select,
-  userInput,
-}) {
+export default function ArchiveAttorneyResults({ attorneys, select, userInput }) {
   return (
     <Container className="mt-2">
       {select.length > 0 ? (

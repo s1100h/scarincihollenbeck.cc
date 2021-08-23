@@ -1,9 +1,6 @@
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import {
-  buildBusinessSchema,
-  buildAttorneyProfileSchema,
-} from 'utils/json-ld-schemas';
+import { buildBusinessSchema, buildAttorneyProfileSchema } from 'utils/json-ld-schemas';
 
 export default function AttorneyProfileHead({ seo }) {
   const {

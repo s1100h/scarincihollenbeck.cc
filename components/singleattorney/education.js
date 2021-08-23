@@ -29,16 +29,13 @@ export default function AttorneyProfileEducation({ content }) {
           <div className="content" dangerouslySetInnerHTML={createMarkup(affiliations)} />
         </Col>
       )}
-      {additionalInformation.length > 0 && additionalInformation.map((info) => (
-        <Col sm={12} className="mt-3" key={info.title}>
-          {info.title && (
-            <h4 className={grayTitleStyles.title}>
-              {info.title}
-            </h4>
-          )}
-          <div className="content" dangerouslySetInnerHTML={createMarkup(info.content)} />
-        </Col>
-      ))}
+      {additionalInformation.length > 0
+        && additionalInformation.map((info) => (
+          <Col sm={12} className="mt-3" key={info.title}>
+            {info.title && <h4 className={grayTitleStyles.title}>{info.title}</h4>}
+            <div className="content" dangerouslySetInnerHTML={createMarkup(info.content)} />
+          </Col>
+        ))}
       <style jsx>{' div.content { margin-top: 0; margin-bottom: 0; }'}</style>
     </Row>
   );

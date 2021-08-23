@@ -4,11 +4,7 @@ import AttorneyCard from 'components/attorney-card';
 import { filterByKey } from 'utils/helpers';
 import textStyles from 'styles/Text.module.css';
 
-export default function ArchiveAttorneyResultsFiltered({
-  attorneys,
-  userInput,
-  select,
-}) {
+export default function ArchiveAttorneyResultsFiltered({ attorneys, userInput, select }) {
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');
@@ -19,11 +15,7 @@ export default function ArchiveAttorneyResultsFiltered({
   const filterPractices = (attorney) => {
     if (practices.length > 0) {
       const prunedPracticeList = attorney.practices_array.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
-      return (
-        prunedPracticeList.indexOf(
-          practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase(),
-        ) > -1
-      );
+      return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
     }
 
     return attorney;
@@ -41,7 +33,10 @@ export default function ArchiveAttorneyResultsFiltered({
   const filterDesignation = (attorney) => {
     if (desgination.length > 0) {
       if (desgination[0] === 'Of Counsel') {
-        return attorney.designation.indexOf(desgination[0]) === 0 && attorney.designation !== 'Of Counsel/Partner Emeritus';
+        return (
+          attorney.designation.indexOf(desgination[0]) === 0
+          && attorney.designation !== 'Of Counsel/Partner Emeritus'
+        );
       }
       return attorney.designation.indexOf(desgination[0]) === 0;
     }
@@ -67,9 +62,7 @@ export default function ArchiveAttorneyResultsFiltered({
   // filter by key -- letter
   const filterLetter = (attorney) => {
     if (letter.length > 0) {
-      return (
-        attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase()
-      );
+      return attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase();
     }
     return attorney;
   };
@@ -98,9 +91,7 @@ export default function ArchiveAttorneyResultsFiltered({
         </Col>
       ))}
       {aFiltered.length < 1 && (
-        <h3
-          className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}
-        >
+        <h3 className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}>
           <strong>Sorry, no attorneys found according to this query.</strong>
         </h3>
       )}

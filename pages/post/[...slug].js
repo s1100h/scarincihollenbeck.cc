@@ -77,13 +77,7 @@ export default function LawFirmInsightsPost({
         publisherLogo="/images/sh-logo-2020-compressor.png"
         description={`${seo.metaDescription}`}
       />
-      <SingleSubHeader
-        title={title}
-        subtitle={subTitle}
-        isBlog
-        offset={0}
-        span={8}
-      />
+      <SingleSubHeader title={title} subtitle={subTitle} isBlog offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} md={9}>
@@ -101,11 +95,7 @@ export default function LawFirmInsightsPost({
           </Col>
           <Col sm={12} md={3}>
             {isEventCategory && eventDetails.length > 0 ? (
-              <EventSidebar
-                eventDetails={eventDetails}
-                title={title}
-                attorneys={attorneys}
-              />
+              <EventSidebar eventDetails={eventDetails} title={title} attorneys={attorneys} />
             ) : (
               <Sidebar posts={posts} title={title} attorneys={attorneys} />
             )}
@@ -121,9 +111,9 @@ export default function LawFirmInsightsPost({
 export async function getServerSideProps({ params, res, query }) {
   // retrieve the authors for the post
   const restResponse = await fetch(
-    `https://wp.scarincihollenbeck.com/wp-json/single/post/${
-      params.slug[params.slug.length - 1]
-    }/${query.category}`,
+    `https://wp.scarincihollenbeck.com/wp-json/single/post/${params.slug[params.slug.length - 1]}/${
+      query.category
+    }`,
     { headers },
   )
     .then((data) => data.json())
@@ -158,9 +148,7 @@ export async function getServerSideProps({ params, res, query }) {
       subTitle: restResponse.subTitle,
       tags: restResponse.seo.tags || defaultTag,
       date: restResponse.date,
-      featuredImage:
-        restResponse.featuredImage
-        || '/images/no-image-found-diamond-750x350.png',
+      featuredImage: restResponse.featuredImage || '/images/no-image-found-diamond-750x350.png',
       featuredImageCaption: restResponse.featuredImageCaption,
       postContent: restResponse.content,
       authorLinks: restResponse.author.map((author) => author.link) || [

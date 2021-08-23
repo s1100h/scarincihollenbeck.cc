@@ -35,7 +35,6 @@ export default function FeaturedLinks() {
               margin-right: 2em !important;
             }
           }
-          
         `}
       </style>
     </Col>

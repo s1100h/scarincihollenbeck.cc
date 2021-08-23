@@ -47,8 +47,7 @@ export function buildBusinessSchema() {
         potentialAction: [
           {
             '@type': 'SearchAction',
-            target:
-              'https://scarincihollenbeck.com/search?q={search_term_string}&page=1',
+            target: 'https://scarincihollenbeck.com/search?q={search_term_string}&page=1',
             'query-input': 'required name=search_term_string',
           },
         ],
@@ -91,13 +90,7 @@ export function buildLocationSchema(location) {
   };
 }
 
-export function buildAttorneyProfileSchema(
-  name,
-  url,
-  imageUrl,
-  socialMediaLinks,
-  jobTitle,
-) {
+export function buildAttorneyProfileSchema(name, url, imageUrl, socialMediaLinks, jobTitle) {
   let links;
 
   if (socialMediaLinks) {

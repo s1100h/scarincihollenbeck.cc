@@ -28,28 +28,20 @@
 }
 
 @media (min-width: 2004px) {
-  .just-in-container
-    > .react-multi-carousel-list
-    > .react-multiple-carousel__arrow--right {
+  .just-in-container > .react-multi-carousel-list > .react-multiple-carousel__arrow--right {
     right: -1% !important;
   }
 
-  .just-in-container
-    > .react-multi-carousel-list
-    > .react-multiple-carousel__arrow--left {
+  .just-in-container > .react-multi-carousel-list > .react-multiple-carousel__arrow--left {
     left: -1% !important;
   }
 }
 
 @media (min-width: 2475px) {
-  .just-in-container
-    > .react-multi-carousel-list
-    > .react-multiple-carousel__arrow--right {
+  .just-in-container > .react-multi-carousel-list > .react-multiple-carousel__arrow--right {
     right: -0.5% !important;
   }
-  .just-in-container
-    > .react-multi-carousel-list
-    > .react-multiple-carousel__arrow--left {
+  .just-in-container > .react-multi-carousel-list > .react-multiple-carousel__arrow--left {
     left: -0.5% !important;
   }
 }

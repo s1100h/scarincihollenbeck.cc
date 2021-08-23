@@ -72,10 +72,7 @@ export default function AdminSingleBio({ response }) {
         <Row>
           <Col sm={12}>
             <h4 className={grayTitleStyles.title}>Biography</h4>
-            <div
-              className="mb-5"
-              dangerouslySetInnerHTML={createMarkup(response.biography)}
-            />
+            <div className="mb-5" dangerouslySetInnerHTML={createMarkup(response.biography)} />
           </Col>
         </Row>
       </Container>
@@ -100,10 +97,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [bio] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-admin/admin/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-admin/admin/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   if (JSON.stringify(bio) === '{}') {

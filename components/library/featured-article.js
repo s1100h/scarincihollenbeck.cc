@@ -16,8 +16,8 @@ const ArticleContainer = styled.div`
 const ArticleImage = styled.div`
   max-width: 300%;
   text-align: center;
-  @media (min-width: 768px) { 
-    text-align:left;
+  @media (min-width: 768px) {
+    text-align: left;
   }
 `;
 
@@ -28,11 +28,7 @@ export default function FeaturedArticle({ articles }) {
         <a className="d-flex flex-column flex-md-row text-dark mx-3 mx-md-0">
           <ArticleImage>
             <Image
-              src={
-              article.image
-                ? article.image
-                : '/images/no-image-found-diamond-750x350.png'
-            }
+              src={article.image ? article.image : '/images/no-image-found-diamond-750x350.png'}
               alt={article.title}
               width={300}
               height={150}

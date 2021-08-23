@@ -40,9 +40,7 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
       return career;
     }
 
-    const careerListFiltered = careers
-      .filter(filterPostionType)
-      .filter(filterPositionLocation);
+    const careerListFiltered = careers.filter(filterPostionType).filter(filterPositionLocation);
 
     setCareers(careerListFiltered);
   }
@@ -91,12 +89,7 @@ export async function getStaticProps() {
   return {
     props: {
       careerList: res.careers,
-      locations: [
-        'Lyndhurst, NJ',
-        'Red Bank, NJ',
-        'New York, NY',
-        'Washington D.C.',
-      ],
+      locations: ['Lyndhurst, NJ', 'Red Bank, NJ', 'New York, NY', 'Washington D.C.'],
       positionTypes: ['Administration', 'Attorney'],
     },
     revalidate: 1,

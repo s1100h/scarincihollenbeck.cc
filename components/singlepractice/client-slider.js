@@ -24,13 +24,7 @@ const responsive = {
 
 export default function PracticeClientSlider({ content }) {
   return (
-    <Carousel
-      aria-label="carousel"
-      responsive={responsive}
-      infinite
-      arrows
-      swipeable
-    >
+    <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {content.map((slide) => (
         <div key={slide.title} className="pb-2 px-4">
           <Image
@@ -40,9 +34,7 @@ export default function PracticeClientSlider({ content }) {
             layout="intrinsic"
             alt={slide.title}
           />
-          <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>
-            {slide.title}
-          </p>
+          <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>{slide.title}</p>
         </div>
       ))}
     </Carousel>

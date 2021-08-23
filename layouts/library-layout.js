@@ -24,7 +24,6 @@ export default function LibraryLayout({
   childrenOfCurrentCategory,
   pageTitle,
   query,
-
 }) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -95,11 +94,7 @@ export default function LibraryLayout({
               )}
               {results.results && results.results.length > 1 && (
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
-                  <FeaturedArticle
-                    articles={results.results.filter(
-                      (_, i) => i > 0 && i <= 4,
-                    )}
-                  />
+                  <FeaturedArticle articles={results.results.filter((_, i) => i > 0 && i <= 4)} />
                 </ul>
               )}
               <div className={marginStyles.mt65}>
@@ -128,16 +123,9 @@ export default function LibraryLayout({
             </div>
           )}
         </Col>
-        <Col
-          sm={12}
-          md={3}
-          className="d-flex flex-column justify-content-start mt-3"
-        >
+        <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">
           {childrenOfCurrentCategory.length > 0 && (
-            <PopularList
-              term="Related Categories"
-              list={childrenOfCurrentCategory}
-            />
+            <PopularList term="Related Categories" list={childrenOfCurrentCategory} />
           )}
           <PopularList term="Popular Categories" list={popularCategories} />
           <p className={`${fontStyles.ft12rem} d-block w-100`}>
@@ -145,10 +133,7 @@ export default function LibraryLayout({
           </p>
           <ul className={styles.authorList}>
             {authors.map((author) => (
-              <li
-                key={author.lastName}
-                className={`${styles.author} list-unstyled`}
-              >
+              <li key={author.lastName} className={`${styles.author} list-unstyled`}>
                 <Link href={`/library/author/${urlify(author.username)}`}>
                   <a className="text-dark">{author.fullName}</a>
                 </Link>

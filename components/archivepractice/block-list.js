@@ -46,9 +46,7 @@ export default function ArchivePracticeBlockList({ list }) {
         ) : (
           <Col sm={12} md={4} key={item.title} className="mb-3">
             <Link href={item.slug}>
-              <a className={`${bigButtonStyles.tab} w-100 d-block`}>
-                {item.title}
-              </a>
+              <a className={`${bigButtonStyles.tab} w-100 d-block`}>{item.title}</a>
             </Link>
           </Col>
         )))}

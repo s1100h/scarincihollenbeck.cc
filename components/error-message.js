@@ -6,18 +6,11 @@ export default function ErrorMessage() {
   return (
     <>
       {show && (
-        <Alert
-          variant="danger"
-          onClose={() => setShow(false)}
-          className="my-5"
-          dismissible
-        >
-          <Alert.Heading>
-            There is an error loading this information
-          </Alert.Heading>
+        <Alert variant="danger" onClose={() => setShow(false)} className="my-5" dismissible>
+          <Alert.Heading>There is an error loading this information</Alert.Heading>
           <p>
-            Try clearing your browser cache, and refresh the page. If there
-            error continues please email
+            Try clearing your browser cache, and refresh the page. If there error continues please
+            email
             {' '}
             <strong>info@sh-law..com</strong>
           </p>

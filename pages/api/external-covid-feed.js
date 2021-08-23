@@ -35,21 +35,14 @@ export default async (req, res) => {
       const parser = new Parser();
 
       // parse through njBiz Government section
-      const njBizGovFeed = await parser.parseURL(
-        'https://njbiz.com/feed/?cat=275',
-      );
+      const njBizGovFeed = await parser.parseURL('https://njbiz.com/feed/?cat=275');
       const njBizGovUrl = '<a href="https://njbiz.com/government/">NJBIZ - Government</a>';
       const parsedNjBizGov = await parseFeedResults(njBizGovFeed, njBizGovUrl);
 
       // parse through njBiz Health section
-      const njBizHealthFeed = await parser.parseURL(
-        'https://njbiz.com/feed/?cat=420',
-      );
+      const njBizHealthFeed = await parser.parseURL('https://njbiz.com/feed/?cat=420');
       const njBizHealthUrl = '<a href="https://njbiz.com/health-care/">NJBIZ - Health Care</a>';
-      const parsedNjBizHealth = await parseFeedResults(
-        njBizHealthFeed,
-        njBizHealthUrl,
-      );
+      const parsedNjBizHealth = await parseFeedResults(njBizHealthFeed, njBizHealthUrl);
 
       // North Jersey health
       const northJerseyHealthFeed = await parser.parseURL(
@@ -62,9 +55,7 @@ export default async (req, res) => {
       );
 
       // North Jersey health
-      const asburyParkPressFeed = await parser.parseURL(
-        'http://rssfeeds.app.com/asburypark/home',
-      );
+      const asburyParkPressFeed = await parser.parseURL('http://rssfeeds.app.com/asburypark/home');
       const asburyParkPressUrl = '<a href="https://www.app.com">Asbury Park Press</a>';
       const parseAsburyParkPress = await parseFeedResults(
         asburyParkPressFeed,
@@ -73,19 +64,12 @@ export default async (req, res) => {
       );
 
       // observer
-      const observerPressFeed = await parser.parseURL(
-        'https://observer.com/feed',
-      );
+      const observerPressFeed = await parser.parseURL('https://observer.com/feed');
       const observerUrl = '<a href="https://observer.com">Observer.com</a>';
-      const parsedObserver = await parseFeedResults(
-        observerPressFeed,
-        observerUrl,
-      );
+      const parsedObserver = await parseFeedResults(observerPressFeed, observerUrl);
 
       // observer
-      const roiNJPressFeed = await parser.parseURL(
-        'https://www.roi-nj.com/feed',
-      );
+      const roiNJPressFeed = await parser.parseURL('https://www.roi-nj.com/feed');
       const roiNJUrl = '<a href="https://observer.com">ROI-NJ.com</a>';
       const parsedRoiNJ = await parseFeedResults(roiNJPressFeed, roiNJUrl);
 

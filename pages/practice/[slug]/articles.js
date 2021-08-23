@@ -30,9 +30,7 @@ export default function PracticeSingleArticles({
   posts,
 }) {
   const router = useRouter();
-  const practiceUrl = router.asPath
-    .replace('/practices/', '')
-    .replace('/practice/', '');
+  const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -56,10 +54,7 @@ export default function PracticeSingleArticles({
         span={8}
         isTabs
       />
-      <TabContainer
-        id="nav-tab"
-        defaultActiveKey="related-articles"
-      >
+      <TabContainer id="nav-tab" defaultActiveKey="related-articles">
         <Container>
           <Row>
             <Col sm={12}>
@@ -67,19 +62,23 @@ export default function PracticeSingleArticles({
             </Col>
             <Col sm={12} md={9}>
               <TabContent key="related-articles">
-                <AttorneyProfilePractice tabTitle="related-articles" initalArticles={posts} title={practice.title} />
+                <AttorneyProfilePractice
+                  tabTitle="related-articles"
+                  initalArticles={posts}
+                  title={practice.title}
+                />
               </TabContent>
               <div style={{ position: 'relative', bottom: '2.5em' }}>
                 {practice.content.length > 0
-                && practice.content.map((item) => (
-                  <TabContent key={item.title}>
-                    <PracticeContent
-                      tabTitle={urlify(item.title)}
-                      title={item.title}
-                      content={item.content}
-                    />
-                  </TabContent>
-                ))}
+                  && practice.content.map((item) => (
+                    <TabContent key={item.title}>
+                      <PracticeContent
+                        tabTitle={urlify(item.title)}
+                        title={item.title}
+                        content={item.content}
+                      />
+                    </TabContent>
+                  ))}
               </div>
 
               {practice.attorneyList.length > 0 && (
@@ -159,11 +158,7 @@ export default function PracticeSingleArticles({
               )}
               <SubscriptionMessage />
               <hr />
-              <PracticeSidebar
-                title="Core Practices"
-                content={corePractices}
-                tabKey={2}
-              />
+              <PracticeSidebar title="Core Practices" content={corePractices} tabKey={2} />
               {practiceChildren.length > 0 && (
                 <>
                   <hr />
@@ -184,10 +179,9 @@ export default function PracticeSingleArticles({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links', { headers }).then(
+      (data) => data.json(),
+    ),
   ]);
 
   const fullPracticeList = res.map((slug) => `/practice/${slug}/articles`);
@@ -222,7 +216,9 @@ export async function getStaticProps({ params }) {
   /** get parent category */
   const blogId = res.blog_data_id[0];
   const practiceSlug = res.slug;
-  const posts = await fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`).then((data) => data.json());
+  const posts = await fetch(
+    `https://wp.scarincihollenbeck.com/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`,
+  ).then((data) => data.json());
 
   return {
     props: {

@@ -6,11 +6,7 @@ import {
   TwitterShareButton,
 } from 'react-share';
 import {
-  FaLinkedin,
-  FaFacebookSquare,
-  FaTwitterSquare,
-  FaEnvelope,
-  FaPrint,
+  FaLinkedin, FaFacebookSquare, FaTwitterSquare, FaEnvelope, FaPrint,
 } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
@@ -25,10 +21,7 @@ export default function PostSocialShareSidebar({ title }) {
         <strong>Share this article</strong>
       </p>
       <p className="mb-1">
-        <LinkedinShareButton
-          url={`https://scarincihollenbeck.com${router.asPath}`}
-          quote={title}
-        >
+        <LinkedinShareButton url={`https://scarincihollenbeck.com${router.asPath}`} quote={title}>
           <FaLinkedin style={{ fontSize: '1.2rem' }} />
           <u className="link">
             <strong>LinkedIn</strong>
@@ -36,10 +29,7 @@ export default function PostSocialShareSidebar({ title }) {
         </LinkedinShareButton>
       </p>
       <p className="mb-1">
-        <FacebookShareButton
-          url={`https://scarincihollenbeck.com${router.asPath}`}
-          quote={title}
-        >
+        <FacebookShareButton url={`https://scarincihollenbeck.com${router.asPath}`} quote={title}>
           <FaFacebookSquare style={{ fontSize: '1.1rem' }} />
           <u className="link">
             <strong>Facebook</strong>
@@ -47,10 +37,7 @@ export default function PostSocialShareSidebar({ title }) {
         </FacebookShareButton>
       </p>
       <p className="mb-1">
-        <TwitterShareButton
-          url={`https://scarincihollenbeck.com${router.asPath}`}
-          quote={title}
-        >
+        <TwitterShareButton url={`https://scarincihollenbeck.com${router.asPath}`} quote={title}>
           <FaTwitterSquare style={{ fontSize: '1.1rem' }} />
           <u className="link twitter">
             <strong>Twitter</strong>

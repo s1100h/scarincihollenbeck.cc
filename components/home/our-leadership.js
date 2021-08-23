@@ -8,9 +8,7 @@ import styles from 'styles/AttorneyCard.module.css';
 function AttorneyProfile({ attorney }) {
   return (
     <Col sm={12} md={3} className="my-4">
-      <Link
-        href={attorney.link.replace('https://wp.scarincihollenbeck.com', '')}
-      >
+      <Link href={attorney.link.replace('https://wp.scarincihollenbeck.com', '')}>
         <a className="text-dark text-center">
           <div className="mx-auto d-block text-center">
             <Image
@@ -34,7 +32,6 @@ function AttorneyProfile({ attorney }) {
           ) : (
             <p>
               Chair,
-              {' '}
               {attorney.title.join(', ')}
             </p>
           )}

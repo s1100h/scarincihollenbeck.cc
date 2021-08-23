@@ -12,7 +12,7 @@ export default function OlderArticles({ initialArticles, query }) {
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex((pi) => pi += 1);
+    setPageIndex((pi) => (pi += 1));
     const url = `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&${query}`;
 
     const getOlderPosts = await fetch(url)
@@ -50,20 +50,14 @@ export default function OlderArticles({ initialArticles, query }) {
                   <strong>{article.title}</strong>
                 </p>
                 <p className="d-block mt-1 mb-2">{article.date}</p>
-                <p style={{ lineHeight: '1.25', color: '#444' }}>
-                  {article.description}
-                </p>
+                <p style={{ lineHeight: '1.25', color: '#444' }}>{article.description}</p>
               </a>
             </Link>
           </Col>
         ))
       )}
       <Col sm={12}>
-        <Button
-          variant="danger"
-          className="px-4 mx-3 mb-3"
-          onClick={() => handleClick()}
-        >
+        <Button variant="danger" className="px-4 mx-3 mb-3" onClick={() => handleClick()}>
           {loading ? <>Loading...</> : <>Load more posts</>}
         </Button>
       </Col>

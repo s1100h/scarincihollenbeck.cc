@@ -32,10 +32,7 @@ function PracticeListItem({ title, onSelect, pChildren }) {
   );
 }
 
-export default function ArchiveAttorneyFitlersPractices({
-  practices,
-  onSelect,
-}) {
+export default function ArchiveAttorneyFitlersPractices({ practices, onSelect }) {
   /**
    *
    * Filter each item into a column

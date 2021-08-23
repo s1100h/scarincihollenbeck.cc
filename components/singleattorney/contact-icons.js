@@ -25,9 +25,7 @@ export default function ContactIcons({
       <li>
         <a
           href={
-            linkedIn
-              ? linkedIn.url
-              : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'
+            linkedIn ? linkedIn.url : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'
           }
           size="sm"
           rel="noopener noreferrer"

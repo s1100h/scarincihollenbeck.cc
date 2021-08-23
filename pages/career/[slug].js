@@ -86,11 +86,7 @@ export default function CareerPost({ career }) {
             <hr />
             <SubscriptionMessage />
             <hr />
-            <SidebarContent
-              title="Firm Library"
-              content={firmLibrary}
-              tabKey={2}
-            />
+            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
             <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>
@@ -117,10 +113,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [careerJson] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-career/career/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-career/career/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   if (careerJson.status === 404) {

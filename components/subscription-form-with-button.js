@@ -82,12 +82,8 @@ export default function SubscriptionFormWithButton() {
               rules="required|max:255"
             />
             <fieldset data-kw-group="true" rules="required">
-              <span className={fontsStyles.smallExcerpt}>
-                Please select a category(s) below:
-              </span>
-              <ul
-                className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}
-              >
+              <span className={fontsStyles.smallExcerpt}>Please select a category(s) below:</span>
+              <ul className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}>
                 {checkboxes.map((type) => (
                   <li key={type.key}>
                     <label htmlFor={type.key} className="mb-0">
@@ -105,11 +101,7 @@ export default function SubscriptionFormWithButton() {
               </ul>
             </fieldset>
             <div className="modal-footer justify-content-start">
-              <Button
-                variant="danger"
-                type="submit"
-                className="px-5"
-              >
+              <Button variant="danger" type="submit" className="px-5">
                 Submit
               </Button>
             </div>

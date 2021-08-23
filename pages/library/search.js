@@ -46,29 +46,19 @@ export async function getServerSideProps({ query }) {
     tempChildCat += term;
   }
 
-  const [
-    results,
-    authors,
-    childrenOfCurrentCategory,
-    popularCategories,
-  ] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`,
-      {
-        headers,
-      },
-    ).then((data) => data.json()),
+  const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
+      headers,
+    }).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/category/popular-categories',
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/popular-categories', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   return {

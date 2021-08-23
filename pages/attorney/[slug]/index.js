@@ -45,10 +45,9 @@ export default function AttorneyBioProfile({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then(
+      (data) => data.json(),
+    ),
   ]);
 
   const fullAttorneyList = res.map((a) => `/attorney${a.link}`);
@@ -62,14 +61,12 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
   const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`, {
+      headers,
+    }).then((data) => data.json()),
     fetch(
       `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/biography`,
       { headers },

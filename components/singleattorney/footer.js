@@ -18,9 +18,7 @@ function ClientSection({ slug, clients }) {
               <a className="text-center mx-auto d-block">
                 <Image
                   alt={article.title}
-                  src={
-                    article.featuredImg || '/images/no-image-found-diamond.png'
-                  }
+                  src={article.featuredImg || '/images/no-image-found-diamond.png'}
                   width={200}
                   height={200}
                   className="rounded"
@@ -29,10 +27,7 @@ function ClientSection({ slug, clients }) {
             </Link>
           </Col>
         ))}
-        <HomePageLink
-          link={`/attorney/${slug}/clients`}
-          title="See More Clients"
-        />
+        <HomePageLink link={`/attorney/${slug}/clients`} title="See More Clients" />
       </Row>
     </>
   );
@@ -61,10 +56,7 @@ function ArticleSection({
           </Link>
         </Col>
       ))}
-      <HomePageLink
-        link={`/attorney/${slug}/content/${type}`}
-        title={`More ${title}`}
-      />
+      <HomePageLink link={`/attorney/${slug}/content/${type}`} title={`More ${title}`} />
     </Row>
   );
 }
@@ -77,8 +69,8 @@ export default function AttorneyProfileFooter({
 }) {
   return (
     <div style={{ minHeight: '20vh' }}>
-      {(clients.length > 0) && <ClientSection slug={slug} clients={clients} />}
-      {(attorneyFooterNewsArticles.length > 0) && (
+      {clients.length > 0 && <ClientSection slug={slug} clients={clients} />}
+      {attorneyFooterNewsArticles.length > 0 && (
         <>
           <div className={lineStyles.lineHeader}>
             <h3>News & Press Releases</h3>
@@ -91,7 +83,7 @@ export default function AttorneyProfileFooter({
           />
         </>
       )}
-      {(attorneyFooterBlogArticles.length > 0) && (
+      {attorneyFooterBlogArticles.length > 0 && (
         <>
           <div className={lineStyles.lineHeader}>
             <h3>Blogs</h3>
@@ -102,7 +94,6 @@ export default function AttorneyProfileFooter({
             title="Blogs"
             type="blogs"
           />
-
         </>
       )}
     </div>

@@ -24,20 +24,9 @@ export default function PostBody({
     <>
       <PostBreadcrumbs />
       {featuredImage && (
-        <Image
-          src={featuredImage}
-          width={750}
-          height={350}
-          alt={title}
-          layout="intrinsic"
-        />
+        <Image src={featuredImage} width={750} height={350} alt={title} layout="intrinsic" />
       )}
-      {caption && (
-        <div
-          className="mt-0 mb-2"
-          dangerouslySetInnerHTML={createMarkup(caption)}
-        />
-      )}
+      {caption && <div className="mt-0 mb-2" dangerouslySetInnerHTML={createMarkup(caption)} />}
       {/* title and subtitle for print version only */}
       <div className="d-none d-print-block">
         <h1>{title}</h1>

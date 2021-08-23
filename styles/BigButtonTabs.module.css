@@ -17,24 +17,24 @@
 } */
 
 .tab {
-
-    text-align: center;
-    border: 1px solid #db2200;
-    /* margin-right: 15px;
+  text-align: center;
+  border: 1px solid #db2200;
+  /* margin-right: 15px;
     margin-bottom: 10px; */
-    display:block;
-    padding-left:1em;
-    padding-right: 1em;
-    color: #db2200!important;
-    text-decoration: none;
-    transition: All 1s ease;
-    -webkit-transition: All 1s ease;
-    -moz-transition: All 1s ease;
-    border-radius: 3px;
-    text-align: center;
+  display: block;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #db2200 !important;
+  text-decoration: none;
+  transition: All 1s ease;
+  -webkit-transition: All 1s ease;
+  -moz-transition: All 1s ease;
+  border-radius: 3px;
+  text-align: center;
 }
 
-.onMainPracticePage, .onSinglePracticePage {
+.onMainPracticePage,
+.onSinglePracticePage {
   padding-top: 10px;
   padding-bottom: 10px;
 }

@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import marginStyles from 'styles/Margins.module.css';
 
-const removeDuplicates = (arr) => arr.filter((v, i, a) => a.findIndex((t) => (t.id === v.id)) === i);
+const removeDuplicates = (arr) => arr.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
 
 export default function AttorneyProfilePractice({ initalArticles, title }) {
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function AttorneyProfilePractice({ initalArticles, title }) {
 
   async function handleClick() {
     setLoading(true);
-    setPageIndex((pi) => pi += 11);
+    setPageIndex((pi) => (pi += 11));
     setLoading(false);
   }
   return (
@@ -39,39 +39,42 @@ export default function AttorneyProfilePractice({ initalArticles, title }) {
               <strong>Thare are no articles or blow posts for this practice area.</strong>
             </p>
           </Col>
-        ) : articleList.filter((_, i) => i <= pageIndex).map((article) => (
-          <Col sm={12} md={4} key={article.title} className="my-3">
-            <Link href={article.link}>
-              <a className="text-center mx-auto d-block">
-                <Image
-                  alt={article.title}
-                  src={
-                    article.image || article.featuredImg || '/images/no-image-found-diamond.png'
-                  }
-                  width={300}
-                  height={150}
-                  className="rounded"
-                />
-                <small className="text-dark d-block">
-                  <strong>{article.title}</strong>
-                </small>
-              </a>
-            </Link>
-          </Col>
-        ))}
+        ) : (
+          articleList
+            .filter((_, i) => i <= pageIndex)
+            .map((article) => (
+              <Col sm={12} md={4} key={article.title} className="my-3">
+                <Link href={article.link}>
+                  <a className="text-center mx-auto d-block">
+                    <Image
+                      alt={article.title}
+                      src={
+                        article.image || article.featuredImg || '/images/no-image-found-diamond.png'
+                      }
+                      width={300}
+                      height={150}
+                      className="rounded"
+                    />
+                    <small className="text-dark d-block">
+                      <strong>{article.title}</strong>
+                    </small>
+                  </a>
+                </Link>
+              </Col>
+            ))
+        )}
         {initalArticles.length > 0 && (
           <Col sm={12}>
-            <Button
-              variant="danger"
-              className="px-4 mx-3 mb-3"
-              onClick={() => handleClick()}
-            >
-              {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Load more posts</>}
+            <Button variant="danger" className="px-4 mx-3 mb-3" onClick={() => handleClick()}>
+              {loading ? (
+                <ClipLoader loading={loading} size={12} color="#FFF" />
+              ) : (
+                <>Load more posts</>
+              )}
             </Button>
           </Col>
         )}
       </Row>
-
     </TabPane>
   );
 }

@@ -16,9 +16,7 @@ export default function Footer() {
         <Container className="py-3">
           <Row>
             <Col sm={12}>
-              <ul
-                className={`${styles.mainLinks} list-inline text-left text-md-center mb-0`}
-              >
+              <ul className={`${styles.mainLinks} list-inline text-left text-md-center mb-0`}>
                 <li className="list-inline-item p-2 p-md-0">
                   <Link href="/attorneys">
                     <a className={styles.mainLink}>
@@ -282,15 +280,13 @@ export default function Footer() {
               />
               <div className="mx-1">
                 <p className="py-1">
-                  <strong className={styles.bottomTag}>
-                    ATTORNEY ADVERTISING
-                  </strong>
+                  <strong className={styles.bottomTag}>ATTORNEY ADVERTISING</strong>
                   <small>
                     <strong>
                       Prior results do not guarantee a similar outcome. @
                       {currentYear}
-                      , Scarinci Hollenbeck, LLC, all rights
-                      reserved
+                      , Scarinci
+                      Hollenbeck, LLC, all rights reserved
                     </strong>
                   </small>
                 </p>

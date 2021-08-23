@@ -33,18 +33,13 @@ export default function LibraryCategory({
   return (
     <>
       {Object.keys(seo).length > 0 && (
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical={`https://scarincihollenbeck.com/library/${seo.canonicalLink}`}
-      />
+        <NextSeo
+          title={seo.title}
+          description={seo.metaDescription}
+          canonical={`https://scarincihollenbeck.com/library/${seo.canonicalLink}`}
+        />
       )}
-      <SingleSubHeader
-        span={8}
-        offset={1}
-        title={name}
-        subtitle={modDescription}
-      />
+      <SingleSubHeader span={8} offset={1} title={name} subtitle={modDescription} />
       <LibraryLayout
         results={results}
         authors={authors}
@@ -85,34 +80,22 @@ export async function getStaticProps({ params }) {
     tempChildCat += slug;
   }
 
-  const [
-    results,
-    authors,
-    childrenOfCurrentCategory,
-    popularCategories,
-    categoryDetails,
-  ] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`,
-      {
-        headers,
-      },
-    ).then((data) => data.json()),
+  const [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await Promise.all([
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
+      headers,
+    }).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/category/popular-categories',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/category/posts/${tempChildCat}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/popular-categories', {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/posts/${tempChildCat}`, {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   if ('status' in categoryDetails && categoryDetails.status === 404) {

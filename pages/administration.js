@@ -11,11 +11,7 @@ export default function Administration({ admins, seo }) {
   const canonicalUrl = `http://scarincihollenbeck.com/${seo.canonicalLink}`;
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical={canonicalUrl}
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader
         title="Administration"
         subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."

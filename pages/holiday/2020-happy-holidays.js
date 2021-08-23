@@ -15,13 +15,7 @@ export default function HappyHolidaysTwentyTwenty({ title, content, seo }) {
         description={seo.metaDescription}
         canonical="http://scarincihollenbeck.com/holiday/2020-happy-holidays"
       />
-      <SingleSubHeader
-        title={title}
-        subtitle={subTitle}
-        span={7}
-        offset={2}
-        isHoliday
-      />
+      <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} isHoliday />
       <FullWidth>
         <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
       </FullWidth>
@@ -31,10 +25,9 @@ export default function HappyHolidaysTwentyTwenty({ title, content, seo }) {
 
 export async function getStaticProps() {
   const [aJson] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/2020-happy-holidays',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/2020-happy-holidays', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   const { title, content, seo } = aJson;

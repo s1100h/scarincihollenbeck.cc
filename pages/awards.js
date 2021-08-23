@@ -61,12 +61,7 @@ export default function Awards({ content, seo }) {
         description={seo.metaDescription}
         canonical="http://scarincihollenbeck.com/awards"
       />
-      <SingleSubHeader
-        title="Awards"
-        subtitle={subTitle}
-        offset={0}
-        span={8}
-      />
+      <SingleSubHeader title="Awards" subtitle={subTitle} offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} md={9}>
@@ -77,11 +72,7 @@ export default function Awards({ content, seo }) {
             <hr />
             <SubscriptionMessage />
             <hr />
-            <SidebarContent
-              title="Firm Library"
-              content={firmLibrary}
-              tabKey={2}
-            />
+            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
             <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>
@@ -92,12 +83,9 @@ export default function Awards({ content, seo }) {
 }
 
 export async function getStaticProps() {
-  const request = await fetch(
-    'https://wp.scarincihollenbeck.com/wp-json/single-page/page/awards',
-    {
-      headers,
-    },
-  ).then((data) => data.json());
+  const request = await fetch('https://wp.scarincihollenbeck.com/wp-json/single-page/page/awards', {
+    headers,
+  }).then((data) => data.json());
 
   const { title, content, seo } = request;
 

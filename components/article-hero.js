@@ -17,10 +17,7 @@ export default function ArticleHero({ content }) {
           <Link href={content[0].link.replace('https://scarincihollenbeck.com', '')}>
             <a className={styles.link}>
               <Image
-                src={content[0].better_featured_image.source_url.replace(
-                  'Feature',
-                  'Body',
-                )}
+                src={content[0].better_featured_image.source_url.replace('Feature', 'Body')}
                 alt={content[0].title.rendered}
                 width={750}
                 height={350}
@@ -36,15 +33,13 @@ export default function ArticleHero({ content }) {
             <span className="mr-3">{formatDate(content[0].date)}</span>
             <strong>Author: </strong>
             {content[0]._embedded.author.map((a) => (
-              <a key={a.name} href={a.link.replace('wp.', '')} className={styles.link}>{a.name}</a>
+              <a key={a.name} href={a.link.replace('wp.', '')} className={styles.link}>
+                {a.name}
+              </a>
             ))}
           </p>
           <hr />
-          <p
-            dangerouslySetInnerHTML={createMarkup(
-              setTextLen(content[0].excerpt.rendered, 220),
-            )}
-          />
+          <p dangerouslySetInnerHTML={createMarkup(setTextLen(content[0].excerpt.rendered, 220))} />
         </Col>
         <Col sm={12} md={6}>
           <ul className="list-unstyled">
@@ -73,18 +68,14 @@ export default function ArticleHero({ content }) {
                     <div className={styles.listArticleTitle}>
                       <p className="h5 mb-1">
                         <strong
-                          dangerouslySetInnerHTML={createMarkup(
-                            article.title.rendered.toString(),
-                          )}
+                          dangerouslySetInnerHTML={createMarkup(article.title.rendered.toString())}
                         />
                       </p>
                       <p className={`mt-0 pt-0 ${styles.listArticleExcerpt}`}>
                         <small
                           dangerouslySetInnerHTML={createMarkup(
                             setTextLen(
-                              article.excerpt.rendered
-                                .replace('<p>', '')
-                                .replace('</p>', ''),
+                              article.excerpt.rendered.replace('<p>', '').replace('</p>', ''),
                               130,
                             ),
                           )}
@@ -93,7 +84,6 @@ export default function ArticleHero({ content }) {
                     </div>
                   </a>
                 </Link>
-
               </li>
             ))}
           </ul>

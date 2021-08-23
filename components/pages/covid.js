@@ -4,10 +4,7 @@ import { createMarkup } from 'utils/helper';
 export default function PagesCovid({ content, covidPosts, articleTitle }) {
   return (
     <div>
-      <div
-        className="post-content"
-        dangerouslySetInnerHTML={createMarkup(content)}
-      />
+      <div className="post-content" dangerouslySetInnerHTML={createMarkup(content)} />
       <>
         <h3>
           <strong style={{ 'font-size': '1.8rem' }}>{articleTitle}</strong>
@@ -17,10 +14,7 @@ export default function PagesCovid({ content, covidPosts, articleTitle }) {
           <div className="row mh-75">
             {covidPosts.length > 0
               && covidPosts.map((post) => (
-                <div
-                  key={post.id}
-                  className="col-sm-12 col-md-12 col-lg-6 my-3"
-                >
+                <div key={post.id} className="col-sm-12 col-md-12 col-lg-6 my-3">
                   <div className="card" id="covid-post">
                     <img
                       style={{ flexShrink: 0, width: '100%' }}

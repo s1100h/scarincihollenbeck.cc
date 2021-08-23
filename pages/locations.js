@@ -66,14 +66,12 @@ export async function getStaticProps() {
     fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/individual-location/office/lyndhurst',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/lyndhurst',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/individual-location/office/lyndhurst', {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/lyndhurst', {
+      headers,
+    }).then((data) => data.json()),
   ]);
   return {
     props: {

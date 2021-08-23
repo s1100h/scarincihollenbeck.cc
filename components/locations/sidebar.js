@@ -10,10 +10,7 @@ export default function LocationsSidebar({ offices }) {
     <>
       <ul>
         {officeList.map((office) => (
-          <li
-            key={office.ID || office.id}
-            className="list-unstyled border-bottom py-2"
-          >
+          <li key={office.ID || office.id} className="list-unstyled border-bottom py-2">
             <Link href={office.slug || '/'}>
               <a className="text-dark">
                 {office.title === 'Washington D.C.' ? (
@@ -60,9 +57,7 @@ export default function LocationsSidebar({ offices }) {
                   onClick={() => getDirectionsFromLocation(office.slug)}
                 >
                   <strong>
-                    <u>
-                      Directions
-                    </u>
+                    <u>Directions</u>
                   </strong>
                 </Button>
               </li>

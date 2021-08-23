@@ -24,11 +24,7 @@ export default function NavBar() {
               </Link>
             </p>
           </Col>
-          <Col
-            sm={12}
-            md={6}
-            className={`d-flex ${navBarStyles.contactBanner} pr-0`}
-          >
+          <Col sm={12} md={6} className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
             <p className="my-1 pb-1 mx-0 px-0 mr-2">
               <span>
                 {' '}
@@ -59,11 +55,7 @@ export default function NavBar() {
           </Col>
         </Row>
         <Row>
-          <Col
-            xs={12}
-            lg={6}
-            className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}
-          >
+          <Col xs={12} lg={6} className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}>
             <Link href="/">
               <a>
                 <Image
@@ -90,21 +82,23 @@ export default function NavBar() {
                     </a>
                   </Link>
                   <Link href="/careers">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Careers
-                    </a>
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>Careers</a>
                   </Link>
-                  <a href="/community-involvement" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  <a
+                    href="/community-involvement"
+                    className={`${navBarStyles.dropDownNavItem} dropdown-item`}
+                  >
                     Community Involvement
                   </a>
 
-                  <a href="/diversity-group" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  <a
+                    href="/diversity-group"
+                    className={`${navBarStyles.dropDownNavItem} dropdown-item`}
+                  >
                     Diversity Group
                   </a>
                   <Link href="/firm-overview">
-                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                      Firm Overview
-                    </a>
+                    <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>Firm Overview</a>
                   </Link>
                   <a href="/pro-bono" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
                     Pro Bono
@@ -128,13 +122,22 @@ export default function NavBar() {
                   id="the-library-dropdown"
                   className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
                 >
-                  <a href="/library/category/firm-news" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  <a
+                    href="/library/category/firm-news"
+                    className={`${navBarStyles.dropDownNavItem} dropdown-item`}
+                  >
                     Firm News
                   </a>
-                  <a href="/library/category/firm-events" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  <a
+                    href="/library/category/firm-events"
+                    className={`${navBarStyles.dropDownNavItem} dropdown-item`}
+                  >
                     Firm Events
                   </a>
-                  <a href="/library/category/law-firm-insights" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                  <a
+                    href="/library/category/law-firm-insights"
+                    className={`${navBarStyles.dropDownNavItem} dropdown-item`}
+                  >
                     Firm Insights
                   </a>
                 </NavDropdown>

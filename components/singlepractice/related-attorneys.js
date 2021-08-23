@@ -7,10 +7,7 @@ import lineHeadingStyles from 'styles/LineHeader.module.css';
 import { sortByKey } from 'utils/helpers';
 
 export default function PracticeRelatedAttorneys({
-  members,
-  chair,
-  title,
-  handleLink,
+  members, chair, title, handleLink,
 }) {
   return (
     <>

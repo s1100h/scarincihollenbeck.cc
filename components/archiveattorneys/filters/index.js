@@ -36,16 +36,10 @@ export default function ArchiveAttorneyFilters({
             <Practices practices={practices} onSelect={onSelect} />
           </Col>
           <Col sm={12} md={4}>
-            <ArchiveAttorneyFitlersLocation
-              locations={locations}
-              onSelect={onSelect}
-            />
+            <ArchiveAttorneyFitlersLocation locations={locations} onSelect={onSelect} />
           </Col>
           <Col sm={12} md={4}>
-            <ArchiveAttorneyFitlersTitle
-              designation={designation}
-              onSelect={onSelect}
-            />
+            <ArchiveAttorneyFitlersTitle designation={designation} onSelect={onSelect} />
           </Col>
         </Row>
       </Container>

@@ -92,8 +92,7 @@ export default function ContactPage() {
             <p>
               <strong>If you are a client,</strong>
               {' '}
-              please get in touch with
-              your
+              please get in touch with your
               <Link href="/attorneys">
                 <a className={textStyles.redTitle}>
                   {' '}
@@ -104,8 +103,8 @@ export default function ContactPage() {
               contact directly.
             </p>
             <p className="mb-4">
-              If you are looking to get in touch with an attorney under the
-              terms as to becoming a new client please call
+              If you are looking to get in touch with an attorney under the terms as to becoming a
+              new client please call
               {' '}
               <strong>201-896-4100.</strong>
             </p>
@@ -113,20 +112,14 @@ export default function ContactPage() {
               All other inquires please fill out the form below.
             </h4>
             <ContactForm />
-            <style jsx>
-              {' p{ font-size: 1.15rem }; strong { font-size: 1.15rem }'}
-            </style>
+            <style jsx>{' p{ font-size: 1.15rem }; strong { font-size: 1.15rem }'}</style>
           </Col>
           <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
             <SimpleSearch />
             <hr />
             <SubscriptionMessage />
             <hr />
-            <SidebarContent
-              title="Firm Library"
-              content={firmLibrary}
-              tabKey={2}
-            />
+            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
             <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>

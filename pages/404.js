@@ -16,9 +16,8 @@ export default function PageNotFoundLandingPage() {
         <FullWidth>
           <div className="w-100">
             <p className="lead">
-              It&apos;s possible you entered the address incorrectly or we moved
-              the desired page. Try searching our site to find what you are
-              looking for.
+              It&apos;s possible you entered the address incorrectly or we moved the desired page.
+              Try searching our site to find what you are looking for.
             </p>
             <p className="lead">
               {' '}
@@ -33,17 +32,14 @@ export default function PageNotFoundLandingPage() {
               contact directly.
             </p>
             <p className="lead">
-              If you are looking to get in touch with an attorney under the
-              terms as to becoming a new client please call 201-896-4100.
+              If you are looking to get in touch with an attorney under the terms as to becoming a
+              new client please call 201-896-4100.
             </p>
           </div>
           <SimpleSearch />
           <div className="w-50 my-3 p-4 border">
             <h5>
-              <strong>
-                Or try visiting one of these pages on our site to narrow your
-                search.
-              </strong>
+              <strong>Or try visiting one of these pages on our site to narrow your search.</strong>
             </h5>
             <ul className="mb-0">
               <li>

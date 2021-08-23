@@ -8,11 +8,7 @@ import FullWidth from 'layouts/full-width';
 import { headers, sortByKey } from 'utils/helpers';
 
 export default function Attorneys({
-  seo,
-  locations,
-  designations,
-  practices,
-  attorneys,
+  seo, locations, designations, practices, attorneys,
 }) {
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
@@ -133,11 +129,7 @@ export default function Attorneys({
               clearAll={clearAll}
             />
             {attorneys.length > 0 && (
-              <Results
-                attorneys={attorneys}
-                userInput={userInput}
-                select={select}
-              />
+              <Results attorneys={attorneys} userInput={userInput} select={select} />
             )}
           </div>
           {/** End of Results */}
@@ -149,29 +141,19 @@ export default function Attorneys({
 
 export async function getStaticProps() {
   // Keep attorney-search API endpoint
-  const [
-    attorneys,
-    locations,
-    designations,
-    practices,
-    seo,
-  ] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/office-locations',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/designations',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices',
-      { headers },
-    ).then((data) => data.json()),
+  const [attorneys, locations, designations, practices, seo] = await Promise.all([
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then(
+      (data) => data.json(),
+    ),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/office-locations', {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/designations', {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then(
+      (data) => data.json(),
+    ),
     fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/meta', {
       headers,
     }).then((data) => data.json()),

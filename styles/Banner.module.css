@@ -7,7 +7,7 @@
   background: url(/images/dark-blue-banner.webp) no-repeat center center;
 }
 
-.holidayBanner {  
+.holidayBanner {
   background: url(/images/red-holiday-banner.webp) no-repeat center center;
 }
 
@@ -40,8 +40,6 @@
   border: 2px solid #000;
   border-radius: 2px;
 }
-
-
 
 @media (min-width: 1200px) {
   .redBanner {
@@ -78,7 +76,8 @@
   margin-bottom: 6.5em;
 }
 
-.tabBanner, .noTabBanner {
+.tabBanner,
+.noTabBanner {
   margin-top: 3.5em;
 }
 
@@ -89,7 +88,6 @@
 .noTabBanner {
   margin-bottom: 3.5em;
 }
-
 
 .multiBackBanner {
   margin-top: 2.5em;

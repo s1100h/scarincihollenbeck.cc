@@ -30,7 +30,13 @@ export default function PracticeLinks({ links, practiceUrl }) {
             </Nav.Item>
           ))}
           <Nav.Item as="li">
-            <Link href={isArticlesPage ? `/practice/${relatedArticlesLink}` : `/practice/${relatedArticlesLink}/articles`}>
+            <Link
+              href={
+                isArticlesPage
+                  ? `/practice/${relatedArticlesLink}`
+                  : `/practice/${relatedArticlesLink}/articles`
+              }
+            >
               <a
                 className={`${styles.tab} ${styles.practice} text-white`}
                 style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
@@ -43,11 +49,7 @@ export default function PracticeLinks({ links, practiceUrl }) {
       </div>
       <div className=" my-3 d-block d-md-none mobile-menu">
         <Dropdown size="lg" className={styles.mobileTabContainer}>
-          <Dropdown.Toggle
-            variant="danger"
-            id="dropdown-basic"
-            className="px-5"
-          >
+          <Dropdown.Toggle variant="danger" id="dropdown-basic" className="px-5">
             <strong>Menu Options</strong>
             <style jsx>{'strong{ font-size: 1.25rem}'}</style>
           </Dropdown.Toggle>
@@ -59,14 +61,17 @@ export default function PracticeLinks({ links, practiceUrl }) {
             ))}
             <Dropdown.Item
               className="text-dark"
-              href={isArticlesPage ? `/practice/${relatedArticlesLink}` : `/practice/${relatedArticlesLink}/articles`}
+              href={
+                isArticlesPage
+                  ? `/practice/${relatedArticlesLink}`
+                  : `/practice/${relatedArticlesLink}/articles`
+              }
             >
               Related Updates
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
-
     </>
   );
 }

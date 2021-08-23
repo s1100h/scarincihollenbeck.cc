@@ -1,9 +1,5 @@
 import { useRouter } from 'next/router';
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
-} from 'react-share';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 import socialIconStyles from 'styles/SocialFooterIcons.module.css';

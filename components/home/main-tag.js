@@ -3,15 +3,15 @@ export default function HomeMainTag() {
     <div className="my-5 text-center">
       <h1 className="h3">
         <strong>
-          As one of the most dynamic law firms in the New Jersey/New York
-          Metropolitan Region, the attorneys at Scarinci Hollenbeck provide a
-          broad range of legal services to a diverse group of clients.
+          As one of the most dynamic law firms in the New Jersey/New York Metropolitan Region, the
+          attorneys at Scarinci Hollenbeck provide a broad range of legal services to a diverse
+          group of clients.
         </strong>
       </h1>
       <h2 className="my-4 h4">
         <strong>
-          We support and advance our clients’ initiatives through innovative
-          solutions to complex legal problems.
+          We support and advance our clients’ initiatives through innovative solutions to complex
+          legal problems.
         </strong>
       </h2>
       <style jsx>

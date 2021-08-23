@@ -27,16 +27,19 @@ export default function AttorneyAnnoucenmentModal() {
             />
           </div>
           <p className="text-center">
-            <em>Scarinci Hollenbeck expresses our deepest sympathies on the loss of Partner, David A. Einhorn</em>
+            <em>
+              Scarinci Hollenbeck expresses our deepest sympathies on the loss of Partner, David A.
+              Einhorn
+            </em>
           </p>
           <p className="text-center mb-4">
-            Scarinci Hollenbeck is saddened to report the passing of David A. Einhorn, who has been with the firm since 2017 as Partner. Mr. Einhorn was Chair of the firm’s Technology Law practice group and played a key role in representing the firm’s clients in prominent and precedent-setting intellectual property cases.
+            Scarinci Hollenbeck is saddened to report the passing of David A. Einhorn, who has been
+            with the firm since 2017 as Partner. Mr. Einhorn was Chair of the firm’s Technology Law
+            practice group and played a key role in representing the firm’s clients in prominent and
+            precedent-setting intellectual property cases.
           </p>
           <Link href="/funeral-announcements/passing-attorney-david-a-einhorn">
-            <a
-              style={{ maxWidth: '200px' }}
-              className="btn btn-danger mx-auto d-block mb-4"
-            >
+            <a style={{ maxWidth: '200px' }} className="btn btn-danger mx-auto d-block mb-4">
               More information
             </a>
           </Link>

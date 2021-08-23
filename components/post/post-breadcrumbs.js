@@ -37,12 +37,7 @@ export default function PostBreadCrumbs() {
       <li className="list-inline-item">
         <Link href={router.asPath}>
           <a className={`${textStyles.redTitle} text-uppercase`}>
-            <strong>
-              {router.query.slug[router.query.slug.length - 1].replace(
-                /-/g,
-                ' ',
-              )}
-            </strong>
+            <strong>{router.query.slug[router.query.slug.length - 1].replace(/-/g, ' ')}</strong>
           </a>
         </Link>
       </li>

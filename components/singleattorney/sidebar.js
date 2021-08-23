@@ -53,19 +53,17 @@ export default function AttorneyProfileSidebar({
       </p>
       <p className="mt-2 mb-0">And we can discuss how my legal services can benefit you.</p>
       <Link scroll={false} href={`/attorney/${contact}`}>
-        <a className="btn btn-danger px-4 my-2">
-          Contact
-        </a>
+        <a className="btn btn-danger px-4 my-2">Contact</a>
       </Link>
       <hr />
       <p className={`${fontStyles.ft12rem} mb-0`}>
         <strong>Education & Admissions</strong>
       </p>
-      <p className="mt-2 mb-0">List of education, bar admissions, affilliations, memberships,  etc.</p>
+      <p className="mt-2 mb-0">
+        List of education, bar admissions, affilliations, memberships, etc.
+      </p>
       <Link scroll={false} href={educationLink}>
-        <a className="btn btn-danger px-4 my-2">
-          Credentials
-        </a>
+        <a className="btn btn-danger px-4 my-2">Credentials</a>
       </Link>
       {awards.length > 0 && (
         <div>
@@ -74,12 +72,7 @@ export default function AttorneyProfileSidebar({
             {awards.map((award) => (
               <div key={award.title}>
                 <a href={award.link}>
-                  <img
-                    src={award.featuredImg}
-                    alt={award.title}
-                    width="auto"
-                    height="120"
-                  />
+                  <img src={award.featuredImg} alt={award.title} width="auto" height="120" />
                 </a>
               </div>
             ))}
@@ -89,7 +82,6 @@ export default function AttorneyProfileSidebar({
               <a>Award Methodology</a>
             </Link>
           </small>
-
         </div>
       )}
     </div>

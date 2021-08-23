@@ -24,9 +24,7 @@ export default function Breadcrumbs({ pageTitle, parentCategory }) {
             </Link>
           )}
           <Link href={`/library?term=${pageTitle}`}>
-            <a className={textStyles.redTitle}>
-              {pageTitle.replace(/-/g, ' ')}
-            </a>
+            <a className={textStyles.redTitle}>{pageTitle.replace(/-/g, ' ')}</a>
           </Link>
         </strong>
       </p>

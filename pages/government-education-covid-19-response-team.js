@@ -75,12 +75,7 @@ export default function GovernmentEducationCovidResponseTeam({
         description={seo.metaDescr}
         canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
       />
-      <SingleSubHeader
-        title={title}
-        subtitle={subTitle}
-        span={8}
-        offset={0}
-      />
+      <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <LargeSidebarWithPosts
         posts={internalCovidPosts}
         postsTitle="COVID-19 Articles"
@@ -97,10 +92,9 @@ export async function getStaticProps() {
       'https://wp.scarincihollenbeck.com/wp-json/single-page/page/government-education-covid-19-response-team',
       { headers },
     ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=20250&per_page=100',
-      { headers },
-    ).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=20250&per_page=100', {
+      headers,
+    }).then((data) => data.json()),
   ]);
 
   const { title, content, seo } = requestResponse;

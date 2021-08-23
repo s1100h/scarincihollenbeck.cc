@@ -34,19 +34,13 @@ export default function LibraryAuthor({
         description={`${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`}
         canonical={`https://scarincihollenbeck.com/library/author/${slug}`}
       />
-      <SingleSubHeader
-        span={8}
-        offset={1}
-        title={authorName}
-        subtitle={authorDescription}
-      />
+      <SingleSubHeader span={8} offset={1} title={authorName} subtitle={authorDescription} />
       <LibraryLayout
         results={results}
         authors={authors}
         popularCategories={popularCategories}
         childrenOfCurrentCategory={childrenOfCurrentCategory}
         pageTitle={authorName}
-
       />
     </>
   );
@@ -78,34 +72,22 @@ export async function getStaticProps({ params }) {
     tempStr += `offset=1&author=${slug}`;
   }
 
-  const [
-    results,
-    authors,
-    childrenOfCurrentCategory,
-    popularCategories,
-    authorBio,
-  ] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`,
-      {
-        headers,
-      },
-    ).then((data) => data.json()),
+  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
+      headers,
+    }).then((data) => data.json()),
     fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
       headers,
     }).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/category/popular-categories',
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/author/bio/${slug}`,
-      { headers },
-    ).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch('https://wp.scarincihollenbeck.com/wp-json/category/popular-categories', {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`https://wp.scarincihollenbeck.com/wp-json/author/bio/${slug}`, { headers }).then(
+      (data) => data.json(),
+    ),
   ]);
 
   if (authorBio.bio[0].name.length <= 0) {
@@ -126,7 +108,9 @@ export async function getStaticProps({ params }) {
       slug,
       topicOne: authorBio.practices[0].title.toLowerCase(),
       topicTwo: authorBio.practices[1].title.toLowerCase(),
-      topicThree: (authorBio.practices[2]) ? authorBio.practices[2].title.toLowerCase() : 'public law',
+      topicThree: authorBio.practices[2]
+        ? authorBio.practices[2].title.toLowerCase()
+        : 'public law',
     },
     revalidate: 10,
   };

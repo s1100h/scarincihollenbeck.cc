@@ -5,12 +5,7 @@ import { createMarkup } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function MainArticle({
-  title,
-  link,
-  description,
-  date,
-  image,
-  author,
+  title, link, description, date, image, author,
 }) {
   return (
     <>

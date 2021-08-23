@@ -54,9 +54,7 @@ export default function LocationsBody({
                 (p, i) => practices.length / 2 > i && (
                 <li key={p.title} className="mb-3">
                   <Link href={p.slug}>
-                    <a
-                      className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}
-                    >
+                    <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
                       <strong>
                         <u>{p.title}</u>
                       </strong>
@@ -73,9 +71,7 @@ export default function LocationsBody({
                 (p, i) => practices.length / 2 <= i && (
                 <li key={p.title} className="mb-3">
                   <Link href={p.slug}>
-                    <a
-                      className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}
-                    >
+                    <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
                       <strong>
                         <u>{p.title}</u>
                       </strong>

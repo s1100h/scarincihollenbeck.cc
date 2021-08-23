@@ -46,17 +46,14 @@ function renderResults(positions) {
                       </p>
                       <p className="my-0">
                         Location:
-                        {' '}
                         {checkAllOffices(p.positionLocation)}
                       </p>
                       <p className="my-0">
                         Type:
-                        {' '}
                         {p.positionType}
                       </p>
                       <p className="my-0">
                         Start:
-                        {' '}
                         {p.startDate}
                       </p>
                     </div>

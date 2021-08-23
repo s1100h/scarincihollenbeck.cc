@@ -6,7 +6,7 @@ import lineStyles from 'styles/LineHeader.module.css';
 const logos = [
   {
     url: '/images/reviews/Power50-ScarinciHollenbeck.png',
-    alt: 'NJBiz\'s 2021 Law Power 50 List ',
+    alt: "NJBiz's 2021 Law Power 50 List ",
     width: 190,
     height: 190,
   },
@@ -34,24 +34,24 @@ function Accolade({
 }) {
   return (
     <Col sm={12} md={3} className="mt-5">
-      <div className={alt === 'National Law Journal Trailblazers' ? 'mx-auto d-block text-center additional-positioning' : 'mx-auto d-block text-center'}>
-        <Image
-          src={url}
-          alt={alt}
-          width={width}
-          height={height}
-          layout="intrinsic"
-        />
+      <div
+        className={
+          alt === 'National Law Journal Trailblazers'
+            ? 'mx-auto d-block text-center additional-positioning'
+            : 'mx-auto d-block text-center'
+        }
+      >
+        <Image src={url} alt={alt} width={width} height={height} layout="intrinsic" />
       </div>
       <style jsx>
         {`
-        @media (min-width: 1200px) {
-          .additional-positioning {
-            position: relative;
-            right: 0px;
+          @media (min-width: 1200px) {
+            .additional-positioning {
+              position: relative;
+              right: 0px;
+            }
           }
-        }
-      `}
+        `}
       </style>
     </Col>
   );
@@ -67,13 +67,7 @@ export default function HomeReviews() {
       {logos.map(({
         url, alt, width, height,
       }) => (
-        <Accolade
-          key={alt}
-          url={url}
-          alt={alt}
-          width={width}
-          height={height}
-        />
+        <Accolade key={alt} url={url} alt={alt} width={width} height={height} />
       ))}
     </Row>
   );

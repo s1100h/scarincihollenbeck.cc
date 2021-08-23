@@ -8,22 +8,24 @@ export default function NonGraphQLTrendingStories({ title, content }) {
         <strong>{title}</strong>
       </p>
       <ul>
-        {content.filter((_, i) => i <= 2).map((c) => (
-          <li key={c.title} className="list-unstyled">
-            <Link href={c.slug || c.link || '/'}>
-              <a className="text-dark">{c.title}</a>
-            </Link>
-            {typeof c.author === 'string' && (
-              <div className="my-0 py-0 d-block">
-                <small>
-                  <strong>Author: </strong>
-                  {' '}
-                  {c.author}
-                </small>
-              </div>
-            )}
-          </li>
-        ))}
+        {content
+          .filter((_, i) => i <= 2)
+          .map((c) => (
+            <li key={c.title} className="list-unstyled">
+              <Link href={c.slug || c.link || '/'}>
+                <a className="text-dark">{c.title}</a>
+              </Link>
+              {typeof c.author === 'string' && (
+                <div className="my-0 py-0 d-block">
+                  <small>
+                    <strong>Author: </strong>
+                    {' '}
+                    {c.author}
+                  </small>
+                </div>
+              )}
+            </li>
+          ))}
       </ul>
       <style jsx>
         {`
@@ -39,7 +41,6 @@ export default function NonGraphQLTrendingStories({ title, content }) {
             line-height: 1.4;
             color: #444;
           }
-          
         `}
       </style>
     </>

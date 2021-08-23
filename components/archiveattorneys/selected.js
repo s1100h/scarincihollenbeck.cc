@@ -6,10 +6,7 @@ import textStyles from 'styles/Text.module.css';
 import { createMarkup } from 'utils/helpers';
 
 export default function ArchiveAttorneySelected({
-  select,
-  userInput,
-  clearQuery,
-  clearAll,
+  select, userInput, clearQuery, clearAll,
 }) {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
@@ -52,11 +49,7 @@ export default function ArchiveAttorneySelected({
           </ul>
         </Col>
         <Col sm={12} md={2}>
-          <Button
-            variant="danger"
-            onClick={clearAll}
-            className="my-2 float-right"
-          >
+          <Button variant="danger" onClick={clearAll} className="my-2 float-right">
             Clear All
           </Button>
         </Col>

@@ -5,32 +5,19 @@ import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
 
 export default function AttorneyCard({
-  link,
-  image,
-  name,
-  title,
-  number,
-  email,
+  link, image, name, title, number, email,
 }) {
   return (
     <div className={`d-flex flex-row ${styles.attorneyCard}`} height={148}>
       <Link href={link}>
         <a>
-          <Image
-            src={image}
-            alt={name}
-            width={108}
-            height={148}
-            fill="responsive"
-          />
+          <Image src={image} alt={name} width={108} height={148} fill="responsive" />
         </a>
       </Link>
       <div className="my-auto ml-3">
         <Link href={link}>
           <a>
-            <p
-              className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}
-            >
+            <p className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}>
               <strong>{name}</strong>
             </p>
             <p className={`mb-1 ${fontStyles.smallExcerpt} text-dark`}>
