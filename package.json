@@ -7,16 +7,20 @@
     "postbuild": "next-sitemap",
     "start": "next start -p 7300",
     "lint": " eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged" : {
-    "*.js": ["yarn format", "yarn lint", "git add"],
-    "*css": ["yarn format", "git add"]
+  "lint-staged": {
+    "*.js": [
+      "yarn format",
+      "yarn lint",
+      "git add",
+      "eslint --cache --fix"
+    ],
+    "*css": [
+      "yarn format",
+      "git add"
+    ]
   },
   "license": "ISC",
   "dependencies": {
