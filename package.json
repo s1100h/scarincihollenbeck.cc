@@ -6,7 +6,7 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start -p 7300",
-    "lint": " eslint . --ext js --fix",
+    "lint": " eslint . --fix",
     "format": "prettier --write ."
   },
   "husky": {
@@ -14,14 +14,9 @@
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "yarn format",
-      "yarn lint"
-    ],
-    "*.{css}": [
-      "yarn format"
-    ]
+  "lint-staged" : {
+    "*.js": ["yarn format", "yarn lint", "git add"],
+    "*css": ["yarn format", "git add"]
   },
   "license": "ISC",
   "dependencies": {
