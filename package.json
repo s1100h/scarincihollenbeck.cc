@@ -16,11 +16,11 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "prettier --write",
-      "eslint --fix"
+      "yarn format",
+      "yarn lint"
     ],
-    "*.{html,css,less,ejs}": [
-      "prettier --write"
+    "*.{css}": [
+      "yarn format"
     ]
   },
   "license": "ISC",
