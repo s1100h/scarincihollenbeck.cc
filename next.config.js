@@ -77,6 +77,10 @@ module.exports = {
         destination: '/post/:slug*?category=just-in',
       },
       {
+        source: '/art-law/:slug*',
+        destination: '/post/:slug*?category=art-law',
+      },
+      {
         source: '/quick-news/:slug*',
         destination: '/post/:slug*?category=quick-news',
       },
