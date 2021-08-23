@@ -17,12 +17,10 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "prettier --write",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.{html,css,less,ejs}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "license": "ISC",
