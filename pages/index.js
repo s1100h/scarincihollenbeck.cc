@@ -12,7 +12,6 @@ import HomeReviews from 'components/home/reviews';
 import HomeWhoWeAreSection from 'components/home/who-we-are-section';
 import HomePageLink from 'components/home/page-link';
 import ArticleHero from 'components/article-hero';
-import AttorneyAnnoucenmentModal from 'components/home/attorney-announcement-modal';
 import { sortByKey, headers } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
 import marginStyles from 'styles/Margins.module.css';
