@@ -16,11 +16,7 @@ const slugs = [
   '/funeral-announcements/passing-attorney-david-a-einhorn',
 ];
 
-export default function FuneralAnnouncement({
-  title,
-  content,
-  seo,
-}) {
+export default function FuneralAnnouncement({ title, content, seo }) {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
@@ -77,7 +73,7 @@ export default function FuneralAnnouncement({
     },
   ];
 
-  const canonicalUrl = urlify(title.replace('The','').trim());
+  const canonicalUrl = urlify(title.replace('The', '').trim());
 
   return (
     <>
@@ -86,12 +82,7 @@ export default function FuneralAnnouncement({
         description={seo.metaDescription}
         canonical={`http://scarincihollenbeck.com/${canonicalUrl}`}
       />
-      <SingleSubHeader
-        title={title}
-        subtitle={subTitle}
-        offset={0}
-        span={8}
-      />
+      <SingleSubHeader title={title} subtitle={subTitle} offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} md={9}>
@@ -102,11 +93,7 @@ export default function FuneralAnnouncement({
             <hr />
             <SubscriptionMessage />
             <hr />
-            <SidebarContent
-              title="Firm Library"
-              content={firmLibrary}
-              tabKey={2}
-            />
+            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
             <hr />
             <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
           </Col>
