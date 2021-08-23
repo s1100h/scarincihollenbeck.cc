@@ -7,15 +7,30 @@
     "postbuild": "next-sitemap",
     "start": "next start -p 7300",
     "lint": " eslint . --ext js --fix",
-    "format": "prettier --write .",
-    "prepare": "husky install",
-    "test": "yarn lint",
+    "format": "prettier --write ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,css,less,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "license": "ISC",
   "dependencies": {
     "animate.css": "^4.1.1",
     "bootstrap": "^4.5.0",
     "kwesforms": "^2.0.5",
+    "lint-staged": "^11.1.2",
     "next": "^11.1.0",
     "next-seo": "^4.7.3",
     "node-fetch": "^2.6.1",
