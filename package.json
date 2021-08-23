@@ -14,11 +14,12 @@
     "*.js": [
       "yarn format",
       "yarn lint",
-      "git add",
       "eslint --cache --fix"
     ],
     "*css": [
-      "yarn format",
+      "yarn format"
+    ],
+    "*": [
       "git add"
     ]
   },
