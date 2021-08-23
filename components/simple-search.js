@@ -15,7 +15,7 @@ export default function SimpleSearch({ searchId = 'simplesearch' }) {
     setLoading(true);
 
     router.push({
-      pathname: '/library',
+      pathname: '/library/search',
       query: { term: santizeTerm },
     });
   };

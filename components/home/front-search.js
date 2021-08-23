@@ -17,7 +17,7 @@ export default function FrontSearch() {
     setLoading(true);
 
     await router.push({
-      pathname: '/library',
+      pathname: '/library/search',
       query: { term: santizeTerm },
     });
   };
