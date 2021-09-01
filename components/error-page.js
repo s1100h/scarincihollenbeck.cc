@@ -81,10 +81,10 @@ export default function ErrorPage({ title, subTitle, mainMessage }) {
           </Col>
           <style jsx>
             {`
-            li {
-              margin-bottom: 6px;
-            }
-          `}
+              li {
+                margin-bottom: 6px;
+              }
+            `}
           </style>
         </Row>
       </Container>
