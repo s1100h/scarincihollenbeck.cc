@@ -6,52 +6,12 @@ import Col from 'react-bootstrap/Col';
 import SingleSubHeader from 'layouts/single-sub-header';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
-import SidebarContent from 'components/singlepractice/sidebar';
+import CommonSidebarLinks from 'components/common-sidebar-links';
 import ContactForm from 'components/contact-form';
 import textStyles from 'styles/Text.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 export default function ContactPage() {
-  const firmLibrary = [
-    {
-      id: '9TZ8Zz7xy95BVp',
-      title: 'Firm News',
-      slug: '/library/category/firm-news',
-    },
-    {
-      id: 'RMtQjkqW3jAVvC',
-      title: 'Firm Events',
-      slug: '/library/category/firm-events',
-    },
-    {
-      id: 'KNDpxvUhdm73hf',
-      title: 'Firm Insights',
-      slug: '/library/category/law-firm-insights',
-    },
-  ];
-
-  const firmPages = [
-    {
-      id: 'WF7jMpVJP3PTnuP',
-      title: 'Pro Bono',
-      slug: '/pro-bono',
-    },
-    {
-      id: 'vehm0rQb7cpMH92',
-      title: 'Women Lead',
-      slug: '/women-lead',
-    },
-    {
-      id: 'SjveurE3BK1R1l2',
-      title: 'Community Involvement',
-      slug: '/community-involvement',
-    },
-    {
-      id: 'SjveurE7BK1R1l2',
-      title: 'Diversity Group',
-      slug: '/diversity-group',
-    },
-  ];
   return (
     <>
       <NextSeo
@@ -118,10 +78,7 @@ export default function ContactPage() {
             <SimpleSearch />
             <hr />
             <SubscriptionMessage />
-            <hr />
-            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
-            <hr />
-            <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
+            <CommonSidebarLinks />
           </Col>
         </Row>
       </Container>

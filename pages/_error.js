@@ -1,9 +1,10 @@
 import ErrorPage from 'components/error-page';
+import { ERROR_PAGE_CONTENT } from 'utils/constants';
 
 export default function Error({ statusCode }) {
   const title = `${statusCode} Error`;
-  const subTitle = 'Sorry, there was an issue getting your requested page';
-  const mainMessage = 'It&apos;s possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.';
+  const { subTitle, mainMessage } = ERROR_PAGE_CONTENT;
+
   return statusCode && <ErrorPage title={title} subTitle={subTitle} mainMessage={mainMessage} />;
 }
 

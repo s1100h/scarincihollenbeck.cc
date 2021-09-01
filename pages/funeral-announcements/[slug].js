@@ -7,16 +7,14 @@ import PagesBody from 'components/pages/body';
 import SingleSubHeader from 'layouts/single-sub-header';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
-import SidebarContent from 'components/singlepractice/sidebar';
+import CommonSidebarLinks from 'components/common-sidebar-links';
 import SiteLoader from 'components/site-loader';
-import { headers, urlify } from 'utils/helpers';
+import { headers } from 'utils/helpers';
+import { FUNERAL_SLUGS } from 'utils/constants';
 
-const slugs = [
-  '/funeral-announcements/passing-attorney-harvey-r-poe',
-  '/funeral-announcements/passing-attorney-david-a-einhorn',
-];
-
-export default function FuneralAnnouncement({ title, content, seo }) {
+export default function FuneralAnnouncement({
+  title, content, seo, slug,
+}) {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
@@ -32,56 +30,11 @@ export default function FuneralAnnouncement({ title, content, seo }) {
     bodyContent = content.replace(subTitle, '');
   }
 
-  const firmLibrary = [
-    {
-      id: '9TZ8Zz7xy95BVp',
-      title: 'Firm News',
-      slug: '/library/category/firm-news',
-    },
-    {
-      id: 'RMtQjkqW3jAVvC',
-      title: 'Firm Events',
-      slug: '/library/category/firm-events',
-    },
-    {
-      id: 'KNDpxvUhdm73hf',
-      title: 'Firm Insights',
-      slug: '/library/category/law-firm-insights',
-    },
-  ];
-
-  const firmPages = [
-    {
-      id: 'WF7jMpVJP3PTnuP',
-      title: 'Pro Bono',
-      slug: '/pro-bono',
-    },
-    {
-      id: 'vehm0rQb7cpMH92',
-      title: 'Women Lead',
-      slug: '/women-lead',
-    },
-    {
-      id: 'SjveurE3BK1R1l2',
-      title: 'Community Involvement',
-      slug: '/community-involvement',
-    },
-    {
-      id: 'SjveurE7BK1R1l2',
-      title: 'Diversity Group',
-      slug: '/diversity-group',
-    },
-  ];
-
-  const canonicalUrl = urlify(title.replace('The', '').trim());
+  const canonicalUrl = `https://scarincihollenbeck.com/funeral-announcements/${slug}`;
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${canonicalUrl}`}
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader title={title} subtitle={subTitle} offset={0} span={8} />
       <Container>
         <Row>
@@ -92,10 +45,7 @@ export default function FuneralAnnouncement({ title, content, seo }) {
             <SimpleSearch />
             <hr />
             <SubscriptionMessage />
-            <hr />
-            <SidebarContent title="Firm Library" content={firmLibrary} tabKey={2} />
-            <hr />
-            <SidebarContent title="Firm Pages" content={firmPages} tabKey={2} />
+            <CommonSidebarLinks />
           </Col>
         </Row>
       </Container>
@@ -104,10 +54,10 @@ export default function FuneralAnnouncement({ title, content, seo }) {
 }
 
 export async function getStaticPaths() {
-  const fullFuneralList = slugs.map((slug) => slug);
+  const urls = FUNERAL_SLUGS.map((slug) => slug);
 
   return {
-    paths: fullFuneralList,
+    paths: urls || [],
     fallback: true,
   };
 }
@@ -125,6 +75,7 @@ export async function getStaticProps({ params }) {
       title,
       content,
       seo,
+      slug: params.slug,
     },
     revalidate: 1,
   };

@@ -10,31 +10,9 @@ import SidebarContent from 'components/singlepractice/sidebar';
 import PageArticleHero from 'components/pages/page-article-hero';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, createMarkup } from 'utils/helpers';
+import { FIRM_PAGES, FIRM_BLOG_PAGES } from 'utils/constants';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-
-const pages = [
-  {
-    id: 'WF7jMpVJP3PTnuP',
-    title: 'Pro Bono',
-    slug: '/pro-bono',
-  },
-  {
-    id: 'vehm0rQb7cpMH92',
-    title: 'Women Lead',
-    slug: '/women-lead',
-  },
-  {
-    id: 'SjveurE3BK1R1l2',
-    title: 'Community Involvement',
-    slug: '/community-involvement',
-  },
-  {
-    id: 'SjveurE7BK1R1l2',
-    title: 'Diversity Group',
-    slug: '/diversity-group',
-  },
-];
 
 export default function FirmPages({ page, relatedPages, currentPage }) {
   const router = useRouter();
@@ -76,6 +54,8 @@ export default function FirmPages({ page, relatedPages, currentPage }) {
             <hr />
             <SubscriptionMessage />
             <hr />
+            <SidebarContent title="Firm Library" content={FIRM_BLOG_PAGES} tabKey={2} />
+            <hr />
             <SidebarContent title="Diversity" content={relatedPages} tabKey={2} />
           </Col>
         </Row>
@@ -85,10 +65,10 @@ export default function FirmPages({ page, relatedPages, currentPage }) {
 }
 
 export async function getStaticPaths() {
-  const fullPageList = pages.map((a) => `/firm-pages${a.slug}`);
+  const urls = FIRM_PAGES.map((a) => `/firm-pages${a.slug}`);
 
   return {
-    paths: fullPageList || [],
+    paths: urls || [],
     fallback: true,
   };
 }
@@ -99,10 +79,12 @@ export async function getStaticProps({ params }) {
     { headers },
   ).then((data) => data.json());
 
+  const relatedPages = FIRM_PAGES.filter((a) => a.slug.replace('/', '') !== params.slug);
+
   return {
     props: {
       page: restResponse,
-      relatedPages: pages.filter((a) => a.slug !== params.slug),
+      relatedPages,
       currentPage: params.slug,
     },
     revalidate: 1,

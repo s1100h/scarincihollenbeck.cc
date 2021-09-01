@@ -58,7 +58,7 @@ export default function Footer() {
                   <span className="mx-3 d-none d-md-inline-block">|</span>
                 </li>
                 <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/library?category=firm-news">
+                  <Link href="/library/category/firm-news">
                     <a className={styles.mainLink}>
                       <u>Library</u>
                     </a>

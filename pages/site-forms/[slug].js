@@ -1,16 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
+import Script from 'next/script';
 import kwesforms from 'kwesforms';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
+import SiteLoader from 'components/site-loader';
 import textStyles from 'styles/Text.module.css';
+import { SITE_FORM_SLUGS } from 'utils/constants';
 
-export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
+function NewAttorneyNameForm({ attorney, setAttorney }) {
+  return (
+    <label htmlFor="attorney-name">
+      <h3>
+        <strong> Welcome to the firm! Please enter your name</strong>
+      </h3>
+      <input
+        type="text"
+        name="attorney-name"
+        id="attorney-name"
+        className="d-block p-2 mb-5 w-50"
+        placeholder="Enter full name"
+        value={attorney}
+        onChange={(e) => setAttorney(e.target.value)}
+      />
+    </label>
+  );
+}
+
+function OldAttorneyNameForm({ attorney, setAttorney, attorneys }) {
+  return (
+    <label htmlFor="attorney-selected">
+      <h3>
+        <strong>1. Please select your name?</strong>
+      </h3>
+
+      <select
+        id="attorney-selected"
+        onChange={(e) => setAttorney(e.target.value)}
+        name="attorney-selected"
+        className={attorney ? 'd-block p-2 mb-3' : 'd-block p-2 mb-5'}
+        style={{ minWidth: '350px', borderRadius: '6px' }}
+      >
+        <option value="">Select attorney</option>
+        <option value=" ">Name not listed</option>
+        {attorneys.map((a) => (
+          <option key={a.name} value={a.name}>
+            {a.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+export default function SiteForms({ attorneys, practices, isNewAttorney }) {
   const [attorney, setAttorney] = useState('');
-  const [writeInAttorney, setWriteInAttorney] = useState(false);
+  const router = useRouter();
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
 
   // initalize kwesforms
   useEffect(() => kwesforms.init());
@@ -19,16 +69,15 @@ export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
   useEffect(() => {
     if (attorney === ' ') {
       setAttorney('');
-      setWriteInAttorney(true);
     }
   }, [attorney]);
 
   return (
     <Container>
+      <>
+        <Script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
+      </>
       <NextSeo noindex title="Updating your website profile" />
-      <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
-      </Head>
       <Row>
         <Col sm={12} className="my-4">
           <h1 className={`border-bottom pb-1 mb-4 ${textStyles.redTitle}`}>
@@ -72,42 +121,16 @@ export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
           has-recaptcha-v3="true"
           recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
         >
-          <label htmlFor="attorney-selected">
-            <h3>
-              <strong>1. Please select your name?</strong>
-            </h3>
-
-            <select
-              id="attorney-selected"
-              onChange={(e) => setAttorney(e.target.value)}
-              name="attorney-selected"
-              className={attorney ? 'd-block p-2 mb-3' : 'd-block p-2 mb-5'}
-              style={{ minWidth: '350px', borderRadius: '6px' }}
-            >
-              <option value="">Select attorney</option>
-              <option value=" ">Name not listed</option>
-              {attorneys.map((a) => (
-                <option key={a.name} value={a.name}>
-                  {a.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          {writeInAttorney && (
-            <div>
-              <label htmlFor="written-in-attorney-name">
-                <h3>
-                  <strong> Not listed? Please write in your name</strong>
-                </h3>
-                <input
-                  type="text"
-                  name="written-in-attorney-name"
-                  className="d-block p-2 mb-5 w-50"
-                  placeholder="Enter full name"
-                />
-              </label>
-            </div>
+          {isNewAttorney ? (
+            <NewAttorneyNameForm attorney={attorney} setAttorney={setAttorney} />
+          ) : (
+            <OldAttorneyNameForm
+              attorneys={attorneys}
+              attorney={attorney}
+              setAttorney={setAttorney}
+            />
           )}
+
           {attorney && (
             <>
               <input
@@ -230,27 +253,22 @@ export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
           p {
             font-size: 1;
           }
-
           @media (min-width: 1200px) {
             .col-list {
               column-count: 3;
             }
           }
-
           input[type='checkbox'] {
             position: absolute;
           }
-
           input[type='checkbox'] ~ label {
             padding-left: 1.4em;
             display: inline-block;
           }
-
           ol {
             margin-top: -10px;
             margin-bottom: -11px;
           }
-
           .letter {
             font-size: 1.3rem;
           }
@@ -260,7 +278,16 @@ export default function AttorneyContentUpdatesForm({ attorneys, practices }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
+  const urls = SITE_FORM_SLUGS.map((slug) => slug);
+
+  return {
+    paths: urls || [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const practiceRequest = await fetch(
     'https://wp.scarincihollenbeck.com/wp-json/wp/v2/practices?per_page=100',
   ).then((data) => data.json());
@@ -270,6 +297,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      isNewAttorney: params.slug.includes('new'),
       attorneys: attorneyRequest
         .map((attorney) => ({
           email: attorney.acf.email,
