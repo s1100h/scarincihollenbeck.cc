@@ -3,6 +3,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import FirmMembers from 'components/firmoverview/members';
 import { headers, createMarkup, sortByKey } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function FirmOverview({
   mainTabs, members, mainContent, seo,
@@ -10,14 +11,11 @@ export default function FirmOverview({
   const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
   const bodyContent = mainContent.replace(subHeaderContent[0], '');
   const sortedAdmins = sortByKey(members.admin, 'orderBy');
+  const canonicalUrl = `${SITE_URL}/firm-overview`;
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/firm-overview"
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader
         title="Firm Overview"
         subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, '')}
@@ -50,7 +48,7 @@ export default function FirmOverview({
 
 export async function getStaticProps() {
   const [restResponse] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/firm-overview/content', {
+    fetch(`${BASE_API_URL}/wp-json/firm-overview/content`, {
       headers,
     }).then((data) => data.json()),
   ]);

@@ -9,6 +9,7 @@ import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import EventSidebar from 'components/post/event-sidebar';
 import { headers } from 'utils/helpers';
+import { BASE_API_URL } from 'utils/constants';
 
 export default function LawFirmInsightsPost({
   title,
@@ -109,13 +110,13 @@ export default function LawFirmInsightsPost({
 // We need to get a every blog post by category
 
 export async function getServerSideProps({ params, res, query }) {
+  const postUrl = params.slug[params.slug.length - 1];
+  const { category } = query;
+
   // retrieve the authors for the post
-  const restResponse = await fetch(
-    `https://wp.scarincihollenbeck.com/wp-json/single/post/${params.slug[params.slug.length - 1]}/${
-      query.category
-    }`,
-    { headers },
-  )
+  const restResponse = await fetch(`${BASE_API_URL}/wp-json/single/post/${postUrl}/${category}`, {
+    headers,
+  })
     .then((data) => data.json())
     .catch((err) => err);
 

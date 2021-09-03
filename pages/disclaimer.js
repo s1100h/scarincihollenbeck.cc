@@ -5,19 +5,17 @@ import Col from 'react-bootstrap/Col';
 import PagesBody from 'components/pages/body';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function Disclaimer({ content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
+  const canonicalUrl = `${SITE_URL}/disclaimer`;
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/disclaimer"
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader
         title="Disclaimer"
         subtitle="This Terms of Use Agreement (the “Agreement”) and the Privacy Policy state the terms and conditions under which you may view, access or otherwise use the website located at http://www.sh-law.com."
@@ -36,10 +34,9 @@ export default function Disclaimer({ content, seo }) {
 }
 
 export async function getStaticProps() {
-  const request = await fetch(
-    'https://wp.scarincihollenbeck.com/wp-json/single-page/page/disclaimer',
-    { headers },
-  ).then((data) => data.json());
+  const request = await fetch(`${BASE_API_URL}/wp-json/single-page/page/disclaimer`, {
+    headers,
+  }).then((data) => data.json());
 
   const { content, seo } = request;
 

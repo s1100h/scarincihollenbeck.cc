@@ -7,6 +7,7 @@ import FullWidth from 'layouts/full-width';
 import { sortByKey, headers } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 function sortPracticeCategorys(list) {
   const core = list.filter((e) => e.category === 'Core Practices');
@@ -26,21 +27,21 @@ export default function PracticesPage({ core, additional, business }) {
   const sortedBusienssPractices = sortByKey(business, 'title');
   const title = 'Attorney Legal Practices | Scarinci Hollenbeck';
   const metaDesc = "Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area.";
-
+  const canonicalUrl = `${SITE_URL}/practices`;
   return (
     <>
       <NextSeo
         title={title}
         description={metaDesc}
-        canonical="https://scarincihollenbeck.com/practices"
+        canonical={canonicalUrl}
         openGraph={{
           type: 'website',
-          url: 'https://scarincihollenbeck.com/',
+          url: SITE_URL,
           title,
           description: metaDesc,
           images: [
             {
-              url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
+              url: `${SITE_URL}/images/no-image-found-diamond.png`,
               width: 300,
               height: 140,
               alt: 'Scarinci Hollenbeck',
@@ -50,7 +51,7 @@ export default function PracticesPage({ core, additional, business }) {
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: 'https://scarincihollenbeck.com',
+          site: SITE_URL,
           cardType:
             'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
         }}
@@ -104,7 +105,7 @@ export default function PracticesPage({ core, additional, business }) {
 
 export async function getStaticProps() {
   const [practiceJson] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page/', {
+    fetch(`${BASE_API_URL}/wp-json/practice-portal/page/`, {
       headers,
     }).then((data) => data.json()),
   ]);

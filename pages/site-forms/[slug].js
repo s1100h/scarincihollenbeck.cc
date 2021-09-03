@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Script from 'next/script';
-import kwesforms from 'kwesforms';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,8 +6,9 @@ import Col from 'react-bootstrap/Col';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import SiteLoader from 'components/site-loader';
+import FormScripts from 'components/form-scripts';
 import textStyles from 'styles/Text.module.css';
-import { SITE_FORM_SLUGS } from 'utils/constants';
+import { SITE_FORM_SLUGS, BASE_API_URL } from 'utils/constants';
 
 function NewAttorneyNameForm({ attorney, setAttorney }) {
   return (
@@ -62,9 +61,6 @@ export default function SiteForms({ attorneys, practices, isNewAttorney }) {
     return <SiteLoader />;
   }
 
-  // initalize kwesforms
-  useEffect(() => kwesforms.init());
-
   // set input form when attorney is not listed
   useEffect(() => {
     if (attorney === ' ') {
@@ -74,9 +70,7 @@ export default function SiteForms({ attorneys, practices, isNewAttorney }) {
 
   return (
     <Container>
-      <>
-        <Script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
-      </>
+      <FormScripts />
       <NextSeo noindex title="Updating your website profile" />
       <Row>
         <Col sm={12} className="my-4">
@@ -288,12 +282,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const practiceRequest = await fetch(
-    'https://wp.scarincihollenbeck.com/wp-json/wp/v2/practices?per_page=100',
-  ).then((data) => data.json());
-  const attorneyRequest = await fetch(
-    'https://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100',
-  ).then((data) => data.json());
+  const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`).then(
+    (data) => data.json(),
+  );
+  const attorneyRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`).then(
+    (data) => data.json(),
+  );
 
   return {
     props: {

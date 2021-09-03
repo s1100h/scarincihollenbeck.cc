@@ -4,6 +4,7 @@ import SiteLoader from 'components/site-loader';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function LibraryAuthor({
   results,
@@ -27,12 +28,14 @@ export default function LibraryAuthor({
     );
   }
 
+  const canonicalUrl = `${SITE_URL}/library/author/${slug}`;
+
   return (
     <>
       <NextSeo
         title={`Legal Blog Articles by ${authorName}`}
         description={`${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`}
-        canonical={`https://scarincihollenbeck.com/library/author/${slug}`}
+        canonical={canonicalUrl}
       />
       <SingleSubHeader span={8} offset={1} title={authorName} subtitle={authorDescription} />
       <LibraryLayout
@@ -48,7 +51,7 @@ export default function LibraryAuthor({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/author/list', {
+    fetch(`${BASE_API_URL}/wp-json/author/list`, {
       headers,
     }).then((data) => data.json()),
   ]);
@@ -73,21 +76,19 @@ export async function getStaticProps({ params }) {
   }
 
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
+    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
+    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`, {
+    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/category/popular-categories', {
+    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/author/bio/${slug}`, { headers }).then(
-      (data) => data.json(),
-    ),
+    fetch(`${BASE_API_URL}/wp-json/author/bio/${slug}`, { headers }).then((data) => data.json()),
   ]);
 
   if (authorBio.bio[0].name.length <= 0) {

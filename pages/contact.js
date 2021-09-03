@@ -10,14 +10,16 @@ import CommonSidebarLinks from 'components/common-sidebar-links';
 import ContactForm from 'components/contact-form';
 import textStyles from 'styles/Text.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import { SITE_URL } from 'utils/constants';
 
 export default function ContactPage() {
+  const canonicalUrl = `${SITE_URL}/contact"`;
   return (
     <>
       <NextSeo
         title="Contact | Scarinci Hollenbeck"
         description="Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Washington D.C."
-        canonical="http://scarincihollenbeck.com/contact"
+        canonical={canonicalUrl}
       />
       <SingleSubHeader
         title="Contact Us"

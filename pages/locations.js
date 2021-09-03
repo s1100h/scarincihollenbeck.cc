@@ -10,11 +10,13 @@ import BodyContent from 'components/locations/body';
 import SideBar from 'components/locations/sidebar';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { headers } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function AllLocations({
   seo, offices, lyndhurst, posts,
 }) {
   const router = useRouter();
+  const canonicalUrl = `${SITE_URL}/${seo.canonicalLink}`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -22,11 +24,7 @@ export default function AllLocations({
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <Head>
         <script
           key="lyndhurst"
@@ -63,13 +61,13 @@ export default function AllLocations({
 
 export async function getStaticProps() {
   const [locations, lyndhurst, lyndhurstposts] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
+    fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/individual-location/office/lyndhurst', {
+    fetch(`${BASE_API_URL}/wp-json/individual-location/office/lyndhurst`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/lyndhurst', {
+    fetch(`${BASE_API_URL}/wp-json/individual-location/posts/lyndhurst`, {
       headers,
     }).then((data) => data.json()),
   ]);

@@ -5,6 +5,7 @@ import CommonSidebarLinks from 'components/common-sidebar-links';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function Covid19CrisisManagementUnit({
   title, content, internalCovidPosts, seo,
@@ -12,6 +13,7 @@ export default function Covid19CrisisManagementUnit({
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
+  const canonicalUrl = `${SITE_URL}/covid-19-crisis-management-unit`;
 
   const sidebar = (
     <>
@@ -21,13 +23,10 @@ export default function Covid19CrisisManagementUnit({
       <CommonSidebarLinks />
     </>
   );
+
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescr}
-        canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
-      />
+      <NextSeo title={seo.title} description={seo.metaDescr} canonical={canonicalUrl} />
       <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <LargeSidebarWithPosts
         posts={internalCovidPosts}
@@ -41,11 +40,10 @@ export default function Covid19CrisisManagementUnit({
 
 export async function getStaticProps() {
   const [requestResponse, cPosts] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/covid-19-crisis-management-unit',
-      { headers },
-    ).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=20250&per_page=100', {
+    fetch(`${BASE_API_URL}/wp-json/single-page/page/covid-19-crisis-management-unit`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=20250&per_page=100`, {
       headers,
     }).then((data) => data.json()),
   ]);

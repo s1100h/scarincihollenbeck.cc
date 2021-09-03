@@ -10,6 +10,7 @@ import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import { headers } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function CareerPost({ career }) {
   const router = useRouter();
@@ -18,12 +19,13 @@ export default function CareerPost({ career }) {
     return <SiteLoader />;
   }
 
+  const canonicalUrl = `${SITE_URL}/${career.uri}`;
   return (
     <>
       <NextSeo
         title={career.seo.title}
         description={career.seo.metaDesc}
-        canonical={`http://scarincihollenbeck.com${career.uri}`}
+        canonical={canonicalUrl}
       />
       <SingleSubHeader
         image="/images/Legal-Research-1800x400-JPG.jpg"
@@ -55,7 +57,7 @@ export default function CareerPost({ career }) {
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/career-portal/careers', {
+    fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
       headers,
     }).then((data) => data.json()),
   ]);
@@ -70,7 +72,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [careerJson] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-career/career/${params.slug}`, {
+    fetch(`${BASE_API_URL}/wp-json/individual-career/career/${params.slug}`, {
       headers,
     }).then((data) => data.json()),
   ]);

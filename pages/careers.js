@@ -7,6 +7,7 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import ArchiveCareers from 'components/archivecareers';
 import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity';
 import { headers } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function CareersPage({ positionTypes, locations, careerList }) {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
   const [careers, setCareers] = useState([]);
+  const canonicalUrl = `${SITE_URL}/careers`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -50,7 +52,7 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
       <NextSeo
         title="Careers & Positions | Scarinci Hollenbeck, LLC"
         description="Scarinci Hollenbeck's commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
-        canonical="http://scarincihollenbeck.com/careers"
+        canonical={canonicalUrl}
       />
       <div id="careers">
         <SingleSubHeader
@@ -81,7 +83,7 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
 
 export async function getStaticProps() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/career-portal/careers', {
+    fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
       headers,
     }).then((data) => data.json()),
   ]);

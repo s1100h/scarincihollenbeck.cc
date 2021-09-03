@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
+import { BASE_API_URL } from 'utils/constants';
 
 export default function LibrarySearch({
   results,
@@ -47,16 +48,16 @@ export async function getServerSideProps({ query }) {
   }
 
   const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
+    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
+    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`, {
+    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/category/popular-categories', {
+    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
       headers,
     }).then((data) => data.json()),
   ]);

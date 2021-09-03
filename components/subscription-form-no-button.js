@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
+import React from 'react';
 import { useRouter } from 'next/router';
-import kwesforms from 'kwesforms';
 import Button from 'react-bootstrap/Button';
 import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
 import { checkboxes } from '../utils/categories';
+import FormScripts from './form-scripts';
 
 export default function SubscriptionFormNoButton() {
   const router = useRouter();
 
-  // initalize kwesforms
-  useEffect(() => kwesforms.init());
-
   return (
     <>
-      <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
-      </Head>
+      <FormScripts />
       <form
         className="kwes-form"
         action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"

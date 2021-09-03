@@ -8,6 +8,7 @@ import BodyContent from 'components/locations/body';
 import SideBar from 'components/locations/sidebar';
 import { headers } from 'utils/helpers';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function SingleLocation({
   seo, offices, currentOffice, posts,
@@ -23,7 +24,7 @@ export default function SingleLocation({
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/${seo.canonicalLink}`}
+        canonical={`${SITE_URL}/${seo.canonicalLink}`}
       />
       <Head>
         <script
@@ -64,7 +65,7 @@ export default function SingleLocation({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
+    fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
       headers,
     }).then((data) => data.json()),
   ]);
@@ -79,13 +80,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [locations, currentOffice, currentOfficePosts] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
+    fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-location/office/${params.slug}`, {
+    fetch(`${BASE_API_URL}/wp-json/individual-location/office/${params.slug}`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-location/posts/${params.slug}`, {
+    fetch(`${BASE_API_URL}/wp-json/individual-location/posts/${params.slug}`, {
       headers,
     }).then((data) => data.json()),
   ]);

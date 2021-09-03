@@ -6,6 +6,7 @@ import Results from 'components/archiveattorneys/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, sortByKey } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function Attorneys({
   seo, locations, designations, practices, attorneys,
@@ -93,13 +94,10 @@ export default function Attorneys({
     'Z',
   ];
 
+  const canonicalUrl = `${SITE_URL}/attorneys`;
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/attorneys"
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader
         title="Attorneys"
         subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
@@ -142,19 +140,15 @@ export default function Attorneys({
 export async function getStaticProps() {
   // Keep attorney-search API endpoint
   const [attorneys, locations, designations, practices, seo] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then(
-      (data) => data.json(),
-    ),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/office-locations', {
+    fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
+    fetch(`${BASE_API_URL}/wp-json/attorney-search/office-locations`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/designations', {
+    fetch(`${BASE_API_URL}/wp-json/attorney-search/designations`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/practices', { headers }).then(
-      (data) => data.json(),
-    ),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/meta', {
+    fetch(`${BASE_API_URL}/wp-json/attorney-search/practices`, { headers }).then((data) => data.json()),
+    fetch(`${BASE_API_URL}/wp-json/attorney-search/meta`, {
       headers,
     }).then((data) => data.json()),
   ]);

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
 import { headers } from 'utils/helpers';
 import AttorneyProfile from 'layouts/attorney-profile';
+import { BASE_API_URL } from 'utils/constants';
 
 export default function AttorneyBioProfileContent({
   bio,
@@ -42,9 +43,7 @@ export default function AttorneyBioProfileContent({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/attorney-search/attorneys', { headers }).then(
-      (data) => data.json(),
-    ),
+    fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
   ]);
   const attorneyBackPageLinks = [];
   res.forEach((attorney) => attorney.sidebarLinks.forEach((link) => attorneyBackPageLinks.push(link)));
@@ -57,22 +56,21 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/attorney-profile/main/${params.slug}`, {
+    fetch(`${BASE_API_URL}/wp-json/attorney-profile/main/${params.slug}`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/attorney-profile/contact/${params.slug}`, {
+    fetch(`${BASE_API_URL}/wp-json/attorney-profile/contact/${params.slug}`, {
       headers,
     }).then((data) => data.json()),
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
+      `${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
       { headers },
     ).then((data) => data.json()),
+    fetch(`${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/blogs`, {
+      headers,
+    }).then((data) => data.json()),
     fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/blogs`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/attorney-profile/attorney/${params.slug}/back-page/news-press-releases`,
+      `${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/news-press-releases`,
       { headers },
     ).then((data) => data.json()),
   ]);

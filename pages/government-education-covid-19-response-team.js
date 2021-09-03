@@ -5,6 +5,7 @@ import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { headers } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function GovernmentEducationCovidResponseTeam({
   title,
@@ -15,6 +16,7 @@ export default function GovernmentEducationCovidResponseTeam({
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
+  const canonicalUrl = `${SITE_URL}/covid-19-crisis-management-unit`;
 
   const sidebar = (
     <>
@@ -27,11 +29,7 @@ export default function GovernmentEducationCovidResponseTeam({
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescr}
-        canonical="http://scarincihollenbeck.com/covid-19-crisis-management-unit"
-      />
+      <NextSeo title={seo.title} description={seo.metaDescr} canonical={canonicalUrl} />
       <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <LargeSidebarWithPosts
         posts={internalCovidPosts}
@@ -45,11 +43,10 @@ export default function GovernmentEducationCovidResponseTeam({
 
 export async function getStaticProps() {
   const [requestResponse, cPosts] = await Promise.all([
-    fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/single-page/page/government-education-covid-19-response-team',
-      { headers },
-    ).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=20250&per_page=100', {
+    fetch(`${BASE_API_URL}/wp-json/single-page/page/government-education-covid-19-response-team`, {
+      headers,
+    }).then((data) => data.json()),
+    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=20250&per_page=100`, {
       headers,
     }).then((data) => data.json()),
   ]);

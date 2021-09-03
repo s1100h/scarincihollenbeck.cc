@@ -7,6 +7,7 @@ import AdminProfileHeader from 'components/singleadmin/header';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import SiteLoader from 'components/site-loader';
 import { createMarkup, headers } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function AdminSingleBio({ response }) {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function AdminSingleBio({ response }) {
     offices: response.offices,
   };
 
-  const canonicalUrl = `https://scarincihollenbeck.com/${response.seo.canonicalLink}`;
+  const canonicalUrl = `${SITE_URL}/${response.seo.canonicalLink}`;
 
   return (
     <>
@@ -82,7 +83,7 @@ export default function AdminSingleBio({ response }) {
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/admin-search/admin', {
+    fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
       headers,
     }).then((data) => data.json()),
   ]);

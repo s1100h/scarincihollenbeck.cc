@@ -21,13 +21,14 @@ import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 
 export default function PracticeSingle({ corePractices, practice, practiceChildren }) {
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
-  const canoncialUrl = `https://scarincihollenbeck.com/practice/${practice.slug}`;
+  const canoncialUrl = `${SITE_URL}/practice/${practice.slug}`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -50,7 +51,7 @@ export default function PracticeSingle({ corePractices, practice, practiceChildr
           description: practice.seo.metaDescription,
           images: [
             {
-              url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
+              url: `${SITE_URL}/images/no-image-found-diamond.png`,
               width: 300,
               height: 140,
               alt: practice.seo.title,
@@ -195,9 +196,7 @@ export default function PracticeSingle({ corePractices, practice, practiceChildr
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links', { headers }).then(
-      (data) => data.json(),
-    ),
+    fetch(`${BASE_API_URL}/wp-json/practice-portal/all-links`, { headers }).then((data) => data.json()),
   ]);
 
   const fullPracticeList = res.map((slug) => `/practice/${slug}`);
@@ -210,11 +209,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [res, practices] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-practices/practice/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page', {
+    fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then(
+      (data) => data.json(),
+    ),
+    fetch(`${BASE_API_URL}/wp-json/practice-portal/page`, {
       headers,
     }).then((data) => data.json()),
   ]);

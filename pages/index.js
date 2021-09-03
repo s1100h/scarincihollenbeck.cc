@@ -16,6 +16,7 @@ import { sortByKey, headers } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
 import marginStyles from 'styles/Margins.module.css';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function HomePageTwo({
   seo, posts, locations, leadership,
@@ -25,15 +26,15 @@ export default function HomePageTwo({
       <NextSeo
         title={seo.title}
         description={seo.metaDescription}
-        canonical="https://scarincihollenbeck.com/"
+        canonical={`${SITE_URL}`}
         openGraph={{
           type: 'website',
-          url: 'https://scarincihollenbeck.com/',
+          url: SITE_URL,
           title: 'Scarinci Hollenbeck',
           description: seo.metaDescription,
           images: [
             {
-              url: 'https://scarincihollenbeck.com/images/no-image-found-diamond.png',
+              url: `${SITE_URL}/images/no-image-found-diamond.png`,
               width: 300,
               height: 140,
               alt: 'Scarinci Hollenbeck',
@@ -43,9 +44,8 @@ export default function HomePageTwo({
         }}
         twitter={{
           handle: '@S_H_Law',
-          site: 'https://scarincihollenbeck.com',
-          cardType:
-            'With a growing practice of more than 70+ experienced attorneys, Scarinci Hollenbeck is an alternative to a National 250 law firm.',
+          site: SITE_URL,
+          cardType: seo.metaDescription,
         }}
       />
       <Head>
@@ -136,22 +136,22 @@ export default function HomePageTwo({
 export async function getStaticProps() {
   /** Adding in graphql queries */
   const [seo, news, events, locations, attorneys, administration] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/front-page/meta', {
+    fetch(`${BASE_API_URL}/wp-json/front-page/meta`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=98&_embed', {
+    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=98&_embed`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=99&_embed', {
+    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=99&_embed`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/location-portal/offices', {
+    fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/attorneys?per_page=100', {
+    fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/administration?per_page=10', {
+    fetch(`${BASE_API_URL}/wp-json/wp/v2/administration?per_page=10`, {
       headers,
     }).then((data) => data.json()),
   ]);

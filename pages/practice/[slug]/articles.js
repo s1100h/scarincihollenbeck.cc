@@ -20,6 +20,7 @@ import AttorneyProfilePractice from 'components/singlepractice/articles';
 import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { urlify, headers, sortByKey } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 
@@ -45,7 +46,7 @@ export default function PracticeSingleArticles({
       <NextSeo
         title={practice.seo.title}
         description={practice.seo.metaDescription}
-        canonical={`http://scarincihollenbeck.com/practice${practice.slug}`}
+        canonical={`${SITE_URL}/practice${practice.slug}`}
       />
       <SingleSubHeader
         title={practice.title}
@@ -179,9 +180,7 @@ export default function PracticeSingleArticles({
 
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/all-links', { headers }).then(
-      (data) => data.json(),
-    ),
+    fetch(`${BASE_API_URL}/wp-json/practice-portal/all-links`, { headers }).then((data) => data.json()),
   ]);
 
   const fullPracticeList = res.map((slug) => `/practice/${slug}/articles`);
@@ -194,11 +193,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [res, practices] = await Promise.all([
-    fetch(
-      `https://wp.scarincihollenbeck.com/wp-json/individual-practices/practice/${params.slug}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/practice-portal/page', {
+    fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${params.slug}`, { headers }).then(
+      (data) => data.json(),
+    ),
+    fetch(`${BASE_API_URL}/wp-json/practice-portal/page`, {
       headers,
     }).then((data) => data.json()),
   ]);
@@ -217,7 +215,7 @@ export async function getStaticProps({ params }) {
   const blogId = res.blog_data_id[0];
   const practiceSlug = res.slug;
   const posts = await fetch(
-    `https://wp.scarincihollenbeck.com/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`,
+    `${BASE_API_URL}/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`,
   ).then((data) => data.json());
 
   return {

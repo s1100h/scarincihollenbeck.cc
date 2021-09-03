@@ -6,9 +6,10 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import AttorneyCard from 'components/attorney-card';
 import { headers, sortByKey } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function Administration({ admins, seo }) {
-  const canonicalUrl = `http://scarincihollenbeck.com/${seo.canonicalLink}`;
+  const canonicalUrl = `${SITE_URL}/${seo.canonicalLink}`;
   return (
     <>
       <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
@@ -43,7 +44,7 @@ export default function Administration({ admins, seo }) {
 
 export async function getStaticProps() {
   const [restResponse] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/admin-search/admin', {
+    fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
       headers,
     }).then((data) => data.json()),
   ]);

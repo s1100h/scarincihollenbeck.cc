@@ -4,6 +4,7 @@ import SiteLoader from 'components/site-loader';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function LibraryCategory({
   results,
@@ -29,15 +30,12 @@ export default function LibraryCategory({
   const splitDescription = description.split('.');
   const modDescription = `${splitDescription[0]}. ${splitDescription[1]}.`;
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
+  const canonicalUrl = `${SITE_URL}/library/${seo.canonicalLink}`;
 
   return (
     <>
       {Object.keys(seo).length > 0 && (
-        <NextSeo
-          title={seo.title}
-          description={seo.metaDescription}
-          canonical={`https://scarincihollenbeck.com/library/${seo.canonicalLink}`}
-        />
+        <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       )}
       <SingleSubHeader span={8} offset={1} title={name} subtitle={modDescription} />
       <LibraryLayout
@@ -52,11 +50,9 @@ export default function LibraryCategory({
   );
 }
 
-// https://wp.scarincihollenbeck.com/wp-json/all-categories/list
-
 export async function getStaticPaths() {
   const [res] = await Promise.all([
-    fetch('https://wp.scarincihollenbeck.com/wp-json/all-categories/list', {
+    fetch(`${BASE_API_URL}/wp-json/all-categories/list`, {
       headers,
     }).then((data) => data.json()),
   ]);
@@ -81,19 +77,19 @@ export async function getStaticProps({ params }) {
   }
 
   const [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/v2/search/query?${tempStr}`, {
+    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/author/full-list', {
+    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/children/${tempChildCat}`, {
+    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
       headers,
     }).then((data) => data.json()),
-    fetch('https://wp.scarincihollenbeck.com/wp-json/category/popular-categories', {
+    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
       headers,
     }).then((data) => data.json()),
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/category/posts/${tempChildCat}`, {
+    fetch(`${BASE_API_URL}/wp-json/category/posts/${tempChildCat}`, {
       headers,
     }).then((data) => data.json()),
   ]);

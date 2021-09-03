@@ -6,14 +6,17 @@ import Col from 'react-bootstrap/Col';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionBody from 'components/subscription-body';
 import CommonSidebarLinks from 'components/common-sidebar-links';
+import { SITE_URL } from 'utils/constants';
 
 export default function SubscriptionPage() {
+  const canonicalUrl = `${SITE_URL}/subscribe`;
+
   return (
     <>
       <NextSeo
         title="Subscribe To Firm Mailing List | Scarinci Hollenbeck"
         description="Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements."
-        canonical="http://scarincihollenbeck.com/subscribe"
+        canonical={canonicalUrl}
       />
       <SingleSubHeader
         title="Firm Mailing List"

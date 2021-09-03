@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import kwesforms from 'kwesforms';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import FormScripts from './form-scripts';
 
 export default function CareerForm({ contact, title }) {
   const router = useRouter();
 
-  // initalize kwesforms
-  useEffect(() => kwesforms.init());
-
   return (
     <div className="px-2 my-3 border-top">
-      <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
-      </Head>
+      <FormScripts />
       <form
         method="POST"
         action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW"

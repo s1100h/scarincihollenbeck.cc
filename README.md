@@ -44,11 +44,11 @@ yarn install
 
 Before you can run the client application in development you first need to download and configure the [scarincihollenbeck.com backend services](https://github.com/s1100h/admin.scarincihollenbeck.cc/tree/main). You can find the directions on how to set up that in that repositories README.
 
-After your finish setting up the backend, you can now run the command `yarn dev` inside the `client/app` directory. This will lauch the local version of the site into the browser on port `7700`.
+After your finish setting up the backend, you can now run the command `yarn dev`. This will lauch the local version of the site into the browser on port `7700`.
 
 ## Production
 
-To create a production copy of the client application run `yarn build` inside the `client/app` directory. Then to launch the production server locally run `yarn start`. This will launch the production verion of the site into the browser running on port `7300`.
+To create a production copy of the client application run `yarn build`. Then to launch the production server locally run `yarn start`. This will launch the production verion of the site into the browser running on port `7300`.
 
 ### Deployment
 

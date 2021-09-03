@@ -1,23 +1,16 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import kwesforms from 'kwesforms';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import FormScripts from 'components/form-scripts';
 
 export default function AttorneyProfileContactForm({ forwardEmail, currentAttorney }) {
   const router = useRouter();
   const emailVarName = ['One', 'Two', 'Three', 'Four'];
 
-  // initalize kwesforms
-  useEffect(() => kwesforms.init());
-
   return (
     <div className="px-2 mb-3">
-      <Head>
-        <script src="https://www.google.com/recaptcha/api.js?render=6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" />
-      </Head>
+      <FormScripts />
       <form
         action="https://kwes.io/api/foreign/forms/m015EzO4b4EtOvYSTRlK"
         className="kwes-form d-print-none px-1"

@@ -10,7 +10,9 @@ import SidebarContent from 'components/singlepractice/sidebar';
 import PageArticleHero from 'components/pages/page-article-hero';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers, createMarkup } from 'utils/helpers';
-import { FIRM_PAGES, FIRM_BLOG_PAGES } from 'utils/constants';
+import {
+  FIRM_PAGES, FIRM_BLOG_PAGES, BASE_API_URL, SITE_URL,
+} from 'utils/constants';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
@@ -20,7 +22,7 @@ export default function FirmPages({ page, relatedPages, currentPage }) {
     return <SiteLoader />;
   }
 
-  const canonicalUrl = `http://scarincihollenbeck.com/${currentPage}`;
+  const canonicalUrl = `${SITE_URL}/${currentPage}`;
 
   return (
     <>
@@ -74,10 +76,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const restResponse = await fetch(
-    `https://wp.scarincihollenbeck.com/wp-json/firm-page/page/${params.slug}`,
-    { headers },
-  ).then((data) => data.json());
+  const restResponse = await fetch(`${BASE_API_URL}/wp-json/firm-page/page/${params.slug}`, {
+    headers,
+  }).then((data) => data.json());
 
   const relatedPages = FIRM_PAGES.filter((a) => a.slug.replace('/', '') !== params.slug);
 

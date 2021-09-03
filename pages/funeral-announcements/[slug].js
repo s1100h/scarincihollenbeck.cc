@@ -10,7 +10,7 @@ import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import SiteLoader from 'components/site-loader';
 import { headers } from 'utils/helpers';
-import { FUNERAL_SLUGS } from 'utils/constants';
+import { FUNERAL_SLUGS, BASE_API_URL, SITE_URL } from 'utils/constants';
 
 export default function FuneralAnnouncement({
   title, content, seo, slug,
@@ -30,7 +30,7 @@ export default function FuneralAnnouncement({
     bodyContent = content.replace(subTitle, '');
   }
 
-  const canonicalUrl = `https://scarincihollenbeck.com/funeral-announcements/${slug}`;
+  const canonicalUrl = `${SITE_URL}/funeral-announcements/${slug}`;
 
   return (
     <>
@@ -63,10 +63,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const request = await fetch(
-    `https://wp.scarincihollenbeck.com/wp-json/single-page/page/${params.slug}`,
-    { headers },
-  ).then((data) => data.json());
+  const request = await fetch(`${BASE_API_URL}/wp-json/single-page/page/${params.slug}`, {
+    headers,
+  }).then((data) => data.json());
 
   const { title, content, seo } = request;
 

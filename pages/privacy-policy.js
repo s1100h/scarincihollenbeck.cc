@@ -5,19 +5,17 @@ import Col from 'react-bootstrap/Col';
 import PagesBody from 'components/pages/body';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { headers } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
 export default function PrivacyPolicy({ title, content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
+  const canonicalUrl = `${SITE_URL}/privacy-policy`;
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical="http://scarincihollenbeck.com/privacy-policy"
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} />
       <Container>
         <Row>
@@ -31,10 +29,9 @@ export default function PrivacyPolicy({ title, content, seo }) {
 }
 
 export async function getStaticProps() {
-  const request = await fetch(
-    'https://wp.scarincihollenbeck.com/wp-json/single-page/page/privacy-policy',
-    { headers },
-  ).then((data) => data.json());
+  const request = await fetch(`${BASE_API_URL}/wp-json/single-page/page/privacy-policy`, {
+    headers,
+  }).then((data) => data.json());
 
   const { title, content, seo } = request;
 

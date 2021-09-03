@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { headers, createMarkup } from 'utils/helpers';
-import { HOLIDAY_SLUGS } from 'utils/constants';
+import { HOLIDAY_SLUGS, BASE_API_URL, SITE_URL } from 'utils/constants';
 import SiteLoader from 'components/site-loader';
 
 export default function FirmHoliday({
@@ -24,7 +24,7 @@ export default function FirmHoliday({
     bodyContent = content.replace(subTitle, '');
   }
 
-  const canonicalUrl = `https://scarincihollenbeck.com/holiday/${slug}`;
+  const canonicalUrl = `${SITE_URL}/holiday/${slug}`;
 
   return (
     <>
@@ -48,11 +48,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [aJson, postJson] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/single-page/page/${params.slug}`, {
+    fetch(`${BASE_API_URL}/wp-json/single-page/page/${params.slug}`, {
       headers,
     }).then((data) => data.json()),
     fetch(
-      'https://wp.scarincihollenbeck.com/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights',
+      `${BASE_API_URL}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
       { headers },
     ).then((data) => data.json()),
   ]);
