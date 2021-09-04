@@ -17,11 +17,11 @@ import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 export default function FirmPages({ page, relatedPages, currentPage }) {
   const router = useRouter();
+  const canonicalUrl = `${SITE_URL}/${currentPage}`;
+
   if (router.isFallback) {
     return <SiteLoader />;
   }
-
-  const canonicalUrl = `${SITE_URL}/${currentPage}`;
 
   return (
     <>

@@ -8,22 +8,23 @@ import SubscriptionBody from 'components/subscription-body';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import { SITE_URL } from 'utils/constants';
 
-export default function SubscriptionPage() {
-  const canonicalUrl = `${SITE_URL}/subscribe`;
+const seo = {
+  title: 'Subscribe To Firm Mailing List | Scarinci Hollenbeck',
+  metaDescription:
+    "Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements.",
+  canonicalUrl: `${SITE_URL}/subscribe`,
+};
 
+const site = {
+  title: 'Firm Mailing List',
+  description:
+    "Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements.",
+};
+export default function SubscriptionPage() {
   return (
     <>
-      <NextSeo
-        title="Subscribe To Firm Mailing List | Scarinci Hollenbeck"
-        description="Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements."
-        canonical={canonicalUrl}
-      />
-      <SingleSubHeader
-        title="Firm Mailing List"
-        subtitle="Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements."
-        span={7}
-        offset={0}
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
+      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={0} />
       <Container>
         <Row>
           <Col sm={12} md={9}>

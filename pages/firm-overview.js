@@ -12,12 +12,13 @@ export default function FirmOverview({
   const bodyContent = mainContent.replace(subHeaderContent[0], '');
   const sortedAdmins = sortByKey(members.admin, 'orderBy');
   const canonicalUrl = `${SITE_URL}/firm-overview`;
+  const title = 'Firm Overview';
 
   return (
     <>
       <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       <SingleSubHeader
-        title="Firm Overview"
+        title={title}
         subtitle={subHeaderContent[0].replace(/<\/?[^>]+(>|$)/g, '')}
         span={6}
         offset={3}

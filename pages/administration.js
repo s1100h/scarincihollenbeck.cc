@@ -8,17 +8,24 @@ import AttorneyCard from 'components/attorney-card';
 import { headers, sortByKey } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
-export default function Administration({ admins, seo }) {
-  const canonicalUrl = `${SITE_URL}/${seo.canonicalLink}`;
+const seo = {
+  title: 'Administration Directors & Managers | Scarinci Hollenbeck',
+  metaDescription:
+    "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
+  canonicalUrl: `${SITE_URL}/administration`,
+};
+
+const site = {
+  title: ' Administration',
+  description:
+    "In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group.",
+};
+
+export default function Administration({ admins }) {
   return (
     <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader
-        title="Administration"
-        subtitle=" In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group."
-        offset={2}
-        span={7}
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
+      <SingleSubHeader title={site.title} subtitle={site.description} offset={2} span={7} />
       <FullWidth>
         <Container className="p-3 pt-4 border">
           <Row>
@@ -51,12 +58,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      seo: {
-        title: 'Administration Directors & Managers | Scarinci Hollenbeck',
-        metaDescription:
-          "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
-        canonicalLink: 'administration',
-      },
       admins: request.admins,
     },
     revalidate: 1,
