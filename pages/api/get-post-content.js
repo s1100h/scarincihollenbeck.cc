@@ -128,9 +128,28 @@ export default async (req, res) => {
       'six-from-scarinci-hollenbeck-mentioned-in-cianj-awards',
       'firm-news',
     );
-    res.status(200).send({ fetchPost });
+
+    const dbDetails = {
+      host: process.env.SITE_HOST,
+      port: process.env.SITE_PORT,
+      user: process.env.SITE_USER,
+      password: process.env.SITE_PASSWORD,
+      database: process.env.SITE_DATABASE,
+      connectionLimit: 20,
+    };
+
+    res.status(200).send({ fetchPost, dbDetails });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error });
+
+    const dbDetails = {
+      host: process.env.SITE_HOST,
+      port: process.env.SITE_PORT,
+      user: process.env.SITE_USER,
+      password: process.env.SITE_PASSWORD,
+      database: process.env.SITE_DATABASE,
+      connectionLimit: 20,
+    };
+    res.status(500).json({ error, dbDetails });
   }
 };
