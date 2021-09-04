@@ -68,15 +68,23 @@ export const getPostContent = async (slug, category) => {
 
   const modPostContent = (content) => {
     const fullImage = content.match(/<figure(?:.*)>(.*?)<\/figure>/g);
-    const subTitle = post[0].post_content.match(/<h2(?:.*)>(.*?)<\/h2>/g);
+    const subTitle = content.match(/<h2(?:.*)>(.*?)<\/h2>/g);
     let response = '';
 
+    if (fullImage && !subTitle) {
+      response = content.replace(fullImage[0], '');
+    }
+
+    if (subTitle && !fullImage) {
+      response = content.replace(subTitle[0], '');
+    }
+
     if (fullImage) {
-      response += content.replace(fullImage[0], '');
+      response = content.replace(fullImage[0], '');
     }
 
     if (subTitle) {
-      response += content.replace(subTitle[0], '');
+      response = response.replace(subTitle[0], '');
     }
 
     return response;
