@@ -14,7 +14,7 @@ export default function PostSidebar({ title, posts, attorneys }) {
       <hr />
       <SubscriptionMessage />
       <hr />
-      <TrendingStories title="Trending Stories" content={posts} />
+      {posts.length > 0 && <TrendingStories title="Trending Stories" content={posts} />}
       {attorneys.length > 0 && (
         <div className="w-100 mt-4">
           <hr />
@@ -22,22 +22,23 @@ export default function PostSidebar({ title, posts, attorneys }) {
             <strong>Mentioned Attorneys</strong>
           </p>
           <ul>
-            {attorneys.map((a) => (
-              <li key={a.name} className="list-unstyled">
-                <Link href={a.link}>
-                  <a className="text-dark">{a.name}</a>
-                </Link>
-                {a.designation && (
-                  <div className="my-0 py-0 d-block">
-                    <small>
-                      <strong>Title: </strong>
-                      {' '}
-                      {a.designation}
-                    </small>
-                  </div>
-                )}
-              </li>
-            ))}
+            {attorneys.length > 0
+              && attorneys.map((a) => (
+                <li key={a.name} className="list-unstyled">
+                  <Link href={a.link}>
+                    <a className="text-dark">{a.name}</a>
+                  </Link>
+                  {a.designation && (
+                    <div className="my-0 py-0 d-block">
+                      <small>
+                        <strong>Title: </strong>
+                        {' '}
+                        {a.designation}
+                      </small>
+                    </div>
+                  )}
+                </li>
+              ))}
           </ul>
           <style jsx>
             {`
