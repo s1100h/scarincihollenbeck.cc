@@ -10,10 +10,12 @@ import {
 } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
+import { SITE_URL } from 'utils/constants';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function PostSocialShareSidebar({ title }) {
   const router = useRouter();
+  const postUrl = `${SITE_URL}${router.asPath}`;
 
   return (
     <div className="mt-4">
@@ -21,7 +23,7 @@ export default function PostSocialShareSidebar({ title }) {
         <strong>Share this article</strong>
       </p>
       <p className="mb-1">
-        <LinkedinShareButton url={`https://scarincihollenbeck.com${router.asPath}`} quote={title}>
+        <LinkedinShareButton url={postUrl} quote={title}>
           <FaLinkedin style={{ fontSize: '1.2rem' }} />
           <u className="link">
             <strong>LinkedIn</strong>
@@ -29,7 +31,7 @@ export default function PostSocialShareSidebar({ title }) {
         </LinkedinShareButton>
       </p>
       <p className="mb-1">
-        <FacebookShareButton url={`https://scarincihollenbeck.com${router.asPath}`} quote={title}>
+        <FacebookShareButton url={postUrl} quote={title}>
           <FaFacebookSquare style={{ fontSize: '1.1rem' }} />
           <u className="link">
             <strong>Facebook</strong>
@@ -37,7 +39,7 @@ export default function PostSocialShareSidebar({ title }) {
         </FacebookShareButton>
       </p>
       <p className="mb-1">
-        <TwitterShareButton url={`https://scarincihollenbeck.com${router.asPath}`} quote={title}>
+        <TwitterShareButton url={postUrl} quote={title}>
           <FaTwitterSquare style={{ fontSize: '1.1rem' }} />
           <u className="link twitter">
             <strong>Twitter</strong>
@@ -45,11 +47,7 @@ export default function PostSocialShareSidebar({ title }) {
         </TwitterShareButton>
       </p>
       <p className="mb-2">
-        <EmailShareButton
-          subject={title}
-          body={`https://scarincihollenbeck.com${router.asPath}`}
-          separator=""
-        >
+        <EmailShareButton subject={title} body={postUrl} separator="">
           <FaEnvelope />
           {' '}
           <u className="link">

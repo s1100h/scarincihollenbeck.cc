@@ -23,6 +23,13 @@ export const getPostContent = async (slug, category) => {
   const postAuthorMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.AUTHORSMETA_TABLE} WHERE user_id = ?`;
 
   const [post] = await connection.execute(postContentQuery, [slug]);
+
+  if (post.length <= 0) {
+    return {
+      status: 404,
+    };
+  }
+
   const [postMeta] = await connection.execute(postMetaQuery, [post[0].ID]);
   const [tagsMeta] = await connection.execute(postCategoriesQuery, [post[0].ID]);
   const [catSlug] = await connection.execute(currentCategoryFromSlugQuery, [category]);
@@ -186,6 +193,7 @@ export const getPostContent = async (slug, category) => {
   if (postFound.length > 0) {
     return response;
   }
+
   return {
     status: 404,
   };
@@ -193,12 +201,19 @@ export const getPostContent = async (slug, category) => {
 
 export default async (req, res) => {
   try {
-    const fetchPost = await getPostContent('financial-support-for-freelancers', 'covid-19-alerts');
+    const fetchPost = await getPostContent(
+      'new-jersey-supreme-court-re-certifies-robert-e-levy',
+      'firm-news',
+    );
 
-    res.status(200).send({ fetchPost });
+    if (fetchPost.status === 404) {
+      return res.status(404).send({ ...fetchPost });
+    }
+
+    return res.status(200).send({ ...fetchPost });
   } catch (error) {
     console.error(error);
 
-    res.status(500).json({ error });
+    return res.status(500).json({ error });
   }
 };

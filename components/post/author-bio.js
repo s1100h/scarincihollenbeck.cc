@@ -4,7 +4,7 @@ import { createMarkup } from 'utils/helpers';
 
 export default function PostAuthorBio({ authors }) {
   return (
-    <div className="w-100 d-print-none mt-5">
+    <div className="w-100 d-print-none mt-2">
       {authors.map((a) => (
         <div key={a.display_name} className="mb-2">
           <div className={`${lineHeaderStyles.lineHeader} d-print-none mt-3`}>

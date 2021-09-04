@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import ContactForm from 'components/contact-form';
 import PostBreadcrumbs from 'components/post/post-breadcrumbs';
-import SocialShareFooter from 'components/post/social-share-footer';
 import AuthorBio from 'components/post/author-bio';
 import { createMarkup, urlify } from 'utils/helpers';
+import { SITE_URL } from 'utils/constants';
 import pageContentStyles from 'styles/PageContent.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
-function DisplayListTags({ title, items, isTag }) {
+function DisplayListTags({ title, children }) {
   return (
     <div className="mb-0 d-print-none">
-      <ul className="no-dots list-inline">
+      <ul className="no-dots list-inline mb-1">
         <li className="list-inline-item">
           <strong>
             {title}
@@ -19,16 +21,7 @@ function DisplayListTags({ title, items, isTag }) {
             {' '}
           </strong>
         </li>
-        {items.map((tag, index) => (
-          <li key={tag.name} className="list-inline-item">
-            <Link href={`/library/search?term=${urlify(tag.name)}`}>
-              <a>
-                {isTag ? tag.name.toLowerCase() : tag.name}
-                {items.length - 1 !== index && ', '}
-              </a>
-            </Link>
-          </li>
-        ))}
+        {children}
       </ul>
     </div>
   );
@@ -44,6 +37,9 @@ export default function PostBody({
   caption,
   categories,
 }) {
+  const router = useRouter();
+  const postUrl = `${SITE_URL}${router.asPath}`;
+
   return (
     <>
       <PostBreadcrumbs />
@@ -60,12 +56,53 @@ export default function PostBody({
         className={`${pageContentStyles.p} mt-3 d-print-block`}
         dangerouslySetInnerHTML={createMarkup(content)}
       />
-      <hr />
-      {categories && <DisplayListTags title="Categories" items={categories} isTag={false} />}
-      {tags && <DisplayListTags title="Tags" items={tags} isTag />}
+      {categories && (
+        <DisplayListTags title="Categories">
+          {categories.map((category, index) => (
+            <li key={category.name} className="list-inline-item">
+              <Link href={`/library/category/${urlify(category.name)}`}>
+                <a className="text-dark underline">
+                  {category.name}
+                  {categories.length - 1 !== index && ', '}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </DisplayListTags>
+      )}
 
+      {tags && (
+        <DisplayListTags title="Tags">
+          {tags.map((tag, index) => (
+            <li key={tag.name} className="list-inline-item">
+              <Link href={`/library/search?term=${urlify(tag.name)}`}>
+                <a className="text-dark underline">
+                  {tag.name}
+                  {tags.length - 1 !== index && ', '}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </DisplayListTags>
+      )}
+      <DisplayListTags title="Share">
+        <li className="list-inline-item">
+          <FacebookShareButton url={postUrl} quote={title} style={{ textDecoration: 'underline' }}>
+            Facebook
+          </FacebookShareButton>
+        </li>
+        <li className="list-inline-item">
+          <TwitterShareButton url={postUrl} quote={title} style={{ textDecoration: 'underline' }}>
+            Twitter
+          </TwitterShareButton>
+        </li>
+        <li className="list-inline-item">
+          <LinkedinShareButton url={postUrl} quote={title} style={{ textDecoration: 'underline' }}>
+            LinkedIn
+          </LinkedinShareButton>
+        </li>
+      </DisplayListTags>
       <div className="d-print-none">
-        <SocialShareFooter title={title} />
         <AuthorBio authors={authors} />
         <p className={`${grayTitleStyles.title} my-5`}>
           {isEvent
@@ -74,6 +111,7 @@ export default function PostBody({
         </p>
         <ContactForm />
       </div>
+      <style jsx>{'.underline:hover { text-decoration: underline }'}</style>
     </>
   );
 }
