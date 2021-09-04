@@ -147,8 +147,8 @@ const getHomePageContent = async () => {
 // query for pages/post
 const getPostBySlugAndCategory = async (slug, category) => {
   const url = `${BASE_API_URL}/wp-json/single/post/${slug}/${category}`;
-  const request = await fetch(url, { headers })
-    .then((data) => data.json())
+  const request = await fetch(url, { mode: 'no-cors', headers })
+    .then((data) => data.body())
     .catch((err) => err);
 
   return request;

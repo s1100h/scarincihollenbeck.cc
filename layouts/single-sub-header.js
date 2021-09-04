@@ -12,21 +12,43 @@ export default function SingleSubHeader({
   isTabs = false,
   span,
   offset,
+  authors = [],
+  date = '',
 }) {
   return (
     <div className={!isHoliday ? styles.backPageBanner : styles.holidayBanner}>
       <Container className={isTabs ? styles.tabBanner : styles.noTabBanner}>
         <Row>
           <Col sm={12} md={{ span, offset }}>
-            <h1
-              className="text-white animate__animated animate__fadeInDown animate__fast"
-              style={{
-                fontSize: !isBlog ? '3rem' : null,
-                textShadow: '2px 3px 3px #000',
-              }}
-            >
-              <strong>{title}</strong>
-            </h1>
+            <div className="title-container">
+              <h1
+                className="text-white animate__animated animate__fadeInDown animate__fast"
+                style={{
+                  fontSize: !isBlog ? '3rem' : null,
+                  textShadow: '2px 3px 3px #000',
+                  marginBottom: isBlog ? '5px' : '0',
+                }}
+              >
+                <strong>{title}</strong>
+              </h1>
+              {isBlog && (
+                <p className="text-white mb-2">
+                  <strong>Author: </strong>
+                  {authors.map((author, index) => (
+                    <a
+                      href={author.user_url}
+                      key={author.display_name}
+                      className="text-underline text-white"
+                    >
+                      {author.display_name}
+                      {index < authors.length - 1 && <>, </>}
+                    </a>
+                  ))}
+                  <span className="mx-3">|</span>
+                  {date}
+                </p>
+              )}
+            </div>
             <h2
               className="text-white animate__animated animate__fadeInUp animate__fast"
               style={{ fontSize: '1.2rem' }}
@@ -35,7 +57,7 @@ export default function SingleSubHeader({
           </Col>
           <style jsx>
             {`
-              h1 {
+              .title-container {
                 border-bottom: 3px solid #db2220;
                 margin-bottom: 20px;
                 display: block;

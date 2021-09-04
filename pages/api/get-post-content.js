@@ -32,6 +32,9 @@ export const getPostContent = async (slug, category) => {
   const featuredImageCaption = post[0].post_content.match(
     /<\s*figcaption(?:.*)>(.*)<\/figcaption>/g,
   );
+  const fullImage = post[0].post_content.match(/<figure(?:.*)>(.*?)<\/figure>/g)[0];
+  const bodyContent = post[0].post_content.replace(subTitle, '').replace(fullImage, '');
+
   const postTags = tagsMeta.map((tag) => tag.term_taxonomy_id);
 
   const allTagsMeta = [];
@@ -84,7 +87,6 @@ export const getPostContent = async (slug, category) => {
 
   const categories = allTags.filter((tag) => tag.label === 'category');
   const tags = allTags.filter((tag) => tag.label === 'post_tag');
-
   const postFound = categories.filter((cat) => cat.id === catSlug[0].term_id);
 
   const response = {
@@ -92,10 +94,10 @@ export const getPostContent = async (slug, category) => {
     postId: post[0].ID,
     postQueryCategoryId: catSlug[0].term_id,
     post: {
-      content: post[0].post_content,
+      content: bodyContent,
       title: post[0].post_title,
       date: formatDate(post[0].post_date),
-      subTitle: subTitle || '',
+      subTitle: subTitle.replace(/<\/?[^>]+(>|$)/g, '') || '',
       featuredImage,
       featuredImageCaption,
     },
