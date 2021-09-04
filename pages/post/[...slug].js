@@ -34,7 +34,7 @@ export default function LawFirmInsightsPost({
 
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
-  const postUrl = `${SITE_URL}/${router.asPath}`;
+  const postUrl = `${SITE_URL}${router.asPath}`;
 
   return (
     <>
