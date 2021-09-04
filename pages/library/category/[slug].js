@@ -31,13 +31,14 @@ export default function LibraryCategory({
   const modDescription = `${splitDescription[0]}. ${splitDescription[1]}.`;
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
   const canonicalUrl = `${SITE_URL}/library/${seo.canonicalLink}`;
+  const categoryName = name.replace('&amp;', '&');
 
   return (
     <>
       {Object.keys(seo).length > 0 && (
         <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
       )}
-      <SingleSubHeader span={8} offset={1} title={name} subtitle={modDescription} />
+      <SingleSubHeader span={8} offset={1} title={categoryName} subtitle={modDescription} />
       <LibraryLayout
         results={results}
         authors={authors}

@@ -56,6 +56,7 @@ export default function PostBody({
         className={`${pageContentStyles.p} mt-3 d-print-block`}
         dangerouslySetInnerHTML={createMarkup(content)}
       />
+      <hr />
       {categories && (
         <DisplayListTags title="Categories">
           {categories.map((category, index) => (
