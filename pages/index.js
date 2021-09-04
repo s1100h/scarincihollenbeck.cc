@@ -19,7 +19,7 @@ import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import { SITE_URL } from 'utils/constants';
 import { getHomePageContent } from 'utils/queries';
 
-export default function HomePageTwo({
+export default function HomePage({
   seo, posts, locations, leadership,
 }) {
   return (

@@ -1,104 +1,107 @@
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { NextSeo, ArticleJsonLd } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { getPostContent } from 'pages/api/get-post-content';
+import { BASE_API_URL, SITE_URL } from 'utils/constants';
 import SiteLoader from 'components/site-loader';
+import PostHead from 'components/post/head';
 import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import EventSidebar from 'components/post/event-sidebar';
-import { SITE_URL } from 'utils/constants';
-import { getPostBySlugAndCategory } from 'utils/queries';
 
 export default function LawFirmInsightsPost({
-  title,
-  postContent,
-  subTitle,
-  posts,
-  featuredImage,
-  featuredImageCaption,
+  post,
   seo,
+  categories,
   tags,
-  authorLinks,
-  date,
   authors,
-  attorneys,
-  eventDetails,
+  category,
+  postUrl,
 }) {
+  const [relatedAttorneys, setRelatedAttorneys] = useState([]);
+  const [trendingStories, setTrendingStories] = useState([]);
+  const [eventDetails, setEventDetails] = useState([]);
+  const [isEvent, setIsEvent] = useState(false);
   const router = useRouter();
+  const canonicalUrl = `${SITE_URL}${router.asPath}`;
+  const metaAuthorLinks = authors.map((author) => (author.display_name === 'Scarinci Hollenbeck' ? SITE_URL : author.user_url));
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
 
-  // check if is event page
-  const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
-  const postUrl = `${SITE_URL}${router.asPath}`;
+  /**
+   *  Related attorneys, Event Details, Trending Stories, Related Posts
+   *  ;
+   */
+
+  useEffect(() => {
+    async function getAdditionalPostContent() {
+      const url = `${BASE_API_URL}/wp-json/single/post/${postUrl}/${category}`;
+      const request = await fetch(url)
+        .then((data) => data.json())
+        .catch((err) => err);
+
+      setRelatedAttorneys(request.attorneys);
+      setTrendingStories(request.posts);
+
+      if (request.eventDetails.length > 0) {
+        setIsEvent(true);
+        setEventDetails(request.eventDetails);
+      }
+    }
+
+    if (postUrl && category) {
+      getAdditionalPostContent();
+    }
+  }, [postUrl, category]);
 
   return (
     <>
-      <NextSeo
-        title={seo.title}
-        description={seo.metaDescription}
-        canonical={postUrl}
-        openGraph={{
-          url: postUrl,
-          title: seo.title,
-          description: seo.metaDescription,
-          type: 'article',
-          article: {
-            publishedTime: seo.publishedDate,
-            modifiedTime: seo.updatedDate,
-            authors: authorLinks,
-          },
-          images: [
-            {
-              url: featuredImage,
-              width: 750,
-              height: 350,
-              alt: seo.title,
-            },
-          ],
-        }}
-        twitter={{
-          handle: '@S_H_Law',
-          site: postUrl,
-          cardType: seo.metaDescription,
-        }}
+      <PostHead
+        seo={seo}
+        canonicalUrl={canonicalUrl}
+        metaAuthorLinks={metaAuthorLinks}
+        post={post}
+        authors={authors}
       />
-      <ArticleJsonLd
-        url={postUrl}
-        title={seo.title}
-        images={[featuredImage]}
-        datePublished={seo.publishedDate}
-        dateModified={seo.updatedDate}
-        authorName={authors.map((author) => author.name)}
-        publisherName="Scarinci Hollenbeck, LLC"
-        publisherLogo="/images/sh-logo-2020-compressor.png"
-        description={`${seo.metaDescription}`}
+      <SingleSubHeader
+        title={post.title}
+        subtitle={post.subTitle}
+        isBlog
+        offset={0}
+        span={8}
+        authors={authors}
+        date={post.date}
       />
-      <SingleSubHeader title={title} subtitle={subTitle} isBlog offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} md={9}>
             <Body
-              featuredImage={featuredImage}
-              caption={featuredImageCaption}
-              content={postContent}
-              eventCat={isEventCategory}
-              title={title}
-              subTitle={subTitle}
-              author={authors}
-              date={date}
+              featuredImage={post.featuredImage}
+              caption={post.featuredImageCaption}
+              content={post.content}
+              isEvent={isEvent}
+              title={post.title}
+              subTitle={post.subTitle}
+              authors={authors}
+              date={post.date}
               tags={tags}
+              categories={categories}
             />
           </Col>
           <Col sm={12} md={3}>
-            {isEventCategory && eventDetails.length > 0 ? (
-              <EventSidebar eventDetails={eventDetails} title={title} attorneys={attorneys} />
+            {isEvent && eventDetails.length > 0 ? (
+              <EventSidebar
+                eventDetails={eventDetails}
+                title={post.title}
+                attorneys={relatedAttorneys}
+              />
             ) : (
-              <Sidebar posts={posts} title={title} attorneys={attorneys} />
+              <Sidebar posts={trendingStories} title={post.title} attorneys={relatedAttorneys} />
             )}
           </Col>
         </Row>
@@ -107,51 +110,31 @@ export default function LawFirmInsightsPost({
   );
 }
 
-// We need to get a every blog post by category
-
 export async function getServerSideProps({ params, res, query }) {
   const postUrl = params.slug[params.slug.length - 1];
   const { category } = query;
+  const request = await getPostContent(postUrl, category);
 
-  const post = await getPostBySlugAndCategory(postUrl, category);
-
-  if (post.status === 404) {
+  if (request.status === 404) {
     res.statusCode = 404;
     return {
       notFound: true,
     };
   }
 
-  const defaultTag = [
-    {
-      term_id: 157,
-      name: 'Scarinci Hollenbeck',
-      slug: 'scarinci-hollenbeck',
-      term_group: 0,
-      term_taxonomy_id: 163,
-      taxonomy: 'post_tag',
-      description: '',
-      parent: 0,
-      count: 1202,
-      filter: 'raw',
-    },
-  ];
+  const {
+    post, seo, categories, tags, authors,
+  } = request;
 
   return {
     props: {
-      seo: post.seo,
-      title: post.title,
-      subTitle: post.subTitle,
-      tags: post.seo.tags || defaultTag,
-      date: post.date,
-      featuredImage: post.featuredImage || '/images/no-image-found-diamond-750x350.png',
-      featuredImageCaption: post.featuredImageCaption,
-      postContent: post.content,
-      authorLinks: post.author.map((author) => author.link) || [SITE_URL],
-      posts: post.posts,
-      authors: post.author || [],
-      attorneys: post.attorneys || [],
-      eventDetails: post.eventDetails || [],
+      post,
+      seo,
+      categories,
+      tags,
+      authors,
+      category,
+      postUrl,
     },
   };
 }
