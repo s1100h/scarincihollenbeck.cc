@@ -32,6 +32,9 @@ module.exports = {
     'no-tabs': 'off',
     'no-return-assign': 'off',
     'no-param-reassign': 'off',
+    'no-await-in-loop': 'off',
+    'no-plusplus': 'off',
+    'no-shadow': 'off',
     'no-console': [
       2,
       {
