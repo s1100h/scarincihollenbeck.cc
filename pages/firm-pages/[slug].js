@@ -9,10 +9,9 @@ import SubscriptionMessage from 'components/subscription-message';
 import SidebarContent from 'components/singlepractice/sidebar';
 import PageArticleHero from 'components/pages/page-article-hero';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { headers, createMarkup } from 'utils/helpers';
-import {
-  FIRM_PAGES, FIRM_BLOG_PAGES, BASE_API_URL, SITE_URL,
-} from 'utils/constants';
+import { createMarkup } from 'utils/helpers';
+import { FIRM_PAGES, FIRM_BLOG_PAGES, SITE_URL } from 'utils/constants';
+import { getFirmPagesContent } from 'utils/queries';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
@@ -76,15 +75,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const restResponse = await fetch(`${BASE_API_URL}/wp-json/firm-page/page/${params.slug}`, {
-    headers,
-  }).then((data) => data.json());
-
+  const request = await getFirmPagesContent(params.slug);
   const relatedPages = FIRM_PAGES.filter((a) => a.slug.replace('/', '') !== params.slug);
 
   return {
     props: {
-      page: restResponse,
+      page: request,
       relatedPages,
       currentPage: params.slug,
     },

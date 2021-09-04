@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
-import { headers } from 'utils/helpers';
 import AttorneyProfile from 'layouts/attorney-profile';
-import { BASE_API_URL } from 'utils/constants';
+import { getAttorneyPaths, getAttorneyBackPageContent } from 'utils/queries';
 
 export default function AttorneyBioProfileContent({
   bio,
@@ -42,38 +41,19 @@ export default function AttorneyBioProfileContent({
 }
 
 export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
-  ]);
-  const attorneyBackPageLinks = [];
-  res.forEach((attorney) => attorney.sidebarLinks.forEach((link) => attorneyBackPageLinks.push(link)));
+  const request = await getAttorneyPaths();
+  const paths = [];
+
+  request.forEach((attorney) => attorney.sidebarLinks.forEach((link) => paths.push(link)));
 
   return {
-    paths: attorneyBackPageLinks || [],
+    paths,
     fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/main/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/contact/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(
-      `${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/${params.type}`,
-      { headers },
-    ).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/blogs`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(
-      `${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/news-press-releases`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
+  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await getAttorneyBackPageContent(params.slug, params.type);
 
   if (bio.status === 404) {
     return {

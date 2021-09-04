@@ -4,8 +4,8 @@ import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import SingleSubHeader from 'layouts/single-sub-header';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getCovid19BasedPages } from 'utils/queries';
 
 export default function Covid19CrisisManagementUnit({
   title, content, internalCovidPosts, seo,
@@ -39,17 +39,10 @@ export default function Covid19CrisisManagementUnit({
 }
 
 export async function getStaticProps() {
-  const [requestResponse, cPosts] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/single-page/page/covid-19-crisis-management-unit`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=20250&per_page=100`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const [request, posts] = await getCovid19BasedPages('covid-19-crisis-management-unit', 20250);
 
-  const { title, content, seo } = requestResponse;
-  const internalCovidPosts = cPosts.map((post) => ({
+  const { title, content, seo } = request;
+  const internalCovidPosts = posts.map((post) => ({
     isoDate: post.date,
     title: post.title.rendered,
     link: post.link,

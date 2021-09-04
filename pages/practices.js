@@ -104,12 +104,11 @@ export default function PracticesPage({ core, additional, business }) {
 }
 
 export async function getStaticProps() {
-  const [practiceJson] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/practice-portal/page/`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-  const results = await sortPracticeCategorys(practiceJson.practices);
+  const request = await fetch(`${BASE_API_URL}/wp-json/practice-portal/page/`, { headers })
+    .then((data) => data.json())
+    .catch((err) => err);
+
+  const results = sortPracticeCategorys(request.practices);
   const { core, additional, business } = results;
 
   return {

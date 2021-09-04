@@ -43,11 +43,11 @@ export default function Administration({ admins, seo }) {
 }
 
 export async function getStaticProps() {
-  const [restResponse] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const request = await fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
+    headers,
+  })
+    .then((data) => data.json())
+    .catch((err) => err);
 
   return {
     props: {
@@ -57,7 +57,7 @@ export async function getStaticProps() {
           "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
         canonicalLink: 'administration',
       },
-      admins: restResponse.admins,
+      admins: request.admins,
     },
     revalidate: 1,
   };

@@ -7,8 +7,8 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getPageContent } from 'utils/queries';
 
 export default function Awards({ content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -38,10 +38,7 @@ export default function Awards({ content, seo }) {
 }
 
 export async function getStaticProps() {
-  const request = await fetch(`${BASE_API_URL}/wp-json/single-page/page/awards`, {
-    headers,
-  }).then((data) => data.json());
-
+  const request = await getPageContent('awards');
   const { title, content, seo } = request;
 
   return {

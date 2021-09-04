@@ -47,14 +47,13 @@ export default function FirmOverview({
 }
 
 export async function getStaticProps() {
-  const [restResponse] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/firm-overview/content`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const request = await fetch(`${BASE_API_URL}/wp-json/firm-overview/content`, { headers })
+    .then((data) => data.json())
+    .catch((err) => err);
+
   const {
     mainTabs, members, mainContent, seo,
-  } = restResponse;
+  } = request;
 
   return {
     props: {

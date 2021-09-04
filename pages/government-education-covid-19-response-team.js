@@ -4,8 +4,8 @@ import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
-import { headers } from 'utils/helpers';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getCovid19BasedPages } from 'utils/queries';
 
 export default function GovernmentEducationCovidResponseTeam({
   title,
@@ -42,17 +42,13 @@ export default function GovernmentEducationCovidResponseTeam({
 }
 
 export async function getStaticProps() {
-  const [requestResponse, cPosts] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/single-page/page/government-education-covid-19-response-team`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=20250&per_page=100`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const [request, posts] = await getCovid19BasedPages(
+    'government-education-covid-19-response-team',
+    20250,
+  );
+  const { title, content, seo } = request;
 
-  const { title, content, seo } = requestResponse;
-  const internalCovidPosts = cPosts.map((post) => ({
+  const internalCovidPosts = posts.map((post) => ({
     isoDate: post.date,
     title: post.title.rendered,
     link: post.link,

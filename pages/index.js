@@ -12,11 +12,12 @@ import HomeReviews from 'components/home/reviews';
 import HomeWhoWeAreSection from 'components/home/who-we-are-section';
 import HomePageLink from 'components/home/page-link';
 import ArticleHero from 'components/article-hero';
-import { sortByKey, headers } from 'utils/helpers';
+import { sortByKey } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
 import marginStyles from 'styles/Margins.module.css';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getHomePageContent } from 'utils/queries';
 
 export default function HomePageTwo({
   seo, posts, locations, leadership,
@@ -134,29 +135,8 @@ export default function HomePageTwo({
 }
 
 export async function getStaticProps() {
-  /** Adding in graphql queries */
-  const [seo, news, events, locations, attorneys, administration] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/front-page/meta`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=98&_embed`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=99&_embed`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/administration?per_page=10`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const [seo, posts, locations, attorneys, administration] = await getHomePageContent();
 
-  const posts = [...news, ...events];
   const leadership = attorneys
     .filter((a) => a.acf.chair.length > 0)
     .filter((a) => a.acf.last_name !== 'Pepe')

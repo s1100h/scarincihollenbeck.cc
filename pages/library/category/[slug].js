@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
 
 export default function LibraryCategory({
   results,
@@ -51,16 +51,10 @@ export default function LibraryCategory({
 }
 
 export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/all-categories/list`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-
-  const fullList = res.filter((a, b) => a.link !== b.link).map((a) => `/library/category/${a.link}`);
+  const paths = await getCategoryPaths();
 
   return {
-    paths: fullList || [],
+    paths,
     fallback: true,
   };
 }
@@ -76,23 +70,7 @@ export async function getStaticProps({ params }) {
     tempChildCat += slug;
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/posts/${tempChildCat}`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(tempStr, tempChildCat);
 
   if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {

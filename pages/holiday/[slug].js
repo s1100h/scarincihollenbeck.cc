@@ -2,8 +2,9 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import { headers, createMarkup } from 'utils/helpers';
-import { HOLIDAY_SLUGS, BASE_API_URL, SITE_URL } from 'utils/constants';
+import { createMarkup } from 'utils/helpers';
+import { HOLIDAY_SLUGS, SITE_URL } from 'utils/constants';
+import { getPageContent } from 'utils/queries';
 import SiteLoader from 'components/site-loader';
 
 export default function FirmHoliday({
@@ -47,24 +48,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [aJson, postJson] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/single-page/page/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(
-      `${BASE_API_URL}/wp-json/single/post/develop-in-a-jersey-city-inclusionary-zone/law-firm-insights`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
+  const request = getPageContent(params.slug);
 
-  const { posts } = postJson;
-  const { title, content, seo } = aJson;
+  const { title, content, seo } = request;
 
   return {
     props: {
       title,
       content,
-      posts,
       seo,
       slug: params.slug,
     },

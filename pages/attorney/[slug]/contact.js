@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL } from 'utils/constants';
+import { getAttorneyPaths, getAttorneyContent } from 'utils/queries';
 
 import AttorneyProfile from 'layouts/attorney-profile';
 
@@ -43,38 +42,18 @@ export default function AttorneyBioProfileContact({
 }
 
 export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
-  ]);
-
-  const fullAttorneyList = res.map((a) => `/attorney${a.link}/contact`);
+  const request = await getAttorneyPaths();
+  const paths = request.map((a) => `/attorney${a.link}/contact`);
 
   return {
-    paths: fullAttorneyList || [],
+    paths,
     fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
   // keep bio for presentations, publications & blogs
-  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/main/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/contact/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/biography`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/blogs`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(
-      `${BASE_API_URL}/wp-json/attorney-profile/attorney/${params.slug}/back-page/news-press-releases`,
-      { headers },
-    ).then((data) => data.json()),
-  ]);
+  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await getAttorneyContent(params.slug);
 
   if (bio.status === 404) {
     return {

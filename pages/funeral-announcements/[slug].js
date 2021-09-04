@@ -9,8 +9,8 @@ import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
 import SiteLoader from 'components/site-loader';
-import { headers } from 'utils/helpers';
-import { FUNERAL_SLUGS, BASE_API_URL, SITE_URL } from 'utils/constants';
+import { FUNERAL_SLUGS, SITE_URL } from 'utils/constants';
+import { getPageContent } from 'utils/queries';
 
 export default function FuneralAnnouncement({
   title, content, seo, slug,
@@ -63,9 +63,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const request = await fetch(`${BASE_API_URL}/wp-json/single-page/page/${params.slug}`, {
-    headers,
-  }).then((data) => data.json());
+  const request = getPageContent(params.slug);
 
   const { title, content, seo } = request;
 

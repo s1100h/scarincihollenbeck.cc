@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import PagesBody from 'components/pages/body';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { headers } from 'utils/helpers';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getPageContent } from 'utils/queries';
 
 export default function Disclaimer({ content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -34,9 +34,7 @@ export default function Disclaimer({ content, seo }) {
 }
 
 export async function getStaticProps() {
-  const request = await fetch(`${BASE_API_URL}/wp-json/single-page/page/disclaimer`, {
-    headers,
-  }).then((data) => data.json());
+  const request = await getPageContent('disclaimer');
 
   const { content, seo } = request;
 

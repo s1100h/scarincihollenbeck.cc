@@ -82,15 +82,15 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
 }
 
 export async function getStaticProps() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const request = await fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
+    headers,
+  })
+    .then((data) => data.json())
+    .catch((err) => err);
 
   return {
     props: {
-      careerList: res.careers,
+      careerList: request.careers,
       locations: ['Lyndhurst, NJ', 'Red Bank, NJ', 'New York, NY', 'Washington D.C.'],
       positionTypes: ['Administration', 'Attorney'],
     },

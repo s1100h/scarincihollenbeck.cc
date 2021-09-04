@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/site-loader';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { headers } from 'utils/helpers';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getAuthorPaths, getAuthorContent } from 'utils/queries';
 
 export default function LibraryAuthor({
   results,
@@ -50,16 +50,10 @@ export default function LibraryAuthor({
 }
 
 export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/author/list`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-
-  const fullAuthorList = res.map((a) => `/library/author/${a}`);
+  const paths = await getAuthorPaths();
 
   return {
-    paths: fullAuthorList || [],
+    paths,
     fallback: true,
   };
 }
@@ -75,21 +69,7 @@ export async function getStaticProps({ params }) {
     tempStr += `offset=1&author=${slug}`;
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/author/bio/${slug}`, { headers }).then((data) => data.json()),
-  ]);
+  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(tempStr, tempChildCat, slug);
 
   if (authorBio.bio[0].name.length <= 0) {
     return {

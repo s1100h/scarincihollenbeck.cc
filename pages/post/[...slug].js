@@ -8,8 +8,8 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/post/body';
 import Sidebar from 'components/post/sidebar';
 import EventSidebar from 'components/post/event-sidebar';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getPostBySlugAndCategory } from 'utils/queries';
 
 export default function LawFirmInsightsPost({
   title,
@@ -34,7 +34,7 @@ export default function LawFirmInsightsPost({
 
   // check if is event page
   const isEventCategory = router.asPath.indexOf('/firm-events/') > -1;
-  const postUrl = `https://scarincihollenbeck.com${router.asPath}`;
+  const postUrl = `https://${SITE_URL}/${router.asPath}`;
 
   return (
     <>
@@ -113,14 +113,9 @@ export async function getServerSideProps({ params, res, query }) {
   const postUrl = params.slug[params.slug.length - 1];
   const { category } = query;
 
-  // retrieve the authors for the post
-  const restResponse = await fetch(`${BASE_API_URL}/wp-json/single/post/${postUrl}/${category}`, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+  const post = await getPostBySlugAndCategory(postUrl, category);
 
-  if (restResponse.status === 404) {
+  if (post.status === 404) {
     res.statusCode = 404;
     return {
       notFound: true,
@@ -144,21 +139,19 @@ export async function getServerSideProps({ params, res, query }) {
 
   return {
     props: {
-      seo: restResponse.seo,
-      title: restResponse.title,
-      subTitle: restResponse.subTitle,
-      tags: restResponse.seo.tags || defaultTag,
-      date: restResponse.date,
-      featuredImage: restResponse.featuredImage || '/images/no-image-found-diamond-750x350.png',
-      featuredImageCaption: restResponse.featuredImageCaption,
-      postContent: restResponse.content,
-      authorLinks: restResponse.author.map((author) => author.link) || [
-        'https://scarincihollenbeck.com',
-      ],
-      posts: restResponse.posts,
-      authors: restResponse.author || [],
-      attorneys: restResponse.attorneys || [],
-      eventDetails: restResponse.eventDetails || [],
+      seo: post.seo,
+      title: post.title,
+      subTitle: post.subTitle,
+      tags: post.seo.tags || defaultTag,
+      date: post.date,
+      featuredImage: post.featuredImage || '/images/no-image-found-diamond-750x350.png',
+      featuredImageCaption: post.featuredImageCaption,
+      postContent: post.content,
+      authorLinks: post.author.map((author) => author.link) || [SITE_URL],
+      posts: post.posts,
+      authors: post.author || [],
+      attorneys: post.attorneys || [],
+      eventDetails: post.eventDetails || [],
     },
   };
 }

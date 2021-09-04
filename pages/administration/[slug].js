@@ -6,8 +6,9 @@ import Col from 'react-bootstrap/Col';
 import AdminProfileHeader from 'components/singleadmin/header';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import SiteLoader from 'components/site-loader';
-import { createMarkup, headers } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { createMarkup } from 'utils/helpers';
+import { SITE_URL } from 'utils/constants';
+import { getAdmininstrationPaths, getAdministrationContent } from 'utils/queries';
 
 export default function AdminSingleBio({ response }) {
   const router = useRouter();
@@ -82,28 +83,18 @@ export default function AdminSingleBio({ response }) {
 }
 
 export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-
-  const fullAdminList = res.admins.map((a) => a.link);
+  const paths = await getAdmininstrationPaths();
 
   return {
-    paths: fullAdminList || [],
+    paths,
     fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const [bio] = await Promise.all([
-    fetch(`https://wp.scarincihollenbeck.com/wp-json/individual-admin/admin/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const response = await getAdministrationContent(params.slug);
 
-  if (JSON.stringify(bio) === '{}') {
+  if (JSON.stringify(response) === '{}') {
     return {
       notFound: true,
     };
@@ -111,7 +102,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      response: bio,
+      response,
     },
     revalidate: 1,
   };

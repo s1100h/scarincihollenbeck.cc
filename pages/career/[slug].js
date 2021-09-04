@@ -9,8 +9,8 @@ import SingleCareerBody from 'components/singlecareer/body';
 import SimpleSearch from 'components/simple-search';
 import SubscriptionMessage from 'components/subscription-message';
 import CommonSidebarLinks from 'components/common-sidebar-links';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
+import { getCareersPaths, getCareersContent } from 'utils/queries';
 
 export default function CareerPost({ career }) {
   const router = useRouter();
@@ -56,28 +56,18 @@ export default function CareerPost({ career }) {
 }
 
 export async function getStaticPaths() {
-  const [res] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-
-  const fullCareetList = res.careers.map((c) => `/career${c.slug}`);
+  const paths = await getCareersPaths();
 
   return {
-    paths: fullCareetList || [],
+    paths,
     fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const [careerJson] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/individual-career/career/${params.slug}`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const request = await getCareersContent(params.slug);
 
-  if (careerJson.status === 404) {
+  if (request === 404) {
     return {
       notFound: true,
     };
@@ -85,7 +75,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      career: careerJson,
+      career: request,
     },
     revalidate: 1,
   };

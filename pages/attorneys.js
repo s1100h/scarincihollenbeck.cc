@@ -5,8 +5,9 @@ import Filters from 'components/archiveattorneys/filters';
 import Results from 'components/archiveattorneys/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import { headers, sortByKey } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { sortByKey } from 'utils/helpers';
+import { SITE_URL } from 'utils/constants';
+import { getAttorneysPageContent } from 'utils/queries';
 
 export default function Attorneys({
   seo, locations, designations, practices, attorneys,
@@ -138,20 +139,7 @@ export default function Attorneys({
 }
 
 export async function getStaticProps() {
-  // Keep attorney-search API endpoint
-  const [attorneys, locations, designations, practices, seo] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/office-locations`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/designations`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/practices`, { headers }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/meta`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const [attorneys, locations, designations, practices, seo] = await getAttorneysPageContent();
 
   return {
     props: {

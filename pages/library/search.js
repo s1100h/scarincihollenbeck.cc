@@ -1,8 +1,7 @@
 import { NextSeo } from 'next-seo';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL } from 'utils/constants';
+import { getSearchQueryResults } from 'utils/queries';
 
 export default function LibrarySearch({
   results,
@@ -47,20 +46,10 @@ export async function getServerSideProps({ query }) {
     tempChildCat += term;
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
+  const [results, authors, childrenOfCurrentCategory, popularCategories] = getSearchQueryResults(
+    tempStr,
+    tempChildCat,
+  );
 
   return {
     props: {
