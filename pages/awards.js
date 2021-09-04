@@ -10,7 +10,7 @@ import CommonSidebarLinks from 'components/common-sidebar-links';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 
-export default function Awards({ content, seo }) {
+export default function Awards({ title, content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -19,7 +19,7 @@ export default function Awards({ content, seo }) {
   return (
     <>
       <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader title="Awards" subtitle={subTitle} offset={0} span={8} />
+      <SingleSubHeader title={title} subtitle={subTitle} offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} md={9}>
@@ -39,11 +39,11 @@ export default function Awards({ content, seo }) {
 
 export async function getStaticProps() {
   const request = await getPageContent('awards');
-  const { title, content, seo } = request;
+  const { content, seo } = request;
 
   return {
     props: {
-      title,
+      title: 'Awards',
       content,
       seo,
     },

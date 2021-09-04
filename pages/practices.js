@@ -9,6 +9,19 @@ import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
 
+const seo = {
+  title: 'Attorney Legal Practices | Scarinci Hollenbeck',
+  metaDesc:
+    "Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area.",
+  canonicalUrl: `${SITE_URL}/practices`,
+};
+
+const site = {
+  title: 'Legal Practices',
+  description:
+    "Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today's businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need.",
+};
+
 function sortPracticeCategorys(list) {
   const core = list.filter((e) => e.category === 'Core Practices');
   const additional = list.filter((e) => e.category === 'Additional Practices');
@@ -25,20 +38,18 @@ export default function PracticesPage({ core, additional, business }) {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
   const sortedBusienssPractices = sortByKey(business, 'title');
-  const title = 'Attorney Legal Practices | Scarinci Hollenbeck';
-  const metaDesc = "Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area.";
-  const canonicalUrl = `${SITE_URL}/practices`;
+
   return (
     <>
       <NextSeo
-        title={title}
-        description={metaDesc}
-        canonical={canonicalUrl}
+        title={seo.title}
+        description={seo.metaDesc}
+        canonical={seo.canonicalUrl}
         openGraph={{
           type: 'website',
           url: SITE_URL,
-          title,
-          description: metaDesc,
+          title: seo.title,
+          description: seo.metaDesc,
           images: [
             {
               url: `${SITE_URL}/images/no-image-found-diamond.png`,
@@ -65,12 +76,7 @@ export default function PracticesPage({ core, additional, business }) {
           }}
         />
       </Head>
-      <SingleSubHeader
-        title="Legal Practices"
-        subtitle="Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today's businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need."
-        span={7}
-        offset={2}
-      />
+      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
       <FullWidth>
         <p>
           As you scroll through the law practices and locate the sub-practice groups that most

@@ -9,6 +9,43 @@ import { sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { getAttorneysPageContent } from 'utils/queries';
 
+const alphabet = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+];
+
+const canonicalUrl = `${SITE_URL}/attorneys`;
+
+const site = {
+  title: 'Attorneys',
+  description:
+    'Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs.',
+};
+
 export default function Attorneys({
   seo, locations, designations, practices, attorneys,
 }) {
@@ -66,45 +103,11 @@ export default function Attorneys({
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');
-  const alphabet = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
 
-  const canonicalUrl = `${SITE_URL}/attorneys`;
   return (
     <>
       <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader
-        title="Attorneys"
-        subtitle="Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs."
-        offset={3}
-        span={6}
-      />
+      <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
       <FullWidth>
         <div className="mb-5">
           {/** Filters */}

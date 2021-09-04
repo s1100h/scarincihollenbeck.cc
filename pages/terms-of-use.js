@@ -7,6 +7,11 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 
+const site = {
+  title: 'Terms of use',
+  description:
+    'This Terms of Use Agreement (the “Agreement”) and the Privacy Policy state the terms and conditions under which you may view, access or otherwise use the blog and all content available therein (the "Blog").',
+};
 export default function TermsOfUse({ content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
@@ -16,12 +21,7 @@ export default function TermsOfUse({ content, seo }) {
   return (
     <>
       <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader
-        title="Terms of use"
-        subtitle="This Terms of Use Agreement (the “Agreement”) and the Privacy Policy state the terms and conditions under which you may view, access or otherwise use the blog and all content available therein (the “Blog”)."
-        span={7}
-        offset={2}
-      />
+      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
       <Container>
         <Row>
           <Col sm={12}>

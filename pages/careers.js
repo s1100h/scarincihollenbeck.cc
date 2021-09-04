@@ -9,13 +9,24 @@ import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
+const seo = {
+  title: 'Careers & Positions | Scarinci Hollenbeck, LLC',
+  metaDescription:
+    "Scarinci Hollenbeck's commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys.",
+  canonicalUrl: `${SITE_URL}/careers`,
+};
+
+const site = {
+  title: 'Careers & Available Positions',
+  description:
+    'Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys.',
+};
 export default function CareersPage({ positionTypes, locations, careerList }) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
   const [careers, setCareers] = useState([]);
-  const canonicalUrl = `${SITE_URL}/careers`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -49,18 +60,9 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
 
   return (
     <>
-      <NextSeo
-        title="Careers & Positions | Scarinci Hollenbeck, LLC"
-        description="Scarinci Hollenbeck's commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
-        canonical={canonicalUrl}
-      />
-      <div id="careers">
-        <SingleSubHeader
-          title="Careers & Available Positions"
-          subtitle="Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
-          offset={3}
-          span={6}
-        />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
+      <>
+        <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
         <FullWidth>
           {careers && (
             <ArchiveCareers
@@ -76,7 +78,7 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
           )}
           <CareersEqualOpportunity />
         </FullWidth>
-      </div>
+      </>
     </>
   );
 }

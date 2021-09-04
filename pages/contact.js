@@ -12,21 +12,23 @@ import textStyles from 'styles/Text.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { SITE_URL } from 'utils/constants';
 
+const seo = {
+  title: 'Contact | Scarinci Hollenbeck',
+  metaDescription:
+    'Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Washington D.C.',
+  canonicalUrl: `${SITE_URL}/contact`,
+};
+
+const site = {
+  title: 'Contact Us',
+  description:
+    'Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below.',
+};
 export default function ContactPage() {
-  const canonicalUrl = `${SITE_URL}/contact"`;
   return (
     <>
-      <NextSeo
-        title="Contact | Scarinci Hollenbeck"
-        description="Contact an attorney at Scarinci Hollenbeck, business law firm, at their offices in Lyndhurst NJ, New York City, Red Bank, Washington D.C."
-        canonical={canonicalUrl}
-      />
-      <SingleSubHeader
-        title="Contact Us"
-        subtitle="Looking To Get In Touch With Someone At Scarinci Hollenbeck? Feel free to navigate to any one of our directory pages or fill out the form below."
-        span={7}
-        offset={0}
-      />
+      <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
+      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={0} />
       <Container>
         <Row>
           <Col sm={12} md={9}>
