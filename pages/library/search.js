@@ -46,10 +46,7 @@ export async function getServerSideProps({ query }) {
     tempChildCat += term;
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories] = getSearchQueryResults(
-    tempStr,
-    tempChildCat,
-  );
+  const [results, authors, childrenOfCurrentCategory, popularCategories] = await getSearchQueryResults(tempStr, tempChildCat);
 
   return {
     props: {

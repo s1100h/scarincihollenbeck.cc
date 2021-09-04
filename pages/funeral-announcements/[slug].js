@@ -63,7 +63,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const request = getPageContent(params.slug);
+  const request = await getPageContent(params.slug);
 
   const { title, content, seo } = request;
 

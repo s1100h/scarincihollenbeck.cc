@@ -16,7 +16,7 @@ const getAdmininstrationPaths = async () => {
 };
 
 const getAdministrationContent = async (slug) => {
-  const url = `https://wp.scarincihollenbeck.com/wp-json/individual-admin/admin/${slug}`;
+  const url = `${BASE_API_URL}/wp-json/individual-admin/admin/${slug}`;
   const request = await fetch(url, {
     headers,
   })
