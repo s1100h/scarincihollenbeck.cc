@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import ArchivePracticeSimpleList from 'components/archivepractice/simple-list';
-import ArchivePracticeBlockList from 'components/archivepractice/block-list';
+import ArchivePracticeSimpleList from 'components/pages/practices/simple-list';
+import ArchivePracticeBlockList from 'components/pages/practices/block-list';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { sortByKey, headers } from 'utils/helpers';

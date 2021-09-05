@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import SiteLoader from 'components/site-loader';
+import SiteLoader from 'components/shared/site-loader';
 import FullWidth from 'layouts/full-width';
 import SingleSubHeader from 'layouts/single-sub-header';
-import ArchiveCareers from 'components/archivecareers';
-import CareersEqualOpportunity from 'components/archivecareers/equal-opportunity';
+import ArchiveCareers from 'components/pages/careers';
+import CareersEqualOpportunity from 'components/pages/careers/equal-opportunity';
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 

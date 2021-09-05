@@ -3,9 +3,9 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SimpleSearch from 'components/simple-search';
-import SubscriptionBody from 'components/subscription-body';
-import CommonSidebarLinks from 'components/common-sidebar-links';
+import SimpleSearch from 'components/shared/simple-search';
+import SubscriptionBody from 'components/shared/subscription-body';
+import CommonSidebarLinks from 'components/shared/common-sidebar-links';
 import { SITE_URL } from 'utils/constants';
 
 const seo = {

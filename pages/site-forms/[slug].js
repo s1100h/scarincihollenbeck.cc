@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
-import SiteLoader from 'components/site-loader';
-import FormScripts from 'components/form-scripts';
+import SiteLoader from 'components/shared/site-loader';
+import FormScripts from 'components/shared/form-scripts';
 import textStyles from 'styles/Text.module.css';
 import { SITE_FORM_SLUGS, BASE_API_URL } from 'utils/constants';
 

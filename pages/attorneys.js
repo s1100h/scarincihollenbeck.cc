@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
-import ArchiveAttorneySelected from 'components/archiveattorneys/selected';
-import Filters from 'components/archiveattorneys/filters';
-import Results from 'components/archiveattorneys/results';
+import ArchiveAttorneySelected from 'components/pages/attorneys/selected';
+import Filters from 'components/pages/attorneys/filters';
+import Results from 'components/pages/attorneys/results';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import { sortByKey } from 'utils/helpers';

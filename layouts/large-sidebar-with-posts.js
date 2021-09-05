@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ContactForm from 'components/contact-form';
+import ContactForm from 'components/shared/contact-form';
 import { formatDate, createMarkup } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import AttorneyProfilePractice from 'components/singlepractice/articles';
-import SinglePracticePage from 'components/singlepractice/page';
-import SiteLoader from 'components/site-loader';
+import AttorneyProfilePractice from 'components/pages/practice/articles';
+import SinglePracticePage from 'components/pages/practice/page';
+import SiteLoader from 'components/shared/site-loader';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { getPracticePaths, getPracticeContent, getPracticePosts } from 'utils/queries';

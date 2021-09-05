@@ -1,4 +1,4 @@
-import ErrorPage from 'components/error-page';
+import ErrorPage from 'components/pages/error-page';
 import { ERROR_PAGE_CONTENT } from 'utils/constants';
 
 export default function Custom404() {

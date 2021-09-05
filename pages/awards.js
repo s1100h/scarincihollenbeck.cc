@@ -2,11 +2,11 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PagesBody from 'components/pages/body';
+import PagesBody from 'components/pages/page/body';
 import SingleSubHeader from 'layouts/single-sub-header';
-import SimpleSearch from 'components/simple-search';
-import SubscriptionMessage from 'components/subscription-message';
-import CommonSidebarLinks from 'components/common-sidebar-links';
+import SimpleSearch from 'components/shared/simple-search';
+import SubscriptionMessage from 'components/shared/subscription-message';
+import CommonSidebarLinks from 'components/shared/common-sidebar-links';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 
