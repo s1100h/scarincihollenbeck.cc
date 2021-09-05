@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import { SITE_URL } from 'utils/constants';
 
 export default function OlderArticles({ initialArticles, query }) {
   const [loading, setLoading] = useState(false);
@@ -13,8 +14,7 @@ export default function OlderArticles({ initialArticles, query }) {
   async function handleClick() {
     setLoading(true);
     setPageIndex((pi) => (pi += 1));
-    const url = `https://wp.scarincihollenbeck.com/wp-json/v2/search/query?offset=${pageIndex}&${query}`;
-
+    const url = `${SITE_URL}/wp-json/search/query?category=${query}&offset=${pageIndex}}`;
     const getOlderPosts = await fetch(url)
       .then((data) => data.json())
       .catch((err) => setError(err));
@@ -22,7 +22,6 @@ export default function OlderArticles({ initialArticles, query }) {
     if (!getOlderPosts) {
       setLoading(false);
     }
-
     if (getOlderPosts.results) {
       getOlderPosts.results.shift();
       setLoading(false);

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import { getPostContent } from 'pages/api/get-post-content';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 import SiteLoader from 'components/shared/site-loader';
 import PostPage from 'components/pages/post-page';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function LawFirmInsightsPost({
   post,
@@ -14,11 +17,15 @@ export default function LawFirmInsightsPost({
   category,
   postUrl,
 }) {
+  const router = useRouter();
   const [relatedAttorneys, setRelatedAttorneys] = useState([]);
   const [trendingStories, setTrendingStories] = useState([]);
   const [eventDetails, setEventDetails] = useState([]);
   const [isEvent, setIsEvent] = useState(false);
-  const router = useRouter();
+  const [isError, setIsError] = useState(false);
+  const url = `${BASE_API_URL}/wp-json/single/post/${postUrl}/${category}`;
+  const { data, error } = useSWR(url, fetcher);
+
   const canonicalUrl = `${SITE_URL}${router.asPath}`;
   const metaAuthorLinks = authors.map((author) => (author.display_name === 'Scarinci Hollenbeck' ? SITE_URL : author.user_url));
 
@@ -30,27 +37,22 @@ export default function LawFirmInsightsPost({
    *  Related attorneys, Event Details, Trending Stories, Related Posts
    *  ;
    */
-
   useEffect(() => {
-    async function getAdditionalPostContent() {
-      const url = `${BASE_API_URL}/wp-json/single/post/${postUrl}/${category}`;
-      const request = await fetch(url)
-        .then((data) => data.json())
-        .catch((err) => err);
+    if (data) {
+      setTrendingStories(data.posts);
+      setRelatedAttorneys(data.attorneys);
 
-      setRelatedAttorneys(request.attorneys);
-      setTrendingStories(request.posts);
-
-      if (request.eventDetails.length > 0) {
+      if (data.eventDetails.length > 0) {
         setIsEvent(true);
-        setEventDetails(request.eventDetails);
+        setEventDetails(data.eventDetails);
       }
     }
 
-    if (postUrl && category) {
-      getAdditionalPostContent();
+    if (error) {
+      setIsError(true);
+      console.error(error);
     }
-  }, []);
+  }, [data, error]);
 
   const postProps = {
     post,
@@ -64,6 +66,7 @@ export default function LawFirmInsightsPost({
     isEvent,
     trendingStories,
     authors,
+    isError,
   };
 
   return <PostPage {...postProps} />;
