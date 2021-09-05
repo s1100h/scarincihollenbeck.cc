@@ -81,7 +81,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      query: tempStr.replace('offset=1&', ''),
+      query: slug,
       pageTitle: tempChildCat,
       results: results || [],
       authors: authors || [],
