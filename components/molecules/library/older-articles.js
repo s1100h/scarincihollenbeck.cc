@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import { SITE_URL } from 'utils/constants';
+import { BASE_API_URL } from 'utils/constants';
 
 export default function OlderArticles({ initialArticles, query }) {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export default function OlderArticles({ initialArticles, query }) {
   async function handleClick() {
     setLoading(true);
     setPageIndex((pi) => (pi += 1));
-    const url = `${SITE_URL}/wp-json/search/query?category=${query}&offset=${pageIndex}}`;
+    const url = `${BASE_API_URL}/wp-json/search/query?category=${query}&offset=${pageIndex}}`;
     const getOlderPosts = await fetch(url)
       .then((data) => data.json())
       .catch((err) => setError(err));
