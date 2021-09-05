@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SiteLoader from 'components/site-loader';
-import SimpleSearch from 'components/simple-search';
-import SubscriptionMessage from 'components/subscription-message';
-import SidebarContent from 'components/singlepractice/sidebar';
-import PageArticleHero from 'components/pages/page-article-hero';
+import SiteLoader from 'components/shared/site-loader';
+import SimpleSearch from 'components/shared/simple-search';
+import SubscriptionMessage from 'components/shared/subscription-message';
+import SidebarContent from 'components/pages/practice/sidebar';
+import PageArticleHero from 'components/pages/page/page-article-hero';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { createMarkup } from 'utils/helpers';
 import { FIRM_PAGES, FIRM_BLOG_PAGES, SITE_URL } from 'utils/constants';
@@ -26,7 +26,7 @@ export default function FirmPages({ page, relatedPages, currentPage }) {
   return (
     <>
       <NextSeo title={page.seo.title} description={page.seo.metaDesc} canonical={canonicalUrl} />
-      <SingleSubHeader title={page.title} subtitle={page.description} span={6} offset={0} isBlog />
+      <SingleSubHeader title={page.title} subtitle={page.description} span={6} offset={0} />
       <Container>
         <Row>
           <Col sm={12} md={9}>

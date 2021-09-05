@@ -1,6 +1,6 @@
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/site-loader';
+import SiteLoader from 'components/shared/site-loader';
 import LibraryLayout from 'layouts/library-layout';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { SITE_URL } from 'utils/constants';

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/site-loader';
-import LocationPage from 'components/locations/page';
+import SiteLoader from 'components/shared/site-loader';
+import LocationPage from 'components/pages/locations/page';
 import { getLocationContent } from 'utils/queries';
 
 export default function AllLocations({

@@ -1,8 +1,8 @@
 import { NextSeo } from 'next-seo';
 import SingleSubHeader from 'layouts/single-sub-header';
-import SimpleSearch from 'components/simple-search';
-import SubscriptionMessage from 'components/subscription-message';
-import CommonSidebarLinks from 'components/common-sidebar-links';
+import SimpleSearch from 'components/shared/simple-search';
+import SubscriptionMessage from 'components/shared/subscription-message';
+import CommonSidebarLinks from 'components/shared/common-sidebar-links';
 import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
 import { SITE_URL } from 'utils/constants';
 import { getCovid19BasedPages } from 'utils/queries';

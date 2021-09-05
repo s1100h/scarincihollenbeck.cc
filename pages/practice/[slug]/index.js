@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import TabContent from 'react-bootstrap/TabContent';
-import PracticeContent from 'components/singlepractice/content';
-import SinglePracticePage from 'components/singlepractice/page';
-import SiteLoader from 'components/site-loader';
+import PracticeContent from 'components/pages/practice/content';
+import SinglePracticePage from 'components/pages/practice/page';
+import SiteLoader from 'components/shared/site-loader';
 import { urlify, sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { getPracticePaths, getPracticeContent } from 'utils/queries';

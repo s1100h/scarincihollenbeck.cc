@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SiteLoader from 'components/site-loader';
 import SingleSubHeader from 'layouts/single-sub-header';
-import SingleCareerBody from 'components/singlecareer/body';
-import SimpleSearch from 'components/simple-search';
-import SubscriptionMessage from 'components/subscription-message';
-import CommonSidebarLinks from 'components/common-sidebar-links';
+import SingleCareerBody from 'components/pages/career/body';
+import SimpleSearch from 'components/shared/simple-search';
+import SubscriptionMessage from 'components/shared/subscription-message';
+import CommonSidebarLinks from 'components/shared/common-sidebar-links';
+import SiteLoader from 'components/shared/site-loader';
 import { SITE_URL } from 'utils/constants';
 import { getCareersPaths, getCareersContent } from 'utils/queries';
 

@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import AttorneyCard from 'components/attorney-card';
+import AttorneyCard from 'components/shared/attorney-card';
 import { headers, sortByKey } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 

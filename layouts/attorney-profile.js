@@ -2,19 +2,19 @@ import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyProfileHeader from 'components/singleattorney/header';
-import AttorneyBioLinks from 'components/singleattorney/links';
-import AttorneyProfileBody from 'components/singleattorney/body';
-import AttorneyProfileArticles from 'components/singleattorney/articles';
-import AttorneyProfileClients from 'components/singleattorney/clients';
-import AttorneyProfileSidebar from 'components/singleattorney/sidebar';
-import AttorneyProfileTab from 'components/singleattorney/table';
-import AttorneyProfileMatters from 'components/singleattorney/matters';
-import AttorneyProfileVideo from 'components/singleattorney/video';
-import AttorneyProfileEducation from 'components/singleattorney/education';
-import AttorneyProfileContact from 'components/singleattorney/contact';
-import AttorneyProfileFooter from 'components/singleattorney/footer';
-import AttorneyProfileHead from 'components/singleattorney/head';
+import AttorneyProfileHeader from 'components/pages/attorney/header';
+import AttorneyBioLinks from 'components/pages/attorney/links';
+import AttorneyProfileBody from 'components/pages/attorney/body';
+import AttorneyProfileArticles from 'components/pages/attorney/articles';
+import AttorneyProfileClients from 'components/pages/attorney/clients';
+import AttorneyProfileSidebar from 'components/pages/attorney/sidebar';
+import AttorneyProfileTab from 'components/pages/attorney/table';
+import AttorneyProfileMatters from 'components/pages/attorney/matters';
+import AttorneyProfileVideo from 'components/pages/attorney/video';
+import AttorneyProfileEducation from 'components/pages/attorney/education';
+import AttorneyProfileContact from 'components/pages/attorney/contact';
+import AttorneyProfileFooter from 'components/pages/attorney/footer';
+import AttorneyProfileHead from 'components/pages/attorney/head';
 
 function renderBody(param, content, slug, header, defaultTabTitle) {
   switch (param) {

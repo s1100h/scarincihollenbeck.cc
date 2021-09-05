@@ -5,12 +5,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { getPostContent } from 'pages/api/get-post-content';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
-import SiteLoader from 'components/site-loader';
-import PostHead from 'components/post/head';
+import SiteLoader from 'components/shared/site-loader';
+import PostHead from 'components/pages/post/head';
 import SingleSubHeader from 'layouts/single-sub-header';
-import Body from 'components/post/body';
-import Sidebar from 'components/post/sidebar';
-import EventSidebar from 'components/post/event-sidebar';
+import Body from 'components/pages/post/body';
+import Sidebar from 'components/pages/post/sidebar';
+import EventSidebar from 'components/pages/post/event-sidebar';
 
 export default function LawFirmInsightsPost({
   post,

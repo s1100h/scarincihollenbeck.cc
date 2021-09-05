@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/site-loader';
+import SiteLoader from 'components/shared/site-loader';
 import { getAttorneyPaths, getAttorneyContent } from 'utils/queries';
 
 import AttorneyProfile from 'layouts/attorney-profile';

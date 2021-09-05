@@ -5,7 +5,7 @@ import FullWidth from 'layouts/full-width';
 import { createMarkup } from 'utils/helpers';
 import { HOLIDAY_SLUGS, SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
-import SiteLoader from 'components/site-loader';
+import SiteLoader from 'components/shared/site-loader';
 
 export default function FirmHoliday({
   title, content, seo, slug,

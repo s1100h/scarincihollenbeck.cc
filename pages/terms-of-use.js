@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PagesBody from 'components/pages/body';
+import PagesBody from 'components/pages/page/body';
 import SingleSubHeader from 'layouts/single-sub-header';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
