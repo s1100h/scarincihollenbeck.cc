@@ -1,9 +1,4 @@
-import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import PagesBody from 'components/pages/page/body';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SitePage from 'components/pages/site-page';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 
@@ -13,19 +8,17 @@ export default function PrivacyPolicy({ title, content, seo }) {
   const bodyContent = content.replace(subTitle, '');
   const canonicalUrl = `${SITE_URL}/privacy-policy`;
 
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} />
-      <Container>
-        <Row>
-          <Col sm={12}>
-            <PagesBody content={bodyContent} />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+  const sitePageProps = {
+    bodyContent,
+    canonicalUrl,
+    seo,
+    site: {
+      title,
+      description: subTitle,
+    },
+  };
+
+  return <SitePage {...sitePageProps} />;
 }
 
 export async function getStaticProps() {

@@ -1,9 +1,4 @@
-import { NextSeo } from 'next-seo';
-import SingleSubHeader from 'layouts/single-sub-header';
-import SimpleSearch from 'components/shared/simple-search';
-import SubscriptionMessage from 'components/shared/subscription-message';
-import CommonSidebarLinks from 'components/shared/common-sidebar-links';
-import LargeSidebarWithPosts from 'layouts/large-sidebar-with-posts';
+import CovidPage from 'components/pages/covid-pages';
 import { SITE_URL } from 'utils/constants';
 import { getCovid19BasedPages } from 'utils/queries';
 
@@ -16,29 +11,18 @@ export default function GovernmentEducationCovidResponseTeam({
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
-  const canonicalUrl = `${SITE_URL}/covid-19-crisis-management-unit`;
+  const canonicalUrl = `${SITE_URL}/government-education-covid-19-response-team`;
 
-  const sidebar = (
-    <>
-      <SimpleSearch />
-      <hr />
-      <SubscriptionMessage />
-      <CommonSidebarLinks />
-    </>
-  );
+  const covidProps = {
+    title,
+    internalCovidPosts,
+    seo,
+    bodyContent,
+    canonicalUrl,
+    subTitle,
+  };
 
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescr} canonical={canonicalUrl} />
-      <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
-      <LargeSidebarWithPosts
-        posts={internalCovidPosts}
-        postsTitle="COVID-19 Articles"
-        content={bodyContent}
-        sidebar={sidebar}
-      />
-    </>
-  );
+  return <CovidPage {...covidProps} />;
 }
 
 export async function getStaticProps() {

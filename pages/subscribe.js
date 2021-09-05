@@ -1,11 +1,4 @@
-import { NextSeo } from 'next-seo';
-import SingleSubHeader from 'layouts/single-sub-header';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import SimpleSearch from 'components/shared/simple-search';
-import SubscriptionBody from 'components/shared/subscription-body';
-import CommonSidebarLinks from 'components/shared/common-sidebar-links';
+import SubscriptionPage from 'components/pages/subscription-page';
 import { SITE_URL } from 'utils/constants';
 
 const seo = {
@@ -20,22 +13,10 @@ const site = {
   description:
     "Sign up now and get access to Scarinci Hollenbeck attorney's articles on cutting edge legal topics, their press releases, and firm announcements.",
 };
-export default function SubscriptionPage() {
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
-      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={0} />
-      <Container>
-        <Row>
-          <Col sm={12} md={9}>
-            <SubscriptionBody />
-          </Col>
-          <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
-            <SimpleSearch />
-            <CommonSidebarLinks />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+export default function Subscription() {
+  const subscriptionProps = {
+    site,
+    seo,
+  };
+  return <SubscriptionPage {...subscriptionProps} />;
 }

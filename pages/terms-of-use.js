@@ -1,9 +1,4 @@
-import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import PagesBody from 'components/pages/page/body';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SitePage from 'components/pages/site-page';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 
@@ -18,19 +13,14 @@ export default function TermsOfUse({ content, seo }) {
   const bodyContent = content.replace(subTitle, '');
   const canonicalUrl = `${SITE_URL}/terms-of-use`;
 
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
-      <Container>
-        <Row>
-          <Col sm={12}>
-            <PagesBody content={bodyContent} />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+  const sitePageProps = {
+    bodyContent,
+    canonicalUrl,
+    seo,
+    site,
+  };
+
+  return <SitePage {...sitePageProps} />;
 }
 
 export async function getStaticProps() {

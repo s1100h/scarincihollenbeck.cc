@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import SingleSubHeader from 'layouts/single-sub-header';
-import SimpleSearch from 'components/shared/simple-search';
+import SimpleSearch from 'components/molecules/simple-search';
 
 export default function ErrorPage({ title, subTitle, mainMessage }) {
   return (

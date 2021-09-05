@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
 import SiteLoader from 'components/shared/site-loader';
-import FullWidth from 'layouts/full-width';
-import SingleSubHeader from 'layouts/single-sub-header';
-import ArchiveCareers from 'components/pages/careers';
-import CareersEqualOpportunity from 'components/pages/careers/equal-opportunity';
+import CareersPage from 'components/pages/careers-page';
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 
@@ -21,7 +17,7 @@ const site = {
   description:
     'Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys.',
 };
-export default function CareersPage({ positionTypes, locations, careerList }) {
+export default function Careers({ positionTypes, locations, careerList }) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
@@ -58,29 +54,20 @@ export default function CareersPage({ positionTypes, locations, careerList }) {
     setCareers(careerListFiltered);
   }
 
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
-      <>
-        <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
-        <FullWidth>
-          {careers && (
-            <ArchiveCareers
-              careers={careers}
-              positionTypes={positionTypes}
-              locations={locations}
-              query={query}
-              setQuery={setQuery}
-              setLocation={setLocation}
-              setPositionType={setPositionType}
-              executeSearch={executeSearch}
-            />
-          )}
-          <CareersEqualOpportunity />
-        </FullWidth>
-      </>
-    </>
-  );
+  const careerProps = {
+    seo,
+    site,
+    careers,
+    positionTypes,
+    locations,
+    query,
+    setQuery,
+    setLocation,
+    setPositionType,
+    executeSearch,
+  };
+
+  return <CareersPage {...careerProps} />;
 }
 
 export async function getStaticProps() {

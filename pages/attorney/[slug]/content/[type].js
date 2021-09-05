@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import AttorneyProfile from 'layouts/attorney-profile';
+import AttorneyProfile from 'components/pages/attorney-profile';
 import { getAttorneyPaths, getAttorneyBackPageContent } from 'utils/queries';
 
-export default function AttorneyBioProfileContent({
+export default function AttorneyContent({
   bio,
   seo,
   contact,
@@ -22,22 +22,22 @@ export default function AttorneyBioProfileContent({
     );
   }
 
-  return (
-    <AttorneyProfile
-      slug={slug}
-      seo={seo}
-      body={{
-        bio,
-        content,
-      }}
-      attorneyFooterBlogArticles={attorneyFooterBlogArticles}
-      attorneyFooterNewsArticles={attorneyFooterNewsArticles}
-      header={{
-        image: bio.headerContent.profileImage,
-        profile: { ...bio.headerContent, ...contact },
-      }}
-    />
-  );
+  const attorneyProps = {
+    slug,
+    seo,
+    body: {
+      bio,
+      content,
+    },
+    attorneyFooterBlogArticles,
+    attorneyFooterNewsArticles,
+    header: {
+      image: bio.headerContent.profileImage,
+      profile: { ...bio.headerContent, ...contact },
+    },
+  };
+
+  return <AttorneyProfile {...attorneyProps} />;
 }
 
 export async function getStaticPaths() {
