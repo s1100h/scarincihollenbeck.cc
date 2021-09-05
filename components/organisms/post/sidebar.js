@@ -22,23 +22,22 @@ export default function PostSidebar({ title, posts, attorneys }) {
             <strong>Mentioned Attorneys</strong>
           </p>
           <ul>
-            {attorneys.length > 0
-              && attorneys.map((a) => (
-                <li key={a.name} className="list-unstyled">
-                  <Link href={a.link}>
-                    <a className="text-dark">{a.name}</a>
-                  </Link>
-                  {a.designation && (
-                    <div className="my-0 py-0 d-block">
-                      <small>
-                        <strong>Title: </strong>
-                        {' '}
-                        {a.designation}
-                      </small>
-                    </div>
-                  )}
-                </li>
-              ))}
+            {attorneys.map((a) => (
+              <li key={a.name} className="list-unstyled">
+                <Link href={a.link}>
+                  <a className="text-dark">{a.name}</a>
+                </Link>
+                {a.designation && (
+                  <div className="my-0 py-0 d-block">
+                    <small>
+                      <strong>Title: </strong>
+                      {' '}
+                      {a.designation}
+                    </small>
+                  </div>
+                )}
+              </li>
+            ))}
           </ul>
           <style jsx>
             {`

@@ -50,7 +50,7 @@ export default function LawFirmInsightsPost({
     if (postUrl && category) {
       getAdditionalPostContent();
     }
-  }, [postUrl, category]);
+  }, []);
 
   const postProps = {
     post,
