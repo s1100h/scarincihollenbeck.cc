@@ -1,6 +1,4 @@
-import { NextSeo } from 'next-seo';
-import LibraryLayout from 'layouts/library-layout';
-import SingleSubHeader from 'layouts/single-sub-header';
+import LibraryPage from 'components/pages/library-page';
 import { getSearchQueryResults } from 'utils/queries';
 
 export default function LibrarySearch({
@@ -13,25 +11,20 @@ export default function LibrarySearch({
 }) {
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
 
-  return (
-    <>
-      <NextSeo nofollow />
-      <SingleSubHeader
-        span={7}
-        offset={2}
-        title="Article Library"
-        subtitle="Scarinci Hollenbeck regularly publishes articles pertaining to legal updates affecting individuals and institutions in New York and New Jersey, and the world at large. Here you can find coverage for when we welcome new attorneys, significant wins we’ve secured on behalf of our clients, and general announcements. "
-      />
-      <LibraryLayout
-        results={results}
-        authors={authors}
-        popularCategories={popularCategories}
-        childrenOfCurrentCategory={childrenOfCurrentCategory}
-        pageTitle={currentPageTitle}
-        query={query}
-      />
-    </>
-  );
+  const libraryProps = {
+    results,
+    authors,
+    popularCategories,
+    childrenOfCurrentCategory,
+    query,
+    seo: {},
+    currentPageTitle,
+    pageTitle: 'Article Library',
+    pageSubTitle:
+      'Scarinci Hollenbeck regularly publishes articles pertaining to legal updates affecting individuals and institutions in New York and New Jersey, and the world at large. Here you can find coverage for when we welcome new attorneys, significant wins we’ve secured on behalf of our clients, and general announcements.',
+  };
+
+  return <LibraryPage {...libraryProps} />;
 }
 
 export async function getServerSideProps({ query }) {

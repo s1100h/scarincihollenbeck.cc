@@ -1,8 +1,6 @@
-import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import LibraryLayout from 'layouts/library-layout';
-import SingleSubHeader from 'layouts/single-sub-header';
+import LibraryPage from 'components/pages/library-page';
 import { SITE_URL } from 'utils/constants';
 import { getAuthorPaths, getAuthorContent } from 'utils/queries';
 
@@ -30,23 +28,22 @@ export default function LibraryAuthor({
 
   const canonicalUrl = `${SITE_URL}/library/author/${slug}`;
 
-  return (
-    <>
-      <NextSeo
-        title={`Legal Blog Articles by ${authorName}`}
-        description={`${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`}
-        canonical={canonicalUrl}
-      />
-      <SingleSubHeader span={8} offset={1} title={authorName} subtitle={authorDescription} />
-      <LibraryLayout
-        results={results}
-        authors={authors}
-        popularCategories={popularCategories}
-        childrenOfCurrentCategory={childrenOfCurrentCategory}
-        pageTitle={authorName}
-      />
-    </>
-  );
+  const libraryProps = {
+    seo: {
+      title: `Legal Blog Articles by ${authorName}`,
+      metaDescription: `${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`,
+      canonicalUrl,
+    },
+    results,
+    authors,
+    popularCategories,
+    childrenOfCurrentCategory,
+    authorDescription,
+    pageTitle: `Legal Blog Articles by ${authorName}`,
+    pageSubTitle: `${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`,
+  };
+
+  return <LibraryPage {...libraryProps} />;
 }
 
 export async function getStaticPaths() {

@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { NextSeo } from 'next-seo';
-import ArchiveAttorneySelected from 'components/pages/attorneys/selected';
-import Filters from 'components/pages/attorneys/filters';
-import Results from 'components/pages/attorneys/results';
-import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
+import { useState } from 'react';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { getAttorneysPageContent } from 'utils/queries';
+import AttorneysPage from 'components/pages/attorneys-page';
 
 const alphabet = [
   'A',
@@ -103,42 +98,27 @@ export default function Attorneys({
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');
-
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
-      <FullWidth>
-        <div className="mb-5">
-          {/** Filters */}
-          <Filters
-            practices={sPractices}
-            alphabet={alphabet}
-            locations={locations}
-            designation={designations}
-            userInput={userInput}
-            handleChange={handleChange}
-            onSelect={onSelect}
-            letterClick={letterClick}
-          />
-          {/** End of Filters */}
-          {/** Results */}
-          <div className="w-100 border mt-sm-6 mt-md-0">
-            <ArchiveAttorneySelected
-              select={select}
-              clearQuery={clearQuery}
-              userInput={userInput}
-              clearAll={clearAll}
-            />
-            {attorneys.length > 0 && (
-              <Results attorneys={attorneys} userInput={userInput} select={select} />
-            )}
-          </div>
-          {/** End of Results */}
-        </div>
-      </FullWidth>
-    </>
-  );
+  const attorneysPageProps = {
+    sPractices,
+    clearAll,
+    clearQuery,
+    handleChange,
+    letterClick,
+    onSelect,
+    userInput,
+    setUserInput,
+    seo,
+    locations,
+    designations,
+    practices,
+    attorneys,
+    select,
+    setSelect,
+    alphabet,
+    site,
+    canonicalUrl,
+  };
+  return <AttorneysPage {...attorneysPageProps} />;
 }
 
 export async function getStaticProps() {

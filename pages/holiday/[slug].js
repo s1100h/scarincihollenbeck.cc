@@ -1,11 +1,8 @@
-import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
-import { createMarkup } from 'utils/helpers';
 import { HOLIDAY_SLUGS, SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 import SiteLoader from 'components/shared/site-loader';
+import HolidayPage from 'components/pages/holiday-page';
 
 export default function FirmHoliday({
   title, content, seo, slug,
@@ -27,15 +24,15 @@ export default function FirmHoliday({
 
   const canonicalUrl = `${SITE_URL}/holiday/${slug}`;
 
-  return (
-    <>
-      <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} isHoliday />
-      <FullWidth>
-        <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
-      </FullWidth>
-    </>
-  );
+  const holidayPageProps = {
+    canonicalUrl,
+    title,
+    subTitle,
+    bodyContent,
+    seo,
+  };
+
+  return <HolidayPage {...holidayPageProps} />;
 }
 
 export async function getStaticPaths() {
