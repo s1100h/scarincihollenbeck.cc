@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Col from 'react-bootstrap/Col';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import ContactForm from 'components/shared/contact-form';
 import PostBreadcrumbs from 'components/organisms/post/post-breadcrumbs';
@@ -30,7 +31,6 @@ export default function PostBody({
   featuredImage,
   content,
   authors,
-  isEvent,
   title,
   tags,
   subTitle,
@@ -41,7 +41,7 @@ export default function PostBody({
   const postUrl = `${SITE_URL}${router.asPath}`;
 
   return (
-    <>
+    <Col sm={12} md={9}>
       <PostBreadcrumbs />
       {featuredImage && (
         <Image src={featuredImage} width={750} height={350} alt={title} layout="intrinsic" />
@@ -105,14 +105,10 @@ export default function PostBody({
       </DisplayListTags>
       <div className="d-print-none">
         <AuthorBio authors={authors} />
-        <p className={`${grayTitleStyles.title} my-5`}>
-          {isEvent
-            ? 'Contact Us For More Information On This Event'
-            : 'Contact Practice Representative'}
-        </p>
+        <p className={`${grayTitleStyles.title} my-5`}>Get In Touch</p>
         <ContactForm />
       </div>
       <style jsx>{'.underline:hover { text-decoration: underline }'}</style>
-    </>
+    </Col>
   );
 }
