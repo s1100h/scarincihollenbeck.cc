@@ -27,6 +27,11 @@ body {
   font-weight: 500;
 }
 
+a,
+a:hover {
+  color: inherit;
+}
+
 strong {
   font-family: 'Proxima Nova Bold';
 }
