@@ -124,7 +124,7 @@ export default function HomePage({
           <ArticleHero content={posts} />
         </div>
         <HomePageLink
-          link="/library?category=firm-news"
+          link="/library/category/firm-news"
           title="Read more articles about our attorneys"
           margins="my-5"
         />
