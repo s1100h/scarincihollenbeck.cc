@@ -34,7 +34,9 @@ export default function SingleSubHeader({
               {isBlog && (
                 <p className="text-white mb-2">
                   <strong>Author: </strong>
-                  {authors.map((author, index) => (
+                  {authors.map((author, index) => (author.user_url === '' ? (
+                    <span key={author.display_name}>{author.display_name}</span>
+                  ) : (
                     <a
                       href={author.user_url}
                       key={author.display_name}
@@ -43,7 +45,7 @@ export default function SingleSubHeader({
                       {author.display_name}
                       {index < authors.length - 1 && <>, </>}
                     </a>
-                  ))}
+                  )))}
                   <span className="mx-3">|</span>
                   {date}
                 </p>
