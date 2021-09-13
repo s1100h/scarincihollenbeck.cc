@@ -3,3 +3,4 @@
 **/.next/*
 **/public/*
 **/styles/*
+**/pages/mailchimp-subscription.js
