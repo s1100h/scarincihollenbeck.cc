@@ -56,3 +56,26 @@ export const HOLIDAY_SLUGS = ['/holiday/2019-happy-holidays', '/holiday/2020-hap
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+
+export const CLIENT_ALERTS = [
+  {
+    id: 20098,
+    slug: 'client-alert',
+    name: 'Client Alert',
+  },
+  {
+    id: 20250,
+    slug: 'covid-19-alerts',
+    name: 'COVID-19 Alerts',
+  },
+  {
+    id: 22896,
+    slug: 'covid-19-education-alert',
+    name: 'COVID-19 Education Alerts',
+  },
+  {
+    id: 18675,
+    slug: 'cyber-security-client-alert',
+    name: 'Cyber Security Client Alert',
+  },
+];
