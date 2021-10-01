@@ -33,7 +33,9 @@ export default function ArticleHero({ content }) {
             <span className="mr-3">{formatDate(content[0].date)}</span>
             <strong>Author: </strong>
             {content[0]._embedded.author.map((a) => (a.name === 'Scarinci Hollenbeck' ? (
-              <span className={styles.link}>{a.name}</span>
+              <span key={a.name} className={styles.link}>
+                {a.name}
+              </span>
             ) : (
               <a key={a.name} href={a.link.replace('wp.', '')} className={styles.link}>
                 {a.name}

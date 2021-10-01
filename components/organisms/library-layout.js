@@ -31,8 +31,6 @@ export default function LibraryLayout({
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
-  const childrenWithPosts = filterNoPosts(childrenOfCurrentCategory);
-  const popularWithPosts = filterNoPosts(popularCategories);
 
   // on submit
   const onSubmit = async (e) => {
@@ -130,9 +128,17 @@ export default function LibraryLayout({
         </Col>
         <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">
           {childrenOfCurrentCategory.length > 0 && (
-            <PopularList term="Related Categories" list={childrenWithPosts} displayCount />
+            <PopularList
+              term="Related Categories"
+              list={filterNoPosts(childrenOfCurrentCategory)}
+              displayCount
+            />
           )}
-          <PopularList term="Popular Categories" list={popularWithPosts} displayCount />
+          <PopularList
+            term="Popular Categories"
+            list={filterNoPosts(popularCategories)}
+            displayCount
+          />
           <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
           <FirmAuthors authors={authors} />
         </Col>
