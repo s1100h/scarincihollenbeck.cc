@@ -21,6 +21,7 @@ export const getPostContent = async (slug, category) => {
   const getTagsFromIdQuery = `SELECT term_id, taxonomy, parent FROM ${process.env.TERMS_TAXONOMY} WHERE term_taxonomy_id = ?`;
   const postAuthorQuery = `SELECT ID, user_url, display_name FROM ${process.env.AUTHORS_TABLE} WHERE user_nicename = ?`;
   const postAuthorMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.AUTHORSMETA_TABLE} WHERE user_id = ?`;
+  const sortedAuthorQuery = `SELECT meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ? AND meta_key='author_display_order'`;
 
   const [post] = await connection.execute(postContentQuery, [slug]);
 
@@ -154,6 +155,27 @@ export const getPostContent = async (slug, category) => {
     });
   }
 
+  /** Query author order and sort authors */
+  const [authorsByOrderResults] = await connection.execute(sortedAuthorQuery, [post[0].ID]);
+  const authorOrder = [];
+
+  if (authorsByOrderResults.length > 0) {
+    const sanitizeResponse = authorsByOrderResults[0].meta_value
+      .replace(/";i:[0-9];/g, '')
+      .replace(/";}/, '')
+      .split(/s:[0-9]:/);
+
+    const removeFirstIndex = sanitizeResponse.slice(1, sanitizeResponse.length);
+
+    for (let i = 0; i < removeFirstIndex.length; i++) {
+      authorOrder.push(parseInt(removeFirstIndex[i].replace(/"/g, ''), 10));
+    }
+  }
+
+  if (authorOrder.length > 0) {
+    authorData.sort((a, b) => authorOrder.indexOf(a.ID) - authorOrder.indexOf(b.ID));
+  }
+
   const categories = allTags.filter((tag) => tag.label === 'category');
   const tags = allTags.filter((tag) => tag.label === 'post_tag');
   const postFound = categories.filter((cat) => {
@@ -202,8 +224,10 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     const fetchPost = await getPostContent(
-      'new-jersey-supreme-court-re-certifies-robert-e-levy',
-      'firm-news',
+      'covid-19-update-for-school-districts',
+      'covid-19-education-alert',
+      // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
+      // 'law-firm-insights'
     );
 
     if (fetchPost.status === 404) {

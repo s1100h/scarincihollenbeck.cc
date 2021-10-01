@@ -2,9 +2,7 @@ const QueryTitle = ({ title }) => (
   <p className="mt-4 mb-0 d-block">
     Results for
     {' '}
-    <u className="text-capitalize">
-      <strong>{title}</strong>
-    </u>
+    <strong className="text-capitalize">{title}</strong>
     {' '}
     articles
     <style jsx>{' p{ font-size: 1.25rem}'}</style>

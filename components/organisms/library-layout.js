@@ -9,13 +9,16 @@ import MainArticle from 'components/molecules/library/main-article';
 import FeaturedArticle from 'components/molecules/library/featured-article';
 import OlderArticles from 'components/molecules/library/older-articles';
 import FeaturedLinks from 'components/molecules/library/featured-links';
+import FirmAuthors from 'components/molecules/library/firm-authors';
 import QueryTitle from 'components/molecules/library/query-title';
 import SubscriptionContainer from 'components/molecules/library/subscription-container';
 import SearchBar from 'components/molecules/library/search-bar';
 import { urlify } from 'utils/helpers';
-import styles from 'styles/Library.module.css';
 import marginStyles from 'styles/Margins.module.css';
-import fontStyles from 'styles/Fonts.module.css';
+
+import { CLIENT_ALERTS } from 'utils/constants';
+
+const filterNoPosts = (category) => category.filter((item) => item.postCount > 1);
 
 export default function LibraryLayout({
   results,
@@ -28,6 +31,8 @@ export default function LibraryLayout({
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
+  const childrenWithPosts = filterNoPosts(childrenOfCurrentCategory);
+  const popularWithPosts = filterNoPosts(popularCategories);
 
   // on submit
   const onSubmit = async (e) => {
@@ -125,21 +130,11 @@ export default function LibraryLayout({
         </Col>
         <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">
           {childrenOfCurrentCategory.length > 0 && (
-            <PopularList term="Related Categories" list={childrenOfCurrentCategory} />
+            <PopularList term="Related Categories" list={childrenWithPosts} displayCount />
           )}
-          <PopularList term="Popular Categories" list={popularCategories} />
-          <p className={`${fontStyles.ft12rem} d-block w-100`}>
-            <strong>Firm Authors</strong>
-          </p>
-          <ul className={styles.authorList}>
-            {authors.map((author) => (
-              <li key={author.lastName} className={`${styles.author} list-unstyled`}>
-                <Link href={`/library/author/${urlify(author.username)}`}>
-                  <a className="text-dark">{author.fullName}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <PopularList term="Popular Categories" list={popularWithPosts} displayCount />
+          <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
+          <FirmAuthors authors={authors} />
         </Col>
       </Row>
     </Container>
