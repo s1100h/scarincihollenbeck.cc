@@ -13,7 +13,7 @@ export const getPostsFromSearch = async (query, page) => {
 
   // post, post meta, post categories, and category name
   const params = 'ID, post_title, post_name, post_author, post_date';
-  const postContentQuery = `SELECT ${params} FROM ${process.env.POST_TABLE} WHERE post_content LIKE ? ORDER BY post_date ASC`;
+  const postContentQuery = `SELECT ${params} FROM ${process.env.POST_TABLE} WHERE post_content LIKE ? AND post_status = 'publish' ORDER BY post_date DESC LIMIT 30 OFFSET ?`;
   const [posts] = await connection.execute(postContentQuery, [`%${query}%`, page]);
 
   if (posts.length <= 0) {
