@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SingleSubHeader from 'layouts/single-sub-header';
 import SingleCareerBody from 'components/organisms/career/body';
-import SimpleSearch from 'components/molecules/simple-search';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 
@@ -33,8 +32,6 @@ export default function CareerProfile({ career, canonicalUrl }) {
             />
           </Col>
           <Col sm={12} md={3}>
-            <SimpleSearch />
-            <hr />
             <SubscriptionMessage />
             <CommonSidebarLinks />
           </Col>

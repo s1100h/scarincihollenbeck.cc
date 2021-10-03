@@ -13,7 +13,6 @@ import PracticeLinks from 'components/organisms/practice/links';
 import RelatedAttorneys from 'components/organisms/practice/related-attorneys';
 import PracticeClientSlider from 'components/organisms/practice/client-slider';
 import ArticleHeroPractice from 'components/organisms/practice/practice-article-hero';
-import SimpleSearch from 'components/molecules/simple-search';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CovidResourceBox from 'components/organisms/practice/covid-resource-box';
 import PracticeSidebar from 'components/organisms/practice/sidebar';
@@ -128,8 +127,6 @@ export default function PracticeSingle({ corePractices, practice, practiceChildr
               )}
             </Col>
             <Col sm={12} md={3} style={{ position: 'relative', bottom: '2.85em' }}>
-              <SimpleSearch />
-              <hr />
               {router.query.slug === 'education-law' && (
                 <>
                   <div>

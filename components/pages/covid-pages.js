@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import SimpleSearch from 'components/molecules/simple-search';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 import SingleSubHeader from 'layouts/single-sub-header';
@@ -15,8 +14,6 @@ export default function CovidPage({
 }) {
   const sidebar = (
     <>
-      <SimpleSearch />
-      <hr />
       <SubscriptionMessage />
       <CommonSidebarLinks />
     </>

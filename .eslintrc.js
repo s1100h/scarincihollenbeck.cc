@@ -35,6 +35,7 @@ module.exports = {
     'no-await-in-loop': 'off',
     'no-plusplus': 'off',
     'no-shadow': 'off',
+    'react/button-has-type': 'off',
     'no-console': [
       2,
       {

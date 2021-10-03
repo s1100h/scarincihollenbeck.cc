@@ -4,12 +4,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SingleSubHeader from 'layouts/single-sub-header';
-import SimpleSearch from 'components/molecules/simple-search';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 import ContactForm from 'components/shared/contact-form';
 import textStyles from 'styles/Text.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import sidebarStyles from 'styles/Sidebar.module.css';
 
 export default function ContactPage({ seo, site }) {
   return (
@@ -63,16 +63,15 @@ export default function ContactPage({ seo, site }) {
               All other inquires please fill out the form below.
             </h4>
             <ContactForm />
-            <style jsx>{' p{ font-size: 1.15rem }; strong { font-size: 1.15rem }'}</style>
           </Col>
-          <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
-            <SimpleSearch />
+          <Col sm={12} md={3} className={sidebarStyles.container}>
             <hr />
             <SubscriptionMessage />
             <CommonSidebarLinks />
           </Col>
         </Row>
       </Container>
+      <style jsx>{' p{ font-size: 1.15rem }; strong { font-size: 1.15rem }'}</style>
     </>
   );
 }

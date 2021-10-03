@@ -7,52 +7,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import HamburgerMobileMenu from 'components/shared/navbar/hamburger-mobile-menu';
+import GlobalSearch from 'components/shared/navbar/global-search';
+import TopNavLinks from 'components/shared/navbar/top-nav-links';
 import navBarStyles from 'styles/Navbar.module.css';
-import textStyles from 'styles/Text.module.css';
 
 export default function NavBar() {
   return (
-    <header className="mb-0">
+    <header className="mb-0 sticky-top bg-white shadow">
       <Container>
-        <Row className="my-2  border-bottom ">
+        <Row className="my-2 border-bottom">
           <Col sm={12} md={6}>
-            <p className="my-1 pb-1 mx-0 px-0 mr-2">
-              <Link href="/covid-19-crisis-management-unit">
-                <a className={`ml-0 ${textStyles.redTitle} font-weight-bold`}>
-                  <u>COVID-19 Crisis Management Unit</u>
-                </a>
-              </Link>
-            </p>
+            <GlobalSearch />
           </Col>
           <Col sm={12} md={6} className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
-            <p className="my-1 pb-1 mx-0 px-0 mr-2">
-              <span>
-                {' '}
-                <strong>201-896-4100</strong>
-                {' '}
-              </span>
-              <span className="px-1">
-                <strong> | </strong>
-              </span>
-              <span>
-                {' '}
-                <strong>info@sh-law.com</strong>
-              </span>
-              <Link href="/subscribe">
-                <a className={`ml-2 ${textStyles.redTitle} font-weight-bold underline`}>
-                  Join our mailing list
-                </a>
-              </Link>
-              <a
-                href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
-                target="_blank"
-                rel="noreferrer"
-                className={`ml-2 ${textStyles.redTitle} font-weight-bold underline`}
-              >
-                <u>Make payment</u>
-              </a>
-            </p>
-            <style jsx>{'.underline { text-decoration: underline }'}</style>
+            <TopNavLinks />
           </Col>
         </Row>
         <Row>

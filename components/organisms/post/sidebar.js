@@ -2,7 +2,6 @@ import useSWR from 'swr';
 import Col from 'react-bootstrap/Col';
 import TrendingStories from 'components/shared/trending-stories';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
-import SimpleSearch from 'components/molecules/simple-search';
 import PostSocialShareSidebar from 'components/organisms/post/social-share-sidebar';
 import RelatedAttorneys from 'components/organisms/post/related-attorneys';
 import EventDetails from 'components/organisms/post/event-details';
@@ -16,8 +15,6 @@ export default function PostSidebar({ title, postUrl, category }) {
 
   return (
     <Col sm={12} md={3} className="d-print-none">
-      <SimpleSearch />
-      <hr />
       <PostSocialShareSidebar title={title} />
       <hr />
       <SubscriptionMessage />
