@@ -6,13 +6,12 @@ import NavBar from 'components/shared/navbar';
 import Footer from 'components/shared/footer';
 import * as gtag from 'utils/gtag';
 
-import 'nprogress/nprogress.css';
-
 /**
  *
  * 3rd Party Resources
  *
  * */
+import 'nprogress/nprogress.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-multi-carousel/lib/styles.css';
 import 'animate.css/animate.min.css';
@@ -21,7 +20,6 @@ import 'animate.css/animate.min.css';
  * Custom Style Sheets
  * */
 import 'styles/globals.css';
-import 'styles/dropdown.css';
 import 'styles/carousel.css';
 
 /**

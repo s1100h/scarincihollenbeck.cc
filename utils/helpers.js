@@ -66,10 +66,6 @@ export function getDirectionsFromLocation(location) {
       title: 'washington dc',
       address: 'Suite 250 1000 Potomac St., N.W. Washington D.C. 20007',
     },
-    {
-      title: 'san francisco',
-      address: '315 Montgomery St. San Francisco, CA 94104',
-    },
   ];
 
   const success = (pos) => {

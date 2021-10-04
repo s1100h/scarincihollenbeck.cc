@@ -58,6 +58,7 @@ export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
 
 export const CLIENT_ALERTS = [
   {

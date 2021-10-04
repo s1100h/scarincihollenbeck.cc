@@ -11,7 +11,7 @@ export default function SitePage({
   return (
     <>
       <NextSeo title={seo.title} description={seo.metaDescription} canonical={canonicalUrl} />
-      <SingleSubHeader title={site.title} subtitle={site.description} span={6} offset={3} />
+      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
       <Container>
         <Row>
           <Col sm={12}>
