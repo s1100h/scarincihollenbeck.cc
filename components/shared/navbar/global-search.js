@@ -1,6 +1,11 @@
+import Form from 'react-bootstrap/Form';
 import algoliasearch from 'algoliasearch/lite';
 import {
-  InstantSearch, Hits, connectStateResults, createConnector,
+  InstantSearch,
+  Hits,
+  connectStateResults,
+  createConnector,
+  Pagination,
 } from 'react-instantsearch-dom';
 
 import { ALGOLIA_PUBLIC_API, ALGOLIA_APP_ID, ALGOLIA_SEARCH_INDEX } from 'utils/constants';
@@ -20,7 +25,7 @@ function Hit({ hit }) {
           {hit.post_type === 'post' && (
           <>
             {' '}
-            -
+            |
             {hit.post_date_formatted}
           </>
           )}
@@ -28,34 +33,35 @@ function Hit({ hit }) {
       </a>
       <style jsx>
         {`
-        a {
-          color: inherit;
-          padding: 13px 0;
-          display: block;
-        }
-        p {
-          margin-bottom: 0;
-        }
-        .red-border {
-          height: auto;
-          width: 4px;
-          background-color: #db2220;
-          margin-right: 7px;
-        }
-        .post-type {
-          color: #db2220;
-          font-size: 15px;
-          line-height: 1.2;
-        }
-        .details {
-          font-size: 15px;
-        }
-        .title {
-          font-size: 16px;
-          line-height: 1.25;
-          font-weight: bold;
-        }
-      `}
+          a {
+            color: inherit;
+            padding: 13px 0;
+            display: block;
+          }
+          p {
+            margin-bottom: 0;
+          }
+          .red-border {
+            height: auto;
+            width: 4px;
+            background-color: #db2220;
+            margin-right: 7px;
+          }
+          .post-type {
+            color: #db2220;
+            font-size: 15px;
+            line-height: 1.2;
+            font-weight: 700;
+          }
+          .details {
+            font-size: 15px;
+          }
+          .title {
+            font-size: 16px;
+            line-height: 1.25;
+            font-weight: bold;
+          }
+        `}
       </style>
     </div>
   );
@@ -63,6 +69,7 @@ function Hit({ hit }) {
 
 const Results = connectStateResults(({ searchState }) => (searchState && searchState.attributeForMyQuery ? (
   <div className="search-container position-absolute shadow rounded p-1">
+    <Pagination totalPages={10} />
     <Hits hitComponent={Hit} />
   </div>
 ) : null));
@@ -91,12 +98,18 @@ const connectWithQuery = createConnector({
 });
 
 const MySearchBox = ({ currentRefinement, refine }) => (
-  <input
-    type="input"
-    value={currentRefinement}
-    onChange={(e) => refine(e.currentTarget.value)}
-    placeholder="Search the entire site..."
-  />
+  <Form className="position-relative scroll-search">
+    <Form.Group controlId="siteSearch">
+      <Form.Label className="sr-only">Site Search</Form.Label>
+      <Form.Control
+        type="input"
+        value={currentRefinement}
+        onChange={(e) => refine(e.currentTarget.value)}
+        placeholder="Search the entire site..."
+        className="py-0"
+      />
+    </Form.Group>
+  </Form>
 );
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
@@ -105,6 +118,7 @@ export default function GlobalSearch() {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
       <ConnectedSearchBox />
+
       <Results />
     </InstantSearch>
   );
