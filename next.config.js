@@ -20,6 +20,10 @@ module.exports = {
       'conqqqshlskopvv.nyc3.digitaloceanspaces.com',
     ],
   },
+  i18n: {
+    locales: ['en-US', 'fr', 'nl-NL'],
+    defaultLocale: 'en-US',
+  },
   async rewrites() {
     return [
       ...POST_TYPE_REWRITES,
