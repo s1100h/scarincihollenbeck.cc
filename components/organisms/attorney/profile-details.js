@@ -4,7 +4,6 @@ export default function ProfileDetails({
   contact, offices, fax, additionalHeaderLinks,
 }) {
   const { phoneNumber, email } = contact;
-
   return (
     <div className="d-flex flex-column">
       <p>
