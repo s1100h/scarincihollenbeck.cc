@@ -103,3 +103,9 @@ em {
 a {
   color: #3344dd;
 }
+/** Hide captcha in print **/
+@media print {
+  .grecaptcha-badge {
+    display: none !important;
+  }
+}
