@@ -11,7 +11,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={styles.footerContainer}>
+    <footer className={`${styles.footerContainer} d-print-none`}>
       <Container fluid className={styles.footerHeader}>
         <Container className="py-3">
           <Row>

@@ -12,9 +12,9 @@ import textStyles from 'styles/Text.module.css';
 
 export default function NavBar() {
   return (
-    <header className="mb-0">
+    <header className="mb-0 d-print-none">
       <Container>
-        <Row className="my-2  border-bottom ">
+        <Row className="my-2  border-bottom">
           <Col sm={12} md={6}>
             <p className="my-1 pb-1 mx-0 px-0 mr-2">
               <Link href="/covid-19-crisis-management-unit">
