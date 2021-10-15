@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +11,6 @@ import FirmAuthors from 'components/molecules/library/firm-authors';
 import QueryTitle from 'components/molecules/library/query-title';
 import SubscriptionContainer from 'components/molecules/library/subscription-container';
 import SearchBar from 'components/molecules/library/search-bar';
-import { urlify } from 'utils/helpers';
 import marginStyles from 'styles/Margins.module.css';
 
 import { CLIENT_ALERTS } from 'utils/constants';
@@ -28,32 +25,10 @@ export default function LibraryLayout({
   pageTitle,
   query,
 }) {
-  const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  // on submit
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const santizeTerm = urlify(searchTerm.replace(/[^a-zA-Z ]/g, ''));
-    setLoading(true);
-
-    await router.push({
-      pathname: '/library/search',
-      query: { term: santizeTerm },
-    });
-
-    await setLoading(false);
-  };
   return (
     <Container className="border mb-5">
       <Row>
-        <SearchBar
-          onChange={(e) => setSearchTerm(e)}
-          searchTerm={searchTerm}
-          onSubmit={onSubmit}
-          loading={loading}
-        />
+        <SearchBar />
         <FeaturedLinks />
         <Col sm={12} md={9}>
           <QueryTitle title={pageTitle} />

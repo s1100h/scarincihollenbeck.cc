@@ -118,7 +118,6 @@ export default function GlobalSearch() {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
       <ConnectedSearchBox />
-
       <Results />
     </InstantSearch>
   );

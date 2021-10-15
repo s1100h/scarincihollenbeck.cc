@@ -33,7 +33,7 @@ export default function AttorneyBioLinks({ links, slug, mobileLinks }) {
           {links.more.length > 0 && (
             <Dropdown>
               <Dropdown.Toggle className={`${styles.tab} ${styles.tabsBtn}`} id="nav-dropdown">
-                More +
+                More
               </Dropdown.Toggle>
               <Dropdown.Menu style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}>
                 {links.more.map((m) => (m.label === 'News Press Releases' || m.label === 'Blogs' ? (

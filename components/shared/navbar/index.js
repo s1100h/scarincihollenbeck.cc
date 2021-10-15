@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import HamburgerMobileMenu from 'components/shared/navbar/hamburger-mobile-menu';
-import GlobalSearch from 'components/shared/navbar/global-search';
+import GlobalSearch from 'components/shared/global-search';
 import TopNavLinks from 'components/shared/navbar/top-nav-links';
 import SiteNavs from 'components/shared/navbar/site-navs';
 import SiteLogo from 'components/shared/navbar/site-logo';
