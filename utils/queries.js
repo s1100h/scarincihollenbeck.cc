@@ -207,15 +207,15 @@ const getLibraryCategoryContent = async (tempChildCat) => {
   return [authors, childrenOfCurrentCategory, popularCategories, categoryDetails];
 };
 
-const getAuthorContent = async (tempStr, tempChildCat, slug) => {
+const getAuthorContent = async (slug) => {
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/author/posts/${tempStr}/1`, { headers })
+    fetch(`${BASE_API_URL}/wp-json/author/posts/${slug}/1`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
     fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, { headers })
+    fetch(`${BASE_API_URL}/wp-json/category/children/${slug}`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
     fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })

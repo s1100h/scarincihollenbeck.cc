@@ -61,17 +61,8 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  // eslint-disable-next-line quotes
-  let tempStr = ``;
-  // eslint-disable-next-line quotes
-  let tempChildCat = ``;
 
-  if (slug) {
-    tempStr += `offset=1&category=${slug}`;
-    tempChildCat += slug;
-  }
-
-  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(tempStr, tempChildCat);
+  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(slug);
 
   if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {
@@ -82,14 +73,14 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       query: slug,
-      pageTitle: tempChildCat,
+      pageTitle: slug,
       results: categoryDetails.results || [],
       authors: authors || [],
       popularCategories: popularCategories || [],
       childrenOfCurrentCategory: childrenOfCurrentCategory || [],
       seo: categoryDetails.seo,
-      description: categoryDetails.description,
-      name: categoryDetails.current_category.name,
+      description: categoryDetails.description || '',
+      name: categoryDetails.current_category.name || '',
     },
     revalidate: 10,
   };
