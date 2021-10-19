@@ -9,9 +9,7 @@ import { BASE_API_URL } from 'utils/constants';
 export default function OlderArticles({ initialArticles, query }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(2);
-  const [url, setUrl] = useState(
-    `${BASE_API_URL}/wp-json/category/posts?category=${query}&offset=${pageIndex}`,
-  );
+  const [url, setUrl] = useState(`${BASE_API_URL}/wp-json/category/posts/${query}/${pageIndex}`);
   const [message, setMessage] = useState('');
   const [articleList, setArticleList] = useState(initialArticles || []);
   const router = useRouter();

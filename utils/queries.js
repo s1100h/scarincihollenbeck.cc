@@ -197,7 +197,7 @@ const getLibraryCategoryContent = async (tempChildCat) => {
     fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/posts/?category=${tempChildCat}&offset=1`, {
+    fetch(`${BASE_API_URL}/wp-json/category/posts/${tempChildCat}/1`, {
       headers,
     })
       .then((data) => data.json())
