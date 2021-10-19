@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -46,16 +45,18 @@ export default function AttorneyProfileArticles({ title, initalArticles }) {
             <Col sm={12} md={4} key={article.title} className="my-3">
               <Link href={article.link}>
                 <a className="text-center mx-auto d-block">
-                  <Image
-                    alt={article.title}
-                    src={
-                      article.image || article.featuredImg || '/images/no-image-found-diamond.png'
-                    }
-                    width={300}
-                    height={150}
-                    className="rounded"
-                  />
-                  <small className="text-dark d-block">
+                  {(article.image || article.featuredImg) && (
+                    <img
+                      alt={article.title}
+                      src={
+                        article.image || article.featuredImg || '/images/no-image-found-diamond.png'
+                      }
+                      width={230}
+                      height={115}
+                      className="rounded"
+                    />
+                  )}
+                  <small className="text-dark d-block text-center mx-auto d-block ">
                     <strong>{article.title}</strong>
                   </small>
                 </a>
