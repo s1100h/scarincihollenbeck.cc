@@ -32,7 +32,6 @@ export default function PostBody({
   content,
   authors,
   title,
-  tags,
   subTitle,
   caption,
   categories,
@@ -72,7 +71,7 @@ export default function PostBody({
         </DisplayListTags>
       )}
 
-      {tags && (
+      {/* {tags && (
         <DisplayListTags title="Tags">
           {tags.map((tag, index) => (
             <li key={tag.name} className="list-inline-item">
@@ -85,7 +84,7 @@ export default function PostBody({
             </li>
           ))}
         </DisplayListTags>
-      )}
+      )} */}
       <DisplayListTags title="Share">
         <li className="list-inline-item">
           <FacebookShareButton url={postUrl} quote={title} style={{ textDecoration: 'underline' }}>

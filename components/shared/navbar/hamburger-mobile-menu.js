@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { SITE_NAVIGATION } from 'utils/constants';
 
 const StyledMenu = styled.nav`
   display: flex;
@@ -94,66 +95,28 @@ const StyledBurger = styled.button`
 const Menu = ({ open }) => (
   <StyledMenu open={open}>
     <ul>
-      <li>
-        The Firm
-        <ul>
-          <li>
-            <Link href="/administration">
-              <a>Administration</a>
+      {SITE_NAVIGATION.map((nav) => (
+        <li key={nav.label}>
+          {nav.slug ? (
+            <Link href={nav.slug}>
+              <a>{nav.label}</a>
             </Link>
-          </li>
-          <li>
-            <Link href="/careers">
-              <a>Careers</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/community-involvement">
-              <a>Community Involvement</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/diversity">
-              <a>Diversity</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/firm-overview">
-              <a>Firm Overview</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/pro-bono">
-              <a>Pro Bono</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/women-lead">
-              <a>Women Lead</a>
-            </Link>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <Link href="/attorneys">
-          <a>Attorneys</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/practices">
-          <a>Practices</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/library">
-          <a>Library</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/locations">
-          <a>Locations</a>
-        </Link>
-      </li>
+          ) : nav.children ? (
+            <>
+              {nav.label}
+              <ul>
+                {nav.children.map((child) => (
+                  <li key={child.label}>
+                    <Link href={child.slug}>
+                      <a>{child.label}</a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+        </li>
+      ))}
     </ul>
   </StyledMenu>
 );

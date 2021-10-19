@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Container from 'react-bootstrap/Container';
@@ -6,64 +7,51 @@ import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from 'components/shared/cookie-consent';
 import styles from 'styles/Footer.module.css';
 import textStyles from 'styles/Text.module.css';
+import { FIRM_PAGES, SITE_FOOTER_NAVIGATION, BASE_API_URL } from 'utils/constants';
 
 export default function Footer() {
+  const [offices, setOffices] = useState([]);
   const currentYear = new Date().getFullYear();
 
+  /** Fetch current list of offices */
+  useEffect(() => {
+    const fetchOfficeLocations = async () => {
+      const url = `${BASE_API_URL}/wp-json/location-portal/offices`;
+      const request = await fetch(url)
+        .then((data) => data.json())
+        .catch((err) => err);
+      const officeList = request.offices.map((office) => ({
+        slug: office.slug,
+        label: office.title,
+      }));
+
+      setOffices(officeList);
+    };
+
+    if (offices.length <= 0) {
+      fetchOfficeLocations();
+    }
+  }, []);
+
   return (
-    <footer className={styles.footerContainer}>
+    <footer className={`${styles.footerContainer} d-print-none`}>
       <Container fluid className={styles.footerHeader}>
         <Container className="py-3">
           <Row>
             <Col sm={12}>
               <ul className={`${styles.mainLinks} list-inline text-left text-md-center mb-0`}>
-                <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/attorneys">
-                    <a className={styles.mainLink}>
-                      <u>Attorneys</u>
-                    </a>
-                  </Link>
-                  <span className="mx-3 d-none d-md-inline-block">|</span>
-                </li>
-                <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/careers">
-                    <a className={styles.mainLink}>
-                      <u>Careers</u>
-                    </a>
-                  </Link>
-                  <span className="mx-3 d-none d-md-inline-block">|</span>
-                </li>
-                <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/contact">
-                    <a className={styles.mainLink}>
-                      <u>Contact</u>
-                    </a>
-                  </Link>
-                  <span className="mx-3 d-none d-md-inline-block">|</span>
-                </li>
-                <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/firm-overview">
-                    <a className={styles.mainLink}>
-                      <u>Firm Overview</u>
-                    </a>
-                  </Link>
-                  <span className="mx-3 d-none d-md-inline-block">|</span>
-                </li>
-                <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/practices">
-                    <a className={styles.mainLink}>
-                      <u>Practices</u>
-                    </a>
-                  </Link>
-                  <span className="mx-3 d-none d-md-inline-block">|</span>
-                </li>
-                <li className="list-inline-item p-2 p-md-0">
-                  <Link href="/library/category/firm-news">
-                    <a className={styles.mainLink}>
-                      <u>Library</u>
-                    </a>
-                  </Link>
-                </li>
+                {SITE_FOOTER_NAVIGATION.map((nav, index) => (
+                  <li key={nav.label} className="list-inline-item p-2 p-md-0">
+                    <Link href={nav.slug}>
+                      <a className={styles.mainLink}>
+                        <u>{nav.label}</u>
+                      </a>
+                    </Link>
+                    {SITE_FOOTER_NAVIGATION.length - 1 > index && (
+                      <span className="mx-3 d-none d-md-inline-block">|</span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </Col>
           </Row>
@@ -76,26 +64,13 @@ export default function Footer() {
               <strong>Firm Pages</strong>
             </p>
             <ul className={styles.linkList}>
-              <li>
-                <Link href="/community-involvement">
-                  <a className="text-dark">Community Involvement</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/diversity">
-                  <a className="text-dark">Diversity</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/pro-bono">
-                  <a className="text-dark">Pro Bono</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/women-lead">
-                  <a className="text-dark">Women Lead</a>
-                </Link>
-              </li>
+              {FIRM_PAGES.sort((a, b) => (a.title > b.title ? 1 : -1)).map((nav) => (
+                <li key={nav.id}>
+                  <Link key={nav.id} href={nav.slug}>
+                    <a className="text-dark">{nav.title}</a>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="mr-0 mr-md-2 mr-lg-0">
@@ -145,26 +120,14 @@ export default function Footer() {
               <strong>Office Locations</strong>
             </p>
             <ul className={styles.linkList}>
-              <li>
-                <Link href="/location/lyndhurst">
-                  <a className="text-dark">Lyndhurst, NJ</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/location/red-bank">
-                  <a className="text-dark">Red Bank, NJ</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/location/new-york">
-                  <a className="text-dark">New York, NY</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/location/washington-dc">
-                  <a className="text-dark">Washington, D.C.</a>
-                </Link>
-              </li>
+              {offices
+                && offices.map((office) => (
+                  <li key={office.label}>
+                    <Link href={office.slug}>
+                      <a className="text-dark">{office.label}</a>
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
           <div className="mr-0 mr-md-2 mr-lg-0">

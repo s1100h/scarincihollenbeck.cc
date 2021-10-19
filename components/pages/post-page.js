@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import PostHead from 'components/organisms/post/head';
 import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/organisms/post/body';
+import PrintOnlyBody from 'components/organisms/post/print-only-body';
 import Sidebar from 'components/organisms/post/sidebar';
 
 export default function PostPage({
@@ -25,16 +26,19 @@ export default function PostPage({
         post={post}
         authors={authors}
       />
-      <SingleSubHeader
-        title={post.title}
-        subtitle={post.subTitle}
-        isBlog
-        offset={0}
-        span={8}
-        authors={authors}
-        date={post.date}
-      />
-      <Container>
+      <span className="d-print-none">
+        <SingleSubHeader
+          title={post.title}
+          subtitle={post.subTitle}
+          isBlog
+          offset={0}
+          span={8}
+          authors={authors}
+          date={post.date}
+        />
+      </span>
+
+      <Container className="d-print-none">
         <Row>
           <Body
             featuredImage={post.featuredImage}
@@ -50,6 +54,14 @@ export default function PostPage({
           <Sidebar category={category} postUrl={postUrl} />
         </Row>
       </Container>
+      <PrintOnlyBody
+        featuredImage={post.featuredImage}
+        content={post.content}
+        title={post.title}
+        subTitle={post.subTitle}
+        authors={authors}
+        date={post.date}
+      />
     </>
   );
 }

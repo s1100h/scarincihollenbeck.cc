@@ -24,6 +24,7 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
     fax,
     vizibility,
     socialMedia,
+    additionalHeaderLinks,
   } = profile;
 
   const contact = { phoneNumber, email };
@@ -77,7 +78,12 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                       coChair={coChair}
                     />
                     <div className="d-flex flex-column flex-lg-row mt-2">
-                      <ProfileDetails offices={offices} contact={contact} fax={fax} />
+                      <ProfileDetails
+                        offices={offices}
+                        contact={contact}
+                        fax={fax}
+                        additionalHeaderLinks={additionalHeaderLinks || []}
+                      />
                       <ContactIcons
                         slug={slug}
                         linkedIn={linkedIn}

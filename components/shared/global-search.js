@@ -2,9 +2,9 @@ import Form from 'react-bootstrap/Form';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
-  Hits,
   connectStateResults,
   createConnector,
+  Hits,
   Pagination,
 } from 'react-instantsearch-dom';
 
@@ -105,7 +105,7 @@ const MySearchBox = ({ currentRefinement, refine }) => (
         type="input"
         value={currentRefinement}
         onChange={(e) => refine(e.currentTarget.value)}
-        placeholder="Search the entire site..."
+        placeholder="Search..."
         className="py-0"
       />
     </Form.Group>

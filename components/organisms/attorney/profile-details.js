@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
-export default function ProfileDetails({ contact, offices, fax }) {
+export default function ProfileDetails({
+  contact, offices, fax, additionalHeaderLinks,
+}) {
   const { phoneNumber, email } = contact;
-
   return (
     <div className="d-flex flex-column">
       <p>
@@ -35,6 +36,14 @@ export default function ProfileDetails({ contact, offices, fax }) {
           </Link>
         ))}
       </p>
+      {additionalHeaderLinks.length > 0
+        && additionalHeaderLinks.map((ah) => (
+          <p key={ah.title}>
+            <Link href={ah.url}>
+              <a className="text-white">{ah.title}</a>
+            </Link>
+          </p>
+        ))}
       <style jsx>{'p { margin-bottom: 5px;}'}</style>
     </div>
   );

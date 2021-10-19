@@ -39,6 +39,129 @@ export const FIRM_PAGES = [
   },
 ];
 
+export const SITE_NAVIGATION = [
+  {
+    id: 1,
+    label: 'The Firm',
+    slug: null,
+    children: [
+      {
+        id: 1,
+        label: 'Administration',
+        slug: '/administration',
+      },
+      {
+        id: 2,
+        label: 'Careers',
+        slug: '/careers',
+      },
+      {
+        id: 3,
+        label: 'Community Involvement',
+        slug: '/community-involvement',
+      },
+      {
+        id: 4,
+        label: 'Diversity',
+        slug: '/diversity',
+      },
+      {
+        id: 5,
+        label: 'Firm Overview',
+        slug: '/firm-overview',
+      },
+      {
+        id: 6,
+        label: 'Pro Bono',
+        slug: '/pro-bono',
+      },
+      {
+        id: 7,
+        label: 'Women Lead',
+        slug: '/women-lead',
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: 'Attorneys',
+    slug: '/attorneys',
+    children: null,
+  },
+  {
+    id: 3,
+    label: 'Practices',
+    slug: '/practices',
+    children: null,
+  },
+  {
+    id: 4,
+    label: 'Library',
+    slug: null,
+    children: [
+      {
+        id: 1,
+        label: 'Firm News',
+        slug: '/library/category/firm-news',
+      },
+      {
+        id: 2,
+        label: 'Firm Events',
+        slug: '/library/category/firm-events',
+      },
+      {
+        id: 3,
+        label: 'Firm Insights',
+        slug: '/library/category/law-firm-insights',
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: 'Locations',
+    slug: '/locations',
+    children: null,
+  },
+  {
+    id: 6,
+    label: 'Contact',
+    slug: '/contact',
+    children: null,
+  },
+];
+
+export const SITE_FOOTER_NAVIGATION = [
+  {
+    id: 1,
+    slug: '/attorneys',
+    label: 'Attorneys',
+  },
+  {
+    id: 2,
+    slug: '/careers',
+    label: 'Careers',
+  },
+  {
+    id: 3,
+    slug: '/contact',
+    label: 'Contact',
+  },
+  {
+    id: 4,
+    slug: '/firm-overview',
+    label: 'Firm Overview',
+  },
+  {
+    id: 5,
+    slug: '/practices',
+    label: 'Practices',
+  },
+  {
+    id: 6,
+    slug: '/library/category/firm-news',
+    label: 'Library',
+  },
+];
 export const ERROR_PAGE_CONTENT = {
   subTitle: 'Sorry, there was an issue getting your requested page',
   mainMessage:
