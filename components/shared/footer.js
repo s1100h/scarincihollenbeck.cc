@@ -82,8 +82,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/diversity-group">
-                  <a className="text-dark">Diversity Group</a>
+                <Link href="/diversity">
+                  <a className="text-dark">Diversity</a>
                 </Link>
               </li>
               <li>

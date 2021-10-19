@@ -26,8 +26,8 @@ export default function SiteNavs() {
             Community Involvement
           </a>
 
-          <a href="/diversity-group" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-            Diversity Group
+          <a href="/diversity" className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+            Diversity
           </a>
           <Link href="/firm-overview">
             <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>Firm Overview</a>

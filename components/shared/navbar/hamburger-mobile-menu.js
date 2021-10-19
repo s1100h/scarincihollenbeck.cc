@@ -113,8 +113,8 @@ const Menu = ({ open }) => (
             </Link>
           </li>
           <li>
-            <Link href="/diversity-group">
-              <a>Diversity Group</a>
+            <Link href="/diversity">
+              <a>Diversity</a>
             </Link>
           </li>
           <li>

@@ -34,8 +34,8 @@ export const FIRM_PAGES = [
   },
   {
     id: 'p4mdVc653adf98fbn',
-    title: 'Diversity Group',
-    slug: '/diversity-group',
+    title: 'Diversity',
+    slug: '/diversity',
   },
 ];
 
