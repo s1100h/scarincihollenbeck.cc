@@ -104,8 +104,8 @@ const POST_CATEOGRY_REWRITES = [
 
 const FIRM_PAGES_REWRITES = [
   {
-    source: '/diversity-group',
-    destination: '/firm-pages/diversity-group',
+    source: '/diversity',
+    destination: '/firm-pages/diversity',
   },
   {
     source: '/community-involvement',

@@ -39,7 +39,7 @@ export default function ArchiveCareersEqualOpportunity() {
               <strong>
                 Read more about
                 {' '}
-                <Link href="/diversity-group">
+                <Link href="/diversity">
                   <a className={textStyles.redTitle}>
                     <u>Scarinci Hollenbeck&apos;s commitment to diversity</u>
                   </a>

@@ -660,11 +660,6 @@
     "statusCode": 301
   },
   {
-    "source": "/diversity",
-    "destination": "/diversity-group/",
-    "statusCode": 301
-  },
-  {
     "source": "/practices/corporate-transactions-and-business/",
     "destination": "/practices/corporate-transactions-business",
     "statusCode": 301
