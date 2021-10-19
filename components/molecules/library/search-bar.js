@@ -1,12 +1,8 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import ClipLoader from 'react-spinners/ClipLoader';
+import GlobalSearch from 'components/shared/global-search';
 
-export default function SearchBar({
-  onChange, onSubmit, searchTerm, loading,
-}) {
+export default function SearchBar() {
   return (
     <Col sm={12} style={{ backgroundColor: '#495057' }}>
       <Row>
@@ -16,26 +12,9 @@ export default function SearchBar({
           </p>
         </Col>
         <Col sm={12} md={6} className="py-3">
-          <Form onSubmit={onSubmit}>
-            <Form.Row className="align-items-center">
-              <Col sm={12} md={{ span: 8, offset: 1 }}>
-                <Form.Label htmlFor="inlineFormInputSearchTerm" srOnly>
-                  Enter Search Term
-                </Form.Label>
-                <Form.Control
-                  value={searchTerm}
-                  onChange={(e) => onChange(e.target.value)}
-                  id="inlineFormInputSearchTerm"
-                  placeholder="Enter search term..."
-                />
-              </Col>
-              <Col xs={12} md="auto" className="my-1">
-                <Button variant="danger" type="submit">
-                  {loading ? <ClipLoader loading={loading} size={12} color="#FFF" /> : <>Search</>}
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
+          <div className="mx-auto" style={{ maxWidth: '400px' }}>
+            <GlobalSearch />
+          </div>
         </Col>
         <Col sm={12} md={3} className="py-4">
           <p className="text-white mb-0 text-center">

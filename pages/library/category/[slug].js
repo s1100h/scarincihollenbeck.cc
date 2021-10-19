@@ -71,7 +71,7 @@ export async function getStaticProps({ params }) {
     tempChildCat += slug;
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(tempStr, tempChildCat);
+  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(tempStr, tempChildCat);
 
   if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {
@@ -83,7 +83,7 @@ export async function getStaticProps({ params }) {
     props: {
       query: slug,
       pageTitle: tempChildCat,
-      results: results || [],
+      results: categoryDetails.results || [],
       authors: authors || [],
       popularCategories: popularCategories || [],
       childrenOfCurrentCategory: childrenOfCurrentCategory || [],

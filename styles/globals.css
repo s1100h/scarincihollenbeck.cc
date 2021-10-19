@@ -22,12 +22,16 @@
   font-display: swap;
 }
 
+/*** Base stylings **/
 body {
   font-family: 'Proxima Nova Regular' !important;
   font-weight: 500;
 }
 
-a,
+a {
+  color: #3344dd;
+}
+
 a:hover {
   color: inherit;
 }
@@ -40,8 +44,8 @@ em {
   font-family: 'Proxima Nova Italic';
 }
 
-.btn-danger,
-.red--grad {
+/** Button Styling **/
+.btn-danger {
   font-weight: bold;
   background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
 }
@@ -50,58 +54,106 @@ em {
   background-color: #fcfaff;
 }
 
-.attorney-bio-sidebar-list ul {
+/** Dropdown Menu **/
+.dropdown-menu {
+  padding: 10px !important;
   margin: 0;
-  font-size: 14px;
-  margin-left: -18px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #212121;
+  background-color: #fcfaff;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
+  transition: all 200ms linear;
 }
 
-.attorney-bio-sidebar-list ul > li {
-  line-height: 20px;
-  margin-bottom: 0.5rem;
+/** Global Search Styling **/
+.ais-Hits-item {
+  list-style-type: none;
 }
 
-.mw-45 {
-  width: 55%;
-}
-.mt-6 {
-  margin-top: 6em;
+.ais-Hits-list {
+  margin-left: -30px;
 }
 
-.mx-6 {
-  padding-left: 3.3em;
-  padding-right: 3.3em;
-  margin-top: 4.8em;
+.search-container {
+  max-height: 800px;
+  margin-top: 10px;
+  background-color: #fcfaff;
+  overflow: hidden;
+  z-index: 99;
 }
 
-.show > .btn-primary.dropdown-toggle {
-  background-color: #fff;
+.search-container .ais-Hits-list {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.ais-Pagination-item {
+  display: inline-block;
+}
+
+.ais-Hits {
+  margin-top: -1em;
+}
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 95%;
+  }
+}
+
+@media (min-width: 768px) {
+  .search-container {
+    min-width: 640px;
+  }
+}
+
+.ais-Pagination-list {
+  list-style-type: none;
+  margin-left: -2em;
+  margin-top: 11px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ais-Pagination-item {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.ais-Pagination-link {
   color: #000;
 }
 
-.dropdown-toggle::after {
+.ais-SearchBox-form {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  border-radius: 5px;
+}
+
+.ais-SearchBox-input {
+  border: 0;
+}
+
+.ais-SearchBox-submit {
+  border: 0px;
+  background-color: #fff;
+  border-right: 1px solid #a9a9a9;
+}
+
+.ais-SearchBox-reset {
   display: none;
 }
-.dv-star-rating {
-  margin-top: 0;
-  margin-bottom: 1em;
+
+.scroll-search {
+  height: 28px;
+  padding-left: 8px;
+  left: -1em;
 }
 
-.dv-star-rating-star i {
-  font-size: 1.3rem;
-}
-
-.navbar-expand .navbar-nav .nav-link {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.modal {
-  overflow: visible !important;
-}
-
-a {
-  color: #3344dd;
+.top--1 {
+  top: -1px;
 }
 /** Hide captcha in print **/
 @media print {

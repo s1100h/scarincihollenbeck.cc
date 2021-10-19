@@ -102,17 +102,17 @@ export const SITE_NAVIGATION = [
       {
         id: 1,
         label: 'Firm News',
-        slug: '/firm-news',
+        slug: '/library/category/firm-news',
       },
       {
         id: 2,
         label: 'Firm Events',
-        slug: '/firm-events',
+        slug: '/library/category/firm-events',
       },
       {
         id: 3,
         label: 'Firm Insights',
-        slug: '/firm-insights',
+        slug: '/library/category/law-firm-insights',
       },
     ],
   },
@@ -162,7 +162,6 @@ export const SITE_FOOTER_NAVIGATION = [
     label: 'Library',
   },
 ];
-
 export const ERROR_PAGE_CONTENT = {
   subTitle: 'Sorry, there was an issue getting your requested page',
   mainMessage:
@@ -180,6 +179,9 @@ export const HOLIDAY_SLUGS = ['/holiday/2019-happy-holidays', '/holiday/2020-hap
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
+export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
 
 export const CLIENT_ALERTS = [
   {

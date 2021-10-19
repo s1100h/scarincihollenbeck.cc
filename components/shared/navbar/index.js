@@ -1,102 +1,51 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import HamburgerMobileMenu from 'components/shared/navbar/hamburger-mobile-menu';
+import GlobalSearch from 'components/shared/global-search';
+import TopNavLinks from 'components/shared/navbar/top-nav-links';
+import SiteNavs from 'components/shared/navbar/site-navs';
+import SiteLogo from 'components/shared/navbar/site-logo';
 import navBarStyles from 'styles/Navbar.module.css';
-import textStyles from 'styles/Text.module.css';
-import { SITE_NAVIGATION } from 'utils/constants';
 
 export default function NavBar() {
+  const [scrollTop, setScrollTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = (e) => {
+      if (e.target.documentElement.scrollTop >= 135) {
+        setScrollTop(true);
+      } else {
+        setScrollTop(false);
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [scrollTop]);
+
   return (
-    <header className="mb-0 d-print-none">
+    <header className="mb-0 pt-1 shadow sticky-top top--1 bg-white">
       <Container>
-        <Row className="my-2  border-bottom">
-          <Col sm={12} md={6}>
-            <p className="my-1 pb-1 mx-0 px-0 mr-2">
-              <Link href="/covid-19-crisis-management-unit">
-                <a className={`ml-0 ${textStyles.redTitle} font-weight-bold`}>
-                  <u>COVID-19 Crisis Management Unit</u>
-                </a>
-              </Link>
-            </p>
+        <Row className="my-2 border-bottom">
+          <Col sm={12} md={4}>
+            <GlobalSearch scrollTop={scrollTop} />
           </Col>
-          <Col sm={12} md={6} className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
-            <p className="my-1 pb-1 mx-0 px-0 mr-2">
-              <span>
-                {' '}
-                <strong>201-896-4100</strong>
-                {' '}
-              </span>
-              <span className="px-1">
-                <strong> | </strong>
-              </span>
-              <span>
-                {' '}
-                <strong>info@sh-law.com</strong>
-              </span>
-              <Link href="/subscribe">
-                <a className={`ml-2 ${textStyles.redTitle} font-weight-bold underline`}>
-                  Join our mailing list
-                </a>
-              </Link>
-              <a
-                href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
-                target="_blank"
-                rel="noreferrer"
-                className={`ml-2 ${textStyles.redTitle} font-weight-bold underline`}
-              >
-                <u>Make payment</u>
-              </a>
-            </p>
-            <style jsx>{'.underline { text-decoration: underline }'}</style>
+          <Col sm={12} md={8} className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
+            <TopNavLinks />
           </Col>
         </Row>
         <Row>
-          <Col xs={12} lg={6} className={`${navBarStyles.logoBanner} mt-2 ml-0 pl-0`}>
-            <Link href="/">
-              <a>
-                <Image
-                  alt="Scarinci Hollenbeck, LLC"
-                  height={65}
-                  width={360}
-                  layout="intrinsic"
-                  src="/images/sh-logo-diamond.svg"
-                />
-              </a>
-            </Link>
+          <Col
+            xs={12}
+            lg={6}
+            className={`${navBarStyles.logoBanner} ${scrollTop ? 'mt-0' : 'mt-2'} ml-0 pl-0`}
+          >
+            <SiteLogo scrollTop={scrollTop} />
           </Col>
-          <Col xs={12} lg={6} className=" mt-sm-2 mt-lg-3 pr-0 pl-0">
-            <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>
-              <Nav>
-                {SITE_NAVIGATION.map((nav) => (nav.children ? (
-                  <NavDropdown
-                    key={nav.label}
-                    title={nav.label}
-                    id="the-firm-dropdown"
-                    className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
-                  >
-                    {nav.children.map((child) => (
-                      <Link key={child.label} href={child.slug}>
-                        <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
-                          {child.label}
-                        </a>
-                      </Link>
-                    ))}
-                  </NavDropdown>
-                ) : (
-                  <Nav.Item key={nav.label} className={navBarStyles.navItem}>
-                    <Link href={nav.slug}>
-                      <a className="text-dark">{nav.label}</a>
-                    </Link>
-                  </Nav.Item>
-                )))}
-              </Nav>
-            </Navbar>
+          <Col xs={12} lg={6} className={scrollTop ? 'offset-lg-3' : 'mt-sm-2 mt-lg-3 pr-0 pl-0'}>
+            <SiteNavs />
             <div className={navBarStyles.mobileMenu}>
               <HamburgerMobileMenu />
             </div>

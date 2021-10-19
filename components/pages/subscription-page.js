@@ -3,9 +3,9 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SimpleSearch from 'components/molecules/simple-search';
 import SubscriptionBody from 'components/molecules/subscription/subscription-body';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
+import sidebarStyles from 'styles/Sidebar.module.css';
 
 export default function SubscriptionPage({ site, seo }) {
   return (
@@ -17,8 +17,7 @@ export default function SubscriptionPage({ site, seo }) {
           <Col sm={12} md={9}>
             <SubscriptionBody />
           </Col>
-          <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
-            <SimpleSearch />
+          <Col sm={12} md={3} className={sidebarStyles.container}>
             <CommonSidebarLinks />
           </Col>
         </Row>

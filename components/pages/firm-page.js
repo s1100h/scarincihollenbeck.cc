@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SimpleSearch from 'components/molecules/simple-search';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import SidebarContent from 'components/organisms/practice/sidebar';
 import PageArticleHero from 'components/organisms/page/page-article-hero';
@@ -11,6 +10,7 @@ import { createMarkup } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import sidebarStyles from 'styles/Sidebar.module.css';
 
 export default function FirmPage({ page, relatedPages, canonicalUrl }) {
   return (
@@ -40,9 +40,7 @@ export default function FirmPage({ page, relatedPages, canonicalUrl }) {
               </>
             )}
           </Col>
-          <Col sm={12} md={3} style={{ marginTop: '-1.5em' }}>
-            <SimpleSearch />
-            <hr />
+          <Col sm={12} md={3} className={sidebarStyles.container}>
             <SubscriptionMessage />
             <hr />
             <SidebarContent title="Firm Library" content={FIRM_BLOG_PAGES} tabKey={2} />

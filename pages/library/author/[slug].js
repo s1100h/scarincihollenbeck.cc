@@ -63,10 +63,10 @@ export async function getStaticProps({ params }) {
   const tempChildCat = ``;
 
   if (slug) {
-    tempStr += `offset=1&author=${slug}`;
+    tempStr += 'slug';
   }
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(tempStr, tempChildCat, slug);
+  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug, tempChildCat, slug);
 
   if (authorBio.bio[0].name.length <= 0) {
     return {
@@ -77,7 +77,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       query: tempStr.replace('offset=1&', ''),
-      results: results || [],
+      results: results.results || [],
       authors: authors || [],
       popularCategories: popularCategories || [],
       childrenOfCurrentCategory: childrenOfCurrentCategory || [],

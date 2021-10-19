@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -8,21 +9,40 @@ import { BASE_API_URL } from 'utils/constants';
 export default function OlderArticles({ initialArticles, query }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(2);
-  const [error, setError] = useState(false);
+  const [url, setUrl] = useState(
+    `${BASE_API_URL}/wp-json/category/posts?category=${query}&offset=${pageIndex}`,
+  );
+  const [message, setMessage] = useState('');
   const [articleList, setArticleList] = useState(initialArticles || []);
+  const router = useRouter();
+  const isAuthor = router.asPath.includes('author');
+
+  useEffect(() => {
+    if (isAuthor) {
+      setUrl(
+        `https://wp.scarincihollenbeck.com/wp-json/author/posts/${router.query.slug}/${pageIndex}`,
+      );
+    }
+  }, [router]);
 
   async function handleClick() {
     setLoading(true);
     setPageIndex((pi) => (pi += 1));
-    const url = `${BASE_API_URL}/wp-json/search/query?category=${query}&offset=${pageIndex}}`;
+
     const getOlderPosts = await fetch(url)
       .then((data) => data.json())
-      .catch((err) => setError(err));
-
+      .catch((err) => {
+        console.error(err);
+        setMessage('There was an error loading more posts...');
+      });
     if (!getOlderPosts) {
       setLoading(false);
     }
-    if (getOlderPosts.results) {
+
+    if (!Object.keys(getOlderPosts).includes('results')) {
+      setLoading(false);
+      setMessage('There are no more articles for this query...');
+    } else {
       getOlderPosts.results.shift();
       setLoading(false);
       setArticleList((articles) => [...articles, ...getOlderPosts.results]);
@@ -35,10 +55,10 @@ export default function OlderArticles({ initialArticles, query }) {
           <strong className="text-capitalize">Archives</strong>
         </h4>
       </Col>
-      {error ? (
-        <p>
-          <strong>There was an error loading more posts...</strong>
-        </p>
+      {message.length > 0 ? (
+        <div className="mx-4 mb-4">
+          <strong>{message}</strong>
+        </div>
       ) : (
         articleList
         && articleList.map((article) => (

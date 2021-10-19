@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import SingleSubHeader from 'layouts/single-sub-header';
-import SimpleSearch from 'components/molecules/simple-search';
 
 export default function ErrorPage({ title, subTitle, mainMessage }) {
   return (
@@ -15,7 +14,6 @@ export default function ErrorPage({ title, subTitle, mainMessage }) {
           <Col sm={12} md={{ span: 7, offset: 2 }}>
             <Card className="p-3 mb-5 mt-2">
               <p className="lead mb-3">{mainMessage}</p>
-              <SimpleSearch />
             </Card>
           </Col>
           <Col sm={12} className="border-top border-bottom py-5">

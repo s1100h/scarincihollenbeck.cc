@@ -186,11 +186,8 @@ const getAuthorPaths = async () => {
   return paths;
 };
 
-const getLibraryCategoryContent = async (tempStr, tempChildCat) => {
-  const [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
+const getLibraryCategoryContent = async (tempChildCat) => {
+  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await Promise.all([
     fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
@@ -200,17 +197,19 @@ const getLibraryCategoryContent = async (tempStr, tempChildCat) => {
     fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/posts/${tempChildCat}`, { headers })
+    fetch(`${BASE_API_URL}/wp-json/category/posts/?category=${tempChildCat}&offset=1`, {
+      headers,
+    })
       .then((data) => data.json())
       .catch((err) => err),
   ]);
 
-  return [results, authors, childrenOfCurrentCategory, popularCategories, categoryDetails];
+  return [authors, childrenOfCurrentCategory, popularCategories, categoryDetails];
 };
 
 const getAuthorContent = async (tempStr, tempChildCat, slug) => {
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, { headers })
+    fetch(`${BASE_API_URL}/wp-json/author/posts/${tempStr}/1`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
     fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
@@ -228,25 +227,6 @@ const getAuthorContent = async (tempStr, tempChildCat, slug) => {
   ]);
 
   return [results, authors, childrenOfCurrentCategory, popularCategories, authorBio];
-};
-
-const getSearchQueryResults = async (tempStr, tempChildCat) => {
-  const [results, authors, childrenOfCurrentCategory, popularCategories] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/v2/search/query?${tempStr}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/author/full-list`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, {
-      headers,
-    }).then((data) => data.json()),
-    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, {
-      headers,
-    }).then((data) => data.json()),
-  ]);
-
-  return [results, authors, childrenOfCurrentCategory, popularCategories];
 };
 
 // queries for pages/location
@@ -306,6 +286,7 @@ const getPracticeContent = async (slug) => {
 const getPracticePosts = async (practiceSlug, blogId) => {
   const request = await fetch(
     `${BASE_API_URL}/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`,
+    { headers },
   )
     .then((data) => data.json())
     .catch((err) => err);
@@ -364,7 +345,6 @@ module.exports = {
   getLibraryCategoryContent,
   getAuthorPaths,
   getAuthorContent,
-  getSearchQueryResults,
   getLocationPaths,
   getLocationContent,
   getPracticePaths,
