@@ -27,13 +27,10 @@ export default function MainArticle({
           {date}
         </span>
       </p>
-      {description.map((content) => (
-        <div
-          key={content}
-          className={`${fontStyles.ft11rem} pr-4`}
-          dangerouslySetInnerHTML={createMarkup(content)}
-        />
-      ))}
+      <div
+        className={`${fontStyles.ft11rem} pr-4 mb-3`}
+        dangerouslySetInnerHTML={createMarkup(description)}
+      />
       <Button variant="danger" className={`${fontStyles.ft12rem} px-4`}>
         <Link href={link}>
           <a className="text-white">Continue Reading</a>

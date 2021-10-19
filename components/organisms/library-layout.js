@@ -8,7 +8,6 @@ import FeaturedArticle from 'components/molecules/library/featured-article';
 import OlderArticles from 'components/molecules/library/older-articles';
 import FeaturedLinks from 'components/molecules/library/featured-links';
 import FirmAuthors from 'components/molecules/library/firm-authors';
-import QueryTitle from 'components/molecules/library/query-title';
 import SubscriptionContainer from 'components/molecules/library/subscription-container';
 import SearchBar from 'components/molecules/library/search-bar';
 import marginStyles from 'styles/Margins.module.css';
@@ -31,59 +30,53 @@ export default function LibraryLayout({
         <SearchBar />
         <FeaturedLinks />
         <Col sm={12} md={9}>
-          <QueryTitle title={pageTitle} />
-          {results.results && results.results.length > 0 ? (
+          {results && results.length > 0 ? (
             <>
-              {results.results[0].link.indexOf('attorneys') >= 0 ? (
-                <Link href={results.results[0].link}>
+              {results[0].link.indexOf('attorneys') >= 0 ? (
+                <Link href={results[0].link}>
                   <a className="border-bottom d-block pb-5">
                     <strong className="lead mt-5 d-block">
-                      {results.results[0].title}
+                      {results[0].title}
                       {' '}
                       - Attorney profile
                     </strong>
                   </a>
                 </Link>
-              ) : results.results[0].link.indexOf('practices') >= 0 ? (
-                <Link href={results.results[0].link}>
+              ) : results[0].link.indexOf('practices') >= 0 ? (
+                <Link href={results[0].link}>
                   <a className="border-bottom d-block pb-5">
                     <strong className="lead mt-5 d-block">
-                      {`${results.results[0].title} - Legal practice details`}
+                      {`${results[0].title} - Legal practice details`}
                     </strong>
                   </a>
                 </Link>
               ) : (
                 <div className="mt-4">
                   <MainArticle
-                    title={results.results[0].title}
-                    link={results.results[0].link}
-                    description={results.results[0].longerDescription}
-                    date={results.results[0].date}
+                    title={results[0].title}
+                    link={results[0].link}
+                    description={results[0].description}
+                    date={results[0].date}
                     image={
-                      results.results[0].image
-                        ? results.results[0].image
-                          .replace('Feature', 'Body')
-                          .replace('Featured', 'Body')
+                      results[0].image
+                        ? results[0].image.replace('Feature', 'Body').replace('Featured', 'Body')
                         : '/images/no-image-found-diamond-750x350.png'
                     }
-                    author={results.results[0].author}
+                    author={results[0].author}
                   />
                 </div>
               )}
-              {results.results && results.results.length > 1 && (
+              {results && results.length > 1 && (
                 <ul className={`${marginStyles.mt65} list-unstyled`}>
-                  <FeaturedArticle articles={results.results.filter((_, i) => i > 0 && i <= 4)} />
+                  <FeaturedArticle articles={results.filter((_, i) => i > 0 && i <= 4)} />
                 </ul>
               )}
               <div className={marginStyles.mt65}>
                 <SubscriptionContainer />
               </div>
-              {results.results && results.results.length > 4 && (
+              {results && results.length > 4 && (
                 <div className="mt-5">
-                  <OlderArticles
-                    query={query}
-                    initialArticles={results.results.filter((_, i) => i > 4)}
-                  />
+                  <OlderArticles query={query} initialArticles={results.filter((_, i) => i > 4)} />
                 </div>
               )}
             </>
