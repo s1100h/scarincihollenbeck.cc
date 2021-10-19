@@ -205,3 +205,26 @@ export const CLIENT_ALERTS = [
     name: 'Cyber Security Client Alert',
   },
 ];
+
+export const OFFICE_LOCATIONS = [
+  {
+    id: 1,
+    slug: '/location/lyndhurst',
+    label: 'Lyndhurst, NJ',
+  },
+  {
+    id: 2,
+    slug: '/location/red-bank',
+    label: 'Red Bank, NJ',
+  },
+  {
+    id: 3,
+    slug: '/location/new-york',
+    label: 'New York, NY',
+  },
+  {
+    id: 4,
+    slug: '/location/washington-dc',
+    label: 'Washington, D.C.',
+  },
+];

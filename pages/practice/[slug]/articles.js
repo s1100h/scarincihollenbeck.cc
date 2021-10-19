@@ -204,7 +204,6 @@ export async function getStaticProps({ params }) {
   const practiceSlug = res.slug;
 
   const posts = await getPracticePosts(practiceSlug, blogId);
-
   return {
     props: {
       practice: res,

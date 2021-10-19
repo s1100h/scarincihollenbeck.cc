@@ -266,7 +266,7 @@ const getPracticePaths = async (isArticles) => {
 
   const genPath = (slug) => (isArticles ? `/practice/${slug}/articles` : `/practice/${slug}`);
 
-  const paths = request.map((slug) => genPath(slug));
+  const paths = await request.map((slug) => genPath(slug));
   return paths;
 };
 
@@ -289,7 +289,11 @@ const getPracticePosts = async (practiceSlug, blogId) => {
     { headers },
   )
     .then((data) => data.json())
-    .catch((err) => err);
+    .catch((err) => {
+      console.warn('ERROR');
+      console.warn('===============');
+      console.error(new Error(err));
+    });
 
   return request;
 };

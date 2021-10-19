@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Container from 'react-bootstrap/Container';
@@ -7,31 +6,10 @@ import Col from 'react-bootstrap/Col';
 import CookieConsentContainer from 'components/shared/cookie-consent';
 import styles from 'styles/Footer.module.css';
 import textStyles from 'styles/Text.module.css';
-import { FIRM_PAGES, SITE_FOOTER_NAVIGATION, BASE_API_URL } from 'utils/constants';
+import { FIRM_PAGES, SITE_FOOTER_NAVIGATION, OFFICE_LOCATIONS } from 'utils/constants';
 
 export default function Footer() {
-  const [offices, setOffices] = useState([]);
   const currentYear = new Date().getFullYear();
-
-  /** Fetch current list of offices */
-  useEffect(() => {
-    const fetchOfficeLocations = async () => {
-      const url = `${BASE_API_URL}/wp-json/location-portal/offices`;
-      const request = await fetch(url)
-        .then((data) => data.json())
-        .catch((err) => err);
-      const officeList = request.offices.map((office) => ({
-        slug: office.slug,
-        label: office.title,
-      }));
-
-      setOffices(officeList);
-    };
-
-    if (offices.length <= 0) {
-      fetchOfficeLocations();
-    }
-  }, []);
 
   return (
     <footer className={`${styles.footerContainer} d-print-none`}>
@@ -120,14 +98,13 @@ export default function Footer() {
               <strong>Office Locations</strong>
             </p>
             <ul className={styles.linkList}>
-              {offices
-                && offices.map((office) => (
-                  <li key={office.label}>
-                    <Link href={office.slug}>
-                      <a className="text-dark">{office.label}</a>
-                    </Link>
-                  </li>
-                ))}
+              {OFFICE_LOCATIONS.map((office) => (
+                <li key={office.label}>
+                  <Link href={office.slug}>
+                    <a className="text-dark">{office.label}</a>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="mr-0 mr-md-2 mr-lg-0">
