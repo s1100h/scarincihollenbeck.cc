@@ -17,7 +17,9 @@ export default function ArticleHeroPractice({ link, blogId }) {
       const modPosts = request.map((post) => ({
         title: post.title.rendered,
         link: post.link.replace('https://scarincihollenbeck.com', ''),
-        image: post.better_featured_image.source_url,
+        image: post.better_featured_image
+          ? post.better_featured_image.source_url
+          : '/images/no-image-found-diamond-750x350.png',
       }));
 
       setPosts(modPosts);

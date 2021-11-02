@@ -44,7 +44,7 @@ export const getPracticeContent = async (slug) => {
   });
 
   // post, post meta, post categories, and category name
-  const practiceQuery = `SELECT post_title, ID, post_name FROM ${process.env.POST_TABLE} WHERE post_name= ?`;
+  const practiceQuery = `SELECT post_title, ID, post_name FROM ${process.env.POST_TABLE} WHERE post_name= ? AND post_type= 'practices'`;
   const practiceQueryByID = `SELECT post_title, ID, post_name FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const practiceContentQuery = `SELECT meta_key, meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ?`;
 
@@ -105,6 +105,7 @@ export const getPracticeContent = async (slug) => {
 
   // practice description
   const getPracticeDescription = extractMetaContent(practiceMeta, 'description');
+
   const description = getPracticeDescription[0].meta_value;
 
   // child practices
@@ -229,7 +230,7 @@ export const getPracticeContent = async (slug) => {
 export default async (req, res) => {
   try {
     const fetchPractice = await getPracticeContent(
-      'entertainment-and-media',
+      'tax-trusts-estates',
       // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
       // 'law-firm-insights'
     );
