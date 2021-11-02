@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
 import styles from 'styles/Tabs.module.css';
 import { urlify } from 'utils/helpers';
@@ -8,44 +7,37 @@ import { urlify } from 'utils/helpers';
 export default function PracticeLinks({ links, practiceUrl }) {
   const router = useRouter();
   const tabLinks = links.content;
-  const relatedArticlesLink = urlify(practiceUrl);
   const isArticlesPage = router.asPath.includes('articles');
 
   return (
     <>
       <div className="d-none d-md-block">
-        <Nav
-          defaultActiveKey={urlify(tabLinks[0].title)}
-          role="tablist"
-          className={styles.tabContainer}
-        >
-          {tabLinks.map((tab) => (
-            <Nav.Item as="li" key={tab.title}>
-              <Nav.Link
-                eventKey={urlify(tab.title)}
-                className={`${styles.tab} ${styles.practice} text-white`}
-              >
-                {tab.title}
-              </Nav.Link>
-            </Nav.Item>
-          ))}
-          <Nav.Item as="li">
+        <div className={`${styles.tabContainer} d-flex pl-0 mb-0`}>
+          {tabLinks.map((desktopLink) => (
             <Link
-              href={
-                isArticlesPage
-                  ? `/practice/${relatedArticlesLink}`
-                  : `/practice/${relatedArticlesLink}/articles`
-              }
+              key={desktopLink[0].title}
+              href={`/practice/${practiceUrl}/content/${urlify(desktopLink[0].title)}`}
             >
               <a
-                className={`${styles.tab} ${styles.practice} text-white`}
-                style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
+                className={`${styles.tab} ${styles.practice} text-white block`}
+                style={{ padding: '.5rem 1rem' }}
               >
-                Related Updates
+                {desktopLink[0].title}
               </a>
             </Link>
-          </Nav.Item>
-        </Nav>
+          ))}
+          <Link
+            href={isArticlesPage ? `/practice/${practiceUrl}` : `/practice/${practiceUrl}/articles`}
+          >
+            <a
+              className={`${styles.tab} ${styles.practice} text-white block`}
+              style={{ padding: '.5rem 1rem' }}
+              style={{ display: 'block', padding: '.5rem 1rem', border: 0 }}
+            >
+              Related Updates
+            </a>
+          </Link>
+        </div>
       </div>
       <div className=" my-3 d-block d-md-none mobile-menu">
         <Dropdown size="lg" className={styles.mobileTabContainer}>
@@ -53,18 +45,19 @@ export default function PracticeLinks({ links, practiceUrl }) {
             <strong>Menu Options</strong>
             <style jsx>{'strong{ font-size: 1.25rem}'}</style>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="w-100">
-            {tabLinks.map((t) => (
-              <Dropdown.Item key={t.title} eventKey={urlify(t.title)}>
-                {t.title}
+          <Dropdown.Menu as="ul" className="w-100">
+            {tabLinks.map((mobileLink) => (
+              <Dropdown.Item key={mobileLink[0].title}>
+                <Link href={`/practice/${practiceUrl}/content/${urlify(mobileLink[0].title)}`}>
+                  <a className="block text-dark">{mobileLink[0].title}</a>
+                </Link>
               </Dropdown.Item>
             ))}
+
             <Dropdown.Item
               className="text-dark"
               href={
-                isArticlesPage
-                  ? `/practice/${relatedArticlesLink}`
-                  : `/practice/${relatedArticlesLink}/articles`
+                isArticlesPage ? `/practice/${practiceUrl}` : `/practice/${practiceUrl}/articles`
               }
             >
               Related Updates

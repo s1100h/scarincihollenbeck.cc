@@ -20,11 +20,15 @@ export default function AttorneyProfileTab({ content, title }) {
                   <span dangerouslySetInnerHTML={createMarkup(b[0].c)} />
                 </u>
               </strong>
-              {b[0] && b[0] && ' - '}
-              <span
-                style={{ fontSize: '15px' }}
-                dangerouslySetInnerHTML={createMarkup(b[1].c)}
-              />
+              {b[1] && (
+                <>
+                  {b[0] && b[0] && ' - '}
+                  <span
+                    style={{ fontSize: '15px' }}
+                    dangerouslySetInnerHTML={createMarkup(b[1].c)}
+                  />
+                </>
+              )}
               {' '}
               {b[2] && (
               <small>

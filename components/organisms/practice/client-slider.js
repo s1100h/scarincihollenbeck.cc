@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Carousel from 'react-multi-carousel';
-import fontStyles from 'styles/Fonts.module.css';
 
 const responsive = {
   superLargeDesktop: {
@@ -26,15 +25,14 @@ export default function PracticeClientSlider({ content }) {
   return (
     <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
       {content.map((slide) => (
-        <div key={slide.title} className="pb-2 px-4">
+        <div key={slide.alt} className="pb-2 px-4">
           <Image
             src={slide.image || '/images/no-image-found-diamond.png'}
             width={300}
             height={300}
             layout="intrinsic"
-            alt={slide.title}
+            alt={slide.alt}
           />
-          <p className={`${fontStyles.smallExcerpt} text-center text-dark`}>{slide.title}</p>
         </div>
       ))}
     </Carousel>
