@@ -23,7 +23,7 @@ import SiteLoader from 'components/shared/site-loader';
 import { urlify, sortByKey } from 'utils/helpers';
 import { buildBusinessSchema } from 'utils/json-ld-schemas';
 import { SITE_URL } from 'utils/constants';
-import { getPracticePaths, getPracticeContent } from 'utils/queries';
+import { getPracticeContent } from 'utils/queries';
 
 export default function PracticeSingle({ corePractices, practice, practiceChildren }) {
   const router = useRouter();
@@ -192,16 +192,16 @@ export default function PracticeSingle({ corePractices, practice, practiceChildr
   );
 }
 
-export async function getStaticPaths() {
-  const paths = await getPracticePaths(false);
+// export async function getStaticPaths() {
+//   const paths = await getPracticePaths(false);
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [res, practices] = await getPracticeContent(params.slug);
 
   if (res.status === 404) {
@@ -220,6 +220,5 @@ export async function getStaticProps({ params }) {
       practiceChildren: res.children || [],
       corePractices: sortByKey(corePractices, 'title'),
     },
-    revalidate: 1,
   };
 }

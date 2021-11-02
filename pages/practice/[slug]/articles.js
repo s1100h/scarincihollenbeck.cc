@@ -22,7 +22,7 @@ import textStyles from 'styles/Text.module.css';
 import SiteLoader from 'components/shared/site-loader';
 import { urlify, sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
-import { getPracticePaths, getPracticeContent, getPracticePosts } from 'utils/queries';
+import { getPracticeContent, getPracticePosts } from 'utils/queries';
 
 export default function PracticeSingleArticles({
   corePractices,
@@ -177,16 +177,16 @@ export default function PracticeSingleArticles({
   );
 }
 
-export async function getStaticPaths() {
-  const paths = await getPracticePaths(true);
+// export async function getStaticPaths() {
+//   const paths = await getPracticePaths(true);
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [res, practices] = await getPracticeContent(params.slug);
 
   if (res.status === 404) {
@@ -212,6 +212,5 @@ export async function getStaticProps({ params }) {
       posts: posts || [],
       term: params.slug,
     },
-    revalidate: 1,
   };
 }

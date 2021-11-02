@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
 import { SITE_URL } from 'utils/constants';
-import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
+import { getLibraryCategoryContent } from 'utils/queries';
 
 export default function LibraryCategory({
   results,
@@ -51,15 +51,15 @@ export default function LibraryCategory({
   return <LibraryPage {...libraryProps} />;
 }
 
-export async function getStaticPaths() {
-  const paths = await getCategoryPaths();
+// export async function getStaticPaths() {
+//   const paths = await getCategoryPaths();
 
-  return {
-    paths,
-    fallback: true,
-  };
-}
-export async function getStaticProps({ params }) {
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
+export async function getServerSideProps({ params }) {
   const { slug } = params;
 
   const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(slug);
@@ -82,6 +82,5 @@ export async function getStaticProps({ params }) {
       description: categoryDetails.description || '',
       name: categoryDetails.current_category.name || '',
     },
-    revalidate: 10,
   };
 }

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
 import { SITE_URL } from 'utils/constants';
-import { getAuthorPaths, getAuthorContent } from 'utils/queries';
+import { getAuthorContent } from 'utils/queries';
 
 export default function LibraryAuthor({
   results,
@@ -46,16 +46,16 @@ export default function LibraryAuthor({
   return <LibraryPage {...libraryProps} />;
 }
 
-export async function getStaticPaths() {
-  const paths = await getAuthorPaths();
+// export async function getStaticPaths() {
+//   const paths = await getAuthorPaths();
 
-  return {
-    paths,
-    fallback: true,
-  };
-}
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { slug } = params;
   // eslint-disable-next-line quotes
   let tempStr = ``;
@@ -90,6 +90,5 @@ export async function getStaticProps({ params }) {
         ? authorBio.practices[2].title.toLowerCase()
         : 'public law',
     },
-    revalidate: 10,
   };
 }

@@ -23,11 +23,10 @@ function Hit({ hit }) {
         <p className="details">
           {hit.post_type === 'post' && <>{hit.post_author.display_name}</>}
           {hit.post_type === 'post' && (
-          <>
-            {' '}
-            |
-            {hit.post_date_formatted}
-          </>
+            <>
+              <span className="mx-1">|</span>
+              {hit.post_date_formatted}
+            </>
           )}
         </p>
       </a>

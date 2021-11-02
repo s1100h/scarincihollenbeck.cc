@@ -21,7 +21,6 @@ export default function Attorney({
       </div>
     );
   }
-
   const attorneyProps = {
     slug,
     seo,
@@ -32,11 +31,11 @@ export default function Attorney({
     attorneyFooterBlogArticles,
     attorneyFooterNewsArticles,
     header: {
-      image: bio.headerContent.profileImage,
+      image: bio.headerContent.profileImage || bio.headerContent.profilImageUrl,
       profile: { ...bio.headerContent, ...contact },
     },
   };
-
+  //
   return <AttorneyProfile {...attorneyProps} />;
 }
 
