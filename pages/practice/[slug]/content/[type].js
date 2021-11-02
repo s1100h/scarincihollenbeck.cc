@@ -5,8 +5,12 @@ import { urlify } from 'utils/helpers';
 import { getPracticeContent } from 'pages/api/practice-content';
 import PracticePage from 'components/pages/practice-page';
 
-export default function PracticeSingle({
-  corePractices, practice, practiceChildren, slug,
+export default function PracticeSingleType({
+  corePractices,
+  practice,
+  practiceChildren,
+  type,
+  slug,
 }) {
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
@@ -22,7 +26,7 @@ export default function PracticeSingle({
     slug: urlify(practice.content[key][0].title),
   }));
 
-  const body = tabs.filter((tab, index) => index === 0)[0];
+  const body = tabs.filter((tab) => tab.slug === type)[0];
 
   const practiceProps = {
     corePractices,
@@ -51,6 +55,7 @@ export async function getServerSideProps({ params }) {
       practice: request.data,
       practiceChildren: request.data.children || [],
       corePractices: CORE_PRACTICES,
+      type: params.type,
       slug: params.slug,
     },
   };

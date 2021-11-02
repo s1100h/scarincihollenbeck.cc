@@ -36,6 +36,10 @@ module.exports = {
     'no-plusplus': 'off',
     'no-shadow': 'off',
     'react/button-has-type': 'off',
+    camelcase: 'off',
+    'prefer-destructuring': 'off',
+    'no-unused-vars': 'off',
+    'react/jsx-no-duplicate-props': 'off',
     'no-console': [
       2,
       {

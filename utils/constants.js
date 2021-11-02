@@ -228,3 +228,61 @@ export const OFFICE_LOCATIONS = [
     label: 'Washington, D.C.',
   },
 ];
+
+export const CORE_PRACTICES = [
+  {
+    id: 1,
+    slug: '/practices/bankruptcy-and-creditors-rights',
+    title: "Bankruptcy & Creditors' Rights",
+  },
+  {
+    id: 2,
+    slug: '/practices/commercial-real-estate',
+    title: 'Commercial Real Estate',
+  },
+  {
+    id: 3,
+    slug: '/practices/corporate-transactions-business',
+    title: 'Corporate Transactions & Business',
+  },
+  {
+    id: 4,
+    slug: '/practices/education-law',
+    title: 'Education Law',
+  },
+  {
+    id: 5,
+    slug: '/practices/environmental',
+    title: 'Environmental',
+  },
+  {
+    id: 6,
+    slug: '/practices/government-strategies',
+    title: 'Government Strategies',
+  },
+  {
+    id: 7,
+    slug: '/practices/intellectual-property',
+    title: 'Intellectual Property',
+  },
+  {
+    id: 8,
+    slug: '/practices/labor-employment',
+    title: 'Labor & Employment',
+  },
+  {
+    id: 9,
+    slug: '/practices/litigation',
+    title: 'Litigation',
+  },
+  {
+    id: 10,
+    slug: '/practices/public-law',
+    title: 'Public Law',
+  },
+  {
+    id: 11,
+    slug: '/practices/tax-trusts-estates',
+    title: 'Tax, Trusts & Estates',
+  },
+];

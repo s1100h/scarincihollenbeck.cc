@@ -14,9 +14,8 @@ export default function NavBar() {
 
   useEffect(() => {
     const onScroll = (e) => {
-      if (e.target.documentElement.scrollTop >= 135) {
-        setScrollTop(true);
-      } else {
+      setScrollTop(true);
+      if (e.target.documentElement.scrollTop < 135) {
         setScrollTop(false);
       }
     };
