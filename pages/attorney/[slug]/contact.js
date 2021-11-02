@@ -32,7 +32,7 @@ export default function AttorneyContact({
     attorneyFooterBlogArticles,
     attorneyFooterNewsArticles,
     header: {
-      image: bio.headerContent.profileImage,
+      image: bio.headerContent.profileImage || bio.headerContent.profilImageUrl,
       profile: { ...bio.headerContent, ...contact },
     },
   };

@@ -11,6 +11,7 @@ import PracticeLinks from 'components/organisms/practice/links';
 import RelatedAttorneys from 'components/organisms/practice/related-attorneys';
 import PracticeClientSlider from 'components/organisms/practice/client-slider';
 import ArticleHeroPractice from 'components/organisms/practice/practice-article-hero';
+import PracticeArticles from 'components/organisms/practice/articles';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CovidResourceBox from 'components/organisms/practice/covid-resource-box';
 import PracticeSidebar from 'components/organisms/practice/sidebar';
@@ -27,6 +28,8 @@ export default function PracticePage({
   canoncialUrl,
   body,
   slug,
+  type,
+  articleLoading = false,
 }) {
   const router = useRouter();
 
@@ -83,7 +86,16 @@ export default function PracticePage({
             <PracticeLinks links={practice} practiceUrl={slug} />
           </Col>
           <Col sm={12} md={9} style={{ position: 'relative', bottom: '2.5em' }}>
-            <PracticeContent title={body.title} content={body.content} />
+            {type !== 'articles' ? (
+              <PracticeContent title={body.title} content={body.content} />
+            ) : (
+              <PracticeArticles
+                initalArticles={body.content}
+                title={body.title}
+                articleLoading={articleLoading}
+              />
+            )}
+
             {practice.attorneyList.length > 0 && (
               <RelatedAttorneys
                 members={practice.attorneyList}

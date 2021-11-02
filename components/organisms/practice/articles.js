@@ -6,41 +6,40 @@ import Link from 'next/link';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import TabPane from 'react-bootstrap/TabPane';
 import Button from 'react-bootstrap/Button';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-import marginStyles from 'styles/Margins.module.css';
 
 const removeDuplicates = (arr) => arr.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
 
-export default function AttorneyProfilePractice({ initalArticles, title }) {
+const ArticleTitle = ({ title }) => <p className={grayTitleStyles.title}>{title}</p>;
+
+export default function PracticeArticles({ initalArticles, title, articleLoading }) {
   const [loading, setLoading] = useState(false);
   const [pageIndex, setPageIndex] = useState(11);
-  const [articleList] = useState(removeDuplicates(initalArticles) || []);
 
   async function handleClick() {
     setLoading(true);
     setPageIndex((pi) => (pi += 11));
     setLoading(false);
   }
-  return (
-    <TabPane eventKey="related-articles" title={title}>
-      <Row className={marginStyles.mtMinusMd2}>
-        <Col sm={12}>
-          <p className={grayTitleStyles.title}>
-            {title}
-            {' '}
-            Articles
-          </p>
+
+  if (articleLoading) {
+    return (
+      <Row className="mt-3">
+        <Col sm={12} className="mx-auto mt-3 my-5 text-center">
+          <ArticleTitle title={title} />
+          <ClipLoader size={32} color="#DB0222" />
         </Col>
-        {initalArticles.length <= 0 ? (
-          <Col sm={12} className="my-3">
-            <p className="text-center">
-              <strong>Thare are no articles or blow posts for this practice area.</strong>
-            </p>
-          </Col>
-        ) : (
-          articleList
+      </Row>
+    );
+  }
+
+  if (initalArticles.length > 0) {
+    return (
+      <Col sm={12} className="my-3">
+        <ArticleTitle title={title} />
+        <Row>
+          {removeDuplicates(initalArticles)
             .filter((_, i) => i <= pageIndex)
             .map((article) => (
               <Col sm={12} md={4} key={article.title} className="my-3">
@@ -61,20 +60,25 @@ export default function AttorneyProfilePractice({ initalArticles, title }) {
                   </a>
                 </Link>
               </Col>
-            ))
-        )}
-        {initalArticles.length > 0 && (
-          <Col sm={12}>
-            <Button variant="danger" className="px-4 mx-3 mb-3" onClick={() => handleClick()}>
-              {loading ? (
-                <ClipLoader loading={loading} size={12} color="#FFF" />
-              ) : (
-                <>Load more posts</>
-              )}
-            </Button>
-          </Col>
-        )}
-      </Row>
-    </TabPane>
+            ))}
+          {initalArticles.length > 0 && (
+            <Col sm={12}>
+              <Button variant="danger" className="px-4 mx-3 mb-3" onClick={() => handleClick()}>
+                Load more posts
+              </Button>
+            </Col>
+          )}
+        </Row>
+      </Col>
+    );
+  }
+
+  return (
+    <Col sm={12} className="my-3">
+      <ArticleTitle title={title} />
+      <p className="text-center">
+        <strong>Thare are no articles or blow posts for this practice area.</strong>
+      </p>
+    </Col>
   );
 }

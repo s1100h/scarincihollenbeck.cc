@@ -37,7 +37,6 @@ export default function PostPage({
           date={post.date}
         />
       </span>
-
       <Container className="d-print-none">
         <Row>
           <Body
