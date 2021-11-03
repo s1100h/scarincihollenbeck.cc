@@ -118,6 +118,16 @@ export function filterByKey(list, key) {
 // make title
 export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
+// capitalize all first letters in a word
+export const capitalizeFirstLetterInWords = (string) => {
+  const words = string.split(' ');
+
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+  }
+  return words.join(' ');
+};
+
 // common headers for fetch
 export const headers = {
   Accept: 'application/json',
@@ -207,3 +217,19 @@ export function urlWithOutBaseUrl(posts, term) {
     return u.uri.replace('https://scarincihollenbeck.com', '');
   });
 }
+
+// create a description from post content
+export const extractDescription = (content) => {
+  const strip = content.replace(/<[^>]*>?/gm, '').replace(/(\r\n|\n|\r)/gm, '');
+  const excerpt = `${strip.split(' ').splice(0, 25).join(' ')} ...`;
+  return excerpt;
+};
+
+export const extractFeaturedImage = (content) => {
+  const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
+  const img = imgRex.exec(content);
+  if (img) {
+    return img[1];
+  }
+  return '/images/no-image-found-diamond-750x350.png';
+};

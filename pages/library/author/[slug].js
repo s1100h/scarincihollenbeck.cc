@@ -1,20 +1,20 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
-import { SITE_URL } from 'utils/constants';
-import { getAuthorContent } from 'utils/queries';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { getAuthorContent } from 'pages/api/author-posts';
 
 export default function LibraryAuthor({
-  results,
+  authorId,
   authors,
+  description,
+  fullName,
   popularCategories,
-  childrenOfCurrentCategory,
+  profileUrl,
+  relatedCategories,
+  results,
+  seo,
   slug,
-  authorName,
-  authorDescription,
-  topicOne,
-  topicTwo,
-  topicThree,
 }) {
   const router = useRouter();
 
@@ -26,49 +26,37 @@ export default function LibraryAuthor({
     );
   }
 
-  const canonicalUrl = `${SITE_URL}/library/author/${slug}`;
+  const canonicalUrl = `${SITE_URL}/library/author${slug}`;
+  const { title, metaDescription } = seo;
+  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?author=${authorId}`;
 
-  const libraryProps = {
+  const authorProps = {
     seo: {
-      title: `Legal Blog Articles by ${authorName}`,
-      metaDescription: `${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`,
+      title,
+      metaDescription,
       canonicalUrl,
     },
     results,
     authors,
     popularCategories,
-    childrenOfCurrentCategory,
-    authorDescription,
-    pageTitle: `Legal Blog Articles by ${authorName}`,
-    pageSubTitle: `${authorName} is a ${topicOne} attorney who writes articles on ${topicOne}, ${topicTwo}, and ${topicThree}.`,
+    childrenOfCurrentCategory: relatedCategories,
+    categoryId: authorId,
+    currentPageTitle: title,
+    categoryName: title,
+    description,
+    archiveUrl,
+    profileUrl,
   };
 
-  return <LibraryPage {...libraryProps} />;
+  return <LibraryPage {...authorProps} />;
 }
-
-// export async function getStaticPaths() {
-//   const paths = await getAuthorPaths();
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
 
 export async function getServerSideProps({ params }) {
   const { slug } = params;
-  // eslint-disable-next-line quotes
-  let tempStr = ``;
-  // eslint-disable-next-line quotes
-  const tempChildCat = ``;
 
-  if (slug) {
-    tempStr += 'slug';
-  }
+  const request = await getAuthorContent(slug);
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug, tempChildCat, slug);
-
-  if (authorBio.bio[0].name.length <= 0) {
+  if (request.status === 404) {
     return {
       notFound: true,
     };
@@ -76,19 +64,7 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      query: tempStr.replace('offset=1&', ''),
-      results: results.results || [],
-      authors: authors || [],
-      popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
-      authorName: authorBio.bio[0].name,
-      authorDescription: authorBio.bio[0].bioContent,
-      slug,
-      topicOne: authorBio.practices[0].title.toLowerCase(),
-      topicTwo: authorBio.practices[1].title.toLowerCase(),
-      topicThree: authorBio.practices[2]
-        ? authorBio.practices[2].title.toLowerCase()
-        : 'public law',
+      ...request.data,
     },
   };
 }

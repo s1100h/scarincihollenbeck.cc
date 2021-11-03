@@ -1,19 +1,19 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
-import { SITE_URL } from 'utils/constants';
-import { getLibraryCategoryContent } from 'utils/queries';
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { getLibraryContent } from 'pages/api/library-content';
+import { capitalizeFirstLetterInWords } from 'utils/helpers';
 
 export default function LibraryCategory({
-  results,
   authors,
-  popularCategories,
   childrenOfCurrentCategory,
   description,
-  seo,
   pageTitle,
-  query,
+  popularCategories,
+  results,
   name,
+  categoryId,
 }) {
   const router = useRouter();
 
@@ -26,45 +26,36 @@ export default function LibraryCategory({
   }
 
   const splitDescription = description.split('.');
-  const modDescription = `${splitDescription[0]}. ${splitDescription[1]}.`;
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
-  const canonicalUrl = `${SITE_URL}/library/${seo.canonicalLink}`;
-  const categoryName = name.replace('&amp;', '&');
+  const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
+  const categoryName = capitalizeFirstLetterInWords(name);
+  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${categoryId}`;
 
   const libraryProps = {
     seo: {
-      title: categoryName,
-      metaDescription: modDescription,
+      title: `${categoryName} Legal Articles`,
+      metaDescription: splitDescription[0].replace('&amp;', '&'),
       canonicalUrl,
     },
     results,
     authors,
     popularCategories,
     childrenOfCurrentCategory,
-    query,
+    archiveUrl,
     currentPageTitle,
-    pageTitle: 'Article Library',
-    pageSubTitle:
-      'Scarinci Hollenbeck regularly publishes articles pertaining to legal updates affecting individuals and institutions in New York and New Jersey, and the world at large. Here you can find coverage for when we welcome new attorneys, significant wins we’ve secured on behalf of our clients, and general announcements.',
+    categoryName,
+    description,
   };
 
   return <LibraryPage {...libraryProps} />;
 }
 
-// export async function getStaticPaths() {
-//   const paths = await getCategoryPaths();
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
 export async function getServerSideProps({ params }) {
   const { slug } = params;
 
-  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(slug);
+  const request = await getLibraryContent(slug);
 
-  if ('status' in categoryDetails && categoryDetails.status === 404) {
+  if (request.status === 404) {
     return {
       notFound: true,
     };
@@ -72,15 +63,7 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      query: slug,
-      pageTitle: slug,
-      results: categoryDetails.results || [],
-      authors: authors || [],
-      popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
-      seo: categoryDetails.seo,
-      description: categoryDetails.description || '',
-      name: categoryDetails.current_category.name || '',
+      ...request.data,
     },
   };
 }
