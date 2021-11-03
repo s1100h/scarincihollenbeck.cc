@@ -2,14 +2,12 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PopularList from 'components/molecules/library/popular-list';
-import MainArticle from 'components/molecules/library/main-article';
-import FeaturedArticle from 'components/molecules/library/featured-article';
-import OlderArticles from 'components/molecules/library/older-articles';
-import FeaturedLinks from 'components/molecules/library/featured-links';
-import FirmAuthors from 'components/molecules/library/firm-authors';
-import SubscriptionContainer from 'components/molecules/library/subscription-container';
-import SearchBar from 'components/molecules/library/search-bar';
+import PopularList from 'components/organisms/library/popular-list';
+import MainArticle from 'components/organisms/library/main-article';
+import FeaturedArticle from 'components/organisms/library/featured-article';
+import OlderArticles from 'components/organisms/library/older-articles';
+import FirmAuthors from 'components/organisms/library/firm-authors';
+import SubscriptionContainer from 'components/organisms/library/subscription-container';
 import marginStyles from 'styles/Margins.module.css';
 
 import { CLIENT_ALERTS } from 'utils/constants';
@@ -27,8 +25,6 @@ export default function LibraryLayout({
   return (
     <Container className="border mb-5">
       <Row>
-        <SearchBar />
-        <FeaturedLinks />
         <Col sm={12} md={9}>
           {results && results.length > 0 ? (
             <>

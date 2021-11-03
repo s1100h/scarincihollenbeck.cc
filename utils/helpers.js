@@ -207,3 +207,16 @@ export function urlWithOutBaseUrl(posts, term) {
     return u.uri.replace('https://scarincihollenbeck.com', '');
   });
 }
+
+// create a description from post content
+export const extractDescription = (content) => {
+  const strip = content.replace(/<[^>]*>?/gm, '').replace(/(\r\n|\n|\r)/gm, '');
+  const excerpt = `${strip.split(' ').splice(0, 25).join(' ')} ...`;
+  return excerpt;
+};
+
+export const extractFeaturedImage = (content) => {
+  const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
+  const img = imgRex.exec(content);
+  return img[1];
+};

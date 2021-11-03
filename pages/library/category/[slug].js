@@ -3,17 +3,17 @@ import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
 import { SITE_URL } from 'utils/constants';
 import { getLibraryCategoryContent } from 'utils/queries';
+import { getLibraryContent } from 'pages/api/library-content';
 
 export default function LibraryCategory({
-  results,
   authors,
-  popularCategories,
   childrenOfCurrentCategory,
   description,
-  seo,
-  pageTitle,
-  query,
   name,
+  pageTitle,
+  popularCategories,
+  results,
+  categoryId,
 }) {
   const router = useRouter();
 
@@ -28,7 +28,7 @@ export default function LibraryCategory({
   const splitDescription = description.split('.');
   const modDescription = `${splitDescription[0]}. ${splitDescription[1]}.`;
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
-  const canonicalUrl = `${SITE_URL}/library/${seo.canonicalLink}`;
+  const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
   const categoryName = name.replace('&amp;', '&');
 
   const libraryProps = {
@@ -41,7 +41,7 @@ export default function LibraryCategory({
     authors,
     popularCategories,
     childrenOfCurrentCategory,
-    query,
+    categoryId,
     currentPageTitle,
     pageTitle: 'Article Library',
     pageSubTitle:
@@ -51,20 +51,12 @@ export default function LibraryCategory({
   return <LibraryPage {...libraryProps} />;
 }
 
-// export async function getStaticPaths() {
-//   const paths = await getCategoryPaths();
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
 export async function getServerSideProps({ params }) {
   const { slug } = params;
 
-  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(slug);
+  const request = await getLibraryContent(slug);
 
-  if ('status' in categoryDetails && categoryDetails.status === 404) {
+  if (request.status === 404) {
     return {
       notFound: true,
     };
@@ -72,15 +64,7 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      query: slug,
-      pageTitle: slug,
-      results: categoryDetails.results || [],
-      authors: authors || [],
-      popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
-      seo: categoryDetails.seo,
-      description: categoryDetails.description || '',
-      name: categoryDetails.current_category.name || '',
+      ...request.data,
     },
   };
 }
