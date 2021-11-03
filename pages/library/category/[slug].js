@@ -2,17 +2,17 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
 import { SITE_URL } from 'utils/constants';
-import { getLibraryCategoryContent } from 'utils/queries';
 import { getLibraryContent } from 'pages/api/library-content';
+import { capitalizeFirstLetterInWords } from 'utils/helpers';
 
 export default function LibraryCategory({
   authors,
   childrenOfCurrentCategory,
   description,
-  name,
   pageTitle,
   popularCategories,
   results,
+  name,
   categoryId,
 }) {
   const router = useRouter();
@@ -26,15 +26,14 @@ export default function LibraryCategory({
   }
 
   const splitDescription = description.split('.');
-  const modDescription = `${splitDescription[0]}. ${splitDescription[1]}.`;
   const currentPageTitle = pageTitle.replace(/-/g, ' ');
   const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
-  const categoryName = name.replace('&amp;', '&');
+  const categoryName = capitalizeFirstLetterInWords(name);
 
   const libraryProps = {
     seo: {
-      title: categoryName,
-      metaDescription: modDescription,
+      title: `${categoryName} Legal Articles`,
+      metaDescription: splitDescription[0].replace('&amp;', '&'),
       canonicalUrl,
     },
     results,
@@ -43,9 +42,8 @@ export default function LibraryCategory({
     childrenOfCurrentCategory,
     categoryId,
     currentPageTitle,
-    pageTitle: 'Article Library',
-    pageSubTitle:
-      'Scarinci Hollenbeck regularly publishes articles pertaining to legal updates affecting individuals and institutions in New York and New Jersey, and the world at large. Here you can find coverage for when we welcome new attorneys, significant wins we’ve secured on behalf of our clients, and general announcements.',
+    categoryName,
+    description,
   };
 
   return <LibraryPage {...libraryProps} />;

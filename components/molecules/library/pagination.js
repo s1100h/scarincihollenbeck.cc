@@ -26,8 +26,8 @@ export default function ArticlePagination({
       </div>
       <style jsx>
         {`
-        font-size: 14px;
-      `}
+          font-size: 14px;
+        `}
       </style>
     </>
   );

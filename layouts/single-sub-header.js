@@ -52,7 +52,7 @@ export default function SingleSubHeader({
               )}
             </div>
             <h2
-              className="text-white animate__animated animate__fadeInUp animate__fast"
+              className="text-white animate__animated animate__fadeInUp animate__fast sub-title"
               style={{ fontSize: '1.2rem' }}
               dangerouslySetInnerHTML={createMarkup(subtitle)}
             />

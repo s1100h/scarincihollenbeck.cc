@@ -118,6 +118,16 @@ export function filterByKey(list, key) {
 // make title
 export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
 
+// capitalize all first letters in a word
+export const capitalizeFirstLetterInWords = (string) => {
+  const words = string.split(' ');
+
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+  }
+  return words.join(' ');
+};
+
 // common headers for fetch
 export const headers = {
   Accept: 'application/json',

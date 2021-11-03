@@ -120,7 +120,7 @@ export const getLibraryContent = async (slug) => {
     popularCategories.push({
       id: category.term_id,
       slug: category.slug,
-      name: category.name,
+      name: category.name.replace('&amp;', '&'),
       postCount: categoryCount[i].count,
     });
   }
@@ -137,7 +137,7 @@ export const getLibraryContent = async (slug) => {
     childrenOfCurrentCategory.push({
       id: category.term_id,
       slug: category.slug,
-      name: category.name,
+      name: category.name.replace('&amp;', '&'),
       postCount: childCat[i].count,
     });
   }

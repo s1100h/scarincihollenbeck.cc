@@ -24,8 +24,8 @@ export default function LibraryPage({
   authors,
   popularCategories,
   childrenOfCurrentCategory,
-  pageTitle,
-  pageSubTitle,
+  categoryName,
+  description,
   seo,
   categoryId,
 }) {
@@ -45,7 +45,7 @@ export default function LibraryPage({
       {Object.keys(seo).length > 0 && (
         <NextSeo title={seo.title} description={seo.metaDescription} canonical={seo.canonicalUrl} />
       )}
-      <SingleSubHeader span={7} offset={2} title={pageTitle} subtitle={pageSubTitle} />
+      <SingleSubHeader span={7} offset={2} title={categoryName} subtitle={description} />
       <Container className="border mb-5">
         <Row>
           <BodyHeader />
