@@ -16,8 +16,7 @@ export default function ArticlePagination({
         </Button>
         <span className="m-2">
           {page}
-          {' '}
-          of
+          <span className="mx-1">of</span>
           {nrofpages}
         </span>
         <Button variant="link" className="text-dark" onClick={handleNextPage}>

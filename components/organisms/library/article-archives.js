@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Axios from 'axios';
-import { BASE_API_URL } from 'utils/constants';
-import { formatDate, createMarkup, extractDescription } from 'utils/helpers';
+import Article from 'components/molecules/library/article';
 import ArticlePagination from 'components/molecules/library/pagination';
 
-export default function ArticleArchives({ categoryId }) {
+export default function ArticleArchives({ url }) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [nrofpages, setNumberofpage] = useState(1);
 
   useEffect(() => {
-    const url = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${categoryId}`;
+    setLoading(true);
     Axios.get(url, {
       params: { page },
     }).then((response) => {
@@ -25,8 +24,9 @@ export default function ArticleArchives({ categoryId }) {
       } else {
         setPosts(response.data);
       }
+      setLoading(false);
     });
-  }, [page, setPosts, categoryId]);
+  }, [page, setPosts, url]);
 
   const handlePrevPage = () => setPage(page - 1 ? page - 1 : 1);
   const handleNextPage = () => setPage(page < nrofpages ? page + 1 : nrofpages);
@@ -38,6 +38,11 @@ export default function ArticleArchives({ categoryId }) {
           <strong className="text-capitalize">Older Articles</strong>
         </h4>
       </Col>
+      {loading && (
+        <div className="w-100 text-center m-4">
+          <ClipLoader size={32} color="#DB2220" />
+        </div>
+      )}
       {posts.length > 0 ? (
         <>
           <Col sm={12}>
@@ -50,22 +55,7 @@ export default function ArticleArchives({ categoryId }) {
             />
           </Col>
           {posts.map((post) => (
-            <Col key={post.id} sm={12} md={10} className="mx-3 mb-4">
-              <Link href={post.link.replace('https://wp.scarincihollenbeck.com', '')}>
-                <a className="text-dark">
-                  <p className="h5 mb-0">
-                    <strong>{post.title.rendered}</strong>
-                  </p>
-                  <p className="d-block mt-1 mb-2">{formatDate(post.date)}</p>
-                  <div
-                    style={{ lineHeight: '1.25', color: '#444' }}
-                    dangerouslySetInnerHTML={createMarkup(
-                      extractDescription(post.excerpt.rendered),
-                    )}
-                  />
-                </a>
-              </Link>
-            </Col>
+            <Article key={post.id} post={post} />
           ))}
           <Col sm={12}>
             <ArticlePagination
@@ -78,9 +68,7 @@ export default function ArticleArchives({ categoryId }) {
           </Col>
         </>
       ) : (
-        <div className="w-100 text-center m-4">
-          <ClipLoader size={32} color="#DB2220" />
-        </div>
+        <div className="w-100 text-center m-4">There are no more articles...</div>
       )}
     </Row>
   );

@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +11,7 @@ import FeaturedArticle from 'components/organisms/library/featured-article';
 import PopularList from 'components/organisms/library/popular-list';
 import FirmAuthors from 'components/organisms/library/firm-authors';
 import ArticleArchives from 'components/organisms/library/article-archives';
+import styles from 'styles/Text.module.css';
 
 import { CLIENT_ALERTS } from 'utils/constants';
 
@@ -27,10 +30,13 @@ export default function LibraryPage({
   categoryName,
   description,
   seo,
-  categoryId,
+  archiveUrl,
+  profileUrl,
 }) {
+  const router = useRouter();
   const mainArticle = results[0];
   const featuredArticles = results.slice(1, results.length);
+  const isAuthor = router.asPath.includes('author');
 
   const sortedAuthors = authors
     .map((author) => ({
@@ -64,10 +70,23 @@ export default function LibraryPage({
               <FeaturedArticle articles={featuredArticles} />
             </ul>
             <div className="border-top border-top pt-4">
-              <ArticleArchives categoryId={categoryId} />
+              <ArticleArchives url={archiveUrl} />
             </div>
           </Col>
           <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">
+            {isAuthor && (
+              <div className="my-3">
+                <Link href={profileUrl}>
+                  <a className={`${styles.redTitle} h6`}>
+                    <strong>
+                      <u>Visit Attorney&apos;s Profile</u>
+                      {' '}
+                      &raquo;
+                    </strong>
+                  </a>
+                </Link>
+              </div>
+            )}
             {childrenOfCurrentCategory.length > 0 && (
               <PopularList
                 term="Related Categories"

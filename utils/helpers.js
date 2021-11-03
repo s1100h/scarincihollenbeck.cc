@@ -228,5 +228,8 @@ export const extractDescription = (content) => {
 export const extractFeaturedImage = (content) => {
   const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
   const img = imgRex.exec(content);
-  return img[1];
+  if (img) {
+    return img[1];
+  }
+  return '/images/no-image-found-diamond-750x350.png';
 };

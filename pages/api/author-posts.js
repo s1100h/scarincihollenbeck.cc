@@ -19,7 +19,7 @@ export const getAuthorContent = async (slug) => {
   const categoryByIDQuery = `SELECT term_id, slug, name FROM ${process.env.TERMS_TABLE} WHERE term_id = ?`;
   const popularCategoryQuery = `SELECT term_taxonomy_id, term_id, description, count, parent FROM ${process.env.TERMS_TAXONOMY} WHERE parent = 599 AND taxonomy = 'category' ORDER BY count DESC LIMIT 10`;
   const authorsQuery = `SELECT ${process.env.AUTHORS_TABLE}.ID, ${process.env.AUTHORS_TABLE}.user_nicename, ${process.env.AUTHORS_TABLE}.display_name FROM ${process.env.AUTHORS_TABLE} LEFT JOIN ${process.env.AUTHORSMETA_TABLE} ON (${process.env.AUTHORS_TABLE}.ID = ${process.env.AUTHORSMETA_TABLE}.user_id) WHERE NOT ${process.env.AUTHORS_TABLE}.user_url ='' AND ${process.env.AUTHORSMETA_TABLE}.meta_value = 'a:1:{s:6:"author";b:1;}'`;
-  const firstFourPostsFromAuthorQuery = 'SELECT ID, post_date, post_content, post_title, post_name FROM sh_db_prod.wp_posts WHERE post_author = ? AND post_status = \'publish\' ORDER BY post_date DESC LIMIT 4;';
+  const firstFourPostsFromAuthorQuery = "SELECT ID, post_date, post_content, post_title, post_name FROM sh_db_prod.wp_posts WHERE post_author = ? AND post_status = 'publish' ORDER BY post_date DESC LIMIT 4;";
   const authorsIdQuery = `SELECT ID, user_url FROM ${process.env.AUTHORS_TABLE} WHERE user_nicename = ?`;
   const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_name, post_content FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const postAuthorMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.AUTHORSMETA_TABLE} WHERE user_id = ?`;
@@ -69,6 +69,18 @@ export const getAuthorContent = async (slug) => {
     };
   }
 
+  // get author meta data
+  const [authorMetaData] = await connection.execute(postAuthorMetaQuery, [authorId]);
+  const getFirstName = extractMetaContent(authorMetaData, 'first_name');
+  const firstName = getFirstName[0].meta_value;
+  const getLastName = extractMetaContent(authorMetaData, 'last_name');
+  const lastName = getLastName[0].meta_value;
+  const getDescription = extractMetaContent(authorMetaData, 'description');
+  const description = getDescription[0].meta_value;
+  const getMetaDescription = extractMetaContent(authorMetaData, 'wpseo_metadesc');
+  const metaDescription = getMetaDescription[0].meta_value;
+  const fullName = `${firstName} ${lastName}`;
+
   const results = [];
   // get initial post content
   for (let i = 0; i < authorsFirstFourPosts.length; i++) {
@@ -78,22 +90,13 @@ export const getAuthorContent = async (slug) => {
     results.push({
       id: post.ID,
       title: post.post_title,
-      authorID: post.post_author,
+      author: fullName,
       date: formatDate(post.post_date),
       description: extractDescription(post.post_content),
       image: extractFeaturedImage(post.post_content),
       link: `/law-firm-insights/${post.post_name}`,
     });
   }
-
-  // get author meta data
-  const [authorMetaData] = await connection.execute(postAuthorMetaQuery, [authorId]);
-  const getFullName = extractMetaContent(authorMetaData, 'wpseo_title');
-  const fullName = getFullName[0].meta_value;
-  const getDescription = extractMetaContent(authorMetaData, 'description');
-  const description = getDescription[0].meta_value;
-  const getMetaDescription = extractMetaContent(authorMetaData, 'wpseo_metadesc');
-  const metaDescription = getMetaDescription[0].meta_value;
 
   const response = {
     status: 200,
