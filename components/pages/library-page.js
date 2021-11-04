@@ -70,7 +70,7 @@ export default function LibraryPage({
               <FeaturedArticle articles={featuredArticles} />
             </ul>
             <div className="border-top border-top pt-4">
-              <ArticleArchives url={archiveUrl} />
+              <ArticleArchives url={archiveUrl} title="Older Articles" />
             </div>
           </Col>
           <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">

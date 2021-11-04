@@ -6,7 +6,7 @@ import Axios from 'axios';
 import Article from 'components/molecules/library/article';
 import ArticlePagination from 'components/molecules/library/pagination';
 
-export default function ArticleArchives({ url }) {
+export default function ArticleArchives({ url, title }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -35,7 +35,7 @@ export default function ArticleArchives({ url }) {
     <Row>
       <Col sm={12}>
         <h4 className="mb-3 mx-3">
-          <strong className="text-capitalize">Older Articles</strong>
+          <strong className="text-capitalize">{title}</strong>
         </h4>
       </Col>
       {loading && (
