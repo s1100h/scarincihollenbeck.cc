@@ -62,21 +62,26 @@ export const SITE_NAVIGATION = [
       },
       {
         id: 4,
+        label: 'COVID-19 Crisis Management Unit',
+        slug: '/covid-19-crisis-management-unit',
+      },
+      {
+        id: 5,
         label: 'Diversity',
         slug: '/diversity',
       },
       {
-        id: 5,
+        id: 6,
         label: 'Firm Overview',
         slug: '/firm-overview',
       },
       {
-        id: 6,
+        id: 7,
         label: 'Pro Bono',
         slug: '/pro-bono',
       },
       {
-        id: 7,
+        id: 8,
         label: 'Women Lead',
         slug: '/women-lead',
       },
@@ -136,30 +141,27 @@ export const SITE_FOOTER_NAVIGATION = [
     slug: '/attorneys',
     label: 'Attorneys',
   },
+
   {
     id: 2,
-    slug: '/careers',
-    label: 'Careers',
+    label: 'COVID-19 Crisis Management Unit',
+    slug: '/covid-19-crisis-management-unit',
   },
+
   {
     id: 3,
-    slug: '/contact',
-    label: 'Contact',
-  },
-  {
-    id: 4,
     slug: '/firm-overview',
     label: 'Firm Overview',
   },
   {
-    id: 5,
+    id: 4,
     slug: '/practices',
-    label: 'Practices',
+    label: 'Legal Practices',
   },
   {
-    id: 6,
-    slug: '/library/category/firm-news',
-    label: 'Library',
+    id: 5,
+    slug: '/locations',
+    label: 'Locations',
   },
 ];
 export const ERROR_PAGE_CONTENT = {

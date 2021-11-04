@@ -21,6 +21,7 @@ module.exports = {
       'musicesq.com',
       'scarincilawyer.com',
       'conqqqshlskopvv.nyc3.digitaloceanspaces.com',
+      'wp.scarincihollenbeck.com',
     ],
   },
   async rewrites() {
