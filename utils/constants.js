@@ -141,10 +141,15 @@ export const SITE_FOOTER_NAVIGATION = [
     slug: '/attorneys',
     label: 'Attorneys',
   },
+  {
+    id: 2,
+    label: 'Careers',
+    slug: '/careers',
+  },
 
   {
     id: 2,
-    label: 'COVID-19 Crisis Management Unit',
+    label: 'COVID-19',
     slug: '/covid-19-crisis-management-unit',
   },
 
