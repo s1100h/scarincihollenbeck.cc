@@ -43,7 +43,7 @@ export default function ArticleArchives({ url }) {
           <ClipLoader size={32} color="#DB2220" />
         </div>
       )}
-      {posts.length > 0 ? (
+      {posts.length > 0 && (
         <>
           <Col sm={12}>
             <ArticlePagination
@@ -67,7 +67,8 @@ export default function ArticleArchives({ url }) {
             />
           </Col>
         </>
-      ) : (
+      )}
+      {!loading && posts.length === 0 && (
         <div className="w-100 text-center m-4">There are no more articles...</div>
       )}
     </Row>
