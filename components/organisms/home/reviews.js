@@ -17,10 +17,10 @@ const logos = [
     height: 200,
   },
   {
-    url: '/images/reviews/trailblazers.jpeg',
-    alt: 'National Law Journal Trailblazers',
-    width: 263,
-    height: 125,
+    url: '/images/reviews/TopLawyersLogo_Bergen_2021.png',
+    alt: 'Top Lawyers Bergen County',
+    width: 190,
+    height: 190,
   },
   {
     url: '/images/reviews/sl-badge-l-g-2021.png',
