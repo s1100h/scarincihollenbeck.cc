@@ -60,8 +60,8 @@ export default function AttorneyProfileHeader({ image, profile, slug }) {
                   <Image
                     src={image}
                     alt={profile.name}
-                    width={640}
-                    height={685}
+                    width={743}
+                    height={795}
                     layout="intrinsic"
                     quality={100}
                     className={`${profileStyles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
