@@ -198,9 +198,8 @@ export const getPostContent = async (slug, category) => {
   }).then((data) => data.json());
 
   const subTitle = checkH2Tags(request.content.rendered);
-  // const featuredImage = getImageData(request.content.rendered);
+  const featuredImage = getImageData(request.content.rendered);
   // const featuredImageCaption = getFeaturedImageCaption(request.content.rendered);
-  const featuredImage = request.better_featured_image.source_url;
   const featuredImageCaption = request.better_featured_image.caption;
   const bodyContent = modPostContent(request.content.rendered);
 
