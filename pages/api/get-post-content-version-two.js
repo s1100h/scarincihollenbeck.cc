@@ -1,3 +1,5 @@
+import { SITE_URL, BASE_API_URL } from 'utils/constants';
+
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 const fetch = require('node-fetch');
@@ -14,7 +16,7 @@ export const getPostContent = async (slug, category) => {
   });
 
   // post, post meta, post categories, and category name
-  const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_content FROM ${process.env.POST_TABLE} WHERE post_name= ? AND post_status = 'publish'`;
+  const postContentQuery = `SELECT ID FROM ${process.env.POST_TABLE} WHERE post_name= ? AND post_status = 'publish'`;
   const postMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ?`;
   const postCategoriesQuery = `SELECT term_taxonomy_id FROM ${process.env.TERM_RELATIONSHIPS_TABLE} WHERE object_id = ?`;
   const currentCategoryFromSlugQuery = `SELECT term_id FROM ${process.env.TERMS_TABLE} WHERE slug = ?`;
@@ -98,11 +100,6 @@ export const getPostContent = async (slug, category) => {
 
     return response;
   };
-
-  const subTitle = checkH2Tags(post[0].post_content);
-  const featuredImage = getImageData(post[0].post_content);
-  const featuredImageCaption = getFeaturedImageCaption(post[0].post_content);
-  const bodyContent = modPostContent(post[0].post_content);
 
   const postTags = tagsMeta.map((tag) => tag.term_taxonomy_id);
 
@@ -192,22 +189,29 @@ export const getPostContent = async (slug, category) => {
   });
 
   // post by fetch
-  const request = await fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts/33191', {
+  const url = `${BASE_API_URL}/wp-json/wp/v2/posts/${post[0].ID}`;
+  const request = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   }).then((data) => data.json());
 
+  const subTitle = checkH2Tags(request.content.rendered);
+  // const featuredImage = getImageData(request.content.rendered);
+  // const featuredImageCaption = getFeaturedImageCaption(request.content.rendered);
+  const featuredImage = request.better_featured_image.source_url;
+  const featuredImageCaption = request.better_featured_image.caption;
+  const bodyContent = modPostContent(request.content.rendered);
+
   const response = {
     status: 200,
-    test: request,
     postId: post[0].ID,
     postQueryCategoryId: catSlug[0].term_id,
     post: {
       content: bodyContent,
-      title: post[0].post_title,
-      date: formatDate(post[0].post_date),
+      title: request.title.rendered,
+      date: formatDate(request.date),
       subTitle: subTitle.replace(/<\/?[^>]+(>|$)/g, '') || '',
       featuredImage,
       featuredImageCaption,
