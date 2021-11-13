@@ -22,6 +22,7 @@ module.exports = {
       'scarincilawyer.com',
       'conqqqshlskopvv.nyc3.digitaloceanspaces.com',
       'wp.scarincihollenbeck.com',
+      'res.cloudinary.com',
     ],
   },
   async rewrites() {
