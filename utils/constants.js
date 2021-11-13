@@ -43,46 +43,55 @@ export const SITE_NAVIGATION = [
   {
     id: 1,
     label: 'The Firm',
+    menuId: 'the-firm',
     slug: null,
     children: [
       {
         id: 1,
         label: 'Administration',
         slug: '/administration',
+        menuId: 'administration',
       },
       {
         id: 2,
         label: 'Careers',
         slug: '/careers',
+        menuId: 'careers',
       },
       {
         id: 3,
         label: 'Community Involvement',
         slug: '/community-involvement',
+        menuId: 'community-involvement',
       },
       {
         id: 4,
         label: 'COVID-19 Crisis Management Unit',
+        menuId: 'covid-19-crisis-management-unit',
         slug: '/covid-19-crisis-management-unit',
       },
       {
         id: 5,
         label: 'Diversity',
+        menuId: 'diversity',
         slug: '/diversity',
       },
       {
         id: 6,
         label: 'Firm Overview',
+        menuId: 'firm-overview',
         slug: '/firm-overview',
       },
       {
         id: 7,
         label: 'Pro Bono',
+        menuId: 'pro-bono',
         slug: '/pro-bono',
       },
       {
         id: 8,
         label: 'Women Lead',
+        menuId: 'women-lead',
         slug: '/women-lead',
       },
     ],
@@ -92,31 +101,37 @@ export const SITE_NAVIGATION = [
     label: 'Attorneys',
     slug: '/attorneys',
     children: null,
+    menuId: 'attorneys',
   },
   {
     id: 3,
     label: 'Practices',
     slug: '/practices',
+    menuId: 'practices',
     children: null,
   },
   {
     id: 4,
     label: 'Library',
+    menuId: 'library',
     slug: null,
     children: [
       {
         id: 1,
         label: 'Firm News',
+        menuId: 'firm-news',
         slug: '/library/category/firm-news',
       },
       {
         id: 2,
         label: 'Firm Events',
+        menuId: 'firm-events',
         slug: '/library/category/firm-events',
       },
       {
         id: 3,
         label: 'Firm Insights',
+        menuId: 'firm-insights',
         slug: '/library/category/law-firm-insights',
       },
     ],
@@ -125,12 +140,14 @@ export const SITE_NAVIGATION = [
     id: 5,
     label: 'Locations',
     slug: '/locations',
+    menuId: 'locations',
     children: null,
   },
   {
     id: 6,
     label: 'Contact',
     slug: '/contact',
+    menuId: 'contact',
     children: null,
   },
 ];

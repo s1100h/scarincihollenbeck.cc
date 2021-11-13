@@ -13,7 +13,7 @@ export default function SiteNavs() {
           <NavDropdown
             key={nav.label}
             title={nav.label}
-            id="the-firm-dropdown"
+            id={nav.menuId}
             className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
           >
             {nav.children.map((child) => (
@@ -23,7 +23,7 @@ export default function SiteNavs() {
             ))}
           </NavDropdown>
         ) : (
-          <Nav.Item key={nav.label} className={navBarStyles.navItem}>
+          <Nav.Item key={nav.label} id={nav.menuId} className={navBarStyles.navItem}>
             <Link href={nav.slug}>
               <a className="text-dark">{nav.label}</a>
             </Link>
