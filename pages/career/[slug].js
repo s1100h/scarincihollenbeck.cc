@@ -31,8 +31,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const request = await getCareersContent(params.slug);
-
-  if (request === 404) {
+  if (request.status === 404) {
     return {
       notFound: true,
     };
