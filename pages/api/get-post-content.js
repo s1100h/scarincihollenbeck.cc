@@ -46,16 +46,6 @@ export const getPostContent = async (slug, category) => {
     return '';
   };
 
-  const getImageData = (content) => {
-    const check = content.match(/src="([^"]*)"/g);
-
-    if (check) {
-      return check[0].split('"')[1];
-    }
-
-    return 'https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/2018/05/no-image-found-diamond.png';
-  };
-
   const getFeaturedImageCaption = (content) => {
     const featuredImageCaption = content.match(/<\s*figcaption(?:.*)>(.*)<\/figcaption>/g);
 
@@ -100,16 +90,35 @@ export const getPostContent = async (slug, category) => {
   };
 
   const getBodyImageId = (content) => {
-    const extract = content.match(/wp:image {(.*)}/).pop();
-    const id = extract.match(/\d+/g);
-    return id;
+    /** Check for image id first */
+    const extract = content.match(/wp:image {(.*)}/);
+
+    if (extract) {
+      const imgExtract = extract.pop();
+      const id = imgExtract.match(/\d+/g);
+      return id;
+    }
+
+    return [];
   };
 
-  /** Generate a cloudinary URL image base on the post body image */
+  const getImageUrl = (content) => {
+    const check = content.match(/src="([^"]*)"/g);
+
+    if (check) {
+      return check[0].split('"')[1];
+    }
+
+    return null;
+  };
+
+  /** Generate a cloudinary URL image based on image ID in body */
   let featuredImage = '';
   const imageNotFound = `${CLOUDINARY_BASE_URL}sr1twxakfytdtiimmnyz.png`;
   const getImageId = getBodyImageId(post[0].post_content);
+  const imageUrl = getImageUrl(post[0].post_content);
 
+  // check if image id exists
   if (getImageId.length > 0) {
     const imageId = getImageId[0];
     const [imageData] = await connection.execute(postTitleById, [imageId]);
@@ -129,7 +138,16 @@ export const getPostContent = async (slug, category) => {
     } else {
       featuredImage = imageNotFound;
     }
-  } else {
+  }
+
+  if (imageUrl && getImageId <= 0) {
+    const splitImgUrl = imageUrl.split('/');
+    const imageName = splitImgUrl[splitImgUrl.length - 1];
+    const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageName}`;
+    featuredImage = postCloudinaryUrl;
+  }
+
+  if (!imageUrl && getImageId <= 0) {
     featuredImage = imageNotFound;
   }
 
@@ -259,7 +277,7 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     const fetchPost = await getPostContent(
-      'scotus-end-inclusionary-zoning',
+      'protect-business-website-liability',
       'law-firm-insights',
       // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
       // 'law-firm-insights'
