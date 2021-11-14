@@ -92,11 +92,14 @@ export const getPostContent = async (slug, category) => {
   const getBodyImageId = (content) => {
     /** Check for image id first */
     const extract = content.match(/wp:image {(.*)}/);
-
     if (extract) {
       const imgExtract = extract.pop();
+
       const id = imgExtract.match(/\d+/g);
-      return id;
+      if (id) {
+        return id;
+      }
+      return [];
     }
 
     return [];
