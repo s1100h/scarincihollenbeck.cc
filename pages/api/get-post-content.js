@@ -1,8 +1,8 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
-const fetch = require('node-fetch');
 const { formatDate } = require('../../utils/helpers');
 
+const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/image/upload/v1636899243/wp.scarincihollenbeck/';
 export const getPostContent = async (slug, category) => {
   const connection = await mysql.createConnection({
     host: process.env.SITE_HOST,
@@ -23,7 +23,7 @@ export const getPostContent = async (slug, category) => {
   const postAuthorQuery = `SELECT ID, user_url, display_name FROM ${process.env.AUTHORS_TABLE} WHERE user_nicename = ?`;
   const postAuthorMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.AUTHORSMETA_TABLE} WHERE user_id = ?`;
   const sortedAuthorQuery = `SELECT meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ? AND meta_key='author_display_order'`;
-
+  const postTitleById = `SELECT post_title FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const [post] = await connection.execute(postContentQuery, [slug]);
 
   if (post.length <= 0) {
@@ -99,8 +99,34 @@ export const getPostContent = async (slug, category) => {
     return response;
   };
 
+  const getBodyImageId = (content) => {
+    const extract = content.match(/wp:image {(.*)}/).pop();
+    const id = extract.match(/\d+/g);
+    return id;
+  };
+
+  /** Generate a cloudinary URL image base on the post body image */
+  let featuredImage = '';
+  const imageNotFound = `${CLOUDINARY_BASE_URL}sr1twxakfytdtiimmnyz.png`;
+  const getImageId = getBodyImageId(post[0].post_content);
+
+  if (getImageId.length > 0) {
+    const imageId = getImageId[0];
+    const [imageData] = await connection.execute(postTitleById, [imageId]);
+
+    if (imageData.length > 0) {
+      const imageTitle = imageData[0].post_title;
+      const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageTitle}.png`;
+      featuredImage = postCloudinaryUrl;
+    } else {
+      featuredImage = imageNotFound;
+    }
+  } else {
+    featuredImage = imageNotFound;
+  }
+
   const subTitle = checkH2Tags(post[0].post_content);
-  const featuredImage = getImageData(post[0].post_content);
+  // const featuredImage = getImageData(post[0].post_content);
   const featuredImageCaption = getFeaturedImageCaption(post[0].post_content);
   const bodyContent = modPostContent(post[0].post_content);
 
@@ -191,17 +217,8 @@ export const getPostContent = async (slug, category) => {
     return false;
   });
 
-  // post by fetch
-  const request = await fetch('https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts/33191', {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  }).then((data) => data.json());
-
   const response = {
     status: 200,
-    test: request,
     postId: post[0].ID,
     postQueryCategoryId: catSlug[0].term_id,
     post: {

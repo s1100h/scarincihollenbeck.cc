@@ -191,11 +191,10 @@ export const getPostContent = async (slug, category) => {
   // fetch for body content from wp-rest-api
   const url = `${BASE_API_URL}/wp-json/wp/v2/posts/${post[0].ID}`;
   const request = await fetch(url, {
-    method: 'GET',
-    // headers: {
-    //   'Content-Type': 'application/json',
-    //   Accept: 'application/json',
-    // },
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
   }).then((data) => data.json());
 
   const subTitle = checkH2Tags(request.content.rendered);
