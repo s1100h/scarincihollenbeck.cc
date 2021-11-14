@@ -116,8 +116,16 @@ export const getPostContent = async (slug, category) => {
 
     if (imageData.length > 0) {
       const imageTitle = imageData[0].post_title;
-      const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageTitle}.png`;
-      featuredImage = postCloudinaryUrl;
+
+      /** Check if image url has any white spaces in it  */
+      if (/\s/.test(imageTitle)) {
+        const titleNoSpaces = imageTitle.replace(/\s+/g, '-');
+        const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${titleNoSpaces}.png`;
+        featuredImage = postCloudinaryUrl;
+      } else {
+        const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageTitle}.png`;
+        featuredImage = postCloudinaryUrl;
+      }
     } else {
       featuredImage = imageNotFound;
     }
@@ -251,7 +259,7 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     const fetchPost = await getPostContent(
-      'landlords-nyc-tenant-data-privacy-act',
+      'scotus-end-inclusionary-zoning',
       'law-firm-insights',
       // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
       // 'law-firm-insights'
