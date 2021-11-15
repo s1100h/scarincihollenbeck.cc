@@ -24,7 +24,7 @@ export const getLibraryContent = async (slug) => {
   const childrenCategoryQuery = `SELECT term_taxonomy_id, term_id, description, count, parent FROM ${process.env.TERMS_TAXONOMY} WHERE parent = ?`;
   const authorsQuery = `SELECT ${process.env.AUTHORS_TABLE}.ID, ${process.env.AUTHORS_TABLE}.user_nicename, ${process.env.AUTHORS_TABLE}.display_name FROM ${process.env.AUTHORS_TABLE} LEFT JOIN ${process.env.AUTHORSMETA_TABLE} ON (${process.env.AUTHORS_TABLE}.ID = ${process.env.AUTHORSMETA_TABLE}.user_id) WHERE NOT ${process.env.AUTHORS_TABLE}.user_url ='' AND ${process.env.AUTHORSMETA_TABLE}.meta_value = 'a:1:{s:6:"author";b:1;}'`;
   const authorMetaQuery = `SELECT display_name FROM ${process.env.AUTHORS_TABLE} WHERE ID = ?`;
-  const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_name, post_content FROM ${process.env.POST_TABLE} WHERE ID= ?`;
+  const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_name, post_content FROM ${process.env.POST_TABLE} WHERE ID= ? AND post_status='publish'`;
   const categoryFirstFourPostIdQuery = `SELECT ID
       FROM ${process.env.POST_TABLE}
       LEFT JOIN ${process.env.TERM_RELATIONSHIPS_TABLE} ON (${process.env.POST_TABLE}.ID = ${process.env.TERM_RELATIONSHIPS_TABLE}.object_id)
