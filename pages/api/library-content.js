@@ -24,12 +24,13 @@ export const getLibraryContent = async (slug) => {
   const childrenCategoryQuery = `SELECT term_taxonomy_id, term_id, description, count, parent FROM ${process.env.TERMS_TAXONOMY} WHERE parent = ?`;
   const authorsQuery = `SELECT ${process.env.AUTHORS_TABLE}.ID, ${process.env.AUTHORS_TABLE}.user_nicename, ${process.env.AUTHORS_TABLE}.display_name FROM ${process.env.AUTHORS_TABLE} LEFT JOIN ${process.env.AUTHORSMETA_TABLE} ON (${process.env.AUTHORS_TABLE}.ID = ${process.env.AUTHORSMETA_TABLE}.user_id) WHERE NOT ${process.env.AUTHORS_TABLE}.user_url ='' AND ${process.env.AUTHORSMETA_TABLE}.meta_value = 'a:1:{s:6:"author";b:1;}'`;
   const authorMetaQuery = `SELECT display_name FROM ${process.env.AUTHORS_TABLE} WHERE ID = ?`;
-  const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_name, post_content FROM ${process.env.POST_TABLE} WHERE ID= ? AND post_status='publish'`;
+  const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_name, post_content FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const categoryFirstFourPostIdQuery = `SELECT ID
       FROM ${process.env.POST_TABLE}
       LEFT JOIN ${process.env.TERM_RELATIONSHIPS_TABLE} ON (${process.env.POST_TABLE}.ID = ${process.env.TERM_RELATIONSHIPS_TABLE}.object_id)
       LEFT JOIN ${process.env.TERMS_TAXONOMY} ON (${process.env.TERM_RELATIONSHIPS_TABLE}.term_taxonomy_id = ${process.env.TERMS_TAXONOMY}.term_taxonomy_id)
       WHERE ${process.env.TERMS_TAXONOMY}.term_taxonomy_id = ?
+      AND post_status = 'publish'
       GROUP BY ${process.env.POST_TABLE}.ID
       ORDER BY post_date DESC
       LIMIT 4;`;
@@ -92,17 +93,19 @@ export const getLibraryContent = async (slug) => {
     const [postData] = await connection.execute(postContentQuery, [postIds[i].ID]);
     const post = postData[0];
 
-    const [authorMeta] = await connection.execute(authorMetaQuery, [post.post_author]);
+    if (post) {
+      const [authorMeta] = await connection.execute(authorMetaQuery, [post.post_author]);
 
-    posts.push({
-      id: post.ID,
-      title: post.post_title,
-      author: authorMeta[0].display_name,
-      date: formatDate(post.post_date),
-      description: extractDescription(post.post_content),
-      image: extractFeaturedImage(post.post_content),
-      link: `${parent ? `/${parent.slug}` : ''}/${slug}/${post.post_name}`,
-    });
+      posts.push({
+        id: post.ID,
+        title: post.post_title,
+        author: authorMeta[0].display_name,
+        date: formatDate(post.post_date),
+        description: extractDescription(post.post_content),
+        image: extractFeaturedImage(post.post_content),
+        link: `${parent ? `/${parent.slug}` : ''}/${slug}/${post.post_name}`,
+      });
+    }
   }
 
   // get the categories with the most posts
