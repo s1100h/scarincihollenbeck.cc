@@ -132,8 +132,20 @@ export const getPostContent = async (slug, category) => {
       /** Check if image url has any white spaces in it  */
       if (/\s/.test(imageTitle)) {
         const titleNoSpaces = imageTitle.replace(/\s+/g, '-');
-        const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${titleNoSpaces}.png`;
-        featuredImage = postCloudinaryUrl;
+
+        // check if there are malformatted dashes
+        if (titleNoSpaces.includes('---')) {
+          const modTitleNoSpaces = titleNoSpaces.replace('---', '-');
+          const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${modTitleNoSpaces}.png`;
+          featuredImage = postCloudinaryUrl;
+        } else if (titleNoSpaces.includes('--')) {
+          const modTitleNoSpaces = titleNoSpaces.replace('--', '-');
+          const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${modTitleNoSpaces}.png`;
+          featuredImage = postCloudinaryUrl;
+        } else {
+          const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${titleNoSpaces}.png`;
+          featuredImage = postCloudinaryUrl;
+        }
       } else {
         const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageTitle}.png`;
         featuredImage = postCloudinaryUrl;
@@ -280,7 +292,7 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     const fetchPost = await getPostContent(
-      'protect-business-website-liability',
+      'njdep-begins-implementing-environmental-justice-law',
       'law-firm-insights',
       // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
       // 'law-firm-insights'
