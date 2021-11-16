@@ -23,7 +23,7 @@ export const getPostContent = async (slug, category) => {
   const postAuthorQuery = `SELECT ID, user_url, display_name FROM ${process.env.AUTHORS_TABLE} WHERE user_nicename = ?`;
   const postAuthorMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.AUTHORSMETA_TABLE} WHERE user_id = ?`;
   const sortedAuthorQuery = `SELECT meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ? AND meta_key='author_display_order'`;
-  const postTitleById = `SELECT post_title, post_name FROM ${process.env.POST_TABLE} WHERE ID= ?`;
+  const postTitleById = `SELECT post_title, post_name, guid FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const [post] = await connection.execute(postContentQuery, [slug]);
 
   if (post.length <= 0) {
@@ -127,8 +127,11 @@ export const getPostContent = async (slug, category) => {
     const [imageData] = await connection.execute(postTitleById, [imageId]);
 
     if (imageData.length > 0) {
-      const imageName = imageData[0].post_name;
-      const cloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageName}.png`;
+      const imageGuid = imageData[0].guid;
+      const imageGuidArr = imageGuid.split('/');
+
+      const imageName = imageGuidArr[imageGuidArr.length - 1];
+      const cloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageName}`;
       featuredImage = cloudinaryUrl;
     } else {
       featuredImage = imageNotFound;
