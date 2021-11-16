@@ -23,7 +23,7 @@ export const getPostContent = async (slug, category) => {
   const postAuthorQuery = `SELECT ID, user_url, display_name FROM ${process.env.AUTHORS_TABLE} WHERE user_nicename = ?`;
   const postAuthorMetaQuery = `SELECT meta_key, meta_value FROM ${process.env.AUTHORSMETA_TABLE} WHERE user_id = ?`;
   const sortedAuthorQuery = `SELECT meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ? AND meta_key='author_display_order'`;
-  const postTitleById = `SELECT post_title FROM ${process.env.POST_TABLE} WHERE ID= ?`;
+  const postTitleById = `SELECT post_title, post_name FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const [post] = await connection.execute(postContentQuery, [slug]);
 
   if (post.length <= 0) {
@@ -127,29 +127,9 @@ export const getPostContent = async (slug, category) => {
     const [imageData] = await connection.execute(postTitleById, [imageId]);
 
     if (imageData.length > 0) {
-      const imageTitle = imageData[0].post_title;
-
-      /** Check if image url has any white spaces in it  */
-      if (/\s/.test(imageTitle)) {
-        const titleNoSpaces = imageTitle.replace(/\s+/g, '-');
-
-        // check if there are malformatted dashes
-        if (titleNoSpaces.includes('---')) {
-          const modTitleNoSpaces = titleNoSpaces.replace('---', '-');
-          const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${modTitleNoSpaces}.png`;
-          featuredImage = postCloudinaryUrl;
-        } else if (titleNoSpaces.includes('--')) {
-          const modTitleNoSpaces = titleNoSpaces.replace('--', '-');
-          const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${modTitleNoSpaces}.png`;
-          featuredImage = postCloudinaryUrl;
-        } else {
-          const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${titleNoSpaces}.png`;
-          featuredImage = postCloudinaryUrl;
-        }
-      } else {
-        const postCloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageTitle}.png`;
-        featuredImage = postCloudinaryUrl;
-      }
+      const imageName = imageData[0].post_name;
+      const cloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageName}.png`;
+      featuredImage = cloudinaryUrl;
     } else {
       featuredImage = imageNotFound;
     }
