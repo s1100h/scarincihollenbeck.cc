@@ -286,7 +286,13 @@ const getPracticeContent = async (slug) => {
 const getPracticePosts = async (practiceSlug, blogId) => {
   const request = await fetch(
     `${BASE_API_URL}/wp-json/individual-practices/related-articles/practice/${practiceSlug}/${blogId}`,
-    { headers },
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
   )
     .then((data) => data.json())
     .catch((err) => {

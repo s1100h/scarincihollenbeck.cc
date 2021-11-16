@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
+import { SITE_URL, CORE_PRACTICES, BASE_API_URL } from 'utils/constants';
 import { getPracticeContent } from 'pages/api/practice-content';
-import { getPracticePosts } from 'utils/queries';
 import PracticePage from 'components/pages/practice-page';
 
 export default function PracticeSingleArticles({
@@ -13,8 +11,6 @@ export default function PracticeSingleArticles({
   type,
   slug,
 }) {
-  const [posts, setPosts] = useState([]);
-  const [articleLoading, setArticleLoading] = useState(false);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
   const canoncialUrl = `${SITE_URL}/practice/${practice.slug}`;
@@ -23,22 +19,9 @@ export default function PracticeSingleArticles({
     return <SiteLoader />;
   }
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const request = await getPracticePosts(slug, practice.blogId);
-      setArticleLoading(false);
-      setPosts(request);
-    };
-
-    setArticleLoading(true);
-    if (posts.length <= 0) {
-      fetchPosts();
-    }
-  }, [slug, practice]);
-
   const body = {
     title: 'Related Articles',
-    content: posts,
+    url: `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${practice.blogId}`,
   };
 
   const practiceProps = {
@@ -50,7 +33,6 @@ export default function PracticeSingleArticles({
     body,
     slug,
     type,
-    articleLoading,
   };
 
   return <PracticePage {...practiceProps} />;

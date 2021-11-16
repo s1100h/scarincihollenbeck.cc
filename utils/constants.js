@@ -118,18 +118,24 @@ export const SITE_NAVIGATION = [
     children: [
       {
         id: 1,
+        label: 'Client Alerts',
+        menuId: 'client-alerts',
+        slug: '/library/category/client-alert',
+      },
+      {
+        id: 2,
         label: 'Firm News',
         menuId: 'firm-news',
         slug: '/library/category/firm-news',
       },
       {
-        id: 2,
+        id: 3,
         label: 'Firm Events',
         menuId: 'firm-events',
         slug: '/library/category/firm-events',
       },
       {
-        id: 3,
+        id: 4,
         label: 'Firm Insights',
         menuId: 'firm-insights',
         slug: '/library/category/law-firm-insights',

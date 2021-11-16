@@ -11,7 +11,7 @@ import PracticeLinks from 'components/organisms/practice/links';
 import RelatedAttorneys from 'components/organisms/practice/related-attorneys';
 import PracticeClientSlider from 'components/organisms/practice/client-slider';
 import ArticleHeroPractice from 'components/organisms/practice/practice-article-hero';
-import PracticeArticles from 'components/organisms/practice/articles';
+import ArticleArchives from 'components/organisms/library/article-archives';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CovidResourceBox from 'components/organisms/practice/covid-resource-box';
 import PracticeSidebar from 'components/organisms/practice/sidebar';
@@ -89,11 +89,7 @@ export default function PracticePage({
             {type !== 'articles' ? (
               <PracticeContent title={body.title} content={body.content} />
             ) : (
-              <PracticeArticles
-                initalArticles={body.content}
-                title={body.title}
-                articleLoading={articleLoading}
-              />
+              <ArticleArchives url={body.url} title={body.title} />
             )}
 
             {practice.attorneyList.length > 0 && (

@@ -1,6 +1,8 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
+const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/image/upload/v1636899243/wp.scarincihollenbeck/';
+
 // find meta
 const extractMetaContent = (practice, key) => practice.filter((p) => p.meta_key.includes(key));
 const extractExactMetaContent = (practice, key) => practice.filter((p) => p.meta_key === key);
@@ -47,6 +49,7 @@ export const getPracticeContent = async (slug) => {
   const practiceQuery = `SELECT post_title, ID, post_name FROM ${process.env.POST_TABLE} WHERE post_name= ? AND post_type= 'practices'`;
   const practiceQueryByID = `SELECT post_title, ID, post_name FROM ${process.env.POST_TABLE} WHERE ID= ?`;
   const practiceContentQuery = `SELECT meta_key, meta_value FROM ${process.env.POSTMETA_TABLE} WHERE post_id = ?`;
+  const getPostName = `SELECT guid FROM ${process.env.POST_TABLE} WHERE ID= ?`;
 
   /** Format attorney ids into post objects */
   const formatAttorneyObj = async (attorneyIds) => {
@@ -68,10 +71,20 @@ export const getPracticeContent = async (slug) => {
 
         const getThumbNailId = extractExactMetaContent(attorneyData, '_thumbnail_id');
         const thumbnailId = getThumbNailId[0].meta_value;
-        const [thumbnailData] = await connection.execute(practiceContentQuery, [thumbnailId]);
-        const getThumbUrl = extractExactMetaContent(thumbnailData, '_wp_attached_file');
-        const image = `https://shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com/${getThumbUrl[0].meta_value}`;
+        const [thumbnailData] = await connection.execute(getPostName, [thumbnailId]);
 
+        let image = '';
+        if (thumbnailData.length > 0) {
+          const imageGuid = thumbnailData[0].guid;
+          const imageGuidArr = imageGuid.split('/');
+
+          const imageName = imageGuidArr[imageGuidArr.length - 1];
+          const cloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageName}`;
+          image = cloudinaryUrl;
+        } else {
+          const imageNotFound = `${CLOUDINARY_BASE_URL}sr1twxakfytdtiimmnyz.png`;
+          image = imageNotFound;
+        }
         results.push({
           ID: attorneyIds[i],
           name: attorneyPostData[0].post_title,
@@ -229,11 +242,7 @@ export const getPracticeContent = async (slug) => {
 
 export default async (req, res) => {
   try {
-    const fetchPractice = await getPracticeContent(
-      'tax-trusts-estates',
-      // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
-      // 'law-firm-insights'
-    );
+    const fetchPractice = await getPracticeContent('commercial-real-estate');
 
     if (fetchPractice.status === 404) {
       return res.status(404).send({ ...fetchPractice });
