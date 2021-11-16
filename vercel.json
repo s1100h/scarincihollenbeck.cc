@@ -15,6 +15,16 @@
       "source": "/firm-news/new-jersey-supreme-court-re-certifies-robert-e-levy",
       "destination": "/firm-news/robert-levy-recertified-as-civil-trial-attorney",
       "statusCode": 301
+    },
+    {
+      "source": "/law-firm-insights/breaking-down-the-infrastructure-bill-and-how-it-can-help-your-business",
+      "destination": "/client-alert/infrastructure-bill-and-how-it-can-help-your-business",
+      "statusCode": 301
+    },
+    {
+      "source": "/client-alert/breaking-down-the-infrastructure-bill-and-how-it-can-help-your-business",
+      "destination": "/client-alert/infrastructure-bill-and-how-it-can-help-your-business",
+      "statusCode": 301
     }
   ]
 }

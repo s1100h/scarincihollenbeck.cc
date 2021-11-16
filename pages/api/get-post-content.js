@@ -280,7 +280,7 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     const fetchPost = await getPostContent(
-      'breaking-down-the-infrastructure-bill-and-how-it-can-help-your-business',
+      'protect-business-website-liability',
       'law-firm-insights',
       // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
       // 'law-firm-insights'
