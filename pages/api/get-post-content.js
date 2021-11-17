@@ -178,12 +178,14 @@ export const getPostContent = async (slug, category) => {
   for (let i = 0; i < allTagsMeta.length; i++) {
     const [row] = await connection.execute(currentTagsFromIdQuery, [allTagsMeta[i][0].term_id]);
 
-    allTags.push({
-      id: row[0].term_id,
-      name: row[0].name,
-      label: allTagsMeta[i][0].taxonomy,
-      parent: allTagsMeta[i][0].parent,
-    });
+    if (row.length > 0) {
+      allTags.push({
+        id: row[0].term_id,
+        name: row[0].name,
+        label: allTagsMeta[i][0].taxonomy,
+        parent: allTagsMeta[i][0].parent,
+      });
+    }
   }
 
   /** *
