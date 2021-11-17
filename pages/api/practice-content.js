@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
-const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/image/upload/v1636899243/wp.scarincihollenbeck/';
+const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
 
 // find meta
 const extractMetaContent = (practice, key) => practice.filter((p) => p.meta_key.includes(key));
@@ -79,6 +79,7 @@ export const getPracticeContent = async (slug) => {
           const imageGuidArr = imageGuid.split('/');
 
           const imageName = imageGuidArr[imageGuidArr.length - 1];
+
           const cloudinaryUrl = `${CLOUDINARY_BASE_URL}${imageName}`;
           image = cloudinaryUrl;
         } else {

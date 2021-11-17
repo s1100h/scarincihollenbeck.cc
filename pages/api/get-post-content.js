@@ -2,7 +2,8 @@ require('dotenv').config();
 const mysql = require('mysql2/promise');
 const { formatDate } = require('../../utils/helpers');
 
-const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/image/upload/v1636899243/wp.scarincihollenbeck/';
+const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
+
 export const getPostContent = async (slug, category) => {
   const connection = await mysql.createConnection({
     host: process.env.SITE_HOST,
