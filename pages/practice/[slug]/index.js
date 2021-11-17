@@ -1,13 +1,13 @@
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
-import { urlify } from 'utils/helpers';
-import { getPracticeContent } from 'pages/api/practice-content';
+import { getPracticePaths, getPracticeContent } from 'utils/queries';
 import PracticePage from 'components/pages/practice-page';
 
-export default function PracticeSingle({
-  corePractices, practice, practiceChildren, slug,
-}) {
+export default function PracticeSingle({ practice, practiceChildren, slug }) {
+  const [corePractices] = useState(CORE_PRACTICES);
+
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
   const canoncialUrl = `${SITE_URL}/practice/${practice.slug}`;
@@ -16,28 +16,40 @@ export default function PracticeSingle({
     return <SiteLoader />;
   }
 
-  const tabs = Object.keys(practice.content).map((key) => ({
-    title: practice.content[key][0].title,
-    content: practice.content[key][1].content.replace(/(\r\n|\n|\r)/gm, '<p>'),
-    slug: urlify(practice.content[key][0].title),
+  const siteTabs = practice.content.map((tab, index) => ({
+    ...tab,
+    id: index,
   }));
 
-  const body = tabs.filter((tab, index) => index === 0)[0];
-
+  const fullTabs = [
+    ...siteTabs,
+    {
+      id: 99,
+      title: 'Related Articles',
+      content: '<h4>Related Articles</h4>',
+    },
+  ];
   const practiceProps = {
     corePractices,
     practice,
     practiceChildren,
     practiceUrl,
     canoncialUrl,
-    body,
+    tabs: fullTabs,
     slug,
   };
-
   return <PracticePage {...practiceProps} />;
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const paths = await getPracticePaths();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const request = await getPracticeContent(params.slug);
 
   if (request.status === 404) {
@@ -45,13 +57,12 @@ export async function getServerSideProps({ params }) {
       notFound: true,
     };
   }
-
   return {
     props: {
-      practice: request.data,
-      practiceChildren: request.data.children || [],
-      corePractices: CORE_PRACTICES,
+      practice: request,
+      practiceChildren: request.children || [],
       slug: params.slug,
     },
+    revalidate: 1,
   };
 }

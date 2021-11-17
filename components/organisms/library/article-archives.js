@@ -33,11 +33,13 @@ export default function ArticleArchives({ url, title }) {
 
   return (
     <Row>
-      <Col sm={12}>
-        <h4 className="mb-3 mx-3">
-          <strong className="text-capitalize">{title}</strong>
-        </h4>
-      </Col>
+      {title && (
+        <Col sm={12}>
+          <h4 className="mb-3 mx-3">
+            <strong className="text-capitalize">{title}</strong>
+          </h4>
+        </Col>
+      )}
       {loading && (
         <div className="w-100 text-center m-4">
           <ClipLoader size={32} color="#DB2220" />

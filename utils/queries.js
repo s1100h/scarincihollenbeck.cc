@@ -271,16 +271,13 @@ const getPracticePaths = async (isArticles) => {
 };
 
 const getPracticeContent = async (slug) => {
-  const [res, practices] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/practice-portal/page`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-  ]);
+  const request = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
+    headers,
+  })
+    .then((data) => data.json())
+    .catch((err) => err);
 
-  return [res, practices];
+  return request;
 };
 
 const getPracticePosts = async (practiceSlug, blogId) => {
@@ -295,11 +292,7 @@ const getPracticePosts = async (practiceSlug, blogId) => {
     },
   )
     .then((data) => data.json())
-    .catch((err) => {
-      console.warn('ERROR');
-      console.warn('===============');
-      console.error(new Error(err));
-    });
+    .catch((err) => err);
 
   return request;
 };
