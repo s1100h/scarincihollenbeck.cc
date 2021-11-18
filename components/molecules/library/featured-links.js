@@ -7,6 +7,11 @@ export default function FeaturedLinks() {
     <Col sm={12} className={`${styles.linksContainer} px-0 mx-0`}>
       <ul className="list-unstyled list-inline text-center my-3">
         <li className="list-inline-item">
+          <Button variant="danger" href="/library/category/client-alert">
+            Client Alerts
+          </Button>
+        </li>
+        <li className="list-inline-item">
           <Button variant="danger" href="/library/category/firm-news">
             Firm News
           </Button>
