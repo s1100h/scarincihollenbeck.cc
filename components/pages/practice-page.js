@@ -85,6 +85,7 @@ export default function PracticePage({
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const blogId = practice.blog_data_id[0];
   const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${blogId}`;
+
   useEffect(() => {
     const currentTabContent = tabs.filter((t) => t.id === activeTab);
     setActiveTabContent(currentTabContent[0].content);

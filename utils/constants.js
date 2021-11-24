@@ -316,3 +316,7 @@ export const CORE_PRACTICES = [
     title: 'Tax, Trusts & Estates',
   },
 ];
+
+export const MUSIC_ESQ_URL = 'https://musicesq.com';
+export const CON_LAW_URL = 'https://constitutionallawreporter.com';
+export const GOV_LAW_URL = 'https://scarincilawyer.com';

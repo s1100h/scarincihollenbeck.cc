@@ -343,6 +343,7 @@ const getCovid19BasedPages = async (slug, id) => {
 
   return [request, posts];
 };
+
 module.exports = {
   getAdmininstrationPaths,
   getAdministrationContent,

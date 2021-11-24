@@ -233,3 +233,17 @@ export const extractFeaturedImage = (content) => {
   }
   return '/images/no-image-found-diamond-750x350.png';
 };
+
+// external blog fetch helper
+export const fetchExternalPosts = async (site, authorId, amount) => {
+  const url = `${site}/wp-json/wp/v2/posts?author=${authorId}&per_page=${amount}&orderby=date`;
+  const request = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => err);
+
+  return request;
+};
