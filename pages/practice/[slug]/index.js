@@ -45,13 +45,12 @@ export async function getStaticPaths() {
   const paths = await getPracticePaths();
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
 export async function getStaticProps({ params }) {
   const request = await getPracticeContent(params.slug);
-
   if (request.status === 404) {
     return {
       notFound: true,
@@ -63,6 +62,6 @@ export async function getStaticProps({ params }) {
       practiceChildren: request.children || [],
       slug: params.slug,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }

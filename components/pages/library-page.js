@@ -38,14 +38,6 @@ export default function LibraryPage({
   const featuredArticles = results.slice(1, results.length);
   const isAuthor = router.asPath.includes('author');
 
-  const sortedAuthors = authors
-    .map((author) => ({
-      username: author.user_nicename,
-      fullName: author.display_name,
-      lastName: getLastWord(author.display_name),
-    }))
-    .sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
-
   return (
     <>
       {Object.keys(seo).length > 0 && (
@@ -59,7 +51,8 @@ export default function LibraryPage({
             <MainArticle
               title={mainArticle.title}
               link={mainArticle.link}
-              description={mainArticle.description}
+              excerpt={mainArticle.excerpt || mainArticle.description}
+              category={mainArticle.category}
               date={mainArticle.date}
               image={
                 mainArticle.image ? mainArticle.image : '/images/no-image-found-diamond-750x350.png'
@@ -100,7 +93,7 @@ export default function LibraryPage({
               displayCount
             />
             <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
-            <FirmAuthors authors={sortedAuthors} />
+            <FirmAuthors authors={authors} />
           </Col>
         </Row>
       </Container>

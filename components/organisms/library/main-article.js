@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import { createMarkup } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
 
 export default function MainArticle({
-  title, link, description, date, image, author,
+  title, link, excerpt, date, image, author, category,
 }) {
+  const router = useRouter();
+
   return (
     <>
       <Link href={link}>
@@ -20,16 +23,22 @@ export default function MainArticle({
       <p className={`${fontStyles.ft12rem} my-3`}>
         <strong>Author: </strong>
         {' '}
-        {author}
-        <span className="ml-5">
-          <strong>Date:</strong>
-          {' '}
+        {author.map((a, index) => (
+          <Link href={a.link} key={a.name}>
+            <a className="text-dark">
+              {a.name}
+              {index < author.length - 1 ? ', ' : ''}
+            </a>
+          </Link>
+        ))}
+        <span className="ml-3">
+          <strong>Date: </strong>
           {date}
         </span>
       </p>
       <div
         className={`${fontStyles.ft11rem} pr-4 mb-3`}
-        dangerouslySetInnerHTML={createMarkup(description)}
+        dangerouslySetInnerHTML={createMarkup(excerpt)}
       />
       <Button variant="danger" className={`${fontStyles.ft12rem} px-4`}>
         <Link href={link}>

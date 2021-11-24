@@ -8,7 +8,7 @@ export default function FeaturedLinks() {
       <ul className="list-unstyled list-inline text-center my-3">
         <li className="list-inline-item">
           <Button variant="danger" href="/library/category/client-alert">
-            Client Alerts
+            Client Alert
           </Button>
         </li>
         <li className="list-inline-item">

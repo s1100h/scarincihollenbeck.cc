@@ -2,22 +2,21 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
-import { getAuthorContent } from 'pages/api/author-posts';
+import { getAuthorPaths, getAuthorContent } from 'utils/queries';
 
 export default function LibraryAuthor({
-  authorId,
   authors,
   description,
-  fullName,
+  pageTitle,
   popularCategories,
-  profileUrl,
-  relatedCategories,
   results,
+  childrenOfCurrentCategory,
+  categoryId,
+  profileUrl,
   seo,
-  slug,
+  name,
 }) {
   const router = useRouter();
-
   if (router.isFallback) {
     return (
       <div className="my-5 py-5">
@@ -26,9 +25,9 @@ export default function LibraryAuthor({
     );
   }
 
-  const canonicalUrl = `${SITE_URL}/library/author${slug}`;
+  const canonicalUrl = `${SITE_URL}/library/author${pageTitle}`;
   const { title, metaDescription } = seo;
-  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?author=${authorId}`;
+  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?author=${categoryId}`;
 
   const authorProps = {
     seo: {
@@ -39,10 +38,10 @@ export default function LibraryAuthor({
     results,
     authors,
     popularCategories,
-    childrenOfCurrentCategory: relatedCategories,
-    categoryId: authorId,
-    currentPageTitle: title,
-    categoryName: title,
+    categoryId,
+    currentPageTitle: name,
+    childrenOfCurrentCategory,
+    categoryName: `Legal Articles By ${name}`,
     description,
     archiveUrl,
     profileUrl,
@@ -51,20 +50,39 @@ export default function LibraryAuthor({
   return <LibraryPage {...authorProps} />;
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const authorPaths = await getAuthorPaths();
+  return {
+    paths: authorPaths,
+    fallback: true,
+  };
+}
+export async function getStaticProps({ params }) {
   const { slug } = params;
 
-  const request = await getAuthorContent(slug);
+  const [
+    results,
+    authors,
+    childrenOfCurrentCategory,
+    popularCategories,
+    authorBio,
+  ] = await getAuthorContent(slug);
 
-  if (request.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
+  const firstFourArticles = results.results.splice(0, 4);
 
   return {
     props: {
-      ...request.data,
+      results: firstFourArticles || [],
+      authors: authors || [],
+      popularCategories: popularCategories || [],
+      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
+      description: authorBio.bio[0].bioContent,
+      name: authorBio.bio[0].name,
+      profileUrl: authorBio.bio[0].link,
+      pageTitle: params.slug,
+      categoryId: results.id,
+      seo: results.seo,
     },
+    revalidate: 60 * 10,
   };
 }

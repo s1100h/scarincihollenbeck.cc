@@ -32,6 +32,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const request = await getFirmPagesContent(params.slug);
+
   const relatedPages = FIRM_PAGES.filter((a) => a.slug.replace('/', '') !== params.slug);
 
   return {
@@ -40,6 +41,6 @@ export async function getStaticProps({ params }) {
       relatedPages,
       currentPage: params.slug,
     },
-    revalidate: 1,
+    revalidate: 60 * 60 * 168,
   };
 }

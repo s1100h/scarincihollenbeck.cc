@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryPage from 'components/pages/library-page';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
-import { getLibraryContent } from 'pages/api/library-content';
 import { capitalizeFirstLetterInWords } from 'utils/helpers';
+import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
 
 export default function LibraryCategory({
   authors,
@@ -26,7 +26,6 @@ export default function LibraryCategory({
   }
 
   const splitDescription = description.split('.');
-  const currentPageTitle = pageTitle.replace(/-/g, ' ');
   const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
   const categoryName = capitalizeFirstLetterInWords(name);
   const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${categoryId}`;
@@ -42,7 +41,7 @@ export default function LibraryCategory({
     popularCategories,
     childrenOfCurrentCategory,
     archiveUrl,
-    currentPageTitle,
+    currentPageTitle: name,
     categoryName,
     description,
   };
@@ -50,20 +49,42 @@ export default function LibraryCategory({
   return <LibraryPage {...libraryProps} />;
 }
 
-export async function getServerSideProps({ params }) {
-  const { slug } = params;
+export async function getStaticPaths() {
+  const paths = await getCategoryPaths();
 
-  const request = await getLibraryContent(slug);
+  return {
+    paths,
+    fallback: true,
+  };
+}
 
-  if (request.status === 404) {
+export async function getStaticProps({ params }) {
+  const [
+    authors,
+    childrenOfCurrentCategory,
+    popularCategories,
+    categoryDetails,
+  ] = await getLibraryCategoryContent(params.slug);
+
+  if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {
       notFound: true,
     };
   }
 
+  const results = [...categoryDetails.main, ...categoryDetails.latest];
+
   return {
     props: {
-      ...request.data,
+      results: results || [],
+      authors: authors || [],
+      popularCategories: popularCategories || [],
+      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
+      description: categoryDetails.description,
+      name: categoryDetails.current_category.name,
+      pageTitle: params.slug,
+      categoryId: categoryDetails.current_category.cat_ID,
     },
+    revalidate: 60 * 10,
   };
 }

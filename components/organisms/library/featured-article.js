@@ -39,7 +39,7 @@ export default function FeaturedArticle({ articles }) {
             <p className="h4 mb-1 mt-2 px-0 py-0">
               <strong>{article.title}</strong>
             </p>
-            <p className="mt-0 pt-0 px-0 mx-0">{article.description}</p>
+            <p className="mt-0 pt-0 px-0 mx-0">{article.excerpt || article.description}</p>
           </ArticleContainer>
         </a>
       </Link>

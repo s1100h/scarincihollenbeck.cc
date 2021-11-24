@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
-import { urlify } from 'utils/helpers';
 import styles from 'styles/Library.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 
@@ -52,7 +51,7 @@ export default function FirmAuthors({ authors }) {
                 paddingLeft: '10px',
               }}
             >
-              <Link href={`/library/author/${urlify(authors[virtualRow.index].username)}`}>
+              <Link href={`/library/author/${authors[virtualRow.index].username}`}>
                 <a className="text-dark">{authors[virtualRow.index].fullName}</a>
               </Link>
             </div>

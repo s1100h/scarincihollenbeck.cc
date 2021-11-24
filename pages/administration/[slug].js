@@ -47,7 +47,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const response = await getAdministrationContent(params.slug);
-
   if (JSON.stringify(response) === '{}') {
     return {
       notFound: true,
@@ -58,6 +57,6 @@ export async function getStaticProps({ params }) {
     props: {
       response,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }

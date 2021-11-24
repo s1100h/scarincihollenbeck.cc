@@ -24,7 +24,6 @@ export default function Disclaimer({ content, seo }) {
 
 export async function getStaticProps() {
   const request = await getPageContent('disclaimer');
-
   const { content, seo } = request;
 
   return {
@@ -32,6 +31,6 @@ export async function getStaticProps() {
       content,
       seo,
     },
-    revalidate: 1,
+    revalidate: 60 * 60 * 24,
   };
 }

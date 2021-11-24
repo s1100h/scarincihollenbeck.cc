@@ -58,6 +58,5 @@ export async function getStaticProps({ params }) {
       seo,
       slug: params.slug,
     },
-    revalidate: 1,
   };
 }
