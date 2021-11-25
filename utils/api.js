@@ -32,14 +32,14 @@ async function fetchAPI(query, { variables } = {}) {
 }
 
 /** Get the attorneys bio data base on their slug */
-export async function attorneyBySlug(slug) {
-  const data = await fetchAPI(attorneyBySlugQuery, {
-    variables: { slug },
-  });
-  return data.attorneyProfileBy;
-}
+// export async function attorneyBySlug(slug) {
+//   const data = await fetchAPI(attorneyBySlugQuery, {
+//     variables: { slug },
+//   });
+//   return data.attorneyProfileBy;
+// }
 
-// /** Get all the news/events based on the attorneys name */
+/** Get all the news/events based on the attorneys name */
 // export async function attorneyNewsEvents(name) {
 //   const data = await fetchAPI(attorneyNewsEventsQuery,
 //     {
@@ -49,7 +49,7 @@ export async function attorneyBySlug(slug) {
 //   return data.posts
 // }
 
-// /** Get all the attorneys blog posts */
+/** Get all the attorneys blog posts */
 // export async function attorneyFirmBlog(id) {
 //   const data = await fetchAPI(attorneyFirmBlogQuery,
 //     {
@@ -59,7 +59,7 @@ export async function attorneyBySlug(slug) {
 //   return data.posts
 // }
 
-// /** Get all the slugs for attorney profiles */
+/** Get all the slugs for attorney profiles */
 // export async function attorneySlugs() {
 //   const data = await fetchAPI(attorneySlugsQuery);
 

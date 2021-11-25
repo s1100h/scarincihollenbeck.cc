@@ -27,6 +27,10 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         channel
       }
       vizibility
+      additionalHeaderLinks {
+        url
+        title
+      }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
       additionalInformation {
