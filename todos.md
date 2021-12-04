@@ -1,0 +1,8 @@
+- Fix Location & Firm Page SEO issues
+- Add drop down to attorney bio page
+- WP - make CPT for Awards
+- Pull in Awards into home page
+- Mobile Review of new Attorney Page
+- Delete old attorney page components
+- Redo Blog Post and New Feeds Pulls (need pagination)
+- Redo Practice Pull from GraphQL (include articles w/ pagination)
