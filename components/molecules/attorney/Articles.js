@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useVirtual } from 'react-virtual';
+import styled from 'styled-components';
 import { formatDate, createMarkup, extractDescription } from 'utils/helpers';
 
 const Articles = ({ content }) => {
@@ -32,30 +33,24 @@ const Articles = ({ content }) => {
         }}
       >
         {rowVirtualizer.virtualItems.map((virtualRow) => (
-          <div
+          <ArticleWrapper
             key={content[virtualRow.index].title}
             ref={virtualRow.measureRef}
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '190px',
               transform: `translateY(${virtualRow.start}px)`,
-              paddingLeft: '10px',
             }}
           >
             <Link href={content[virtualRow.index].link}>
-              <a className="d-flex flex-row text-dark">
-                <div>
+              <a className="d-flex flex-column flex-lg-row text-dark">
+                <ImageWrapper>
                   <Image
                     src={content[virtualRow.index].image}
                     alt={content[virtualRow.index].title}
                     width={250}
                     height={125}
-                    layout="fixed"
+                    layout="intrinsic"
                   />
-                </div>
+                </ImageWrapper>
                 <div className="ml-3">
                   <p className="h5 mb-1">
                     <strong>{content[virtualRow.index].title}</strong>
@@ -69,11 +64,34 @@ const Articles = ({ content }) => {
                 </div>
               </a>
             </Link>
-          </div>
+          </ArticleWrapper>
         ))}
       </div>
     </div>
   );
 };
 
+const ImageWrapper = styled.div`
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: initial;
+    min-width: 250px;
+  }
+`;
+const ArticleWrapper = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 90px;
+
+  @media (min-width: 992px) {
+    height: 73px;
+  }
+  @media (min-width: 1200px) {
+    position: absolute;
+    height: 190px;
+    padding: 10px;
+  }
+`;
 export default Articles;

@@ -1,4 +1,4 @@
-import SitePage from 'components/pages/site-page';
+import SitePage from 'components/pages/BasicPage';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 

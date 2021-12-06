@@ -3,6 +3,7 @@ import {
   attorneyNewsEventsQuery,
   attorneyFirmBlogQuery,
   attorneySlugsQuery,
+  categoryPostsByIdQuery,
 } from './graphql-queries';
 
 const API_URL = process.env.BASE_GRAPHQL_API_URL;
@@ -60,4 +61,14 @@ export async function attorneySlugs() {
   const data = await fetchAPI(attorneySlugsQuery);
 
   return data.attorneyProfiles?.edges;
+}
+
+/** Get all posts by category id with pagination */
+export async function categoryPostsById(variables) {
+  const data = await fetchAPI(categoryPostsById, variables);
+
+  return {
+    pageInfo: data.categoryPostsById?.pageInfo,
+    posts: data.categoryPostsById?.edges,
+  };
 }

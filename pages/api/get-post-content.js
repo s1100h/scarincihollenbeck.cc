@@ -5,14 +5,7 @@ const { formatDate } = require('../../utils/helpers');
 const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
 
 export const getPostContent = async (slug, category) => {
-  const connection = await mysql.createConnection({
-    host: process.env.SITE_HOST,
-    port: process.env.SITE_PORT,
-    user: process.env.SITE_USER,
-    password: process.env.SITE_PASSWORD,
-    database: process.env.SITE_DATABASE,
-    connectionLimit: 20,
-  });
+  const connection = await mysql.createConnection(process.env.MYSQL_CONNECTION_URL);
 
   // post, post meta, post categories, and category name
   const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_content FROM ${process.env.POST_TABLE} WHERE post_name= ? AND post_status = 'publish'`;

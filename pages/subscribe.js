@@ -1,4 +1,4 @@
-import SubscriptionPage from 'components/pages/subscription-page';
+import SubscriptionPage from 'components/pages/SiteSubscriptions';
 import { SITE_URL } from 'utils/constants';
 
 const seo = {

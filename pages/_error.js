@@ -1,4 +1,4 @@
-import ErrorPage from 'components/pages/error-page';
+import ErrorPage from 'components/pages/ErrorPage';
 import { ERROR_PAGE_CONTENT } from 'utils/constants';
 
 export default function Error({ statusCode }) {

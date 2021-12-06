@@ -6,7 +6,7 @@ import styles from 'styles/Library.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
 
-export default function PracticeMembers({ members }) {
+const Members = ({ members }) => {
   const parentRef = useRef();
 
   const rowVirtualizer = useVirtual({
@@ -84,4 +84,6 @@ export default function PracticeMembers({ members }) {
       </div>
     </>
   );
-}
+};
+
+export default Members;

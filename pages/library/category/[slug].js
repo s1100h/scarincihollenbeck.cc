@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import LibraryPage from 'components/pages/library-page';
+import LibraryDirectory from 'components/pages/LibraryDirectory';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
 import { capitalizeFirstLetterInWords } from 'utils/helpers';
 import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
@@ -46,7 +46,7 @@ export default function LibraryCategory({
     description,
   };
 
-  return <LibraryPage {...libraryProps} />;
+  return <LibraryDirectory {...libraryProps} />;
 }
 
 export async function getStaticPaths() {
@@ -59,12 +59,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [
-    authors,
-    childrenOfCurrentCategory,
-    popularCategories,
-    categoryDetails,
-  ] = await getLibraryCategoryContent(params.slug);
+  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(params.slug);
 
   if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {

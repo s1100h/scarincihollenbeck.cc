@@ -1,0 +1,44 @@
+import FullWidth from 'layouts/full-width';
+import SingleSubHeader from 'layouts/single-sub-header';
+import Body from 'components/organisms/careers/body';
+import CareersEqualOpportunity from 'components/organisms/careers/equal-opportunity';
+import BasicSiteHead from 'components/shared/head/BasicSiteHead';
+
+export default function CareersPage({
+  careers,
+  query,
+  locations,
+  positionTypes,
+  setQuery,
+  executeSearch,
+  setPositionType,
+  setLocation,
+  seo,
+  site,
+}) {
+  return (
+    <>
+      <BasicSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDescription}
+        canonicalUrl={seo.canonicalUrl}
+      />
+      <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
+      <FullWidth>
+        {careers && (
+          <Body
+            careers={careers}
+            positionTypes={positionTypes}
+            locations={locations}
+            query={query}
+            setQuery={setQuery}
+            setLocation={setLocation}
+            setPositionType={setPositionType}
+            executeSearch={executeSearch}
+          />
+        )}
+        <CareersEqualOpportunity />
+      </FullWidth>
+    </>
+  );
+}

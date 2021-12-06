@@ -50,6 +50,10 @@ export default class MyDocument extends Document {
           `,
             }}
           />
+          {/** Fonts */}
+          <link rel="preload" href="/fonts/proxima-nova-regular.ttf" as="font" crossOrigin=" " />
+          <link rel="preload" href="/fonts/proxima-nova-bold.ttf" as="font" crossOrigin=" " />
+          <link rel="preload" href="/fonts/proxima-nova-italic.ttf" as="font" crossOrigin=" " />
         </Head>
         <body>
           <Main />

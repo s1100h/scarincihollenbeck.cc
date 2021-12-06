@@ -1,4 +1,4 @@
-import FirmOverviewPage from 'components/pages/firm-overview-page';
+import FirmOverviewPage from 'components/pages/FirmOverview';
 import { headers, sortByKey } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
 

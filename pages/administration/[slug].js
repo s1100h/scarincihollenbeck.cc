@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import AdministrationProfile from 'components/pages/admininstration-profile';
+import AdministrationProfile from 'components/pages/AdminProfile';
 import { SITE_URL } from 'utils/constants';
 import { getAdmininstrationPaths, getAdministrationContent } from 'utils/queries';
 

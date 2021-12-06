@@ -88,11 +88,16 @@
 .noTabBanner {
   margin-bottom: 3.5em;
 }
-
+/* 
 .multiBackBanner {
   margin-top: 2.5em;
-  margin-bottom: 6em;
 }
+
+@media (min-width: 768px) {
+  .multiBackBanner {
+    margin-bottom: 2em;
+  }
+} */
 
 .text {
   font-size: 4.4rem;

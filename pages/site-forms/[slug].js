@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 
 import { SITE_FORM_SLUGS, BASE_API_URL } from 'utils/constants';
-import SiteFormPage from 'components/pages/site-form-page';
+import SiteFormPage from 'components/pages/SiteFeedbackPage';
 
 export default function SiteForms({ attorneys, practices, isNewAttorney }) {
   const [attorney, setAttorney] = useState('');
@@ -41,12 +41,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const practiceRequest = await fetch(
-    `${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`,
-  ).then((data) => data.json());
-  const attorneyRequest = await fetch(
-    `${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`,
-  ).then((data) => data.json());
+  const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`).then(
+    (data) => data.json(),
+  );
+  const attorneyRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`).then(
+    (data) => data.json(),
+  );
 
   return {
     props: {

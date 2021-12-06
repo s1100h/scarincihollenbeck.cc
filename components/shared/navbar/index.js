@@ -28,7 +28,7 @@ export default function NavBar() {
     <header className="mb-0 pt-1 shadow sticky-top top--1 bg-white">
       <Container>
         <Row className="my-2 border-bottom">
-          <Col sm={12} md={4}>
+          <Col sm={12} md={4} className="mb-3 mb-md-0">
             <GlobalSearch scrollTop={scrollTop} />
           </Col>
           <Col sm={12} md={8} className={`d-flex ${navBarStyles.contactBanner} pr-0`}>

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { SITE_NAVIGATION } from 'utils/constants';
+import useOnClickOutside from 'hooks/useOnClickOutside';
 
 const StyledMenu = styled.nav`
   display: flex;
@@ -132,7 +133,8 @@ const Burger = ({ open, setOpen }) => (
 
 export default function HamburgerMobileMenu() {
   const [open, setOpen] = useState(false);
-  const node = useRef();
+  const node = useRef(null);
+  useOnClickOutside(node, () => setOpen(false));
 
   return (
     <div ref={node}>

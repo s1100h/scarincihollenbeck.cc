@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FormScripts from 'components/shared/form-scripts';
 
-const ContactForm = ({ forwardEmail, name }) => {
+const ContactForm = ({ emailForwarding, name }) => {
   const router = useRouter();
   const emailVarName = ['One', 'Two', 'Three', 'Four'];
 
@@ -23,7 +23,7 @@ const ContactForm = ({ forwardEmail, name }) => {
           name="currentPage"
           value={`https://scarincihollenbeck.com${router.asPath}`}
         />
-        {forwardEmail.map((email, index) => (
+        {emailForwarding.map((email, index) => (
           <input
             key={email}
             type="hidden"
@@ -33,7 +33,7 @@ const ContactForm = ({ forwardEmail, name }) => {
         ))}
         <input type="hidden" name="currentAttorney" value={name} />
         <Row className="mb-3">
-          <Col sm={12} md={6} className="mx-0 px-1">
+          <Col sm={12} md={6} className="mx-0 px-1 mb-3 mb-lg-0">
             <input
               type="text"
               className="form-control mx-0"
@@ -42,7 +42,7 @@ const ContactForm = ({ forwardEmail, name }) => {
               rules="required|max:255"
             />
           </Col>
-          <Col sm={12} md={6} className="mx-0 px-1">
+          <Col sm={12} md={6} className="mx-0 px-1 mb-3 mb-lg-0">
             <input
               type="text"
               className="form-control mx-0"
@@ -53,7 +53,7 @@ const ContactForm = ({ forwardEmail, name }) => {
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col sm={12} md={6} className="mx-0 px-1">
+          <Col sm={12} md={6} className="mx-0 px-1 mb-3 mb-lg-0">
             <input
               type="email"
               className="form-control mx-0"
@@ -62,7 +62,7 @@ const ContactForm = ({ forwardEmail, name }) => {
               rules="required|max:255"
             />
           </Col>
-          <Col sm={12} md={6} className="mx-0 px-1">
+          <Col sm={12} md={6} className="mx-0 px-1 mb-2 mb-lg-0">
             <input
               type="phone"
               className="form-control mx-0"
@@ -73,7 +73,7 @@ const ContactForm = ({ forwardEmail, name }) => {
           </Col>
         </Row>
         <Row className="mb-2">
-          <Col sm={12} className="mx-0 px-1 mb-4">
+          <Col sm={12} className="mx-0 px-1 mb-4 mb-3">
             <input
               type="text"
               className="form-control mx-0"
@@ -82,7 +82,7 @@ const ContactForm = ({ forwardEmail, name }) => {
               rules="required|max:1000"
             />
           </Col>
-          <Col sm={12} className="mx-0 px-1">
+          <Col sm={12} className="mx-0 px-1 mb-3 mb-lg-0">
             <textarea
               type="textarea"
               rows="8"

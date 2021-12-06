@@ -1,4 +1,4 @@
-import HomePage from 'components/pages/home-page';
+import HomePage from 'components/pages/HomePage';
 import { getHomePageContent } from 'utils/queries';
 
 export default function Home({

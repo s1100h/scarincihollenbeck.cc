@@ -1,4 +1,4 @@
-import SidebarContent from 'components/organisms/practice/sidebar';
+import SidebarContent from 'components/shared/SidebarContent';
 import { FIRM_BLOG_PAGES, FIRM_PAGES } from 'utils/constants';
 
 export default function CommonSidebarLinks() {

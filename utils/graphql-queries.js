@@ -226,3 +226,39 @@ export const attorneySlugsQuery = `query AttorneySlugs {
     }
   }
 }`;
+
+export const categoryPostsByIdQuery = `query categoryPostsById(
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  $id:Int
+) {
+  posts(where: {categoryId:$id, orderby: {field: DATE, order: DESC}},  first: $first, last: $last, after: $after, before: $before) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+    node {
+      date
+      featuredImage {
+        node {
+          sourceUrl(size: LARGE)
+        }
+      }
+      uri
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          url
+        }
+      }
+    }
+  }
+  }
+}`;

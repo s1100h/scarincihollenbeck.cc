@@ -1,6 +1,6 @@
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
-import SitePage from 'components/pages/site-page';
+import SitePage from 'components/pages/BasicPage';
 
 export default function Awards({ title, content, seo }) {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);

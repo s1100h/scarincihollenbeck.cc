@@ -1,4 +1,4 @@
-import PracticesPage from 'components/pages/practices-page';
+import PracticesPage from 'components/pages/PracticesDirectory';
 import { sortByKey, headers } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
 

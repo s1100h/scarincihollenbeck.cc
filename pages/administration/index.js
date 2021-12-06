@@ -1,4 +1,4 @@
-import AdministrationPage from 'components/pages/administration-page';
+import AdministrationPage from 'components/pages/AdminDirectory';
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 

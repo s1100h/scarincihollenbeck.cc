@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import CareersPage from 'components/pages/careers-page';
+import CareersPage from 'components/pages/CareersDirectory';
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
 

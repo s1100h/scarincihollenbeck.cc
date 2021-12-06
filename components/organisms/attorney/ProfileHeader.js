@@ -78,7 +78,7 @@ const ProfileHeader = ({
 
   return (
     <div className={styles.backPageBanner}>
-      <Container className={styles.multiBackBanner}>
+      <Container className={`${styles.multiBackBanner} pt-3 pb-5`}>
         <Row>
           <Col sm={12} md={9} className="text-white">
             <Row>

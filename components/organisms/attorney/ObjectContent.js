@@ -2,7 +2,7 @@ import Table from 'components/molecules/attorney/Table';
 import Articles from 'components/molecules/attorney/Articles';
 import EducationContent from 'components/molecules/attorney/EducationContent';
 import ContentTitle from 'components/molecules/attorney/ContentTitle';
-import ContactForm from 'components/shared/contact-form';
+import ContactForm from 'components/molecules/attorney/ContactForm';
 import Videos from 'components/molecules/attorney/Videos';
 
 const renderBody = (title, content) => {
