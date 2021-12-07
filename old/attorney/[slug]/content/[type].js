@@ -53,13 +53,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [
-    bio,
-    contact,
-    content,
-    attorneyBlogArticles,
-    attorneyNewsArticles,
-  ] = await getAttorneyBackPageContent(params.slug, params.type);
+  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await getAttorneyBackPageContent(params.slug, params.type);
 
   if (bio.status === 404) {
     return {
