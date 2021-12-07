@@ -67,7 +67,25 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const results = [...categoryDetails.main, ...categoryDetails.latest];
+  let results = [];
+
+  if ('main' in categoryDetails && 'latest' in categoryDetails) {
+    results = [...categoryDetails.main, ...categoryDetails.latest];
+  }
+
+  let categoryName = '';
+  let categoryId = '';
+
+  if ('current_category' in categoryDetails) {
+    categoryName = categoryDetails.current_category.name;
+    categoryId = categoryDetails.current_category.cat_ID;
+  }
+
+  let categoryDescription = '';
+
+  if ('description' in categoryDetails) {
+    categoryDescription = categoryDetails.description;
+  }
 
   return {
     props: {
@@ -75,10 +93,10 @@ export async function getStaticProps({ params }) {
       authors: authors || [],
       popularCategories: popularCategories || [],
       childrenOfCurrentCategory: childrenOfCurrentCategory || [],
-      description: categoryDetails.description,
-      name: categoryDetails.current_category.name,
+      description: categoryDescription,
+      name: categoryName,
       pageTitle: params.slug,
-      categoryId: categoryDetails.current_category.cat_ID,
+      categoryId,
     },
     revalidate: 60 * 10,
   };

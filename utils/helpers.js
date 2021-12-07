@@ -120,12 +120,15 @@ export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g,
 
 // capitalize all first letters in a word
 export const capitalizeFirstLetterInWords = (string) => {
-  const words = string.split(' ');
+  if (string && string !== undefined) {
+    const words = string.split(' ');
 
-  for (let i = 0; i < words.length; i++) {
-    words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    return words.join(' ');
   }
-  return words.join(' ');
+  return string;
 };
 
 // common headers for fetch
