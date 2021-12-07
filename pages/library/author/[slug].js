@@ -60,13 +60,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
 
-  const [
-    results,
-    authors,
-    childrenOfCurrentCategory,
-    popularCategories,
-    authorBio,
-  ] = await getAuthorContent(slug);
+  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
 
   const firstFourArticles = results.results.splice(0, 4);
 

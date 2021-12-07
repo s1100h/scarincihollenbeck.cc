@@ -41,12 +41,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const practiceRequest = await fetch(
-    `${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`,
-  ).then((data) => data.json());
-  const attorneyRequest = await fetch(
-    `${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`,
-  ).then((data) => data.json());
+  const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`).then(
+    (data) => data.json(),
+  );
+  const attorneyRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`).then(
+    (data) => data.json(),
+  );
 
   return {
     props: {

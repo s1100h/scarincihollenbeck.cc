@@ -59,12 +59,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [
-    authors,
-    childrenOfCurrentCategory,
-    popularCategories,
-    categoryDetails,
-  ] = await getLibraryCategoryContent(params.slug);
+  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(params.slug);
 
   if ('status' in categoryDetails && categoryDetails.status === 404) {
     return {

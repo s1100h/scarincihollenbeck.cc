@@ -49,13 +49,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [
-    bio,
-    contact,
-    content,
-    attorneyBlogArticles,
-    attorneyNewsArticles,
-  ] = await getAttorneyContent(params.slug);
+  const [bio, contact, content, attorneyBlogArticles, attorneyNewsArticles] = await getAttorneyContent(params.slug);
   if (bio.status === 404) {
     return {
       notFound: true,
