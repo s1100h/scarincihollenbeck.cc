@@ -1,8 +1,9 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from 'components/shared/attorney-card';
+import AttorneyCard from 'components/shared/AttorneyCard';
 import textStyles from 'styles/Text.module.css';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 export default function FirmOverviewMembers({ title, members, type }) {
   return (
@@ -16,7 +17,7 @@ export default function FirmOverviewMembers({ title, members, type }) {
             <Col sm={12} md={6} lg={4} className="mb-3" key={m.name}>
               <AttorneyCard
                 link={type === 'admin' ? `/administration${m.link}` : `/attorney${m.link}`}
-                image={m.image}
+                image={formatSrcToCloudinaryUrl(m.image)}
                 name={m.name}
                 title={m.title}
                 number={m.phone || `201-896-4100 ${m.extenstion}`}

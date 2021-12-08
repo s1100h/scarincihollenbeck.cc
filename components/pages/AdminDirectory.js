@@ -4,8 +4,8 @@ import Col from 'react-bootstrap/Col';
 import SingleSubHeader from 'layouts/single-sub-header';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import FullWidth from 'layouts/full-width';
-import AttorneyCard from 'components/shared/attorney-card';
-import { sortByKey } from 'utils/helpers';
+import AttorneyCard from 'components/shared/AttorneyCard';
+import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 export default function AdministrationPage({ admins, seo, site }) {
   return (
@@ -22,7 +22,7 @@ export default function AdministrationPage({ admins, seo, site }) {
             {sortByKey(admins, 'orderBy').map((admin) => (
               <Col sm={12} md={6} lg={4} key={admin.id} className="mb-3">
                 <AttorneyCard
-                  image={admin.image.smallUrl}
+                  image={formatSrcToCloudinaryUrl(admin.image.smallUrl)}
                   name={admin.name}
                   link={admin.link}
                   title={admin.title}

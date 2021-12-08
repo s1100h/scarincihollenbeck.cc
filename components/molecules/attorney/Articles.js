@@ -3,7 +3,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useVirtual } from 'react-virtual';
 import styled from 'styled-components';
-import { formatDate, createMarkup, extractDescription } from 'utils/helpers';
+import {
+  formatDate,
+  createMarkup,
+  extractDescription,
+  formatSrcToCloudinaryUrl,
+} from 'utils/helpers';
 
 const Articles = ({ content }) => {
   const parentRef = useRef();

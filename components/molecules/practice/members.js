@@ -5,6 +5,7 @@ import Image from 'next/image';
 import styles from 'styles/Library.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const Members = ({ members }) => {
   const parentRef = useRef();
@@ -52,7 +53,7 @@ const Members = ({ members }) => {
               <Link href={members[virtualRow.index].link}>
                 <a className="text-dark d-flex m-3 border-bottom">
                   <Image
-                    src={members[virtualRow.index].image}
+                    src={formatSrcToCloudinaryUrl(members[virtualRow.index].image)}
                     alt={members[virtualRow.index].name}
                     width={108}
                     height={148}

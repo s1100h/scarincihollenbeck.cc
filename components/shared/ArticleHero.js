@@ -5,7 +5,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from 'styles/ArticleHero.module.css';
-import { formatDate, createMarkup, setTextLen } from 'utils/helpers';
+import {
+  formatDate, createMarkup, setTextLen, formatSrcToCloudinaryUrl,
+} from 'utils/helpers';
 
 export default function ArticleHero({ content }) {
   const articleList = content.filter((_, i) => i !== 0);
@@ -17,7 +19,9 @@ export default function ArticleHero({ content }) {
           <Link href={content[0].link.replace('https://scarincihollenbeck.com', '')}>
             <a className={styles.link}>
               <Image
-                src={content[0].better_featured_image.source_url.replace('Feature', 'Body')}
+                src={formatSrcToCloudinaryUrl(
+                  content[0].better_featured_image.source_url.replace('Feature', 'Body'),
+                )}
                 alt={content[0].title.rendered}
                 width={750}
                 height={350}

@@ -1,12 +1,12 @@
+import { GRAPHQL_API_URL } from 'utils/constants';
 import {
   attorneyBySlugQuery,
   attorneyNewsEventsQuery,
   attorneyFirmBlogQuery,
   attorneySlugsQuery,
-  categoryPostsByIdQuery,
+  categoryPostQuery,
+  homePageAwardsQuery,
 } from './graphql-queries';
-
-const API_URL = process.env.BASE_GRAPHQL_API_URL;
 
 async function fetchAPI(query, { variables } = {}) {
   const headers = { 'Content-Type': 'application/json' };
@@ -15,7 +15,7 @@ async function fetchAPI(query, { variables } = {}) {
     headers.Authorization = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
   }
 
-  const res = await fetch(API_URL, {
+  const res = await fetch(GRAPHQL_API_URL, {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -72,3 +72,19 @@ export async function categoryPostsById(variables) {
     posts: data.categoryPostsById?.edges,
   };
 }
+
+/** get all the awards for the home page  */
+export async function homePageAwards() {
+  const data = await fetchAPI(homePageAwardsQuery, {});
+  return data.homePageAwards?.edges;
+}
+
+/** get the library category landing page content */
+export async function categoryPosts(variables) {
+  const data = await fetchAPI(categoryPostQuery, variables);
+  return data.categories?.edges;
+}
+
+/** popular categories */
+
+/** get the library author landing page content */

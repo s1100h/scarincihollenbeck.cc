@@ -1,6 +1,8 @@
 import { createMarkup } from 'utils/helpers';
 import pageContentStyles from 'styles/PageContent.module.css';
-import ArticleFeed from 'components/shared/ArticleFeed';
+import dynamic from 'next/dynamic';
+
+const ArticleFeed = dynamic(() => import('components/shared/ArticleFeed'));
 
 const Body = ({ activeTabContent, activeTab, query }) => (
   <>

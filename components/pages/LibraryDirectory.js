@@ -16,7 +16,7 @@ import styles from 'styles/Text.module.css';
 import { CLIENT_ALERTS } from 'utils/constants';
 
 const ArticleArchives = dynamic(() => import('components/organisms/library/article-archives'));
-const filterNoPosts = (category) => category.filter((item) => item.postCount > 1);
+const filterNoPosts = (category) => category.filter((item) => item.count > 1);
 
 const LibraryDirectory = ({
   results,
@@ -26,8 +26,8 @@ const LibraryDirectory = ({
   categoryName,
   description,
   seo,
-  archiveUrl,
   profileUrl,
+  archiveUrl,
 }) => {
   const router = useRouter();
   const mainArticle = results[0];
@@ -88,15 +88,11 @@ const LibraryDirectory = ({
             {childrenOfCurrentCategory.length > 0 && (
               <PopularList
                 term="Related Categories"
-                list={filterNoPosts(childrenOfCurrentCategory)}
+                list={childrenOfCurrentCategory}
                 displayCount
               />
             )}
-            <PopularList
-              term="Popular Categories"
-              list={filterNoPosts(popularCategories)}
-              displayCount
-            />
+            <PopularList term="Popular Categories" list={popularCategories} displayCount />
             <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
             <FirmAuthors authors={authors} />
           </Col>

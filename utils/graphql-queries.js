@@ -227,6 +227,7 @@ export const attorneySlugsQuery = `query AttorneySlugs {
   }
 }`;
 
+// , orderby: {field: DATE, order: DESC}
 export const categoryPostsByIdQuery = `query categoryPostsById(
   $first: Int
   $last: Int
@@ -234,7 +235,7 @@ export const categoryPostsByIdQuery = `query categoryPostsById(
   $before: String
   $id:Int
 ) {
-  posts(where: {categoryId:$id, orderby: {field: DATE, order: DESC}},  first: $first, last: $last, after: $after, before: $before) {
+  posts(where: {categoryId:$id},  first: $first, last: $last, after: $after, before: $before) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -262,3 +263,143 @@ export const categoryPostsByIdQuery = `query categoryPostsById(
   }
   }
 }`;
+
+export const homePageAwardsQuery = `query HomePageAwardsQuery {
+  homePageAwards {
+    edges {
+      node {
+        title
+        homePageAwards {
+          label
+          image {
+            sourceUrl(size: LARGE)
+          }
+          appearanceOrder
+          imageWidth
+          imageHeight
+        }
+      }
+    }
+  }
+}`;
+
+export const authorPostsByIdQuery = `query authorPostsById(
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  $id:Int
+) {
+  posts(where: {author:$id},  first: $first, last: $last, after: $after, before: $before) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+    node {
+      date
+      featuredImage {
+        node {
+          sourceUrl(size: LARGE)
+        }
+      }
+      uri
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          url
+        }
+      }
+    }
+  }
+  }
+}`;
+
+export const authorFirmNewsByIdQuery = `query authorFirmNewsById(
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  $name:String
+) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: { search: $name, categoryNotIn: "599"}) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+    node {
+      date
+      featuredImage {
+        node {
+          sourceUrl(size: LARGE)
+        }
+      }
+      uri
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          url
+        }
+      }
+    }
+  }
+  }
+}`;
+
+// Category Landing Page Query
+export const categoryPostQuery = `query CategoryPosts($name:String) {
+  categories(where: {slug: [$name]}) {
+    edges {
+      node {
+        name
+        seo {
+          metaDesc
+          title
+        }
+        children(first: 20) {
+          nodes {
+            slug
+            name
+            count
+            id
+          }
+        }        
+        description
+        categoryId
+        posts(first: 4) {
+          edges {
+            node {
+              categories(first: 1) {
+                edges {
+                  node {
+                    name
+                    link
+                  }
+                }
+              }
+              uri
+              excerpt(format: RENDERED)
+              title
+              featuredImage {
+                node {
+                  sourceUrl
+                }
+              }
+              date
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;

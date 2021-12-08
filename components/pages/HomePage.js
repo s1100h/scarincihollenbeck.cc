@@ -9,7 +9,7 @@ import HomeOurLeadership from 'components/organisms/home/our-leadership';
 import HomeReviews from 'components/organisms/home/reviews';
 import HomeWhoWeAreSection from 'components/organisms/home/who-we-are-section';
 import HomePageLink from 'components/organisms/home/page-link';
-import ArticleHero from 'components/shared/article-hero';
+import ArticleHero from 'components/shared/ArticleHero';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { sortByKey } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
@@ -17,7 +17,7 @@ import marginStyles from 'styles/Margins.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
 
 export default function HomePage({
-  seo, posts, locations, leadership,
+  seo, posts, locations, leadership, awards,
 }) {
   return (
     <>
@@ -86,7 +86,7 @@ export default function HomePage({
         <HomeWhoWeAreSection />
         <HomePageLink link="/firm-overview" title="More from our firm" />
         <HomeOurLeadership attorneys={leadership} />
-        <HomeReviews />
+        <HomeReviews awards={awards} />
         <HomePageLink link="/awards" title="Award Methodology" />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
         <div className={marginStyles.mt6}>

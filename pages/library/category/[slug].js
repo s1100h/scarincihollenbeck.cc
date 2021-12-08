@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
-import { capitalizeFirstLetterInWords } from 'utils/helpers';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import { categoryPosts } from 'utils/api';
 import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
 
 export default function LibraryCategory({
@@ -14,6 +15,7 @@ export default function LibraryCategory({
   results,
   name,
   categoryId,
+  seo,
 }) {
   const router = useRouter();
 
@@ -25,15 +27,13 @@ export default function LibraryCategory({
     );
   }
 
-  const splitDescription = description.split('.');
   const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
-  const categoryName = capitalizeFirstLetterInWords(name);
   const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${categoryId}`;
 
   const libraryProps = {
     seo: {
-      title: `${categoryName} Legal Articles`,
-      metaDescription: splitDescription[0].replace('&amp;', '&'),
+      title: seo.title,
+      metaDescription: seo.metaDescription,
       canonicalUrl,
     },
     results,
@@ -42,7 +42,7 @@ export default function LibraryCategory({
     childrenOfCurrentCategory,
     archiveUrl,
     currentPageTitle: name,
-    categoryName,
+    categoryName: name,
     description,
   };
 
@@ -54,31 +54,66 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 }
 
 export async function getStaticProps({ params }) {
-  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await getLibraryCategoryContent(params.slug);
+  const [authors, popularCategories] = await getLibraryCategoryContent();
+  const pageContent = await categoryPosts({
+    variables: {
+      name: params.slug,
+    },
+  });
 
-  if ('status' in categoryDetails && categoryDetails.status === 404) {
+  if (pageContent.length <= 0) {
     return {
       notFound: true,
     };
   }
 
-  const results = [...categoryDetails.main, ...categoryDetails.latest];
+  const content = pageContent[0].node;
+  const results = content.posts?.edges.map(({ node }, index) => ({
+    ID: index,
+    title: node.title,
+    link: node.uri.replace('https://scarincihollenbeck.com', ''),
+    date: node.date,
+    excerpt: node.excerpt,
+    image: formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl),
+    category:
+      node.categories.length > 0
+        ? node.categories?.edges.map(({ node }) => ({
+          name: node.name,
+          link: node.link,
+        }))
+        : [],
+  }));
+
+  const categoryChildren = content.children.nodes.length > 0 ? content.children.nodes : [];
+
+  const modPopCategories = popularCategories.map(({
+    id, slug, name, postCount,
+  }) => ({
+    id,
+    slug,
+    name,
+    count: postCount,
+  }));
 
   return {
     props: {
-      results: results || [],
+      results,
       authors: authors || [],
-      popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
-      description: categoryDetails.description,
-      name: categoryDetails.current_category.name,
+      popularCategories: modPopCategories || [],
+      childrenOfCurrentCategory: categoryChildren,
+      description: content.description,
+      name: content.name,
       pageTitle: params.slug,
-      categoryId: categoryDetails.current_category.cat_ID,
+      categoryId: content.categoryId,
+      seo: {
+        title: content.seo.title,
+        metaDescription: content.seo.metaDesc,
+      },
     },
     revalidate: 60 * 10,
   };

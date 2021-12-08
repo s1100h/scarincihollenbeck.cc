@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 function LocationCard({ location }) {
   return (
@@ -12,7 +13,7 @@ function LocationCard({ location }) {
         <Link href={location.slug}>
           <a>
             <Image
-              src={location.featuredImg}
+              src={formatSrcToCloudinaryUrl(location.featuredImg)}
               alt={location.title}
               width={253}
               height={167}

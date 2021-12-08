@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BASE_API_URL } from 'utils/constants';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 export default function ArticleHeroPractice({ blogId }) {
   const [posts, setPosts] = useState([]);
@@ -21,7 +22,7 @@ export default function ArticleHeroPractice({ blogId }) {
           title: post.title.rendered,
           link: post.link.replace('https://scarincihollenbeck.com', ''),
           image: post.better_featured_image
-            ? post.better_featured_image.source_url
+            ? formatSrcToCloudinaryUrl(post.better_featured_image.source_url)
             : '/images/no-image-found-diamond-750x350.png',
         }));
 

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from 'components/shared/attorney-card';
-import { sortByKey } from 'utils/helpers';
+import AttorneyCard from 'components/shared/AttorneyCard';
+import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import textStyles from 'styles/Text.module.css';
 import fontStyles from 'styles/Fonts.module.css';
@@ -33,7 +33,7 @@ export default function LocationsBody({
             <Col sm={12} md={12} lg={6} className="mb-4" key={m.name}>
               <AttorneyCard
                 link={m.link}
-                image={m.image}
+                image={formatSrcToCloudinaryUrl(m.image)}
                 name={m.name}
                 title={m.designation}
                 number={m.contact}

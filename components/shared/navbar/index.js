@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import HamburgerMobileMenu from 'components/shared/navbar/hamburger-mobile-menu';
-import GlobalSearch from 'components/shared/global-search';
-import TopNavLinks from 'components/shared/navbar/top-nav-links';
-import SiteNavs from 'components/shared/navbar/site-navs';
-import SiteLogo from 'components/shared/navbar/site-logo';
+import MobileMenu from 'components/shared/Navbar/MobileMenu';
+import GlobalSearch from 'components/shared/GlobalSearch';
+import TopNavLinks from 'components/shared/Navbar/TopNavLinks';
+import SiteNavs from 'components/shared/Navbar/SiteNavs';
+import SiteLogo from 'components/shared/Navbar/SiteLogo';
 import navBarStyles from 'styles/Navbar.module.css';
 
 export default function NavBar() {
@@ -44,9 +44,9 @@ export default function NavBar() {
             <SiteLogo scrollTop={scrollTop} />
           </Col>
           <Col xs={12} lg={6} className={scrollTop ? 'offset-lg-3' : 'mt-sm-2 mt-lg-3 pr-0 pl-0'}>
-            <SiteNavs />
+            <SiteNavs scrollTop={scrollTop} />
             <div className={navBarStyles.mobileMenu}>
-              <HamburgerMobileMenu />
+              <MobileMenu />
             </div>
           </Col>
         </Row>

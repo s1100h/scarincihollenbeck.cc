@@ -5,10 +5,17 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import navBarStyles from 'styles/Navbar.module.css';
 import { SITE_NAVIGATION } from 'utils/constants';
 
-export default function SiteNavs() {
+export default function SiteNavs({ scrollTop }) {
   return (
     <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>
       <Nav>
+        {scrollTop && (
+          <Nav.Item id="home" className={navBarStyles.navItem}>
+            <Link href="/">
+              <a className="text-dark">Home</a>
+            </Link>
+          </Nav.Item>
+        )}
         {SITE_NAVIGATION.map((nav) => (nav.children ? (
           <NavDropdown
             key={nav.label}
