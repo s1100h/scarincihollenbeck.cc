@@ -4,6 +4,4 @@
 - Refector blog posts in the footer of the practice pages to use graphQL
 - Refector blog posts in the footer of the library pages to use graphQL
 - Refactor Article Loader as an atom
-
--- Firm overview: admins
--- Library Older articles
+- Add GA to shared/head components using next/script for optimization

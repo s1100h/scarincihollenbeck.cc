@@ -90,6 +90,7 @@ export default async (req, res) => {
       });
 
       if (feed.length > 0) {
+        res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
         res.status(200).send({ status: 200, response: feed });
       } else {
         res.status(404).json({ status: 404, response: 'No feeds found!' });

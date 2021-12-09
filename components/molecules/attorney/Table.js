@@ -1,5 +1,4 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import { createMarkup } from 'utils/helpers';
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';

@@ -1,5 +1,4 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Col, Row } from 'react-bootstrap';
 import Link from 'next/link';
 import Image from 'next/image';
 

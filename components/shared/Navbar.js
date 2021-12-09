@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Container } from 'react-bootstrap';
 import MobileMenu from 'components/organisms/Navbar/MobileMenu';
 import GlobalSearch from 'components/shared/GlobalSearch';
 import TopNavLinks from 'components/organisms/Navbar/TopNavLinks';

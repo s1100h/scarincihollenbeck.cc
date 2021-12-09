@@ -1,8 +1,10 @@
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
-import FirmMembers from 'components/organisms/firmoverview/members';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { createMarkup } from 'utils/helpers';
+import dynamic from 'next/dynamic';
+
+const FirmMembers = dynamic(() => import('components/organisms/firmoverview/members'));
 
 export default function FirmOverviewPage({
   mainTabs,

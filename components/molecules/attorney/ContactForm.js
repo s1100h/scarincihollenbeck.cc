@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
+import { Col, Row, Button } from 'react-bootstrap';
 import FormScripts from 'components/shared/form-scripts';
 
 const ContactForm = ({ emailForwarding, name }) => {

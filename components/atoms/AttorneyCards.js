@@ -1,5 +1,4 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import textStyles from 'styles/Text.module.css';
 import dynamic from 'next/dynamic';
 
