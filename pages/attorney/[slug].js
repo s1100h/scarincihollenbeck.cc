@@ -86,7 +86,12 @@ export async function getStaticProps({ params }) {
       if (site.includes('governmentLaw')) {
         const posts = await fetchExternalPosts(GOV_LAW_URL, authorId, 14);
         govLawPosts.id = authorId;
-        govLawPosts.posts = sanitizeExternalArticles(posts);
+
+        if (posts.length > 0) {
+          govLawPosts.posts = sanitizeExternalArticles(posts);
+        } else {
+          govLawPosts.posts = [];
+        }
       }
     }
   }
