@@ -186,25 +186,17 @@ const getAuthorPaths = async () => {
   return paths;
 };
 
-const getLibraryCategoryContent = async (tempChildCat) => {
-  const [authors, childrenOfCurrentCategory, popularCategories, categoryDetails] = await Promise.all([
+const getLibraryCategoryContent = async () => {
+  const [authors, popularCategories] = await Promise.all([
     fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${tempChildCat}`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
     fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/posts/${tempChildCat}`, {
-      headers,
-    })
-      .then((data) => data.json())
-      .catch((err) => err),
   ]);
 
-  return [authors, childrenOfCurrentCategory, popularCategories, categoryDetails];
+  return [authors, popularCategories];
 };
 
 const getAuthorContent = async (slug) => {
@@ -332,6 +324,7 @@ const getCovid19BasedPages = async (slug, id) => {
 
   return [request, posts];
 };
+
 module.exports = {
   getAdmininstrationPaths,
   getAdministrationContent,

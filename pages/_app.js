@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import NProgress from 'nprogress';
-import NavBar from 'components/shared/navbar';
+import NavBar from 'components/shared/Navbar';
 import Footer from 'components/shared/footer';
 import * as gtag from 'utils/gtag';
 
@@ -52,9 +52,6 @@ export default function SHSite({ Component, pageProps }) {
           name="google-site-verification"
           content="ulImKkFX6Wqx04n63QzoiKMPDPwbQ53bDZAfwxyMq2Q"
         />
-        <link rel="preload" href="/fonts/proxima-nova-regular.ttf" as="font" crossOrigin=" " />
-        <link rel="preload" href="/fonts/proxima-nova-bold.ttf" as="font" crossOrigin=" " />
-        <link rel="preload" href="/fonts/proxima-nova-italic.ttf" as="font" crossOrigin=" " />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

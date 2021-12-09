@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import SitePage from 'components/pages/site-page';
+import SitePage from 'components/pages/BasicPage';
 import SiteLoader from 'components/shared/site-loader';
 import { FUNERAL_SLUGS, SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';

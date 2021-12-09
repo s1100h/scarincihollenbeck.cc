@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { getPostContent } from 'pages/api/get-post-content';
 import { SITE_URL } from 'utils/constants';
 import SiteLoader from 'components/shared/site-loader';
-import PostPage from 'components/pages/post-page';
+import PostPage from 'components/pages/SinglePost';
 
 export default function LawFirmInsightsPost({
   post,

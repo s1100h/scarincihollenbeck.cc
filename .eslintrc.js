@@ -12,7 +12,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   plugins: ['react'],
@@ -42,6 +42,7 @@ module.exports = {
     'prefer-destructuring': 'off',
     'no-unused-vars': 'off',
     'react/jsx-no-duplicate-props': 'off',
+    'no-case-declarations': 'off',
     'no-console': [
       2,
       {

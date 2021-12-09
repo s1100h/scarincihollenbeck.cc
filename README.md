@@ -20,13 +20,11 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 
 - [Animate.css](https://animate.style/)
 - [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
-- [Google reCaptcha](https://www.google.com/recaptcha/about/)
 - [KwesForms](https://kwesforms.com/)
 - [Next](https://nextjs.org/)
 - [MySQL](https://www.mysql.com/)
 - [React Bootstrap](https://react-bootstrap.github.io/)
 - [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
-- [React Share](https://github.com/nygardk/react-share#readme)
 - [RSS Parser](https://github.com/rbren/rss-parser#readme)
 - [Slick Carousel]()
 - [Styled Components](https://styled-components.com/)

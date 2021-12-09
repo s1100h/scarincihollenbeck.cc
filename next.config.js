@@ -14,6 +14,7 @@ module.exports = {
     NEXT_PUBLIC_ALGOLIA_PUBLIC_API: process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API,
     NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX,
+    NEXT_PUBLIC_BASE_GRAPHQL_API_URL: process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL,
   },
   images: {
     domains: [
@@ -24,6 +25,9 @@ module.exports = {
       'wp.scarincihollenbeck.com',
       'res.cloudinary.com',
     ],
+    minimumCacheTTL: 60 * 60 * 9,
+    deviceSizes: [576, 768, 992, 1200, 1456],
+    staticPageGenerationTimeout: 60 * 2,
   },
   async rewrites() {
     return [

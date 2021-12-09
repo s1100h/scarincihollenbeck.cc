@@ -208,11 +208,12 @@ export const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current
 export const HOLIDAY_SLUGS = ['/holiday/2019-happy-holidays', '/holiday/2020-happy-holidays'];
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
-
+export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
 export const CLIENT_ALERTS = [
   {
     id: 20098,
@@ -316,3 +317,9 @@ export const CORE_PRACTICES = [
     title: 'Tax, Trusts & Estates',
   },
 ];
+
+export const MUSIC_ESQ_URL = 'https://musicesq.com';
+export const CON_LAW_URL = 'https://constitutionallawreporter.com';
+export const GOV_LAW_URL = 'https://scarincilawyer.com';
+
+export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';

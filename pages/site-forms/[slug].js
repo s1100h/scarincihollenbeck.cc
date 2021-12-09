@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 
 import { SITE_FORM_SLUGS, BASE_API_URL } from 'utils/constants';
-import SiteFormPage from 'components/pages/site-form-page';
+import SiteFormPage from 'components/pages/SiteFeedbackPage';
 
 export default function SiteForms({ attorneys, practices, isNewAttorney }) {
   const [attorney, setAttorney] = useState('');

@@ -1,20 +1,24 @@
-import HomePage from 'components/pages/home-page';
+import HomePage from 'components/pages/HomePage';
 import { getHomePageContent } from 'utils/queries';
+import { homePageAwards } from 'utils/api';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 export default function Home({
-  seo, posts, locations, leadership,
+  seo, posts, locations, leadership, awards,
 }) {
   const homePageProps = {
     seo,
     posts,
     locations,
     leadership,
+    awards,
   };
   return <HomePage {...homePageProps} />;
 }
 
 export async function getStaticProps() {
   const [seo, posts, locations, attorneys, administration] = await getHomePageContent();
+  const awards = await homePageAwards();
 
   const leadership = attorneys
     .filter((a) => a.acf.chair.length > 0)
@@ -24,7 +28,7 @@ export async function getStaticProps() {
       name: leader.title.rendered,
       link: leader.link,
       lastName: leader.acf.last_name,
-      image: leader.better_featured_image.source_url,
+      image: formatSrcToCloudinaryUrl(leader.better_featured_image.source_url),
       title: leader.acf.chair
         .map((chair) => chair.post_title)
         .sort((a, b) => {
@@ -48,7 +52,7 @@ export async function getStaticProps() {
     .map((ds) => ({
       name: ds.title.rendered,
       link: ds.link,
-      image: ds.better_featured_image.source_url,
+      image: formatSrcToCloudinaryUrl(ds.better_featured_image.source_url),
       title: ['Firm Managing Partner'],
     }));
 
@@ -57,7 +61,7 @@ export async function getStaticProps() {
     .map((ds) => ({
       name: ds.title.rendered,
       link: ds.link,
-      image: ds.better_featured_image.source_url,
+      image: formatSrcToCloudinaryUrl(ds.better_featured_image.source_url),
       title: ['Red Bank, NJ Office Managing Partner'],
     }));
 
@@ -66,7 +70,7 @@ export async function getStaticProps() {
     .map((ds) => ({
       name: ds.title.rendered,
       link: ds.link,
-      image: ds.better_featured_image.source_url,
+      image: formatSrcToCloudinaryUrl(ds.better_featured_image.source_url),
       title: ['NYC Office Managing Partner'],
     }));
 
@@ -75,7 +79,7 @@ export async function getStaticProps() {
     .map((ds) => ({
       name: ds.title.rendered.replace(/&#8220;/g, '"').replace(/&#8221;/g, '"'),
       link: ds.link,
-      image: ds.better_featured_image.source_url,
+      image: formatSrcToCloudinaryUrl(ds.better_featured_image.source_url),
       title: ['Washington, D.C. Office Managing Partner'],
     }));
 
@@ -84,7 +88,7 @@ export async function getStaticProps() {
     .map((ks) => ({
       name: ks.title.rendered,
       link: ks.link,
-      image: ks.better_featured_image.source_url,
+      image: formatSrcToCloudinaryUrl(ks.better_featured_image.source_url),
       title: ['Executive Director'],
     }));
   return {
@@ -92,6 +96,7 @@ export async function getStaticProps() {
       seo,
       posts: posts.splice(0, 5),
       locations,
+      awards,
       leadership: [
         ...katerinTraugh,
         ...donaldScarinci,
@@ -101,6 +106,6 @@ export async function getStaticProps() {
         ...leadership,
       ],
     },
-    revalidate: 60 * 3,
+    revalidate: 60 * 2,
   };
 }

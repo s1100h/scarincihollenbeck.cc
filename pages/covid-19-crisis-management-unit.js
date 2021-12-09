@@ -1,4 +1,4 @@
-import CovidPage from 'components/pages/covid-pages';
+import CovidPage from 'components/pages/CovidPage';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
 import { getCovid19BasedPages } from 'utils/queries';
 

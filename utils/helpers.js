@@ -1,3 +1,4 @@
+import { CLOUDINARY_BASE_URL } from './constants';
 // sort a list by its key
 export function sortByKey(list, key) {
   if (list !== undefined) {
@@ -15,31 +16,11 @@ export function sortByKey(list, key) {
   return list;
 }
 
-// add a random key to the end of a string
-export const addRandomKey = (str) => str.concat('-').concat(Math.floor(Math.random() * 10000 + 1));
-
 // take a term lower case and replace white spaces with dashes
 export const urlify = (str) => str.toLowerCase().replace(/\s/g, '-');
 
 // create mark up
 export const createMarkup = (content) => ({ __html: content });
-
-// sort by date & key
-export function sortByDateKey(list, key) {
-  if (list !== undefined) {
-    list.sort((a, b) => {
-      if (a[key] < b[key]) {
-        return 1;
-      }
-      if (a[key] > b[key]) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  return list;
-}
 
 // get current directions to office location func
 export function getDirectionsFromLocation(location) {
@@ -86,21 +67,6 @@ export function getDirectionsFromLocation(location) {
 
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
-
-// find url parameter for query
-export function splitUrl(url, term = null) {
-  const x = url.split('/');
-  let y = x.filter((a) => a !== '');
-
-  if (term !== null) {
-    y = y.filter((a) => a !== '' && a !== term);
-  }
-
-  return y;
-}
-
-// urlify locations
-export const locationUrl = (location) => location.toLowerCase().replace(/\s/g, '-').replace(/[.]/gm, '');
 
 // filter by key
 export function filterByKey(list, key) {
@@ -159,44 +125,10 @@ export function formatDate(date) {
   return results;
 }
 
-// format core practices
-export function formatCorePractices(link) {
-  return {
-    name: link.title,
-    link: link.slug,
-  };
-}
-
 // print screen event
 export function printScreen() {
   window.print();
   return false;
-}
-
-// format title in query params
-export function makeQueryTitle(title) {
-  const formatTitle = title.replace(/\+/g, ' ');
-  return makeTitle(formatTitle);
-}
-
-// sort by orderBy key
-export function sortByOrder(admins) {
-  return admins.sort((a, b) => a.orderBy - b.orderBy);
-}
-
-// check if we are still using this...
-export async function fetcher(...args) {
-  const res = await fetch(...args);
-  return res.json();
-}
-
-// limit the string length to 200 characters
-export function limitTitleLength(title) {
-  if (title.length > 200) {
-    return `${title.substring(0, 200)} ...`;
-  }
-
-  return title;
 }
 
 // limit the string length to 200 characters
@@ -208,19 +140,6 @@ export function setTextLen(title, len) {
   return title;
 }
 
-// reformat posts slugs for getStaticPaths
-export function urlWithOutBaseUrl(posts, term) {
-  return posts.map((u) => {
-    if (u.uri.indexOf(`/${term}/`) < 0) {
-      const uriSplit = u.uri.split('/').filter((a) => a !== '');
-      const slug = uriSplit[uriSplit.length - 1];
-
-      return `/${term}/${slug}`;
-    }
-    return u.uri.replace('https://scarincihollenbeck.com', '');
-  });
-}
-
 // create a description from post content
 export const extractDescription = (content) => {
   const strip = content.replace(/<[^>]*>?/gm, '').replace(/(\r\n|\n|\r)/gm, '');
@@ -228,11 +147,46 @@ export const extractDescription = (content) => {
   return excerpt;
 };
 
-export const extractFeaturedImage = (content) => {
-  const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
-  const img = imgRex.exec(content);
-  if (img) {
-    return img[1];
+// external blog fetch helper
+export const fetchExternalPosts = async (site, authorId, amount) => {
+  const url = `${site}/wp-json/wp/v2/posts?author=${authorId}&per_page=${amount}&orderby=date`;
+  const request = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => err);
+
+  return request;
+};
+
+// Format image src into a cloudinary url
+export const formatSrcToCloudinaryUrl = (src) => {
+  if (src) {
+    const splitSrc = src.split('/');
+    const file = splitSrc[splitSrc.length - 1];
+
+    return CLOUDINARY_BASE_URL + file;
   }
   return '/images/no-image-found-diamond-750x350.png';
 };
+
+// sanitize interal articles from graphql request
+export const sanitizeArticles = (arr) => arr.map(({ node }, index) => ({
+  id: index,
+  link: node.uri,
+  image: formatSrcToCloudinaryUrl(node.featuredImage?.node.sourceUrl),
+  date: node.date,
+  excerpt: node.excerpt,
+  title: node.title,
+}));
+
+export const sanitizeExternalArticles = (arr) => arr.map(({
+  id, link, title, date,
+}) => ({
+  id,
+  link,
+  title: title.rendered,
+  date,
+}));

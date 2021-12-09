@@ -86,7 +86,7 @@ export default function AttorneyProfileFooter({
       {attorneyFooterBlogArticles.length > 0 && (
         <>
           <div className={lineStyles.lineHeader}>
-            <h3>Blogs</h3>
+            <h3>Blogs &amp; Client Alerts</h3>
           </div>
           <ArticleSection
             slug={slug}

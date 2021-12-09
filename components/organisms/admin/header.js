@@ -6,6 +6,7 @@ import ProfileTitle from 'components/organisms/attorney/profile-title';
 import ProfileDetails from 'components/organisms/attorney/profile-details';
 import ContactIcons from 'components/organisms/attorney/contact-icons';
 import profileStyles from 'styles/ProfileImage.module.css';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import styles from 'styles/Banner.module.css';
 
 export default function AdminProfileHeader({ image, profile }) {
@@ -25,7 +26,7 @@ export default function AdminProfileHeader({ image, profile }) {
               <Row>
                 <Col sm={12} md={4}>
                   <Image
-                    src={image}
+                    src={formatSrcToCloudinaryUrl(image)}
                     alt={profile.name}
                     width={260}
                     height={279}

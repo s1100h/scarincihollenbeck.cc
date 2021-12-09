@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
 import { getPracticePaths, getPracticeContent } from 'utils/queries';
-import PracticePage from 'components/pages/practice-page';
+import PracticePage from 'components/pages/PracticePage';
 
 export default function PracticeSingle({ practice, practiceChildren, slug }) {
   const [corePractices] = useState(CORE_PRACTICES);

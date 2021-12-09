@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import LibraryPage from 'components/pages/library-page';
+import LibraryDirectory from 'components/pages/LibraryDirectory';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
 import { getAuthorPaths, getAuthorContent } from 'utils/queries';
 
@@ -47,7 +47,7 @@ export default function LibraryAuthor({
     profileUrl,
   };
 
-  return <LibraryPage {...authorProps} />;
+  return <LibraryDirectory {...authorProps} />;
 }
 
 export async function getStaticPaths() {

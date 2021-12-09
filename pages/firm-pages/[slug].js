@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
-import FirmPage from 'components/pages/firm-page';
+import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, SITE_URL } from 'utils/constants';
 import { getFirmPagesContent } from 'utils/queries';
 

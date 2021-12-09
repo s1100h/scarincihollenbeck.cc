@@ -1,6 +1,6 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import AttorneyCard from 'components/shared/attorney-card';
+import AttorneyCard from 'components/shared/AttorneyCard';
 import { filterByKey } from 'utils/helpers';
 import textStyles from 'styles/Text.module.css';
 

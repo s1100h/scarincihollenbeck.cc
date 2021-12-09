@@ -13,11 +13,11 @@ export default function PopularList({ term, list, displayCount = true }) {
             <Link href={`/library/category/${item.slug}`}>
               <a className="text-dark">
                 {item.name}
-                {displayCount && Object.keys(item).includes('postCount') && (
+                {displayCount && Object.keys(item).includes('count') && (
                   <>
                     <span className="mx-1">|</span>
                     <strong>
-                      <small>{item.postCount}</small>
+                      <small>{item.count}</small>
                     </strong>
                   </>
                 )}

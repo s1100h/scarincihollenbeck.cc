@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { getAttorneysPageContent } from 'utils/queries';
-import AttorneysPage from 'components/pages/attorneys-page';
+import AttorneysPage from 'components/pages/AttorneysDirectory';
 
 const alphabet = [
   'A',
