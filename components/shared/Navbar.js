@@ -46,7 +46,7 @@ export default function NavBar() {
           <Col
             xs={12}
             lg={12}
-            xl={{ span: 6, offset: 0 }}
+            xl={6}
             className={scrollTop ? 'offset-lg-3' : 'mb-sm-2 mt-xl-3 pr-0 pl-0'}
           >
             <SiteNavs scrollTop={scrollTop} />
