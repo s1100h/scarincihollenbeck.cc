@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:@next/next/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -43,6 +43,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'react/jsx-no-duplicate-props': 'off',
     'no-case-declarations': 'off',
+    'import/extensions': 'off',
     'no-console': [
       2,
       {
