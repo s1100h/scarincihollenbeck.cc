@@ -54,7 +54,7 @@ const Filtered = ({ attorneys, userInput, select }) => {
       }
     }
 
-    return false;
+    return attorney;
   };
 
   // filter by key -- letter
