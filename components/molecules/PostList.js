@@ -84,7 +84,7 @@ const PostList = ({ queryPackage }) => {
   }
 
   return (
-    <div style={{ minHeight: '800px' }}>
+    <div style={{ minHeight: '410px' }}>
       <PaginationButtons
         handleNextPagination={handleNextPagination}
         handlePrevPagination={handlePrevPagination}

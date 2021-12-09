@@ -161,3 +161,23 @@ em {
     display: none !important;
   }
 }
+
+/** Awards for attorney bios**/
+
+.award-recognition {
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-right: 1rem;
+}
+.award-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+.award-container {
+  display: flex;
+  flex-direction: row;
+}
