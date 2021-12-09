@@ -5,3 +5,4 @@
 - Refector blog posts in the footer of the library pages to use graphQL
 - Refactor Article Loader as an atom
 - Add GA to shared/head components using next/script for optimization
+- Add Sentry https://sentry.io/onboarding/scarinci-hollenbeck/get-started/
