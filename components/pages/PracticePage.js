@@ -4,13 +4,12 @@ import dynamic from 'next/dynamic';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Sidebar from 'components/organisms/practice/Sidebar';
 import Menu from 'components/organisms/practice/Menu';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/organisms/practice/Body';
-/** get graphql category query */
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
+import Sidebar from '../organisms/practice/Sidebar';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
 

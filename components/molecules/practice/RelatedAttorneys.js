@@ -2,9 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/shared/AttorneyCard';
-import Members from 'components/molecules/practice/Members';
 import lineHeadingStyles from 'styles/LineHeader.module.css';
 import { sortByKey } from 'utils/helpers';
+import Members from './Members';
 
 export default function PracticeRelatedAttorneys({ members, chair, title }) {
   return (

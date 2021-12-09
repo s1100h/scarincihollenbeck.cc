@@ -23,11 +23,6 @@ export default function ArticlePagination({
           Next &raquo;
         </Button>
       </div>
-      <style jsx>
-        {`
-          font-size: 14px;
-        `}
-      </style>
     </>
   );
 }

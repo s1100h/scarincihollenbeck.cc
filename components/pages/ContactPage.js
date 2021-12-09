@@ -90,7 +90,7 @@ export default function ContactPage({ seo, site, offices }) {
           </Col>
         </Row>
       </Container>
-      <style jsx>{' p{ font-size: 1.15rem }; strong { font-size: 1.15rem }'}</style>
+      <style jsx>{' p{ font-size: 1.15rem } strong { font-size: 1.15rem }'}</style>
     </>
   );
 }
