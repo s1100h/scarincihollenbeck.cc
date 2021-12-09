@@ -11,6 +11,7 @@ const client = new ApolloClient({
     uri: GRAPHQL_API_URL,
   }),
   cache: new InMemoryCache(),
+  ssrForceFetchDelay: 100,
 });
 
 const ArticleFeed = ({ query }) => (
