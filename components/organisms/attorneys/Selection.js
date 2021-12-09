@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import textStyles from 'styles/Text.module.css';
 import { createMarkup } from 'utils/helpers';
 
-const Selected = ({
+const Selection = ({
   select, userInput, clearQuery, clearAll,
 }) => {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
@@ -58,4 +58,4 @@ const Selected = ({
   );
 };
 
-export default Selected;
+export default Selection;

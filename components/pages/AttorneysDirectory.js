@@ -1,4 +1,4 @@
-import Selected from 'components/organisms/attorneys/Selected';
+import Selection from 'components/organisms/attorneys/Selection';
 import Filters from 'components/organisms/attorneys/Filters';
 import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
@@ -46,7 +46,7 @@ export default function AttorneysPage({
           {/** End of Filters */}
           {/** Results */}
           <div className="w-100 border mt-sm-6 mt-md-0">
-            <Selected
+            <Selection
               select={select}
               clearQuery={clearQuery}
               userInput={userInput}
