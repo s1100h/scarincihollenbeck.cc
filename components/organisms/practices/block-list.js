@@ -10,7 +10,7 @@ export default function ArchivePracticeBlockList({ list }) {
     <Container className="mt-5">
       <Row>
         {list.map((item) => (item.children ? (
-          <Col sm={12} md={4} key={item.title} className="mb-3">
+          <Col sm={12} md={6} lg={4} key={item.title} className="mb-3">
             <Dropdown>
               <Dropdown.Toggle
                 variant="link"
