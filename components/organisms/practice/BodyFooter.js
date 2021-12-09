@@ -1,11 +1,11 @@
 import React from 'react';
 import useInView from 'react-cool-inview';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import RelatedAttorneys from 'components/molecules/practice/RelatedAttorneys';
 import ClientSlider from 'components/molecules/practice/ClientSlider';
 import lineStyles from 'styles/LineHeader.module.css';
 
-const ArticleHero = dynamic(() => import('components/molecules/practice/ArticleHero'));
+// const ArticleHero = dynamic(() => import('components/molecules/practice/ArticleHero'));
 
 const BodyFooter = ({
   attorneyList, highlightReal, blogId, chair, handleLink,
@@ -31,7 +31,7 @@ const BodyFooter = ({
           <ClientSlider content={highlightReal} />
         </div>
       )}
-      <div className="mt-5" ref={observe}>
+      {/* <div className="mt-5" ref={observe}>
         {inView && (
           <>
             <div className={`${lineStyles.lineHeader} my-4`}>
@@ -40,7 +40,7 @@ const BodyFooter = ({
             <ArticleHero blogId={blogId} />
           </>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
