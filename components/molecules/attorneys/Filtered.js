@@ -4,7 +4,7 @@ import AttorneyCard from 'components/shared/AttorneyCard';
 import { filterByKey } from 'utils/helpers';
 import textStyles from 'styles/Text.module.css';
 
-export default function ArchiveAttorneyResultsFiltered({ attorneys, userInput, select }) {
+const Filtered = ({ attorneys, userInput, select }) => {
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');
@@ -45,18 +45,16 @@ export default function ArchiveAttorneyResultsFiltered({ attorneys, userInput, s
 
   // filter by key -- query
   const filterQuery = (attorney) => {
-    const practiceList = attorney.practices.replace(/&amp;/g, '&');
-
     if (userInput) {
-      if (attorney.title.indexOf(userInput) >= 0) {
-        return attorney;
-      }
-      if (practiceList.indexOf(userInput.trim()) >= 0) {
-        return attorney;
+      const inputToLower = userInput.toLowerCase().trim();
+      const lastNameToLower = attorney.last_name.toLowerCase().trim();
+
+      if (lastNameToLower.includes(inputToLower)) {
+        return lastNameToLower.indexOf(inputToLower) >= 0;
       }
     }
 
-    return true;
+    return false;
   };
 
   // filter by key -- letter
@@ -97,4 +95,6 @@ export default function ArchiveAttorneyResultsFiltered({ attorneys, userInput, s
       )}
     </Row>
   );
-}
+};
+
+export default Filtered;

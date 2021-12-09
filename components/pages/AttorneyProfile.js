@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
-import ProfileFooter from 'components/organisms/attorney/ProfileFooter';
 import StringContent from 'components/organisms/attorney/StringContent';
 import ObjectContent from 'components/organisms/attorney/ObjectContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
@@ -13,6 +12,9 @@ import Sidebar from 'components/organisms/attorney/Sidebark';
 import { FaCaretDown } from 'react-icons/fa';
 import useOnClickOutside from 'hooks/useOnClickOutside';
 import { CURRENT_DOMAIN } from 'utils/constants';
+import dynamic from 'next/dynamic';
+
+const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 
 const AttorneyPage = ({
   seo,

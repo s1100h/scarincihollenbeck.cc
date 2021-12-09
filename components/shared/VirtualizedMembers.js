@@ -7,7 +7,7 @@ import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-const PracticeMembers = ({ members }) => {
+const VirtualizedMembers = ({ members }) => {
   const parentRef = useRef();
 
   const rowVirtualizer = useVirtual({
@@ -87,4 +87,4 @@ const PracticeMembers = ({ members }) => {
   );
 };
 
-export default PracticeMembers;
+export default VirtualizedMembers;

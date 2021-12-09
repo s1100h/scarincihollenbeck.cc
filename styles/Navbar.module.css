@@ -81,7 +81,7 @@
   .navContainer {
     background-color: #fff;
     display: flex !important;
-    justify-content: flex-end !important;
+    justify-content: center !important;
     padding-left: 0;
   }
 
@@ -135,11 +135,22 @@
     margin-right: 1em;
     font-size: 1.1rem;
     transition: all 200ms linear;
+    height: 35px;
   }
   .dropDownNavItem:hover,
   .dropDownNavItem:focus {
     color: #fff !important;
     background-color: #a9a9a9 !important;
     border-bottom: 3px solid #fff !important;
+  }
+
+  .borderWrapper {
+    border-bottom: 1px solid #dee2e6 !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navContainer {
+    justify-content: flex-end !important;
   }
 }

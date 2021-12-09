@@ -5,9 +5,9 @@ import Button from 'react-bootstrap/Button';
 import textStyles from 'styles/Text.module.css';
 import { createMarkup } from 'utils/helpers';
 
-export default function ArchiveAttorneySelected({
+const Selected = ({
   select, userInput, clearQuery, clearAll,
-}) {
+}) => {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
   return (
@@ -56,4 +56,6 @@ export default function ArchiveAttorneySelected({
       </Row>
     </Container>
   );
-}
+};
+
+export default Selected;

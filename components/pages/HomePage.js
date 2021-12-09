@@ -3,18 +3,20 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import HomeBanner from 'components/organisms/home/banner';
 import HomeHoneyCombSection from 'components/organisms/home/honey-comb-section';
-import HomeLocations from 'components/organisms/home/locations';
 import HomeMainTag from 'components/organisms/home/main-tag';
-import HomeOurLeadership from 'components/organisms/home/our-leadership';
-import HomeReviews from 'components/organisms/home/reviews';
-import HomeWhoWeAreSection from 'components/organisms/home/who-we-are-section';
-import HomePageLink from 'components/organisms/home/page-link';
-import ArticleHero from 'components/shared/ArticleHero';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { sortByKey } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
 import marginStyles from 'styles/Margins.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
+import dynamic from 'next/dynamic';
+
+const HomeLocations = dynamic(() => import('components/organisms/home/locations'));
+const HomeOurLeadership = dynamic(() => import('components/organisms/home/our-leadership'));
+const HomeReviews = dynamic(() => import('components/organisms/home/reviews'));
+const HomeWhoWeAreSection = dynamic(() => import('components/organisms/home/who-we-are-section'));
+const HomePageLink = dynamic(() => import('components/organisms/home/page-link'));
+const ArticleHero = dynamic(() => import('components/shared/ArticleHero'));
 
 export default function HomePage({
   seo, posts, locations, leadership, awards,

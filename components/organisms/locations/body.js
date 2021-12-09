@@ -1,12 +1,9 @@
-import Link from 'next/link';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import AttorneyCard from 'components/shared/AttorneyCard';
-import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
+import dynamic from 'next/dynamic';
+import { sortByKey } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-import textStyles from 'styles/Text.module.css';
-import fontStyles from 'styles/Fonts.module.css';
+
+const VirtualizedMembers = dynamic(() => import('components/shared/VirtualizedMembers'));
+const RelatedPractices = dynamic(() => import('components/molecules/location/RelatedPractices'));
 
 export default function LocationsBody({
   attorneys, practices, map, title,
@@ -27,63 +24,8 @@ export default function LocationsBody({
         />
       </div>
       <h4 className={grayTitleStyles.title}>{`${title} Attorneys`}</h4>
-      <Container>
-        <Row>
-          {sortByKey(attorneys, 'lastName').map((m) => (
-            <Col sm={12} md={12} lg={6} className="mb-4" key={m.name}>
-              <AttorneyCard
-                link={m.link}
-                image={formatSrcToCloudinaryUrl(m.image)}
-                name={m.name}
-                title={m.designation}
-                number={m.contact}
-                email={m.email}
-                width={80}
-                height={112}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-      <p className={`${grayTitleStyles.title} mt-5`}>Services We Offer</p>
-      <Container className="mb-5">
-        <Row>
-          <Col sm={12} md={6} className="col-sm-12 col-md-6">
-            <ul className={`${textStyles.blueTitle} mx-0 px-0`}>
-              {practices.map(
-                (p, i) => practices.length / 2 > i && (
-                <li key={p.title} className="mb-3">
-                  <Link href={p.slug}>
-                    <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
-                      <strong>
-                        <u>{p.title}</u>
-                      </strong>
-                    </a>
-                  </Link>
-                </li>
-                ),
-              )}
-            </ul>
-          </Col>
-          <Col sm={12} md={6}>
-            <ul className={`${textStyles.blueTitle} mx-0 px-0`}>
-              {practices.map(
-                (p, i) => practices.length / 2 <= i && (
-                <li key={p.title} className="mb-3">
-                  <Link href={p.slug}>
-                    <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
-                      <strong>
-                        <u>{p.title}</u>
-                      </strong>
-                    </a>
-                  </Link>
-                </li>
-                ),
-              )}
-            </ul>
-          </Col>
-        </Row>
-      </Container>
+      <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />
+      <RelatedPractices practices={practices} />
     </>
   );
 }

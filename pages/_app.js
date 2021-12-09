@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import NProgress from 'nprogress';
 import NavBar from 'components/shared/Navbar';
-import Footer from 'components/shared/footer';
 import * as gtag from 'utils/gtag';
 
 /**
@@ -21,6 +21,8 @@ import 'animate.css/animate.min.css';
  * */
 import 'styles/globals.css';
 import 'styles/carousel.css';
+
+const Footer = dynamic(() => import('components/shared/footer'));
 
 /**
  *  Add page transition loader

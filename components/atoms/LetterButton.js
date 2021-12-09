@@ -14,6 +14,4 @@ const LetterButton = memo(({ letter, letterClick }) => (
   </Button>
 ));
 
-const ArchiveAttorneyFitlersLetter = ({ alphabet, letterClick }) => alphabet.map((letter) => <LetterButton key={letter} letter={letter} letterClick={letterClick} />);
-
-export default ArchiveAttorneyFitlersLetter;
+export default LetterButton;

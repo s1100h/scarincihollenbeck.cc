@@ -27,7 +27,7 @@ export default function NavBar() {
   return (
     <header className="mb-0 pt-1 shadow sticky-top top--1 bg-white">
       <Container>
-        <Row className="my-2 border-bottom">
+        <Row className={`${navBarStyles.borderWrapper} my-2`}>
           <Col sm={12} md={4} className="mb-3 mb-md-0">
             <GlobalSearch scrollTop={scrollTop} />
           </Col>
@@ -43,7 +43,12 @@ export default function NavBar() {
           >
             <SiteLogo scrollTop={scrollTop} />
           </Col>
-          <Col xs={12} lg={6} className={scrollTop ? 'offset-lg-3' : 'mt-sm-2 mt-lg-3 pr-0 pl-0'}>
+          <Col
+            xs={12}
+            lg={12}
+            xl={{ span: 6, offset: 0 }}
+            className={scrollTop ? 'offset-lg-3' : 'mb-sm-2 mt-xl-3 pr-0 pl-0'}
+          >
             <SiteNavs scrollTop={scrollTop} />
             <div className={navBarStyles.mobileMenu}>
               <MobileMenu />

@@ -1,6 +1,6 @@
-import ArchiveAttorneySelected from 'components/organisms/attorneys/selected';
-import Filters from 'components/organisms/attorneys/filters';
-import Results from 'components/organisms/attorneys/results';
+import Selected from 'components/organisms/attorneys/Selected';
+import Filters from 'components/organisms/attorneys/Filters';
+import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
@@ -46,7 +46,7 @@ export default function AttorneysPage({
           {/** End of Filters */}
           {/** Results */}
           <div className="w-100 border mt-sm-6 mt-md-0">
-            <ArchiveAttorneySelected
+            <Selected
               select={select}
               clearQuery={clearQuery}
               userInput={userInput}

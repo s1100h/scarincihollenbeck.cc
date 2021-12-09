@@ -1,6 +1,6 @@
-import PracticesPage from 'components/pages/PracticesDirectory';
 import { sortByKey, headers } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import PracticesDirectory from 'components/pages/PracticesDirectory';
 
 const seo = {
   title: 'Attorney Legal Practices | Scarinci Hollenbeck',
@@ -30,17 +30,17 @@ function sortPracticeCategorys(list) {
 export default function Practices({ core, additional, business }) {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
-  const sortedBusienssPractices = sortByKey(business, 'title');
+  const sortedBusinessPractices = sortByKey(business, 'title');
 
   const practicesPageProps = {
     site,
     seo,
     sortedCorePractices,
     sortedAdditionalPractices,
-    sortedBusienssPractices,
+    sortedBusinessPractices,
   };
 
-  return <PracticesPage {...practicesPageProps} />;
+  return <PracticesDirectory {...practicesPageProps} />;
 }
 
 export async function getStaticProps() {

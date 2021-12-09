@@ -1,38 +1,13 @@
+import dynamic from 'next/dynamic';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import styles from 'styles/AttorneyArchives.module.css';
 import megaMenuStyles from 'styles/MegaMenu.module.css';
 
-function PracticeListItem({ title, onSelect, pChildren }) {
-  return (
-    <div>
-      <Dropdown.Item
-        name="practices"
-        variant="link"
-        onClick={(e) => onSelect(e, title)}
-        className={styles.practiceTitle}
-      >
-        {title}
-      </Dropdown.Item>
-      {pChildren.map((fc) => (
-        <Dropdown.Item
-          key={fc.ID}
-          variant="link"
-          name="practices"
-          className={styles.childPracticeLink}
-          onClick={(e) => onSelect(e, fc.title)}
-        >
-          {fc.title}
-        </Dropdown.Item>
-      ))}
-    </div>
-  );
-}
-
-export default function ArchiveAttorneyFitlersPractices({ practices, onSelect }) {
+const PracticeListItem = dynamic(() => import('components/atoms/PracticeListItem'));
+const Practices = ({ practices, onSelect }) => {
   /**
    *
    * Filter each item into a column
@@ -103,4 +78,5 @@ export default function ArchiveAttorneyFitlersPractices({ practices, onSelect })
       </Container>
     </DropdownButton>
   );
-}
+};
+export default Practices;

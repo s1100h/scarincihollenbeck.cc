@@ -1,7 +1,9 @@
 # Next Release
 
 - Use Context API To store locations for the details functionality
-- Fix Dropdown menus to not use Bootsrap
-- Fix the blog posts at the bottom of a practice
-- Fix the article archives on library
+- Refector blog posts in the footer of the practice pages to use graphQL
+- Refector blog posts in the footer of the library pages to use graphQL
 - Refactor Article Loader as an atom
+
+-- Firm overview: admins
+-- Library Older articles
