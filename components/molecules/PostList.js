@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
+import FadeLoader from 'react-spinners/FadeLoader';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import ArticlesNonVirtualized from 'components/shared/ArticlesNonVirtualized';
 import PaginationButtons from 'components/atoms/PaginationButtons';
@@ -66,9 +67,16 @@ const PostList = ({ queryPackage }) => {
   if (error) {
     return <pre>{JSON.stringify(error)}</pre>;
   }
-
+  // loading
   if (loading) {
-    return null;
+    return (
+      <div
+        className="d-flex flex-colum justify-content-center align-items-center"
+        style={{ height: '300px' }}
+      >
+        <FadeLoader size={32} color="#a9a9a9" />
+      </div>
+    );
   }
 
   if (data.posts?.edges.length <= 0) {

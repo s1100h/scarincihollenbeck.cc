@@ -205,7 +205,13 @@ export const FUNERAL_SLUGS = [
 
 export const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current-attorney'];
 
-export const HOLIDAY_SLUGS = ['/holiday/2019-happy-holidays', '/holiday/2020-happy-holidays'];
+export const HOLIDAY_SLUGS = [
+  '/holiday/2019-happy-holidays',
+  '/holiday/2020-happy-holidays',
+  '/holiday/2021-happy-holidays',
+  '/holiday/2022-happy-holidays',
+  '/holiday/2023-happy-holidays',
+];
 
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;

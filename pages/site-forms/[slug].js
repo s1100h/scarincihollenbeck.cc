@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
   return {
     paths: urls || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }
 

@@ -18,17 +18,19 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 
 **Client Application built with**
 
+- [Apollo GraphQL](https://www.apollographql.com/)
+- [Algolia](https://www.algolia.com/)
 - [Animate.css](https://animate.style/)
 - [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+- [GraphQL](https://graphql.org/)
 - [KwesForms](https://kwesforms.com/)
 - [Next](https://nextjs.org/)
 - [MySQL](https://www.mysql.com/)
 - [React Bootstrap](https://react-bootstrap.github.io/)
 - [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
 - [RSS Parser](https://github.com/rbren/rss-parser#readme)
-- [Slick Carousel]()
 - [Styled Components](https://styled-components.com/)
-- [SWR](https://swr.vercel.app/)
+- [Slick Carousel](https://kenwheeler.github.io/slick/)
 
 ## Install
 

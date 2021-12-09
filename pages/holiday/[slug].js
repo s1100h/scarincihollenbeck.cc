@@ -40,7 +40,7 @@ export async function getStaticPaths() {
 
   return {
     paths: urls || [],
-    fallback: true,
+    fallback: 'blocking',
   };
 }
 
@@ -56,5 +56,6 @@ export async function getStaticProps({ params }) {
       seo,
       slug: params.slug,
     },
+    revalidate: 60,
   };
 }

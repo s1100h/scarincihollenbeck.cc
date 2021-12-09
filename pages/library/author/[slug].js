@@ -54,7 +54,7 @@ export async function getStaticPaths() {
   const authorPaths = await getAuthorPaths();
   return {
     paths: authorPaths,
-    fallback: true,
+    fallback: 'blocking',
   };
 }
 export async function getStaticProps({ params }) {

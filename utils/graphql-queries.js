@@ -199,7 +199,7 @@ export const attorneyFirmBlogQuery = `query AttorneyPostsById($id: Int) {
         date
         featuredImage {
           node {
-            sourceUrl(size: LARGE)
+            sourceUrl
           }
         }
         uri
@@ -247,7 +247,7 @@ export const categoryPostsByIdQuery = `query categoryPostsById(
       date
       featuredImage {
         node {
-          sourceUrl(size: LARGE)
+          sourceUrl
         }
       }
       uri
@@ -302,7 +302,7 @@ export const authorPostsByIdQuery = `query authorPostsById(
       date
       featuredImage {
         node {
-          sourceUrl(size: LARGE)
+          sourceUrl
         }
       }
       uri
@@ -338,7 +338,7 @@ export const authorFirmNewsByIdQuery = `query authorFirmNewsById(
       date
       featuredImage {
         node {
-          sourceUrl(size: LARGE)
+          sourceUrl
         }
       }
       uri

@@ -36,14 +36,6 @@ export default function ProfileDetails({
           </Link>
         ))}
       </p>
-      {additionalHeaderLinks
-        && additionalHeaderLinks.map((ah) => (
-          <p key={ah.title}>
-            <Link href={ah.url}>
-              <a className="text-white">{ah.title}</a>
-            </Link>
-          </p>
-        ))}
       <style jsx>{'p { margin-bottom: 5px;}'}</style>
     </div>
   );

@@ -166,7 +166,6 @@ export const formatSrcToCloudinaryUrl = (src) => {
   if (src) {
     const splitSrc = src.split('/');
     const file = splitSrc[splitSrc.length - 1];
-
     return CLOUDINARY_BASE_URL + file;
   }
   return '/images/no-image-found-diamond-750x350.png';

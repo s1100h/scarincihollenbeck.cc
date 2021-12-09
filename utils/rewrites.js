@@ -7,6 +7,10 @@ const HOLIDAY_REWRITES = [
     source: '/holiday/2020-happy-holidays',
     destination: '/holiday/2020-happy-holidays',
   },
+  {
+    source: '/holiday/2021-happy-holidays',
+    destination: '/holiday/2021-happy-holidays',
+  },
 ];
 
 const FUNERAL_REWRITES = [
