@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import lineHeadingStyles from 'styles/LineHeader.module.css';
 import { sortByKey } from 'utils/helpers';
-import Members from './Members';
+import PracticeMembers from 'components/molecules/practice/PracticeMembers';
 
 export default function PracticeRelatedAttorneys({ members, chair, title }) {
   return (
@@ -39,7 +39,7 @@ export default function PracticeRelatedAttorneys({ members, chair, title }) {
             <h3>Members</h3>
           </div>
           <Row className="mt-5">
-            <Members members={sortByKey(members, 'lastName')} />
+            <PracticeMembers members={sortByKey(members, 'lastName')} />
           </Row>
         </Container>
       )}

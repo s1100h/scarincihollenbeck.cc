@@ -6,7 +6,7 @@ import CovidResourcesBox from 'components/molecules/practice/CovidResourcesBox';
 import SidebarContent from 'components/shared/SidebarContent';
 import textStyles from 'styles/Text.module.css';
 
-const Sidebar = ({ corePractices, practiceChildren }) => {
+const PageSidebar = ({ corePractices, practiceChildren }) => {
   const router = useRouter();
   const slug = router.asPath;
   return (
@@ -64,4 +64,4 @@ const Sidebar = ({ corePractices, practiceChildren }) => {
   );
 };
 
-export default Sidebar;
+export default PageSidebar;

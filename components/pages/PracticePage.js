@@ -9,7 +9,7 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/organisms/practice/Body';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
-import Sidebar from '../organisms/practice/Sidebar';
+import PageSidebar from 'components/organisms/practice/PageSidebar';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
 
@@ -77,7 +77,7 @@ const PracticePage = ({
             />
           </Col>
           <Col sm={12} lg={3} style={{ position: 'relative', bottom: '24px' }}>
-            <Sidebar corePractices={corePractices} practiceChildren={practiceChildren} />
+            <PageSidebar corePractices={corePractices} practiceChildren={practiceChildren} />
           </Col>
         </Row>
       </Container>

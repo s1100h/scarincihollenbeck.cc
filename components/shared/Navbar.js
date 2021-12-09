@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import MobileMenu from 'components/shared/Navbar/MobileMenu';
+import MobileMenu from 'components/organisms/Navbar/MobileMenu';
 import GlobalSearch from 'components/shared/GlobalSearch';
-import TopNavLinks from 'components/shared/Navbar/TopNavLinks';
-import SiteNavs from 'components/shared/Navbar/SiteNavs';
-import SiteLogo from 'components/shared/Navbar/SiteLogo';
+import TopNavLinks from 'components/organisms/Navbar/TopNavLinks';
+import SiteNavs from 'components/organisms/Navbar/SiteNavs';
+import SiteLogo from 'components/organisms/Navbar/SiteLogo';
 import navBarStyles from 'styles/Navbar.module.css';
 
 export default function NavBar() {
