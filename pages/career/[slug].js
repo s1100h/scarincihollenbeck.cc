@@ -41,6 +41,6 @@ export async function getStaticProps({ params }) {
     props: {
       career: request,
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: 60,
   };
 }

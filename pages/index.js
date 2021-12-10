@@ -91,6 +91,7 @@ export async function getStaticProps() {
       image: formatSrcToCloudinaryUrl(ks.better_featured_image.source_url),
       title: ['Executive Director'],
     }));
+
   return {
     props: {
       seo,
@@ -106,6 +107,6 @@ export async function getStaticProps() {
         ...leadership,
       ],
     },
-    revalidate: 60 * 2,
+    revalidate: 60,
   };
 }
