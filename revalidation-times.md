@@ -12,9 +12,9 @@ library/author 18000 (4 hours)
 library/category 18000 (4 hours)
 location/[slug] 86400 (1day)
 post/[..slug]  360 (6 minutes)
-practice/[slug] 86400 (1day)
+practice/[slug] 300 (5 minutes)
 site-forms never
-attorneys 86400 (1day)
+attorneys 300 (5 minutes)
 awards 86400 (1day)
 careers 86400 (1day)
 contact never
@@ -25,7 +25,7 @@ government-education-covid-19-response 86400 (1day)
 home (index) 3600 (3 minutes)
 locations 86400 (1day)
 mailchimp-subscription never
-practices 86400 (1day)
+practices 300 (5 minutes)
 privacy-policy 86400 (1day)
 subscribe never
 terms-of-use 86400

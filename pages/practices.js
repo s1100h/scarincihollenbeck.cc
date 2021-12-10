@@ -57,6 +57,6 @@ export async function getStaticProps() {
       additional,
       business,
     },
-    revalidate: 86400,
+    revalidate: 300,
   };
 }

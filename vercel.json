@@ -25,6 +25,11 @@
       "source": "/client-alert/breaking-down-the-infrastructure-bill-and-how-it-can-help-your-business",
       "destination": "/client-alert/infrastructure-bill-and-how-it-can-help-your-business",
       "statusCode": 301
+    },
+    {
+      "source": "/practices/mergers-acquistions",
+      "destination": "/practices/mergers-acquisitions",
+      "statusCode": 301
     }
   ]
 }
