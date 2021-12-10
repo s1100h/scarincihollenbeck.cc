@@ -49,6 +49,5 @@ export async function getStaticProps() {
       seo,
       site,
     },
-    revalidate: 60,
   };
 }

@@ -281,7 +281,7 @@ export default async (req, res) => {
       return res.status(404).send({ ...fetchPost });
     }
 
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+    res.setHeader('Cache-Control', 's-maxage=360, stale-while-revalidate');
     return res.status(200).send({ ...fetchPost });
   } catch (error) {
     console.error(error);

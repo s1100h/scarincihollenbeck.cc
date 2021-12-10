@@ -83,6 +83,6 @@ export async function getStaticProps() {
       locations: ['Lyndhurst, NJ', 'Red Bank, NJ', 'New York, NY', 'Washington D.C.'],
       positionTypes: ['Administration', 'Attorney'],
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }

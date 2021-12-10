@@ -62,6 +62,6 @@ export async function getStaticProps({ params }) {
       practiceChildren: request.children || [],
       slug: params.slug,
     },
-    revalidate: 60,
+    revalidate: 18000,
   };
 }

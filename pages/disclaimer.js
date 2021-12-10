@@ -31,6 +31,6 @@ export async function getStaticProps() {
       content,
       seo,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }

@@ -45,6 +45,6 @@ export async function getStaticProps({ params }) {
       currentOffice,
       posts: currentOfficePosts,
     },
-    revalidate: 60 * 60 * 168,
+    revalidate: 86400,
   };
 }

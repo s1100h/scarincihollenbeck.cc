@@ -41,6 +41,6 @@ export async function getStaticProps({ params }) {
       relatedPages,
       currentPage: params.slug,
     },
-    revalidate: 60 * 60 * 168,
+    revalidate: 86400,
   };
 }

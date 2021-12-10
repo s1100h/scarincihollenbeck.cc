@@ -107,6 +107,6 @@ export async function getStaticProps() {
         ...leadership,
       ],
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 }
