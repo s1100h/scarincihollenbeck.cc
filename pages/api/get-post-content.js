@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { CLOUDINARY_BASE_URL } from 'utils/constants';
 
 require('dotenv').config();
@@ -270,19 +271,19 @@ export const getPostContent = async (slug, category) => {
 
 export default async (req, res) => {
   try {
-    const fetchPost = await getPostContent(
-      'njdep-begins-implementing-environmental-justice-law',
-      'law-firm-insights',
-      // 'what-to-know-about-the-secs-shadow-trading-enforcement-action',
-      // 'law-firm-insights'
-    );
+    if (req.method === 'GET') {
+      const fetchPost = await getPostContent(
+        'njdep-begins-implementing-environmental-justice-law',
+        'law-firm-insights',
+      );
 
-    if (fetchPost.status === 404) {
-      return res.status(404).send({ ...fetchPost });
+      if (fetchPost.status === 404) {
+        return res.status(404).send({ ...fetchPost });
+      }
+
+      res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
+      return res.status(200).send({ ...fetchPost });
     }
-
-    res.setHeader('Cache-Control', 's-maxage=360, stale-while-revalidate');
-    return res.status(200).send({ ...fetchPost });
   } catch (error) {
     console.error(error);
 
