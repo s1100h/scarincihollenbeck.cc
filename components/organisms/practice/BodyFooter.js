@@ -8,7 +8,7 @@ import lineStyles from 'styles/LineHeader.module.css';
 // const ArticleHero = dynamic(() => import('components/molecules/practice/ArticleHero'));
 
 const BodyFooter = ({
-  attorneyList, highlightReal, blogId, chair, handleLink,
+  attorneyList, highlightReal, chair, handleLink,
 }) => {
   const { observe, inView } = useInView({
     onEnter: ({ unobserve }) => unobserve(), // only run once

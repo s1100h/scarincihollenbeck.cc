@@ -4,6 +4,7 @@ import SiteLoader from 'components/shared/site-loader';
 import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
 import { getPracticePaths, getPracticeContent } from 'utils/queries';
 import PracticePage from 'components/pages/PracticePage';
+import ApolloWrapper from 'layouts/ApolloWrapper';
 
 export default function PracticeSingle({ practice, practiceChildren, slug }) {
   const [corePractices] = useState(CORE_PRACTICES);
@@ -38,7 +39,11 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
     tabs: fullTabs,
     slug,
   };
-  return <PracticePage {...practiceProps} />;
+  return (
+    <ApolloWrapper>
+      <PracticePage {...practiceProps} />
+    </ApolloWrapper>
+  );
 }
 
 export async function getStaticPaths() {

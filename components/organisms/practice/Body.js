@@ -2,15 +2,14 @@ import { createMarkup } from 'utils/helpers';
 import pageContentStyles from 'styles/PageContent.module.css';
 import dynamic from 'next/dynamic';
 
-const ArticleFeed = dynamic(() => import('components/shared/ArticleFeed'));
-
-const Body = ({ activeTabContent, activeTab, query }) => (
+const PostList = dynamic(import('components/molecules/PostList'));
+const Body = ({ activeTabContent, activeTab, content }) => (
   <>
     <div
       className={`${pageContentStyles.p} mt-4`}
       dangerouslySetInnerHTML={createMarkup(activeTabContent)}
     />
-    {activeTab === 99 && <ArticleFeed query={query} />}
+    {activeTab === 99 && <PostList content={content} />}
   </>
 );
 

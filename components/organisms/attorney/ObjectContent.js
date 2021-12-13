@@ -3,10 +3,7 @@ import EducationContent from 'components/molecules/attorney/EducationContent';
 import ContentTitle from 'components/molecules/attorney/ContentTitle';
 import ContactForm from 'components/molecules/attorney/ContactForm';
 import Videos from 'components/molecules/attorney/Videos';
-import ArticleFeed from 'components/shared/ArticleFeed';
 import BlogList from 'components/molecules/attorney/BlogList';
-
-import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
 
 const renderBody = (title, content) => {
   switch (title) {
@@ -31,46 +28,11 @@ const renderBody = (title, content) => {
           <Table content={content} />
         </>
       );
-    case 'Blogs':
-      const blogQuery = {
-        query: authorPostsByIdQuery,
-        variables: {
-          first: 8,
-          last: null,
-          after: null,
-          before: null,
-          id: content.id,
-        },
-      };
-
-      return (
-        <>
-          <ContentTitle title={title} />
-          <ArticleFeed query={blogQuery} />
-        </>
-      );
     case 'Videos':
       return (
         <>
           <ContentTitle title={title} />
           <Videos content={content} />
-        </>
-      );
-    case 'News Press Releases':
-      const newsQuery = {
-        query: authorFirmNewsByIdQuery,
-        variables: {
-          first: 8,
-          last: null,
-          after: null,
-          before: null,
-          name: content.id,
-        },
-      };
-      return (
-        <>
-          <ContentTitle title="News & Press Releases" />
-          <ArticleFeed query={newsQuery} />
         </>
       );
     case 'Education':

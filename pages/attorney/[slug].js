@@ -10,8 +10,9 @@ import {
 } from 'utils/helpers';
 import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
 import AttorneysPage from 'components/pages/AttorneyProfile';
+import ApolloWrapper from 'layouts/ApolloWrapper';
 
-export default function AttorneyProfileQraphQL({
+export default function AttorneyProfile({
   seo,
   profileHeader,
   attorneyFooterBlogArticles,
@@ -35,7 +36,11 @@ export default function AttorneyProfileQraphQL({
     attorneyClients,
     authorId,
   };
-  return <AttorneysPage {...attorneyPageProps} />;
+  return (
+    <ApolloWrapper>
+      <AttorneysPage {...attorneyPageProps} />
+    </ApolloWrapper>
+  );
 }
 
 export async function getStaticPaths() {
@@ -57,7 +62,6 @@ export async function getStaticProps({ params }) {
   /** Get Attorney Bio  */
   const slug = params.slug;
   const attorneyBio = await attorneyBySlug(slug);
-  const noImageFound = '/images/no-image-found-diamond-750x350.png';
 
   /** Create new tabs for Government and Law & Con Law  & Drop Music esq */
   /** Get Attorney/Author Internal Posts */

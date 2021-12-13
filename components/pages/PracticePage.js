@@ -10,11 +10,12 @@ import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/organisms/practice/Body';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import PageSidebar from 'components/organisms/practice/PageSidebar';
+import useApolloQuery from 'hooks/useApolloQuery';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
 
 const PracticePage = ({
-  corePractices, practice, practiceChildren, canoncialUrl, tabs,
+  corePractices, practice, practiceChildren, canonicalUrl, tabs,
 }) => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -22,16 +23,19 @@ const PracticePage = ({
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const blogId = practice.blog_data_id[0];
 
-  const query = {
-    query: categoryPostsByIdQuery,
-    variables: {
+  /** Handle Related Articles Query */
+  const {
+    handleNextPagination, handlePrevPagination, data, loading, error,
+  } = useApolloQuery(
+    categoryPostsByIdQuery,
+    {
       first: 8,
       last: null,
       after: null,
       before: null,
       id: blogId,
     },
-  };
+  );
 
   useEffect(() => {
     const currentTabContent = tabs.filter((t) => t.id === activeTab);
@@ -47,7 +51,7 @@ const PracticePage = ({
       <BasicSiteHead
         title={practice.seo.title}
         metaDescription={practice.seo.metaDescription}
-        canoncialUrl={canoncialUrl}
+        canonicalUrl={canonicalUrl}
       />
       <SingleSubHeader
         title={practice.title}
@@ -66,12 +70,21 @@ const PracticePage = ({
               setToggleDropDown={setToggleDropDown}
               toggleDropDown={toggleDropDown}
             />
-            <Body activeTabContent={activeTabContent} query={query} activeTab={activeTab} />
+            <Body
+              activeTabContent={activeTabContent}
+              content={{
+                handleNextPagination,
+                handlePrevPagination,
+                data,
+                loading,
+                error,
+              }}
+              activeTab={activeTab}
+            />
             <BodyFooter
               blogId={blogId}
               attorneyList={practice.attorneyList}
               highlightReal={practice.highlightReal}
-              blogId={blogId}
               chair={practice.chair}
               handleLink={handleLink}
             />

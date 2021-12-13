@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,11 +9,13 @@ import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import StringContent from 'components/organisms/attorney/StringContent';
 import ObjectContent from 'components/organisms/attorney/ObjectContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
-import Sidebar from 'components/organisms/attorney/Sidebark';
+import SidebarWrapper from 'components/organisms/attorney/SidebarWrapper';
+import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import { FaCaretDown } from 'react-icons/fa';
 import useOnClickOutside from 'hooks/useOnClickOutside';
+import useApolloQuery from 'hooks/useApolloQuery';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import dynamic from 'next/dynamic';
+import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 
@@ -34,6 +37,11 @@ const AttorneyPage = ({
     content: mainTabs[0].content,
   });
   const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [isArticle, setIsArticle] = useState(false);
+  const [isBlog, setIsBlog] = useState(false);
+  const [blogId, setBlogId] = useState(null);
+  const [articleId, setArticleId] = useState(null);
+
   const node = useRef(null);
   useOnClickOutside(node, () => setToggleDropDown(false));
 
@@ -56,12 +64,70 @@ const AttorneyPage = ({
 
   useEffect(() => {
     const currentTabContent = tabs.filter((t) => t.id === activeTab);
-    setActiveTabContent({
-      type: typeof currentTabContent[0].content,
-      title: currentTabContent[0].title,
-      content: currentTabContent[0].content,
-    });
+    if (
+      currentTabContent[0].title !== 'Blogs'
+      || currentTabContent[0].title !== 'News Press Releases'
+    ) {
+      setActiveTabContent({
+        type: typeof currentTabContent[0].content,
+        title: currentTabContent[0].title,
+        content: currentTabContent[0].content,
+      });
+      setIsBlog(false);
+      setIsArticle(false);
+    }
+
+    if (currentTabContent[0].title === 'Blogs') {
+      setIsBlog(true);
+      setIsArticle(false);
+    }
+
+    if (currentTabContent[0].title === 'News Press Releases') {
+      setIsArticle(true);
+      setIsBlog(false);
+    }
   }, [activeTab]);
+
+  useEffect(() => {
+    tabs.forEach((tab) => {
+      if (Object.values(tab).includes('Blogs')) {
+        setBlogId(tab.content.id);
+      }
+
+      if (Object.values(tab).includes('News Press Releases')) {
+        setArticleId(tab.content.id);
+      }
+    });
+  }, [tabs]);
+
+  /** Handle Blog Posts & News Press Releases Hooks */
+  const {
+    handleNextPagination: handleBlogNext,
+    handlePrevPagination: handleBlogPrev,
+    data: blogs,
+    loading: blogLoading,
+    error: blogError,
+  } = useApolloQuery(authorPostsByIdQuery, {
+    first: 8,
+    last: null,
+    after: null,
+    before: null,
+    id: blogId,
+  });
+
+  const {
+    handleNextPagination: handleNewsNext,
+    handlePrevPagination: handleNewsPrev,
+    data: news,
+    loading: newsLoading,
+    error: newsError,
+  } = useApolloQuery(authorFirmNewsByIdQuery, {
+    first: 8,
+    last: null,
+    after: null,
+    before: null,
+    name: articleId,
+  });
 
   return (
     <>
@@ -100,7 +166,7 @@ const AttorneyPage = ({
                       {moreTabs.map((tab) => (
                         <Button
                           variant="link"
-                          key={tab.id}
+                          id={tab.id}
                           active={activeTab === tab.id}
                           onClick={() => {
                             setActiveTab(tab.id);
@@ -139,11 +205,39 @@ const AttorneyPage = ({
             </MobileButtonGroup>
           </Col>
           <Col sm={12} md={9} style={{ position: 'relative', top: '-36px' }}>
-            {activeTabContent.type === 'string' && <StringContent {...activeTabContent} />}
-            {activeTabContent.type === 'object' && <ObjectContent {...activeTabContent} />}
+            {activeTabContent.type === 'string' && !isBlog && !isArticle && (
+              <StringContent {...activeTabContent} />
+            )}
+            {activeTabContent.type === 'object' && !isBlog && !isArticle && (
+              <ObjectContent {...activeTabContent} />
+            )}
+            {isBlog && (
+              <ArticleContent
+                title="Blogs"
+                content={{
+                  handleNextPagination: handleBlogNext,
+                  handlePrevPagination: handleBlogPrev,
+                  data: blogs,
+                  loading: blogLoading,
+                  error: blogError,
+                }}
+              />
+            )}
+            {isArticle && (
+              <ArticleContent
+                title="News & Press Releases"
+                content={{
+                  handleNextPagination: handleNewsNext,
+                  handlePrevPagination: handleNewsPrev,
+                  data: news,
+                  loading: newsLoading,
+                  error: newsError,
+                }}
+              />
+            )}
           </Col>
           <Col sm={12} md={3}>
-            <Sidebar
+            <SidebarWrapper
               services={profileHeader.practices}
               setActiveTab={setActiveTab}
               setActiveTabContent={setActiveTabContent}
