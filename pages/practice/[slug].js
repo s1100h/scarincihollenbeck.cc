@@ -11,7 +11,7 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
 
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
-  const canoncialUrl = `${SITE_URL}/practice/${practice.slug}`;
+  const canonicalUrl = `${SITE_URL}/practice/${practice.slug}`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -35,7 +35,7 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
     practice,
     practiceChildren,
     practiceUrl,
-    canoncialUrl,
+    canonicalUrl,
     tabs: fullTabs,
     slug,
   };
