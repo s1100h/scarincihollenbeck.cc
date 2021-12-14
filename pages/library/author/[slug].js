@@ -77,6 +77,6 @@ export async function getStaticProps({ params }) {
       categoryId: results.id,
       seo: results.seo,
     },
-    revalidate: 18000,
+    revalidate: 14400,
   };
 }

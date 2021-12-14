@@ -17,7 +17,7 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const [seo, posts, locations, attorneys, administration] = await getHomePageContent();
+  const [seo, locations, attorneys, administration] = await getHomePageContent();
   const awards = await homePageAwards();
 
   const leadership = attorneys
@@ -95,7 +95,7 @@ export async function getStaticProps() {
   return {
     props: {
       seo,
-      posts: posts.splice(0, 5),
+
       locations,
       awards,
       leadership: [
@@ -107,6 +107,5 @@ export async function getStaticProps() {
         ...leadership,
       ],
     },
-    revalidate: 3600,
   };
 }

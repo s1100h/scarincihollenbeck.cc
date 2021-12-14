@@ -115,6 +115,6 @@ export async function getStaticProps({ params }) {
         metaDescription: content.seo.metaDesc,
       },
     },
-    revalidate: 18000,
+    revalidate: 14400,
   };
 }

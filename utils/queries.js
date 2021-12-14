@@ -121,14 +121,10 @@ const getFirmPagesContent = async (slug) => {
 
 // query for pages/index
 const getHomePageContent = async () => {
-  const [seo, news, events, locations, attorneys, administration] = await Promise.all([
+  const [seo, locations, attorneys, administration] = await Promise.all([
     fetch(`${BASE_API_URL}/wp-json/front-page/meta`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=98&_embed`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=99&_embed`, { headers }).then((data) => data.json()),
     fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, { headers })
       .then((data) => data.json())
       .catch((err) => err),
@@ -140,9 +136,7 @@ const getHomePageContent = async () => {
       .catch((err) => err),
   ]);
 
-  const posts = [...news, ...events];
-
-  return [seo, posts, locations, attorneys, administration];
+  return [seo, locations, attorneys, administration];
 };
 // query for pages/post
 const getPostBySlugAndCategory = async (slug, category) => {

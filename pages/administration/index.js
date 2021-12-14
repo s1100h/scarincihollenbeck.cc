@@ -35,6 +35,5 @@ export async function getStaticProps() {
     props: {
       admins: request.admins,
     },
-    revalidate: 86400,
   };
 }

@@ -16,7 +16,6 @@ const HomeOurLeadership = dynamic(() => import('components/organisms/home/our-le
 const HomeReviews = dynamic(() => import('components/organisms/home/reviews'));
 const HomeWhoWeAreSection = dynamic(() => import('components/organisms/home/who-we-are-section'));
 const HomePageLink = dynamic(() => import('components/organisms/home/page-link'));
-const ArticleHero = dynamic(() => import('components/shared/ArticleHero'));
 
 export default function HomePage({
   seo, posts, locations, leadership, awards,
@@ -91,14 +90,6 @@ export default function HomePage({
         <HomeReviews awards={awards} />
         <HomePageLink link="/awards" title="Award Methodology" />
         <HomeLocations locations={sortByKey(locations.offices, 'id')} />
-        <div className={marginStyles.mt6}>
-          <ArticleHero content={posts} />
-        </div>
-        <HomePageLink
-          link="/library/category/firm-news"
-          title="Read more articles about our attorneys"
-          margins="my-5"
-        />
       </Container>
     </>
   );
