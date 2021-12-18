@@ -132,6 +132,6 @@ export async function getStaticProps() {
       practices,
       attorneys,
     },
-    revalidate: 14400,
+    revalidate: 86400,
   };
 }

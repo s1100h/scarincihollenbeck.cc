@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import FadeLoader from 'react-spinners/FadeLoader';
+import Loader from 'components/atoms/Loader';
 import Axios from 'axios';
 import Article from 'components/molecules/library/article';
 import ArticlePagination from 'components/molecules/library/pagination';
@@ -40,14 +40,7 @@ export default function ArticleArchives({ url, title }) {
           </h4>
         </Col>
       )}
-      {loading && (
-        <div
-          className="d-flex flex-colum justify-content-center align-items-center"
-          style={{ height: '300px' }}
-        >
-          <FadeLoader size={32} color="#a9a9a9" />
-        </div>
-      )}
+      {loading && <Loader loading={loading} />}
       {posts.length > 0 && (
         <>
           <Col sm={12}>

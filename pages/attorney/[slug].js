@@ -296,6 +296,6 @@ export async function getStaticProps({ params }) {
       attorneyClients,
       authorId,
     },
-    revalidate: 300,
+    revalidate: 86400,
   };
 }
