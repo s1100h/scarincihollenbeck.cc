@@ -1,17 +1,19 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
+import dynamic from 'next/dynamic';
 import ContactForm from 'components/shared/contact-form';
 import { createMarkup } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
-import ArticleArchives from 'components/organisms/library/article-archives';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 import PopularList from 'components/organisms/library/popular-list';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/single-sub-header';
-import { CLIENT_ALERTS, CURRENT_DOMAIN } from 'utils/constants';
+import { CLIENT_ALERTS } from 'utils/constants';
+import { categoryPostsByIdQuery } from 'utils/graphql-queries';
+import useApolloQuery from 'hooks/useApolloQuery';
+
+const PostList = dynamic(import('components/molecules/PostList'));
 
 const sidebar = (
   <>
@@ -22,9 +24,22 @@ const sidebar = (
   </>
 );
 
-export default function CovidPage({
-  title, seo, bodyContent, canonicalUrl, subTitle, archiveUrl,
-}) {
+const CovidPage = ({
+  title, seo, bodyContent, canonicalUrl, subTitle, contentId,
+}) => {
+  /** Handle Article Archive Query */
+  const {
+    handleNextPagination, handlePrevPagination, data, loading, error,
+  } = useApolloQuery(
+    categoryPostsByIdQuery,
+    {
+      first: 6,
+      last: null,
+      after: null,
+      before: null,
+      id: contentId,
+    },
+  );
   return (
     <>
       <BasicSiteHead
@@ -41,9 +56,20 @@ export default function CovidPage({
               dangerouslySetInnerHTML={createMarkup(bodyContent)}
             />
             <div className="border-top border-top pt-4">
-              <ArticleArchives url={archiveUrl} title="COVID-19 Articles" />
+              <h4 className="mb-5">
+                <strong className="text-capitalize">COVID-19 Articles</strong>
+              </h4>
+              <PostList
+                content={{
+                  handleNextPagination,
+                  handlePrevPagination,
+                  data,
+                  loading,
+                  error,
+                }}
+              />
             </div>
-            <h4 className={grayTitleStyles.title}>Contact A Firm Reprepresentative</h4>
+            <h4 className={grayTitleStyles.title}>Contact A Firm Representative</h4>
             <ContactForm />
           </Col>
           <Col sm={12} md={3}>
@@ -53,4 +79,6 @@ export default function CovidPage({
       </Container>
     </>
   );
-}
+};
+
+export default CovidPage;

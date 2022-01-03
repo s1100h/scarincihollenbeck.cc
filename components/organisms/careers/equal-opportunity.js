@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import lineStyles from 'styles/LineHeader.module.css';
 import basicStyles from 'styles/BasicContent.module.css';
 import textStyles from 'styles/Text.module.css';

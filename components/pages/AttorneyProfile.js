@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import {
+  Container, Row, Col, Button,
+} from 'react-bootstrap';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import StringContent from 'components/organisms/attorney/StringContent';
 import ObjectContent from 'components/organisms/attorney/ObjectContent';

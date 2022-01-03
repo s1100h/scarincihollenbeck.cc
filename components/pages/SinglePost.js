@@ -1,5 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { Container, Row } from 'react-bootstrap';
 import PostSiteHead from 'components/shared/head/PostSiteHead';
 import SingleSubHeader from 'layouts/single-sub-header';
 import Body from 'components/organisms/post/body';

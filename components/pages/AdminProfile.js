@@ -1,6 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import AdminProfileHeader from 'components/organisms/admin/header';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';

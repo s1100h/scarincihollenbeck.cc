@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import ClientSlider from 'components/molecules/attorney/ClientSlider';
 import FooterArticles from 'components/molecules/attorney/FooterArticles';
 import HomePageLink from 'components/organisms/home/page-link';

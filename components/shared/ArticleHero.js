@@ -1,9 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import Image from 'next/image';
 import Link from 'next/link';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap/Container';
 import styles from 'styles/ArticleHero.module.css';
 import {
   formatDate, createMarkup, setTextLen, formatSrcToCloudinaryUrl,

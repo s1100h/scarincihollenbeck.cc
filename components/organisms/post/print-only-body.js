@@ -1,5 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { Container, Row } from 'react-bootstrap';
 
 export default function PrintOnlyBody({
   title, featuredImage, authors, content,

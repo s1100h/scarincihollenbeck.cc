@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import lineStyles from 'styles/LineHeader.module.css';
 import textStyles from 'styles/Text.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';

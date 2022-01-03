@@ -2,7 +2,7 @@
 administration/[slug] - never (redeploy)
 administration - never (redeploy)
 api/external-covid-posts 86400 (1day)
-api/blog-post-content 360 (6 minutes)
+api/blog-post-content 86400 (6 minutes)
 attorney/[slug] 900 (15 minutes)
 career/[slug] 14400 (4 hours)
 firm-pages/[slug] - never (redeploy)

@@ -1,5 +1,6 @@
+import ApolloWrapper from 'layouts/ApolloWrapper';
 import CovidPage from 'components/pages/CovidPage';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { SITE_URL, COVID_POSTS_ID } from 'utils/constants';
 import { getCovid19BasedPages } from 'utils/queries';
 
 export default function GovernmentEducationCovidResponseTeam({ title, content, seo }) {
@@ -7,7 +8,6 @@ export default function GovernmentEducationCovidResponseTeam({ title, content, s
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
   const canonicalUrl = `${SITE_URL}/government-education-covid-19-response-team`;
-  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=20250`;
 
   const covidProps = {
     title,
@@ -15,14 +15,21 @@ export default function GovernmentEducationCovidResponseTeam({ title, content, s
     bodyContent,
     canonicalUrl,
     subTitle,
-    archiveUrl,
+    contentId: COVID_POSTS_ID,
   };
 
-  return <CovidPage {...covidProps} />;
+  return (
+    <ApolloWrapper>
+      <CovidPage {...covidProps} />
+    </ApolloWrapper>
+  );
 }
 
 export async function getStaticProps() {
-  const [request] = await getCovid19BasedPages('government-education-covid-19-response-team', 20250);
+  const [request] = await getCovid19BasedPages(
+    'government-education-covid-19-response-team',
+    COVID_POSTS_ID,
+  );
   const { title, content, seo } = request;
 
   return {

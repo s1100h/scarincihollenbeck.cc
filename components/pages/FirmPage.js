@@ -1,7 +1,4 @@
-import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import SidebarContent from 'components/shared/SidebarContent';
 import PageArticleHero from 'components/organisms/page/page-article-hero';

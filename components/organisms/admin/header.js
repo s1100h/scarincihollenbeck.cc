@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import ProfileTitle from 'components/molecules/admin/ProfileTitle';
 import ProfileDetails from 'components/molecules/admin/ProfileDetails';
 import ContactIcons from 'components/molecules/admin/ContactIcons';

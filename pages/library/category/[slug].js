@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import ApolloWrapper from 'layouts/ApolloWrapper';
+import { SITE_URL } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { categoryPosts } from 'utils/api';
 import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
@@ -28,7 +29,6 @@ export default function LibraryCategory({
   }
 
   const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
-  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?categories=${categoryId}`;
 
   const libraryProps = {
     seo: {
@@ -40,13 +40,17 @@ export default function LibraryCategory({
     authors,
     popularCategories,
     childrenOfCurrentCategory,
-    archiveUrl,
     currentPageTitle: name,
     categoryName: name,
     description,
+    categoryId,
   };
 
-  return <LibraryDirectory {...libraryProps} />;
+  return (
+    <ApolloWrapper>
+      <LibraryDirectory {...libraryProps} />
+    </ApolloWrapper>
+  );
 }
 
 export async function getStaticPaths() {

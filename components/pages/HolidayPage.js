@@ -1,4 +1,3 @@
-import { NextSeo } from 'next-seo';
 import SingleSubHeader from 'layouts/single-sub-header';
 import FullWidth from 'layouts/full-width';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';

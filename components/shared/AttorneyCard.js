@@ -4,8 +4,6 @@ import styles from 'styles/AttorneyCard.module.css';
 import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
 
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-
 export default function AttorneyCard({
   link, image, name, title, number, email,
 }) {

@@ -3,6 +3,7 @@ import pageContentStyles from 'styles/PageContent.module.css';
 import dynamic from 'next/dynamic';
 
 const PostList = dynamic(import('components/molecules/PostList'));
+
 const Body = ({ activeTabContent, activeTab, content }) => (
   <>
     <div

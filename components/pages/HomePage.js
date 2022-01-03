@@ -7,7 +7,6 @@ import HomeMainTag from 'components/organisms/home/main-tag';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { sortByKey } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
-import marginStyles from 'styles/Margins.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import dynamic from 'next/dynamic';
 

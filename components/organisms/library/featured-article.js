@@ -24,7 +24,7 @@ const ArticleImage = styled.div`
 
 export default function FeaturedArticle({ articles }) {
   return articles.map((article) => (
-    <li key={article.id} className="mb-5">
+    <li key={article.title} className="mb-5">
       <Link href={article.link}>
         <a className="d-flex flex-column flex-md-row text-dark mx-3 mx-md-0">
           <ArticleImage>

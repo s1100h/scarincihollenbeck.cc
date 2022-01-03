@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import navBarStyles from 'styles/Navbar.module.css';
 import { SITE_NAVIGATION } from 'utils/constants';
 

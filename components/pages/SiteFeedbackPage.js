@@ -1,7 +1,5 @@
-import { NextSeo } from 'next-seo';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Head from 'next/head';
+import { Container, Row, Col } from 'react-bootstrap';
 import CurrentAttorneyNameForm from 'components/organisms/site-form/current-attorney-form';
 import NewAttorneyNameForm from 'components/organisms/site-form/new-attorney-form';
 import FormScripts from 'components/shared/form-scripts';
@@ -18,7 +16,11 @@ export default function SiteFormPage({
   return (
     <Container>
       <FormScripts />
-      <NextSeo noindex title="Updating your website profile" />
+      <Head>
+        <title>Updating your website profile?</title>
+        <meta name="googlebot" content="noindex" />
+        <meta name="googlebot-news" content="nosnippet" />
+      </Head>
       <Row>
         <Col sm={12} className="my-4">
           <h1 className={`border-bottom pb-1 mb-4 ${textStyles.redTitle}`}>

@@ -9,6 +9,7 @@ import textStyles from 'styles/Text.module.css';
 const PageSidebar = ({ corePractices, practiceChildren }) => {
   const router = useRouter();
   const slug = router.asPath;
+
   return (
     <>
       {slug.includes('education-law') && (

@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import ApolloWrapper from 'layouts/ApolloWrapper';
+import { SITE_URL } from 'utils/constants';
 import { getAuthorPaths, getAuthorContent } from 'utils/queries';
 
 export default function LibraryAuthor({
@@ -27,7 +28,6 @@ export default function LibraryAuthor({
 
   const canonicalUrl = `${SITE_URL}/library/author${pageTitle}`;
   const { title, metaDescription } = seo;
-  const archiveUrl = `${BASE_API_URL}/wp-json/wp/v2/posts/?author=${categoryId}`;
 
   const authorProps = {
     seo: {
@@ -43,11 +43,14 @@ export default function LibraryAuthor({
     childrenOfCurrentCategory,
     categoryName: `Legal Articles By ${name}`,
     description,
-    archiveUrl,
     profileUrl,
   };
 
-  return <LibraryDirectory {...authorProps} />;
+  return (
+    <ApolloWrapper>
+      <LibraryDirectory {...authorProps} />
+    </ApolloWrapper>
+  );
 }
 
 export async function getStaticPaths() {

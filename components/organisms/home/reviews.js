@@ -1,11 +1,9 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import Accolade from 'components/molecules/home/Accolade';
 import lineStyles from 'styles/LineHeader.module.css';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 export default function HomeReviews({ awards }) {
-  const formatedAwards = awards
+  const formattedAwards = awards
     .map(({ node }) => ({
       id: node.homePageAwards.appearanceOrder,
       order: node.homePageAwards.appearanceOrder,
@@ -25,8 +23,8 @@ export default function HomeReviews({ awards }) {
           <h3>Awards & Accolades</h3>
         </div>
       </Col>
-      {formatedAwards.map((award) => (
-        <Accolade key={award.id} image={award.image} colSize={formatedAwards.length > 4 ? 4 : 3} />
+      {formattedAwards.map((award) => (
+        <Accolade key={award.id} image={award.image} colSize={formattedAwards.length > 4 ? 4 : 3} />
       ))}
     </Row>
   );

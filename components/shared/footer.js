@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import CookieConsentContainer from 'components/shared/cookie-consent';
 import styles from 'styles/Footer.module.css';
 import textStyles from 'styles/Text.module.css';

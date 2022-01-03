@@ -10,8 +10,8 @@ export default function HomeMainTag() {
       </h1>
       <h2 className="my-4 h4">
         <strong>
-          We support and advance our clients’ initiatives through innovative solutions to complex
-          legal problems.
+          We support and advance our clients&apos; initiatives through innovative solutions to
+          complex legal problems.
         </strong>
       </h2>
       <style jsx>

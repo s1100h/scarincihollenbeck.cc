@@ -38,7 +38,7 @@ export default function PagesCovid({ content, covidPosts, articleTitle }) {
         </div>
       </>
       <div className="mt-5 w-100">
-        <h4 className="bg-light-gray">Contact A Firm Reprepresentative</h4>
+        <h4 className="bg-light-gray">Contact A Firm Representative</h4>
         <ContactForm />
       </div>
     </div>

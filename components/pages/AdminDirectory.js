@@ -1,6 +1,4 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/single-sub-header';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import FullWidth from 'layouts/full-width';

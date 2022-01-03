@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/single-sub-header';
 import BodyHeader from 'components/organisms/library/body-header';
 import MainArticle from 'components/organisms/library/main-article';
@@ -13,8 +11,10 @@ import FirmAuthors from 'components/organisms/library/firm-authors';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import styles from 'styles/Text.module.css';
 import { CLIENT_ALERTS } from 'utils/constants';
+import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
+import useApolloQuery from 'hooks/useApolloQuery';
 
-const ArticleArchives = dynamic(() => import('components/organisms/library/article-archives'));
+const PostList = dynamic(import('components/molecules/PostList'));
 
 const LibraryDirectory = ({
   results,
@@ -25,12 +25,26 @@ const LibraryDirectory = ({
   description,
   seo,
   profileUrl,
-  archiveUrl,
+  categoryId,
 }) => {
   const router = useRouter();
   const mainArticle = results[0];
   const featuredArticles = results.slice(1, results.length);
   const isAuthor = router.asPath.includes('author');
+
+  /** Handle Article Archive Query */
+  const {
+    handleNextPagination, handlePrevPagination, data, loading, error,
+  } = useApolloQuery(
+    isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery,
+    {
+      first: 6,
+      last: null,
+      after: null,
+      before: null,
+      id: categoryId,
+    },
+  );
 
   return (
     <>
@@ -63,7 +77,18 @@ const LibraryDirectory = ({
               <FeaturedArticle articles={featuredArticles} />
             </ul>
             <div className="border-top border-top pt-4">
-              <ArticleArchives url={archiveUrl} title="Older Articles" />
+              <h4 className="mb-5">
+                <strong className="text-capitalize">All Articles</strong>
+              </h4>
+              <PostList
+                content={{
+                  handleNextPagination,
+                  handlePrevPagination,
+                  data,
+                  loading,
+                  error,
+                }}
+              />
             </div>
           </Col>
           <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">

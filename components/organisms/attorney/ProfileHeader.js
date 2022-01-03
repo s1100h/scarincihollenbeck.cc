@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import { useRouter } from 'next/router';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import ProfileTitle from 'components/molecules/attorney/ProfileTitle';
 import ProfileDetails from 'components/molecules/attorney/ProfileDetails';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
@@ -11,26 +8,26 @@ import ContactIcons from 'components/molecules/attorney/ContactIcons';
 import styles from 'styles/Banner.module.css';
 
 const useDesignationHook = (title) => {
-  const [designation, setDesiganation] = useState(title);
+  const [designation, setDesignation] = useState(title);
   useEffect(() => {
     if (title === 'Red Bank, NJ Managing Partner') {
-      setDesiganation('Red Bank, NJ  Office Managing Partner');
+      setDesignation('Red Bank, NJ  Office Managing Partner');
     }
 
     if (title === 'NYC Managing Partner') {
-      setDesiganation('NYC Office Managing Partner');
+      setDesignation('NYC Office Managing Partner');
     }
 
     if (title === 'Managing Partner') {
-      setDesiganation('Firm Managing Partner');
+      setDesignation('Firm Managing Partner');
     }
 
     if (title === 'Washington, D.C. Managing Partner') {
-      setDesiganation('Washington, D.C. Office Managing Partner');
+      setDesignation('Washington, D.C. Office Managing Partner');
     }
   }, [title]);
 
-  return [designation, setDesiganation];
+  return [designation, setDesignation];
 };
 const ProfileHeader = ({
   name,
