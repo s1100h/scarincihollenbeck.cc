@@ -8,6 +8,12 @@ export const articleSchema = (body) => ({
       publisher: {
         '@type': 'LegalService',
         name: 'Scarinci Hollenbeck',
+        description:
+          'Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.',
+        url: 'https://scarincihollenbeck.com',
+        image: `${CURRENT_DOMAIN}/images/no-image-found-diamond-750x350.png`,
+        priceRange: '$$$$',
+        telephone: '201-896-4100',
       },
       ...body,
     },
