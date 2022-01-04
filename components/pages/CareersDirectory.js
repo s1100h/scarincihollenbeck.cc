@@ -1,5 +1,5 @@
-import FullWidth from 'layouts/full-width';
-import SingleSubHeader from 'layouts/single-sub-header';
+import FullWidth from 'layouts/FullWidth';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import Body from 'components/organisms/careers/body';
 import CareersEqualOpportunity from 'components/organisms/careers/equal-opportunity';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';

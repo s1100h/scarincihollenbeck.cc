@@ -36,7 +36,7 @@ function ArticleSection({
 
 const ProfileFooter = ({ clients, attorneyFooterBlogArticles, attorneyFooterNewsArticles }) => (
   <>
-    {clients && (
+    {clients && clients.length > 0 && (
       <>
         <div className={`${lineStyles.lineHeader} mb-5`}>
           <h3>Clients</h3>
@@ -44,7 +44,7 @@ const ProfileFooter = ({ clients, attorneyFooterBlogArticles, attorneyFooterNews
         <ClientSlider clients={clients} />
       </>
     )}
-    {attorneyFooterNewsArticles && (
+    {attorneyFooterNewsArticles && attorneyFooterNewsArticles.length > 0 && (
       <>
         <div className={lineStyles.lineHeader}>
           <h3>News & Press Releases</h3>
@@ -52,7 +52,7 @@ const ProfileFooter = ({ clients, attorneyFooterBlogArticles, attorneyFooterNews
         <FooterArticles articles={attorneyFooterNewsArticles} />
       </>
     )}
-    {attorneyFooterBlogArticles && (
+    {attorneyFooterBlogArticles && attorneyFooterBlogArticles.length > 0 && (
       <>
         <div className={lineStyles.lineHeader}>
           <h3>Blogs & Client Alerts</h3>

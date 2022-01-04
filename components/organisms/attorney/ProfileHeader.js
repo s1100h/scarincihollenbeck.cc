@@ -77,15 +77,15 @@ const ProfileHeader = ({
     <div className={styles.backPageBanner}>
       <Container className={`${styles.multiBackBanner} pt-3 pb-5`}>
         <Row>
-          <Col sm={12} md={9} className="text-white">
+          <Col sm={12} lg={9} className="text-white">
             <Row>
               <Col sm={12} md={4}>
                 <ProfileImage {...profileImageProps} />
               </Col>
-              <Col sm={12} md={7}>
+              <Col sm={12} md={8} lg={7}>
                 <div className="my-3">
                   <ProfileTitle {...profileTitleProps} />
-                  <div className="d-flex flex-column flex-lg-row mt-2">
+                  <div className="d-flex flex-column flex-md-row mt-2">
                     <ProfileDetails {...profileDetailsProps} />
                     <ContactIcons {...contactProps} />
                   </div>

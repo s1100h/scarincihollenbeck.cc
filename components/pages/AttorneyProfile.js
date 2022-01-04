@@ -203,7 +203,7 @@ const AttorneyPage = ({
               </div>
             </MobileButtonGroup>
           </Col>
-          <Col sm={12} md={9} style={{ position: 'relative', top: '-36px' }}>
+          <Col sm={12} lg={9} style={{ position: 'relative', top: '-36px' }}>
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
             )}
@@ -235,7 +235,7 @@ const AttorneyPage = ({
               />
             )}
           </Col>
-          <Col sm={12} md={3}>
+          <Col sm={12} lg={3}>
             <SidebarWrapper
               services={profileHeader.practices}
               setActiveTab={setActiveTab}

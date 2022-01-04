@@ -21,7 +21,7 @@ export default function AdminProfileHeader({ image, profile }) {
       <div className={styles.backPageBanner}>
         <Container className={styles.multiBackBanner}>
           <Row>
-            <Col sm={12} md={9} className="text-white">
+            <Col sm={12} lg={9} className="text-white">
               <Row>
                 <Col sm={12} md={4}>
                   <Image
@@ -36,7 +36,7 @@ export default function AdminProfileHeader({ image, profile }) {
                     loading="eager"
                   />
                 </Col>
-                <Col sm={12} md={7}>
+                <Col sm={12} md={8} lg={7}>
                   <div className="my-3">
                     <ProfileTitle name={name} designation={designation} chair={[]} coChair={[]} />
                     <div className="d-flex flex-column flex-md-row mt-3">

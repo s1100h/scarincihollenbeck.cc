@@ -1,15 +1,13 @@
 import Head from 'next/head';
-import SingleSubHeader from 'layouts/single-sub-header';
-import LargeSidebar from 'layouts/large-sidebar';
+import { Container, Row, Col } from 'react-bootstrap';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import BodyContent from 'components/organisms/locations/body';
 import SideBar from 'components/organisms/locations/sidebar';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';
 
-export default function LocationPage({
-  seo, offices, currentOffice, posts,
-}) {
+export default function LocationPage({ seo, currentOffice, posts }) {
   const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
 
   return (
@@ -31,27 +29,24 @@ export default function LocationPage({
       <SingleSubHeader
         title={currentOffice.name}
         subtitle={seo.metaDescription}
-        offset={2}
-        span={7}
+        offset={0}
+        span={8}
       />
-      <LargeSidebar
-        body={(
-          <BodyContent
-            attorneys={currentOffice.attorneys}
-            practices={currentOffice.practices}
-            map={currentOffice.mapLink}
-            title={currentOffice.name}
-          />
-        )}
-        sidebar={(
-          <SideBar
-            title={currentOffice.name}
-            posts={posts}
-            offices={offices}
-            startingKey={currentOffice.name}
-          />
-        )}
-      />
+      <Container>
+        <Row>
+          <Col sm={12} lg={9}>
+            <BodyContent
+              attorneys={currentOffice.attorneys}
+              practices={currentOffice.practices}
+              map={currentOffice.mapLink}
+              title={currentOffice.name}
+            />
+          </Col>
+          <Col sm={12} md={3}>
+            <SideBar title={currentOffice.name} posts={posts} startingKey={currentOffice.name} />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import BodyHeader from 'components/organisms/library/body-header';
 import MainArticle from 'components/organisms/library/main-article';
 import FeaturedArticle from 'components/organisms/library/featured-article';
@@ -61,7 +61,7 @@ const LibraryDirectory = ({
       <Container className="border mb-5">
         <Row>
           <BodyHeader />
-          <Col sm={12} md={9} className="mt-4">
+          <Col sm={12} lg={9} className="mt-4">
             <MainArticle
               title={mainArticle.title}
               link={mainArticle.link}
@@ -91,7 +91,7 @@ const LibraryDirectory = ({
               />
             </div>
           </Col>
-          <Col sm={12} md={3} className="d-flex flex-column justify-content-start mt-3">
+          <Col sm={12} lg={3} className="d-flex flex-column justify-content-start mt-3">
             {isAuthor && (
               <div className="my-3">
                 <Link href={profileUrl}>

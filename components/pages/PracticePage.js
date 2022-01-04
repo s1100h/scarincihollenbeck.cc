@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import Menu from 'components/organisms/practice/Menu';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SingleSubHeader from 'layouts/single-sub-header';
+import RelatedArticles from 'components/organisms/practice/RelatedArticles';
 import Body from 'components/organisms/practice/Body';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import PageSidebar from 'components/organisms/practice/PageSidebar';
+import lineHeaderStyles from 'styles/LineHeader.module.css';
 import useApolloQuery from 'hooks/useApolloQuery';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
@@ -79,16 +81,31 @@ const PracticePage = ({
               }}
               activeTab={activeTab}
             />
-            <BodyFooter
-              blogId={blogId}
-              attorneyList={practice.attorneyList}
-              highlightReal={practice.highlightReal}
-              chair={practice.chair}
-              handleLink={handleLink}
-            />
           </Col>
           <Col sm={12} lg={3} style={{ position: 'relative', bottom: '24px' }}>
             <PageSidebar corePractices={corePractices} practiceChildren={practiceChildren} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col sm={12}>
+            <>
+              <BodyFooter
+                blogId={blogId}
+                attorneyList={practice.attorneyList}
+                highlightReal={practice.highlightReal}
+                chair={practice.chair}
+                handleLink={handleLink}
+              />
+              {data && (
+                <div className="mt-5 mt-sm-4">
+                  <div className={lineHeaderStyles.lineHeader}>
+                    <h3>Related Articles</h3>
+                  </div>
+                  <RelatedArticles data={data} />
+                </div>
+              )}
+            </>
           </Col>
         </Row>
       </Container>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 import ContactForm from 'components/shared/contact-form';
@@ -23,7 +23,7 @@ export default function ContactPage({ seo, site, offices }) {
       <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={0} />
       <Container>
         <Row>
-          <Col sm={12} md={9}>
+          <Col sm={12} lg={9}>
             <p>
               <strong>For media inquiries,</strong>
               {' '}
@@ -80,7 +80,7 @@ export default function ContactPage({ seo, site, offices }) {
               </div>
             </div>
           </Col>
-          <Col sm={12} md={3} className={sidebarStyles.container}>
+          <Col sm={12} lg={3} className={sidebarStyles.container}>
             <hr />
             <SubscriptionMessage />
             <CommonSidebarLinks />

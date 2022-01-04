@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import PagesBody from 'components/organisms/page/body';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 
 export default function SitePage({
   seo, site, canonicalUrl, bodyContent,

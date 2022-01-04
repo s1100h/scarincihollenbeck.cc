@@ -2,8 +2,8 @@ import Selection from 'components/organisms/attorneys/Selection';
 import Filters from 'components/organisms/attorneys/Filters';
 import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
+import SingleSubHeader from 'layouts/SingleSubHeader';
+import FullWidth from 'layouts/FullWidth';
 
 export default function AttorneysPage({
   sPractices,

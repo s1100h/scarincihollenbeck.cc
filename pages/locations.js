@@ -1,22 +1,31 @@
 import { useRouter } from 'next/router';
+import React, { useContext, useEffect } from 'react';
 import SiteLoader from 'components/shared/site-loader';
 import LocationPage from 'components/pages/LocationPage';
+import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 
 export default function AllLocations({
   seo, offices, currentOffice, posts,
 }) {
   const router = useRouter();
-  const locationProps = {
-    seo,
-    offices,
-    currentOffice,
-    posts,
-  };
+  const { locations, setLocations } = useContext(LocationContext);
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
+
+  useEffect(() => {
+    if (!locations) {
+      setLocations(offices);
+    }
+  }, [offices]);
+
+  const locationProps = {
+    seo,
+    currentOffice,
+    posts,
+  };
 
   return <LocationPage {...locationProps} />;
 }

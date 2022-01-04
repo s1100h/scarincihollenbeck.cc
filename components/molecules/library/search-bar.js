@@ -6,24 +6,19 @@ export default function SearchBar() {
   return (
     <Col sm={12} style={{ backgroundColor: '#495057' }}>
       <Row>
-        <Col sm={12} md={3} className="py-4">
-          <p className="text-white mb-0">
-            <strong>Scarinci Hollenbeck Article Library</strong>
-          </p>
-        </Col>
-        <Col sm={12} md={6} className="py-3">
-          <div className="mx-auto" style={{ maxWidth: '400px' }}>
+        <Col sm={12} md={8} className="py-3 px-4">
+          <div style={{ maxWidth: '400px' }}>
             <GlobalSearch />
           </div>
         </Col>
-        <Col sm={12} md={3} className="py-4">
-          <p className="text-white mb-0 text-center">
+        <Col sm={12} md={{ span: 3, offset: 1 }} className="py-4">
+          <p className="text-white mb-0 text-md-center">
             <strong>Follow us:</strong>
             <a
               href="https://www.linkedin.com/company/scarinci-hollenbeck-llc"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 text-white"
+              className="ml-2 text-white d-block d-md-inline"
             >
               <u>LinkedIn</u>
             </a>
@@ -31,7 +26,7 @@ export default function SearchBar() {
               href="https://www.facebook.com/ScarinciHollenbeck/"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 text-white"
+              className="ml-2 text-white  d-block d-md-inline"
             >
               <u>Facebook</u>
             </a>

@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button';
 export default function FeaturedLinks() {
   return (
     <Col sm={12} className={`${styles.linksContainer} px-0 mx-0`}>
-      <ul className="list-unstyled list-inline text-center my-3">
-        <li className="list-inline-item">
+      <ul className="list-unstyled list-inline px-3 my-3">
+        <li className="list-inline-item mb-2 md-sm-0">
           <Button variant="danger" href="/library/category/client-alert">
             Client Alert
           </Button>

@@ -1,4 +1,4 @@
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import { Container, Row, Col } from 'react-bootstrap';
 import SubscriptionBody from 'components/molecules/subscription/subscription-body';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
@@ -13,10 +13,10 @@ export default function SubscriptionPage({ site, seo }) {
       <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={0} />
       <Container>
         <Row>
-          <Col sm={12} md={9}>
+          <Col sm={12} lg={9}>
             <SubscriptionBody />
           </Col>
-          <Col sm={12} md={3} className={sidebarStyles.container}>
+          <Col sm={12} lg={3} className={sidebarStyles.container}>
             <CommonSidebarLinks />
           </Col>
         </Row>

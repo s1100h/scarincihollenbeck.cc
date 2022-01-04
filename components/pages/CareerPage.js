@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import SingleCareerBody from 'components/organisms/career/body';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
@@ -27,14 +27,14 @@ export default function CareerProfile({ career }) {
       />
       <Container>
         <Row>
-          <Col sm={12} md={9} className="mt-3">
+          <Col sm={12} lg={9} className="mt-3">
             <SingleCareerBody
               title={career.title}
               position={career.positionDescription}
               contact={career.contact}
             />
           </Col>
-          <Col sm={12} md={3}>
+          <Col sm={12} lg={3}>
             <SubscriptionMessage />
             <CommonSidebarLinks />
           </Col>

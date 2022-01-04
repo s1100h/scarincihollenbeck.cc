@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import FullWidth from 'layouts/full-width';
+import FullWidth from 'layouts/FullWidth';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 

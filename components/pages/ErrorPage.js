@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 
 export default function ErrorPage({ title, subTitle, mainMessage }) {
   return (

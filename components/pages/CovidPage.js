@@ -8,7 +8,7 @@ import SubscriptionMessage from 'components/molecules/subscription/subscription-
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 import PopularList from 'components/organisms/library/popular-list';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import { CLIENT_ALERTS } from 'utils/constants';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
@@ -50,7 +50,7 @@ const CovidPage = ({
       <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <Container>
         <Row>
-          <Col sm={12} md={9}>
+          <Col sm={12} lg={9}>
             <div
               className={pageContentStyles.p}
               dangerouslySetInnerHTML={createMarkup(bodyContent)}
@@ -72,7 +72,7 @@ const CovidPage = ({
             <h4 className={grayTitleStyles.title}>Contact A Firm Representative</h4>
             <ContactForm />
           </Col>
-          <Col sm={12} md={3}>
+          <Col sm={12} lg={3}>
             {sidebar}
           </Col>
         </Row>

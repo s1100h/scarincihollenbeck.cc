@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import SidebarContent from 'components/shared/SidebarContent';
 import PageArticleHero from 'components/organisms/page/page-article-hero';
-import SingleSubHeader from 'layouts/single-sub-header';
+import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { createMarkup } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
@@ -19,13 +19,24 @@ export default function FirmPage({ page, relatedPages, canonicalUrl }) {
       <SingleSubHeader title={page.title} subtitle={page.description} span={6} offset={0} />
       <Container>
         <Row>
-          <Col sm={12} md={9}>
+          <Col sm={12} lg={9}>
             {page.tabs.map((tab) => (
               <div key={tab.title}>
                 <h4 className={`${grayTitleStyles.title} text-capitalize w-100`}>{tab.title}</h4>
                 <div dangerouslySetInnerHTML={createMarkup(tab.content)} />
               </div>
             ))}
+          </Col>
+          <Col sm={12} lg={3} className={sidebarStyles.container}>
+            <SubscriptionMessage />
+            <hr />
+            <SidebarContent title="Firm Library" content={FIRM_BLOG_PAGES} tabKey={2} />
+            <hr />
+            <SidebarContent title="Diversity" content={relatedPages} tabKey={2} />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={12} className="mt-lg-5">
             {page.attorneysMentioned.length > 0 && (
               <>
                 <div className={lineHeaderStyles.lineHeader}>
@@ -39,13 +50,6 @@ export default function FirmPage({ page, relatedPages, canonicalUrl }) {
                 </div>
               </>
             )}
-          </Col>
-          <Col sm={12} md={3} className={sidebarStyles.container}>
-            <SubscriptionMessage />
-            <hr />
-            <SidebarContent title="Firm Library" content={FIRM_BLOG_PAGES} tabKey={2} />
-            <hr />
-            <SidebarContent title="Diversity" content={relatedPages} tabKey={2} />
           </Col>
         </Row>
       </Container>

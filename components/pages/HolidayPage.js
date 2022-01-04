@@ -1,5 +1,5 @@
-import SingleSubHeader from 'layouts/single-sub-header';
-import FullWidth from 'layouts/full-width';
+import SingleSubHeader from 'layouts/SingleSubHeader';
+import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { createMarkup } from 'utils/helpers';
 

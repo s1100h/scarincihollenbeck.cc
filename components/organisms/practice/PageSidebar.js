@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CovidResourcesBox from 'components/molecules/practice/CovidResourcesBox';
 import SidebarContent from 'components/shared/SidebarContent';
 import textStyles from 'styles/Text.module.css';
@@ -11,7 +10,7 @@ const PageSidebar = ({ corePractices, practiceChildren }) => {
   const slug = router.asPath;
 
   return (
-    <>
+    <div className="mt-4">
       {slug.includes('education-law') && (
         <>
           <div>
@@ -52,8 +51,6 @@ const PageSidebar = ({ corePractices, practiceChildren }) => {
           <hr />
         </>
       )}
-      <SubscriptionMessage />
-      <hr />
       <SidebarContent title="Core Practices" content={corePractices} tabKey={2} />
       {practiceChildren.length > 0 && (
         <>
@@ -61,7 +58,7 @@ const PageSidebar = ({ corePractices, practiceChildren }) => {
           <SidebarContent title="Related Practices" content={practiceChildren} tabKey={1} />
         </>
       )}
-    </>
+    </div>
   );
 };
 

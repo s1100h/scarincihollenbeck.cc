@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-export default function ArticleHeroPage({ link, content }) {
+export default function ArticleHeroPage({ content }) {
   return (
     <Container>
       <Row className="my-4">
@@ -15,7 +16,10 @@ export default function ArticleHeroPage({ link, content }) {
                 <a className="text-center mx-auto d-block">
                   <Image
                     alt={article.title}
-                    src={article.featuredImg || '/images/no-image-found-diamond.png'}
+                    src={
+                      formatSrcToCloudinaryUrl(article.featuredImg)
+                      || '/images/no-image-found-diamond.png'
+                    }
                     width={300}
                     height={150}
                     className="rounded"
@@ -27,17 +31,6 @@ export default function ArticleHeroPage({ link, content }) {
               </Link>
             </Col>
           ))}
-        {content.length >= 3 && (
-          <a
-            href={`/library?term=${link}`}
-            className=" mx-auto d-block w-100 text-center my-4"
-            style={{ color: '#db2220', fontSize: '1.275rem' }}
-          >
-            <strong>
-              <u>More articles</u>
-            </strong>
-          </a>
-        )}
       </Row>
     </Container>
   );

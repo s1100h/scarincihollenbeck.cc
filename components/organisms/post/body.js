@@ -40,7 +40,7 @@ export default function PostBody({
   const postUrl = `${SITE_URL}${router.asPath}`;
 
   return (
-    <Col sm={12} md={9}>
+    <Col sm={12} lg={9}>
       <PostBreadcrumbs />
       {featuredImage && (
         <Image src={featuredImage} width={750} height={350} alt={title} layout="intrinsic" />
