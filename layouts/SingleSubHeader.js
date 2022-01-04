@@ -17,7 +17,7 @@ export default function SingleSubHeader({
     <div className={!isHoliday ? styles.backPageBanner : styles.holidayBanner}>
       <Container className={isTabs ? styles.tabBanner : styles.noTabBanner}>
         <Row>
-          <Col sm={12} md={{ span, offset }}>
+          <Col sm={12} lg={{ span, offset }}>
             <div className="title-container">
               <h1
                 className="text-white animate__animated animate__fadeInDown animate__fast"
