@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import AdministrationProfile from 'components/pages/AdminProfile';
 import { SITE_URL } from 'utils/constants';
-import { getAdmininstrationPaths, getAdministrationContent } from 'utils/queries';
+import { getAdministrationPaths, getAdministrationContent } from 'utils/queries';
 
 export default function AdministrationProfilePage({ response }) {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function AdministrationProfilePage({ response }) {
 }
 
 export async function getStaticPaths() {
-  const paths = await getAdmininstrationPaths();
+  const paths = await getAdministrationPaths();
 
   return {
     paths,

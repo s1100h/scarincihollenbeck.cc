@@ -1,15 +1,26 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { ArticleJsonLd } from 'next-seo';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { STANDARD_SCHEMA } from 'utils/json-ld-schemas';
+import { STANDARD_SCHEMA, articleSchema } from 'utils/json-ld-schemas';
 
 const PostSiteHead = ({ seo, post, authors }) => {
   const { metaTitle, metaDescription } = seo;
   const router = useRouter();
   const slug = router.asPath;
-
   const canonicalUrl = CURRENT_DOMAIN + slug;
+
+  const articleJsonLD = {
+    headline: metaTitle,
+    alternativeHeadline: metaDescription,
+    image: post.featuredImage,
+    author: authors.map((a) => a.display_name).join(', '),
+    url: canonicalUrl,
+    datePublished: post.date,
+    dateCreated: post.date,
+    dateModified: post.date,
+    description: post.subTitle,
+    articleBody: post.content,
+  };
 
   return (
     <>
@@ -31,18 +42,14 @@ const PostSiteHead = ({ seo, post, authors }) => {
           name="twitter:image"
           content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
         />
+        <script
+          key="ScarinciHollenbeck Bio Profile"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(articleSchema(articleJsonLD)),
+          }}
+        />
       </Head>
-      <ArticleJsonLd
-        url={canonicalUrl}
-        title={metaTitle}
-        images={[post.featuredImage]}
-        datePublished={post.date}
-        dateModified={post.date}
-        authorName={authors.map((author) => author.display_name)}
-        publisherName="Scarinci Hollenbeck, LLC"
-        publisherLogo={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
-        description={metaDescription}
-      />
     </>
   );
 };

@@ -4,7 +4,7 @@ import { BASE_API_URL } from 'utils/constants';
 const fetch = require('node-fetch');
 
 // querires for page/administration
-const getAdmininstrationPaths = async () => {
+const getAdministrationPaths = async () => {
   const url = `${BASE_API_URL}/wp-json/admin-search/admin`;
   const request = await fetch(url, { headers })
     .then((data) => data.json())
@@ -320,7 +320,7 @@ const getCovid19BasedPages = async (slug, id) => {
 };
 
 module.exports = {
-  getAdmininstrationPaths,
+  getAdministrationPaths,
   getAdministrationContent,
   getAttorneyPaths,
   getAttorneyContent,

@@ -1,5 +1,15 @@
 import { CURRENT_DOMAIN } from './constants';
 
+export const articleSchema = (body) => ({
+  '@graph': [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      publisher: 'Scarinci Hollenbeck',
+      ...body,
+    },
+  ],
+});
 export const buildBusinessSchema = () => ({
   '@graph': [
     {

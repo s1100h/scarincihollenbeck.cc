@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import Container from 'react-bootstrap/Container'
-import { NextSeo } from 'next-seo'
 
 export default function MailChimp() {
   return (
     <>
-      <NextSeo noindex />
       <Head>
         <link
           href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css"
