@@ -13,7 +13,11 @@ const PostSiteHead = ({ seo, post, authors }) => {
     headline: metaTitle,
     alternativeHeadline: metaDescription,
     image: post.featuredImage,
-    author: authors.map((a) => a.display_name).join(', '),
+    author: {
+      '@type': 'Person',
+      url: authors.map((a) => a.user_url).join(', '),
+      name: authors.map((a) => a.display_name).join(', '),
+    },
     url: canonicalUrl,
     datePublished: post.date,
     dateCreated: post.date,

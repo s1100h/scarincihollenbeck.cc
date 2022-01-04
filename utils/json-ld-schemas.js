@@ -5,7 +5,10 @@ export const articleSchema = (body) => ({
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
-      publisher: 'Scarinci Hollenbeck',
+      publisher: {
+        '@type': 'LegalService',
+        name: 'Scarinci Hollenbeck',
+      },
       ...body,
     },
   ],
