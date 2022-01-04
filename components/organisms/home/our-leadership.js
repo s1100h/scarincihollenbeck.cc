@@ -30,7 +30,7 @@ function AttorneyProfile({ attorney }) {
             <p>{attorney.title}</p>
           ) : (
             <p>
-              Chair,
+              <span className="mr-1">Chair,</span>
               {attorney.title.join(', ')}
             </p>
           )}
