@@ -6,10 +6,10 @@ import {
   getCategoryPaths,
   getLocationPaths,
   getPracticePaths,
+  getCurrentPublishedPages,
 } from 'utils/queries';
 import { FIRM_PAGES, FUNERAL_SLUGS, CURRENT_DOMAIN } from 'utils/constants';
-
-import fs from 'fs';
+import { POST_TYPE_REWRITES } from 'utils/rewrites';
 
 const Sitemap = () => null;
 
@@ -22,41 +22,41 @@ export const getServerSideProps = async ({ res }) => {
   const categoryPaths = await getCategoryPaths();
   const locationPaths = await getLocationPaths();
   const practicePaths = await getPracticePaths();
-
-  const staticPages = fs
-    .readdirSync('pages')
-    .filter(
-      (staticPage) => ![
-        '_app.js',
-        '_document.js',
-        '_error.js',
-        'sitemap.xml.js',
-        'career',
-        'attorney',
-        'api',
-        'post',
-        'site-forms',
-        'index.js',
-        'firm-pages',
-        'location',
-        'library',
-        'holiday',
-      ].includes(staticPage),
-    )
-    .map((staticPagePath) => `${baseUrl}/${staticPagePath.replace('.js', '')}`);
+  const pagePaths = await getCurrentPublishedPages();
+  const postPaths = POST_TYPE_REWRITES.map((post) => ({
+    path: post.source.replace('/:path*', ''),
+  }));
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      ${staticPages
+        <url>
+          <loc>${baseUrl}</loc>
+          <lastmod>${new Date().toISOString()}</lastmod>
+          <changefreq>monthly</changefreq>
+          <priority>1.0</priority>
+        </url>
+      ${pagePaths
     .map(
       (url) => `
         <url>
-          <loc>${url}</loc>
+          <loc>${baseUrl}${url}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
           <changefreq>monthly</changefreq>
           <priority>1.0</priority>
         </url>
       `,
+    )
+    .join('')}
+    ${postPaths
+    .map(
+      (url) => `
+          <url>
+            <loc>${baseUrl}${url.path}</loc>
+            <lastmod>${new Date().toISOString()}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>1.0</priority>
+          </url>
+        `,
     )
     .join('')}
       ${adminPaths

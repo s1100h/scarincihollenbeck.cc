@@ -319,6 +319,19 @@ const getCovid19BasedPages = async (slug, id) => {
   return [request, posts];
 };
 
+// query a list of published pages from wp.scarincihollenbeck.com
+const getCurrentPublishedPages = async () => {
+  const request = await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages`)
+    .then((data) => data.json())
+    .catch((err) => err);
+
+  const publishedPages = request
+    .filter((page) => page.status === 'publish')
+    .map((page) => page.slug);
+
+  return publishedPages;
+};
+
 module.exports = {
   getAdministrationPaths,
   getAdministrationContent,
@@ -342,4 +355,5 @@ module.exports = {
   getPracticePosts,
   getAttorneysPageContent,
   getCovid19BasedPages,
+  getCurrentPublishedPages,
 };

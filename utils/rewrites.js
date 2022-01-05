@@ -43,7 +43,7 @@ const POST_TYPE_REWRITES = [
   },
 ];
 
-const POST_CATEOGRY_REWRITES = [
+const POST_CATEGORY_REWRITES = [
   {
     source: '/law-firm-insights/:slug*',
     destination: '/post/:slug*?category=law-firm-insights',
@@ -129,6 +129,6 @@ module.exports = {
   HOLIDAY_REWRITES,
   FUNERAL_REWRITES,
   POST_TYPE_REWRITES,
-  POST_CATEOGRY_REWRITES,
+  POST_CATEGORY_REWRITES,
   FIRM_PAGES_REWRITES,
 };

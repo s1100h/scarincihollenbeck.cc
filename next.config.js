@@ -2,7 +2,7 @@ const {
   HOLIDAY_REWRITES,
   FUNERAL_REWRITES,
   POST_TYPE_REWRITES,
-  POST_CATEOGRY_REWRITES,
+  POST_CATEGORY_REWRITES,
   FIRM_PAGES_REWRITES,
 } = require('./utils/rewrites');
 
@@ -33,7 +33,7 @@ module.exports = {
   async rewrites() {
     return [
       ...POST_TYPE_REWRITES,
-      ...POST_CATEOGRY_REWRITES,
+      ...POST_CATEGORY_REWRITES,
       ...FIRM_PAGES_REWRITES,
       ...FUNERAL_REWRITES,
       ...HOLIDAY_REWRITES,
