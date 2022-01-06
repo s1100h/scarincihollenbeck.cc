@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
-import HomeBanner from 'components/organisms/home/Banner';
+import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeHoneyCombSection from 'components/organisms/home/HoneyCombSection';
 import HomeMainTag from 'components/organisms/home/MainTag';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
@@ -9,7 +9,7 @@ import styles from 'styles/Home.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import dynamic from 'next/dynamic';
 
-const HomeLocations = dynamic(() => import('components/organisms/home/Locations'));
+const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
 const HomeOurLeadership = dynamic(() => import('components/organisms/home/OurLeadership'));
 const HomeReviews = dynamic(() => import('components/organisms/home/Awards'));
 const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirmSection'));
@@ -88,7 +88,7 @@ export default function HomePage({
         <HomeOurLeadership leaders={leadership} />
         <HomeReviews awards={awards} />
         <HomePageLink link="/awards" title="Award Methodology" />
-        <HomeLocations offices={offices} />
+        <AllOfficeLocations offices={offices} />
         <FirmNews />
       </Container>
     </>
