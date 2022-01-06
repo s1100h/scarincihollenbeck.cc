@@ -31,7 +31,27 @@ export default function BasicPage({
 
 export async function getStaticPaths() {
   const requestUrls = await getCurrentPublishedPages();
-  const modUrls = requestUrls.map((url) => `/basic-page/${url}`);
+  const pruneUrls = requestUrls.filter((url) => {
+    if (
+      url.includes('passing')
+      || url.includes('covid')
+      || url.includes('firm-overview')
+      || url.includes('subscribe')
+      || url.includes('contact')
+      || url.includes('holidays')
+      || url.includes('front-page')
+      || url.includes('women-lead')
+      || url.includes('community-involvement')
+      || url.includes('diversity')
+      || url.includes('pro-bono')
+    ) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const modUrls = pruneUrls.map((url) => `/basic-page/${url}`);
 
   return {
     paths: modUrls || [],

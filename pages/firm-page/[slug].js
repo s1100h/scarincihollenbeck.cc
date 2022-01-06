@@ -22,7 +22,7 @@ export default function FirmPages({ page, relatedPages, currentPage }) {
 }
 
 export async function getStaticPaths() {
-  const urls = FIRM_PAGES.map((a) => `/firm-pages${a.slug}`);
+  const urls = FIRM_PAGES.map((a) => `/firm-page${a.slug}`);
 
   return {
     paths: urls || [],

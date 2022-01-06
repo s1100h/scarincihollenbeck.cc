@@ -3,6 +3,7 @@ const {
   POST_TYPE_REWRITES,
   POST_CATEGORY_REWRITES,
 } = require('./utils/rewrites');
+const { PERMANENT_REDIRECTS } = require('./utils/permanent-redirects');
 
 module.exports = {
   env: {
@@ -30,5 +31,8 @@ module.exports = {
   },
   async rewrites() {
     return [...POST_TYPE_REWRITES, ...POST_CATEGORY_REWRITES, ...SITE_PAGES_REWRITES];
+  },
+  async redirects() {
+    return [...PERMANENT_REDIRECTS];
   },
 };

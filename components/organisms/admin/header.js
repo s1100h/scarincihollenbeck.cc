@@ -20,7 +20,7 @@ export default function AdminProfileHeader({ image, profile }) {
     <>
       <div className={styles.backPageBanner}>
         <Container className={styles.multiBackBanner}>
-          <Row>
+          <Row className="my-4">
             <Col sm={12} lg={9} className="text-white">
               <Row>
                 <Col sm={12} md={4}>

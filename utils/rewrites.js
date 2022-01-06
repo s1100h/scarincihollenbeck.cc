@@ -108,32 +108,20 @@ const SITE_PAGES_REWRITES = [
     destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
   },
   {
-    source: '/holiday/2019-happy-holidays',
-    destination: '/holiday/2019-happy-holidays',
-  },
-  {
-    source: '/holiday/2020-happy-holidays',
-    destination: '/holiday/2020-happy-holidays',
-  },
-  {
-    source: '/holiday/2021-happy-holidays',
-    destination: '/holiday/2021-happy-holidays',
-  },
-  {
     source: '/diversity',
-    destination: '/firm-pages/diversity',
+    destination: '/firm-page/diversity',
   },
   {
     source: '/community-involvement',
-    destination: '/firm-pages/community-involvement',
+    destination: '/firm-page/community-involvement',
   },
   {
     source: '/pro-bono',
-    destination: '/firm-pages/pro-bono',
+    destination: '/firm-page/pro-bono',
   },
   {
     source: '/women-lead',
-    destination: '/firm-pages/women-lead',
+    destination: '/firm-page/women-lead',
   },
 ];
 

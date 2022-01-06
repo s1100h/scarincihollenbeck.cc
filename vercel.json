@@ -30,6 +30,11 @@
       "source": "/practices/mergers-acquistions",
       "destination": "/practices/mergers-acquisitions",
       "statusCode": 301
+    },
+    {
+      "source": "/basic-page/*",
+      "destination": "/",
+      "statusCode": 301
     }
   ]
 }
