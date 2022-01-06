@@ -19,11 +19,12 @@ const OfficeDetails = ({ office }) => (
       </a>
     </Link>
     <ul className="list-unstyled ml-0">
-      {office.address.map((a) => (
-        <li key={a} className="mb-0">
-          {a}
-        </li>
-      ))}
+      {office.address
+        && office.address.map((a) => (
+          <li key={a} className="mb-0">
+            {a}
+          </li>
+        ))}
       <li className="my-0">
         <strong>Phone: </strong>
         {' '}

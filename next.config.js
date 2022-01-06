@@ -1,9 +1,7 @@
 const {
-  HOLIDAY_REWRITES,
-  FUNERAL_REWRITES,
+  SITE_PAGES_REWRITES,
   POST_TYPE_REWRITES,
   POST_CATEGORY_REWRITES,
-  FIRM_PAGES_REWRITES,
 } = require('./utils/rewrites');
 
 module.exports = {
@@ -31,12 +29,6 @@ module.exports = {
     swcMinify: true,
   },
   async rewrites() {
-    return [
-      ...POST_TYPE_REWRITES,
-      ...POST_CATEGORY_REWRITES,
-      ...FIRM_PAGES_REWRITES,
-      ...FUNERAL_REWRITES,
-      ...HOLIDAY_REWRITES,
-    ];
+    return [...POST_TYPE_REWRITES, ...POST_CATEGORY_REWRITES, ...SITE_PAGES_REWRITES];
   },
 };

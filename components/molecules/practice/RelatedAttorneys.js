@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import lineHeadingStyles from 'styles/LineHeader.module.css';
-import { sortByKey } from 'utils/helpers';
+import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import VirtualizedMembers from 'components/shared/VirtualizedMembers';
 
 export default function PracticeRelatedAttorneys({ members, chair, title }) {
@@ -19,7 +19,7 @@ export default function PracticeRelatedAttorneys({ members, chair, title }) {
               <Col sm={12} md={12} lg={6} key={m.ID}>
                 <AttorneyCard
                   link={m.link}
-                  image={m.image}
+                  image={formatSrcToCloudinaryUrl(m.image)}
                   name={m.name}
                   title={m.designation}
                   number={m.contact}

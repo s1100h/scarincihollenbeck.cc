@@ -1,39 +1,47 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
-import HomeBanner from 'components/organisms/home/banner';
-import HomeHoneyCombSection from 'components/organisms/home/honey-comb-section';
-import HomeMainTag from 'components/organisms/home/main-tag';
+import HomeBanner from 'components/organisms/home/Banner';
+import HomeHoneyCombSection from 'components/organisms/home/HoneyCombSection';
+import HomeMainTag from 'components/organisms/home/MainTag';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
-import { sortByKey } from 'utils/helpers';
 import styles from 'styles/Home.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import dynamic from 'next/dynamic';
 
-const HomeLocations = dynamic(() => import('components/organisms/home/locations'));
-const HomeOurLeadership = dynamic(() => import('components/organisms/home/our-leadership'));
-const HomeReviews = dynamic(() => import('components/organisms/home/reviews'));
-const HomeWhoWeAreSection = dynamic(() => import('components/organisms/home/who-we-are-section'));
-const HomePageLink = dynamic(() => import('components/organisms/home/page-link'));
+const HomeLocations = dynamic(() => import('components/organisms/home/Locations'));
+const HomeOurLeadership = dynamic(() => import('components/organisms/home/OurLeadership'));
+const HomeReviews = dynamic(() => import('components/organisms/home/Awards'));
+const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirmSection'));
+const HomePageLink = dynamic(() => import('components/organisms/home/PageLink'));
+const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'));
 
 export default function HomePage({
-  seo, posts, locations, leadership, awards,
+  seo,
+  aboutFirm,
+  awards,
+  banner,
+  intro,
+  leadership,
+  offices,
+  serviceOne,
+  serviceTwo,
 }) {
   return (
     <>
       <HomeSiteHead
         title={seo.title}
-        metaDescription={seo.metaDescription}
+        metaDescription={seo.metaDesc}
         canonicalUrl={CURRENT_DOMAIN}
       />
-      <HomeBanner />
+      <HomeBanner {...banner} />
       <Container>
-        <HomeMainTag />
+        <HomeMainTag {...intro} />
         <HomeHoneyCombSection
           contentOne={(
             <Image
-              src="/images/goalssh-400x400.png"
-              alt="meet our attorneys"
+              src={serviceOne?.serviceImage?.sourceUrl}
+              alt={serviceOne?.title}
               width={400}
               height={400}
               layout="intrinsic"
@@ -42,15 +50,11 @@ export default function HomePage({
           contentTwo={(
             <div className={`${styles.honeyCombContent} float-right`}>
               <p className={styles.honeycombTitle}>
-                <strong>MEET OUR TEAM</strong>
+                <strong className="text-uppercase">{serviceOne?.title}</strong>
               </p>
-              <p>
-                Our attorneys collaborate across the firm’s practice areas to achieve the best
-                combination of knowledge, experience, and efficiency. We are dedicated to delivering
-                outstanding client service.
-              </p>
-              <Link href="/attorneys">
-                <a>Meet our attorneys</a>
+              <p>{serviceOne?.description}</p>
+              <Link href={serviceOne?.linkUrl}>
+                <a>{serviceOne?.linkLabel}</a>
               </Link>
             </div>
           )}
@@ -59,23 +63,19 @@ export default function HomePage({
           contentOne={(
             <div className={styles.honeyCombContent}>
               <p className={styles.honeycombTitle}>
-                <strong>OUR SERVICES</strong>
+                <strong className="text-uppercase">{serviceTwo?.title}</strong>
               </p>
-              <p>
-                We help our clients achieve their goals by providing tailored services with the
-                focused experience of a boutique firm by drawing upon the resources of the firm’s
-                core practice areas.
-              </p>
-              <Link href="/practices">
-                <a>See what we do</a>
+              <p>{serviceTwo?.description}</p>
+              <Link href={serviceTwo?.linkUrl}>
+                <a>{serviceTwo?.linkLabel}</a>
               </Link>
             </div>
           )}
           contentTwo={(
             <div className="float-right">
               <Image
-                src="/images/colabsh2-400x400.png"
-                alt="meet our attorneys"
+                src={serviceTwo?.serviceImage?.sourceUrl}
+                alt={serviceTwo?.title}
                 width={400}
                 height={400}
                 layout="intrinsic"
@@ -83,12 +83,13 @@ export default function HomePage({
             </div>
           )}
         />
-        <HomeWhoWeAreSection />
-        <HomePageLink link="/firm-overview" title="More from our firm" />
-        <HomeOurLeadership attorneys={leadership} />
+        <AboutFirmSection {...aboutFirm} />
+        <HomePageLink link={aboutFirm.linkUrl} title={aboutFirm.linkLabel} />
+        <HomeOurLeadership leaders={leadership} />
         <HomeReviews awards={awards} />
         <HomePageLink link="/awards" title="Award Methodology" />
-        <HomeLocations locations={sortByKey(locations.offices, 'id')} />
+        <HomeLocations offices={offices} />
+        <FirmNews />
       </Container>
     </>
   );

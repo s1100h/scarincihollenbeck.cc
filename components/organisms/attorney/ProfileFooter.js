@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Row, Col } from 'react-bootstrap';
 import ClientSlider from 'components/molecules/attorney/ClientSlider';
 import FooterArticles from 'components/molecules/attorney/FooterArticles';
-import HomePageLink from 'components/organisms/home/page-link';
+import HomePageLink from 'components/organisms/home/PageLink';
 import lineStyles from 'styles/LineHeader.module.css';
 
 function ArticleSection({

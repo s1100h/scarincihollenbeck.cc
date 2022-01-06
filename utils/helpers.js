@@ -171,7 +171,7 @@ export const formatSrcToCloudinaryUrl = (src) => {
   return '/images/no-image-found-diamond-750x350.png';
 };
 
-// sanitize interal articles from graphql request
+// sanitize internal articles from graphql request
 export const sanitizeArticles = (arr) => arr.map(({ node }, index) => ({
   id: index,
   link: node.uri,

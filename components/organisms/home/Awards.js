@@ -4,14 +4,16 @@ import lineStyles from 'styles/LineHeader.module.css';
 
 export default function HomeReviews({ awards }) {
   const formattedAwards = awards
-    .map(({ node }) => ({
-      id: node.homePageAwards.appearanceOrder,
-      order: node.homePageAwards.appearanceOrder,
+    .map(({
+      appearanceOrder, imageHeight, imageWidth, label, awardImage,
+    }) => ({
+      id: label,
+      order: appearanceOrder,
       image: {
-        src: node.homePageAwards.image.sourceUrl,
-        alt: node.homePageAwards.label,
-        width: node.homePageAwards.imageWidth,
-        height: node.homePageAwards.imageHeight,
+        src: awardImage.sourceUrl,
+        alt: label,
+        width: imageWidth,
+        height: imageHeight,
       },
     }))
     .sort((a, b) => (a.order > b.order ? 1 : -1));

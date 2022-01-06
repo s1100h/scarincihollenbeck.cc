@@ -321,7 +321,7 @@ const getCovid19BasedPages = async (slug, id) => {
 
 // query a list of published pages from wp.scarincihollenbeck.com
 const getCurrentPublishedPages = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages`)
+  const request = await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)
     .then((data) => data.json())
     .catch((err) => err);
 

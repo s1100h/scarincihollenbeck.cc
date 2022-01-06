@@ -1,6 +1,6 @@
 import styles from 'styles/Banner.module.css';
 
-export default function HomeBanner() {
+export default function HomeBanner({ lineOne, lineTwo }) {
   return (
     <div className={styles.banner}>
       <div className={`${styles.redBanner} animate__animated animate__fadeInLeft animate__slow`}>
@@ -8,10 +8,10 @@ export default function HomeBanner() {
           <div className="d-flex p-4">
             <div>
               <p className={`${styles.text} animate__animated animate__fadeInDown animate__slow`}>
-                Ready to rebuild?
+                {lineOne}
               </p>
               <p className={`${styles.text} animate__animated animate__fadeInDown animate__slow`}>
-                <strong>We are here to help</strong>
+                <strong>{lineTwo}</strong>
               </p>
             </div>
           </div>

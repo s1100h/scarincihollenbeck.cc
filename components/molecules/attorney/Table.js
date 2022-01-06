@@ -51,10 +51,15 @@ const Table = ({ content }) => {
                   className="h6 mb-0 title"
                   dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][0])}
                 />
-                {content.body[virtualRow.index][1] && content.body[virtualRow.index][1]}
+                {content.body[virtualRow.index][1] && (
+                  <span
+                    className="tag-one"
+                    dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][1])}
+                  />
+                )}
                 {content.body[virtualRow.index][2] && (
                   <span
-                    className="tag"
+                    className="tag-two"
                     dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][2])}
                   />
                 )}
@@ -67,7 +72,7 @@ const Table = ({ content }) => {
             .title {
               font-family: Proxima Nova Bold;
             }
-            .tag::before {
+            .tag-two::before {
               content: ' - ';
             }
           `}

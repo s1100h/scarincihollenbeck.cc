@@ -1,29 +1,3 @@
-const HOLIDAY_REWRITES = [
-  {
-    source: '/holiday/2019-happy-holidays',
-    destination: '/holiday/2019-happy-holidays',
-  },
-  {
-    source: '/holiday/2020-happy-holidays',
-    destination: '/holiday/2020-happy-holidays',
-  },
-  {
-    source: '/holiday/2021-happy-holidays',
-    destination: '/holiday/2021-happy-holidays',
-  },
-];
-
-const FUNERAL_REWRITES = [
-  {
-    source: '/passing-attorney-harvey-r-poe',
-    destination: '/funeral-announcements/passing-attorney-harvey-r-poe',
-  },
-  {
-    source: '/passing-attorney-david-a-einhorn',
-    destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
-  },
-];
-
 const POST_TYPE_REWRITES = [
   {
     source: '/attorneys/:path*',
@@ -106,7 +80,45 @@ const POST_CATEGORY_REWRITES = [
   },
 ];
 
-const FIRM_PAGES_REWRITES = [
+const SITE_PAGES_REWRITES = [
+  /** Start of basic page rewrites */
+  {
+    source: '/awards',
+    destination: '/basic-page/awards',
+  },
+  {
+    source: '/terms-of-use',
+    destination: '/basic-page/terms-of-use',
+  },
+  {
+    source: '/privacy-policy',
+    destination: '/basic-page/privacy-policy',
+  },
+  {
+    source: '/disclaimer',
+    destination: '/basic-page/disclaimer',
+  },
+  /** End of basic page rewrites */
+  {
+    source: '/passing-attorney-harvey-r-poe',
+    destination: '/funeral-announcements/passing-attorney-harvey-r-poe',
+  },
+  {
+    source: '/passing-attorney-david-a-einhorn',
+    destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
+  },
+  {
+    source: '/holiday/2019-happy-holidays',
+    destination: '/holiday/2019-happy-holidays',
+  },
+  {
+    source: '/holiday/2020-happy-holidays',
+    destination: '/holiday/2020-happy-holidays',
+  },
+  {
+    source: '/holiday/2021-happy-holidays',
+    destination: '/holiday/2021-happy-holidays',
+  },
   {
     source: '/diversity',
     destination: '/firm-pages/diversity',
@@ -126,9 +138,7 @@ const FIRM_PAGES_REWRITES = [
 ];
 
 module.exports = {
-  HOLIDAY_REWRITES,
-  FUNERAL_REWRITES,
+  SITE_PAGES_REWRITES,
   POST_TYPE_REWRITES,
   POST_CATEGORY_REWRITES,
-  FIRM_PAGES_REWRITES,
 };

@@ -1,37 +1,10 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Row, Col } from 'react-bootstrap';
 import lineStyles from 'styles/LineHeader.module.css';
-import textStyles from 'styles/Text.module.css';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-function LocationCard({ location }) {
-  return (
-    <Col sm={12} md={3} className="mx-auto d-block my-5">
-      <div className="border">
-        <Link href={location.slug}>
-          <a>
-            <Image
-              src={formatSrcToCloudinaryUrl(location.featuredImg)}
-              alt={location.title}
-              width={253}
-              height={167}
-              layout="responsive"
-            />
-            <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
-              {location.title === 'Washington D.C.' ? (
-                <strong>Washington, D.C.</strong>
-              ) : (
-                <strong>{location.title}</strong>
-              )}
-            </p>
-          </a>
-        </Link>
-      </div>
-    </Col>
-  );
-}
-export default function HomeLocations({ locations }) {
+const LocationCard = dynamic(() => import('components/molecules/home/LocationCard'));
+
+export default function HomeLocations({ offices }) {
   return (
     <Row className="mt-5">
       <Col sm={12} className="mt-5 mb-0 pb-0">
@@ -39,8 +12,8 @@ export default function HomeLocations({ locations }) {
           <h3>Office Locations</h3>
         </div>
       </Col>
-      {locations.map((location) => (
-        <LocationCard key={location.id} location={location} />
+      {offices.map(({ node }) => (
+        <LocationCard key={node.id} {...node} />
       ))}
     </Row>
   );

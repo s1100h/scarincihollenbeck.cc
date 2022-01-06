@@ -403,3 +403,121 @@ export const categoryPostQuery = `query CategoryPosts($name:String) {
   }
 }
 `;
+
+// contact/subscribe page query
+export const contactSubscribePageQuery = `query ContactSubscribePageQuery($slug:String) {
+  pageBy(uri: $slug) {
+    seo {
+      metaDesc
+      title
+    }
+    title
+    formPages {
+      formLabel
+    }
+    content(format: RENDERED)
+  }
+}`;
+
+export const homePageQuery = `query HomePageQuery {
+  pageBy(uri: "front-page") {
+    title
+    homePage {
+      aboutFirm {
+        description
+        linkLabel
+        linkUrl
+        title
+      }
+      awards {
+        appearanceOrder
+        imageHeight
+        imageWidth
+        label
+        awardImage {
+          sourceUrl
+        }
+      }
+      bannerLineOne
+      bannerLineTwo
+      mainTag
+      serviceOne {
+        description
+        linkLabel
+        linkUrl
+        title
+        serviceImage {
+          sourceUrl
+        }
+      }
+      serviceTwo {
+        description
+        linkLabel
+        linkUrl
+        serviceImage {
+          sourceUrl
+        }
+        title
+      }
+      subMainTag
+      leadership {
+        ... on Administration {
+          id
+          uri
+          title
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          administration {
+            title
+          }
+        }
+        ... on AttorneyProfile {
+          id
+          uri
+          title
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          attorneyMainInformation {
+            designation
+          }
+          attorneyChairCoChair {
+            chair {
+              ... on Practice {
+                id
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+    seo {
+      metaDesc
+      title
+    }
+  }
+}
+`;
+
+export const homePageLocationsQuery = `query LocationPagesQuery {
+  officeLocations {
+    edges {
+      node {
+        id
+        slug
+        title
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+}`;

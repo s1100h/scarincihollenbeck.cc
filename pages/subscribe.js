@@ -1,6 +1,7 @@
 import SubscriptionPage from 'components/pages/SiteSubscriptions';
 import { SITE_URL } from 'utils/constants';
 
+/** Refactor this to use data from WP for contact page and subscribe page */
 const seo = {
   title: 'Subscribe To Firm Mailing List | Scarinci Hollenbeck',
   metaDescription:

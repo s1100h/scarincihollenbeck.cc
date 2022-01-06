@@ -5,7 +5,9 @@ import {
   attorneyFirmBlogQuery,
   attorneySlugsQuery,
   categoryPostQuery,
-  homePageAwardsQuery,
+  homePageLocationsQuery,
+  contactSubscribePageQuery,
+  homePageQuery,
 } from './graphql-queries';
 
 async function fetchAPI(query, { variables } = {}) {
@@ -73,18 +75,30 @@ export async function categoryPostsById(variables) {
   };
 }
 
-/** get all the awards for the home page  */
-export async function homePageAwards() {
-  const data = await fetchAPI(homePageAwardsQuery, {});
-  return data.homePageAwards?.edges;
-}
-
 /** get the library category landing page content */
 export async function categoryPosts(variables) {
   const data = await fetchAPI(categoryPostQuery, variables);
   return data.categories?.edges;
 }
 
-/** popular categories */
+/** contact/subscribe page content query */
+export async function contactSubscribePage(slug) {
+  const data = await fetchAPI(contactSubscribePageQuery, {
+    variables: { slug },
+  });
+  return data?.pageBy;
+}
 
-/** get the library author landing page content */
+/** Get homepage content */
+export async function homePageContent() {
+  const data = await fetchAPI(homePageQuery, {});
+
+  return data?.pageBy;
+}
+
+/** Get locations for home page */
+export async function homePageLocations() {
+  const data = await fetchAPI(homePageLocationsQuery, {});
+
+  return data?.officeLocations?.edges;
+}

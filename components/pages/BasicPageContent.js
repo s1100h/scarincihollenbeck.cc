@@ -3,7 +3,7 @@ import PagesBody from 'components/organisms/page/body';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 
-export default function SitePage({
+export default function BasicPageContent({
   seo, site, canonicalUrl, bodyContent,
 }) {
   return (
