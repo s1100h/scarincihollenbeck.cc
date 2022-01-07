@@ -113,6 +113,10 @@ const SITE_PAGES_REWRITES = [
     source: '/passing-attorney-david-a-einhorn',
     destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
   },
+  {
+    source: '/the-passing-of-harold-friedman',
+    destination: '/funeral-announcements/the-passing-of-harold-friedman',
+  },
   /** End of Funeral Pages */
   /** Start of Firm Pages */
   {
