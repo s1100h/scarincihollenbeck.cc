@@ -15,7 +15,7 @@ const BasicPageContent = ({
       <Row>
         <Col sm={12}>
           <PagesBody content={bodyContent} />
-          {pageForm.enableForm && (
+          {pageForm?.enableForm && (
             <>
               {pageForm.formLabel && (
                 <h4 className={`${grayTitleStyles.title} mb-5 w-75`}>{pageForm.formLabel}</h4>
