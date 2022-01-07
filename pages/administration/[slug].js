@@ -45,14 +45,14 @@ export default function AdministrationProfilePage({ response }) {
 //   };
 // }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const response = await getAdministrationContent(params.slug);
   if (JSON.stringify(response) === '{}') {
     return {
       notFound: true,
     };
   }
-
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
   return {
     props: {
       response,

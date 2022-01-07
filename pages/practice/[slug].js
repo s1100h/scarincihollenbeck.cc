@@ -54,13 +54,15 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
 //   };
 // }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const request = await getPracticeContent(params.slug);
   if (request.status === 404) {
     return {
       notFound: true,
     };
   }
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
+
   return {
     props: {
       practice: request,

@@ -61,13 +61,13 @@ export default function LibraryAuthor({
 //   };
 // }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   const { slug } = params;
 
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
 
   const firstFourArticles = results.results.splice(0, 4);
-
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
   return {
     props: {
       results: firstFourArticles || [],

@@ -58,7 +58,7 @@ export default function AttorneyProfile({
 //   };
 // }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, res }) {
   /** Get Attorney Bio  */
   const slug = params.slug;
   const attorneyBio = await attorneyBySlug(slug);
@@ -283,6 +283,7 @@ export async function getServerSideProps({ params }) {
   /** Clients */
   const attorneyClients = attorneyBio.attorneyAwardsClientsBlogsVideos?.clients;
 
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
   return {
     props: {
       seo,
