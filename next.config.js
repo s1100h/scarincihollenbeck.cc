@@ -32,7 +32,7 @@ module.exports = {
   async rewrites() {
     return [...POST_TYPE_REWRITES, ...POST_CATEGORY_REWRITES, ...SITE_PAGES_REWRITES];
   },
-  async redirects() {
-    return [...PERMANENT_REDIRECTS];
-  },
+  // async redirects() {
+  //   return [...PERMANENT_REDIRECTS];
+  // },
 };
