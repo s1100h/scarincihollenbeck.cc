@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { getAttorneysPageContent } from 'utils/queries';
+import { attorneysPageContent } from 'utils/api';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 
 const alphabet = [
@@ -35,17 +37,26 @@ const alphabet = [
 
 const canonicalUrl = `${SITE_URL}/attorneys`;
 
-const site = {
-  title: 'Attorneys',
-  description:
-    'Our team of attorneys have a diverse set of legal expertise, please feel free to search our directory to find the right attorney for your business needs.',
-};
-
 export default function Attorneys({
-  seo, locations, designations, practices, attorneys,
+  seo,
+  locations,
+  designations,
+  practices,
+  attorneys,
+  site,
+  sectionTitles,
 }) {
+  const { titles, setTitles } = useContext(SectionTitleContext);
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
+
+  /** set section titles to context provider */
+  useEffect(() => {
+    if (!titles) {
+      const orderedTitles = sectionTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
+      setTitles(orderedTitles);
+    }
+  }, [sectionTitles]);
 
   /* Click Events */
   function onSelect(e, input) {
@@ -118,11 +129,14 @@ export default function Attorneys({
     site,
     canonicalUrl,
   };
+
   return <AttorneysPage {...attorneysPageProps} />;
 }
 
 export async function getStaticProps() {
-  const [attorneys, locations, designations, practices, seo] = await getAttorneysPageContent();
+  const [attorneys, locations, designations, practices, _] = await getAttorneysPageContent();
+  const page = await attorneysPageContent();
+  const { title, seo, attorneyArchives } = page;
 
   return {
     props: {
@@ -131,6 +145,11 @@ export async function getStaticProps() {
       designations,
       practices,
       attorneys,
+      site: {
+        title,
+        description: attorneyArchives?.description,
+      },
+      sectionTitles: attorneyArchives?.designationSectionTitles,
     },
     revalidate: 86400,
   };

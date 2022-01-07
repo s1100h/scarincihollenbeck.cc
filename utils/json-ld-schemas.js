@@ -1,4 +1,6 @@
-import { CURRENT_DOMAIN } from './constants';
+import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
+
+const siteDescription = `${SITE_TITLE} is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.`;
 
 export const articleSchema = (body) => ({
   '@graph': [
@@ -7,10 +9,9 @@ export const articleSchema = (body) => ({
       '@type': 'Article',
       publisher: {
         '@type': 'LegalService',
-        name: 'Scarinci Hollenbeck',
-        description:
-          'Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.',
-        url: 'https://scarincihollenbeck.com',
+        name: SITE_TITLE,
+        description: siteDescription,
+        url: CURRENT_DOMAIN,
         image: `${CURRENT_DOMAIN}/images/no-image-found-diamond-750x350.png`,
         priceRange: '$$$$',
         telephone: '201-896-4100',
@@ -45,10 +46,9 @@ export const buildBusinessSchema = () => ({
     {
       '@context': 'http://schema.org',
       '@type': 'LegalService',
-      name: 'Scarinci Hollenbeck',
-      description:
-        'Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.',
-      url: 'https://scarincihollenbeck.com',
+      name: SITE_TITLE,
+      description: siteDescription,
+      url: CURRENT_DOMAIN,
       image: `${CURRENT_DOMAIN}/images/no-image-found-diamond-750x350.png`,
       priceRange: '$$$$',
       telephone: '201-896-4100',
@@ -78,19 +78,11 @@ export const buildBusinessSchema = () => ({
       '@type': 'WebSite',
       '@id': 'https://scarincihollenbeck.com/#website',
       url: 'https://scarincihollenbeck.com/',
-      name: 'Scarinci Hollenbeck',
-      description:
-        'Scarinci Hollenbeck is an alternative to a National 250 law firm. With offices in New Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often required by institutions, corporations, entities, and the people who own and control them.',
+      name: SITE_TITLE,
+      description: siteDescription,
       publisher: {
-        '@id': 'https://scarincihollenbeck.com/#organization',
+        '@id': `${CURRENT_DOMAIN}/#organization`,
       },
-      potentialAction: [
-        {
-          '@type': 'SearchAction',
-          target: 'https://scarincihollenbeck.com/search?q={search_term_string}&page=1',
-          'query-input': 'required name=search_term_string',
-        },
-      ],
       inLanguage: 'en-US',
     },
   ],
@@ -99,8 +91,8 @@ export const buildBusinessSchema = () => ({
 export const buildLocationSchema = (location) => ({
   '@context': 'http://schema.org',
   '@type': 'LocalBusiness',
-  name: 'Scarinci Hollebneck',
-  url: 'https://scarincihollenbeck.com',
+  name: SITE_TITLE,
+  url: CURRENT_DOMAIN,
   logo: '/images/no-image-found-diamond.png',
   image: location.image,
   address: {
@@ -153,11 +145,11 @@ export const buildAttorneyProfileSchema = (name, url, imageUrl, socialMediaLinks
         jobTitle,
         worksFor: {
           '@type': 'Organization',
-          name: 'Scarinci Hollenbceck',
+          name: SITE_TITLE,
         },
       },
     ],
   };
 };
 
-export const STANDARD_SCHEMA = '{"@context":"https://schema.org/","@type":"WebSite","name":"Scarinci Hollenbeck","url":"https://scarincihollenbeck.com","potentialAction":{"@type":"SearchAction","target":"{search_term_string}","query-input":"required name=search_term_string"}}';
+export const STANDARD_SCHEMA = `{"@context":"https://schema.org/","@type":"WebSite","name":"${SITE_TITLE}","url":"${CURRENT_DOMAIN}","potentialAction":{"@type":"SearchAction","target":"{search_term_string}","query-input":"required name=search_term_string"}}`;

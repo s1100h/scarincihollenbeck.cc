@@ -21,7 +21,7 @@ export default function ErrorPage({ title, subTitle, mainMessage }) {
               {' '}
               <Link href="/attorneys">
                 <a className="blue-title">
-                  <u>Scarinci Hollenbeck attorney</u>
+                  <u>attorney</u>
                 </a>
               </Link>
               {' '}

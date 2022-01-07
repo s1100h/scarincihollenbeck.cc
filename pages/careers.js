@@ -4,25 +4,17 @@ import SiteLoader from 'components/shared/site-loader';
 import CareersPage from 'components/pages/CareersDirectory';
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { careersPageContent, homePageLocations } from 'utils/api';
 
-const seo = {
-  title: 'Careers & Positions | Scarinci Hollenbeck, LLC',
-  metaDescription:
-    "Scarinci Hollenbeck's commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys.",
-  canonicalUrl: `${SITE_URL}/careers`,
-};
-
-const site = {
-  title: 'Careers & Available Positions',
-  description:
-    'Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys.',
-};
-export default function Careers({ positionTypes, locations, careerList }) {
+export default function Careers({
+  positionTypes, locations, careerList, seo, site,
+}) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
   const [careers, setCareers] = useState([]);
+  const canonicalUrl = `${SITE_URL}${router.asPath}`;
 
   if (router.isFallback) {
     return <SiteLoader />;
@@ -33,7 +25,7 @@ export default function Careers({ positionTypes, locations, careerList }) {
   }, [careerList]);
 
   function executeSearch() {
-    function filterPostionType(career) {
+    function filterPositionType(career) {
       if (positionType) {
         return career.positionType.indexOf(positionType) >= 0;
       }
@@ -49,7 +41,7 @@ export default function Careers({ positionTypes, locations, careerList }) {
       return career;
     }
 
-    const careerListFiltered = careers.filter(filterPostionType).filter(filterPositionLocation);
+    const careerListFiltered = careers.filter(filterPositionType).filter(filterPositionLocation);
 
     setCareers(careerListFiltered);
   }
@@ -57,6 +49,7 @@ export default function Careers({ positionTypes, locations, careerList }) {
   const careerProps = {
     seo,
     site,
+    canonicalUrl,
     careers,
     positionTypes,
     locations,
@@ -77,11 +70,24 @@ export async function getStaticProps() {
     .then((data) => data.json())
     .catch((err) => err);
 
+  const page = await careersPageContent();
+  const getLocations = await homePageLocations();
+  const { seo, title, careersPage } = page;
+  const locations = getLocations.map(({ node }) => node.title);
+  const positionTypes = careersPage.positionTypes.map(({ name }) => name);
+
   return {
     props: {
+      seo,
+      site: {
+        title,
+        description: careersPage.description,
+        bodyContent: careersPage.equalEmploymentOpportunityContent,
+      },
       careerList: request.careers,
-      locations: ['Lyndhurst, NJ', 'Red Bank, NJ', 'New York, NY', 'Washington D.C.'],
-      positionTypes: ['Administration', 'Attorney'],
+      locations,
+      positionTypes,
     },
+    revalidate: 86400,
   };
 }

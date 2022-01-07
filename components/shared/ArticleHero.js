@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap/Container';
 import styles from 'styles/ArticleHero.module.css';
+import { SITE_TITLE } from 'utils/constants';
 import {
   formatDate, createMarkup, setTextLen, formatSrcToCloudinaryUrl,
 } from 'utils/helpers';
@@ -34,7 +35,7 @@ export default function ArticleHero({ content }) {
             <strong>Published: </strong>
             <span className="mr-3">{formatDate(content[0].date)}</span>
             <strong>Author: </strong>
-            {content[0]._embedded.author.map((a) => (a.name === 'Scarinci Hollenbeck' ? (
+            {content[0]._embedded.author.map((a) => (a.name === SITE_TITLE ? (
               <span key={a.name} className={styles.link}>
                 {a.name}
               </span>

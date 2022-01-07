@@ -4,11 +4,11 @@ import SingleCareerBody from 'components/organisms/career/body';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { CURRENT_DOMAIN } from 'utils/constants';
+import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
 
 export default function CareerProfile({ career }) {
   const { seo } = career;
-  const title = `${seo.title} | Career at Scarinci Hollenbeck`;
+  const title = `${seo.title} | Career at ${SITE_TITLE}`;
   const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
 
   return (
@@ -18,13 +18,7 @@ export default function CareerProfile({ career }) {
         metaDescription={seo.metaDescription}
         canonicalUrl={canonicalUrl}
       />
-      <SingleSubHeader
-        image="/images/Legal-Research-1800x400-JPG.jpg"
-        title={career.title}
-        subtitle=" Our commitment to diversity and equal opportunity enables Scarinci Hollenbeck to recruit, retain, and promote the best attorneys."
-        offset={0}
-        span={8}
-      />
+      <SingleSubHeader title={career.title} subtitle={seo.metaDescription} offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} lg={9} className="mt-3">

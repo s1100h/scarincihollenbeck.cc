@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
+import { SITE_TITLE } from 'utils/constants';
 import { createMarkup } from 'utils/helpers';
 
 export default function PostAuthorBio({ authors }) {
@@ -20,7 +21,7 @@ export default function PostAuthorBio({ authors }) {
                   dangerouslySetInnerHTML={createMarkup(a.authorDescription)}
                   className="d-block"
                 />
-                {a.name !== 'Scarinci Hollenbeck' && (
+                {a.name !== SITE_TITLE && (
                   <Link href={a.user_url ? a.user_url : '/attorneys/'}>
                     <a className="my-2 d-block">Full Biography</a>
                   </Link>

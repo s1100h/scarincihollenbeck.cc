@@ -1,37 +1,48 @@
+import { useContext, useState, useEffect } from 'react';
+import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import AttorneyCards from 'components/atoms/AttorneyCards';
 
+const organizeAttorneys = (attorneys, titles) => {
+  const results = {};
+
+  titles.forEach((title) => {
+    results[title.name] = {
+      attorneys: [],
+    };
+  });
+
+  attorneys.forEach((attorney) => {
+    if (
+      attorney.designation !== 'Managing Partner'
+      && attorney.designation.includes(' Managing Partner')
+    ) {
+      results.Partners.attorneys.push(attorney);
+    }
+
+    Object.keys(results).forEach((key) => {
+      if (attorney.designation[0] === key[0]) {
+        results[key].attorneys.push(attorney);
+      }
+    });
+  });
+
+  return results;
+};
+
 const NonFiltered = ({ attorneys }) => {
-  /// managing partners
-  const managingPartners = attorneys.filter((a) => a.designation === 'Managing Partner');
+  const [sortedAttorneys, setSortedAttorneys] = useState({});
+  const { titles } = useContext(SectionTitleContext);
 
-  // partners & nyc managing partner
-  const partners = attorneys.filter(
-    (a) => a.designation === 'Partner'
-      || a.designation === 'NYC Managing Partner'
-      || a.designation === 'Washington, D.C. Managing Partner'
-      || a.designation === 'Red Bank, NJ Managing Partner',
-  );
-
-  // counsel
-  const counsel = attorneys.filter((a) => a.designation === 'Counsel');
-
-  // of counsel & counsel emeritus
-  const ofCounsel = attorneys.filter((a) => a.designation.indexOf('Of Counsel') > -1);
-
-  // senior associates
-  const seniorAssociates = attorneys.filter((a) => a.designation === 'Senior Associate');
-
-  // associates
-  const associates = attorneys.filter((a) => a.designation === 'Associate');
+  useEffect(() => {
+    if (titles) {
+      const orgAttorneys = organizeAttorneys(attorneys, titles);
+      setSortedAttorneys(orgAttorneys);
+    }
+  }, [titles]);
 
   return (
     <div>
-      {AttorneyCards('Managing Partner', managingPartners)}
-      {AttorneyCards('Partners', partners)}
-      {AttorneyCards('Counsel', counsel)}
-      {AttorneyCards('Of Counsel & Counsel Emeritus', ofCounsel)}
-      {AttorneyCards('Senior Associates', seniorAssociates)}
-      {AttorneyCards('Associates', associates)}
+      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys))}
     </div>
   );
 };

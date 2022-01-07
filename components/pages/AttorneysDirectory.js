@@ -24,11 +24,7 @@ export default function AttorneysPage({
 }) {
   return (
     <>
-      <BasicSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDescription}
-        canonicalUrl={canonicalUrl}
-      />
+      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
       <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
       <FullWidth>
         <div className="mb-5">

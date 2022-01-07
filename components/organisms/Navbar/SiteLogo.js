@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { SITE_TITLE } from 'utils/constants';
 import SHLogo from '../../../public/images/sh-logo-diamond.svg';
 import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.png';
 
@@ -12,7 +13,7 @@ const SiteLogo = ({ scrollTop }) => {
           <Link href="/">
             <a>
               <Image
-                alt="Scarinci Hollenbeck, LLC"
+                alt={`${SITE_TITLE}, LLC`}
                 width={360}
                 height={65}
                 layout="intrinsic"
@@ -25,7 +26,7 @@ const SiteLogo = ({ scrollTop }) => {
           <Link href="/">
             <a>
               <Image
-                alt="Scarinci Hollenbeck, LLC"
+                alt={`${SITE_TITLE}, LLC`}
                 width={52}
                 height={45}
                 layout="fixed"

@@ -5,13 +5,15 @@ import FullWidth from 'layouts/FullWidth';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-export default function AdministrationPage({ admins, seo, site }) {
+export default function AdministrationPage({
+  admins, seo, site, canonicalUrl,
+}) {
   return (
     <>
       <BasicSiteHead
         title={seo.title}
         metaDescription={seo.metaDescription}
-        canonicalUrl={seo.canonicalUrl}
+        canonicalUrl={canonicalUrl}
       />
       <SingleSubHeader title={site.title} subtitle={site.description} offset={2} span={7} />
       <FullWidth>

@@ -7,6 +7,7 @@ import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
 import { checkboxes } from 'utils/categories';
 import FormScripts from 'components/shared/form-scripts';
+import { SITE_TITLE } from 'utils/constants';
 
 export default function SubscriptionFormWithButton() {
   const [show, setShow] = useState(false);
@@ -28,11 +29,15 @@ export default function SubscriptionFormWithButton() {
             src="/images/sh-mini-diamond-PNG.png"
             width={170}
             height={147}
-            alt="Scarinci Hollenbeck diamond logo"
+            alt={`${SITE_TITLE} diamond`}
             layout="intrinsic"
           />
           <h5 id="subscriptionModalLabel" className="mt-2">
-            Sign up to get the latest from the Scarinci Hollenbeck attorneys!
+            Sign up to get the latest from the
+            {' '}
+            {SITE_TITLE}
+            {' '}
+            attorneys!
           </h5>
         </Modal.Header>
         <Modal.Body>

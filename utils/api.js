@@ -8,6 +8,10 @@ import {
   homePageLocationsQuery,
   contactSubscribePageQuery,
   homePageQuery,
+  attorneysPageQuery,
+  practicePageQuery,
+  careersPageQuery,
+  administrationPageQuery,
 } from './graphql-queries';
 
 async function fetchAPI(query, { variables } = {}) {
@@ -101,4 +105,28 @@ export async function homePageLocations() {
   const data = await fetchAPI(homePageLocationsQuery, {});
 
   return data?.officeLocations?.edges;
+}
+
+/** return attorneys page content */
+export async function attorneysPageContent() {
+  const data = await fetchAPI(attorneysPageQuery, {});
+  return data?.pageBy;
+}
+
+/** return attorneys page content */
+export async function practicesPageContent() {
+  const data = await fetchAPI(practicePageQuery, {});
+  return data?.pageBy;
+}
+
+/** return careers page content  */
+export async function careersPageContent() {
+  const data = await fetchAPI(careersPageQuery, {});
+  return data?.pageBy;
+}
+
+/** return archives page content */
+export async function archivesPageContent() {
+  const data = await fetchAPI(administrationPageQuery, {});
+  return data?.pageBy;
 }

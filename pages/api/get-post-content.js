@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import { CLOUDINARY_BASE_URL } from 'utils/constants';
+import { CLOUDINARY_BASE_URL, SITE_TITLE } from 'utils/constants';
 
 require('dotenv').config();
 const mysql = require('mysql2/promise');
@@ -189,7 +189,9 @@ export const getPostContent = async (slug, category) => {
   const authorData = [];
 
   for (let i = 0; i < postAuthors.length; i++) {
-    const authorName = postAuthors[i].name === 'Scarinci Hollenbeck' ? 'scarinci-hollenbeck' : postAuthors[i].name;
+    const authorName = postAuthors[i].name === SITE_TITLE
+      ? SITE_TITLE.replace(' ', '-').toLowerCase()
+      : postAuthors[i].name;
     const [author] = await connection.execute(postAuthorQuery, [authorName]);
 
     // get the authors description

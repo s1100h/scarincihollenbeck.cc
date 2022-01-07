@@ -44,6 +44,10 @@ export async function getStaticPaths() {
       || url.includes('community-involvement')
       || url.includes('diversity')
       || url.includes('pro-bono')
+      || url.includes('practices')
+      || url.includes('attorneys')
+      || url.includes('careers')
+      || url.includes('administration')
     ) {
       return false;
     }

@@ -15,15 +15,16 @@ export default function CareersPage({
   setLocation,
   seo,
   site,
+  canonicalUrl,
 }) {
   return (
     <>
       <BasicSiteHead
         title={seo.title}
         metaDescription={seo.metaDescription}
-        canonicalUrl={seo.canonicalUrl}
+        canonicalUrl={canonicalUrl}
       />
-      <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={6} />
+      <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={7} />
       <FullWidth>
         {careers && (
           <Body
@@ -37,7 +38,7 @@ export default function CareersPage({
             executeSearch={executeSearch}
           />
         )}
-        <CareersEqualOpportunity />
+        <CareersEqualOpportunity content={site.bodyContent} />
       </FullWidth>
     </>
   );

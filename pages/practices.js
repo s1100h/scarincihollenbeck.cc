@@ -1,21 +1,9 @@
 import { sortByKey, headers } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { practicesPageContent } from 'utils/api';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 
-const seo = {
-  title: 'Attorney Legal Practices | Scarinci Hollenbeck',
-  metaDesc:
-    "Scarinci Hollenbeck attorneys provide a fully scaled platform of law practices for today's entrepreneurs in the New York and New Jersey area.",
-  canonicalUrl: `${SITE_URL}/practices`,
-};
-
-const site = {
-  title: 'Legal Practices',
-  description:
-    "Scarinci Hollenbeck attorneys at law provide a fully scaled platform of law practices for today's businesses. Recognizing the complexity of the law practices, we have staffed each practice group with lawyers experienced in the particular area of your need.",
-};
-
-function sortPracticeCategorys(list) {
+const sortPracticeCategories = (list) => {
   const core = list.filter((e) => e.category === 'Core Practices');
   const additional = list.filter((e) => e.category === 'Additional Practices');
   const business = list.filter((e) => e.category === 'Business Related Practices');
@@ -25,16 +13,20 @@ function sortPracticeCategorys(list) {
     additional,
     business,
   };
-}
+};
 
-export default function Practices({ core, additional, business }) {
+export default function Practices({
+  core, additional, business, seo, site,
+}) {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
   const sortedBusinessPractices = sortByKey(business, 'title');
+  const canonicalUrl = `${SITE_URL}/practices`;
 
   const practicesPageProps = {
     site,
     seo,
+    canonicalUrl,
     sortedCorePractices,
     sortedAdditionalPractices,
     sortedBusinessPractices,
@@ -48,14 +40,23 @@ export async function getStaticProps() {
     .then((data) => data.json())
     .catch((err) => err);
 
-  const results = sortPracticeCategorys(request.practices);
+  const results = sortPracticeCategories(request.practices);
+  const page = await practicesPageContent();
   const { core, additional, business } = results;
+  const { title, seo, practiceArchives } = page;
 
   return {
     props: {
+      seo,
+      title,
       core,
       additional,
       business,
+      site: {
+        title,
+        description: practiceArchives?.description,
+        bodyContent: practiceArchives?.mainTag,
+      },
     },
     revalidate: 86400,
   };

@@ -123,6 +123,14 @@ const SITE_PAGES_REWRITES = [
     source: '/women-lead',
     destination: '/firm-page/women-lead',
   },
+  {
+    source: '/contact',
+    destination: '/form-page/contact',
+  },
+  {
+    source: '/subscribe',
+    destination: '/form-page/subscribe',
+  },
 ];
 
 module.exports = {

@@ -521,3 +521,65 @@ export const homePageLocationsQuery = `query LocationPagesQuery {
     }
   }
 }`;
+
+export const attorneysPageQuery = `query AttorneysPagesQuery {
+  pageBy(pageId: 46642) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    attorneyArchives {
+      description
+      designationSectionTitles {
+        name
+        order
+      }
+    }
+  }
+}`;
+
+export const practicePageQuery = `query PracticesPagesQuery {
+  pageBy(pageId: 46644) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    practiceArchives {
+      description
+      mainTag
+    }
+  }
+}`;
+
+export const careersPageQuery = `query CareersPagesQuery {
+  pageBy(pageId: 46660) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    careersPage {
+      description
+      equalEmploymentOpportunityContent
+      positionTypes {
+        name
+      }
+    }
+  }
+}`;
+
+export const administrationPageQuery = `query AdministrationPagesQuery {
+  pageBy(pageId: 46670) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    administrationArchive {
+      description
+    }
+  }
+}
+`;

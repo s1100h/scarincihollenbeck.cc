@@ -6,25 +6,16 @@ import ListWrapper from 'components/organisms/practices/ListWrapper';
 const PracticesDirectory = ({
   site,
   seo,
+  canonicalUrl,
   sortedCorePractices,
   sortedAdditionalPractices,
   sortedBusinessPractices,
 }) => (
   <>
-    <BasicSiteHead
-      title={seo.title}
-      metaDescription={seo.metaDesc}
-      canonicalUrl={seo.canonicalUrl}
-    />
+    <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
     <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
     <FullWidth>
-      <p>
-        As you scroll through the law practices and locate the sub-practice groups that most closely
-        identifies with your need, feel free to contact any of the attorneys identified within the
-        sub-practice group. Feel free to contact any of the Section Chiefs identified under each of
-        the named law practices. They will be happy to assist you and guide you to the appropriate
-        attorney for resolution of your issue.
-      </p>
+      <p>{site.bodyContent}</p>
       <style jsx>{' p{ font-size: 1.15rem }'}</style>
       <ListWrapper title="Core Practices" list={sortedCorePractices} isBlock />
       <ListWrapper title="Additional Practices" list={sortedAdditionalPractices} isBlock />

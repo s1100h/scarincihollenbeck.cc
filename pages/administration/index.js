@@ -1,24 +1,16 @@
+import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
 import { headers } from 'utils/helpers';
 import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { archivesPageContent } from 'utils/api';
 
-const seo = {
-  title: 'Administration Directors & Managers | Scarinci Hollenbeck',
-  metaDescription:
-    "In Scarinci Hollenbeck's administration archive, you can find the professionals behind the attorneys managing the business aspects of the firm.",
-  canonicalUrl: `${SITE_URL}/administration`,
-};
-
-const site = {
-  title: ' Administration',
-  description:
-    "In order to fulfill the varying needs of our clients, the firm's group of attorneys rely on the support of Scarinci Hollenbeck's Administration group.",
-};
-
-export default function Administration({ admins }) {
+export default function Administration({ admins, seo, site }) {
+  const router = useRouter();
+  const canonicalUrl = `${SITE_URL}${router.asPath}`;
   const adminProps = {
     admins,
     seo,
+    canonicalUrl,
     site,
   };
   return <AdministrationPage {...adminProps} />;
@@ -30,10 +22,18 @@ export async function getStaticProps() {
   })
     .then((data) => data.json())
     .catch((err) => err);
+  const page = await archivesPageContent();
+  const { title, seo, administrationArchive } = page;
 
   return {
     props: {
+      seo,
+      site: {
+        title,
+        description: administrationArchive.description,
+      },
       admins: request.admins,
     },
+    revalidate: 86400,
   };
 }
