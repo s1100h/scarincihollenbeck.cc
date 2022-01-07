@@ -29,41 +29,41 @@ export default function BasicPage({
   return <BasicPageContent {...basicPageProps} />;
 }
 
-export async function getStaticPaths() {
-  const requestUrls = await getCurrentPublishedPages();
-  const pruneUrls = requestUrls.filter((url) => {
-    if (
-      url.includes('passing')
-      || url.includes('covid')
-      || url.includes('firm-overview')
-      || url.includes('subscribe')
-      || url.includes('contact')
-      || url.includes('holidays')
-      || url.includes('front-page')
-      || url.includes('women-lead')
-      || url.includes('community-involvement')
-      || url.includes('diversity')
-      || url.includes('pro-bono')
-      || url.includes('practices')
-      || url.includes('attorneys')
-      || url.includes('careers')
-      || url.includes('administration')
-    ) {
-      return false;
-    }
+// export async function getStaticPaths() {
+//   const requestUrls = await getCurrentPublishedPages();
+//   const pruneUrls = requestUrls.filter((url) => {
+//     if (
+//       url.includes('passing')
+//       || url.includes('covid')
+//       || url.includes('firm-overview')
+//       || url.includes('subscribe')
+//       || url.includes('contact')
+//       || url.includes('holidays')
+//       || url.includes('front-page')
+//       || url.includes('women-lead')
+//       || url.includes('community-involvement')
+//       || url.includes('diversity')
+//       || url.includes('pro-bono')
+//       || url.includes('practices')
+//       || url.includes('attorneys')
+//       || url.includes('careers')
+//       || url.includes('administration')
+//     ) {
+//       return false;
+//     }
 
-    return true;
-  });
+//     return true;
+//   });
 
-  const modUrls = pruneUrls.map((url) => `/basic-page/${url}`);
+//   const modUrls = pruneUrls.map((url) => `/basic-page/${url}`);
 
-  return {
-    paths: modUrls || [],
-    fallback: 'blocking',
-  };
-}
+//   return {
+//     paths: modUrls || [],
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const request = await getPageContent(params.slug);
 
   const { title, content, seo } = request;
