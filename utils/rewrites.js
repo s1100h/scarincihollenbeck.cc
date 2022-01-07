@@ -17,6 +17,7 @@ const POST_TYPE_REWRITES = [
   },
 ];
 
+/** List of top level categories */
 const POST_CATEGORY_REWRITES = [
   {
     source: '/law-firm-insights/:slug*',
