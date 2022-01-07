@@ -46,15 +46,15 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
   );
 }
 
-export async function getStaticPaths() {
-  const paths = await getPracticePaths();
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
+// export async function getStaticPaths() {
+//   const paths = await getPracticePaths();
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const request = await getPracticeContent(params.slug);
   if (request.status === 404) {
     return {
@@ -67,6 +67,6 @@ export async function getStaticProps({ params }) {
       practiceChildren: request.children || [],
       slug: params.slug,
     },
-    revalidate: 86400,
+    // revalidate: 86400,
   };
 }

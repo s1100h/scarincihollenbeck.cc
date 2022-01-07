@@ -36,16 +36,16 @@ export default function AdministrationProfilePage({ response }) {
   return <AdministrationProfile {...adminProps} />;
 }
 
-export async function getStaticPaths() {
-  const paths = await getAdministrationPaths();
+// export async function getStaticPaths() {
+//   const paths = await getAdministrationPaths();
 
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const response = await getAdministrationContent(params.slug);
   if (JSON.stringify(response) === '{}') {
     return {

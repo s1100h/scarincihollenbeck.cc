@@ -88,6 +88,6 @@ export async function getStaticProps() {
       locations,
       positionTypes,
     },
-    revalidate: 86400,
+    revalidate: 21600,
   };
 }

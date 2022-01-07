@@ -20,16 +20,16 @@ export default function Career({ career }) {
   return <CareerProfile {...careerProps} />;
 }
 
-export async function getStaticPaths() {
-  const paths = await getCareersPaths();
+// export async function getStaticPaths() {
+//   const paths = await getCareersPaths();
 
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const request = await getCareersContent(params.slug);
   if (request.status === 404) {
     return {
@@ -41,6 +41,6 @@ export async function getStaticProps({ params }) {
     props: {
       career: request,
     },
-    revalidate: 86400,
+    // revalidate: 86400,
   };
 }

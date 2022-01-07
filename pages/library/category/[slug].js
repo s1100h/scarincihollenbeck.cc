@@ -53,16 +53,16 @@ export default function LibraryCategory({
   );
 }
 
-export async function getStaticPaths() {
-  const paths = await getCategoryPaths();
+// export async function getStaticPaths() {
+//   const paths = await getCategoryPaths();
 
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const [authors, popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
     variables: {
@@ -119,6 +119,6 @@ export async function getStaticProps({ params }) {
         metaDescription: content.seo.metaDesc,
       },
     },
-    revalidate: 86400,
+    // revalidate: 86400,
   };
 }

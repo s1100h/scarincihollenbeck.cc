@@ -151,6 +151,6 @@ export async function getStaticProps() {
       },
       sectionTitles: attorneyArchives?.designationSectionTitles,
     },
-    revalidate: 86400,
+    revalidate: 21600,
   };
 }

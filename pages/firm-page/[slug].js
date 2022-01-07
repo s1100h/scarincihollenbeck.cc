@@ -21,16 +21,16 @@ export default function FirmPages({ page, relatedPages, currentPage }) {
   return <FirmPage {...firmPageProps} />;
 }
 
-export async function getStaticPaths() {
-  const urls = FIRM_PAGES.map((a) => `/firm-page${a.slug}`);
+// export async function getStaticPaths() {
+//   const urls = FIRM_PAGES.map((a) => `/firm-page${a.slug}`);
 
-  return {
-    paths: urls || [],
-    fallback: 'blocking',
-  };
-}
+//   return {
+//     paths: urls || [],
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const request = await getFirmPagesContent(params.slug);
 
   const relatedPages = FIRM_PAGES.filter((a) => a.slug.replace('/', '') !== params.slug);

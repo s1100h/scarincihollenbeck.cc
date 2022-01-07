@@ -53,14 +53,15 @@ export default function LibraryAuthor({
   );
 }
 
-export async function getStaticPaths() {
-  const authorPaths = await getAuthorPaths();
-  return {
-    paths: authorPaths,
-    fallback: 'blocking',
-  };
-}
-export async function getStaticProps({ params }) {
+// export async function getStaticPaths() {
+//   const authorPaths = await getAuthorPaths();
+//   return {
+//     paths: authorPaths,
+//     fallback: 'blocking',
+//   };
+// }
+
+export async function getServerSideProps({ params }) {
   const { slug } = params;
 
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
@@ -80,6 +81,6 @@ export async function getStaticProps({ params }) {
       categoryId: results.id,
       seo: results.seo,
     },
-    revalidate: 86400,
+    // revalidate: 86400,
   };
 }
