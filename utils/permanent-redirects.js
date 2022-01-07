@@ -1,16 +1,16 @@
 const PERMANENT_REDIRECTS = [
   {
-    source: '/basic-page/:path*',
+    source: '/basic-page/:path',
     destination: '/',
     permanent: true,
   },
   {
-    source: '/form-page/:path*',
+    source: '/form-page/:path',
     destination: '/',
     permanent: true,
   },
   {
-    source: '/firm-page/:path*',
+    source: '/firm-page/:path',
     destination: '/',
     permanent: true,
   },
