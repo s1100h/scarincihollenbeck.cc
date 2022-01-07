@@ -81,6 +81,7 @@ const POST_CATEGORY_REWRITES = [
 ];
 
 const SITE_PAGES_REWRITES = [
+  /** Start of Simple Pages */
   {
     source: '/awards',
     destination: '/basic-page/awards',
@@ -97,6 +98,8 @@ const SITE_PAGES_REWRITES = [
     source: '/disclaimer',
     destination: '/basic-page/disclaimer',
   },
+  /** End of Simple Pages */
+  /** Start of Funeral Pages */
   {
     source: '/passing-attorney-harvey-r-poe',
     destination: '/funeral-announcements/passing-attorney-harvey-r-poe',
@@ -105,6 +108,8 @@ const SITE_PAGES_REWRITES = [
     source: '/passing-attorney-david-a-einhorn',
     destination: '/funeral-announcements/passing-attorney-david-a-einhorn',
   },
+  /** End of Funeral Pages */
+  /** Start of Firm Pages */
   {
     source: '/diversity',
     destination: '/firm-page/diversity',
@@ -121,6 +126,8 @@ const SITE_PAGES_REWRITES = [
     source: '/women-lead',
     destination: '/firm-page/women-lead',
   },
+  /** End of firm pages */
+  /** Start of form pages */
   {
     source: '/contact',
     destination: '/form-page/contact',
@@ -129,6 +136,7 @@ const SITE_PAGES_REWRITES = [
     source: '/subscribe',
     destination: '/form-page/subscribe',
   },
+  /** End of form pages */
 ];
 
 module.exports = {
