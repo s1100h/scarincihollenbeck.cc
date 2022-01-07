@@ -12,6 +12,7 @@ import {
   practicePageQuery,
   careersPageQuery,
   administrationPageQuery,
+  basicPagesQuery,
 } from './graphql-queries';
 
 async function fetchAPI(query, { variables } = {}) {
@@ -128,5 +129,13 @@ export async function careersPageContent() {
 /** return archives page content */
 export async function archivesPageContent() {
   const data = await fetchAPI(administrationPageQuery, {});
+  return data?.pageBy;
+}
+
+/** basic page content query */
+export async function getBasicPageContent(slug) {
+  const data = await fetchAPI(basicPagesQuery, {
+    variables: { slug },
+  });
   return data?.pageBy;
 }

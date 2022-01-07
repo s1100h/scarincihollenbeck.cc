@@ -1,26 +1,32 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import PagesBody from 'components/organisms/page/body';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
+import ContactForm from 'components/shared/contact-form';
 import SingleSubHeader from 'layouts/SingleSubHeader';
+import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
-export default function BasicPageContent({
-  seo, site, canonicalUrl, bodyContent,
-}) {
-  return (
-    <>
-      <BasicSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDescription}
-        canonicalUrl={canonicalUrl}
-      />
-      <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
-      <Container>
-        <Row>
-          <Col sm={12}>
-            <PagesBody content={bodyContent} />
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
-}
+const BasicPageContent = ({
+  seo, site, canonicalUrl, bodyContent, pageForm,
+}) => (
+  <>
+    <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
+    <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
+    <Container>
+      <Row>
+        <Col sm={12}>
+          <PagesBody content={bodyContent} />
+          {pageForm.enableForm && (
+            <>
+              {pageForm.formLabel && (
+                <h4 className={`${grayTitleStyles.title} mb-5 w-75`}>{pageForm.formLabel}</h4>
+              )}
+              <ContactForm />
+            </>
+          )}
+        </Col>
+      </Row>
+    </Container>
+  </>
+);
+
+export default BasicPageContent;

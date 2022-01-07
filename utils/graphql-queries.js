@@ -419,6 +419,7 @@ export const contactSubscribePageQuery = `query ContactSubscribePageQuery($slug:
   }
 }`;
 
+/** home page content query */
 export const homePageQuery = `query HomePageQuery {
   pageBy(uri: "front-page") {
     title
@@ -505,6 +506,7 @@ export const homePageQuery = `query HomePageQuery {
 }
 `;
 
+/** home page locations query */
 export const homePageLocationsQuery = `query LocationPagesQuery {
   officeLocations {
     edges {
@@ -522,6 +524,7 @@ export const homePageLocationsQuery = `query LocationPagesQuery {
   }
 }`;
 
+/** attorneys landing page query */
 export const attorneysPageQuery = `query AttorneysPagesQuery {
   pageBy(pageId: 46642) {
     title
@@ -539,6 +542,7 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
+/** practices landing page query */
 export const practicePageQuery = `query PracticesPagesQuery {
   pageBy(pageId: 46644) {
     title
@@ -553,6 +557,7 @@ export const practicePageQuery = `query PracticesPagesQuery {
   }
 }`;
 
+/** careers landing page query */
 export const careersPageQuery = `query CareersPagesQuery {
   pageBy(pageId: 46660) {
     title
@@ -570,6 +575,7 @@ export const careersPageQuery = `query CareersPagesQuery {
   }
 }`;
 
+/** administration landing page query */
 export const administrationPageQuery = `query AdministrationPagesQuery {
   pageBy(pageId: 46670) {
     title
@@ -583,3 +589,19 @@ export const administrationPageQuery = `query AdministrationPagesQuery {
   }
 }
 `;
+
+/** basic pages query  */
+export const basicPagesQuery = `query BasicPageQuery($slug: String) {
+  pageBy(uri: $slug) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    content(format: RENDERED)
+    AddContactFormToPage {
+      enableForm
+      formLabel
+    }
+  }
+}`;

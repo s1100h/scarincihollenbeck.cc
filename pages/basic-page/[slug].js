@@ -2,10 +2,11 @@ import { useRouter } from 'next/router';
 import BasicPageContent from 'components/pages/BasicPageContent';
 import SiteLoader from 'components/shared/site-loader';
 import { SITE_URL } from 'utils/constants';
-import { getPageContent, getCurrentPublishedPages } from 'utils/queries';
+// import { getPageContent, getCurrentPublishedPages } from 'utils/queries';
+import { getBasicPageContent } from 'utils/api';
 
 export default function BasicPage({
-  content, seo, slug, title,
+  content, seo, slug, title, pageForm,
 }) {
   const router = useRouter();
   if (router.isFallback) {
@@ -21,6 +22,7 @@ export default function BasicPage({
     bodyContent,
     canonicalUrl,
     seo,
+    pageForm,
     site: {
       title,
       description: subTitle,
@@ -64,15 +66,21 @@ export default function BasicPage({
 // }
 
 export async function getServerSideProps({ params }) {
-  const request = await getPageContent(params.slug);
+  const request = await getBasicPageContent(params.slug);
 
-  const { title, content, seo } = request;
+  const {
+    title, content, seo, AddContactFormToPage,
+  } = request;
 
   return {
     props: {
       title,
       content,
       seo,
+      pageForm: {
+        enableForm: AddContactFormToPage.enableForm,
+        formLabel: AddContactFormToPage.formLabel,
+      },
       slug: params.slug,
     },
   };
