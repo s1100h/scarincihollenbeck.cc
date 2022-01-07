@@ -81,7 +81,6 @@ const POST_CATEGORY_REWRITES = [
 ];
 
 const SITE_PAGES_REWRITES = [
-  /** Start of basic page rewrites */
   {
     source: '/awards',
     destination: '/basic-page/awards',
@@ -98,7 +97,6 @@ const SITE_PAGES_REWRITES = [
     source: '/disclaimer',
     destination: '/basic-page/disclaimer',
   },
-  /** End of basic page rewrites */
   {
     source: '/passing-attorney-harvey-r-poe',
     destination: '/funeral-announcements/passing-attorney-harvey-r-poe',
