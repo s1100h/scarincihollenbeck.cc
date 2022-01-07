@@ -14,6 +14,11 @@ const PERMANENT_REDIRECTS = [
     destination: '/',
     permanent: true,
   },
+  {
+    source: '/funeral-announcements/:slug*',
+    destination: '/',
+    permanent: true,
+  },
 ];
 
 module.exports = {
