@@ -57,6 +57,6 @@ export async function getServerSideProps({ params, res }) {
     props: {
       response,
     },
-    revalidate: 86400,
+    // revalidate: 86400,
   };
 }
