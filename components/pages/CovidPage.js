@@ -1,12 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 import ContactForm from 'components/shared/contact-form';
-import { createMarkup } from 'utils/helpers';
+import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
-import PopularList from 'components/organisms/library/popular-list';
+import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import { CLIENT_ALERTS } from 'utils/constants';
@@ -40,6 +40,10 @@ const CovidPage = ({
       id: contentId,
     },
   );
+
+  // replace image url from post content
+  const modPage = formatPageImageToCloudinaryUrl(bodyContent);
+
   return (
     <>
       <BasicSiteHead
@@ -51,10 +55,7 @@ const CovidPage = ({
       <Container>
         <Row>
           <Col sm={12} lg={9}>
-            <div
-              className={pageContentStyles.p}
-              dangerouslySetInnerHTML={createMarkup(bodyContent)}
-            />
+            <div className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(modPage)} />
             <div className="border-top border-top pt-4">
               <h4 className="mb-5">
                 <strong className="text-capitalize">COVID-19 Articles</strong>

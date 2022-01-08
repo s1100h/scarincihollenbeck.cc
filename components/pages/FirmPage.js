@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import dynamic from 'next/dynamic';
 import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
 import SidebarContent from 'components/shared/SidebarContent';
-import PageArticleHero from 'components/organisms/page/page-article-hero';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { createMarkup } from 'utils/helpers';
@@ -10,7 +10,9 @@ import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import sidebarStyles from 'styles/Sidebar.module.css';
 
-export default function FirmPage({ page, relatedPages, canonicalUrl }) {
+const PageArticleHero = dynamic(() => import('components/organisms/page/page-article-hero'));
+
+export default function FirmPage({ page, relatedPages }) {
   const { seo } = page;
 
   return (

@@ -6,10 +6,8 @@ import {
 } from 'react-bootstrap';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import StringContent from 'components/organisms/attorney/StringContent';
-import ObjectContent from 'components/organisms/attorney/ObjectContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import SidebarWrapper from 'components/organisms/attorney/SidebarWrapper';
-import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import { FaCaretDown } from 'react-icons/fa';
 import useOnClickOutside from 'hooks/useOnClickOutside';
 import useApolloQuery from 'hooks/useApolloQuery';
@@ -17,6 +15,8 @@ import { CURRENT_DOMAIN } from 'utils/constants';
 import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
+const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
+const ArticleContent = dynamic(() => import('components/organisms/attorney/ArticleContent'));
 
 const AttorneyPage = ({
   seo,

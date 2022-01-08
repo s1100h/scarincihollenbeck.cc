@@ -4,6 +4,7 @@ import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
 const VirtualizedMembers = dynamic(() => import('components/shared/VirtualizedMembers'));
 const RelatedPractices = dynamic(() => import('components/molecules/location/RelatedPractices'));
+const Map = dynamic(() => import('components/molecules/location/Map'));
 
 export default function LocationsBody({
   attorneys, practices, map, title,
@@ -12,17 +13,7 @@ export default function LocationsBody({
   return (
     <>
       <h4 className={grayTitleStyles.title}>{officeTitle}</h4>
-      <div className="w-100 d-block mb-4">
-        <iframe
-          rel="preconnect"
-          title={`${title} office`}
-          src={map}
-          className="w-100"
-          height={300}
-          frameBorder="0"
-          allowFullScreen
-        />
-      </div>
+      <Map title={title} map={map} />
       <h4 className={grayTitleStyles.title}>{`${title} Attorneys`}</h4>
       <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />
       <RelatedPractices practices={practices} />

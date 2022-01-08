@@ -5,14 +5,14 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import Menu from 'components/organisms/practice/Menu';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import RelatedArticles from 'components/organisms/practice/RelatedArticles';
-import Body from 'components/organisms/practice/Body';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import PageSidebar from 'components/organisms/practice/PageSidebar';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import useApolloQuery from 'hooks/useApolloQuery';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
+const Body = dynamic(() => import('components/organisms/practice/Body'));
+const RelatedArticles = dynamic(() => import('components/organisms/practice/RelatedArticles'));
 
 const PracticePage = ({
   corePractices, practice, practiceChildren, canonicalUrl, tabs,

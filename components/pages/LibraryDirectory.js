@@ -3,11 +3,9 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import BodyHeader from 'components/organisms/library/body-header';
-import MainArticle from 'components/organisms/library/main-article';
-import FeaturedArticle from 'components/organisms/library/featured-article';
-import PopularList from 'components/organisms/library/popular-list';
-import FirmAuthors from 'components/organisms/library/firm-authors';
+import BodyHeader from 'components/organisms/library/BodyHeader';
+import MainArticle from 'components/organisms/library/MainArticle';
+import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import styles from 'styles/Text.module.css';
 import { CLIENT_ALERTS } from 'utils/constants';
@@ -15,6 +13,8 @@ import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-quer
 import useApolloQuery from 'hooks/useApolloQuery';
 
 const PostList = dynamic(import('components/molecules/PostList'));
+const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
+const FirmAuthors = dynamic(import('components/organisms/library/FirmAuthors'));
 
 const LibraryDirectory = ({
   results,

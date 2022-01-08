@@ -171,6 +171,19 @@ export const formatSrcToCloudinaryUrl = (src) => {
   return '/images/no-image-found-diamond-750x350.png';
 };
 
+// Format image src into a cloudinary url
+export const formatPageImageToCloudinaryUrl = (page) => {
+  const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';
+  if (page.includes(tossUrl)) {
+    const modImageUrlContent = page
+      .replaceAll(tossUrl, CLOUDINARY_BASE_URL)
+      .replace(/-\d{3}x\d{3}/g, '');
+    return modImageUrlContent;
+  }
+
+  return page;
+};
+
 // sanitize internal articles from graphql request
 export const sanitizeArticles = (arr) => arr.map(({ node }, index) => ({
   id: index,
