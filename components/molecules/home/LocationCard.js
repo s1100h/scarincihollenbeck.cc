@@ -8,7 +8,7 @@ import { IMAGE_NOT_FOUND_URL } from 'utils/constants';
 const LocationCard = ({ title, slug, featuredImage }) => (
   <Col sm={12} md={3} className="mx-auto d-block my-5">
     <div className="border">
-      <Link href={slug}>
+      <Link href={`/location/${slug}`}>
         <a>
           <Image
             src={

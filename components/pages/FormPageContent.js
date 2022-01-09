@@ -8,7 +8,7 @@ import OfficeList from 'components/organisms/form-page/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import sidebarStyles from 'styles/Sidebar.module.css';
-import { createMarkup } from 'utils/helpers';
+import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 
 const FormPageContent = ({
   isSubscribe, bodyContent, canonicalUrl, seo, site,
@@ -23,7 +23,9 @@ const FormPageContent = ({
     <Container>
       <Row>
         <Col sm={12} lg={9}>
-          <span dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+          <span
+            dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
+          />
           <h4 className={`${grayTitleStyles.title} mb-5 w-100`}>{site.formLabel}</h4>
           {!isSubscribe && (
             <>

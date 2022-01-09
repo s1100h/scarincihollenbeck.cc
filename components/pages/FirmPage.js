@@ -4,7 +4,7 @@ import SubscriptionMessage from 'components/molecules/subscription/subscription-
 import SidebarContent from 'components/shared/SidebarContent';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { createMarkup } from 'utils/helpers';
+import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
@@ -25,7 +25,11 @@ export default function FirmPage({ page, relatedPages }) {
             {page.tabs.map((tab) => (
               <div key={tab.title}>
                 <h4 className={`${grayTitleStyles.title} text-capitalize w-100`}>{tab.title}</h4>
-                <div dangerouslySetInnerHTML={createMarkup(tab.content)} />
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    formatPageImageToCloudinaryUrl(tab.content),
+                  )}
+                />
               </div>
             ))}
           </Col>

@@ -1,6 +1,7 @@
 import { Row, Col } from 'react-bootstrap';
 import Accolade from 'components/molecules/home/Accolade';
 import lineStyles from 'styles/LineHeader.module.css';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 export default function HomeReviews({ awards }) {
   const formattedAwards = awards
@@ -10,7 +11,7 @@ export default function HomeReviews({ awards }) {
       id: label,
       order: appearanceOrder,
       image: {
-        src: awardImage.sourceUrl,
+        src: formatSrcToCloudinaryUrl(awardImage.sourceUrl),
         alt: label,
         width: imageWidth,
         height: imageHeight,

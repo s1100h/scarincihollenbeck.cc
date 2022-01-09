@@ -27,9 +27,9 @@ export default function AdminProfileHeader({ image, profile }) {
                   <Image
                     src={formatSrcToCloudinaryUrl(image)}
                     alt={profile.name}
-                    width={260}
-                    height={279}
-                    layout="fixed"
+                    width={743}
+                    height={795}
+                    layout="intrinsic"
                     quality={100}
                     className={`${profileStyles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
                     priority

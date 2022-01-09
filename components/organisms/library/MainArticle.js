@@ -17,7 +17,12 @@ export default function MainArticle({
           <h3 className={`mb-4 ${fontStyles.ft22rem}`}>
             <strong>{title}</strong>
           </h3>
-          <Image src={image.replace('Feature', 'Body')} alt={title} width={750} height={350} />
+          <Image
+            src={image.replace('Feature', 'Body').replace('feature', 'body')}
+            alt={title}
+            width={750}
+            height={350}
+          />
         </a>
       </Link>
       <p className={`${fontStyles.ft12rem} my-3`}>

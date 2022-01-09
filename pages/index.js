@@ -1,7 +1,6 @@
 import HomePage from 'components/pages/HomePage';
 import { homePageContent, homePageLocations } from 'utils/api';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import { getLocationContent } from 'utils/queries';
 
 export default function Home({
   seo,

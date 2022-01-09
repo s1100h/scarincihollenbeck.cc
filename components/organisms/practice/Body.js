@@ -1,4 +1,4 @@
-import { createMarkup } from 'utils/helpers';
+import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import pageContentStyles from 'styles/PageContent.module.css';
 import dynamic from 'next/dynamic';
 
@@ -8,7 +8,7 @@ const Body = ({ activeTabContent, activeTab, content }) => (
   <>
     <div
       className={`${pageContentStyles.p} mt-4`}
-      dangerouslySetInnerHTML={createMarkup(activeTabContent)}
+      dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(activeTabContent))}
     />
     {activeTab === 99 && <PostList content={content} />}
   </>

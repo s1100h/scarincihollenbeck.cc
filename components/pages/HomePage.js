@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Container from 'react-bootstrap/Container';
 import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeHoneyCombSection from 'components/organisms/home/HoneyCombSection';
@@ -7,7 +8,7 @@ import HomeMainTag from 'components/organisms/home/MainTag';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import styles from 'styles/Home.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import dynamic from 'next/dynamic';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
 const HomeOurLeadership = dynamic(() => import('components/organisms/home/OurLeadership'));
@@ -40,7 +41,7 @@ export default function HomePage({
         <HomeHoneyCombSection
           contentOne={(
             <Image
-              src={serviceOne?.serviceImage?.sourceUrl}
+              src={formatSrcToCloudinaryUrl(serviceOne?.serviceImage?.sourceUrl)}
               alt={serviceOne?.title}
               width={400}
               height={400}
@@ -74,7 +75,7 @@ export default function HomePage({
           contentTwo={(
             <div className="float-right">
               <Image
-                src={serviceTwo?.serviceImage?.sourceUrl}
+                src={formatSrcToCloudinaryUrl(serviceTwo?.serviceImage?.sourceUrl)}
                 alt={serviceTwo?.title}
                 width={400}
                 height={400}

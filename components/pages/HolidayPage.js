@@ -1,7 +1,7 @@
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { createMarkup } from 'utils/helpers';
+import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 
 export default function HolidayPage({
   seo, title, subTitle, canonicalUrl, bodyContent,
@@ -15,7 +15,7 @@ export default function HolidayPage({
       />
       <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} isHoliday />
       <FullWidth>
-        <div dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+        <div dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))} />
       </FullWidth>
     </>
   );

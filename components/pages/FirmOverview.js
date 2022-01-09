@@ -1,7 +1,7 @@
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { createMarkup } from 'utils/helpers';
+import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import dynamic from 'next/dynamic';
 
 const FirmMembers = dynamic(() => import('components/organisms/firmoverview/members'));
@@ -30,12 +30,15 @@ export default function FirmOverviewPage({
         offset={3}
       />
       <FullWidth>
-        <div className="featured" dangerouslySetInnerHTML={createMarkup(bodyContent)} />
+        <div
+          className="featured"
+          dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
+        />
         {mainTabs.map((tab) => (
           <div
             key={tab.title}
             className="mt-4 featured"
-            dangerouslySetInnerHTML={createMarkup(tab.content)}
+            dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(tab.content))}
           />
         ))}
         <style jsx>{' div.featured{ font-size: 1.15rem }'}</style>
