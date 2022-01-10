@@ -324,6 +324,12 @@ export const CORE_PRACTICES = [
   },
 ];
 
+export const ERROR_PAGE_CONTENT = {
+  subTitle: 'Sorry, there was an issue getting your requested page',
+  mainMessage:
+    "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
+};
+
 export const MUSIC_ESQ_URL = 'https://musicesq.com';
 export const CON_LAW_URL = 'https://constitutionallawreporter.com';
 export const GOV_LAW_URL = 'https://scarincilawyer.com';
