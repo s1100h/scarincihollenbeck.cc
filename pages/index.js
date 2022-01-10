@@ -1,6 +1,6 @@
 import HomePage from 'components/pages/HomePage';
 import { homePageContent, homePageLocations } from 'utils/api';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import { formatSrcToCloudinaryUrl, sortByKey } from 'utils/helpers';
 
 export default function Home({
   seo,
@@ -69,6 +69,7 @@ export async function getStaticProps() {
 
   /** get firm locations */
   const offices = await homePageLocations();
+  const sortedOffices = offices.sort((a, b) => (a.node.title > b.node.title ? 1 : -1));
 
   return {
     props: {
@@ -86,7 +87,7 @@ export async function getStaticProps() {
       serviceOne,
       serviceTwo,
       leadership: modLeadership,
-      offices,
+      offices: sortedOffices,
     },
   };
 }
