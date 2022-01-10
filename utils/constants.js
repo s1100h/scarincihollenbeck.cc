@@ -1,44 +1,47 @@
+/** List of links in the sidebar of firm pages(diversity, pro bono, etc.) */
 export const FIRM_BLOG_PAGES = [
   {
-    id: 'YFtFOuJeUHBy2WL',
+    id: 'firm-news',
     title: 'Firm News',
     slug: '/library/category/firm-news',
   },
   {
-    id: 'pmSgjQiss0Mbz6p',
+    id: 'firm-events',
     title: 'Firm Events',
     slug: '/library/category/firm-events',
   },
   {
-    id: '2oTGonRQMAwEDZL',
+    id: 'firm-insights',
     title: 'Firm Insights',
     slug: '/library/category/law-firm-insights',
   },
 ];
 
+/* List of firm pages in the sidebar */
 export const FIRM_PAGES = [
   {
-    id: 'WF7jMpVJP3PTnuP',
+    id: 'pro-bono',
     title: 'Pro Bono',
     slug: '/pro-bono',
   },
   {
-    id: 'vehm0rQb7cpMH92',
+    id: 'women-lead',
     title: 'Women Lead',
     slug: '/women-lead',
   },
   {
-    id: 'SjveurE3BK1R1l2',
+    id: 'community-involvement',
     title: 'Community Involvement',
     slug: '/community-involvement',
   },
   {
-    id: 'p4mdVc653adf98fbn',
+    id: 'diversity',
     title: 'Diversity',
     slug: '/diversity',
   },
 ];
 
+/** The navigation in the header section of the site */
 export const SITE_NAVIGATION = [
   {
     id: 1,
@@ -158,6 +161,7 @@ export const SITE_NAVIGATION = [
   },
 ];
 
+/** The links in the dark gray bar in the footer of the site */
 export const SITE_FOOTER_NAVIGATION = [
   {
     id: 1,
@@ -192,19 +196,19 @@ export const SITE_FOOTER_NAVIGATION = [
     label: 'Locations',
   },
 ];
-export const ERROR_PAGE_CONTENT = {
-  subTitle: 'Sorry, there was an issue getting your requested page',
-  mainMessage:
-    "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
-};
 
+/** URLS for funeral pages -- after publishing a new funeral page add the link plus /funeral-announcements/ infront of it
+ * To point it to the funeral-announcements template
+ */
 export const FUNERAL_SLUGS = [
   '/funeral-announcements/passing-attorney-harvey-r-poe',
   '/funeral-announcements/passing-attorney-david-a-einhorn',
 ];
 
+/** Site Forms URLS  */
 export const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current-attorney'];
 
+/** Holiday URLS */
 export const HOLIDAY_SLUGS = [
   '/holiday/2019-happy-holidays',
   '/holiday/2020-happy-holidays',
@@ -213,13 +217,7 @@ export const HOLIDAY_SLUGS = [
   '/holiday/2023-happy-holidays',
 ];
 
-export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
-export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
-export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
-export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
-export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
-export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
+/** List of Client Alert links on the covid page and category landing pages */
 export const CLIENT_ALERTS = [
   {
     id: 20098,
@@ -243,6 +241,7 @@ export const CLIENT_ALERTS = [
   },
 ];
 
+/* List of locations in the footer of the website * */
 export const OFFICE_LOCATIONS = [
   {
     id: 1,
@@ -266,6 +265,7 @@ export const OFFICE_LOCATIONS = [
   },
 ];
 
+/** List the Core Practices in the sidebar and home page */
 export const CORE_PRACTICES = [
   {
     id: 1,
@@ -327,8 +327,14 @@ export const CORE_PRACTICES = [
 export const MUSIC_ESQ_URL = 'https://musicesq.com';
 export const CON_LAW_URL = 'https://constitutionallawreporter.com';
 export const GOV_LAW_URL = 'https://scarincilawyer.com';
-
 export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
 export const COVID_POSTS_ID = 20250;
 export const IMAGE_NOT_FOUND_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v1637157143/wp.scarincihollenbeck/no-image-found-diamond_33141f5498/no-image-found-diamond_33141f5498-png?_i=AA';
 export const SITE_TITLE = 'Scarinci Hollenbeck';
+export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
+export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
+export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
+export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
