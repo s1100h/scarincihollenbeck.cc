@@ -99,7 +99,7 @@ export const SITE_NAVIGATION = [
       },
        {
         id: 9,
-        label: 'Work Life Balance',
+        label: Work Life Balance,
         menuId: 'work-life-balance',
         slug: '/work-life-balance',
       }
