@@ -96,12 +96,6 @@ export const SITE_NAVIGATION = [
         label: 'Women Lead',
         menuId: 'women-lead',
         slug: '/women-lead',
-      },
-       {
-        id: 9,
-        label: Work Life Balance,
-        menuId: 'work-life-balance',
-        slug: '/work-life-balance',
       }
     ],
   },
