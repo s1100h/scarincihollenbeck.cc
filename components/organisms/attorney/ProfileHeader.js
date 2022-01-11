@@ -30,19 +30,7 @@ const useDesignationHook = (title) => {
   return [designation, setDesignation];
 };
 const ProfileHeader = ({
-  name,
-  firstName,
-  profileImage,
-  title,
-  practices,
-  offices,
-  vizbility,
-  pdf,
-  coChair,
-  chair,
-  additionalHeaderLinks,
-  fax,
-  contact,
+  name, profileImage, title, offices, pdf, coChair, chair, contact,
 }) => {
   const [designation] = useDesignationHook(title);
   const router = useRouter();
@@ -64,12 +52,11 @@ const ProfileHeader = ({
     offices,
     fax: contact.fax,
     contact,
-    additionalHeaderLinks: contact.additionalHeaderLinks,
   };
   const contactProps = {
     slug,
     pdf: contact.pdf,
-    vizbility: contact.vizbility,
+    vizibility: contact.vizibility,
     linkedIn,
   };
 

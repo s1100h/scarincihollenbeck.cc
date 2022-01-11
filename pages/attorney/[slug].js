@@ -133,7 +133,6 @@ export async function getServerSideProps({ params, res }) {
       fax: attorneyBio.attorneyMainInformation?.faxNumber,
       vizibility: attorneyBio.attorneyMainInformation?.vizibility,
       pdf: attorneyBio.attorneyMainInformation?.pdfBio?.sourceUrl || null,
-      additionalHeaderLinks: attorneyBio.attorneyMainInformation?.additionalHeaderLinks,
       socialMediaLinks: attorneyBio.attorneyMainInformation?.socialMediaLinks,
     },
     practices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices.map(

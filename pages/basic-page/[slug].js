@@ -69,7 +69,7 @@ export async function getServerSideProps({ params }) {
   const request = await getBasicPageContent(params.slug);
 
   const {
-    title, content, seo, AddContactFormToPage,
+    title, content, seo, addFormToPage,
   } = request;
 
   return {
@@ -78,8 +78,8 @@ export async function getServerSideProps({ params }) {
       content,
       seo,
       pageForm: {
-        enableForm: AddContactFormToPage.enableForm,
-        formLabel: AddContactFormToPage.formLabel,
+        enableForm: addFormToPage?.enableForm,
+        formLabel: addFormToPage?.formLabel,
       },
       slug: params.slug,
     },

@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-export default function ProfileDetails({
-  contact, offices, fax, additionalHeaderLinks,
-}) {
+export default function ProfileDetails({ contact, offices, fax }) {
   const { phoneNumber, email } = contact;
   return (
     <div className="d-flex flex-column">
