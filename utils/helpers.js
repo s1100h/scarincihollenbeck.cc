@@ -177,7 +177,7 @@ export const formatPageImageToCloudinaryUrl = (page) => {
   if (page.includes(tossUrl)) {
     const modImageUrlContent = page
       .replace(/https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g, CLOUDINARY_BASE_URL)
-      .replace(/-\d{3}x\d{3}/g, '');
+      .replace(/-\d{3,}x\d{3,}\./g, '.');
     return modImageUrlContent;
   }
 

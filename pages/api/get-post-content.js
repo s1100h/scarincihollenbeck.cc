@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import { CLOUDINARY_BASE_URL, SITE_TITLE } from 'utils/constants';
+import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 
 require('dotenv').config();
 const mysql = require('mysql2/promise');
@@ -81,7 +82,10 @@ export const getPostContent = async (slug, category) => {
       response = response.replace(subTitle[0], '');
     }
 
-    return response;
+    /** Make any additional images use cloudinary url  */
+    const useCloudinaryUrlsInPost = formatPageImageToCloudinaryUrl(response);
+
+    return useCloudinaryUrlsInPost;
   };
 
   const getBodyImageId = (content) => {
