@@ -597,3 +597,85 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
     }
   }
 }`;
+
+/** querying firm pages content */
+export const firmPagesQuery = `query FirmPageQuery($slug: String) {
+  pageBy(uri: $slug) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    firmPagesRelatedPostsMembers {
+      groupChair {
+        ... on AttorneyProfile {
+          id
+          uri
+          title
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            lastName
+          }
+        }
+      }
+      groupMembers {
+        ... on AttorneyProfile {
+          id
+          uri
+          title
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            lastName
+          }
+        }
+      }
+      relatedPosts {
+        posts(first: 3) {
+          edges {
+            node {
+              id
+              uri
+              date
+              excerpt
+              title(format: RENDERED)
+              featuredImage{
+                node{
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    firmPagesDescription {
+      description
+    }
+    firmPagesTabs {
+      tab2Content
+      tab2Header
+      tab3Content
+      tab3Header
+      tab4Content
+      tab4Header
+      tab5Content
+      tab5Header
+      tabContent
+      tabHeader
+    }
+  }
+}`;

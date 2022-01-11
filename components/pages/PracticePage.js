@@ -42,9 +42,9 @@ const PracticePage = ({
     setActiveTabContent(currentTabContent[0].content);
   }, [activeTab]);
 
-  function handleLink(e) {
+  const handleLink = (e) => {
     router.push(e.target.value);
-  }
+  };
 
   return (
     <>

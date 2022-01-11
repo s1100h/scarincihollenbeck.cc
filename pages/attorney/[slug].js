@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  attorneySlugs, attorneyBySlug, attorneyFirmBlog, attorneyNewsEvents,
-} from 'utils/api';
+import { attorneyBySlug, attorneyFirmBlog, attorneyNewsEvents } from 'utils/api';
 import {
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,

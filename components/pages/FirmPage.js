@@ -11,18 +11,21 @@ import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import sidebarStyles from 'styles/Sidebar.module.css';
 
 const PageArticleHero = dynamic(() => import('components/organisms/page/page-article-hero'));
+const RelatedAttorneys = dynamic(() => import('components/molecules/practice/RelatedAttorneys'));
 
-export default function FirmPage({ page, relatedPages }) {
-  const { seo } = page;
+export default function FirmPage({ page, canonicalUrl, handleLink }) {
+  const {
+    seo, tabs, relatedPages, attorneysMentioned, title, description, members,
+  } = page;
 
   return (
     <>
-      <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} />
-      <SingleSubHeader title={page.title} subtitle={page.description} span={6} offset={0} />
+      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
+      <SingleSubHeader title={title} subtitle={description} span={6} offset={0} />
       <Container>
         <Row>
           <Col sm={12} lg={9}>
-            {page.tabs.map((tab) => (
+            {tabs.map((tab) => (
               <div key={tab.title}>
                 <h4 className={`${grayTitleStyles.title} text-capitalize w-100`}>{tab.title}</h4>
                 <div
@@ -43,18 +46,26 @@ export default function FirmPage({ page, relatedPages }) {
         </Row>
         <Row>
           <Col sm={12} className="mt-lg-5">
-            {page.attorneysMentioned.length > 0 && (
-              <>
+            {members && (
+              <RelatedAttorneys
+                members={members.member}
+                chair={members.chair}
+                handleLink={handleLink}
+                title="Chair"
+              />
+            )}
+            {attorneysMentioned.length > 0 && (
+              <div className="mt-lg-5">
                 <div className={lineHeaderStyles.lineHeader}>
                   <h3>Recent from the firm</h3>
                 </div>
                 <div className="my-5">
                   <PageArticleHero
-                    link={page.title.replace(/\s+/g, '-').toLowerCase()}
-                    content={page.attorneysMentioned}
+                    link={title.replace(/\s+/g, '-').toLowerCase()}
+                    content={attorneysMentioned}
                   />
                 </div>
-              </>
+              </div>
             )}
           </Col>
         </Row>
