@@ -287,7 +287,7 @@ export default async (req, res) => {
         return res.status(404).send({ ...fetchPost });
       }
 
-      res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
+      res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
       return res.status(200).send({ ...fetchPost });
     }
   } catch (error) {

@@ -289,7 +289,7 @@ export async function getServerSideProps({ params, res }) {
   /** Clients */
   const attorneyClients = attorneyBio.attorneyAwardsClientsBlogsVideos?.clients;
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   return {
     props: {
       seo,

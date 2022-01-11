@@ -51,7 +51,7 @@ export async function getServerSideProps({ params, res, query }) {
   const {
     post, seo, categories, tags, authors,
   } = request;
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
 
   return {
     props: {

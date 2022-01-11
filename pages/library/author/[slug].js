@@ -67,7 +67,7 @@ export async function getServerSideProps({ params, res }) {
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
 
   const firstFourArticles = results.results.splice(0, 4);
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=300, stale-while-revalidate');
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   return {
     props: {
       results: firstFourArticles || [],
