@@ -96,7 +96,7 @@ export const SITE_NAVIGATION = [
         label: 'Women Lead',
         menuId: 'women-lead',
         slug: '/women-lead',
-      }
+      },
     ],
   },
   {
@@ -330,13 +330,15 @@ export const ERROR_PAGE_CONTENT = {
     "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
 
+/** Changing this variable will remove Scarinci Hollenbeck everywhere on the site */
+export const SITE_TITLE = 'Scarinci Hollenbeck';
+
 export const MUSIC_ESQ_URL = 'https://musicesq.com';
 export const CON_LAW_URL = 'https://constitutionallawreporter.com';
 export const GOV_LAW_URL = 'https://scarincilawyer.com';
 export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
 export const COVID_POSTS_ID = 20250;
 export const IMAGE_NOT_FOUND_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v1637157143/wp.scarincihollenbeck/no-image-found-diamond_33141f5498/no-image-found-diamond_33141f5498-png?_i=AA';
-export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;

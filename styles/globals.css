@@ -181,3 +181,34 @@ em {
   display: flex;
   flex-direction: row;
 }
+
+/** Handle center button styles from wordpress **/
+.aligncenter > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aligncenter > figcaption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.alignleft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: column;
+  float: left;
+  margin-right: 24px;
+}
+
+.alignright {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-direction: column;
+  float: right;
+  margin-left: 24px;
+}
