@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SITE_PHONE } from 'utils/constants';
 import textStyles from 'styles/Text.module.css';
 
 export default function TopNavLinks() {
@@ -7,7 +8,7 @@ export default function TopNavLinks() {
       <p className="py-1 mx-0 px-0 mr-2">
         <span>
           {' '}
-          <strong>201-896-4100</strong>
+          <strong>{SITE_PHONE}</strong>
           {' '}
         </span>
         <span className="px-1">

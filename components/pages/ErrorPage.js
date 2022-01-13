@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import SingleSubHeader from 'layouts/SingleSubHeader';
+import { SITE_PHONE } from 'utils/constants';
 
 export default function ErrorPage({ title, subTitle, mainMessage }) {
   return (
@@ -31,7 +32,10 @@ export default function ErrorPage({ title, subTitle, mainMessage }) {
               If you are looking to get in touch with an attorney under the terms as to becoming a
               new client please call
               {' '}
-              <strong>201-896-4100.</strong>
+              <strong>
+                {SITE_PHONE}
+                .
+              </strong>
             </p>
           </Col>
           <Col sm={12} md={{ span: 7, offset: 2 }}>

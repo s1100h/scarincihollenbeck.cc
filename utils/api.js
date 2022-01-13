@@ -14,6 +14,8 @@ import {
   administrationPageQuery,
   basicPagesQuery,
   firmPagesQuery,
+  firmOverviewQuery,
+  attorneysAndAdminsQuery,
 } from './graphql-queries';
 
 async function fetchAPI(query, { variables } = {}) {
@@ -147,4 +149,17 @@ export async function getFirmPageContent(slug) {
     variables: { slug },
   });
   return data?.pageBy;
+}
+
+/** firm overview query */
+export async function getFirmOverviewContent() {
+  const data = await fetchAPI(firmOverviewQuery);
+
+  return data?.pageBy;
+}
+
+/** get all attorneys and admins */
+export async function getAttorneyAndAdmins() {
+  const data = await fetchAPI(attorneysAndAdminsQuery);
+  return data;
 }

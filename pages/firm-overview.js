@@ -1,45 +1,51 @@
 import FirmOverviewPage from 'components/pages/FirmOverview';
-import { headers, sortByKey } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { getFirmOverviewContent, getAttorneyAndAdmins } from 'utils/api';
 
 export default function FirmOverview({
-  mainTabs, members, mainContent, seo,
+  title,
+  seo,
+  content,
+  firmOverviewTabs,
+  attorneys,
+  administration,
 }) {
-  const subHeaderContent = mainContent.match(/<h2>(.*?)<\/h2>/g);
-  const bodyContent = mainContent.replace(subHeaderContent[0], '');
-  const sortedAdmins = sortByKey(members.admin, 'orderBy');
+  const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
+  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+  const bodyContent = content.replace(subTitle, '');
   const canonicalUrl = `${SITE_URL}/firm-overview`;
-  const title = 'Firm Overview';
 
   const firmOverviewProps = {
-    mainTabs,
-    seo,
-    bodyContent,
-    sortedAdmins,
-    canonicalUrl,
     title,
-    members,
-    subHeaderContent,
+    seo,
+    canonicalUrl,
+    bodyContent,
+    subTitle,
+    firmOverviewTabs,
+    attorneys,
+    administration,
   };
 
   return <FirmOverviewPage {...firmOverviewProps} />;
 }
 
 export async function getStaticProps() {
-  const request = await fetch(`${BASE_API_URL}/wp-json/firm-overview/content`, { headers })
-    .then((data) => data.json())
-    .catch((err) => err);
+  const pageRequest = await getFirmOverviewContent();
+  const attorneyAdminRequest = await getAttorneyAndAdmins();
 
   const {
-    mainTabs, members, mainContent, seo,
-  } = request;
+    title, seo, content, firmOverviewTabs,
+  } = pageRequest;
+  const { attorneyProfiles, administrations } = attorneyAdminRequest;
 
   return {
     props: {
-      mainTabs,
-      members,
-      mainContent,
+      title,
       seo,
+      content,
+      firmOverviewTabs,
+      attorneys: attorneyProfiles?.edges,
+      administration: administrations?.edges,
     },
   };
 }

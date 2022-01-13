@@ -4,7 +4,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import CookieConsentContainer from 'components/shared/cookie-consent';
 import styles from 'styles/Footer.module.css';
 import textStyles from 'styles/Text.module.css';
-import { FIRM_PAGES, SITE_FOOTER_NAVIGATION, OFFICE_LOCATIONS } from 'utils/constants';
+import {
+  FIRM_PAGES,
+  SITE_FOOTER_NAVIGATION,
+  OFFICE_LOCATIONS,
+  SITE_PHONE,
+  SITE_FAX,
+} from 'utils/constants';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -113,12 +119,12 @@ export default function Footer() {
               <li>
                 <strong>Phone: </strong>
                 {' '}
-                201-896-4100
+                {SITE_PHONE}
               </li>
               <li>
                 <strong>Fax: </strong>
                 {' '}
-                201-896-8660
+                {SITE_FAX}
               </li>
               <li>
                 <strong>Email: </strong>

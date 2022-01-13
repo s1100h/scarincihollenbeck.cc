@@ -679,3 +679,71 @@ export const firmPagesQuery = `query FirmPageQuery($slug: String) {
     }
   }
 }`;
+
+export const firmOverviewQuery = `query FirmOverviewQuery {
+  pageBy(uri: "firm-overview") {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    content
+    firmOverviewTabs {
+      additionalContent {
+        content
+        title
+      }
+      mainTabs {
+        content
+        subtitle
+        title
+        mainImage {
+          sourceUrl
+        }
+      }
+    }
+  }
+}`;
+
+export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
+  attorneyProfiles(first: 100) {
+    edges {
+      node {
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        uri
+        title
+        attorneyMainInformation {
+          phoneNumber
+          email
+          designation
+          lastName
+        }
+      }
+    }
+  }
+  administrations {
+    edges {
+      node {
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title
+        uri
+        administration {
+          title
+          phoneExtension
+          email
+          lastname
+          order
+        }
+      }
+    }
+  }
+}
+`;

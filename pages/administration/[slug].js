@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import AdministrationProfile from 'components/pages/AdminProfile';
-import { SITE_URL } from 'utils/constants';
+import { SITE_URL, SITE_PHONE } from 'utils/constants';
 import { getAdministrationContent } from 'utils/queries';
 
 export default function AdministrationProfilePage({ response }) {
@@ -20,7 +20,7 @@ export default function AdministrationProfilePage({ response }) {
     vizibility: response.vizibility,
     name: response.name,
     designation: response.Title,
-    phoneNumber: `201-896-4100 ${response.phone_extension}`,
+    phoneNumber: `${SITE_PHONE} ${response.phone_extension}`,
     socialMedia: response.social_media_links,
     offices: response.offices,
   };
