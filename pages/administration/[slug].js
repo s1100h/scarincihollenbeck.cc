@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import AdministrationProfile from 'components/pages/AdminProfile';
 import { SITE_URL } from 'utils/constants';
-import { getAdministrationPaths, getAdministrationContent } from 'utils/queries';
+import { getAdministrationContent } from 'utils/queries';
 
 export default function AdministrationProfilePage({ response }) {
   const router = useRouter();
@@ -36,18 +36,16 @@ export default function AdministrationProfilePage({ response }) {
   return <AdministrationProfile {...adminProps} />;
 }
 
-// export async function getStaticPaths() {
-//   const paths = await getAdministrationPaths();
-
-//   return {
-//     paths,
-//     fallback: 'blocking',
-//   };
-// }
-
 export async function getServerSideProps({ params, res }) {
   const response = await getAdministrationContent(params.slug);
+
   if (JSON.stringify(response) === '{}') {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (Object.keys(response).includes('status') && response.status === 404) {
     return {
       notFound: true,
     };

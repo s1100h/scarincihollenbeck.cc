@@ -31,6 +31,7 @@ const LibraryDirectory = ({
   const mainArticle = results[0];
   const featuredArticles = results.slice(1, results.length);
   const isAuthor = router.asPath.includes('author');
+  const noPostsFoundMessage = <p>Sorry, no posts found</p>;
 
   /** Handle Article Archive Query */
   const {
@@ -62,19 +63,29 @@ const LibraryDirectory = ({
         <Row>
           <BodyHeader />
           <Col sm={12} lg={9} className="mt-4">
-            <MainArticle
-              title={mainArticle.title}
-              link={mainArticle.link}
-              excerpt={mainArticle.excerpt || mainArticle.description}
-              category={mainArticle.category}
-              date={mainArticle.date}
-              image={
-                mainArticle.image ? mainArticle.image : '/images/no-image-found-diamond-750x350.png'
-              }
-              author={mainArticle.author}
-            />
+            {mainArticle ? (
+              <MainArticle
+                title={mainArticle.title}
+                link={mainArticle.link}
+                excerpt={mainArticle.excerpt || mainArticle.description}
+                category={mainArticle.category}
+                date={mainArticle.date}
+                image={
+                  mainArticle.image
+                    ? mainArticle.image
+                    : '/images/no-image-found-diamond-750x350.png'
+                }
+                author={mainArticle.author}
+              />
+            ) : (
+              noPostsFoundMessage
+            )}
             <ul className="list-unstyled border-top pt-5 mt-5">
-              <FeaturedArticle articles={featuredArticles} />
+              {featuredArticles ? (
+                <FeaturedArticle articles={featuredArticles} />
+              ) : (
+                noPostsFoundMessage
+              )}
             </ul>
             <div className="border-top border-top pt-4">
               <h4 className="mb-5">

@@ -5,7 +5,7 @@ import ApolloWrapper from 'layouts/ApolloWrapper';
 import { SITE_URL } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { categoryPosts } from 'utils/api';
-import { getCategoryPaths, getLibraryCategoryContent } from 'utils/queries';
+import { getLibraryCategoryContent } from 'utils/queries';
 
 export default function LibraryCategory({
   authors,
@@ -53,15 +53,6 @@ export default function LibraryCategory({
   );
 }
 
-// export async function getStaticPaths() {
-//   const paths = await getCategoryPaths();
-
-//   return {
-//     paths,
-//     fallback: 'blocking',
-//   };
-// }
-
 export async function getServerSideProps({ params, res }) {
   const [authors, popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
@@ -77,6 +68,7 @@ export async function getServerSideProps({ params, res }) {
   }
 
   const content = pageContent[0].node;
+
   const results = content.posts?.edges.map(({ node }, index) => ({
     ID: index,
     title: node.title,

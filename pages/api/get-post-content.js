@@ -199,14 +199,16 @@ export const getPostContent = async (slug, category) => {
     const [author] = await connection.execute(postAuthorQuery, [authorName]);
 
     // get the authors description
-    const [authorMeta] = await connection.execute(postAuthorMetaQuery, [author[0].ID]);
+    if (author.length > 0) {
+      const [authorMeta] = await connection.execute(postAuthorMetaQuery, [author[0].ID]);
 
-    const authorDescription = getFieldData(authorMeta, 'description');
+      const authorDescription = getFieldData(authorMeta, 'description');
 
-    authorData.push({
-      ...author[0],
-      authorDescription,
-    });
+      authorData.push({
+        ...author[0],
+        authorDescription,
+      });
+    }
   }
 
   /** Query author order and sort authors */
