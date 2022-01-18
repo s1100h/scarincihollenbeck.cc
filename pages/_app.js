@@ -24,7 +24,7 @@ import 'animate.css/animate.min.css';
 import 'styles/globals.css';
 import 'styles/carousel.css';
 
-const Footer = dynamic(() => import('components/shared/Footer'));
+const SiteFooter = dynamic(() => import('components/shared/SiteFooter'));
 
 /**
  *  Add page transition loader
@@ -53,7 +53,7 @@ export default function SHSite({ Component, pageProps }) {
         <main>
           <Component {...pageProps} />
         </main>
-        <Footer />
+        <SiteFooter />
       </LocationProvider>
     </SectionTitleProvider>
   );
