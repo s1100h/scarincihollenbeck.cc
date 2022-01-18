@@ -1,9 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
-import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
-import ContactForm from 'components/shared/contact-form';
-import SubscriptionFormColumn from 'components/molecules/subscription/subscription-form-column';
+import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
+import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
+import ContactForm from 'components/shared/ContactForm';
+import SubscriptionFormColumn from 'components/molecules/subscription/SubscriptionFormColumn';
 import OfficeList from 'components/organisms/form-page/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';

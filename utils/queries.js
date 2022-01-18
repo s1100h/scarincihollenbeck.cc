@@ -1,5 +1,4 @@
-import { headers } from 'utils/helpers';
-import { BASE_API_URL } from 'utils/constants';
+import { BASE_API_URL, headers } from 'utils/constants';
 
 const fetch = require('node-fetch');
 

@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
-import { headers } from 'utils/helpers';
-import { BASE_API_URL, SITE_URL } from 'utils/constants';
+import { BASE_API_URL, SITE_URL, headers } from 'utils/constants';
 import { archivesPageContent } from 'utils/api';
 
 export default function Administration({ admins, seo, site }) {

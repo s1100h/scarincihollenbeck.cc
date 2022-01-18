@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import AdministrationProfile from 'components/pages/AdminProfile';
 import { SITE_URL, SITE_PHONE } from 'utils/constants';
 import { getAdministrationContent } from 'utils/queries';

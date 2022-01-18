@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import PagesBody from 'components/organisms/page/body';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import ContactForm from 'components/shared/contact-form';
+import ContactForm from 'components/shared/ContactForm';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';

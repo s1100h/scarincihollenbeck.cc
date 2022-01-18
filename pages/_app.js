@@ -24,7 +24,7 @@ import 'animate.css/animate.min.css';
 import 'styles/globals.css';
 import 'styles/carousel.css';
 
-const Footer = dynamic(() => import('components/shared/footer'));
+const Footer = dynamic(() => import('components/shared/Footer'));
 
 /**
  *  Add page transition loader

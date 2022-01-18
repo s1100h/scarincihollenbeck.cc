@@ -1,5 +1,5 @@
-import { sortByKey, headers } from 'utils/helpers';
-import { SITE_URL, BASE_API_URL } from 'utils/constants';
+import { sortByKey } from 'utils/helpers';
+import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
 import { practicesPageContent } from 'utils/api';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 

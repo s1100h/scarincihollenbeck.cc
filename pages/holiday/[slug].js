@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { HOLIDAY_SLUGS, SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import HolidayPage from 'components/pages/HolidayPage';
 
 export default function FirmHoliday({

@@ -1,5 +1,5 @@
 import Col from 'react-bootstrap/Col';
-import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
+import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
 import PostSocialShareSidebar from 'components/organisms/post/social-share-sidebar';
 
 export default function PostSidebar({ title }) {

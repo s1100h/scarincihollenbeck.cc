@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
-import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
+import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
 import SidebarContent from 'components/shared/SidebarContent';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';

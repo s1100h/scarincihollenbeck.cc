@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import CareerProfile from 'components/pages/CareerPage';
 import { SITE_URL } from 'utils/constants';
 import { getCareersPaths, getCareersContent } from 'utils/queries';

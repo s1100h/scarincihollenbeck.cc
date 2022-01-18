@@ -1,16 +1,18 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
 import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
-import FormScripts from 'components/shared/form-scripts';
+
+const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 export default function SubscriptionFormColumn() {
   const router = useRouter();
 
   return (
     <>
-      <FormScripts />
+      <KwesScripts />
       <form
         className="kwes-form"
         action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"

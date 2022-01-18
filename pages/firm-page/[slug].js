@@ -1,20 +1,8 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, SITE_URL } from 'utils/constants';
-import { getFirmPagesContent } from 'utils/queries';
 import { getFirmPageContent } from 'utils/api';
-
-// id: 'cG9zdDoyOTEyNQ==',
-//     uri: '/attorneys/libby-babu-varghese/',
-//     title: 'Libby Babu Varghese',
-//     featuredImage: { node: [Object] },
-//     attorneyMainInformation: {
-//       designation: 'Counsel',
-//       email: 'lvarghese@sh-law.com',
-//       phoneNumber: '212-784-6922',
-//       lastName: 'Varghese'
-//     }
 
 const sanitizeAttorneyProfile = (node) => ({
   ID: node.id,
@@ -47,15 +35,6 @@ export default function FirmPages({ page, currentPage }) {
 
   return <FirmPage {...firmPageProps} />;
 }
-
-// export async function getStaticPaths() {
-//   const urls = FIRM_PAGES.map((a) => `/firm-page${a.slug}`);
-
-//   return {
-//     paths: urls || [],
-//     fallback: 'blocking',
-//   };
-// }
 
 export async function getServerSideProps({ params }) {
   const req = await getFirmPageContent(params.slug);

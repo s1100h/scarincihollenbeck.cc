@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationPaths, getLocationContent } from 'utils/queries';

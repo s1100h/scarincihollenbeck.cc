@@ -1,10 +1,12 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
-import CurrentAttorneyNameForm from 'components/organisms/site-form/current-attorney-form';
-import NewAttorneyNameForm from 'components/organisms/site-form/new-attorney-form';
-import FormScripts from 'components/shared/form-scripts';
 import textStyles from 'styles/Text.module.css';
 import Button from 'react-bootstrap/Button';
+
+const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
+const CurrentAttorneyNameForm = dynamic(() => import('components/organisms/site-form/CurrentAttorney'));
+const NewAttorneyNameForm = dynamic(() => import('components/organisms/site-form/NewAttorney'));
 
 export default function SiteFormPage({
   attorney,
@@ -15,7 +17,7 @@ export default function SiteFormPage({
 }) {
   return (
     <Container>
-      <FormScripts />
+      <KwesScripts />
       <Head>
         <title>Updating your website profile?</title>
         <meta name="googlebot" content="noindex" />

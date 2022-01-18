@@ -11,6 +11,7 @@ import {
   SITE_PHONE,
   SITE_FAX,
   SITE_EMAIL,
+  CORE_PRACTICE,
 } from 'utils/constants';
 
 export default function Footer() {

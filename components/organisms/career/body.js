@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import CareerForm from 'components/molecules/career-form';
+import CareerForm from 'components/molecules/CareerForm';
 import styles from 'styles/BasicContent.module.css';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 

@@ -1,8 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import SingleCareerBody from 'components/organisms/career/body';
-import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
-import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
+import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
+import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
 

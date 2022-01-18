@@ -1,6 +1,6 @@
 import fontStyles from 'styles/Fonts.module.css';
 import { SITE_TITLE } from 'utils/constants';
-import SubscriptionFormWithButton from 'components/molecules/subscription/subscription-form-with-button';
+import SubscriptionFormWithButton from 'components/molecules/subscription/SubscriptionFormWithButton';
 
 export default function SubscriptionMessage() {
   return (

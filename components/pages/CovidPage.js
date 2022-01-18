@@ -1,11 +1,11 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
-import ContactForm from 'components/shared/contact-form';
+import ContactForm from 'components/shared/ContactForm';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
-import SubscriptionMessage from 'components/molecules/subscription/subscription-message';
-import CommonSidebarLinks from 'components/molecules/common-sidebar-links';
+import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
+import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';

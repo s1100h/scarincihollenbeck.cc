@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/site-loader';
-
-import { SITE_FORM_SLUGS, BASE_API_URL } from 'utils/constants';
+import SiteLoader from 'components/shared/SiteLoader';
+import { BASE_API_URL } from 'utils/constants';
 import SiteFormPage from 'components/pages/SiteFeedbackPage';
 
 export default function SiteForms({ attorneys, practices, isNewAttorney }) {
@@ -32,6 +30,8 @@ export default function SiteForms({ attorneys, practices, isNewAttorney }) {
 }
 
 export async function getStaticPaths() {
+  /** Site Forms URLS  */
+  const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current-attorney'];
   const urls = SITE_FORM_SLUGS.map((slug) => slug);
 
   return {

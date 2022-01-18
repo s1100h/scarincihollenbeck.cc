@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
 import { getPracticeContent } from 'utils/queries';
 import PracticePage from 'components/pages/PracticePage';

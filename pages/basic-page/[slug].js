@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import BasicPageContent from 'components/pages/BasicPageContent';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import { SITE_URL } from 'utils/constants';
 // import { getPageContent, getCurrentPublishedPages } from 'utils/queries';
 import { getBasicPageContent } from 'utils/api';

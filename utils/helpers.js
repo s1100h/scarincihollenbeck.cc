@@ -1,4 +1,4 @@
-import { CLOUDINARY_BASE_URL } from './constants';
+import { CLOUDINARY_BASE_URL, OFFICE_LOCATIONS } from './constants';
 // sort a list by its key
 export function sortByKey(list, key) {
   if (list !== undefined) {
@@ -30,25 +30,6 @@ export function getDirectionsFromLocation(location) {
     maximumAge: 0,
   };
 
-  const offices = [
-    {
-      title: 'lyndhurst',
-      address: '1100 Valley Brook Ave. Lyndhurst, NJ 07071',
-    },
-    {
-      title: 'red bank',
-      address: '331 Newman Springs Road Red Bank, NJ 07701',
-    },
-    {
-      title: 'new york',
-      address: '589 8th Avenue, New York, NY, 10018',
-    },
-    {
-      title: 'washington dc',
-      address: 'Suite 250 1000 Potomac St., N.W. Washington D.C. 20007',
-    },
-  ];
-
   const success = (pos) => {
     const crd = pos.coords;
     const lat = crd.latitude;
@@ -56,7 +37,7 @@ export function getDirectionsFromLocation(location) {
     const currentOffice = location.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
 
     // filter through available offices
-    const destination = offices.filter((v) => v.title === currentOffice)[0].address;
+    const destination = OFFICE_LOCATIONS.filter((v) => v.label === currentOffice)[0].address;
     const map = `https://www.google.com/maps/dir/${lat}+${long}/${destination}`;
     window.open(map, '_blank');
   };
@@ -83,25 +64,6 @@ export function filterByKey(list, key) {
 
 // make title
 export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g, ' ').toUpperCase();
-
-// capitalize all first letters in a word
-export const capitalizeFirstLetterInWords = (string) => {
-  if (string && string !== undefined) {
-    const words = string.split(' ');
-
-    for (let i = 0; i < words.length; i++) {
-      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-    }
-    return words.join(' ');
-  }
-  return string;
-};
-
-// common headers for fetch
-export const headers = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-};
 
 // format GMT date
 export function formatDate(date) {

@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import { Col, Row, Button } from 'react-bootstrap';
-import FormScripts from 'components/shared/form-scripts';
+
+const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const ContactForm = ({ emailForwarding, name }) => {
   const router = useRouter();
@@ -8,7 +10,7 @@ const ContactForm = ({ emailForwarding, name }) => {
 
   return (
     <div className="px-2 mb-3">
-      <FormScripts />
+      <KwesScripts />
       <form
         action="https://kwes.io/api/foreign/forms/m015EzO4b4EtOvYSTRlK"
         className="kwes-form d-print-none px-1"

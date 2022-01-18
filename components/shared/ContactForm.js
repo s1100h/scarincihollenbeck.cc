@@ -1,19 +1,18 @@
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { Col, Row, Button } from 'react-bootstrap';
 
-import FormScripts from 'components/shared/form-scripts';
+const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-export default function CareerForm({ contact, title }) {
+export default function ContactForm() {
   const router = useRouter();
 
   return (
-    <div className="px-2 my-3 border-top">
-      <FormScripts />
+    <div className="px-2 mb-3">
+      <KwesScripts />
       <form
-        method="POST"
-        action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW"
-        encType="multipart/form-data"
-        className="kwes-form d-print-none px-1"
+        action="https://kwes.io/api/foreign/forms/oIRf8VAo2KnGHucQmZ1m"
+        className="kwes-form d-print-none px-1 w-75"
         has-recaptcha-v3="true"
         recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
       >
@@ -22,8 +21,6 @@ export default function CareerForm({ contact, title }) {
           name="currentPage"
           value={`https://scarincihollenbeck.com${router.asPath}`}
         />
-        <input type="hidden" name="currentTitle" value={title} />
-        <input type="hidden" name="currentContact" value={contact} />
         <Row className="mb-3">
           <Col sm={12} md={6} className="mx-0 px-1">
             <input
@@ -64,38 +61,26 @@ export default function CareerForm({ contact, title }) {
             />
           </Col>
         </Row>
-        <Row>
-          <Col sm={12} className="mx-0 px-1">
-            <label htmlFor="coverLetter">
-              <span className="d-block w-100 my-2">
-                <strong>Upload your cover letter</strong>
-              </span>
-              <input type="file" name="coverLetter" id="coverLetter" rules="required" />
-            </label>
+        <Row className="mb-2">
+          <Col sm={12} className="mx-0 px-1 mb-4">
+            <input
+              type="text"
+              className="form-control mx-0"
+              name="subject"
+              placeholder="Subject"
+              rules="required|max:1000"
+            />
           </Col>
           <Col sm={12} className="mx-0 px-1">
-            <label htmlFor="resume">
-              <span className="d-block w-100 my-2">
-                <strong>Upload your resume</strong>
-              </span>
-              <input type="file" name="resume" id="resume" rules="required" />
-            </label>
-          </Col>
-          <Col sm={12} className="mx-0 px-1">
-            <label htmlFor="writing">
-              <span className="d-block w-100 my-2">
-                <strong>Upload a writing sample</strong>
-              </span>
-              <input type="file" name="writing" id="writing" />
-            </label>
-          </Col>
-          <Col sm={12} className="mx-0 px-1">
-            <label htmlFor="transcript">
-              <span className="d-block w-100 my-2">
-                <strong>Upload a transcript</strong>
-              </span>
-              <input type="file" name="transcript" id="transcript" />
-            </label>
+            <textarea
+              type="textarea"
+              rows="8"
+              cols="4"
+              className="form-control mx-0"
+              name="message"
+              placeholder="Message"
+              rules="required|max:1000"
+            />
           </Col>
         </Row>
         <Row className="mb-0">

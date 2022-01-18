@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import FormPageContent from 'components/pages/FormPageContent';
-import SiteLoader from 'components/shared/site-loader';
+import SiteLoader from 'components/shared/SiteLoader';
 import { SITE_URL } from 'utils/constants';
 import { contactSubscribePage } from 'utils/api';
 import { LocationContext } from 'contexts/LocationContext';

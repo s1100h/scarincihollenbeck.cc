@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
 import { checkboxes } from 'utils/categories';
-import FormScripts from 'components/shared/form-scripts';
 import { SITE_TITLE } from 'utils/constants';
+
+const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 export default function SubscriptionFormWithButton() {
   const [show, setShow] = useState(false);
@@ -15,7 +17,7 @@ export default function SubscriptionFormWithButton() {
 
   return (
     <>
-      <FormScripts />
+      <KwesScripts />
       <Button
         variant="danger"
         className="p-1 d-block w-50 text-center border-r-5 mb-3 ft-14px"

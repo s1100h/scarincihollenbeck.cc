@@ -205,16 +205,11 @@ export const FUNERAL_SLUGS = [
   '/funeral-announcements/passing-attorney-david-a-einhorn',
 ];
 
-/** Site Forms URLS  */
-export const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current-attorney'];
-
 /** Holiday URLS */
 export const HOLIDAY_SLUGS = [
   '/holiday/2019-happy-holidays',
   '/holiday/2020-happy-holidays',
   '/holiday/2021-happy-holidays',
-  '/holiday/2022-happy-holidays',
-  '/holiday/2023-happy-holidays',
 ];
 
 /** List of Client Alert links on the covid page and category landing pages */
@@ -247,21 +242,25 @@ export const OFFICE_LOCATIONS = [
     id: 1,
     slug: '/location/lyndhurst',
     label: 'Lyndhurst, NJ',
+    address: '1100 Valley Brook Ave. Lyndhurst, NJ 07071',
   },
   {
     id: 2,
     slug: '/location/red-bank',
     label: 'Red Bank, NJ',
+    address: '331 Newman Springs Road Red Bank, NJ 07701',
   },
   {
     id: 3,
     slug: '/location/new-york',
     label: 'New York, NY',
+    address: '589 8th Avenue, 16th Floor, New York, NY 10018',
   },
   {
     id: 4,
     slug: '/location/washington-dc',
     label: 'Washington, D.C.',
+    address: 'Suite 250 1000 Potomac St., N.W. Washington D.C. 20007',
   },
 ];
 
@@ -348,3 +347,5 @@ export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
 export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
+// common headers for fetch
+export const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
