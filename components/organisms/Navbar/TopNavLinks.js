@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE_PHONE } from 'utils/constants';
+import { SITE_PHONE, SITE_EMAIL } from 'utils/constants';
 import textStyles from 'styles/Text.module.css';
 
 export default function TopNavLinks() {
@@ -16,7 +16,7 @@ export default function TopNavLinks() {
         </span>
         <span>
           {' '}
-          <strong>info@sh-law.com</strong>
+          <strong>{SITE_EMAIL}</strong>
         </span>
         <Link href="/subscribe">
           <a className={`ml-2 ${textStyles.redTitle} font-weight-bold underline`}>

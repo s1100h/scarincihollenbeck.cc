@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/site-loader';
 import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
-import { getPracticePaths, getPracticeContent } from 'utils/queries';
+import { getPracticeContent } from 'utils/queries';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 
@@ -46,22 +46,15 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
   );
 }
 
-// export async function getStaticPaths() {
-//   const paths = await getPracticePaths();
-//   return {
-//     paths,
-//     fallback: 'blocking',
-//   };
-// }
-
 export async function getServerSideProps({ params, res }) {
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   const request = await getPracticeContent(params.slug);
+
   if (request.status === 404) {
     return {
       notFound: true,
     };
   }
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
 
   return {
     props: {
@@ -69,6 +62,5 @@ export async function getServerSideProps({ params, res }) {
       practiceChildren: request.children || [],
       slug: params.slug,
     },
-    // revalidate: 86400,
   };
 }

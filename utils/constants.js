@@ -334,6 +334,7 @@ export const ERROR_PAGE_CONTENT = {
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
 export const SITE_FAX = '201-896-8660';
+export const SITE_EMAIL = 'info@sh-law.com';
 export const MUSIC_ESQ_URL = 'https://musicesq.com';
 export const CON_LAW_URL = 'https://constitutionallawreporter.com';
 export const GOV_LAW_URL = 'https://scarincilawyer.com';

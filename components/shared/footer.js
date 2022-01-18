@@ -10,6 +10,7 @@ import {
   OFFICE_LOCATIONS,
   SITE_PHONE,
   SITE_FAX,
+  SITE_EMAIL,
 } from 'utils/constants';
 
 export default function Footer() {
@@ -129,7 +130,7 @@ export default function Footer() {
               <li>
                 <strong>Email: </strong>
                 {' '}
-                info@sh-law.com
+                {SITE_EMAIL}
               </li>
             </ul>
           </div>
