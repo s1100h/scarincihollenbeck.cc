@@ -67,6 +67,11 @@ const MobileMenu = () => {
         >
           <div className={styles.menuContainer}>
             <ul>
+              <li>
+                <Link href="/">
+                  <a className="text-dark">Home</a>
+                </Link>
+              </li>
               {SITE_NAVIGATION.map((nav) => (
                 <li key={nav.label}>
                   {nav.slug ? (
