@@ -48,10 +48,10 @@ export default function NavBar() {
             className={scrollTop ? 'offset-xl-3' : 'mb-sm-2 mt-xl-3 pr-0 pl-0'}
           >
             <SiteNavs scrollTop={scrollTop} />
-            <div className={navBarStyles.mobileMenu}>
-              <MobileMenu />
-            </div>
           </Col>
+          <div className="d-block d-sm-none">
+            <MobileMenu />
+          </div>
         </Row>
       </Container>
     </header>

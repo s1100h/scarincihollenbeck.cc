@@ -41,21 +41,6 @@ export default function AttorneyProfile({
   );
 }
 
-// export async function getStaticPaths() {
-//   const request = await attorneySlugs();
-
-//   const paths = request.map(({ node }) => ({
-//     params: {
-//       slug: node.slug,
-//     },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: 'blocking',
-//   };
-// }
-
 export async function getServerSideProps({ params, res }) {
   /** Get Attorney Bio  */
   const slug = params.slug;
