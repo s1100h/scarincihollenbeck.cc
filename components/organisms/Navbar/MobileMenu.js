@@ -45,7 +45,7 @@ const MobileMenu = () => {
             onClick={() => setDropDown(!dropDown)}
             aria-label="mobile menu"
           >
-            <IoCloseSharp style={{ height: '36px', width: '36px' }} />
+            <IoCloseSharp className={styles.icon} />
           </button>
         ) : (
           <button
@@ -53,7 +53,7 @@ const MobileMenu = () => {
             onClick={() => setDropDown(!dropDown)}
             aria-label="mobile menu"
           >
-            <IoMenuSharp style={{ height: '36px', width: '36px' }} />
+            <IoMenuSharp className={styles.icon} />
           </button>
         )}
       </div>

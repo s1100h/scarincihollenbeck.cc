@@ -25,6 +25,12 @@
   z-index: 1050;
 }
 
+.icon {
+  width: 36px;
+  height: 36px;
+  color: black;
+}
+
 .menuContainer {
   margin: 1.5rem -1rem;
   font-size: 1.1rem;
