@@ -29,6 +29,7 @@ const useDesignationHook = (title) => {
 
   return [designation, setDesignation];
 };
+
 const ProfileHeader = ({
   name, profileImage, title, offices, pdf, coChair, chair, contact,
 }) => {

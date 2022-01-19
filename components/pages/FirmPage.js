@@ -10,7 +10,7 @@ import lineHeaderStyles from 'styles/LineHeader.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import sidebarStyles from 'styles/Sidebar.module.css';
 
-const PageArticleHero = dynamic(() => import('components/organisms/page/page-article-hero'));
+const PageArticleHero = dynamic(() => import('components/organisms/page/PageArticleHero'));
 const RelatedAttorneys = dynamic(() => import('components/molecules/practice/RelatedAttorneys'));
 
 export default function FirmPage({ page, canonicalUrl, handleLink }) {

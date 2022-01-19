@@ -12,6 +12,7 @@ const applyOfficeToTitle = (title) => {
 
   return `${office} Office Managing Partner`;
 };
+
 const Leader = ({
   slug, featuredImage, title, designation, chair,
 }) => {

@@ -3,7 +3,7 @@ import Accolade from 'components/molecules/home/Accolade';
 import lineStyles from 'styles/LineHeader.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-export default function HomeReviews({ awards }) {
+const Awards = ({ awards }) => {
   const formattedAwards = awards
     .map(({
       appearanceOrder, imageHeight, imageWidth, label, awardImage,
@@ -31,4 +31,6 @@ export default function HomeReviews({ awards }) {
       ))}
     </Row>
   );
-}
+};
+
+export default Awards;

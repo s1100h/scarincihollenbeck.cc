@@ -11,7 +11,7 @@ import { SITE_TITLE } from 'utils/constants';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-export default function SubscriptionFormWithButton() {
+const SubscriptionFormWithButton = () => {
   const [show, setShow] = useState(false);
   const router = useRouter();
 
@@ -111,4 +111,6 @@ export default function SubscriptionFormWithButton() {
       </Modal>
     </>
   );
-}
+};
+
+export default SubscriptionFormWithButton;

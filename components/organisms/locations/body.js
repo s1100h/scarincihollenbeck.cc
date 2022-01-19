@@ -6,9 +6,9 @@ const VirtualizedMembers = dynamic(() => import('components/shared/VirtualizedMe
 const RelatedPractices = dynamic(() => import('components/molecules/location/RelatedPractices'));
 const Map = dynamic(() => import('components/molecules/location/Map'));
 
-export default function LocationsBody({
+const LocationsBody = ({
   attorneys, practices, map, title,
-}) {
+}) => {
   const officeTitle = title === 'Washington D.C.' ? 'Washington, D.C.' : title;
   return (
     <>
@@ -19,4 +19,6 @@ export default function LocationsBody({
       <RelatedPractices practices={practices} />
     </>
   );
-}
+};
+
+export default LocationsBody;

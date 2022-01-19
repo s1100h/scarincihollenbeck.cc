@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import { BASE_API_URL } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-export default function ArticleHeroPractice({ blogId }) {
+const ArticleHeroPractice = ({ blogId }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -58,4 +58,6 @@ export default function ArticleHeroPractice({ blogId }) {
       </Row>
     </Container>
   );
-}
+};
+
+export default ArticleHeroPractice;

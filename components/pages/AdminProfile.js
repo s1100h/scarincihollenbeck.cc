@@ -1,10 +1,10 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import AdminProfileHeader from 'components/organisms/admin/header';
+import AdminProfileHeader from 'components/organisms/admin/Header';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { createMarkup } from 'utils/helpers';
 
-export default function AdminProfile({ response, profile, canonicalUrl }) {
+const AdminProfile = ({ response, profile, canonicalUrl }) => {
   const { seo } = response;
 
   return (
@@ -28,4 +28,6 @@ export default function AdminProfile({ response, profile, canonicalUrl }) {
       </Container>
     </>
   );
-}
+};
+
+export default AdminProfile;

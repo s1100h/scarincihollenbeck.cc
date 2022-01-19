@@ -8,7 +8,7 @@ import profileStyles from 'styles/ProfileImage.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import styles from 'styles/Banner.module.css';
 
-export default function AdminProfileHeader({ image, profile }) {
+const AdminProfileHeader = ({ image, profile }) => {
   const {
     name, designation, offices, phoneNumber, email, vizibility, socialMedia,
   } = profile;
@@ -52,4 +52,6 @@ export default function AdminProfileHeader({ image, profile }) {
       </div>
     </>
   );
-}
+};
+
+export default AdminProfileHeader;

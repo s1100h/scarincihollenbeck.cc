@@ -3,7 +3,7 @@ import CareerForm from 'components/molecules/CareerForm';
 import styles from 'styles/BasicContent.module.css';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 
-export default function SingleCareerBody({ title, position, contact }) {
+const SingleCareerBody = ({ title, position, contact }) => {
   const modPosition = formatPageImageToCloudinaryUrl(position);
 
   return (
@@ -16,4 +16,6 @@ export default function SingleCareerBody({ title, position, contact }) {
       </Row>
     </Container>
   );
-}
+};
+
+export default SingleCareerBody;

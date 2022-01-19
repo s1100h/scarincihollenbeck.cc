@@ -17,7 +17,7 @@ const Practices = ({ practices, onSelect }) => {
   // bankruptcy, intel, public
   const bce = practices.filter((b) => (b.ID === 28345 || b.ID === 29587 || b.ID === 28276 ? b : ''));
 
-  // commerical, labor, tax
+  // commercial, labor, tax
   const cl = practices.filter((b) => (b.ID === 29624 || b.ID === 28271 || b.ID === 29588 ? b : ''));
 
   // corporate

@@ -1,7 +1,9 @@
-import CareersFilterForms from 'components/organisms/careers/filter-forms';
-import Results from 'components/organisms/careers/results';
+import dynamic from 'next/dynamic';
 
-export default function Body({
+const Results = dynamic(() => import('components/organisms/careers/Results'));
+const FilterForms = dynamic(() => import('components/organisms/careers/FilterForms'));
+
+const CareersBody = ({
   careers,
   query,
   locations,
@@ -10,19 +12,19 @@ export default function Body({
   executeSearch,
   setPositionType,
   setLocation,
-}) {
-  return (
-    <div className="mb-5">
-      <CareersFilterForms
-        locations={locations}
-        positionTypes={positionTypes}
-        query={query}
-        setQuery={setQuery}
-        setPositionType={setPositionType}
-        setLocation={setLocation}
-        executeSearch={executeSearch}
-      />
-      <Results positions={careers} />
-    </div>
-  );
-}
+}) => (
+  <div className="mb-5">
+    {/* <FilterForms
+      locations={locations}
+      positionTypes={positionTypes}
+      query={query}
+      setQuery={setQuery}
+      setPositionType={setPositionType}
+      setLocation={setLocation}
+      executeSearch={executeSearch}
+    /> */}
+    <Results positions={careers} />
+  </div>
+);
+
+export default CareersBody;

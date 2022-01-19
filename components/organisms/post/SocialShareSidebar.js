@@ -13,7 +13,7 @@ import { printScreen } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import fontStyles from 'styles/Fonts.module.css';
 
-export default function PostSocialShareSidebar({ title }) {
+const PostSocialShareSidebar = ({ title }) => {
   const router = useRouter();
   const postUrl = `${SITE_URL}${router.asPath}`;
 
@@ -79,4 +79,6 @@ export default function PostSocialShareSidebar({ title }) {
       </style>
     </div>
   );
-}
+};
+
+export default PostSocialShareSidebar;

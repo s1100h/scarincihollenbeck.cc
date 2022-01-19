@@ -3,7 +3,7 @@ import { LocationContext } from 'contexts/LocationContext';
 import OfficeDetails from 'components/molecules/location/OfficeDetails';
 import { sortByKey } from 'utils/helpers';
 
-export default function LocationsSidebar() {
+const LocationsSidebar = () => {
   const { locations } = useContext(LocationContext);
 
   if (locations) {
@@ -35,4 +35,6 @@ export default function LocationsSidebar() {
     );
   }
   return null;
-}
+};
+
+export default LocationsSidebar;

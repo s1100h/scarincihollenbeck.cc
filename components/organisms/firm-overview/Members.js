@@ -1,7 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import textStyles from 'styles/Text.module.css';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const Members = ({ title, members, type }) => (
   <div className="w-100 mt-5 px-3">

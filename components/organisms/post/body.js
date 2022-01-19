@@ -1,41 +1,22 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import ContactForm from 'components/shared/ContactForm';
-import PostBreadcrumbs from 'components/organisms/post/post-breadcrumbs';
-import AuthorBio from 'components/organisms/post/author-bio';
+import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
+import AuthorBio from 'components/organisms/post/AuthorBio';
 import { createMarkup, urlify } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import pageContentStyles from 'styles/PageContent.module.css';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 
-function DisplayListTags({ title, children }) {
-  return (
-    <div className="mb-0 d-print-none">
-      <ul className="no-dots list-inline mb-1">
-        <li className="list-inline-item">
-          <strong>
-            {title}
-            :
-            {' '}
-          </strong>
-        </li>
-        {children}
-      </ul>
-    </div>
-  );
-}
-export default function PostBody({
-  featuredImage,
-  content,
-  authors,
-  title,
-  subTitle,
-  caption,
-  categories,
-}) {
+const DisplayListTags = dynamic(() => import('components/molecules/post/DisplayListTags'));
+
+const PostBody = ({
+  featuredImage, content, authors, title, subTitle, caption, categories,
+}) => {
   const router = useRouter();
   const postUrl = `${SITE_URL}${router.asPath}`;
 
@@ -46,7 +27,6 @@ export default function PostBody({
         <Image src={featuredImage} width={750} height={350} alt={title} layout="intrinsic" />
       )}
       {caption && <div className="mt-0 mb-2" dangerouslySetInnerHTML={createMarkup(caption)} />}
-      {/* title and subtitle for print version only */}
       <div className="d-none d-print-block">
         <h1>{title}</h1>
         <h2>{subTitle}</h2>
@@ -70,21 +50,6 @@ export default function PostBody({
           ))}
         </DisplayListTags>
       )}
-
-      {/* {tags && (
-        <DisplayListTags title="Tags">
-          {tags.map((tag, index) => (
-            <li key={tag.name} className="list-inline-item">
-              <Link href={`/library/search?term=${urlify(tag.name)}`}>
-                <a className="text-dark underline">
-                  {tag.name}
-                  {tags.length - 1 !== index && ', '}
-                </a>
-              </Link>
-            </li>
-          ))}
-        </DisplayListTags>
-      )} */}
       <DisplayListTags title="Share">
         <li className="list-inline-item">
           <FacebookShareButton url={postUrl} quote={title} style={{ textDecoration: 'underline' }}>
@@ -110,4 +75,6 @@ export default function PostBody({
       <style jsx>{'.underline:hover { text-decoration: underline }'}</style>
     </Col>
   );
-}
+};
+
+export default PostBody;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Modal from 'react-bootstrap/Modal';
 import Image from 'next/image';
 
-export default function AttorneyAnnoucenmentModal() {
+const AnnouncementPopUp = () => {
   const [show, setShow] = useState(true);
 
   return (
@@ -47,4 +47,6 @@ export default function AttorneyAnnoucenmentModal() {
       </Modal>
     </>
   );
-}
+};
+
+export default AnnouncementPopUp;

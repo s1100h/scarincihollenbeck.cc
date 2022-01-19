@@ -7,7 +7,7 @@ import formsStyles from 'styles/Forms.module.css';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-export default function SubscriptionFormColumn() {
+const SubscriptionFormColumn = () => {
   const router = useRouter();
 
   return (
@@ -72,4 +72,6 @@ export default function SubscriptionFormColumn() {
       </form>
     </>
   );
-}
+};
+
+export default SubscriptionFormColumn;

@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import BodyContent from 'components/organisms/locations/body';
-import SideBar from 'components/organisms/locations/sidebar';
+import LocationsBody from 'components/organisms/locations/Body';
+import SideBar from 'components/organisms/locations/Sidebar';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';
 
-export default function LocationPage({ seo, currentOffice, posts }) {
+const LocationPage = ({ seo, currentOffice, posts }) => {
   const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
 
   return (
@@ -35,7 +35,7 @@ export default function LocationPage({ seo, currentOffice, posts }) {
       <Container>
         <Row>
           <Col sm={12} lg={9}>
-            <BodyContent
+            <LocationsBody
               attorneys={currentOffice.attorneys}
               practices={currentOffice.practices}
               map={currentOffice.mapLink}
@@ -49,4 +49,6 @@ export default function LocationPage({ seo, currentOffice, posts }) {
       </Container>
     </>
   );
-}
+};
+
+export default LocationPage;

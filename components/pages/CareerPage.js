@@ -1,12 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import SingleCareerBody from 'components/organisms/career/body';
+import SingleCareerBody from 'components/organisms/career/Body';
 import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
 
-export default function CareerProfile({ career }) {
+const CareerProfile = ({ career }) => {
   const { seo } = career;
   const title = `${seo.title} | Career at ${SITE_TITLE}`;
   const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
@@ -36,4 +36,6 @@ export default function CareerProfile({ career }) {
       </Container>
     </>
   );
-}
+};
+
+export default CareerProfile;

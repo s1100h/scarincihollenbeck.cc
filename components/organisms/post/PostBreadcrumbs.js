@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import textStyles from 'styles/Text.module.css';
 
-export default function PostBreadCrumbs() {
+const PostBreadCrumbs = () => {
   const router = useRouter();
   const crumbs = router.asPath
     .split('/')
@@ -43,4 +43,6 @@ export default function PostBreadCrumbs() {
       </li>
     </ul>
   );
-}
+};
+
+export default PostBreadCrumbs;

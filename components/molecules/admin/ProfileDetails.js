@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function ProfileDetails({ contact, offices, fax }) {
+const ProfileDetails = ({ contact, offices, fax }) => {
   const { phoneNumber, email } = contact;
 
   return (
@@ -38,4 +38,6 @@ export default function ProfileDetails({ contact, offices, fax }) {
       <style jsx>{'p { margin-bottom: 5px;}'}</style>
     </div>
   );
-}
+};
+
+export default ProfileDetails;

@@ -4,25 +4,13 @@ import ContactForm from 'components/shared/ContactForm';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
-import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
-import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
-import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import { CLIENT_ALERTS } from 'utils/constants';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 
 const PostList = dynamic(import('components/molecules/PostList'));
-
-const sidebar = (
-  <>
-    <SubscriptionMessage />
-    <CommonSidebarLinks />
-    <hr />
-    <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
-  </>
-);
+const CovidSidebar = dynamic(import('components/organisms/covid/Sidebar'));
 
 const CovidPage = ({
   title, seo, bodyContent, canonicalUrl, subTitle, contentId,
@@ -74,7 +62,7 @@ const CovidPage = ({
             <ContactForm />
           </Col>
           <Col sm={12} lg={3}>
-            {sidebar}
+            <CovidSidebar />
           </Col>
         </Row>
       </Container>

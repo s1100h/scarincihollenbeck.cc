@@ -4,7 +4,7 @@ import { Col, Row, Button } from 'react-bootstrap';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-export default function CareerForm({ contact, title }) {
+const CareerForm = ({ contact, title }) => {
   const router = useRouter();
 
   return (
@@ -127,4 +127,6 @@ export default function CareerForm({ contact, title }) {
       </form>
     </div>
   );
-}
+};
+
+export default CareerForm;

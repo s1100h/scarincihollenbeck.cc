@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import styles from 'styles/AttorneyArchives.module.css';
 
-export default function ArchiveCareersFilterForms({
+const FilterForms = ({
   setQuery,
   query,
   executeSearch,
@@ -12,7 +12,7 @@ export default function ArchiveCareersFilterForms({
   positionTypes,
   setPositionType,
   setLocation,
-}) {
+}) => {
   const [locationTitle, setLocationTitle] = useState('Filter by location');
   const [positionTitle, setPositionTitle] = useState('Filter by type');
   return (
@@ -79,4 +79,6 @@ export default function ArchiveCareersFilterForms({
       </Container>
     </>
   );
-}
+};
+
+export default FilterForms;
