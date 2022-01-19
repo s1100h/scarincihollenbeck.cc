@@ -2,10 +2,58 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/SiteLoader';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { SITE_URL } from 'utils/constants';
-import { getAuthorPaths, getAuthorContent } from 'utils/queries';
+import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
 
-export default function LibraryAuthor({
+/** Get all the author data and posts for the page using WP REST API */
+const getAuthorContent = async (slug) => {
+  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
+    fetch(`${BASE_API_URL}/wp-json/author/posts/${slug}/1`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+    fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+    fetch(`${BASE_API_URL}/wp-json/category/children/${slug}`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+    fetch(`${BASE_API_URL}/wp-json/author/bio/${slug}`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+  ]);
+
+  return [results, authors, childrenOfCurrentCategory, popularCategories, authorBio];
+};
+
+/** Set the author posts and related data to page props */
+export const getServerSideProps = async ({ params, res }) => {
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  const { slug } = params;
+
+  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
+
+  const firstFourArticles = results.results.splice(0, 4);
+
+  return {
+    props: {
+      results: firstFourArticles || [],
+      authors: authors || [],
+      popularCategories: popularCategories || [],
+      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
+      description: authorBio.bio[0].bioContent,
+      name: authorBio.bio[0].name,
+      profileUrl: authorBio.bio[0].link,
+      pageTitle: params.slug,
+      categoryId: results.id,
+      seo: results.seo,
+    },
+  };
+};
+
+/** Author library page component */
+const LibraryAuthor = ({
   authors,
   description,
   pageTitle,
@@ -16,7 +64,7 @@ export default function LibraryAuthor({
   profileUrl,
   seo,
   name,
-}) {
+}) => {
   const router = useRouter();
   if (router.isFallback) {
     return (
@@ -51,36 +99,6 @@ export default function LibraryAuthor({
       <LibraryDirectory {...authorProps} />
     </ApolloWrapper>
   );
-}
+};
 
-// export async function getStaticPaths() {
-//   const authorPaths = await getAuthorPaths();
-//   return {
-//     paths: authorPaths,
-//     fallback: 'blocking',
-//   };
-// }
-
-export async function getServerSideProps({ params, res }) {
-  const { slug } = params;
-
-  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
-
-  const firstFourArticles = results.results.splice(0, 4);
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-  return {
-    props: {
-      results: firstFourArticles || [],
-      authors: authors || [],
-      popularCategories: popularCategories || [],
-      childrenOfCurrentCategory: childrenOfCurrentCategory || [],
-      description: authorBio.bio[0].bioContent,
-      name: authorBio.bio[0].name,
-      profileUrl: authorBio.bio[0].link,
-      pageTitle: params.slug,
-      categoryId: results.id,
-      seo: results.seo,
-    },
-    // revalidate: 86400,
-  };
-}
+export default LibraryAuthor;

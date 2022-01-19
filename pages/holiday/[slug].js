@@ -1,12 +1,29 @@
 import { useRouter } from 'next/router';
-import { HOLIDAY_SLUGS, SITE_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 import SiteLoader from 'components/shared/SiteLoader';
 import HolidayPage from 'components/pages/HolidayPage';
 
-export default function FirmHoliday({
+/** Set holiday page data to props */
+export const getServerSideProps = async ({ params }) => {
+  const request = await getPageContent(params.slug);
+
+  const { title, content, seo } = request;
+
+  return {
+    props: {
+      title,
+      content,
+      seo,
+      slug: params.slug,
+    },
+  };
+};
+
+/** firm holiday page component */
+const FirmHoliday = ({
   title, content, seo, slug,
-}) {
+}) => {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
@@ -33,28 +50,6 @@ export default function FirmHoliday({
   };
 
   return <HolidayPage {...holidayPageProps} />;
-}
+};
 
-export async function getStaticPaths() {
-  const urls = HOLIDAY_SLUGS.map((slug) => slug);
-
-  return {
-    paths: urls || [],
-    fallback: 'blocking',
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const request = await getPageContent(params.slug);
-
-  const { title, content, seo } = request;
-
-  return {
-    props: {
-      title,
-      content,
-      seo,
-      slug: params.slug,
-    },
-  };
-}
+export default FirmHoliday;

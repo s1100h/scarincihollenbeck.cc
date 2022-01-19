@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Container, Row, Col } from 'react-bootstrap';
-import CookieConsentContainer from 'components/shared/cookie-consent';
+import CookieConsentMessage from 'components/shared/CookieConsentMessage';
 import styles from 'styles/Footer.module.css';
 import textStyles from 'styles/Text.module.css';
 import {
@@ -266,7 +266,7 @@ export default function Footer() {
           </Col>
         </Row>
       </Container>
-      <CookieConsentContainer />
+      <CookieConsentMessage />
     </footer>
   );
 }

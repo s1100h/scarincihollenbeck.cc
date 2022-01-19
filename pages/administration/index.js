@@ -1,26 +1,29 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
 import { BASE_API_URL, SITE_URL, headers } from 'utils/constants';
-import { archivesPageContent } from 'utils/api';
+import { fetchAPI } from 'utils/api';
+import { administrationPageQuery } from 'utils/graphql-queries';
 
-export default function Administration({ admins, seo, site }) {
-  const router = useRouter();
-  const canonicalUrl = `${SITE_URL}${router.asPath}`;
-  const adminProps = {
-    admins,
-    seo,
-    canonicalUrl,
-    site,
-  };
-  return <AdministrationPage {...adminProps} />;
-}
+/** Fetch page data from WP GRAPHQL API */
+const archivesPageContent = async () => {
+  const data = await fetchAPI(administrationPageQuery, {});
+  return data?.pageBy;
+};
 
-export async function getStaticProps() {
+/** Fetch administration data from WP REST API */
+const getAdministration = async () => {
   const request = await fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
     headers,
   })
     .then((data) => data.json())
     .catch((err) => err);
+
+  return request?.admins;
+};
+
+/** Set data from API response to page props */
+export async function getStaticProps() {
+  const admins = await getAdministration();
   const page = await archivesPageContent();
   const { title, seo, administrationArchive } = page;
 
@@ -31,8 +34,23 @@ export async function getStaticProps() {
         title,
         description: administrationArchive.description,
       },
-      admins: request.admins,
+      admins,
     },
     revalidate: 86400,
   };
 }
+
+/** Administration directory page component */
+const Administration = ({ admins, seo, site }) => {
+  const router = useRouter();
+  const canonicalUrl = `${SITE_URL}${router.asPath}`;
+  const adminProps = {
+    admins,
+    seo,
+    canonicalUrl,
+    site,
+  };
+  return <AdministrationPage {...adminProps} />;
+};
+
+export default Administration;

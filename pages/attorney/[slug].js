@@ -1,5 +1,10 @@
 import React from 'react';
-import { attorneyBySlug, attorneyFirmBlog, attorneyNewsEvents } from 'utils/api';
+import { fetchAPI } from 'utils/api';
+import {
+  attorneyBySlugQuery,
+  attorneyNewsEventsQuery,
+  attorneyFirmBlogQuery,
+} from 'utils/graphql-queries';
 import {
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
@@ -10,38 +15,34 @@ import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
 import AttorneysPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 
-export default function AttorneyProfile({
-  seo,
-  profileHeader,
-  attorneyFooterBlogArticles,
-  attorneyFooterNewsArticles,
-  mainTabs,
-  moreTabs,
-  attorneyCredentials,
-  attorneyAwards,
-  attorneyClients,
-  authorId,
-}) {
-  const attorneyPageProps = {
-    seo,
-    profileHeader,
-    attorneyFooterBlogArticles,
-    attorneyFooterNewsArticles,
-    mainTabs,
-    moreTabs,
-    attorneyCredentials,
-    attorneyAwards,
-    attorneyClients,
-    authorId,
-  };
-  return (
-    <ApolloWrapper>
-      <AttorneysPage {...attorneyPageProps} />
-    </ApolloWrapper>
-  );
+/** Get the attorneys bio data base on their slug */
+export async function attorneyBySlug(slug) {
+  const data = await fetchAPI(attorneyBySlugQuery, {
+    variables: { slug },
+  });
+  return data.attorneyProfileBy;
 }
 
-export async function getServerSideProps({ params, res }) {
+/** Get all the news/events based on the attorneys name */
+export async function attorneyNewsEvents(name) {
+  const data = await fetchAPI(attorneyNewsEventsQuery, {
+    variables: { name },
+  });
+  return data.posts;
+}
+
+/** Get all the attorneys blog posts */
+export async function attorneyFirmBlog(id) {
+  const data = await fetchAPI(attorneyFirmBlogQuery, {
+    variables: { id },
+  });
+  return data.posts;
+}
+
+/** Set data from API response to page props WARNING: This is a large function */
+export const getServerSideProps = async ({ params, res }) => {
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+
   /** Get Attorney Bio  */
   const slug = params.slug;
   const attorneyBio = await attorneyBySlug(slug);
@@ -249,11 +250,13 @@ export async function getServerSideProps({ params, res }) {
     ...externalBlogTabs,
   ];
 
+  /** Sanitize main tab section */
   const mainTabsMatched = mainTabs
     .map((tab) => tabs.filter((t) => t.title === tab)[0])
     .filter((a) => a !== undefined);
   let moreTabsMatched = [];
 
+  /** Set up more tab section */
   if (moreTabs) {
     const matchTabs = moreTabs
       .map((tab) => tabs.filter((t) => t.title.includes(tab))[0])
@@ -271,7 +274,6 @@ export async function getServerSideProps({ params, res }) {
   /** Clients */
   const attorneyClients = attorneyBio.attorneyAwardsClientsBlogsVideos?.clients;
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   return {
     props: {
       seo,
@@ -285,6 +287,39 @@ export async function getServerSideProps({ params, res }) {
       attorneyClients,
       authorId,
     },
-    // revalidate: 86400,
   };
-}
+};
+
+/** Attorney profile page component */
+const AttorneyProfile = ({
+  seo,
+  profileHeader,
+  attorneyFooterBlogArticles,
+  attorneyFooterNewsArticles,
+  mainTabs,
+  moreTabs,
+  attorneyCredentials,
+  attorneyAwards,
+  attorneyClients,
+  authorId,
+}) => {
+  const attorneyPageProps = {
+    seo,
+    profileHeader,
+    attorneyFooterBlogArticles,
+    attorneyFooterNewsArticles,
+    mainTabs,
+    moreTabs,
+    attorneyCredentials,
+    attorneyAwards,
+    attorneyClients,
+    authorId,
+  };
+  return (
+    <ApolloWrapper>
+      <AttorneysPage {...attorneyPageProps} />
+    </ApolloWrapper>
+  );
+};
+
+export default AttorneyProfile;

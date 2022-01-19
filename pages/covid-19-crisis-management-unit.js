@@ -3,7 +3,23 @@ import ApolloWrapper from 'layouts/ApolloWrapper';
 import { SITE_URL, COVID_POSTS_ID } from 'utils/constants';
 import { getCovid19BasedPages } from 'utils/queries';
 
-export default function Covid19CrisisManagementUnit({ title, content, seo }) {
+/** Fetch the page data to page props */
+export async function getStaticProps() {
+  const [request] = await getCovid19BasedPages('covid-19-crisis-management-unit', COVID_POSTS_ID);
+  const { title, content, seo } = request;
+
+  return {
+    props: {
+      title,
+      content,
+      seo,
+    },
+    revalidate: 86400,
+  };
+}
+
+/** COVID-19 Crisis Management Unit page component */
+const Covid19CrisisManagementUnit = ({ title, content, seo }) => {
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -23,17 +39,6 @@ export default function Covid19CrisisManagementUnit({ title, content, seo }) {
       <CovidPage {...covidProps} />
     </ApolloWrapper>
   );
-}
+};
 
-export async function getStaticProps() {
-  const [request] = await getCovid19BasedPages('covid-19-crisis-management-unit', COVID_POSTS_ID);
-  const { title, content, seo } = request;
-
-  return {
-    props: {
-      title,
-      content,
-      seo,
-    },
-  };
-}
+export default Covid19CrisisManagementUnit;

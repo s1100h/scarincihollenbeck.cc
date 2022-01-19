@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/SiteLoader';
-import { SITE_URL, CORE_PRACTICES } from 'utils/constants';
-import { getPracticeContent } from 'utils/queries';
+import {
+  SITE_URL, CORE_PRACTICES, BASE_API_URL, headers,
+} from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 
-export default function PracticeSingle({ practice, practiceChildren, slug }) {
-  const [corePractices] = useState(CORE_PRACTICES);
+/** Fetch single practice data WP REST API  */
+const getPracticeContent = async (slug) => {
+  const request = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
+    headers,
+  })
+    .then((data) => data.json())
+    .catch((err) => err);
 
+  return request;
+};
+
+/** Set single practice data to page props */
+export const getServerSideProps = async ({ params, res }) => {
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  const request = await getPracticeContent(params.slug);
+
+  if (request.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      practice: request,
+      practiceChildren: request.children || [],
+      slug: params.slug,
+    },
+  };
+};
+
+/** Single practice page component */
+const SinglePractice = ({ practice, practiceChildren, slug }) => {
+  const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
   const canonicalUrl = `${SITE_URL}/practice/${practice.slug}`;
@@ -44,23 +76,6 @@ export default function PracticeSingle({ practice, practiceChildren, slug }) {
       <PracticePage {...practiceProps} />
     </ApolloWrapper>
   );
-}
+};
 
-export async function getServerSideProps({ params, res }) {
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-  const request = await getPracticeContent(params.slug);
-
-  if (request.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      practice: request,
-      practiceChildren: request.children || [],
-      slug: params.slug,
-    },
-  };
-}
+export default SinglePractice;

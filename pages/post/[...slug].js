@@ -4,15 +4,45 @@ import { SITE_URL, SITE_TITLE } from 'utils/constants';
 import SiteLoader from 'components/shared/SiteLoader';
 import PostPage from 'components/pages/SinglePost';
 
-export default function LawFirmInsightsPost({
-  post,
-  seo,
-  categories,
-  tags,
-  authors,
-  category,
-  postUrl,
-}) {
+/** fetch all the post data and map it the page props.
+ * This is the only component that uses an API that directly
+ * queries the MySQL database. Please check out pages/api/get-post-conent
+ * for more details.
+ * */
+export const getServerSideProps = async ({ params, res, query }) => {
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  const postUrl = params.slug[params.slug.length - 1];
+  const { category } = query;
+  const request = await getPostContent(postUrl, category);
+
+  if (request.status === 404) {
+    res.statusCode = 404;
+    return {
+      notFound: true,
+    };
+  }
+
+  const {
+    post, seo, categories, tags, authors,
+  } = request;
+
+  return {
+    props: {
+      post,
+      seo,
+      categories,
+      tags,
+      authors,
+      category,
+      postUrl,
+    },
+  };
+};
+
+/* The blog post component */
+const SinglePost = ({
+  post, seo, categories, tags, authors, category, postUrl,
+}) => {
   const router = useRouter();
   const canonicalUrl = `${SITE_URL}${router.asPath}`;
   const metaAuthorLinks = authors.map((author) => (author.display_name === SITE_TITLE ? SITE_URL : author.user_url));
@@ -34,34 +64,6 @@ export default function LawFirmInsightsPost({
   };
 
   return <PostPage {...postProps} />;
-}
+};
 
-export async function getServerSideProps({ params, res, query }) {
-  const postUrl = params.slug[params.slug.length - 1];
-  const { category } = query;
-  const request = await getPostContent(postUrl, category);
-
-  if (request.status === 404) {
-    res.statusCode = 404;
-    return {
-      notFound: true,
-    };
-  }
-
-  const {
-    post, seo, categories, tags, authors,
-  } = request;
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-
-  return {
-    props: {
-      post,
-      seo,
-      categories,
-      tags,
-      authors,
-      category,
-      postUrl,
-    },
-  };
-}
+export default SinglePost;

@@ -33,7 +33,7 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default function SHSite({ Component, pageProps }) {
+const SHSite = ({ Component, pageProps }) => {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -57,4 +57,6 @@ export default function SHSite({ Component, pageProps }) {
       </LocationProvider>
     </SectionTitleProvider>
   );
-}
+};
+
+export default SHSite;

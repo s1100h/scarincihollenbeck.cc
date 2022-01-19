@@ -209,16 +209,6 @@ export const attorneyFirmBlogQuery = `query AttorneyPostsById($id: Int) {
 }
 `;
 
-export const attorneySlugsQuery = `query AttorneySlugs {
-  attorneyProfiles {
-    edges {
-      node {
-        slug
-      }
-    }
-  }
-}`;
-
 // , orderby: {field: DATE, order: DESC}
 export const categoryPostsByIdQuery = `query categoryPostsById(
   $first: Int

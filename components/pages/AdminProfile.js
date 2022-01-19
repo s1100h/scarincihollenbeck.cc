@@ -4,7 +4,7 @@ import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { createMarkup } from 'utils/helpers';
 
-export default function AdministrationProfile({ response, profile, canonicalUrl }) {
+export default function AdminProfile({ response, profile, canonicalUrl }) {
   const { seo } = response;
 
   return (

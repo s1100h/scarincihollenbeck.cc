@@ -4,32 +4,8 @@ import SiteLoader from 'components/shared/SiteLoader';
 import { BASE_API_URL } from 'utils/constants';
 import SiteFormPage from 'components/pages/SiteFeedbackPage';
 
-export default function SiteForms({ attorneys, practices, isNewAttorney }) {
-  const [attorney, setAttorney] = useState('');
-  const router = useRouter();
-  if (router.isFallback) {
-    return <SiteLoader />;
-  }
-
-  // set input form when attorney is not listed
-  useEffect(() => {
-    if (attorney === ' ') {
-      setAttorney('');
-    }
-  }, [attorney]);
-
-  const siteFormProps = {
-    attorney,
-    setAttorney,
-    attorneys,
-    practices,
-    isNewAttorney,
-  };
-
-  return <SiteFormPage {...siteFormProps} />;
-}
-
-export async function getStaticPaths() {
+/** Generate the urls so we can build static pages */
+export const getStaticPaths = () => {
   /** Site Forms URLS  */
   const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current-attorney'];
   const urls = SITE_FORM_SLUGS.map((slug) => slug);
@@ -38,9 +14,10 @@ export async function getStaticPaths() {
     paths: urls || [],
     fallback: 'blocking',
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+/** Fetch the page data and map it to props */
+export const getStaticProps = async ({ params }) => {
   const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`).then(
     (data) => data.json(),
   );
@@ -69,4 +46,32 @@ export async function getStaticProps({ params }) {
         }),
     },
   };
-}
+};
+
+/** Forms to send out to new attorneys so they can add details they want in their bios */
+const SiteForms = ({ attorneys, practices, isNewAttorney }) => {
+  const [attorney, setAttorney] = useState('');
+  const router = useRouter();
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
+  // set input form when attorney is not listed
+  useEffect(() => {
+    if (attorney === ' ') {
+      setAttorney('');
+    }
+  }, [attorney]);
+
+  const siteFormProps = {
+    attorney,
+    setAttorney,
+    attorneys,
+    practices,
+    isNewAttorney,
+  };
+
+  return <SiteFormPage {...siteFormProps} />;
+};
+
+export default SiteForms;

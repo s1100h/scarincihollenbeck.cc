@@ -2,8 +2,10 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/SiteLoader';
 import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, SITE_URL } from 'utils/constants';
-import { getFirmPageContent } from 'utils/api';
+import { fetchAPI } from 'utils/api';
+import { firmPagesQuery } from 'utils/graphql-queries';
 
+/** sanitize the attorney and administration response mapping the data to the same keys */
 const sanitizeAttorneyProfile = (node) => ({
   ID: node.id,
   name: node.title,
@@ -15,28 +17,16 @@ const sanitizeAttorneyProfile = (node) => ({
   designation: node.attorneyMainInformation?.designation,
 });
 
-export default function FirmPages({ page, currentPage }) {
-  const router = useRouter();
-  const canonicalUrl = `${SITE_URL}/${currentPage}`;
-
-  if (router.isFallback) {
-    return <SiteLoader />;
-  }
-
-  const handleLink = (e) => {
-    router.push(e.target.value);
-  };
-
-  const firmPageProps = {
-    page,
-    canonicalUrl,
-    handleLink,
-  };
-
-  return <FirmPage {...firmPageProps} />;
+/** firm page content  WP GRAPHQL query */
+export async function getFirmPageContent(slug) {
+  const data = await fetchAPI(firmPagesQuery, {
+    variables: { slug },
+  });
+  return data?.pageBy;
 }
 
-export async function getServerSideProps({ params }) {
+/** Set firm page data to props */
+export const getServerSideProps = async ({ params }) => {
   const req = await getFirmPageContent(params.slug);
   const {
     title, seo, firmPagesRelatedPostsMembers, firmPagesDescription, firmPagesTabs,
@@ -94,4 +84,28 @@ export async function getServerSideProps({ params }) {
       currentPage: params.slug,
     },
   };
-}
+};
+
+/** The firm pages component - Pro Bono, Community Involvement, Diversity, Women LEAD etc. */
+const FirmPages = ({ page, currentPage }) => {
+  const router = useRouter();
+  const canonicalUrl = `${SITE_URL}/${currentPage}`;
+
+  if (router.isFallback) {
+    return <SiteLoader />;
+  }
+
+  const handleLink = (e) => {
+    router.push(e.target.value);
+  };
+
+  const firmPageProps = {
+    page,
+    canonicalUrl,
+    handleLink,
+  };
+
+  return <FirmPage {...firmPageProps} />;
+};
+
+export default FirmPages;

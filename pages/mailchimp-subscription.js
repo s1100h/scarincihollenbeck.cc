@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Container from 'react-bootstrap/Container'
 
-export default function MailChimp() {
+const MailChimpSubscription = () => {
   return (
     <>
       <Head>
@@ -67,3 +67,5 @@ export default function MailChimp() {
     </>
   )
 }
+
+export default MailChimpSubscription

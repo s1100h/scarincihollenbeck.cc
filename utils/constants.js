@@ -197,21 +197,6 @@ export const SITE_FOOTER_NAVIGATION = [
   },
 ];
 
-/** URLS for funeral pages -- after publishing a new funeral page add the link plus /funeral-announcements/ infront of it
- * To point it to the funeral-announcements template
- */
-export const FUNERAL_SLUGS = [
-  '/funeral-announcements/passing-attorney-harvey-r-poe',
-  '/funeral-announcements/passing-attorney-david-a-einhorn',
-];
-
-/** Holiday URLS */
-export const HOLIDAY_SLUGS = [
-  '/holiday/2019-happy-holidays',
-  '/holiday/2020-happy-holidays',
-  '/holiday/2021-happy-holidays',
-];
-
 /** List of Client Alert links on the covid page and category landing pages */
 export const CLIENT_ALERTS = [
   {

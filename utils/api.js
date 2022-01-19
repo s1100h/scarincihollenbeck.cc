@@ -1,24 +1,7 @@
 import { GRAPHQL_API_URL } from 'utils/constants';
-import {
-  attorneyBySlugQuery,
-  attorneyNewsEventsQuery,
-  attorneyFirmBlogQuery,
-  attorneySlugsQuery,
-  categoryPostQuery,
-  homePageLocationsQuery,
-  contactSubscribePageQuery,
-  homePageQuery,
-  attorneysPageQuery,
-  practicePageQuery,
-  careersPageQuery,
-  administrationPageQuery,
-  basicPagesQuery,
-  firmPagesQuery,
-  firmOverviewQuery,
-  attorneysAndAdminsQuery,
-} from './graphql-queries';
+import { homePageLocationsQuery } from './graphql-queries';
 
-async function fetchAPI(query, { variables } = {}) {
+export async function fetchAPI(query, { variables } = {}) {
   const headers = { 'Content-Type': 'application/json' };
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
@@ -42,124 +25,9 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data;
 }
 
-/** Get the attorneys bio data base on their slug */
-export async function attorneyBySlug(slug) {
-  const data = await fetchAPI(attorneyBySlugQuery, {
-    variables: { slug },
-  });
-  return data.attorneyProfileBy;
-}
-
-/** Get all the news/events based on the attorneys name */
-export async function attorneyNewsEvents(name) {
-  const data = await fetchAPI(attorneyNewsEventsQuery, {
-    variables: { name },
-  });
-  return data.posts;
-}
-
-/** Get all the attorneys blog posts */
-export async function attorneyFirmBlog(id) {
-  const data = await fetchAPI(attorneyFirmBlogQuery, {
-    variables: { id },
-  });
-  return data.posts;
-}
-
-/** Get all the slugs for attorney profiles */
-export async function attorneySlugs() {
-  const data = await fetchAPI(attorneySlugsQuery);
-
-  return data.attorneyProfiles?.edges;
-}
-
-/** Get all posts by category id with pagination */
-export async function categoryPostsById(variables) {
-  const data = await fetchAPI(categoryPostsById, variables);
-
-  return {
-    pageInfo: data.categoryPostsById?.pageInfo,
-    posts: data.categoryPostsById?.edges,
-  };
-}
-
-/** get the library category landing page content */
-export async function categoryPosts(variables) {
-  const data = await fetchAPI(categoryPostQuery, variables);
-  return data.categories?.edges;
-}
-
-/** contact/subscribe page content query */
-export async function contactSubscribePage(slug) {
-  const data = await fetchAPI(contactSubscribePageQuery, {
-    variables: { slug },
-  });
-  return data?.pageBy;
-}
-
-/** Get homepage content */
-export async function homePageContent() {
-  const data = await fetchAPI(homePageQuery, {});
-
-  return data?.pageBy;
-}
-
 /** Get locations for home page */
 export async function homePageLocations() {
   const data = await fetchAPI(homePageLocationsQuery, {});
 
   return data?.officeLocations?.edges;
-}
-
-/** return attorneys page content */
-export async function attorneysPageContent() {
-  const data = await fetchAPI(attorneysPageQuery, {});
-  return data?.pageBy;
-}
-
-/** return attorneys page content */
-export async function practicesPageContent() {
-  const data = await fetchAPI(practicePageQuery, {});
-  return data?.pageBy;
-}
-
-/** return careers page content  */
-export async function careersPageContent() {
-  const data = await fetchAPI(careersPageQuery, {});
-  return data?.pageBy;
-}
-
-/** return archives page content */
-export async function archivesPageContent() {
-  const data = await fetchAPI(administrationPageQuery, {});
-  return data?.pageBy;
-}
-
-/** basic page content query */
-export async function getBasicPageContent(slug) {
-  const data = await fetchAPI(basicPagesQuery, {
-    variables: { slug },
-  });
-  return data?.pageBy;
-}
-
-/** basic page content query */
-export async function getFirmPageContent(slug) {
-  const data = await fetchAPI(firmPagesQuery, {
-    variables: { slug },
-  });
-  return data?.pageBy;
-}
-
-/** firm overview query */
-export async function getFirmOverviewContent() {
-  const data = await fetchAPI(firmOverviewQuery);
-
-  return data?.pageBy;
-}
-
-/** get all attorneys and admins */
-export async function getAttorneyAndAdmins() {
-  const data = await fetchAPI(attorneysAndAdminsQuery);
-  return data;
 }

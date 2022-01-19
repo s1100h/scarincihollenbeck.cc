@@ -1,8 +1,10 @@
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
-import { practicesPageContent } from 'utils/api';
+import { fetchAPI } from 'utils/api';
+import { practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 
+/** Sanitize the practice data and organized it by core practices, additional practices, etc. */
 const sortPracticeCategories = (list) => {
   const core = list.filter((e) => e.category === 'Core Practices');
   const additional = list.filter((e) => e.category === 'Additional Practices');
@@ -15,33 +17,26 @@ const sortPracticeCategories = (list) => {
   };
 };
 
-export default function Practices({
-  core, additional, business, seo, site,
-}) {
-  const sortedCorePractices = sortByKey(core, 'title');
-  const sortedAdditionalPractices = sortByKey(additional, 'title');
-  const sortedBusinessPractices = sortByKey(business, 'title');
-  const canonicalUrl = `${SITE_URL}/practices`;
+/** Fetch the practice page content WP GRAPHQL API */
+const practicesPageContent = async () => {
+  const data = await fetchAPI(practicePageQuery, {});
+  return data?.pageBy;
+};
 
-  const practicesPageProps = {
-    site,
-    seo,
-    canonicalUrl,
-    sortedCorePractices,
-    sortedAdditionalPractices,
-    sortedBusinessPractices,
-  };
-
-  return <PracticesDirectory {...practicesPageProps} />;
-}
-
-export async function getStaticProps() {
+/** Fetch all the practices from WP REST API */
+const getAllPractices = async () => {
   const request = await fetch(`${BASE_API_URL}/wp-json/practice-portal/page/`, { headers })
     .then((data) => data.json())
     .catch((err) => err);
 
-  const results = sortPracticeCategories(request.practices);
+  return request?.practices;
+};
+
+/** Map practice page data to page props */
+export const getStaticProps = async () => {
+  const allPractices = await getAllPractices();
   const page = await practicesPageContent();
+  const results = sortPracticeCategories(allPractices);
   const { core, additional, business } = results;
   const { title, seo, practiceArchives } = page;
 
@@ -60,4 +55,27 @@ export async function getStaticProps() {
     },
     revalidate: 86400,
   };
-}
+};
+
+/** Practice directory page component */
+const PracticesPageDirectory = ({
+  core, additional, business, seo, site,
+}) => {
+  const sortedCorePractices = sortByKey(core, 'title');
+  const sortedAdditionalPractices = sortByKey(additional, 'title');
+  const sortedBusinessPractices = sortByKey(business, 'title');
+  const canonicalUrl = `${SITE_URL}/practices`;
+
+  const practicesPageProps = {
+    site,
+    seo,
+    canonicalUrl,
+    sortedCorePractices,
+    sortedAdditionalPractices,
+    sortedBusinessPractices,
+  };
+
+  return <PracticesDirectory {...practicesPageProps} />;
+};
+
+export default PracticesPageDirectory;

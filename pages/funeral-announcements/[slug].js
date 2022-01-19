@@ -1,12 +1,29 @@
 import { useRouter } from 'next/router';
 import SitePage from 'components/pages/BasicPageContent';
 import SiteLoader from 'components/shared/SiteLoader';
-import { FUNERAL_SLUGS, SITE_URL } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
 
-export default function FuneralAnnouncement({
+/** Set funeral page data to props */
+export const getServerSideProps = async ({ params }) => {
+  const request = await getPageContent(params.slug);
+
+  const { title, content, seo } = request;
+
+  return {
+    props: {
+      title,
+      content,
+      seo,
+      slug: params.slug,
+    },
+  };
+};
+
+/** Funeral pages component - passing-attorney-harvey-r-poe, passing-attorney-david-a-einhorn,    */
+const FuneralAnnouncement = ({
   title, content, seo, slug,
-}) {
+}) => {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
@@ -35,28 +52,6 @@ export default function FuneralAnnouncement({
   };
 
   return <SitePage {...sitePageProps} />;
-}
+};
 
-export async function getStaticPaths() {
-  const urls = FUNERAL_SLUGS.map((slug) => slug);
-
-  return {
-    paths: urls || [],
-    fallback: 'blocking',
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const request = await getPageContent(params.slug);
-
-  const { title, content, seo } = request;
-
-  return {
-    props: {
-      title,
-      content,
-      seo,
-      slug: params.slug,
-    },
-  };
-}
+export default FuneralAnnouncement;

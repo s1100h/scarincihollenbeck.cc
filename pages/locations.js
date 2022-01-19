@@ -1,13 +1,34 @@
-import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/SiteLoader';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 
-export default function AllLocations({
+/** Set location data to page props */
+export const getStaticProps = async () => {
+  const [locations, currentOffice, currentOfficePosts] = await getLocationContent('lyndhurst');
+  if (currentOffice.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      offices: locations.offices || {},
+      seo: currentOffice.seo || {},
+      currentOffice,
+      posts: currentOfficePosts,
+    },
+    revalidate: 86400,
+  };
+};
+
+/** All locations page component */
+const AllLocations = ({
   seo, offices, currentOffice, posts,
-}) {
+}) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);
 
@@ -28,23 +49,6 @@ export default function AllLocations({
   };
 
   return <LocationPage {...locationProps} />;
-}
+};
 
-export async function getStaticProps() {
-  const [locations, currentOffice, currentOfficePosts] = await getLocationContent('lyndhurst');
-  if (currentOffice.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      offices: locations.offices || {},
-      seo: currentOffice.seo || {},
-      currentOffice,
-      posts: currentOfficePosts,
-    },
-    revalidate: 86400,
-  };
-}
+export default AllLocations;

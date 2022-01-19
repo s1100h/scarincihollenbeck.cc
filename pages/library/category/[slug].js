@@ -2,58 +2,33 @@ import { useRouter } from 'next/router';
 import SiteLoader from 'components/shared/SiteLoader';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { SITE_URL } from 'utils/constants';
+import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import { categoryPosts } from 'utils/api';
-import { getLibraryCategoryContent } from 'utils/queries';
+import { fetchAPI } from 'utils/api';
+import { categoryPostQuery } from 'utils/graphql-queries';
 
-export default function LibraryCategory({
-  authors,
-  childrenOfCurrentCategory,
-  description,
-  pageTitle,
-  popularCategories,
-  results,
-  name,
-  categoryId,
-  seo,
-}) {
-  const router = useRouter();
+/** Fetch additional page information such as authors and popular categories from WP REST API */
+const getLibraryCategoryContent = async () => {
+  const [authors, popularCategories] = await Promise.all([
+    fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
+      .then((data) => data.json())
+      .catch((err) => err),
+  ]);
 
-  if (router.isFallback) {
-    return (
-      <div className="my-5 py-5">
-        <SiteLoader />
-      </div>
-    );
-  }
+  return [authors, popularCategories];
+};
 
-  const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
-
-  const libraryProps = {
-    seo: {
-      title: seo.title,
-      metaDescription: seo.metaDescription,
-      canonicalUrl,
-    },
-    results,
-    authors,
-    popularCategories,
-    childrenOfCurrentCategory,
-    currentPageTitle: name,
-    categoryName: name,
-    description,
-    categoryId,
-  };
-
-  return (
-    <ApolloWrapper>
-      <LibraryDirectory {...libraryProps} />
-    </ApolloWrapper>
-  );
+/** get the current category's latest post WP GRAPHQL API */
+export async function categoryPosts(variables) {
+  const data = await fetchAPI(categoryPostQuery, variables);
+  return data.categories?.edges;
 }
 
-export async function getServerSideProps({ params, res }) {
+export const getServerSideProps = async ({ params, res }) => {
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   const [authors, popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
     variables: {
@@ -96,8 +71,6 @@ export async function getServerSideProps({ params, res }) {
     count: postCount,
   }));
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-
   return {
     props: {
       results,
@@ -113,6 +86,54 @@ export async function getServerSideProps({ params, res }) {
         metaDescription: content.seo.metaDesc,
       },
     },
-    // revalidate: 86400,
   };
-}
+};
+
+/** Library category page component -- /library/category/law-firm-insights etc. */
+const LibraryCategory = ({
+  authors,
+  childrenOfCurrentCategory,
+  description,
+  pageTitle,
+  popularCategories,
+  results,
+  name,
+  categoryId,
+  seo,
+}) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div className="my-5 py-5">
+        <SiteLoader />
+      </div>
+    );
+  }
+
+  const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
+
+  const libraryProps = {
+    seo: {
+      title: seo.title,
+      metaDescription: seo.metaDescription,
+      canonicalUrl,
+    },
+    results,
+    authors,
+    popularCategories,
+    childrenOfCurrentCategory,
+    currentPageTitle: name,
+    categoryName: name,
+    description,
+    categoryId,
+  };
+
+  return (
+    <ApolloWrapper>
+      <LibraryDirectory {...libraryProps} />
+    </ApolloWrapper>
+  );
+};
+
+export default LibraryCategory;

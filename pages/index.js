@@ -1,32 +1,9 @@
 import HomePage from 'components/pages/HomePage';
-import { homePageContent, homePageLocations } from 'utils/api';
-import { formatSrcToCloudinaryUrl, sortByKey } from 'utils/helpers';
+import { fetchAPI, homePageLocations } from 'utils/api';
+import { homePageQuery } from 'utils/graphql-queries';
+import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
-export default function Home({
-  seo,
-  aboutFirm,
-  awards,
-  banner,
-  intro,
-  leadership,
-  offices,
-  serviceOne,
-  serviceTwo,
-}) {
-  const homePageProps = {
-    seo,
-    aboutFirm,
-    awards,
-    banner,
-    intro,
-    leadership,
-    offices,
-    serviceOne,
-    serviceTwo,
-  };
-  return <HomePage {...homePageProps} />;
-}
-
+/** pull out the attorney chair data from attorney response */
 const extractChair = (chair) => {
   if (chair) {
     return chair.map((c) => c.title).join(', ');
@@ -34,7 +11,16 @@ const extractChair = (chair) => {
 
   return null;
 };
-export async function getStaticProps() {
+
+/** Get homepage content WP GRAPHQL API */
+export async function homePageContent() {
+  const data = await fetchAPI(homePageQuery, {});
+
+  return data?.pageBy;
+}
+
+/** Map the home page query data to page props */
+export const getStaticProps = async () => {
   /** get page content */
   const request = await homePageContent();
   const { seo, homePage } = request;
@@ -89,5 +75,34 @@ export async function getStaticProps() {
       leadership: modLeadership,
       offices: sortedOffices,
     },
+    revalidate: 86400,
   };
-}
+};
+
+/** The home page component */
+const Home = ({
+  seo,
+  aboutFirm,
+  awards,
+  banner,
+  intro,
+  leadership,
+  offices,
+  serviceOne,
+  serviceTwo,
+}) => {
+  const homePageProps = {
+    seo,
+    aboutFirm,
+    awards,
+    banner,
+    intro,
+    leadership,
+    offices,
+    serviceOne,
+    serviceTwo,
+  };
+  return <HomePage {...homePageProps} />;
+};
+
+export default Home;

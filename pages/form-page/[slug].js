@@ -3,10 +3,67 @@ import { useRouter } from 'next/router';
 import FormPageContent from 'components/pages/FormPageContent';
 import SiteLoader from 'components/shared/SiteLoader';
 import { SITE_URL } from 'utils/constants';
-import { contactSubscribePage } from 'utils/api';
+import { fetchAPI } from 'utils/api';
+import { contactSubscribePageQuery } from 'utils/graphql-queries';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 
+/** contact/subscribe page content WP GRAPHQL query */
+const contactSubscribePage = async (slug) => {
+  const data = await fetchAPI(contactSubscribePageQuery, {
+    variables: { slug },
+  });
+  return data?.pageBy;
+};
+
+/** Create urls for form pages for building static pages */
+export const getStaticPaths = () => {
+  const formPages = ['contact', 'subscribe'];
+  const modUrls = formPages.map((url) => `/form-page/${url}`);
+
+  return {
+    paths: modUrls || [],
+    fallback: 'blocking',
+  };
+};
+
+/** Set form page data to props */
+export const getStaticProps = async ({ params }) => {
+  const slug = params.slug;
+  const request = await contactSubscribePage(slug);
+  let offices = [];
+
+  if (slug.includes('contact')) {
+    const [locations] = await getLocationContent('lyndhurst');
+    const officesMod = locations.offices.map(({
+      id, title, address, phone, fax, slug,
+    }) => ({
+      id,
+      title,
+      address,
+      phone,
+      fax,
+      slug,
+    }));
+    offices = [...officesMod];
+  }
+  const {
+    seo, title, formPages, content,
+  } = request;
+
+  return {
+    props: {
+      title,
+      content,
+      seo,
+      formLabel: formPages?.formLabel || '',
+      slug,
+      offices: offices.length > 0 ? offices : null,
+    },
+  };
+};
+
+/** Form Pages - contact, subscribe page */
 const FormPage = ({
   title, seo, content, formLabel, slug, offices,
 }) => {
@@ -43,50 +100,5 @@ const FormPage = ({
 
   return <FormPageContent {...formProps} />;
 };
-
-export async function getStaticPaths() {
-  const formPages = ['contact', 'subscribe'];
-  const modUrls = formPages.map((url) => `/form-page/${url}`);
-
-  return {
-    paths: modUrls || [],
-    fallback: 'blocking',
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const slug = params.slug;
-  const request = await contactSubscribePage(slug);
-  let offices = [];
-
-  if (slug.includes('contact')) {
-    const [locations] = await getLocationContent('lyndhurst');
-    const officesMod = locations.offices.map(({
-      id, title, address, phone, fax, slug,
-    }) => ({
-      id,
-      title,
-      address,
-      phone,
-      fax,
-      slug,
-    }));
-    offices = [...officesMod];
-  }
-  const {
-    seo, title, formPages, content,
-  } = request;
-
-  return {
-    props: {
-      title,
-      content,
-      seo,
-      formLabel: formPages?.formLabel || '',
-      slug,
-      offices: offices.length > 0 ? offices : null,
-    },
-  };
-}
 
 export default FormPage;

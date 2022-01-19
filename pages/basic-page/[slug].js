@@ -2,12 +2,43 @@ import { useRouter } from 'next/router';
 import BasicPageContent from 'components/pages/BasicPageContent';
 import SiteLoader from 'components/shared/SiteLoader';
 import { SITE_URL } from 'utils/constants';
-// import { getPageContent, getCurrentPublishedPages } from 'utils/queries';
-import { getBasicPageContent } from 'utils/api';
+import { fetchAPI } from 'utils/api';
+import { basicPagesQuery } from 'utils/graphql-queries';
 
-export default function BasicPage({
+/** Fetch page data from WP GRAPHQL API */
+const getBasicPageContent = async (slug) => {
+  const data = await fetchAPI(basicPagesQuery, {
+    variables: { slug },
+  });
+  return data?.pageBy;
+};
+
+/** Set data from API response to page props */
+export const getServerSideProps = async ({ params }) => {
+  const request = await getBasicPageContent(params.slug);
+
+  const {
+    title, content, seo, addFormToPage,
+  } = request;
+
+  return {
+    props: {
+      title,
+      content,
+      seo,
+      pageForm: {
+        enableForm: addFormToPage?.enableForm,
+        formLabel: addFormToPage?.formLabel,
+      },
+      slug: params.slug,
+    },
+  };
+};
+
+/** Basic page component - Awards, Privacy Policy, Work Life Balance etc. */
+const BasicPage = ({
   content, seo, slug, title, pageForm,
-}) {
+}) => {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
@@ -29,25 +60,6 @@ export default function BasicPage({
     },
   };
   return <BasicPageContent {...basicPageProps} />;
-}
+};
 
-export async function getServerSideProps({ params }) {
-  const request = await getBasicPageContent(params.slug);
-
-  const {
-    title, content, seo, addFormToPage,
-  } = request;
-
-  return {
-    props: {
-      title,
-      content,
-      seo,
-      pageForm: {
-        enableForm: addFormToPage?.enableForm,
-        formLabel: addFormToPage?.formLabel,
-      },
-      slug: params.slug,
-    },
-  };
-}
+export default BasicPage;
