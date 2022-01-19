@@ -2,8 +2,8 @@ import { Container, Row } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 import PostSiteHead from 'components/shared/head/PostSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import Body from 'components/organisms/post/Body';
-import Sidebar from 'components/organisms/post/Sidebar';
+import Body from 'components/organisms/post/PostBody';
+import Sidebar from 'components/organisms/post/PostSidebar';
 
 const PrintOnlyBody = dynamic(() => import('components/organisms/post/PrintOnlyBody'));
 

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import LocationsBody from 'components/organisms/locations/LocationsBody';
-import SideBar from 'components/organisms/locations/Sidebar';
+import SideBar from 'components/organisms/locations/LocationsSidebar';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-const Results = dynamic(() => import('components/organisms/careers/Results'));
+const Results = dynamic(() => import('components/organisms/careers/CareersResults'));
 const FilterForms = dynamic(() => import('components/organisms/careers/FilterForms'));
 
 const CareersBody = ({
