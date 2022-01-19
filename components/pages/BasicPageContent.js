@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import PagesBody from 'components/organisms/page/Body';
+import PagesBody from 'components/organisms/page/BasicPageBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import ContactForm from 'components/shared/ContactForm';
 import SingleSubHeader from 'layouts/SingleSubHeader';

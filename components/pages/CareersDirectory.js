@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import FullWidth from 'layouts/FullWidth';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import CareersBody from 'components/organisms/careers/Body';
+import CareersBody from 'components/organisms/careers/CareersBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 
 const CareersEqualOpportunity = dynamic(() => import('components/organisms/careers/EqualOpportunity'));

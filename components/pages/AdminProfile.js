@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import AdminProfileHeader from 'components/organisms/admin/Header';
+import AdminProfileHeader from 'components/organisms/admin/AdminHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { createMarkup } from 'utils/helpers';
