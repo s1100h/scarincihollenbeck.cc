@@ -89,7 +89,7 @@ const LibraryAuthor = ({
     categoryId,
     currentPageTitle: name,
     childrenOfCurrentCategory,
-    categoryName: `Legal Articles By ${name}`,
+    categoryName: `${name} Articles`,
     description,
     profileUrl,
   };
