@@ -178,25 +178,24 @@ export const SITE_FOOTER_NAVIGATION = [
     label: 'Careers',
     slug: '/careers',
   },
-
   {
-    id: 2,
+    id: 3,
     label: 'COVID-19',
     slug: '/covid-19-crisis-management-unit',
   },
 
   {
-    id: 3,
+    id: 4,
     slug: '/firm-overview',
     label: 'Firm Overview',
   },
   {
-    id: 4,
+    id: 5,
     slug: '/practices',
     label: 'Legal Practices',
   },
   {
-    id: 5,
+    id: 6,
     slug: '/locations',
     label: 'Locations',
   },
