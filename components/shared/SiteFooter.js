@@ -130,7 +130,7 @@ export default function Footer() {
               </p>
               <ul className={styles.linkList}>
                 {colOnePractices.map(({ slug, title }) => (
-                  <li>
+                  <li key={title}>
                     <Link href={slug}>
                       <a className="text-dark">{title}</a>
                     </Link>
@@ -141,7 +141,7 @@ export default function Footer() {
             <div className="sub-list">
               <ul className={styles.linkList}>
                 {colTwoPractices.map(({ slug, title }) => (
-                  <li>
+                  <li key={title}>
                     <Link href={slug}>
                       <a className="text-dark">{title}</a>
                     </Link>
