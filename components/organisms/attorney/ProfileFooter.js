@@ -1,36 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Row, Col } from 'react-bootstrap';
-import ClientSlider from 'components/molecules/attorney/ClientSlider';
-import FooterArticles from 'components/molecules/attorney/FooterArticles';
-import HomePageLink from 'components/organisms/home/PageLink';
+import dynamic from 'next/dynamic';
 import lineStyles from 'styles/LineHeader.module.css';
 
-const ArticleSection = ({
-  articles, slug, title, type,
-}) => (
-  <Row className="mt-5 mb-3">
-    {articles.map((article) => (
-      <Col sm={12} md={3} key={article.title} className="mb-4">
-        <Link href={article.link}>
-          <a className="text-center mx-auto d-block">
-            <Image
-              alt={article.title}
-              src={article.featuredImg || '/images/no-image-found-diamond.png'}
-              width={300}
-              height={150}
-              className="rounded"
-            />
-            <small className="text-dark d-block">
-              <strong>{article.title}</strong>
-            </small>
-          </a>
-        </Link>
-      </Col>
-    ))}
-    <HomePageLink link={`/attorney/${slug}/content/${type}`} title={`More ${title}`} />
-  </Row>
-);
+const ClientSlider = dynamic(() => import('components/molecules/attorney/ClientSlider'));
+const FooterArticles = dynamic(() => import('components/molecules/attorney/FooterArticles'));
 
 const ProfileFooter = ({ clients, attorneyFooterBlogArticles, attorneyFooterNewsArticles }) => (
   <>

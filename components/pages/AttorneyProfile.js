@@ -61,6 +61,7 @@ const AttorneyPage = ({
 
   const tabs = [...mainTabs, ...moreTabs, education, contact];
 
+  /** Effect handler that manages how the tabs work */
   useEffect(() => {
     const currentTabContent = tabs.filter((t) => t.id === activeTab);
     if (
@@ -87,6 +88,7 @@ const AttorneyPage = ({
     }
   }, [activeTab]);
 
+  /** Another hook that manages how the tabs work but focuses on the blog tab or the news tab */
   useEffect(() => {
     tabs.forEach((tab) => {
       if (Object.values(tab).includes('Blogs')) {

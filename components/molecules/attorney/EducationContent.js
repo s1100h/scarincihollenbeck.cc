@@ -1,4 +1,4 @@
-import TextContent from './TextContent';
+import TextContent from 'components/molecules/attorney/TextContent';
 
 const EducationContent = ({
   education, additionalInformation, affiliations, barAdmissions,

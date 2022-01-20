@@ -6,7 +6,7 @@ import PostPage from 'components/pages/SinglePost';
 
 /** fetch all the post data and map it the page props.
  * This is the only component that uses an API that directly
- * queries the MySQL database. Please check out pages/api/get-post-conent
+ * queries the MySQL database. Please check out pages/api/get-post-content
  * for more details.
  * */
 export const getServerSideProps = async ({ params, res, query }) => {

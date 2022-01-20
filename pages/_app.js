@@ -35,6 +35,8 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const SHSite = ({ Component, pageProps }) => {
   const router = useRouter();
+
+  /** Effect hook that manages tracking for Google Analytics */
   useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url);
