@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
+import dynamic from 'next/dynamic';
 import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, SITE_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { firmPagesQuery } from 'utils/graphql-queries';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** sanitize the attorney and administration response mapping the data to the same keys */
 const sanitizeAttorneyProfile = (node) => ({

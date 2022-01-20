@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Set location data to page props */
 export const getStaticProps = async () => {

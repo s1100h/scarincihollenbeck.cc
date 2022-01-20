@@ -15,8 +15,8 @@ const LocationsBody = ({
       <h4 className={grayTitleStyles.title}>{officeTitle}</h4>
       <Map title={title} map={map} />
       <h4 className={grayTitleStyles.title}>{`${title} Attorneys`}</h4>
-      <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />
-      <RelatedPractices practices={practices} />
+      {attorneys && <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />}
+      {practices && <RelatedPractices practices={practices} />}
     </>
   );
 };

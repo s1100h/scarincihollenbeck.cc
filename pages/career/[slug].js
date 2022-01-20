@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
+import dynamic from 'next/dynamic';
 import CareerProfile from 'components/pages/CareerPage';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch career post data from WP REST API */
 const getCareersContent = async (slug) => {

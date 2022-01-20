@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
+import dynamic from 'next/dynamic';
 import {
   SITE_URL, CORE_PRACTICES, BASE_API_URL, headers,
 } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch single practice data WP REST API  */
 const getPracticeContent = async (slug) => {

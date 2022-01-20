@@ -1,12 +1,38 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import { SITE_URL } from 'utils/constants';
 import { getPageContent } from 'utils/queries';
-import SiteLoader from 'components/shared/SiteLoader';
 import HolidayPage from 'components/pages/HolidayPage';
+import { fetchAPI } from 'utils/api';
+import { basicPagesQuery } from 'utils/graphql-queries';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
+
+/** Fetch page data from WP GRAPHQL API */
+const getBasicPageContent = async (slug) => {
+  const data = await fetchAPI(basicPagesQuery, {
+    variables: { slug },
+  });
+  return data?.pageBy;
+};
 
 /** Set holiday page data to props */
 export const getServerSideProps = async ({ params }) => {
-  const request = await getPageContent(params.slug);
+  const slug = params?.slug;
+
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const request = await getBasicPageContent(slug);
+
+  if (!request) {
+    return {
+      notFound: true,
+    };
+  }
 
   const { title, content, seo } = request;
 

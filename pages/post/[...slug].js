@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import { getPostContent } from 'pages/api/get-post-content';
 import { SITE_URL, SITE_TITLE } from 'utils/constants';
-import SiteLoader from 'components/shared/SiteLoader';
 import PostPage from 'components/pages/SinglePost';
 
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
  * This is the only component that uses an API that directly
  * queries the MySQL database. Please check out pages/api/get-post-content

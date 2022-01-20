@@ -44,7 +44,14 @@ export const getServerSideProps = async ({ params, res }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
 
   /** Get Attorney Bio  */
-  const slug = params.slug;
+  const slug = params?.slug;
+
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
+
   const attorneyBio = await attorneyBySlug(slug);
 
   if (!attorneyBio) {

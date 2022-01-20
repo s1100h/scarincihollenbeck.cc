@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
+import dynamic from 'next/dynamic';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Get all the author data and posts for the page using WP REST API */
 const getAuthorContent = async (slug) => {

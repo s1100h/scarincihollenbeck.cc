@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
+import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 import { BASE_API_URL, headers } from 'utils/constants';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch all the location pages urls from WP REST API * */
 const getLocationPaths = async () => {
@@ -32,7 +34,8 @@ export const getStaticPaths = async () => {
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
   const [locations, currentOffice, currentOfficePosts] = await getLocationContent(params.slug);
-  if (currentOffice.status === 404) {
+
+  if (currentOffice.data.status === 404) {
     return {
       notFound: true,
     };

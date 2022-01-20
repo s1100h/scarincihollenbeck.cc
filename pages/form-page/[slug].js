@@ -1,12 +1,14 @@
 import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import FormPageContent from 'components/pages/FormPageContent';
-import SiteLoader from 'components/shared/SiteLoader';
 import { SITE_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { contactSubscribePageQuery } from 'utils/graphql-queries';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** contact/subscribe page content WP GRAPHQL query */
 const contactSubscribePage = async (slug) => {

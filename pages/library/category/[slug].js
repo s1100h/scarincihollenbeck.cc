@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
+import dynamic from 'next/dynamic';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { fetchAPI } from 'utils/api';
 import { categoryPostQuery } from 'utils/graphql-queries';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch additional page information such as authors and popular categories from WP REST API */
 const getLibraryCategoryContent = async () => {

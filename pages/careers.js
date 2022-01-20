@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
 import CareersPage from 'components/pages/CareersDirectory';
 import { BASE_API_URL, SITE_URL, headers } from 'utils/constants';
 import { fetchAPI, homePageLocations } from 'utils/api';
 import { careersPageQuery } from 'utils/graphql-queries';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** return careers page content  */
 const careersPageContent = async () => {

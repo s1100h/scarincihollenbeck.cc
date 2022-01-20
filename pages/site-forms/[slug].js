@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import SiteLoader from 'components/shared/SiteLoader';
 import { BASE_API_URL } from 'utils/constants';
 import SiteFormPage from 'components/pages/SiteFeedbackPage';
+
+const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Generate the urls so we can build static pages */
 export const getStaticPaths = () => {
