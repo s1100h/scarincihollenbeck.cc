@@ -1,4 +1,9 @@
-/** List of links in the sidebar of firm pages(diversity, pro bono, etc.) */
+/**
+ * This file contains lists of links used in the header navigation, sidebar navigation, footer navigation
+ * through out the site. This file also contains constant data found throughout the site.
+ */
+
+/** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
     id: 'firm-news',
@@ -17,7 +22,7 @@ export const FIRM_BLOG_PAGES = [
   },
 ];
 
-/* List of firm pages in the sidebar */
+/* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
   {
     id: 'pro-bono',
@@ -41,7 +46,7 @@ export const FIRM_PAGES = [
   },
 ];
 
-/** The navigation in the header section of the site */
+/** Header navigation links */
 export const SITE_NAVIGATION = [
   {
     id: 1,
@@ -161,7 +166,7 @@ export const SITE_NAVIGATION = [
   },
 ];
 
-/** The links in the dark gray bar in the footer of the site */
+/** The links in the dark gray banner in the footer */
 export const SITE_FOOTER_NAVIGATION = [
   {
     id: 1,
@@ -197,7 +202,7 @@ export const SITE_FOOTER_NAVIGATION = [
   },
 ];
 
-/** List of Client Alert links on the covid page and category landing pages */
+/** List of Client Alert links on the covid pages and category landing pages */
 export const CLIENT_ALERTS = [
   {
     id: 20098,
@@ -249,7 +254,7 @@ export const OFFICE_LOCATIONS = [
   },
 ];
 
-/** List the Core Practices in the sidebar and home page */
+/** List the Core Practices in the sidebar of the practice pages and in the footer */
 export const CORE_PRACTICES = [
   {
     id: 1,
@@ -308,29 +313,59 @@ export const CORE_PRACTICES = [
   },
 ];
 
+/** Social Media links found in the footer */
+export const SOCIAL_MEDIA_LINKS = [
+  {
+    url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+    label: 'LinkedIn',
+  },
+  {
+    url: 'https://www.facebook.com/ScarinciHollenbeck',
+    label: 'Facebook',
+  },
+];
+
+/** Make a payment link found in the footer */
+export const MAKE_A_PAYMENT_URLS = [
+  {
+    url: 'https://secure.lawpay.com/pages/scarincihollenbeck/operating',
+    label: 'Make a payment',
+  },
+];
+
+/** the content found on 404 or 500 error pages */
 export const ERROR_PAGE_CONTENT = {
   subTitle: 'Sorry, there was an issue getting your requested page',
   mainMessage:
     "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
 
-/** Changing this variable will remove Scarinci Hollenbeck everywhere on the site */
+/** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
 export const SITE_FAX = '201-896-8660';
 export const SITE_EMAIL = 'info@sh-law.com';
+
+/**  external blog urls  */
 export const MUSIC_ESQ_URL = 'https://musicesq.com';
 export const CON_LAW_URL = 'https://constitutionallawreporter.com';
 export const GOV_LAW_URL = 'https://scarincilawyer.com';
-export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
+
+/** the blog id for covid pages  */
 export const COVID_POSTS_ID = 20250;
+
+/** Image CDN URLs */
 export const IMAGE_NOT_FOUND_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v1637157143/wp.scarincihollenbeck/no-image-found-diamond_33141f5498/no-image-found-diamond_33141f5498-png?_i=AA';
+export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
+
+/** a helper header data when making requests to WP backend */
+export const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
+
+/** constant data that comes from hidden files for security */
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
-export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
-// common headers for fetch
-export const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
+export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
