@@ -33,9 +33,23 @@ export const getStaticPaths = async () => {
 
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
-  const [locations, currentOffice, currentOfficePosts] = await getLocationContent(params.slug);
+  const slug = params?.slug;
 
-  if (currentOffice.data.status === 404) {
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const [locations, currentOffice, currentOfficePosts] = await getLocationContent(slug);
+
+  if (Object.keys(currentOffice).includes('status') && currentOffice.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (Object.keys(currentOffice).includes('data') && currentOffice.data.status === 404) {
     return {
       notFound: true,
     };

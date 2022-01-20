@@ -23,9 +23,24 @@ const getPracticeContent = async (slug) => {
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ params, res }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+
+  const slug = params?.slug;
+
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
+
   const request = await getPracticeContent(params.slug);
 
-  if (request.status === 404) {
+  if (Object.keys(request).includes('status') && request.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (Object.keys(request).includes('data') && request.data.status === 404) {
     return {
       notFound: true,
     };

@@ -6,11 +6,12 @@ import SiteFormPage from 'components/pages/SiteFeedbackPage';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
+/** Site Forms URLS  */
+const SITE_FORM_SLUGS = ['new-attorney', 'current-attorney'];
+
 /** Generate the urls so we can build static pages */
 export const getStaticPaths = () => {
-  /** Site Forms URLS  */
-  const SITE_FORM_SLUGS = ['/site-forms/new-attorney', '/site-forms/current-attorney'];
-  const urls = SITE_FORM_SLUGS.map((slug) => slug);
+  const urls = SITE_FORM_SLUGS.map((slug) => `/site-forms/${slug}`);
 
   return {
     paths: urls || [],
@@ -20,6 +21,16 @@ export const getStaticPaths = () => {
 
 /** Fetch the page data and map it to props */
 export const getStaticProps = async ({ params }) => {
+  const slug = params?.slug;
+
+  const isFormPage = SITE_FORM_SLUGS.includes(slug);
+
+  if (!isFormPage) {
+    return {
+      notFound: true,
+    };
+  }
+
   const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`).then(
     (data) => data.json(),
   );
