@@ -33,7 +33,7 @@
     "graphql-tag": "^2.12.6",
     "kwesforms": "^2.0.5",
     "mysql2": "^2.3.0",
-    "next": "^12.0.7",
+    "next": "^12.0.9",
     "node-fetch": "^2.6.1",
     "nookies": "^2.3.2",
     "nprogress": "^0.2.0",
