@@ -117,6 +117,10 @@ const SITE_PAGES_REWRITES = [
     source: '/the-passing-of-harold-friedman',
     destination: '/funeral-announcements/the-passing-of-harold-friedman',
   },
+  {
+    source: '/the-passing-of-peter-r-yarem',
+    destination: '/funeral-announcements/the-passing-of-peter-r-yarem',
+  },
   /** End of Funeral Pages */
   /** Start of Firm Pages */
   {
