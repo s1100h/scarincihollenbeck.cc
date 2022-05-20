@@ -31,5 +31,15 @@
       "destination": "/practices/mergers-acquisitions",
       "statusCode": 301
     }
+     {
+      "source": "/attorney/todd-w-terhune",
+      "destination": "/practices/environmental",
+      "statusCode": 301
+    }
+ {
+      "source": "/attorney/peter-r-yarem",
+      "destination": "/the-passing-of-peter-r-yarem",
+      "statusCode": 301
+    }
   ]
 }
