@@ -88,7 +88,7 @@
 .noTabBanner {
   margin-bottom: 3.5em;
 }
-/* 
+/*
 .multiBackBanner {
   margin-top: 2.5em;
 }
@@ -112,5 +112,13 @@
 @media (max-width: 768px) {
   .banner {
     flex-direction: column;
+  }
+
+  .text {
+    font-size: 2.4em;
+  }
+
+  .text:first-child {
+    margin-bottom: 0;
   }
 }
