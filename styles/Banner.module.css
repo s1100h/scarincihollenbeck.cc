@@ -59,6 +59,12 @@
   }
 }
 
+@media (min-width: 768px) {
+  .redBanner {
+    background-size: 140%;
+  }
+}
+
 .homeBannerContainer,
 .bannerContainer {
   color: #fff;
