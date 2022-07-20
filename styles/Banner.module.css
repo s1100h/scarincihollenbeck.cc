@@ -14,7 +14,7 @@
 /* /images/red-banner-opacity.png */
 .redBanner {
   background-image: url(/images/red-banner-home.webp);
-  background-position: center;
+  background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -41,14 +41,14 @@
   border-radius: 2px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   .redBanner {
     width: 80%;
     padding-right: 114px;
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1450px) {
   .redBanner {
     width: 70%;
 
