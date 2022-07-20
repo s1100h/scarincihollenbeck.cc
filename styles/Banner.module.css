@@ -127,6 +127,7 @@
     font-size: 2.4em;
   }
   .text:first-child {
+    font-size: 2.4em;
     margin-bottom: 0;
   }
 }
