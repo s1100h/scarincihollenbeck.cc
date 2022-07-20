@@ -44,12 +44,14 @@
 @media (min-width: 1200px) {
   .redBanner {
     width: 80%;
+    padding-right: 114px;
   }
 }
 
 @media (min-width: 1400px) {
   .redBanner {
     width: 70%;
+
   }
 }
 
@@ -106,7 +108,7 @@
 } */
 
 .text {
-  font-size: 4.4rem;
+  font-size: 4rem;
   text-shadow: 3px 3px 3px #000;
   line-height: 1.17;
 }

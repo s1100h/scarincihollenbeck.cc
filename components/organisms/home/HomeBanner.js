@@ -10,7 +10,7 @@ const HomeBanner = ({ lineOne, lineTwo }) => (
               {lineOne}
             </p>
             <p className={`${styles.text} animate__animated animate__fadeInDown animate__slow`}>
-              <strong>{lineTwo}</strong>
+              {lineTwo}
             </p>
           </div>
         </div>
