@@ -31,7 +31,7 @@ const VirtualizedMembers = ({ members }) => {
         <div
           style={{
             height: `${rowVirtualizer.totalSize}px`,
-            // width: '100%',
+            width: '100%',
             position: 'relative',
           }}
         >
@@ -41,7 +41,7 @@ const VirtualizedMembers = ({ members }) => {
               className={styles.author}
               ref={virtualRow.measureRef}
               style={{
-                position: 'relative',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
