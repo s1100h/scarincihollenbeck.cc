@@ -44,7 +44,6 @@ const AllLocations = ({
     }
   }, [offices]);
 
-
   const locationProps = {
     seo,
     currentOffice,
