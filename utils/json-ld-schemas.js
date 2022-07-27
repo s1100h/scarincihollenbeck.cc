@@ -20,7 +20,7 @@ export const articleSchema = (body) => ({
           'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.030148184838!2d-74.1972675845902!3d40.87121257931485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2fe3633359d4d%3A0x99c21ee88b893690!2sAtrium!5e0!3m2!1sru!2sua!4v1658906863039!5m2!1sru!2sua',
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Little Falls',
+          addressLocality: 'little-falls',
           addressRegion: 'NJ',
           postalCode: '07424',
           streetAddress: '150 Clove Road, 9th Floor,',
@@ -57,7 +57,7 @@ export const buildBusinessSchema = () => ({
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.030148184838!2d-74.1972675845902!3d40.87121257931485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2fe3633359d4d%3A0x99c21ee88b893690!2sAtrium!5e0!3m2!1sru!2sua!4v1658906863039!5m2!1sru!2sua',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Little Falls',
+        addressLocality: 'little-falls',
         addressRegion: 'NJ',
         postalCode: '07424',
         streetAddress: '150 Clove Road, 9th Floor,',
