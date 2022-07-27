@@ -78,9 +78,9 @@ export default function Footer() {
               <strong>Social Media</strong>
             </p>
             <ul className={styles.linkList}>
-              {SOCIAL_MEDIA_LINKS.map(({ slug, label }) => (
+              {SOCIAL_MEDIA_LINKS.map(({ url, label }) => (
                 <li key={label}>
-                  <a href={slug} target="_blank" rel="noreferrer" className="text-dark">
+                  <a href={url} target="_blank" rel="noreferrer" className="text-dark">
                     {label}
                   </a>
                 </li>
