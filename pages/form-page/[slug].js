@@ -36,7 +36,7 @@ export const getStaticProps = async ({ params }) => {
   let offices = [];
 
   if (slug.includes('contact')) {
-    const [locations] = await getLocationContent('lyndhurst');
+    const [locations] = await getLocationContent('little-falls');
     const officesMod = locations.offices.map(({
       id, title, address, phone, fax, slug,
     }) => ({
