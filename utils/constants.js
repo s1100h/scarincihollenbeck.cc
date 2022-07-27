@@ -229,9 +229,9 @@ export const CLIENT_ALERTS = [
 export const OFFICE_LOCATIONS = [
   {
     id: 1,
-    slug: '/location/lyndhurst',
-    label: 'Lyndhurst, NJ',
-    address: '1100 Valley Brook Ave. Lyndhurst, NJ 07071',
+    slug: '/location/little-falls',
+    label: 'Little Falls, NJ',
+    address: '1100 Valley Brook Ave. Little Falls, NJ 07071',
   },
   {
     id: 2,
