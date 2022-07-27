@@ -27,8 +27,8 @@ export const articleSchema = (body) => ({
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: '40.802280',
-          longitude: '-74.108350',
+          latitude: '40.871504645093324',
+          longitude: '-74.19549196223754',
         },
         sameAs: [
           'https://www.facebook.com/ScarinciHollenbeck/',
