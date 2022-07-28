@@ -40,11 +40,6 @@
       "source": "/attorney/peter-r-yarem",
       "destination": "/the-passing-of-peter-r-yarem",
       "statusCode": 301
-    },
-    {
-      "source": "/location/lyndhurst",
-      "destination": "/location/little-falls",
-      "statusCode": 301
     }
   ]
 }

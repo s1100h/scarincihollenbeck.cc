@@ -9,7 +9,7 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Set location data to page props */
 export const getStaticProps = async () => {
-  const [locations, currentOffice, currentOfficePosts] = await getLocationContent('little-falls');
+  const [locations, currentOffice, currentOfficePosts] = await getLocationContent('lyndhurst');
   if (currentOffice.status === 404) {
     return {
       notFound: true,
