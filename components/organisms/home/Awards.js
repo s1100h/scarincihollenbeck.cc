@@ -23,7 +23,7 @@ const Awards = ({ awards }) => {
     <Row className="mt-5 px-2">
       <Col sm={12} className="mt-5 mb-0 pb-0">
         <div className={lineStyles.lineHeader}>
-          <h3>вввAwards & Accolades</h3>
+          <h3>aaaaAwards & Accolades</h3>
         </div>
       </Col>
       {formattedAwards.map((award) => (
