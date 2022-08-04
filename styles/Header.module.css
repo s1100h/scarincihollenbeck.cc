@@ -1,0 +1,16 @@
+.wrapper {
+  width: 1463px;
+  margin: 0 auto;
+  max-width: 96%;
+}
+
+.header .wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-between;
+  align-items: center;
+}
+.middle {
+  display: flex;
+  flex-flow: column;
+}

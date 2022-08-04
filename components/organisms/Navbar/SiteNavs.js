@@ -4,7 +4,7 @@ import navBarStyles from 'styles/Navbar.module.css';
 import { SITE_NAVIGATION } from 'utils/constants';
 
 const SiteNavs = ({ scrollTop }) => (
-  <Navbar className={`${navBarStyles.navContainer} pr-0 mr-0`}>
+  <Navbar className={`${navBarStyles.navContainer}`}>
     <Nav>
       {scrollTop && (
         <Nav.Item id="home" className={navBarStyles.navItem}>

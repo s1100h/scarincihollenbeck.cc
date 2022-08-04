@@ -6,7 +6,9 @@ import TopNavLinks from 'components/organisms/Navbar/TopNavLinks';
 import SiteNavs from 'components/organisms/Navbar/SiteNavs';
 import SiteLogo from 'components/organisms/Navbar/SiteLogo';
 import navBarStyles from 'styles/Navbar.module.css';
+import headerStyles from 'styles/Header.module.css';
 
+navBarStyles.midle = undefined;
 export default function NavBar() {
   const [scrollTop, setScrollTop] = useState(false);
 
@@ -23,37 +25,30 @@ export default function NavBar() {
   }, [scrollTop]);
 
   return (
-    <header className="mb-0 pt-1 shadow sticky-top top--1 bg-white">
-      <Container>
-        <Row className={`${navBarStyles.borderWrapper} my-2`}>
-          <Col sm={12} md={4} className="mb-3 mb-md-0">
-            <GlobalSearch scrollTop={scrollTop} />
-          </Col>
-          <Col sm={12} md={8} className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
-            <TopNavLinks />
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            xs={12}
-            lg={6}
-            className={`${navBarStyles.logoBanner} ${scrollTop ? 'mt-0' : 'mt-2'} ml-0 pl-0`}
-          >
-            <SiteLogo scrollTop={scrollTop} />
-          </Col>
-          <Col
-            xs={12}
-            lg={12}
-            xl={6}
-            className={scrollTop ? 'offset-xl-3' : 'mb-sm-2 mt-xl-3 pr-0 pl-0'}
-          >
-            <SiteNavs scrollTop={scrollTop} />
-          </Col>
-          <div className="d-block d-sm-none">
-            <MobileMenu />
-          </div>
-        </Row>
-      </Container>
+    <header className={`${headerStyles.header} mb-0 pt-1 shadow sticky-top top--1 bg-white`}>
+      <div className={`${headerStyles.wrapper}`}>
+        <Col className={`${navBarStyles.logoBanner} ${scrollTop ? 'mt-0' : 'mt-2'} ml-0 pl-0`}>
+          <SiteLogo scrollTop={scrollTop} />
+        </Col>
+        <div className={`${headerStyles.middle}`}>
+          <GlobalSearch scrollTop={scrollTop} />
+          <SiteNavs scrollTop={scrollTop} />
+        </div>
+        <Col className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
+          <TopNavLinks />
+        </Col>
+        <Col
+          xs={12}
+          lg={12}
+          xl={6}
+          className={scrollTop ? 'offset-xl-3' : 'mb-sm-2 mt-xl-3 pr-0 pl-0'}
+        >
+          {' '}
+        </Col>
+        <div className="d-block d-sm-none">
+          <MobileMenu />
+        </div>
+      </div>
     </header>
   );
 }
