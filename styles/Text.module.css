@@ -16,4 +16,10 @@
   letter-spacing: 0.01em;
   color: #ffffff;
   text-decoration: none;
+  margin-left: 20px;
+}
+
+.btn:hover {
+  color: #ffffff;
+  text-decoration: none;
 }

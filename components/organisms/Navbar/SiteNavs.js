@@ -5,7 +5,7 @@ import { SITE_NAVIGATION } from 'utils/constants';
 
 const SiteNavs = ({ scrollTop }) => (
   <Navbar className={`${navBarStyles.navContainer}`}>
-    <Nav>
+    <Nav className={`${navBarStyles.navContainerWrapper}`}>
       {scrollTop && (
         <Nav.Item id="home" className={navBarStyles.navItem}>
           <Link href="/">

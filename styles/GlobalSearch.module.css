@@ -1,0 +1,19 @@
+.inputSvg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 23px;
+  top: calc(50% - 0.5em);
+  transform: translateY(-50%);
+}
+
+.input {
+  height: 47px;
+  border-radius: 0;
+  background: #ebebeb;
+  font-weight: 400;
+  font-size: 16px;
+  color: #656565;
+  border: none;
+}

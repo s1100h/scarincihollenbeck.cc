@@ -5,13 +5,13 @@ import textStyles from 'styles/Text.module.css';
 const TopNavLinks = () => (
   <>
     <Link href="/subscribe">
-      <a className={`ml-2 ${textStyles.btn}`}>Join our mailing list</a>
+      <a className={`ml-2 ${textStyles.btn}`}>Contact us</a>
     </Link>
     <a
       href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
       target="_blank"
       rel="noreferrer"
-      className={`ml-2 ${textStyles.btn}`}
+      className={`${textStyles.btn}`}
     >
       Make payment
     </a>
