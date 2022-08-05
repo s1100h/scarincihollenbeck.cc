@@ -47,30 +47,34 @@ const FirmNews = () => {
         {Object.keys(featuredArticle).length > 0 && (
           <div className={`${lineStyles.shadow} ${lineStyles.pItem} `}>
             <Link href={featuredArticle.url}>
-              <a className="text-dark">
-                <Image
+              <a className={lineStyles.featuredArticle}>
+                <img
+                  className={lineStyles.featuredArticleImg}
                   src={featuredArticle.image}
                   alt={featuredArticle.title}
-                  width={750}
-                  height={350}
-                  layout="intrinsic"
                 />
-                <p className="h5">
-                  <strong>{featuredArticle.title}</strong>
-                </p>
-                <div dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)} />
+                <h4>{featuredArticle.title}</h4>
+                <div
+                  className={lineStyles.excerpt}
+                  dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)}
+                />
+                <div className={lineStyles.bottom}>
+                  <span className={lineStyles.author}>
+                    <strong>Author: </strong>
+                    {featuredArticle.author}
+                  </span>
+                  <span className={lineStyles.date}>
+                    <strong>{formatDate(featuredArticle.date)}</strong>
+                  </span>
+                </div>
               </a>
             </Link>
-            <p>{formatDate(featuredArticle.date)}</p>
           </div>
         )}
         {olderArticles.length > 0 && (
-          <div>
+          <div className={lineStyles.itemSmollWrapper}>
             {olderArticles.map((post) => (
-              <div
-                key={post.id}
-                className={`${lineStyles.shadow} ${lineStyles.pItem} d-flex flex-column mb-4`}
-              >
+              <div key={post.id} className={`${lineStyles.shadow} ${lineStyles.pItem}`}>
                 <Link href={post.url}>
                   <a className={`${lineStyles.itemSmoll} text-dark`}>
                     <Image
@@ -80,12 +84,18 @@ const FirmNews = () => {
                       height={150}
                       layout="intrinsic"
                     />
-                    <p className="mb-0">
-                      <strong>{post.title}</strong>
-                      <strong>Author: </strong>
-                      {post.author}
-                      <strong>{formatDate(post.date)}</strong>
-                    </p>
+                    <div className={lineStyles.itemSmollText}>
+                      <h4 className={lineStyles.itemSmollTitle}>{post.title}</h4>
+                      <div className={lineStyles.itemSmollTextBot}>
+                        <span>
+                          <strong>Author: </strong>
+                          {post.author}
+                        </span>
+                        <span>
+                          <strong>{formatDate(post.date)}</strong>
+                        </span>
+                      </div>
+                    </div>
                   </a>
                 </Link>
               </div>

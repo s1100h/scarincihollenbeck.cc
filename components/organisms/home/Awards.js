@@ -23,7 +23,7 @@ const Awards = ({ awards }) => {
     <div className="wrapper-section">
       <div className="title-block-wr">
         <h3 className="title-block">AWARDS & ACCOLADES</h3>
-        <a href="#" className="btn">
+        <a href="#" className="btn-red">
           Award Methodology
         </a>
       </div>

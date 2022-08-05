@@ -313,7 +313,7 @@ footer .wrapper-section {
 .title-block-wr .title-block {
 }
 
-.btn {
+.btn-red {
   padding: 15px 40px;
   background: #a91110;
   font-style: normal;
@@ -326,7 +326,7 @@ footer .wrapper-section {
   margin-left: 20px;
 }
 
-.btn:hover {
+.btn-red:hover {
   color: #ffffff;
   text-decoration: none;
 }

@@ -87,7 +87,6 @@ const HomePage = ({
     <AboutFirmSection {...aboutFirm} />
     {/* <HomePageLink link={aboutFirm.linkUrl} title={aboutFirm.linkLabel} /> */}
     {/* <HomeOurLeadership leaders={leadership} /> */}
-    <AllOfficeLocations offices={offices} />
     {/* <HomePageLink link="/awards" title="Award Methodology"/> */}
     <FirmNews />
     <Awards awards={awards} />
