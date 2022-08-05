@@ -1,35 +1,123 @@
 /** Common element styles **/
-.lineHeader {
-  border-bottom: 1px solid #d1d1d1;
-  text-align: center;
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+  width: 1650px;
+  margin: 0 auto;
+  max-width: 96%;
+  gap: 44px;
+  margin-bottom: 150px;
 }
 
-.lineHeader h3 {
-  background: #fff;
-  color: #1a1a1a;
-  display: inline-block;
-  font-size: 1.4rem;
-  letter-spacing: 0.15em;
-  line-height: 26px;
-  margin-bottom: 0;
-  padding: 0 15px;
-  position: relative;
-  text-transform: uppercase;
-  top: 13px;
+.btn {
+  padding: 15px 40px;
+  background: #a91110;
   font-style: normal;
-  font-weight: 400;
-  font-weight: 900;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.lineHeader .active {
-  color: #b50000;
-  text-decoration: underline;
-  color: #b50000;
-  text-decoration: underline;
-  font-size: 1.2rem;
-  text-shadow: 1px 2px 4px #999;
+.btn:hover {
+  color: white;
+  text-decoration: none;
 }
 
-.lineHeader h3:hover {
-  cursor: pointer;
+.btn:after {
+  margin-left: 15px;
+  content: url('/images/arrow_right.svg');
+  width: 19px;
+  height: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  /* flex: 1; */
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.itemWrapper {
+  padding: 40px 75px 40px 50px;
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+  box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
+}
+
+.title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.24;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.24;
+  margin-bottom: 7px;
+  color: #a91110;
+}
+
+.location {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 44px;
+}
+
+.awardWr {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.awardItem {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(180deg, #101113 68.23%, #60191b 94.79%);
+}
+
+.firmNews {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 40px;
+}
+
+.itemSmoll {
+  display: flex;
+}
+
+.shadow {
+  box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
+}
+
+.pItem {
+  padding: 32px;
+}
+
+.map {
+}
+
+.items {
 }

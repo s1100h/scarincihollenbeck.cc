@@ -9,6 +9,10 @@ import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import styles from 'styles/Home.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import Head from 'next/head';
+import SideBar from '../organisms/locations/LocationsSidebar';
+import { buildLocationSchema } from '../../utils/json-ld-schemas';
+import LocationsBody from '../organisms/locations/LocationsBody';
 
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
 const HomeOurLeadership = dynamic(() => import('components/organisms/home/OurLeadership'));
@@ -18,6 +22,7 @@ const HomePageLink = dynamic(() => import('components/organisms/home/PageLink'))
 const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'));
 
 const HomePage = ({
+  currentOffice,
   seo,
   aboutFirm,
   awards,
@@ -31,62 +36,62 @@ const HomePage = ({
   <>
     <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />
     <HomeBanner {...banner} />
-    <Container>
-      <HomeMainTag {...intro} />
-      <HomeHoneyCombSection
-        contentOne={(
-          <Image
-            src={formatSrcToCloudinaryUrl(serviceOne?.serviceImage?.sourceUrl)}
-            alt={serviceOne?.title}
-            width={400}
-            height={400}
-            layout="intrinsic"
-          />
-        )}
-        contentTwo={(
-          <div className={`${styles.honeyCombContent} float-right`}>
-            <p className={styles.honeycombTitle}>
-              <strong className="text-uppercase">{serviceOne?.title}</strong>
-            </p>
-            <p>{serviceOne?.description}</p>
-            <Link href={serviceOne?.linkUrl}>
-              <a>{serviceOne?.linkLabel}</a>
-            </Link>
-          </div>
-        )}
-      />
-      <HomeHoneyCombSection
-        contentOne={(
-          <div className={styles.honeyCombContent}>
-            <p className={styles.honeycombTitle}>
-              <strong className="text-uppercase">{serviceTwo?.title}</strong>
-            </p>
-            <p>{serviceTwo?.description}</p>
-            <Link href={serviceTwo?.linkUrl}>
-              <a>{serviceTwo?.linkLabel}</a>
-            </Link>
-          </div>
-        )}
-        contentTwo={(
-          <div className="float-right">
-            <Image
-              src={formatSrcToCloudinaryUrl(serviceTwo?.serviceImage?.sourceUrl)}
-              alt={serviceTwo?.title}
-              width={400}
-              height={400}
-              layout="intrinsic"
-            />
-          </div>
-        )}
-      />
-      <AboutFirmSection {...aboutFirm} />
-      <HomePageLink link={aboutFirm.linkUrl} title={aboutFirm.linkLabel} />
-      <HomeOurLeadership leaders={leadership} />
-      <Awards awards={awards} />
-      <HomePageLink link="/awards" title="Award Methodology" />
-      <AllOfficeLocations offices={offices} />
-      <FirmNews />
-    </Container>
+    {/* <Container> */}
+    {/* <HomeMainTag {...intro} /> */}
+    {/* <HomeHoneyCombSection */}
+    {/*  contentOne={( */}
+    {/*    <Image */}
+    {/*      src={formatSrcToCloudinaryUrl(serviceOne?.serviceImage?.sourceUrl)} */}
+    {/*      alt={serviceOne?.title} */}
+    {/*      width={400} */}
+    {/*      height={400} */}
+    {/*      layout="intrinsic" */}
+    {/*    /> */}
+    {/*  )} */}
+    {/*  contentTwo={( */}
+    {/*    <div className={`${styles.honeyCombContent} float-right`}> */}
+    {/*      <p className={styles.honeycombTitle}> */}
+    {/*        <strong className="text-uppercase">{serviceOne?.title}</strong> */}
+    {/*      </p> */}
+    {/*      <p>{serviceOne?.description}</p> */}
+    {/*      <Link href={serviceOne?.linkUrl}> */}
+    {/*        <a>{serviceOne?.linkLabel}</a> */}
+    {/*      </Link> */}
+    {/*    </div> */}
+    {/*  )} */}
+    {/* /> */}
+    {/* <HomeHoneyCombSection */}
+    {/*  contentOne={( */}
+    {/*    <div className={styles.honeyCombContent}> */}
+    {/*      <p className={styles.honeycombTitle}> */}
+    {/*        <strong className="text-uppercase">{serviceTwo?.title}</strong> */}
+    {/*      </p> */}
+    {/*      <p>{serviceTwo?.description}</p> */}
+    {/*      <Link href={serviceTwo?.linkUrl}> */}
+    {/*        <a>{serviceTwo?.linkLabel}</a> */}
+    {/*      </Link> */}
+    {/*    </div> */}
+    {/*  )} */}
+    {/*  contentTwo={( */}
+    {/*    <div className="float-right"> */}
+    {/*      <Image */}
+    {/*        src={formatSrcToCloudinaryUrl(serviceTwo?.serviceImage?.sourceUrl)} */}
+    {/*        alt={serviceTwo?.title} */}
+    {/*        width={400} */}
+    {/*        height={400} */}
+    {/*        layout="intrinsic" */}
+    {/*      /> */}
+    {/*    </div> */}
+    {/*  )} */}
+    {/* /> */}
+    <AboutFirmSection {...aboutFirm} />
+    {/* <HomePageLink link={aboutFirm.linkUrl} title={aboutFirm.linkLabel} /> */}
+    {/* <HomeOurLeadership leaders={leadership} /> */}
+    <AllOfficeLocations offices={offices} />
+    {/* <HomePageLink link="/awards" title="Award Methodology"/> */}
+    <FirmNews />
+    <Awards awards={awards} />
+    {/* </Container> */}
   </>
 );
 

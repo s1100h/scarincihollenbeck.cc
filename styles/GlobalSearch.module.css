@@ -9,7 +9,7 @@
 }
 
 .input {
-  height: 47px;
+  height: 47px !important;
   border-radius: 0;
   background: #ebebeb;
   font-weight: 400;

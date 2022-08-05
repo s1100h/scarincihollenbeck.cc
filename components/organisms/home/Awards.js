@@ -20,16 +20,23 @@ const Awards = ({ awards }) => {
     .sort((a, b) => (a.order > b.order ? 1 : -1));
 
   return (
-    <Row className="mt-5 px-2">
-      <Col sm={12} className="mt-5 mb-0 pb-0">
-        <div className={lineStyles.lineHeader}>
-          <h3>Awards & Accolades</h3>
-        </div>
-      </Col>
-      {formattedAwards.map((award) => (
-        <Accolade key={award.id} image={award.image} colSize={formattedAwards.length > 4 ? 4 : 3} />
-      ))}
-    </Row>
+    <div className="wrapper-section">
+      <div className="title-block-wr">
+        <h3 className="title-block">AWARDS & ACCOLADES</h3>
+        <a href="#" className="btn">
+          Award Methodology
+        </a>
+      </div>
+      <div className={lineStyles.awardWr}>
+        {formattedAwards.map((award) => (
+          <Accolade
+            key={award.id}
+            image={award.image}
+            colSize={formattedAwards.length > 4 ? 4 : 3}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

@@ -1,6 +1,21 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/photo-first-screen.webp) no-repeat center center;
+  position: relative;
+}
+
+.banner:before {
+  display: block;
+  height: 148%;
+  width: 50%;
+  position: absolute;
+  content: '';
+  background-image: url(/images/photo-first-screen.webp);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+  bottom: -128px;
+  right: 0;
+  z-index: -1;
 }
 
 .backPageBanner {
@@ -18,6 +33,9 @@
   /*background-size: cover;*/
   /*background-repeat: no-repeat;*/
   /*width: 100%;*/
+  width: 1650px;
+  margin: 0 auto;
+  max-width: 96%;
 }
 
 .banner,
@@ -33,6 +51,9 @@
   margin-bottom: 1.5em;
   height: auto;
 }
+.banner {
+  margin-bottom: 80px;
+}
 
 .bannerContainer {
   background-color: rgba(0, 0, 0, 0.556);
@@ -43,26 +64,26 @@
 
 @media (min-width: 1250px) {
   .redBanner {
-    width: 80%;
-    padding-right: 114px;
+    /*width: 80%;*/
+    /*padding-right: 114px;*/
   }
 }
 
 @media (min-width: 1450px) {
   .redBanner {
-    width: 70%;
+    /*width: 70%;*/
   }
 }
 
 @media (min-width: 1650px) {
   .redBanner {
-    width: 60%;
+    /*width: 60%;*/
   }
 }
 
 @media (max-width: 768px) {
   .redBanner {
-    background-position: 80%;
+    /*background-position: 80%;*/
   }
 }
 
@@ -74,13 +95,11 @@
 
 @media (min-width: 1200px) {
   .homeBannerContainer {
-    margin-left: 4em;
+    /*margin-left: 4em;*/
   }
 }
 
 .homeBanner {
-  margin-top: 6.5em;
-  margin-bottom: 6.5em;
 }
 
 .tabBanner,
@@ -95,6 +114,7 @@
 .noTabBanner {
   margin-bottom: 3.5em;
 }
+
 /*
 .multiBackBanner {
   margin-top: 2.5em;
@@ -105,17 +125,36 @@
     margin-bottom: 2em;
   }
 } */
-
 .text {
-  font-size: 4.4rem;
-  text-shadow: 3px 3px 3px #000;
-  line-height: 1.17;
+  font-family: 'Kenjo I';
+  font-weight: 400;
+  font-size: 150px;
+  line-height: 151px;
+  color: #000000;
 }
 
 .text:first-child {
-  font-size: 4rem;
+  font-family: 'Gotham Pro';
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.63);
+}
 
-  margin-bottom: -15px;
+.quote {
+  display: flex;
+  width: 65%;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.quote:before {
+  margin-right: 10px;
+  display: block;
+  content: url(/images/quote.webp);
 }
 
 @media (max-width: 768px) {

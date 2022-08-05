@@ -9,6 +9,7 @@ const formatPost = (post) => ({
   id: post.id,
   title: post.title.rendered,
   url: post.link.replace('https://scarincihollenbeck.com', ''),
+  author: post.yoast_head_json.author,
   date: post.date,
   excerpt: post.excerpt.rendered,
   image: formatSrcToCloudinaryUrl(post.better_featured_image.source_url.replace('Feature', 'Body')),
@@ -40,55 +41,59 @@ const FirmNews = () => {
   }, []);
 
   return (
-    <Row className="mb-5">
-      <Col sm={12} className="my-5">
-        <div className={lineStyles.lineHeader}>
-          <h3>Latest From The Firm</h3>
-        </div>
-      </Col>
-      {Object.keys(featuredArticle).length > 0 && (
-        <Col sm={12} md={8}>
-          <Link href={featuredArticle.url}>
-            <a className="text-dark">
-              <Image
-                src={featuredArticle.image}
-                alt={featuredArticle.title}
-                width={750}
-                height={350}
-                layout="intrinsic"
-              />
-              <p className="h5">
-                <strong>{featuredArticle.title}</strong>
-              </p>
-              <p>{formatDate(featuredArticle.date)}</p>
-              <div dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)} />
-            </a>
-          </Link>
-        </Col>
-      )}
-      {olderArticles.length > 0 && (
-        <Col sm={12} md={4}>
-          {olderArticles.map((post) => (
-            <div key={post.id} className="d-flex flex-column mb-4">
-              <Link href={post.url}>
-                <a className="text-dark">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    width={350}
-                    height={150}
-                    layout="intrinsic"
-                  />
-                  <p className="mb-0">
-                    <strong>{post.title}</strong>
-                  </p>
-                </a>
-              </Link>
-            </div>
-          ))}
-        </Col>
-      )}
-    </Row>
+    <div className="wrapper-section">
+      <h3 className="title-block">Latest From The Firm</h3>
+      <div className={lineStyles.firmNews}>
+        {Object.keys(featuredArticle).length > 0 && (
+          <div className={`${lineStyles.shadow} ${lineStyles.pItem} `}>
+            <Link href={featuredArticle.url}>
+              <a className="text-dark">
+                <Image
+                  src={featuredArticle.image}
+                  alt={featuredArticle.title}
+                  width={750}
+                  height={350}
+                  layout="intrinsic"
+                />
+                <p className="h5">
+                  <strong>{featuredArticle.title}</strong>
+                </p>
+                <div dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)} />
+              </a>
+            </Link>
+            <p>{formatDate(featuredArticle.date)}</p>
+          </div>
+        )}
+        {olderArticles.length > 0 && (
+          <div>
+            {olderArticles.map((post) => (
+              <div
+                key={post.id}
+                className={`${lineStyles.shadow} ${lineStyles.pItem} d-flex flex-column mb-4`}
+              >
+                <Link href={post.url}>
+                  <a className={`${lineStyles.itemSmoll} text-dark`}>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      width={350}
+                      height={150}
+                      layout="intrinsic"
+                    />
+                    <p className="mb-0">
+                      <strong>{post.title}</strong>
+                      <strong>Author: </strong>
+                      {post.author}
+                      <strong>{formatDate(post.date)}</strong>
+                    </p>
+                  </a>
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

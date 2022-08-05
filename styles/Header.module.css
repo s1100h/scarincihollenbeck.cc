@@ -11,6 +11,16 @@
   align-items: flex-start;
   padding-top: 40px;
 }
+
+.headerWhite {
+  background: #fff;
+  padding-bottom: 10px;
+}
+
+.headerWhite .wrapper {
+  padding-top: 20px;
+}
+
 .middle {
   display: flex;
   flex-flow: column;

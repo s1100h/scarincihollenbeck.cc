@@ -25,7 +25,11 @@ export default function NavBar() {
   }, [scrollTop]);
 
   return (
-    <header className={`${headerStyles.header} mb-0 pt-1  sticky-top top--1 bg-white`}>
+    <header
+      className={`${headerStyles.header} ${
+        scrollTop ? headerStyles.headerWhite : ''
+      } mb-0 pt-1  sticky-top top--1`}
+    >
       <div className={`${headerStyles.wrapper}`}>
         <Col className={`${navBarStyles.logoBanner} ml-0 pl-0`}>
           <SiteLogo scrollTop={scrollTop} />

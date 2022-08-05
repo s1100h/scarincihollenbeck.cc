@@ -10,17 +10,17 @@ const LocationCard = ({ title, slug, featuredImage }) => (
     <div className="border">
       <Link href={`/location/${slug}`}>
         <a>
-          <Image
-            src={
-              featuredImage?.node?.sourceUrl
-                ? formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl)
-                : IMAGE_NOT_FOUND_URL
-            }
-            alt={title}
-            width={253}
-            height={167}
-            layout="responsive"
-          />
+          {/* <Image */}
+          {/*  src={ */}
+          {/*    featuredImage?.node?.sourceUrl */}
+          {/*      ? formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl) */}
+          {/*      : IMAGE_NOT_FOUND_URL */}
+          {/*  } */}
+          {/*  alt={title} */}
+          {/*  width={253} */}
+          {/*  height={167} */}
+          {/*  layout="responsive" */}
+          {/* /> */}
           <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
             <strong>{title}</strong>
           </p>

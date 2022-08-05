@@ -86,6 +86,8 @@
   .navItem {
     position: relative;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
     transition: all 200ms linear;
   }
   .navItem:hover:after {
