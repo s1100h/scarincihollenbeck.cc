@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { formatSrcToCloudinaryUrl, formatDate, createMarkup } from 'utils/helpers';
 import lineStyles from 'styles/LineHeader.module.css';
+import parse from 'html-react-parser';
 
 const formatPost = (post) => ({
   id: post.id,
@@ -89,7 +90,7 @@ const FirmNews = () => {
                       <div className={lineStyles.itemSmollTextBot}>
                         <span>
                           <strong>Author: </strong>
-                          {post.author}
+                          {parse(post.author)}
                         </span>
                         <span>
                           <strong>{formatDate(post.date)}</strong>
