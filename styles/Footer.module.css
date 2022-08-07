@@ -18,7 +18,7 @@
 .linkTitle {
   font-size: 20px;
   line-height: 19px;
-  margin-bottom: 26px;
+  margin-bottom: 18px;
   display: inline-block;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .linkList > li {
-  margin-bottom: 26px;
+  margin-bottom: 15px;
 }
 
 .mainLinks {
