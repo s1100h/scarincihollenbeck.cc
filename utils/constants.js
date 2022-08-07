@@ -232,27 +232,41 @@ export const OFFICE_LOCATIONS = [
     slug: '/location/lyndhurst',
     label: 'Lyndhurst, NJ',
     address: '1100 Valley Brook Ave. Lyndhurst, NJ 07071',
+    mapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.1668721445153!2d-74.11046358459224!3d40.80232667932217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c256174fd409ef%3A0xe46c0af03865c18!2s1100+Valley+Brook+Ave%2C+Lyndhurst%2C+NJ+07071!5e0!3m2!1sen!2sus!4v1537300224657',
+    tel: '201-896-4100',
+    fax: '201-896-8660',
   },
   {
     id: 2,
     slug: '/location/red-bank',
     label: 'Red Bank, NJ',
     address: '331 Newman Springs Road Red Bank, NJ 07701',
+    mapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.34467374956!2d-74.09794688434188!3d40.33469936854769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c231df5cc8d921%3A0x41ee2239f0384ab0!2s331+Newman+Springs+Rd%2C+Red+Bank%2C+NJ+07701!5e0!3m2!1sen!2sus!4v1537300318797',
+    tel: '732-780-5590',
+    fax: '732-695-8108',
   },
   {
     id: 3,
     slug: '/location/new-york',
     label: 'New York, NY',
     address: '589 8th Avenue, 16th Floor, New York, NY 10018',
+    mapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.305278781976!2d-73.99361708459378!3d40.75530987932725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259acdec357a3%3A0x25fd7e9975e1d4d8!2s589%208th%20Ave%2C%20New%20York%2C%20NY%2010018!5e0!3m2!1sen!2sus!4v1590683744779!5m2!1sen!2sus',
+    tel: '212-286-0747',
+    fax: '212-808-4155',
   },
   {
     id: 4,
     slug: '/location/washington-dc',
     label: 'Washington, D.C.',
     address: 'Suite 250 1000 Potomac St., N.W. Washington D.C. 20007',
+    mapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.895582561126!2d-77.06740448437249!3d38.90350305418882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b64f2644b13d%3A0xb55e5bb3e6365035!2s1000+Potomac+St+NW+%23250%2C+Washington%2C+DC+20007!5e0!3m2!1sen!2sus!4v1537300455274',
+    tel: '202-452-1334',
   },
 ];
-
 /** List the Core Practices in the sidebar of the practice pages and in the footer */
 export const CORE_PRACTICES = [
   {
