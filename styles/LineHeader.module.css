@@ -163,8 +163,14 @@
 
 .itemSmoll {
   display: grid;
+  height: 100%;
   grid-template-columns: 38% 58%;
   justify-content: space-between;
+}
+
+.itemSmoll img {
+  height: 100%;
+  object-fit: cover;
 }
 
 .itemSmoll:hover {
@@ -199,6 +205,7 @@
 }
 
 .pItem {
+  flex: 1;
   padding: 32px;
 }
 
