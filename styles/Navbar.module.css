@@ -5,10 +5,15 @@
   }
 }
 
-@media (min-width: 0px) and (max-width: 449px) {
-  .navContainer {
-    display: none !important;
+@media only screen and (max-width: 960px) {
+  .logoBanner {
+    position: absolute !important;
+    left: 20px;
+    top: 20px;
   }
+}
+
+@media (min-width: 0px) and (max-width: 449px) {
   .mobileMenu,
   .logoBanner,
   .contactBanner {
@@ -34,6 +39,22 @@
   }
   .contactBanner {
     justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .navContainer {
+    display: none !important;
+  }
+  .buttonContainerHeader {
+    padding-left: 0 !important;
+    margin-right: 50px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .buttonContainerHeader a {
+    margin-left: 0 !important;
   }
 }
 
@@ -79,7 +100,7 @@
     display: none;
   }
   .navContainer {
-    display: flex !important;
+    /*display: flex !important;*/
     justify-content: space-between !important;
     padding: 0 !important;
   }

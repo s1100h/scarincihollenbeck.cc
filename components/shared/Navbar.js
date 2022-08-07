@@ -15,7 +15,7 @@ export default function NavBar() {
   useEffect(() => {
     const onScroll = (e) => {
       setScrollTop(true);
-      if (e.target.documentElement.scrollTop < 135) {
+      if (e.target.documentElement.scrollTop < 100) {
         setScrollTop(false);
       }
     };
@@ -38,7 +38,9 @@ export default function NavBar() {
           <GlobalSearch scrollTop={scrollTop} />
           <SiteNavs scrollTop={scrollTop} />
         </div>
-        <Col className={`d-flex ${navBarStyles.contactBanner} pr-0`}>
+        <Col
+          className={`d-flex ${navBarStyles.contactBanner} ${navBarStyles.buttonContainerHeader} pr-0`}
+        >
           <TopNavLinks />
         </Col>
         <Col
@@ -49,7 +51,7 @@ export default function NavBar() {
         >
           {' '}
         </Col>
-        <div className="d-block d-sm-none">
+        <div className="d-block d-md-none">
           <MobileMenu />
         </div>
       </div>

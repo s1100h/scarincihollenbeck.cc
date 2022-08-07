@@ -13,9 +13,17 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right center;
-  bottom: -128px;
+  bottom: -88px;
   right: 0;
   z-index: -1;
+}
+
+@media only screen and (max-width: 1100px) {
+  .banner:before {
+    height: 200%;
+    bottom: 0;
+    background-position: right bottom;
+  }
 }
 
 .backPageBanner {
@@ -51,8 +59,9 @@
   margin-bottom: 1.5em;
   height: auto;
 }
+
 .banner {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .bannerContainer {
@@ -157,15 +166,34 @@
   content: url(/images/quote.webp);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .banner {
     flex-direction: column;
   }
   .text {
-    font-size: 2.4em;
+    font-size: 100px;
+  }
+  .text:first-child {
+    font-size: 36px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+  }
+  .quote {
+    width: 80%;
+    font-size: 16px;
+  }
+  .text {
+    font-size: 60px;
+    line-height: 1;
   }
   .text:first-child {
     font-size: 2.4em;
     margin-bottom: 0;
+    margin-bottom: 20px;
   }
 }

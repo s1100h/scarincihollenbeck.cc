@@ -301,6 +301,21 @@ em {
   margin: 0 auto 150px;
 }
 
+@media only screen and (max-width: 768px) {
+  .title-block {
+    font-size: 48px;
+  }
+  .title-block-wr {
+    flex-flow: column;
+  }
+  .title-block-wr .btn-red {
+    margin-left: 0;
+  }
+  .wrapper-section {
+    margin: 0 auto 70px;
+  }
+}
+
 footer .wrapper-section {
   margin-bottom: 0;
 }
@@ -344,6 +359,7 @@ footer .wrapper-section {
   background: #a91110;
   color: #ffffff;
 }
+
 .locationTitleJs_active:after {
   content: url('/images/arrow-top-white.svg');
   background: #a91110;

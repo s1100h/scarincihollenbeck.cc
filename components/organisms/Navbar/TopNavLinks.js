@@ -5,7 +5,7 @@ import textStyles from 'styles/Text.module.css';
 const TopNavLinks = () => (
   <>
     <Link href="/subscribe">
-      <a className={`ml-2 ${textStyles.btn}`}>Contact us</a>
+      <a className={` ${textStyles.btn}`}>Contact us</a>
     </Link>
     <a
       href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"

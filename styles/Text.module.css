@@ -23,11 +23,21 @@
   color: #ffffff;
   text-decoration: none;
 }
-
+@media only screen and (max-width: 768px) {
+  .btn {
+    padding: 15px;
+  }
+}
 .locationCard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
+}
+
+@media only screen and (max-width: 960px) {
+  .locationCard {
+    grid-template-columns: auto;
+  }
 }
 
 .locationContentWr {
@@ -43,6 +53,12 @@
   display: grid;
   gap: 22px;
   grid-template-columns: repeat(3, 1fr);
+}
+
+@media only screen and (max-width: 768px) {
+  .locationContent {
+    grid-template-columns: auto;
+  }
 }
 
 .locationAdress,
@@ -121,8 +137,15 @@
 .locationCardMap > div {
   height: 100%;
 }
+
 .locationCardMap iframe {
   height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .locationCardMap {
+    width: 100%;
+  }
 }
 
 .locationBottom {

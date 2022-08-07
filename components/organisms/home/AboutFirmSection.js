@@ -7,7 +7,6 @@ const AboutFirmSection = ({ description, title }) => (
     <div className={lineStyles.item}>
       <a href="/attorneys" className={lineStyles.btn}>
         Find your attorney
-        {' '}
         <span />
       </a>
       <div className={lineStyles.itemWrapper}>
@@ -26,7 +25,6 @@ const AboutFirmSection = ({ description, title }) => (
     <div className={lineStyles.item}>
       <a href="/practices" className={lineStyles.btn}>
         See our practices
-        {' '}
         <span />
       </a>
       <div className={lineStyles.itemWrapper}>
