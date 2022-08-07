@@ -86,11 +86,11 @@ const FirmNews = () => {
                       layout="intrinsic"
                     />
                     <div className={lineStyles.itemSmollText}>
-                      <h4 className={lineStyles.itemSmollTitle}>{post.title}</h4>
+                      <h4 className={lineStyles.itemSmollTitle}>{parse(post.title)}</h4>
                       <div className={lineStyles.itemSmollTextBot}>
                         <span>
-                          <strong>Author: </strong>
-                          {parse(post.author)}
+                          <strong>Author : </strong>
+                          {post.author}
                         </span>
                         <span>
                           <strong>{formatDate(post.date)}</strong>
