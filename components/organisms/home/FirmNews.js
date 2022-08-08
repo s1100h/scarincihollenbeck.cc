@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { formatSrcToCloudinaryUrl, formatDate, createMarkup } from 'utils/helpers';
 import lineStyles from 'styles/LineHeader.module.css';
+import parse from 'html-react-parser';
 
 const formatPost = (post) => ({
   id: post.id,
   title: post.title.rendered,
   url: post.link.replace('https://scarincihollenbeck.com', ''),
+  author: post.yoast_head_json.author,
   date: post.date,
   excerpt: post.excerpt.rendered,
   image: formatSrcToCloudinaryUrl(post.better_featured_image.source_url.replace('Feature', 'Body')),
@@ -40,55 +42,69 @@ const FirmNews = () => {
   }, []);
 
   return (
-    <Row className="mb-5">
-      <Col sm={12} className="my-5">
-        <div className={lineStyles.lineHeader}>
-          <h3>Latest From The Firm</h3>
-        </div>
-      </Col>
-      {Object.keys(featuredArticle).length > 0 && (
-        <Col sm={12} md={8}>
-          <Link href={featuredArticle.url}>
-            <a className="text-dark">
-              <Image
-                src={featuredArticle.image}
-                alt={featuredArticle.title}
-                width={750}
-                height={350}
-                layout="intrinsic"
-              />
-              <p className="h5">
-                <strong>{featuredArticle.title}</strong>
-              </p>
-              <p>{formatDate(featuredArticle.date)}</p>
-              <div dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)} />
-            </a>
-          </Link>
-        </Col>
-      )}
-      {olderArticles.length > 0 && (
-        <Col sm={12} md={4}>
-          {olderArticles.map((post) => (
-            <div key={post.id} className="d-flex flex-column mb-4">
-              <Link href={post.url}>
-                <a className="text-dark">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    width={350}
-                    height={150}
-                    layout="intrinsic"
-                  />
-                  <p className="mb-0">
-                    <strong>{post.title}</strong>
-                  </p>
-                </a>
-              </Link>
-            </div>
-          ))}
-        </Col>
-      )}
-    </Row>
+    <div className="wrapper-section">
+      <h3 className="title-block">Latest From The Firm</h3>
+      <div className={lineStyles.firmNews}>
+        {Object.keys(featuredArticle).length > 0 && (
+          <div className={`${lineStyles.shadow} ${lineStyles.pItem} `}>
+            <Link href={featuredArticle.url}>
+              <a className={lineStyles.featuredArticle}>
+                <img
+                  className={lineStyles.featuredArticleImg}
+                  src={featuredArticle.image}
+                  alt={featuredArticle.title}
+                />
+                <h4>{featuredArticle.title}</h4>
+                <div
+                  className={lineStyles.excerpt}
+                  dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)}
+                />
+                <div className={lineStyles.bottom}>
+                  <span className={lineStyles.author}>
+                    <strong>Author: </strong>
+                    {featuredArticle.author}
+                  </span>
+                  <span className={lineStyles.date}>
+                    <strong>{formatDate(featuredArticle.date)}</strong>
+                  </span>
+                </div>
+              </a>
+            </Link>
+          </div>
+        )}
+        {olderArticles.length > 0 && (
+          <div className={lineStyles.itemSmollWrapper}>
+            {olderArticles.map((post) => (
+              <div key={post.id} className={`${lineStyles.shadow} ${lineStyles.pItem}`}>
+                <Link href={post.url}>
+                  <a className={`${lineStyles.itemSmoll} text-dark`}>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      width={350}
+                      height={150}
+                      layout="intrinsic"
+                    />
+                    <div className={lineStyles.itemSmollText}>
+                      <h4 className={lineStyles.itemSmollTitle}>{parse(post.title)}</h4>
+                      <div className={lineStyles.itemSmollTextBot}>
+                        <span>
+                          <strong>Author : </strong>
+                          {post.author}
+                        </span>
+                        <span>
+                          <strong>{formatDate(post.date)}</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

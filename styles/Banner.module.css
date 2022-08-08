@@ -1,6 +1,29 @@
 /** Banner Image **/
 .banner {
-  background: url(/images/nynj-sunrise-banner.webp) no-repeat center center;
+  position: relative;
+}
+
+.banner:before {
+  display: block;
+  height: 148%;
+  width: 50%;
+  position: absolute;
+  content: '';
+  background-image: url(/images/photo-first-screen.webp);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+  bottom: -88px;
+  right: 0;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 1100px) {
+  .banner:before {
+    height: 200%;
+    bottom: 0;
+    background-position: right bottom;
+  }
 }
 
 .backPageBanner {
@@ -13,11 +36,14 @@
 
 /* /images/red-banner-opacity.png */
 .redBanner {
-  background-image: url(/images/red-banner-home.webp);
-  background-position: right;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
+  /*background-image: url(/images/red-banner-home.webp);*/
+  /*background-position: right;*/
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
+  /*width: 100%;*/
+  width: 1650px;
+  margin: 0 auto;
+  max-width: 96%;
 }
 
 .banner,
@@ -28,42 +54,45 @@
   -o-background-size: cover;
   background-size: cover;
   display: flex;
-  border-top: 5px solid #000;
-  border-bottom: 5px solid #000;
+  /*border-top: 5px solid #000;*/
+  /*border-bottom: 5px solid #000;*/
   margin-bottom: 1.5em;
   height: auto;
 }
 
+.banner {
+  margin-bottom: 40px;
+}
+
 .bannerContainer {
   background-color: rgba(0, 0, 0, 0.556);
-  box-shadow: 3px 5px 10px #000;
+  /*box-shadow: 3px 5px 10px #000;*/
   border: 2px solid #000;
   border-radius: 2px;
 }
 
 @media (min-width: 1250px) {
   .redBanner {
-    width: 80%;
-    padding-right: 114px;
+    /*width: 80%;*/
+    /*padding-right: 114px;*/
   }
 }
 
 @media (min-width: 1450px) {
   .redBanner {
-    width: 70%;
-
+    /*width: 70%;*/
   }
 }
 
 @media (min-width: 1650px) {
   .redBanner {
-    width: 60%;
+    /*width: 60%;*/
   }
 }
 
 @media (max-width: 768px) {
   .redBanner {
-    background-position: 80%;
+    /*background-position: 80%;*/
   }
 }
 
@@ -75,13 +104,11 @@
 
 @media (min-width: 1200px) {
   .homeBannerContainer {
-    margin-left: 4em;
+    /*margin-left: 4em;*/
   }
 }
 
 .homeBanner {
-  margin-top: 6.5em;
-  margin-bottom: 6.5em;
 }
 
 .tabBanner,
@@ -96,6 +123,7 @@
 .noTabBanner {
   margin-bottom: 3.5em;
 }
+
 /*
 .multiBackBanner {
   margin-top: 2.5em;
@@ -106,28 +134,66 @@
     margin-bottom: 2em;
   }
 } */
-
 .text {
-  font-size: 4.4rem;
-  text-shadow: 3px 3px 3px #000;
-  line-height: 1.17;
+  font-family: 'Kenjo I';
+  font-weight: 400;
+  font-size: 150px;
+  line-height: 151px;
+  color: #000000;
 }
 
 .text:first-child {
-  font-size: 4rem;
+  font-family: 'Gotham Pro';
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.63);
+}
 
-  margin-bottom: -15px;
+.quote {
+  display: flex;
+  width: 65%;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.quote:before {
+  margin-right: 10px;
+  display: block;
+  content: url(/images/quote.webp);
+}
+
+@media (max-width: 1100px) {
+  .banner {
+    flex-direction: column;
+  }
+  .text {
+    font-size: 100px;
+  }
+  .text:first-child {
+    font-size: 36px;
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 768px) {
   .banner {
     flex-direction: column;
   }
+  .quote {
+    width: 80%;
+    font-size: 16px;
+  }
   .text {
-    font-size: 2.4em;
+    font-size: 60px;
+    line-height: 1;
   }
   .text:first-child {
     font-size: 2.4em;
     margin-bottom: 0;
+    margin-bottom: 20px;
   }
 }

@@ -1,33 +1,82 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Col } from 'react-bootstrap';
 import textStyles from 'styles/Text.module.css';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import { IMAGE_NOT_FOUND_URL } from 'utils/constants';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import Map from '../location/Map';
+import { OFFICE_LOCATIONS } from '../../../utils/constants';
 
-const LocationCard = ({ title, slug, featuredImage }) => (
-  <Col sm={12} md={3} className="mx-auto d-block my-5">
-    <div className="border">
-      <Link href={`/location/${slug}`}>
-        <a>
-          <Image
-            src={
-              featuredImage?.node?.sourceUrl
-                ? formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl)
-                : IMAGE_NOT_FOUND_URL
-            }
-            alt={title}
-            width={253}
-            height={167}
-            layout="responsive"
-          />
-          <p className={`${textStyles.redTitle} my-3 ml-2 text-uppercase`}>
-            <strong>{title}</strong>
-          </p>
-        </a>
-      </Link>
+export default function LocationCard() {
+  const [score, setScore] = useState(false);
+
+  const handleClick = (event) => {
+    document.querySelectorAll('.locationParentJs_active').forEach((item) => {
+      if (item.classList.contains('locationParentJs_active')) {
+        item.classList.remove('locationParentJs_active');
+      }
+      const title = item.querySelector('.locationTitleJs');
+      if (title.classList.contains('locationTitleJs_active')) {
+        title.classList.remove('locationTitleJs_active');
+      }
+    });
+
+    const parent = event.target.closest('.locationParentJs');
+    const title = parent.querySelector('.locationTitleJs');
+
+    parent.classList.add('locationParentJs_active');
+    title.classList.add('locationTitleJs_active');
+    const ind = event.target.getAttribute('data-id') - 1;
+    return setScore(ind);
+  };
+  const arrSrc = [
+    OFFICE_LOCATIONS[0].mapUrl,
+    OFFICE_LOCATIONS[1].mapUrl,
+    OFFICE_LOCATIONS[2].mapUrl,
+    OFFICE_LOCATIONS[3].mapUrl,
+  ];
+
+  return (
+    <div className={textStyles.locationCard}>
+      <div className={textStyles.locationCardMap}>
+        <Map map={!score ? arrSrc[0] : arrSrc[`${score}`]} />
+      </div>
+      <div className={textStyles.locationOffices}>
+        {OFFICE_LOCATIONS.map((office, ind) => (
+          <div
+            className={`box-shadow  
+             ${
+               office.label === 'Lyndhurst, NJ' ? 'locationParentJs_active' : ''
+             }  locationParentJs`}
+          >
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+            <div
+              className={`${textStyles.locationTitle} ${
+                ind === 0 ? 'locationTitleJs_active' : ''
+              } locationTitleJs `}
+              data-id={office.id}
+              onClick={handleClick}
+            >
+              {office.label}
+            </div>
+            <div className={textStyles.locationContentWr}>
+              <div className={textStyles.locationContent}>
+                <div className={textStyles.locationAdress}>{office.address}</div>
+                <div className={textStyles.locationTel}>
+                  Phone:
+                  {office.tel}
+                </div>
+                <div className={textStyles.locationFax}>
+                  Fax:
+                  {office.fax}
+                </div>
+              </div>
+              <div className={textStyles.locationBottom}>
+                <Link href={`${office.slug}`}>
+                  <a className={textStyles.locationLink}>Attorneys</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-  </Col>
-);
-
-export default LocationCard;
+  );
+}

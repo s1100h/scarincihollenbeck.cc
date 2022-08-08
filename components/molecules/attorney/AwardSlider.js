@@ -22,7 +22,13 @@ const AwardSlider = ({ awards }) => {
         {awards.map(({ awardImage, awardLink, awardTitle }) => (
           <div key={awardTitle}>
             <a href={awardLink}>
-              <img data-src={awardImage.sourceUrl} src={awardImage.sourceUrl} alt={awardTitle} width="auto" height="120" />
+              <img
+                data-src={awardImage.sourceUrl}
+                src={awardImage.sourceUrl}
+                alt={awardTitle}
+                width="auto"
+                height="120"
+              />
             </a>
           </div>
         ))}

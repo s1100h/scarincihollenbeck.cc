@@ -4,22 +4,26 @@
     height: auto;
   }
 }
-@media (min-width: 0px) and (max-width: 449px) {
-  .navContainer {
-    display: none !important;
+
+@media only screen and (max-width: 960px) {
+  .logoBanner {
+    position: absolute !important;
+    left: 20px;
+    top: 20px;
   }
+}
+
+@media (min-width: 0px) and (max-width: 449px) {
   .mobileMenu,
   .logoBanner,
   .contactBanner {
     width: 100%;
     display: block;
   }
-
   .mobileMenu div {
     display: flex;
     justify-content: flex-end;
   }
-
   .mobileMenu {
     margin-bottom: 1em;
   }
@@ -29,7 +33,6 @@
   .navContainer {
     display: none !important;
   }
-
   .mobileMenu {
     display: flex;
     justify-content: flex-start;
@@ -38,6 +41,23 @@
     justify-content: flex-end;
   }
 }
+
+@media only screen and (max-width: 960px) {
+  .navContainer {
+    display: none !important;
+  }
+  .buttonContainerHeader {
+    padding-left: 0 !important;
+    margin-right: 50px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .buttonContainerHeader a {
+    margin-left: 0 !important;
+  }
+}
+
 @media (min-width: 576px) and (max-width: 992px) {
   .logoBanner img {
     margin-left: auto;
@@ -47,6 +67,7 @@
   .navContainer,
   .contactBanner {
     justify-content: center;
+    padding: 0;
   }
   .navItem {
     margin-right: 1em;
@@ -69,28 +90,27 @@
   .navItem {
     margin-right: 1em;
   }
-
   .navItem:last-child {
     margin-right: 0;
   }
 }
+
 @media (min-width: 576px) {
   .mobileMenu {
     display: none;
   }
   .navContainer {
-    background-color: #fff;
-    display: flex !important;
-    justify-content: center !important;
-    padding-left: 0;
+    /*display: flex !important;*/
+    justify-content: space-between !important;
+    padding: 0 !important;
   }
-
   .navItem {
     position: relative;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
     transition: all 200ms linear;
   }
-
   .navItem:hover:after {
     bottom: 0;
     opacity: 1;
@@ -98,13 +118,11 @@
   .navItem.active:hover:after {
     opacity: 0;
   }
-
   .navItem a:hover {
     text-decoration: none !important;
     color: #b50000;
     cursor: pointer;
   }
-
   .navItem:after {
     position: absolute;
     bottom: -5px;
@@ -116,18 +134,17 @@
     opacity: 0;
     transition: all 200ms linear;
   }
-
   .dropDownItem > a::after {
     display: none;
   }
-
   .dropDownItem > a {
-    background-color: #fff;
-    padding: 0;
+    padding: 0 !important;
     margin: 0;
     color: #000 !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
   }
-
   .dropDownNavItem {
     padding: 3px 15px;
     color: #212121;
@@ -143,7 +160,6 @@
     background-color: #a9a9a9 !important;
     border-bottom: 3px solid #fff !important;
   }
-
   .borderWrapper {
     border-bottom: 1px solid #dee2e6 !important;
   }
@@ -151,6 +167,15 @@
 
 @media (min-width: 1200px) {
   .navContainer {
-    justify-content: flex-end !important;
+    justify-content: space-between;
+    /*justify-content: flex-end !important;*/
+  }
+  .logoBanner {
+    margin-top: -10px;
+  }
+  .navContainerWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }

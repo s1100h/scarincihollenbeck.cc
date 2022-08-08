@@ -22,9 +22,59 @@
   font-display: swap;
 }
 
+/*@font-face {*/
+/*  font-family: 'Kenjo II';*/
+/*  src: url('/fonts/KenjoII.eot');*/
+/*  src: local('Kenjo II'), local('KenjoII'),*/
+/*  url('/fonts/KenjoII.eot?#iefix') format('embedded-opentype'),*/
+/*  url('/fonts/KenjoII.woff2') format('woff2'),*/
+/*  url('/fonts/KenjoII.woff') format('woff'),*/
+/*  url('/fonts/KenjoII.ttf') format('truetype');*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
+@font-face {
+  font-family: 'Kenjo I';
+  src: url('/fonts/KenjoI.eot');
+  src: local('Kenjo I'), local('KenjoI'),
+    url('/fonts/KenjoI.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/KenjoI.woff2') format('woff2'), url('/fonts/KenjoI.woff') format('woff'),
+    url('/fonts/KenjoI.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: local('Gotham Pro Bold'), local('Gotham-Pro-Bold'),
+    url('/fonts/GothamPro-Bold.woff2') format('woff2'),
+    url('/fonts/GothamPro-Bold.woff') format('woff'),
+    url('/fonts/GothamPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: local('Gotham Pro Regular'), local('Gotham-Pro-Regular'),
+    url('/fonts/GothamPro.woff2') format('woff2'), url('/fonts/GothamPro.woff') format('woff'),
+    url('/fonts/GothamPro.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brand';
+  src: local('Brand'), url('/fonts/Brand.otf') format('otf'),
+    url('/fonts/Brand.woff') format('woff'), url('/fonts/Brand.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*** Base stylings **/
 body {
-  font-family: 'Proxima Nova Regular' !important;
+  /*font-family: 'Proxima Nova Regular' !important;*/
+  font-family: 'Gotham Pro' !important;
   font-weight: 500;
 }
 
@@ -37,7 +87,7 @@ a:hover {
 }
 
 strong {
-  font-family: 'Proxima Nova Bold';
+  font-family: 'Gotham Pro';
 }
 
 em {
@@ -97,6 +147,7 @@ em {
 .ais-Hits {
   margin-top: -1em;
 }
+
 @media (max-width: 768px) {
   .search-container {
     max-width: 95%;
@@ -147,14 +198,15 @@ em {
 }
 
 .scroll-search {
-  height: 28px;
-  padding-left: 8px;
-  left: -1em;
+  /*height: 28px;*/
+  /*padding-left: 8px;*/
+  /*left: -1em;*/
 }
 
 .top--1 {
   top: -1px;
 }
+
 /** Hide captcha in print **/
 @media print {
   .grecaptcha-badge {
@@ -163,12 +215,12 @@ em {
 }
 
 /** Awards for attorney bios**/
-
 .award-recognition {
   margin-bottom: 3rem;
   margin-top: 2rem;
   margin-right: 1rem;
 }
+
 .award-header {
   display: flex;
   flex-direction: row;
@@ -177,6 +229,7 @@ em {
   margin-bottom: 1.5rem;
   border-bottom: 1px solid #dee2e6;
 }
+
 .award-container {
   display: flex;
   flex-direction: row;
@@ -229,4 +282,90 @@ em {
   .wp-block-columns {
     display: block;
   }
+}
+
+.title-block {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 1.2;
+  color: #000000;
+  font-family: 'Brand';
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.wrapper-section {
+  width: 1650px;
+  max-width: 96%;
+  margin: 0 auto 150px;
+}
+
+@media only screen and (max-width: 768px) {
+  .title-block {
+    font-size: 48px;
+  }
+  .title-block-wr {
+    flex-flow: column;
+  }
+  .title-block-wr .btn-red {
+    margin-left: 0;
+  }
+  .wrapper-section {
+    margin: 0 auto 70px;
+  }
+}
+
+footer .wrapper-section {
+  margin-bottom: 0;
+}
+
+.title-block-wr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title-block-wr .title-block {
+}
+
+.btn-red {
+  padding: 15px 40px;
+  background: #a91110;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.btn-red:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.locationParentJs > *:not(.locationTitleJs) {
+  display: none;
+}
+
+.locationParentJs.locationParentJs_active > * {
+  display: flex;
+}
+
+.locationTitleJs_active {
+  background: #a91110;
+  color: #ffffff;
+}
+
+.locationTitleJs_active:after {
+  content: url('/images/arrow-top-white.svg');
+  background: #a91110;
+  color: #ffffff;
+}
+
+.box-shadow {
+  box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
 }
