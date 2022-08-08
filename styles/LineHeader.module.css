@@ -221,8 +221,9 @@
 
 .itemSmoll img {
   height: auto !important;
-  width: 100%;
-  max-height: unset;
+  width: 100% !important;
+  max-height: unset !important;
+  min-height: auto !important;
 }
 
 .itemSmoll figure {
