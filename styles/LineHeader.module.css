@@ -83,10 +83,12 @@
   color: #000000;
   margin-bottom: 24px;
 }
+
 .content strong {
   color: #a91110;
   font-weight: bold;
 }
+
 .subtitle {
   display: block;
   font-weight: 700;
@@ -147,6 +149,14 @@
   margin-bottom: 20px;
 }
 
+.featuredArticle > figure {
+  height: auto;
+}
+
+.featuredArticle > figure img {
+  height: auto;
+}
+
 .featuredArticle .featuredArticleImg {
   margin-bottom: 40px;
 }
@@ -190,9 +200,8 @@
 }
 
 .itemSmollWrapper {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
+  display: grid;
+  grid-auto-rows: 1fr;
   gap: 40px;
 }
 
@@ -210,7 +219,7 @@
 }
 
 .itemSmoll img {
-  height: 100%;
+  height: 100% !important;
   object-fit: cover;
 }
 

@@ -13,6 +13,7 @@ const formatPost = (post) => ({
   author: post.yoast_head_json.author,
   date: post.date,
   excerpt: post.excerpt.rendered,
+  imageText: post.content.rendered,
   image: formatSrcToCloudinaryUrl(post.better_featured_image.source_url.replace('Feature', 'Body')),
 });
 
@@ -49,11 +50,12 @@ const FirmNews = () => {
           <div className={`${lineStyles.shadow} ${lineStyles.pItem} `}>
             <Link href={featuredArticle.url}>
               <a className={lineStyles.featuredArticle}>
-                <img
-                  className={lineStyles.featuredArticleImg}
-                  src={featuredArticle.image}
-                  alt={featuredArticle.title}
-                />
+                {parse(
+                  featuredArticle.imageText.substring(
+                    featuredArticle.imageText.indexOf('<figure'),
+                    featuredArticle.imageText.lastIndexOf('</figure'),
+                  ),
+                )}
                 <h4>{featuredArticle.title}</h4>
                 <div
                   className={lineStyles.excerpt}
