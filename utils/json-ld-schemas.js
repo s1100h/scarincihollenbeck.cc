@@ -17,18 +17,18 @@ export const articleSchema = (body) => ({
         telephone: '201-896-4100',
         email: SITE_EMAIL,
         hasMap:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.1668721445153!2d-74.11046358459224!3d40.80232667932217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c256174fd409ef%3A0xe46c0af03865c18!2s1100+Valley+Brook+Ave%2C+Lyndhurst%2C+NJ+07071!5e0!3m2!1sen!2sus!4v1537300224657',
+          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.030148184838!2d-74.1972675845902!3d40.87121257931485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2fe482a4faf77%3A0x45efdc59ca4a127a!2zMTUwIENsb3ZlIFJkICM5dGgsIExpdHRsZSBGYWxscywgTkogMDc0MjQsINCh0KjQkA!5e0!3m2!1sru!2sua!4v1659972988720!5m2!1sru!2sua',
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Lyndhurst',
+          addressLocality: 'little-falls',
           addressRegion: 'NJ',
-          postalCode: '07071',
-          streetAddress: '1100 Valley Brook Ave., P.O. Box 790',
+          postalCode: '07424',
+          streetAddress: '150 Clove Road, 9th Floor',
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: '40.802280',
-          longitude: '-74.108350',
+          latitude: '40.871378894707746',
+          longitude: '-74.19506817327908',
         },
         sameAs: [
           'https://www.facebook.com/ScarinciHollenbeck/',
@@ -54,18 +54,18 @@ export const buildBusinessSchema = () => ({
       telephone: '201-896-4100',
       email: SITE_EMAIL,
       hasMap:
-        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.1668721445153!2d-74.11046358459224!3d40.80232667932217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c256174fd409ef%3A0xe46c0af03865c18!2s1100+Valley+Brook+Ave%2C+Lyndhurst%2C+NJ+07071!5e0!3m2!1sen!2sus!4v1537300224657',
+        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.030148184838!2d-74.1972675845902!3d40.87121257931485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2fe482a4faf77%3A0x45efdc59ca4a127a!2zMTUwIENsb3ZlIFJkICM5dGgsIExpdHRsZSBGYWxscywgTkogMDc0MjQsINCh0KjQkA!5e0!3m2!1sru!2sua!4v1659972988720!5m2!1sru!2sua',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Lyndhurst',
+        addressLocality: 'Little Falls',
         addressRegion: 'NJ',
-        postalCode: '07071',
-        streetAddress: '1100 Valley Brook Ave., P.O. Box 790',
+        postalCode: '07424',
+        streetAddress: '150 Clove Road, 9th Floor',
       },
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: '40.802280',
-        longitude: '-74.108350',
+        latitude: '40.871378894707746',
+        longitude: '-74.19506817327908',
       },
       sameAs: [
         'https://www.facebook.com/ScarinciHollenbeck/',
