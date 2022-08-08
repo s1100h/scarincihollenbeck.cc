@@ -50,12 +50,15 @@ const FirmNews = () => {
           <div className={`${lineStyles.shadow} ${lineStyles.pItem} `}>
             <Link href={featuredArticle.url}>
               <a className={lineStyles.featuredArticle}>
-                {parse(
-                  featuredArticle.imageText.substring(
-                    featuredArticle.imageText.indexOf('<figure'),
-                    featuredArticle.imageText.lastIndexOf('</figure'),
-                  ),
-                )}
+                <img
+                  src={formatSrcToCloudinaryUrl(
+                    featuredArticle.imageText.slice(
+                      featuredArticle.imageText.indexOf('src="'),
+                      featuredArticle.imageText.indexOf('" alt="'),
+                    ),
+                  )}
+                  alt={featuredArticle.title}
+                />
                 <h4>{featuredArticle.title}</h4>
                 <div
                   className={lineStyles.excerpt}
@@ -81,7 +84,12 @@ const FirmNews = () => {
                 <Link href={post.url}>
                   <a className={`${lineStyles.itemSmoll} text-dark`}>
                     <Image
-                      src={post.image}
+                      src={formatSrcToCloudinaryUrl(
+                        post.imageText.slice(
+                          post.imageText.indexOf('src="'),
+                          post.imageText.indexOf('" alt="'),
+                        ),
+                      )}
                       alt={post.title}
                       width={350}
                       height={150}

@@ -369,3 +369,6 @@ footer .wrapper-section {
 .box-shadow {
   box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
 }
+.dNone {
+  display: none;
+}

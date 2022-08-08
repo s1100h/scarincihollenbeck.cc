@@ -56,13 +56,13 @@ export default function LocationCard() {
             <div className={textStyles.locationContentWr}>
               <div className={textStyles.locationContent}>
                 <div className={textStyles.locationAdress}>{office.address}</div>
-                <div className={textStyles.locationTel}>
+                <div className={`${office.tel === undefined ? 'dNone' : textStyles.locationTel}`}>
                   Phone:
-                  {office.tel}
+                  {` ${office.tel}`}
                 </div>
-                <div className={textStyles.locationFax}>
+                <div className={`${office.fax === undefined ? 'dNone' : textStyles.locationFax}`}>
                   Fax:
-                  {office.fax}
+                  {` ${office.fax}`}
                 </div>
               </div>
               <div className={textStyles.locationBottom}>

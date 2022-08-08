@@ -153,7 +153,7 @@
   height: auto;
 }
 
-.featuredArticle > figure img {
+.featuredArticle img {
   height: auto;
 }
 
@@ -185,6 +185,7 @@
 
 .featuredArticle img {
   width: 100%;
+  margin-bottom: 40px;
 }
 
 .featuredArticle .bottom .date {
@@ -219,8 +220,24 @@
 }
 
 .itemSmoll img {
+  height: auto !important;
+  width: 100%;
+  max-height: unset;
+}
+
+.itemSmoll figure {
   height: 100% !important;
   object-fit: cover;
+}
+
+.itemSmoll figure:first-child {
+  display: block;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.itemSmoll figure:last-child {
+  display: none;
 }
 
 .itemSmoll:hover {
