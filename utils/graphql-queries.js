@@ -411,6 +411,12 @@ export const homePageQuery = `query HomePageQuery {
         linkLabel
         linkUrl
         title
+      }   
+      aboutFirm2 {
+        description
+        linkLabel
+        linkUrl
+        title
       }
       awards {
         appearanceOrder
@@ -423,6 +429,7 @@ export const homePageQuery = `query HomePageQuery {
       }
       bannerLineOne
       bannerLineTwo
+      quote
       mainTag
       serviceOne {
         description

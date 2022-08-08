@@ -83,7 +83,10 @@
   color: #000000;
   margin-bottom: 24px;
 }
-
+.content strong {
+  color: #a91110;
+  font-weight: bold;
+}
 .subtitle {
   display: block;
   font-weight: 700;

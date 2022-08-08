@@ -26,17 +26,14 @@ export default function LocationCard() {
     const ind = event.target.getAttribute('data-id') - 1;
     return setScore(ind);
   };
-  const arrSrc = [
-    OFFICE_LOCATIONS[0].mapUrl,
-    OFFICE_LOCATIONS[1].mapUrl,
-    OFFICE_LOCATIONS[2].mapUrl,
-    OFFICE_LOCATIONS[3].mapUrl,
-  ];
 
   return (
     <div className={textStyles.locationCard}>
       <div className={textStyles.locationCardMap}>
-        <Map map={!score ? arrSrc[0] : arrSrc[`${score}`]} />
+        <Map
+          title={!score ? OFFICE_LOCATIONS[0].label : OFFICE_LOCATIONS[`${score}`].label}
+          map={!score ? OFFICE_LOCATIONS[0].mapUrl : OFFICE_LOCATIONS[`${score}`].mapUrl}
+        />
       </div>
       <div className={textStyles.locationOffices}>
         {OFFICE_LOCATIONS.map((office, ind) => (

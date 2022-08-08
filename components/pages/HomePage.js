@@ -10,6 +10,7 @@ import styles from 'styles/Home.module.css';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import Head from 'next/head';
+import lineStyles from 'styles/LineHeader.module.css';
 import SideBar from '../organisms/locations/LocationsSidebar';
 import { buildLocationSchema } from '../../utils/json-ld-schemas';
 import LocationsBody from '../organisms/locations/LocationsBody';
@@ -25,6 +26,7 @@ const HomePage = ({
   currentOffice,
   seo,
   aboutFirm,
+  aboutFirm2,
   awards,
   banner,
   intro,
@@ -84,7 +86,10 @@ const HomePage = ({
     {/*    </div> */}
     {/*  )} */}
     {/* /> */}
-    <AboutFirmSection {...aboutFirm} />
+    <div className={lineStyles.wrapper}>
+      <AboutFirmSection {...aboutFirm} />
+      <AboutFirmSection {...aboutFirm2} />
+    </div>
     {/* <HomePageLink link={aboutFirm.linkUrl} title={aboutFirm.linkLabel} /> */}
     {/* <HomeOurLeadership leaders={leadership} /> */}
     {/* <HomePageLink link="/awards" title="Award Methodology"/> */}
