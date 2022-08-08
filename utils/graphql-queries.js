@@ -411,12 +411,14 @@ export const homePageQuery = `query HomePageQuery {
         linkLabel
         linkUrl
         title
+        subTitle
       }   
       aboutFirm2 {
         description
         linkLabel
         linkUrl
         title
+        subTitle
       }
       awards {
         appearanceOrder
