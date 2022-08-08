@@ -52,7 +52,7 @@ export default function Footer() {
               <strong>Firm Pages</strong>
             </p>
             <ul className={styles.linkList}>
-              {FIRM_PAGES.sort((a, b) => (a.title > b.title ? 1 : -1)).map((nav) => (
+              {FIRM_PAGES.map((nav) => (
                 <li key={nav.id}>
                   <Link key={nav.id} href={nav.slug}>
                     <a>{nav.title}</a>

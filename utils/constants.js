@@ -25,6 +25,16 @@ export const FIRM_BLOG_PAGES = [
 /* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
   {
+    id: 'community-involvement',
+    title: 'Community Involvement',
+    slug: '/community-involvement',
+  },
+  {
+    id: 'diversity',
+    title: 'Diversity',
+    slug: '/diversity',
+  },
+  {
     id: 'pro-bono',
     title: 'Pro Bono',
     slug: '/pro-bono',
@@ -35,14 +45,9 @@ export const FIRM_PAGES = [
     slug: '/women-lead',
   },
   {
-    id: 'community-involvement',
-    title: 'Community Involvement',
-    slug: '/community-involvement',
-  },
-  {
-    id: 'diversity',
-    title: 'Diversity',
-    slug: '/diversity',
+    id: 'subscribe',
+    title: 'Subscribe',
+    slug: '/subscribe',
   },
 ];
 
@@ -155,13 +160,6 @@ export const SITE_NAVIGATION = [
     label: 'Locations',
     slug: '/locations',
     menuId: 'locations',
-    children: null,
-  },
-  {
-    id: 6,
-    label: 'Contact',
-    slug: '/contact',
-    menuId: 'contact',
     children: null,
   },
 ];

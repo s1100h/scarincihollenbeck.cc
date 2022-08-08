@@ -4,7 +4,7 @@ import textStyles from 'styles/Text.module.css';
 
 const TopNavLinks = () => (
   <>
-    <Link href="/subscribe">
+    <Link href="/contact">
       <a className={` ${textStyles.btn}`}>Contact us</a>
     </Link>
     <a
