@@ -18,11 +18,11 @@ const LocationsBody = ({
     <>
       <h4 className={grayTitleStyles.title}>{officeTitle}</h4>
       <Map title={title} map={map} />
-      {officeTitle === 'Little Falls, NJ' && (
-        <a download href="\" className={grayTitleStyles.href}>
-          Download NJ Transit Rail System Map
-        </a>
-      )}
+      {/* {officeTitle === 'Little Falls, NJ' && ( */}
+      {/*  <a download href="\" className={grayTitleStyles.href}> */}
+      {/*    Download NJ Transit Rail System Map */}
+      {/*  </a> */}
+      {/* )} */}
       <h4 className={grayTitleStyles.title}>{`${title} Attorneys`}</h4>
       {attorneys && <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />}
       {practices && <RelatedPractices practices={practices} />}

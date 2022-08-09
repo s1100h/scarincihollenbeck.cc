@@ -369,6 +369,24 @@ footer .wrapper-section {
 .box-shadow {
   box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
 }
+
 .dNone {
   display: none;
+}
+
+.modal-header_my {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+}
+.modal-title_my {
+  font-weight: bold;
+}
+.close_modal {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
