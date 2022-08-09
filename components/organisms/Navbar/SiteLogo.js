@@ -39,8 +39,7 @@ const LogoWrapper = styled.div`
 `;
 
 const DiamondWrapper = styled.div`
-  display: none;
-  @media (min-width: 768px) {
+  @media (min-width: 100px) {
     display: inline;
     position: absolute;
     z-index: 1;

@@ -98,7 +98,7 @@ const connectWithQuery = createConnector({
 });
 
 const MySearchBox = ({ currentRefinement, refine }) => (
-  <Form className="position-relative scroll-search">
+  <Form className={`${globalSearch.form} position-relative scroll-search`}>
     <Form.Group controlId="siteSearch">
       <svg
         className={`${globalSearch.inputSvg}`}
