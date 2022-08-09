@@ -382,11 +382,23 @@ footer .wrapper-section {
   position: relative;
   text-align: center;
 }
+
 .modal-title_my {
   font-weight: bold;
 }
+
 .close_modal {
   position: absolute;
   right: 20px;
   top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-dialog {
+    margin: 0;
+  }
+  .modal-content {
+    width: 90%;
+    margin: 0 auto;
+  }
 }

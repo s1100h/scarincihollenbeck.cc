@@ -6,11 +6,6 @@
 }
 
 @media only screen and (max-width: 960px) {
-  .logoBanner {
-    position: absolute !important;
-    left: 20px;
-    top: 20px;
-  }
 }
 
 @media (min-width: 0px) and (max-width: 449px) {
