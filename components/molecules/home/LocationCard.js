@@ -40,7 +40,7 @@ export default function LocationCard() {
           <div
             className={`box-shadow  
              ${
-               office.label === 'Little Falls, NJ' ? 'locationParentJs_active' : ''
+               office.label === 'Lyndhurst, NJ' ? 'locationParentJs_active' : ''
              }  locationParentJs`}
           >
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}

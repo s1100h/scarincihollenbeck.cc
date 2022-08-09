@@ -227,6 +227,16 @@ export const CLIENT_ALERTS = [
 export const OFFICE_LOCATIONS = [
   {
     id: 1,
+    slug: '/location/lyndhurst',
+    label: 'Lyndhurst, NJ',
+    address: '1100 Valley Brook Ave. Lyndhurst, NJ 07071',
+    mapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.1668721445153!2d-74.11046358459224!3d40.80232667932217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c256174fd409ef%3A0xe46c0af03865c18!2s1100+Valley+Brook+Ave%2C+Lyndhurst%2C+NJ+07071!5e0!3m2!1sen!2sus!4v1537300224657',
+    tel: '201-896-4100',
+    fax: '201-896-8660',
+  },
+  {
+    id: 2,
     slug: '/location/little-falls',
     label: 'Little Falls, NJ',
     address: '150 Clove Road, 9th Floor, Little Falls, NJ 07424',
@@ -236,7 +246,7 @@ export const OFFICE_LOCATIONS = [
     fax: '201-896-8660',
   },
   {
-    id: 2,
+    id: 3,
     slug: '/location/red-bank',
     label: 'Red Bank, NJ',
     address: '331 Newman Springs Road Red Bank, NJ 07701',
@@ -246,7 +256,7 @@ export const OFFICE_LOCATIONS = [
     fax: '732-695-8108',
   },
   {
-    id: 3,
+    id: 4,
     slug: '/location/new-york',
     label: 'New York, NY',
     address: '589 8th Avenue, 16th Floor, New York, NY 10018',
@@ -256,7 +266,7 @@ export const OFFICE_LOCATIONS = [
     fax: '212-808-4155',
   },
   {
-    id: 4,
+    id: 5,
     slug: '/location/washington-dc',
     label: 'Washington, D.C.',
     address: 'Suite 250 1000 Potomac St., N.W. Washington D.C. 20007',

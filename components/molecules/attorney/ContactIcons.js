@@ -4,7 +4,7 @@ import { BsChatDots, BsCloudDownload, BsCardText } from 'react-icons/bs';
 const ContactIcons = ({
   slug, linkedIn, pdf, vizibility,
 }) => (
-  <ul className="list-unstyled mr-0 ml-lg-5">
+  <ul className="list-unstyled mr-0 ml-lg-2">
     <li>
       {slug && (
         <a

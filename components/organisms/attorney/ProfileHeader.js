@@ -73,7 +73,7 @@ const ProfileHeader = ({
               <Col sm={12} md={8} lg={7}>
                 <div className="my-3">
                   <ProfileTitle {...profileTitleProps} />
-                  <div className="d-flex flex-column flex-md-row mt-2">
+                  <div className={`${styles.rowProfileDetails}  mt-2 pt-3 pb-5`}>
                     <ProfileDetails {...profileDetailsProps} />
                     <ContactIcons {...contactProps} />
                   </div>
