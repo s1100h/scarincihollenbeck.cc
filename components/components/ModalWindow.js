@@ -26,7 +26,12 @@ function ModalWindow() {
               Our Office is Moving!
             </h5>
             <p>Effective September 6, 2022, our Lyndhurst office is moving to:</p>
-            <p>150 Clove Road, 9th floor, Little Falls, NJ 07424</p>
+            <a
+              className="modal-link"
+              href="https://scarincihollenbeck.com/firm-news/scarinci-moving-to-overlook-corporate-center"
+            >
+              150 Clove Road 9th Floor Little Falls, NJ, 07424
+            </a>
             <p>
               Please be advised that there will be no disruption of service. Scarinci Hollenbeck’s
               contact information, such as email addresses and phone numbers, will remain the same.
