@@ -180,11 +180,6 @@ export default function Footer() {
               <a>Terms of use</a>
             </Link>
           </li>
-          <li className="list-inline-item">
-            <Link href="/sitemap.xml">
-              <a>Sitemap</a>
-            </Link>
-          </li>
         </ul>
       </div>
       <CookieConsentMessage />
