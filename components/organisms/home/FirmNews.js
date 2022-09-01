@@ -14,7 +14,6 @@ const formatPost = (post) => ({
   date: post.date,
   excerpt: post.excerpt.rendered,
   imageText: post.content.rendered,
-  image: formatSrcToCloudinaryUrl(post.better_featured_image.source_url.replace('Feature', 'Body')),
 });
 
 const FirmNews = () => {
