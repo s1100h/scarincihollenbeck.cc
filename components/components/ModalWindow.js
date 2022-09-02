@@ -33,10 +33,9 @@ function ModalWindow() {
               150 Clove Road 9th Floor Little Falls, NJ, 07424
             </a>
             <p>
-              Scarinci Hollenbecks contact information, such as email addresses and phone numbers,
+              Scarinci Hollenbeck`s contact information, such as email addresses and phone numbers,
               remains the same. For any questions regarding the move, contact the attorney with whom
               you work, or call us at 201-896-4100.
-              {' '}
             </p>
             <button
               aria-label="Close"
