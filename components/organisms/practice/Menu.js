@@ -46,7 +46,7 @@ const Tab = styled.button`
   max-width: 210px;
   font-size: 1rem;
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.1rem;
   background: linear-gradient(1turn, rgba(144, 25, 24, 0.9) 60%, rgba(221, 38, 36, 0.9)), #333;
   max-height: 42px;
   ${({ active }) => active

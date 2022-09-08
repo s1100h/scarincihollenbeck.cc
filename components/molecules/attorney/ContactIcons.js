@@ -18,7 +18,7 @@ const ContactIcons = ({
           style={{ height: '30px' }}
           className="d-block text-left text-white w-100"
         >
-          <strong className="pr-1">
+          <strong style={{ cursor: 'pointer' }} className="pr-1">
             <BsChatDots style={{ marginTop: '-4px' }} />
             <span className="ml-2 d-inline-block">Get In Touch</span>
           </strong>
