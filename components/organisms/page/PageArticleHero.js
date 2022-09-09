@@ -11,7 +11,13 @@ const PageArticleHero = ({ content }) => (
         .filter((_, i) => i <= 2)
         .map((article) => (
           <Col sm={12} md={4} key={article.title} className="my-3">
-            <Link href={article.link}>
+            <Link
+              href={
+                article.link[article.link.length - 1] === '/'
+                  ? article.link.slice(0, -1)
+                  : article.link
+              }
+            >
               <a className="text-center mx-auto d-block">
                 <Image
                   alt={article.title}
