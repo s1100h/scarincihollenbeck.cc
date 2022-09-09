@@ -133,6 +133,16 @@ export const formatSrcToCloudinaryUrl = (src) => {
   return '/images/no-image-found-diamond-750x350.png';
 };
 
+// Format pdf src into a cloudinary url
+export const formatSrcToCloudinaryUrlPdf = (src) => {
+  if (src) {
+    const splitSrc = src.split('/');
+    const file = splitSrc[splitSrc.length - 1];
+    return CLOUDINARY_BASE_URL + file;
+  }
+  return null;
+};
+
 // Format image src into a cloudinary url
 export const formatPageImageToCloudinaryUrl = (page) => {
   const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';

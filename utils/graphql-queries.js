@@ -17,6 +17,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       middleInitial
       pdfBio {
         sourceUrl
+        mediaItemUrl
       }
       phoneNumber
       profileImage {

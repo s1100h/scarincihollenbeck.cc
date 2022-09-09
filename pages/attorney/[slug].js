@@ -8,6 +8,7 @@ import {
 import {
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
+  formatSrcToCloudinaryUrlPdf,
   sanitizeArticles,
   sanitizeExternalArticles,
 } from 'utils/helpers';
@@ -123,7 +124,9 @@ export const getServerSideProps = async ({ params, res }) => {
       email: attorneyBio.attorneyMainInformation?.email,
       fax: attorneyBio.attorneyMainInformation?.faxNumber,
       vizibility: attorneyBio.attorneyMainInformation?.vizibility,
-      pdf: attorneyBio.attorneyMainInformation?.pdfBio?.sourceUrl || null,
+      pdf:
+        formatSrcToCloudinaryUrlPdf(attorneyBio.attorneyMainInformation?.pdfBio?.mediaItemUrl)
+        || null,
       socialMediaLinks: attorneyBio.attorneyMainInformation?.socialMediaLinks,
     },
     practices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices.map(
