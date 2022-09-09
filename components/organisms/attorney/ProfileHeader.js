@@ -70,7 +70,7 @@ const ProfileHeader = ({
               <Col sm={12} md={4}>
                 <ProfileImage {...profileImageProps} />
               </Col>
-              <Col sm={12} md={8} lg={7}>
+              <Col sm={12} md={8} lg={8}>
                 <div className="my-3">
                   <ProfileTitle {...profileTitleProps} />
                   <div className={`${styles.rowProfileDetails}  mt-2 pt-3 pb-5`}>
