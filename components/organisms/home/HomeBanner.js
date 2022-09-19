@@ -1,6 +1,6 @@
 import styles from 'styles/Banner.module.css';
 
-const HomeBanner = ({ lineOne, lineTwo }) => (
+const HomeBanner = ({ lineOne, lineTwo, quote }) => (
   <div className={styles.banner}>
     <div className={`${styles.redBanner} animate__animated animate__fadeInLeft animate__slow`}>
       <div className={`${styles.homeBannerContainer} ${styles.homeBanner}`}>
@@ -12,11 +12,7 @@ const HomeBanner = ({ lineOne, lineTwo }) => (
             <p className={`${styles.text} animate__animated animate__fadeInDown animate__slow`}>
               {lineTwo}
             </p>
-            <span className={`${styles.quote} `}>
-              “We are a law firm dedicated to the success of our client’s business. To best serve
-              our clients, we maintain a focus on positioning ourselves to provide legal service
-              uniquely tailored to achieve their objectives.”
-            </span>
+            <span className={`${styles.quote} `}>{quote}</span>
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@
     grid-template-columns: auto;
     justify-content: center;
     gap: 10px;
+    position: relative;
   }
 }
 

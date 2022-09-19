@@ -6,7 +6,11 @@ const FooterArticles = ({ articles }) => (
   <Row className="mt-5 mb-2">
     {articles.map((article) => (
       <Col sm={12} md={4} key={article.title}>
-        <Link href={article.link}>
+        <Link
+          href={
+            article.link[article.link.length - 1] === '/' ? article.link.slice(0, -1) : article.link
+          }
+        >
           <a className="mx-auto text-center text-dark">
             <div>
               <Image

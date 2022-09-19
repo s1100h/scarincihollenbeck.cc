@@ -84,6 +84,11 @@
   margin-bottom: 24px;
 }
 
+.content strong {
+  color: #a91110;
+  font-weight: bold;
+}
+
 .subtitle {
   display: block;
   font-weight: 700;
@@ -144,6 +149,14 @@
   margin-bottom: 20px;
 }
 
+.featuredArticle > figure {
+  height: auto;
+}
+
+.featuredArticle img {
+  height: auto;
+}
+
 .featuredArticle .featuredArticleImg {
   margin-bottom: 40px;
 }
@@ -172,6 +185,7 @@
 
 .featuredArticle img {
   width: 100%;
+  margin-bottom: 40px;
 }
 
 .featuredArticle .bottom .date {
@@ -187,9 +201,8 @@
 }
 
 .itemSmollWrapper {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
+  display: grid;
+  grid-auto-rows: 1fr;
   gap: 40px;
 }
 
@@ -207,8 +220,25 @@
 }
 
 .itemSmoll img {
-  height: 100%;
+  height: auto !important;
+  width: 100% !important;
+  max-height: unset !important;
+  min-height: auto !important;
+}
+
+.itemSmoll figure {
+  height: 100% !important;
   object-fit: cover;
+}
+
+.itemSmoll figure:first-child {
+  display: block;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.itemSmoll figure:last-child {
+  display: none;
 }
 
 .itemSmoll:hover {

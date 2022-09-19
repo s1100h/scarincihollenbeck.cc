@@ -1,24 +1,28 @@
 import { FaLinkedinIn } from 'react-icons/fa';
 import { BsChatDots, BsCloudDownload, BsCardText } from 'react-icons/bs';
+import SidebarBtn from './SidebarBtn';
+
+function showMessage() {
+  document.getElementById('test').click();
+}
 
 const ContactIcons = ({
   slug, linkedIn, pdf, vizibility,
 }) => (
-  <ul className="list-unstyled mr-0 ml-lg-5">
+  <ul className="list-unstyled mr-0 ml-lg-2">
     <li>
       {slug && (
-        <a
-          href={`/attorney/${slug}/contact`}
-          rel="noopener noreferrer"
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+        <span
+          onClick={showMessage}
           style={{ height: '30px' }}
-          variant="link"
           className="d-block text-left text-white w-100"
         >
-          <strong className="pr-1">
+          <strong style={{ cursor: 'pointer' }} className="pr-1">
             <BsChatDots style={{ marginTop: '-4px' }} />
             <span className="ml-2 d-inline-block">Get In Touch</span>
           </strong>
-        </a>
+        </span>
       )}
     </li>
     <li>
@@ -65,7 +69,7 @@ const ContactIcons = ({
         variant="link"
         className="d-block text-left text-white w-100"
       >
-        <strong className="pl-1">
+        <strong>
           <BsCardText style={{ marginTop: '-4px' }} />
           <span className="ml-2 d-inline-block">Business Card</span>
         </strong>

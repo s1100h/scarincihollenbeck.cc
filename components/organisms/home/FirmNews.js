@@ -13,7 +13,7 @@ const formatPost = (post) => ({
   author: post.yoast_head_json.author,
   date: post.date,
   excerpt: post.excerpt.rendered,
-  image: formatSrcToCloudinaryUrl(post.better_featured_image.source_url.replace('Feature', 'Body')),
+  imageText: post.content.rendered,
 });
 
 const FirmNews = () => {
@@ -50,8 +50,12 @@ const FirmNews = () => {
             <Link href={featuredArticle.url}>
               <a className={lineStyles.featuredArticle}>
                 <img
-                  className={lineStyles.featuredArticleImg}
-                  src={featuredArticle.image}
+                  src={formatSrcToCloudinaryUrl(
+                    featuredArticle.imageText.slice(
+                      featuredArticle.imageText.indexOf('src="'),
+                      featuredArticle.imageText.indexOf('" alt="'),
+                    ),
+                  )}
                   alt={featuredArticle.title}
                 />
                 <h4>{featuredArticle.title}</h4>
@@ -79,7 +83,12 @@ const FirmNews = () => {
                 <Link href={post.url}>
                   <a className={`${lineStyles.itemSmoll} text-dark`}>
                     <Image
-                      src={post.image}
+                      src={formatSrcToCloudinaryUrl(
+                        post.imageText.slice(
+                          post.imageText.indexOf('src="'),
+                          post.imageText.indexOf('" alt="'),
+                        ),
+                      )}
                       alt={post.title}
                       width={350}
                       height={150}

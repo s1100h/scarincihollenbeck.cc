@@ -26,11 +26,13 @@ export const getStaticProps = async () => {
   const { seo, homePage } = request;
   const {
     aboutFirm,
+    aboutFirm2,
     awards,
     bannerLineOne,
     serviceOne,
     serviceTwo,
     bannerLineTwo,
+    quote,
     mainTag,
     subMainTag,
     leadership,
@@ -61,10 +63,12 @@ export const getStaticProps = async () => {
     props: {
       seo,
       aboutFirm,
+      aboutFirm2,
       awards,
       banner: {
         lineOne: bannerLineOne,
         lineTwo: bannerLineTwo,
+        quote,
       },
       intro: {
         mainTag,
@@ -83,6 +87,7 @@ export const getStaticProps = async () => {
 const Home = ({
   seo,
   aboutFirm,
+  aboutFirm2,
   awards,
   banner,
   intro,
@@ -94,6 +99,7 @@ const Home = ({
   const homePageProps = {
     seo,
     aboutFirm,
+    aboutFirm2,
     awards,
     banner,
     intro,

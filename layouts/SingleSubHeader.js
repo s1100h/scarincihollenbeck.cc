@@ -35,7 +35,11 @@ const SingleSubHeader = ({
                   <span key={author.display_name}>{author.display_name}</span>
                 ) : (
                   <a
-                    href={author.user_url}
+                    href={
+                        author.user_url[author.user_url.length - 1] === '/'
+                          ? author.user_url.slice(0, -1)
+                          : author.user_url
+                      }
                     key={author.display_name}
                     className="text-underline text-white"
                   >

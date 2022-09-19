@@ -74,7 +74,9 @@
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.63);
 }
-
+.dNone {
+  display: none;
+}
 .locationTel:before,
 .locationFax:before,
 .locationAdress:before {

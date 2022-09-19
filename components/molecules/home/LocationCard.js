@@ -26,24 +26,21 @@ export default function LocationCard() {
     const ind = event.target.getAttribute('data-id') - 1;
     return setScore(ind);
   };
-  const arrSrc = [
-    OFFICE_LOCATIONS[0].mapUrl,
-    OFFICE_LOCATIONS[1].mapUrl,
-    OFFICE_LOCATIONS[2].mapUrl,
-    OFFICE_LOCATIONS[3].mapUrl,
-  ];
 
   return (
     <div className={textStyles.locationCard}>
       <div className={textStyles.locationCardMap}>
-        <Map map={!score ? arrSrc[0] : arrSrc[`${score}`]} />
+        <Map
+          title={!score ? OFFICE_LOCATIONS[0].label : OFFICE_LOCATIONS[`${score}`].label}
+          map={!score ? OFFICE_LOCATIONS[0].mapUrl : OFFICE_LOCATIONS[`${score}`].mapUrl}
+        />
       </div>
       <div className={textStyles.locationOffices}>
         {OFFICE_LOCATIONS.map((office, ind) => (
           <div
             className={`box-shadow  
              ${
-               office.label === 'Lyndhurst, NJ' ? 'locationParentJs_active' : ''
+               office.label === 'Little Falls, NJ' ? 'locationParentJs_active' : ''
              }  locationParentJs`}
           >
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
@@ -59,13 +56,13 @@ export default function LocationCard() {
             <div className={textStyles.locationContentWr}>
               <div className={textStyles.locationContent}>
                 <div className={textStyles.locationAdress}>{office.address}</div>
-                <div className={textStyles.locationTel}>
+                <div className={`${office.tel === undefined ? 'dNone' : textStyles.locationTel}`}>
                   Phone:
-                  {office.tel}
+                  {` ${office.tel}`}
                 </div>
-                <div className={textStyles.locationFax}>
+                <div className={`${office.fax === undefined ? 'dNone' : textStyles.locationFax}`}>
                   Fax:
-                  {office.fax}
+                  {` ${office.fax}`}
                 </div>
               </div>
               <div className={textStyles.locationBottom}>

@@ -265,12 +265,12 @@ const Tab = styled.button`
   outline: 0;
   margin-right: 8px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #fff;
   white-space: nowrap;
   max-width: 240px;
   min-width: 190px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
   background: linear-gradient(1turn, rgba(144, 25, 24, 0.9) 60%, rgba(221, 38, 36, 0.9)), #333;
   max-height: 42px;
   ${({ active }) => active

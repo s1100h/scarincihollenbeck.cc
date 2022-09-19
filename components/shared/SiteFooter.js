@@ -52,7 +52,7 @@ export default function Footer() {
               <strong>Firm Pages</strong>
             </p>
             <ul className={styles.linkList}>
-              {FIRM_PAGES.sort((a, b) => (a.title > b.title ? 1 : -1)).map((nav) => (
+              {FIRM_PAGES.map((nav) => (
                 <li key={nav.id}>
                   <Link key={nav.id} href={nav.slug}>
                     <a>{nav.title}</a>
@@ -178,11 +178,6 @@ export default function Footer() {
           <li className="list-inline-item">
             <Link href="/terms-of-use">
               <a>Terms of use</a>
-            </Link>
-          </li>
-          <li className="list-inline-item">
-            <Link href="/sitemap.xml">
-              <a>Sitemap</a>
             </Link>
           </li>
         </ul>
