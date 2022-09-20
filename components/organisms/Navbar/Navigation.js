@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Nav, NavDropdown } from 'react-bootstrap';
+import { NavbarStyled } from 'styles/Navigation.style';
 import navBarStyles from 'styles/Navbar.module.css';
 import { SITE_NAVIGATION } from 'utils/constants';
 
-const SiteNavs = ({ scrollTop }) => (
-  <Navbar className={`${navBarStyles.navContainer}`}>
+const Navigation = ({ scrollTop }) => (
+  <NavbarStyled className={`${navBarStyles.navContainer}`}>
     <Nav className={`${navBarStyles.navContainerWrapper}`}>
       {scrollTop && (
         <Nav.Item id="home" className={navBarStyles.navItem}>
@@ -16,7 +17,7 @@ const SiteNavs = ({ scrollTop }) => (
       {SITE_NAVIGATION.map((nav) => (nav.children ? (
         <NavDropdown
           key={nav.label}
-          title={nav.label}
+          title={`${nav.label} ᐁ`}
           id={nav.menuId}
           className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
         >
@@ -34,7 +35,7 @@ const SiteNavs = ({ scrollTop }) => (
         </Nav.Item>
       )))}
     </Nav>
-  </Navbar>
+  </NavbarStyled>
 );
 
-export default SiteNavs;
+export default Navigation;

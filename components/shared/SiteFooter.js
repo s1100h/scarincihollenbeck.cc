@@ -54,7 +54,7 @@ export default function Footer() {
             <ul className={styles.linkList}>
               {FIRM_PAGES.map((nav) => (
                 <li key={nav.id}>
-                  <Link key={nav.id} href={nav.slug}>
+                  <Link href={nav.slug}>
                     <a>{nav.title}</a>
                   </Link>
                 </li>
@@ -67,7 +67,7 @@ export default function Footer() {
             </p>
             <ul className={styles.linkList}>
               {OFFICE_LOCATIONS.map((office) => (
-                <li key={office.label}>
+                <li key={office.id}>
                   <Link href={office.slug}>
                     <a>{office.label}</a>
                   </Link>
@@ -92,8 +92,8 @@ export default function Footer() {
               <strong>Client Services</strong>
             </p>
             <ul className={styles.linkList}>
-              {MAKE_A_PAYMENT_URLS.map(({ url, label }) => (
-                <li>
+              {MAKE_A_PAYMENT_URLS.map(({ url, label, id }) => (
+                <li key={id}>
                   <a href={url} target="_blank" rel="noreferrer">
                     {label}
                   </a>
@@ -127,8 +127,8 @@ export default function Footer() {
               <strong>Core Practices</strong>
             </p>
             <ul className={styles.linkList}>
-              {colOnePractices.map(({ slug, title }) => (
-                <li key={title}>
+              {colOnePractices.map(({ slug, title, id }) => (
+                <li key={id}>
                   <Link href={slug}>
                     <a>{title}</a>
                   </Link>
@@ -138,8 +138,8 @@ export default function Footer() {
           </div>
           <div className="mr-0 mr-md-2 mr-lg-0">
             <ul className={styles.linkList}>
-              {colTwoPractices.map(({ slug, title }) => (
-                <li key={title}>
+              {colTwoPractices.map(({ slug, title, id }) => (
+                <li key={id}>
                   <Link href={slug}>
                     <a>{title}</a>
                   </Link>

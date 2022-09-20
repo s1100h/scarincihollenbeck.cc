@@ -29,6 +29,11 @@ module.exports = {
     staticPageGenerationTimeout: 120,
     swcMinify: true,
   },
+  compiler: {
+    styledComponents: {
+      classNames: true,
+    },
+  },
   async rewrites() {
     return [...POST_TYPE_REWRITES, ...POST_CATEGORY_REWRITES, ...SITE_PAGES_REWRITES];
   },

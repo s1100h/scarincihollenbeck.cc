@@ -339,6 +339,7 @@ export const SOCIAL_MEDIA_LINKS = [
 /** Make a payment link found in the footer */
 export const MAKE_A_PAYMENT_URLS = [
   {
+    id: 1,
     url: 'https://secure.lawpay.com/pages/scarincihollenbeck/operating',
     label: 'Make a payment',
   },
