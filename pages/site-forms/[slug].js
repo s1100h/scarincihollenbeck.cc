@@ -10,6 +10,17 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 const SITE_FORM_SLUGS = ['new-attorney', 'current-attorney'];
 
 /** Generate the urls so we can build static pages */
+
+/** The addons of headers. */
+const headers = {
+  method: 'GET',
+  headers: {
+    'User-Agent':
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+    Accept: 'application/json; charset=UTF-8',
+  },
+};
+
 export const getStaticPaths = () => {
   const urls = SITE_FORM_SLUGS.map((slug) => `/site-forms/${slug}`);
 
@@ -31,12 +42,14 @@ export const getStaticProps = async ({ params }) => {
     };
   }
 
-  const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`).then(
-    (data) => data.json(),
-  );
-  const attorneyRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`).then(
-    (data) => data.json(),
-  );
+  const practiceRequest = await fetch(
+    `${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`,
+    headers,
+  ).then((data) => data.json());
+  const attorneyRequest = await fetch(
+    `${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`,
+    headers,
+  ).then((data) => data.json());
 
   return {
     props: {

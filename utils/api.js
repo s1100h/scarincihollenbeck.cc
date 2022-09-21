@@ -2,7 +2,11 @@ import { GRAPHQL_API_URL } from 'utils/constants';
 import { homePageLocationsQuery } from './graphql-queries';
 
 export async function fetchAPI(query, { variables } = {}) {
-  const headers = { 'Content-Type': 'application/json' };
+  const headers = {
+    'Content-Type': 'application/json',
+    'User-Agent': '*',
+    Accept: 'application/json; charset=UTF-8',
+  };
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
     headers.Authorization = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
