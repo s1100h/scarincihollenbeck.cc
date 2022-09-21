@@ -706,7 +706,7 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
 }`;
 
 export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 30) {
     edges {
       node {
         featuredImage {
