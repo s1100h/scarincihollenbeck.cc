@@ -3,9 +3,9 @@ import MobileMenu from 'components/organisms/Navbar/MobileMenu';
 import GlobalSearch from 'components/shared/GlobalSearch';
 import LinkButtons from 'components/organisms/Navbar/LinkButtons';
 import Navigation from 'components/organisms/Navbar/Navigation';
-import SiteLogo from 'components/organisms/Navbar/SiteLogo';
+import Logo from 'components/organisms/Navbar/Logo';
 import {
-  Header,
+  HeaderContainer,
   Wrapper,
   LogoBox,
   LinksBox,
@@ -13,7 +13,7 @@ import {
   MobileVisible,
 } from 'styles/Header.style';
 
-export default function NavBar() {
+export default function Header() {
   const [scrollTop, setScrollTop] = useState(false);
 
   useEffect(() => {
@@ -29,10 +29,10 @@ export default function NavBar() {
   }, [scrollTop]);
 
   return (
-    <Header scrollDown={scrollTop}>
+    <HeaderContainer scrollDown={scrollTop}>
       <Wrapper>
         <LogoBox>
-          <SiteLogo scrollTop={scrollTop} />
+          <Logo scrollTop={scrollTop} />
         </LogoBox>
         <DesktopVisible>
           <GlobalSearch scrollTop={scrollTop} />
@@ -46,6 +46,6 @@ export default function NavBar() {
         <GlobalSearch scrollTop={scrollTop} />
       </MobileVisible>
       <Navigation scrollTop={scrollTop} />
-    </Header>
+    </HeaderContainer>
   );
 }

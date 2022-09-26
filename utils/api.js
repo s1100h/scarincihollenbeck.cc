@@ -1,13 +1,14 @@
 import { GRAPHQL_API_URL } from 'utils/constants';
 import { homePageLocationsQuery } from './graphql-queries';
 
+export const headers = {
+  'Content-Type': 'application/json',
+  'User-Agent':
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+  Accept: 'application/json; charset=UTF-8',
+};
+
 export async function fetchAPI(query, { variables } = {}) {
-  const headers = {
-    'Content-Type': 'application/json',
-    'User-Agent':
-      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
-    Accept: 'application/json; charset=UTF-8',
-  };
   try {
     if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
       headers.Authorization = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;

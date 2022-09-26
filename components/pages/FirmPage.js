@@ -7,8 +7,8 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import sidebarStyles from 'styles/Sidebar.module.css';
+import Article from 'components/atoms/Article';
 
 const PageArticleHero = dynamic(() => import('components/organisms/page/PageArticleHero'));
 const RelatedAttorneys = dynamic(() => import('components/molecules/practice/RelatedAttorneys'));
@@ -26,14 +26,12 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
         <Row>
           <Col sm={12} lg={9}>
             {tabs.map((tab) => (
-              <div key={tab.title}>
-                <h4 className={`${grayTitleStyles.title} text-capitalize w-100`}>{tab.title}</h4>
-                <div
-                  dangerouslySetInnerHTML={createMarkup(
-                    formatPageImageToCloudinaryUrl(tab.content),
-                  )}
-                />
-              </div>
+              <Article
+                key={tab.id}
+                title={tab.title}
+                highlight
+                contentBody={formatPageImageToCloudinaryUrl(tab.content)}
+              />
             ))}
           </Col>
           <Col sm={12} lg={3} className={sidebarStyles.container}>

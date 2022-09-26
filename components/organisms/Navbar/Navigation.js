@@ -22,8 +22,10 @@ const Navigation = ({ scrollTop }) => (
           className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
         >
           {nav.children.map((child) => (
-            <Link key={child.label} href={child.slug}>
-              <a className={`${navBarStyles.dropDownNavItem} dropdown-item`}>{child.label}</a>
+            <Link key={child.label} href={child.slug} passHref>
+              <NavDropdown.Item className={`${navBarStyles.dropDownNavItem} dropdown-item`}>
+                {child.label}
+              </NavDropdown.Item>
             </Link>
           ))}
         </NavDropdown>

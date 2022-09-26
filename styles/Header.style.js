@@ -5,7 +5,7 @@ import {
   media_breakpoint_exactly,
 } from './mediaBreakpoints.style'
 
-export const Header = styled.header`
+export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   flex-direction: column;

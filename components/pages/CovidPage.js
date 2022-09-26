@@ -2,12 +2,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 import ContactForm from 'components/shared/ContactForm';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import pageContentStyles from 'styles/PageContent.module.css';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
+import ContentTitle from 'components/atoms/ContentTitle';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 const CovidSidebar = dynamic(import('components/organisms/covid/Sidebar'));
@@ -58,7 +58,7 @@ const CovidPage = ({
                 }}
               />
             </div>
-            <h4 className={grayTitleStyles.title}>Contact A Firm Representative</h4>
+            <ContentTitle title="Contact A Firm Representative" />
             <ContactForm />
           </Col>
           <Col sm={12} lg={3}>

@@ -1,6 +1,6 @@
 import Table from 'components/molecules/attorney/Table';
 import EducationContent from 'components/molecules/attorney/EducationContent';
-import ContentTitle from 'components/molecules/attorney/ContentTitle';
+import ContentTitle from 'components/atoms/ContentTitle';
 import ContactForm from 'components/molecules/attorney/ContactForm';
 import Videos from 'components/molecules/attorney/Videos';
 import BlogList from 'components/molecules/attorney/BlogList';

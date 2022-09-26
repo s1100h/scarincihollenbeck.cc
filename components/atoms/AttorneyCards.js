@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 const AttorneyCard = dynamic(() => import('components/shared/AttorneyCard'));
 
 const AttorneyCards = (title, content) => (
-  <Row>
+  <Row key={title}>
     <Col sm={12} className="my-4">
       <h3 className={`${textStyles.redTitle} text-uppercase border-bottom mb-0`}>
         <strong>{title}</strong>

@@ -5,7 +5,7 @@ import { LogoWrapper, DiamondWrapper } from 'styles/SiteLogo.style';
 import SHLogo from '../../../public/images/sh-logo-diamond.svg';
 import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.png';
 
-const SiteLogo = () => (
+const Logo = () => (
   <>
     <LogoWrapper>
       <Link href="/">
@@ -36,4 +36,4 @@ const SiteLogo = () => (
   </>
 );
 
-export default SiteLogo;
+export default Logo;
