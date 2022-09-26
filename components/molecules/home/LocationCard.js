@@ -38,6 +38,7 @@ export default function LocationCard() {
       <div className={textStyles.locationOffices}>
         {OFFICE_LOCATIONS.map((office, ind) => (
           <div
+            key={office.id}
             className={`box-shadow  
              ${
                office.label === 'Little Falls, NJ' ? 'locationParentJs_active' : ''

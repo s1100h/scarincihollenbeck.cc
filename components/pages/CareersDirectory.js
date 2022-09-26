@@ -4,7 +4,7 @@ import SingleSubHeader from 'layouts/SingleSubHeader';
 import CareersBody from 'components/organisms/careers/CareersBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 
-const CareersEqualOpportunity = dynamic(() => import('components/organisms/careers/EqualOpportunity'));
+const CareersEqualOpportunity = dynamic(() => import('components/atoms/Article'));
 
 const CareersPage = ({
   careers,
@@ -39,7 +39,10 @@ const CareersPage = ({
           executeSearch={executeSearch}
         />
       )}
-      <CareersEqualOpportunity content={site.bodyContent} />
+      <CareersEqualOpportunity
+        title="Equal Employment Opportunity"
+        contentBody={site.bodyContent}
+      />
     </FullWidth>
   </>
 );

@@ -17,7 +17,7 @@ export async function getAttorneyAndAdmins() {
 }
 
 /** Map the fetched data to the page props */
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const pageRequest = await getFirmOverviewContent();
   const attorneyAdminRequest = await getAttorneyAndAdmins();
 

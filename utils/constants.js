@@ -26,27 +26,27 @@ export const FIRM_BLOG_PAGES = [
 export const FIRM_PAGES = [
   {
     id: 'community-involvement',
-    title: 'Community Involvement',
+    label: 'Community Involvement',
     slug: '/community-involvement',
   },
   {
     id: 'diversity',
-    title: 'Diversity',
+    label: 'Diversity',
     slug: '/diversity',
   },
   {
     id: 'pro-bono',
-    title: 'Pro Bono',
+    label: 'Pro Bono',
     slug: '/pro-bono',
   },
   {
     id: 'women-lead',
-    title: 'Women Lead',
+    label: 'Women Lead',
     slug: '/women-lead',
   },
   {
     id: 'subscribe',
-    title: 'Subscribe',
+    label: 'Subscribe',
     slug: '/subscribe',
   },
 ];
@@ -270,67 +270,69 @@ export const CORE_PRACTICES = [
   {
     id: 1,
     slug: '/practices/bankruptcy-and-creditors-rights',
-    title: "Bankruptcy & Creditors' Rights",
+    label: "Bankruptcy & Creditors' Rights",
   },
   {
     id: 2,
     slug: '/practices/commercial-real-estate',
-    title: 'Commercial Real Estate',
+    label: 'Commercial Real Estate',
   },
   {
     id: 3,
     slug: '/practices/corporate-transactions-business',
-    title: 'Corporate Transactions & Business',
+    label: 'Corporate Transactions & Business',
   },
   {
     id: 4,
     slug: '/practices/education-law',
-    title: 'Education Law',
+    label: 'Education Law',
   },
   {
     id: 5,
     slug: '/practices/environmental',
-    title: 'Environmental',
+    label: 'Environmental',
   },
   {
     id: 6,
     slug: '/practices/government-strategies',
-    title: 'Government Strategies',
+    label: 'Government Strategies',
   },
   {
     id: 7,
     slug: '/practices/intellectual-property',
-    title: 'Intellectual Property',
+    label: 'Intellectual Property',
   },
   {
     id: 8,
     slug: '/practices/labor-employment',
-    title: 'Labor & Employment',
+    label: 'Labor & Employment',
   },
   {
     id: 9,
     slug: '/practices/litigation',
-    title: 'Litigation',
+    label: 'Litigation',
   },
   {
     id: 10,
     slug: '/practices/public-law',
-    title: 'Public Law',
+    label: 'Public Law',
   },
   {
     id: 11,
     slug: '/practices/tax-trusts-estates',
-    title: 'Tax, Trusts & Estates',
+    label: 'Tax, Trusts & Estates',
   },
 ];
 
 /** Social Media links found in the footer */
 export const SOCIAL_MEDIA_LINKS = [
   {
+    id: 1,
     url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
     label: 'LinkedIn',
   },
   {
+    id: 2,
     url: 'https://www.facebook.com/ScarinciHollenbeck',
     label: 'Facebook',
   },
@@ -339,6 +341,7 @@ export const SOCIAL_MEDIA_LINKS = [
 /** Make a payment link found in the footer */
 export const MAKE_A_PAYMENT_URLS = [
   {
+    id: 1,
     url: 'https://secure.lawpay.com/pages/scarincihollenbeck/operating',
     label: 'Make a payment',
   },

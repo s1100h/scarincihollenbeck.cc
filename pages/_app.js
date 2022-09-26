@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
 import { LocationProvider } from 'contexts/LocationContext';
 import { SectionTitleProvider } from 'contexts/SectionTitleContext';
-import NavBar from 'components/shared/Navbar';
+import Header from 'components/shared/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
 import * as gtag from 'utils/gtag';
 
@@ -24,7 +24,7 @@ import 'animate.css/animate.min.css';
 import 'styles/globals.css';
 import 'styles/carousel.css';
 
-const SiteFooter = dynamic(() => import('components/shared/SiteFooter'));
+const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
 /**
  *  Add page transition loader
@@ -51,7 +51,7 @@ const SHSite = ({ Component, pageProps }) => {
     <SectionTitleProvider>
       <LocationProvider>
         <MainSiteHead />
-        <NavBar />
+        <Header />
         <main>
           <Component {...pageProps} />
         </main>

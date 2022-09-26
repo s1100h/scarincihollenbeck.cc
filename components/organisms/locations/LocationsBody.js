@@ -1,10 +1,6 @@
 import dynamic from 'next/dynamic';
 import { sortByKey } from 'utils/helpers';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-import Link from 'next/link';
-import Image from 'next/image';
-import { SITE_TITLE } from '../../../utils/constants';
-import SHLogo from '../../../public/images/sh-logo-diamond.svg';
+import ContentTitle from 'components/atoms/ContentTitle';
 
 const VirtualizedMembers = dynamic(() => import('components/shared/VirtualizedMembers'));
 const RelatedPractices = dynamic(() => import('components/molecules/location/RelatedPractices'));
@@ -14,16 +10,12 @@ const LocationsBody = ({
   attorneys, practices, map, title,
 }) => {
   const officeTitle = title === 'Washington D.C.' ? 'Washington, D.C.' : title;
+
   return (
     <>
-      <h4 className={grayTitleStyles.title}>{officeTitle}</h4>
+      <ContentTitle title={officeTitle} />
       <Map title={title} map={map} />
-      {/* {officeTitle === 'Little Falls, NJ' && ( */}
-      {/*  <a download href="\" className={grayTitleStyles.href}> */}
-      {/*    Download NJ Transit Rail System Map */}
-      {/*  </a> */}
-      {/* )} */}
-      <h4 className={grayTitleStyles.title}>{`${title} Attorneys`}</h4>
+      <ContentTitle title={`${title} Attorneys`} />
       {attorneys && <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />}
       {practices && <RelatedPractices practices={practices} />}
     </>

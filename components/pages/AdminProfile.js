@@ -1,8 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import AdminProfileHeader from 'components/organisms/admin/AdminHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { createMarkup } from 'utils/helpers';
+import ContentTitle from 'components/atoms/ContentTitle';
 
 const AdminProfile = ({ response, profile, canonicalUrl }) => {
   const { seo } = response;
@@ -21,7 +21,7 @@ const AdminProfile = ({ response, profile, canonicalUrl }) => {
       <Container>
         <Row>
           <Col sm={12}>
-            <h4 className={grayTitleStyles.title}>Biography</h4>
+            <ContentTitle title="Biography" />
             <div className="mb-5" dangerouslySetInnerHTML={createMarkup(response.biography)} />
           </Col>
         </Row>

@@ -2,15 +2,12 @@ import SingleSubHeader from 'layouts/SingleSubHeader';
 import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { SITE_PHONE } from 'utils/constants';
-import {
-  createMarkup,
-  formatPageImageToCloudinaryUrl,
-  formatSrcToCloudinaryUrl,
-} from 'utils/helpers';
+import { formatPageImageToCloudinaryUrl, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import dynamic from 'next/dynamic';
 
-const MainTabs = dynamic(() => import('components/organisms/firm-overview/MainTabs'));
-const AdditionalTabs = dynamic(() => import('components/organisms/firm-overview/AdditionalTabs'));
+const AdditionalInformation = dynamic(() => import('components/atoms/Article'));
+const MainInformation = AdditionalInformation;
+const HeadInformation = AdditionalInformation;
 const Members = dynamic(() => import('components/organisms/firm-overview/Members'));
 
 const sanitizeMembers = (member, isAttorney) => member.map(({ node }) => ({
@@ -53,11 +50,10 @@ const FirmOverviewPage = ({
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
       <SingleSubHeader title={title} subtitle={subTitle} span={6} offset={3} />
       <FullWidth>
-        <div
-          className="featured"
-          dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
-        />
-        <MainTabs tabs={firmOverviewTabs.mainTabs} />
+        <HeadInformation contentBody={formatPageImageToCloudinaryUrl(bodyContent)} />
+        {firmOverviewTabs.mainTabs.map(({ subtitle, title, content }) => (
+          <MainInformation key={title} title={subtitle} contentBody={content} />
+        ))}
         <Members
           type="attorney"
           title="Managing Partners"
@@ -65,7 +61,9 @@ const FirmOverviewPage = ({
         />
         <Members type="attorney" title="Partners" members={partners} />
         <Members type="admin" title="Directors" members={firmAdministration} />
-        <AdditionalTabs tabs={firmOverviewTabs.additionalContent} />
+        {firmOverviewTabs.additionalContent.map(({ content, title }) => (
+          <AdditionalInformation key={title} highlight title={title} contentBody={content} />
+        ))}
       </FullWidth>
     </>
   );

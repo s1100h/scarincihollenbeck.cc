@@ -162,7 +162,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
 
 export const attorneyNewsEventsQuery = `
 query AttorneyNewsEventPosts($name: String) {
-  posts(where: {categoryIn: "98, 99", search: $name}) {
+  posts(where: {search: $name}) {
     edges {
       node {
         date
@@ -706,7 +706,7 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
 }`;
 
 export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 30) {
     edges {
       node {
         featuredImage {
