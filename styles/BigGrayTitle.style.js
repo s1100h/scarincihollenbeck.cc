@@ -8,15 +8,4 @@ export const BigGrayTitle = styled.h1`
   margin-bottom: 1.3rem;
   font-size: 1.2rem;
   text-transform: capitalize;
-
-  .href {
-    color: #b50000;
-    margin-bottom: 10px;
-    display: inline-block;
-
-    &:hover {
-      color: #b50000;
-      text-decoration: none;
-    }
-  }
 `

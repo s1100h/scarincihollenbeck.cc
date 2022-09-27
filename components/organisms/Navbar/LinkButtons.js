@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { SITE_PHONE, SITE_EMAIL } from 'utils/constants';
 import { ButtonLink } from 'styles/LinkButtons.style';
 
 import { BsFillTelephoneFill, BsFillCreditCard2BackFill } from 'react-icons/bs';

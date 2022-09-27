@@ -3,6 +3,8 @@
  * through out the site. This file also contains constant data found throughout the site.
  */
 
+import { BsFacebook, BsLinkedin } from 'react-icons/bs';
+
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
@@ -330,11 +332,13 @@ export const SOCIAL_MEDIA_LINKS = [
     id: 1,
     url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
     label: 'LinkedIn',
+    icon: <BsLinkedin />,
   },
   {
     id: 2,
     url: 'https://www.facebook.com/ScarinciHollenbeck',
     label: 'Facebook',
+    icon: <BsFacebook />,
   },
 ];
 
