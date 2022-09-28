@@ -1,23 +1,23 @@
 import Link from 'next/link';
 import { LinkTitle, LinkList } from 'styles/Footer.style';
 
-export default function LinksBox({ linksArr, title, isTargetBlank }) {
-  const linkTemplate = (is_target_blank, slugLink, label) => {
-    if (is_target_blank) {
-      return (
-        <a href={slugLink} target="_blank" rel="noreferrer">
-          {label}
-        </a>
-      );
-    }
-
+export const linkTemplate = (is_target_blank, slugLink, label) => {
+  if (is_target_blank) {
     return (
-      <Link href={slugLink}>
-        <a>{label}</a>
-      </Link>
+      <a href={slugLink} target="_blank" rel="noreferrer">
+        {label}
+      </a>
     );
-  };
+  }
 
+  return (
+    <Link href={slugLink}>
+      <a>{label}</a>
+    </Link>
+  );
+};
+
+export default function LinksBox({ linksArr, title, isTargetBlank }) {
   return (
     <div>
       {title && (

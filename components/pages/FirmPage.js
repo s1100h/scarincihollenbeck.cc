@@ -4,7 +4,7 @@ import SubscriptionMessage from 'components/molecules/subscription/SubscriptionM
 import SidebarContent from 'components/shared/SidebarContent';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
+import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import sidebarStyles from 'styles/Sidebar.module.css';
@@ -24,16 +24,15 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
       <SingleSubHeader title={title} subtitle={description} span={6} offset={0} />
       <Container>
         <Row>
-          <Col sm={12} lg={9}>
-            {tabs.map((tab) => (
+          {tabs.map((tab) => (
+            <Col key={tab.id} sm={12} lg={9}>
               <Article
-                key={tab.id}
                 title={tab.title}
                 highlight
                 contentBody={formatPageImageToCloudinaryUrl(tab.content)}
               />
-            ))}
-          </Col>
+            </Col>
+          ))}
           <Col sm={12} lg={3} className={sidebarStyles.container}>
             <SubscriptionMessage />
             <hr />
