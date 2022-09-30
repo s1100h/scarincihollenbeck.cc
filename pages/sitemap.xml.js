@@ -1,6 +1,4 @@
-import {
-  FIRM_PAGES, FUNERAL_SLUGS, CURRENT_DOMAIN, BASE_API_URL, headers,
-} from 'utils/constants';
+import { CURRENT_DOMAIN, BASE_API_URL, headers } from 'utils/constants';
 import { POST_TYPE_REWRITES } from 'utils/rewrites';
 
 /** get all the administration urls */

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Container, Row } from 'react-bootstrap';
 
 const PrintOnlyBody = ({
@@ -10,7 +11,7 @@ const PrintOnlyBody = ({
           <strong>{title}</strong>
         </h3>
         <div className="d-block w-100">
-          <img className="mt-2 mb-4" src={featuredImage} alt={title} />
+          <Image layout="fill" className="mt-2 mb-4" src={featuredImage} alt={title} />
         </div>
         <div className="d-block w-100 mb-3">
           <strong>Author: </strong>

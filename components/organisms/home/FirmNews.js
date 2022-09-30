@@ -1,10 +1,21 @@
 import { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatSrcToCloudinaryUrl, formatDate, createMarkup } from 'utils/helpers';
-import lineStyles from 'styles/LineHeader.module.css';
 import parse from 'html-react-parser';
+import {
+  NewsContainer,
+  TitleNews,
+  NewsWrapper,
+  FreshNews,
+  LinkContainer,
+  ArticleNewsTitle,
+  Expert,
+  Bottom,
+  OtherNewsBox,
+  OtherNews,
+  TextNews,
+} from 'styles/FirmNews.style';
 
 const formatPost = (post) => ({
   id: post.id,
@@ -17,71 +28,70 @@ const formatPost = (post) => ({
 });
 
 const FirmNews = () => {
-  const [featuredArticle, setFeaturedArticle] = useState({});
+  const [featuredArticle, setFeaturedArticle] = useState();
   const [olderArticles, setOlderArticles] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const url = 'https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=98,99&per_page=4';
-      const request = await fetch(url)
-        .then((data) => data.json())
-        .catch((err) => err.json());
-      const sortedResults = request.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
-      const firstArticle = formatPost(sortedResults[0]);
-      const restOfArticles = sortedResults.filter((_, i) => i > 0).map((post) => formatPost(post));
+      try {
+        const url = 'https://wp.scarincihollenbeck.com/wp-json/wp/v2/posts?categories=98,99&per_page=4';
+        const res = await fetch(url);
+        const resToJson = await res.json();
+        const sortedResults = resToJson.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
+        const firstArticle = formatPost(sortedResults[0]);
+        const restOfArticles = sortedResults.filter((_, i) => i > 0).map((post) => formatPost(post));
 
-      setFeaturedArticle(firstArticle);
-      setOlderArticles(restOfArticles);
+        setFeaturedArticle(firstArticle);
+        setOlderArticles(restOfArticles);
+      } catch (error) {
+        throw new Error(error.message);
+      }
     };
 
-    const featuredArticlesEmpty = Object.keys(featuredArticle).length === 0;
-    const olderArticlesEmpty = olderArticles.length === 0;
-    if (featuredArticlesEmpty && olderArticlesEmpty) {
-      fetchPosts();
-    }
+    fetchPosts();
   }, []);
 
   return (
-    <div className="wrapper-section">
-      <h3 className="title-block">Latest From The Firm</h3>
-      <div className={lineStyles.firmNews}>
-        {Object.keys(featuredArticle).length > 0 && (
-          <div className={`${lineStyles.shadow} ${lineStyles.pItem} `}>
-            <Link href={featuredArticle.url}>
-              <a className={lineStyles.featuredArticle}>
-                <img
+    <NewsContainer>
+      <TitleNews>Latest From The Firm</TitleNews>
+      <NewsWrapper>
+        {featuredArticle && (
+          <FreshNews>
+            <Link href={featuredArticle.url} passHref>
+              <LinkContainer>
+                <Image
                   src={formatSrcToCloudinaryUrl(
                     featuredArticle.imageText.slice(
                       featuredArticle.imageText.indexOf('src="'),
                       featuredArticle.imageText.indexOf('" alt="'),
                     ),
                   )}
+                  width={550}
+                  height={350}
+                  layout="intrinsic"
                   alt={featuredArticle.title}
                 />
-                <h4>{featuredArticle.title}</h4>
-                <div
-                  className={lineStyles.excerpt}
-                  dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)}
-                />
-                <div className={lineStyles.bottom}>
-                  <span className={lineStyles.author}>
+                <ArticleNewsTitle>{featuredArticle.title}</ArticleNewsTitle>
+                <Expert dangerouslySetInnerHTML={createMarkup(featuredArticle.excerpt)} />
+                <Bottom>
+                  <span>
                     <strong>Author: </strong>
                     {featuredArticle.author}
                   </span>
-                  <span className={lineStyles.date}>
+                  <span>
                     <strong>{formatDate(featuredArticle.date)}</strong>
                   </span>
-                </div>
-              </a>
+                </Bottom>
+              </LinkContainer>
             </Link>
-          </div>
+          </FreshNews>
         )}
         {olderArticles.length > 0 && (
-          <div className={lineStyles.itemSmollWrapper}>
+          <OtherNewsBox>
             {olderArticles.map((post) => (
-              <div key={post.id} className={`${lineStyles.shadow} ${lineStyles.pItem}`}>
+              <OtherNews key={post.id}>
                 <Link href={post.url}>
-                  <a className={`${lineStyles.itemSmoll} text-dark`}>
+                  <a>
                     <Image
                       src={formatSrcToCloudinaryUrl(
                         post.imageText.slice(
@@ -94,9 +104,9 @@ const FirmNews = () => {
                       height={150}
                       layout="intrinsic"
                     />
-                    <div className={lineStyles.itemSmollText}>
-                      <h4 className={lineStyles.itemSmollTitle}>{parse(post.title)}</h4>
-                      <div className={lineStyles.itemSmollTextBot}>
+                    <TextNews>
+                      <h2>{parse(post.title)}</h2>
+                      <p>
                         <span>
                           <strong>Author : </strong>
                           {post.author}
@@ -104,16 +114,16 @@ const FirmNews = () => {
                         <span>
                           <strong>{formatDate(post.date)}</strong>
                         </span>
-                      </div>
-                    </div>
+                      </p>
+                    </TextNews>
                   </a>
                 </Link>
-              </div>
+              </OtherNews>
             ))}
-          </div>
+          </OtherNewsBox>
         )}
-      </div>
-    </div>
+      </NewsWrapper>
+    </NewsContainer>
   );
 };
 

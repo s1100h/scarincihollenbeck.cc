@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Image from 'next/image';
 
 const AwardSlider = ({ awards }) => {
   const settings = {
@@ -22,7 +23,7 @@ const AwardSlider = ({ awards }) => {
         {awards.map(({ awardImage, awardLink, awardTitle }) => (
           <div key={awardTitle}>
             <a href={awardLink}>
-              <img
+              <Image
                 data-src={awardImage.sourceUrl}
                 src={awardImage.sourceUrl}
                 alt={awardTitle}
