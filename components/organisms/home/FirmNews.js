@@ -92,18 +92,20 @@ const FirmNews = () => {
               <OtherNews key={post.id}>
                 <Link href={post.url}>
                   <a>
-                    <Image
-                      src={formatSrcToCloudinaryUrl(
-                        post.imageText.slice(
-                          post.imageText.indexOf('src="'),
-                          post.imageText.indexOf('" alt="'),
-                        ),
-                      )}
-                      alt={post.title}
-                      width={350}
-                      height={150}
-                      layout="intrinsic"
-                    />
+                    <div>
+                      <Image
+                        src={formatSrcToCloudinaryUrl(
+                          post.imageText.slice(
+                            post.imageText.indexOf('src="'),
+                            post.imageText.indexOf('" alt="'),
+                          ),
+                        )}
+                        alt={post.title}
+                        width={350}
+                        height={150}
+                        layout="intrinsic"
+                      />
+                    </div>
                     <TextNews>
                       <h2>{parse(post.title)}</h2>
                       <p>
