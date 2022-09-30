@@ -169,7 +169,6 @@ export const TextNews = styled.section`
     font-size: 20px;
     line-height: 1.2;
     color: #000000;
-    margin-bottom: 40px;
   }
 
   p {
@@ -186,17 +185,11 @@ export const TextNews = styled.section`
     width: 100%;
 
     h2 {
-      margin-bottom: 0;
+      margin-bottom: 20px;
       font-size: 1.1rem;
     }
     p {
       font-size: 0.9rem;
-    }
-  }
-
-  ${media_breakpoint_down('md')} {
-    h2 {
-      margin-bottom: 20px;
     }
   }
 `
