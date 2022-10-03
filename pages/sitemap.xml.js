@@ -97,7 +97,7 @@ const getCurrentPublishedPages = async () => {
     const withoutExceptions = publishedPages.filter(
       (pageSlag) => pageSlag !== exception1 && pageSlag !== exception2,
     );
-    clearArrPages.concat(withoutExceptions);
+    return clearArrPages.concat(withoutExceptions);
   } catch (error) {
     console.error(error.message);
   }
