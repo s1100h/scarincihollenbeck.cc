@@ -197,12 +197,6 @@ em {
   display: none;
 }
 
-.scroll-search {
-  /*height: 28px;*/
-  /*padding-left: 8px;*/
-  /*left: -1em;*/
-}
-
 .top--1 {
   top: -1px;
 }
@@ -324,9 +318,6 @@ footer .wrapper-section {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-}
-
-.title-block-wr .title-block {
 }
 
 .btn-red {

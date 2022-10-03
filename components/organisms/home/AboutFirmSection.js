@@ -1,4 +1,3 @@
-import { Row, Col } from 'react-bootstrap';
 import lineStyles from 'styles/LineHeader.module.css';
 import { createMarkup } from 'utils/helpers';
 

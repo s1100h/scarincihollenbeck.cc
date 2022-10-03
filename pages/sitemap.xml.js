@@ -1,6 +1,4 @@
-import {
-  FIRM_PAGES, FUNERAL_SLUGS, CURRENT_DOMAIN, BASE_API_URL, headers,
-} from 'utils/constants';
+import { CURRENT_DOMAIN, BASE_API_URL, headers } from 'utils/constants';
 import { POST_TYPE_REWRITES } from 'utils/rewrites';
 
 /** get all the administration urls */
@@ -86,15 +84,25 @@ const getPracticePaths = async (isArticles) => {
 
 /** get all page urls from the site */
 const getCurrentPublishedPages = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)
-    .then((data) => data.json())
-    .catch((err) => err);
+  const exception1 = 'order-confirmation';
+  const exception2 = 'order-failed';
 
-  const publishedPages = request
-    .filter((page) => page.status === 'publish')
-    .map((page) => page.slug);
+  const clearArrPages = [];
+  try {
+    const response = await (await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)).json();
 
-  return publishedPages;
+    const publishedPages = response
+      .filter((page) => page.status === 'publish')
+      .map((page) => page.slug);
+    const withoutExceptions = publishedPages.filter(
+      (pageSlag) => pageSlag !== exception1 && pageSlag !== exception2,
+    );
+    return clearArrPages.concat(withoutExceptions);
+  } catch (error) {
+    console.error(error.message);
+  }
+
+  return clearArrPages;
 };
 
 const Sitemap = () => null;

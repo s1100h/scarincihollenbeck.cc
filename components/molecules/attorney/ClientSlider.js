@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Image from 'next/image';
 
 const ClientSlider = ({ clients }) => {
   const settings = {
@@ -19,7 +20,7 @@ const ClientSlider = ({ clients }) => {
         {clients.map(({ clientImage, clientLink, clientTitle }) => (
           <div key={clientTitle}>
             <a href={clientLink}>
-              <img src={clientImage.sourceUrl} alt={clientTitle} width="auto" height="300" />
+              <Image src={clientImage.sourceUrl} alt={clientTitle} width="auto" height="300" />
             </a>
           </div>
         ))}

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Col, Row, Button } from 'react-bootstrap';
+import { KWES_API, RECAPTCHA_SITE_KEY, SITE_URL } from 'utils/constants';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -12,17 +13,13 @@ const ContactForm = ({ emailForwarding, name }) => {
     <div className="px-2 mb-3">
       <KwesScripts />
       <form
-        action="https://kwes.io/api/foreign/forms/m015EzO4b4EtOvYSTRlK"
+        action={KWES_API}
         className="kwes-form d-print-none px-1"
         style={{ maxWidth: '90%' }}
         has-recaptcha-v3="true"
-        recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
+        recaptcha-site-key={RECAPTCHA_SITE_KEY}
       >
-        <input
-          type="hidden"
-          name="currentPage"
-          value={`https://scarincihollenbeck.com${router.asPath}`}
-        />
+        <input type="hidden" name="currentPage" value={`${SITE_URL}${router.asPath}`} />
         {emailForwarding.map((email, index) => (
           <input
             key={email}
