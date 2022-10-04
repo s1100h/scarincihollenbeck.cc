@@ -338,25 +338,6 @@ footer .wrapper-section {
   text-decoration: none;
 }
 
-.locationParentJs > *:not(.locationTitleJs) {
-  display: none;
-}
-
-.locationParentJs.locationParentJs_active > * {
-  display: flex;
-}
-
-.locationTitleJs_active {
-  background: #a91110;
-  color: #ffffff;
-}
-
-.locationTitleJs_active:after {
-  content: url('/images/arrow-top-white.svg');
-  background: #a91110;
-  color: #ffffff;
-}
-
 .box-shadow {
   box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
 }
