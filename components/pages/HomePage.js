@@ -6,9 +6,9 @@ import lineStyles from 'styles/LineHeader.module.css';
 import ModalWindow from '../atoms/ModalWindow';
 
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
-const Awards = dynamic(() => import('components/organisms/home/Awards'));
 const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirmSection'));
 const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'));
+const Awards = dynamic(() => import('components/organisms/home/Awards'));
 
 const HomePage = ({
   seo, aboutFirm, aboutFirm2, awards, banner,
