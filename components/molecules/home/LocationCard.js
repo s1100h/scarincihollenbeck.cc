@@ -1,4 +1,3 @@
-import textStyles from 'styles/Text.module.css';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import {
@@ -43,9 +42,9 @@ export default function LocationCard() {
             </LocationHeader>
             <ContactInfoContent open={cardIndex === idx}>
               <Contact>
-                <div>
+                <p>
                   <BsFillSignpostFill color={colorIcons} size={sizeIcons} />
-                </div>
+                </p>
                 {office.address}
               </Contact>
               <Contact>

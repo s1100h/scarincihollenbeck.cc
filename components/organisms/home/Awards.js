@@ -1,6 +1,6 @@
-import { Row, Col } from 'react-bootstrap';
-import Accolade from 'components/molecules/home/Accolade';
-import lineStyles from 'styles/LineHeader.module.css';
+import AwardsSlider from 'components/molecules/home/AwardsSlider';
+import { AwardsContainer, TitleBlock } from 'styles/Awards.style';
+import { RedButtonLink } from 'styles/RedButton.style';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const Awards = ({ awards }) => {
@@ -20,23 +20,15 @@ const Awards = ({ awards }) => {
     .sort((a, b) => (a.order > b.order ? 1 : -1));
 
   return (
-    <div className="wrapper-section">
-      <div className="title-block-wr">
-        <h3 className="title-block">AWARDS & ACCOLADES</h3>
-        <a href="/awards" className="btn-red">
-          Award Methodology
-        </a>
-      </div>
-      <div className={lineStyles.awardWr}>
-        {formattedAwards.map((award) => (
-          <Accolade
-            key={award.id}
-            image={award.image}
-            colSize={formattedAwards.length > 4 ? 4 : 3}
-          />
-        ))}
-      </div>
-    </div>
+    <section className="wrapper-section">
+      <TitleBlock>
+        <h1>AWARDS & ACCOLADES</h1>
+        <RedButtonLink>Award Methodology</RedButtonLink>
+      </TitleBlock>
+      <AwardsContainer>
+        <AwardsSlider images={formattedAwards} />
+      </AwardsContainer>
+    </section>
   );
 };
 

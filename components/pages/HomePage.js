@@ -14,7 +14,7 @@ import lineStyles from 'styles/LineHeader.module.css';
 import SideBar from '../organisms/locations/LocationsSidebar';
 import { buildLocationSchema } from '../../utils/json-ld-schemas';
 import LocationsBody from '../organisms/locations/LocationsBody';
-import ModalWindow from '../components/ModalWindow';
+import ModalWindow from '../atoms/ModalWindow';
 
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
 const HomeOurLeadership = dynamic(() => import('components/organisms/home/OurLeadership'));
