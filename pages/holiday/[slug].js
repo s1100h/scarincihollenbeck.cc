@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { SITE_URL } from 'utils/constants';
-import { getPageContent } from 'utils/queries';
 import HolidayPage from 'components/pages/HolidayPage';
 import { fetchAPI } from 'utils/api';
 import { basicPagesQuery } from 'utils/graphql-queries';

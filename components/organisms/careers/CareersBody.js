@@ -1,28 +1,9 @@
 import dynamic from 'next/dynamic';
 
 const Results = dynamic(() => import('components/organisms/careers/CareersResults'));
-const FilterForms = dynamic(() => import('components/organisms/careers/FilterForms'));
 
-const CareersBody = ({
-  careers,
-  query,
-  locations,
-  positionTypes,
-  setQuery,
-  executeSearch,
-  setPositionType,
-  setLocation,
-}) => (
+const CareersBody = ({ careers }) => (
   <div className="mb-5">
-    {/* <FilterForms
-      locations={locations}
-      positionTypes={positionTypes}
-      query={query}
-      setQuery={setQuery}
-      setPositionType={setPositionType}
-      setLocation={setLocation}
-      executeSearch={executeSearch}
-    /> */}
     <Results positions={careers} />
   </div>
 );
