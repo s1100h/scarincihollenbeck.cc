@@ -3,9 +3,10 @@ import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import lineStyles from 'styles/LineHeader.module.css';
+import React, { Suspense } from 'react';
 import ModalWindow from '../atoms/ModalWindow';
 
-const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
+const AllOfficeLocations = React.lazy(() => import('components/organisms/home/AllOfficeLocations'));
 const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirmSection'));
 const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'));
 const Awards = dynamic(() => import('components/organisms/home/Awards'));
@@ -21,7 +22,9 @@ const HomePage = ({
       <AboutFirmSection {...aboutFirm} />
       <AboutFirmSection {...aboutFirm2} />
     </div>
-    <AllOfficeLocations />
+    <Suspense fallback={<div>Loading...</div>}>
+      <AllOfficeLocations />
+    </Suspense>
     <FirmNews />
     <Awards awards={awards} />
   </>

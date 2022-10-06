@@ -30,9 +30,7 @@ module.exports = {
     swcMinify: true,
   },
   compiler: {
-    styledComponents: {
-      classNames: true,
-    },
+    styledComponents: true,
   },
   async rewrites() {
     return [...POST_TYPE_REWRITES, ...POST_CATEGORY_REWRITES, ...SITE_PAGES_REWRITES];
