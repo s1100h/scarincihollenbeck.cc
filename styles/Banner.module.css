@@ -1,6 +1,7 @@
 /** Banner Image **/
 .banner {
   position: relative;
+  margin-bottom: 40px;
 }
 
 .banner:before {
@@ -34,13 +35,7 @@
   background: url(/images/red-holiday-banner.webp) no-repeat center center;
 }
 
-/* /images/red-banner-opacity.png */
 .redBanner {
-  /*background-image: url(/images/red-banner-home.webp);*/
-  /*background-position: right;*/
-  /*background-size: cover;*/
-  /*background-repeat: no-repeat;*/
-  /*width: 100%;*/
   width: 1650px;
   margin: 0 auto;
   max-width: 96%;
@@ -54,61 +49,13 @@
   -o-background-size: cover;
   background-size: cover;
   display: flex;
-  /*border-top: 5px solid #000;*/
-  /*border-bottom: 5px solid #000;*/
   margin-bottom: 1.5em;
   height: auto;
 }
 
-.banner {
-  margin-bottom: 40px;
-}
-
-.bannerContainer {
-  background-color: rgba(0, 0, 0, 0.556);
-  /*box-shadow: 3px 5px 10px #000;*/
-  border: 2px solid #000;
-  border-radius: 2px;
-}
-
-@media (min-width: 1250px) {
-  .redBanner {
-    /*width: 80%;*/
-    /*padding-right: 114px;*/
-  }
-}
-
-@media (min-width: 1450px) {
-  .redBanner {
-    /*width: 70%;*/
-  }
-}
-
-@media (min-width: 1650px) {
-  .redBanner {
-    /*width: 60%;*/
-  }
-}
-
-@media (max-width: 768px) {
-  .redBanner {
-    /*background-position: 80%;*/
-  }
-}
-
-.homeBannerContainer,
-.bannerContainer {
+.homeBannerContainer {
   color: #fff;
   padding: 1em;
-}
-
-@media (min-width: 1200px) {
-  .homeBannerContainer {
-    /*margin-left: 4em;*/
-  }
-}
-
-.homeBanner {
 }
 
 .tabBanner,
@@ -124,16 +71,6 @@
   margin-bottom: 3.5em;
 }
 
-/*
-.multiBackBanner {
-  margin-top: 2.5em;
-}
-
-@media (min-width: 768px) {
-  .multiBackBanner {
-    margin-bottom: 2em;
-  }
-} */
 .text {
   font-family: 'Kenjo I';
   font-weight: 400;
