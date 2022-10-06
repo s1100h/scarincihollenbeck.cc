@@ -1,12 +1,11 @@
 import Services from 'components/molecules/attorney/Services';
 import SidebarBtn from 'components/molecules/attorney/SidebarBtn';
 import AwardSlider from 'components/molecules/attorney/AwardSlider';
-import marginStyles from 'styles/Margins.module.css';
 
 const SidebarWrapper = ({
   services, setActiveTab, education, contact, awards,
 }) => (
-  <div className={marginStyles.mtMinusMd2}>
+  <div className="mt-0">
     <Services services={services} />
     <hr />
     <SidebarBtn

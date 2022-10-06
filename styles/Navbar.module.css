@@ -1,31 +1,6 @@
-@media only screen and (max-width: 960px) {
-}
-
-@media (min-width: 0px) and (max-width: 449px) {
-  .mobileMenu,
-  .logoBanner {
-    width: 100%;
-    display: block;
-  }
-  .mobileMenu div {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .mobileMenu {
-    margin-bottom: 1em;
-  }
-}
-
 @media (min-width: 449px) and (max-width: 576px) {
   .navContainer {
     display: none !important;
-  }
-  .mobileMenu {
-    display: flex;
-    justify-content: flex-start;
-  }
-  .contactBanner {
-    justify-content: flex-end;
   }
 }
 
@@ -51,19 +26,12 @@
     margin-right: auto;
     display: block;
   }
-  .navContainer,
-  .contactBanner {
+  .navContainer {
     justify-content: center;
     padding: 0;
   }
   .navItem {
     margin-right: 1em;
-  }
-}
-
-@media (min-width: 992px) {
-  .contactBanner {
-    justify-content: flex-end;
   }
 }
 
@@ -83,11 +51,7 @@
 }
 
 @media (min-width: 576px) {
-  .mobileMenu {
-    display: none;
-  }
   .navContainer {
-    /*display: flex !important;*/
     justify-content: space-between !important;
     padding: 0 !important;
   }
@@ -147,18 +111,11 @@
     background-color: #a9a9a9 !important;
     border-bottom: 3px solid #fff !important;
   }
-  .borderWrapper {
-    border-bottom: 1px solid #dee2e6 !important;
-  }
 }
 
 @media (min-width: 1200px) {
   .navContainer {
     justify-content: space-between;
-    /*justify-content: flex-end !important;*/
-  }
-  .logoBanner {
-    margin-top: -10px;
   }
   .navContainerWrapper {
     width: 100%;

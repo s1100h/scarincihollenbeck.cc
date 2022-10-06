@@ -97,9 +97,3 @@
   margin-bottom: 7px;
   color: #a91110;
 }
-
-.location {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 44px;
-}
