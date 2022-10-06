@@ -24,9 +24,9 @@ const HomePage = ({
     </div>
     <Suspense fallback={<div>Loading...</div>}>
       <AllOfficeLocations />
+      <FirmNews />
+      <Awards awards={awards} />
     </Suspense>
-    <FirmNews />
-    <Awards awards={awards} />
   </>
 );
 
