@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import {
-  Button, Modal, ModalBody, ModalFooter,
-} from 'reactstrap';
+import { Modal, ModalFooter } from 'reactstrap';
+import { RedButtonBootstrap } from 'styles/RedButton.style';
 import Cookies from 'universal-cookie';
 
 function ModalWindow() {
@@ -47,9 +46,9 @@ function ModalWindow() {
             </button>
           </div>
           <ModalFooter>
-            <Button className="btn-red" color="secondary" type="button" onClick={handleClick}>
+            <RedButtonBootstrap color="secondary" type="button" onClick={handleClick}>
               Close
-            </Button>
+            </RedButtonBootstrap>
           </ModalFooter>
         </Modal>
       </>

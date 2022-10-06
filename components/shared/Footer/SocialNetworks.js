@@ -1,4 +1,3 @@
-import { BsLinkedin, BsFacebook } from 'react-icons/bs';
 import { SocialLinks, LinkTitle } from 'styles/Footer.style';
 import { SOCIAL_MEDIA_LINKS } from 'utils/constants';
 

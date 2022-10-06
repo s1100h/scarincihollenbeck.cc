@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import { createMarkup, formatDate } from 'utils/helpers';
 import fontStyles from 'styles/Fonts.module.css';
@@ -8,8 +7,6 @@ import fontStyles from 'styles/Fonts.module.css';
 export default function MainArticle({
   title, link, excerpt, date, image,
 }) {
-  const router = useRouter();
-
   return (
     <>
       <Link href={link}>

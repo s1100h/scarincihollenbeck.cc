@@ -1,6 +1,5 @@
 import { FaLinkedinIn } from 'react-icons/fa';
 import { BsChatDots, BsCloudDownload, BsCardText } from 'react-icons/bs';
-import SidebarBtn from './SidebarBtn';
 
 function showMessage() {
   document.getElementById('test').click();

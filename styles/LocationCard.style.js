@@ -104,7 +104,7 @@ export const LinkToAttorneys = styled.a`
   }
 `
 
-export const Contact = styled.p`
+export const Contact = styled.div`
   display: flex;
   gap: 21px;
   font-style: normal;
