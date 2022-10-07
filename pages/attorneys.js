@@ -14,22 +14,26 @@ const attorneysPageContent = async () => {
 
 /** Fetch the office, designations, attorneys, practices data from WP REST API */
 const getAttorneysContent = async () => {
-  const [attorneys, locations, designations, practices] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/office-locations`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/designations`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/attorney-search/practices`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-  ]);
+  try {
+    const [attorneys, locations, designations, practices] = await Promise.all([
+      fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/attorney-search/office-locations`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/attorney-search/designations`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/attorney-search/practices`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+    ]);
 
-  return [attorneys, locations, designations, practices];
+    return [attorneys, locations, designations, practices];
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Map all the page data to component props */

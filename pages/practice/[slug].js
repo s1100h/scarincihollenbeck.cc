@@ -11,13 +11,15 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch single practice data WP REST API  */
 const getPracticeContent = async (slug) => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
+      headers,
+    });
 
-  return request;
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Set single practice data to page props */

@@ -17,7 +17,6 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
   const {
     seo, tabs, relatedPages, attorneysMentioned, title, description, members,
   } = page;
-
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
@@ -25,7 +24,7 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
       <Container>
         <Row>
           {tabs.map((tab) => (
-            <Col key={tab.id} sm={12} lg={9}>
+            <Col key={tab.title} sm={12} lg={9}>
               <Article
                 title={tab.title}
                 highlight

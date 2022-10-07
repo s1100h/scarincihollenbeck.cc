@@ -25,11 +25,13 @@ const practicesPageContent = async () => {
 
 /** Fetch all the practices from WP REST API */
 const getAllPractices = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/practice-portal/page/`, { headers })
-    .then((data) => data.json())
-    .catch((err) => err);
-
-  return request?.practices;
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/practice-portal/page/`, { headers });
+    const resToJson = await res.json();
+    return resToJson?.practices;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Map practice page data to page props */

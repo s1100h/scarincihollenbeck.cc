@@ -10,15 +10,14 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch all the location pages urls from WP REST API * */
 const getLocationPaths = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, { headers });
+    const resToJson = await res.json();
 
-  const paths = request.offices.map((o) => o.slug);
-
-  return paths;
+    return resToJson.offices.map((o) => o.slug);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** fetch and build urls for static pages generation */

@@ -5,8 +5,8 @@ import { getCovid19BasedPages } from 'utils/queries';
 
 /** Fetch the page data to page props */
 export async function getStaticProps() {
-  const [request] = await getCovid19BasedPages('covid-19-crisis-management-unit', COVID_POSTS_ID);
-  const { title, content, seo } = request;
+  const [response] = await getCovid19BasedPages('covid-19-crisis-management-unit', COVID_POSTS_ID);
+  const { title, content, seo } = response;
 
   return {
     props: {

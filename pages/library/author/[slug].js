@@ -8,25 +8,29 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Get all the author data and posts for the page using WP REST API */
 const getAuthorContent = async (slug) => {
-  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/author/posts/${slug}/1`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/children/${slug}`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/author/bio/${slug}`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-  ]);
+  try {
+    const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
+      fetch(`${BASE_API_URL}/wp-json/author/posts/${slug}/1`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/category/children/${slug}`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/author/bio/${slug}`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+    ]);
 
-  return [results, authors, childrenOfCurrentCategory, popularCategories, authorBio];
+    return [results, authors, childrenOfCurrentCategory, popularCategories, authorBio];
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Set the author posts and related data to page props */

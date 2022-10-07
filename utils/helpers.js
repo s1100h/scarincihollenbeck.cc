@@ -111,16 +111,18 @@ export const extractDescription = (content) => {
 
 // external blog fetch helper
 export const fetchExternalPosts = async (site, authorId, amount) => {
-  const url = `${site}/wp-json/wp/v2/posts?author=${authorId}&per_page=${amount}&orderby=date`;
-  const request = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const url = `${site}/wp-json/wp/v2/posts?author=${authorId}&per_page=${amount}&orderby=date`;
+    const res = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  return request;
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 // Format image src into a cloudinary url

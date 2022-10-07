@@ -14,13 +14,20 @@ const careersPageContent = async () => {
   return data?.pageBy;
 };
 
-export const getStaticProps = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+const getCareerList = async () => {
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
+      headers,
+    });
 
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getStaticProps = async () => {
+  const careerList = await getCareerList();
   const page = await careersPageContent();
   const getLocations = await homePageLocations();
   const { seo, title, careersPage } = page;
@@ -35,7 +42,7 @@ export const getStaticProps = async () => {
         description: careersPage.description,
         bodyContent: careersPage.equalEmploymentOpportunityContent,
       },
-      careerList: request.careers,
+      careerList: careerList.careers,
       locations,
       positionTypes,
     },

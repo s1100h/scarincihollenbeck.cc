@@ -11,16 +11,20 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch additional page information such as authors and popular categories from WP REST API */
 const getLibraryCategoryContent = async () => {
-  const [authors, popularCategories] = await Promise.all([
-    fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-    fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
-      .then((data) => data.json())
-      .catch((err) => err),
-  ]);
+  try {
+    const [authors, popularCategories] = await Promise.all([
+      fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+      fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
+        .then((data) => data.json())
+        .catch((err) => err),
+    ]);
 
-  return [authors, popularCategories];
+    return [authors, popularCategories];
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** get the current category's latest post WP GRAPHQL API */

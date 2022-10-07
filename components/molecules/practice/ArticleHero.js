@@ -13,20 +13,25 @@ const ArticleHeroPractice = ({ blogId }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const url = `${BASE_API_URL}/wp-json/wp/v2/posts?categories=${blogId}`;
+      try {
+        const url = `${BASE_API_URL}/wp-json/wp/v2/posts?categories=${blogId}`;
 
-      const request = await fetch(url).then((data) => data.json());
-      const modPosts = request
-        .filter((_, i) => i <= 2)
-        .map((post) => ({
-          title: post.title.rendered,
-          link: post.link.replace('https://scarincihollenbeck.com', ''),
-          image: post.better_featured_image
-            ? formatSrcToCloudinaryUrl(post.better_featured_image.source_url)
-            : '/images/no-image-found-diamond-750x350.png',
-        }));
+        const res = await fetch(url);
+        const resToJson = await res.json();
+        const modPosts = resToJson
+          .filter((_, i) => i <= 2)
+          .map((post) => ({
+            title: post.title.rendered,
+            link: post.link.replace('https://scarincihollenbeck.com', ''),
+            image: post.better_featured_image
+              ? formatSrcToCloudinaryUrl(post.better_featured_image.source_url)
+              : '/images/no-image-found-diamond-750x350.png',
+          }));
 
-      setPosts(modPosts);
+        setPosts(modPosts);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     if (posts.length <= 0) {

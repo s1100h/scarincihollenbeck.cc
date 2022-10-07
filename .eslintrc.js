@@ -36,6 +36,7 @@ module.exports = {
     'no-plusplus': 'off',
     'no-shadow': 'off',
     'react/button-has-type': 'off',
+    'consistent-return': 'off',
     camelcase: 'off',
     'react/destructuring-assignment': 'off',
     'react/jsx-no-bind': 'off',
