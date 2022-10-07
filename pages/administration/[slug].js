@@ -10,13 +10,13 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** Fetch data from WP-REST API */
 const getAdministrationContent = async (slug) => {
   const url = `${BASE_API_URL}/wp-json/individual-admin/admin/${slug}`;
-  const request = await fetch(url, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const res = await fetch(url, { headers });
 
-  return request;
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Set data from API response to page props */

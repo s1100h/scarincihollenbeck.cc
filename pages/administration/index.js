@@ -12,13 +12,13 @@ const archivesPageContent = async () => {
 
 /** Fetch administration data from WP REST API */
 const getAdministration = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
-
-  return request?.admins;
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, { headers });
+    const resToJson = await res.json();
+    return resToJson?.admins;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Set data from API response to page props */

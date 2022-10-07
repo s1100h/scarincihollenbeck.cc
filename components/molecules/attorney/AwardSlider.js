@@ -29,6 +29,7 @@ const AwardSlider = ({ awards }) => {
                 alt={awardTitle}
                 width="auto"
                 height="120"
+                placeholder="blur"
               />
             </a>
           </div>

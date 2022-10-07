@@ -4,35 +4,38 @@ import { POST_TYPE_REWRITES } from 'utils/rewrites';
 /** get all the administration urls */
 const getAdministrationPaths = async () => {
   const url = `${BASE_API_URL}/wp-json/admin-search/admin`;
-  const request = await fetch(url, { headers })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const res = await fetch(url, { headers });
+    const resToJson = await res.json();
+    const paths = resToJson.admins.map((a) => a.link);
 
-  const paths = request.admins.map((a) => a.link);
-
-  return paths;
+    return paths;
+  } catch (error) {
+    console.error();
+  }
 };
 
 /** get all the attorney urls */
 const getAttorneyPaths = async () => {
   const url = `${BASE_API_URL}/wp-json/attorney-search/attorneys`;
-  const request = await fetch(url, { headers })
-    .then((data) => data.json())
-    .catch((err) => err);
-
-  return request;
+  try {
+    const res = await fetch(url, { headers });
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** get all the careers urls */
 const getCareersPaths = async () => {
   const url = `${BASE_API_URL}/wp-json/career-portal/careers`;
-  const request = await fetch(url, { headers })
-    .then((data) => data.json())
-    .catch((err) => err);
-
-  const paths = request.careers.map((c) => `/career${c.slug}`);
-
-  return paths;
+  try {
+    const res = await fetch(url, { headers });
+    const resToJson = await res.json();
+    return resToJson.careers.map((c) => `/career${c.slug}`);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** get all the author urls */
@@ -59,27 +62,28 @@ const getCategoryPaths = async () => {
 
 /** get all the location urls for a category */
 const getLocationPaths = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
-    headers,
-  })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, { headers });
+    const resToJson = await res.json();
 
-  const paths = request.offices.map((o) => o.slug);
-
-  return paths;
+    return resToJson.offices.map((office) => office.slug);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** get all the practice page urls */
 const getPracticePaths = async (isArticles) => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/practice-portal/all-links`, { headers })
-    .then((data) => data.json())
-    .catch((err) => err);
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/practice-portal/all-links`, { headers });
+    const resToJson = await res.json();
 
-  const genPath = (slug) => (isArticles ? `/practice/${slug}/articles` : `/practice/${slug}`);
+    const genPath = (slug) => (isArticles ? `/practice/${slug}/articles` : `/practice/${slug}`);
 
-  const paths = await request.map((slug) => genPath(slug));
-  return paths;
+    return await resToJson.map((slug) => genPath(slug));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** get all page urls from the site */
