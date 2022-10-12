@@ -27,23 +27,13 @@
   }
 }
 
-.backPageBanner {
-  background: url(/images/dark-blue-banner.webp) no-repeat center center;
-}
-
-.holidayBanner {
-  background: url(/images/red-holiday-banner.webp) no-repeat center center;
-}
-
 .redBanner {
   width: 1650px;
   margin: 0 auto;
   max-width: 96%;
 }
 
-.banner,
-.backPageBanner,
-.holidayBanner {
+.banner {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -56,19 +46,6 @@
 .homeBannerContainer {
   color: #fff;
   padding: 1em;
-}
-
-.tabBanner,
-.noTabBanner {
-  margin-top: 3.5em;
-}
-
-.tabBanner {
-  margin-bottom: 5em;
-}
-
-.noTabBanner {
-  margin-bottom: 3.5em;
 }
 
 .text {

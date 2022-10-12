@@ -27,7 +27,7 @@ const Filters = ({
         </Col>
       </Row>
     </Container>
-    <Container className={`${styles.lightGrayBackground} border p-2`}>
+    <Container className={`${styles.lightGrayBackground} p-2`}>
       <Row>
         <Col sm={12} md={4}>
           <Practices practices={practices} onSelect={onSelect} />
