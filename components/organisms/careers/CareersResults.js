@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 const EmptyResults = dynamic(() => import('components/molecules/careers/EmptyResults'));
-const RenderResults = dynamic(() => import('components/molecules/careers/RenderResults'));
+const PositionCards = dynamic(() => import('components/molecules/careers/PositionCards'));
 
 const CareersResults = ({ positions }) => {
   if (positions.length <= 0) {
@@ -9,7 +9,7 @@ const CareersResults = ({ positions }) => {
   }
 
   if (positions.length > 0) {
-    return <RenderResults positions={positions} />;
+    return <PositionCards positions={positions} />;
   }
 
   return null;

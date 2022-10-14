@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const ArticleContainer = styled.article`
   display: flex;
@@ -13,6 +14,10 @@ export const Title = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 10px;
+
+  ${media_breakpoint_down('sm')} {
+    text-align: center;
+  }
 `
 
 export const ArticleBody = styled.section`
