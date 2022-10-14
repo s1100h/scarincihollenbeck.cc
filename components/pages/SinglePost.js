@@ -12,17 +12,15 @@ const PostPage = ({
 }) => (
   <>
     <PostSiteHead seo={seo} canonicalUrl={canonicalUrl} post={post} authors={authors} />
-    <span className="d-print-none">
-      <SingleSubHeader
-        title={post.title}
-        subtitle={post.subTitle}
-        isBlog
-        offset={0}
-        span={8}
-        authors={authors}
-        date={post.date}
-      />
-    </span>
+    <SingleSubHeader
+      title={post.title}
+      subtitle={post.subTitle}
+      isBlog
+      offset={0}
+      span={8}
+      authors={authors}
+      date={post.date}
+    />
     <Container className="d-print-none">
       <Row>
         <Body

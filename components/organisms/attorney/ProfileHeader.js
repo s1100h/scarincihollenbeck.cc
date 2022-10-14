@@ -6,6 +6,7 @@ import ProfileDetails from 'components/molecules/attorney/ProfileDetails';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
 import ContactIcons from 'components/molecules/attorney/ContactIcons';
 import styles from 'styles/Banner.module.css';
+import { BackgroundContainer } from 'styles/SingleSubHeader.style';
 
 const useDesignationHook = (title) => {
   const [designation, setDesignation] = useState(title);
@@ -62,8 +63,8 @@ const ProfileHeader = ({
   };
 
   return (
-    <div className={styles.backPageBanner}>
-      <Container className={`${styles.multiBackBanner} pt-3 pb-5`}>
+    <BackgroundContainer props={{ isTabs: 'true' }}>
+      <Container>
         <Row>
           <Col sm={12} lg={9} className="text-white">
             <Row>
@@ -83,7 +84,7 @@ const ProfileHeader = ({
           </Col>
         </Row>
       </Container>
-    </div>
+    </BackgroundContainer>
   );
 };
 

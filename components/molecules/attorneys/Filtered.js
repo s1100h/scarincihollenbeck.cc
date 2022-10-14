@@ -1,8 +1,7 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import { filterByKey } from 'utils/helpers';
 import textStyles from 'styles/Text.module.css';
+import { CentralizedBox, ContainerXXL, RowSpecial } from 'styles/Containers.style';
 
 const Filtered = ({ attorneys, userInput, select }) => {
   // filter through results
@@ -73,27 +72,30 @@ const Filtered = ({ attorneys, userInput, select }) => {
     .filter(filterQuery);
 
   return (
-    <Row>
-      {aFiltered.map((m) => (
-        <Col key={m.link} sm={12} md={6} lg={4} className="mb-3">
-          <AttorneyCard
-            link={`/attorney${m.link}`}
-            image={m.better_featured_image}
-            name={m.title}
-            title={m.designation}
-            number={m.phone}
-            email={m.email}
-            width={80}
-            height={112}
-          />
-        </Col>
-      ))}
+    <ContainerXXL>
+      <CentralizedBox>
+        <RowSpecial>
+          {aFiltered.map((m) => (
+            <AttorneyCard
+              key={m.id}
+              link={`/attorney${m.link}`}
+              image={m.better_featured_image}
+              name={m.title}
+              title={m.designation}
+              number={m.phone}
+              email={m.email}
+              width={80}
+              height={112}
+            />
+          ))}
+        </RowSpecial>
+      </CentralizedBox>
       {aFiltered.length < 1 && (
         <h3 className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}>
           <strong>Sorry, no attorneys found according to this query.</strong>
         </h3>
       )}
-    </Row>
+    </ContainerXXL>
   );
 };
 

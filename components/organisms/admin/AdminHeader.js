@@ -7,6 +7,7 @@ import ContactIcons from 'components/molecules/admin/ContactIcons';
 import profileStyles from 'styles/ProfileImage.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import styles from 'styles/Banner.module.css';
+import { BackgroundContainer } from 'styles/SingleSubHeader.style';
 
 const AdminProfileHeader = ({ image, profile }) => {
   const {
@@ -18,7 +19,7 @@ const AdminProfileHeader = ({ image, profile }) => {
   const linkedIn = socialMedia.filter((a) => a.channel === 'LinkedIn')[0];
   return (
     <>
-      <div className={styles.backPageBanner}>
+      <BackgroundContainer>
         <Container className={styles.multiBackBanner}>
           <Row className="my-4">
             <Col sm={12} lg={9} className="text-white">
@@ -49,7 +50,7 @@ const AdminProfileHeader = ({ image, profile }) => {
             </Col>
           </Row>
         </Container>
-      </div>
+      </BackgroundContainer>
     </>
   );
 };

@@ -3,12 +3,13 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import Menu from 'components/organisms/practice/Menu';
+import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import PageSidebar from 'components/organisms/practice/PageSidebar';
 import lineHeaderStyles from 'styles/LineHeader.module.css';
 import useApolloQuery from 'hooks/useApolloQuery';
+import { ColStyled } from 'styles/AttorneyProfile.style';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
 const Body = dynamic(() => import('components/organisms/practice/Body'));
@@ -20,7 +21,6 @@ const PracticePage = ({
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
-  const [toggleDropDown, setToggleDropDown] = useState(false);
   const blogId = practice.blog_data_id[0];
 
   /** Handle Related Articles Query */
@@ -62,14 +62,8 @@ const PracticePage = ({
       />
       <Container>
         <Row>
-          <Col sm={12} lg={9} style={{ position: 'relative', top: '-66px' }}>
-            <Menu
-              tabs={tabs}
-              setActiveTab={setActiveTab}
-              activeTab={activeTab}
-              setToggleDropDown={setToggleDropDown}
-              toggleDropDown={toggleDropDown}
-            />
+          <ColStyled sm={12} lg={9} top="-116px">
+            <ButtonsMenu tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
             <Body
               activeTabContent={activeTabContent}
               content={{
@@ -81,10 +75,10 @@ const PracticePage = ({
               }}
               activeTab={activeTab}
             />
-          </Col>
-          <Col sm={12} lg={3} style={{ position: 'relative', bottom: '24px' }}>
+          </ColStyled>
+          <ColStyled sm={12} lg={3} bottom="24px">
             <PageSidebar corePractices={corePractices} practiceChildren={practiceChildren} />
-          </Col>
+          </ColStyled>
         </Row>
 
         <Row>

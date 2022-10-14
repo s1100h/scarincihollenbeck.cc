@@ -50,7 +50,7 @@
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 320px) {
   .navContainer {
     justify-content: space-between !important;
     padding: 0 !important;

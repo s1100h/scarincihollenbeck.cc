@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Navbar, NavDropdown } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const NavbarStyled = styled(Navbar)`

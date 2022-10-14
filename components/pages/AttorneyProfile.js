@@ -1,18 +1,21 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import styled from 'styled-components';
-import {
-  Container, Row, Col, Button,
-} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import StringContent from 'components/organisms/attorney/StringContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import SidebarWrapper from 'components/organisms/attorney/SidebarWrapper';
-import { FaCaretDown } from 'react-icons/fa';
-import useOnClickOutside from 'hooks/useOnClickOutside';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
+import {
+  ButtonTab,
+  ButtonGroup,
+  MobileGroup,
+  NavItem,
+  ButtonDropdown,
+} from 'styles/ButtonsMenu.style';
+import { ColStyled } from 'styles/AttorneyProfile.style';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
@@ -35,14 +38,10 @@ const AttorneyPage = ({
     title: mainTabs[0].title,
     content: mainTabs[0].content,
   });
-  const [toggleDropDown, setToggleDropDown] = useState(false);
   const [isArticle, setIsArticle] = useState(false);
   const [isBlog, setIsBlog] = useState(false);
   const [blogId, setBlogId] = useState(null);
   const [articleId, setArticleId] = useState(null);
-
-  const node = useRef(null);
-  useOnClickOutside(node, () => setToggleDropDown(false));
 
   const education = {
     id: 22,
@@ -144,68 +143,51 @@ const AttorneyPage = ({
       <ProfileHeader {...profileHeader} />
       <Container>
         <Row>
-          <Col sm={12} lg={9} style={{ position: 'relative', top: '-66px' }} ref={node}>
+          <ColStyled sm={12} lg={9} top="-116px">
             <ButtonGroup>
               {mainTabs.map((tab) => (
-                <Tab
+                <ButtonTab
                   key={tab.id}
                   active={activeTab === tab.id}
                   onClick={() => setActiveTab(tab.id)}
                 >
                   {tab.title === 'News Press Releases' ? 'News & Press Releases' : tab.title}
-                </Tab>
+                </ButtonTab>
               ))}
               {moreTabs.length > 0 && (
-                <div>
-                  <Tab onClick={() => setToggleDropDown(!toggleDropDown)}>
-                    More
-                    {' '}
-                    <FaCaretDown />
-                  </Tab>
-                  {toggleDropDown && (
-                    <MoreDropdown>
-                      {moreTabs.map((tab) => (
-                        <Button
-                          variant="link"
-                          id={tab.id}
-                          active={activeTab === tab.id}
-                          onClick={() => {
-                            setActiveTab(tab.id);
-                            setToggleDropDown(!toggleDropDown);
-                          }}
-                        >
-                          {tab.title}
-                        </Button>
-                      ))}
-                    </MoreDropdown>
-                  )}
+                <div style={{ width: '200px' }}>
+                  <ButtonDropdown title="More">
+                    {moreTabs.map((tab) => (
+                      <NavItem
+                        key={tab.id}
+                        id={tab.id}
+                        active={activeTab === tab.id}
+                        onClick={() => {
+                          setActiveTab(tab.id);
+                        }}
+                      >
+                        {tab.title}
+                      </NavItem>
+                    ))}
+                  </ButtonDropdown>
                 </div>
               )}
             </ButtonGroup>
-            <MobileButtonGroup>
-              <div>
-                <Tab onClick={() => setToggleDropDown(!toggleDropDown)}>
-                  Menu
-                  <FaCaretDown />
-                </Tab>
-                {toggleDropDown && (
-                  <MoreDropdown>
-                    {tabs.map((tab) => (
-                      <Button
-                        variant="link"
-                        key={tab.id}
-                        active={activeTab === tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                      >
-                        {tab.title}
-                      </Button>
-                    ))}
-                  </MoreDropdown>
-                )}
-              </div>
-            </MobileButtonGroup>
-          </Col>
-          <Col sm={12} lg={9} style={{ position: 'relative', top: '-36px' }}>
+            <MobileGroup>
+              <ButtonDropdown title="Menu">
+                {tabs.map((tab) => (
+                  <NavItem
+                    key={tab.id}
+                    active={activeTab === tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    {tab.title}
+                  </NavItem>
+                ))}
+              </ButtonDropdown>
+            </MobileGroup>
+          </ColStyled>
+          <ColStyled sm={12} lg={9} top="-36px">
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
             )}
@@ -236,7 +218,7 @@ const AttorneyPage = ({
                 }}
               />
             )}
-          </Col>
+          </ColStyled>
           <Col sm={12} lg={3}>
             <SidebarWrapper
               services={profileHeader.practices}
@@ -259,70 +241,5 @@ const AttorneyPage = ({
     </>
   );
 };
-
-const Tab = styled.button`
-  border: 0;
-  outline: 0;
-  margin-right: 8px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #fff;
-  white-space: nowrap;
-  max-width: 240px;
-  min-width: 190px;
-  padding: 0.5rem 0;
-  background: linear-gradient(1turn, rgba(144, 25, 24, 0.9) 60%, rgba(221, 38, 36, 0.9)), #333;
-  max-height: 42px;
-  ${({ active }) => active
-    && `
-    border-bottom: 2px solid black;
-    opacity: 1;
-  `}
-`;
-const ButtonGroup = styled.div`
-  display: none;
-
-  @media (min-width: 1200px) {
-    display: flex;
-  }
-`;
-
-const MobileButtonGroup = styled.div`
-  display: flex;
-
-  @media (min-width: 1200px) {
-    display: none;
-  }
-`;
-
-const MoreDropdown = styled.div`
-  padding: 10px !important;
-  margin: 0;
-  font-size: 13px;
-  letter-spacing: 1px;
-  color: #212121;
-  background-color: #fcfaff;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 5px 10px 0 rgb(138 155 165 / 15%);
-  transition: all 200ms linear;
-  z-index: 99;
-  position: absolute;
-  top: 3.2em;
-  min-width: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  button {
-    color: #000;
-    text-align: left;
-
-    &:focus {
-      outline: 0;
-      border: 0;
-    }
-  }
-`;
 
 export default AttorneyPage;

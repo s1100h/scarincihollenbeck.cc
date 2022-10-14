@@ -10,7 +10,7 @@ const Selection = ({
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
 
   return (
-    <Container className="border-bottom">
+    <Container className="mt-2 mb-3">
       <Row>
         <Col sm={12} md={10}>
           <ul className="no-dots list-inline my-2 mx-0">
