@@ -11,6 +11,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       faxNumber
       firstName
       lastName
+      abbreviation
       forwardingEmailsForContactForm {
         email
       }

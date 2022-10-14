@@ -4,6 +4,7 @@ import AdminProfile from 'components/pages/AdminProfile';
 import {
   SITE_URL, SITE_PHONE, BASE_API_URL, headers,
 } from 'utils/constants';
+import { concatNameUser } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -73,7 +74,7 @@ const AdministrationProfile = ({ response }) => {
   const profile = {
     email: response.email,
     vizibility: response.vizibility,
-    name: response.name,
+    name: concatNameUser(response.name, response.abbreviation),
     designation: response.Title,
     phoneNumber: `${SITE_PHONE} ${response.phone_extension}`,
     socialMedia: response.social_media_links,

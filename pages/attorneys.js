@@ -42,6 +42,12 @@ export async function getStaticProps() {
   const page = await attorneysPageContent();
   const { title, seo, attorneyArchives } = page;
 
+  if (!page) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       seo,

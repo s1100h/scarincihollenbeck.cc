@@ -6,6 +6,7 @@ import {
   attorneyFirmBlogQuery,
 } from 'utils/graphql-queries';
 import {
+  concatNameUser,
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
   formatSrcToCloudinaryUrlPdf,
@@ -113,7 +114,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Profile header data */
   const profileHeader = {
-    name: attorneyBio?.title,
+    name: concatNameUser(attorneyBio?.title, attorneyBio?.attorneyMainInformation.abbreviation),
     firstName: attorneyBio.attorneyMainInformation?.firstName,
     profileImage: formatSrcToCloudinaryUrl(
       attorneyBio.attorneyMainInformation.profileImage?.sourceUrl,
