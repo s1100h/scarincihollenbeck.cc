@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import SingleCareerBody from 'components/organisms/career/CareerBody';
-import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
+import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
@@ -29,7 +29,7 @@ const CareerProfile = ({ career }) => {
             />
           </Col>
           <Col sm={12} lg={3}>
-            <SubscriptionMessage />
+            <Subscription />
             <CommonSidebarLinks />
           </Col>
         </Row>

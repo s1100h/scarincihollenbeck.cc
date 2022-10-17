@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import SubscriptionMessage from 'components/molecules/subscription/SubscriptionMessage';
+import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import ContactForm from 'components/shared/ContactForm';
 import SubscriptionFormColumn from 'components/molecules/subscription/SubscriptionFormColumn';
@@ -36,7 +36,7 @@ const FormPageContent = ({
           {isSubscribe && <SubscriptionFormColumn />}
         </Col>
         <Col sm={12} lg={3} className={sidebarStyles.container}>
-          {!isSubscribe && <SubscriptionMessage />}
+          {!isSubscribe && <Subscription />}
           <CommonSidebarLinks />
         </Col>
       </Row>

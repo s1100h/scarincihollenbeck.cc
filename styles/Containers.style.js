@@ -50,3 +50,32 @@ export const RowSpecial = styled.div`
     justify-content: center;
   }
 `
+
+export const TwoColumnsContainer = styled.section`
+  display: grid;
+  grid-template-columns: 0.33fr 1.8fr 0.7fr 0.33fr;
+
+  ${media_breakpoint_down('lg')} {
+    grid-template-columns: 0.22fr 1.8fr 0.7fr 0.22fr;
+  }
+`
+export const FirstColumn = styled.div`
+  grid-area: 2/2;
+  padding-right: 4vw;
+
+  ${media_breakpoint_exactly_down('800px')} {
+    grid-area: 1/2/1/4;
+  }
+`
+
+export const SecondColumn = styled.div`
+  grid-area: 2/3;
+
+  ${media_breakpoint_exactly_down('800px')} {
+    grid-area: 2/2/2/4;
+  }
+`
+
+export const BottomContainer = styled.section`
+  grid-area: 3/2/3/4;
+`

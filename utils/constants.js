@@ -9,17 +9,17 @@ import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 export const FIRM_BLOG_PAGES = [
   {
     id: 'firm-news',
-    title: 'Firm News',
+    label: 'Firm News',
     slug: '/library/category/firm-news',
   },
   {
     id: 'firm-events',
-    title: 'Firm Events',
+    label: 'Firm Events',
     slug: '/library/category/firm-events',
   },
   {
     id: 'firm-insights',
-    title: 'Firm Insights',
+    label: 'Firm Insights',
     slug: '/library/category/law-firm-insights',
   },
 ];

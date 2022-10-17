@@ -8,9 +8,15 @@ import SingleSubHeader from 'layouts/SingleSubHeader';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import ContentTitle from 'components/atoms/ContentTitle';
+import {
+  FirstColumn,
+  BottomContainer,
+  SecondColumn,
+  TwoColumnsContainer,
+} from 'styles/Containers.style';
 
 const PostList = dynamic(import('components/molecules/PostList'));
-const CovidSidebar = dynamic(import('components/organisms/covid/Sidebar'));
+const Sidebar = dynamic(import('components/organisms/covid/Sidebar'));
 
 const CovidPage = ({
   title, seo, bodyContent, canonicalUrl, subTitle, contentId,
@@ -40,32 +46,30 @@ const CovidPage = ({
         canonicalUrl={canonicalUrl}
       />
       <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
-      <Container>
-        <Row>
-          <Col sm={12} lg={9}>
-            <div className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(modPage)} />
-            <div className="border-top border-top pt-4">
-              <h4 className="mb-5">
-                <strong className="text-capitalize">COVID-19 Articles</strong>
-              </h4>
-              <PostList
-                content={{
-                  handleNextPagination,
-                  handlePrevPagination,
-                  data,
-                  loading,
-                  error,
-                }}
-              />
-            </div>
-            <ContentTitle title="Contact A Firm Representative" />
-            <ContactForm />
-          </Col>
-          <Col sm={12} lg={3}>
-            <CovidSidebar />
-          </Col>
-        </Row>
-      </Container>
+      <TwoColumnsContainer>
+        <FirstColumn>
+          <div className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(modPage)} />
+          <div className="border-top border-top pt-4">
+            <h4 className="mb-5">
+              <strong className="text-capitalize">COVID-19 Articles</strong>
+            </h4>
+            <PostList
+              content={{
+                handleNextPagination,
+                handlePrevPagination,
+                data,
+                loading,
+                error,
+              }}
+            />
+          </div>
+          <ContentTitle title="Contact A Firm Representative" />
+          <ContactForm />
+        </FirstColumn>
+        <SecondColumn>
+          <Sidebar />
+        </SecondColumn>
+      </TwoColumnsContainer>
     </>
   );
 };
