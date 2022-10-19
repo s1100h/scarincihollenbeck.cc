@@ -1,6 +1,6 @@
 import AwardsSlider from 'components/molecules/home/AwardsSlider';
 import { AwardsContainer, TitleBlock } from 'styles/Awards.style';
-import { RedButtonLink } from 'styles/RedButton.style';
+import { RedButtonLink } from 'styles/Buttons.style';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const Awards = ({ awards }) => {

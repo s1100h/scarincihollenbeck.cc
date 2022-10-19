@@ -1,4 +1,6 @@
+import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
+import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const RedButtonLink = styled.a`
   padding: 15px 40px;
@@ -19,4 +21,18 @@ export const RedButtonLink = styled.a`
 
 export const RedButtonBootstrap = styled(RedButtonLink)`
   margin-left: 20px;
+`
+
+export const ButtonStandardWidth = styled(Button)`
+  width: 200px;
+  border-radius: 5px;
+`
+
+export const ClearButton = styled(ButtonStandardWidth)`
+  margin-right: 0;
+  margin-left: auto;
+
+  ${media_breakpoint_down('sm')} {
+    margin-right: 7px;
+  }
 `

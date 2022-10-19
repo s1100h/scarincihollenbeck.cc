@@ -1,8 +1,9 @@
 import Form from 'react-bootstrap/Form';
 
-const Keywords = ({ handleChange }) => (
+const Keywords = ({ handleChange, userInput }) => (
   <Form inline>
     <Form.Control
+      value={userInput}
       type="text"
       placeholder="Search by keyword..."
       onChange={handleChange}

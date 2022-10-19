@@ -2,12 +2,11 @@ import dynamic from 'next/dynamic';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import styles from 'styles/AttorneyArchives.module.css';
-import megaMenuStyles from 'styles/MegaMenu.module.css';
+import { DropdownSelectorBtn } from 'styles/Filters.style';
 
 const PracticeListItem = dynamic(() => import('components/atoms/PracticeListItem'));
-const Practices = ({ practices, onSelect }) => {
+
+const PracticesSelector = ({ practices, onSelect }) => {
   /**
    *
    * Filter each item into a column
@@ -27,10 +26,11 @@ const Practices = ({ practices, onSelect }) => {
   const pt = practices.filter((b) => (b.ID === 28273 || b.ID === 28274 ? b : ''));
 
   return (
-    <DropdownButton
+    <DropdownSelectorBtn
       variant="link"
       title="Filter by practice"
-      className={`${styles.filter} ${megaMenuStyles.menu} my-3 my-md-0`}
+      className="my-3 my-md-0"
+      props={{ bigMenu: 'true' }}
     >
       <Container className="mt--1 p-0" fluid>
         <Row className="rounded-0 m-0">
@@ -76,7 +76,7 @@ const Practices = ({ practices, onSelect }) => {
           </Col>
         </Row>
       </Container>
-    </DropdownButton>
+    </DropdownSelectorBtn>
   );
 };
-export default Practices;
+export default PracticesSelector;

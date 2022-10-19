@@ -1,6 +1,8 @@
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
+import { ClearButton } from 'styles/Buttons.style';
+import { RedColorButton } from 'styles/Filters.style';
 import textStyles from 'styles/Text.module.css';
 import { createMarkup } from 'utils/helpers';
 
@@ -8,7 +10,6 @@ const Selection = ({
   select, userInput, clearQuery, clearAll,
 }) => {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
-
   return (
     <Container className="mt-2 mb-3">
       <Row>
@@ -16,9 +17,8 @@ const Selection = ({
           <ul className="no-dots list-inline my-2 mx-0">
             {userInput.length > 0 && (
               <li className="list-inline-item">
-                <Button
+                <RedColorButton
                   variant="link"
-                  className={textStyles.redTitle}
                   id={userInput}
                   onClick={() => clearQuery('query')}
                   data-toggle="tooltip"
@@ -26,32 +26,29 @@ const Selection = ({
                   title="Click on link to remove filter"
                 >
                   <strong dangerouslySetInnerHTML={createMarkup(userInput)} />
-                </Button>
+                </RedColorButton>
               </li>
             )}
-            {nonUserInputResults.map((s) => (
-              <li className="list-inline-item" key={s.key}>
-                <Button
+            {nonUserInputResults.map((selection) => (
+              <li className="list-inline-item" key={selection.key}>
+                <RedColorButton
                   variant="link"
-                  className={textStyles.redTitle}
-                  id={s.selected}
-                  onClick={() => clearQuery(s.key)}
+                  id={selection.selected}
+                  onClick={() => clearQuery(selection.key)}
                   data-toggle="tooltip"
                   data-placement="top"
                   data-html="true"
                   title="Click on link to remove filter"
                 >
-                  <strong>{s.selected}</strong>
-                </Button>
+                  <strong>{selection.selected}</strong>
+                </RedColorButton>
               </li>
             ))}
           </ul>
         </Col>
-        <Col sm={12} md={2}>
-          <Button variant="danger" onClick={clearAll} className="my-2 float-right">
-            Clear All
-          </Button>
-        </Col>
+        <ClearButton disabled={!select.length} variant="danger" onClick={clearAll}>
+          Clear All
+        </ClearButton>
       </Row>
     </Container>
   );
