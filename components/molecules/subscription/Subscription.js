@@ -1,9 +1,9 @@
 import fontStyles from 'styles/Fonts.module.css';
 import { SITE_TITLE } from 'utils/constants';
-import SubscriptionFormWithButton from 'components/molecules/subscription/SubscriptionFormWithButton';
+import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
 
-const SubscriptionMessage = () => (
-  <div className="my-4">
+const Subscription = () => (
+  <div>
     <p className={`${fontStyles.ft12rem} mb-2`}>
       <strong>Get the latest from our attorneys!</strong>
     </p>
@@ -13,8 +13,8 @@ const SubscriptionMessage = () => (
       {SITE_TITLE}
       attorneys weekly on the cutting-edge legal topics.
     </p>
-    <SubscriptionFormWithButton />
+    <SubscriptionModal />
   </div>
 );
 
-export default SubscriptionMessage;
+export default Subscription;

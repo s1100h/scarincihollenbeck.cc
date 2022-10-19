@@ -8,23 +8,20 @@ import fontsStyles from 'styles/Fonts.module.css';
 import formsStyles from 'styles/Forms.module.css';
 import { checkboxes } from 'utils/categories';
 import { SITE_TITLE } from 'utils/constants';
+import { SubscriptionButton } from 'styles/Subscription.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-const SubscriptionFormWithButton = () => {
+const SubscriptionModal = () => {
   const [show, setShow] = useState(false);
   const router = useRouter();
 
   return (
     <>
       <KwesScripts />
-      <Button
-        variant="danger"
-        className="p-1 d-block w-50 text-center border-r-5 mb-3 ft-14px"
-        onClick={() => setShow(true)}
-      >
+      <SubscriptionButton variant="danger" onClick={() => setShow(true)}>
         Subscribe Now!
-      </Button>
+      </SubscriptionButton>
       <Modal show={show} onHide={() => setShow(false)} id="subscription-form">
         <Modal.Header className="sidebar-title d-flex flex-row">
           <Image
@@ -113,4 +110,4 @@ const SubscriptionFormWithButton = () => {
   );
 };
 
-export default SubscriptionFormWithButton;
+export default SubscriptionModal;

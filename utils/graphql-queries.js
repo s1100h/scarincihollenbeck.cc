@@ -11,6 +11,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       faxNumber
       firstName
       lastName
+      abbreviation
       forwardingEmailsForContactForm {
         email
       }
@@ -566,6 +567,25 @@ export const careersPageQuery = `query CareersPagesQuery {
     }
   }
 }`;
+
+export const covid19CrisisManagement = `query CareersPagesQuery {
+  pageBy(pageId: 32495) {
+    title
+    seo {
+      metaDesc
+      title
+    }
+    COVID19CrisisManagement {
+      article
+      banner {
+        link
+      }
+      listLinks
+      subtitle
+    }
+  }
+}
+`;
 
 /** administration landing page query */
 export const administrationPageQuery = `query AdministrationPagesQuery {

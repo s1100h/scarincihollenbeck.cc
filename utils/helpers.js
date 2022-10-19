@@ -176,3 +176,11 @@ export const sanitizeExternalArticles = (arr) => arr.map(({
   title: title.rendered,
   date,
 }));
+
+export const concatNameUser = (name, abbreviation) => {
+  if (abbreviation) {
+    return `${name}, ${abbreviation}`;
+  }
+
+  return name;
+};
