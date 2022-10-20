@@ -3,49 +3,31 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import bigButtonStyles from 'styles/BigButtonTabs.module.css';
+import { ButtonTabToggle, DropdownItemPractice } from 'styles/Practices.style';
 
 const BlockList = ({ list }) => (
-  <Container className="mt-5">
+  <Container className="mt-4">
     <Row>
       {list.map((item) => (item.children ? (
         <Col sm={12} md={6} lg={4} key={item.title} className="mb-3">
           <Dropdown>
-            <Dropdown.Toggle
-              variant="link"
-              className={`${bigButtonStyles.tab} ${bigButtonStyles.onMainPracticePage} w-100`}
-            >
-              {item.title}
-            </Dropdown.Toggle>
+            <ButtonTabToggle variant="link">{item.title}</ButtonTabToggle>
             <Dropdown.Menu className="w-100">
-              <Dropdown.Item
-                key={item.ID}
-                style={{ fontSize: '1rem', backgroundColor: '#e9e9e9' }}
-                href={item.slug}
-              >
+              <DropdownItemPractice key={item.ID} href={item.slug}>
                 Overview
-              </Dropdown.Item>
+              </DropdownItemPractice>
               {item.children.map((child) => (
-                <Dropdown.Item
-                  key={child.ID}
-                  style={{
-                    fontSize: '1rem',
-                    overflowWrap: 'break-word',
-                    whiteSpace: 'pre-wrap',
-                    display: 'block',
-                  }}
-                  href={child.slug}
-                >
+                <DropdownItemPractice key={child.ID} href={child.slug}>
                   {child.title}
-                </Dropdown.Item>
+                </DropdownItemPractice>
               ))}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
       ) : (
         <Col sm={12} md={4} key={item.title} className="mb-3">
-          <Link href={item.slug}>
-            <a className={`${bigButtonStyles.tab} w-100 d-block`}>{item.title}</a>
+          <Link href={item.slug} passHref>
+            <ButtonTabToggle>{item.title}</ButtonTabToggle>
           </Link>
         </Col>
       )))}
