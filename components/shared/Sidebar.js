@@ -5,10 +5,10 @@ const Sidebar = ({ title, content }) => (
   <nav>
     <TitleSideBar>{title}</TitleSideBar>
     <NavList>
-      {content.map(({ id, label, slug }) => (
-        <li key={id} className="list-unstyled">
-          <Link href={slug || '/'}>
-            <a className="text-dark">{label}</a>
+      {content.map((item) => (
+        <li key={item.ID || item.id} className="list-unstyled">
+          <Link href={item.slug || '/'}>
+            <a className="text-dark">{item.label || item.title}</a>
           </Link>
         </li>
       ))}

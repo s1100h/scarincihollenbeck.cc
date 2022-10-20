@@ -34,7 +34,7 @@ const CovidPage = ({
     const { article, banner, listLinks } = bodyContentArgs;
     return (
       <>
-        <Image src={banner.link} width={700} height={400} layout="intrinsic" />
+        <Image src={banner.link} width={900} height={450} layout="intrinsic" />
         <div className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(article)} />
         <div className={pageContentStyles.p} dangerouslySetInnerHTML={createMarkup(listLinks)} />
       </>

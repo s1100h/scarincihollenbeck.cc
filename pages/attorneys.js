@@ -75,6 +75,23 @@ const Attorneys = ({
   const canonicalUrl = `${SITE_URL}/attorneys`;
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
+  /** Clear all queries */
+  function clearAll() {
+    setUserInput('');
+    setSelect([]);
+  }
+
+  /** Clear user query */
+  function clearQuery(key) {
+    const rQuery = select.filter((a) => a.key !== key);
+    if (key === 'query') setUserInput('');
+    setSelect(rQuery);
+  }
+
+  useEffect(() => {
+    if (!userInput) clearQuery('query');
+  }, [userInput]);
+
   /** set section titles to context provider */
   useEffect(() => {
     if (!titles) {
@@ -113,23 +130,8 @@ const Attorneys = ({
     );
     const results = { selected: userInput, key: 'query' };
     const concatResults = select.concat(results);
-
     setUserInput(input);
     setSelect(concatResults);
-  }
-
-  /** Clear user query */
-  function clearQuery(key) {
-    const rQuery = select.filter((a) => a.key !== key);
-
-    setUserInput('');
-    setSelect(rQuery);
-  }
-
-  /** Clear all queries */
-  function clearAll() {
-    setUserInput('');
-    setSelect([]);
   }
 
   // sort practices, designations, location

@@ -1,26 +1,19 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-import styles from 'styles/AttorneyArchives.module.css';
+import { ChildPracticeLink, DropDownItemTitle } from 'styles/Filters.style';
 
 const PracticeListItem = ({ title, onSelect, pChildren }) => (
   <div>
-    <Dropdown.Item
-      name="practices"
-      variant="link"
-      onClick={(e) => onSelect(e, title)}
-      className={styles.practiceTitle}
-    >
+    <DropDownItemTitle name="practices" variant="link" onClick={(e) => onSelect(e, title)}>
       {title}
-    </Dropdown.Item>
+    </DropDownItemTitle>
     {pChildren.map((fc) => (
-      <Dropdown.Item
+      <ChildPracticeLink
         key={fc.ID}
         variant="link"
         name="practices"
-        className={styles.childPracticeLink}
         onClick={(e) => onSelect(e, fc.title)}
       >
         {fc.title}
-      </Dropdown.Item>
+      </ChildPracticeLink>
     ))}
   </div>
 );

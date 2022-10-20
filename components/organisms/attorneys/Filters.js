@@ -1,10 +1,9 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import styles from 'styles/AttorneyArchives.module.css';
+import { Row, Col } from 'react-bootstrap';
 import Keyword from 'components/molecules/attorneys/Keywords';
 import Letter from 'components/molecules/attorneys/Letter';
-import Practices from 'components/molecules/attorneys/Practices';
-import Title from 'components/molecules/attorneys/Title';
-import Location from 'components/molecules/attorneys/Location';
+import PracticesSelector from 'components/molecules/attorneys/PracticesSelector';
+import FilterSelector from 'components/molecules/attorneys/Selector';
+import { ContainerFilters } from 'styles/Filters.style';
 
 const Filters = ({
   practices,
@@ -17,7 +16,7 @@ const Filters = ({
   letterClick,
 }) => (
   <>
-    <Container className={`${styles.darkGrayBackground} border`}>
+    <ContainerFilters className="border">
       <Row className="mt-2 mb-0">
         <Col sm={12} md={4}>
           <Keyword userInput={userInput} handleChange={handleChange} />
@@ -26,20 +25,30 @@ const Filters = ({
           <Letter alphabet={alphabet} letterClick={letterClick} />
         </Col>
       </Row>
-    </Container>
-    <Container className={`${styles.lightGrayBackground} p-2`}>
+    </ContainerFilters>
+    <ContainerFilters className="p-2" props={{ isDark: 'true' }}>
       <Row>
         <Col sm={12} md={4}>
-          <Practices practices={practices} onSelect={onSelect} />
+          <PracticesSelector practices={practices} onSelect={onSelect} />
         </Col>
         <Col sm={12} md={4}>
-          <Location locations={locations} onSelect={onSelect} />
+          <FilterSelector
+            selectionList={locations}
+            onSelect={onSelect}
+            title="Filter by location"
+            nameItem="location"
+          />
         </Col>
         <Col sm={12} md={4}>
-          <Title designation={designation} onSelect={onSelect} />
+          <FilterSelector
+            selectionList={designation}
+            onSelect={onSelect}
+            title="Filter by title"
+            nameItem="title"
+          />
         </Col>
       </Row>
-    </Container>
+    </ContainerFilters>
   </>
 );
 

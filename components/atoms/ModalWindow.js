@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Modal, ModalFooter } from 'reactstrap';
-import { RedButtonBootstrap } from 'styles/RedButton.style';
+import { RedButtonBootstrap } from 'styles/Buttons.style';
 import Cookies from 'universal-cookie';
 
 function ModalWindow() {
