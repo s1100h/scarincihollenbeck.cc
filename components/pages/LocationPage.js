@@ -7,7 +7,9 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';
 
-const LocationPage = ({ seo, currentOffice, posts }) => {
+const LocationPage = ({
+  seo, currentOffice, posts, linkToPdfMap,
+}) => {
   const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
 
   return (
@@ -40,6 +42,7 @@ const LocationPage = ({ seo, currentOffice, posts }) => {
               practices={currentOffice.practices}
               map={currentOffice.mapLink}
               title={currentOffice.name}
+              linkToPdfMap={linkToPdfMap}
             />
           </Col>
           <Col sm={12} md={3}>

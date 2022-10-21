@@ -5,6 +5,8 @@ import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 import { BASE_API_URL, headers } from 'utils/constants';
+import { fetchAPI } from 'utils/api';
+import { getIdDirectionPdfLittleFallsQuery, getMediaLinkQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -30,9 +32,16 @@ export const getStaticPaths = async () => {
   };
 };
 
+export const getPdfLink = async () => {
+  const { officeLocationBy } = await fetchAPI(getIdDirectionPdfLittleFallsQuery, {});
+  return officeLocationBy.officeMainInformation;
+};
+
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
   const slug = params?.slug;
+  let autoMap = '';
+  let trainStationsMap = '';
 
   if (!slug) {
     return {
@@ -41,6 +50,12 @@ export const getStaticProps = async ({ params }) => {
   }
 
   const [locations, currentOffice, currentOfficePosts] = await getLocationContent(slug);
+
+  if (currentOffice.name === 'Little Falls, NJ') {
+    const id = await getPdfLink();
+    autoMap = id.autoMap.link;
+    trainStationsMap = id.trainStationsMap.link;
+  }
 
   if (Object.keys(currentOffice).includes('status') && currentOffice.status === 404) {
     return {
@@ -60,6 +75,10 @@ export const getStaticProps = async ({ params }) => {
       seo: currentOffice.seo || {},
       currentOffice,
       posts: currentOfficePosts,
+      linkToPdfMap: {
+        autoMap,
+        trainStationsMap,
+      },
     },
     revalidate: 86400,
   };
@@ -67,7 +86,7 @@ export const getStaticProps = async ({ params }) => {
 
 /* Single location page component * */
 const SingleLocation = ({
-  seo, offices, currentOffice, posts,
+  seo, offices, currentOffice, posts, linkToPdfMap,
 }) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);
@@ -86,6 +105,7 @@ const SingleLocation = ({
     seo,
     currentOffice,
     posts,
+    linkToPdfMap,
   };
 
   return <LocationPage {...locationProps} />;
