@@ -1,21 +1,19 @@
 import Link from 'next/link';
-import textStyles from 'styles/Text.module.css';
-import formsStyles from 'styles/Forms.module.css';
+import { ListSimple } from 'styles/Practices.style';
 
 const SimpleList = ({ list }) => (
   <div className="my-5">
-    <ul className={`${textStyles.blueTitle} ${formsStyles.threeColumns}`}>
+    <ListSimple>
       {list.map((item) => (
-        <li key={item.ID} className="mb-2 mr-4">
+        <li key={item.ID}>
           <Link href={item.slug.replace('https://scarincihollenbeck.com', '')}>
-            <a className={textStyles.blueTitle}>
+            <a>
               <strong>{item.title}</strong>
             </a>
           </Link>
         </li>
       ))}
-    </ul>
-    <style jsx>{' li { font-size: 16px; }'}</style>
+    </ListSimple>
   </div>
 );
 

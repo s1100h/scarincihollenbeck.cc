@@ -1,4 +1,3 @@
-import lineHeaderStyles from 'styles/LineHeader.module.css';
 import dynamic from 'next/dynamic';
 
 const BlockList = dynamic(() => import('components/molecules/practices/BlockList'));
@@ -7,15 +6,11 @@ const SimpleList = dynamic(() => import('components/molecules/practices/SimpleLi
 const BlockListWrapper = ({
   title, list, isBlock, isSimple,
 }) => (
-  <>
-    <div className="mt-4 px-0">
-      <div className={lineHeaderStyles.lineHeader}>
-        <h3>{title}</h3>
-      </div>
-    </div>
+  <div className="mt-5">
+    <h3 className="ml-3 font-weight-bold">{title}</h3>
     {isBlock && <BlockList list={list} />}
     {isSimple && <SimpleList list={list} />}
-  </>
+  </div>
 );
 
 export default BlockListWrapper;

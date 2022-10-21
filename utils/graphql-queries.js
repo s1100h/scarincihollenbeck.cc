@@ -767,3 +767,17 @@ export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
   }
 }
 `;
+
+export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
+  officeLocationBy(officeLocationId: 29436) {
+    officeMainInformation {
+      autoMap {
+        link
+      }
+      trainStationsMap {
+        link
+      }
+    }
+  }
+}
+`;
