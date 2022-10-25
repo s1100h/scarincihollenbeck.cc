@@ -33,7 +33,7 @@ const connectWithQuery = createConnector({
     };
   },
   getSearchParameters(searchParameters, props, searchState) {
-    // When the `attributeForMyQuery` state entry changes, we update the query
+    // When the `attributeForMyQuery` state entry changes, we update the query.
     return searchParameters.setQuery(searchState.attributeForMyQuery || '');
   },
   cleanUp(props, searchState) {
