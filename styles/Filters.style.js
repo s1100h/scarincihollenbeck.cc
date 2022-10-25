@@ -2,6 +2,7 @@ import { Button, Container } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
@@ -15,7 +16,7 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
       width: 100%;
       text-align: left;
       background-color: #fff;
-      color: #000;
+      color: ${globalColor.black};
       transition: all 200ms linear;
       border: 0px !important;
 
@@ -28,7 +29,7 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
       &:active {
         background-color: #fccfff;
         font-weight: bold;
-        color: #000;
+        color: ${globalColor.black};
         text-decoration: none;
       }
 
@@ -38,7 +39,7 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
 
       &:hover {
         background-color: #fff;
-        color: #000;
+        color: ${globalColor.black};
         border: 0px;
         border-bottom: 3px solid #db2220;
         text-decoration: none;

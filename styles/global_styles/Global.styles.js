@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components'
+
+export const GlobalStyle = createGlobalStyle`
 /** Fonts **/
 @font-face {
   font-family: 'Proxima Nova Regular';
@@ -22,17 +25,6 @@
   font-display: swap;
 }
 
-/*@font-face {*/
-/*  font-family: 'Kenjo II';*/
-/*  src: url('/fonts/KenjoII.eot');*/
-/*  src: local('Kenjo II'), local('KenjoII'),*/
-/*  url('/fonts/KenjoII.eot?#iefix') format('embedded-opentype'),*/
-/*  url('/fonts/KenjoII.woff2') format('woff2'),*/
-/*  url('/fonts/KenjoII.woff') format('woff'),*/
-/*  url('/fonts/KenjoII.ttf') format('truetype');*/
-/*  font-weight: normal;*/
-/*  font-style: normal;*/
-/*}*/
 @font-face {
   font-family: 'Kenjo I';
   src: url('/fonts/KenjoI.eot');
@@ -71,11 +63,9 @@
   font-style: normal;
 }
 
-/*** Base stylings **/
 body {
-  /*font-family: 'Proxima Nova Regular' !important;*/
   font-family: 'Gotham Pro' !important;
-  font-weight: 500;
+  font-weight: 500;  
 }
 
 a {
@@ -94,111 +84,14 @@ em {
   font-family: 'Proxima Nova Italic';
 }
 
+ul {
+	list-style: none;
+}
+
 /** Button Styling **/
 .btn-danger {
   font-weight: bold;
   background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
-}
-
-.off-white {
-  background-color: #fcfaff;
-}
-
-/** Dropdown Menu **/
-.dropdown-menu {
-  padding: 10px !important;
-  margin: 0;
-  font-size: 13px;
-  letter-spacing: 1px;
-  color: #212121;
-  background-color: #fcfaff;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
-  transition: all 200ms linear;
-}
-
-/** Global Search Styling **/
-.ais-Hits-item {
-  list-style-type: none;
-}
-
-.ais-Hits-list {
-  margin-left: -30px;
-}
-
-.search-container {
-  max-height: 800px;
-  margin-top: 48px;
-  background-color: #fcfaff;
-  overflow: hidden;
-  z-index: 99;
-}
-
-.search-container .ais-Hits-list {
-  max-height: 600px;
-  overflow-y: scroll;
-}
-
-.ais-Pagination-item {
-  display: inline-block;
-}
-
-.ais-Hits {
-  margin-top: -1em;
-}
-
-@media (max-width: 768px) {
-  .search-container {
-    max-width: 95%;
-  }
-}
-
-@media (min-width: 768px) {
-  .search-container {
-    min-width: 640px;
-  }
-}
-
-.ais-Pagination-list {
-  list-style-type: none;
-  margin-left: -2em;
-  margin-top: 11px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.ais-Pagination-item {
-  margin-right: 10px;
-  font-size: 16px;
-}
-
-.ais-Pagination-link {
-  color: #000;
-}
-
-.ais-SearchBox-form {
-  display: inline-flex;
-  flex-direction: row-reverse;
-  border-radius: 5px;
-}
-
-.ais-SearchBox-input {
-  border: 0;
-}
-
-.ais-SearchBox-submit {
-  border: 0px;
-  background-color: #fff;
-  border-right: 1px solid #a9a9a9;
-}
-
-.ais-SearchBox-reset {
-  display: none;
-}
-
-.top--1 {
-  top: -1px;
 }
 
 /** Hide captcha in print **/
@@ -206,27 +99,6 @@ em {
   .grecaptcha-badge {
     display: none !important;
   }
-}
-
-/** Awards for attorney bios**/
-.award-recognition {
-  margin-bottom: 3rem;
-  margin-top: 2rem;
-  margin-right: 1rem;
-}
-
-.award-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.award-container {
-  display: flex;
-  flex-direction: row;
 }
 
 /** Handle center button styles from wordpress **/
@@ -340,4 +212,61 @@ footer .wrapper-section {
 .modal-link:hover {
   text-decoration: none;
   color: #a91110;
+}
+`
+export const globalColor = {
+  white: 'white',
+  black: 'black',
+  gray: {
+    gray100: '#424242',
+    gray90: '#4a4a4a',
+    gray80: '#5E5E5E',
+    gray70: '#656565',
+    gray60: '#727272',
+    gray50: '#757575',
+    gray40: '#888888',
+  },
+
+  grayLite: {
+    grayLite100: '#8F8F8F',
+    grayLite90: '#9A9A9A',
+    grayLite80: '#989898',
+    grayLite70: '#A2A2A2',
+    grayLite60: '#ACACAC',
+    grayLite50: '#AAAAAA',
+    grayLite40: '#B0B0B0',
+  },
+
+  grayExtraLite: {
+    grayExtraLite100: '#AEAEAE',
+    grayExtraLite90: '#B8B8B8',
+    grayExtraLite80: '#BDBDBD',
+    grayExtraLite70: '#C1C1C1',
+    grayExtraLite60: '#C3C3C3',
+    grayExtraLite50: '#C7C7C7',
+  },
+
+  graySmoke: {
+    smoke: '#D9D9D9',
+    liteSmoke: '#DADADA',
+    extraLiteSmoke: '#BDBDBD',
+    whiteSmoke: '#F0F0F0',
+    liteWhiteSmoke: '#F5F5F5',
+    extraLiteWhiteSmoke: '#FAFAFA',
+  },
+
+  red: {
+    liteRed: '#D81110',
+    darkRed: '#A91110',
+    burgundy: '#60191B',
+    darkBurgundy: '#381314',
+  },
+}
+
+export const globalGradient = {
+  award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
+}
+
+export const globalBackgroundImage = {
+  subHeader: '/images/skyscraper.png',
 }

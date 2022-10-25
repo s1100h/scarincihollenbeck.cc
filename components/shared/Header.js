@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import MobileMenu from 'components/organisms/Navbar/MobileMenu';
-import GlobalSearch from 'components/shared/GlobalSearch';
+import GlobalSearch from 'components/shared/GlobalSearch/GlobalSearch';
 import LinkButtons from 'components/organisms/Navbar/LinkButtons';
 import Navigation from 'components/organisms/Navbar/Navigation';
 import Logo from 'components/organisms/Navbar/Logo';

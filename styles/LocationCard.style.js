@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { globalColor } from 'styles/global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const LocationTitle = styled.h1`
@@ -6,7 +7,7 @@ export const LocationTitle = styled.h1`
   font-weight: 400;
   font-size: 72px;
   line-height: 1.2;
-  color: #000000;
+  color: ${globalColor.black};
   font-family: 'Brand';
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -53,7 +54,7 @@ export const LocationHeader = styled.header`
   cursor: pointer;
 
   h1 {
-    color: #000;
+    color: ${globalColor.black};
     font-weight: 700;
     font-size: 20px;
     line-height: 1;

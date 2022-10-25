@@ -21,8 +21,8 @@ import 'animate.css/animate.min.css';
 /**
  * Custom Style Sheets
  * */
-import 'styles/globals.css';
 import 'styles/carousel.css';
+import { GlobalStyle } from 'styles/global_styles/Global.styles';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -50,6 +50,7 @@ const SHSite = ({ Component, pageProps }) => {
   return (
     <SectionTitleProvider>
       <LocationProvider>
+        <GlobalStyle />
         <MainSiteHead />
         <Header />
         <main>
