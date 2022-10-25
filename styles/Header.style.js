@@ -34,18 +34,6 @@ export const Wrapper = styled.div`
   margin-top: 40px;
   justify-content: space-between;
   height: 46px;
-
-  .scroll-search {
-    width: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
-    .form-group {
-      margin-bottom: 0;
-      & > svg {
-        transform: translateY(-4%);
-      }
-    }
-  }
 `
 export const DesktopVisible = styled.div`
   ${media_breakpoint_down('lg')} {
@@ -73,12 +61,12 @@ export const MobileVisible = styled.div`
     margin-left: 3%;
 
     .scroll-search {
-      width: 97%;
+      width: 95%;
     }
   }
 
   ${media_breakpoint_exactly('430px')} {
-    width: 97vw;
+    width: 94vw;
   }
 `
 

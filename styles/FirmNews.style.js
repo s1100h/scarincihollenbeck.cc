@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 const hoverLink = `
@@ -36,7 +37,7 @@ export const TitleNews = styled.h1`
   font-weight: 400;
   font-size: 72px;
   line-height: 1.2;
-  color: #000000;
+  color: ${globalColor.black};
   font-family: 'Brand';
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -168,7 +169,7 @@ export const TextNews = styled.section`
     font-weight: 600;
     font-size: 20px;
     line-height: 1.2;
-    color: #000000;
+    color: ${globalColor.black};
   }
 
   p {
@@ -201,7 +202,7 @@ export const ArticleNewsTitle = styled.h1`
   font-weight: 600;
   font-size: 20px;
   line-height: 1.3;
-  color: #000000;
+  color: ${globalColor.black};
   margin-bottom: 20px;
 `
 export const Expert = styled.p`

@@ -1,6 +1,6 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import GlobalSearch from 'components/shared/GlobalSearch';
+import GlobalSearch from 'components/shared/GlobalSearch/GlobalSearch';
 
 const SearchBar = () => (
   <Col sm={12} style={{ backgroundColor: '#495057' }}>

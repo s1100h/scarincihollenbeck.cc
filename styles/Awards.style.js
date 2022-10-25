@@ -1,5 +1,6 @@
 import Carousel from 'react-multi-carousel'
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const TitleBlock = styled.div`
@@ -11,7 +12,7 @@ export const TitleBlock = styled.div`
   h1 {
     font-style: normal;
     font-size: 4.5rem;
-    color: #000000;
+    color: ${globalColor.black};
     font-family: 'Brand';
     text-transform: uppercase;
     margin-bottom: 0;
