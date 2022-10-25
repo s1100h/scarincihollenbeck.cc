@@ -215,5 +215,58 @@ footer .wrapper-section {
 }
 `
 export const globalColor = {
+  white: 'white',
   black: 'black',
+  gray: {
+    gray100: '#424242',
+    gray90: '#4a4a4a',
+    gray80: '#5E5E5E',
+    gray70: '#656565',
+    gray60: '#727272',
+    gray50: '#757575',
+    gray40: '#888888',
+  },
+
+  grayLite: {
+    grayLite100: '#8F8F8F',
+    grayLite90: '#9A9A9A',
+    grayLite80: '#989898',
+    grayLite70: '#A2A2A2',
+    grayLite60: '#ACACAC',
+    grayLite50: '#AAAAAA',
+    grayLite40: '#B0B0B0',
+  },
+
+  grayExtraLite: {
+    grayExtraLite100: '#AEAEAE',
+    grayExtraLite90: '#B8B8B8',
+    grayExtraLite80: '#BDBDBD',
+    grayExtraLite70: '#C1C1C1',
+    grayExtraLite60: '#C3C3C3',
+    grayExtraLite50: '#C7C7C7',
+  },
+
+  graySmoke: {
+    smoke: '#D9D9D9',
+    liteSmoke: '#DADADA',
+    extraLiteSmoke: '#BDBDBD',
+    whiteSmoke: '#F0F0F0',
+    liteWhiteSmoke: '#F5F5F5',
+    extraLiteWhiteSmoke: '#FAFAFA',
+  },
+
+  red: {
+    liteRed: '#D81110',
+    darkRed: '#A91110',
+    burgundy: '#60191B',
+    darkBurgundy: '#381314',
+  },
+}
+
+export const globalGradient = {
+  award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
+}
+
+export const globalBackgroundImage = {
+  subHeader: '/images/skyscraper.png',
 }

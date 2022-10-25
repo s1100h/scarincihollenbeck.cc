@@ -1,6 +1,6 @@
 import Carousel from 'react-multi-carousel'
 import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, globalGradient } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const TitleBlock = styled.div`
@@ -55,7 +55,7 @@ export const Award = styled.div`
   justify-content: center;
   align-items: center;
   height: 300px;
-  background: linear-gradient(180deg, #101113 68.23%, #60191b 94.79%);
+  background: ${globalGradient.award};
 `
 
 export const AwardsContainer = styled.div`

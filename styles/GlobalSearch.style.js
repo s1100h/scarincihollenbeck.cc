@@ -30,7 +30,7 @@ export const SearchInput = styled(Form.Control)`
   background: #ebebeb;
   font-weight: 400;
   font-size: 16px;
-  color: #656565;
+  color: ${globalColor.gray.gray100};
   border: none;
 `
 
