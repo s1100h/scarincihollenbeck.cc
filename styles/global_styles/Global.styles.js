@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
+const mainFotSize = 16
+
 export const GlobalStyle = createGlobalStyle`
 /** Fonts **/
 @font-face {
@@ -66,6 +68,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Gotham Pro' !important;
   font-weight: 500;  
+  font-size: ${mainFotSize}px;
 }
 
 a {
@@ -86,6 +89,10 @@ em {
 
 ul {
 	list-style: none;
+}
+
+h1 {
+  font-family: Ke;
 }
 
 /** Button Styling **/
@@ -238,12 +245,13 @@ export const globalColor = {
   },
 
   grayExtraLite: {
-    grayExtraLite100: '#AEAEAE',
-    grayExtraLite90: '#B8B8B8',
-    grayExtraLite80: '#BDBDBD',
-    grayExtraLite70: '#C1C1C1',
-    grayExtraLite60: '#C3C3C3',
-    grayExtraLite50: '#C7C7C7',
+    grayExtraLite100: '#ABABAB',
+    grayExtraLite90: '#AEAEAE',
+    grayExtraLite80: '#B8B8B8',
+    grayExtraLite70: '#BDBDBD',
+    grayExtraLite60: '#C1C1C1',
+    grayExtraLite50: '#C3C3C3',
+    grayExtraLite40: '#C7C7C7',
   },
 
   graySmoke: {
@@ -261,6 +269,12 @@ export const globalColor = {
     burgundy: '#60191B',
     darkBurgundy: '#381314',
   },
+
+  blue: {
+    greyBlue: '#37B7D7',
+    dirtyBlue: '#5787CF',
+    ultramarine: '#2564E1',
+  },
 }
 
 export const globalGradient = {
@@ -269,4 +283,8 @@ export const globalGradient = {
 
 export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
+}
+
+export const rem = (sizeInPx) => {
+  return `${sizeInPx / mainFotSize}rem`
 }
