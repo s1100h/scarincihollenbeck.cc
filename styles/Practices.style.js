@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { globalColor, rem } from './global_styles/Global.styles'
+import { globalColor } from './global_styles/Global.styles'
 
 export const ButtonTabToggle = styled(Dropdown.Toggle)`
   display: flex;
@@ -74,6 +74,14 @@ export const DropdownItemPractice = styled(Dropdown.Item)`
   white-space: pre-wrap;
 `
 
+export const BlockListBox = styled.section`
+  margin-top: 3rem;
+
+  .container {
+    padding: 0;
+  }
+`
+
 export const ListSimple = styled.ul`
   column-count: 3;
   column-gap: 40px;
@@ -84,7 +92,7 @@ export const ListSimple = styled.ul`
     margin-bottom: 10px;
 
     a {
-      color: #33667d;
+      color: ${globalColor.blue.dirtyBlue};
 
       :hover {
         color: ${globalColor.red.darkRed};
@@ -98,5 +106,17 @@ export const ListSimple = styled.ul`
 
   ${media_breakpoint_down('sm')} {
     column-count: 1;
+  }
+`
+
+export const SearchWithArticle = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7vw;
+  gap: 5vw;
+
+  ${media_breakpoint_down('xl')} {
+    flex-direction: column-reverse;
   }
 `

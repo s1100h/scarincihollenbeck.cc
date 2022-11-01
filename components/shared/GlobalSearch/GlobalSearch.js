@@ -24,12 +24,13 @@ const connectWithQuery = createConnector({
   displayName: 'WidgetWithQuery',
   getProvidedProps(props, searchState) {
     const currentRefinement = searchState.attributeForMyQuery || '';
-    return { currentRefinement };
+    return { currentRefinement, ...props };
   },
   refine(props, searchState, nextRefinement) {
     return {
       ...searchState,
-      attributeForMyQuery: nextRefinement,
+      attributeForMyQuery: nextRefinement.currentTarget.value,
+      props,
     };
   },
   getSearchParameters(searchParameters, props, searchState) {
@@ -39,7 +40,7 @@ const connectWithQuery = createConnector({
   cleanUp(props, searchState) {
     const { attributeForMyQuery, ...nextSearchState } = searchState;
 
-    return nextSearchState;
+    return { nextSearchState, ...props };
   },
 });
 
@@ -48,7 +49,7 @@ const ConnectedSearchBox = connectWithQuery(MySearchBox);
 export default function GlobalSearch() {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
-      <ConnectedSearchBox />
+      <ConnectedSearchBox placeholder="Search" />
       <RenderSearchResults />
     </InstantSearch>
   );

@@ -1,21 +1,37 @@
 import styled from 'styled-components'
 import { globalColor, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100vw;
   justify-content: ${({ props }) => (props?.isTabs || props?.isBlog ? 'flex-start' : 'center')};
-  background: url(${({ props }) =>
-      props?.isHoliday ? '/images/red-holiday-banner.webp' : '/images/skyscraper.png'})
-    no-repeat center center;
-  background-size: cover;
+  background: no-repeat
+    url(${({ props }) =>
+      props?.isHoliday ? '/images/red-holiday-banner.webp' : '/images/skyscraper2.png'});
+  background-position: right 9% bottom 45%;
+  background-size: contain;
   height: auto;
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => (props?.isTabs ? '6.5em' : '4em')};
   margin-bottom: 50px;
   box-shadow: ${rem(21)} 0 ${rem(32)} rgb(0 0 0 / 10%);
+
+  ${media_breakpoint_down('xl')} {
+    background-position: right 9% bottom 0%;
+    background-size: 50%;
+    padding-bottom: 2em;
+  }
+
+  ${media_breakpoint_down('md')} {
+    background-position: left 54vw bottom 0%;
+  }
+
+  ${media_breakpoint_exactly_down('504px')} {
+    background-size: 100%;
+    background-position: bottom 0%;
+  }
 `
 
 export const SubHeaderContent = styled.article`
@@ -37,7 +53,7 @@ export const SubHeaderContent = styled.article`
 `
 
 export const Description = styled.section`
-  width: 44.5vw;
+  width: 50vw;
   color: ${globalColor.gray.gray80};
 
   ${media_breakpoint_down('xl')} {

@@ -104,7 +104,7 @@ export const ContactsBox = styled.section`
   min-width: 206px;
 `
 
-export const LinkTitle = styled.h1`
+export const LinkTitle = styled.p`
   font-size: 20px;
   margin-bottom: 18px;
   font-weight: 600;
