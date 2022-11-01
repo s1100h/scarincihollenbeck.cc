@@ -37,7 +37,7 @@ export const globalColor = {
 
   graySmoke: {
     smoke: '#D9D9D9',
-    liteSmoke: '#DADADA',
+    liteSmoke: '#ADADAD',
     extraLiteSmoke: '#BDBDBD',
     whiteSmoke: '#F0F0F0',
     liteWhiteSmoke: '#F5F5F5',
@@ -137,6 +137,7 @@ body {
   font-family: 'Gotham Pro' !important;
   font-weight: 500;  
   font-size: ${mainFotSize}px;
+  background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
 }
 
 a {
