@@ -165,6 +165,13 @@ h1 {
   font-family: 'Kenjo I';
 }
 
+h3 {
+  color: ${globalColor.black};
+  font-weight: 700;
+  font-size: ${rem(20)};
+  margin: 0;
+}
+
 /** Button Styling **/
 .btn-danger {
   font-weight: bold;
