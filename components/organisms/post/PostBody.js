@@ -28,8 +28,8 @@ const PostBody = ({
       )}
       {caption && <div className="mt-0 mb-2" dangerouslySetInnerHTML={createMarkup(caption)} />}
       <div className="d-none d-print-block">
-        <h1>{title}</h1>
-        <h2>{subTitle}</h2>
+        <h2>{title}</h2>
+        <h3>{subTitle}</h3>
       </div>
       <div
         className={`${pageContentStyles.p} mt-3 d-print-block`}
