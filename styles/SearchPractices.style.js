@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const SearchPracticesBox = styled.div`
@@ -8,7 +8,7 @@ export const SearchPracticesBox = styled.div`
   align-items: center;
   width: 40%;
   padding: 28px 41px;
-  box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: ${globalShadow.allSideShadow};
   position: relative;
 
   form {

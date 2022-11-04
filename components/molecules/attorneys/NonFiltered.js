@@ -41,9 +41,9 @@ const NonFiltered = ({ attorneys }) => {
   }, [titles]);
 
   return (
-    <div>
+    <>
       {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys))}
-    </div>
+    </>
   );
 };
 

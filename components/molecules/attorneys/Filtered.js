@@ -72,30 +72,33 @@ const Filtered = ({ attorneys, userInput, select }) => {
     .filter(filterQuery);
 
   return (
-    <ContainerXXL>
-      <CentralizedBox>
-        <RowSpecial>
-          {aFiltered.map((m) => (
-            <AttorneyCard
-              key={m.id}
-              link={`/attorney${m.link}`}
-              image={m.better_featured_image}
-              name={m.title}
-              title={m.designation}
-              number={m.phone}
-              email={m.email}
-              width={80}
-              height={112}
-            />
-          ))}
-        </RowSpecial>
-      </CentralizedBox>
-      {aFiltered.length < 1 && (
+    <>
+      {aFiltered.length < 1 ? (
         <h3 className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}>
           <strong>Sorry, no attorneys found according to this query.</strong>
         </h3>
+      ) : (
+        <ContainerXXL>
+          <CentralizedBox>
+            <RowSpecial>
+              {aFiltered.map((m) => (
+                <AttorneyCard
+                  key={m.id}
+                  link={`/attorney${m.link}`}
+                  image={m.better_featured_image}
+                  name={m.title}
+                  title={m.designation}
+                  number={m.phone}
+                  email={m.email}
+                  width={80}
+                  height={112}
+                />
+              ))}
+            </RowSpecial>
+          </CentralizedBox>
+        </ContainerXXL>
       )}
-    </ContainerXXL>
+    </>
   );
 };
 

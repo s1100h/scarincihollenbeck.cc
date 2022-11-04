@@ -2,7 +2,7 @@ import { Button, Container } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
@@ -14,11 +14,15 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
   > {
     button {
       width: 100%;
+      height: 47px;
+      padding: 0 23px;
       text-align: left;
       background-color: #fff;
-      color: ${globalColor.black};
+      color: ${globalColor.grayExtraLite.grayExtraLite80};
       transition: all 200ms linear;
-      border: 0px !important;
+      border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+      border-radius: 0;
+      text-decoration: none;
 
       &::after {
         float: right;
@@ -26,22 +30,21 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
         margin-bottom: 8px;
       }
 
-      &:active {
-        background-color: #fccfff;
-        font-weight: bold;
-        color: ${globalColor.black};
-        text-decoration: none;
-      }
-
       &:focus {
         text-decoration: none;
       }
 
       &:hover {
-        background-color: #fff;
+        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
         color: ${globalColor.black};
-        border: 0px;
-        border-bottom: 3px solid #db2220;
+        text-decoration: none;
+      }
+    }
+
+    .btn-link {
+      &:active {
+        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+        color: ${globalColor.black};
         text-decoration: none;
       }
     }
@@ -81,7 +84,29 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
 `
 
 export const ContainerFilters = styled(Container)`
-  background-color: ${({ props }) => (props?.isDark ? '#e9e9e9' : '#495057')};
+  min-width: 86vw;
+  padding: 22px 20px;
+  background-color: ${({ props }) => (props?.isWhite ? globalColor.white : '#495057')};
+  box-shadow: ${globalShadow.allSideShadow};
+
+  form {
+    margin-left: 0;
+    margin-right: 50px;
+  }
+
+  ${media_breakpoint_down('xl')} {
+    .row {
+      > :nth-child(-n + 2) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  ${media_breakpoint_down('sm')} {
+    form {
+      width: 100%;
+    }
+  }
 `
 
 export const DropDownItemTitle = styled(Dropdown.Item)`
@@ -121,6 +146,28 @@ export const ChildPracticeLink = styled(Dropdown.Item)`
   }
 `
 
-export const RedColorButton = styled(Button)`
-  color: #b50000;
+export const ResultButton = styled(Button)`
+  color: ${globalColor.white};
+  background-color: ${globalColor.blue.dirtyBlue};
+  border-radius: 0;
+  padding: 5px 22px;
+
+  :hover {
+    color: ${globalColor.white};
+    background-color: ${globalColor.blue.dirtyBlue};
+  }
+
+  :active {
+    color: ${globalColor.white} !important;
+    background-color: ${globalColor.blue.dirtyBlue};
+  }
+
+  :focus {
+    color: ${globalColor.white};
+    background-color: ${globalColor.blue.dirtyBlue};
+  }
+
+  svg {
+    margin-left: 12px;
+  }
 `

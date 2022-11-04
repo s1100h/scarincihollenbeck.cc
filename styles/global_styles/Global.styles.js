@@ -62,6 +62,10 @@ export const globalGradient = {
   award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
 }
 
+export const globalShadow = {
+  allSideShadow: `-10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06)`,
+}
+
 export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
 }

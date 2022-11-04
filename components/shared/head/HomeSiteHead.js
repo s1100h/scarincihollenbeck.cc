@@ -32,7 +32,7 @@ const HomeSiteHead = ({ title, metaDescription, canonicalUrl }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
-      <meta name="google-site-verification" content="hampi7e4y6Q-QNVTjLoL_KzUrzmkjVAND8M1L11LaBI" />
+      <meta name="google-site-verification" content="Vb4fICdLxnhQzqJEDL11a-Tk0X5f4XhW35pA0qoeh1E" />
     </Head>
   );
 };

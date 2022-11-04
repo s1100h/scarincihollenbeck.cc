@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';
 
 const Keywords = ({ handleChange, userInput }) => (
-  <Form inline>
+  <Form inline="true">
     <Form.Control
       value={userInput}
       type="text"

@@ -28,6 +28,7 @@ export const LinkBox = styled.a`
 
   :hover {
     text-decoration: none;
+    color: inherit;
   }
 
   ${media_breakpoint_exactly_down('612px')} {
