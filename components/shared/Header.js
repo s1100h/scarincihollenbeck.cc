@@ -17,6 +17,8 @@ import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import Selection from 'components/organisms/attorneys/Selection';
 import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
+import { sizeWindow } from 'styles/sizeWindow.style';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Header() {
   const { dataForFilter, userInput, select } = useContext(SectionTitleContext);
@@ -29,6 +31,8 @@ export default function Header() {
   const { pathname } = useRouter();
 
   const isAttorneysPage = pathname === '/attorneys';
+
+  const isTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.md})` });
 
   return (
     <HeaderContainer scrollDown={scrollTop}>
@@ -48,7 +52,7 @@ export default function Header() {
         <GlobalSearch scrollTop={scrollTop} />
       </MobileVisible>
       <Navigation scrollTop={scrollTop} />
-      {scrollTop && isAttorneysPage && (
+      {scrollTop && isAttorneysPage && !isTablet && (
         <Filters
           practices={sPractices}
           locations={locations}

@@ -50,6 +50,7 @@
     "react-instantsearch": "^6.12.1",
     "react-instantsearch-dom": "^6.12.1",
     "react-multi-carousel": "^2.5.5",
+    "react-responsive": "^9.0.0",
     "react-share": "^4.2.1",
     "react-slick": "^0.28.1",
     "react-spinners": "^0.10.4",
