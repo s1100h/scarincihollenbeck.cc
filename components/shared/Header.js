@@ -17,13 +17,16 @@ import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import Selection from 'components/organisms/attorneys/Selection';
 import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
-import { sizeWindow } from 'styles/sizeWindow.style';
-import { useMediaQuery } from 'react-responsive';
+import useStateScreen from 'hooks/useStateScreen';
 
 export default function Header() {
-  const { dataForFilter, userInput, select } = useContext(SectionTitleContext);
   const {
-    sPractices, locations, designations, handleChange, onSelect, clearQuery, clearAll,
+    dataForFilter, userInput, select, handleChange, onSelect, clearQuery,
+  } = useContext(SectionTitleContext);
+  const { isTabletScreen } = useStateScreen();
+
+  const {
+    sPractices, locations, designations, clearAll,
   } = dataForFilter;
 
   const { scrollTop } = useIsScroll();
@@ -31,8 +34,6 @@ export default function Header() {
   const { pathname } = useRouter();
 
   const isAttorneysPage = pathname === '/attorneys';
-
-  const isTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.md})` });
 
   return (
     <HeaderContainer scrollDown={scrollTop}>
@@ -52,7 +53,7 @@ export default function Header() {
         <GlobalSearch scrollTop={scrollTop} />
       </MobileVisible>
       <Navigation scrollTop={scrollTop} />
-      {scrollTop && isAttorneysPage && !isTablet && (
+      {scrollTop && isAttorneysPage && !isTabletScreen && (
         <Filters
           practices={sPractices}
           locations={locations}

@@ -70,7 +70,14 @@ const Attorneys = ({
   seo, locations, designations, practices, attorneys, site, sectionTitles,
 }) => {
   const {
-    titles, setTitles, setDataForFilter, userInput, setUserInput, select, setSelect,
+    titles,
+    setTitles,
+    setDataForFilter,
+    userInput,
+    setUserInput,
+    clearQuery,
+    setSelect,
+    dataForFilter,
   } = useContext(SectionTitleContext);
   const canonicalUrl = `${SITE_URL}/attorneys`;
 
@@ -78,39 +85,6 @@ const Attorneys = ({
   function clearAll() {
     setUserInput('');
     setSelect([]);
-  }
-
-  /** Clear user query */
-  function clearQuery(key) {
-    const rQuery = select.filter((a) => a.key !== key);
-    if (key === 'query') setUserInput('');
-    setSelect(rQuery);
-  }
-
-  /* Click Events */
-  function onSelect(e, input) {
-    const results = {
-      selected: input,
-      key: e.target.name,
-    };
-
-    setSelect(select.filter((a) => a.key !== results.key).concat(results));
-  }
-
-  /* Handle User Input Event */
-  function handleChange(e) {
-    if (e.currentTarget && e.currentTarget.value.length === 0) {
-      setUserInput('');
-    } else {
-      const input = e.target.value.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
-      );
-      const results = { selected: userInput, key: 'query' };
-      const concatResults = select.concat(results);
-      setUserInput(input);
-      setSelect(concatResults);
-    }
   }
 
   // sort practices, designations, location
@@ -125,15 +99,14 @@ const Attorneys = ({
   }, [sectionTitles]);
 
   useEffect(() => {
-    setDataForFilter({
-      sPractices,
-      locations,
-      designations,
-      handleChange,
-      onSelect,
-      clearQuery,
-      clearAll,
-    });
+    if (dataForFilter.sPractices.length === 0) {
+      setDataForFilter({
+        sPractices,
+        locations,
+        designations,
+        clearAll,
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -145,10 +118,6 @@ const Attorneys = ({
     locations,
     designations,
     userInput,
-    handleChange,
-    onSelect,
-    select,
-    clearQuery,
     clearAll,
     setUserInput,
     seo,

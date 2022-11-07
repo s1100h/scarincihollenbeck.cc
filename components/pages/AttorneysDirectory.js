@@ -5,30 +5,25 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import { MainAttorneysContainer } from 'styles/Attornyes.style';
 import useIsScroll from 'hooks/useIsScroll';
-import { useMediaQuery } from 'react-responsive';
-import { sizeWindow } from 'styles/sizeWindow.style';
+import useStateScreen from 'hooks/useStateScreen';
+import { useContext } from 'react';
+import { SectionTitleContext } from 'contexts/SectionTitleContext';
 
 const AttorneysPage = ({
   sPractices,
   clearAll,
-  clearQuery,
-  handleChange,
-  onSelect,
-  userInput,
   seo,
   locations,
   designations,
-  select,
   site,
   canonicalUrl,
   attorneys,
 }) => {
+  const { isTabletScreen, isDesktopScreen } = useStateScreen();
   const { scrollTop } = useIsScroll();
-
-  const isTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.xl})` });
-  const isDesktopOrLaptop = useMediaQuery({
-    query: `(min-width: ${sizeWindow.xl})`,
-  });
+  const {
+    handleChange, select, onSelect, userInput, clearQuery,
+  } = useContext(SectionTitleContext);
 
   return (
     <>
@@ -36,7 +31,7 @@ const AttorneysPage = ({
       <SingleSubHeader title={site.title} subtitle={site.description} />
       <MainAttorneysContainer>
         {/** Filters */}
-        {(isTablet || (!scrollTop && isDesktopOrLaptop)) && (
+        {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
           <Filters
             practices={sPractices}
             locations={locations}

@@ -10,11 +10,41 @@ export const SectionTitleProvider = ({ children }) => {
     sPractices: [],
     locations: '',
     designations: '',
-    handleChange: () => {},
-    onSelect: () => {},
-    clearQuery: () => {},
     clearAll: () => {},
   });
+
+  /* Handle User Input Event */
+  function handleChange(e) {
+    if (e.currentTarget && e.currentTarget.value.length === 0) {
+      setUserInput('');
+    } else {
+      const input = e.target.value.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
+      );
+      const results = { selected: userInput, key: 'query' };
+      const concatResults = select.concat(results);
+      setUserInput(input);
+      setSelect(concatResults);
+    }
+  }
+
+  /* Click Events */
+  function onSelect(e, input) {
+    const results = {
+      selected: input,
+      key: e.target.name,
+    };
+
+    setSelect(select.filter((a) => a.key !== results.key).concat(results));
+  }
+
+  /** Clear user query */
+  function clearQuery(key) {
+    const rQuery = select.filter((a) => a.key !== key);
+    if (key === 'query') setUserInput('');
+    setSelect(rQuery);
+  }
 
   const values = {
     titles,
@@ -24,7 +54,10 @@ export const SectionTitleProvider = ({ children }) => {
     userInput,
     setUserInput,
     select,
+    onSelect,
+    handleChange,
     setSelect,
+    clearQuery,
   };
 
   return <SectionTitleContext.Provider value={values}>{children}</SectionTitleContext.Provider>;

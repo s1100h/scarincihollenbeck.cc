@@ -3,7 +3,9 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import styled from 'styled-components'
 import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+
+const translate3dVariations = (width) => `translate3d(${width}, 49px, 0px)!important`
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
   margin-top: 5px;
@@ -51,9 +53,18 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
 
     div {
       width: fit-content;
+      transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-22vw') : null)};
+
+      ${media_breakpoint_exactly_down('1350px')} {
+        transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-27vw') : null)};
+      }
+
+      ${media_breakpoint_down('xl')} {
+        transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-46vw') : null)};
+      }
 
       ${media_breakpoint_down('md')} {
-        width: 100%;
+        transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('0') : null)};
       }
 
       ${({ props }) =>
