@@ -396,13 +396,13 @@ export const ATTORNEYS_FAQ = [
   },
   {
     id: 2,
-    title: 'How much does a lawyer cost on average?',
-    body: `When choosing a lawyer, you should first of all pay attention to:
-    - The area in which the specialist works
-    - Availability of qualifications
-    - Work experience
-    - Customer Reviews
-    - Service cost
+    title: 'What should you pay attention to when choosing a lawyer?',
+    body: `When choosing a lawyer, you should first of all pay attention to:<br />
+    - The area in which the specialist works.<br />
+    - Availability of qualifications.<br />
+    - Work experience.<br />
+    - Customer Reviews.<br />
+    - Service cost.
   `,
   },
   {
@@ -422,7 +422,7 @@ export const ATTORNEYS_FAQ = [
     id: 5,
     title: 'How to find a lawyer in New Jersey?',
     body: `You don’t need to google “<strong>find an attorney</strong> near me.” The fastest way is to call your local <a href="https://tcms.njsba.com/" target="_blank">state bar association</a>.
-     You can also use the <strong>attorneys search</strong> tool on our website or call us at 201-896-4100 to find a suitable option quickly 
+     You can also use the <strong>attorneys search</strong> tool on our website or call us at <strong>201-896-4100</strong> to find a suitable option quickly 
      and conveniently.`,
   },
 ];

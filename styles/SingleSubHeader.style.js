@@ -14,14 +14,14 @@ export const BackgroundContainer = styled.section`
   background-size: contain;
   height: auto;
   padding-top: 3.5em;
-  padding-bottom: ${({ props }) => (props?.isTabs ? '6.5em' : '4em')};
+  padding-bottom: ${({ props }) => (props?.isTabs || props?.isFilter ? '6.5em' : '4em')};
   margin-bottom: 50px;
   box-shadow: ${rem(21)} 0 ${rem(32)} rgb(0 0 0 / 10%);
 
   ${media_breakpoint_down('xl')} {
     background-position: right 9% bottom 0%;
     background-size: 50%;
-    padding-bottom: 2em;
+    padding-bottom: ${({ props }) => (props?.isTabs || props?.isFilter ? '6.5em' : '2em')};
   }
 
   ${media_breakpoint_down('md')} {

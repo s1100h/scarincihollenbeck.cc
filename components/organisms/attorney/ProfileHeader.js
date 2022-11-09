@@ -66,7 +66,7 @@ const ProfileHeader = ({
     <BackgroundContainer props={{ isTabs: 'true' }}>
       <Container>
         <Row>
-          <Col sm={12} lg={9} className="text-white">
+          <Col sm={12} lg={9}>
             <Row>
               <Col sm={12} md={4}>
                 <ProfileImage {...profileImageProps} />

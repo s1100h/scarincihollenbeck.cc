@@ -3,7 +3,9 @@ import { filterByKey } from 'utils/helpers';
 import textStyles from 'styles/Text.module.css';
 import { CentralizedBox, ContainerXXL, RowSpecial } from 'styles/Containers.style';
 
-const Filtered = ({ attorneys, userInput, select }) => {
+const Filtered = ({
+  attorneys, userInput, select, offices,
+}) => {
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');
@@ -81,17 +83,19 @@ const Filtered = ({ attorneys, userInput, select }) => {
         <ContainerXXL>
           <CentralizedBox>
             <RowSpecial>
-              {aFiltered.map((m) => (
+              {aFiltered.map((info) => (
                 <AttorneyCard
-                  key={m.id}
-                  link={`/attorney${m.link}`}
-                  image={m.better_featured_image}
-                  name={m.title}
-                  title={m.designation}
-                  number={m.phone}
-                  email={m.email}
+                  key={info.id}
+                  link={`/attorney${info.link}`}
+                  image={info.better_featured_image}
+                  name={info.title}
+                  designation={info.designation}
+                  location={info.location}
+                  number={info.phone}
+                  email={info.email}
                   width={80}
                   height={112}
+                  offices={offices}
                 />
               ))}
             </RowSpecial>

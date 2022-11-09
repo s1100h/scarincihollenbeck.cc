@@ -12,7 +12,7 @@ const ContactIcons = ({
           rel="noopener noreferrer"
           style={{ height: '30px' }}
           variant="link"
-          className="d-block text-left text-white w-100"
+          className="d-block text-left w-100"
         >
           <strong className="pr-1">
             <BsChatDots style={{ marginTop: '-4px' }} />
@@ -29,7 +29,7 @@ const ContactIcons = ({
         target="_blank"
         style={{ height: '30px' }}
         variant="link"
-        className="d-block text-left text-white w-100"
+        className="d-block text-left w-100"
       >
         <strong className="pr-1">
           <FaLinkedinIn style={{ marginTop: '-4px' }} />
@@ -46,7 +46,7 @@ const ContactIcons = ({
           target="_blank"
           style={{ height: '30px' }}
           variant="link"
-          className="d-block text-left text-white w-100"
+          className="d-block text-left w-100"
         >
           <strong className="">
             <BsCloudDownload style={{ marginTop: '-2px' }} />
@@ -63,7 +63,7 @@ const ContactIcons = ({
         target="_blank"
         style={{ height: '30px' }}
         variant="link"
-        className="d-block text-left text-white w-100"
+        className="d-block text-left w-100"
       >
         <strong className="pl-1">
           <BsCardText style={{ marginTop: '-4px' }} />

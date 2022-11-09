@@ -32,7 +32,7 @@ export default function MainArticle({
       />
       <Button variant="danger" className={`${fontStyles.ft12rem} px-4`}>
         <Link href={link}>
-          <a className="text-white">Continue Reading</a>
+          <a>Continue Reading</a>
         </Link>
       </Button>
     </>

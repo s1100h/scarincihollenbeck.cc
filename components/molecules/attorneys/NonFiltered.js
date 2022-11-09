@@ -29,7 +29,7 @@ const organizeAttorneys = (attorneys, titles) => {
   return results;
 };
 
-const NonFiltered = ({ attorneys }) => {
+const NonFiltered = ({ attorneys, offices }) => {
   const [sortedAttorneys, setSortedAttorneys] = useState({});
   const { titles } = useContext(SectionTitleContext);
 
@@ -42,7 +42,7 @@ const NonFiltered = ({ attorneys }) => {
 
   return (
     <>
-      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys))}
+      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}
     </>
   );
 };

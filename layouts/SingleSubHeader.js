@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap';
 import { createMarkup } from 'utils/helpers';
 import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
 
@@ -8,10 +7,18 @@ const SingleSubHeader = ({
   isBlog,
   isHoliday,
   isTabs = false,
+  isFilter = false,
   authors = [],
   date = '',
 }) => (
-  <BackgroundContainer props={{ isHoliday, isTabs, isBlog }}>
+  <BackgroundContainer
+    props={{
+      isHoliday,
+      isTabs,
+      isBlog,
+      isFilter,
+    }}
+  >
     <SubHeaderContent props={{ isBlog }}>
       <h1 className="animate__animated animate__fadeInDown animate__fast">{title}</h1>
       {isBlog && (
@@ -27,7 +34,7 @@ const SingleSubHeader = ({
                     : author.user_url
                 }
               key={author.display_name}
-              className="text-underline text-white"
+              className="text-underline"
             >
               {author.display_name}
               {index < authors.length - 1 && <>, </>}

@@ -3,11 +3,13 @@ import Filters from 'components/organisms/attorneys/Filters';
 import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import { MainAttorneysContainer } from 'styles/Attornyes.style';
+import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
 import useIsScroll from 'hooks/useIsScroll';
 import useStateScreen from 'hooks/useStateScreen';
 import { useContext } from 'react';
 import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import FAQ from 'components/atoms/FAQ';
+import { ATTORNEYS_FAQ, OFFICE_LOCATIONS } from 'utils/constants';
 
 const AttorneysPage = ({
   sPractices,
@@ -25,10 +27,14 @@ const AttorneysPage = ({
     handleChange, select, onSelect, userInput, clearQuery,
   } = useContext(SectionTitleContext);
 
+  const arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map((item) => ({ [item[keyField]]: item })));
+
+  const offices = arrayToObject(OFFICE_LOCATIONS, 'label');
+
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
-      <SingleSubHeader title={site.title} subtitle={site.description} />
+      <SingleSubHeader isFilter title={site.title} subtitle={site.description} />
       <MainAttorneysContainer>
         {/** Filters */}
         {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
@@ -54,9 +60,17 @@ const AttorneysPage = ({
         {/** Results */}
         <div className="w-100 mt-5">
           {attorneys.length > 0 && (
-            <Results attorneys={attorneys} userInput={userInput} select={select} />
+            <Results
+              attorneysOffices={offices}
+              attorneys={attorneys}
+              userInput={userInput}
+              select={select}
+            />
           )}
         </div>
+        <FaqBox>
+          <FAQ faqArrContent={ATTORNEYS_FAQ} />
+        </FaqBox>
         {/** End of Results */}
       </MainAttorneysContainer>
     </>

@@ -37,6 +37,14 @@ export const CentralizedBox = styled.div`
     border: none;
   }
 `
+export const BoxTitle = styled.h2`
+  display: flex;
+  width: 100%;
+  padding: 45px;
+  padding-bottom: 0;
+  justify-content: ${({ isBigBoss }) => (isBigBoss === 'true' ? 'center' : 'flex-start')};
+  text-transform: uppercase;
+`
 
 export const RowSpecial = styled.div`
   display: flex;

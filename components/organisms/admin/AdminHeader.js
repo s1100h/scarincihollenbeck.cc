@@ -22,7 +22,7 @@ const AdminProfileHeader = ({ image, profile }) => {
       <BackgroundContainer>
         <Container className={styles.multiBackBanner}>
           <Row className="my-4">
-            <Col sm={12} lg={9} className="text-white">
+            <Col sm={12} lg={9}>
               <Row>
                 <Col sm={12} md={4}>
                   <Image
