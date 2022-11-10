@@ -275,12 +275,6 @@ footer .wrapper-section {
   font-weight: bold;
 }
 
-.close_modal {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-
 @media only screen and (max-width: 768px) {
   .modal-dialog {
     margin: 0;
