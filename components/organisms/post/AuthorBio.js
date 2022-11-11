@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import lineHeaderStyles from 'styles/LineHeader.module.css';
 import { SITE_TITLE } from 'utils/constants';
 import { createMarkup } from 'utils/helpers';
 
@@ -7,7 +6,7 @@ const PostAuthorBio = ({ authors }) => (
   <div className="w-100 d-print-none mt-5">
     {authors.map((a) => (
       <div key={a.display_name} className="mb-2">
-        <div className={`${lineHeaderStyles.lineHeader} d-print-none mt-3`}>
+        <div className=" d-print-none mt-3">
           <h3>
             About
             <span className="ml-2">{a.display_name}</span>

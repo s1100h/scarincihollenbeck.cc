@@ -3,8 +3,8 @@ import PagesBody from 'components/organisms/page/BasicPageBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import ContactForm from 'components/shared/ContactForm';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
+import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
 const BasicPageContent = ({
   seo, site, canonicalUrl, bodyContent, pageForm,
@@ -23,7 +23,7 @@ const BasicPageContent = ({
             {pageForm?.enableForm && (
               <>
                 {pageForm.formLabel && (
-                  <h4 className={`${grayTitleStyles.title} mb-5 w-75`}>{pageForm.formLabel}</h4>
+                  <BigGrayTitle className="mb-5 w-75">{pageForm.formLabel}</BigGrayTitle>
                 )}
                 <ContactForm />
               </>

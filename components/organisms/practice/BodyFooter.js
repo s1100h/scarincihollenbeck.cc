@@ -1,7 +1,6 @@
 import React from 'react';
 import RelatedAttorneys from 'components/molecules/practice/RelatedAttorneys';
 import ClientSlider from 'components/molecules/practice/ClientSlider';
-import lineStyles from 'styles/LineHeader.module.css';
 
 const BodyFooter = ({
   attorneyList, highlightReal, chair, handleLink,
@@ -17,9 +16,7 @@ const BodyFooter = ({
     )}
     {highlightReal.length > 0 && (
       <div className="mt-5">
-        <div className={`${lineStyles.lineHeader} my-4`}>
-          <h3>Representative Clients</h3>
-        </div>
+        <h3 className="my-4">Representative Clients</h3>
         <ClientSlider content={highlightReal} />
       </div>
     )}

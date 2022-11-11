@@ -176,6 +176,36 @@ h3 {
   margin: 0;
 }
 
+.content {
+  h4 {
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 1.125rem;
+    line-height: 1.7;
+  }
+
+  li {
+    font-size: 1rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.smallExcerpt {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.fs-1_2rem {
+  font-size: 1.2rem;
+}
+
 /** Button Styling **/
 .btn-danger {
   font-weight: bold;

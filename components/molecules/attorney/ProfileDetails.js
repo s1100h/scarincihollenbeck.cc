@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import styles from '../../../styles/Banner.module.css';
 
 const ProfileDetails = ({ contact, offices, fax }) => {
   const { phoneNumber, email } = contact;
   return (
-    <div className={`${styles.ProfileDetails}  d-flex flex-column`}>
+    <div className="d-flex flex-column">
       <p>
         <strong>Phone:</strong>
         {' '}

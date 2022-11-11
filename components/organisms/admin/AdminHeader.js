@@ -6,7 +6,6 @@ import ProfileDetails from 'components/molecules/admin/ProfileDetails';
 import ContactIcons from 'components/molecules/admin/ContactIcons';
 import profileStyles from 'styles/ProfileImage.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import styles from 'styles/Banner.module.css';
 import { BackgroundContainer } from 'styles/SingleSubHeader.style';
 
 const AdminProfileHeader = ({ image, profile }) => {
@@ -20,7 +19,7 @@ const AdminProfileHeader = ({ image, profile }) => {
   return (
     <>
       <BackgroundContainer>
-        <Container className={styles.multiBackBanner}>
+        <Container>
           <Row className="my-4">
             <Col sm={12} lg={9}>
               <Row>

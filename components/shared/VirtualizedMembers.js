@@ -2,8 +2,6 @@ import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from 'styles/Library.module.css';
-import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
@@ -38,7 +36,6 @@ const VirtualizedMembers = ({ members }) => {
           {rowVirtualizer.virtualItems.map((virtualRow) => (
             <div
               key={members[virtualRow.index].lastName}
-              className={styles.author}
               ref={virtualRow.measureRef}
               style={{
                 position: 'absolute',
@@ -48,6 +45,7 @@ const VirtualizedMembers = ({ members }) => {
                 height: '162px',
                 transform: `translateY(${virtualRow.start}px)`,
                 paddingLeft: '10px',
+                fontSize: '14px',
               }}
             >
               <Link href={members[virtualRow.index].link}>
@@ -59,13 +57,11 @@ const VirtualizedMembers = ({ members }) => {
                     height={148}
                   />
                   <p className="m-4">
-                    <strong
-                      className={`text-uppercase ${textStyles.redTitle} ${fontStyles.smallExcerpt}`}
-                    >
+                    <strong className={`text-uppercase ${textStyles.redTitle} smallExcerpt`}>
                       {members[virtualRow.index].name}
                     </strong>
                     <br />
-                    <strong className={`mb-1 ${fontStyles.smallExcerpt} text-dark`}>
+                    <strong className="mb-1 smallExcerpt text-dark">
                       {members[virtualRow.index].designation}
                     </strong>
                     <br />

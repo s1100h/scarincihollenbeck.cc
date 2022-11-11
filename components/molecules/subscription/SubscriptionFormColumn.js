@@ -2,8 +2,7 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
-import fontsStyles from 'styles/Fonts.module.css';
-import formsStyles from 'styles/Forms.module.css';
+import { CheckBoxesList } from 'styles/Subscription.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -46,8 +45,8 @@ const SubscriptionFormColumn = () => {
           rules="required|max:255"
         />
         <fieldset data-kw-group="true" rules="required">
-          <span className={fontsStyles.smallExcerpt}>Please select a category(s) below:</span>
-          <ul className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}>
+          <span className="smallExcerpt">Please select a category(s) below:</span>
+          <CheckBoxesList>
             {checkboxes.map((type) => (
               <li key={type.key}>
                 <label htmlFor={type.key} className="mb-0">
@@ -62,7 +61,7 @@ const SubscriptionFormColumn = () => {
                 </label>
               </li>
             ))}
-          </ul>
+          </CheckBoxesList>
         </fieldset>
         <div className="mb-3">
           <Button variant="danger" type="submit" className="px-5">

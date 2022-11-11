@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import fontStyles from 'styles/Fonts.module.css';
 
 const Services = ({ services }) => (
   <>
-    <p className={fontStyles.ft12rem}>
+    <p className="fs-1_2rem">
       <strong>How I can help</strong>
     </p>
     <ul>

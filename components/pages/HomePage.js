@@ -9,7 +9,7 @@ import ModalWindow from '../atoms/ModalWindow';
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'), {
   ssr: true,
 });
-const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirmSection'), {
+const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirm'), {
   ssr: true,
 });
 const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'), { ssr: true });

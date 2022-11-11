@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 import {
   media_breakpoint_down,
   media_breakpoint_exactly,
@@ -67,6 +68,7 @@ export const BottomLinks = styled.ul`
 
     a:hover {
       text-decoration: none;
+      color: ${globalColor.white};
     }
   }
 `

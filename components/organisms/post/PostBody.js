@@ -10,7 +10,7 @@ import AuthorBio from 'components/organisms/post/AuthorBio';
 import { createMarkup, urlify } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import pageContentStyles from 'styles/PageContent.module.css';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
+import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
 const DisplayListTags = dynamic(() => import('components/molecules/post/DisplayListTags'));
 
@@ -69,7 +69,7 @@ const PostBody = ({
       </DisplayListTags>
       <div className="d-print-none">
         <AuthorBio authors={authors} />
-        <p className={`${grayTitleStyles.title} my-5`}>Get In Touch</p>
+        <BigGrayTitle className="my-5">Get In Touch</BigGrayTitle>
         <ContactForm />
       </div>
       <style jsx>{'.underline:hover { text-decoration: underline }'}</style>

@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import textStyles from 'styles/Text.module.css';
-import fontStyles from 'styles/Fonts.module.css';
 import ContentTitle from 'components/atoms/ContentTitle';
 
 const RelatedPractices = ({ practices }) => (
@@ -16,7 +15,7 @@ const RelatedPractices = ({ practices }) => (
             (p, i) => practices.length / 2 > i && (
             <li key={p.title} className="mb-3">
               <Link href={p.slug}>
-                <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
+                <a className={`${textStyles.blueTitle} fs-1_2rem`}>
                   <strong>
                     <u>{p.title}</u>
                   </strong>
@@ -33,7 +32,7 @@ const RelatedPractices = ({ practices }) => (
             (p, i) => practices.length / 2 <= i && (
             <li key={p.title} className="mb-3">
               <Link href={p.slug}>
-                <a className={`${textStyles.blueTitle} ${fontStyles.ft12rem}`}>
+                <a className={`${textStyles.blueTitle} fs-1_2rem`}>
                   <strong>
                     <u>{p.title}</u>
                   </strong>
