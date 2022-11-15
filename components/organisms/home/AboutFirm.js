@@ -1,23 +1,22 @@
-import { AboutContainer } from 'styles/AboutFirm.style';
-import lineStyles from 'styles/LineHeader.module.css';
+import {
+  AboutArticle, AboutBox, LinkButtonAbout, SubTitleAbout,
+} from 'styles/AboutFirm.style';
 import { createMarkup } from 'utils/helpers';
 
 const AboutFirm = ({
   description, title, linkLabel, linkUrl, subTitle,
 }) => (
-  <AboutContainer>
-    <a href={linkUrl} className={lineStyles.btn}>
+  <AboutBox>
+    <LinkButtonAbout href={linkUrl}>
       {linkLabel}
       <span />
-    </a>
-    <div className={lineStyles.itemWrapper}>
-      <span className={lineStyles.subtitle}>{subTitle}</span>
-      <h3 className={lineStyles.title}>{title}</h3>
-      <div className={lineStyles.content}>
-        <span dangerouslySetInnerHTML={createMarkup(description)} style={{ fontSize: '1.1rem' }} />
-      </div>
-    </div>
-  </AboutContainer>
+    </LinkButtonAbout>
+    <AboutArticle>
+      <SubTitleAbout>{subTitle}</SubTitleAbout>
+      <h3>{title}</h3>
+      <div dangerouslySetInnerHTML={createMarkup(description)} style={{ fontSize: '1.1rem' }} />
+    </AboutArticle>
+  </AboutBox>
 );
 
 export default AboutFirm;

@@ -9,8 +9,8 @@ import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
 import AuthorBio from 'components/organisms/post/AuthorBio';
 import { createMarkup, urlify } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
-import pageContentStyles from 'styles/PageContent.module.css';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
+import { ContentContainer } from 'styles/PageContant.style';
 
 const DisplayListTags = dynamic(() => import('components/molecules/post/DisplayListTags'));
 
@@ -31,8 +31,8 @@ const PostBody = ({
         <h2>{title}</h2>
         <h3>{subTitle}</h3>
       </div>
-      <div
-        className={`${pageContentStyles.p} mt-3 d-print-block`}
+      <ContentContainer
+        className="mt-3 d-print-block"
         dangerouslySetInnerHTML={createMarkup(content)}
       />
       <hr />

@@ -6,7 +6,6 @@ import ContactForm from 'components/shared/ContactForm';
 import SubscriptionFormColumn from 'components/molecules/subscription/SubscriptionFormColumn';
 import OfficeList from 'components/organisms/form-page/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import sidebarStyles from 'styles/Sidebar.module.css';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
@@ -35,7 +34,7 @@ const FormPageContent = ({
           )}
           {isSubscribe && <SubscriptionFormColumn />}
         </Col>
-        <Col sm={12} lg={3} className={sidebarStyles.container}>
+        <Col sm={12} lg={3}>
           {!isSubscribe && <Subscription />}
           <CommonSidebarLinks />
         </Col>

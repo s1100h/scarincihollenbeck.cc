@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import textStyles from 'styles/Text.module.css';
 
 const CovidResourcesBox = ({ message, title, link }) => (
   <div className="mt-4">
@@ -9,7 +8,7 @@ const CovidResourcesBox = ({ message, title, link }) => (
     <p>{message}</p>
     <h5>
       <Link href={link}>
-        <a className={textStyles.redTitle}>
+        <a className="redTitle">
           <strong>
             <u>Resources</u>
           </strong>

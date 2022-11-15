@@ -206,6 +206,10 @@ h3 {
   font-size: 1.2rem;
 }
 
+.redTitle {
+  color: ${globalColor.red.darkRed};
+}
+
 /** Button Styling **/
 .btn-danger {
   font-weight: bold;

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import CovidResourcesBox from 'components/molecules/practice/CovidResourcesBox';
 import SidebarContent from 'components/shared/Sidebar';
-import textStyles from 'styles/Text.module.css';
 
 const PageSidebar = ({ corePractices, practiceChildren }) => {
   const router = useRouter();
@@ -23,7 +22,7 @@ const PageSidebar = ({ corePractices, practiceChildren }) => {
             </div>
             <h5>
               <Link href="https://virtualworkshop.njsba.org/en/" target="_blank" rel="noreferrer">
-                <a className={textStyles.redTitle}>
+                <a className="redTitle">
                   <strong>
                     <u>Visit our booth</u>
                   </strong>

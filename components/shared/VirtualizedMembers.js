@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
 import Image from 'next/image';
-import textStyles from 'styles/Text.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const VirtualizedMembers = ({ members }) => {
@@ -57,7 +56,7 @@ const VirtualizedMembers = ({ members }) => {
                     height={148}
                   />
                   <p className="m-4">
-                    <strong className={`text-uppercase ${textStyles.redTitle} smallExcerpt`}>
+                    <strong className="text-uppercase redTitle smallExcerpt">
                       {members[virtualRow.index].name}
                     </strong>
                     <br />

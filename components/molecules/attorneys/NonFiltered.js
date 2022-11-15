@@ -20,7 +20,7 @@ const organizeAttorneys = (attorneys, titles) => {
     }
 
     Object.keys(results).forEach((key) => {
-      if (attorney.designation[0] === key[0]) {
+      if (attorney.designation[0] === key[0] && attorney.designation[0]) {
         results[key].attorneys.push(attorney);
       }
     });
@@ -39,7 +39,6 @@ const NonFiltered = ({ attorneys, offices }) => {
       setSortedAttorneys(orgAttorneys);
     }
   }, [titles]);
-
   return (
     <>
       {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}
