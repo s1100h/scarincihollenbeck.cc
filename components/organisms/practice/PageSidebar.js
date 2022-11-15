@@ -9,29 +9,9 @@ const PageSidebar = ({ corePractices, practiceChildren }) => {
   const router = useRouter();
   const slug = router.asPath;
   return (
-    <div className="mt-4">
+    <>
       {slug.includes('education-law') && (
         <>
-          <div>
-            <div className="mx-auto d-block">
-              <Image
-                src="/images/1593501004logo-250x250.png"
-                width={200}
-                height={200}
-                alt="NJSBA 2020 event"
-              />
-            </div>
-            <h5>
-              <Link href="https://virtualworkshop.njsba.org/en/" target="_blank" rel="noreferrer">
-                <a className={textStyles.redTitle}>
-                  <strong>
-                    <u>Visit our booth</u>
-                  </strong>
-                </a>
-              </Link>
-            </h5>
-            <hr />
-          </div>
           <CovidResourcesBox
             title="COVID-19 Response Team"
             link="/government-education-covid-19-response-team"
@@ -57,7 +37,7 @@ const PageSidebar = ({ corePractices, practiceChildren }) => {
           <SidebarContent title="Related Practices" content={practiceChildren} tabKey={1} />
         </>
       )}
-    </div>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import fontStyles from 'styles/Fonts.module.css';
 import textStyles from 'styles/Text.module.css';
 
 const CovidResourcesBox = ({ message, title, link }) => (
-  <div className="mt-4">
+  <div>
     <p className={`${fontStyles.ft12rem} mb-1`}>
       <strong>{title}</strong>
     </p>
