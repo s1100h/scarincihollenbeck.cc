@@ -7,6 +7,7 @@ import { SectionTitleProvider } from 'contexts/SectionTitleContext';
 import Header from 'components/shared/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
 import * as gtag from 'utils/gtag';
+import SSRProvider from 'react-bootstrap/SSRProvider';
 
 /**
  *
@@ -48,17 +49,19 @@ const SHSite = ({ Component, pageProps }) => {
   }, [router.events]);
 
   return (
-    <SectionTitleProvider>
-      <LocationProvider>
-        <GlobalStyle />
-        <MainSiteHead />
-        <Header />
-        <main>
-          <Component {...pageProps} />
-        </main>
-        <SiteFooter />
-      </LocationProvider>
-    </SectionTitleProvider>
+    <SSRProvider>
+      <SectionTitleProvider>
+        <LocationProvider>
+          <GlobalStyle />
+          <MainSiteHead />
+          <Header />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <SiteFooter />
+        </LocationProvider>
+      </SectionTitleProvider>
+    </SSRProvider>
   );
 };
 

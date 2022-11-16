@@ -18,7 +18,7 @@ const ProfileTitle = ({
           {' '}
           {chair.map((c, i) => (
             <Link href={c.link} key={c.title}>
-              <a className="text-white">
+              <a>
                 {c.title}
                 {i < chair.length - 1 && ', '}
               </a>
@@ -36,7 +36,7 @@ const ProfileTitle = ({
               Co-Chair:
               {' '}
               <Link href={c.link} key={c.title}>
-                <a className="text-white">{c.title}</a>
+                <a>{c.title}</a>
               </Link>
             </span>
           ))}

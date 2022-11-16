@@ -108,7 +108,7 @@ const AttorneyPage = ({
     loading: blogLoading,
     error: blogError,
   } = useApolloQuery(authorPostsByIdQuery, {
-    first: 8,
+    first: 3,
     last: null,
     after: null,
     before: null,
@@ -122,7 +122,7 @@ const AttorneyPage = ({
     loading: newsLoading,
     error: newsError,
   } = useApolloQuery(authorFirmNewsByIdQuery, {
-    first: 8,
+    first: 3,
     last: null,
     after: null,
     before: null,

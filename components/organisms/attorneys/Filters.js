@@ -1,37 +1,32 @@
 import { Row, Col } from 'react-bootstrap';
-import Keyword from 'components/molecules/attorneys/Keywords';
-import Letter from 'components/molecules/attorneys/Letter';
 import PracticesSelector from 'components/molecules/attorneys/PracticesSelector';
 import FilterSelector from 'components/molecules/attorneys/Selector';
 import { ContainerFilters } from 'styles/Filters.style';
+import MySearchBox from 'components/shared/GlobalSearch/MySearchBox';
 
 const Filters = ({
   practices,
-  alphabet,
   locations,
   designation,
   userInput,
   handleChange,
   onSelect,
-  letterClick,
+  children,
 }) => (
   <>
-    <ContainerFilters className="border">
-      <Row className="mt-2 mb-0">
-        <Col sm={12} md={4}>
-          <Keyword userInput={userInput} handleChange={handleChange} />
-        </Col>
-        <Col sm={12} md={8} className="mx-0 px-0">
-          <Letter alphabet={alphabet} letterClick={letterClick} />
-        </Col>
-      </Row>
-    </ContainerFilters>
-    <ContainerFilters className="p-2" props={{ isDark: 'true' }}>
+    <ContainerFilters props={{ isWhite: 'true' }}>
       <Row>
-        <Col sm={12} md={4}>
+        <Col xl={3} sm={12} md={6}>
+          <MySearchBox
+            currentRefinement={userInput}
+            refine={handleChange}
+            placeholder="Search by Attorney name"
+          />
+        </Col>
+        <Col xl={3} sm={12} md={6}>
           <PracticesSelector practices={practices} onSelect={onSelect} />
         </Col>
-        <Col sm={12} md={4}>
+        <Col xl={3} sm={12} md={6}>
           <FilterSelector
             selectionList={locations}
             onSelect={onSelect}
@@ -39,7 +34,7 @@ const Filters = ({
             nameItem="location"
           />
         </Col>
-        <Col sm={12} md={4}>
+        <Col xl={3} sm={12} md={6}>
           <FilterSelector
             selectionList={designation}
             onSelect={onSelect}
@@ -48,6 +43,7 @@ const Filters = ({
           />
         </Col>
       </Row>
+      <Row>{children}</Row>
     </ContainerFilters>
   </>
 );

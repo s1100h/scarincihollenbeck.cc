@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import textStyles from 'styles/Text.module.css';
 import { getDirectionsFromLocation } from 'utils/helpers';
 
 const OfficeDetails = ({ office }) => (
@@ -39,7 +38,7 @@ const OfficeDetails = ({ office }) => (
       )}
       <li className="my-0">
         <Link href={office.slug}>
-          <a className={textStyles.redTitle}>
+          <a className="redTitle">
             <strong>
               <u>Details</u>
             </strong>
@@ -48,7 +47,7 @@ const OfficeDetails = ({ office }) => (
         <span className="px-0"> | </span>
         <Button
           variant="transparent"
-          className={`${textStyles.redTitle} p-0`}
+          className="redTitle p-0"
           onClick={() => getDirectionsFromLocation(office.slug)}
         >
           <strong>

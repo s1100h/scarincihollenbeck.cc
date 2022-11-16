@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const RedButtonLink = styled.a`
@@ -29,8 +30,33 @@ export const ButtonStandardWidth = styled(Button)`
 `
 
 export const ClearButton = styled(ButtonStandardWidth)`
-  margin-right: 0;
+  margin-right: 12px;
   margin-left: auto;
+  border-radius: 0;
+  width: 130px;
+  height: 33px;
+  padding: 5px 22px;
+  border: 1px solid ${globalColor.blue.dirtyBlue};
+  color: ${globalColor.blue.dirtyBlue};
+
+  :hover {
+    border: 1px solid ${globalColor.blue.dirtyBlue};
+    color: ${globalColor.blue.dirtyBlue};
+  }
+
+  :focus {
+    border: 1px solid ${globalColor.blue.dirtyBlue};
+    color: ${globalColor.blue.dirtyBlue};
+  }
+
+  :active {
+    border: 1px solid ${globalColor.blue.dirtyBlue};
+    color: ${globalColor.blue.dirtyBlue} !important;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    margin-bottom: 0 !important;
+  }
 
   ${media_breakpoint_down('sm')} {
     margin-right: 7px;

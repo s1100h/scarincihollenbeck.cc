@@ -1,38 +1,30 @@
 import Link from 'next/link';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { NavbarStyled } from 'styles/Navigation.style';
-import navBarStyles from 'styles/Navbar.module.css';
 import { SITE_NAVIGATION } from 'utils/constants';
 
 const Navigation = ({ scrollTop }) => (
-  <NavbarStyled className={`${navBarStyles.navContainer}`}>
-    <Nav className={`${navBarStyles.navContainerWrapper}`}>
+  <NavbarStyled className="navContainer">
+    <Nav className="navContainerWrapper">
       {scrollTop && (
-        <Nav.Item id="home" className={navBarStyles.navItem}>
+        <Nav.Item id="home">
           <Link href="/">
-            <a className="text-dark">Home</a>
+            <a>Home</a>
           </Link>
         </Nav.Item>
       )}
       {SITE_NAVIGATION.map((nav) => (nav.children ? (
-        <NavDropdown
-          key={nav.label}
-          title={`${nav.label} ᐁ`}
-          id={nav.menuId}
-          className={`${navBarStyles.navItem} ${navBarStyles.dropDownItem}`}
-        >
+        <NavDropdown key={nav.label} title={`${nav.label}`} id={nav.menuId}>
           {nav.children.map((child) => (
             <Link key={child.label} href={child.slug} passHref>
-              <NavDropdown.Item className={`${navBarStyles.dropDownNavItem}`}>
-                {child.label}
-              </NavDropdown.Item>
+              <NavDropdown.Item>{child.label}</NavDropdown.Item>
             </Link>
           ))}
         </NavDropdown>
       ) : (
-        <Nav.Item key={nav.label} id={nav.menuId} className={navBarStyles.navItem}>
+        <Nav.Item key={nav.label} id={nav.menuId}>
           <Link href={nav.slug}>
-            <a className="text-dark">{nav.label}</a>
+            <a>{nav.label}</a>
           </Link>
         </Nav.Item>
       )))}

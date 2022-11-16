@@ -6,9 +6,8 @@ import ContactForm from 'components/shared/ContactForm';
 import SubscriptionFormColumn from 'components/molecules/subscription/SubscriptionFormColumn';
 import OfficeList from 'components/organisms/form-page/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import grayTitleStyles from 'styles/BigGrayTitle.module.css';
-import sidebarStyles from 'styles/Sidebar.module.css';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
+import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
 const FormPageContent = ({
   isSubscribe, bodyContent, canonicalUrl, seo, site,
@@ -26,7 +25,7 @@ const FormPageContent = ({
           <span
             dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
           />
-          <h4 className={`${grayTitleStyles.title} mb-5 w-100`}>{site.formLabel}</h4>
+          <BigGrayTitle className="mb-5 w-100">{site.formLabel}</BigGrayTitle>
           {!isSubscribe && (
             <>
               <ContactForm />
@@ -35,7 +34,7 @@ const FormPageContent = ({
           )}
           {isSubscribe && <SubscriptionFormColumn />}
         </Col>
-        <Col sm={12} lg={3} className={sidebarStyles.container}>
+        <Col sm={12} lg={3}>
           {!isSubscribe && <Subscription />}
           <CommonSidebarLinks />
         </Col>

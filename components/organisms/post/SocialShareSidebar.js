@@ -11,7 +11,6 @@ import {
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
-import fontStyles from 'styles/Fonts.module.css';
 
 const PostSocialShareSidebar = ({ title }) => {
   const router = useRouter();
@@ -19,7 +18,7 @@ const PostSocialShareSidebar = ({ title }) => {
 
   return (
     <div className="mt-4">
-      <p className={`${fontStyles.ft12rem} mb-2`}>
+      <p className="fs-1_2rem mb-2">
         <strong>Share this article</strong>
       </p>
       <p className="mb-1">

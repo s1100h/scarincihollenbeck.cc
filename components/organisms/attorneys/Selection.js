@@ -1,9 +1,7 @@
-import {
-  Container, Row, Col, Button,
-} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import { BsXLg } from 'react-icons/bs';
 import { ClearButton } from 'styles/Buttons.style';
-import { RedColorButton } from 'styles/Filters.style';
-import textStyles from 'styles/Text.module.css';
+import { ResultButton } from 'styles/Filters.style';
 import { createMarkup } from 'utils/helpers';
 
 const Selection = ({
@@ -11,28 +9,29 @@ const Selection = ({
 }) => {
   const nonUserInputResults = select.filter((a) => a.key !== 'query');
   return (
-    <Container className="mt-2 mb-3">
+    <Container className="mt-2 mb-1" fluid>
       <Row>
-        <Col sm={12} md={10}>
-          <ul className="no-dots list-inline my-2 mx-0">
+        <Col className="mb-lg-0" sm={12} md={10}>
+          <ul className="no-dots list-inline m-0">
             {userInput.length > 0 && (
-              <li className="list-inline-item">
-                <RedColorButton
-                  variant="link"
+              <li className="list-inline-item mt-2">
+                <ResultButton
+                  variant="Primary"
                   id={userInput}
                   onClick={() => clearQuery('query')}
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Click on link to remove filter"
                 >
-                  <strong dangerouslySetInnerHTML={createMarkup(userInput)} />
-                </RedColorButton>
+                  <span dangerouslySetInnerHTML={createMarkup(userInput)} />
+                  <BsXLg />
+                </ResultButton>
               </li>
             )}
             {nonUserInputResults.map((selection) => (
-              <li className="list-inline-item" key={selection.key}>
-                <RedColorButton
-                  variant="link"
+              <li className="list-inline-item mt-2" key={selection.key}>
+                <ResultButton
+                  variant="Primary"
                   id={selection.selected}
                   onClick={() => clearQuery(selection.key)}
                   data-toggle="tooltip"
@@ -40,15 +39,18 @@ const Selection = ({
                   data-html="true"
                   title="Click on link to remove filter"
                 >
-                  <strong>{selection.selected}</strong>
-                </RedColorButton>
+                  {selection.selected}
+                  <BsXLg />
+                </ResultButton>
               </li>
             ))}
           </ul>
         </Col>
-        <ClearButton disabled={!select.length} variant="danger" onClick={clearAll}>
-          Clear All
-        </ClearButton>
+        {select.length > 0 && (
+          <ClearButton className="mt-2 mb-xs-0" variant="Primary" onClick={clearAll}>
+            Clear All
+          </ClearButton>
+        )}
       </Row>
     </Container>
   );

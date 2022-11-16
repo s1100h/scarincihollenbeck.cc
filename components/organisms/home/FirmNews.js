@@ -40,7 +40,6 @@ const FirmNews = () => {
         const sortedResults = resToJson.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
         const firstArticle = formatPost(sortedResults[0]);
         const restOfArticles = sortedResults.filter((_, i) => i > 0).map((post) => formatPost(post));
-
         setFeaturedArticle(firstArticle);
         setOlderArticles(restOfArticles);
       } catch (error) {

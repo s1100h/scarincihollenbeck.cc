@@ -1,17 +1,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import fontStyles from 'styles/Fonts.module.css';
 import {
   AttorneyCardBox,
+  ContactBox,
   ImageBox,
   InfoBox,
   LinkBox,
   PhotoBox,
   UserName,
 } from 'styles/AttorneyCard.style';
+import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 
 export default function AttorneyCard({
-  link, image, name, title, number, email,
+  link,
+  image,
+  name,
+  designation,
+  locations,
+  number,
+  email,
+  offices,
+  title,
 }) {
   return (
     <AttorneyCardBox>
@@ -27,7 +36,7 @@ export default function AttorneyCard({
                 alt={name}
                 layout="fixed"
                 width={108}
-                height={148}
+                height={150}
               />
             </PhotoBox>
           ) : (
@@ -35,16 +44,32 @@ export default function AttorneyCard({
           )}
           <InfoBox>
             <UserName>{name}</UserName>
-            <p>{title}</p>
-            <div className={fontStyles.smallExcerpt}>
-              <strong>Phone: </strong>
-              {' '}
-              {number}
-              <br />
-              <strong>Email: </strong>
-              {' '}
-              {email}
-            </div>
+            {title ? (
+              <p>{title}</p>
+            ) : (
+              <div className="d-flex gap-1">
+                {locations?.map((location) => (
+                  <Link key={location} href={`${offices[location].slug}`}>
+                    <a>{location}</a>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <p>{designation}</p>
+
+            <ContactBox>
+              <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
+                <BsFillTelephoneFill />
+                {' '}
+                <span>{number}</span>
+              </a>
+              <a onClick={(e) => e.stopPropagation()} href={`mailto:${email}`}>
+                <BsFillEnvelopeFill />
+                {' '}
+                <span>{email}</span>
+              </a>
+            </ContactBox>
           </InfoBox>
         </LinkBox>
       </Link>

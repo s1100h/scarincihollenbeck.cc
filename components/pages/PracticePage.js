@@ -7,9 +7,9 @@ import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import PageSidebar from 'components/organisms/practice/PageSidebar';
-import lineHeaderStyles from 'styles/LineHeader.module.css';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/AttorneyProfile.style';
+import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
 const Body = dynamic(() => import('components/organisms/practice/Body'));
@@ -93,9 +93,7 @@ const PracticePage = ({
               />
               {data && (
                 <div className="mt-5 mt-sm-4">
-                  <div className={lineHeaderStyles.lineHeader}>
-                    <h3>Related Articles</h3>
-                  </div>
+                  <BigGrayTitle>Related Articles</BigGrayTitle>
                   <RelatedArticles data={data} />
                 </div>
               )}

@@ -358,6 +358,75 @@ export const ERROR_PAGE_CONTENT = {
     "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
 
+/** content for /practices FAQ */
+
+export const PRACTICES_FAQ = [
+  {
+    id: 1,
+    title: 'What is the meaning of corporate in law?',
+    body: `Corporate law is a sub-branch of civil law, a set of norms 
+    regulating social relations related to the formation and activities of 
+    corporations based on private management methods of legal regulation.`,
+  },
+  {
+    id: 2,
+    title: 'How many law practices are there in the US?',
+    body: `There are 439,715 Law Companies in the US as of 2022.
+     It's  0.3% more than the previous year.`,
+  },
+  {
+    id: 3,
+    title: 'In which cases should you contact a business lawyer?',
+    body: `You need to contact a lawyer for business in two cases: <br />
+    - The first is that you do not understand what to do. Most often, this happens if you are just starting to do business, when your priority is sales, negotiations, marketing, etc.
+   <br />
+    - The second is that you don't have time to delve into the legal fuss.
+    `,
+  },
+];
+
+export const ATTORNEYS_FAQ = [
+  {
+    id: 1,
+    title: 'What is the difference between a lawyer and an attorney?',
+    body: `A lawyer is a profession, and an attorney is a status within that profession. That is, every attorney is a lawyer, 
+    but a lawyer does not necessarily mean an attorney. The main task of an attorney is to defend the rights and interests of the client. 
+    Therefore, you must <strong>find an attorney</strong> if you have been charged with a crime.
+    `,
+  },
+  {
+    id: 2,
+    title: 'What should you pay attention to when choosing a lawyer?',
+    body: `When choosing a lawyer, you should first of all pay attention to:<br />
+    - The area in which the specialist works.<br />
+    - Availability of qualifications.<br />
+    - Work experience.<br />
+    - Customer Reviews.<br />
+    - Service cost.
+  `,
+  },
+  {
+    id: 3,
+    title: 'How much does a lawyer cost on average?',
+    body: `The price of a lawyer's services will vary by city and type of activity. So, you can find a lawyer for $50 an hour in a small town.
+     But on average, if you are <strong>looking for a lawyer</strong> in a big city will charge you at least $250 per hour. This amount may vary depending on
+     the experience of your attorney.`,
+  },
+  {
+    id: 4,
+    title: 'How do you check if a lawyer is licensed?',
+    body: `The most reliable way would be to check for the state bar profile. Every legal lawyer must be licensed
+    by the state bar association's directory.`,
+  },
+  {
+    id: 5,
+    title: 'How to find a lawyer in New Jersey?',
+    body: `You don’t need to google “<strong>find an attorney</strong> near me.” The fastest way is to call your local <a href="https://tcms.njsba.com/" target="_blank">state bar association</a>.
+     You can also use the <strong>attorneys search</strong> tool on our website or call us at <strong>201-896-4100</strong> to find a suitable option quickly 
+     and conveniently.`,
+  },
+];
+
 /** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';

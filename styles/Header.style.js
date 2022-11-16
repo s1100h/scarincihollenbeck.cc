@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   flex-direction: column;
   padding-left: 1.5%;
   padding-right: 1.5%;
-  height: 19vh;
+  height: fit-content;
   width: 100vw;
   background: #fff;
   box-shadow: ${({ scrollDown }) => (scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none')};

@@ -12,11 +12,7 @@ const ContactIcons = ({
     <li>
       {slug && (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-        <span
-          onClick={showMessage}
-          style={{ height: '30px' }}
-          className="d-block text-left text-white w-100"
-        >
+        <span onClick={showMessage} style={{ height: '30px' }} className="d-block text-left w-100">
           <strong style={{ cursor: 'pointer' }} className="pr-1">
             <BsChatDots style={{ marginTop: '-4px' }} />
             <span className="ml-2 d-inline-block">Get In Touch</span>
@@ -32,7 +28,7 @@ const ContactIcons = ({
         target="_blank"
         style={{ height: '30px' }}
         variant="link"
-        className="d-block text-left text-white w-100"
+        className="d-block text-left w-100"
       >
         <strong className="pr-1">
           <FaLinkedinIn style={{ marginTop: '-4px' }} />
@@ -49,7 +45,7 @@ const ContactIcons = ({
           target="_blank"
           style={{ height: '30px' }}
           variant="link"
-          className="d-block text-left text-white w-100"
+          className="d-block text-left w-100"
         >
           <strong className="">
             <BsCloudDownload style={{ marginTop: '-2px' }} />
@@ -66,7 +62,7 @@ const ContactIcons = ({
         target="_blank"
         style={{ height: '30px' }}
         variant="link"
-        className="d-block text-left text-white w-100"
+        className="d-block text-left w-100"
       >
         <strong>
           <BsCardText style={{ marginTop: '-4px' }} />

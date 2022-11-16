@@ -1,8 +1,6 @@
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
-import styles from 'styles/Library.module.css';
-import fontStyles from 'styles/Fonts.module.css';
 
 export default function FirmAuthors({ authors }) {
   const parentRef = useRef();
@@ -16,7 +14,7 @@ export default function FirmAuthors({ authors }) {
 
   return (
     <>
-      <p className={`${fontStyles.ft12rem} d-block w-100`}>
+      <p className="fs-1_2rem d-block w-100">
         <strong>Firm Authors</strong>
       </p>
       <div
@@ -39,7 +37,6 @@ export default function FirmAuthors({ authors }) {
           {rowVirtualizer.virtualItems.map((virtualRow) => (
             <div
               key={authors[virtualRow.index].lastName}
-              className={styles.author}
               ref={virtualRow.measureRef}
               style={{
                 position: 'absolute',
@@ -49,6 +46,7 @@ export default function FirmAuthors({ authors }) {
                 height: '28px',
                 transform: `translateY(${virtualRow.start}px)`,
                 paddingLeft: '10px',
+                fontSize: '14px',
               }}
             >
               <Link href={`/library/author/${authors[virtualRow.index].username}`}>

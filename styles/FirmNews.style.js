@@ -5,7 +5,7 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBre
 const hoverLink = `
 	&:hover {
 		text-decoration: none;
-
+    color: inherit;
 		p {
 			color: inherit;
 		}
