@@ -14,7 +14,14 @@ export const SearchForm = styled(Form)`
     position: relative;
 
     & > svg {
-      transform: translateY(-4%);
+      display: block;
+      width: 20px;
+      height: 20px;
+      color: ${globalColor.gray.gray70};
+      position: absolute;
+      right: 23px;
+      top: calc(50% - 0.5em);
+      transform: translateY(-6%);
     }
   }
 
@@ -32,16 +39,6 @@ export const SearchInput = styled(Form.Control)`
   font-size: 16px;
   color: ${globalColor.gray.gray100};
   border: none;
-`
-
-export const SearchSvg = styled.svg`
-  display: block;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 23px;
-  top: calc(50% - 0.5em);
-  transform: translateY(-50%);
 `
 
 export const HitsStyled = styled(Hits)`

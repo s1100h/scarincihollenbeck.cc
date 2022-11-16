@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const BigGrayTitle = styled.h1`
+export const BigGrayTitle = styled.h2`
   width: 100%;
   font-weight: 900;
   background-color: #e9e9e9;

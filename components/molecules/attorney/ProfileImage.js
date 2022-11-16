@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import profileStyles from 'styles/ProfileImage.module.css';
 
 const ProfileImage = ({ name, profileImage }) => (
   <Image
@@ -9,7 +8,7 @@ const ProfileImage = ({ name, profileImage }) => (
     height={795}
     layout="intrinsic"
     quality={100}
-    className={`${profileStyles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
+    className="animate__animated animate__fadeInUp animate__fast"
     priority
     loading="eager"
   />

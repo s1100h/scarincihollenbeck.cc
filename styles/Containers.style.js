@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 export const ContainerXXL = styled.section`
@@ -17,8 +18,9 @@ export const CentralizedBox = styled.div`
   width: 86vw;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid #dfdfdf;
   margin-bottom: 50px;
+  background-color: ${globalColor.white};
+  box-shadow: ${globalShadow.allSideShadow};
   ${({ toColumn }) =>
     toColumn && toColumn === 'true' ? 'flex-direction: column;' : 'flex-wrap: wrap;'}
 
@@ -34,6 +36,14 @@ export const CentralizedBox = styled.div`
     width: 100vw;
     border: none;
   }
+`
+export const BoxTitle = styled.h2`
+  display: flex;
+  width: 100%;
+  padding: 45px;
+  padding-bottom: 0;
+  justify-content: ${({ isBigBoss }) => (isBigBoss === 'true' ? 'center' : 'flex-start')};
+  text-transform: uppercase;
 `
 
 export const RowSpecial = styled.div`

@@ -26,7 +26,7 @@ export default function FooterDetails() {
             height={100}
           />
           <section>
-            <h6>ATTORNEY ADVERTISING</h6>
+            <p>ATTORNEY ADVERTISING</p>
             <p>
               Prior results do not guarantee a similar outcome. @
               {currentYear}

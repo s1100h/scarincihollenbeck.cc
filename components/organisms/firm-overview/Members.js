@@ -1,10 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import AttorneyCard from 'components/shared/AttorneyCard';
-import textStyles from 'styles/Text.module.css';
 
 const Members = ({ title, members, type }) => (
   <div className="w-100 mt-5 px-3">
-    <h3 className={`${textStyles.redTitle} text-uppercase border-bottom mb-0`}>
+    <h3 className="redTitle text-uppercase border-bottom mb-0">
       <strong>{title}</strong>
     </h3>
     <Container className="articles-container mt-3">

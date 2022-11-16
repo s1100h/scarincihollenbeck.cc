@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import styles from '../../../styles/Banner.module.css';
 
 const ProfileDetails = ({ contact, offices, fax }) => {
   const { phoneNumber, email } = contact;
   return (
-    <div className={`${styles.ProfileDetails}  d-flex flex-column`}>
+    <div className="d-flex flex-column">
       <p>
         <strong>Phone:</strong>
         {' '}
@@ -28,7 +27,7 @@ const ProfileDetails = ({ contact, offices, fax }) => {
         {' '}
         {offices.map((o, i) => (
           <Link href={o.link} key={o.ID}>
-            <a className="text-white">
+            <a>
               {o.name}
               {i !== offices.length - 1 && ', '}
             </a>

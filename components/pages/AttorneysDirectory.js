@@ -3,55 +3,78 @@ import Filters from 'components/organisms/attorneys/Filters';
 import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
+import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
+import useIsScroll from 'hooks/useIsScroll';
+import useStateScreen from 'hooks/useStateScreen';
+import { useContext } from 'react';
+import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import FAQ from 'components/atoms/FAQ';
+import { ATTORNEYS_FAQ, OFFICE_LOCATIONS } from 'utils/constants';
 
 const AttorneysPage = ({
   sPractices,
   clearAll,
-  clearQuery,
-  handleChange,
-  letterClick,
-  onSelect,
-  userInput,
   seo,
   locations,
   designations,
-  select,
-  alphabet,
   site,
   canonicalUrl,
   attorneys,
-}) => (
-  <>
-    <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
-    <SingleSubHeader title={site.title} subtitle={site.description} />
-    <div className="mb-5">
-      {/** Filters */}
-      <Filters
-        practices={sPractices}
-        alphabet={alphabet}
-        locations={locations}
-        designation={designations}
-        userInput={userInput}
-        handleChange={handleChange}
-        onSelect={onSelect}
-        letterClick={letterClick}
-      />
-      {/** End of Filters */}
-      {/** Results */}
-      <div className="w-100 mt-sm-6 mt-md-0">
-        <Selection
-          select={select}
-          clearQuery={clearQuery}
-          userInput={userInput}
-          clearAll={clearAll}
-        />
-        {attorneys.length > 0 && (
-          <Results attorneys={attorneys} userInput={userInput} select={select} />
+}) => {
+  const { isTabletScreen, isDesktopScreen } = useStateScreen();
+  const { scrollTop } = useIsScroll();
+  const {
+    handleChange, select, onSelect, userInput, clearQuery,
+  } = useContext(SectionTitleContext);
+
+  const arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map((item) => ({ [item[keyField]]: item })));
+
+  const offices = arrayToObject(OFFICE_LOCATIONS, 'label');
+
+  return (
+    <>
+      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
+      <SingleSubHeader isFilter title={site.title} subtitle={site.description} />
+      <MainAttorneysContainer>
+        {/** Filters */}
+        {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
+          <Filters
+            practices={sPractices}
+            locations={locations}
+            designation={designations}
+            userInput={userInput}
+            handleChange={handleChange}
+            onSelect={onSelect}
+          >
+            {(userInput.length > 0 || select.length > 0) && (
+              <Selection
+                select={select}
+                clearQuery={clearQuery}
+                userInput={userInput}
+                clearAll={clearAll}
+              />
+            )}
+          </Filters>
         )}
-      </div>
-      {/** End of Results */}
-    </div>
-  </>
-);
+        {/** End of Filters */}
+        {/** Results */}
+        <div className="w-100 mt-5">
+          {attorneys.length > 0 && (
+            <Results
+              attorneysOffices={offices}
+              attorneys={attorneys}
+              userInput={userInput}
+              select={select}
+            />
+          )}
+        </div>
+        <FaqBox>
+          <FAQ faqArrContent={ATTORNEYS_FAQ} />
+        </FaqBox>
+        {/** End of Results */}
+      </MainAttorneysContainer>
+    </>
+  );
+};
 
 export default AttorneysPage;

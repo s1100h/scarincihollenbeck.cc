@@ -2,7 +2,6 @@ import { Row, Col } from 'react-bootstrap';
 import { createMarkup } from 'utils/helpers';
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
-import styles from 'styles/Table.module.css';
 
 const Table = ({ content }) => {
   const parentRef = useRef();
@@ -16,7 +15,7 @@ const Table = ({ content }) => {
 
   return (
     <Row>
-      <Col className={styles.content} sm={12}>
+      <Col sm={12}>
         <div
           ref={parentRef}
           style={{

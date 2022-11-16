@@ -1,9 +1,10 @@
 import AttorneyCard from 'components/shared/AttorneyCard';
 import { filterByKey } from 'utils/helpers';
-import textStyles from 'styles/Text.module.css';
 import { CentralizedBox, ContainerXXL, RowSpecial } from 'styles/Containers.style';
 
-const Filtered = ({ attorneys, userInput, select }) => {
+const Filtered = ({
+  attorneys, userInput, select, offices,
+}) => {
   // filter through results
   const practices = filterByKey(select, 'practices');
   const letter = filterByKey(select, 'letter');
@@ -72,30 +73,35 @@ const Filtered = ({ attorneys, userInput, select }) => {
     .filter(filterQuery);
 
   return (
-    <ContainerXXL>
-      <CentralizedBox>
-        <RowSpecial>
-          {aFiltered.map((m) => (
-            <AttorneyCard
-              key={m.id}
-              link={`/attorney${m.link}`}
-              image={m.better_featured_image}
-              name={m.title}
-              title={m.designation}
-              number={m.phone}
-              email={m.email}
-              width={80}
-              height={112}
-            />
-          ))}
-        </RowSpecial>
-      </CentralizedBox>
-      {aFiltered.length < 1 && (
-        <h3 className={`${textStyles.redTitle} text-center d-block mx-auto my-4`}>
+    <>
+      {aFiltered.length < 1 ? (
+        <h3 className="redTitle text-center d-block mx-auto my-4">
           <strong>Sorry, no attorneys found according to this query.</strong>
         </h3>
+      ) : (
+        <ContainerXXL>
+          <CentralizedBox>
+            <RowSpecial>
+              {aFiltered.map((info) => (
+                <AttorneyCard
+                  key={info.id}
+                  link={`/attorney${info.link}`}
+                  image={info.better_featured_image}
+                  name={info.title}
+                  designation={info.designation}
+                  location={info.location}
+                  number={info.phone}
+                  email={info.email}
+                  width={80}
+                  height={112}
+                  offices={offices}
+                />
+              ))}
+            </RowSpecial>
+          </CentralizedBox>
+        </ContainerXXL>
       )}
-    </ContainerXXL>
+    </>
   );
 };
 

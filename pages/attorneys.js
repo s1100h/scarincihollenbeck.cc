@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
@@ -7,7 +7,7 @@ import { attorneysPageQuery } from 'utils/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 
 /** Fetch the page content from WP GRAPHQL API */
-const attorneysPageContent = async () => {
+export const attorneysPageContent = async () => {
   const data = await fetchAPI(attorneysPageQuery, {});
   return data?.pageBy;
 };
@@ -69,11 +69,17 @@ export async function getStaticProps() {
 const Attorneys = ({
   seo, locations, designations, practices, attorneys, site, sectionTitles,
 }) => {
-  const { titles, setTitles } = useContext(SectionTitleContext);
-  const [userInput, setUserInput] = useState('');
-  const [select, setSelect] = useState([]);
+  const {
+    titles,
+    setTitles,
+    setDataForFilter,
+    userInput,
+    setUserInput,
+    clearQuery,
+    setSelect,
+    dataForFilter,
+  } = useContext(SectionTitleContext);
   const canonicalUrl = `${SITE_URL}/attorneys`;
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
   /** Clear all queries */
   function clearAll() {
@@ -81,16 +87,8 @@ const Attorneys = ({
     setSelect([]);
   }
 
-  /** Clear user query */
-  function clearQuery(key) {
-    const rQuery = select.filter((a) => a.key !== key);
-    if (key === 'query') setUserInput('');
-    setSelect(rQuery);
-  }
-
-  useEffect(() => {
-    if (!userInput) clearQuery('query');
-  }, [userInput]);
+  // sort practices, designations, location
+  const sPractices = sortByKey(practices, 'title');
 
   /** set section titles to context provider */
   useEffect(() => {
@@ -100,59 +98,32 @@ const Attorneys = ({
     }
   }, [sectionTitles]);
 
-  /* Click Events */
-  function onSelect(e, input) {
-    const results = {
-      selected: input,
-      key: e.target.name,
-    };
+  useEffect(() => {
+    if (dataForFilter.sPractices.length === 0) {
+      setDataForFilter({
+        sPractices,
+        locations,
+        designations,
+        clearAll,
+      });
+    }
+  }, []);
 
-    setSelect(select.filter((a) => a.key !== results.key).concat(results));
-  }
+  useEffect(() => {
+    if (!userInput) clearQuery('query');
+  }, [userInput]);
 
-  /* Letter Click Event */
-  function letterClick(e) {
-    const selected = e.target.innerHTML;
-    const key = 'letter';
-    const results = { selected, key };
-    const s = select.filter((a) => a.key !== key);
-    const concatResults = s.concat(results);
-
-    // set new results[] to state select
-    setSelect(concatResults);
-  }
-
-  /* Handle User Input Event */
-  function handleChange(e) {
-    const input = e.target.value.replace(
-      /\w\S*/g,
-      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
-    );
-    const results = { selected: userInput, key: 'query' };
-    const concatResults = select.concat(results);
-    setUserInput(input);
-    setSelect(concatResults);
-  }
-
-  // sort practices, designations, location
-  const sPractices = sortByKey(practices, 'title');
   const attorneysPageProps = {
     sPractices,
-    clearAll,
-    clearQuery,
-    handleChange,
-    letterClick,
-    onSelect,
-    userInput,
-    setUserInput,
-    seo,
     locations,
     designations,
+    userInput,
+    clearAll,
+    setUserInput,
+    seo,
     practices,
     attorneys,
-    select,
     setSelect,
-    alphabet,
     site,
     canonicalUrl,
   };

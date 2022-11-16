@@ -20,7 +20,7 @@ const ClientSlider = ({ clients }) => {
         {clients.map(({ clientImage, clientLink, clientTitle }) => (
           <div key={clientTitle}>
             <a href={clientLink}>
-              <Image src={clientImage.sourceUrl} alt={clientTitle} width="auto" height="300" />
+              <Image src={clientImage.sourceUrl} alt={clientTitle} width={300} height={300} />
             </a>
           </div>
         ))}

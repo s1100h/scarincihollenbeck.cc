@@ -20,7 +20,7 @@ const organizeAttorneys = (attorneys, titles) => {
     }
 
     Object.keys(results).forEach((key) => {
-      if (attorney.designation[0] === key[0]) {
+      if (attorney.designation[0] === key[0] && attorney.designation[0]) {
         results[key].attorneys.push(attorney);
       }
     });
@@ -29,7 +29,7 @@ const organizeAttorneys = (attorneys, titles) => {
   return results;
 };
 
-const NonFiltered = ({ attorneys }) => {
+const NonFiltered = ({ attorneys, offices }) => {
   const [sortedAttorneys, setSortedAttorneys] = useState({});
   const { titles } = useContext(SectionTitleContext);
 
@@ -39,11 +39,10 @@ const NonFiltered = ({ attorneys }) => {
       setSortedAttorneys(orgAttorneys);
     }
   }, [titles]);
-
   return (
-    <div>
-      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys))}
-    </div>
+    <>
+      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}
+    </>
   );
 };
 

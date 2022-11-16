@@ -36,14 +36,6 @@ function ModalWindow() {
               remains the same. For any questions regarding the move, contact the attorney with whom
               you work, or call us at 201-896-4100.
             </p>
-            <button
-              aria-label="Close"
-              className=" close close_modal"
-              type="button"
-              onClick={handleClick}
-            >
-              <span aria-hidden>×</span>
-            </button>
           </div>
           <ModalFooter>
             <RedButtonBootstrap color="secondary" type="button" onClick={handleClick}>

@@ -28,7 +28,7 @@ const ProfileDetails = ({ contact, offices, fax }) => {
         {' '}
         {offices.map((o, i) => (
           <Link href={o.link} key={o.ID}>
-            <a className="text-white">
+            <a>
               {o.name}
               {i !== offices.length - 1 && ', '}
             </a>

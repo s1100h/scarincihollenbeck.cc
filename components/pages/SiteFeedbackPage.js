@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
-import textStyles from 'styles/Text.module.css';
 import Button from 'react-bootstrap/Button';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
@@ -20,7 +19,7 @@ const SiteFormPage = ({
     </Head>
     <Row>
       <Col sm={12} className="my-4">
-        <h1 className={`border-bottom pb-1 mb-4 ${textStyles.redTitle}`}>
+        <h1 className="border-bottom pb-1 mb-4 redTitle">
           <strong>Is Your Website Bio Updated?</strong>
         </h1>
         <p className="mt-3" style={{ fontSize: '1.8rem', lineHeight: '1.2' }}>

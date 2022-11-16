@@ -8,7 +8,7 @@ const CareerForm = ({ contact, title }) => {
   const router = useRouter();
 
   return (
-    <div className="px-2 my-3 border-top">
+    <div className="px-2 my-3">
       <KwesScripts />
       <form
         method="POST"
