@@ -11,7 +11,7 @@ const ClientSlider = ({ clients }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 1000,
+    speed: 500,
     easing: 'ease-in',
   };
   return (
