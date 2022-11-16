@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 const CovidResourcesBox = ({ message, title, link }) => (
-  <div className="mt-4">
-    <p className="fs-1_2rem mb-1">
+  <div>
+    <p className={`${fontStyles.ft12rem} mb-1`}>
       <strong>{title}</strong>
     </p>
     <p>{message}</p>
