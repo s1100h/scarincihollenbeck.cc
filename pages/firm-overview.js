@@ -1,7 +1,9 @@
 import FirmOverviewPage from 'components/pages/FirmOverview';
-import { SITE_URL } from 'utils/constants';
+import { firmOverViewTitles, SITE_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { firmOverviewQuery, attorneysAndAdminsQuery } from 'utils/graphql-queries';
+import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import { useContext, useEffect } from 'react';
 
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
@@ -25,7 +27,6 @@ export const getServerSideProps = async () => {
     title, seo, content, firmOverviewTabs,
   } = pageRequest;
   const { attorneyProfiles, administrations } = attorneyAdminRequest;
-
   return {
     props: {
       title,
@@ -42,10 +43,19 @@ export const getServerSideProps = async () => {
 const FirmOverview = ({
   title, seo, content, firmOverviewTabs, attorneys, administration,
 }) => {
+  const { titles, setTitles } = useContext(SectionTitleContext);
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
   const canonicalUrl = `${SITE_URL}/firm-overview`;
+
+  /** set section titles to context provider */
+  useEffect(() => {
+    if (!titles || !titles?.every((title) => title?.name === 'Consul')) {
+      const orderedTitles = firmOverViewTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
+      setTitles(orderedTitles);
+    }
+  }, []);
 
   const firmOverviewProps = {
     title,

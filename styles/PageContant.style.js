@@ -6,17 +6,25 @@ export const ContentContainer = styled.div`
   margin-bottom: 1.125rem;
   line-height: 1.7;
 
-  a {
-    width: 100%;
-    overflow: hidden;
-    display: inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   > {
     ul {
       margin-left: -1.5em;
+      li {
+        line-height: 1.3;
+
+        a {
+          width: 100%;
+          overflow: hidden;
+          display: inline-block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          ::before {
+            content: '➤';
+            margin-right: 5px;
+          }
+        }
+      }
     }
 
     h4 {

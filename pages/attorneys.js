@@ -92,11 +92,11 @@ const Attorneys = ({
 
   /** set section titles to context provider */
   useEffect(() => {
-    if (!titles) {
+    if (!titles || !titles?.every((title) => title?.name === 'Directors')) {
       const orderedTitles = sectionTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
       setTitles(orderedTitles);
     }
-  }, [sectionTitles]);
+  }, []);
 
   useEffect(() => {
     if (dataForFilter.sPractices.length === 0) {

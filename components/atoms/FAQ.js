@@ -10,7 +10,11 @@ export default function FAQ({ faqArrContent }) {
         {faqArrContent.map(({ id, title, body }) => (
           <Accordion.Item key={id} eventKey={id.toString()}>
             <Accordion.Header>{title}</Accordion.Header>
-            <Accordion.Body dangerouslySetInnerHTML={createMarkup(body)} />
+            {typeof body !== 'string' ? (
+              <Accordion.Body>{body}</Accordion.Body>
+            ) : (
+              <Accordion.Body dangerouslySetInnerHTML={createMarkup(body)} />
+            )}
           </Accordion.Item>
         ))}
       </Accordion>

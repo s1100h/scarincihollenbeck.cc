@@ -3,6 +3,12 @@
  * through out the site. This file also contains constant data found throughout the site.
  */
 
+import {
+  HawCanIGet,
+  HawDoIKnow,
+  WhatAreTheFirms,
+  WhereIsYheFirmLocated,
+} from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 
 /** List of firm blog category links found in the sidebar */
@@ -358,73 +364,70 @@ export const ERROR_PAGE_CONTENT = {
     "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
 
-/** content for /practices FAQ */
-
-export const PRACTICES_FAQ = [
-  {
-    id: 1,
-    title: 'What is the meaning of corporate in law?',
-    body: `Corporate law is a sub-branch of civil law, a set of norms 
-    regulating social relations related to the formation and activities of 
-    corporations based on private management methods of legal regulation.`,
-  },
-  {
-    id: 2,
-    title: 'How many law practices are there in the US?',
-    body: `There are 439,715 Law Companies in the US as of 2022.
-     It's  0.3% more than the previous year.`,
-  },
-  {
-    id: 3,
-    title: 'In which cases should you contact a business lawyer?',
-    body: `You need to contact a lawyer for business in two cases: <br />
-    - The first is that you do not understand what to do. Most often, this happens if you are just starting to do business, when your priority is sales, negotiations, marketing, etc.
-   <br />
-    - The second is that you don't have time to delve into the legal fuss.
-    `,
-  },
-];
+/** content for /practices and /attorneys FAQ's component */
 
 export const ATTORNEYS_FAQ = [
   {
     id: 1,
-    title: 'What is the difference between a lawyer and an attorney?',
-    body: `A lawyer is a profession, and an attorney is a status within that profession. That is, every attorney is a lawyer, 
-    but a lawyer does not necessarily mean an attorney. The main task of an attorney is to defend the rights and interests of the client. 
-    Therefore, you must <strong>find an attorney</strong> if you have been charged with a crime.
-    `,
+    title: 'How can I get in touch with an attorney?',
+    body: <HawCanIGet />,
   },
   {
     id: 2,
-    title: 'What should you pay attention to when choosing a lawyer?',
-    body: `When choosing a lawyer, you should first of all pay attention to:<br />
-    - The area in which the specialist works.<br />
-    - Availability of qualifications.<br />
-    - Work experience.<br />
-    - Customer Reviews.<br />
-    - Service cost.
-  `,
+    title: 'How do I know which attorney to contact?',
+    body: <HawDoIKnow />,
   },
   {
     id: 3,
-    title: 'How much does a lawyer cost on average?',
-    body: `The price of a lawyer's services will vary by city and type of activity. So, you can find a lawyer for $50 an hour in a small town.
-     But on average, if you are <strong>looking for a lawyer</strong> in a big city will charge you at least $250 per hour. This amount may vary depending on
-     the experience of your attorney.`,
+    title: 'What are the firm`s main practice areas?',
+    body: <WhatAreTheFirms />,
   },
   {
     id: 4,
-    title: 'How do you check if a lawyer is licensed?',
-    body: `The most reliable way would be to check for the state bar profile. Every legal lawyer must be licensed
-    by the state bar association's directory.`,
+    title: 'Where is the firm located?',
+    body: <WhereIsYheFirmLocated />,
   },
   {
     id: 5,
-    title: 'How to find a lawyer in New Jersey?',
-    body: `You don’t need to google “<strong>find an attorney</strong> near me.” The fastest way is to call your local <a href="https://tcms.njsba.com/" target="_blank">state bar association</a>.
-     You can also use the <strong>attorneys search</strong> tool on our website or call us at <strong>201-896-4100</strong> to find a suitable option quickly 
-     and conveniently.`,
+    title: 'I am located outside of New Jersey and New York. Can you still help me?',
+    body: `
+    It depends on the nature of the matter. <strong>Scarinci Hollenbeck</strong> represents clients around the world.
+    We service our clients in a large variety of matters. In areas such as Intellectual Property,
+    including trademark, copyright, or patent-related matters, we can service these requests regardless
+    of where our clients are based. However, we predominantly handle legal matters whose jurisdiction
+    is New Jersey, New York, the tri-state metropolitan area, and Washington, D.C. We also have <strong>attorneys
+    who are licensed</strong> to practice in Connecticut, Florida, Massachusetts, Pennsylvania, and other states.
+    We recommend calling one of our dedicated staff members who can help identify if we have an attorney at
+    the firm that can assist you. Feel free to reach out to us at <a href="tel:201-806-3364"> 201-806-3364</a>.
+    `,
   },
+  {
+    id: 6,
+    title: 'What kind of clients does your firm service?',
+    body: `Scarinci Hollenbeck routinely serves business owners, corporate entities, leaders, and operators
+     of small businesses and Fortune 500 companies alike.`,
+  },
+  {
+    id: 7,
+    title: 'I am not a business owner. Could your firm still help me?',
+    body: `We are a general practice law firm that services businesses, corporations, and entities.
+    We typically only represent people who own and operate these organizations. However, you are free to call 
+    our business development group at <a href="tel:201-806-3364"> 201-806-3364</a> or email us at 
+    <a href="mailto:info@sh-law.com">info@sh-law.com</a> A member of our group can direct you to an 
+    attorney in our firm that may be able to assist.
+    `,
+  },
+  {
+    id: 8,
+    title: 'How do you pronounce "Scarinci Hollenbeck"?',
+    body: 'SCUH-RIN-SEE HALL-EN-BEK',
+  },
+];
+
+export const firmOverViewTitles = [
+  { name: 'Firm Managing Partner', order: 1 },
+  { name: 'Partners', order: 2 },
+  { name: 'Directors', order: 3 },
 ];
 
 /** Change the company name, phone, fax, email through out the site */

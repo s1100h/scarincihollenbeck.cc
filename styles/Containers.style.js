@@ -19,13 +19,14 @@ export const CentralizedBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
-  background-color: ${globalColor.white};
-  box-shadow: ${globalShadow.allSideShadow};
+  background-color: ${(props) => (props?.notSurface ? 'none' : globalColor.white)};
+  box-shadow: ${(props) => (props?.notSurface ? 'none' : globalShadow.allSideShadow)};
   ${({ toColumn }) =>
     toColumn && toColumn === 'true' ? 'flex-direction: column;' : 'flex-wrap: wrap;'}
 
   ${media_breakpoint_down('xl')} {
     width: 97vw;
+    ${(props) => props?.notSurface && 'padding: 0 60px;'}
   }
 
   ${media_breakpoint_down('lg')} {
@@ -35,6 +36,7 @@ export const CentralizedBox = styled.div`
   ${media_breakpoint_exactly_down('612px')} {
     width: 100vw;
     border: none;
+    ${(props) => props?.notSurface && 'padding: 0 30px;'}
   }
 `
 export const BoxTitle = styled.h2`
@@ -73,7 +75,7 @@ export const FirstColumn = styled.div`
   grid-area: 2/2;
   padding-right: 4vw;
 
-  ${media_breakpoint_exactly_down('800px')} {
+  ${media_breakpoint_exactly_down('1100px')} {
     grid-area: 1/2/1/4;
   }
 `
@@ -81,7 +83,7 @@ export const FirstColumn = styled.div`
 export const SecondColumn = styled.div`
   grid-area: 2/3;
 
-  ${media_breakpoint_exactly_down('800px')} {
+  ${media_breakpoint_exactly_down('1100px')} {
     grid-area: 2/2/2/4;
   }
 `

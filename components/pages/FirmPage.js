@@ -20,6 +20,12 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
   const {
     seo, tabs, relatedPages, attorneysMentioned, title, description, members,
   } = page;
+
+  const titlesMap = {
+    'Women LEAD': 'Latest from Woman Lead',
+    Diversity: 'Latest Diversity News',
+  };
+
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
@@ -54,7 +60,9 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
         )}
         {attorneysMentioned.length > 0 && (
           <div className="mt-lg-5">
-            <h3 className="d-flex justify-content-center">Recent from the firm</h3>
+            <h3 className="d-flex justify-content-center">
+              {titlesMap[title] || 'Latest from the firm'}
+            </h3>
             <div className="my-5">
               <PageArticleHero
                 link={title.replace(/\s+/g, '-').toLowerCase()}

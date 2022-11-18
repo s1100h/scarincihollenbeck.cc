@@ -13,7 +13,7 @@ const organizeAttorneys = (attorneys, titles) => {
 
   attorneys.forEach((attorney) => {
     if (
-      attorney.designation !== 'Managing Partner'
+      attorney.designation !== 'Firm Managing Partner'
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners.attorneys.push(attorney);
@@ -32,13 +32,13 @@ const organizeAttorneys = (attorneys, titles) => {
 const NonFiltered = ({ attorneys, offices }) => {
   const [sortedAttorneys, setSortedAttorneys] = useState({});
   const { titles } = useContext(SectionTitleContext);
-
   useEffect(() => {
     if (titles) {
       const orgAttorneys = organizeAttorneys(attorneys, titles);
       setSortedAttorneys(orgAttorneys);
     }
   }, [titles]);
+
   return (
     <>
       {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}

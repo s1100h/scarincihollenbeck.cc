@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import AttorneyCard from 'components/shared/AttorneyCard';
 
-const Members = ({ title, members, type }) => (
+const Members = ({ title, members }) => (
   <div className="w-100 mt-5 px-3">
     <h3 className="redTitle text-uppercase border-bottom mb-0">
       <strong>{title}</strong>
@@ -21,7 +21,6 @@ const Members = ({ title, members, type }) => (
               email={email}
               width={80}
               height={112}
-              type={type}
             />
           </Col>
         ))}

@@ -25,4 +25,13 @@ export const Title = styled.h2`
 export const ArticleBody = styled.section`
   font-size: 1.15rem;
   color: ${globalColor.gray.gray80};
+
+  ul {
+    li {
+      ::before {
+        content: '➤';
+        margin-right: 10px;
+      }
+    }
+  }
 `

@@ -35,6 +35,16 @@ const BlockList = ({ list }) => {
     }
   };
 
+  const SortArray = (x, y) => {
+    if (x.title < y.title) {
+      return -1;
+    }
+    if (x.title > y.title) {
+      return 1;
+    }
+    return 0;
+  };
+
   return (
     <Container className="mt-4">
       <Row>
@@ -52,7 +62,7 @@ const BlockList = ({ list }) => {
                 <BsChevronDown />
               </ButtonTabToggle>
               <DropMenu className="w-100">
-                {item.children.map((child) => (
+                {item.children.sort(SortArray).map((child) => (
                   <DropdownItemPractice key={child.ID} href={child.slug}>
                     {child.title}
                   </DropdownItemPractice>

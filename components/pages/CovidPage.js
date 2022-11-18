@@ -58,7 +58,7 @@ const CovidPage = ({
               dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
             />
           )}
-          <div className="border-top border-top pt-4">
+          <div className="border-top border-top pt-4 px-2">
             <h4 className="mb-5">
               <strong className="text-capitalize">COVID-19 Articles</strong>
             </h4>

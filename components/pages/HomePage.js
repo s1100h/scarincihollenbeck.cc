@@ -26,9 +26,7 @@ const HomePage = ({
       <AboutFirmSection {...aboutFirm} />
       <AboutFirmSection {...aboutFirm2} />
     </AboutContainer>
-    <Suspense fallback="Loading...">
-      <AllOfficeLocations />
-    </Suspense>
+    <AllOfficeLocations />
     <FirmNews />
     <Awards awards={awards} />
   </>
