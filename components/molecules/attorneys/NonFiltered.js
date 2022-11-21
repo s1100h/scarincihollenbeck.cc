@@ -18,14 +18,15 @@ const organizeAttorneys = (attorneys, titles) => {
     ) {
       results.Partners.attorneys.push(attorney);
     }
-
+    if (attorney.designation === 'Executive Director') {
+      results['Firm Leaders'].attorneys.push(attorney);
+    }
     Object.keys(results).forEach((key) => {
       if (attorney.designation[0] === key[0] && attorney.designation[0]) {
         results[key].attorneys.push(attorney);
       }
     });
   });
-
   return results;
 };
 

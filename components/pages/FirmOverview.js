@@ -12,14 +12,14 @@ const AdditionalInformation = dynamic(() => import('components/atoms/Article'));
 const MainInformation = AdditionalInformation;
 const HeadInformation = AdditionalInformation;
 
-const sanitizeMembers = (member, isAttorney) => member.map(({ node }) => ({
+const sanitizeMembers = (member) => member.map(({ node }) => ({
   title: node.title,
   uri: node.uri,
   better_featured_image: node?.featuredImage?.node?.sourceUrl,
-  phone: isAttorney
-    ? node.attorneyMainInformation?.phoneNumber
-    : `${SITE_PHONE} #${node.administration?.phoneExtension}`,
-  email: isAttorney ? node.attorneyMainInformation?.email : node.administration?.email,
+  phone:
+      node.attorneyMainInformation?.phoneNumber
+      || `${SITE_PHONE} #${node.administration?.phoneExtension}`,
+  email: node.attorneyMainInformation?.email || node.administration?.email,
   designation: node.attorneyMainInformation?.designation || node?.administration?.title,
 }));
 
@@ -38,14 +38,27 @@ const FirmOverviewPage = ({
     (attorney) => attorney.node.attorneyMainInformation.designation.includes('Partner')
       && attorney.node.title !== 'Donald Scarinci',
   );
-  const getManagingPartner = attorneys.filter(
-    (attorney) => attorney.node.attorneyMainInformation.designation === 'Firm Managing Partner',
-  );
-  const sortedAdmins = administration.sort((a, b) => (a.node.administration?.order > b.node.administration?.order ? 1 : -1));
-  const managingPartner = sanitizeMembers(getManagingPartner, true);
-  const partners = sanitizeMembers(getPartners, true);
-  const firmAdministration = sanitizeMembers(sortedAdmins, false);
-  const contentFirmOverview = [...managingPartner, ...partners, ...firmAdministration];
+  const getManagingPartner = (lawyers, directors) => {
+    const firmManager = lawyers.filter(
+      (attorney) => attorney.node.attorneyMainInformation.designation === 'Firm Managing Partner',
+    );
+    const exclusiveDirector = directors.filter(
+      (admin) => admin.node?.administration?.title === 'Executive Director',
+    );
+    return [...firmManager, ...exclusiveDirector];
+  };
+
+  const sortedAndClearedAdmins = (adminsArr) => {
+    const filtratedAdmins = adminsArr.filter(
+      ({ node }) => node.administration.title !== 'Executive Director',
+    );
+    return filtratedAdmins.sort((a, b) => (a.node.administration?.order > b.node.administration?.order ? 1 : -1));
+  };
+  const firmAdministration = sanitizeMembers(sortedAndClearedAdmins(administration));
+  const firmLeaders = sanitizeMembers(getManagingPartner(attorneys, administration));
+  const partners = sanitizeMembers(getPartners);
+  const contentFirmOverview = [...firmLeaders, ...partners, ...firmAdministration];
+
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
