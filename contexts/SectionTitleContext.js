@@ -3,7 +3,8 @@ import React, { createContext, useState } from 'react';
 export const SectionTitleContext = createContext(null);
 
 export const SectionTitleProvider = ({ children }) => {
-  const [titles, setTitles] = useState();
+  const [attorneysTitles, setAttorneysTitles] = useState();
+  const [firmOverviewTitles, setFirmOverviewTitles] = useState();
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
   const [dataForFilter, setDataForFilter] = useState({
@@ -47,8 +48,10 @@ export const SectionTitleProvider = ({ children }) => {
   }
 
   const values = {
-    titles,
-    setTitles,
+    attorneysTitles,
+    setAttorneysTitles,
+    firmOverviewTitles,
+    setFirmOverviewTitles,
     dataForFilter,
     setDataForFilter,
     userInput,

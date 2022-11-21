@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import AttorneyCards from 'components/atoms/AttorneyCards';
+import { useRouter } from 'next/router';
 
 const organizeAttorneys = (attorneys, titles) => {
   const results = {};
@@ -32,13 +33,18 @@ const organizeAttorneys = (attorneys, titles) => {
 
 const NonFiltered = ({ attorneys, offices }) => {
   const [sortedAttorneys, setSortedAttorneys] = useState({});
-  const { titles } = useContext(SectionTitleContext);
+  const { attorneysTitles, firmOverviewTitles } = useContext(SectionTitleContext);
+  const { pathname } = useRouter();
   useEffect(() => {
-    if (titles) {
-      const orgAttorneys = organizeAttorneys(attorneys, titles);
+    if (attorneysTitles && pathname === '/attorneys') {
+      const orgAttorneys = organizeAttorneys(attorneys, attorneysTitles);
       setSortedAttorneys(orgAttorneys);
     }
-  }, [titles]);
+    if (firmOverviewTitles && pathname === '/firm-overview') {
+      const orgAttorneys = organizeAttorneys(attorneys, firmOverviewTitles);
+      setSortedAttorneys(orgAttorneys);
+    }
+  }, [attorneysTitles, firmOverviewTitles]);
 
   return (
     <>

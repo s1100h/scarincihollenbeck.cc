@@ -43,7 +43,7 @@ export const getServerSideProps = async () => {
 const FirmOverview = ({
   title, seo, content, firmOverviewTabs, attorneys, administration,
 }) => {
-  const { titles, setTitles } = useContext(SectionTitleContext);
+  const { firmOverviewTitles, setFirmOverviewTitles } = useContext(SectionTitleContext);
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
   const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
   const bodyContent = content.replace(subTitle, '');
@@ -51,11 +51,11 @@ const FirmOverview = ({
 
   /** set section titles to context provider */
   useEffect(() => {
-    if (!titles || !titles?.every((title) => title?.name === 'Consul')) {
+    if (!firmOverviewTitles) {
       const orderedTitles = firmOverViewTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
-      setTitles(orderedTitles);
+      setFirmOverviewTitles(orderedTitles);
     }
-  }, []);
+  }, [firmOverviewTitles]);
 
   const firmOverviewProps = {
     title,

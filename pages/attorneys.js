@@ -70,8 +70,8 @@ const Attorneys = ({
   seo, locations, designations, practices, attorneys, site, sectionTitles,
 }) => {
   const {
-    titles,
-    setTitles,
+    attorneysTitles,
+    setAttorneysTitles,
     setDataForFilter,
     userInput,
     setUserInput,
@@ -92,9 +92,9 @@ const Attorneys = ({
 
   /** set section titles to context provider */
   useEffect(() => {
-    if (!titles || !titles?.every((title) => title?.name === 'Directors')) {
+    if (!attorneysTitles) {
       const orderedTitles = sectionTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
-      setTitles(orderedTitles);
+      setAttorneysTitles(orderedTitles);
     }
   }, []);
 
