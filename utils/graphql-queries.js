@@ -721,6 +721,81 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
           sourceUrl
         }
       }
+      firmChairsCochairs {
+        ... on AttorneyProfile {
+          slug
+          title
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+          }
+          attorneyChairCoChair {
+            chair {
+              ... on Practice {
+                id
+                title
+                slug
+              }
+            }
+            coChair {
+              ... on Practice {
+                id
+                title
+                slug
+              }
+            }
+          }
+        }
+      }
+      firmLeaders {
+        ... on Administration {
+          id
+          slug
+          title
+          administration {
+            abbreviation
+            email
+            title
+            phoneExtension
+            featuredImage {
+              sourceUrl
+            }
+          }
+        }
+        ... on AttorneyProfile {
+          id
+          slug
+          title
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+          }
+        }
+      }
+      directors {
+        ... on Administration {
+          id
+          title
+          slug
+          administration {
+            email
+            title
+            phoneExtension
+            order
+            featuredImage {
+              sourceUrl
+            }
+          }
+        }
+      }
     }
   }
 }`;

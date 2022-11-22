@@ -11,6 +11,45 @@ import {
 } from 'styles/AttorneyCard.style';
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 
+const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
+  if (Array.isArray(locationsOrPractice)) {
+    return locationsOrPractice?.map((location) => (
+      <Link key={location} href={`${officesMap[location].slug}`}>
+        <a>{location}</a>
+      </Link>
+    ));
+  }
+  return (
+    <div className="d-flex flex-column gap-1">
+      {locationsOrPractice.chair?.length > 0 && (
+        <>
+          Chair:
+          {locationsOrPractice.chair?.map((location) => (
+            <Link key={location.id} href={`/practice/${location.slug}`}>
+              <a>
+                {' '}
+                {location?.title}
+              </a>
+            </Link>
+          ))}
+        </>
+      )}
+      {locationsOrPractice.coChair?.length > 0 && (
+        <>
+          coChair:
+          {locationsOrPractice.coChair?.map((location) => (
+            <Link key={location.id} href={`/practice/${location.slug}`}>
+              <a>
+                {' '}
+                {location?.title}
+              </a>
+            </Link>
+          ))}
+        </>
+      )}
+    </div>
+  );
+};
 export default function AttorneyCard({
   link,
   image,
@@ -35,7 +74,7 @@ export default function AttorneyCard({
                 src={image}
                 alt={name}
                 layout="fixed"
-                width={108}
+                width={!Array.isArray(locations) ? 130 : 108}
                 height={150}
               />
             </PhotoBox>
@@ -47,13 +86,7 @@ export default function AttorneyCard({
             {title ? (
               <p>{title}</p>
             ) : (
-              <div className="d-flex gap-1">
-                {locations?.map((location) => (
-                  <Link key={location} href={`${offices[location].slug}`}>
-                    <a>{location}</a>
-                  </Link>
-                ))}
-              </div>
+              <div className="d-flex gap-1">{renderLinkToLocationPractice(locations, offices)}</div>
             )}
 
             <p>{designation}</p>

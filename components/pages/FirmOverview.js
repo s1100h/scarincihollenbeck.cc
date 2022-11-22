@@ -30,34 +30,9 @@ const FirmOverviewPage = ({
   bodyContent,
   subTitle,
   firmOverviewTabs,
-  attorneys,
-  administration,
+  FirmMembers,
 }) => {
   const { titles } = useContext(SectionTitleContext);
-  const getPartners = attorneys.filter(
-    (attorney) => attorney.node.attorneyMainInformation.designation.includes('Partner')
-      && attorney.node.title !== 'Donald Scarinci',
-  );
-  const getManagingPartner = (lawyers, directors) => {
-    const firmManager = lawyers.filter(
-      (attorney) => attorney.node.attorneyMainInformation.designation === 'Firm Managing Partner',
-    );
-    const exclusiveDirector = directors.filter(
-      (admin) => admin.node?.administration?.title === 'Executive Director',
-    );
-    return [...firmManager, ...exclusiveDirector];
-  };
-
-  const sortedAndClearedAdmins = (adminsArr) => {
-    const filtratedAdmins = adminsArr.filter(
-      ({ node }) => node.administration.title !== 'Executive Director',
-    );
-    return filtratedAdmins.sort((a, b) => (a.node.administration?.order > b.node.administration?.order ? 1 : -1));
-  };
-  const firmAdministration = sanitizeMembers(sortedAndClearedAdmins(administration));
-  const firmLeaders = sanitizeMembers(getManagingPartner(attorneys, administration));
-  const partners = sanitizeMembers(getPartners);
-  const contentFirmOverview = [...firmLeaders, ...partners, ...firmAdministration];
 
   return (
     <>
@@ -71,7 +46,7 @@ const FirmOverviewPage = ({
           ))}
         </CentralizedBox>
       </ContainerXXL>
-      <NonFiltered attorneys={contentFirmOverview} titles={titles} />
+      <NonFiltered attorneys={FirmMembers} titles={titles} />
       <ContainerXXL>
         <CentralizedBox notSurface="true">
           {firmOverviewTabs.additionalContent.map(({ content, title }) => (

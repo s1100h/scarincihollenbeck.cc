@@ -1,5 +1,5 @@
 import FirmOverviewPage from 'components/pages/FirmOverview';
-import { firmOverViewTitles, SITE_URL } from 'utils/constants';
+import { firmOverViewTitles, SITE_PHONE, SITE_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { firmOverviewQuery, attorneysAndAdminsQuery } from 'utils/graphql-queries';
 import { SectionTitleContext } from 'contexts/SectionTitleContext';
@@ -12,36 +12,54 @@ export async function getFirmOverviewContent() {
   return data?.pageBy;
 }
 
-/** Fetch the attorneys and administration data WP GRAPHQL API */
-export async function getAttorneyAndAdmins() {
-  const data = await fetchAPI(attorneysAndAdminsQuery);
-  return data;
-}
+const sanitizeMembers = (members) => members.map((member) => ({
+  title: member.title,
+  uri: member.slug,
+  better_featured_image:
+      member.attorneyMainInformation?.profileImage?.sourceUrl
+      || member.administration?.featuredImage?.sourceUrl,
+  phone:
+      member.attorneyMainInformation?.phoneNumber
+      || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
+  email: member.attorneyMainInformation?.email || member.administration?.email,
+  designation:
+      (member.attorneyMainInformation?.designation !== 'Firm Managing Partner'
+        ? member.attorneyChairCoChair
+        : member.attorneyMainInformation.designation) || member.administration?.title,
+}));
 
-/** Map the fetched data to the page props */
 export const getServerSideProps = async () => {
   const pageRequest = await getFirmOverviewContent();
-  const attorneyAdminRequest = await getAttorneyAndAdmins();
 
   const {
     title, seo, content, firmOverviewTabs,
   } = pageRequest;
-  const { attorneyProfiles, administrations } = attorneyAdminRequest;
+  const { firmChairsCochairs, directors, firmLeaders } = firmOverviewTabs;
+
   return {
     props: {
       title,
       seo,
       content,
       firmOverviewTabs,
-      attorneys: attorneyProfiles?.edges,
-      administration: administrations?.edges,
+      FirmMembers: [
+        ...sanitizeMembers(firmLeaders),
+        ...sanitizeMembers(firmChairsCochairs),
+        ...sanitizeMembers(directors),
+      ],
     },
   };
 };
 
 /** The Firm Overview page component */
 const FirmOverview = ({
-  title, seo, content, firmOverviewTabs, attorneys, administration,
+  title,
+  seo,
+  content,
+  firmOverviewTabs,
+  attorneys,
+  administration,
+  FirmMembers,
 }) => {
   const { firmOverviewTitles, setFirmOverviewTitles } = useContext(SectionTitleContext);
   const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
@@ -66,6 +84,7 @@ const FirmOverview = ({
     firmOverviewTabs,
     attorneys,
     administration,
+    FirmMembers,
   };
 
   return <FirmOverviewPage {...firmOverviewProps} />;

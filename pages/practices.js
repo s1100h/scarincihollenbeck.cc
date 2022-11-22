@@ -41,7 +41,6 @@ export const getStaticProps = async () => {
   const results = sortPracticeCategories(allPractices);
   const { core, additional, business } = results;
   const { title, seo, practiceArchives } = page;
-
   return {
     props: {
       seo,

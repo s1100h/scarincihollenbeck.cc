@@ -14,13 +14,17 @@ const organizeAttorneys = (attorneys, titles) => {
 
   attorneys.forEach((attorney) => {
     if (
-      attorney.designation !== 'Firm Managing Partner'
+      typeof attorney.designation === 'string'
+      && attorney.designation !== 'Firm Managing Partner'
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners.attorneys.push(attorney);
     }
     if (attorney.designation === 'Executive Director') {
       results['Firm Leaders'].attorneys.push(attorney);
+    }
+    if (typeof attorney.designation !== 'string') {
+      results.Partners.attorneys.push(attorney);
     }
     Object.keys(results).forEach((key) => {
       if (attorney.designation[0] === key[0] && attorney.designation[0]) {
@@ -45,7 +49,6 @@ const NonFiltered = ({ attorneys, offices }) => {
       setSortedAttorneys(orgAttorneys);
     }
   }, [attorneysTitles, firmOverviewTitles]);
-
   return (
     <>
       {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}

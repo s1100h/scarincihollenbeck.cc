@@ -20,8 +20,8 @@ const AttorneyCards = (title, content, offices) => {
               link={info.link ? `/attorney${info.link}` : info.uri}
               image={info.better_featured_image}
               name={info.title}
-              designation={info.designation}
-              locations={info.location_array}
+              designation={typeof info.designation !== 'string' ? null : info.designation}
+              locations={info.location_array ? info.location_array : info.designation}
               number={info.phone}
               email={info.email}
               width={80}
