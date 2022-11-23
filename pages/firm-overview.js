@@ -1,7 +1,7 @@
 import FirmOverviewPage from 'components/pages/FirmOverview';
 import { firmOverViewTitles, SITE_PHONE, SITE_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { firmOverviewQuery, attorneysAndAdminsQuery } from 'utils/graphql-queries';
+import { firmOverviewQuery } from 'utils/graphql-queries';
 import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import { useContext, useEffect } from 'react';
 

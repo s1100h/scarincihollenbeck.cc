@@ -22,7 +22,7 @@ const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
   return (
     <div className="d-flex flex-column gap-1">
       {locationsOrPractice.chair?.length > 0 && (
-        <>
+        <div className="d-flx">
           Chair:
           {locationsOrPractice.chair?.map((location) => (
             <Link key={location.id} href={`/practice/${location.slug}`}>
@@ -32,10 +32,10 @@ const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
               </a>
             </Link>
           ))}
-        </>
+        </div>
       )}
       {locationsOrPractice.coChair?.length > 0 && (
-        <>
+        <div className="d-flx">
           coChair:
           {locationsOrPractice.coChair?.map((location) => (
             <Link key={location.id} href={`/practice/${location.slug}`}>
@@ -45,11 +45,12 @@ const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
               </a>
             </Link>
           ))}
-        </>
+        </div>
       )}
     </div>
   );
 };
+
 export default function AttorneyCard({
   link,
   image,
