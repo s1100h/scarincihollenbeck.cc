@@ -36,7 +36,7 @@ const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
       )}
       {locationsOrPractice.coChair?.length > 0 && (
         <div className="d-flx">
-          coChair:
+          Co-Chair:
           {locationsOrPractice.coChair?.map((location) => (
             <Link key={location.id} href={`/practice/${location.slug}`}>
               <a>

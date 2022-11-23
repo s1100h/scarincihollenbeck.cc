@@ -426,7 +426,7 @@ export const ATTORNEYS_FAQ = [
 
 export const firmOverViewTitles = [
   { name: 'Firm Leaders', order: 1 },
-  { name: 'Partners', order: 2 },
+  { name: 'Practice Leaders', order: 2 },
   { name: 'Directors', order: 3 },
 ];
 
