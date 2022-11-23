@@ -12,7 +12,7 @@ import {
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 
 const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
-  if (!Array.isArray(locationsOrPractice)) {
+  if (Array.isArray(locationsOrPractice)) {
     return locationsOrPractice?.map((location) => (
       <Link key={location} href={`${officesMap[location].slug}`}>
         <a>{location}</a>
@@ -75,7 +75,7 @@ export default function AttorneyCard({
                 src={image}
                 alt={name}
                 layout="fixed"
-                width={!Array.isArray(locations) ? 130 : 108}
+                width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 108}
                 height={150}
               />
             </PhotoBox>
