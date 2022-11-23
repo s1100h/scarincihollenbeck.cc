@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const TitleSideBar = styled.h1`
+export const TitleSideBar = styled.h3`
   font-size: 1.2rem;
   font-family: Gotham Pro;
   font-weight: 600;

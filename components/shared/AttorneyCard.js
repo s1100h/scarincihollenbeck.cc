@@ -12,7 +12,7 @@ import {
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 
 const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
-  if (Array.isArray(locationsOrPractice)) {
+  if (!Array.isArray(locationsOrPractice)) {
     return locationsOrPractice?.map((location) => (
       <Link key={location} href={`${officesMap[location].slug}`}>
         <a>{location}</a>
