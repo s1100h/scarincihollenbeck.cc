@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import ProfileTitle from 'components/molecules/attorney/ProfileTitle';
-import ProfileDetails from 'components/molecules/attorney/ProfileDetails';
+import ProfileContacts from 'components/molecules/attorney/ProfileContacts';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
 import ContactIcons from 'components/molecules/attorney/ContactIcons';
-import { BackgroundContainer } from 'styles/SingleSubHeader.style';
+import { DetailsBox, ProfileHeaderContainer } from 'styles/AttorneyProfile.style';
+import ButtonGroupMenu from 'components/molecules/attorney/ButtonGroupMenu';
 
 const useDesignationHook = (title) => {
   const [designation, setDesignation] = useState(title);
@@ -31,7 +32,18 @@ const useDesignationHook = (title) => {
 };
 
 const ProfileHeader = ({
-  name, profileImage, title, offices, pdf, coChair, chair, contact,
+  name,
+  profileImage,
+  title,
+  offices,
+  pdf,
+  coChair,
+  chair,
+  contact,
+  mainTabs,
+  setActiveTab,
+  moreTabs,
+  activeTab,
 }) => {
   const [designation] = useDesignationHook(title);
   const router = useRouter();
@@ -60,30 +72,32 @@ const ProfileHeader = ({
     vizibility: contact.vizibility,
     linkedIn,
   };
-
+  const buttonGroupProps = {
+    mainTabs,
+    setActiveTab,
+    moreTabs,
+    activeTab,
+  };
   return (
-    <BackgroundContainer props={{ isTabs: 'true' }}>
-      <Container>
-        <Row>
-          <Col sm={12} lg={9}>
-            <Row>
-              <Col sm={12} md={4}>
-                <ProfileImage {...profileImageProps} />
-              </Col>
-              <Col sm={12} md={8} lg={8}>
-                <div className="my-3">
-                  <ProfileTitle {...profileTitleProps} />
-                  <div className="d-flex mt-2 pt-3 pb-5">
-                    <ProfileDetails {...profileDetailsProps} />
-                    <ContactIcons {...contactProps} />
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </BackgroundContainer>
+    <ProfileHeaderContainer>
+      <Row>
+        <Col sm={12} lg={12}>
+          <Row>
+            <Col sm={12} md={4}>
+              <ProfileImage {...profileImageProps} />
+            </Col>
+            <Col sm={12} md={8} lg={8}>
+              <ProfileTitle {...profileTitleProps} />
+              <DetailsBox>
+                <ProfileContacts {...profileDetailsProps} />
+                <ContactIcons {...contactProps} />
+              </DetailsBox>
+            </Col>
+            <ButtonGroupMenu {...buttonGroupProps} />
+          </Row>
+        </Col>
+      </Row>
+    </ProfileHeaderContainer>
   );
 };
 

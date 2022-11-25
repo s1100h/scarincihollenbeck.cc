@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SubTitleProfileBox } from 'styles/AttorneyProfile.style';
 
 const ProfileTitle = ({
   name, designation, chair, coChair,
@@ -7,7 +8,7 @@ const ProfileTitle = ({
     <h1 className="h2 animate__animated animate__fadeInDown animate__slow mb-0">
       <strong className="name">{name}</strong>
     </h1>
-    <div className="bottom">
+    <SubTitleProfileBox>
       <h2>{designation}</h2>
       {chair.length > 0 && (
         <>
@@ -42,21 +43,7 @@ const ProfileTitle = ({
           ))}
         </>
       )}
-    </div>
-    <style jsx>
-      {`
-        h2 {
-          display: inline;
-          font-size: 15px;
-        }
-        .bottom {
-          margin-top: 0px;
-          padding-bottom: 5px;
-          border-bottom: 3.5px solid #db2220;
-          font-size: 15px;
-        }
-      `}
-    </style>
+    </SubTitleProfileBox>
   </>
 );
 

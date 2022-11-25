@@ -8,13 +8,7 @@ import SidebarWrapper from 'components/organisms/attorney/SidebarWrapper';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
-import {
-  ButtonTab,
-  ButtonGroup,
-  MobileGroup,
-  NavItem,
-  ButtonDropdown,
-} from 'styles/ButtonsMenu.style';
+import { MobileGroup, NavItem, ButtonDropdown } from 'styles/ButtonsMenu.style';
 import { ColStyled } from 'styles/AttorneyProfile.style';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
@@ -59,7 +53,13 @@ const AttorneyPage = ({
   };
 
   const tabs = [...mainTabs, ...moreTabs, education, contact];
-
+  const compressPropsHederProfile = {
+    ...profileHeader,
+    mainTabs,
+    setActiveTab,
+    moreTabs,
+    activeTab,
+  };
   /** Effect handler that manages how the tabs work */
   useEffect(() => {
     const currentTabContent = tabs.filter((t) => t.id === activeTab);
@@ -140,39 +140,10 @@ const AttorneyPage = ({
         designation={profileHeader.title}
         socialMediaLinks={seo.socialMediaLinks}
       />
-      <ProfileHeader {...profileHeader} />
       <Container>
         <Row>
-          <ColStyled sm={12} lg={9} top="-116px">
-            <ButtonGroup>
-              {mainTabs.map((tab) => (
-                <ButtonTab
-                  key={tab.id}
-                  active={activeTab === tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  {tab.title === 'News Press Releases' ? 'News & Press Releases' : tab.title}
-                </ButtonTab>
-              ))}
-              {moreTabs.length > 0 && (
-                <div style={{ width: '200px' }}>
-                  <ButtonDropdown title="More">
-                    {moreTabs.map((tab) => (
-                      <NavItem
-                        key={tab.id}
-                        id={tab.id}
-                        active={activeTab === tab.id}
-                        onClick={() => {
-                          setActiveTab(tab.id);
-                        }}
-                      >
-                        {tab.title}
-                      </NavItem>
-                    ))}
-                  </ButtonDropdown>
-                </div>
-              )}
-            </ButtonGroup>
+          <ColStyled sm={12} lg={9}>
+            <ProfileHeader {...compressPropsHederProfile} />
             <MobileGroup>
               <ButtonDropdown title="Menu">
                 {tabs.map((tab) => (
@@ -187,7 +158,7 @@ const AttorneyPage = ({
               </ButtonDropdown>
             </MobileGroup>
           </ColStyled>
-          <ColStyled sm={12} lg={9} top="-36px">
+          <ColStyled sm={12} lg={9}>
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
             )}
