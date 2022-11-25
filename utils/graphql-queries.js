@@ -23,6 +23,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       phoneNumber
       profileImage {
         sourceUrl
+        authorDatabaseId
       }
       socialMediaLinks {
         url

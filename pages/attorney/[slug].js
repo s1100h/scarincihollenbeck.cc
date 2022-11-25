@@ -64,7 +64,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Create new tabs for Government and Law & Con Law  & Drop Music esq */
   /** Get Attorney/Author Internal Posts */
-  const authorId = attorneyBio?.attorneyAuthorId.authorId.userId;
+  const authorId = attorneyBio.attorneyMainInformation.profileImage.authorDatabaseId;
   const attorneyFirmPosts = await attorneyFirmBlog(authorId);
 
   /** Get Firm News/Events About Attorney */
