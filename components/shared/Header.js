@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import MobileMenu from 'components/organisms/Navbar/MobileMenu';
 import GlobalSearch from 'components/shared/GlobalSearch/GlobalSearch';
 import LinkButtons from 'components/organisms/Navbar/LinkButtons';
@@ -12,21 +12,28 @@ import {
   DesktopVisible,
   MobileVisible,
 } from 'styles/Header.style';
+import Filters from 'components/organisms/attorneys/Filters';
+import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import Selection from 'components/organisms/attorneys/Selection';
+import useIsScroll from 'hooks/useIsScroll';
+import { useRouter } from 'next/router';
+import useStateScreen from 'hooks/useStateScreen';
 
 export default function Header() {
-  const [scrollTop, setScrollTop] = useState(false);
+  const {
+    dataForFilter, userInput, select, handleChange, onSelect, clearQuery,
+  } = useContext(SectionTitleContext);
+  const { isTabletScreen } = useStateScreen();
 
-  useEffect(() => {
-    const onScroll = (e) => {
-      setScrollTop(true);
-      if (e.target.documentElement.scrollTop < 100) {
-        setScrollTop(false);
-      }
-    };
-    window.addEventListener('scroll', onScroll);
+  const {
+    sPractices, locations, designations, clearAll,
+  } = dataForFilter;
 
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [scrollTop]);
+  const { scrollTop } = useIsScroll();
+
+  const { pathname } = useRouter();
+
+  const isAttorneysPage = pathname === '/attorneys';
 
   return (
     <HeaderContainer scrollDown={scrollTop}>
@@ -46,6 +53,25 @@ export default function Header() {
         <GlobalSearch scrollTop={scrollTop} />
       </MobileVisible>
       <Navigation scrollTop={scrollTop} />
+      {scrollTop && isAttorneysPage && !isTabletScreen && (
+        <Filters
+          practices={sPractices}
+          locations={locations}
+          designation={designations}
+          userInput={userInput}
+          handleChange={handleChange}
+          onSelect={onSelect}
+        >
+          {(userInput.length > 0 || select.length > 0) && (
+            <Selection
+              select={select}
+              clearQuery={clearQuery}
+              userInput={userInput}
+              clearAll={clearAll}
+            />
+          )}
+        </Filters>
+      )}
     </HeaderContainer>
   );
 }

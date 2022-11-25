@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import CovidResourcesBox from 'components/molecules/practice/CovidResourcesBox';
 import SidebarContent from 'components/shared/Sidebar';
-import textStyles from 'styles/Text.module.css';
 
 const PageSidebar = ({ corePractices, practiceChildren }) => {
   const router = useRouter();

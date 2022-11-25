@@ -1,18 +1,24 @@
 import { Form } from 'react-bootstrap';
-import { SearchForm, SearchInput, SearchSvg } from 'styles/GlobalSearch.style';
-import SearchSvgImage from './SearchSvgImage';
+import { BsSearch, BsXLg } from 'react-icons/bs';
+import { SearchForm, SearchInput } from 'styles/GlobalSearch.style';
 
-function MySearchBox({ currentRefinement, refine }) {
+function MySearchBox(props) {
+  const handleClear = () => {
+    props.refine({
+      currentTarget: {
+        value: '',
+      },
+    });
+  };
   return (
     <SearchForm>
-      <Form.Group controlId="siteSearch">
-        <SearchSvgImage />
-        <Form.Label className="sr-only">Site Search</Form.Label>
+      <Form.Group className="form-group" controlId="siteSearch">
+        {!props.currentRefinement ? <BsSearch /> : <BsXLg role="button" onClick={handleClear} />}
         <SearchInput
           type="input"
-          value={currentRefinement}
-          onChange={(e) => refine(e.currentTarget.value)}
-          placeholder="Search"
+          value={props.currentRefinement}
+          onChange={props.refine}
+          placeholder={props.placeholder}
         />
       </Form.Group>
     </SearchForm>

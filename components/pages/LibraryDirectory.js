@@ -7,7 +7,6 @@ import BodyHeader from 'components/organisms/library/BodyHeader';
 import MainArticle from 'components/organisms/library/MainArticle';
 import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import styles from 'styles/Text.module.css';
 import { CLIENT_ALERTS } from 'utils/constants';
 import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
@@ -106,7 +105,7 @@ const LibraryDirectory = ({
             {isAuthor && (
               <div className="my-3">
                 <Link href={profileUrl}>
-                  <a className={`${styles.redTitle} h6`}>
+                  <a className="redTitle h6">
                     <strong>
                       <u>Visit Attorney&apos;s Profile</u>
                       {' '}

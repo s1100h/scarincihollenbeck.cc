@@ -4,9 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import ProfileTitle from 'components/molecules/admin/ProfileTitle';
 import ProfileDetails from 'components/molecules/admin/ProfileDetails';
 import ContactIcons from 'components/molecules/admin/ContactIcons';
-import profileStyles from 'styles/ProfileImage.module.css';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import styles from 'styles/Banner.module.css';
 import { BackgroundContainer } from 'styles/SingleSubHeader.style';
 
 const AdminProfileHeader = ({ image, profile }) => {
@@ -20,9 +18,9 @@ const AdminProfileHeader = ({ image, profile }) => {
   return (
     <>
       <BackgroundContainer>
-        <Container className={styles.multiBackBanner}>
+        <Container>
           <Row className="my-4">
-            <Col sm={12} lg={9} className="text-white">
+            <Col sm={12} lg={9}>
               <Row>
                 <Col sm={12} md={4}>
                   <Image
@@ -32,7 +30,7 @@ const AdminProfileHeader = ({ image, profile }) => {
                     height={795}
                     layout="intrinsic"
                     quality={100}
-                    className={`${profileStyles.whiteBorderTransparent} animate__animated animate__fadeInUp animate__fast my-5`}
+                    className="animate__animated animate__fadeInUp animate__fast"
                     priority
                     loading="eager"
                   />

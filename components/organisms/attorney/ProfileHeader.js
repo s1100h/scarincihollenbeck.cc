@@ -5,7 +5,6 @@ import ProfileTitle from 'components/molecules/attorney/ProfileTitle';
 import ProfileDetails from 'components/molecules/attorney/ProfileDetails';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
 import ContactIcons from 'components/molecules/attorney/ContactIcons';
-import styles from 'styles/Banner.module.css';
 import { BackgroundContainer } from 'styles/SingleSubHeader.style';
 
 const useDesignationHook = (title) => {
@@ -66,7 +65,7 @@ const ProfileHeader = ({
     <BackgroundContainer props={{ isTabs: 'true' }}>
       <Container>
         <Row>
-          <Col sm={12} lg={9} className="text-white">
+          <Col sm={12} lg={9}>
             <Row>
               <Col sm={12} md={4}>
                 <ProfileImage {...profileImageProps} />
@@ -74,7 +73,7 @@ const ProfileHeader = ({
               <Col sm={12} md={8} lg={8}>
                 <div className="my-3">
                   <ProfileTitle {...profileTitleProps} />
-                  <div className={`${styles.rowProfileDetails}  mt-2 pt-3 pb-5`}>
+                  <div className="d-flex mt-2 pt-3 pb-5">
                     <ProfileDetails {...profileDetailsProps} />
                     <ContactIcons {...contactProps} />
                   </div>

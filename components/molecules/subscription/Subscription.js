@@ -1,10 +1,9 @@
-import fontStyles from 'styles/Fonts.module.css';
 import { SITE_TITLE } from 'utils/constants';
 import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
 
 const Subscription = () => (
   <div>
-    <p className={`${fontStyles.ft12rem} mb-2`}>
+    <p className="fs-1_2rem mb-2">
       <strong>Get the latest from our attorneys!</strong>
     </p>
     <p>

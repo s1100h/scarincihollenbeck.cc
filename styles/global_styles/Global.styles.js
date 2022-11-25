@@ -1,5 +1,79 @@
 import { createGlobalStyle } from 'styled-components'
 
+const mainFotSize = 16
+
+export const globalColor = {
+  white: 'white',
+  black: 'black',
+  gray: {
+    gray100: '#424242',
+    gray90: '#4a4a4a',
+    gray80: '#5E5E5E',
+    gray70: '#656565',
+    gray60: '#727272',
+    gray50: '#757575',
+    gray40: '#888888',
+  },
+
+  grayLite: {
+    grayLite100: '#8F8F8F',
+    grayLite90: '#9A9A9A',
+    grayLite80: '#989898',
+    grayLite70: '#A2A2A2',
+    grayLite60: '#ACACAC',
+    grayLite50: '#AAAAAA',
+    grayLite40: '#B0B0B0',
+  },
+
+  grayExtraLite: {
+    grayExtraLite100: '#ABABAB',
+    grayExtraLite90: '#AEAEAE',
+    grayExtraLite80: '#B8B8B8',
+    grayExtraLite70: '#BDBDBD',
+    grayExtraLite60: '#C1C1C1',
+    grayExtraLite50: '#C3C3C3',
+    grayExtraLite40: '#C7C7C7',
+  },
+
+  graySmoke: {
+    smoke: '#D9D9D9',
+    liteSmoke: '#ADADAD',
+    extraLiteSmoke: '#BDBDBD',
+    whiteSmoke: '#F0F0F0',
+    liteWhiteSmoke: '#F5F5F5',
+    extraLiteWhiteSmoke: '#FAFAFA',
+  },
+
+  red: {
+    liteRed: '#D81110',
+    darkRed: '#A91110',
+    burgundy: '#60191B',
+    darkBurgundy: '#381314',
+  },
+
+  blue: {
+    greyBlue: '#37B7D7',
+    dirtyBlue: '#5787CF',
+    ultramarine: '#2564E1',
+  },
+}
+
+export const globalGradient = {
+  award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
+}
+
+export const globalShadow = {
+  allSideShadow: `-10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06)`,
+}
+
+export const globalBackgroundImage = {
+  subHeader: '/images/skyscraper.png',
+}
+
+export const rem = (sizeInPx) => {
+  return `${sizeInPx / mainFotSize}rem`
+}
+
 export const GlobalStyle = createGlobalStyle`
 /** Fonts **/
 @font-face {
@@ -66,14 +140,17 @@ export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Gotham Pro' !important;
   font-weight: 500;  
+  font-size: ${mainFotSize}px;
+  background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
 }
 
 a {
-  color: #3344dd;
-}
+  text-decoration: none;
+  color: ${globalColor.blue.dirtyBlue};
 
-a:hover {
-  color: inherit;
+  :hover {
+  color: ${globalColor.red.darkRed};
+}
 }
 
 strong {
@@ -86,6 +163,51 @@ em {
 
 ul {
 	list-style: none;
+}
+
+h1 {
+  font-family: 'Kenjo I';
+}
+
+h3 {
+  color: ${globalColor.black};
+  font-weight: 700;
+  font-size: ${rem(20)};
+  margin: 0;
+}
+
+.content {
+  h4 {
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 1.125rem;
+    line-height: 1.7;
+  }
+
+  li {
+    font-size: 1rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.smallExcerpt {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.fs-1_2rem {
+  font-size: 1.2rem;
+}
+
+.redTitle {
+  color: ${globalColor.red.darkRed};
 }
 
 /** Button Styling **/
@@ -187,12 +309,6 @@ footer .wrapper-section {
   font-weight: bold;
 }
 
-.close_modal {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-
 @media only screen and (max-width: 768px) {
   .modal-dialog {
     margin: 0;
@@ -214,59 +330,3 @@ footer .wrapper-section {
   color: #a91110;
 }
 `
-export const globalColor = {
-  white: 'white',
-  black: 'black',
-  gray: {
-    gray100: '#424242',
-    gray90: '#4a4a4a',
-    gray80: '#5E5E5E',
-    gray70: '#656565',
-    gray60: '#727272',
-    gray50: '#757575',
-    gray40: '#888888',
-  },
-
-  grayLite: {
-    grayLite100: '#8F8F8F',
-    grayLite90: '#9A9A9A',
-    grayLite80: '#989898',
-    grayLite70: '#A2A2A2',
-    grayLite60: '#ACACAC',
-    grayLite50: '#AAAAAA',
-    grayLite40: '#B0B0B0',
-  },
-
-  grayExtraLite: {
-    grayExtraLite100: '#AEAEAE',
-    grayExtraLite90: '#B8B8B8',
-    grayExtraLite80: '#BDBDBD',
-    grayExtraLite70: '#C1C1C1',
-    grayExtraLite60: '#C3C3C3',
-    grayExtraLite50: '#C7C7C7',
-  },
-
-  graySmoke: {
-    smoke: '#D9D9D9',
-    liteSmoke: '#DADADA',
-    extraLiteSmoke: '#BDBDBD',
-    whiteSmoke: '#F0F0F0',
-    liteWhiteSmoke: '#F5F5F5',
-    extraLiteWhiteSmoke: '#FAFAFA',
-  },
-
-  red: {
-    liteRed: '#D81110',
-    darkRed: '#A91110',
-    burgundy: '#60191B',
-    darkBurgundy: '#381314',
-  },
-}
-
-export const globalGradient = {
-  award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
-}
-
-export const globalBackgroundImage = {
-  subHeader: '/images/skyscraper.png',
-}

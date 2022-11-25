@@ -2,17 +2,15 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/shared/AttorneyCard';
-import lineHeadingStyles from 'styles/LineHeader.module.css';
 import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import VirtualizedMembers from 'components/shared/VirtualizedMembers';
+import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
 const PracticeRelatedAttorneys = ({ members, chair, title }) => (
   <>
     {chair.length > 0 && (
       <Container>
-        <div className={lineHeadingStyles.lineHeader}>
-          <h3>{title}</h3>
-        </div>
+        <BigGrayTitle>{title}</BigGrayTitle>
         <Row className="my-5">
           {sortByKey(chair, 'lastName').map((m) => (
             <Col sm={12} md={12} lg={6} key={m.ID}>
@@ -34,9 +32,7 @@ const PracticeRelatedAttorneys = ({ members, chair, title }) => (
     )}
     {members.length > 0 && (
       <Container>
-        <div className={lineHeadingStyles.lineHeader}>
-          <h3>Members</h3>
-        </div>
+        <BigGrayTitle>Members</BigGrayTitle>
         <Row className="mt-5">
           <VirtualizedMembers members={sortByKey(members, 'lastName')} />
         </Row>

@@ -1,24 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, ModalFooter } from 'reactstrap';
 import { RedButtonBootstrap } from 'styles/Buttons.style';
 import Cookies from 'universal-cookie';
 
-function ModalWindow() {
-  const [modalOpen, setModalOpen] = React.useState(false);
+const ModalWindow = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isCookie, setIsCookies] = useState(false);
   const cookies = new Cookies();
+
   const handleClick = (event) => {
     setModalOpen(!modalOpen);
     cookies.set('ModalWindow', 'yes', { maxAge: 86400 });
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setModalOpen(!modalOpen);
     }, 1000);
+
+    if (cookies.get('ModalWindow') !== 'yes' && !isCookie) {
+      setIsCookies(true);
+    }
+
     return () => clearTimeout(timer);
   }, []);
-  if (cookies.get('ModalWindow') !== 'yes') {
-    return (
-      <>
+
+  return (
+    <>
+      {isCookie && (
         <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
           <div className="modal-header modal-header_my">
             <h5 className="modal-title_my" id="exampleModalLabel">
@@ -36,14 +45,6 @@ function ModalWindow() {
               remains the same. For any questions regarding the move, contact the attorney with whom
               you work, or call us at 201-896-4100.
             </p>
-            <button
-              aria-label="Close"
-              className=" close close_modal"
-              type="button"
-              onClick={handleClick}
-            >
-              <span aria-hidden>×</span>
-            </button>
           </div>
           <ModalFooter>
             <RedButtonBootstrap color="secondary" type="button" onClick={handleClick}>
@@ -51,10 +52,9 @@ function ModalWindow() {
             </RedButtonBootstrap>
           </ModalFooter>
         </Modal>
-      </>
-    );
-  }
-  return null;
-}
+      )}
+    </>
+  );
+};
 
 export default ModalWindow;

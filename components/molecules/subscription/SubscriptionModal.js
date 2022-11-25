@@ -4,11 +4,10 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import fontsStyles from 'styles/Fonts.module.css';
-import formsStyles from 'styles/Forms.module.css';
 import { checkboxes } from 'utils/categories';
 import { SITE_TITLE } from 'utils/constants';
 import { ButtonStandardWidth } from 'styles/Buttons.style';
+import { CheckBoxesList } from 'styles/Subscription.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -80,8 +79,8 @@ const SubscriptionModal = () => {
               rules="required|max:255"
             />
             <fieldset data-kw-group="true" rules="required">
-              <span className={fontsStyles.smallExcerpt}>Please select a category(s) below:</span>
-              <ul className={`${formsStyles.twoColumns} list-unstyled mx-0 px-0 mt-2`}>
+              <span className="smallExcerpt">Please select a category(s) below:</span>
+              <CheckBoxesList>
                 {checkboxes.map((type) => (
                   <li key={type.key}>
                     <label htmlFor={type.key} className="mb-0">
@@ -96,7 +95,7 @@ const SubscriptionModal = () => {
                     </label>
                   </li>
                 ))}
-              </ul>
+              </CheckBoxesList>
             </fieldset>
             <div className="modal-footer justify-content-start">
               <Button variant="danger" type="submit" className="px-5">

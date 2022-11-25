@@ -2,12 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { formatDate, createMarkup, extractDescription } from 'utils/helpers';
+import { ImageWrapper } from 'styles/ListArticles.style';
 
 const ArticlesNonVirtualized = ({
   slug, imgSrc, title, date, excerpt,
 }) => (
   <Link href={slug}>
-    <a className="d-flex flex-column flex-lg-row text-dark">
+    <a className="d-flex flex-column flex-lg-row text-dark gap-3">
       <ImageWrapper>
         <Image src={imgSrc} alt={title} width={250} height={125} layout="intrinsic" />
       </ImageWrapper>
@@ -21,14 +22,5 @@ const ArticlesNonVirtualized = ({
     </a>
   </Link>
 );
-
-const ImageWrapper = styled.div`
-  display: none;
-
-  @media (min-width: 1200px) {
-    display: initial;
-    min-width: 250px;
-  }
-`;
 
 export default ArticlesNonVirtualized;

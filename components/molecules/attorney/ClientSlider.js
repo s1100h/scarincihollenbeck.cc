@@ -11,7 +11,7 @@ const ClientSlider = ({ clients }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 1000,
+    speed: 500,
     easing: 'ease-in',
   };
   return (
@@ -20,7 +20,7 @@ const ClientSlider = ({ clients }) => {
         {clients.map(({ clientImage, clientLink, clientTitle }) => (
           <div key={clientTitle}>
             <a href={clientLink}>
-              <Image src={clientImage.sourceUrl} alt={clientTitle} width="auto" height="300" />
+              <Image src={clientImage.sourceUrl} alt={clientTitle} width={300} height={300} />
             </a>
           </div>
         ))}

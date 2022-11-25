@@ -27,9 +27,9 @@ const AwardSlider = ({ awards }) => {
                 data-src={awardImage.sourceUrl}
                 src={awardImage.sourceUrl}
                 alt={awardTitle}
-                width="auto"
-                height="120"
-                placeholder="blur"
+                width={120}
+                height={120}
+                blurDataURL={awardImage.sourceUrl}
               />
             </a>
           </div>

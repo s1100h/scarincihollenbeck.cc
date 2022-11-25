@@ -1,10 +1,8 @@
-import fontStyles from 'styles/Fonts.module.css';
-
 const SidebarBtn = ({
   setActiveTab, tabId, label, message, btnLabel, id,
 }) => (
   <>
-    <p className={`${fontStyles.ft12rem} mb-0`}>
+    <p className="fs-1_2rem mb-0">
       <strong>{label}</strong>
     </p>
     <p className="mt-2 mb-0">{message}</p>

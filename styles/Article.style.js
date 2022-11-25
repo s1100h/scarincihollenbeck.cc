@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const ArticleContainer = styled.article`
@@ -10,10 +11,11 @@ export const ArticleContainer = styled.article`
   margin-bottom: 20px;
 `
 
-export const Title = styled.h1`
-  font-size: 1.5rem;
+export const Title = styled.h2`
+  font-size: ${({ props }) => (props?.size ? props.size : '1.5rem')};
   font-weight: 600;
   margin-bottom: 10px;
+  font-family: ${({ props }) => (props?.isKenjoFont ? 'Kenjo I' : 'Gotham Pro')};
 
   ${media_breakpoint_down('sm')} {
     text-align: center;
@@ -22,4 +24,14 @@ export const Title = styled.h1`
 
 export const ArticleBody = styled.section`
   font-size: 1.15rem;
+  color: ${globalColor.gray.gray80};
+
+  ul {
+    li {
+      ::before {
+        content: '➤';
+        margin-right: 10px;
+      }
+    }
+  }
 `

@@ -9,7 +9,7 @@ export const TitleBlock = styled.div`
   align-items: center;
   padding: 0 25px;
 
-  h1 {
+  h2 {
     font-style: normal;
     font-size: 4.5rem;
     color: ${globalColor.black};
@@ -19,13 +19,13 @@ export const TitleBlock = styled.div`
   }
 
   ${media_breakpoint_down('xl')} {
-    h1 {
+    h2 {
       font-size: 3.5rem;
     }
   }
 
   ${media_breakpoint_down('lg')} {
-    h1 {
+    h2 {
       font-size: 2.5rem;
     }
   }
@@ -34,7 +34,7 @@ export const TitleBlock = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    h1 {
+    h2 {
       font-size: 3rem;
       margin-bottom: 15px;
     }
@@ -43,7 +43,7 @@ export const TitleBlock = styled.div`
   ${media_breakpoint_down('sm')} {
     align-items: center;
 
-    h1 {
+    h2 {
       font-size: 2rem;
     }
   }

@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import fontStyles from 'styles/Fonts.module.css';
 
 export default function PopularList({ term, list, displayCount = true }) {
   return (
     <>
-      <p className={fontStyles.ft12rem}>
+      <p className="fs-1_2rem">
         <strong>{term}</strong>
       </p>
       <ul>

@@ -22,7 +22,7 @@ const Awards = ({ awards }) => {
   return (
     <section className="wrapper-section">
       <TitleBlock>
-        <h1>AWARDS & ACCOLADES</h1>
+        <h2>AWARDS & ACCOLADES</h2>
         <RedButtonLink>Award Methodology</RedButtonLink>
       </TitleBlock>
       <AwardsContainer>
