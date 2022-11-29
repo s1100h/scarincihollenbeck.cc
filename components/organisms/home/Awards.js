@@ -1,4 +1,5 @@
 import AwardsSlider from 'components/molecules/home/AwardsSlider';
+import Link from 'next/link';
 import { AwardsContainer, TitleBlock } from 'styles/Awards.style';
 import { RedButtonLink } from 'styles/Buttons.style';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
@@ -23,7 +24,9 @@ const Awards = ({ awards }) => {
     <section className="wrapper-section">
       <TitleBlock>
         <h2>AWARDS & ACCOLADES</h2>
-        <RedButtonLink>Award Methodology</RedButtonLink>
+        <Link href="/awards" passHref>
+          <RedButtonLink>Award Methodology</RedButtonLink>
+        </Link>
       </TitleBlock>
       <AwardsContainer>
         <AwardsSlider images={formattedAwards} />
