@@ -144,8 +144,6 @@ const AttorneyPage = ({
         <Row>
           <ColStyled sm={12} lg={9}>
             <ProfileHeader {...compressPropsHederProfile} />
-          </ColStyled>
-          <ColStyled sm={12} lg={9}>
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
             )}
@@ -177,7 +175,7 @@ const AttorneyPage = ({
               />
             )}
           </ColStyled>
-          <Col sm={12} lg={3}>
+          <ColStyled top="45px" sm={12} lg={3}>
             <SidebarWrapper
               services={profileHeader.practices}
               setActiveTab={setActiveTab}
@@ -186,7 +184,7 @@ const AttorneyPage = ({
               contact={contact}
               awards={attorneyAwards}
             />
-          </Col>
+          </ColStyled>
           <Col sm={12}>
             <ProfileFooter
               attorneyFooterBlogArticles={attorneyFooterBlogArticles}
