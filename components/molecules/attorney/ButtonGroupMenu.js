@@ -6,6 +6,14 @@ import {
   NavItem,
 } from 'styles/ButtonsMenu.style';
 
+const changeTitleMap = {
+  'Representative Matters': 'Matters',
+  'Representative Clients': 'Clients',
+  'News Press Releases': 'Releases',
+  'Awards & Recognitions': 'Awards',
+  'Notable Facts': 'Facts',
+};
+
 export const ButtonGroupMenu = ({
   mainTabs, setActiveTab, moreTabs, activeTab, tabs,
 }) => (
@@ -13,7 +21,7 @@ export const ButtonGroupMenu = ({
     <ButtonGroup>
       {mainTabs.map((tab) => (
         <ButtonTab key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
-          {tab.title === 'News Press Releases' ? 'News & Press Releases' : tab.title}
+          {changeTitleMap[tab.title] || tab.title}
         </ButtonTab>
       ))}
       {moreTabs.length > 0 && (
