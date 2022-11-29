@@ -8,7 +8,6 @@ import SidebarWrapper from 'components/organisms/attorney/SidebarWrapper';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
-import { MobileGroup, NavItem, ButtonDropdown } from 'styles/ButtonsMenu.style';
 import { ColStyled } from 'styles/AttorneyProfile.style';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
@@ -59,6 +58,7 @@ const AttorneyPage = ({
     setActiveTab,
     moreTabs,
     activeTab,
+    tabs,
   };
   /** Effect handler that manages how the tabs work */
   useEffect(() => {
@@ -144,19 +144,6 @@ const AttorneyPage = ({
         <Row>
           <ColStyled sm={12} lg={9}>
             <ProfileHeader {...compressPropsHederProfile} />
-            <MobileGroup>
-              <ButtonDropdown title="Menu">
-                {tabs.map((tab) => (
-                  <NavItem
-                    key={tab.id}
-                    active={activeTab === tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                  >
-                    {tab.title}
-                  </NavItem>
-                ))}
-              </ButtonDropdown>
-            </MobileGroup>
           </ColStyled>
           <ColStyled sm={12} lg={9}>
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (

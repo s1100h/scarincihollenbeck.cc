@@ -44,6 +44,7 @@ const ProfileHeader = ({
   setActiveTab,
   moreTabs,
   activeTab,
+  tabs,
 }) => {
   const [designation] = useDesignationHook(title);
   const router = useRouter();
@@ -77,6 +78,7 @@ const ProfileHeader = ({
     setActiveTab,
     moreTabs,
     activeTab,
+    tabs,
   };
   return (
     <ProfileHeaderContainer>

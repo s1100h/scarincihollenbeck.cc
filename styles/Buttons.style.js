@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor } from './global_styles/Global.styles'
@@ -5,18 +6,15 @@ import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const RedButtonLink = styled.a`
   padding: 15px 40px;
-  background: #a91110;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  color: #ffffff;
+  background-color: ${globalColor.red.darkRed};
+  font-weight: 600;
+  color: ${globalColor.white};
   text-decoration: none;
 
   :hover {
     color: #ffffff;
     text-decoration: none;
+    cursor: pointer;
   }
 `
 

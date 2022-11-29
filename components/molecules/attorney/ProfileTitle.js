@@ -1,20 +1,17 @@
 import Link from 'next/link';
-import { SubTitleProfileBox } from 'styles/AttorneyProfile.style';
+import { ProfileName, SubTitleProfileBox } from 'styles/AttorneyProfile.style';
 
 const ProfileTitle = ({
   name, designation, chair, coChair,
 }) => (
   <>
-    <h1 className="h2 animate__animated animate__fadeInDown animate__slow mb-0">
-      <strong className="name">{name}</strong>
-    </h1>
+    <ProfileName className=" animate__animated animate__fadeInDown animate__slow">
+      {name}
+    </ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
       {chair.length > 0 && (
-        <>
-          <span className="mx-1">
-            <strong>|</strong>
-          </span>
+        <p>
           Chair:
           {' '}
           {chair.map((c, i) => (
@@ -25,23 +22,20 @@ const ProfileTitle = ({
               </a>
             </Link>
           ))}
-        </>
+        </p>
       )}
       {coChair.length > 0 && (
-        <>
-          <span className="mx-1">
-            <strong>|</strong>
-          </span>
-          {coChair.map((c) => (
-            <span className="my-1" key={c.title}>
-              Co-Chair:
-              {' '}
+        <p>
+          <span className="my-1">
+            Co-Chair:
+            {' '}
+            {coChair.map((c) => (
               <Link href={c.link} key={c.title}>
                 <a>{c.title}</a>
               </Link>
-            </span>
-          ))}
-        </>
+            ))}
+          </span>
+        </p>
       )}
     </SubTitleProfileBox>
   </>

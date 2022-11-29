@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 const hoverLink = `
@@ -156,7 +156,7 @@ export const OtherNews = styled.article`
 
   transition: 0.8s;
   :hover {
-    box-shadow: -2px 0px 18px rgb(99 98 98 / 90%);
+    box-shadow: ${globalShadow.hoveredShadow};
   }
 `
 

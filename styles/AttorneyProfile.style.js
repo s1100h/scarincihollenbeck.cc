@@ -1,12 +1,17 @@
 import { Col, Container } from 'react-bootstrap'
 import styled from 'styled-components'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
+import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const ProfileHeaderContainer = styled(Container)`
   padding: 40px 60px;
   margin-top: 5%;
   margin-bottom: 40px;
   box-shadow: ${globalShadow.allSideShadow};
+
+  ${media_breakpoint_down('xl')} {
+    padding: 20px 20px;
+  }
 `
 
 export const ColStyled = styled(Col)`
@@ -16,8 +21,8 @@ export const ColStyled = styled(Col)`
 `
 
 export const SubTitleProfileBox = styled.div`
-  margin-top: 0px;
-  margin-bottom: 36px;
+  margin-top: 0;
+  margin-bottom: 18px;
   padding-bottom: 5px;
   border-bottom: 1px solid ${globalColor.graySmoke.extraLiteSmoke};
 
@@ -26,21 +31,93 @@ export const SubTitleProfileBox = styled.div`
     font-size: 1rem;
     margin: 10px 0 2px;
   }
+
+  p {
+    color: ${globalColor.gray.gray80};
+    margin-bottom: 0;
+  }
 `
 
 export const AddressBox = styled.address`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   p {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: ${globalColor.gray.gray80};
     margin-bottom: 0;
+    font-size: ${rem(18)};
+  }
+
+  svg {
+    color: ${globalColor.gray.gray80};
   }
 `
 
 export const DetailsBox = styled.div`
   display: flex;
+
+  ${media_breakpoint_down('sm')} {
+    flex-direction: column;
+
+    ul {
+      padding-left: 0;
+    }
+  }
+`
+
+export const ContactList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
+
+export const ItemContactList = styled.li`
+  a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  svg {
+    fill: ${(props) => globalColor.socialNetworks[props?.socialNetwork] || globalColor.gray.gray80};
+  }
+
+  ${(props) =>
+    props?.socialNetwork === 'vizibility' &&
+    `
+     a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      width: 135px;
+      height: 80px;
+      border-radius: 5px;
+      font-size: 15px;
+      box-shadow: 5px 6px 20px rgb(180 177 177);
+      color: ${globalColor.black};
+
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      transition: .5s;
+      :hover {
+        box-shadow: 5px 6px 0px ${globalColor.graySmoke.extraLiteSmoke};
+        border: 1px solid ${globalColor.grayLite.grayLite100};
+        cursor: pointer;
+        color: ${globalColor.black};
+      }
+     }
+   `}
+`
+
+export const ProfileName = styled.h1`
+  font-family: 'Gotham Pro';
+  font-weight: 600;
 `
