@@ -40,7 +40,8 @@ export const ContentContainer = styled.div`
       font-weight: 900;
       background-color: #e9e9e9;
       padding: 10px;
-      margin-bottom: 30px;
+      margin-top: 30px;
+      margin-bottom: 15px;
     }
   }
 
