@@ -11,6 +11,7 @@ export const ContentContainer = styled.div`
       margin-left: -1.5em;
       li {
         line-height: 1.3;
+        margin-bottom: 5px;
 
         a {
           width: 100%;

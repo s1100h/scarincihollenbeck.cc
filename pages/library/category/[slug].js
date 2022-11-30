@@ -50,7 +50,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const content = pageContent[0].node;
 
-  const results = content.posts?.edges.map(({ node }, index) => ({
+  const news = content.posts?.edges.map(({ node }, index) => ({
     ID: index,
     title: node.title,
     link: node.uri.replace('https://scarincihollenbeck.com', ''),
@@ -79,7 +79,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   return {
     props: {
-      results,
+      news,
       authors: authors || [],
       popularCategories: modPopCategories || [],
       childrenOfCurrentCategory: categoryChildren,
@@ -102,7 +102,7 @@ const LibraryCategory = ({
   description,
   pageTitle,
   popularCategories,
-  results,
+  news,
   name,
   categoryId,
   seo,
@@ -125,7 +125,7 @@ const LibraryCategory = ({
       metaDescription: seo.metaDescription,
       canonicalUrl,
     },
-    results,
+    news,
     authors,
     popularCategories,
     childrenOfCurrentCategory,

@@ -576,7 +576,7 @@ export const covid19CrisisManagement = `query CareersPagesQuery {
       metaDesc
       title
     }
-    COVID19CrisisManagement {
+    cOVID19CrisisManagement {
       article
       banner {
         link
