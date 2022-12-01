@@ -4,6 +4,7 @@ import { fetchAPI } from 'utils/api';
 import { firmOverviewQuery } from 'utils/graphql-queries';
 import { SectionTitleContext } from 'contexts/SectionTitleContext';
 import { useContext, useEffect } from 'react';
+import { getSubTitleFromHTML } from 'utils/helpers';
 
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
@@ -62,9 +63,7 @@ const FirmOverview = ({
   FirmMembers,
 }) => {
   const { firmOverviewTitles, setFirmOverviewTitles } = useContext(SectionTitleContext);
-  const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
-  const bodyContent = content.replace(subTitle, '');
+  const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${SITE_URL}/firm-overview`;
 
   /** set section titles to context provider */
@@ -79,7 +78,7 @@ const FirmOverview = ({
     title,
     seo,
     canonicalUrl,
-    bodyContent,
+    bodyContent: clearBody,
     subTitle,
     firmOverviewTabs,
     attorneys,
