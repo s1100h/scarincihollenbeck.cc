@@ -72,13 +72,6 @@ const LibraryAuthor = ({
   name,
 }) => {
   const router = useRouter();
-  if (router.isFallback) {
-    return (
-      <div className="my-5 py-5">
-        <SiteLoader />
-      </div>
-    );
-  }
 
   const canonicalUrl = `${SITE_URL}/library/author${pageTitle}`;
   const { title, metaDescription } = seo;
@@ -89,7 +82,7 @@ const LibraryAuthor = ({
       metaDescription,
       canonicalUrl,
     },
-    results,
+    news: results,
     authors,
     popularCategories,
     categoryId,
@@ -101,9 +94,17 @@ const LibraryAuthor = ({
   };
 
   return (
-    <ApolloWrapper>
-      <LibraryDirectory {...authorProps} />
-    </ApolloWrapper>
+    <>
+      {router?.isFallback ? (
+        <div className="my-5 py-5">
+          <SiteLoader />
+        </div>
+      ) : (
+        <ApolloWrapper>
+          <LibraryDirectory {...authorProps} />
+        </ApolloWrapper>
+      )}
+    </>
   );
 };
 
