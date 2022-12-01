@@ -22,7 +22,7 @@ const FormPageContent = ({
     <Container>
       <Row>
         <Col sm={12} lg={9}>
-          <span
+          <article
             dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
           />
           <BigGrayTitle className="mb-5 w-100">{site.formLabel}</BigGrayTitle>

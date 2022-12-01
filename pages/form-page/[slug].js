@@ -7,6 +7,7 @@ import { fetchAPI } from 'utils/api';
 import { contactSubscribePageQuery } from 'utils/graphql-queries';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
+import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -82,15 +83,13 @@ const FormPage = ({
     }
   }, [offices]);
 
-  const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
-  const bodyContent = content.replace(subTitle, '');
+  const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${SITE_URL}/${slug}`;
   const isSubscribe = slug.includes('subscribe');
 
   const formProps = {
     isSubscribe,
-    bodyContent,
+    bodyContent: clearBody,
     canonicalUrl,
     seo,
     site: {

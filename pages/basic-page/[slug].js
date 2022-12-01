@@ -4,6 +4,7 @@ import BasicPageContent from 'components/pages/BasicPageContent';
 import { SITE_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { basicPagesQuery } from 'utils/graphql-queries';
+import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -60,13 +61,11 @@ const BasicPage = ({
     return <SiteLoader />;
   }
 
-  const extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
-  const bodyContent = content.replace(subTitle, '');
+  const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${SITE_URL}/${slug}`;
 
   const basicPageProps = {
-    bodyContent,
+    bodyContent: clearBody,
     canonicalUrl,
     seo,
     pageForm,

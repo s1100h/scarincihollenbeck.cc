@@ -11,7 +11,7 @@ export const ArticleContainer = styled.article`
   margin-bottom: 20px;
 `
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   font-size: ${({ props }) => (props?.size ? props.size : '1.5rem')};
   font-weight: 600;
   margin-bottom: 10px;

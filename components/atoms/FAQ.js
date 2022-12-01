@@ -9,7 +9,7 @@ export default function FAQ({ faqArrContent }) {
       <Accordion defaultActiveKey={['0']} alwaysOpen>
         {faqArrContent.map(({ id, title, body }) => (
           <Accordion.Item key={id} eventKey={id.toString()}>
-            <Accordion.Header>{title}</Accordion.Header>
+            <Accordion.Header as="h4">{title}</Accordion.Header>
             {typeof body !== 'string' ? (
               <Accordion.Body>{body}</Accordion.Body>
             ) : (
