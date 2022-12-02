@@ -96,10 +96,14 @@ export const OtherNewsBox = styled.div`
   width: 60%;
   ${media_breakpoint_down('xl')} {
     width: 40%;
-    height: 52vh;
+    height: 76vh;
     overflow-y: auto;
     padding: 0 20px;
     background-color: whitesmoke;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    height: 45vh;
   }
 
   ${media_breakpoint_down('md')} {

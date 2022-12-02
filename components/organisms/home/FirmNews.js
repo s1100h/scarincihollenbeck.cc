@@ -100,8 +100,8 @@ const FirmNews = () => {
                           ),
                         )}
                         alt={post.title}
-                        width={350}
-                        height={150}
+                        width={750}
+                        height={350}
                         layout="intrinsic"
                       />
                     </div>
