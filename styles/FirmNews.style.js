@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, rem } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 const hoverLink = `
@@ -19,7 +19,7 @@ const newsCommonStyles = `
 `
 
 export const NewsContainer = styled.section`
-  width: 100vw;
+  width: 1650px;
   max-width: 96%;
   margin: 0 auto 150px;
 
@@ -96,14 +96,10 @@ export const OtherNewsBox = styled.div`
   width: 60%;
   ${media_breakpoint_down('xl')} {
     width: 40%;
-    height: 73vh;
+    height: 52vh;
     overflow-y: auto;
     padding: 0 20px;
     background-color: whitesmoke;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    height: 70vh;
   }
 
   ${media_breakpoint_down('md')} {
@@ -167,7 +163,7 @@ export const TextNews = styled.section`
 
   h2 {
     font-weight: 600;
-    font-size: 20px;
+    font-size: ${rem(24)};
     line-height: 1.2;
     color: ${globalColor.black};
   }
@@ -200,31 +196,31 @@ export const LinkContainer = styled.a`
 `
 export const ArticleNewsTitle = styled.h1`
   font-weight: 600;
-  font-size: 20px;
+  font-size: ${rem(27)};
   line-height: 1.3;
   color: ${globalColor.black};
+  margin-top: 27px;
   margin-bottom: 20px;
 `
 export const Expert = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.8;
-  color: rgba(0, 0, 0, 0.63);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: ${globalColor.gray.gray70};
   margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 30px;
 `
 
 export const Bottom = styled.p`
   display: flex;
   align-items: center;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: rgba(0, 0, 0, 0.63);
+  font-size: 1.2rem;
+  color: ${globalColor.gray.gray100};
+  margin-bottom: 0;
 
   ${media_breakpoint_down('lg')} {
     flex-direction: column;
