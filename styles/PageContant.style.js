@@ -11,6 +11,7 @@ export const ContentContainer = styled.div`
       margin-left: -1.5em;
       li {
         line-height: 1.3;
+        margin-bottom: 5px;
 
         a {
           width: 100%;
@@ -39,7 +40,8 @@ export const ContentContainer = styled.div`
       font-weight: 900;
       background-color: #e9e9e9;
       padding: 10px;
-      margin-bottom: 30px;
+      margin-top: 30px;
+      margin-bottom: 15px;
     }
   }
 

@@ -65,7 +65,7 @@ const FirmNews = () => {
                       featuredArticle.imageText.indexOf('" alt="'),
                     ),
                   )}
-                  width={550}
+                  width={750}
                   height={350}
                   layout="intrinsic"
                   alt={featuredArticle.title}
@@ -100,8 +100,8 @@ const FirmNews = () => {
                           ),
                         )}
                         alt={post.title}
-                        width={350}
-                        height={150}
+                        width={750}
+                        height={350}
                         layout="intrinsic"
                       />
                     </div>

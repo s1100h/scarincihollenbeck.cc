@@ -20,15 +20,15 @@ export default function PositionCard({
         <CardContainer>
           <TitlePosition>{title}</TitlePosition>
           <p className="my-0">
-            <strong className="mr-1">Location:</strong>
+            <strong className="mr-1">Location: </strong>
             {checkAllOffices(positionLocation)}
           </p>
           <p className="my-0">
-            <strong className="mr-1">Type:</strong>
+            <strong className="mr-1">Type: </strong>
             {positionType}
           </p>
           <p className="my-0">
-            <strong className="mr-1">Start:</strong>
+            <strong className="mr-1">Start: </strong>
             {startDate}
           </p>
         </CardContainer>

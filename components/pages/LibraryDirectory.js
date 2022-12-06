@@ -16,7 +16,7 @@ const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArt
 const FirmAuthors = dynamic(import('components/organisms/library/FirmAuthors'));
 
 const LibraryDirectory = ({
-  results,
+  news,
   authors,
   popularCategories,
   childrenOfCurrentCategory,
@@ -27,8 +27,8 @@ const LibraryDirectory = ({
   categoryId,
 }) => {
   const router = useRouter();
-  const mainArticle = results[0];
-  const featuredArticles = results.slice(1, results.length);
+  const mainNews = news[0];
+  const featuredArticles = news.slice(1, news.length);
   const isAuthor = router.asPath.includes('author');
   const noPostsFoundMessage = <p>Sorry, no posts found</p>;
 
@@ -62,19 +62,17 @@ const LibraryDirectory = ({
         <Row>
           <BodyHeader />
           <Col sm={12} lg={9} className="mt-4">
-            {mainArticle ? (
+            {mainNews ? (
               <MainArticle
-                title={mainArticle.title}
-                link={mainArticle.link}
-                excerpt={mainArticle.excerpt || mainArticle.description}
-                category={mainArticle.category}
-                date={mainArticle.date}
+                title={mainNews.title}
+                link={mainNews.link}
+                excerpt={mainNews.excerpt || mainNews.description}
+                category={mainNews.category}
+                date={mainNews.date}
                 image={
-                  mainArticle.image
-                    ? mainArticle.image
-                    : '/images/no-image-found-diamond-750x350.png'
+                  mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
                 }
-                author={mainArticle.author}
+                author={mainNews.author}
               />
             ) : (
               noPostsFoundMessage
