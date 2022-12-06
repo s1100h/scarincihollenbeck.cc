@@ -14,7 +14,7 @@ export async function getStaticProps() {
   const {
     title,
     seo,
-    COVID19CrisisManagement: {
+    cOVID19CrisisManagement: {
       article, banner, listLinks, subtitle,
     },
   } = await covid19CrisisManagementPageContent();

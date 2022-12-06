@@ -1,17 +1,17 @@
 import React, { createContext, useState } from 'react';
 
-export const SectionTitleContext = createContext(null);
+export const AttorneysContext = createContext(null);
 
-export const SectionTitleProvider = ({ children }) => {
+export const AttorneysProvider = ({ children }) => {
   const [attorneysTitles, setAttorneysTitles] = useState();
   const [firmOverviewTitles, setFirmOverviewTitles] = useState();
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
+  const [attorneysContext, setAttorneysContext] = useState([]);
   const [dataForFilter, setDataForFilter] = useState({
     sPractices: [],
-    locations: '',
+    locations: [],
     designations: '',
-    clearAll: () => {},
   });
 
   /* Handle User Input Event */
@@ -47,6 +47,11 @@ export const SectionTitleProvider = ({ children }) => {
     setSelect(rQuery);
   }
 
+  function clearAll() {
+    setUserInput('');
+    setSelect([]);
+  }
+
   const values = {
     attorneysTitles,
     setAttorneysTitles,
@@ -61,7 +66,10 @@ export const SectionTitleProvider = ({ children }) => {
     handleChange,
     setSelect,
     clearQuery,
+    attorneysContext,
+    setAttorneysContext,
+    clearAll,
   };
 
-  return <SectionTitleContext.Provider value={values}>{children}</SectionTitleContext.Provider>;
+  return <AttorneysContext.Provider value={values}>{children}</AttorneysContext.Provider>;
 };

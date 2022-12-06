@@ -7,25 +7,18 @@ import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
 import useIsScroll from 'hooks/useIsScroll';
 import useStateScreen from 'hooks/useStateScreen';
 import { useContext } from 'react';
-import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import { AttorneysContext } from 'contexts/AttorneysContext';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ, OFFICE_LOCATIONS } from 'utils/constants';
 
 const AttorneysPage = ({
-  sPractices,
-  clearAll,
-  seo,
-  locations,
-  designations,
-  site,
-  canonicalUrl,
-  attorneys,
+  sPractices, seo, locations, designations, site, canonicalUrl,
 }) => {
   const { isTabletScreen, isDesktopScreen } = useStateScreen();
   const { scrollTop } = useIsScroll();
   const {
-    handleChange, select, onSelect, userInput, clearQuery,
-  } = useContext(SectionTitleContext);
+    handleChange, select, onSelect, userInput, clearQuery, attorneysContext, clearAll,
+  } = useContext(AttorneysContext);
 
   const arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map((item) => ({ [item[keyField]]: item })));
 
@@ -59,10 +52,10 @@ const AttorneysPage = ({
         {/** End of Filters */}
         {/** Results */}
         <div className="w-100 mt-5">
-          {attorneys.length > 0 && (
+          {attorneysContext.length > 0 && (
             <Results
               attorneysOffices={offices}
-              attorneys={attorneys}
+              attorneys={attorneysContext}
               userInput={userInput}
               select={select}
             />

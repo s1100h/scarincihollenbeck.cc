@@ -1,80 +1,14 @@
 import AttorneyCard from 'components/shared/AttorneyCard';
-import { filterByKey } from 'utils/helpers';
 import { CentralizedBox, ContainerXXL, RowSpecial } from 'styles/Containers.style';
+import { useAttorneysSearch } from 'hooks/useAttornySearch';
 
 const Filtered = ({
   attorneys, userInput, select, offices,
 }) => {
-  // filter through results
-  const practices = filterByKey(select, 'practices');
-  const letter = filterByKey(select, 'letter');
-  const desgination = filterByKey(select, 'title');
-  const location = filterByKey(select, 'location');
-
-  // filter by key -- practice
-  const filterPractices = (attorney) => {
-    if (practices.length > 0) {
-      const prunedPracticeList = attorney.practices_array.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
-      return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
-    }
-
-    return attorney;
-  };
-
-  // filter by key -- location
-  const filterLocation = (attorney) => {
-    if (location.length > 0) {
-      return attorney.location.indexOf(location[0]) >= 0;
-    }
-    return attorney;
-  };
-
-  // filter by key -- designation
-  const filterDesignation = (attorney) => {
-    if (desgination.length > 0) {
-      if (desgination[0] === 'Of Counsel') {
-        return (
-          attorney.designation.indexOf(desgination[0]) === 0
-          && attorney.designation !== 'Of Counsel/Partner Emeritus'
-        );
-      }
-      return attorney.designation.indexOf(desgination[0]) === 0;
-    }
-    return attorney;
-  };
-
-  // filter by key -- query
-  const filterQuery = (attorney) => {
-    if (userInput) {
-      const inputToLower = userInput.toLowerCase().trim();
-      const lastNameToLower = attorney.last_name.toLowerCase().trim();
-
-      if (lastNameToLower.includes(inputToLower)) {
-        return lastNameToLower.indexOf(inputToLower) >= 0;
-      }
-    }
-
-    return attorney;
-  };
-
-  // filter by key -- letter
-  const filterLetter = (attorney) => {
-    if (letter.length > 0) {
-      return attorney.last_name.charAt(0).toLowerCase() === letter[0].toLowerCase();
-    }
-    return attorney;
-  };
-
-  const aFiltered = attorneys
-    .filter(filterPractices)
-    .filter(filterLocation)
-    .filter(filterDesignation)
-    .filter(filterLetter)
-    .filter(filterQuery);
-
+  const { attorneysFiltered } = useAttorneysSearch(select, userInput, attorneys);
   return (
     <>
-      {aFiltered.length < 1 ? (
+      {attorneysFiltered?.length === 0 ? (
         <h3 className="redTitle text-center d-block mx-auto my-4">
           <strong>Sorry, no attorneys found according to this query.</strong>
         </h3>
@@ -82,7 +16,7 @@ const Filtered = ({
         <ContainerXXL>
           <CentralizedBox>
             <RowSpecial>
-              {aFiltered.map((info) => (
+              {attorneysFiltered.map((info) => (
                 <AttorneyCard
                   key={info.id}
                   link={`/attorney${info.link}`}

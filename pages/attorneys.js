@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import { AttorneysContext } from 'contexts/AttorneysContext';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
@@ -78,14 +78,9 @@ const Attorneys = ({
     clearQuery,
     setSelect,
     dataForFilter,
-  } = useContext(SectionTitleContext);
+    setAttorneysContext,
+  } = useContext(AttorneysContext);
   const canonicalUrl = `${SITE_URL}/attorneys`;
-
-  /** Clear all queries */
-  function clearAll() {
-    setUserInput('');
-    setSelect([]);
-  }
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');
@@ -104,8 +99,8 @@ const Attorneys = ({
         sPractices,
         locations,
         designations,
-        clearAll,
       });
+      setAttorneysContext(attorneys);
     }
   }, []);
 
@@ -118,11 +113,9 @@ const Attorneys = ({
     locations,
     designations,
     userInput,
-    clearAll,
     setUserInput,
     seo,
     practices,
-    attorneys,
     setSelect,
     site,
     canonicalUrl,
