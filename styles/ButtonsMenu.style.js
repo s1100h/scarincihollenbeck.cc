@@ -1,40 +1,58 @@
 import styled from 'styled-components'
 import { Nav, NavDropdown } from 'react-bootstrap'
+import { globalColor } from './global_styles/Global.styles'
 
-export const ButtonTab = styled.div`
+const commonBtnStyle = `
   height: 42px;
   width: 200px;
   padding: 0.5rem 0.1rem;
-  margin-right: 8px;
-  color: #fff;
+  color: ${globalColor.gray.gray80};
   text-align: center;
   max-width: 210px;
-  font-size: 1rem;
-  outline: 0;
-  border: 0;
-  background: linear-gradient(1turn, rgba(144, 25, 24, 0.9) 60%, rgba(221, 38, 36, 0.9)), #333;
+  border: 1px solid ${globalColor.gray.gray80};
+  background: ${globalColor.white};
+  transition: 0.7s;
+  `
+
+export const ButtonTab = styled.div`
+  ${commonBtnStyle}
+  margin-right: 8px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  transition: 0.7s;
   ${({ active }) =>
     active &&
     `
-		height: 66px;
+    color: ${globalColor.white};
+    background: ${globalColor.red.darkRed};
 		white-space: initial;
 		opacity: 1;
 	`}
   cursor: pointer;
+
+  :hover {
+    background: ${globalColor.red.liteRed};
+    color: ${globalColor.white};
+  }
+
+  :active {
+    background: ${globalColor.red.burgundy};
+  }
 `
 
 export const ButtonDropdown = styled(NavDropdown)`
-  text-align: center;
-  max-width: 210px;
-  background: linear-gradient(1turn, rgba(144, 25, 24, 0.9) 60%, rgba(221, 38, 36, 0.9)), #333;
-  height: 42px;
-
   .dropdown-toggle {
-    color: white;
+    ${commonBtnStyle}
+    color: ${globalColor.gray.gray80};
+
+    :hover {
+      background: ${globalColor.red.liteRed};
+      color: ${globalColor.white};
+    }
+
+    :active {
+      background: ${globalColor.red.burgundy};
+    }
   }
 
   .dropdown-menu {
@@ -44,6 +62,7 @@ export const ButtonDropdown = styled(NavDropdown)`
 
 export const ButtonGroup = styled.div`
   display: none;
+  margin-top: 25px;
 
   @media (min-width: 768px) {
     display: flex;

@@ -56,6 +56,9 @@ export const globalColor = {
     dirtyBlue: '#5787CF',
     ultramarine: '#2564E1',
   },
+  socialNetworks: {
+    linkedIn: '#377DB7',
+  },
 }
 
 export const globalGradient = {
@@ -64,6 +67,7 @@ export const globalGradient = {
 
 export const globalShadow = {
   allSideShadow: `-10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06)`,
+  hoveredShadow: `-2px 0px 18px rgb(99 98 98 / 90%)`,
 }
 
 export const globalBackgroundImage = {

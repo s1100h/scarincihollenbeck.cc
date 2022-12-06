@@ -3,7 +3,7 @@ import Router, { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
 import { LocationProvider } from 'contexts/LocationContext';
-import { SectionTitleProvider } from 'contexts/SectionTitleContext';
+import { AttorneysProvider } from 'contexts/AttorneysContext';
 import Header from 'components/shared/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
 import * as gtag from 'utils/gtag';
@@ -50,7 +50,7 @@ const SHSite = ({ Component, pageProps }) => {
 
   return (
     <SSRProvider>
-      <SectionTitleProvider>
+      <AttorneysProvider>
         <LocationProvider>
           <GlobalStyle />
           <MainSiteHead />
@@ -60,7 +60,7 @@ const SHSite = ({ Component, pageProps }) => {
           </main>
           <SiteFooter />
         </LocationProvider>
-      </SectionTitleProvider>
+      </AttorneysProvider>
     </SSRProvider>
   );
 };

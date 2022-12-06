@@ -1,76 +1,44 @@
-import { FaLinkedinIn } from 'react-icons/fa';
-import { BsChatDots, BsCloudDownload, BsCardText } from 'react-icons/bs';
+import { BsLinkedin, BsFillPersonLinesFill, BsDownload } from 'react-icons/bs';
+import { ContactList, ItemContactList } from 'styles/AttorneyProfile.style';
 
-function showMessage() {
-  document.getElementById('test').click();
-}
+const renderListItem = (itemsArr) => {
+  const iconsMap = {
+    linkedIn: <BsLinkedin />,
+    pdf: <BsDownload />,
+    vizibility: <BsFillPersonLinesFill />,
+  };
+  return (
+    <>
+      {itemsArr.length > 0
+        && itemsArr.map((item, idx) => (
+          <ItemContactList socialNetwork={Object.keys(item).toString()} key={idx++}>
+            <a
+              href={
+                (item.linkedIn
+                  && (item.linkedIn.url
+                    || 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'))
+                || item.pdf
+                || item.vizibility
+              }
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {iconsMap[Object.keys(item)]}
+              {item.linkedIn && 'LinkedIn'}
+              {item.pdf && 'Print Bio'}
+              {item.vizibility && 'Business Card'}
+            </a>
+          </ItemContactList>
+        ))}
+    </>
+  );
+};
 
 const ContactIcons = ({
   slug, linkedIn, pdf, vizibility,
-}) => (
-  <ul className="list-unstyled mr-0 ml-lg-2">
-    <li>
-      {slug && (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-        <span onClick={showMessage} style={{ height: '30px' }} className="d-block text-left w-100">
-          <strong style={{ cursor: 'pointer' }} className="pr-1">
-            <BsChatDots style={{ marginTop: '-4px' }} />
-            <span className="ml-2 d-inline-block">Get In Touch</span>
-          </strong>
-        </span>
-      )}
-    </li>
-    <li>
-      <a
-        href={linkedIn ? linkedIn.url : 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/'}
-        size="sm"
-        rel="noopener noreferrer"
-        target="_blank"
-        style={{ height: '30px' }}
-        variant="link"
-        className="d-block text-left w-100"
-      >
-        <strong className="pr-1">
-          <FaLinkedinIn style={{ marginTop: '-4px' }} />
-          <span className="ml-2 d-inline-block">LinkedIn Profile</span>
-        </strong>
-      </a>
-    </li>
-    {pdf && (
-      <li>
-        <a
-          href={pdf}
-          size="sm"
-          rel="noopener noreferrer"
-          target="_blank"
-          style={{ height: '30px' }}
-          variant="link"
-          className="d-block text-left w-100"
-        >
-          <strong className="">
-            <BsCloudDownload style={{ marginTop: '-2px' }} />
-            <span className="ml-2 d-inline-block">Print Bio</span>
-          </strong>
-        </a>
-      </li>
-    )}
-    <li>
-      <a
-        href={vizibility}
-        size="sm"
-        rel="noopener noreferrer"
-        target="_blank"
-        style={{ height: '30px' }}
-        variant="link"
-        className="d-block text-left w-100"
-      >
-        <strong>
-          <BsCardText style={{ marginTop: '-4px' }} />
-          <span className="ml-2 d-inline-block">Business Card</span>
-        </strong>
-      </a>
-    </li>
-  </ul>
-);
+}) => {
+  const contactItemsArr = [{ linkedIn }, { pdf }, { vizibility }];
+  return <ContactList>{renderListItem(contactItemsArr)}</ContactList>;
+};
 
 export default ContactIcons;

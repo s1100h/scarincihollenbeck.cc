@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor } from './global_styles/Global.styles'

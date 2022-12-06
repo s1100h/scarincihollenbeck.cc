@@ -1,29 +1,35 @@
 import Link from 'next/link';
+import {
+  BsFillEnvelopeFill,
+  BsFillGeoAltFill,
+  BsFillTelephoneFill,
+  BsPrinterFill,
+} from 'react-icons/bs';
+import { AddressBox } from 'styles/AttorneyProfile.style';
 
-const ProfileDetails = ({ contact, offices, fax }) => {
+const ProfileContacts = ({ contact, offices, fax }) => {
   const { phoneNumber, email } = contact;
   return (
-    <div className="d-flex flex-column">
+    <AddressBox>
       <p>
-        <strong>Phone:</strong>
+        <BsFillTelephoneFill />
         {' '}
         {phoneNumber}
       </p>
       {fax && (
         <p>
-          <strong>Fax:</strong>
+          <BsPrinterFill />
           {' '}
           {fax}
         </p>
       )}
       <p>
-        <strong>Email:</strong>
+        <BsFillEnvelopeFill />
         {' '}
         {email}
       </p>
       <p>
-        {offices.length > 1 && <strong>Offices:</strong>}
-        {offices.length <= 1 && <strong>Office:</strong>}
+        <BsFillGeoAltFill />
         {' '}
         {offices.map((o, i) => (
           <Link href={o.link} key={o.ID}>
@@ -34,9 +40,8 @@ const ProfileDetails = ({ contact, offices, fax }) => {
           </Link>
         ))}
       </p>
-      <style jsx>{'p { margin-bottom: 5px;}'}</style>
-    </div>
+    </AddressBox>
   );
 };
 
-export default ProfileDetails;
+export default ProfileContacts;
