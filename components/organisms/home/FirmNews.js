@@ -39,7 +39,9 @@ const FirmNews = () => {
         const resToJson = await res.json();
         const sortedResults = resToJson.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
         const firstArticle = formatPost(sortedResults[0]);
-        const restOfArticles = sortedResults.filter((_, i) => i > 0).map((post) => formatPost(post));
+        const restOfArticles = sortedResults
+          .filter((_, idx) => idx > 0)
+          .map((post) => formatPost(post));
         setFeaturedArticle(firstArticle);
         setOlderArticles(restOfArticles);
       } catch (error) {
@@ -49,7 +51,6 @@ const FirmNews = () => {
 
     fetchPosts();
   }, []);
-
   return (
     <NewsContainer>
       <TitleNews>Latest From The Firm</TitleNews>
@@ -107,6 +108,7 @@ const FirmNews = () => {
                     </div>
                     <TextNews>
                       <h2>{parse(post.title)}</h2>
+                      <section dangerouslySetInnerHTML={createMarkup(post.excerpt)} />
                       <p>
                         <span>
                           <strong>Author : </strong>
