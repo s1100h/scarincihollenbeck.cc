@@ -4,7 +4,7 @@ import { SITE_PHONE } from 'utils/constants';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import dynamic from 'next/dynamic';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
-import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import { AttorneysContext } from 'contexts/AttorneysContext';
 import { useContext } from 'react';
 import { CentralizedBox, ContainerXXL } from 'styles/Containers.style';
 
@@ -32,7 +32,7 @@ const FirmOverviewPage = ({
   firmOverviewTabs,
   FirmMembers,
 }) => {
-  const { titles } = useContext(SectionTitleContext);
+  const { titles } = useContext(AttorneysContext);
 
   return (
     <>

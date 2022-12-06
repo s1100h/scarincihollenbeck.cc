@@ -7,7 +7,7 @@ const Results = ({
   attorneys, select, userInput, attorneysOffices,
 }) => (
   <>
-    {select.length > 0 ? (
+    {select.length > 0 || userInput.length > 0 ? (
       <Filtered
         offices={attorneysOffices}
         select={select}

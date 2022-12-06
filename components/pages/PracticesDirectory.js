@@ -7,7 +7,7 @@ import Article from 'components/atoms/Article';
 import dynamic from 'next/dynamic';
 import { SearchWithArticle } from 'styles/Practices.style';
 import SearchPractices from 'components/molecules/practice/SearchPractices';
-import { ATTORNEYS_FAQ, PRACTICES_FAQ } from 'utils/constants';
+import { ATTORNEYS_FAQ } from 'utils/constants';
 
 const ListWrapperDynamic = dynamic(() => import('components/organisms/practices/ListWrapper'));
 const FAQ = dynamic(() => import('components/atoms/FAQ'));

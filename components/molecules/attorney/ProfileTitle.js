@@ -1,62 +1,43 @@
 import Link from 'next/link';
+import { ProfileName, SubTitleProfileBox } from 'styles/AttorneyProfile.style';
 
 const ProfileTitle = ({
-  name, designation, chair, coChair,
+  name, designation, coChairs, chairs,
 }) => (
   <>
-    <h1 className="h2 animate__animated animate__fadeInDown animate__slow mb-0">
-      <strong className="name">{name}</strong>
-    </h1>
-    <div className="bottom">
+    <ProfileName className=" animate__animated animate__fadeInDown animate__slow">
+      {name}
+    </ProfileName>
+    <SubTitleProfileBox>
       <h2>{designation}</h2>
-      {chair.length > 0 && (
-        <>
-          <span className="mx-1">
-            <strong>|</strong>
-          </span>
+      {chairs.length > 0 && (
+        <p>
           Chair:
           {' '}
-          {chair.map((c, i) => (
-            <Link href={c.link} key={c.title}>
+          {chairs.map((chair, idx) => (
+            <Link href={chair.link} key={chair.title}>
               <a>
-                {c.title}
-                {i < chair.length - 1 && ', '}
+                {chair.title}
+                {idx < chairs.length - 1 && ', '}
               </a>
             </Link>
           ))}
-        </>
+        </p>
       )}
-      {coChair.length > 0 && (
-        <>
-          <span className="mx-1">
-            <strong>|</strong>
-          </span>
-          {coChair.map((c) => (
-            <span className="my-1" key={c.title}>
-              Co-Chair:
-              {' '}
-              <Link href={c.link} key={c.title}>
-                <a>{c.title}</a>
+      {coChairs.length > 0 && (
+        <p>
+          <span className="my-1">
+            Co-Chair:
+            {' '}
+            {coChairs.map((coChair) => (
+              <Link href={coChair.link} key={coChair.title}>
+                <a>{coChair.title}</a>
               </Link>
-            </span>
-          ))}
-        </>
+            ))}
+          </span>
+        </p>
       )}
-    </div>
-    <style jsx>
-      {`
-        h2 {
-          display: inline;
-          font-size: 15px;
-        }
-        .bottom {
-          margin-top: 0px;
-          padding-bottom: 5px;
-          border-bottom: 3.5px solid #db2220;
-          font-size: 15px;
-        }
-      `}
-    </style>
+    </SubTitleProfileBox>
   </>
 );
 
