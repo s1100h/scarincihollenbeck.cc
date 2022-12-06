@@ -167,9 +167,9 @@ export const TextNews = styled.section`
 
   h2 {
     font-weight: 600;
-    font-size: ${rem(24)};
-    line-height: 1.2;
+    font-size: ${rem(20)};
     color: ${globalColor.black};
+    margin-bottom: 0;
   }
 
   p {
@@ -180,6 +180,25 @@ export const TextNews = styled.section`
     line-height: 1;
     color: rgba(0, 0, 0, 0.63);
     margin-bottom: 0;
+  }
+
+  section {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 65px;
+    margin-bottom: 8px;
+  }
+
+  ${media_breakpoint_exactly_down('1600px')} {
+    section {
+      height: 30px;
+    }
+  }
+
+  ${media_breakpoint_down('xl')} {
+    section {
+      margin: 10px 0;
+    }
   }
 
   ${media_breakpoint_down('md')} {
