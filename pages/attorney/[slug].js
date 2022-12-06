@@ -14,7 +14,7 @@ import {
   sanitizeExternalArticles,
 } from 'utils/helpers';
 import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
-import AttorneysPage from 'components/pages/AttorneyProfile';
+import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 
 /** Get the attorneys bio data base on their slug */
@@ -328,7 +328,7 @@ const AttorneyProfile = ({
   };
   return (
     <ApolloWrapper>
-      <AttorneysPage {...attorneyPageProps} />
+      <AttorneyPage {...attorneyPageProps} />
     </ApolloWrapper>
   );
 };

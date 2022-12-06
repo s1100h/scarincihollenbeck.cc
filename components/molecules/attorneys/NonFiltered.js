@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import { AttorneysContext } from 'contexts/AttorneysContext';
 import AttorneyCards from 'components/atoms/AttorneyCards';
 import { useRouter } from 'next/router';
 
@@ -37,7 +37,7 @@ const organizeAttorneys = (attorneys, titles) => {
 
 const NonFiltered = ({ attorneys, offices }) => {
   const [sortedAttorneys, setSortedAttorneys] = useState({});
-  const { attorneysTitles, firmOverviewTitles } = useContext(SectionTitleContext);
+  const { attorneysTitles, firmOverviewTitles } = useContext(AttorneysContext);
   const { pathname } = useRouter();
   useEffect(() => {
     if (attorneysTitles && pathname === '/attorneys') {

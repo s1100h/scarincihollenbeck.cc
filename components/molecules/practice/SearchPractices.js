@@ -3,6 +3,39 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { DropDownResults, SearchPracticesBox } from 'styles/SearchPractices.style';
 
+export const uniqArr = (unsortedArr) => {
+  const filteredArr = [];
+  unsortedArr.forEach((item) => {
+    const isUniq = !filteredArr.some(
+      (element) => (element.ID || element.id) === (item.ID || item.id),
+    );
+
+    if (isUniq) {
+      filteredArr.push(item);
+    }
+  });
+
+  return filteredArr;
+};
+
+const findTheFirst = (searchCharacter, sortedCorePracticesArg, sortedAdditionalPracticesArg) => {
+  const childrenArr = [];
+
+  const findCore = sortedCorePracticesArg?.filter(({ title }) => title.includes(searchCharacter));
+  const additional = sortedAdditionalPracticesArg?.filter(({ title }) => title.includes(searchCharacter));
+
+  sortedCorePracticesArg?.forEach(({ children }) => {
+    if (children?.filter(({ title }) => title.includes(searchCharacter)).length > 0) {
+      childrenArr.push(children.filter(({ title }) => title.includes(searchCharacter)));
+    }
+  });
+
+  return {
+    practicesMain: uniqArr(findCore.concat(additional)),
+    practicesChildren: uniqArr(childrenArr.flat()),
+  };
+};
+
 export default function SearchPractices({ practicesAll }) {
   const [searchValue, setSearchValue] = useState('');
   const [fondPractices, setPracticesArr] = useState(null);
@@ -15,39 +48,10 @@ export default function SearchPractices({ practicesAll }) {
     if (value.length === 0) setPracticesArr(null);
   };
 
-  const uniqArr = (unsortedArr) => {
-    const filteredArr = [];
-    unsortedArr.forEach((item) => {
-      const isUniq = !filteredArr.some((element) => element.ID === item.ID);
-
-      if (isUniq) {
-        filteredArr.push(item);
-      }
-    });
-
-    return filteredArr;
-  };
-
-  const findTheFirst = (searchCharacter) => {
-    const childrenArr = [];
-
-    const findCore = sortedCorePractices.filter(({ title }) => title.includes(searchCharacter));
-    const additional = sortedAdditionalPractices.filter(({ title }) => title.includes(searchCharacter));
-
-    sortedCorePractices.forEach(({ children }) => {
-      if (children.filter(({ title }) => title.includes(searchCharacter)).length > 0) {
-        childrenArr.push(children.filter(({ title }) => title.includes(searchCharacter)));
-      }
-    });
-
-    return {
-      practicesMain: uniqArr(findCore.concat(additional)),
-      practicesChildren: uniqArr(childrenArr.flat()),
-    };
-  };
-
   useEffect(() => {
-    if (searchValue) setPracticesArr(findTheFirst(searchValue));
+    if (searchValue) {
+      setPracticesArr(findTheFirst(searchValue, sortedCorePractices, sortedAdditionalPractices));
+    }
   }, [searchValue]);
 
   const isRenderList = (fondPractices?.practicesMain?.length > 0 || fondPractices?.practicesChildren?.length > 0)

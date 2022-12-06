@@ -13,7 +13,7 @@ import {
   MobileVisible,
 } from 'styles/Header.style';
 import Filters from 'components/organisms/attorneys/Filters';
-import { SectionTitleContext } from 'contexts/SectionTitleContext';
+import { AttorneysContext } from 'contexts/AttorneysContext';
 import Selection from 'components/organisms/attorneys/Selection';
 import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
@@ -21,13 +21,11 @@ import useStateScreen from 'hooks/useStateScreen';
 
 export default function Header() {
   const {
-    dataForFilter, userInput, select, handleChange, onSelect, clearQuery,
-  } = useContext(SectionTitleContext);
+    dataForFilter, userInput, select, handleChange, onSelect, clearQuery, clearAll,
+  } = useContext(AttorneysContext);
   const { isTabletScreen } = useStateScreen();
 
-  const {
-    sPractices, locations, designations, clearAll,
-  } = dataForFilter;
+  const { sPractices, locations, designations } = dataForFilter;
 
   const { scrollTop } = useIsScroll();
 
