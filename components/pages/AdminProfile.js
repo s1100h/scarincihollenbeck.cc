@@ -1,8 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import AdminProfileHeader from 'components/organisms/admin/AdminHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import { createMarkup } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
+import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 
 const AdminProfile = ({ response, profile, canonicalUrl }) => {
   const { seo } = response;
@@ -17,10 +17,10 @@ const AdminProfile = ({ response, profile, canonicalUrl }) => {
         featuredImage={seo.featuredImg}
         designation={profile.designation}
       />
-      <AdminProfileHeader profile={profile} image={response.image.url} />
       <Container>
-        <Row>
-          <Col sm={12}>
+        <Row className="justify-content-center">
+          <Col sm={12} lg={10} xl={8}>
+            <ProfileHeader {...profile} />
             <ContentTitle title="Biography" />
             <div className="mb-5" dangerouslySetInnerHTML={createMarkup(response.biography)} />
           </Col>
