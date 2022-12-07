@@ -95,7 +95,7 @@ const ProfileHeader = ({
                 <ContactIcons {...contactProps} />
               </DetailsBox>
             </Col>
-            <ButtonGroupMenu {...buttonGroupProps} />
+            {tabs?.length > 0 && <ButtonGroupMenu {...buttonGroupProps} />}
           </Row>
         </Col>
       </Row>

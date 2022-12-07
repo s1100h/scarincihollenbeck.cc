@@ -10,7 +10,7 @@ const ProfileTitle = ({
     </ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
-      {chairs.length > 0 && (
+      {chairs?.length > 0 && (
         <p>
           Chair:
           {' '}
@@ -24,7 +24,7 @@ const ProfileTitle = ({
           ))}
         </p>
       )}
-      {coChairs.length > 0 && (
+      {coChairs?.length > 0 && (
         <p>
           <span className="my-1">
             Co-Chair:
