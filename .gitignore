@@ -38,3 +38,5 @@ yarn-error.log*
 .eslintcache
 /.env
 /.idea
+/.vscode
+.vscode/find-unused-exports.json

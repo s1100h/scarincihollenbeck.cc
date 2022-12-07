@@ -1,6 +1,5 @@
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { SITE_PHONE } from 'utils/constants';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import dynamic from 'next/dynamic';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
@@ -11,17 +10,6 @@ import { CentralizedBox, ContainerXXL } from 'styles/Containers.style';
 const AdditionalInformation = dynamic(() => import('components/atoms/Article'));
 const MainInformation = AdditionalInformation;
 const HeadInformation = AdditionalInformation;
-
-const sanitizeMembers = (member) => member.map(({ node }) => ({
-  title: node.title,
-  uri: node.uri,
-  better_featured_image: node?.featuredImage?.node?.sourceUrl,
-  phone:
-      node.attorneyMainInformation?.phoneNumber
-      || `${SITE_PHONE} #${node.administration?.phoneExtension}`,
-  email: node.attorneyMainInformation?.email || node.administration?.email,
-  designation: node.attorneyMainInformation?.designation || node?.administration?.title,
-}));
 
 const FirmOverviewPage = ({
   title,

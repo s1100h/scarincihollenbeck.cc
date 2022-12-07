@@ -62,7 +62,7 @@ export const ButtonDropdown = styled(NavDropdown)`
 
 export const ButtonGroup = styled.div`
   display: none;
-  margin-top: 25px;
+  margin-top: ${(props) => props?.marTop || '25px'};
 
   @media (min-width: 768px) {
     display: flex;

@@ -6,6 +6,10 @@ export const ContentContainer = styled.div`
   margin-bottom: 1.125rem;
   line-height: 1.7;
 
+  h2 {
+    margin-top: 25px;
+  }
+
   > {
     ul {
       margin-left: -1.5em;
