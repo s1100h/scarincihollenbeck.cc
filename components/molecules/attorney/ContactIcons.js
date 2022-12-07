@@ -25,7 +25,7 @@ const renderListItem = (itemsArr) => {
             >
               {iconsMap[Object.keys(item)]}
               {item.linkedIn && 'LinkedIn'}
-              {item.pdf && 'Print Bio'}
+              {item?.pdf && 'Print Bio'}
               {item.vizibility && 'Business Card'}
             </a>
           </ItemContactList>
@@ -37,7 +37,9 @@ const renderListItem = (itemsArr) => {
 const ContactIcons = ({
   slug, linkedIn, pdf, vizibility,
 }) => {
-  const contactItemsArr = [{ linkedIn }, { pdf }, { vizibility }];
+  const contactItemsArr = pdf
+    ? [{ linkedIn }, { pdf }, { vizibility }]
+    : [{ linkedIn }, { vizibility }];
   return <ContactList>{renderListItem(contactItemsArr)}</ContactList>;
 };
 
