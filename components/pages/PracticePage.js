@@ -63,7 +63,7 @@ const PracticePage = ({
       <Container>
         <Row>
           <ColStyled sm={12} lg={9} top="-116px">
-            <ButtonsMenu tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
+            <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
             <Body
               activeTabContent={activeTabContent}
               content={{
