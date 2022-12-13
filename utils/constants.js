@@ -430,6 +430,14 @@ export const firmOverViewTitles = [
   { name: 'Directors', order: 3 },
 ];
 
+const inputsGetInTouchAttributes = [
+  {
+    type: 'hidden',
+    name: 'currentPage',
+    value: 'https://scarincihollenbeck.com',
+  },
+];
+
 /** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
@@ -460,4 +468,5 @@ export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
 export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
 export const KWES_API = process.env.NEXT_PUBLIC_KWES_API;
+export const GET_IN_TOUCH_FORM_API = process.env.NEXT_PUBLIC_GET_IN_TOUCH_FORM_API;
 export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;

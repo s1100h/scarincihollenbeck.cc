@@ -1,5 +1,5 @@
 import { BsLinkedin, BsFillPersonLinesFill, BsDownload } from 'react-icons/bs';
-import { ContactList, ItemContactList } from 'styles/AttorneyProfile.style';
+import { ContactList, ItemContactList } from 'styles/attorney-page/AttorneyProfile.style';
 
 const renderListItem = (itemsArr) => {
   const iconsMap = {

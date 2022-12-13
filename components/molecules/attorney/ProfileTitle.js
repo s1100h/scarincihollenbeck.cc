@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ProfileName, SubTitleProfileBox } from 'styles/AttorneyProfile.style';
+import { ProfileName, SubTitleProfileBox } from 'styles/attorney-page/AttorneyProfile.style';
 
 const ProfileTitle = ({
   name, designation, coChairs, chairs,

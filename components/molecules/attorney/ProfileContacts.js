@@ -5,7 +5,7 @@ import {
   BsFillTelephoneFill,
   BsPrinterFill,
 } from 'react-icons/bs';
-import { AddressBox } from 'styles/AttorneyProfile.style';
+import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
 
 const ProfileContacts = ({ contact, offices, fax }) => {
   const { phoneNumber, email } = contact;

@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
@@ -90,4 +91,10 @@ export const SecondColumn = styled.div`
 
 export const BottomContainer = styled.section`
   grid-area: 3/2/3/4;
+`
+
+export const CustomContainer = styled(Container)`
+  ${media_breakpoint_down('xl')} {
+    max-width: 1200px;
+  }
 `
