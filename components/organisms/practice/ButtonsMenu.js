@@ -6,9 +6,11 @@ import {
   ButtonDropdown,
 } from 'styles/ButtonsMenu.style';
 
-const ButtonsMenu = ({ tabs, setActiveTab, activeTab }) => (
+const ButtonsMenu = ({
+  tabs, setActiveTab, activeTab, marTop,
+}) => (
   <>
-    <ButtonGroup>
+    <ButtonGroup marTop={marTop}>
       {tabs.map((tab) => (
         <ButtonTab key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
           {tab.title}

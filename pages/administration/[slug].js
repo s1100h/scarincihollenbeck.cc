@@ -72,12 +72,15 @@ const AdministrationProfile = ({ response }) => {
   }
 
   const profile = {
-    email: response.email,
-    vizibility: response.vizibility,
     name: concatNameUser(response.name, response.abbreviation),
-    designation: response.Title,
-    phoneNumber: `${SITE_PHONE} ${response.phone_extension}`,
-    socialMedia: response.social_media_links,
+    profileImage: response.image.url,
+    title: response.Title,
+    contact: {
+      email: response.email,
+      phoneNumber: `${SITE_PHONE} ${response.phone_extension}`,
+      vizibility: response.vizibility,
+      socialMediaLinks: response.social_media_links,
+    },
     offices: response.offices,
   };
 

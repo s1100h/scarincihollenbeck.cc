@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+import { fetchAPI } from 'utils/api';
+import { getSEOforAuthorPosts } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -33,12 +35,20 @@ const getAuthorContent = async (slug) => {
   }
 };
 
+const getUserSeo = async (id) => {
+  const data = await fetchAPI(getSEOforAuthorPosts, {
+    variables: { id },
+  });
+  return data.user;
+};
+
 /** Set the author posts and related data to page props */
 export const getServerSideProps = async ({ params, res }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   const { slug } = params;
 
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
+  const { seo } = await getUserSeo(results.id);
 
   const firstFourArticles = results.results.splice(0, 4);
 
@@ -53,7 +63,11 @@ export const getServerSideProps = async ({ params, res }) => {
       profileUrl: authorBio.bio[0].link,
       pageTitle: params.slug,
       categoryId: results.id,
-      seo: results.seo,
+      seo: {
+        title: results.seo.title,
+        canonicalLink: results.seo.canonicalLink,
+        metaDescription: seo.metaDesc,
+      },
     },
   };
 };

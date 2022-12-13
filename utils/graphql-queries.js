@@ -857,3 +857,13 @@ export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
   }
 }
 `;
+
+export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
+  user(id: $id, idType: DATABASE_ID) {
+    seo {
+      title
+      canonical
+      metaDesc
+    }
+  }
+}`;
