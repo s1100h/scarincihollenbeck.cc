@@ -570,13 +570,13 @@ export const careersPageQuery = `query CareersPagesQuery {
 }`;
 
 export const covid19CrisisManagement = `query CareersPagesQuery {
-  pageBy(pageId: 32495) {
+  page(id: 32495, idType: DATABASE_ID) {
     title
     seo {
       metaDesc
       title
     }
-    cOVID19CrisisManagement {
+    COVID19CrisisManagement {
       article
       banner {
         link

@@ -6,7 +6,7 @@ import { covid19CrisisManagement } from 'utils/graphql-queries';
 
 const covid19CrisisManagementPageContent = async () => {
   const data = await fetchAPI(covid19CrisisManagement, {});
-  return data?.pageBy;
+  return data?.page;
 };
 
 /** Fetch the page data to page props */
@@ -14,7 +14,7 @@ export async function getStaticProps() {
   const {
     title,
     seo,
-    cOVID19CrisisManagement: {
+    COVID19CrisisManagement: {
       article, banner, listLinks, subtitle,
     },
   } = await covid19CrisisManagementPageContent();
