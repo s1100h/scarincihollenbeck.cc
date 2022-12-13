@@ -18,8 +18,14 @@ const renderAwardsOnConditions = (
 
   if (awardsArr?.length < 3 && isBigTabletScreen) {
     return (
-      <div className="d-flex gap-4">
-        {awardsArr.map(({ awardLink, awardImage, awardTitle }) => renderAwardCallBack(awardLink, awardImage.sourceUrl, awardTitle))}
+      <div>
+        <ul className="d-flex gap-4">
+          {awardsArr.map(({ awardLink, awardImage, awardTitle }) => (
+            <li key={awardTitle}>
+              {renderAwardCallBack(awardLink, awardImage.sourceUrl, awardTitle, false)}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
@@ -41,7 +47,12 @@ export const ProfileSidebarAwards = ({ awards }) => {
       {renderAwardsOnConditions(
         awards,
         isBigTablet,
-        renderAward(awards[0].awardLink, awards[0].awardImage.sourceUrl, awards[0].awardTitle),
+        renderAward(
+          awards[0].awardLink,
+          awards[0].awardImage.sourceUrl,
+          awards[0].awardTitle,
+          true,
+        ),
         renderAward,
         AwardSlider,
       )}

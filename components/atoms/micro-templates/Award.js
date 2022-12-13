@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AwardImgLinkBox } from 'styles/attorney-page/ProfileSidebar.style';
 
-const renderAward = (link, image, title) => {
+const renderAward = (link, image, title, key) => {
   if (link) {
     if (link.includes('https')) {
       return (
-        <AwardImgLinkBox href={link} target="_blank">
+        <AwardImgLinkBox key={key && title} href={link} target="_blank">
           <Image
             data-src={image}
             src={image}
@@ -20,7 +20,7 @@ const renderAward = (link, image, title) => {
     }
     if (link.slice(0, 1) === '/') {
       return (
-        <Link href={link} passHref>
+        <Link key={key && title} href={link} passHref>
           <AwardImgLinkBox>
             <Image
               data-src={image}
@@ -37,7 +37,7 @@ const renderAward = (link, image, title) => {
   }
 
   return (
-    <AwardImgLinkBox>
+    <AwardImgLinkBox key={key && title}>
       <Image
         data-src={image}
         src={image}

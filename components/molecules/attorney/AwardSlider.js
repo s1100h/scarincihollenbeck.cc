@@ -36,7 +36,9 @@ const AwardSlider = ({ awards }) => {
     <>
       <Slider {...settings}>
         {awards.map(({ awardImage, awardLink, awardTitle }) => (
-          <div key={awardTitle}>{renderAward(awardLink, awardImage.sourceUrl, awardTitle)}</div>
+          <div key={awardTitle}>
+            {renderAward(awardLink, awardImage.sourceUrl, awardTitle, false)}
+          </div>
         ))}
       </Slider>
     </>

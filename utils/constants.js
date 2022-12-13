@@ -430,11 +430,54 @@ export const firmOverViewTitles = [
   { name: 'Directors', order: 3 },
 ];
 
-const inputsGetInTouchAttributes = [
+export const inputsGetInTouchAttributes = [
   {
     type: 'hidden',
     name: 'currentPage',
-    value: 'https://scarincihollenbeck.com',
+  },
+  {
+    type: 'text',
+    className: 'form-control',
+    name: 'firstName',
+    placeholder: 'First name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'text',
+    className: 'form-control',
+    name: 'lastName',
+    placeholder: 'Last name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'email',
+    className: 'form-control',
+    name: 'email',
+    placeholder: 'Email address',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'phone',
+    className: 'form-control',
+    name: 'phone',
+    placeholder: 'Phone number',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'text',
+    className: 'form-control',
+    name: 'subject',
+    placeholder: 'Subject',
+    rules: 'required|max:1000',
+  },
+  {
+    type: 'textarea',
+    rows: '8',
+    cols: '4',
+    className: 'form-control',
+    name: 'message',
+    placeholder: 'Message',
+    rules: 'required|max:1000',
   },
 ];
 
