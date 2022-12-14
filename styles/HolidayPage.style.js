@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import { rem } from './global_styles/Global.styles'
+import { globalColor, rem } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const HolidayContent = styled.section`
   figure {
+    text-align: center;
     video {
       max-width: 750px;
       min-width: 300px;
@@ -31,7 +32,7 @@ export const HolidayLinkBox = styled.div`
     h5 {
       transition: 0.3s;
       display: flex;
-      color: white;
+      color: ${globalColor.white};
       font-family: 'Kenjo I';
       font-size: ${rem(18)};
       font-weight: 600;
@@ -42,11 +43,28 @@ export const HolidayLinkBox = styled.div`
     }
   }
 
+  ${media_breakpoint_down('xl')} {
+    :hover {
+      h5 {
+        font-size: ${rem(14)};
+        right: 1.8vw;
+      }
+    }
+  }
+
   ${media_breakpoint_down('lg')} {
     width: 150px;
     height: 150px;
     top: 55vh;
     right: -5px;
+
+    :hover {
+      h5 {
+        font-size: ${rem(12)};
+        right: 1.8vw;
+        top: 34px;
+      }
+    }
   }
 
   ${media_breakpoint_down('sm')} {
@@ -54,5 +72,13 @@ export const HolidayLinkBox = styled.div`
     height: 120px;
     top: 55vh;
     right: -5px;
+
+    :hover {
+      h5 {
+        font-size: ${rem(11)};
+        right: 1.8vw;
+        top: 26px;
+      }
+    }
   }
 `
