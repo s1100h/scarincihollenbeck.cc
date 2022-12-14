@@ -3,29 +3,19 @@ import dynamic from 'next/dynamic';
 import { SITE_URL } from 'utils/constants';
 import HolidayPage from 'components/pages/HolidayPage';
 import { fetchAPI } from 'utils/api';
-import { basicPagesQuery } from 'utils/graphql-queries';
+import { holidayPageQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch page data from WP GRAPHQL API */
-const getBasicPageContent = async (slug) => {
-  const data = await fetchAPI(basicPagesQuery, {
-    variables: { slug },
-  });
-  return data?.pageBy;
+const getBasicPageContent = async () => {
+  const data = await fetchAPI(holidayPageQuery);
+  return data?.page;
 };
 
 /** Set holiday page data to props */
 export const getServerSideProps = async ({ params }) => {
-  const slug = params?.slug;
-
-  if (!slug) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const request = await getBasicPageContent(slug);
+  const request = await getBasicPageContent();
 
   if (!request) {
     return {
@@ -40,15 +30,12 @@ export const getServerSideProps = async ({ params }) => {
       title,
       content,
       seo,
-      slug: params.slug,
     },
   };
 };
 
 /** firm holiday page component */
-const FirmHoliday = ({
-  title, content, seo, slug,
-}) => {
+const FirmHoliday = ({ title, content, seo }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <SiteLoader />;
@@ -64,7 +51,7 @@ const FirmHoliday = ({
     bodyContent = content.replace(subTitle, '');
   }
 
-  const canonicalUrl = `${SITE_URL}/holiday/${slug}`;
+  const canonicalUrl = `${SITE_URL}/happy-holidays`;
 
   const holidayPageProps = {
     canonicalUrl,
