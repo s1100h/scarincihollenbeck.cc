@@ -9,9 +9,10 @@ export const BackgroundContainer = styled.section`
   justify-content: ${({ props }) => (props?.isTabs || props?.isBlog ? 'flex-start' : 'center')};
   background: no-repeat
     url(${({ props }) =>
-      props?.isHoliday ? '/images/red-holiday-banner.webp' : '/images/skyscraper2.png'});
-  background-position: right 9% bottom 45%;
-  background-size: contain;
+      props?.isHoliday ? '/images/holiday-banner.webp' : '/images/skyscraper2.png'});
+  background-position: ${({ props }) =>
+    props?.isHoliday ? 'right 1% bottom 31%' : 'right 9% bottom 45%'};
+  background-size: ${({ props }) => (props?.isHoliday ? 'auto' : 'contain')};
   height: auto;
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => (props?.isTabs || props?.isFilter ? '6.5em' : '4em')};
@@ -19,18 +20,27 @@ export const BackgroundContainer = styled.section`
   box-shadow: ${rem(21)} 0 ${rem(32)} rgb(0 0 0 / 10%);
 
   ${media_breakpoint_down('xl')} {
-    background-position: right 9% bottom 0%;
-    background-size: 50%;
-    padding-bottom: ${({ props }) => (props?.isTabs || props?.isFilter ? '6.5em' : '2em')};
+    ${({ props }) =>
+      props?.isHoliday
+        ? ''
+        : `background-position: right 9% bottom 0%;
+      background-size: 50%;
+      padding-bottom: ${props?.isTabs || props?.isFilter ? '6.5em' : '2em'};
+      `};
+  }
+
+  ${media_breakpoint_down('lg')} {
+    background-size: ${({ props }) => (props?.isHoliday ? 'auto' : 'contain')};
+    /* background-position: ${({ props }) => (props?.isHoliday ? 'right 1% bottom 31%' : '')}; */
   }
 
   ${media_breakpoint_down('md')} {
-    background-position: left 54vw bottom 0%;
+    background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 54vw bottom 0%')};
   }
 
   ${media_breakpoint_exactly_down('504px')} {
-    background-size: 100%;
-    background-position: bottom 0%;
+    background-size: ${({ props }) => (props?.isHoliday ? '' : '100%')};
+    background-position: ${({ props }) => (props?.isHoliday ? '' : 'bottom 0%')};
   }
 `
 
@@ -58,6 +68,10 @@ export const Description = styled.section`
 
   ${media_breakpoint_down('xl')} {
     width: 60vw;
+  }
+
+  ${media_breakpoint_down('md')} {
+    color: ${globalColor.black};
   }
 
   ${media_breakpoint_down('sm')} {

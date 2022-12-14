@@ -1,7 +1,8 @@
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
+import { Container } from 'react-bootstrap';
+import { HolidayContent } from 'styles/HolidayPage.style';
 
 const HolidayPage = ({
   seo, title, subTitle, canonicalUrl, bodyContent,
@@ -12,10 +13,12 @@ const HolidayPage = ({
       metaDescription={seo.metaDescription}
       canonicalUrl={canonicalUrl}
     />
-    <SingleSubHeader title={title} subtitle={subTitle} span={7} offset={2} isHoliday />
-    <FullWidth>
-      <div dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))} />
-    </FullWidth>
+    <SingleSubHeader title={title} subtitle={subTitle} isHoliday />
+    <Container>
+      <HolidayContent
+        dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
+      />
+    </Container>
   </>
 );
 

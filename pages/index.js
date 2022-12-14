@@ -36,6 +36,7 @@ export const getStaticProps = async () => {
     mainTag,
     subMainTag,
     leadership,
+    isHoliday,
   } = homePage;
 
   const modLeadership = leadership.map(
@@ -78,6 +79,7 @@ export const getStaticProps = async () => {
       serviceTwo,
       leadership: modLeadership,
       offices: sortedOffices,
+      isHoliday,
     },
     revalidate: 86400,
   };
@@ -95,6 +97,7 @@ const Home = ({
   offices,
   serviceOne,
   serviceTwo,
+  isHoliday,
 }) => {
   const homePageProps = {
     seo,
@@ -107,6 +110,7 @@ const Home = ({
     offices,
     serviceOne,
     serviceTwo,
+    isHoliday,
   };
   return <HomePage {...homePageProps} />;
 };
