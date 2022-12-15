@@ -199,6 +199,10 @@ input {
   }
 }
 
+video {
+  width: -webkit-fill-available;
+}
+
 .content {
   h4 {
     font-weight: bold;

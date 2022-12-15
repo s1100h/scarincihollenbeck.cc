@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic';
 import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { Suspense } from 'react';
 import { AboutContainer } from 'styles/AboutFirm.style';
+import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
 import ModalWindow from '../atoms/ModalWindow';
 
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'), {
@@ -16,11 +16,12 @@ const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'), { s
 const Awards = dynamic(() => import('components/organisms/home/Awards'), { ssr: true });
 
 const HomePage = ({
-  seo, aboutFirm, aboutFirm2, awards, banner,
+  seo, aboutFirm, aboutFirm2, awards, banner, isHoliday,
 }) => (
   <>
     <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />
     <HomeBanner {...banner} />
+    {isHoliday && <HappyHolidayLink />}
     <ModalWindow />
     <AboutContainer>
       <AboutFirmSection {...aboutFirm} />
