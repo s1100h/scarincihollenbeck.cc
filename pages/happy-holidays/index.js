@@ -4,6 +4,7 @@ import { SITE_URL } from 'utils/constants';
 import HolidayPage from 'components/pages/HolidayPage';
 import { fetchAPI } from 'utils/api';
 import { holidayPageQuery } from 'utils/graphql-queries';
+import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -41,15 +42,7 @@ const FirmHoliday = ({ title, content, seo }) => {
     return <SiteLoader />;
   }
 
-  let extractSubTitle = '';
-  let subTitle = '';
-  let bodyContent = '';
-
-  if (content) {
-    extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-    subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
-    bodyContent = content.replace(subTitle, '');
-  }
+  const { clearBody, subTitle } = getSubTitleFromHTML(content);
 
   const canonicalUrl = `${SITE_URL}/happy-holidays`;
 
@@ -57,7 +50,7 @@ const FirmHoliday = ({ title, content, seo }) => {
     canonicalUrl,
     title,
     subTitle,
-    bodyContent,
+    bodyContent: clearBody,
     seo,
   };
 

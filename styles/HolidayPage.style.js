@@ -2,14 +2,17 @@ import styled from 'styled-components'
 import { globalColor, rem } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
-export const HolidayContent = styled.section`
+export const HolidayContentBox = styled.section`
   figure {
-    text-align: center;
     video {
-      max-width: 750px;
+      max-width: fit-content;
       min-width: 300px;
       height: fit-content;
     }
+  }
+
+  figure:first-of-type {
+    text-align: center;
   }
 `
 

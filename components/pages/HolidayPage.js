@@ -1,8 +1,11 @@
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { Container } from 'react-bootstrap';
-import { HolidayContent } from 'styles/HolidayPage.style';
+import dynamic from 'next/dynamic';
+
+const HolidayContent = dynamic(() => import('components/molecules/holidays/HolidayContent'), {
+  ssr: false,
+});
 
 const HolidayPage = ({
   seo, title, subTitle, canonicalUrl, bodyContent,
@@ -15,9 +18,7 @@ const HolidayPage = ({
     />
     <SingleSubHeader title={title} subtitle={subTitle} isHoliday />
     <Container>
-      <HolidayContent
-        dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
-      />
+      <HolidayContent content={bodyContent} />
     </Container>
   </>
 );
