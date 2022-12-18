@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
+import { commonBtnStyle } from './ButtonsMenu.style'
 import { globalColor } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
@@ -58,5 +58,27 @@ export const ClearButton = styled(ButtonStandardWidth)`
 
   ${media_breakpoint_down('sm')} {
     margin-right: 7px;
+  }
+`
+
+export const StandardRedButton = styled(Button)`
+  ${commonBtnStyle}
+  border: none;
+  border-radius: 0;
+  background-color: ${globalColor.red.darkRed};
+  color: ${globalColor.white};
+
+  :hover {
+    background: ${globalColor.red.liteRed};
+    color: ${globalColor.white};
+  }
+
+  :active {
+    background-color: ${globalColor.red.burgundy} !important;
+  }
+
+  :focus-visible {
+    box-shadow: none;
+    background-color: ${globalColor.red.burgundy};
   }
 `

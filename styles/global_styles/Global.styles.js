@@ -180,6 +180,25 @@ h3 {
   margin: 0;
 }
 
+input {
+  border-radius: 0;
+  border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+  background-color: ${globalColor.graySmoke.liteWhiteSmoke};
+  ::placeholder {
+    color: ${globalColor.grayExtraLite.grayExtraLite80};
+  }
+
+  :active {
+    border-color: ${globalColor.blue.ultramarine};
+  }
+
+  :focus-visible {
+    border: 1px solid ${globalColor.blue.ultramarine};
+    border-radius: 0 !important;
+
+  }
+}
+
 video {
   width: -webkit-fill-available;
 }

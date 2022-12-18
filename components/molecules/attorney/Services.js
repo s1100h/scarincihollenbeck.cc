@@ -1,20 +1,19 @@
 import Link from 'next/link';
+import { ServiceList, SidebarTile } from 'styles/attorney-page/ProfileSidebar.style';
 
 const Services = ({ services }) => (
-  <>
-    <p className="fs-1_2rem">
-      <strong>How I can help</strong>
-    </p>
-    <ul className="p-0">
+  <div>
+    <SidebarTile indent="true">How I can help</SidebarTile>
+    <ServiceList>
       {services.map((service) => (
-        <li key={service.title} className="list-unstyled mb-2">
+        <li key={service.title}>
           <Link href={service.link}>
-            <a className="text-dark">{service.title}</a>
+            <a>{service.title}</a>
           </Link>
         </li>
       ))}
-    </ul>
-  </>
+    </ServiceList>
+  </div>
 );
 
 export default Services;

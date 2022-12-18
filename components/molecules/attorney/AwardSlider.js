@@ -1,45 +1,46 @@
-import Link from 'next/link';
 import Slider from 'react-slick';
+import renderAward from 'components/atoms/micro-templates/Award';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Image from 'next/image';
 
 const AwardSlider = ({ awards }) => {
   const settings = {
-    dots: false,
-    fade: true,
+    dots: true,
     infinite: true,
-    slidesToShow: 1,
     slidesToScroll: 1,
+    slidesToShow: 2,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 4000,
+    speed: 4000,
+    autoplaySpeed: 5000,
     cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 546,
+        settings: {
+          slidesToScroll: 1,
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
+
   return (
     <>
       <Slider {...settings}>
         {awards.map(({ awardImage, awardLink, awardTitle }) => (
           <div key={awardTitle}>
-            <a href={awardLink}>
-              <Image
-                data-src={awardImage.sourceUrl}
-                src={awardImage.sourceUrl}
-                alt={awardTitle}
-                width={120}
-                height={120}
-                blurDataURL={awardImage.sourceUrl}
-              />
-            </a>
+            {renderAward(awardLink, awardImage.sourceUrl, awardTitle, false)}
           </div>
         ))}
       </Slider>
-      <small>
-        <Link scroll={false} href="/awards">
-          <a>Award Methodology</a>
-        </Link>
-      </small>
     </>
   );
 };
