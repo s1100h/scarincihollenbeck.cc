@@ -5,7 +5,7 @@ import ProfileTitle from 'components/molecules/attorney/ProfileTitle';
 import ProfileContacts from 'components/molecules/attorney/ProfileContacts';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
 import ContactIcons from 'components/molecules/attorney/ContactIcons';
-import { DetailsBox, ProfileHeaderContainer } from 'styles/AttorneyProfile.style';
+import { DetailsBox, ProfileHeaderContainer } from 'styles/attorney-page/AttorneyProfile.style';
 import ButtonGroupMenu from 'components/molecules/attorney/ButtonGroupMenu';
 
 const useDesignationHook = (title) => {

@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import StringContent from 'components/organisms/attorney/StringContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
-import SidebarWrapper from 'components/organisms/attorney/SidebarWrapper';
+import ProfileSidebar from 'components/organisms/attorney/ProfileSidebar';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
-import { ColStyled } from 'styles/AttorneyProfile.style';
+import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
+import { CustomContainer } from 'styles/Containers.style';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
@@ -140,9 +141,9 @@ const AttorneyPage = ({
         designation={profileHeader.title}
         socialMediaLinks={seo.socialMediaLinks}
       />
-      <Container>
-        <Row>
-          <ColStyled sm={12} lg={9}>
+      <CustomContainer>
+        <Row className="d-flex justify-content-center">
+          <ColStyled sm={12} md={11} lg={8} xl={8}>
             <ProfileHeader {...compressPropsHederProfile} />
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
@@ -175,17 +176,18 @@ const AttorneyPage = ({
               />
             )}
           </ColStyled>
-          <ColStyled top="45px" sm={12} lg={3}>
-            <SidebarWrapper
+          <ColForSidebar top="45px" sm={12} md={11} lg={3} xl={4}>
+            <ProfileSidebar
               services={profileHeader.practices}
               setActiveTab={setActiveTab}
               setActiveTabContent={setActiveTabContent}
               education={education}
               contact={contact}
               awards={attorneyAwards}
+              {...activeTabContent}
             />
-          </ColStyled>
-          <Col sm={12}>
+          </ColForSidebar>
+          <Col sm={12} md={11} lg={12}>
             <ProfileFooter
               attorneyFooterBlogArticles={attorneyFooterBlogArticles}
               attorneyFooterNewsArticles={attorneyFooterNewsArticles}
@@ -193,7 +195,7 @@ const AttorneyPage = ({
             />
           </Col>
         </Row>
-      </Container>
+      </CustomContainer>
     </>
   );
 };

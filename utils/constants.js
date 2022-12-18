@@ -430,6 +430,40 @@ export const firmOverViewTitles = [
   { name: 'Directors', order: 3 },
 ];
 
+export const inputsGetInTouchAttributes = [
+  {
+    type: 'text',
+    name: 'FirstName',
+    placeholder: 'First name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'text',
+    name: 'LastName',
+    placeholder: 'Last name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'email',
+    name: 'Email',
+    placeholder: 'Email address',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'tel',
+    name: 'Phone',
+    placeholder: 'Phone number',
+    rules: 'required|max:255',
+    pattern: '[0-9]{3} [0-9]{3} [0-9]{4}',
+  },
+  {
+    type: 'text',
+    name: 'Subject',
+    placeholder: 'Subject',
+    rules: 'required|max:1000',
+  },
+];
+
 /** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
@@ -460,4 +494,5 @@ export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
 export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
 export const KWES_API = process.env.NEXT_PUBLIC_KWES_API;
+export const GET_IN_TOUCH_FORM_API = process.env.NEXT_PUBLIC_GET_IN_TOUCH_FORM_API;
 export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import { globalColor } from './global_styles/Global.styles'
 
-const commonBtnStyle = `
+export const commonBtnStyle = `
   height: 42px;
   width: 200px;
   padding: 0.5rem 0.1rem;

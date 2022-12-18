@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
-import ContactForm from 'components/shared/ContactForm';
+import ContactForm from 'components/shared/ContactForm/ContactForm';
 import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
 import AuthorBio from 'components/organisms/post/AuthorBio';
 import { createMarkup, urlify } from 'utils/helpers';

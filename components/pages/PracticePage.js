@@ -8,7 +8,7 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import PageSidebar from 'components/organisms/practice/PageSidebar';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { ColStyled } from 'styles/AttorneyProfile.style';
+import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
 const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));

@@ -1,9 +1,9 @@
-import { Col, Container } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import styled from 'styled-components'
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { globalColor, globalShadow, rem } from '../global_styles/Global.styles'
+import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
 
-export const ProfileHeaderContainer = styled(Container)`
+export const ProfileHeaderContainer = styled.div`
   padding: 40px 60px;
   margin-top: 5%;
   margin-bottom: 40px;
@@ -18,6 +18,25 @@ export const ColStyled = styled(Col)`
   position: relative;
   top: ${({ top }) => (top ? top : 'none')};
   bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
+`
+
+export const ColForSidebar = styled(ColStyled)`
+  top: ${({ top }) => (top ? top : 'none')};
+
+  ${({ top }) => {
+    const topNum = top.slice(0, -2)
+    return top
+      ? `
+      ${media_breakpoint_exactly_down('1400px')} {
+        top: ${topNum - 10}px;
+      }
+      ${media_breakpoint_down('lg')} {
+        top: 0;
+        margin-bottom: 25px;
+      }
+      `
+      : `border: none`
+  }}
 `
 
 export const SubTitleProfileBox = styled.div`
