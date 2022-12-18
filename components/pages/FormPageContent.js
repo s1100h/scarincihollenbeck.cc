@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
-import ContactForm from 'components/shared/ContactForm';
+import ContactForm from 'components/shared/ContactForm/ContactForm';
 import SubscriptionFormColumn from 'components/molecules/subscription/SubscriptionFormColumn';
 import OfficeList from 'components/organisms/form-page/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';

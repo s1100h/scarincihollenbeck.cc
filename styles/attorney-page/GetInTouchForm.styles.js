@@ -1,3 +1,4 @@
+import { InputGroup, Form } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor } from 'styles/global_styles/Global.styles'
 
@@ -5,10 +6,21 @@ export const FormContainer = styled.div`
   .kwes-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 23px;
 
     .form-control {
       border-radius: 0;
+      height: 48px;
+      padding: 18px 12px 12px;
+    }
+
+    .kw-alert-error,
+    .kw-alert-warning {
+      margin-bottom: 0;
+    }
+
+    textarea.form-control {
+      height: 160px;
     }
 
     p {
@@ -49,4 +61,18 @@ export const FormContainer = styled.div`
       }
     }
   }
+`
+
+export const InputGroupStyled = styled(InputGroup)`
+  .kw-field-error-message {
+    position: absolute;
+    top: -18px;
+  }
+`
+
+export const FormLabelStyled = styled(Form.Label)`
+  position: absolute;
+  left: 12px;
+  z-index: 5;
+  color: ${globalColor.grayExtraLite.grayExtraLite80};
 `

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import ContactForm from 'components/shared/ContactForm';
+import ContactForm from 'components/shared/ContactForm/ContactForm';
 import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';

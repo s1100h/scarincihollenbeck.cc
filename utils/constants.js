@@ -432,51 +432,34 @@ export const firmOverViewTitles = [
 
 export const inputsGetInTouchAttributes = [
   {
-    type: 'hidden',
-    name: 'currentPage',
-  },
-  {
     type: 'text',
-    className: 'form-control',
-    name: 'firstName',
+    name: 'FirstName',
     placeholder: 'First name',
     rules: 'required|max:255',
   },
   {
     type: 'text',
-    className: 'form-control',
-    name: 'lastName',
+    name: 'LastName',
     placeholder: 'Last name',
     rules: 'required|max:255',
   },
   {
     type: 'email',
-    className: 'form-control',
-    name: 'email',
+    name: 'Email',
     placeholder: 'Email address',
     rules: 'required|max:255',
   },
   {
-    type: 'phone',
-    className: 'form-control',
-    name: 'phone',
+    type: 'tel',
+    name: 'Phone',
     placeholder: 'Phone number',
     rules: 'required|max:255',
+    pattern: '[0-9]{3} [0-9]{3} [0-9]{4}',
   },
   {
     type: 'text',
-    className: 'form-control',
-    name: 'subject',
+    name: 'Subject',
     placeholder: 'Subject',
-    rules: 'required|max:1000',
-  },
-  {
-    type: 'textarea',
-    rows: '8',
-    cols: '4',
-    className: 'form-control',
-    name: 'message',
-    placeholder: 'Message',
     rules: 'required|max:1000',
   },
 ];

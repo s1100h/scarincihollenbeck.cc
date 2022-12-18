@@ -7,16 +7,16 @@ import AwardSlider from './AwardSlider';
 
 const renderAwardsOnConditions = (
   awardsArr,
-  isBigTabletScreen,
+  isBigTabletScreenArg,
   renderAwardResult,
   renderAwardCallBack,
   SliderComponent,
 ) => {
-  if (awardsArr?.length === 1 && !isBigTabletScreen) {
+  if (awardsArr?.length === 1 && !isBigTabletScreenArg) {
     return renderAwardResult;
   }
 
-  if (awardsArr?.length < 3 && isBigTabletScreen) {
+  if (awardsArr?.length < 3 && isBigTabletScreenArg) {
     return (
       <div>
         <ul className="d-flex gap-4">
@@ -34,7 +34,7 @@ const renderAwardsOnConditions = (
 };
 
 export const ProfileSidebarAwards = ({ awards }) => {
-  const { isBigTablet } = useStateScreen();
+  const { isBigTabletScreen } = useStateScreen();
 
   return (
     <AwardsBox>
@@ -46,7 +46,7 @@ export const ProfileSidebarAwards = ({ awards }) => {
       </TitleAndLikBox>
       {renderAwardsOnConditions(
         awards,
-        isBigTablet,
+        isBigTabletScreen,
         renderAward(
           awards[0].awardLink,
           awards[0].awardImage.sourceUrl,

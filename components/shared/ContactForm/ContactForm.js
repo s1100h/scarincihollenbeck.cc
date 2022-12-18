@@ -7,26 +7,9 @@ import {
   inputsGetInTouchAttributes,
   RECAPTCHA_SITE_KEY,
 } from 'utils/constants';
+import RenderInputs from './RenderInputs';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
-
-const renderInputs = (arrayOfAttributes, attorneySlug) => arrayOfAttributes.map((attributes) => {
-  if (attributes.type !== 'textarea') {
-    if (attributes.type === 'hidden') {
-      return (
-        <input
-          key={attributes.name}
-          {...attributes}
-          value={`https://scarincihollenbeck.com${attorneySlug}`}
-        />
-      );
-    }
-
-    return <input key={attributes.name} {...attributes} />;
-  }
-
-  return <textarea key={attributes.name} {...attributes} />;
-});
 
 export default function ContactForm() {
   const router = useRouter();
@@ -40,7 +23,7 @@ export default function ContactForm() {
         has-recaptcha-v3="true"
         recaptcha-site-key={RECAPTCHA_SITE_KEY}
       >
-        {renderInputs(inputsGetInTouchAttributes, router.asPath)}
+        <RenderInputs arrayOfAttributes={inputsGetInTouchAttributes} attorneySlug={router.asPath} />
         <p className="mb-1">
           * The use of the Internet or this form for communication with the firm or any individual
           member of the firm does not establish an attorney-client relationship. Confidential or

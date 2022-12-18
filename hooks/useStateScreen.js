@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 
 export default function useStateScreen() {
   const [isScreenState, setScreenState] = useState({
-    isBigTablet: false,
+    isBigTabletScreen: false,
     isTabletScreen: false,
     isDesktopScreen: false,
   });
@@ -31,16 +31,16 @@ export default function useStateScreen() {
     }
     if (isBigTablet) {
       setScreenState((prev) => ({
-        isBigTablet: true,
+        isBigTabletScreen: true,
         isTabletScreen: prev.isTabletScreen,
         isDesktopScreen: prev.isDesktopScreen,
       }));
     }
   }, []);
-  const { isTabletScreen, isDesktopScreen } = isScreenState;
+  const { isTabletScreen, isDesktopScreen, isBigTabletScreen } = isScreenState;
   return {
     isTabletScreen,
     isDesktopScreen,
-    isBigTablet,
+    isBigTabletScreen,
   };
 }
