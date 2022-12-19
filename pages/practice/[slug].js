@@ -62,7 +62,7 @@ const SinglePractice = ({ practice, practiceChildren, slug }) => {
   const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
-  const canonicalUrl = `${SITE_URL}/practice/${practice.slug}`;
+  const canonicalUrl = `${SITE_URL}/practices/${practice.slug}`;
 
   if (router.isFallback) {
     return <SiteLoader />;
