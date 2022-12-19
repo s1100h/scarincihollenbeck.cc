@@ -166,7 +166,7 @@ export const SITE_NAVIGATION = [
   {
     id: 5,
     label: 'Locations',
-    slug: '/locations',
+    slug: '/location',
     menuId: 'locations',
     children: null,
   },
@@ -277,57 +277,57 @@ export const OFFICE_LOCATIONS = [
 export const CORE_PRACTICES = [
   {
     id: 1,
-    slug: '/practice/bankruptcy-and-creditors-rights',
+    slug: '/practices/bankruptcy-and-creditors-rights',
     label: "Bankruptcy & Creditors' Rights",
   },
   {
     id: 2,
-    slug: '/practice/commercial-real-estate',
+    slug: '/practices/commercial-real-estate',
     label: 'Commercial Real Estate',
   },
   {
     id: 3,
-    slug: '/practice/corporate-transactions-business',
+    slug: '/practices/corporate-transactions-business',
     label: 'Corporate Transactions & Business',
   },
   {
     id: 4,
-    slug: '/practice/education-law',
+    slug: '/practices/education-law',
     label: 'Education Law',
   },
   {
     id: 5,
-    slug: '/practice/environmental',
+    slug: '/practices/environmental',
     label: 'Environmental',
   },
   {
     id: 6,
-    slug: '/practice/government-strategies',
+    slug: '/practices/government-strategies',
     label: 'Government Strategies',
   },
   {
     id: 7,
-    slug: '/practice/intellectual-property',
+    slug: '/practices/intellectual-property',
     label: 'Intellectual Property',
   },
   {
     id: 8,
-    slug: '/practice/labor-employment',
+    slug: '/practices/labor-employment',
     label: 'Labor & Employment',
   },
   {
     id: 9,
-    slug: '/practice/litigation',
+    slug: '/practices/litigation',
     label: 'Litigation',
   },
   {
     id: 10,
-    slug: '/practice/public-law',
+    slug: '/practices/public-law',
     label: 'Public Law',
   },
   {
     id: 11,
-    slug: '/practice/tax-trusts-estates',
+    slug: '/practices/tax-trusts-estates',
     label: 'Tax, Trusts & Estates',
   },
 ];

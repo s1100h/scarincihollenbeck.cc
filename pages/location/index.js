@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
-import { getPdfLink } from './location/[slug]';
+import { getPdfLink } from './[slug]';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

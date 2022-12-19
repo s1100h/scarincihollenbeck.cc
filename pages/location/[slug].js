@@ -6,7 +6,7 @@ import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 import { BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { getIdDirectionPdfLittleFallsQuery, getMediaLinkQuery } from 'utils/graphql-queries';
+import { getIdDirectionPdfLittleFallsQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

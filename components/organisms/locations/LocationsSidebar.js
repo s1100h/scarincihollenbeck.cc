@@ -11,7 +11,7 @@ const LocationsSidebar = () => {
       <>
         <ul>
           {sortByKey(locations, 'title').map((office) => (
-            <li key={office.ID || office.id} className="list-unstyled py-2">
+            <li key={office.ID || office.id} className="py-2">
               <OfficeDetails office={office} />
             </li>
           ))}

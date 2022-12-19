@@ -49,12 +49,12 @@ const ErrorPage = ({ title, subTitle, mainMessage }) => (
                 </Link>
               </li>
               <li>
-                <Link href="/practice">
+                <Link href="/practices">
                   <a className="u-hover h5">Practices</a>
                 </Link>
               </li>
               <li>
-                <Link href="/locations">
+                <Link href="/location">
                   <a className="u-hover h5">Locations</a>
                 </Link>
               </li>
