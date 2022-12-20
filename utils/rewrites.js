@@ -1,20 +1,20 @@
 const POST_TYPE_REWRITES = [
-  {
-    source: '/attorneys/:path*',
-    destination: '/attorney/:path*',
-  },
-  {
-    source: '/practices/:path*',
-    destination: '/practice/:path*',
-  },
+  // {
+  //   source: '/attorneys/:path*',
+  //   destination: '/attorney/:path*',
+  // },
+  // {
+  //   source: '/practices/:path*',
+  //   destination: '/practice/:path*',
+  // },
   {
     source: '/locations/:path*',
     destination: '/location/:path*',
   },
-  {
-    source: '/careers/:path*',
-    destination: '/career/:path*',
-  },
+  // {
+  //   source: '/careers/:path*',
+  //   destination: '/career/:path*',
+  // },
 ];
 
 /** List of top level categories */

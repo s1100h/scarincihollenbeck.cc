@@ -105,7 +105,7 @@ export const getServerSideProps = async ({ params, res }) => {
   /** SEO meta data */
   const seo = {
     title: attorneyBio.seo?.title,
-    canonicalLink: `attorney/${params.slug}`,
+    canonicalLink: `attorneys/${params.slug}`,
     metaDescription: attorneyBio.seo?.metaDesc,
     image: formatSrcToCloudinaryUrl(attorneyBio.attorneyMainInformation.profileImage?.sourceUrl),
     designation: attorneyBio.attorneyMainInformation?.designation,

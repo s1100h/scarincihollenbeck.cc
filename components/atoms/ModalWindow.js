@@ -8,7 +8,7 @@ const ModalWindow = () => {
   const [isCookie, setIsCookies] = useState(false);
   const cookies = new Cookies();
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     setModalOpen(!modalOpen);
     cookies.set('ModalWindow', 'yes', { maxAge: 86400 });
   };

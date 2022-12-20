@@ -42,7 +42,7 @@ const Career = ({ career }) => {
     return <SiteLoader />;
   }
 
-  const canonicalUrl = `${SITE_URL}/${career.uri}`;
+  const canonicalUrl = `${SITE_URL}${router.asPath}`;
 
   const careerProps = {
     career,

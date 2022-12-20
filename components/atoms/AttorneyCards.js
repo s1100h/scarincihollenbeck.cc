@@ -17,7 +17,7 @@ const AttorneyCards = (title, content, offices) => {
           {content.map((info) => (
             <AttorneyCard
               key={info.link || info.uri}
-              link={info.link ? `/attorney${info.link}` : info.uri}
+              link={info.link ? `/attorneys${info.link}` : info.uri}
               image={info.better_featured_image}
               name={info.title}
               designation={typeof info.designation !== 'string' ? null : info.designation}

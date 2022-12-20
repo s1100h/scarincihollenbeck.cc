@@ -166,7 +166,7 @@ export const SITE_NAVIGATION = [
   {
     id: 5,
     label: 'Locations',
-    slug: '/locations',
+    slug: '/location',
     menuId: 'locations',
     children: null,
   },

@@ -6,7 +6,8 @@ import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
 import { BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { getIdDirectionPdfLittleFallsQuery, getMediaLinkQuery } from 'utils/graphql-queries';
+import { getIdDirectionPdfLittleFallsQuery } from 'utils/graphql-queries';
+import { correctAttorneyLink } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -36,7 +37,6 @@ export const getPdfLink = async () => {
   const { officeLocationBy } = await fetchAPI(getIdDirectionPdfLittleFallsQuery, {});
   return officeLocationBy.officeMainInformation;
 };
-
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
   const slug = params?.slug;
@@ -68,6 +68,14 @@ export const getStaticProps = async ({ params }) => {
       notFound: true,
     };
   }
+
+  currentOffice.attorneys = currentOffice.attorneys.map((attorney) => {
+    attorney.link = correctAttorneyLink(attorney.link);
+
+    return {
+      ...attorney,
+    };
+  });
 
   return {
     props: {

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import CareersPage from 'components/pages/CareersDirectory';
-import { BASE_API_URL, SITE_URL, headers } from 'utils/constants';
+import { SITE_URL } from 'utils/constants';
 import { fetchAPI, homePageLocations } from 'utils/api';
-import { careersPageQuery } from 'utils/graphql-queries';
+import { careersPageQuery, careersQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -15,16 +15,15 @@ const careersPageContent = async () => {
 };
 
 const getCareerList = async () => {
-  try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/career-portal/careers`, {
-      headers,
-    });
-
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
+  const careers = await fetchAPI(careersQuery);
+  return careers.careers.nodes;
 };
+
+const sanitizeCareers = (careerArr) => careerArr.map(({ databaseId, slug, careerFields }) => ({
+  databaseId,
+  slug,
+  ...careerFields,
+}));
 
 export const getStaticProps = async () => {
   const careerList = await getCareerList();
@@ -42,7 +41,7 @@ export const getStaticProps = async () => {
         description: careersPage.description,
         bodyContent: careersPage.equalEmploymentOpportunityContent,
       },
-      careerList: careerList.careers,
+      careerList: sanitizeCareers(careerList),
       locations,
       positionTypes,
     },
