@@ -21,6 +21,7 @@ export const ColStyled = styled(Col)`
 `
 
 export const ColForSidebar = styled(ColStyled)`
+  margin-bottom: 80px;
   top: ${({ top }) => (top ? top : 'none')};
 
   ${({ top }) => {

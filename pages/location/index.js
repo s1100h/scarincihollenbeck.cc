@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { getLocationContent } from 'utils/queries';
+import { correctAttorneyLink } from 'utils/helpers';
 import { getPdfLink } from './[slug]';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
@@ -25,6 +26,14 @@ export const getStaticProps = async () => {
       notFound: true,
     };
   }
+
+  currentOffice.attorneys = currentOffice.attorneys.map((attorney) => {
+    attorney.link = correctAttorneyLink(attorney.link);
+
+    return {
+      ...attorney,
+    };
+  });
 
   return {
     props: {

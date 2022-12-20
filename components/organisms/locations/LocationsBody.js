@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { sortByKey } from 'utils/helpers';
+import { correctAttorneyLink, sortByKey } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
 import { DownloadTheMap, LinkMapBox, MediaBr } from 'styles/Locations.style';
 import { BsDownload } from 'react-icons/bs';

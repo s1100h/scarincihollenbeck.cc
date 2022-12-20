@@ -194,3 +194,8 @@ export const getSubTitleFromHTML = (htmlContent) => {
     subTitle,
   };
 };
+
+export const correctAttorneyLink = (link) => {
+  const regEx = /(attorney)/g;
+  return link.replace(regEx, 'attorneys');
+};
