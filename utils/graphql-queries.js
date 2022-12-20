@@ -570,6 +570,23 @@ export const careersPageQuery = `query CareersPagesQuery {
   }
 }`;
 
+export const careersQuery = `query BasicPageQuery {
+  careers {
+    nodes {
+      databaseId
+      slug
+      careerFields {
+        contact
+        duration
+        position
+        startDate
+        positionLocation
+        positionType
+      }
+    }
+  }
+}`;
+
 export const covid19CrisisManagement = `query CareersPagesQuery {
   page(id: 32495, idType: DATABASE_ID) {
     title

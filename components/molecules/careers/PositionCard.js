@@ -12,10 +12,15 @@ const checkAllOffices = (location) => {
 };
 
 export default function PositionCard({
-  slug, title, positionLocation, positionType, startDate,
+  slug,
+  title,
+  positionLocation,
+  positionType,
+  startDate,
+  duration,
 }) {
   return (
-    <Link href="/career/[slug]" as={`/career${slug}`}>
+    <Link href={`/careers/${slug}`}>
       <a className="text-dark text-decoration-none">
         <CardContainer>
           <TitlePosition>{title}</TitlePosition>
@@ -30,6 +35,10 @@ export default function PositionCard({
           <p className="my-0">
             <strong className="mr-1">Start: </strong>
             {startDate}
+          </p>
+          <p className="my-0">
+            <strong className="mr-1">Duration: </strong>
+            {duration}
           </p>
         </CardContainer>
       </a>
