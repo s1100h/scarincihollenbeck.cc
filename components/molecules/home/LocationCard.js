@@ -16,44 +16,57 @@ import {
   BsFillSignpostFill,
   BsFillTelephoneFill,
 } from 'react-icons/bs';
+import { globalColor } from 'styles/global_styles/Global.styles';
 import Map from '../location/Map';
-import { OFFICE_LOCATIONS } from '../../../utils/constants';
 
-const colorIcons = '#a91110';
+const colorActiveIcons = globalColor.red.darkRed;
+const colorInactiveIcons = globalColor.gray.gray90;
+
 const sizeIcons = 30;
 
-export default function LocationCard() {
+export default function LocationCard({ officesData }) {
   const [cardIndex, setCardId] = useState(0);
 
   return (
     <LocationCardMain>
       <MapBox>
         <Map
-          title={!cardIndex ? OFFICE_LOCATIONS[0].label : OFFICE_LOCATIONS[`${cardIndex}`].label}
-          map={!cardIndex ? OFFICE_LOCATIONS[0].mapUrl : OFFICE_LOCATIONS[`${cardIndex}`].mapUrl}
+          title={!cardIndex ? officesData[0].title : officesData[`${cardIndex}`].title}
+          map={!cardIndex ? officesData[0].mapLink : officesData[`${cardIndex}`].mapLink}
         />
       </MapBox>
       <LocationOffices>
-        {OFFICE_LOCATIONS.map((office, idx) => (
-          <ContactInfoCard key={office.id} openCard={cardIndex === idx}>
+        {officesData.map((office, idx) => (
+          <ContactInfoCard key={office.databaseId} openCard={cardIndex === idx}>
             <LocationHeader onClick={() => setCardId(idx)}>
-              <h3>{office.label}</h3>
-              <BsCaretDownFill color={cardIndex === idx ? '#a91110' : '#4a4a4a'} size={20} />
+              <h3>{office.title}</h3>
+              <BsCaretDownFill
+                color={cardIndex === idx ? colorActiveIcons : colorInactiveIcons}
+                size={20}
+              />
             </LocationHeader>
             <ContactInfoContent open={cardIndex === idx}>
               <Contact>
                 <p>
-                  <BsFillSignpostFill color={colorIcons} size={sizeIcons} />
+                  <BsFillSignpostFill color={globalColor.red.darkRed} size={sizeIcons} />
                 </p>
-                {office.address}
+                {office.title}
+                {' '}
+                {office.postCode}
+                ,
+                {' '}
+                {office.streetAddress}
+                ,
+                {' '}
+                {office.floor}
               </Contact>
               <Contact>
-                <BsFillTelephoneFill color={colorIcons} size={sizeIcons} />
+                <BsFillTelephoneFill color={colorActiveIcons} size={sizeIcons} />
                 Phone:
-                {` ${office.tel}`}
+                {` ${office.phone}`}
               </Contact>
               <Contact>
-                <BsFillPrinterFill color={colorIcons} size={sizeIcons} />
+                <BsFillPrinterFill color={colorActiveIcons} size={sizeIcons} />
                 Fax:
                 {` ${office.fax}`}
               </Contact>
