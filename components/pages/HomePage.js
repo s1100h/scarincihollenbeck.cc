@@ -16,7 +16,7 @@ const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'), { s
 const Awards = dynamic(() => import('components/organisms/home/Awards'), { ssr: true });
 
 const HomePage = ({
-  seo, aboutFirm, aboutFirm2, awards, banner, isHoliday,
+  seo, aboutFirm, aboutFirm2, awards, banner, isHoliday, offices,
 }) => (
   <>
     <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />
@@ -27,7 +27,7 @@ const HomePage = ({
       <AboutFirmSection {...aboutFirm} />
       <AboutFirmSection {...aboutFirm2} />
     </AboutContainer>
-    <AllOfficeLocations />
+    <AllOfficeLocations offices={offices} />
     <FirmNews />
     <Awards awards={awards} />
   </>

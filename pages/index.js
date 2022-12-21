@@ -1,6 +1,6 @@
 import HomePage from 'components/pages/HomePage';
 import { fetchAPI, homePageLocations } from 'utils/api';
-import { homePageQuery } from 'utils/graphql-queries';
+import { homePageQuery, officeLocationQuery } from 'utils/graphql-queries';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 /** pull out the attorney chair data from attorney response */
@@ -19,9 +19,15 @@ export async function homePageContent() {
   return data?.pageBy;
 }
 
+const getMapDataFrmLocations = async () => {
+  const { officeLocations } = await fetchAPI(officeLocationQuery, {});
+  return officeLocations?.nodes;
+};
+
 /** Map the home page query data to page props */
 export const getStaticProps = async () => {
   /** get page content */
+  const offices = await getMapDataFrmLocations();
   const request = await homePageContent();
   const { seo, homePage } = request;
   const {
@@ -57,9 +63,17 @@ export const getStaticProps = async () => {
   );
 
   /** get firm locations */
-  const offices = await homePageLocations();
-  const sortedOffices = offices.sort((a, b) => (a.node.title > b.node.title ? 1 : -1));
+  // const offices = await homePageLocations();
+  const sanitizeOffices = (offices) => offices.map(({
+    databaseId, slug, title, officeMainInformation,
+  }) => ({
+    databaseId,
+    slug,
+    title,
+    ...officeMainInformation,
+  }));
 
+  const sortedOffices = offices.sort((a, b) => (a.title > b.title ? 1 : -1));
   return {
     props: {
       seo,
@@ -78,7 +92,7 @@ export const getStaticProps = async () => {
       serviceOne,
       serviceTwo,
       leadership: modLeadership,
-      offices: sortedOffices,
+      offices: sanitizeOffices(sortedOffices),
       isHoliday,
     },
     revalidate: 86400,

@@ -162,6 +162,26 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
   }
 }`;
 
+export const officeLocationQuery = `query BasicPageQuery {
+  officeLocations {
+    nodes {
+      databaseId
+      title
+      slug
+      officeMainInformation {
+        addressLocality
+        mapLink
+        phone
+        streetAddress
+        fax
+        floor
+        postCode
+      }
+    }
+  }
+}
+`;
+
 export const attorneyNewsEventsQuery = `
 query AttorneyNewsEventPosts($name: String) {
   posts(where: {search: $name}) {
