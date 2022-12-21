@@ -166,7 +166,7 @@ export const SITE_NAVIGATION = [
   {
     id: 5,
     label: 'Locations',
-    slug: '/location',
+    slug: '/location/little-falls',
     menuId: 'locations',
     children: null,
   },

@@ -32,7 +32,7 @@ const getCareersPaths = async () => {
   try {
     const res = await fetch(url, { headers });
     const resToJson = await res.json();
-    return resToJson.careers.map((c) => `/career${c.slug}`);
+    return resToJson.careers.map((c) => `/careers${c.slug}`);
   } catch (error) {
     console.error(error);
   }
@@ -78,7 +78,7 @@ const getPracticePaths = async (isArticles) => {
     const res = await fetch(`${BASE_API_URL}/wp-json/practice-portal/all-links`, { headers });
     const resToJson = await res.json();
 
-    const genPath = (slug) => (isArticles ? `/practice/${slug}/articles` : `/practice/${slug}`);
+    const genPath = (slug) => (isArticles ? `/practices/${slug}/articles` : `/practices/${slug}`);
 
     return await resToJson.map((slug) => genPath(slug));
   } catch (error) {
@@ -123,7 +123,7 @@ export const getServerSideProps = async ({ res }) => {
   const pagePaths = await getCurrentPublishedPages();
   const postPaths = POST_TYPE_REWRITES.map(({ source }) => source.replace('/:path*', ''));
 
-  const modAttorneyPaths = attorneyPaths.map(({ link }) => `/attorney${link}`);
+  const modAttorneyPaths = attorneyPaths.map(({ link }) => `/attorneys${link}`);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

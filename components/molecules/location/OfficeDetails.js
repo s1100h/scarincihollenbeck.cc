@@ -4,8 +4,8 @@ import { getDirectionsFromLocation } from 'utils/helpers';
 
 const OfficeDetails = ({ office }) => (
   <div className="d-flex flex-column">
-    <Link href={office.slug || '/'}>
-      <a className="text-dark">
+    <Link href={office.slug || '/'} passHref>
+      <a>
         {office.title === 'Washington D.C.' ? (
           <p style={{ fontSize: '1.13rem', marginBottom: '13px' }}>
             <strong>Washington, D.C.</strong>
