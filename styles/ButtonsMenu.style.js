@@ -43,6 +43,9 @@ export const ButtonTab = styled.div`
 export const ButtonDropdown = styled(NavDropdown)`
   .dropdown-toggle {
     ${commonBtnStyle}
+    max-width: 160px;
+    min-width: 120px;
+
     color: ${globalColor.gray.gray80};
 
     :hover {
@@ -86,6 +89,6 @@ export const NavItem = styled(Nav.Item)`
   cursor: pointer;
 
   :hover {
-    border-bottom: 2px solid #b50000;
+    border-bottom: 2px solid ${globalColor.red.darkRed};
   }
 `
