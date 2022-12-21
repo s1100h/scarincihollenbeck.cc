@@ -48,9 +48,9 @@ export const ProfileSidebarAwards = ({ awards }) => {
         awards,
         isBigTabletScreen,
         renderAward(
-          awards[0].awardLink,
-          awards[0].awardImage.sourceUrl,
-          awards[0].awardTitle,
+          awards[0]?.awardLink,
+          awards[0]?.awardImage?.sourceUrl,
+          awards[0]?.awardTitle,
           true,
         ),
         renderAward,

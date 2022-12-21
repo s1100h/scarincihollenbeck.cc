@@ -163,7 +163,6 @@ export const getServerSideProps = async ({ params, res }) => {
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
   const moreTabs = attorneyBio.attorneyTabNavigation.moreMenu;
-
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
     .map((i) => ({
@@ -258,13 +257,18 @@ export const getServerSideProps = async ({ params, res }) => {
         id: slug,
       },
     },
+    {
+      id: 100,
+      title: 'Education',
+      content: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
+    },
     ...externalBlogTabs,
   ];
 
   /** Sanitize main tab section */
   const mainTabsMatched = mainTabs
-    .map((tab) => tabs.filter((t) => t.title === tab)[0])
-    .filter((a) => a !== undefined);
+    .map((tabMapItem) => tabs.filter((tabFilterItem) => tabFilterItem.title === tabMapItem)[0])
+    .filter((item) => item !== undefined);
   let moreTabsMatched = [];
 
   /** Set up more tab section */
@@ -293,6 +297,7 @@ export const getServerSideProps = async ({ params, res }) => {
       attorneyFooterNewsArticles: newsPosts.filter((_, i) => i <= 2),
       mainTabs: mainTabsMatched,
       moreTabs: moreTabsMatched,
+      additionalTabs,
       attorneyCredentials,
       attorneyAwards,
       attorneyClients,
@@ -313,6 +318,7 @@ const AttorneyProfile = ({
   attorneyAwards,
   attorneyClients,
   authorId,
+  additionalTabs,
 }) => {
   const attorneyPageProps = {
     seo,
@@ -325,6 +331,7 @@ const AttorneyProfile = ({
     attorneyAwards,
     attorneyClients,
     authorId,
+    additionalTabs,
   };
   return (
     <ApolloWrapper>
