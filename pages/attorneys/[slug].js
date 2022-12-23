@@ -4,6 +4,7 @@ import {
   attorneyBySlugQuery,
   attorneyNewsEventsQuery,
   attorneyFirmBlogQuery,
+  miniOfficeLocationQuery,
 } from 'utils/graphql-queries';
 import {
   concatNameUser,
@@ -16,6 +17,7 @@ import {
 import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
 import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
+import { sanitizeOffices } from 'pages';
 
 /** Get the attorneys bio data base on their slug */
 export async function attorneyBySlug(slug) {
@@ -23,6 +25,11 @@ export async function attorneyBySlug(slug) {
     variables: { slug },
   });
   return data.attorneyProfileBy;
+}
+
+export async function getLocationOffices() {
+  const data = await fetchAPI(miniOfficeLocationQuery, {});
+  return sanitizeOffices(data.officeLocations.nodes);
 }
 
 /** Get all the news/events based on the attorneys name */
@@ -55,6 +62,7 @@ export const getServerSideProps = async ({ params, res }) => {
   }
 
   const attorneyBio = await attorneyBySlug(slug);
+  const officeLocations = await getLocationOffices();
 
   if (!attorneyBio) {
     return {
@@ -137,9 +145,9 @@ export const getServerSideProps = async ({ params, res }) => {
       }),
     ),
     offices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
-      ({ uri, title, id }) => ({
+      ({ uri, id, officeMainInformation }) => ({
         link: uri,
-        name: title,
+        name: officeMainInformation.addressLocality,
         ID: id,
       }),
     ),
@@ -263,7 +271,7 @@ export const getServerSideProps = async ({ params, res }) => {
       content: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
     },
     {
-      id: 15,
+      id: 16,
       title: 'Admissions',
       content:
         attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
