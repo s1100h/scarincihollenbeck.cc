@@ -16,7 +16,7 @@ export async function getFirmOverviewContent() {
 const sanitizeMembers = (members) => members.map((member) => ({
   title: member.title,
   uri: member.attorneyMainInformation
-    ? `attorney/${member.slug}`
+    ? `attorneys/${member.slug}`
     : `administration/${member.slug}`,
   better_featured_image:
       member.attorneyMainInformation?.profileImage?.sourceUrl
