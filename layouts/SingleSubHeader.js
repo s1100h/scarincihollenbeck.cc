@@ -1,5 +1,6 @@
 import { createMarkup } from 'utils/helpers';
 import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
+import Link from 'next/link';
 
 const SingleSubHeader = ({
   title,
@@ -27,18 +28,13 @@ const SingleSubHeader = ({
           {authors.map((author, index) => (author.user_url === '' ? (
             <span key={author.display_name}>{author.display_name}</span>
           ) : (
-            <a
-              href={
-                  author.user_url[author.user_url.length - 1] === '/'
-                    ? author.user_url.slice(0, -1)
-                    : author.user_url
-                }
-              key={author.display_name}
-              className="text-underline"
-            >
-              {author.display_name}
-              {index < authors.length - 1 && <>, </>}
-            </a>
+            <Link key={author.display_name} href={`/attorneys/${author.user_url}`}>
+              <a>
+                {author.display_name}
+
+                {index < authors.length - 1 && <>, </>}
+              </a>
+            </Link>
           )))}
           <span className="mx-3">|</span>
           {date}

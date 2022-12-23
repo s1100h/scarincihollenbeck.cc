@@ -24,6 +24,15 @@ const getMapDataFrmLocations = async () => {
   return officeLocations?.nodes;
 };
 
+export const sanitizeOffices = (offices) => offices.map(({
+  databaseId, slug, title, officeMainInformation,
+}) => ({
+  databaseId,
+  slug,
+  title,
+  ...officeMainInformation,
+}));
+
 /** Map the home page query data to page props */
 export const getStaticProps = async () => {
   /** get page content */
@@ -64,14 +73,6 @@ export const getStaticProps = async () => {
 
   /** get firm locations */
   // const offices = await homePageLocations();
-  const sanitizeOffices = (offices) => offices.map(({
-    databaseId, slug, title, officeMainInformation,
-  }) => ({
-    databaseId,
-    slug,
-    title,
-    ...officeMainInformation,
-  }));
 
   const sortedOffices = offices.sort((a, b) => (a.title > b.title ? 1 : -1));
   return {

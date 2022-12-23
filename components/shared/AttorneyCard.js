@@ -10,13 +10,20 @@ import {
   UserName,
 } from 'styles/AttorneyCard.style';
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
+import { useId } from 'react';
 
 const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
   if (Array.isArray(locationsOrPractice)) {
-    return locationsOrPractice?.map((location) => (
-      <Link key={location} href={`${officesMap[location].slug}`}>
-        <a>{location}</a>
-      </Link>
+    const filteredOffices = locationsOrPractice
+      .map((location) => officesMap.filter((office) => location === office.title))
+      .flat();
+    return filteredOffices?.map((office, idx) => (
+      <li key={office.id || useId()}>
+        <Link href={`location/${office.slug}` || '/location'}>
+          <a>{office.addressLocality}</a>
+        </Link>
+        <>{idx < filteredOffices.length - 1 && ','}</>
+      </li>
     ));
   }
   return (
@@ -25,7 +32,7 @@ const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
         <div className="d-flx">
           Chair:
           {locationsOrPractice.chair?.map((location) => (
-            <Link key={location.id} href={`/practice/${location.slug}`}>
+            <Link key={location.id} href={`/practices/${location.slug}`}>
               <a>
                 {' '}
                 {location?.title}
@@ -62,6 +69,7 @@ export default function AttorneyCard({
   offices,
   title,
 }) {
+  // console.log("99999999", offices)
   return (
     <AttorneyCardBox>
       <Link href={link} passHref>
@@ -87,7 +95,9 @@ export default function AttorneyCard({
             {title ? (
               <p>{title}</p>
             ) : (
-              <div className="d-flex gap-1">{renderLinkToLocationPractice(locations, offices)}</div>
+              <ul className="d-flex gap-1 m-0 p-0">
+                {renderLinkToLocationPractice(locations, offices)}
+              </ul>
             )}
 
             <p>{designation}</p>

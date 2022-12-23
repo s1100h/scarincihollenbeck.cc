@@ -54,7 +54,7 @@ const AttorneysPage = ({
         <div className="w-100 mt-5">
           {attorneysContext.length > 0 && (
             <Results
-              attorneysOffices={offices}
+              attorneysOffices={locations}
               attorneys={attorneysContext}
               userInput={userInput}
               select={select}

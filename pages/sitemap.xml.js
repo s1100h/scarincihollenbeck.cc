@@ -90,6 +90,7 @@ const getPracticePaths = async (isArticles) => {
 const getCurrentPublishedPages = async () => {
   const exception1 = 'order-confirmation';
   const exception2 = 'order-failed';
+  const exception3 = 'front-page';
 
   const clearArrPages = [];
   try {
@@ -99,7 +100,7 @@ const getCurrentPublishedPages = async () => {
       .filter((page) => page.status === 'publish')
       .map((page) => page.slug);
     const withoutExceptions = publishedPages.filter(
-      (pageSlag) => pageSlag !== exception1 && pageSlag !== exception2,
+      (pageSlag) => pageSlag !== exception1 && pageSlag !== exception2 && pageSlag !== exception3,
     );
     return clearArrPages.concat(withoutExceptions);
   } catch (error) {
@@ -122,7 +123,6 @@ export const getServerSideProps = async ({ res }) => {
   const practicePaths = await getPracticePaths();
   const pagePaths = await getCurrentPublishedPages();
   const postPaths = POST_TYPE_REWRITES.map(({ source }) => source.replace('/:path*', ''));
-
   const modAttorneyPaths = attorneyPaths.map(({ link }) => `/attorneys${link}`);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
