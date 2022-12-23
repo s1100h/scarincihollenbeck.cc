@@ -119,6 +119,9 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
           id
           title(format: RENDERED)
           uri
+          officeMainInformation {
+            addressLocality
+          }
         }
       }
       primaryPractice {
