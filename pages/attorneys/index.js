@@ -3,8 +3,9 @@ import { AttorneysContext } from 'contexts/AttorneysContext';
 import { sortByKey } from 'utils/helpers';
 import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { attorneysPageQuery } from 'utils/graphql-queries';
+import { attorneysPageQuery, miniOfficeLocationQuery } from 'utils/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
+import { sanitizeOffices } from 'pages';
 
 /** Fetch the page content from WP GRAPHQL API */
 export const attorneysPageContent = async () => {
@@ -15,13 +16,11 @@ export const attorneysPageContent = async () => {
 /** Fetch the office, designations, attorneys, practices data from WP REST API */
 const getAttorneysContent = async () => {
   try {
-    const [attorneys, locations, designations, practices] = await Promise.all([
+    const [attorneys, locationsArr, designations, practices] = await Promise.all([
       fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers })
         .then((data) => data.json())
         .catch((err) => err),
-      fetch(`${BASE_API_URL}/wp-json/attorney-search/office-locations`, { headers })
-        .then((data) => data.json())
-        .catch((err) => err),
+      fetchAPI(miniOfficeLocationQuery, {}),
       fetch(`${BASE_API_URL}/wp-json/attorney-search/designations`, { headers })
         .then((data) => data.json())
         .catch((err) => err),
@@ -29,6 +28,8 @@ const getAttorneysContent = async () => {
         .then((data) => data.json())
         .catch((err) => err),
     ]);
+
+    const locations = sanitizeOffices(locationsArr.officeLocations.nodes);
 
     return [attorneys, locations, designations, practices];
   } catch (error) {

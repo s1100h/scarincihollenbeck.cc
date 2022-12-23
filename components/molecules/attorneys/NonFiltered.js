@@ -49,6 +49,7 @@ const NonFiltered = ({ attorneys, offices }) => {
       setSortedAttorneys(orgAttorneys);
     }
   }, [attorneysTitles, firmOverviewTitles]);
+
   return (
     <>
       {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}

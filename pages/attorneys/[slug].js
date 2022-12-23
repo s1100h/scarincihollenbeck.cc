@@ -258,9 +258,15 @@ export const getServerSideProps = async ({ params, res }) => {
       },
     },
     {
-      id: 100,
+      id: 15,
       title: 'Education',
       content: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
+    },
+    {
+      id: 15,
+      title: 'Admissions',
+      content:
+        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
     },
     ...externalBlogTabs,
   ];

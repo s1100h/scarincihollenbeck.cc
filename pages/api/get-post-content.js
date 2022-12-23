@@ -204,6 +204,7 @@ export const getPostContent = async (slug, category) => {
 
       const authorDescription = getFieldData(authorMeta, 'description');
 
+      author[0].user_url = author[0].user_url.substr(author[0].user_url.lastIndexOf('/') + 1);
       authorData.push({
         ...author[0],
         authorDescription,

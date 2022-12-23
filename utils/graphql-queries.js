@@ -182,6 +182,20 @@ export const officeLocationQuery = `query BasicPageQuery {
 }
 `;
 
+export const miniOfficeLocationQuery = `query BasicPageQuery {
+  officeLocations {
+    nodes {
+      databaseId
+      slug
+      title
+      officeMainInformation {
+        addressLocality
+      }
+    }
+  }
+}
+`;
+
 export const attorneyNewsEventsQuery = `
 query AttorneyNewsEventPosts($name: String) {
   posts(where: {search: $name}) {
