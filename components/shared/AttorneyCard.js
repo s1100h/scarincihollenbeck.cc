@@ -69,10 +69,9 @@ export default function AttorneyCard({
   offices,
   title,
 }) {
-  // console.log("99999999", offices)
   return (
     <AttorneyCardBox>
-      <Link href={link} passHref>
+      <Link href={link} passHref as={`/${link.length > 0 && link}`}>
         <LinkBox>
           {image ? (
             <PhotoBox>

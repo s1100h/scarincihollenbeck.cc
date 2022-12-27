@@ -76,7 +76,7 @@ export const WhatAreTheFirms = () => (
     <>
       In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice groups you can learn
       more about
-      <Link href="/practice">
+      <Link href="/practices">
         <a> here.</a>
       </Link>
     </>

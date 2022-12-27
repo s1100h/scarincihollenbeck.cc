@@ -3,6 +3,7 @@ import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import AttorneyCard from './AttorneyCard';
 
 const VirtualizedMembers = ({ members }) => {
   const parentRef = useRef();
@@ -41,39 +42,20 @@ const VirtualizedMembers = ({ members }) => {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '162px',
+                height: '205px',
                 transform: `translateY(${virtualRow.start}px)`,
-                paddingLeft: '10px',
-                fontSize: '14px',
               }}
             >
-              <Link href={members[virtualRow.index].link}>
-                <a className="text-dark d-flex m-3 border-bottom">
-                  <Image
-                    src={formatSrcToCloudinaryUrl(members[virtualRow.index].image)}
-                    alt={members[virtualRow.index].name}
-                    width={108}
-                    height={148}
-                  />
-                  <p className="m-4">
-                    <strong className="text-uppercase redTitle smallExcerpt">
-                      {members[virtualRow.index].name}
-                    </strong>
-                    <br />
-                    <strong className="mb-1 smallExcerpt text-dark">
-                      {members[virtualRow.index].designation}
-                    </strong>
-                    <br />
-                    <strong>Phone: </strong>
-                    {' '}
-                    {members[virtualRow.index].contact}
-                    <br />
-                    <strong>Email: </strong>
-                    {' '}
-                    {members[virtualRow.index].email}
-                  </p>
-                </a>
-              </Link>
+              <AttorneyCard
+                link={`attorneys/${members[virtualRow.index].link}`}
+                image={formatSrcToCloudinaryUrl(members[virtualRow.index].image)}
+                name={members[virtualRow.index].name}
+                title={members[virtualRow.index].designation}
+                number={members[virtualRow.index].contact}
+                email={members[virtualRow.index].email}
+                width={80}
+                height={112}
+              />
             </div>
           ))}
         </div>
