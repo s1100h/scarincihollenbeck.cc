@@ -12,18 +12,18 @@ const PracticeRelatedAttorneys = ({ members, chair, title }) => (
       <Container>
         <BigGrayTitle>{title}</BigGrayTitle>
         <Row className="my-5">
-          {sortByKey(chair, 'lastName').map((m) => (
-            <Col sm={12} md={12} lg={6} key={m.ID}>
+          {sortByKey(chair, 'lastName').map((attorney) => (
+            <Col sm={12} md={12} lg={6} key={attorney.ID}>
               <AttorneyCard
-                link={m.link}
-                image={formatSrcToCloudinaryUrl(m.image)}
-                name={m.name}
-                title={m.designation}
-                number={m.contact}
-                email={m.email}
+                link={`attorneys/${attorney.link}`}
+                image={formatSrcToCloudinaryUrl(attorney.image)}
+                name={attorney.name}
+                title={attorney.designation}
+                number={attorney.contact}
+                email={attorney.email}
                 width={80}
                 height={112}
-                type="/attorney/[slug]"
+                type="/attorneys/[slug]"
               />
             </Col>
           ))}

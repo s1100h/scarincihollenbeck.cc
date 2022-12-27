@@ -48,6 +48,16 @@ export const getServerSideProps = async ({ params, res }) => {
     };
   }
 
+  request?.chair.map((chair) => {
+    chair.link = chair?.link.substr(chair.link.lastIndexOf('/') + 1);
+    return chair;
+  });
+
+  request?.attorneyList.map((attorney) => {
+    attorney.link = attorney?.link.substr(attorney.link.lastIndexOf('/') + 1);
+    return attorney;
+  });
+
   return {
     props: {
       practice: request,
