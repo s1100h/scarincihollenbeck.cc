@@ -15,7 +15,7 @@ const PracticeRelatedAttorneys = ({ members, chair, title }) => (
           {sortByKey(chair, 'lastName').map((attorney) => (
             <Col sm={12} md={12} lg={6} key={attorney.ID}>
               <AttorneyCard
-                link={`attorneys/${attorney.link}`}
+                link={`/attorneys/${attorney.link}`}
                 image={formatSrcToCloudinaryUrl(attorney.image)}
                 name={attorney.name}
                 title={attorney.designation}

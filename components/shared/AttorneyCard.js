@@ -71,7 +71,7 @@ export default function AttorneyCard({
 }) {
   return (
     <AttorneyCardBox>
-      <Link href={link} passHref as={`/${link.length > 0 && link}`}>
+      <Link href={link} passHref>
         <LinkBox>
           {image ? (
             <PhotoBox>

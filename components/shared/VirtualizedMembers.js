@@ -47,7 +47,7 @@ const VirtualizedMembers = ({ members }) => {
               }}
             >
               <AttorneyCard
-                link={`attorneys/${members[virtualRow.index].link}`}
+                link={`/attorneys/${members[virtualRow.index].link}`}
                 image={formatSrcToCloudinaryUrl(members[virtualRow.index].image)}
                 name={members[virtualRow.index].name}
                 title={members[virtualRow.index].designation}
