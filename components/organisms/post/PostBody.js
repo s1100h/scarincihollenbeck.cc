@@ -7,7 +7,7 @@ import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 're
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
 import AuthorBio from 'components/organisms/post/AuthorBio';
-import { createMarkup, urlify } from 'utils/helpers';
+import { createMarkup } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 import { ContentContainer } from 'styles/PageContant.style';
@@ -39,9 +39,9 @@ const PostBody = ({
       {categories && (
         <DisplayListTags title="Categories">
           {categories.map((category, index) => (
-            <li key={category.name} className="list-inline-item">
-              <Link href={`/library/category/${urlify(category.name)}`}>
-                <a className="text-dark underline">
+            <li key={category.id} className="list-inline-item">
+              <Link href={`/library/category/${category.slug}`}>
+                <a>
                   {category.name}
                   {categories.length - 1 !== index && ', '}
                 </a>
@@ -72,7 +72,6 @@ const PostBody = ({
         <BigGrayTitle className="my-5">Get In Touch</BigGrayTitle>
         <ContactForm />
       </div>
-      <style jsx>{'.underline:hover { text-decoration: underline }'}</style>
     </Col>
   );
 };

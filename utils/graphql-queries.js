@@ -643,6 +643,24 @@ export const covid19CrisisManagement = `query CareersPagesQuery {
 }
 `;
 
+export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
+  attorneyProfile(id: $id, idType: SLUG) {
+    status
+  }
+}`;
+
+export const postCategoriesQuery = `query BasicPageQuery($id: ID!) {
+  post(id: $id, idType: SLUG) {
+    categories {
+      nodes {
+        slug
+        databaseId
+        name
+      }
+    }
+  }
+}`;
+
 /** administration landing page query */
 export const administrationPageQuery = `query AdministrationPagesQuery {
   pageBy(pageId: 46670) {
