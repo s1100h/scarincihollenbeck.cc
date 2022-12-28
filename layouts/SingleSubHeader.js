@@ -25,7 +25,7 @@ const SingleSubHeader = ({
       {isBlog && (
         <p className="mb-2">
           <strong>Author: </strong>
-          {authors.map((author, index) => (author.user_url === '' ? (
+          {authors.map((author, index) => (author.user_url === '' || author.statusProfile === null ? (
             <span key={author.display_name}>{author.display_name}</span>
           ) : (
             <Link key={author.display_name} href={`/attorneys/${author.user_url}`}>

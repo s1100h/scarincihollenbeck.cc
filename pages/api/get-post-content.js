@@ -1,5 +1,7 @@
 /* eslint-disable consistent-return */
+import { fetchAPI } from 'utils/api';
 import { CLOUDINARY_BASE_URL, SITE_TITLE } from 'utils/constants';
+import { profileStatusQuery } from 'utils/graphql-queries';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 
 require('dotenv').config();
@@ -205,9 +207,17 @@ export const getPostContent = async (slug, category) => {
       const authorDescription = getFieldData(authorMeta, 'description');
 
       author[0].user_url = author[0].user_url.substr(author[0].user_url.lastIndexOf('/') + 1);
+
+      const isPublishedProfile = await fetchAPI(profileStatusQuery, {
+        variables: {
+          id: author[0].user_url,
+        },
+      });
+
       authorData.push({
         ...author[0],
         authorDescription,
+        statusProfile: isPublishedProfile.attorneyProfile,
       });
     }
   }

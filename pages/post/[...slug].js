@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic';
 import { getPostContent } from 'pages/api/get-post-content';
 import { SITE_URL, SITE_TITLE } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
+import { fetchAPI } from 'utils/api';
+import { postCategoriesQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -10,10 +12,23 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
  * queries the MySQL database. Please check out pages/api/get-post-content
  * for more details.
  * */
+
+const getPostCategory = async (slug) => {
+  const { post } = await fetchAPI(postCategoriesQuery, {
+    variables: {
+      id: slug,
+    },
+  });
+
+  return post.categories.nodes;
+};
+
 export const getServerSideProps = async ({ params, res, query }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   const postUrl = params.slug[params.slug.length - 1];
   const { category } = query;
+  const categoriesByQuery = await getPostCategory(postUrl);
+
   const request = await getPostContent(postUrl, category);
 
   if (request.status === 404) {
@@ -24,14 +39,14 @@ export const getServerSideProps = async ({ params, res, query }) => {
   }
 
   const {
-    post, seo, categories, tags, authors,
+    post, seo, tags, authors,
   } = request;
 
   return {
     props: {
       post,
       seo,
-      categories,
+      categories: categoriesByQuery,
       tags,
       authors,
       category,
