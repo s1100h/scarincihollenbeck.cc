@@ -20,7 +20,7 @@ const getPostCategory = async (slug) => {
     },
   });
 
-  return post.categories.nodes;
+  return post?.categories?.nodes;
 };
 
 export const getServerSideProps = async ({ params, res, query }) => {

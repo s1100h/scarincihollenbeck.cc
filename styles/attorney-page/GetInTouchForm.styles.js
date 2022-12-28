@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { globalColor } from 'styles/global_styles/Global.styles'
 
 export const FormContainer = styled.div`
+  margin-bottom: 20px;
+
   .kwes-form {
     display: flex;
     flex-direction: column;

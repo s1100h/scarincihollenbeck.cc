@@ -39,7 +39,7 @@ const getUserSeo = async (id) => {
   const data = await fetchAPI(getSEOforAuthorPosts, {
     variables: { id },
   });
-  return data.user;
+  return data?.user;
 };
 
 /** Set the author posts and related data to page props */
