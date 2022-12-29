@@ -39,7 +39,7 @@ const PostBody = ({
       {categories && (
         <DisplayListTags title="Categories">
           {categories.map((category, index) => (
-            <li key={category.id} className="list-inline-item">
+            <li key={category.databaseId} className="list-inline-item">
               <Link href={`/library/category/${category.slug}`}>
                 <a>
                   {category.name}
