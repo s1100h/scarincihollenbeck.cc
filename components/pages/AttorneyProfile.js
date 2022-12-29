@@ -10,6 +10,7 @@ import { CURRENT_DOMAIN } from 'utils/constants';
 import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
 import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { CustomContainer } from 'styles/Containers.style';
+import { useRouter } from 'next/router';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
@@ -26,6 +27,7 @@ const AttorneyPage = ({
   attorneyAwards,
   attorneyClients,
 }) => {
+  const { query } = useRouter();
   const [activeTab, setActiveTab] = useState(mainTabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState({
     type: typeof mainTabs[0].content,
@@ -36,7 +38,6 @@ const AttorneyPage = ({
   const [isBlog, setIsBlog] = useState(false);
   const [blogId, setBlogId] = useState(null);
   const [articleId, setArticleId] = useState(null);
-
   const education = {
     id: 22,
     title: 'Education',
@@ -61,6 +62,7 @@ const AttorneyPage = ({
     activeTab,
     tabs,
   };
+
   /** Effect handler that manages how the tabs work */
   useEffect(() => {
     const currentTabContent = tabs.filter((t) => t.id === activeTab);
@@ -92,7 +94,7 @@ const AttorneyPage = ({
   useEffect(() => {
     tabs.forEach((tab) => {
       if (Object.values(tab).includes('Blogs')) {
-        setBlogId(tab.content.id);
+        setBlogId(query.slug);
       }
 
       if (Object.values(tab).includes('News Press Releases')) {
