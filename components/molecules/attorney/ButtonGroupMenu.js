@@ -20,7 +20,11 @@ export const ButtonGroupMenu = ({
   <>
     <ButtonGroup>
       {mainTabs.map((tab) => (
-        <ButtonTab key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
+        <ButtonTab
+          key={tab.id}
+          active={activeTab === tab.id ? 'true' : undefined}
+          onClick={() => setActiveTab(tab.id)}
+        >
           {changeTitleMap[tab.title] || tab.title}
         </ButtonTab>
       ))}
@@ -30,7 +34,7 @@ export const ButtonGroupMenu = ({
             <NavItem
               key={tab.id}
               id={tab.id}
-              active={activeTab === tab.id}
+              active={activeTab === tab.id ? 'true' : undefined}
               onClick={() => {
                 setActiveTab(tab.id);
               }}
@@ -44,7 +48,11 @@ export const ButtonGroupMenu = ({
     <MobileGroup>
       <ButtonDropdown title="Menu">
         {tabs.map((tab) => (
-          <NavItem key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
+          <NavItem
+            key={tab.id}
+            active={activeTab === tab.id ? 'true' : undefined}
+            onClick={() => setActiveTab(tab.id)}
+          >
             {tab.title}
           </NavItem>
         ))}

@@ -310,9 +310,9 @@ export const authorPostsByIdQuery = `query authorPostsById(
   $last: Int
   $after: String
   $before: String
-  $id:Int
+  $id: String
 ) {
-  posts(where: {author:$id},  first: $first, last: $last, after: $after, before: $before) {
+  posts(where: {search:$id},  first: $first, last: $last, after: $after, before: $before) {
     pageInfo {
       hasNextPage
       hasPreviousPage
