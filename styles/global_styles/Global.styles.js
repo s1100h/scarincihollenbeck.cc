@@ -74,6 +74,10 @@ export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
 }
 
+export const globalIndents = {
+  attorneyProfilePaddings: '20px 30px',
+}
+
 export const rem = (sizeInPx) => {
   return `${sizeInPx / mainFotSize}rem`
 }

@@ -201,6 +201,21 @@ export const getServerSideProps = async ({ params, res }) => {
   const tabs = [
     ...additionalTabs,
     {
+      id: 5,
+      title: 'General',
+      content: {
+        miniBio: '',
+        education:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
+        barAdmissions:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        additionalInfo:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+            ?.additionalInformation,
+        clients: attorneyBio?.attorneyRepresentativeClients?.repClients,
+      },
+    },
+    {
       id: 6,
       title: 'Biography',
       content: attorneyBio.attorneyBiography.biographyContent,
