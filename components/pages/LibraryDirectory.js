@@ -42,7 +42,7 @@ const LibraryDirectory = ({
       last: null,
       after: null,
       before: null,
-      id: categoryId,
+      id: isAuthor ? categoryId.toString() : categoryId,
     },
   );
 

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { correctAttorneyLink, sortByKey } from 'utils/helpers';
+import { sortByKey } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
 import { DownloadTheMap, LinkMapBox, MediaBr } from 'styles/Locations.style';
 import { BsDownload } from 'react-icons/bs';
@@ -9,15 +9,15 @@ const RelatedPractices = dynamic(() => import('components/molecules/location/Rel
 const Map = dynamic(() => import('components/molecules/location/Map'));
 
 const LocationsBody = ({
-  attorneys, practices, map, title, linkToPdfMap,
+  attorneys, practices, map, title, linkToPdfMap, locationId,
 }) => {
   const officeTitle = title === 'Washington D.C.' ? 'Washington, D.C.' : title;
-  const littleFalls = 'Little Falls, NJ';
+  const littleFalls = 29436;
   return (
     <>
       <ContentTitle title={officeTitle} />
       <Map title={title} map={map} />
-      {title === littleFalls && (
+      {locationId === littleFalls && (
         <LinkMapBox>
           <DownloadTheMap href={linkToPdfMap.trainStationsMap} target="_blank" download>
             NJ Transit Rail System Map
