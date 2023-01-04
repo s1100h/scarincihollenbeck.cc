@@ -38,6 +38,7 @@ const LocationPage = ({
         <Row>
           <Col sm={12} lg={9}>
             <LocationsBody
+              locationId={currentOffice.id}
               attorneys={currentOffice.attorneys}
               practices={currentOffice.practices}
               map={currentOffice.mapLink}
