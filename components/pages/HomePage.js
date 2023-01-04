@@ -12,11 +12,18 @@ const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOf
 const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirm'), {
   ssr: true,
 });
-const FirmNews = dynamic(() => import('components/organisms/home/FirmNews'), { ssr: true });
+const FirmNews = dynamic(() => import('components/organisms/home/FirmNews/FirmNews'), { ssr: true });
 const Awards = dynamic(() => import('components/organisms/home/Awards'), { ssr: true });
 
 const HomePage = ({
-  seo, aboutFirm, aboutFirm2, awards, banner, isHoliday, offices,
+  seo,
+  aboutFirm,
+  aboutFirm2,
+  awards,
+  banner,
+  isHoliday,
+  offices,
+  firmNewsArticles,
 }) => (
   <>
     <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />
@@ -28,7 +35,7 @@ const HomePage = ({
       <AboutFirmSection {...aboutFirm2} />
     </AboutContainer>
     <AllOfficeLocations offices={offices} />
-    <FirmNews />
+    <FirmNews firmNews={firmNewsArticles} />
     <Awards awards={awards} />
   </>
 );

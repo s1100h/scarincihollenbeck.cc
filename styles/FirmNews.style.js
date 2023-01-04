@@ -135,6 +135,17 @@ export const OtherNews = styled.article`
 
     ${hoverLink}
 
+    ${(props) =>
+      props?.isVertical &&
+      `
+      display: flex;
+      flex-direction: column;
+
+      span {
+        width: 100% !important;
+      }
+    `}
+
     ${media_breakpoint_down('xl')} {
       display: flex;
       flex-direction: column;
@@ -225,7 +236,7 @@ export const ArticleNewsTitle = styled.h1`
   margin-top: 27px;
   margin-bottom: 20px;
 `
-export const Expert = styled.p`
+export const Expert = styled.div`
   font-size: 1.3rem;
   line-height: 1.5;
   color: ${globalColor.gray.gray70};
@@ -238,7 +249,7 @@ export const Expert = styled.p`
   margin-bottom: 30px;
 `
 
-export const Bottom = styled.p`
+export const Bottom = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.2rem;

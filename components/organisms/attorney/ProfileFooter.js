@@ -1,27 +1,29 @@
 import dynamic from 'next/dynamic';
+import { Col, Row } from 'react-bootstrap';
 
-const ClientSlider = dynamic(() => import('components/molecules/attorney/ClientSlider'));
-const FooterArticles = dynamic(() => import('components/molecules/attorney/FooterArticles'));
+const NewsCard = dynamic(() => import('../home/FirmNews/NewsCard'));
 
-const ProfileFooter = ({ clients, attorneyFooterBlogArticles, attorneyFooterNewsArticles }) => (
+const ProfileFooter = ({ attorneyFooterNewsArticles }) => (
   <>
-    {clients && clients.length > 0 && (
-      <>
-        <h3 className="mb-5">Clients</h3>
-        <ClientSlider clients={clients} />
-      </>
-    )}
-    {attorneyFooterNewsArticles && attorneyFooterNewsArticles.length > 0 && (
-      <>
-        <h3>News & Press Releases</h3>
-        <FooterArticles articles={attorneyFooterNewsArticles} />
-      </>
-    )}
-    {attorneyFooterBlogArticles && attorneyFooterBlogArticles.length > 0 && (
-      <>
-        <h3>Blogs & Client Alerts</h3>
-        <FooterArticles articles={attorneyFooterBlogArticles} />
-      </>
+    {attorneyFooterNewsArticles?.length > 0 && (
+      <Row className="mt-5 mb-2 w-70">
+        {attorneyFooterNewsArticles.map(
+          ({
+            databaseId, date, featuredImage, title, slug, author,
+          }) => (
+            <Col sm={12} md={4} key={databaseId}>
+              <NewsCard
+                postSlug={slug}
+                postImage={featuredImage}
+                postTitle={title}
+                postDate={date}
+                postAuthor={author}
+                isVertical="true"
+              />
+            </Col>
+          ),
+        )}
+      </Row>
     )}
   </>
 );

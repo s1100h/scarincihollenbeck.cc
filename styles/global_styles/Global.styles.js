@@ -226,6 +226,10 @@ video {
   }
 }
 
+.slick-list {
+  text-align: center;
+}
+
 .smallExcerpt {
   font-size: 13px;
   line-height: 1.5;

@@ -4,7 +4,6 @@ import {
   attorneyBySlugQuery,
   attorneyNewsEventsQuery,
   attorneyFirmBlogQuery,
-  miniOfficeLocationQuery,
 } from 'utils/graphql-queries';
 import {
   concatNameUser,
@@ -17,7 +16,6 @@ import {
 import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
 import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { sanitizeOffices } from 'pages';
 
 /** Get the attorneys bio data base on their slug */
 export async function attorneyBySlug(slug) {
@@ -27,17 +25,12 @@ export async function attorneyBySlug(slug) {
   return data.attorneyProfileBy;
 }
 
-export async function getLocationOffices() {
-  const data = await fetchAPI(miniOfficeLocationQuery, {});
-  return sanitizeOffices(data.officeLocations.nodes);
-}
-
 /** Get all the news/events based on the attorneys name */
 export async function attorneyNewsEvents(name) {
   const data = await fetchAPI(attorneyNewsEventsQuery, {
     variables: { name },
   });
-  return data.posts;
+  return data?.posts?.edges;
 }
 
 /** Get all the attorneys blog posts */
@@ -45,8 +38,17 @@ export async function attorneyFirmBlog(id) {
   const data = await fetchAPI(attorneyFirmBlogQuery, {
     variables: { id },
   });
-  return data.posts;
+  return data?.posts;
 }
+
+const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
+  node.featuredImage = node.featuredImage.node.sourceUrl;
+  node.slug = `/${node.categories.nodes[0].slug}/${node.slug}`;
+  node.author = node.author.node.name;
+  return {
+    ...node,
+  };
+});
 
 /** Set data from API response to page props WARNING: This is a large function */
 export const getServerSideProps = async ({ params, res }) => {
@@ -62,7 +64,6 @@ export const getServerSideProps = async ({ params, res }) => {
   }
 
   const attorneyBio = await attorneyBySlug(slug);
-  const officeLocations = await getLocationOffices();
 
   if (!attorneyBio) {
     return {
@@ -76,7 +77,7 @@ export const getServerSideProps = async ({ params, res }) => {
   const attorneyFirmPosts = await attorneyFirmBlog(authorId);
 
   /** Get Firm News/Events About Attorney */
-  const attorneyFirmNewsEvents = await attorneyNewsEvents(slug);
+  const newsPosts = newsSanitize(await attorneyNewsEvents(slug));
 
   /** Get Attorney External Blog Posts */
   const govLawPosts = {};
@@ -108,7 +109,6 @@ export const getServerSideProps = async ({ params, res }) => {
   }
 
   const blogPosts = sanitizeArticles(attorneyFirmPosts.edges);
-  const newsPosts = sanitizeArticles(attorneyFirmNewsEvents.edges);
 
   /** SEO meta data */
   const seo = {
@@ -170,7 +170,9 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
+  mainTabs.unshift('General');
   const moreTabs = attorneyBio.attorneyTabNavigation.moreMenu;
+
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
     .map((i) => ({
@@ -204,7 +206,8 @@ export const getServerSideProps = async ({ params, res }) => {
       id: 5,
       title: 'General',
       content: {
-        miniBio: '',
+        miniBio:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         education:
           attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
         barAdmissions:
@@ -212,7 +215,7 @@ export const getServerSideProps = async ({ params, res }) => {
         additionalInfo:
           attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
             ?.additionalInformation,
-        clients: attorneyBio?.attorneyRepresentativeClients?.repClients,
+        clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
       },
     },
     {

@@ -4,6 +4,7 @@ import ContentTitle from 'components/atoms/ContentTitle';
 import ContactForm from 'components/molecules/attorney/ContactForm';
 import Videos from 'components/molecules/attorney/Videos';
 import BlogList from 'components/molecules/attorney/BlogList';
+import General from './General';
 
 const renderBody = (title, content) => {
   switch (title) {
@@ -14,6 +15,8 @@ const renderBody = (title, content) => {
           <Table content={content} />
         </>
       );
+    case 'General':
+      return <General content={content} />;
     case 'Presentations':
       return (
         <>
