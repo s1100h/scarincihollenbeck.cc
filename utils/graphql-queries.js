@@ -41,6 +41,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
     }
     attorneyBiography {
       biographyContent
+      miniBio
     }
     attorneyAdditionalTabs {
       tabHeader1
@@ -185,6 +186,29 @@ export const officeLocationQuery = `query BasicPageQuery {
 }
 `;
 
+export const firmNewsQuery = `query authorPostsById {
+  posts(first: 4, where: {categoryName: "Firm News"}) {
+      nodes {
+        date
+        slug
+        databaseId
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+  }
+}`;
+
 export const miniOfficeLocationQuery = `query BasicPageQuery {
   officeLocations {
     nodes {
@@ -199,30 +223,33 @@ export const miniOfficeLocationQuery = `query BasicPageQuery {
 }
 `;
 
-export const attorneyNewsEventsQuery = `
-query AttorneyNewsEventPosts($name: String) {
-  posts(where: {search: $name}) {
-    edges {
-      node {
-        date
-        featuredImage {
+export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: String) {
+      posts(where: {search: $name}, first: 3) {
+        edges {
           node {
-            sourceUrl(size: LARGE)
-          }
-        }
-        uri
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        categories {
-          nodes {
-            name
-            uri
+            date
+            featuredImage {
+              node {
+                sourceUrl(size: LARGE)
+              }
+            }
+            title(format: RENDERED)
+            categories {
+              nodes {
+                slug
+              }
+            }
+            slug
+            databaseId
+            author {
+              node {
+                name
+              }
+            }
           }
         }
       }
-    }
-  }
-}`;
+    }`;
 
 export const attorneyFirmBlogQuery = `query AttorneyPostsById($id: Int) {
   posts(where: {author: $id}) {

@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { globalColor, globalShadow, rem } from 'styles/global_styles/Global.styles'
+import { globalColor, globalIndents, globalShadow, rem } from 'styles/global_styles/Global.styles'
 
 export const ProfileSidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
-  padding: 40px 25px;
+  padding: ${globalIndents.attorneyProfilePaddings};
   box-shadow: ${globalShadow.allSideShadow};
 `
 

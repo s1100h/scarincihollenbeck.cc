@@ -4,15 +4,18 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 
-const ClientSlider = ({ clients }) => {
+const ClientSlider = ({
+  clients, imgSize, numbers, buttons,
+}) => {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: numbers || 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
     easing: 'ease-in',
+    arrows: buttons || false,
   };
   return (
     <>
@@ -20,7 +23,12 @@ const ClientSlider = ({ clients }) => {
         {clients.map(({ clientImage, clientLink, clientTitle }) => (
           <div key={clientTitle}>
             <a href={clientLink}>
-              <Image src={clientImage.sourceUrl} alt={clientTitle} width={300} height={300} />
+              <Image
+                src={clientImage.sourceUrl}
+                alt={clientTitle}
+                width={imgSize?.width || 300}
+                height={imgSize?.height || 300}
+              />
             </a>
           </div>
         ))}

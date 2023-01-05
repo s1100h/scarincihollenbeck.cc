@@ -30,6 +30,7 @@ const LibraryDirectory = ({
   const mainNews = news[0];
   const featuredArticles = news.slice(1, news.length);
   const isAuthor = router.asPath.includes('author');
+
   const noPostsFoundMessage = <p>Sorry, no posts found</p>;
 
   /** Handle Article Archive Query */

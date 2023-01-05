@@ -74,6 +74,18 @@ export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
 }
 
+export const globalIndents = {
+  attorneyProfilePaddings: '20px 30px',
+}
+
+// this function adds rules with three dots after overfilling a container.
+export const threeDots = (lines) => `
+-webkit-line-clamp: ${lines};
+display: -webkit-box;
+-webkit-box-orient: vertical;
+overflow: hidden;
+`
+
 export const rem = (sizeInPx) => {
   return `${sizeInPx / mainFotSize}rem`
 }
@@ -220,6 +232,10 @@ video {
   img {
     max-width: 100%;
   }
+}
+
+.slick-list {
+  text-align: center;
 }
 
 .smallExcerpt {

@@ -3,7 +3,7 @@ import PostList from 'components/molecules/PostList';
 
 const ArticleContent = ({ title, content }) => (
   <>
-    <ContentTitle title={title} />
+    {title?.length > 0 && <ContentTitle title={title} />}
     <PostList content={content} />
   </>
 );
