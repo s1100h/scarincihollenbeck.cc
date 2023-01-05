@@ -141,3 +141,10 @@ export const ProfileName = styled.h1`
   font-family: 'Gotham Pro';
   font-weight: 600;
 `
+
+export const NewsTitle = styled.h2`
+  font-size: ${rem(72)};
+  font-family: 'kenjo I';
+  margin-top: 50px;
+  margin-bottom: 35px;
+`

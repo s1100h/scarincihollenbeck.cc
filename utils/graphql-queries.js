@@ -41,6 +41,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
     }
     attorneyBiography {
       biographyContent
+      miniBio
     }
     attorneyAdditionalTabs {
       tabHeader1

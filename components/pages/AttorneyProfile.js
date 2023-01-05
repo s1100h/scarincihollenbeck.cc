@@ -20,7 +20,6 @@ const ArticleContent = dynamic(() => import('components/organisms/attorney/Artic
 const AttorneyPage = ({
   seo,
   profileHeader,
-  attorneyFooterBlogArticles,
   attorneyFooterNewsArticles,
   mainTabs,
   moreTabs,
@@ -43,7 +42,6 @@ const AttorneyPage = ({
     title: 'Education',
     content: attorneyCredentials,
   };
-
   const contact = {
     id: 23,
     title: 'Contact',
@@ -156,7 +154,6 @@ const AttorneyPage = ({
             {isBlog && (
               <Surface>
                 <ArticleContent
-                  title="Blogs"
                   content={{
                     handleNextPagination: handleBlogNext,
                     handlePrevPagination: handleBlogPrev,
@@ -193,12 +190,12 @@ const AttorneyPage = ({
               {...activeTabContent}
             />
           </ColForSidebar>
-          <Col sm={12} md={11} lg={12}>
-            <ProfileFooter
-              attorneyFooterBlogArticles={attorneyFooterBlogArticles}
-              attorneyFooterNewsArticles={attorneyFooterNewsArticles}
-            />
-          </Col>
+
+          {attorneyFooterNewsArticles.length > 0 && (
+            <Col sm={12} md={11} lg={12}>
+              <ProfileFooter attorneyFooterNewsArticles={attorneyFooterNewsArticles} />
+            </Col>
+          )}
         </Row>
       </CustomContainer>
     </>

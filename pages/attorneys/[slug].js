@@ -42,7 +42,9 @@ export async function attorneyFirmBlog(id) {
 }
 
 const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
-  node.featuredImage = node.featuredImage.node.sourceUrl;
+  node.featuredImage = node.featuredImage?.node?.sourceUrl
+    ? node.featuredImage?.node?.sourceUrl
+    : '/images/no-image-found-diamond.png';
   node.slug = `/${node.categories.nodes[0].slug}/${node.slug}`;
   node.author = node.author.node.name;
   return {
@@ -170,8 +172,9 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
-  mainTabs.unshift('General');
+  mainTabs?.unshift('General');
   const moreTabs = attorneyBio.attorneyTabNavigation.moreMenu;
+  moreTabs?.unshift('Affiliations');
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
@@ -186,7 +189,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (Object.keys(govLawPosts).includes('posts')) {
     externalBlogTabs.push({
-      id: 15,
+      id: 16,
       title: 'Government & Law',
       content: govLawPosts,
     });
@@ -194,7 +197,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (Object.keys(conLawPosts).includes('posts')) {
     externalBlogTabs.push({
-      id: 16,
+      id: 17,
       title: 'Constitutional Law Reporter',
       content: conLawPosts,
     });
@@ -206,8 +209,7 @@ export const getServerSideProps = async ({ params, res }) => {
       id: 5,
       title: 'General',
       content: {
-        miniBio:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        miniBio: attorneyBio.attorneyBiography?.miniBio,
         education:
           attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
         barAdmissions:
@@ -285,14 +287,9 @@ export const getServerSideProps = async ({ params, res }) => {
     },
     {
       id: 15,
-      title: 'Education',
-      content: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
-    },
-    {
-      id: 16,
-      title: 'Admissions',
+      title: 'Affiliations',
       content:
-        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
     },
     ...externalBlogTabs,
   ];

@@ -16,7 +16,13 @@ const NewsCard = ({
     <Link href={postSlug}>
       <a>
         <div>
-          <Image src={postImage} alt={postTitle} width={750} height={350} layout="intrinsic" />
+          <Image
+            src={postImage.length > 0 ? postImage : '/images/no-image-found-diamond.png'}
+            alt={postTitle}
+            width={750}
+            height={350}
+            layout="intrinsic"
+          />
         </div>
         <TextNews>
           <h2>{postTitle}</h2>
@@ -25,7 +31,7 @@ const NewsCard = ({
           )}
           <p>
             <span>
-              <strong>Author : </strong>
+              <strong>Author: </strong>
               {postAuthor}
             </span>
             <span>
