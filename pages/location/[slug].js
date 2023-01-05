@@ -51,7 +51,7 @@ export const getStaticProps = async ({ params }) => {
 
   const [locations, currentOffice, currentOfficePosts] = await getLocationContent(slug);
 
-  if (currentOffice.name === 'Little Falls, NJ') {
+  if (currentOffice.id === 29436) {
     const id = await getPdfLink();
     autoMap = id.autoMap.link;
     trainStationsMap = id.trainStationsMap.link;
