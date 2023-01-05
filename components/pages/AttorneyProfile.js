@@ -11,6 +11,7 @@ import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-que
 import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { CustomContainer } from 'styles/Containers.style';
 import { useRouter } from 'next/router';
+import Surface from 'components/atoms/micro-templates/surface';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
@@ -19,13 +20,11 @@ const ArticleContent = dynamic(() => import('components/organisms/attorney/Artic
 const AttorneyPage = ({
   seo,
   profileHeader,
-  attorneyFooterBlogArticles,
   attorneyFooterNewsArticles,
   mainTabs,
   moreTabs,
   attorneyCredentials,
   attorneyAwards,
-  attorneyClients,
 }) => {
   const { query } = useRouter();
   const [activeTab, setActiveTab] = useState(mainTabs[0].id);
@@ -43,7 +42,6 @@ const AttorneyPage = ({
     title: 'Education',
     content: attorneyCredentials,
   };
-
   const contact = {
     id: 23,
     title: 'Contact',
@@ -154,28 +152,31 @@ const AttorneyPage = ({
               <ObjectContent {...activeTabContent} />
             )}
             {isBlog && (
-              <ArticleContent
-                title="Blogs"
-                content={{
-                  handleNextPagination: handleBlogNext,
-                  handlePrevPagination: handleBlogPrev,
-                  data: blogs,
-                  loading: blogLoading,
-                  error: blogError,
-                }}
-              />
+              <Surface>
+                <ArticleContent
+                  content={{
+                    handleNextPagination: handleBlogNext,
+                    handlePrevPagination: handleBlogPrev,
+                    data: blogs,
+                    loading: blogLoading,
+                    error: blogError,
+                  }}
+                />
+              </Surface>
             )}
             {isArticle && (
-              <ArticleContent
-                title="News & Press Releases"
-                content={{
-                  handleNextPagination: handleNewsNext,
-                  handlePrevPagination: handleNewsPrev,
-                  data: news,
-                  loading: newsLoading,
-                  error: newsError,
-                }}
-              />
+              <Surface>
+                <ArticleContent
+                  title="News & Press Releases"
+                  content={{
+                    handleNextPagination: handleNewsNext,
+                    handlePrevPagination: handleNewsPrev,
+                    data: news,
+                    loading: newsLoading,
+                    error: newsError,
+                  }}
+                />
+              </Surface>
             )}
           </ColStyled>
           <ColForSidebar top="45px" sm={12} md={11} lg={3} xl={4}>
@@ -189,13 +190,12 @@ const AttorneyPage = ({
               {...activeTabContent}
             />
           </ColForSidebar>
-          <Col sm={12} md={11} lg={12}>
-            <ProfileFooter
-              attorneyFooterBlogArticles={attorneyFooterBlogArticles}
-              attorneyFooterNewsArticles={attorneyFooterNewsArticles}
-              clients={attorneyClients}
-            />
-          </Col>
+
+          {attorneyFooterNewsArticles.length > 0 && (
+            <Col sm={12} md={11} lg={12}>
+              <ProfileFooter attorneyFooterNewsArticles={attorneyFooterNewsArticles} />
+            </Col>
+          )}
         </Row>
       </CustomContainer>
     </>

@@ -1,12 +1,12 @@
 import { Col } from 'react-bootstrap'
 import styled from 'styled-components'
-import { globalColor, globalShadow, rem } from '../global_styles/Global.styles'
+import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
 
 export const ProfileHeaderContainer = styled.div`
-  padding: 40px 60px;
+  padding: ${globalIndents.attorneyProfilePaddings};
   margin-top: 5%;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   box-shadow: ${globalShadow.allSideShadow};
 
   ${media_breakpoint_down('xl')} {
@@ -140,4 +140,11 @@ export const ItemContactList = styled.li`
 export const ProfileName = styled.h1`
   font-family: 'Gotham Pro';
   font-weight: 600;
+`
+
+export const NewsTitle = styled.h2`
+  font-size: ${rem(72)};
+  font-family: 'kenjo I';
+  margin-top: 50px;
+  margin-bottom: 35px;
 `
