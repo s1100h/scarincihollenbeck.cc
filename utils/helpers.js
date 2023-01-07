@@ -158,16 +158,6 @@ export const formatPageImageToCloudinaryUrl = (page) => {
   return page;
 };
 
-// sanitize internal articles from graphql request
-export const sanitizeArticles = (arr) => arr.map(({ node }, index) => ({
-  id: index,
-  link: node.uri,
-  image: formatSrcToCloudinaryUrl(node.featuredImage?.node.sourceUrl),
-  date: node.date,
-  excerpt: node.excerpt,
-  title: node.title,
-}));
-
 export const sanitizeExternalArticles = (arr) => arr.map(({
   id, link, title, date,
 }) => ({

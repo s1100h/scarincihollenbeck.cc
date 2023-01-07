@@ -42,13 +42,6 @@ const renderBody = (title, content) => {
     case 'Affiliations':
       return <AffiliationsContent {...content} />;
 
-    case 'Contact':
-      return (
-        <Surface>
-          <ContentTitle title={`Get in touch with ${content.name}`} />
-          <ContactForm {...content} />
-        </Surface>
-      );
     case 'Constitutional Law Reporter':
       return (
         <Surface>
