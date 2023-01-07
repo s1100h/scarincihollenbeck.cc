@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { globalColor, rem } from 'styles/global_styles/Global.styles'
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style'
 
 const commonRules = `
 padding: 40px 20px 40px;
@@ -20,6 +21,11 @@ export const GeneralContainer = styled.div`
 export const EducationAdmissionBox = styled.div`
   display: flex;
   gap: 25px;
+
+  ${media_breakpoint_down('sm')} {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export const GrayList = styled.div`

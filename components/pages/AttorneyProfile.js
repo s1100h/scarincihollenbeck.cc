@@ -23,7 +23,6 @@ const AttorneyPage = ({
   attorneyFooterNewsArticles,
   mainTabs,
   moreTabs,
-  attorneyCredentials,
   attorneyAwards,
 }) => {
   const { query } = useRouter();
@@ -37,21 +36,8 @@ const AttorneyPage = ({
   const [isBlog, setIsBlog] = useState(false);
   const [blogId, setBlogId] = useState(null);
   const [articleId, setArticleId] = useState(null);
-  const education = {
-    id: 22,
-    title: 'Education',
-    content: attorneyCredentials,
-  };
-  const contact = {
-    id: 23,
-    title: 'Contact',
-    content: {
-      emailForwarding: profileHeader.emailForwarding,
-      name: profileHeader.name,
-    },
-  };
 
-  const tabs = [...mainTabs, ...moreTabs, education, contact];
+  const tabs = [...mainTabs, ...moreTabs];
   const compressPropsHederProfile = {
     ...profileHeader,
     mainTabs,
@@ -184,8 +170,6 @@ const AttorneyPage = ({
               services={profileHeader.practices}
               setActiveTab={setActiveTab}
               setActiveTabContent={setActiveTabContent}
-              education={education}
-              contact={contact}
               awards={attorneyAwards}
               {...activeTabContent}
             />
