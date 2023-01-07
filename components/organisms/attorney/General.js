@@ -22,7 +22,7 @@ const General = ({ content }) => {
           )}
           {barAdmissions && (
             <GrayList
-              dangerouslySetInnerHTML={createMarkup(`<h3>Bar Admission</h3>${barAdmissions}`)}
+              dangerouslySetInnerHTML={createMarkup(`<h3>Admission</h3>${barAdmissions}`)}
             />
           )}
         </EducationAdmissionBox>

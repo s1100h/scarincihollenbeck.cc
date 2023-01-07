@@ -10,7 +10,6 @@ import {
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
   formatSrcToCloudinaryUrlPdf,
-  sanitizeArticles,
   sanitizeExternalArticles,
 } from 'utils/helpers';
 import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
@@ -76,7 +75,6 @@ export const getServerSideProps = async ({ params, res }) => {
   /** Create new tabs for Government and Law & Con Law  & Drop Music esq */
   /** Get Attorney/Author Internal Posts */
   const authorId = attorneyBio.attorneyMainInformation.profileImage.authorDatabaseId;
-  const attorneyFirmPosts = await attorneyFirmBlog(authorId);
 
   /** Get Firm News/Events About Attorney */
   const newsPosts = newsSanitize(await attorneyNewsEvents(slug));
@@ -109,8 +107,6 @@ export const getServerSideProps = async ({ params, res }) => {
       }
     }
   }
-
-  const blogPosts = sanitizeArticles(attorneyFirmPosts.edges);
 
   /** SEO meta data */
   const seo = {
@@ -309,28 +305,18 @@ export const getServerSideProps = async ({ params, res }) => {
     moreTabsMatched = [...matchTabs];
   }
 
-  /** Credentials --- Education, Bar Admissions, Affiliations, Additional Information */
-  const attorneyCredentials = attorneyBio.attorneyAdditionalInformationEducationAdmissionsAffiliations;
-
   /** Awards */
   const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
-
-  /** Clients */
-  const attorneyClients = attorneyBio.attorneyAwardsClientsBlogsVideos?.clients;
 
   return {
     props: {
       seo,
       profileHeader,
-      attorneyFooterBlogArticles: blogPosts.filter((_, i) => i <= 2),
       attorneyFooterNewsArticles: newsPosts.filter((_, i) => i <= 2),
       mainTabs: mainTabsMatched,
       moreTabs: moreTabsMatched,
       additionalTabs,
-      attorneyCredentials,
       attorneyAwards,
-      attorneyClients,
-      authorId,
     },
   };
 };
@@ -339,28 +325,18 @@ export const getServerSideProps = async ({ params, res }) => {
 const AttorneyProfile = ({
   seo,
   profileHeader,
-  attorneyFooterBlogArticles,
   attorneyFooterNewsArticles,
   mainTabs,
   moreTabs,
-  attorneyCredentials,
   attorneyAwards,
-  attorneyClients,
-  authorId,
-  additionalTabs,
 }) => {
   const attorneyPageProps = {
     seo,
     profileHeader,
-    attorneyFooterBlogArticles,
     attorneyFooterNewsArticles,
     mainTabs,
     moreTabs,
-    attorneyCredentials,
     attorneyAwards,
-    attorneyClients,
-    authorId,
-    additionalTabs,
   };
   return (
     <ApolloWrapper>
