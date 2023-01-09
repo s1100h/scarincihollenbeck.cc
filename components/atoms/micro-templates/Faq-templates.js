@@ -20,7 +20,7 @@ export const HawDoIKnow = () => (
   <>
     Different kinds of legal matters require attention from specialized areas of law. You can
     discover the firm`s practice groups or click
-    <Link href="/practices">
+    <Link href="/practice">
       <a> here </a>
     </Link>
     or if you have no idea where to begin, call
