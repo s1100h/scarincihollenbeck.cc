@@ -34,11 +34,9 @@ const PostBreadCrumbs = () => {
       </li>
 
       <li className="list-inline-item">
-        <Link href={router.asPath}>
-          <a className="redTitle text-uppercase">
-            <strong>{router.query.slug[router.query.slug.length - 1].replace(/-/g, ' ')}</strong>
-          </a>
-        </Link>
+        <span className="redTitle text-uppercase">
+          <strong>{router.query.slug[router.query.slug.length - 1].replace(/-/g, ' ')}</strong>
+        </span>
       </li>
     </ul>
   );
