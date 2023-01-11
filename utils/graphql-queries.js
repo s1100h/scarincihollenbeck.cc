@@ -602,6 +602,16 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
+/** attorneys landing page query */
+export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
+  attorneyProfiles(first: 200) {
+    nodes {
+      databaseId
+      uri
+    }
+  }
+}`;
+
 /** practices landing page query */
 export const practicePageQuery = `query PracticesPagesQuery {
   pageBy(pageId: 46644) {
