@@ -14,10 +14,10 @@ const useApolloQuery = (query, variables) => {
     variables,
   });
 
-  const handlePrevPagination = () => {
+  const handlePrevPagination = (numbersArticles) => {
     const base = {
       first: null,
-      last: 8,
+      last: numbersArticles || 8,
       after: null,
       before: data.posts?.pageInfo.startCursor || null,
     };
@@ -36,9 +36,9 @@ const useApolloQuery = (query, variables) => {
     });
   };
 
-  const handleNextPagination = () => {
+  const handleNextPagination = (numbersArticles) => {
     const base = {
-      first: 8,
+      first: numbersArticles || 8,
       last: null,
       after: data.posts?.pageInfo.endCursor || null,
       before: null,

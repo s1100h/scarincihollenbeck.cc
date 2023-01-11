@@ -1,10 +1,10 @@
 import React from 'react';
 import Loader from 'components/atoms/Loader';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import ArticlesNonVirtualized from 'components/shared/ArticlesNonVirtualized';
 import PaginationButtons from 'components/atoms/PaginationButtons';
+import NewsCard from 'components/organisms/home/FirmNews/NewsCard';
 
-const PostList = ({ content }) => {
+const PostList = ({ content, isProfile }) => {
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = content;
@@ -13,38 +13,36 @@ const PostList = ({ content }) => {
     return <pre>{JSON.stringify(error)}</pre>;
   }
 
-  // loading
-  if (loading) {
-    return <Loader loading={loading} />;
-  }
-
   if (data?.posts?.edges.length <= 0) {
     return <div>No posts found...</div>;
   }
 
   return (
     <div style={{ minHeight: '410px' }}>
-      <PaginationButtons
-        handleNextPagination={handleNextPagination}
-        handlePrevPagination={handlePrevPagination}
-      />
-
-      {data?.posts?.edges.map(({ node }) => (
-        <div className="mb-4" key={node.title}>
-          <ArticlesNonVirtualized
-            excerpt={node.excerpt}
-            date={node.date}
-            imgSrc={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
-            title={node.title}
-            slug={node.uri.replace('https://wp/scarinichollenbeck.com', '')}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {data?.posts?.edges.map(({ node }) => (
+            <div className="mb-4" key={node.title}>
+              <NewsCard
+                postSlug={node.uri.replace('https://wp/scarinichollenbeck.com', '')}
+                postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
+                postTitle={node.title}
+                postDate={node.date}
+                postExcerpt={isProfile ? null : node.excerpt}
+                postAuthor={node.author.node.name || 'Scarinci Hollenbeck'}
+                isProfile={isProfile}
+              />
+            </div>
+          ))}
+          <PaginationButtons
+            handleNextPagination={handleNextPagination}
+            handlePrevPagination={handlePrevPagination}
+            countOfArticles={3}
           />
-        </div>
-      ))}
-
-      <PaginationButtons
-        handleNextPagination={handleNextPagination}
-        handlePrevPagination={handlePrevPagination}
-      />
+        </>
+      )}
     </div>
   );
 };

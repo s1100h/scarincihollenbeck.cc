@@ -20,6 +20,7 @@ export const ButtonTab = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
   ${({ active }) =>
     active &&
     `
@@ -28,6 +29,14 @@ export const ButtonTab = styled.div`
 		white-space: initial;
 		opacity: 1;
 	`}
+
+  ${({ isMore }) =>
+    isMore &&
+    `
+    display: flex;
+    padding-left: 20px;
+	`}
+
   cursor: pointer;
 
   :hover {

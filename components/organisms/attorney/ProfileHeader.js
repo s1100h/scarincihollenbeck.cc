@@ -40,10 +40,9 @@ const ProfileHeader = ({
   coChair: coChairs,
   chair: chairs,
   contact,
-  mainTabs,
   setActiveTab,
-  moreTabs,
   activeTab,
+  primaryPractice,
   tabs,
 }) => {
   const [designation] = useDesignationHook(title);
@@ -61,6 +60,7 @@ const ProfileHeader = ({
     designation,
     coChairs,
     chairs,
+    primaryPractice,
   };
   const profileDetailsProps = {
     offices,
@@ -74,9 +74,7 @@ const ProfileHeader = ({
     linkedIn,
   };
   const buttonGroupProps = {
-    mainTabs,
     setActiveTab,
-    moreTabs,
     activeTab,
     tabs,
   };

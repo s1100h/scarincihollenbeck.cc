@@ -1,15 +1,13 @@
-import FadeLoader from 'react-spinners/FadeLoader';
+import { ClockLoader } from 'react-spinners';
+import { globalColor } from 'styles/global_styles/Global.styles';
 
-const Loader = (loading) => {
-  if (loading) {
-    <div
-      className="d-flex flex-colum justify-content-center align-items-center"
-      style={{ height: '300px' }}
-    >
-      <FadeLoader size={32} color="#a9a9a9" />
-    </div>;
-  }
-  return null;
-};
+const Loader = () => (
+  <div
+    className="d-flex flex-colum justify-content-center align-items-center"
+    style={{ height: '300px' }}
+  >
+    <ClockLoader size={200} color={globalColor.grayLite.grayLite60} />
+  </div>
+);
 
 export default Loader;

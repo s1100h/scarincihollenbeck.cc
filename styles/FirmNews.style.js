@@ -152,6 +152,7 @@ export const OtherNews = styled.article`
     `}
 
       h2 {
+      font-size: ${(props) => (props?.isVertical ? rem(20) : rem(18))};
       ${threeDots(3)}
     }
 
@@ -165,7 +166,7 @@ export const OtherNews = styled.article`
     }
 
     ${media_breakpoint_down('md')} {
-      flex-direction: row;
+      flex-direction: ${(props) => (props?.isProfile ? 'row' : 'column')};
       gap: 20px;
     }
 
@@ -187,7 +188,6 @@ export const TextNews = styled.section`
 
   h2 {
     font-weight: 600;
-    font-size: ${rem(20)};
     color: ${globalColor.black};
     margin-bottom: 0;
   }

@@ -46,7 +46,8 @@ export const SubTitleProfileBox = styled.div`
   padding-bottom: 5px;
   border-bottom: 1px solid ${globalColor.graySmoke.extraLiteSmoke};
 
-  h2 {
+  h2,
+  h4 {
     color: ${globalColor.gray.gray80};
     font-size: 1rem;
     margin: 10px 0 2px;
@@ -147,4 +148,16 @@ export const NewsTitle = styled.h2`
   font-family: 'kenjo I';
   margin-top: 50px;
   margin-bottom: 35px;
+
+  ${media_breakpoint_down('lg')} {
+    font-size: 2.5rem;
+  }
+
+  ${media_breakpoint_down('md')} {
+    text-align: center;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    font-size: 2rem;
+  }
 `

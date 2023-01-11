@@ -1,13 +1,13 @@
 import Table from 'components/molecules/attorney/Table';
 import AffiliationsContent from 'components/molecules/attorney/AffiliationsContent';
 import ContentTitle from 'components/atoms/ContentTitle';
-import ContactForm from 'components/molecules/attorney/ContactForm';
 import Videos from 'components/molecules/attorney/Videos';
 import BlogList from 'components/molecules/attorney/BlogList';
 import Surface from 'components/atoms/micro-templates/surface';
+import MoreTab from 'components/molecules/attorney/MoreTab';
 import General from './General';
 
-const renderBody = (title, content) => {
+const renderBody = (title, content, setActiveTab) => {
   switch (title) {
     case 'Media':
       return (
@@ -56,11 +56,13 @@ const renderBody = (title, content) => {
           <BlogList content={content} />
         </Surface>
       );
+    case 'More':
+      return <MoreTab content={content} setActiveTab={setActiveTab} />;
     default:
       return <>Content not found..</>;
   }
 };
 
-const ObjectContent = ({ title, content }) => renderBody(title, content);
+const ObjectContent = ({ title, content, setActiveTab }) => renderBody(title, content, setActiveTab);
 
 export default ObjectContent;
