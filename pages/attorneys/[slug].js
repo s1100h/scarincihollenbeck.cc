@@ -141,12 +141,15 @@ export const getServerSideProps = async ({ params, res }) => {
         || null,
       socialMediaLinks: attorneyBio.attorneyMainInformation?.socialMediaLinks,
     },
-    practices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices.map(
-      ({ uri, title }) => ({
-        link: uri,
-        title,
-      }),
-    ),
+    primaryPractice: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice,
+    practices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices
+      ? attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices.map(
+        ({ uri, title }) => ({
+          uri,
+          title,
+        }),
+      )
+      : [attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice],
     offices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
       ({ uri, id, officeMainInformation }) => ({
         link: uri,

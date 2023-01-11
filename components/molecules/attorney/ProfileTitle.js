@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ProfileName, SubTitleProfileBox } from 'styles/attorney-page/AttorneyProfile.style';
 
 const ProfileTitle = ({
-  name, designation, coChairs, chairs,
+  name, designation, coChairs, chairs, primaryPractice,
 }) => (
   <>
     <ProfileName className=" animate__animated animate__fadeInDown animate__slow">
@@ -10,6 +10,13 @@ const ProfileTitle = ({
     </ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
+      <h4>
+        Primary practice:
+        {' '}
+        <Link href={primaryPractice.uri}>
+          <a>{primaryPractice.title}</a>
+        </Link>
+      </h4>
       {chairs?.length > 0 && (
         <p>
           Chair:
