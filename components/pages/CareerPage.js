@@ -6,10 +6,9 @@ import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
 
-const CareerProfile = ({ career }) => {
+const CareerProfile = ({ career, canonicalUrl }) => {
   const { seo } = career;
   const title = `${seo.title} | Career at ${SITE_TITLE}`;
-  const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
 
   return (
     <>
