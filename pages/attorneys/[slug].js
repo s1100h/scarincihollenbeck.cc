@@ -4,20 +4,17 @@ import {
   attorneyBySlugQuery,
   attorneyNewsEventsQuery,
   attorneyFirmBlogQuery,
-  miniOfficeLocationQuery,
 } from 'utils/graphql-queries';
 import {
   concatNameUser,
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
   formatSrcToCloudinaryUrlPdf,
-  sanitizeArticles,
   sanitizeExternalArticles,
 } from 'utils/helpers';
 import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
 import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { sanitizeOffices } from 'pages';
 
 /** Get the attorneys bio data base on their slug */
 export async function attorneyBySlug(slug) {
@@ -27,17 +24,12 @@ export async function attorneyBySlug(slug) {
   return data.attorneyProfileBy;
 }
 
-export async function getLocationOffices() {
-  const data = await fetchAPI(miniOfficeLocationQuery, {});
-  return sanitizeOffices(data.officeLocations.nodes);
-}
-
 /** Get all the news/events based on the attorneys name */
 export async function attorneyNewsEvents(name) {
   const data = await fetchAPI(attorneyNewsEventsQuery, {
     variables: { name },
   });
-  return data.posts;
+  return data?.posts?.edges;
 }
 
 /** Get all the attorneys blog posts */
@@ -45,8 +37,24 @@ export async function attorneyFirmBlog(id) {
   const data = await fetchAPI(attorneyFirmBlogQuery, {
     variables: { id },
   });
-  return data.posts;
+  return data?.posts;
 }
+
+const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
+  node.featuredImage = node.featuredImage?.node?.sourceUrl
+    ? node.featuredImage?.node?.sourceUrl
+    : '/images/no-image-found-diamond.png';
+  node.slug = `/${node.categories.nodes[0].slug}/${node.slug}`;
+  let uri = node.uri;
+  uri = uri.split('/');
+  uri = `/${uri.slice(3).join('/')}`;
+  uri = uri[uri.length - 1] === '/' && uri.substring(0, uri.length - 1);
+  node.uri = uri;
+  node.author = node.author.node.name;
+  return {
+    ...node,
+  };
+});
 
 /** Set data from API response to page props WARNING: This is a large function */
 export const getServerSideProps = async ({ params, res }) => {
@@ -62,7 +70,6 @@ export const getServerSideProps = async ({ params, res }) => {
   }
 
   const attorneyBio = await attorneyBySlug(slug);
-  const officeLocations = await getLocationOffices();
 
   if (!attorneyBio) {
     return {
@@ -73,10 +80,9 @@ export const getServerSideProps = async ({ params, res }) => {
   /** Create new tabs for Government and Law & Con Law  & Drop Music esq */
   /** Get Attorney/Author Internal Posts */
   const authorId = attorneyBio.attorneyMainInformation.profileImage.authorDatabaseId;
-  const attorneyFirmPosts = await attorneyFirmBlog(authorId);
 
   /** Get Firm News/Events About Attorney */
-  const attorneyFirmNewsEvents = await attorneyNewsEvents(slug);
+  const newsPosts = newsSanitize(await attorneyNewsEvents(slug));
 
   /** Get Attorney External Blog Posts */
   const govLawPosts = {};
@@ -106,9 +112,6 @@ export const getServerSideProps = async ({ params, res }) => {
       }
     }
   }
-
-  const blogPosts = sanitizeArticles(attorneyFirmPosts.edges);
-  const newsPosts = sanitizeArticles(attorneyFirmNewsEvents.edges);
 
   /** SEO meta data */
   const seo = {
@@ -173,7 +176,10 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
+  mainTabs?.unshift('General');
   const moreTabs = attorneyBio.attorneyTabNavigation.moreMenu;
+  moreTabs?.unshift('Affiliations');
+
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
     .map((i) => ({
@@ -187,7 +193,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (Object.keys(govLawPosts).includes('posts')) {
     externalBlogTabs.push({
-      id: 15,
+      id: 16,
       title: 'Government & Law',
       content: govLawPosts,
     });
@@ -195,7 +201,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (Object.keys(conLawPosts).includes('posts')) {
     externalBlogTabs.push({
-      id: 16,
+      id: 17,
       title: 'Constitutional Law Reporter',
       content: conLawPosts,
     });
@@ -203,6 +209,21 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const tabs = [
     ...additionalTabs,
+    {
+      id: 5,
+      title: 'General',
+      content: {
+        miniBio: attorneyBio.attorneyBiography?.miniBio,
+        education:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
+        barAdmissions:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        additionalInfo:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+            ?.additionalInformation,
+        clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
+      },
+    },
     {
       id: 6,
       title: 'Biography',
@@ -270,14 +291,9 @@ export const getServerSideProps = async ({ params, res }) => {
     },
     {
       id: 15,
-      title: 'Education',
-      content: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
-    },
-    {
-      id: 16,
-      title: 'Admissions',
+      title: 'Affiliations',
       content:
-        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
     },
     ...externalBlogTabs,
   ];
@@ -297,28 +313,18 @@ export const getServerSideProps = async ({ params, res }) => {
     moreTabsMatched = [...matchTabs];
   }
 
-  /** Credentials --- Education, Bar Admissions, Affiliations, Additional Information */
-  const attorneyCredentials = attorneyBio.attorneyAdditionalInformationEducationAdmissionsAffiliations;
-
   /** Awards */
   const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
-
-  /** Clients */
-  const attorneyClients = attorneyBio.attorneyAwardsClientsBlogsVideos?.clients;
 
   return {
     props: {
       seo,
       profileHeader,
-      attorneyFooterBlogArticles: blogPosts.filter((_, i) => i <= 2),
       attorneyFooterNewsArticles: newsPosts.filter((_, i) => i <= 2),
       mainTabs: mainTabsMatched,
       moreTabs: moreTabsMatched,
       additionalTabs,
-      attorneyCredentials,
       attorneyAwards,
-      attorneyClients,
-      authorId,
     },
   };
 };
@@ -327,28 +333,18 @@ export const getServerSideProps = async ({ params, res }) => {
 const AttorneyProfile = ({
   seo,
   profileHeader,
-  attorneyFooterBlogArticles,
   attorneyFooterNewsArticles,
   mainTabs,
   moreTabs,
-  attorneyCredentials,
   attorneyAwards,
-  attorneyClients,
-  authorId,
-  additionalTabs,
 }) => {
   const attorneyPageProps = {
     seo,
     profileHeader,
-    attorneyFooterBlogArticles,
     attorneyFooterNewsArticles,
     mainTabs,
     moreTabs,
-    attorneyCredentials,
     attorneyAwards,
-    attorneyClients,
-    authorId,
-    additionalTabs,
   };
   return (
     <ApolloWrapper>

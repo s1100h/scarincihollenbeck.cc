@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { globalColor, rem, globalShadow } from './global_styles/Global.styles'
+import { globalColor, rem, globalShadow, threeDots } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 const hoverLink = `
@@ -41,6 +41,7 @@ export const TitleNews = styled.h1`
   font-family: 'Brand';
   text-transform: uppercase;
   margin-bottom: 30px;
+  ${threeDots(3)}
 
   ${media_breakpoint_down('md')} {
     font-size: 48px;
@@ -135,6 +136,25 @@ export const OtherNews = styled.article`
 
     ${hoverLink}
 
+    ${(props) =>
+      props?.isVertical &&
+      `
+      display: flex;
+      flex-direction: column;
+
+      span {
+        width: 100% !important;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+    `}
+
+      h2 {
+      ${threeDots(3)}
+    }
+
     ${media_breakpoint_down('xl')} {
       display: flex;
       flex-direction: column;
@@ -191,7 +211,9 @@ export const TextNews = styled.section`
 
   ${media_breakpoint_exactly_down('1600px')} {
     section {
-      height: 30px;
+      p {
+        ${threeDots(4)}
+      }
     }
   }
 
@@ -205,7 +227,6 @@ export const TextNews = styled.section`
     width: 100%;
 
     h2 {
-      margin-bottom: 20px;
       font-size: 1.1rem;
     }
     p {
@@ -225,7 +246,7 @@ export const ArticleNewsTitle = styled.h1`
   margin-top: 27px;
   margin-bottom: 20px;
 `
-export const Expert = styled.p`
+export const Expert = styled.div`
   font-size: 1.3rem;
   line-height: 1.5;
   color: ${globalColor.gray.gray70};
@@ -238,7 +259,7 @@ export const Expert = styled.p`
   margin-bottom: 30px;
 `
 
-export const Bottom = styled.p`
+export const Bottom = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.2rem;

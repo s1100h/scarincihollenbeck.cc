@@ -9,7 +9,6 @@ const Videos = ({ content }) => content.map((video) => (
       -
       {video.date}
     </p>
-    <style>{' .title { font-family: Proxima Nova Bold; }'}</style>
   </div>
 ));
 

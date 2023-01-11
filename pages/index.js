@@ -1,6 +1,6 @@
 import HomePage from 'components/pages/HomePage';
-import { fetchAPI, homePageLocations } from 'utils/api';
-import { homePageQuery, officeLocationQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'utils/api';
+import { firmNewsQuery, homePageQuery, officeLocationQuery } from 'utils/graphql-queries';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 /** pull out the attorney chair data from attorney response */
@@ -24,6 +24,11 @@ const getMapDataFrmLocations = async () => {
   return officeLocations?.nodes;
 };
 
+const getFirmNewsArticles = async () => {
+  const { posts } = await fetchAPI(firmNewsQuery, {});
+  return posts?.nodes;
+};
+
 export const sanitizeOffices = (offices) => offices.map(({
   databaseId, slug, title, officeMainInformation,
 }) => ({
@@ -33,9 +38,23 @@ export const sanitizeOffices = (offices) => offices.map(({
   ...officeMainInformation,
 }));
 
+export const sanitizeFirmNews = (news) => news.map(({
+  date, databaseId, slug, featuredImage, title, excerpt, author,
+}) => ({
+  date,
+  databaseId,
+  slug: `/firm-news/${slug}`,
+  featuredImage: featuredImage.node,
+  title,
+  excerpt,
+  author: author.node.name,
+}));
+
 /** Map the home page query data to page props */
 export const getStaticProps = async () => {
   /** get page content */
+  const firmNewsArticles = sanitizeFirmNews(await getFirmNewsArticles());
+
   const offices = await getMapDataFrmLocations();
   const request = await homePageContent();
   const { seo, homePage } = request;
@@ -81,6 +100,7 @@ export const getStaticProps = async () => {
       aboutFirm,
       aboutFirm2,
       awards,
+      firmNewsArticles,
       banner: {
         lineOne: bannerLineOne,
         lineTwo: bannerLineTwo,
@@ -113,6 +133,7 @@ const Home = ({
   serviceOne,
   serviceTwo,
   isHoliday,
+  firmNewsArticles,
 }) => {
   const homePageProps = {
     seo,
@@ -126,6 +147,7 @@ const Home = ({
     serviceOne,
     serviceTwo,
     isHoliday,
+    firmNewsArticles,
   };
   return <HomePage {...homePageProps} />;
 };
