@@ -46,7 +46,8 @@ export const SubTitleProfileBox = styled.div`
   padding-bottom: 5px;
   border-bottom: 1px solid ${globalColor.graySmoke.extraLiteSmoke};
 
-  h2 {
+  h2,
+  h4 {
     color: ${globalColor.gray.gray80};
     font-size: 1rem;
     margin: 10px 0 2px;
