@@ -10,13 +10,7 @@ const BlogList = ({ content }) => {
       {content.posts.map(({
         link, title, date, id,
       }) => (
-        <a
-          key={id}
-          href={link}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="h6 text-dark mb-4"
-        >
+        <a key={id} href={link} target="_blank" rel="noreferrer noopener" className="h6 mb-4">
           <strong>{title}</strong>
           {' '}
           -
@@ -26,7 +20,7 @@ const BlogList = ({ content }) => {
       {content.posts.length >= 13 && (
         <p className="border-top pt-3">
           Check out more of their articles on
-          <a href={baseUrl} className="text-dark">
+          <a href={baseUrl} target="_blank" rel="noreferrer">
             {' '}
             {isConLaw && <u>Constitutional Law Reporter</u>}
             {isGovLaw && <u>Government &amp; Law</u>}

@@ -41,9 +41,7 @@ const ProfileHeader = ({
   chair: chairs,
   primaryPractice,
   contact,
-  mainTabs,
   setActiveTab,
-  moreTabs,
   activeTab,
   tabs,
 }) => {
@@ -76,9 +74,7 @@ const ProfileHeader = ({
     linkedIn,
   };
   const buttonGroupProps = {
-    mainTabs,
     setActiveTab,
-    moreTabs,
     activeTab,
     tabs,
   };

@@ -22,7 +22,6 @@ const Table = ({ content }) => {
             height: '750px',
             width: '100%',
             overflow: 'auto',
-            borderRadius: '10px',
           }}
         >
           <div

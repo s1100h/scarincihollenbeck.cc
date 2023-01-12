@@ -1,10 +1,10 @@
 import ContentTitle from 'components/atoms/ContentTitle';
 import PostList from 'components/molecules/PostList';
 
-const ArticleContent = ({ title, content }) => (
+const ArticleContent = ({ title, content, isProfile }) => (
   <>
     {title?.length > 0 && <ContentTitle title={title} />}
-    <PostList content={content} />
+    <PostList content={content} isProfile />
   </>
 );
 
