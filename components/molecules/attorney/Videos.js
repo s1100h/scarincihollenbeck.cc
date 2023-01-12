@@ -1,7 +1,7 @@
 import { createMarkup } from 'utils/helpers';
 
 const Videos = ({ content }) => content.map((video) => (
-  <div key={video.title} className="mb-5">
+  <div key={video.title} className="mb-4">
     <div dangerouslySetInnerHTML={createMarkup(video.embedVideo)} />
     <p className="mb-0">
       <span className="h6 title">{video.title}</span>
