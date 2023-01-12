@@ -8,6 +8,7 @@ import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-que
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import StringContent from 'components/organisms/attorney/StringContent';
 import { createMarkup } from 'utils/helpers';
+import ContentTitle from 'components/atoms/ContentTitle';
 import BlogList from './BlogList';
 import Videos from './Videos';
 import Table from './Table';
@@ -22,7 +23,12 @@ const MoreTab = ({ content }) => {
       Publications: <Table content={contentItem.content} />,
       Videos: <Videos content={contentItem.content} />,
       Affiliations: <div dangerouslySetInnerHTML={createMarkup(contentItem.content)} />,
-      'Constitutional Law Reporter': <BlogList content={contentItem.content} />,
+      'Constitutional Law Reporter': (
+        <>
+          <ContentTitle title="Articles Published on Constitutional Law Reporter" />
+          <BlogList content={contentItem.content} />
+        </>
+      ),
       'Government & Law': <BlogList content={contentItem.content} />,
       'Representative Matters': <StringContent content={contentItem.content} />,
     };
@@ -54,7 +60,7 @@ const MoreTab = ({ content }) => {
               onClick={() => setActiveSubTab(tab)}
               isMore="true"
             >
-              {tab.title}
+              {tab.title === 'Constitutional Law Reporter' ? 'Law Reporter' : tab.title}
             </ButtonTab>
           ))}
         </ButtonGroup>

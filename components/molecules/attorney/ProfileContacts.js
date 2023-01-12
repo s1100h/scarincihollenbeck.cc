@@ -11,11 +11,11 @@ const ProfileContacts = ({ contact, offices, fax }) => {
   const { phoneNumber, email } = contact;
   return (
     <AddressBox>
-      <p>
+      <a href={`tel:${phoneNumber}`}>
         <BsFillTelephoneFill />
         {' '}
-        {phoneNumber}
-      </p>
+        <span>{phoneNumber}</span>
+      </a>
       {fax && (
         <p>
           <BsPrinterFill />
@@ -23,11 +23,11 @@ const ProfileContacts = ({ contact, offices, fax }) => {
           {fax}
         </p>
       )}
-      <p>
+      <a href={`mailto:${email}`}>
         <BsFillEnvelopeFill />
         {' '}
-        {email}
-      </p>
+        <span>{email}</span>
+      </a>
       <p>
         <BsFillGeoAltFill />
         {' '}

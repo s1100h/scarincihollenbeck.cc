@@ -173,12 +173,19 @@ export const getServerSideProps = async ({ params, res }) => {
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
   mainTabs?.unshift('General');
   const moreTabs = attorneyBio.attorneyTabNavigation?.moreMenu;
+
   if (
     attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations
       !== null
     && attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations.length
       > 0
-  ) moreTabs?.unshift('Affiliations');
+  ) {
+    if (!moreTabs) {
+      mainTabs.push('Affiliations');
+    }
+    moreTabs?.unshift('Affiliations');
+  }
+
   if (moreTabs?.length > 0) mainTabs.push('More');
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
@@ -229,6 +236,12 @@ export const getServerSideProps = async ({ params, res }) => {
       id: 6,
       title: 'Biography',
       content: attorneyBio.attorneyBiography.biographyContent,
+    },
+    {
+      id: 15,
+      title: 'Affiliations',
+      content:
+        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
     },
     {
       id: 18,
