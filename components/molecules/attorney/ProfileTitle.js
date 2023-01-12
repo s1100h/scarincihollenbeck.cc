@@ -10,13 +10,14 @@ const ProfileTitle = ({
     </ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
-      <h4>
-        Primary practice:
-        {' '}
-        <Link href={primaryPractice.uri}>
-          <a>{primaryPractice.title}</a>
-        </Link>
-      </h4>
+      {primaryPractice && (
+        <h4>
+          <Link href={primaryPractice.uri}>
+            <a>{primaryPractice.title}</a>
+          </Link>
+        </h4>
+      )}
+
       {chairs?.length > 0 && (
         <p>
           Chair:
