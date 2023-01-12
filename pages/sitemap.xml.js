@@ -1,5 +1,7 @@
 import { CURRENT_DOMAIN, BASE_API_URL, headers } from 'utils/constants';
 import { POST_TYPE_REWRITES } from 'utils/rewrites';
+import { attorneysSiteMapQuery } from '../utils/graphql-queries';
+import { fetchAPI } from '../utils/api';
 
 /** get all the administration urls */
 const getAdministrationPaths = async () => {
@@ -17,13 +19,8 @@ const getAdministrationPaths = async () => {
 
 /** get all the attorney urls */
 const getAttorneyPaths = async () => {
-  const url = `${BASE_API_URL}/wp-json/attorney-search/attorneys`;
-  try {
-    const res = await fetch(url, { headers });
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
+  const res = await fetchAPI(attorneysSiteMapQuery, {});
+  return res.attorneyProfiles.nodes;
 };
 
 /** get all the careers urls */
@@ -111,7 +108,7 @@ const getCurrentPublishedPages = async () => {
 };
 
 const Sitemap = () => null;
-
+const iii = 0;
 export const getServerSideProps = async ({ res }) => {
   const baseUrl = CURRENT_DOMAIN;
   const adminPaths = await getAdministrationPaths();
@@ -123,8 +120,9 @@ export const getServerSideProps = async ({ res }) => {
   const practicePaths = await getPracticePaths();
   const pagePaths = await getCurrentPublishedPages();
   const postPaths = POST_TYPE_REWRITES.map(({ source }) => source.replace('/:path*', ''));
-  const modAttorneyPaths = attorneyPaths.map(({ link }) => `/attorneys${link}`);
-
+  const modAttorneyPaths = attorneyPaths.map(
+    ({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`,
+  );
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
@@ -168,7 +166,7 @@ export const getServerSideProps = async ({ res }) => {
                   </url>
                 `,
     )
-    .join('')} 
+    .join('')}
       ${authorPaths
     .map(
       (url) => `
@@ -180,7 +178,7 @@ export const getServerSideProps = async ({ res }) => {
                     </url>
                   `,
     )
-    .join('')} 
+    .join('')}
           ${categoryPaths
     .map(
       (url) => `
@@ -204,7 +202,7 @@ export const getServerSideProps = async ({ res }) => {
                       </url>
                     `,
     )
-    .join('')} 
+    .join('')}
     ${practicePaths
     .map(
       (url) => `
@@ -216,7 +214,7 @@ export const getServerSideProps = async ({ res }) => {
                         </url>
                       `,
     )
-    .join('')}      
+    .join('')}
       ${pagePaths
     .map(
       (url) => `
@@ -228,7 +226,7 @@ export const getServerSideProps = async ({ res }) => {
                           </url>
                         `,
     )
-    .join('')} 
+    .join('')}
         ${postPaths
     .map(
       (url) => `
@@ -240,7 +238,7 @@ export const getServerSideProps = async ({ res }) => {
                             </url>
                           `,
     )
-    .join('')}      
+    .join('')}
     </urlset>
   `;
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400, stale-while-revalidate');

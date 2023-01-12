@@ -39,10 +39,10 @@ const ProfileHeader = ({
   pdf,
   coChair: coChairs,
   chair: chairs,
+  primaryPractice,
   contact,
   setActiveTab,
   activeTab,
-  primaryPractice,
   tabs,
 }) => {
   const [designation] = useDesignationHook(title);

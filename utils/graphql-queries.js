@@ -246,6 +246,7 @@ export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: Stri
                 name
               }
             }
+            uri
           }
         }
       }
@@ -597,6 +598,16 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
         name
         order
       }
+    }
+  }
+}`;
+
+/** attorneys landing page query */
+export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
+  attorneyProfiles(first: 200) {
+    nodes {
+      databaseId
+      uri
     }
   }
 }`;

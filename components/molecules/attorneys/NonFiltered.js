@@ -28,10 +28,10 @@ const organizeAttorneys = (attorneys, titles) => {
       results['Practice Leaders']?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Deputy Managing Partner') {
-      results['Firm Managing Partner']?.attorneys.push(attorney);
+      results['Firm Managing Partner'].attorneys.push(attorney);
     }
     if (attorney.designation === 'Chief Growth Officer') {
-      results.Directors?.attorneys.push(attorney);
+      results.Directors.attorneys.push(attorney);
     }
     Object.keys(results).forEach((key) => {
       if (attorney.designation[0] === key[0] && attorney.designation[0]) {

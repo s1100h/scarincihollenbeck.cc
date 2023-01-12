@@ -45,6 +45,11 @@ const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
     ? node.featuredImage?.node?.sourceUrl
     : '/images/no-image-found-diamond.png';
   node.slug = `/${node.categories.nodes[0].slug}/${node.slug}`;
+  let uri = node.uri;
+  uri = uri.split('/');
+  uri = `/${uri.slice(3).join('/')}`;
+  uri = uri[uri.length - 1] === '/' && uri.substring(0, uri.length - 1);
+  node.uri = uri;
   node.author = node.author.node.name;
   return {
     ...node,
