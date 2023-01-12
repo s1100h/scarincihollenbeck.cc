@@ -15,8 +15,8 @@ const organizeAttorneys = (attorneys, titles) => {
   attorneys.forEach((attorney) => {
     if (
       typeof attorney.designation === 'string'
-      && attorney.designation !== 'Firm Managing Partner'
-      && attorney.designation !== 'Deputy Managing Partner'
+      && !attorney.designation.includes('Firm Managing Partner')
+      && !attorney.designation.includes('Deputy Managing Partner')
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners?.attorneys.push(attorney);

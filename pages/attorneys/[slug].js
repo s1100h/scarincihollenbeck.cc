@@ -177,8 +177,21 @@ export const getServerSideProps = async ({ params, res }) => {
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
   mainTabs?.unshift('General');
-  const moreTabs = attorneyBio.attorneyTabNavigation.moreMenu;
-  moreTabs?.unshift('Affiliations');
+  const moreTabs = attorneyBio.attorneyTabNavigation?.moreMenu;
+
+  if (
+    attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations
+      !== null
+    && attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations.length
+      > 0
+  ) {
+    if (!moreTabs) {
+      mainTabs.push('Affiliations');
+    }
+    moreTabs?.unshift('Affiliations');
+  }
+
+  if (moreTabs?.length > 0) mainTabs.push('More');
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
@@ -230,88 +243,98 @@ export const getServerSideProps = async ({ params, res }) => {
       content: attorneyBio.attorneyBiography.biographyContent,
     },
     {
-      id: 7,
-      title: 'Representative Matters',
-      content: attorneyBio.attorneyRepresentativeMatters.repMatters
-        ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
-        : [],
-    },
-    {
-      id: 8,
-      title: 'Representative Clients',
-      content: attorneyBio.attorneyRepresentativeClients.repClients
-        ? attorneyBio.attorneyRepresentativeClients.repClients[0].content
-        : [],
-    },
-    {
-      id: 9,
-      title: 'Media',
-      content: {
-        header: attorneyBio.attorneyMedia.attorneyMedia.header,
-        body: attorneyBio.attorneyMedia.attorneyMedia.body,
-      },
-    },
-    {
-      id: 10,
-      title: 'Presentations',
-      content: {
-        header: attorneyBio.attorneyPresentations.attorneyPresentations.header,
-        body: attorneyBio.attorneyPresentations.attorneyPresentations.body,
-      },
-    },
-    {
-      id: 11,
-      title: 'Publications',
-      content: {
-        header: attorneyBio.attorneyPublications.attorneyPublications.header,
-        body: attorneyBio.attorneyPublications.attorneyPublications.body,
-      },
-    },
-
-    {
-      id: 12,
-      title: 'Videos',
-      content: attorneyBio.attorneyAwardsClientsBlogsVideos
-        ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
-        : [],
-    },
-    {
-      id: 13,
-      title: 'Blogs',
-      content: {
-        id: authorId,
-      },
-    },
-    {
-      id: 14,
-      title: 'News Press Releases',
-      content: {
-        id: slug,
-      },
-    },
-    {
       id: 15,
       title: 'Affiliations',
       content:
         attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
     },
-    ...externalBlogTabs,
+    {
+      id: 18,
+      title: 'More',
+      content: [
+        {
+          id: 7,
+          title: 'Representative Matters',
+          content: attorneyBio.attorneyRepresentativeMatters.repMatters
+            ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
+            : [],
+        },
+        {
+          id: 9,
+          title: 'Media',
+          content: {
+            header: attorneyBio.attorneyMedia.attorneyMedia.header,
+            body: attorneyBio.attorneyMedia.attorneyMedia.body,
+          },
+        },
+        {
+          id: 10,
+          title: 'Presentations',
+          content: {
+            header: attorneyBio.attorneyPresentations.attorneyPresentations.header,
+            body: attorneyBio.attorneyPresentations.attorneyPresentations.body,
+          },
+        },
+        {
+          id: 11,
+          title: 'Publications',
+          content: {
+            header: attorneyBio.attorneyPublications.attorneyPublications.header,
+            body: attorneyBio.attorneyPublications.attorneyPublications.body,
+          },
+        },
+        {
+          id: 12,
+          title: 'Videos',
+          content: attorneyBio.attorneyAwardsClientsBlogsVideos
+            ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
+            : [],
+        },
+        {
+          id: 13,
+          title: 'Blogs',
+          content: {
+            id: authorId,
+          },
+        },
+        {
+          id: 14,
+          title: 'News Press Releases',
+          content: {
+            id: slug,
+          },
+        },
+        {
+          id: 15,
+          title: 'Affiliations',
+          content:
+            attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
+        },
+        ...externalBlogTabs,
+      ],
+    },
   ];
 
   /** Sanitize main tab section */
   const mainTabsMatched = mainTabs
     .map((tabMapItem) => tabs.filter((tabFilterItem) => tabFilterItem.title === tabMapItem)[0])
     .filter((item) => item !== undefined);
-  let moreTabsMatched = [];
 
-  /** Set up more tab section */
-  if (moreTabs) {
-    const matchTabs = moreTabs
-      .map((tab) => tabs.filter((t) => t.title.includes(tab))[0])
-      .filter((a) => a !== undefined);
-
-    moreTabsMatched = [...matchTabs];
-  }
+  mainTabsMatched.map((tab) => {
+    if (tab.title === 'More') {
+      const moreTabsArr = [];
+      tab.content.forEach((tab) => {
+        moreTabs.forEach((tabTitle) => {
+          if (tab.title.includes(tabTitle)) {
+            moreTabsArr.push(tab);
+          }
+        });
+      });
+      tab.content = moreTabsArr;
+      return tab;
+    }
+    return tab;
+  });
 
   /** Awards */
   const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
@@ -321,8 +344,7 @@ export const getServerSideProps = async ({ params, res }) => {
       seo,
       profileHeader,
       attorneyFooterNewsArticles: newsPosts.filter((_, i) => i <= 2),
-      mainTabs: mainTabsMatched,
-      moreTabs: moreTabsMatched,
+      tabs: mainTabsMatched,
       additionalTabs,
       attorneyAwards,
     },
@@ -334,18 +356,17 @@ const AttorneyProfile = ({
   seo,
   profileHeader,
   attorneyFooterNewsArticles,
-  mainTabs,
-  moreTabs,
+  tabs,
   attorneyAwards,
 }) => {
   const attorneyPageProps = {
     seo,
     profileHeader,
     attorneyFooterNewsArticles,
-    mainTabs,
-    moreTabs,
+    tabs,
     attorneyAwards,
   };
+
   return (
     <ApolloWrapper>
       <AttorneyPage {...attorneyPageProps} />

@@ -1,7 +1,8 @@
+import { VideoContainer } from 'styles/Video.style';
 import { createMarkup } from 'utils/helpers';
 
 const Videos = ({ content }) => content.map((video) => (
-  <div key={video.title} className="mb-4">
+  <VideoContainer>
     <div dangerouslySetInnerHTML={createMarkup(video.embedVideo)} />
     <p className="mb-0">
       <span className="h6 title">{video.title}</span>
@@ -9,7 +10,7 @@ const Videos = ({ content }) => content.map((video) => (
       -
       {video.date}
     </p>
-  </div>
+  </VideoContainer>
 ));
 
 export default Videos;

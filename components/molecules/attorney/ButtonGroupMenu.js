@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import {
   ButtonDropdown,
   ButtonGroup,
@@ -14,12 +15,10 @@ const changeTitleMap = {
   'Notable Facts': 'Facts',
 };
 
-export const ButtonGroupMenu = ({
-  mainTabs, setActiveTab, moreTabs, activeTab, tabs,
-}) => (
+export const ButtonGroupMenu = ({ setActiveTab, activeTab, tabs }) => (
   <>
     <ButtonGroup>
-      {mainTabs.map((tab) => (
+      {tabs.map((tab) => (
         <ButtonTab
           key={tab.id}
           active={activeTab === tab.id ? 'true' : undefined}
@@ -28,22 +27,18 @@ export const ButtonGroupMenu = ({
           {changeTitleMap[tab.title] || tab.title}
         </ButtonTab>
       ))}
-      {moreTabs.length > 0 && (
-        <ButtonDropdown title="More">
-          {moreTabs.map((tab) => (
-            <NavItem
-              key={tab.id}
-              id={tab.id}
-              active={activeTab === tab.id ? 'true' : undefined}
-              onClick={() => {
-                setActiveTab(tab.id);
-              }}
-            >
-              {tab.title}
-            </NavItem>
-          ))}
-        </ButtonDropdown>
-      )}
+      {tabs.length > 0
+        && tabs.map(
+          (tab) => tab === 'More' && (
+          <ButtonTab
+            key={useId()}
+            active={activeTab === 18 ? 'true' : undefined}
+            onClick={() => setActiveTab(18)}
+          >
+            More
+          </ButtonTab>
+          ),
+        )}
     </ButtonGroup>
     <MobileGroup>
       <ButtonDropdown title="Menu">

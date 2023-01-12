@@ -5,44 +5,28 @@ import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import StringContent from 'components/organisms/attorney/StringContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import ProfileSidebar from 'components/organisms/attorney/ProfileSidebar';
-import useApolloQuery from 'hooks/useApolloQuery';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
 import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { CustomContainer } from 'styles/Containers.style';
-import { useRouter } from 'next/router';
-import Surface from 'components/atoms/micro-templates/surface';
 
 const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
 const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
-const ArticleContent = dynamic(() => import('components/organisms/attorney/ArticleContent'));
 
 const AttorneyPage = ({
-  seo,
-  profileHeader,
-  attorneyFooterNewsArticles,
-  mainTabs,
-  moreTabs,
-  attorneyAwards,
+  seo, profileHeader, attorneyFooterNewsArticles, tabs, attorneyAwards,
 }) => {
-  const { query } = useRouter();
-  const [activeTab, setActiveTab] = useState(mainTabs[0].id);
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState({
-    type: typeof mainTabs[0].content,
-    title: mainTabs[0].title,
-    content: mainTabs[0].content,
+    type: typeof tabs[0].content,
+    title: tabs[0].title,
+    content: tabs[0].content,
   });
   const [isArticle, setIsArticle] = useState(false);
   const [isBlog, setIsBlog] = useState(false);
-  const [blogId, setBlogId] = useState(null);
-  const [articleId, setArticleId] = useState(null);
 
-  const tabs = [...mainTabs, ...moreTabs];
   const compressPropsHederProfile = {
     ...profileHeader,
-    mainTabs,
     setActiveTab,
-    moreTabs,
     activeTab,
     tabs,
   };
@@ -62,59 +46,7 @@ const AttorneyPage = ({
       setIsBlog(false);
       setIsArticle(false);
     }
-
-    if (currentTabContent[0].title === 'Blogs') {
-      setIsBlog(true);
-      setIsArticle(false);
-    }
-
-    if (currentTabContent[0].title === 'News Press Releases') {
-      setIsArticle(true);
-      setIsBlog(false);
-    }
   }, [activeTab]);
-
-  /** Another hook that manages how the tabs work but focuses on the blog tab or the news tab */
-  useEffect(() => {
-    tabs.forEach((tab) => {
-      if (Object.values(tab).includes('Blogs')) {
-        setBlogId(query.slug);
-      }
-
-      if (Object.values(tab).includes('News Press Releases')) {
-        setArticleId(tab.content.id);
-      }
-    });
-  }, [tabs]);
-
-  /** Handle Blog Posts & News Press Releases Hooks */
-  const {
-    handleNextPagination: handleBlogNext,
-    handlePrevPagination: handleBlogPrev,
-    data: blogs,
-    loading: blogLoading,
-    error: blogError,
-  } = useApolloQuery(authorPostsByIdQuery, {
-    first: 3,
-    last: null,
-    after: null,
-    before: null,
-    id: blogId,
-  });
-
-  const {
-    handleNextPagination: handleNewsNext,
-    handlePrevPagination: handleNewsPrev,
-    data: news,
-    loading: newsLoading,
-    error: newsError,
-  } = useApolloQuery(authorFirmNewsByIdQuery, {
-    first: 3,
-    last: null,
-    after: null,
-    before: null,
-    name: articleId,
-  });
 
   return (
     <>
@@ -135,34 +67,7 @@ const AttorneyPage = ({
               <StringContent {...activeTabContent} />
             )}
             {activeTabContent.type === 'object' && !isBlog && !isArticle && (
-              <ObjectContent {...activeTabContent} />
-            )}
-            {isBlog && (
-              <Surface>
-                <ArticleContent
-                  content={{
-                    handleNextPagination: handleBlogNext,
-                    handlePrevPagination: handleBlogPrev,
-                    data: blogs,
-                    loading: blogLoading,
-                    error: blogError,
-                  }}
-                />
-              </Surface>
-            )}
-            {isArticle && (
-              <Surface>
-                <ArticleContent
-                  title="News & Press Releases"
-                  content={{
-                    handleNextPagination: handleNewsNext,
-                    handlePrevPagination: handleNewsPrev,
-                    data: news,
-                    loading: newsLoading,
-                    error: newsError,
-                  }}
-                />
-              </Surface>
+              <ObjectContent {...activeTabContent} setActiveTab={setActiveTabContent} />
             )}
           </ColStyled>
           <ColForSidebar top="45px" sm={12} md={11} lg={3} xl={4}>

@@ -11,8 +11,12 @@ const NewsCard = ({
   postDate,
   postAuthor,
   isVertical,
+  isProfile,
 }) => (
-  <OtherNews isVertical={isVertical?.length > 0 && isVertical}>
+  <OtherNews
+    isProfile={isProfile?.length > 0 && isVertical}
+    isVertical={isVertical?.length > 0 && isVertical}
+  >
     <Link href={postSlug}>
       <a>
         <div>
