@@ -15,7 +15,8 @@ const organizeAttorneys = (attorneys, titles) => {
   attorneys.forEach((attorney) => {
     if (
       typeof attorney.designation === 'string'
-      && attorney.designation !== 'Firm Managing Partner'
+      && !attorney.designation.includes('Firm Managing Partner')
+      && !attorney.designation.includes('Deputy Managing Partner')
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners?.attorneys.push(attorney);
@@ -26,12 +27,19 @@ const organizeAttorneys = (attorneys, titles) => {
     if (typeof attorney.designation !== 'string') {
       results['Practice Leaders']?.attorneys.push(attorney);
     }
+    if (attorney.designation === 'Deputy Managing Partner') {
+      results['Firm Managing Partner']?.attorneys.push(attorney);
+    }
+    if (attorney.designation === 'Chief Growth Officer') {
+      results.Directors?.attorneys.push(attorney);
+    }
     Object.keys(results).forEach((key) => {
       if (attorney.designation[0] === key[0] && attorney.designation[0]) {
         results[key].attorneys.push(attorney);
       }
     });
   });
+  results['Firm Managing Partner']?.attorneys.reverse();
   return results;
 };
 
