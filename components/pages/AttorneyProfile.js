@@ -9,7 +9,7 @@ import { CURRENT_DOMAIN } from 'utils/constants';
 import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { CustomContainer } from 'styles/Containers.style';
 
-const ProfileFooter = dynamic(() => import('components/organisms/attorney/ProfileFooter'));
+const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
 const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
 
 const AttorneyPage = ({
@@ -79,10 +79,12 @@ const AttorneyPage = ({
               {...activeTabContent}
             />
           </ColForSidebar>
-
           {attorneyFooterNewsArticles.length > 0 && (
             <Col sm={12} md={11} lg={12}>
-              <ProfileFooter attorneyFooterNewsArticles={attorneyFooterNewsArticles} />
+              <RecommendedPosts
+                titleGeneralBlock="News & Press Releases"
+                attorneyFooterNewsArticles={attorneyFooterNewsArticles}
+              />
             </Col>
           )}
         </Row>

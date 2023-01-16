@@ -806,6 +806,11 @@ export const firmPagesQuery = `query FirmPageQuery($slug: String) {
                   sourceUrl
                 }
               }
+              author {
+                 node {
+                   name
+                 }
+              }
             }
           }
         }
