@@ -1,17 +1,16 @@
-import dynamic from 'next/dynamic';
-import { Col, Row } from 'react-bootstrap';
-import { NewsTitle } from 'styles/attorney-page/AttorneyProfile.style';
+import { Col, Container, Row } from 'react-bootstrap';
+import { NewsTitle } from 'styles/RecommendedPosts.style';
+import { useId } from 'react';
+import NewsCard from '../organisms/home/FirmNews/NewsCard';
 
-const NewsCard = dynamic(() => import('../home/FirmNews/NewsCard'));
-
-const ProfileFooter = ({ attorneyFooterNewsArticles }) => (
-  <>
-    <NewsTitle>News & Press Releases</NewsTitle>
+const ProfileFooter = ({ titleGeneralBlock, attorneyFooterNewsArticles }) => (
+  <Container>
+    <NewsTitle>{titleGeneralBlock}</NewsTitle>
     <Row className="mb-2">
       {attorneyFooterNewsArticles.map(({
         databaseId, date, featuredImage, title, uri, author,
       }) => (
-        <Col sm={12} md={4} key={databaseId}>
+        <Col sm={12} md={4} key={databaseId || useId()}>
           <NewsCard
             postSlug={uri}
             postImage={featuredImage}
@@ -23,7 +22,7 @@ const ProfileFooter = ({ attorneyFooterNewsArticles }) => (
         </Col>
       ))}
     </Row>
-  </>
+  </Container>
 );
 
 export default ProfileFooter;

@@ -13,12 +13,12 @@ import {
   TwoColumnsContainer,
 } from 'styles/Containers.style';
 
-const PageArticleHero = dynamic(() => import('components/organisms/page/PageArticleHero'));
+const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
 const RelatedAttorneys = dynamic(() => import('components/molecules/practice/RelatedAttorneys'));
 
 export default function FirmPage({ page, canonicalUrl, handleLink }) {
   const {
-    seo, tabs, relatedPages, attorneysMentioned, title, description, members,
+    seo, tabs, relatedPages, attorneysRecommendedPosts, title, description, members,
   } = page;
 
   const titlesMap = {
@@ -58,17 +58,13 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
             title="Chair"
           />
         )}
-        {attorneysMentioned.length > 0 && (
+
+        {attorneysRecommendedPosts.length > 0 && (
           <div className="mt-lg-5">
-            <h3 className="d-flex justify-content-center">
-              {titlesMap[title] || 'Latest from the firm'}
-            </h3>
-            <div className="my-5">
-              <PageArticleHero
-                link={title.replace(/\s+/g, '-').toLowerCase()}
-                content={attorneysMentioned}
-              />
-            </div>
+            <RecommendedPosts
+              titleGeneralBlock={titlesMap[title] || 'Latest from the firm'}
+              attorneyFooterNewsArticles={attorneysRecommendedPosts}
+            />
           </div>
         )}
       </BottomContainer>
