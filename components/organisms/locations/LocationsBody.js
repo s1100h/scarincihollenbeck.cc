@@ -7,7 +7,7 @@ import { BsDownload } from 'react-icons/bs';
 const VirtualizedMembers = dynamic(() => import('components/shared/VirtualizedMembers'));
 const RelatedPractices = dynamic(() => import('components/molecules/location/RelatedPractices'));
 const Map = dynamic(() => import('components/molecules/location/Map'));
-
+const changeTitle = (title) => title.replace(/(^|\s+)Lawyers(\s+|$)/g, ' ');
 const LocationsBody = ({
   attorneys, practices, map, title, linkToPdfMap, locationId,
 }) => {
@@ -32,7 +32,7 @@ const LocationsBody = ({
           </DownloadTheMap>
         </LinkMapBox>
       )}
-      <ContentTitle title={`${title} Attorneys`} />
+      <ContentTitle title={`${changeTitle(title)} Attorneys`} />
       {attorneys && <VirtualizedMembers members={sortByKey(attorneys, 'lastName')} />}
       {practices && <RelatedPractices practices={practices} />}
     </>
