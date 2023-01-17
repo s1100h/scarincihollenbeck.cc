@@ -21,7 +21,9 @@ const SingleSubHeader = ({
     }}
   >
     <SubHeaderContent props={{ isBlog }}>
-      <h1 className="animate__animated animate__fadeInDown animate__fast">{title}</h1>
+      <h1 className="animate__animated animate__fadeInDown animate__fast">
+        {title.replace(/&#8220;/gi, '"').replace(/&#8221;/gi, '"')}
+      </h1>
       {isBlog && (
         <p className="mb-2">
           <strong>Author: </strong>

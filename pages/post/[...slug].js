@@ -4,7 +4,7 @@ import { getPostContent } from 'pages/api/get-post-content';
 import { SITE_URL, SITE_TITLE } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
-import { postCategoriesQuery } from 'utils/graphql-queries';
+import { getAvatarAuthorQuery, postCategoriesQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -12,6 +12,13 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
  * queries the MySQL database. Please check out pages/api/get-post-content
  * for more details.
  * */
+
+const getAvatarAuthor = async (id) => {
+  const data = await fetchAPI(getAvatarAuthorQuery, {
+    variables: { id },
+  });
+  return data?.user;
+};
 
 const getPostCategory = async (slug) => {
   const { post } = await fetchAPI(postCategoriesQuery, {
@@ -30,6 +37,8 @@ export const getServerSideProps = async ({ params, res, query }) => {
   const categoriesByQuery = await getPostCategory(postUrl);
 
   const request = await getPostContent(postUrl, category);
+  const { avatar } = await getAvatarAuthor(request.authors[0].ID);
+  request.authors[0].avatar = avatar.url;
 
   if (request.status === 404) {
     res.statusCode = 404;
