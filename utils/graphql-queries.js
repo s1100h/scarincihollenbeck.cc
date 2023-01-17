@@ -1000,3 +1000,11 @@ export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
     }
   }
 }`;
+
+export const getAvatarAuthorQuery = `query FirmPageQuery($id: ID!) {
+  user(id: $id, idType: DATABASE_ID) {
+    avatar(size: 500) {
+      url
+    }
+  }
+}`;

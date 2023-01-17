@@ -4,13 +4,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Col from 'react-bootstrap/Col';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
 import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
-import AuthorBio from 'components/organisms/post/AuthorBio';
 import { createMarkup } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
-import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 import { ContentContainer } from 'styles/PageContant.style';
+import AboutAuthorFormCard from './AboutAuthorFormCard';
 
 const DisplayListTags = dynamic(() => import('components/molecules/post/DisplayListTags'));
 
@@ -67,11 +65,7 @@ const PostBody = ({
           </LinkedinShareButton>
         </li>
       </DisplayListTags>
-      <div className="d-print-none">
-        <AuthorBio authors={authors} />
-        <BigGrayTitle className="my-5">Get In Touch</BigGrayTitle>
-        <ContactForm />
-      </div>
+      <AboutAuthorFormCard authors={authors} />
     </Col>
   );
 };
