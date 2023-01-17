@@ -91,16 +91,14 @@ export default function AttorneyCard({
           )}
           <InfoBox>
             <UserName>{name}</UserName>
-            {title ? (
-              <p>{title}</p>
-            ) : (
+
+            <p>{designation}</p>
+
+            {locations && (
               <ul className="d-flex gap-1 m-0 p-0">
                 {renderLinkToLocationPractice(locations, offices)}
               </ul>
             )}
-
-            <p>{designation}</p>
-
             <ContactBox>
               <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
                 <BsFillTelephoneFill />

@@ -1,21 +1,24 @@
 import { createMarkup } from 'utils/helpers';
 import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
 import Link from 'next/link';
+import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
 
 const SingleSubHeader = ({
   title,
   subtitle,
   isBlog,
   isHoliday,
-  isTabs = false,
   isFilter = false,
   authors = [],
   date = '',
+  tabs,
+  setActiveTab,
+  activeTab,
 }) => (
   <BackgroundContainer
     props={{
       isHoliday,
-      isTabs,
+      isTabs: tabs?.length > 0 && 'true',
       isBlog,
       isFilter,
     }}
@@ -25,7 +28,7 @@ const SingleSubHeader = ({
         {title.replace(/&#8220;/gi, '"').replace(/&#8221;/gi, '"')}
       </h1>
       {isBlog && (
-        <p className="mb-2">
+        <p className="mt-4 mb-2">
           <strong>Author: </strong>
           {authors.map((author, index) => (author.user_url === '' || author.statusProfile === null ? (
             <span key={author.display_name}>{author.display_name}</span>
@@ -46,6 +49,9 @@ const SingleSubHeader = ({
         className="animate__animated animate__fadeInUp animate__fast sub-title"
         dangerouslySetInnerHTML={createMarkup(subtitle)}
       />
+      {tabs?.length > 0 && (
+        <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
+      )}
     </SubHeaderContent>
   </BackgroundContainer>
 );

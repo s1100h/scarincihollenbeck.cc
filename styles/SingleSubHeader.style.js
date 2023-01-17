@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor, rem } from './global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
@@ -15,7 +16,11 @@ export const BackgroundContainer = styled.section`
   background-size: ${({ props }) => (props?.isHoliday ? 'auto' : 'contain')};
   height: auto;
   padding-top: 3.5em;
-  padding-bottom: ${({ props }) => (props?.isTabs || props?.isFilter ? '6.5em' : '4em')};
+  padding-bottom: ${({ props }) => {
+    if (props?.isFilter) return '6.5em'
+    if (props?.isTabs) return '1.5em'
+    return '4em'
+  }};
   margin-bottom: 50px;
   box-shadow: ${rem(21)} 0 ${rem(32)} rgb(0 0 0 / 10%);
 
@@ -25,7 +30,7 @@ export const BackgroundContainer = styled.section`
         ? ''
         : `background-position: right 9% bottom 0%;
       background-size: 50%;
-      padding-bottom: ${props?.isTabs || props?.isFilter ? '6.5em' : '2em'};
+      padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
       `};
   }
 
@@ -44,8 +49,7 @@ export const BackgroundContainer = styled.section`
   }
 `
 
-export const SubHeaderContent = styled.article`
-  padding: 0 6.9vw;
+export const SubHeaderContent = styled(Container)`
   h1 {
     margin-bottom: 0;
     font-family: 'Kenjo I';
@@ -54,11 +58,6 @@ export const SubHeaderContent = styled.article`
     color: ${globalColor.black};
     ${(props) => (!props.isBlog ? 'font-size: 3rem' : '')};
     text-shadow: '2px 3px 3px #000';
-    ${(props) => (props.isBlog ? 'margin-bottom: 5px' : '')};
-
-    ${media_breakpoint_down('sm')} {
-      font-size: ${(props) => (props.isBlog ? '2.6rem' : '2rem')};
-    }
   }
 `
 

@@ -1,24 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
-import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
-import PageSidebar from 'components/organisms/practice/PageSidebar';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
-import { BigGrayTitle } from 'styles/BigGrayTitle.style';
+import AttorneysListBox from 'components/common/AttorneysListBox';
 
-const BodyFooter = dynamic(() => import('components/organisms/practice/BodyFooter'));
 const Body = dynamic(() => import('components/organisms/practice/Body'));
-const RelatedArticles = dynamic(() => import('components/organisms/practice/RelatedArticles'));
+const ListWrapperDynamic = dynamic(() => import('components/organisms/practices/ListWrapper'));
 
 const PracticePage = ({
   corePractices, practice, practiceChildren, canonicalUrl, tabs,
 }) => {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
   const blogId = practice.blog_data_id[0];
@@ -42,10 +37,6 @@ const PracticePage = ({
     setActiveTabContent(currentTabContent[0].content);
   }, [activeTab]);
 
-  const handleLink = (e) => {
-    router.push(e.target.value);
-  };
-
   return (
     <>
       <BasicSiteHead
@@ -58,12 +49,13 @@ const PracticePage = ({
         subtitle={practice.description}
         offset={0}
         span={8}
-        isTabs
+        tabs={tabs}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
       />
       <Container>
         <Row>
-          <ColStyled sm={12} lg={9} top="-116px">
-            <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
+          <ColStyled sm={12} lg={7} xl={8}>
             <Body
               activeTabContent={activeTabContent}
               content={{
@@ -76,28 +68,18 @@ const PracticePage = ({
               activeTab={activeTab}
             />
           </ColStyled>
-          <ColStyled sm={12} lg={3} bottom="24px">
-            <PageSidebar corePractices={corePractices} practiceChildren={practiceChildren} />
+          <ColStyled sm={10} md={8} lg={5} xl={4}>
+            <AttorneysListBox
+              attorneys={{ chair: practice.chair, attorneysList: practice.attorneyList }}
+            />
           </ColStyled>
         </Row>
-
         <Row>
           <Col sm={12}>
-            <>
-              <BodyFooter
-                blogId={blogId}
-                attorneyList={practice.attorneyList}
-                highlightReal={practice.highlightReal}
-                chair={practice.chair}
-                handleLink={handleLink}
-              />
-              {data && (
-                <div className="mt-5 mt-sm-4">
-                  <BigGrayTitle>Related Articles</BigGrayTitle>
-                  <RelatedArticles data={data} />
-                </div>
-              )}
-            </>
+            <ListWrapperDynamic title="Core Practices" list={corePractices} isSimple />
+          </Col>
+          <Col sm={12}>
+            <ListWrapperDynamic title="Related Practices" list={practiceChildren} isSimple />
           </Col>
         </Row>
       </Container>
