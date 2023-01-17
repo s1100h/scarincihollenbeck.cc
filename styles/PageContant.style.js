@@ -6,13 +6,14 @@ export const ContentContainer = styled.div`
   margin-bottom: 1.125rem;
   line-height: 1.7;
 
-  h2 {
-    margin-top: 25px;
+  p {
+    margin-bottom: 40px;
   }
 
   > {
     ul {
-      margin-left: -1.5em;
+      margin-left: 0;
+      padding-left: 0;
       li {
         line-height: 1.3;
         margin-bottom: 5px;
@@ -44,7 +45,6 @@ export const ContentContainer = styled.div`
       font-weight: 900;
       background-color: #e9e9e9;
       padding: 10px;
-      margin-top: 30px;
       margin-bottom: 15px;
     }
   }

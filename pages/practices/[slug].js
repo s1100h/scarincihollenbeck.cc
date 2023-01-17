@@ -91,6 +91,7 @@ const SinglePractice = ({ practice, practiceChildren, slug }) => {
       content: '<h4>Related Articles</h4>',
     },
   ];
+
   const practiceProps = {
     corePractices,
     practice,

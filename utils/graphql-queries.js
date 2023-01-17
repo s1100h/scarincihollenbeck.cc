@@ -806,6 +806,11 @@ export const firmPagesQuery = `query FirmPageQuery($slug: String) {
                   sourceUrl
                 }
               }
+              author {
+                 node {
+                   name
+                 }
+              }
             }
           }
         }
@@ -992,6 +997,14 @@ export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
       title
       canonical
       metaDesc
+    }
+  }
+}`;
+
+export const getAvatarAuthorQuery = `query FirmPageQuery($id: ID!) {
+  user(id: $id, idType: DATABASE_ID) {
+    avatar(size: 500) {
+      url
     }
   }
 }`;

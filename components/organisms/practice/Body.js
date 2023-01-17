@@ -7,7 +7,6 @@ const PostList = dynamic(import('components/molecules/PostList'));
 const Body = ({ activeTabContent, activeTab, content }) => (
   <>
     <ContentContainer
-      className="mt-4"
       dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(activeTabContent))}
     />
     {activeTab === 99 && <PostList content={content} />}

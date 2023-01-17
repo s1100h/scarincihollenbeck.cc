@@ -1,7 +1,5 @@
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
-import Link from 'next/link';
-import Image from 'next/image';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import AttorneyCard from './AttorneyCard';
 

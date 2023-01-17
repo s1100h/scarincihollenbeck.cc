@@ -34,14 +34,15 @@ export const getServerSideProps = async ({ params }) => {
     title, seo, firmPagesRelatedPostsMembers, firmPagesDescription, firmPagesTabs,
   } = req;
   const { groupChair, groupMembers, relatedPosts } = firmPagesRelatedPostsMembers;
-  let blogPosts = [];
+  let blogRecommendedPosts = [];
 
   if (relatedPosts) {
-    blogPosts = relatedPosts[0]?.posts?.edges.map(({ node }) => ({
+    blogRecommendedPosts = relatedPosts[0]?.posts?.edges.map(({ node }) => ({
       title: node?.title,
       date: node?.date,
-      featuredImg: node.featuredImage?.node?.sourceUrl,
-      link: node?.uri,
+      featuredImage: node.featuredImage?.node?.sourceUrl,
+      author: node.author?.node?.name,
+      uri: node?.uri,
     }));
   }
 
@@ -70,7 +71,7 @@ export const getServerSideProps = async ({ params }) => {
   const page = {
     title,
     description: firmPagesDescription?.description,
-    attorneysMentioned: blogPosts,
+    attorneysRecommendedPosts: blogRecommendedPosts,
     tabs: [firstTab, ...additionalTabs],
     members: {
       member: modMembers || [],
