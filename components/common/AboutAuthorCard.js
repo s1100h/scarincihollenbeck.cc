@@ -3,13 +3,14 @@ import { useId } from 'react';
 import { SITE_TITLE } from 'utils/constants';
 import { createMarkup } from 'utils/helpers';
 import Image from 'next/image';
+import { AuthorBox } from '../../styles/AboutAuthorFormCard.style';
 
 const AboutAuthorCard = ({ authors }) => (
-  <div className="d-print-none">
+  <AuthorBox>
     {authors.map(
       (author) => author.statusProfile !== null && (
-      <div key={author.ID || useId()} className="mb-3">
-        <div className=" d-print-none mb-3">
+      <div key={author.ID || useId()} className="mb-5">
+        <div className="mb-3">
           <h3>
             About
             {' '}
@@ -17,7 +18,7 @@ const AboutAuthorCard = ({ authors }) => (
           </h3>
         </div>
         {author.avatar && (
-        <div className="float-start mr-3">
+        <div className="float-start">
           <Image
             placeholder="blur"
             blurDataURL={author.avatar}
@@ -33,7 +34,7 @@ const AboutAuthorCard = ({ authors }) => (
         <p>
           <span
             dangerouslySetInnerHTML={createMarkup(author.authorDescription)}
-            className="d-block "
+            className="d-block"
           />
           {author.name !== SITE_TITLE && (
           <Link href={author.user_url ? `/attorneys/${author.user_url}` : '/attorneys'}>
@@ -44,7 +45,7 @@ const AboutAuthorCard = ({ authors }) => (
       </div>
       ),
     )}
-  </div>
+  </AuthorBox>
 );
 
 export default AboutAuthorCard;
