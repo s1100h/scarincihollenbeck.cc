@@ -20,21 +20,24 @@ const AttorneysListBox = ({ attorneys }) => {
 
   return (
     <ListContainer>
-      <ChairBox>
-        <h5>Chair</h5>
-        <AttorneyCard
-          link={`/attorneys/${chair[0].link}`}
-          image={formatSrcToCloudinaryUrl(chair[0].image)}
-          name={chair[0].name}
-          designation={chair[0].designation}
-          number={chair[0].contact}
-          email={chair[0].email}
-          width={80}
-          height={112}
-          type="/attorneys/[slug]"
-        />
-      </ChairBox>
-      <AttorneysTitleBox>
+      {chair.length > 0 && (
+        <ChairBox>
+          <h5>Chair</h5>
+          <AttorneyCard
+            link={`/attorneys/${chair[0].link}`}
+            image={formatSrcToCloudinaryUrl(chair[0].image)}
+            name={chair[0].name}
+            designation={chair[0].designation}
+            number={chair[0].contact}
+            email={chair[0].email}
+            width={80}
+            height={112}
+            type="/attorneys/[slug]"
+          />
+        </ChairBox>
+      )}
+
+      <AttorneysTitleBox isSingle={chair.length === 0 && 'true'}>
         <h5>Attorneys</h5>
         <span>
           (
