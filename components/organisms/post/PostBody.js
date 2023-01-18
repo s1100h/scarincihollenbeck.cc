@@ -8,12 +8,11 @@ import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
 import { createMarkup } from 'utils/helpers';
 import { SITE_URL } from 'utils/constants';
 import { ContentContainer } from 'styles/PageContant.style';
-import AboutAuthorFormCard from './AboutAuthorFormCard';
 
 const DisplayListTags = dynamic(() => import('components/molecules/post/DisplayListTags'));
 
 const PostBody = ({
-  featuredImage, content, authors, title, subTitle, caption, categories,
+  featuredImage, content, title, subTitle, caption, categories,
 }) => {
   const router = useRouter();
   const postUrl = `${SITE_URL}${router.asPath}`;
@@ -65,7 +64,6 @@ const PostBody = ({
           </LinkedinShareButton>
         </li>
       </DisplayListTags>
-      <AboutAuthorFormCard authors={authors} />
     </Col>
   );
 };
