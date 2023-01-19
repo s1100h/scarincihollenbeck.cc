@@ -39,7 +39,7 @@ const ProfileHeader = ({
   pdf,
   coChair: coChairs,
   chair: chairs,
-  primaryPractice,
+  primaryPractices,
   contact,
   setActiveTab,
   activeTab,
@@ -60,7 +60,7 @@ const ProfileHeader = ({
     designation,
     coChairs,
     chairs,
-    primaryPractice,
+    primaryPractices,
   };
   const profileDetailsProps = {
     offices,
