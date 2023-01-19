@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { ProfileName, SubTitleProfileBox } from 'styles/attorney-page/AttorneyProfile.style';
+import map from '../location/Map';
 
 const ProfileTitle = ({
-  name, designation, coChairs, chairs, primaryPractice,
+  name, designation, coChairs, chairs, primaryPractices,
 }) => (
   <>
     <ProfileName className=" animate__animated animate__fadeInDown animate__slow">
@@ -10,14 +11,15 @@ const ProfileTitle = ({
     </ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
-      {primaryPractice && (
-        <h4>
-          <Link href={primaryPractice.uri}>
-            <a>{primaryPractice.title}</a>
+      {primaryPractices
+        && primaryPractices.map((practice, idx) => (
+          <Link key={practice.id} href={practice.uri}>
+            <a>
+              {practice.title}
+              {idx < primaryPractices.length - 1 && ', '}
+            </a>
           </Link>
-        </h4>
-      )}
-
+        ))}
       {chairs?.length > 0 && (
         <p>
           Chair:

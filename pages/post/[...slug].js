@@ -4,7 +4,7 @@ import { getPostContent } from 'pages/api/get-post-content';
 import { SITE_URL, SITE_TITLE } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
-import { getAvatarAuthorQuery, postCategoriesQuery } from 'utils/graphql-queries';
+import { getAvatarAuthorsQuery, postCategoriesQuery } from 'utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -13,11 +13,11 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
  * for more details.
  * */
 
-const getAvatarAuthor = async (id) => {
-  const data = await fetchAPI(getAvatarAuthorQuery, {
+const getAvatarAuthors = async (id) => {
+  const { users } = await fetchAPI(getAvatarAuthorsQuery, {
     variables: { id },
   });
-  return data?.user;
+  return users.nodes;
 };
 
 const getPostCategory = async (slug) => {
@@ -30,17 +30,24 @@ const getPostCategory = async (slug) => {
   return post?.categories?.nodes;
 };
 
+const sanitizeAuthors = (authors, authorsAvatars) => authors.map((author) => ({
+  ...author,
+  avatar: authorsAvatars.find((authorAvatar) => author.ID === authorAvatar.databaseId).avatar.url,
+}));
+
 export const getServerSideProps = async ({ params, res, query }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   const postUrl = params.slug[params.slug.length - 1];
   const { category } = query;
   const categoriesByQuery = await getPostCategory(postUrl);
 
-  const request = await getPostContent(postUrl, category);
-  const { avatar } = await getAvatarAuthor(request.authors[0].ID);
-  request.authors[0].avatar = avatar.url;
+  const resAuthors = await getPostContent(postUrl, category);
+  const authorsIdArr = resAuthors.authors.map(({ ID }) => ID);
+  const responseAuthors = await getAvatarAuthors(authorsIdArr);
 
-  if (request.status === 404) {
+  resAuthors.authors = sanitizeAuthors(resAuthors.authors, responseAuthors);
+
+  if (resAuthors.status === 404) {
     res.statusCode = 404;
     return {
       notFound: true,
@@ -49,7 +56,7 @@ export const getServerSideProps = async ({ params, res, query }) => {
 
   const {
     post, seo, tags, authors,
-  } = request;
+  } = resAuthors;
 
   return {
     props: {

@@ -4,6 +4,7 @@ import PostSiteHead from 'components/shared/head/PostSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import PostBody from 'components/organisms/post/PostBody';
 import Sidebar from 'components/organisms/post/PostSidebar';
+import AboutAuthorFormCard from '../organisms/post/AboutAuthorFormCard';
 
 const PrintOnlyBody = dynamic(() => import('components/organisms/post/PrintOnlyBody'));
 
@@ -29,12 +30,14 @@ const PostPage = ({
           content={post.content}
           title={post.title}
           subTitle={post.subTitle}
-          authors={authors}
           date={post.date}
           tags={tags}
           categories={categories}
         />
         <Sidebar category={category} postUrl={postUrl} />
+      </Row>
+      <Row>
+        <AboutAuthorFormCard authors={authors} />
       </Row>
     </Container>
     <PrintOnlyBody

@@ -61,8 +61,7 @@ export const AttorneysTitleBox = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  padding: 20px 0 20px;
-  padding-left: 15px;
+  padding: ${(props) => (props?.isSingle ? '0 0 20px 15px' : '20px 0 20px 15px')};
 
   h5 {
     ${titlesFontSize}

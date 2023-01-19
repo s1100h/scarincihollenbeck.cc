@@ -11,3 +11,9 @@ export const AboutAuthorFormCardContainer = styled.article`
     gap: 30px;
   }
 `
+
+export const AuthorBox = styled.section`
+  .float-start {
+    margin-right: 1.5rem;
+  }
+`
