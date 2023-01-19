@@ -33,12 +33,12 @@ export async function attorneyNewsEvents(name) {
 }
 
 /** Get all the attorneys blog posts */
-export async function attorneyFirmBlog(id) {
-  const data = await fetchAPI(attorneyFirmBlogQuery, {
-    variables: { id },
-  });
-  return data?.posts;
-}
+// export async function attorneyFirmBlog(id) {
+//   const data = await fetchAPI(attorneyFirmBlogQuery, {
+//     variables: { id },
+//   });
+//   return data?.posts;
+// }
 
 const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
   node.featuredImage = node.featuredImage?.node?.sourceUrl
@@ -157,7 +157,7 @@ export const getServerSideProps = async ({ params, res }) => {
           title,
         }),
       )
-      : [attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice],
+      : [...attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice],
     offices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
       ({ uri, id, officeMainInformation }) => ({
         link: uri,
