@@ -2,20 +2,20 @@ import { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import { ButtonBox, ContentBox, MoreTabContainer } from 'styles/attorney-page/MoreTab.style';
 import { ButtonTab } from 'styles/ButtonsMenu.style';
-import AffiliationsContent from 'components/molecules/attorney/AffiliationsContent';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { authorFirmNewsByIdQuery, authorPostsByIdQuery } from 'utils/graphql-queries';
+import { attorneyFirmBlogQuery, authorFirmNewsByIdQuery } from 'utils/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import StringContent from 'components/organisms/attorney/StringContent';
 import { createMarkup } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
+import { useRouter } from 'next/router';
 import BlogList from './BlogList';
 import Videos from './Videos';
 import Table from './Table';
 
 const MoreTab = ({ content }) => {
   const [activeSubTab, setActiveSubTab] = useState(content[0]);
-
+  const { query } = useRouter();
   const renderContent = (contentItem) => {
     const contentMap = {
       Media: <Table content={contentItem.content} />,
@@ -35,17 +35,16 @@ const MoreTab = ({ content }) => {
 
     return contentMap[contentItem.title];
   };
-
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = useApolloQuery(
-    activeSubTab.title === 'Blogs' ? authorPostsByIdQuery : authorFirmNewsByIdQuery,
+    activeSubTab.title === 'Blogs' ? attorneyFirmBlogQuery : authorFirmNewsByIdQuery,
     {
       first: 3,
       last: null,
-      after: null,
+      after: '3',
       before: null,
-      name: activeSubTab?.content?.id,
+      slug: query.slug,
     },
   );
 
