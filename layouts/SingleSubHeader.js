@@ -1,4 +1,4 @@
-import { createMarkup } from 'utils/helpers';
+import { changeTitle, createMarkup } from 'utils/helpers';
 import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
 import Link from 'next/link';
 import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
@@ -24,9 +24,7 @@ const SingleSubHeader = ({
     }}
   >
     <SubHeaderContent props={{ isBlog }}>
-      <h1 className="animate__animated animate__fadeInDown animate__fast">
-        {title.replace(/&#8220;/gi, '"').replace(/&#8221;/gi, '"')}
-      </h1>
+      <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>
       {isBlog && (
         <p className="mt-4 mb-2">
           <strong>Author: </strong>
