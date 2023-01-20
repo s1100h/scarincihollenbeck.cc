@@ -64,6 +64,7 @@ export const AddressBox = styled.address`
   flex-direction: column;
   gap: 10px;
 
+  a,
   p {
     display: flex;
     align-items: center;
@@ -74,6 +75,7 @@ export const AddressBox = styled.address`
 
   svg {
     color: ${globalColor.gray.gray80};
+    width: 20px;
   }
 `
 
