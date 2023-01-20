@@ -9,7 +9,7 @@ export default function FeaturedArticle({ articles }) {
       postImage={article.image ? article.image : '/images/no-image-found-diamond-750x350.png'}
       postTitle={article.title}
       postDate={article.date}
-      postAuthor={article.author || 'mr.Coolman'}
+      postAuthor={article.author || 'Author not found'}
       postExcerpt={article.excerpt || article.description}
     />
   ));
