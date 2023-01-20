@@ -1,6 +1,11 @@
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
+import {
+  MainVirtualizeContainer,
+  VirtualizeListBox,
+  VirtualListItem,
+} from '../../../styles/LibraryArticles.style';
 
 export default function FirmAuthors({ authors }) {
   const parentRef = useRef();
@@ -11,51 +16,29 @@ export default function FirmAuthors({ authors }) {
     paddingStart: 10,
     paddingEnd: 10,
   });
-
   return (
     <>
-      <p className="fs-1_2rem d-block w-100">
+      <h5 className="mb-0">
         <strong>Firm Authors</strong>
-      </p>
-      <div
-        ref={parentRef}
-        style={{
-          height: '600px',
-          width: '100%',
-          overflow: 'auto',
-          backgroundColor: '#f9f8f6',
-          borderRadius: '10px',
-        }}
-      >
-        <div
-          style={{
-            height: `${rowVirtualizer.totalSize}px`,
-            width: '100%',
-            position: 'relative',
-          }}
-        >
+      </h5>
+      <MainVirtualizeContainer ref={parentRef}>
+        <VirtualizeListBox height={rowVirtualizer.totalSize}>
           {rowVirtualizer.virtualItems.map((virtualRow) => (
-            <div
-              key={authors[virtualRow.index].lastName}
+            <VirtualListItem
+              key={virtualRow.key}
               ref={virtualRow.measureRef}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '28px',
-                transform: `translateY(${virtualRow.start}px)`,
-                paddingLeft: '10px',
-                fontSize: '14px',
-              }}
+              transform={`translateY(${virtualRow.start}px)`}
             >
               <Link href={`/library/author/${authors[virtualRow.index].username}`}>
-                <a className="text-dark">{authors[virtualRow.index].fullName}</a>
+                <a>
+                  ☞
+                  {authors[virtualRow.index].fullName}
+                </a>
               </Link>
-            </div>
+            </VirtualListItem>
           ))}
-        </div>
-      </div>
+        </VirtualizeListBox>
+      </MainVirtualizeContainer>
     </>
   );
 }

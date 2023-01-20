@@ -4,12 +4,12 @@ import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
-import MainArticle from 'components/organisms/library/MainArticle';
 import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { CLIENT_ALERTS } from 'utils/constants';
 import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
+import NewsCard from '../organisms/home/FirmNews/NewsCard';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
@@ -64,16 +64,16 @@ const LibraryDirectory = ({
           <BodyHeader />
           <Col sm={12} lg={9} className="mt-4">
             {mainNews ? (
-              <MainArticle
-                title={mainNews.title}
-                link={mainNews.link}
-                excerpt={mainNews.excerpt || mainNews.description}
-                category={mainNews.category}
-                date={mainNews.date}
-                image={
+              <NewsCard
+                postSlug={mainNews?.link}
+                postImage={
                   mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
                 }
-                author={mainNews.author}
+                postTitle={mainNews?.title}
+                postDate={mainNews?.date}
+                postAuthor={mainNews?.author}
+                postExcerpt={mainNews?.excerpt || mainNews?.description}
+                isVertical="true"
               />
             ) : (
               noPostsFoundMessage
