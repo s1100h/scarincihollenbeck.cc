@@ -47,7 +47,6 @@ export const getServerSideProps = async ({ params, res }) => {
       notFound: true,
     };
   }
-
   const content = pageContent[0].node;
   const news = content.posts?.edges.map(({ node }, index) => ({
     ID: index,

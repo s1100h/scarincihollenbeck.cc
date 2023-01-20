@@ -16,6 +16,7 @@ export default function FirmAuthors({ authors }) {
     paddingStart: 10,
     paddingEnd: 10,
   });
+
   return (
     <>
       <h5 className="mb-0">

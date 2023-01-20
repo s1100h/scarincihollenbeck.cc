@@ -34,7 +34,6 @@ const getAuthorContent = async (slug) => {
     console.error(error);
   }
 };
-
 const getUserSeo = async (id) => {
   const data = await fetchAPI(getSEOforAuthorPosts, {
     variables: { id },
