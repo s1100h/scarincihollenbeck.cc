@@ -6,6 +6,7 @@ import SideBar from 'components/organisms/locations/LocationsSidebar';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';
+import { BreadcrumbJsonLd } from 'next-seo';
 
 const LocationPage = ({
   seo, currentOffice, posts, linkToPdfMap,
@@ -14,6 +15,25 @@ const LocationPage = ({
 
   return (
     <>
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: 'location',
+            item: '/location',
+          },
+          {
+            position: 2,
+            name: 'attorneys',
+            item: '/attorneys',
+          },
+          {
+            position: 3,
+            name: 'Lester Aron',
+            item: 'attorneys/lester-aron',
+          },
+        ]}
+      />
       <BasicSiteHead
         title={seo.title}
         metaDescription={seo.metaDescription}
