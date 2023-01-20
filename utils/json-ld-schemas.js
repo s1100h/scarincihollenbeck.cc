@@ -124,23 +124,27 @@ export const buildTestSchema = (location) => ({
   '@graph': [
     {
       '@type': 'Person',
-      '@id': 'https://www.example.com/#/1schema/Person/abc123',
-      name: 'Example pedrson name1',
-      url: 'https://www.ex',
-      telephone: '(732) 967-6777',
-      image: {
-        '@id': 'https://www.example.c1om/uploads/example-image.jpg',
-      },
+      name: 'Donald Scarinci',
+      image: '/attorneys/donald-scarinci',
+      url: '/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fscarinci-hollenbeck%2Fwp.scarincihollenbeck%2FDonaldScarinci-Profile-743x795-1.png%3F_i%3DAA&w=768&q=100',
+      telephone: '201-896-4100',
+      jobTitle: 'Firm Managing Partner',
     },
     {
       '@type': 'Person',
-      '@id': 'https://ww1w.example.com/#/schema/Person/abc123',
-      name: 'Example11 person name',
-      url: 'https://www.ex',
-      telephone: '(732) 967-6777',
-      image: {
-        '@id': 'https://www.e11xample.com/uploads/example-image.jpg',
-      },
+      name: 'Lester Aron',
+      image: '/attorneys/lester-aron',
+      url: '/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fscarinci-hollenbeck%2Fwp.scarincihollenbeck%2FSH-Bio-Pic-743x795-1.png%3F_i%3DAA&w=768&q=100',
+      telephone: '201-896-7204',
+      jobTitle: 'Deputy Managing Partner',
+    },
+    {
+      '@type': 'Person',
+      name: 'Angelo Auteri',
+      image: '/attorneys/angelo-auteri',
+      url: '/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fscarinci-hollenbeck%2Fwp.scarincihollenbeck%2FAngeloAttorney-Profile-743x795-1.jpg%3F_i%3DAA&w=768&q=100',
+      telephone: '201-896-7023',
+      jobTitle: 'Partner',
     },
   ],
 });

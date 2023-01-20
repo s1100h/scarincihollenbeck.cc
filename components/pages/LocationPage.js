@@ -1,13 +1,12 @@
-import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import LocationsBody from 'components/organisms/locations/LocationsBody';
 import SideBar from 'components/organisms/locations/LocationsSidebar';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { BreadcrumbJsonLd, SocialProfileJsonLd } from 'next-seo';
 
+const names = ['teest1', 'teest'];
 const LocationPage = ({
   seo, currentOffice, posts, linkToPdfMap,
 }) => {
@@ -34,45 +33,17 @@ const LocationPage = ({
           },
         ]}
       />
-      <SocialProfileJsonLd
-        itemListElements={[
-          {
-            type: 'Person',
-            name: 'xddddd addad',
-            url: '/locaddddtion',
-          },
-          {
-            type: 'Person',
-            name: 'ssssss   adadad',
-            url: '/locaddddtion',
-          },
-          {
-            type: 'Person',
-            name: 'xdsdddd adadad',
-            url: '/locaddddtion',
-          },
-          {
-            type: 'Person',
-            name: 'xddddd daadaddв',
-            url: '/locaddddtion',
-          },
-        ]}
-      />
+      {/* eslint-disable-next-line array-callback-return */}
+      {names.map((name) => (
+        <SocialProfileJsonLd type="Person" name={name} url="http://www.your-site.com" />
+      ))}
 
       <BasicSiteHead
         title={seo.title}
         metaDescription={seo.metaDescription}
         canonicalUrl={canonicalUrl}
       />
-      <Head>
-        <script
-          key={currentOffice.name}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)),
-          }}
-        />
-      </Head>
+
       <SingleSubHeader
         title={currentOffice.name}
         subtitle={seo.metaDescription}
