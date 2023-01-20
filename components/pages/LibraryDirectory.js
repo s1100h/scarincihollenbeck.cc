@@ -64,17 +64,19 @@ const LibraryDirectory = ({
           <BodyHeader />
           <Col sm={12} lg={9} className="mt-4">
             {mainNews ? (
-              <NewsCard
-                postSlug={mainNews?.link}
-                postImage={
-                  mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
-                }
-                postTitle={mainNews?.title}
-                postDate={mainNews?.date}
-                postAuthor={mainNews?.author}
-                postExcerpt={mainNews?.excerpt || mainNews?.description}
-                isVertical="true"
-              />
+              <Col xl={10} className="m-auto">
+                <NewsCard
+                  postSlug={mainNews?.link}
+                  postImage={
+                    mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
+                  }
+                  postTitle={mainNews?.title}
+                  postDate={mainNews?.date}
+                  postAuthor={mainNews?.author}
+                  postExcerpt={mainNews?.excerpt || mainNews?.description}
+                  isVertical="true"
+                />
+              </Col>
             ) : (
               noPostsFoundMessage
             )}
