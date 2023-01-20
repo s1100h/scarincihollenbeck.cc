@@ -119,6 +119,36 @@ export const buildLocationSchema = (location) => ({
   ],
 });
 
+export const buildTestSchema = (location) => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://www.example.com/#/1schema/Person/abc123',
+      name: 'Example person name1',
+      image: {
+        '@id': 'https://www.example.c1om/uploads/example-image.jpg',
+      },
+      sameAs: [
+        'https://www.wikipedia.com1/example-person',
+        'https://www.facebook.c1om/example-person',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://ww1w.example.com/#/schema/Person/abc123',
+      name: 'Example11 person name',
+      image: {
+        '@id': 'https://www.e11xample.com/uploads/example-image.jpg',
+      },
+      sameAs: [
+        'https://www.wikipe1dia.com/example-person',
+        'https://www.facebook.com/example-person',
+      ],
+    },
+  ],
+});
+
 export const buildAttorneyProfileSchema = (name, url, imageUrl, socialMediaLinks, jobTitle) => {
   let links;
 

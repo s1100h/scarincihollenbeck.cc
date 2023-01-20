@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { STANDARD_SCHEMA, buildAttorneyProfileSchema } from 'utils/json-ld-schemas';
+import { STANDARD_SCHEMA, buildAttorneyProfileSchema, buildTestSchema } from 'utils/json-ld-schemas';
 
 const PersonSiteHead = ({
   title,
@@ -42,6 +42,22 @@ const PersonSiteHead = ({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             buildAttorneyProfileSchema(
+              title,
+              canonicalUrl || currentUrl,
+              featuredImage || standardImage,
+              socialMediaLinks || standardSocial,
+              designation,
+            ),
+          ),
+        }}
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }} />
+      <script
+        key="ScarinciHollenbeck Bio Profile"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildTestSchema(
               title,
               canonicalUrl || currentUrl,
               featuredImage || standardImage,
