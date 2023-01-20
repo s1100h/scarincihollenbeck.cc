@@ -252,9 +252,15 @@ export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: Stri
       }
     }`;
 
-export const attorneyFirmBlogQuery = `query AttorneyPostsById($id: Int) {
-  posts(where: {author: $id}) {
-    edges {
+export const attorneyFirmBlogQuery = `query AttorneyPostsById(
+  $slug: String
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  ) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: 599, search: $slug}) {
+        edges {
       node {
         date
         featuredImage {
@@ -273,8 +279,13 @@ export const attorneyFirmBlogQuery = `query AttorneyPostsById($id: Int) {
         }
       }
     }
-  }
-}
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }}
 `;
 
 // , orderby: {field: DATE, order: DESC}
@@ -374,34 +385,34 @@ export const authorFirmNewsByIdQuery = `query authorFirmNewsById(
   $last: Int
   $after: String
   $before: String
-  $name:String
+  $slug: String
 ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: { search: $name, categoryNotIn: "599"}) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: { search: $slug, categoryIn: "98"}) {
+    edges {
+      node {
+        date
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        uri
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            url
+          }
+        }
+      }
+    }
     pageInfo {
+      endCursor
+      startCursor
       hasNextPage
       hasPreviousPage
-      startCursor
-      endCursor
     }
-    edges {
-    node {
-      date
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      uri
-      title(format: RENDERED)
-      excerpt(format: RENDERED)
-      author {
-        node {
-          name
-          url
-        }
-      }
-    }
-  }
   }
 }`;
 
