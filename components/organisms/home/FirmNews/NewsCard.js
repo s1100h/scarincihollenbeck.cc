@@ -1,8 +1,30 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { OtherNews, TextNews } from 'styles/FirmNews.style';
+import {
+  ArticleDescription, BottomSection, OtherNews, TextNews,
+} from 'styles/FirmNews.style';
 import { createMarkup, formatDate } from 'utils/helpers';
 
+const renderAuthors = (authorItem) => {
+  if (Array.isArray(authorItem)) {
+    return (
+      <ul className="d-flex gap-1 w-100 p-0">
+        {authorItem.map((author, idx) => (
+          <li key={author.t} className="d-flex ">
+            <Link href={author.link} passHref>
+              <div>
+                {author.name}
+                {authorItem.length > 1 && idx !== authorItem.length - 1 && ','}
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return <span>{authorItem}</span>;
+};
 const NewsCard = ({
   postSlug,
   postImage,
@@ -17,35 +39,32 @@ const NewsCard = ({
     isProfile={isProfile?.length > 0 && isVertical}
     isVertical={isVertical?.length > 0 && isVertical}
   >
-    <Link href={postSlug}>
+    <Link href={postSlug} passHref>
       <a>
-        <div>
-          <Image
-            src={postImage.length > 0 ? postImage : '/images/no-image-found-diamond.png'}
-            alt={postTitle}
-            width={750}
-            height={350}
-            layout="intrinsic"
-          />
-        </div>
+        <Image
+          src={postImage.length > 0 ? postImage : '/images/no-image-found-diamond.png'}
+          alt={postTitle}
+          width={750}
+          height={350}
+          layout="intrinsic"
+        />
         <TextNews>
           <h2>{postTitle}</h2>
           {postExcerpt?.length > 0 && (
-            <section dangerouslySetInnerHTML={createMarkup(postExcerpt)} />
+            <ArticleDescription dangerouslySetInnerHTML={createMarkup(postExcerpt)} />
           )}
-          <p>
-            <span>
+          <BottomSection>
+            <div>
               <strong>Author: </strong>
-              {postAuthor}
-            </span>
+              {renderAuthors(postAuthor)}
+            </div>
             <span>
               <strong>{formatDate(postDate)}</strong>
             </span>
-          </p>
+          </BottomSection>
         </TextNews>
       </a>
     </Link>
   </OtherNews>
 );
-
 export default NewsCard;

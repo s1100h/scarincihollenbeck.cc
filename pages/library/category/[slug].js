@@ -47,15 +47,14 @@ export const getServerSideProps = async ({ params, res }) => {
       notFound: true,
     };
   }
-
   const content = pageContent[0].node;
-
   const news = content.posts?.edges.map(({ node }, index) => ({
     ID: index,
     title: node.title,
     link: node.uri.replace('https://scarincihollenbeck.com', ''),
     date: node.date,
     excerpt: node.excerpt,
+    author: node.author.node.name,
     image: formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl),
     category:
       node.categories.length > 0
@@ -86,7 +85,7 @@ export const getServerSideProps = async ({ params, res }) => {
       description: content.description,
       name: content.name,
       pageTitle: params.slug,
-      categoryId: content.categoryId,
+      categoryId: content.databaseId,
       seo: {
         title: content.seo.title,
         metaDescription: content.seo.metaDesc,

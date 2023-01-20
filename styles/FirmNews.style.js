@@ -64,7 +64,7 @@ export const NewsWrapper = styled.div`
 `
 
 export const FreshNews = styled.article`
-  ${newsCommonStyles}
+  ${newsCommonStyles};
   width: 40%;
   a {
     span {
@@ -125,16 +125,17 @@ export const OtherNewsBox = styled.div`
 `
 
 export const OtherNews = styled.article`
-  ${newsCommonStyles}
+  ${newsCommonStyles};
   width: 100%;
+
   a {
     display: grid;
     height: 100%;
     grid-template-columns: 38% 58%;
     justify-content: space-between;
     object-fit: cover;
-
-    ${hoverLink}
+    color: ${globalColor.black};
+    ${hoverLink};
 
     ${(props) =>
       props?.isVertical &&
@@ -142,27 +143,20 @@ export const OtherNews = styled.article`
       display: flex;
       flex-direction: column;
 
-      span {
-        width: 100% !important;
-      }
-
       h2 {
         margin-bottom: 20px;
       }
     `}
 
-      h2 {
+    h2 {
       font-size: ${(props) => (props?.isVertical ? rem(20) : rem(18))};
-      ${threeDots(3)}
+      ${threeDots(3)};
+      margin-top: 10px;
     }
 
     ${media_breakpoint_down('xl')} {
       display: flex;
       flex-direction: column;
-
-      span {
-        width: 100% !important;
-      }
     }
 
     ${media_breakpoint_down('md')} {
@@ -202,12 +196,22 @@ export const TextNews = styled.section`
     margin-bottom: 0;
   }
 
-  section {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 65px;
-    margin-bottom: 8px;
+  ${media_breakpoint_down('md')} {
+    width: 100%;
+
+    h2 {
+      font-size: 1.1rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
   }
+`
+export const ArticleDescription = styled.section`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 65px;
+  margin-bottom: 8px;
 
   ${media_breakpoint_exactly_down('1600px')} {
     section {
@@ -222,16 +226,34 @@ export const TextNews = styled.section`
       margin: 10px 0;
     }
   }
+`
+export const BottomSection = styled.section`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 
-  ${media_breakpoint_down('md')} {
-    width: 100%;
+  > div {
+    display: flex;
+    gap: 0.35rem;
 
-    h2 {
-      font-size: 1.1rem;
+    ${media_breakpoint_down('sm')} {
+      display: block;
     }
-    p {
-      font-size: 0.9rem;
+  }
+
+  ul {
+    li {
+      div {
+        color: ${globalColor.blue.dirtyBlue};
+        :hover {
+          color: ${globalColor.red.darkRed};
+        }
+      }
     }
+  }
+
+  ${media_breakpoint_down('sm')} {
+    display: block;
   }
 `
 
@@ -250,7 +272,6 @@ export const Expert = styled.div`
   font-size: 1.3rem;
   line-height: 1.5;
   color: ${globalColor.gray.gray70};
-  margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;

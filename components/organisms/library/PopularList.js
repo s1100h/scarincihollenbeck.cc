@@ -3,12 +3,12 @@ import Link from 'next/link';
 export default function PopularList({ term, list, displayCount = true }) {
   return (
     <>
-      <p className="fs-1_2rem">
+      <h5>
         <strong>{term}</strong>
-      </p>
-      <ul>
+      </h5>
+      <ul className="p-0">
         {list.map((item) => (
-          <li key={item.id} className="list-unstyled">
+          <li key={item.id}>
             <Link href={`/library/category/${item.slug}`}>
               <a className="text-dark">
                 {item.name}
@@ -25,18 +25,6 @@ export default function PopularList({ term, list, displayCount = true }) {
           </li>
         ))}
       </ul>
-      <style jsx>
-        {`
-          ul {
-            margin-left: -2.6em;
-            margin-top: -10px;
-          }
-
-          ul li {
-            margin-bottom: 6px;
-          }
-        `}
-      </style>
     </>
   );
 }

@@ -189,3 +189,15 @@ export const correctAttorneyLink = (link) => {
   const regEx = /(attorney)/g;
   return link.replace(regEx, 'attorneys');
 };
+
+export const changeTitle = (title) => {
+  const symbolCheckObject = {
+    '&#8220;': '"',
+    '&#8221;': '"',
+    '&amp;': '&',
+  };
+  Object.keys(symbolCheckObject).map(
+    (symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])),
+  );
+  return title;
+};
