@@ -5,36 +5,49 @@ import { ButtonTab } from 'styles/ButtonsMenu.style';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { attorneyFirmBlogQuery, authorFirmNewsByIdQuery } from 'utils/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
-import StringContent from 'components/organisms/attorney/StringContent';
 import { createMarkup } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
 import { useRouter } from 'next/router';
 import BlogList from './BlogList';
 import Videos from './Videos';
 import Table from './Table';
+import { ArticleBody } from '../../../styles/Article.style';
+
+const renderContent = (contentItem) => {
+  const contentMap = {
+    Media: <Table content={contentItem.content} />,
+    Presentations: <Table content={contentItem.content} />,
+    Publications: <Table content={contentItem.content} />,
+    Videos: <Videos content={contentItem.content} />,
+    Affiliations: <ArticleBody dangerouslySetInnerHTML={createMarkup(contentItem.content)} />,
+    'Constitutional Law Reporter': (
+      <>
+        <ContentTitle title="Articles Published on Constitutional Law Reporter" />
+        <BlogList content={contentItem.content} />
+      </>
+    ),
+    'Government & Law': <BlogList content={contentItem.content} />,
+    'Representative Matters': (
+      <ArticleBody dangerouslySetInnerHTML={createMarkup(contentItem.content)} />
+    ),
+  };
+
+  return contentMap[contentItem.title];
+};
+
+const cutTitles = (title) => {
+  const TitlesMap = {
+    'Representative Matters': 'Matters',
+    'Constitutional Law Reporter': 'Law Reporter',
+  };
+
+  return TitlesMap[title] || title;
+};
 
 const MoreTab = ({ content }) => {
   const [activeSubTab, setActiveSubTab] = useState(content[0]);
   const { query } = useRouter();
-  const renderContent = (contentItem) => {
-    const contentMap = {
-      Media: <Table content={contentItem.content} />,
-      Presentations: <Table content={contentItem.content} />,
-      Publications: <Table content={contentItem.content} />,
-      Videos: <Videos content={contentItem.content} />,
-      Affiliations: <div dangerouslySetInnerHTML={createMarkup(contentItem.content)} />,
-      'Constitutional Law Reporter': (
-        <>
-          <ContentTitle title="Articles Published on Constitutional Law Reporter" />
-          <BlogList content={contentItem.content} />
-        </>
-      ),
-      'Government & Law': <BlogList content={contentItem.content} />,
-      'Representative Matters': <StringContent content={contentItem.content} />,
-    };
 
-    return contentMap[contentItem.title];
-  };
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = useApolloQuery(
@@ -59,7 +72,7 @@ const MoreTab = ({ content }) => {
               onClick={() => setActiveSubTab(tab)}
               isMore="true"
             >
-              {tab.title === 'Constitutional Law Reporter' ? 'Law Reporter' : tab.title}
+              {cutTitles(tab.title)}
             </ButtonTab>
           ))}
         </ButtonGroup>

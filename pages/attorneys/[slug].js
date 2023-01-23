@@ -1,10 +1,6 @@
 import React from 'react';
 import { fetchAPI } from 'utils/api';
-import {
-  attorneyBySlugQuery,
-  attorneyNewsEventsQuery,
-  attorneyFirmBlogQuery,
-} from 'utils/graphql-queries';
+import { attorneyBySlugQuery, attorneyNewsEventsQuery } from 'utils/graphql-queries';
 import {
   concatNameUser,
   fetchExternalPosts,
@@ -32,7 +28,7 @@ export async function attorneyNewsEvents(name) {
   return data?.posts?.edges;
 }
 
-/** Get all the attorneys blog posts */
+/** Get all the attorneys blog posts using GraphQL */
 // export async function attorneyFirmBlog(id) {
 //   const data = await fetchAPI(attorneyFirmBlogQuery, {
 //     variables: { id },
