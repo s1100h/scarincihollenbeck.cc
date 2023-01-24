@@ -6,7 +6,8 @@ import { buildPersonSchema, STANDARD_SCHEMA } from 'utils/json-ld-schemas';
 
 const renderSchema = (routerSlug, personsSchema) => {
   const schemaMap = {
-    'little-falls': buildPersonSchema(personsSchema),
+    '/location/[slug]': buildPersonSchema(personsSchema),
+    '/practices/[slug]': buildPersonSchema(personsSchema),
   };
 
   return schemaMap[routerSlug];
@@ -40,7 +41,7 @@ const BasicSiteHead = ({
         key="ScarinciHollenbeck Bio Profile"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(renderSchema(router.query.slug, personDataForSchema)),
+          __html: JSON.stringify(renderSchema(router.route, personDataForSchema)),
         }}
       />
     </Head>
