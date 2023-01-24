@@ -2,11 +2,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { buildTestSchema, STANDARD_SCHEMA } from 'utils/json-ld-schemas';
+import { buildPersonSchema, STANDARD_SCHEMA } from 'utils/json-ld-schemas';
 
 const renderSchema = (routerSlug, personsSchema) => {
   const schemaMap = {
-    'little-falls': buildTestSchema(personsSchema),
+    'little-falls': buildPersonSchema(personsSchema),
   };
 
   return schemaMap[routerSlug];
