@@ -2,9 +2,19 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { STANDARD_SCHEMA } from 'utils/json-ld-schemas';
+import { buildTestSchema, STANDARD_SCHEMA } from 'utils/json-ld-schemas';
 
-const BasicSiteHead = ({ title, metaDescription, canonicalUrl }) => {
+const renderSchema = (routerSlug, personsSchema) => {
+  const schemaMap = {
+    'little-falls': buildTestSchema(personsSchema),
+  };
+
+  return schemaMap[routerSlug];
+};
+
+const BasicSiteHead = ({
+  title, metaDescription, canonicalUrl, personDataForSchema,
+}) => {
   const router = useRouter();
   const slug = router.asPath;
   const currentUrl = CURRENT_DOMAIN + slug;
@@ -26,6 +36,13 @@ const BasicSiteHead = ({ title, metaDescription, canonicalUrl }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+      <script
+        key="ScarinciHollenbeck Bio Profile"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(renderSchema(router.query.slug, personDataForSchema)),
+        }}
+      />
     </Head>
   );
 };

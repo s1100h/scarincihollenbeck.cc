@@ -88,6 +88,11 @@ export const buildBusinessSchema = () => ({
   ],
 });
 
+export const buildTestSchema = (persons) => ({
+  '@context': 'https://schema.org',
+  '@graph': persons,
+});
+
 export const buildLocationSchema = (location) => ({
   '@context': 'http://schema.org',
   '@type': 'LocalBusiness',
