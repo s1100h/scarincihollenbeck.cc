@@ -6,18 +6,19 @@ import SideBar from 'components/organisms/locations/LocationsSidebar';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { CURRENT_DOMAIN } from 'utils/constants';
+import { BreadcrumbJsonLd } from 'next-seo';
 
 const LocationPage = ({
-  seo, currentOffice, posts, linkToPdfMap,
+  seo, currentOffice, posts, linkToPdfMap, attorneysSchemaData,
 }) => {
   const canonicalUrl = `${CURRENT_DOMAIN}/${seo.canonicalLink}`;
-
   return (
     <>
       <BasicSiteHead
         title={seo.title}
         metaDescription={seo.metaDescription}
         canonicalUrl={canonicalUrl}
+        personDataForSchema={attorneysSchemaData}
       />
       <Head>
         <script

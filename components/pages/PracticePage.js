@@ -12,7 +12,12 @@ const Body = dynamic(() => import('components/organisms/practice/Body'));
 const ListWrapperDynamic = dynamic(() => import('components/organisms/practices/ListWrapper'));
 
 const PracticePage = ({
-  corePractices, practice, practiceChildren, canonicalUrl, tabs,
+  corePractices,
+  practice,
+  practiceChildren,
+  canonicalUrl,
+  tabs,
+  attorneysSchemaData,
 }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
@@ -43,6 +48,7 @@ const PracticePage = ({
         title={practice.seo.title}
         metaDescription={practice.seo.metaDescription}
         canonicalUrl={canonicalUrl}
+        personDataForSchema={attorneysSchemaData}
       />
       <SingleSubHeader
         title={practice.title}

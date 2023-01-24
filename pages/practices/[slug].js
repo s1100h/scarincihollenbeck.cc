@@ -58,9 +58,30 @@ export const getServerSideProps = async ({ params, res }) => {
     return attorney;
   });
 
+  const attorneysSchemaChair = request?.chair.map((attorney) => ({
+    '@type': 'Person',
+    name: attorney.name,
+    image: attorney.image,
+    url: attorney.link,
+    telephone: attorney.contact,
+    jobTitle: 'Attorney',
+  }));
+
+  const attorneysSchemaAttorneyList = request?.attorneyList.map((attorney) => ({
+    '@type': 'Person',
+    name: attorney.name,
+    image: attorney.image,
+    url: attorney.link,
+    telephone: attorney.contact,
+    jobTitle: 'Attorney',
+  }));
+
+  const attorneysSchemaAttorney = [...attorneysSchemaChair, ...attorneysSchemaAttorneyList];
+
   return {
     props: {
       practice: request,
+      attorneysSchemaData: attorneysSchemaAttorney,
       practiceChildren: request.children || [],
       slug: params.slug,
     },
@@ -68,7 +89,9 @@ export const getServerSideProps = async ({ params, res }) => {
 };
 
 /** Single practice page component */
-const SinglePractice = ({ practice, practiceChildren, slug }) => {
+const SinglePractice = ({
+  practice, practiceChildren, slug, attorneysSchemaData,
+}) => {
   const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
@@ -96,6 +119,7 @@ const SinglePractice = ({ practice, practiceChildren, slug }) => {
     corePractices,
     practice,
     practiceChildren,
+    attorneysSchemaData,
     practiceUrl,
     canonicalUrl,
     tabs: fullTabs,
