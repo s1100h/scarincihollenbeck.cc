@@ -433,9 +433,8 @@ export const categoryPostQuery = `query CategoryPosts($name:String) {
             count
             id
           }
-        }        
+        }
         description
-        categoryId
         posts(first: 4) {
           edges {
             node {
@@ -456,9 +455,16 @@ export const categoryPostQuery = `query CategoryPosts($name:String) {
                 }
               }
               date
+              author {
+                node {
+                  userId
+                  name
+                }
+              }
             }
           }
         }
+        databaseId
       }
     }
   }
