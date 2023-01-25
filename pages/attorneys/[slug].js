@@ -208,7 +208,6 @@ export const getServerSideProps = async ({ params, res }) => {
     attorneyBio.attorneyTabNavigation.mainMenu = [];
   }
   mainTabs.unshift('General');
-  mainTabs.push('More');
 
   const moreMenu = attorneyBio.attorneyTabNavigation?.moreMenu;
 
@@ -218,13 +217,19 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const isContentArr = await attorneyFirmNewsBlogEvents(slug);
 
-  const moreTabs = [].concat(moreMenu);
+  const moreTabs = [];
+
   if (Array.isArray(moreMenu)) {
     isContentArr.forEach(({ postLabel, cursorStart }) => {
       if (cursorStart?.length > 0) {
         moreTabs.push(postLabel);
       }
     });
+  }
+
+  if (moreMenu) {
+    mainTabs.push('More');
+    moreTabs.push(...moreMenu);
   }
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
@@ -279,7 +284,45 @@ export const getServerSideProps = async ({ params, res }) => {
       content: attorneyBio.attorneyBiography.biographyContent,
     },
     {
-      id: 18,
+      id: 7,
+      title: 'Representative Matters',
+      content: attorneyBio.attorneyRepresentativeMatters.repMatters
+        ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
+        : [],
+    },
+    {
+      id: 9,
+      title: 'Media',
+      content: {
+        header: attorneyBio.attorneyMedia.attorneyMedia.header,
+        body: attorneyBio.attorneyMedia.attorneyMedia.body,
+      },
+    },
+    {
+      id: 10,
+      title: 'Presentations',
+      content: {
+        header: attorneyBio.attorneyPresentations.attorneyPresentations.header,
+        body: attorneyBio.attorneyPresentations.attorneyPresentations.body,
+      },
+    },
+    {
+      id: 11,
+      title: 'Publications',
+      content: {
+        header: attorneyBio.attorneyPublications.attorneyPublications.header,
+        body: attorneyBio.attorneyPublications.attorneyPublications.body,
+      },
+    },
+    {
+      id: 12,
+      title: 'Videos',
+      content: attorneyBio.attorneyAwardsClientsBlogsVideos
+        ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
+        : [],
+    },
+    {
+      id: 188,
       title: 'More',
       content: [
         {
@@ -314,7 +357,7 @@ export const getServerSideProps = async ({ params, res }) => {
           },
         },
         {
-          id: 12,
+          id: 122,
           title: 'Videos',
           content: attorneyBio.attorneyAwardsClientsBlogsVideos
             ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
@@ -328,7 +371,7 @@ export const getServerSideProps = async ({ params, res }) => {
           },
         },
         {
-          id: 14,
+          id: 144,
           title: 'News Press Releases',
           content: {
             id: slug,

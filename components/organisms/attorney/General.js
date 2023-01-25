@@ -26,7 +26,7 @@ const General = ({ content }) => {
             />
           )}
         </EducationAdmissionBox>
-        {affiliations.length > 0 && (
+        {affiliations?.length > 0 && (
           <GrayList
             isBigWidth="true"
             dangerouslySetInnerHTML={createMarkup(`<h3>Affiliations</h3>${affiliations}`)}
