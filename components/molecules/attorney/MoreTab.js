@@ -3,7 +3,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import { ButtonBox, ContentBox, MoreTabContainer } from 'styles/attorney-page/MoreTab.style';
 import { ButtonTab } from 'styles/ButtonsMenu.style';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { attorneyFirmBlogQuery, authorFirmNewsByIdQuery } from 'utils/graphql-queries';
+import { attorneyPostsQueryByIdAndSlug } from 'utils/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import { createMarkup } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
@@ -48,16 +48,23 @@ const MoreTab = ({ content }) => {
   const [activeSubTab, setActiveSubTab] = useState(content[0]);
   const { query } = useRouter();
 
+  const categoryIdMap = {
+    Blogs: 599,
+    'News Press Releases': 98,
+    Events: 99,
+  };
+
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = useApolloQuery(
-    activeSubTab.title === 'Blogs' ? attorneyFirmBlogQuery : authorFirmNewsByIdQuery,
+    attorneyPostsQueryByIdAndSlug,
     {
       first: 3,
       last: null,
       after: '3',
       before: null,
       slug: query.slug,
+      categoryId: categoryIdMap[activeSubTab.title],
     },
   );
 

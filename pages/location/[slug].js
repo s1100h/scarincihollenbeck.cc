@@ -77,11 +77,21 @@ export const getStaticProps = async ({ params }) => {
     };
   });
 
+  const attorneysSchema = currentOffice.attorneys.map((attorney) => ({
+    '@type': 'Person',
+    name: attorney.name,
+    image: attorney.image,
+    url: attorney.link,
+    telephone: attorney.contact,
+    jobTitle: 'Attorney',
+  }));
+
   return {
     props: {
       offices: locations.offices || {},
       seo: currentOffice.seo || {},
       currentOffice,
+      attorneysSchemaData: attorneysSchema,
       posts: currentOfficePosts,
       linkToPdfMap: {
         autoMap,
@@ -94,7 +104,12 @@ export const getStaticProps = async ({ params }) => {
 
 /* Single location page component * */
 const SingleLocation = ({
-  seo, offices, currentOffice, posts, linkToPdfMap,
+  seo,
+  offices,
+  currentOffice,
+  posts,
+  linkToPdfMap,
+  attorneysSchemaData,
 }) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);
@@ -112,6 +127,7 @@ const SingleLocation = ({
   const locationProps = {
     seo,
     currentOffice,
+    attorneysSchemaData,
     posts,
     linkToPdfMap,
   };

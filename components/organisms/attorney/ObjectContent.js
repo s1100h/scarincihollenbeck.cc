@@ -25,6 +25,7 @@ const renderBody = (title, content, setActiveTab) => {
           <Table content={content} />
         </Surface>
       );
+
     case 'Publications':
       return (
         <Surface>

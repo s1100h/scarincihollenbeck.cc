@@ -10,7 +10,7 @@ import { createMarkup } from 'utils/helpers';
 
 const General = ({ content }) => {
   const {
-    miniBio, education, barAdmissions, additionalInfo, clients,
+    miniBio, education, barAdmissions, additionalInfo, clients, affiliations,
   } = content;
   return (
     <Surface unscrollable="true">
@@ -22,10 +22,16 @@ const General = ({ content }) => {
           )}
           {barAdmissions && (
             <GrayList
-              dangerouslySetInnerHTML={createMarkup(`<h3>Admission</h3>${barAdmissions}`)}
+              dangerouslySetInnerHTML={createMarkup(`<h3>Admissions</h3>${barAdmissions}`)}
             />
           )}
         </EducationAdmissionBox>
+        {affiliations.length > 0 && (
+          <GrayList
+            isBigWidth="true"
+            dangerouslySetInnerHTML={createMarkup(`<h3>Affiliations</h3>${affiliations}`)}
+          />
+        )}
         {additionalInfo && additionalInfo[0].content && (
           <GrayList
             isBigWidth="true"

@@ -8,6 +8,7 @@ import {
   UpDownBtn,
 } from 'styles/AttorneysListBox.style';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import { useId } from 'react';
 
 const AttorneysListBox = ({ attorneys }) => {
   const { chair, attorneysList } = attorneys;
@@ -22,6 +23,7 @@ const AttorneysListBox = ({ attorneys }) => {
     if (attorneys.length <= 3) {
       return attorneys.map((attorney) => (
         <AttorneyCard
+          key={useId()}
           link={`/attorneys/${attorney.link}`}
           image={formatSrcToCloudinaryUrl(attorney.image)}
           name={attorney.name}
