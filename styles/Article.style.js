@@ -27,6 +27,7 @@ export const ArticleBody = styled.section`
   color: ${globalColor.gray.gray80};
 
   ul {
+    padding: 0;
     li {
       ::before {
         content: '➤';

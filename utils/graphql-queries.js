@@ -252,14 +252,15 @@ export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: Stri
       }
     }`;
 
-export const attorneyFirmBlogQuery = `query AttorneyPostsById(
+export const attorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
+  $categoryId: [ID]
   $slug: String
   $first: Int
   $last: Int
   $after: String
   $before: String
   ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: 599, search: $slug}) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
         edges {
       node {
         date
@@ -288,7 +289,25 @@ export const attorneyFirmBlogQuery = `query AttorneyPostsById(
   }}
 `;
 
-// , orderby: {field: DATE, order: DESC}
+export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
+  $categoryId: [ID]
+  $slug: String
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  ) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }}
+`;
+
+// , order by: {field: DATE, order: DESC}
 export const categoryPostsByIdQuery = `query categoryPostsById(
   $first: Int
   $last: Int
@@ -377,42 +396,6 @@ export const authorPostsByIdQuery = `query authorPostsById(
       }
     }
   }
-  }
-}`;
-
-export const authorFirmNewsByIdQuery = `query authorFirmNewsById(
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  $slug: String
-) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: { search: $slug, categoryIn: "98"}) {
-    edges {
-      node {
-        date
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        uri
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            url
-          }
-        }
-      }
-    }
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
   }
 }`;
 

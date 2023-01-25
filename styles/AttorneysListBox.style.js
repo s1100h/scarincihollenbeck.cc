@@ -42,6 +42,9 @@ export const ChairBox = styled.div`
 `
 
 export const AttorneysSliderBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   height: 567px;
   overflow-y: hidden;
   padding-left: 15px;

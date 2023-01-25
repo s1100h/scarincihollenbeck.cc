@@ -1,6 +1,10 @@
 import React from 'react';
 import { fetchAPI } from 'utils/api';
-import { attorneyBySlugQuery, attorneyNewsEventsQuery } from 'utils/graphql-queries';
+import {
+  attorneyBySlugQuery,
+  attorneyNewsEventsQuery,
+  checkAttorneyPostsQueryByIdAndSlug,
+} from 'utils/graphql-queries';
 import {
   concatNameUser,
   fetchExternalPosts,
@@ -29,12 +33,31 @@ export async function attorneyNewsEvents(name) {
 }
 
 /** Get all the attorneys blog posts using GraphQL */
-// export async function attorneyFirmBlog(id) {
-//   const data = await fetchAPI(attorneyFirmBlogQuery, {
-//     variables: { id },
-//   });
-//   return data?.posts;
-// }
+export async function attorneyFirmNewsBlogEvents(slug) {
+  const blogs = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
+    variables: { categoryId: 599, slug },
+  });
+  const events = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
+    variables: { categoryId: 99, slug },
+  });
+  const releases = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
+    variables: { categoryId: 98, slug },
+  });
+  return [
+    {
+      postLabel: 'Blogs',
+      cursorStart: blogs.posts.pageInfo.startCursor,
+    },
+    {
+      postLabel: 'News Press Releases',
+      cursorStart: releases.posts.pageInfo.startCursor,
+    },
+    {
+      postLabel: 'Events',
+      cursorStart: events.posts.pageInfo.startCursor,
+    },
+  ];
+}
 
 const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
   node.featuredImage = node.featuredImage?.node?.sourceUrl
@@ -180,22 +203,29 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
-  mainTabs?.unshift('General');
-  const moreTabs = attorneyBio.attorneyTabNavigation?.moreMenu;
 
-  if (
-    attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations
-      !== null
-    && attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations.length
-      > 0
-  ) {
-    if (!moreTabs) {
-      mainTabs.push('Affiliations');
-    }
-    moreTabs?.unshift('Affiliations');
+  if (typeof mainTabs === 'undefined') {
+    attorneyBio.attorneyTabNavigation.mainMenu = [];
+  }
+  mainTabs.unshift('General');
+  mainTabs.push('More');
+
+  const moreMenu = attorneyBio.attorneyTabNavigation?.moreMenu;
+
+  if (typeof moreMenu === 'undefined') {
+    attorneyBio.attorneyTabNavigation.moreMenu = [];
   }
 
-  if (moreTabs?.length > 0) mainTabs.push('More');
+  const isContentArr = await attorneyFirmNewsBlogEvents(slug);
+
+  const moreTabs = [].concat(moreMenu);
+  if (Array.isArray(moreMenu)) {
+    isContentArr.forEach(({ postLabel, cursorStart }) => {
+      if (cursorStart?.length > 0) {
+        moreTabs.push(postLabel);
+      }
+    });
+  }
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
@@ -223,7 +253,7 @@ export const getServerSideProps = async ({ params, res }) => {
       content: conLawPosts,
     });
   }
-
+  // console.log("additionalTabs", additionalTabs);
   const tabs = [
     ...additionalTabs,
     {
@@ -235,6 +265,8 @@ export const getServerSideProps = async ({ params, res }) => {
           attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
         barAdmissions:
           attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        affiliations:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
         additionalInfo:
           attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
             ?.additionalInformation,
@@ -245,12 +277,6 @@ export const getServerSideProps = async ({ params, res }) => {
       id: 6,
       title: 'Biography',
       content: attorneyBio.attorneyBiography.biographyContent,
-    },
-    {
-      id: 15,
-      title: 'Affiliations',
-      content:
-        attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
     },
     {
       id: 18,
@@ -309,10 +335,11 @@ export const getServerSideProps = async ({ params, res }) => {
           },
         },
         {
-          id: 15,
-          title: 'Affiliations',
-          content:
-            attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
+          id: 23,
+          title: 'Events',
+          content: {
+            id: slug,
+          },
         },
         ...externalBlogTabs,
       ],
@@ -339,7 +366,7 @@ export const getServerSideProps = async ({ params, res }) => {
     }
     return tab;
   });
-
+  // console.log('mainTabsMatched', ...mainTabsMatched);
   /** Awards */
   const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
 
