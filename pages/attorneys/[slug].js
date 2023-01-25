@@ -279,6 +279,44 @@ export const getServerSideProps = async ({ params, res }) => {
       content: attorneyBio.attorneyBiography.biographyContent,
     },
     {
+      id: 7,
+      title: 'Representative Matters',
+      content: attorneyBio.attorneyRepresentativeMatters.repMatters
+        ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
+        : [],
+    },
+    {
+      id: 9,
+      title: 'Media',
+      content: {
+        header: attorneyBio.attorneyMedia.attorneyMedia.header,
+        body: attorneyBio.attorneyMedia.attorneyMedia.body,
+      },
+    },
+    {
+      id: 10,
+      title: 'Presentations',
+      content: {
+        header: attorneyBio.attorneyPresentations.attorneyPresentations.header,
+        body: attorneyBio.attorneyPresentations.attorneyPresentations.body,
+      },
+    },
+    {
+      id: 11,
+      title: 'Publications',
+      content: {
+        header: attorneyBio.attorneyPublications.attorneyPublications.header,
+        body: attorneyBio.attorneyPublications.attorneyPublications.body,
+      },
+    },
+    {
+      id: 12,
+      title: 'Videos',
+      content: attorneyBio.attorneyAwardsClientsBlogsVideos
+        ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
+        : [],
+    },
+    {
       id: 18,
       title: 'More',
       content: [
