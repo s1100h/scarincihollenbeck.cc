@@ -211,7 +211,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const moreMenu = attorneyBio.attorneyTabNavigation?.moreMenu;
 
-  if (typeof moreMenu === 'undefined') {
+  if (moreMenu === null) {
     attorneyBio.attorneyTabNavigation.moreMenu = [];
   }
 
@@ -219,18 +219,15 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const moreTabs = [];
 
-  if (Array.isArray(moreMenu)) {
-    isContentArr.forEach(({ postLabel, cursorStart }) => {
-      if (cursorStart?.length > 0) {
-        moreTabs.push(postLabel);
-      }
-    });
-  }
+  isContentArr?.forEach(({ postLabel, cursorStart }) => {
+    if (cursorStart?.length > 0) {
+      moreTabs.push(postLabel);
+    }
+  });
 
-  if (moreMenu) {
-    mainTabs.push('More');
-    moreTabs.push(...moreMenu);
-  }
+  if (moreTabs.length > 0) mainTabs.push('More');
+
+  if (moreMenu !== null) moreTabs.push(...moreMenu);
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
@@ -258,36 +255,20 @@ export const getServerSideProps = async ({ params, res }) => {
       content: conLawPosts,
     });
   }
-  // console.log("additionalTabs", additionalTabs);
-  const tabs = [
-    ...additionalTabs,
-    {
-      id: 5,
-      title: 'General',
-      content: {
-        miniBio: attorneyBio.attorneyBiography?.miniBio,
-        education:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
-        barAdmissions:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
-        affiliations:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
-        additionalInfo:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
-            ?.additionalInformation,
-        clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
-      },
-    },
-    {
-      id: 6,
-      title: 'Biography',
-      content: attorneyBio.attorneyBiography.biographyContent,
-    },
+
+  const commonTabs = [
     {
       id: 7,
       title: 'Representative Matters',
       content: attorneyBio.attorneyRepresentativeMatters.repMatters
         ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
+        : [],
+    },
+    {
+      id: 8,
+      title: 'Representative Clients',
+      content: attorneyBio.attorneyRepresentativeClients.repClients
+        ? attorneyBio.attorneyRepresentativeClients.repClients[0].content
         : [],
     },
     {
@@ -321,48 +302,41 @@ export const getServerSideProps = async ({ params, res }) => {
         ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
         : [],
     },
+  ];
+
+  const tabs = [
+    {
+      id: 5,
+      title: 'General',
+      content: {
+        miniBio: attorneyBio.attorneyBiography?.miniBio,
+        education:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
+        barAdmissions:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        affiliations:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
+        additionalInfo:
+          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+            ?.additionalInformation,
+        clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
+      },
+    },
+    {
+      id: 6,
+      title: 'Biography',
+      content: attorneyBio.attorneyBiography.biographyContent,
+    },
+    ...additionalTabs,
+    ...commonTabs,
+    ...externalBlogTabs,
     {
       id: 188,
       title: 'More',
       content: [
-        {
-          id: 7,
-          title: 'Representative Matters',
-          content: attorneyBio.attorneyRepresentativeMatters.repMatters
-            ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
-            : [],
-        },
-        {
-          id: 9,
-          title: 'Media',
-          content: {
-            header: attorneyBio.attorneyMedia.attorneyMedia.header,
-            body: attorneyBio.attorneyMedia.attorneyMedia.body,
-          },
-        },
-        {
-          id: 10,
-          title: 'Presentations',
-          content: {
-            header: attorneyBio.attorneyPresentations.attorneyPresentations.header,
-            body: attorneyBio.attorneyPresentations.attorneyPresentations.body,
-          },
-        },
-        {
-          id: 11,
-          title: 'Publications',
-          content: {
-            header: attorneyBio.attorneyPublications.attorneyPublications.header,
-            body: attorneyBio.attorneyPublications.attorneyPublications.body,
-          },
-        },
-        {
-          id: 122,
-          title: 'Videos',
-          content: attorneyBio.attorneyAwardsClientsBlogsVideos
-            ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
-            : [],
-        },
+        ...additionalTabs,
+        ...commonTabs,
+        ...externalBlogTabs,
         {
           id: 13,
           title: 'Blogs',
@@ -384,7 +358,6 @@ export const getServerSideProps = async ({ params, res }) => {
             id: slug,
           },
         },
-        ...externalBlogTabs,
       ],
     },
   ];
@@ -397,10 +370,10 @@ export const getServerSideProps = async ({ params, res }) => {
   mainTabsMatched.map((tab) => {
     if (tab.title === 'More') {
       const moreTabsArr = [];
-      tab.content.forEach((tab) => {
-        moreTabs.forEach((tabTitle) => {
-          if (tab.title.includes(tabTitle)) {
-            moreTabsArr.push(tab);
+      moreTabs.forEach((tabItem) => {
+        tab.content.forEach((subTab) => {
+          if (tabItem === subTab.title) {
+            moreTabsArr.push(subTab);
           }
         });
       });
@@ -409,7 +382,7 @@ export const getServerSideProps = async ({ params, res }) => {
     }
     return tab;
   });
-  // console.log('mainTabsMatched', ...mainTabsMatched);
+
   /** Awards */
   const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
 

@@ -19,7 +19,6 @@ const renderContent = (contentItem) => {
     Presentations: <Table content={contentItem.content} />,
     Publications: <Table content={contentItem.content} />,
     Videos: <Videos content={contentItem.content} />,
-    Affiliations: <ArticleBody dangerouslySetInnerHTML={createMarkup(contentItem.content)} />,
     'Constitutional Law Reporter': (
       <>
         <ContentTitle title="Articles Published on Constitutional Law Reporter" />
@@ -27,18 +26,15 @@ const renderContent = (contentItem) => {
       </>
     ),
     'Government & Law': <BlogList content={contentItem.content} />,
-    'Representative Matters': (
-      <ArticleBody dangerouslySetInnerHTML={createMarkup(contentItem.content)} />
-    ),
   };
 
   return contentMap[contentItem.title];
 };
-
 const cutTitles = (title) => {
   const TitlesMap = {
     'Representative Matters': 'Matters',
     'Constitutional Law Reporter': 'Law Reporter',
+    'Awards & Recognitions': 'Awards',
   };
 
   return TitlesMap[title] || title;
@@ -85,7 +81,11 @@ const MoreTab = ({ content }) => {
         </ButtonGroup>
       </ButtonBox>
       <ContentBox>
-        {renderContent(activeSubTab)}
+        {typeof activeSubTab.content === 'string' ? (
+          <ArticleBody dangerouslySetInnerHTML={createMarkup(activeSubTab.content)} />
+        ) : (
+          renderContent(activeSubTab)
+        )}
         {activeSubTab.content?.id && (
           <ArticleContent
             content={{
