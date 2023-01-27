@@ -10,7 +10,7 @@ import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.s
 import { CustomContainer } from 'styles/Containers.style';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
-const ObjectContent = dynamic(() => import('components/organisms/attorney/ObjectContent'));
+const MainProfileMenu = dynamic(() => import('components/organisms/attorney/MainProfileMenu'));
 
 const AttorneyPage = ({
   seo, profileHeader, attorneyFooterNewsArticles, tabs, attorneyAwards,
@@ -67,7 +67,7 @@ const AttorneyPage = ({
               <StringContent {...activeTabContent} />
             )}
             {activeTabContent.type === 'object' && !isBlog && !isArticle && (
-              <ObjectContent {...activeTabContent} setActiveTab={setActiveTabContent} />
+              <MainProfileMenu {...activeTabContent} setActiveTab={setActiveTabContent} />
             )}
           </ColStyled>
           <ColForSidebar top="45px" sm={12} md={11} lg={3} xl={4}>

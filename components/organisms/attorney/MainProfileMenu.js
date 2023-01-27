@@ -7,8 +7,10 @@ import Surface from 'components/atoms/micro-templates/surface';
 import MoreTab from 'components/molecules/attorney/MoreTab';
 import General from './General';
 
-const renderBody = (title, content, setActiveTab) => {
+const renderContentTab = (title, content, setActiveTab) => {
   switch (title) {
+    case 'General':
+      return <General content={content} />;
     case 'Media':
       return (
         <Surface>
@@ -16,8 +18,6 @@ const renderBody = (title, content, setActiveTab) => {
           <Table content={content} />
         </Surface>
       );
-    case 'General':
-      return <General content={content} />;
     case 'Presentations':
       return (
         <Surface>
@@ -40,9 +40,6 @@ const renderBody = (title, content, setActiveTab) => {
           <Videos content={content} />
         </Surface>
       );
-    case 'Affiliations':
-      return <AffiliationsContent {...content} />;
-
     case 'Constitutional Law Reporter':
       return (
         <Surface>
@@ -64,6 +61,6 @@ const renderBody = (title, content, setActiveTab) => {
   }
 };
 
-const ObjectContent = ({ title, content, setActiveTab }) => renderBody(title, content, setActiveTab);
+const MainProfileMenu = ({ title, content, setActiveTab }) => renderContentTab(title, content, setActiveTab);
 
-export default ObjectContent;
+export default MainProfileMenu;
