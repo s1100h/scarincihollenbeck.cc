@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import CareerProfile from 'components/pages/CareerPage';
-import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -42,7 +42,7 @@ const Career = ({ career }) => {
     return <SiteLoader />;
   }
 
-  const canonicalUrl = `${SITE_URL}${router.asPath}`;
+  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
 
   const careerProps = {
     career,

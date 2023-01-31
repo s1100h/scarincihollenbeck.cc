@@ -82,10 +82,14 @@ const PracticePage = ({
         </Row>
         <Row>
           <Col sm={12}>
-            <ListWrapperDynamic title="Core Practices" list={corePractices} isSimple />
+            {corePractices.length > 0 && (
+              <ListWrapperDynamic title="Core Practices" list={corePractices} isSimple />
+            )}
           </Col>
           <Col sm={12}>
-            <ListWrapperDynamic title="Related Practices" list={practiceChildren} isSimple />
+            {practiceChildren.length > 0 && (
+              <ListWrapperDynamic title="Related Practices" list={practiceChildren} isSimple />
+            )}
           </Col>
         </Row>
       </Container>

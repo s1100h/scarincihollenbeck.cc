@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { getSEOforAuthorPosts } from 'utils/graphql-queries';
 
@@ -86,7 +86,7 @@ const LibraryAuthor = ({
 }) => {
   const router = useRouter();
 
-  const canonicalUrl = `${SITE_URL}/library/author${pageTitle}`;
+  const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;
   const { title, metaDescription } = seo;
 
   const authorProps = {

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { ArticleContainer, Title, ArticleBody } from 'styles/Article.style';
-import { createMarkup } from 'utils/helpers';
+import { JSXWithDynamicLinks } from './micro-templates/JSXWithDynamicLinks';
 
 const ContentTitle = dynamic(() => import('components/atoms/ContentTitle'));
 
@@ -9,7 +9,9 @@ export default function Article({ title, contentBody, highlight }) {
   return (
     <ArticleContainer>
       {title?.length > 0 && renderTitle(highlight)}
-      <ArticleBody dangerouslySetInnerHTML={createMarkup(contentBody)} />
+      <ArticleBody>
+        <JSXWithDynamicLinks HTML={contentBody} />
+      </ArticleBody>
     </ArticleContainer>
   );
 }

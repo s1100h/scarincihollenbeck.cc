@@ -1,4 +1,4 @@
-import { useId, forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import Slider from 'react-slick';
 
 const SliderCommon = forwardRef((props, ref) => {
@@ -21,7 +21,7 @@ const SliderCommon = forwardRef((props, ref) => {
     adaptiveHeight: true,
     variableHeight: false,
   };
-  const addKeyToComponent = componentsArr.map((component) => ({ ...component, key: useId() }));
+  const addKeyToComponent = useMemo(() => componentsArr, [componentsArr]);
   return (
     <Slider ref={ref} {...settings}>
       {addKeyToComponent.map((component) => component)}

@@ -1,5 +1,5 @@
 import { sortByKey } from 'utils/helpers';
-import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
@@ -65,7 +65,7 @@ const PracticesPageDirectory = ({
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
   const sortedBusinessPractices = sortByKey(business, 'title');
-  const canonicalUrl = `${SITE_URL}/practices`;
+  const canonicalUrl = `${PRODUCTION_URL}/practices`;
 
   const practicesPageProps = {
     site,

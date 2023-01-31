@@ -1,7 +1,7 @@
 import {
   AboutArticle, AboutBox, LinkButtonAbout, SubTitleAbout,
 } from 'styles/AboutFirm.style';
-import { createMarkup } from 'utils/helpers';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const AboutFirm = ({
   description, title, linkLabel, linkUrl, subTitle,
@@ -14,7 +14,7 @@ const AboutFirm = ({
     <AboutArticle>
       <SubTitleAbout>{subTitle}</SubTitleAbout>
       <h3>{title}</h3>
-      <div dangerouslySetInnerHTML={createMarkup(description)} style={{ fontSize: '1.1rem' }} />
+      <JSXWithDynamicLinks HTML={description} />
     </AboutArticle>
   </AboutBox>
 );

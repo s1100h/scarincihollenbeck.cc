@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
-import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { fetchAPI } from 'utils/api';
 import { categoryPostQuery } from 'utils/graphql-queries';
@@ -51,7 +51,7 @@ export const getServerSideProps = async ({ params, res }) => {
   const news = content.posts?.edges.map(({ node }, index) => ({
     ID: index,
     title: node.title,
-    link: node.uri.replace('https://scarincihollenbeck.com', ''),
+    link: node.uri.replace(PRODUCTION_URL, ''),
     date: node.date,
     excerpt: node.excerpt,
     author: node.author.node.name,
@@ -116,7 +116,7 @@ const LibraryCategory = ({
     );
   }
 
-  const canonicalUrl = `${SITE_URL}/library/${pageTitle}`;
+  const canonicalUrl = `${PRODUCTION_URL}/library/${pageTitle}`;
 
   const libraryProps = {
     seo: {

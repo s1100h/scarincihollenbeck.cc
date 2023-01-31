@@ -5,13 +5,13 @@ import { ButtonTab } from 'styles/ButtonsMenu.style';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { attorneyPostsQueryByIdAndSlug } from 'utils/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
-import { createMarkup } from 'utils/helpers';
 import ContentTitle from 'components/atoms/ContentTitle';
 import { useRouter } from 'next/router';
 import BlogList from './BlogList';
 import Videos from './Videos';
 import Table from './Table';
 import { ArticleBody } from '../../../styles/Article.style';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const renderContent = (contentItem) => {
   const contentMap = {
@@ -82,7 +82,9 @@ const MoreTab = ({ content }) => {
       </ButtonBox>
       <ContentBox>
         {typeof activeSubTab.content === 'string' ? (
-          <ArticleBody dangerouslySetInnerHTML={createMarkup(activeSubTab.content)} />
+          <ArticleBody>
+            <JSXWithDynamicLinks HTML={activeSubTab.content} />
+          </ArticleBody>
         ) : (
           renderContent(activeSubTab)
         )}

@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import { sortByKey } from 'utils/helpers';
-import { SITE_URL, BASE_API_URL, headers } from 'utils/constants';
+import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { attorneysPageQuery, miniOfficeLocationQuery } from 'utils/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
@@ -81,7 +81,7 @@ const Attorneys = ({
     dataForFilter,
     setAttorneysContext,
   } = useContext(AttorneysContext);
-  const canonicalUrl = `${SITE_URL}/attorneys`;
+  const canonicalUrl = `${PRODUCTION_URL}/attorneys`;
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');

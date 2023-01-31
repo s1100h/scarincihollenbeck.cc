@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import BasicPageContent from 'components/pages/BasicPageContent';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { basicPagesQuery } from 'utils/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
@@ -62,7 +62,7 @@ const BasicPage = ({
   }
 
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
-  const canonicalUrl = `${SITE_URL}/${slug}`;
+  const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
 
   const basicPageProps = {
     bodyContent: clearBody,

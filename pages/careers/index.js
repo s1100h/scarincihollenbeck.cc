@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import CareersPage from 'components/pages/CareersDirectory';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI, homePageLocations } from 'utils/api';
 import { careersPageQuery, careersQuery } from 'utils/graphql-queries';
 
@@ -58,7 +58,7 @@ const CareersDirectory = ({
   const [location, setLocation] = useState('');
   const [positionType, setPositionType] = useState('');
   const [careers, setCareers] = useState([]);
-  const canonicalUrl = `${SITE_URL}${router.asPath}`;
+  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
 
   if (router.isFallback) {
     return <SiteLoader />;

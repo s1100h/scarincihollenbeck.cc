@@ -67,12 +67,12 @@ export const AttorneysTitleBox = styled.div`
   padding: ${(props) => (props?.isSingle ? '0 0 20px 15px' : '20px 0 20px 15px')};
 
   h5 {
-    ${titlesFontSize}
+    ${titlesFontSize};
     margin-bottom: 0;
   }
 
   span {
-    ${titlesFontSize}
+    ${titlesFontSize};
     color: ${globalColor.gray.gray80};
   }
 `

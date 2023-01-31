@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
-import { BASE_API_URL, SITE_URL, headers } from 'utils/constants';
+import { BASE_API_URL, PRODUCTION_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { administrationPageQuery } from 'utils/graphql-queries';
 
@@ -43,7 +43,7 @@ export async function getStaticProps() {
 /** Administration directory page component */
 const Administration = ({ admins, seo, site }) => {
   const router = useRouter();
-  const canonicalUrl = `${SITE_URL}${router.asPath}`;
+  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
   const adminProps = {
     admins,
     seo,

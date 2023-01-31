@@ -1,5 +1,4 @@
 import Table from 'components/molecules/attorney/Table';
-import AffiliationsContent from 'components/molecules/attorney/AffiliationsContent';
 import ContentTitle from 'components/atoms/ContentTitle';
 import Videos from 'components/molecules/attorney/Videos';
 import BlogList from 'components/molecules/attorney/BlogList';
