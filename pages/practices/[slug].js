@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import {
-  SITE_URL, CORE_PRACTICES, BASE_API_URL, headers,
+  PRODUCTION_URL, CORE_PRACTICES, BASE_API_URL, headers,
 } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
@@ -95,7 +95,7 @@ const SinglePractice = ({
   const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
-  const canonicalUrl = `${SITE_URL}/practices/${practice.slug}`;
+  const canonicalUrl = `${PRODUCTION_URL}/practices/${practice.slug}`;
 
   if (router.isFallback) {
     return <SiteLoader />;

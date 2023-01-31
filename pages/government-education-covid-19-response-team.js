@@ -1,6 +1,6 @@
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import CovidPage from 'components/pages/CovidPage';
-import { SITE_URL, COVID_POSTS_ID } from 'utils/constants';
+import { PRODUCTION_URL, COVID_POSTS_ID } from 'utils/constants';
 import { getCovid19BasedPages } from 'utils/queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
 
@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
 
 const GovernmentEducationCovidResponseTeam = ({ title, content, seo }) => {
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
-  const canonicalUrl = `${SITE_URL}/government-education-covid-19-response-team`;
+  const canonicalUrl = `${PRODUCTION_URL}/government-education-covid-19-response-team`;
 
   const covidProps = {
     title,

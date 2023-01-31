@@ -6,8 +6,9 @@ import ContactForm from 'components/shared/ContactForm/ContactForm';
 import SubscriptionFormColumn from 'components/molecules/subscription/SubscriptionFormColumn';
 import OfficeList from 'components/organisms/form-page/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
+import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
+import { JSXWithDynamicLinks } from '../atoms/micro-templates/JSXWithDynamicLinks';
 
 const FormPageContent = ({
   isSubscribe, bodyContent, canonicalUrl, seo, site,
@@ -22,10 +23,10 @@ const FormPageContent = ({
     <Container>
       <Row>
         <Col sm={12} lg={9}>
-          <article
-            dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(bodyContent))}
-          />
-          <BigGrayTitle className="mb-5 w-100">{site.formLabel}</BigGrayTitle>
+          <article className="mb-5">
+            <JSXWithDynamicLinks HTML={formatPageImageToCloudinaryUrl(bodyContent)} />
+          </article>
+          <BigGrayTitle className="mb-4 w-100">{site.formLabel}</BigGrayTitle>
           {!isSubscribe && (
             <>
               <ContactForm />

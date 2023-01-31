@@ -6,8 +6,9 @@ import Col from 'react-bootstrap/Col';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
 import { createMarkup } from 'utils/helpers';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import { ContentContainer } from 'styles/PageContant.style';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const DisplayListTags = dynamic(() => import('components/molecules/post/DisplayListTags'));
 
@@ -15,7 +16,7 @@ const PostBody = ({
   featuredImage, content, title, subTitle, caption, categories,
 }) => {
   const router = useRouter();
-  const postUrl = `${SITE_URL}${router.asPath}`;
+  const postUrl = `${PRODUCTION_URL}${router.asPath}`;
 
   return (
     <Col sm={12} lg={9}>
@@ -28,10 +29,9 @@ const PostBody = ({
         <h2>{title}</h2>
         <h3>{subTitle}</h3>
       </div>
-      <ContentContainer
-        className="mt-3 d-print-block"
-        dangerouslySetInnerHTML={createMarkup(content)}
-      />
+      <ContentContainer className="mt-3 d-print-block">
+        <JSXWithDynamicLinks HTML={content} />
+      </ContentContainer>
       <hr />
       {categories && (
         <DisplayListTags title="Categories">

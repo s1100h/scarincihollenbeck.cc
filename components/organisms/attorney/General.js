@@ -6,7 +6,7 @@ import {
   GeneralContainer,
   GrayList,
 } from 'styles/attorney-page/General.style';
-import { createMarkup } from 'utils/helpers';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const General = ({ content }) => {
   const {
@@ -18,27 +18,25 @@ const General = ({ content }) => {
         <strong>{miniBio}</strong>
         <EducationAdmissionBox>
           {education && (
-            <GrayList dangerouslySetInnerHTML={createMarkup(`<h3>Education</h3>${education}`)} />
+            <GrayList>
+              <JSXWithDynamicLinks HTML={`<h3>Education</h3>${education}`} />
+            </GrayList>
           )}
           {barAdmissions && (
-            <GrayList
-              dangerouslySetInnerHTML={createMarkup(`<h3>Admissions</h3>${barAdmissions}`)}
-            />
+            <GrayList>
+              <JSXWithDynamicLinks HTML={`<h3>Admissions</h3>${barAdmissions}`} />
+            </GrayList>
           )}
         </EducationAdmissionBox>
         {affiliations?.length > 0 && (
-          <GrayList
-            isBigWidth="true"
-            dangerouslySetInnerHTML={createMarkup(`<h3>Affiliations</h3>${affiliations}`)}
-          />
+          <GrayList isBigWidth="true">
+            <JSXWithDynamicLinks HTML={`<h3>Affiliations</h3>${affiliations}`} />
+          </GrayList>
         )}
         {additionalInfo && additionalInfo[0].content && (
-          <GrayList
-            isBigWidth="true"
-            dangerouslySetInnerHTML={createMarkup(
-              `<h3>Additional Info</h3>${additionalInfo[0].content}`,
-            )}
-          />
+          <GrayList isBigWidth="true">
+            <JSXWithDynamicLinks HTML={`<h3>Additional Info</h3>${additionalInfo[0].content}`} />
+          </GrayList>
         )}
         {clients && clients.length > 0 && (
           <ClientsBox>

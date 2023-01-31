@@ -16,9 +16,9 @@ export const AboutContainer = styled.section`
   justify-content: space-around;
   width: 1650px;
   margin: 0 auto;
+  margin-bottom: 150px;
   max-width: 96%;
   gap: 44px;
-  margin-bottom: 150px;
 
   ${media_breakpoint_down('md')} {
     grid-template-columns: auto;
@@ -56,7 +56,7 @@ export const AboutArticle = styled.article`
   padding: 40px 75px 40px 50px;
   flex: 1;
   flex-flow: column;
-  box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
+  box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
 
   h3 {
     font-weight: 600;
@@ -70,7 +70,9 @@ export const AboutArticle = styled.article`
     padding: 20px;
   }
 
-  div {
+  p {
+    font-size: 1.1rem;
+
     strong {
       color: ${globalColor.red.darkRed};
       font-weight: bold;

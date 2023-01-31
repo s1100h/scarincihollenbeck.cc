@@ -11,25 +11,10 @@ const LocationsSidebar = () => {
       <>
         <ul>
           {sortByKey(locations, 'title').map((office) => (
-            <li key={office.ID || office.id} className="py-2">
+            <li key={office.ID || office.id} className="mb-3">
               <OfficeDetails office={office} />
             </li>
           ))}
-          <style jsx>
-            {`
-              ul {
-                margin-left: -2.48em;
-                margin-top: -10px;
-              }
-              ul li {
-                margin-bottom: 6px;
-              }
-
-              ul li:not(:last-child) {
-                border-bottom: 0.5px solid #e9e9e9;
-              }
-            `}
-          </style>
         </ul>
       </>
     );

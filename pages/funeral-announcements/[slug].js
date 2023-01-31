@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import SitePage from 'components/pages/BasicPageContent';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { basicPagesQuery } from 'utils/graphql-queries';
 
@@ -64,7 +64,7 @@ const FuneralAnnouncement = ({
     bodyContent = content.replace(subTitle, '');
   }
 
-  const canonicalUrl = `${SITE_URL}/funeral-announcements/${slug}`;
+  const canonicalUrl = `${PRODUCTION_URL}/funeral-announcements/${slug}`;
 
   const sitePageProps = {
     bodyContent,

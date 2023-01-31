@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import AdminProfile from 'components/pages/AdminProfile';
 import {
-  SITE_URL, SITE_PHONE, BASE_API_URL, headers,
+  PRODUCTION_URL, SITE_PHONE, BASE_API_URL, headers,
 } from 'utils/constants';
 import { concatNameUser } from 'utils/helpers';
 
@@ -84,7 +84,7 @@ const AdministrationProfile = ({ response }) => {
     offices: response.offices,
   };
 
-  const canonicalUrl = `${SITE_URL}/${response.seo.canonicalLink}`;
+  const canonicalUrl = `${PRODUCTION_URL}/${response.seo.canonicalLink}`;
 
   const adminProps = {
     response,

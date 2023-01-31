@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { getPostContent } from 'pages/api/get-post-content';
-import { SITE_URL, SITE_TITLE } from 'utils/constants';
+import { PRODUCTION_URL, SITE_TITLE } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
 import { getAvatarAuthorsQuery, postCategoriesQuery } from 'utils/graphql-queries';
@@ -76,8 +76,8 @@ const SinglePost = ({
   post, seo, categories, tags, authors, category, postUrl,
 }) => {
   const router = useRouter();
-  const canonicalUrl = `${SITE_URL}${router.asPath}`;
-  const metaAuthorLinks = authors.map((author) => (author.display_name === SITE_TITLE ? SITE_URL : author.user_url));
+  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
+  const metaAuthorLinks = authors.map((author) => (author.display_name === SITE_TITLE ? PRODUCTION_URL : author.user_url));
 
   if (router.isFallback) {
     return <SiteLoader />;

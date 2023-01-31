@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FormPageContent from 'components/pages/FormPageContent';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { contactSubscribePageQuery } from 'utils/graphql-queries';
 import { LocationContext } from 'contexts/LocationContext';
@@ -84,7 +84,7 @@ const FormPage = ({
   }, [offices]);
 
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
-  const canonicalUrl = `${SITE_URL}/${slug}`;
+  const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
   const isSubscribe = slug.includes('subscribe');
 
   const formProps = {

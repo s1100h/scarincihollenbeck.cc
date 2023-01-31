@@ -10,11 +10,11 @@ import {
 } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 
 const PostSocialShareSidebar = ({ title }) => {
   const router = useRouter();
-  const postUrl = `${SITE_URL}${router.asPath}`;
+  const postUrl = `${PRODUCTION_URL}${router.asPath}`;
 
   return (
     <div className="mt-4">

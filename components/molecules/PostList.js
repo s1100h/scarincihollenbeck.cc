@@ -26,7 +26,7 @@ const PostList = ({ content, isProfile }) => {
           {data?.posts?.edges.map(({ node }) => (
             <div className="mb-4" key={node.title}>
               <NewsCard
-                postSlug={node.uri.replace('https://wp/scarinichollenbeck.com', '')}
+                postSlug={node.uri.replace('https://scarincihollenbeck.com/', '/')}
                 postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
                 postTitle={node.title}
                 postDate={node.date}

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FirmPage from 'components/pages/FirmPage';
-import { FIRM_PAGES, SITE_URL } from 'utils/constants';
+import { FIRM_PAGES, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { firmPagesQuery } from 'utils/graphql-queries';
 
@@ -42,7 +42,7 @@ export const getServerSideProps = async ({ params }) => {
       date: node?.date,
       featuredImage: node.featuredImage?.node?.sourceUrl,
       author: node.author?.node?.name,
-      uri: node?.uri,
+      uri: node?.uri.replace('https://scarincihollenbeck.com/', '/'),
     }));
   }
 
@@ -92,7 +92,7 @@ export const getServerSideProps = async ({ params }) => {
 /** The firm pages component - Pro Bono, Community Involvement, Diversity, Women LEAD etc. */
 const FirmPages = ({ page, currentPage }) => {
   const router = useRouter();
-  const canonicalUrl = `${SITE_URL}/${currentPage}`;
+  const canonicalUrl = `${PRODUCTION_URL}/${currentPage}`;
 
   if (router.isFallback) {
     return <SiteLoader />;

@@ -1,7 +1,7 @@
 import CovidPage from 'components/pages/CovidPage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { fetchAPI } from 'utils/api';
-import { SITE_URL, COVID_POSTS_ID } from 'utils/constants';
+import { PRODUCTION_URL, COVID_POSTS_ID } from 'utils/constants';
 import { covid19CrisisManagement } from 'utils/graphql-queries';
 
 const covid19CrisisManagementPageContent = async () => {
@@ -36,7 +36,7 @@ export async function getStaticProps() {
 const Covid19CrisisManagementUnit = ({
   title, subtitle, article, banner, listLinks, seo,
 }) => {
-  const canonicalUrl = `${SITE_URL}/covid-19-crisis-management-unit`;
+  const canonicalUrl = `${PRODUCTION_URL}/covid-19-crisis-management-unit`;
 
   const covidProps = {
     title,

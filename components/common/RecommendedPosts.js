@@ -3,7 +3,7 @@ import { NewsTitle } from 'styles/RecommendedPosts.style';
 import { useId } from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 
-const ProfileFooter = ({ titleGeneralBlock, attorneyFooterNewsArticles }) => (
+const RecommendedPosts = ({ titleGeneralBlock, attorneyFooterNewsArticles }) => (
   <Container>
     <NewsTitle>{titleGeneralBlock}</NewsTitle>
     <Row className="mb-2">
@@ -25,4 +25,4 @@ const ProfileFooter = ({ titleGeneralBlock, attorneyFooterNewsArticles }) => (
   </Container>
 );
 
-export default ProfileFooter;
+export default RecommendedPosts;

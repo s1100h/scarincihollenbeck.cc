@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Col, Row, Button } from 'react-bootstrap';
-import { KWES_API, RECAPTCHA_SITE_KEY, SITE_URL } from 'utils/constants';
+import { KWES_API, RECAPTCHA_SITE_KEY, PRODUCTION_URL } from 'utils/constants';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -19,7 +19,7 @@ const ContactForm = ({ emailForwarding, name }) => {
         has-recaptcha-v3="true"
         recaptcha-site-key={RECAPTCHA_SITE_KEY}
       >
-        <input type="hidden" name="currentPage" value={`${SITE_URL}${router.asPath}`} />
+        <input type="hidden" name="currentPage" value={`${PRODUCTION_URL}${router.asPath}`} />
         {emailForwarding.map((email, index) => (
           <input
             key={email}

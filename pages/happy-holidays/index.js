@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { SITE_URL } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import HolidayPage from 'components/pages/HolidayPage';
 import { fetchAPI } from 'utils/api';
 import { holidayPageQuery } from 'utils/graphql-queries';
@@ -44,7 +44,7 @@ const FirmHoliday = ({ title, content, seo }) => {
 
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
 
-  const canonicalUrl = `${SITE_URL}/happy-holidays`;
+  const canonicalUrl = `${PRODUCTION_URL}/happy-holidays`;
 
   const holidayPageProps = {
     canonicalUrl,

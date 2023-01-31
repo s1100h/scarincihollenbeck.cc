@@ -1,10 +1,10 @@
 import { HolidayContentBox } from 'styles/HolidayPage.style';
-import { createMarkup, formatPageImageToCloudinaryUrl } from 'utils/helpers';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const HolidayContent = ({ content }) => (
-  <HolidayContentBox
-    dangerouslySetInnerHTML={createMarkup(formatPageImageToCloudinaryUrl(content))}
-  />
+  <HolidayContentBox>
+    <JSXWithDynamicLinks HTML={content} />
+  </HolidayContentBox>
 );
 
 export default HolidayContent;

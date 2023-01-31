@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Container, Row } from 'react-bootstrap';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const PrintOnlyBody = ({
   title, featuredImage, authors, content,
@@ -29,7 +30,7 @@ const PrintOnlyBody = ({
             )))
             : null}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <JSXWithDynamicLinks HTML={content} />
       </Row>
     </Container>
   </span>

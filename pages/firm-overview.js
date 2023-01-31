@@ -1,5 +1,5 @@
 import FirmOverviewPage from 'components/pages/FirmOverview';
-import { firmOverViewTitles, SITE_PHONE, SITE_URL } from 'utils/constants';
+import { firmOverViewTitles, SITE_PHONE, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { firmOverviewQuery } from 'utils/graphql-queries';
 import { AttorneysContext } from 'contexts/AttorneysContext';
@@ -66,7 +66,7 @@ const FirmOverview = ({
 }) => {
   const { firmOverviewTitles, setFirmOverviewTitles } = useContext(AttorneysContext);
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
-  const canonicalUrl = `${SITE_URL}/firm-overview`;
+  const canonicalUrl = `${PRODUCTION_URL}/firm-overview`;
 
   /** set section titles to context provider */
   useEffect(() => {

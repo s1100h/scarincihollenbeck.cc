@@ -488,7 +488,7 @@ export const headers = { Accept: 'application/json', 'Content-Type': 'applicatio
 /** constant data that comes from hidden files for security */
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+export const PRODUCTION_URL = process.env.NEXT_PUBLIC_PRODUCTION_URL;
 export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;

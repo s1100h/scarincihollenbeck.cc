@@ -7,11 +7,11 @@ const OfficeDetails = ({ office }) => (
     <Link href={office.slug || '/'} passHref>
       <a>
         {office.title === 'Washington D.C.' ? (
-          <p style={{ fontSize: '1.13rem', marginBottom: '13px' }}>
+          <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
             <strong>Washington, D.C.</strong>
           </p>
         ) : (
-          <p style={{ fontSize: '1.13rem', marginBottom: '13px' }}>
+          <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
             <strong>{office.title}</strong>
           </p>
         )}
