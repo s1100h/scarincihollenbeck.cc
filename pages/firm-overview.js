@@ -25,7 +25,8 @@ const sanitizeMembers = (members) => members.map((member) => ({
       || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
   email: member.attorneyMainInformation?.email || member.administration?.email,
   designation:
-      (!member.attorneyMainInformation?.designation
+      (member.attorneyMainInformation?.designation !== 'Firm Managing Partner'
+      && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner'
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation) || member.administration?.title,
 }));
