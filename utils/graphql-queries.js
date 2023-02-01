@@ -713,6 +713,31 @@ export const administrationPageQuery = `query AdministrationPagesQuery {
   }
 }
 `;
+export const adminKaterinTraughQuery = `query AttorneyPostsById {
+  administration(id: "20875", idType: DATABASE_ID) {
+    title
+    uri
+    databaseId
+    administration {
+      designation
+      email
+      phoneExtension
+      location {
+        ... on OfficeLocation {
+          id
+          title
+          uri
+          officeMainInformation {
+            addressLocality
+          }
+        }
+      }
+      featuredImage {
+        sourceUrl(size: CATEGORY_THUMB)
+      }
+    }
+  }
+}`;
 
 /** basic pages query  */
 export const basicPagesQuery = `query BasicPageQuery($slug: String) {

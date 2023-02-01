@@ -11,7 +11,7 @@ const AttorneyCards = (title, content, offices) => {
     <ContainerXXL key={title}>
       <CentralizedBox toColumn="true">
         <BoxTitle isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}>
-          <strong>{title === theFirmManagePartner ? 'Managing Partners' : title}</strong>
+          <strong>{title === theFirmManagePartner ? 'Firm management' : title}</strong>
         </BoxTitle>
         <RowSpecial>
           {content.map((info) => (

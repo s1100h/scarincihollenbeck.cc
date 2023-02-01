@@ -1,9 +1,15 @@
 import { useEffect, useContext } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import { sortByKey } from 'utils/helpers';
-import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
+import {
+  PRODUCTION_URL, BASE_API_URL, headers, SITE_PHONE,
+} from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { attorneysPageQuery, miniOfficeLocationQuery } from 'utils/graphql-queries';
+import {
+  adminKaterinTraughQuery,
+  attorneysPageQuery,
+  miniOfficeLocationQuery,
+} from 'utils/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 import { sanitizeOffices } from 'pages';
 
@@ -11,6 +17,31 @@ import { sanitizeOffices } from 'pages';
 export const attorneysPageContent = async () => {
   const data = await fetchAPI(attorneysPageQuery, {});
   return data?.pageBy;
+};
+export const getKaterinTraugh = async () => {
+  const data = await fetchAPI(adminKaterinTraughQuery);
+  const {
+    title,
+    databaseId,
+    administration: {
+      designation,
+      email,
+      phoneExtension,
+      location,
+      featuredImage: { sourceUrl },
+    },
+    uri,
+  } = data.administration;
+  return {
+    id: databaseId,
+    title,
+    designation,
+    email,
+    phone: `${SITE_PHONE} ${phoneExtension}`,
+    location_array: location,
+    uri,
+    better_featured_image: sourceUrl,
+  };
 };
 
 /** Fetch the office, designations, attorneys, practices data from WP REST API */
@@ -42,6 +73,7 @@ export async function getStaticProps() {
   const [attorneys, locations, designations, practices] = await getAttorneysContent();
   const page = await attorneysPageContent();
   const { title, seo, attorneyArchives } = page;
+  const katerinTraugh = await getKaterinTraugh();
 
   if (!page) {
     return {
@@ -55,7 +87,7 @@ export async function getStaticProps() {
       locations,
       designations,
       practices,
-      attorneys,
+      attorneys: [...attorneys, katerinTraugh],
       site: {
         title,
         description: attorneyArchives?.description,
