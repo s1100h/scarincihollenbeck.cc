@@ -9,7 +9,6 @@ import { getSubTitleFromHTML } from 'utils/helpers';
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
   const data = await fetchAPI(firmOverviewQuery);
-
   return data?.pageBy;
 }
 
@@ -26,7 +25,7 @@ const sanitizeMembers = (members) => members.map((member) => ({
       || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
   email: member.attorneyMainInformation?.email || member.administration?.email,
   designation:
-      (member.attorneyMainInformation?.designation !== 'Firm Managing Partner'
+      (!member.attorneyMainInformation?.designation
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation) || member.administration?.title,
 }));

@@ -3,6 +3,7 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import { sortByKey, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { CentralizedBox, ContainerXXL, RowSpecial } from 'styles/Containers.style';
+import { SITE_PHONE } from '../../utils/constants';
 
 const AdministrationPage = ({
   admins, seo, site, canonicalUrl,
@@ -22,9 +23,10 @@ const AdministrationPage = ({
               key={admin.id}
               image={formatSrcToCloudinaryUrl(admin.image.smallUrl)}
               name={admin.name}
+              designation={admin?.designations}
               link={admin.link}
               title={admin.title}
-              number={`201-896-4100 ${admin.phoneExtension}`}
+              number={`${SITE_PHONE} ${admin.phoneExtension}`}
               email={admin.email}
               type="/administration/[admin]"
             />

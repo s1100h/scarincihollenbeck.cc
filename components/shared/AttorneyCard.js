@@ -14,6 +14,16 @@ import { useId } from 'react';
 
 const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
   if (Array.isArray(locationsOrPractice)) {
+    if (locationsOrPractice[0]?.uri) {
+      return locationsOrPractice.map((office, idx) => (
+        <li key={office.id || useId()}>
+          <Link href={office.uri}>
+            <a>{office.officeMainInformation.addressLocality}</a>
+          </Link>
+          <>{idx < locationsOrPractice.length - 1 && ','}</>
+        </li>
+      ));
+    }
     const filteredOffices = locationsOrPractice
       .map((location) => officesMap.filter((office) => location === office.title))
       .flat();
