@@ -17,7 +17,7 @@ const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
     if (locationsOrPractice[0]?.uri) {
       return locationsOrPractice.map((office, idx) => (
         <li key={office.id || useId()}>
-          <Link href={office.uri}>
+          <Link href={office?.uri}>
             <a>{office.officeMainInformation.addressLocality}</a>
           </Link>
           <>{idx < locationsOrPractice.length - 1 && ','}</>
@@ -92,7 +92,7 @@ export default function AttorneyCard({
                 src={image}
                 alt={name}
                 layout="fixed"
-                width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 108}
+                width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 125}
                 height={150}
               />
             </PhotoBox>

@@ -37,7 +37,12 @@ export const getServerSideProps = async () => {
   const {
     title, seo, content, firmOverviewTabs,
   } = pageRequest;
-  const { firmChairsCochairs, directors, firmLeaders } = firmOverviewTabs;
+  const {
+    // this was committed(2.02.2022). it need for /firm-overview.
+    // firmChairsCochairs,
+    directors,
+    firmLeaders,
+  } = firmOverviewTabs;
 
   return {
     props: {
@@ -47,7 +52,8 @@ export const getServerSideProps = async () => {
       firmOverviewTabs,
       FirmMembers: [
         ...sanitizeMembers(firmLeaders),
-        ...sanitizeMembers(firmChairsCochairs),
+        // this was committed(2.02.2022). it need for /firm-overview.
+        // ...sanitizeMembers(firmChairsCochairs),
         ...sanitizeMembers(directors),
       ],
     },

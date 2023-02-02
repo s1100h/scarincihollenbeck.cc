@@ -425,9 +425,15 @@ export const ATTORNEYS_FAQ = [
 ];
 
 export const firmOverViewTitles = [
-  { name: 'Firm Leaders', order: 1 },
-  { name: 'Practice Leaders', order: 2 },
+  { name: 'Firm management', order: 1 },
+  // this was committed(2.02.2022). it need for /firm-overview.
+  // { name: 'Practice Leaders', order: 2 },
   { name: 'Directors', order: 3 },
+];
+
+export const administrationTitles = [
+  { name: 'Firm management', order: 2 },
+  { name: 'Administrative Management', order: 3 },
 ];
 
 export const inputsGetInTouchAttributes = [

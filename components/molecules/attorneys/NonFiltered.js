@@ -25,16 +25,21 @@ const organizeAttorneys = (attorneys, titles) => {
     if (attorney.designation === 'Executive Director') {
       results['Firm Managing Partner']?.attorneys.push(attorney);
       results['Firm Leaders']?.attorneys.unshift(attorney);
+      results['Firm management']?.attorneys.unshift(attorney);
     }
     if (typeof attorney.designation !== 'string') {
       results['Practice Leaders']?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Deputy Managing Partner') {
       results['Firm Managing Partner']?.attorneys.push(attorney);
-      results['Firm Leaders']?.attorneys.push(attorney);
+      results['Firm management']?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Chief Growth Officer') {
-      results.Directors.attorneys.push(attorney);
+      results['Administrative Management']?.attorneys.push(attorney);
+      results.Directors?.attorneys.push(attorney);
+    }
+    if (typeof attorney.designation === 'string' && attorney?.designation?.includes('Director ')) {
+      results['Administrative Management']?.attorneys.push(attorney);
     }
     Object.keys(results).forEach((key) => {
       if (
@@ -46,15 +51,21 @@ const organizeAttorneys = (attorneys, titles) => {
       }
     });
   });
+
   results['Firm Managing Partner']?.attorneys.reverse();
   return results;
 };
 
 const NonFiltered = ({ attorneys, offices }) => {
-  const [sortedAttorneys, setSortedAttorneys] = useState({});
-  const { attorneysTitles, firmOverviewTitles } = useContext(AttorneysContext);
   const { pathname } = useRouter();
+  const { attorneysTitles, firmOverviewTitles, adminsTitles } = useContext(AttorneysContext);
+  const [sortedAttorneys, setSortedAttorneys] = useState({});
+
   useEffect(() => {
+    if (adminsTitles && pathname === '/administration') {
+      const orgAttorneys = organizeAttorneys(attorneys, adminsTitles);
+      setSortedAttorneys(orgAttorneys);
+    }
     if (attorneysTitles && pathname === '/attorneys') {
       const orgAttorneys = organizeAttorneys(attorneys, attorneysTitles);
       setSortedAttorneys(orgAttorneys);
@@ -63,11 +74,11 @@ const NonFiltered = ({ attorneys, offices }) => {
       const orgAttorneys = organizeAttorneys(attorneys, firmOverviewTitles);
       setSortedAttorneys(orgAttorneys);
     }
-  }, [attorneysTitles, firmOverviewTitles]);
+  }, [attorneysTitles, firmOverviewTitles, adminsTitles]);
 
   return (
     <>
-      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}
+      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices, pathname))}
     </>
   );
 };
