@@ -32,7 +32,7 @@ const organizeAttorneys = (attorneys, titles) => {
     }
     if (attorney.designation === 'Deputy Managing Partner') {
       results['Firm Managing Partner']?.attorneys.push(attorney);
-      results['Firm Leaders']?.attorneys.push(attorney);
+      results['Firm management']?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Chief Growth Officer') {
       results['Administrative Management']?.attorneys.push(attorney);
