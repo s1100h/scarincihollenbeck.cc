@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
-import { BASE_API_URL, PRODUCTION_URL, headers } from 'utils/constants';
+import { administrationTitles, PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { administrationPageQuery } from 'utils/graphql-queries';
+import { administrationPageQuery, adminsQuery } from 'utils/graphql-queries';
+import { useContext, useEffect } from 'react';
+import { AttorneysContext } from 'contexts/AttorneysContext';
 
 /** Fetch page data from WP GRAPHQL API */
 const archivesPageContent = async () => {
@@ -12,13 +14,18 @@ const archivesPageContent = async () => {
 
 /** Fetch administration data from WP REST API */
 const getAdministration = async () => {
-  try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/admin-search/admin`, { headers });
-    const resToJson = await res.json();
-    return resToJson?.admins;
-  } catch (error) {
-    console.error(error);
-  }
+  const data = await fetchAPI(adminsQuery);
+  return data?.administrations.nodes.map((admin) => {
+    admin.administration.featuredImage = admin.administration.featuredImage.sourceUrl;
+    admin.administration.phone = `${SITE_PHONE} ${admin.administration.phoneExtension}`;
+    admin.administration.location_array = admin.administration.location;
+    return {
+      uri: admin.uri,
+      title: admin.title,
+      id: admin.databaseId,
+      ...admin.administration,
+    };
+  });
 };
 
 /** Set data from API response to page props */
@@ -42,8 +49,17 @@ export async function getStaticProps() {
 
 /** Administration directory page component */
 const Administration = ({ admins, seo, site }) => {
+  const { adminsTitles, setAdminsTitles } = useContext(AttorneysContext);
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
+
+  useEffect(() => {
+    if (!adminsTitles) {
+      const orderedTitles = administrationTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
+      setAdminsTitles(orderedTitles);
+    }
+  }, [adminsTitles]);
+
   const adminProps = {
     admins,
     seo,

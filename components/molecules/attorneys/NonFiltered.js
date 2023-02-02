@@ -25,6 +25,7 @@ const organizeAttorneys = (attorneys, titles) => {
     if (attorney.designation === 'Executive Director') {
       results['Firm Managing Partner']?.attorneys.push(attorney);
       results['Firm Leaders']?.attorneys.unshift(attorney);
+      results['Firm management']?.attorneys.unshift(attorney);
     }
     if (typeof attorney.designation !== 'string') {
       results['Practice Leaders']?.attorneys.push(attorney);
@@ -34,7 +35,11 @@ const organizeAttorneys = (attorneys, titles) => {
       results['Firm Leaders']?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Chief Growth Officer') {
-      results.Directors.attorneys.push(attorney);
+      results['Administrative Management']?.attorneys.push(attorney);
+      results.Directors?.attorneys.push(attorney);
+    }
+    if (attorney.designation.includes('Director ')) {
+      results['Administrative Management']?.attorneys.push(attorney);
     }
     Object.keys(results).forEach((key) => {
       if (
@@ -46,13 +51,14 @@ const organizeAttorneys = (attorneys, titles) => {
       }
     });
   });
+
   results['Firm Managing Partner']?.attorneys.reverse();
   return results;
 };
 
 const NonFiltered = ({ attorneys, offices }) => {
   const [sortedAttorneys, setSortedAttorneys] = useState({});
-  const { attorneysTitles, firmOverviewTitles } = useContext(AttorneysContext);
+  const { attorneysTitles, firmOverviewTitles, adminsTitles } = useContext(AttorneysContext);
   const { pathname } = useRouter();
   useEffect(() => {
     if (attorneysTitles && pathname === '/attorneys') {
@@ -63,7 +69,12 @@ const NonFiltered = ({ attorneys, offices }) => {
       const orgAttorneys = organizeAttorneys(attorneys, firmOverviewTitles);
       setSortedAttorneys(orgAttorneys);
     }
-  }, [attorneysTitles, firmOverviewTitles]);
+
+    if (adminsTitles && pathname === '/administration') {
+      const orgAttorneys = organizeAttorneys(attorneys, adminsTitles);
+      setSortedAttorneys(orgAttorneys);
+    }
+  }, [attorneysTitles, firmOverviewTitles, adminsTitles]);
 
   return (
     <>

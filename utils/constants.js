@@ -430,6 +430,11 @@ export const firmOverViewTitles = [
   { name: 'Directors', order: 3 },
 ];
 
+export const administrationTitles = [
+  { name: 'Firm management', order: 2 },
+  { name: 'Administrative Management', order: 3 },
+];
+
 export const inputsGetInTouchAttributes = [
   {
     type: 'text',

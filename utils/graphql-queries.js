@@ -1002,6 +1002,33 @@ export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
 }
 `;
 
+export const adminsQuery = `query AttorneyPostsById {
+  administrations {
+    nodes {
+      databaseId
+      uri
+      title
+      administration {
+        email
+        phoneExtension
+        location {
+          ... on OfficeLocation {
+            id
+            uri
+            officeMainInformation {
+              addressLocality
+            }
+          }
+        }
+        designation
+        featuredImage {
+          sourceUrl
+        }
+      }
+    }
+  }
+}`;
+
 export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
   officeLocationBy(officeLocationId: 29436) {
     officeMainInformation {

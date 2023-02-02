@@ -5,6 +5,8 @@ export const AttorneysContext = createContext(null);
 export const AttorneysProvider = ({ children }) => {
   const [attorneysTitles, setAttorneysTitles] = useState();
   const [firmOverviewTitles, setFirmOverviewTitles] = useState();
+  const [adminsTitles, setAdminsTitles] = useState();
+
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
   const [attorneysContext, setAttorneysContext] = useState([]);
@@ -69,6 +71,8 @@ export const AttorneysProvider = ({ children }) => {
     attorneysContext,
     setAttorneysContext,
     clearAll,
+    adminsTitles,
+    setAdminsTitles,
   };
 
   return <AttorneysContext.Provider value={values}>{children}</AttorneysContext.Provider>;

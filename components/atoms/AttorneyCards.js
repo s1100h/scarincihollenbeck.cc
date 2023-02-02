@@ -18,7 +18,7 @@ const AttorneyCards = (title, content, offices) => {
             <AttorneyCard
               key={info.link || info.uri}
               link={info.link ? `/attorneys${info.link}` : info.uri}
-              image={info.better_featured_image}
+              image={info.better_featured_image || info.featuredImage}
               name={info.title}
               designation={typeof info.designation !== 'string' ? null : info.designation}
               locations={info.location_array ? info.location_array : info.designation}
