@@ -38,7 +38,7 @@ const organizeAttorneys = (attorneys, titles) => {
       results['Administrative Management']?.attorneys.push(attorney);
       results.Directors?.attorneys.push(attorney);
     }
-    if (attorney.designation.includes('Director ')) {
+    if (typeof attorney.designation === 'string' && attorney?.designation?.includes('Director ')) {
       results['Administrative Management']?.attorneys.push(attorney);
     }
     Object.keys(results).forEach((key) => {
