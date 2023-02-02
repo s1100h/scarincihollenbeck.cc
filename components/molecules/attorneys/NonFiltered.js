@@ -57,10 +57,15 @@ const organizeAttorneys = (attorneys, titles) => {
 };
 
 const NonFiltered = ({ attorneys, offices }) => {
-  const [sortedAttorneys, setSortedAttorneys] = useState({});
-  const { attorneysTitles, firmOverviewTitles, adminsTitles } = useContext(AttorneysContext);
   const { pathname } = useRouter();
+  const { attorneysTitles, firmOverviewTitles, adminsTitles } = useContext(AttorneysContext);
+  const [sortedAttorneys, setSortedAttorneys] = useState({});
+
   useEffect(() => {
+    if (adminsTitles && pathname === '/administration') {
+      const orgAttorneys = organizeAttorneys(attorneys, adminsTitles);
+      setSortedAttorneys(orgAttorneys);
+    }
     if (attorneysTitles && pathname === '/attorneys') {
       const orgAttorneys = organizeAttorneys(attorneys, attorneysTitles);
       setSortedAttorneys(orgAttorneys);
@@ -69,16 +74,11 @@ const NonFiltered = ({ attorneys, offices }) => {
       const orgAttorneys = organizeAttorneys(attorneys, firmOverviewTitles);
       setSortedAttorneys(orgAttorneys);
     }
-
-    if (adminsTitles && pathname === '/administration') {
-      const orgAttorneys = organizeAttorneys(attorneys, adminsTitles);
-      setSortedAttorneys(orgAttorneys);
-    }
   }, [attorneysTitles, firmOverviewTitles, adminsTitles]);
 
   return (
     <>
-      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices))}
+      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices, pathname))}
     </>
   );
 };

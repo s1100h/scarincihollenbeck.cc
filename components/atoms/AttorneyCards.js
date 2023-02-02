@@ -5,14 +5,27 @@ import {
 
 const AttorneyCard = dynamic(() => import('components/shared/AttorneyCard'));
 
-const AttorneyCards = (title, content, offices) => {
+const renderTitle = (titleArg, slugPath) => {
   const theFirmManagePartner = 'Firm Managing Partner';
+
+  if (slugPath === '/administration') {
+    return '';
+  }
+
+  return titleArg === theFirmManagePartner ? 'Firm management' : titleArg;
+};
+
+const AttorneyCards = (title, content, offices, pathname) => {
+  const theFirmManagePartner = 'Firm Managing Partner';
+
   return (
     <ContainerXXL key={title}>
       <CentralizedBox toColumn="true">
-        <BoxTitle isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}>
-          <strong>{title === theFirmManagePartner ? 'Firm management' : title}</strong>
-        </BoxTitle>
+        {renderTitle(title, pathname).length > 0 && (
+          <BoxTitle isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}>
+            <strong>{renderTitle(title, pathname)}</strong>
+          </BoxTitle>
+        )}
         <RowSpecial>
           {content.map((info) => (
             <AttorneyCard
