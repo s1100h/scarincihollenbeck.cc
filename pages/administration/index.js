@@ -41,7 +41,7 @@ export async function getStaticProps() {
         title,
         description: administrationArchive.description,
       },
-      admins,
+      admins: admins.sort((a, b) => (a.order > b.order ? 1 : -1)),
     },
     revalidate: 86400,
   };

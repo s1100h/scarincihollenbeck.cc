@@ -1011,6 +1011,7 @@ export const adminsQuery = `query AttorneyPostsById {
       administration {
         email
         phoneExtension
+        order
         location {
           ... on OfficeLocation {
             id
