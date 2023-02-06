@@ -25,15 +25,13 @@ export const BurgerBtn = styled.button`
 
 export const OffcanvasBody = styled(Offcanvas.Body)`
   padding: 0;
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 10px 0 10px 0;
-  }
 `
-
+export const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 0 10px 0;
+`
 export const AccordionStyled = styled(Accordion)`
   .accordion-item {
     border: 0;
@@ -87,6 +85,7 @@ export const ButtonLinkBox = styled.div`
   flex-direction: column;
   gap: 10px;
   padding: 0 12% 0 12%;
+  margin-bottom: 20px;
 
   a {
     padding: 10px;
