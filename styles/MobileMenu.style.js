@@ -86,7 +86,7 @@ export const ButtonLinkBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 0 12% 0 12%;
 
   a {
     padding: 10px;
