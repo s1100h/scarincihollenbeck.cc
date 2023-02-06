@@ -68,6 +68,7 @@ export const globalGradient = {
 export const globalShadow = {
   allSideShadow: `-10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06)`,
   hoveredShadow: `-2px 0px 18px rgb(99 98 98 / 90%)`,
+  blueShadow: `-2px 0px 18px ${globalColor.blue.ultramarine}`,
 }
 
 export const globalBackgroundImage = {
