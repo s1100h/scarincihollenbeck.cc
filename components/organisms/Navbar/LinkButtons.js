@@ -7,8 +7,8 @@ const LinkButtons = () => (
   <>
     <Link href="/contact" passHref>
       <ButtonLink>
-        <span>Contact us</span>
         <BsFillTelephoneFill />
+        <span>Contact us</span>
       </ButtonLink>
     </Link>
     <ButtonLink
@@ -16,12 +16,10 @@ const LinkButtons = () => (
       target="_blank"
       rel="noreferrer"
     >
-      <span>Make payment</span>
       <BsFillCreditCard2BackFill />
+      <span>Make payment</span>
     </ButtonLink>
   </>
 );
-
-// BsFillTelephoneFill
 
 export default LinkButtons;

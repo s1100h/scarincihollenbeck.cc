@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import MobileMenu from 'components/organisms/Navbar/MobileMenu';
+import MobileMenu from 'components/organisms/Navbar/MobileMenu/MobileMenu';
 import GlobalSearch from 'components/shared/GlobalSearch/GlobalSearch';
 import LinkButtons from 'components/organisms/Navbar/LinkButtons';
 import Navigation from 'components/organisms/Navbar/Navigation';
