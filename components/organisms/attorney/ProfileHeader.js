@@ -49,7 +49,7 @@ const ProfileHeader = ({
   const router = useRouter();
   const slug = router.asPath;
   const linkedIn = contact.socialMediaLinks.filter((a) => a.channel === 'LinkedIn')[0];
-  // console.log("tabs", tabs);
+
   const profileImageProps = {
     name,
     profileImage,

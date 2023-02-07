@@ -225,10 +225,6 @@ export const getServerSideProps = async ({ params, res }) => {
     }
   });
 
-  if (moreTabs.length > 0) mainTabs.push('More');
-
-  if (moreMenu !== null) moreTabs.push(...moreMenu);
-
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
     .map((i) => ({
@@ -237,6 +233,16 @@ export const getServerSideProps = async ({ params, res }) => {
       content: attorneyBio.attorneyAdditionalTabs[`tabContent${i}`],
     }))
     .filter((a) => a.title !== null);
+
+  if (additionalTabs.length > 0) {
+    additionalTabs.forEach(({ title }) => {
+      mainTabs.push(title);
+    });
+  }
+
+  if (moreTabs.length > 0) mainTabs.push('More');
+
+  if (moreMenu !== null) moreTabs.push(...moreMenu);
 
   const externalBlogTabs = [];
 
@@ -334,7 +340,6 @@ export const getServerSideProps = async ({ params, res }) => {
       id: 188,
       title: 'More',
       content: [
-        ...additionalTabs,
         ...commonTabs,
         ...externalBlogTabs,
         {

@@ -34,7 +34,7 @@ export const GrayList = styled.div`
   align-items: ${(props) => (props?.isBigWidth ? 'start' : 'center')};
   width: ${(props) => (props?.isBigWidth ? '100%' : '400px')};
   height: 380px;
-  ${commonRules}
+  ${commonRules};
   gap: 20px;
   overflow-y: auto;
 
@@ -45,6 +45,10 @@ export const GrayList = styled.div`
     color: ${globalColor.gray.gray80};
     gap: 7px;
     list-style: disc;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    width: 100%;
   }
 `
 
