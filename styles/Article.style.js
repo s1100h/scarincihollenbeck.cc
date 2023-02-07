@@ -29,6 +29,7 @@ export const ArticleBody = styled.section`
   ul {
     padding: 0;
     li {
+      margin-bottom: 15px;
       ::before {
         content: '➤';
         margin-right: 10px;
