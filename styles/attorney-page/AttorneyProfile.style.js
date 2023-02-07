@@ -81,6 +81,7 @@ export const AddressBox = styled.address`
 
 export const DetailsBox = styled.div`
   display: flex;
+  gap: 10%;
 
   ${media_breakpoint_down('sm')} {
     flex-direction: column;
