@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Row, Col } from 'react-bootstrap';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
-import StringContent from 'components/organisms/attorney/StringContent';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import ProfileSidebar from 'components/organisms/attorney/ProfileSidebar';
 import { CURRENT_DOMAIN } from 'utils/constants';
@@ -11,6 +10,7 @@ import { CustomContainer } from 'styles/Containers.style';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
 const MainProfileMenu = dynamic(() => import('components/organisms/attorney/MainProfileMenu'));
+const StringContent = dynamic(() => import('components/organisms/attorney/StringContent'));
 
 const AttorneyPage = ({
   seo, profileHeader, attorneyFooterNewsArticles, tabs, attorneyAwards,
