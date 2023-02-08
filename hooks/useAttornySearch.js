@@ -9,8 +9,8 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
 
   // filter by key -- practice
   const filterPractices = (attorney) => {
-    if (practices.length > 0) {
-      const prunedPracticeList = attorney.practices_array.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
+    if (practices.length > 0 && attorney.practices_array) {
+      const prunedPracticeList = attorney.practices_array?.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
       return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
     }
 
@@ -20,7 +20,12 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
   // filter by key -- location
   const filterLocation = (attorney) => {
     if (location.length > 0) {
-      return attorney.location.indexOf(location[0]) >= 0;
+      const isExist = [];
+      attorney.location_array.forEach(({ title }) => {
+        isExist.push(title);
+      });
+
+      return isExist.includes(location[0]);
     }
     return attorney;
   };

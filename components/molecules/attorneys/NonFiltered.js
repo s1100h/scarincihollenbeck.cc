@@ -56,7 +56,7 @@ const organizeAttorneys = (attorneys, titles) => {
   return results;
 };
 
-const NonFiltered = ({ attorneys, offices }) => {
+const NonFiltered = ({ attorneys }) => {
   const { pathname } = useRouter();
   const { attorneysTitles, firmOverviewTitles, adminsTitles } = useContext(AttorneysContext);
   const [sortedAttorneys, setSortedAttorneys] = useState({});
@@ -78,7 +78,7 @@ const NonFiltered = ({ attorneys, offices }) => {
 
   return (
     <>
-      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, offices, pathname))}
+      {Object.entries(sortedAttorneys).map((attorney) => AttorneyCards(attorney[0], attorney[1].attorneys, pathname))}
     </>
   );
 };
