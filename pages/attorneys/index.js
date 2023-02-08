@@ -8,6 +8,7 @@ import { fetchAPI } from 'utils/api';
 import {
   adminKaterinTraughQuery,
   attorneysPageQuery,
+  attorneysQuery,
   miniOfficeLocationQuery,
 } from 'utils/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
@@ -32,25 +33,67 @@ export const getKaterinTraugh = async () => {
     },
     uri,
   } = data.administration;
+
   return {
     id: databaseId,
     title,
     designation,
     email,
     phone: `${SITE_PHONE} ${phoneExtension}`,
-    location_array: location,
+    location_array: location.map(({
+      id, uri, title, officeMainInformation,
+    }) => ({
+      id,
+      uri,
+      title,
+      officeMainInformation: officeMainInformation.addressLocality,
+    })),
     uri,
     better_featured_image: sourceUrl,
   };
 };
 
+const getAttorneys = async () => {
+  const { attorneyProfiles } = await fetchAPI(attorneysQuery, {});
+  return attorneyProfiles?.nodes.map(
+    ({
+      title,
+      slug,
+      databaseId,
+      attorneyMainInformation,
+      attorneyPrimaryRelatedPracticesLocationsGroups,
+    }) => {
+      attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
+        ({
+          id, uri, title, officeMainInformation,
+        }) => ({
+          id,
+          uri,
+          title,
+          officeMainInformation: officeMainInformation.addressLocality,
+        }),
+      );
+
+      attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices = attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices?.map(({ title }) => title);
+      return {
+        id: databaseId,
+        title,
+        designation: attorneyMainInformation.designation,
+        email: attorneyMainInformation.email,
+        phone: attorneyMainInformation.phoneNumber,
+        practices_array: attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices || [],
+        location_array: attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
+        link: slug,
+        better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
+      };
+    },
+  );
+};
+
 /** Fetch the office, designations, attorneys, practices data from WP REST API */
 const getAttorneysContent = async () => {
   try {
-    const [attorneys, locationsArr, designations, practices] = await Promise.all([
-      fetch(`${BASE_API_URL}/wp-json/attorney-search/attorneys`, { headers })
-        .then((data) => data.json())
-        .catch((err) => err),
+    const [locationsArr, designations, practices] = await Promise.all([
       fetchAPI(miniOfficeLocationQuery, {}),
       fetch(`${BASE_API_URL}/wp-json/attorney-search/designations`, { headers })
         .then((data) => data.json())
@@ -62,7 +105,7 @@ const getAttorneysContent = async () => {
 
     const locations = sanitizeOffices(locationsArr.officeLocations.nodes);
 
-    return [attorneys, locations, designations, practices];
+    return [locations, designations, practices];
   } catch (error) {
     console.error(error);
   }
@@ -70,7 +113,8 @@ const getAttorneysContent = async () => {
 
 /** Map all the page data to component props */
 export async function getStaticProps() {
-  const [attorneys, locations, designations, practices] = await getAttorneysContent();
+  const [locations, designations, practices] = await getAttorneysContent();
+  const attorneys = await getAttorneys();
   const page = await attorneysPageContent();
   const { title, seo, attorneyArchives } = page;
   const katerinTraugh = await getKaterinTraugh();
@@ -136,7 +180,6 @@ const Attorneys = ({
       setAttorneysContext(attorneys);
     }
   }, []);
-
   useEffect(() => {
     if (!userInput) clearQuery('query');
   }, [userInput]);

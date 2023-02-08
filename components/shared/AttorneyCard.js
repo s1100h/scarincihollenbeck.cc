@@ -12,29 +12,18 @@ import {
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 import { useId } from 'react';
 
-const renderLinkToLocationPractice = (locationsOrPractice, officesMap) => {
+const renderLinkToLocationPractice = (locationsOrPractice) => {
   if (Array.isArray(locationsOrPractice)) {
     if (locationsOrPractice[0]?.uri) {
       return locationsOrPractice.map((office, idx) => (
         <li key={office.id || useId()}>
           <Link href={office?.uri}>
-            <a>{office.officeMainInformation.addressLocality}</a>
+            <a>{office.officeMainInformation.addressLocality || office.officeMainInformation}</a>
           </Link>
           <>{idx < locationsOrPractice.length - 1 && ','}</>
         </li>
       ));
     }
-    const filteredOffices = locationsOrPractice
-      .map((location) => officesMap.filter((office) => location === office.title))
-      .flat();
-    return filteredOffices?.map((office, idx) => (
-      <li key={office.id || useId()}>
-        <Link href={`location/${office.slug}` || '/location'}>
-          <a>{office.addressLocality}</a>
-        </Link>
-        <>{idx < filteredOffices.length - 1 && ','}</>
-      </li>
-    ));
   }
   return (
     <div className="d-flex flex-column gap-1">
@@ -76,7 +65,6 @@ export default function AttorneyCard({
   locations,
   number,
   email,
-  offices,
   title,
 }) {
   return (
@@ -105,9 +93,7 @@ export default function AttorneyCard({
             <p>{designation}</p>
 
             {locations && (
-              <ul className="d-flex gap-1 m-0 p-0">
-                {renderLinkToLocationPractice(locations, offices)}
-              </ul>
+              <ul className="d-flex gap-1 m-0 p-0">{renderLinkToLocationPractice(locations)}</ul>
             )}
             <ContactBox>
               <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>

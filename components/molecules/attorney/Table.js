@@ -33,7 +33,7 @@ const Table = ({ content }) => {
           >
             {rowVirtualizer.virtualItems.map((virtualRow) => (
               <div
-                key={content.body[virtualRow.index][0]}
+                key={virtualRow.start}
                 ref={virtualRow.measureRef}
                 style={{
                   position: 'absolute',

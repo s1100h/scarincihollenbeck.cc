@@ -15,7 +15,7 @@ const renderTitle = (titleArg, slugPath) => {
   return titleArg === theFirmManagePartner ? 'Firm management' : titleArg;
 };
 
-const AttorneyCards = (title, content, offices, pathname) => {
+const AttorneyCards = (title, content, pathname) => {
   const theFirmManagePartner = 'Firm Managing Partner';
 
   return (
@@ -30,7 +30,7 @@ const AttorneyCards = (title, content, offices, pathname) => {
           {content.map((info) => (
             <AttorneyCard
               key={info.link || info.uri}
-              link={info.link ? `/attorneys${info.link}` : info.uri}
+              link={info.link ? `/attorneys/${info.link}` : info.uri}
               image={info.better_featured_image || info.featuredImage}
               name={info.title}
               designation={typeof info.designation !== 'string' ? null : info.designation}
@@ -39,7 +39,6 @@ const AttorneyCards = (title, content, offices, pathname) => {
               email={info.email}
               width={80}
               height={112}
-              offices={offices}
             />
           ))}
         </RowSpecial>

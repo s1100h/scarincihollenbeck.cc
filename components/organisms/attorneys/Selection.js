@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { BsXLg } from 'react-icons/bs';
 import { ClearButton } from 'styles/Buttons.style';
@@ -30,7 +29,7 @@ const Selection = ({
               </li>
             )}
             {nonUserInputResults.map((selection) => (
-              <li className="list-inline-item mt-2" key={useId()}>
+              <li className="list-inline-item mt-2" key={selection.key}>
                 <ResultButton
                   variant="Primary"
                   id={selection.selected}

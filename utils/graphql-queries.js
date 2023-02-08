@@ -166,6 +166,41 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
   }
 }`;
 
+export const attorneysQuery = `query FirmPageQuery {
+  attorneyProfiles(first: 100) {
+    nodes {
+      databaseId
+      slug
+      title
+      attorneyMainInformation {
+        designation
+        email
+        phoneNumber
+        profileImage {
+          sourceUrl(size: CATEGORY_THUMB)
+        }
+      }
+      attorneyPrimaryRelatedPracticesLocationsGroups {
+        officeLocation {
+          ... on OfficeLocation {
+            id
+            uri
+            title
+            officeMainInformation {
+              addressLocality
+            }
+          }
+        }
+        relatedPractices {
+          ... on Practice {
+            title
+          }
+        }
+      }
+    }
+  }
+}`;
+
 export const officeLocationQuery = `query BasicPageQuery {
   officeLocations {
     nodes {
