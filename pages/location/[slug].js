@@ -80,6 +80,7 @@ export const getStaticProps = async ({ params }) => {
   const attorneysSchema = currentOffice.attorneys.map((attorney) => ({
     '@type': 'Person',
     name: attorney.name,
+    designation: attorney.designation,
     image: attorney.image,
     url: attorney.link,
     telephone: attorney.contact,

@@ -52,7 +52,7 @@ const VirtualizedMembers = ({ members }) => {
                 }
                 image={formatSrcToCloudinaryUrl(members[virtualRow.index].image)}
                 name={members[virtualRow.index].name}
-                title={members[virtualRow.index].designation}
+                designation={members[virtualRow.index].designation}
                 number={members[virtualRow.index].contact}
                 email={members[virtualRow.index].email}
                 width={80}
