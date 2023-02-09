@@ -55,7 +55,8 @@ export const getKaterinTraugh = async () => {
 
 const getAttorneys = async () => {
   const { attorneyProfiles } = await fetchAPI(attorneysQuery, {});
-  return attorneyProfiles?.nodes.map(
+
+  const sanitaizedAttorneys = attorneyProfiles?.nodes.map(
     ({
       title,
       slug,
@@ -77,6 +78,7 @@ const getAttorneys = async () => {
       attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices = attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices?.map(({ title }) => title);
       return {
         id: databaseId,
+        lastName: attorneyMainInformation.lastName,
         title,
         designation: attorneyMainInformation.designation,
         email: attorneyMainInformation.email,
@@ -88,6 +90,8 @@ const getAttorneys = async () => {
       };
     },
   );
+
+  return sortByKey(sanitaizedAttorneys, 'lastName');
 };
 
 /** Fetch the office, designations, attorneys, practices data from WP REST API */

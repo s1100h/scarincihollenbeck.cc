@@ -176,6 +176,7 @@ export const attorneysQuery = `query FirmPageQuery {
         designation
         email
         phoneNumber
+        lastName
         profileImage {
           sourceUrl(size: CATEGORY_THUMB)
         }
