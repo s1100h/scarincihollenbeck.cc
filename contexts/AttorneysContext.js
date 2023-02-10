@@ -1,4 +1,7 @@
 import React, { createContext, useState } from 'react';
+import { fetchAPI } from '../utils/api';
+import { getAuthorsQuery } from '../utils/graphql-queries';
+import { AttorneyNoLonger } from '../utils/constants';
 
 export const AttorneysContext = createContext(null);
 
@@ -15,6 +18,7 @@ export const AttorneysProvider = ({ children }) => {
     locations: [],
     designations: '',
   });
+  const [authors, setAuthors] = useState([]);
 
   /* Handle User Input Event */
   function handleChange(e) {
@@ -54,6 +58,27 @@ export const AttorneysProvider = ({ children }) => {
     setSelect([]);
   }
 
+  async function getAsyncAuthors() {
+    const data = await fetchAPI(getAuthorsQuery);
+    const sanitizedAuthors = data.users.nodes.map(
+      ({
+        databaseId, uri, lastName, firstName, description,
+      }) => {
+        if (!description.includes(AttorneyNoLonger)) {
+          return {
+            databaseId,
+            username: firstName,
+            link: uri,
+            fullName: firstName + lastName,
+            lastName,
+          };
+        }
+        return undefined;
+      },
+    );
+    setAuthors(sanitizedAuthors);
+  }
+
   const values = {
     attorneysTitles,
     setAttorneysTitles,
@@ -73,6 +98,8 @@ export const AttorneysProvider = ({ children }) => {
     clearAll,
     adminsTitles,
     setAdminsTitles,
+    authors,
+    getAsyncAuthors,
   };
 
   return <AttorneysContext.Provider value={values}>{children}</AttorneysContext.Provider>;

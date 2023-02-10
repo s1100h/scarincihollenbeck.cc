@@ -1101,3 +1101,16 @@ export const getAvatarAuthorsQuery = `query FirmPageQuery($id: [Int!]) {
   }
 }
 `;
+
+export const getAuthorsQuery = `query FirmPageQuery {
+  users(where: {role: AUTHOR}, first: 100) {
+    nodes {
+      databaseId
+      uri
+      lastName
+      firstName
+      description
+    }
+  }
+}
+`;
