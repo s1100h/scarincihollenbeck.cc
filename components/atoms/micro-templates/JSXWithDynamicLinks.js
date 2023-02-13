@@ -9,9 +9,9 @@ export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
     if (
       domNode.type === 'tag'
         && domNode.name === 'a'
-        && domNode.attribs.href.includes(PRODUCTION_URL)
+        && domNode.attribs.href?.includes(PRODUCTION_URL)
     ) {
-      const uri = domNode.attribs.href.split('/');
+      const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
       return (
         <Link href={uriSliced}>
