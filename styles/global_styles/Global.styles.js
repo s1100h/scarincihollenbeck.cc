@@ -57,7 +57,9 @@ export const globalColor = {
     ultramarine: '#2564E1',
   },
   socialNetworks: {
-    linkedIn: '#377DB7',
+    linkedIn: '#0077B5',
+    faceBook: '#4267B2',
+    twitter: '#1DA1F2',
   },
 }
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { globalColor } from './global_styles/Global.styles'
 
 export const ButtonLink = styled.a`
   display: flex;
@@ -8,7 +9,8 @@ export const ButtonLink = styled.a`
   padding-left: 5px;
   padding-right: 5px;
   width: 168px;
-  background: #a91110;
+  transition: background 0.8s;
+  background: ${globalColor.red.darkRed};
   font-style: normal;
   font-weight: 700;
   font-size: 16px;

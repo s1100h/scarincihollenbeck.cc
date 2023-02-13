@@ -1,11 +1,10 @@
 import { SITE_TITLE } from 'utils/constants';
 import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
+import { GradientSubscriptionBox } from '../../../styles/Subscription.style';
 
 const Subscription = () => (
-  <div>
-    <p className="fs-1_2rem mb-2">
-      <strong>Get the latest from our attorneys!</strong>
-    </p>
+  <GradientSubscriptionBox>
+    <h5 className="fs-1_2rem mb-2">Get the latest from our attorneys!</h5>
     <p>
       Please fill out our short form to get the latest articles from the
       {' '}
@@ -13,7 +12,7 @@ const Subscription = () => (
       attorneys weekly on the cutting-edge legal topics.
     </p>
     <SubscriptionModal />
-  </div>
+  </GradientSubscriptionBox>
 );
 
 export default Subscription;

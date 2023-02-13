@@ -19,6 +19,10 @@ export const HeaderContainer = styled.header`
   top: 0;
   z-index: 1020;
 
+  @media print {
+    display: none;
+  }
+
   ${media_breakpoint_down('lg')} {
     height: 14vh;
   }

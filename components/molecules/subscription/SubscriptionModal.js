@@ -6,8 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
 import { SITE_TITLE } from 'utils/constants';
-import { ButtonStandardWidth } from 'styles/Buttons.style';
 import { CheckBoxesList } from 'styles/Subscription.style';
+import { ButtonLink } from '../../../styles/LinkButtons.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -18,9 +18,9 @@ const SubscriptionModal = () => {
   return (
     <>
       <KwesScripts />
-      <ButtonStandardWidth variant="danger" onClick={() => setShow(true)}>
-        Subscribe Now!
-      </ButtonStandardWidth>
+      <ButtonLink onClick={() => setShow(true)}>
+        <span>Subscribe Now!</span>
+      </ButtonLink>
       <Modal show={show} onHide={() => setShow(false)} id="subscription-form">
         <Modal.Header className="sidebar-title d-flex flex-row">
           <Image
