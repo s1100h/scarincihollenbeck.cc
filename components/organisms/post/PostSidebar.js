@@ -1,13 +1,11 @@
-import Col from 'react-bootstrap/Col';
 import Subscription from 'components/molecules/subscription/Subscription';
-import PostSocialShareSidebar from 'components/organisms/post/SocialShareSidebar';
+import AboutAuthorFormCard from './AboutAuthorFormCard';
 
-const PostSidebar = ({ title }) => (
-  <Col sm={12} lg={3} className="d-print-none">
-    <PostSocialShareSidebar title={title} />
-    <hr />
+const PostSidebar = () => (
+  <>
     <Subscription />
-  </Col>
+    <AboutAuthorFormCard />
+  </>
 );
 
 export default PostSidebar;

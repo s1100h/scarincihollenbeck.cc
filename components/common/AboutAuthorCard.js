@@ -38,7 +38,9 @@ const AboutAuthorCard = ({ authors }) => (
           />
           {author.name !== SITE_TITLE && (
           <Link href={author.user_url ? `/attorneys/${author.user_url}` : '/attorneys'}>
-            <a className="my-2 mt-1 d-block">Full Biography</a>
+            <a className="my-2 mt-1 d-block">
+              {!author.user_url ? 'Firm attorneys ' : 'Full Biography'}
+            </a>
           </Link>
           )}
         </p>
