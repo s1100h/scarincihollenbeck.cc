@@ -1,10 +1,17 @@
 import { SearchedItem } from 'styles/Hit.style';
 import Link from 'next/link';
-import { PRODUCTION_URL } from '../../../utils/constants';
+import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
 
 export default function Hit({ hit }) {
   return (
-    <Link href={hit.permalink.replace(PRODUCTION_URL, '')} passHref>
+    <Link
+      href={
+        hit.post_type_label === 'Posts'
+          ? hit.permalink.replace(PRODUCTION_URL, '')
+          : hit.permalink.replace(BASE_API_URL, '')
+      }
+      passHref
+    >
       <SearchedItem>
         <p className="post-type">{hit.post_type_label}</p>
         <h4 className="title">
