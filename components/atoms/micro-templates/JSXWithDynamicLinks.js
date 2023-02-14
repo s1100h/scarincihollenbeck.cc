@@ -23,15 +23,22 @@ export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
       return (
         <Image
           placeholder="blur"
-          blurDataURL={domNode.attribs['data-srcset']}
+          blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
           loading="lazy"
-          src={domNode.attribs['data-srcset']}
+          src={domNode.attribs['data-srcset'] || domNode.attribs.src}
           alt={domNode.attribs.alt}
-          width={domNode.attribs.width}
-          height={domNode.attribs.height}
+          width={domNode.attribs.width || 500}
+          height={domNode.attribs.height || 300}
           layout="responsive"
         />
       );
+    }
+
+    if (domNode.type === 'tag' && domNode.name === 'iframe') {
+      domNode.attribs.width = '100%';
+      domNode.attribs.height = '300';
+
+      return domNode;
     }
   },
 });
