@@ -33,5 +33,12 @@ export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
         />
       );
     }
+
+    if (domNode.type === 'tag' && domNode.name === 'iframe') {
+      domNode.attribs.width = '100%';
+      domNode.attribs.height = '300';
+
+      return domNode;
+    }
   },
 });
