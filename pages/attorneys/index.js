@@ -91,6 +91,12 @@ const getAttorneys = async () => {
     },
   );
 
+  sanitaizedAttorneys.forEach((attorneyItem, idx) => {
+    if (attorneyItem.designations === 'The Firm') {
+      sanitaizedAttorneys.splice(idx, 1);
+    }
+  });
+
   return sortByKey(sanitaizedAttorneys, 'lastName');
 };
 
