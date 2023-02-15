@@ -29,13 +29,15 @@ const SingleSubHeader = ({
         <p className="mt-4 mb-2">
           <strong>Author: </strong>
           {authors.map((author, index) => (author.user_url === '' || author.statusProfile === null ? (
-            <span key={author.display_name}>{author.display_name}</span>
+            <span key={author.display_name}>
+              {author.display_name}
+              {authors.length > 1 && index !== authors.length - 1 && <>, </>}
+            </span>
           ) : (
             <Link key={author.display_name} href={`/attorneys/${author.user_url}`}>
               <a>
                 {author.display_name}
-
-                {index < authors.length - 1 && <>, </>}
+                {authors.length > 1 && index !== authors.length - 1 && <>, </>}
               </a>
             </Link>
           )))}

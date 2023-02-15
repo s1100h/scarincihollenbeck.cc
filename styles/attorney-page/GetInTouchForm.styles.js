@@ -1,6 +1,6 @@
 import { InputGroup, Form } from 'react-bootstrap'
 import styled from 'styled-components'
-import { globalColor } from 'styles/global_styles/Global.styles'
+import { globalColor, rem } from 'styles/global_styles/Global.styles'
 
 export const FormContainer = styled.div`
   margin-bottom: 20px;
@@ -26,7 +26,7 @@ export const FormContainer = styled.div`
     }
 
     p {
-      font-size: 14px;
+      font-size: ${rem(14)};
       color: ${globalColor.grayExtraLite.grayExtraLite100};
     }
 

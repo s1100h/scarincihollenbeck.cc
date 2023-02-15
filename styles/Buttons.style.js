@@ -62,7 +62,7 @@ export const ClearButton = styled(ButtonStandardWidth)`
 `
 
 export const StandardRedButton = styled(Button)`
-  ${commonBtnStyle}
+  ${commonBtnStyle};
   border: none;
   border-radius: 0;
   background-color: ${globalColor.red.darkRed};
