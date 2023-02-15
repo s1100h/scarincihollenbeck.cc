@@ -45,6 +45,10 @@
       "source": "/location/lyndhurst",
       "destination": "/location/little-falls",
       "statusCode": 301
+    },
+    {
+      "source": "/attorneys/scarinci-hollenbeck",
+      "destination": "/firm-overview"
     }
   ]
 }

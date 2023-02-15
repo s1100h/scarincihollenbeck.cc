@@ -19,6 +19,11 @@ const PERMANENT_REDIRECTS = [
     destination: '/',
     permanent: true,
   },
+  {
+    source: '/attorneys/scarinci-hollenbeck',
+    destination: '/firm-overview',
+    permanent: true,
+  },
 ];
 
 module.exports = {
