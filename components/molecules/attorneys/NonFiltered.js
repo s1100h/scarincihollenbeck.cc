@@ -12,7 +12,7 @@ const organizeAttorneys = (attorneys, titles) => {
     };
   });
 
-  attorneys.forEach((attorney) => {
+  attorneys.forEach((attorney, idx) => {
     if (
       typeof attorney.designation === 'string'
       && !attorney.designation.includes('Firm Managing Partner')

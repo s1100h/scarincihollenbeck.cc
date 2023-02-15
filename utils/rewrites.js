@@ -16,6 +16,10 @@ const POST_TYPE_REWRITES = [
   //   source: '/careers/:path*',
   //   destination: '/career/:path*',
   // },
+  // {
+  //   source: '/attorneys/scarinci-hollenbeck',
+  //   destination: '/firm-overview',
+  // },
 ];
 
 /** List of top level categories */
