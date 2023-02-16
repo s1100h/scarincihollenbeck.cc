@@ -1,4 +1,4 @@
-import { changeTitle, createMarkup } from 'utils/helpers';
+import { changeTitle, createMarkup, formatDate } from 'utils/helpers';
 import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
 import Link from 'next/link';
 import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
@@ -34,7 +34,10 @@ const SingleSubHeader = ({
               {authors.length > 1 && index !== authors.length - 1 && <>, </>}
             </span>
           ) : (
-            <Link key={author.display_name} href={`/attorneys/${author.user_url}`}>
+            <Link
+              key={author.display_name}
+              href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}
+            >
               <a>
                 {author.display_name}
                 {authors.length > 1 && index !== authors.length - 1 && <>, </>}
@@ -42,7 +45,7 @@ const SingleSubHeader = ({
             </Link>
           )))}
           <span className="mx-3">|</span>
-          {date}
+          {formatDate(date)}
         </p>
       )}
       <Description

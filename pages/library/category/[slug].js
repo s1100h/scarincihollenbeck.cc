@@ -6,8 +6,6 @@ import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { fetchAPI } from 'utils/api';
 import { categoryPostQuery } from 'utils/graphql-queries';
-import { useContext, useEffect } from 'react';
-import { AttorneysContext } from '../../../contexts/AttorneysContext';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -106,7 +104,6 @@ const LibraryCategory = ({
   categoryId,
   seo,
 }) => {
-  const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
 
   if (router.isFallback) {
@@ -117,11 +114,6 @@ const LibraryCategory = ({
     );
   }
 
-  useEffect(() => {
-    if (authors.length === 0) {
-      getAsyncAuthors();
-    }
-  }, [authors]);
   const canonicalUrl = `${PRODUCTION_URL}/library/${pageTitle}`;
 
   const libraryProps = {
@@ -131,7 +123,6 @@ const LibraryCategory = ({
       canonicalUrl,
     },
     news,
-    authors,
     popularCategories,
     childrenOfCurrentCategory,
     currentPageTitle: name,

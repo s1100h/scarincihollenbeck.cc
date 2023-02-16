@@ -59,8 +59,6 @@ export const FIRM_PAGES = [
   },
 ];
 
-export const AttorneyNoLonger = 'This attorney is no longer affiliated with the firm.';
-
 /** Header navigation links */
 export const SITE_NAVIGATION = [
   {

@@ -5,8 +5,6 @@ import ApolloWrapper from 'layouts/ApolloWrapper';
 import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { getSEOforAuthorPosts } from 'utils/graphql-queries';
-import { useContext, useEffect } from 'react';
-import { AttorneysContext } from '../../../contexts/AttorneysContext';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -93,13 +91,7 @@ const LibraryAuthor = ({
   seo,
   name,
 }) => {
-  const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
-  useEffect(() => {
-    if (authors.length === 0) {
-      getAsyncAuthors();
-    }
-  }, [authors]);
   const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;
   const { title, metaDescription } = seo;
 
@@ -110,7 +102,6 @@ const LibraryAuthor = ({
       canonicalUrl,
     },
     news: results,
-    authors,
     popularCategories,
     categoryId,
     currentPageTitle: name,

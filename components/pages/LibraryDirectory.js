@@ -9,7 +9,9 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { CLIENT_ALERTS } from 'utils/constants';
 import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
+import { useContext, useEffect } from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
+import { AttorneysContext } from '../../contexts/AttorneysContext';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
@@ -17,7 +19,6 @@ const FirmAuthors = dynamic(import('components/organisms/library/FirmAuthors'));
 
 const LibraryDirectory = ({
   news,
-  authors,
   popularCategories,
   childrenOfCurrentCategory,
   categoryName,
@@ -26,10 +27,17 @@ const LibraryDirectory = ({
   profileUrl,
   categoryId,
 }) => {
+  const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
   const mainNews = news[0];
   const featuredArticles = news.slice(1, news.length);
   const isAuthor = router.asPath.includes('author');
+
+  useEffect(() => {
+    if (authors.length === 0) {
+      getAsyncAuthors();
+    }
+  }, [authors]);
 
   const noPostsFoundMessage = <p>Sorry, no posts found</p>;
 

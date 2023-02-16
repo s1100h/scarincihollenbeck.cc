@@ -16,12 +16,13 @@ const ClientSlider = ({
     speed: 500,
     easing: 'ease-in',
     arrows: buttons || false,
+    variableWidth: true,
   };
   return (
     <>
       <Slider {...settings}>
         {clients.map(({ clientImage, clientLink, clientTitle }) => (
-          <div key={clientTitle}>
+          <div style={{ width: imgSize?.width }} key={clientTitle}>
             <a href={clientLink}>
               <Image
                 src={clientImage.sourceUrl}

@@ -342,7 +342,41 @@ export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
     }
   }}
 `;
-
+export const postQuery = `query FirmPageQuery($id: ID!) {
+  post(id: $id, idType: SLUG) {
+      categories {
+      nodes {
+        databaseId
+        name
+        slug
+      }
+    }
+    content
+    title
+    date
+    seo {
+      opengraphDescription
+      title
+    }
+    selectAuthors {
+      authorDisplayOrder {
+        ... on AttorneyProfile {
+          uri
+          title
+          databaseId
+          attorneyMainInformation {
+            profileImage {
+              sourceUrl
+            }
+          }
+          attorneyBiography {
+            miniBio
+          }
+        }
+      }
+    }
+  }
+}`;
 // , order by: {field: DATE, order: DESC}
 export const categoryPostsByIdQuery = `query categoryPostsById(
   $first: Int
@@ -723,13 +757,17 @@ export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
   }
 }`;
 
-export const postCategoriesQuery = `query BasicPageQuery($id: ID!) {
-  post(id: $id, idType: SLUG) {
-    categories {
-      nodes {
-        slug
-        databaseId
-        name
+export const authorsPostQuery = `query FirmPageQuery {
+  attorneyProfiles(first: 100) {
+    nodes {
+      attorneyAuthorId {
+        authorId {
+          uri
+          name
+          databaseId
+          lastName
+          firstName
+        }
       }
     }
   }
@@ -1090,20 +1128,8 @@ export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
   }
 }`;
 
-export const getAvatarAuthorsQuery = `query FirmPageQuery($id: [Int!]) {
-  users(where: {include: $id}) {
-    nodes {
-      avatar(size: 500) {
-        url
-      }
-      databaseId
-    }
-  }
-}
-`;
-
 export const getAuthorsQuery = `query FirmPageQuery {
-  users(where: {role: AUTHOR}, first: 100) {
+  users(first: 100) {
     nodes {
       databaseId
       uri
