@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { PRODUCTION_URL, SITE_TITLE } from 'utils/constants';
+import { PRODUCTION_URL, ScarinciHollenbeckAuthor, SITE_TITLE } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
 import { postQuery } from 'utils/graphql-queries';
@@ -17,6 +17,15 @@ const getPostContentData = async (slug) => {
   const data = await fetchAPI(postQuery, {
     variables: { id: slug },
   });
+  if (!data.post) {
+    return undefined;
+  }
+  if (
+    !data.post.selectAuthors.authorDisplayOrder
+    || data.post.selectAuthors.authorDisplayOrder.length === 0
+  ) {
+    data.post.selectAuthors.authorDisplayOrder = ScarinciHollenbeckAuthor;
+  }
 
   data.post.selectAuthors.authorDisplayOrder = data.post.selectAuthors.authorDisplayOrder.map(
     (attorneyAuthor) => {

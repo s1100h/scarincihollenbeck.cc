@@ -767,6 +767,11 @@ export const authorsPostQuery = `query FirmPageQuery {
           databaseId
           lastName
           firstName
+          posts(first: 1) {
+            nodes {
+              databaseId
+            }
+          }
         }
       }
     }

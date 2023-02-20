@@ -61,7 +61,13 @@ export const AttorneysProvider = ({ children }) => {
   async function getAsyncAuthors() {
     const data = await fetchAPI(authorsPostQuery);
     data.attorneyProfiles?.nodes.forEach((attorney, idx) => {
-      if (!attorney.attorneyAuthorId.authorId) {
+      if (
+        !attorney.attorneyAuthorId.authorId
+        || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
+      ) {
+        data.attorneyProfiles?.nodes.splice(idx, 1);
+      }
+      if (attorney.attorneyAuthorId.authorId?.posts.nodes.length === 0) {
         data.attorneyProfiles?.nodes.splice(idx, 1);
       }
     });
