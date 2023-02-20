@@ -15,7 +15,7 @@ const PostSiteHead = ({ seo, post, authors }) => {
     image: post.featuredImage,
     author: {
       '@type': 'Person',
-      url: authors.map((a) => a.user_url).join(', '),
+      url: authors.map((a) => a.uri).join(', '),
       name: authors.map((a) => a.display_name).join(', '),
     },
     url: canonicalUrl,

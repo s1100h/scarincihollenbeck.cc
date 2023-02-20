@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { getPostContent } from 'pages/api/get-post-content';
-import { PRODUCTION_URL, SITE_TITLE } from 'utils/constants';
+import { PRODUCTION_URL, ScarinciHollenbeckAuthor, SITE_TITLE } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
-import { getAvatarAuthorsQuery, postCategoriesQuery } from 'utils/graphql-queries';
+import { postQuery } from 'utils/graphql-queries';
+import { getSubTitleFromHTML } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -13,67 +13,77 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
  * for more details.
  * */
 
-const getAvatarAuthors = async (id) => {
-  const { users } = await fetchAPI(getAvatarAuthorsQuery, {
-    variables: { id },
+const getPostContentData = async (slug) => {
+  const data = await fetchAPI(postQuery, {
+    variables: { id: slug },
   });
-  return users.nodes;
-};
+  if (!data.post) {
+    return undefined;
+  }
+  if (
+    !data.post.selectAuthors.authorDisplayOrder
+    || data.post.selectAuthors.authorDisplayOrder.length === 0
+  ) {
+    data.post.selectAuthors.authorDisplayOrder = ScarinciHollenbeckAuthor;
+  }
 
-const getPostCategory = async (slug) => {
-  const { post } = await fetchAPI(postCategoriesQuery, {
-    variables: {
-      id: slug,
+  data.post.selectAuthors.authorDisplayOrder = data.post.selectAuthors.authorDisplayOrder.map(
+    (attorneyAuthor) => {
+      attorneyAuthor.profileImage = attorneyAuthor.attorneyMainInformation.profileImage.sourceUrl;
+      return {
+        uri: attorneyAuthor.uri,
+        display_name: attorneyAuthor.title,
+        databaseId: attorneyAuthor.databaseId,
+        authorDescription: attorneyAuthor.attorneyBiography.miniBio,
+        profileImage: attorneyAuthor.profileImage,
+      };
     },
-  });
+  );
 
-  return post?.categories?.nodes;
+  data.post.seo = {
+    metaTitle: data.post.seo.title,
+    metaDescription: data.post.seo.opengraphDescription,
+  };
+
+  return data;
 };
-
-const sanitizeAuthors = (authors, authorsAvatars) => authors.map((author) => ({
-  ...author,
-  avatar: authorsAvatars.find((authorAvatar) => author.ID === authorAvatar.databaseId).avatar.url,
-}));
 
 export const getServerSideProps = async ({ params, res, query }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-  const postUrl = params.slug[params.slug.length - 1];
+  const postSlug = params.slug[params.slug.length - 1];
   const { category } = query;
-  const categoriesByQuery = await getPostCategory(postUrl);
 
-  const resAuthors = await getPostContent(postUrl, category);
-  const authorsIdArr = resAuthors.authors.map(({ ID }) => ID);
-  const responseAuthors = await getAvatarAuthors(authorsIdArr);
+  const postContent = await getPostContentData(postSlug);
 
-  resAuthors.authors = sanitizeAuthors(resAuthors.authors, responseAuthors);
-
-  if (resAuthors.status === 404) {
+  if (!postContent) {
     res.statusCode = 404;
     return {
       notFound: true,
     };
   }
+  const { clearBody, subTitle } = getSubTitleFromHTML(postContent.post.content);
 
-  const {
-    post, seo, tags, authors,
-  } = resAuthors;
+  const post = {
+    content: clearBody,
+    title: postContent.post.title,
+    date: postContent.post.date,
+    subTitle,
+  };
 
   return {
     props: {
       post,
-      seo,
-      categories: categoriesByQuery,
-      tags,
-      authors,
+      seo: postContent.post.seo,
+      categories: postContent.post.categories.nodes,
+      authors: postContent.post.selectAuthors.authorDisplayOrder,
       category,
-      postUrl,
     },
   };
 };
 
 /* The blog post component */
 const SinglePost = ({
-  post, seo, categories, tags, authors, category, postUrl,
+  post, seo, categories, authors, category,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
@@ -87,11 +97,9 @@ const SinglePost = ({
     post,
     seo,
     categories,
-    tags,
     canonicalUrl,
     metaAuthorLinks,
     category,
-    postUrl,
     authors,
   };
 

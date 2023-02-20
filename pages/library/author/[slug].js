@@ -48,8 +48,16 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
   const { seo } = await getUserSeo(results.id);
-
-  const firstFourArticles = results.results.splice(0, 4);
+  const news = results.results.map((node, index) => ({
+    ID: index,
+    title: node.title,
+    link: node.link.replace(PRODUCTION_URL, ''),
+    date: node.date,
+    description: node.description,
+    author: node.author,
+    image: node.image,
+  }));
+  const firstFourArticles = news.splice(0, 4);
 
   return {
     props: {
@@ -73,7 +81,6 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Author library page component */
 const LibraryAuthor = ({
-  authors,
   description,
   pageTitle,
   popularCategories,
@@ -85,7 +92,6 @@ const LibraryAuthor = ({
   name,
 }) => {
   const router = useRouter();
-
   const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;
   const { title, metaDescription } = seo;
 
@@ -96,7 +102,6 @@ const LibraryAuthor = ({
       canonicalUrl,
     },
     news: results,
-    authors,
     popularCategories,
     categoryId,
     currentPageTitle: name,
