@@ -56,6 +56,12 @@ export const getKaterinTraugh = async () => {
 const getAttorneys = async () => {
   const { attorneyProfiles } = await fetchAPI(attorneysQuery, {});
 
+  attorneyProfiles.nodes.forEach((attorneyItem, idx) => {
+    if (attorneyItem.attorneyMainInformation.designation === 'The Firm') {
+      attorneyProfiles.nodes.splice(idx, 1);
+    }
+  });
+
   const sanitaizedAttorneys = attorneyProfiles?.nodes.map(
     ({
       title,
@@ -90,12 +96,6 @@ const getAttorneys = async () => {
       };
     },
   );
-
-  sanitaizedAttorneys.forEach((attorneyItem, idx) => {
-    if (attorneyItem.designations === 'The Firm') {
-      sanitaizedAttorneys.splice(idx, 1);
-    }
-  });
 
   return sortByKey(sanitaizedAttorneys, 'lastName');
 };
