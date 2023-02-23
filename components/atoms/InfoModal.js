@@ -4,7 +4,7 @@ import { RedButtonBootstrap } from 'styles/Buttons.style';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
 
-const ModalWindow = ({
+const InfoModal = ({
   title, miniDescription, link, linkText, description,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -13,7 +13,7 @@ const ModalWindow = ({
 
   const handleClick = () => {
     setModalOpen(!modalOpen);
-    cookies.set('ModalWindow', 'yes', { maxAge: 86400 });
+    cookies.set('InfoModal', 'yes', { maxAge: 86400 });
   };
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const ModalWindow = ({
       setModalOpen(!modalOpen);
     }, 1000);
 
-    if (cookies.get('ModalWindow') !== 'yes' && !isCookie) {
+    if (cookies.get('InfoModal') !== 'yes' && !isCookie) {
       setIsCookies(true);
     }
 
@@ -37,7 +37,7 @@ const ModalWindow = ({
               {title}
             </h5>
             <p>{miniDescription}</p>
-            <Link href={link}>
+            <Link href={link} legacyBehavior>
               <a className="modal-link">{linkText}</a>
             </Link>
             <p>{description}</p>
@@ -53,4 +53,4 @@ const ModalWindow = ({
   );
 };
 
-export default ModalWindow;
+export default InfoModal;

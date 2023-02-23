@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
 import { SITE_TITLE } from 'utils/constants';
-import { CheckBoxesList } from 'styles/Subscription.style';
+import { CheckBoxesList, FormContainer } from 'styles/Subscription.style';
 import { ButtonLink } from '../../../styles/LinkButtons.style';
+import ModalWindow from '../../common/ModalWindow';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -21,31 +21,23 @@ const SubscriptionModal = () => {
       <ButtonLink onClick={() => setShow(true)}>
         <span>Subscribe Now!</span>
       </ButtonLink>
-      <Modal show={show} onHide={() => setShow(false)} id="subscription-form">
-        <Modal.Header className="sidebar-title d-flex flex-row">
-          <Image
-            src="/images/sh-mini-diamond-PNG.png"
-            width={170}
-            height={147}
-            alt={`${SITE_TITLE} diamond`}
-            layout="intrinsic"
-          />
-          <h5 id="subscriptionModalLabel" className="mt-2">
-            Sign up to get the latest from the
-            {' '}
-            {SITE_TITLE}
-            {' '}
-            attorneys!
-          </h5>
-        </Modal.Header>
-        <Modal.Body>
-          <Button
-            variant="secondary"
-            className="float-right mb-2 mt-0"
-            onClick={() => setShow(false)}
-          >
-            <strong>Close</strong>
-          </Button>
+      <ModalWindow isOpen={show} setOpenModal={setShow}>
+        <FormContainer>
+          <section>
+            <Image
+              src="/images/sh-mini-diamond-PNG.png"
+              width={130}
+              height={107}
+              alt={`${SITE_TITLE} diamond`}
+              layout="intrinsic"
+            />
+            <h4>
+              Sign up to get the latest from the
+              {SITE_TITLE}
+              {' '}
+              attorneys!
+            </h4>
+          </section>
           <form
             className="kwes-form"
             action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
@@ -103,8 +95,8 @@ const SubscriptionModal = () => {
               </Button>
             </div>
           </form>
-        </Modal.Body>
-      </Modal>
+        </FormContainer>
+      </ModalWindow>
     </>
   );
 };

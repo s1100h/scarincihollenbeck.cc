@@ -4,7 +4,7 @@ import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { AboutContainer } from 'styles/AboutFirm.style';
 import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
-// import ModalWindow from '../atoms/ModalWindow';
+// import InfoModal from '../atoms/InfoModal';
 
 // !! Attention the modal window was turned off. 12/31/2022
 const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'), {
@@ -30,7 +30,7 @@ const HomePage = ({
     <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />
     <HomeBanner {...banner} />
     {isHoliday && <HappyHolidayLink />}
-    {/* <ModalWindow /> */}
+    {/* <InfoModal /> */}
     <AboutContainer>
       <AboutFirmSection {...aboutFirm} />
       <AboutFirmSection {...aboutFirm2} />
