@@ -61,6 +61,9 @@ export const globalColor = {
     faceBook: '#4267B2',
     twitter: '#1DA1F2',
   },
+  trasparents: {
+    modal: 'rgba(0,0,0,.175)',
+  },
 }
 
 export const globalGradient = {
