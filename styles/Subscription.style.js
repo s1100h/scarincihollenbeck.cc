@@ -47,3 +47,22 @@ export const GradientSubscriptionBox = styled.article`
     }
   }
 `
+
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  min-width: 320px;
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h4 {
+      margin-bottom: 0;
+      font-size: 1.2rem;
+    }
+  }
+`
