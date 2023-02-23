@@ -12,16 +12,16 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** Fetch additional page information such as authors and popular categories from WP REST API */
 const getLibraryCategoryContent = async () => {
   try {
-    const [authors, popularCategories] = await Promise.all([
-      fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
-        .then((data) => data.json())
-        .catch((err) => err),
+    const [popularCategories] = await Promise.all([
+      // fetch(`${BASE_API_URL}/wp-json/author/full-list`, { headers })
+      //   .then((data) => data.json())
+      //   .catch((err) => err),
       fetch(`${BASE_API_URL}/wp-json/category/popular-categories`, { headers })
         .then((data) => data.json())
         .catch((err) => err),
     ]);
 
-    return [authors, popularCategories];
+    return [popularCategories];
   } catch (error) {
     console.error(error);
   }
@@ -35,7 +35,7 @@ export async function categoryPosts(variables) {
 
 export const getServerSideProps = async ({ params, res }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-  const [authors, popularCategories] = await getLibraryCategoryContent();
+  const [popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
     variables: {
       name: params.slug,
@@ -79,7 +79,6 @@ export const getServerSideProps = async ({ params, res }) => {
   return {
     props: {
       news,
-      authors: authors || [],
       popularCategories: modPopCategories || [],
       childrenOfCurrentCategory: categoryChildren,
       description: content.description,
@@ -96,7 +95,6 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Library category page component -- /library/category/law-firm-insights etc. */
 const LibraryCategory = ({
-  authors,
   childrenOfCurrentCategory,
   description,
   pageTitle,
@@ -125,7 +123,6 @@ const LibraryCategory = ({
       canonicalUrl,
     },
     news,
-    authors,
     popularCategories,
     childrenOfCurrentCategory,
     currentPageTitle: name,

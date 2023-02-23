@@ -9,7 +9,7 @@ const AboutAuthorCard = ({ authors }) => (
   <AuthorBox>
     {authors.map(
       (author) => author.statusProfile !== null && (
-      <div key={author.ID || useId()} className="mb-5">
+      <div key={author.databaseId || useId()} className="mb-5">
         <div className="mb-3">
           <h3>
             About
@@ -17,17 +17,17 @@ const AboutAuthorCard = ({ authors }) => (
             <span className="ml-2">{author.display_name}</span>
           </h3>
         </div>
-        {author.avatar && (
+        {author.profileImage && (
         <div className="float-start">
           <Image
             placeholder="blur"
-            blurDataURL={author.avatar}
+            blurDataURL={author.profileImage}
             loading="lazy"
-            src={author.avatar}
+            src={author.profileImage}
             alt={author.display_name}
             layout="fixed"
             width={155}
-            height={192}
+            height={170}
           />
         </div>
         )}
@@ -36,13 +36,15 @@ const AboutAuthorCard = ({ authors }) => (
             dangerouslySetInnerHTML={createMarkup(author.authorDescription)}
             className="d-block"
           />
-          {author.name !== SITE_TITLE && (
-          <Link href={author.user_url ? `/attorneys/${author.user_url}` : '/attorneys'}>
+          <Link
+            href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}
+          >
             <a className="my-2 mt-1 d-block">
-              {!author.user_url ? 'Firm attorneys ' : 'Full Biography'}
+              {author.display_name !== 'Scarinci Hollenbeck'
+                ? 'Full Biography'
+                : 'Firm attorneys '}
             </a>
           </Link>
-          )}
         </p>
       </div>
       ),

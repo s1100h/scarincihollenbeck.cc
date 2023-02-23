@@ -30,6 +30,25 @@ export const FIRM_BLOG_PAGES = [
   },
 ];
 
+export const ScarinciHollenbeckAuthor = [
+  {
+    uri: '/attorneys',
+    title: 'Scarinci Hollenbeck',
+    databaseId: 10000000000001,
+    attorneyMainInformation: {
+      profileImage: {
+        sourceUrl: '/images/sh-mini-diamond-PNG.png',
+      },
+    },
+    attorneyBiography: {
+      miniBio: `With a growing practice of more than 60 experienced attorneys,
+     Scarinci Hollenbeck is a regional alternative to a National 250 law firm. With offices in New
+      Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often
+       required by institutions, corporations, entities, and the people who own and control them.`,
+    },
+  },
+];
+
 /* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
   {
