@@ -11,7 +11,7 @@ const PostBreadCrumbs = () => {
   return (
     <ul className="list-inline">
       <li className="list-inline-item">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a className="redTitle text-uppercase">
             <strong>
               Home
@@ -22,7 +22,7 @@ const PostBreadCrumbs = () => {
         </Link>
       </li>
       <li className="list-inline-item">
-        <Link href={`/library/category/${crumbs[0]}`}>
+        <Link href={`/library/category/${crumbs[0]}`} legacyBehavior>
           <a className="redTitle text-uppercase">
             <strong>
               {crumbs[0].replace(/-/g, ' ')}

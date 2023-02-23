@@ -13,7 +13,6 @@ export const TitleBlock = styled.div`
     font-style: normal;
     font-size: 4.5rem;
     color: ${globalColor.black};
-    font-family: 'Brand';
     text-transform: uppercase;
     margin-bottom: 0;
   }

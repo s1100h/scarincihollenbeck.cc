@@ -46,14 +46,11 @@ const Table = ({ content }) => {
                 }}
               >
                 <div
-                  className="h6 mb-0 title"
+                  className="h6 mb-0"
                   dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][0])}
                 />
                 {content.body[virtualRow.index][1] && (
-                  <span
-                    className="tag-one"
-                    dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][1])}
-                  />
+                  <span dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][1])} />
                 )}
                 {content.body[virtualRow.index][2] && (
                   <span
@@ -67,9 +64,6 @@ const Table = ({ content }) => {
         </div>
         <style jsx>
           {`
-            .title {
-              font-family: Proxima Nova Bold;
-            }
             .tag-two::before {
               content: ' - ';
             }

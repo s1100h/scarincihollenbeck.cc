@@ -11,7 +11,7 @@ export const linkTemplate = (is_target_blank, slugLink, label) => {
   }
 
   return (
-    <Link href={slugLink}>
+    <Link href={slugLink} legacyBehavior>
       <a>{label}</a>
     </Link>
   );

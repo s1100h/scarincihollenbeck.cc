@@ -32,7 +32,7 @@ const ProfileContacts = ({ contact, offices, fax }) => {
         <BsFillGeoAltFill />
         {' '}
         {offices.map((o, i) => (
-          <Link href={o.link} key={o.ID}>
+          <Link href={o.link} key={o.ID} legacyBehavior>
             <a>
               {o.name}
               {i !== offices.length - 1 && ', '}

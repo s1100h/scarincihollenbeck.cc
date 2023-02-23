@@ -52,7 +52,7 @@ export const BackgroundContainer = styled.section`
 export const SubHeaderContent = styled(Container)`
   h1 {
     margin-bottom: 0;
-    font-family: 'Kenjo I';
+    font-family: var(--font-KenjoI);
     font-size: ${rem(64)};
 
     color: ${globalColor.black};

@@ -14,7 +14,7 @@ export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
       return (
-        <Link href={uriSliced}>
+        <Link href={uriSliced} legacyBehavior>
           <a>{domNode.children[0].data || domNode.children[0]?.children[0].data}</a>
         </Link>
       );

@@ -17,7 +17,7 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
     if (locationsOrPractice[0]?.uri) {
       return locationsOrPractice.map((office, idx) => (
         <li key={office.id || useId()}>
-          <Link href={office?.uri}>
+          <Link href={office?.uri} legacyBehavior>
             <a>{office.officeMainInformation.addressLocality || office.officeMainInformation}</a>
           </Link>
           <>{idx < locationsOrPractice.length - 1 && ','}</>
@@ -31,7 +31,7 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
         <div className="d-flx">
           Chair:
           {locationsOrPractice.chair?.map((location) => (
-            <Link key={location.id} href={`/practices/${location.slug}`}>
+            <Link key={location.id} href={`/practices/${location.slug}`} legacyBehavior>
               <a>
                 {' '}
                 {location?.title}
@@ -44,7 +44,7 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
         <div className="d-flx">
           Co-Chair:
           {locationsOrPractice.coChair?.map((location) => (
-            <Link key={location.id} href={`/practice/${location.slug}`}>
+            <Link key={location.id} href={`/practice/${location.slug}`} legacyBehavior>
               <a>
                 {' '}
                 {location?.title}
@@ -69,7 +69,7 @@ export default function AttorneyCard({
 }) {
   return (
     <AttorneyCardBox>
-      <Link href={link} passHref>
+      <Link href={link} passHref legacyBehavior>
         <LinkBox>
           {image ? (
             <PhotoBox>

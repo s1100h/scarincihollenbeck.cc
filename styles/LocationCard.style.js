@@ -8,7 +8,6 @@ export const LocationTitle = styled.h3`
   font-size: 72px;
   line-height: 1.2;
   color: ${globalColor.black};
-  font-family: 'Brand';
   text-transform: uppercase;
   margin-bottom: 30px;
 

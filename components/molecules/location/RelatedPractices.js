@@ -13,7 +13,7 @@ const RelatedPractices = ({ practices }) => (
           {practices.map(
             (p, i) => practices.length / 2 > i && (
             <li key={p.title} className="mb-3">
-              <Link href={p.slug}>
+              <Link href={p.slug} legacyBehavior>
                 <a className="fs-1_2rem">
                   <strong>
                     <u>{p.title}</u>
@@ -30,7 +30,7 @@ const RelatedPractices = ({ practices }) => (
           {practices.map(
             (p, i) => practices.length / 2 <= i && (
             <li key={p.title} className="mb-3">
-              <Link href={p.slug}>
+              <Link href={p.slug} legacyBehavior>
                 <a className="fs-1_2rem">
                   <strong>
                     <u>{p.title}</u>

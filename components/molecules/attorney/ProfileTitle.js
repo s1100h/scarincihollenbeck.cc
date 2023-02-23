@@ -13,7 +13,7 @@ const ProfileTitle = ({
       <h2>{designation}</h2>
       {primaryPractices
         && primaryPractices.map((practice, idx) => (
-          <Link key={practice.id} href={practice.uri}>
+          <Link key={practice.id} href={practice.uri} legacyBehavior>
             <a>
               {practice.title}
               {idx < primaryPractices.length - 1 && ', '}
@@ -25,7 +25,7 @@ const ProfileTitle = ({
           Chair:
           {' '}
           {chairs.map((chair, idx) => (
-            <Link href={chair.link} key={chair.title}>
+            <Link href={chair.link} key={chair.title} legacyBehavior>
               <a>
                 {chair.title}
                 {idx < chairs.length - 1 && ', '}
@@ -40,7 +40,7 @@ const ProfileTitle = ({
             Co-Chair:
             {' '}
             {coChairs.map((coChair) => (
-              <Link href={coChair.link} key={coChair.title}>
+              <Link href={coChair.link} key={coChair.title} legacyBehavior>
                 <a>{coChair.title}</a>
               </Link>
             ))}

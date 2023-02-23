@@ -5,6 +5,7 @@ import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
 export default function Hit({ hit }) {
   return (
     <Link
+      legacyBehavior
       href={
         hit.post_type_label === 'Posts'
           ? hit.permalink.replace(PRODUCTION_URL, '')

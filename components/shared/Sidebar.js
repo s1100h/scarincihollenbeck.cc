@@ -7,7 +7,7 @@ const Sidebar = ({ title, content }) => (
     <NavList>
       {content.map((item) => (
         <li key={item.ID || item.id} className="list-unstyled">
-          <Link href={item.slug || '/'}>
+          <Link href={item.slug || '/'} legacyBehavior>
             <a className="text-dark">{item.label || item.title}</a>
           </Link>
         </li>

@@ -19,7 +19,7 @@ const ErrorPage = ({ title, subTitle, mainMessage }) => (
             {' '}
             If you are a client, please get in touch with your
             {' '}
-            <Link href="/attorneys">
+            <Link href="/attorneys" legacyBehavior>
               <a className="blue-title">
                 <u>attorney</u>
               </a>
@@ -44,32 +44,32 @@ const ErrorPage = ({ title, subTitle, mainMessage }) => (
             </p>
             <ul style={{ marginLeft: '-1em' }}>
               <li>
-                <Link href="/attorneys">
+                <Link href="/attorneys" legacyBehavior>
                   <a className="u-hover h5">Attorneys</a>
                 </Link>
               </li>
               <li>
-                <Link href="/practices">
+                <Link href="/practices" legacyBehavior>
                   <a className="u-hover h5">Practices</a>
                 </Link>
               </li>
               <li>
-                <Link href="/location">
+                <Link href="/location" legacyBehavior>
                   <a className="u-hover h5">Locations</a>
                 </Link>
               </li>
               <li>
-                <Link href="/library/category/firm-news">
+                <Link href="/library/category/firm-news" legacyBehavior>
                   <a className="u-hover h5">Firm News</a>
                 </Link>
               </li>
               <li>
-                <Link href="/library/category/firm-events">
+                <Link href="/library/category/firm-events" legacyBehavior>
                   <a className="u-hover h5">Firm Events</a>
                 </Link>
               </li>
               <li>
-                <Link href="/library/category/law-firm-insights">
+                <Link href="/library/category/law-firm-insights" legacyBehavior>
                   <a className="u-hover h5">Firm Insights</a>
                 </Link>
               </li>

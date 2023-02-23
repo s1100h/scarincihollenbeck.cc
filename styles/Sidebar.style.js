@@ -5,7 +5,7 @@ import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const TitleSideBar = styled.h3`
   font-size: 1.2rem;
-  font-family: Gotham Pro, serif;
+  font-family: var(--font-GothamPro), serif;
   font-weight: 600;
   margin-bottom: 15px;
 `

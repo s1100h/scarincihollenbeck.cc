@@ -113,7 +113,7 @@ const LibraryDirectory = ({
           <Col sm={12} lg={3} className="d-flex flex-column justify-content-start mt-3">
             {isAuthor && (
               <div className="my-3">
-                <Link href={profileUrl}>
+                <Link href={profileUrl} legacyBehavior>
                   <a className="redTitle h6">
                     <strong>
                       <u>Visit Attorney&apos;s Profile</u>

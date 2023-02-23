@@ -33,7 +33,7 @@ export default function FirmAuthors({ authors }) {
                 ref={virtualRow.measureRef}
                 transform={`translateY(${virtualRow.start}px)`}
               >
-                <Link href={`/library${authors[virtualRow.index].link}`}>
+                <Link href={`/library${authors[virtualRow.index].link}`} legacyBehavior>
                   <a>{`☞ ${authors[virtualRow.index].fullName}`}</a>
                 </Link>
               </VirtualListItem>

@@ -5,7 +5,7 @@ import { BsFillTelephoneFill, BsFillCreditCard2BackFill } from 'react-icons/bs';
 
 const LinkButtons = () => (
   <>
-    <Link href="/contact" passHref>
+    <Link href="/contact" passHref legacyBehavior>
       <ButtonLink>
         <BsFillTelephoneFill />
         <span>Contact us</span>

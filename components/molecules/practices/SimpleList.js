@@ -8,7 +8,7 @@ const SimpleList = ({ list }) => (
     <ListSimple>
       {list.map((item) => (
         <li key={item.ID || useId()}>
-          <Link href={item.slug.replace(PRODUCTION_URL, '/')}>
+          <Link href={item.slug.replace(PRODUCTION_URL, '/')} legacyBehavior>
             <a>
               <strong>{item.title || item.label}</strong>
             </a>

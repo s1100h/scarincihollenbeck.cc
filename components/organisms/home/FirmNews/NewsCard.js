@@ -11,7 +11,7 @@ const renderAuthors = (authorItem) => {
       <ul className="d-flex gap-1 w-100 p-0">
         {authorItem.map((author, idx) => (
           <li key={author.t} className="d-flex ">
-            <Link href={author.link} passHref>
+            <Link href={author.link} passHref legacyBehavior>
               <div>
                 {author.name}
                 {authorItem.length > 1 && idx !== authorItem.length - 1 && ','}
@@ -39,7 +39,7 @@ const NewsCard = ({
     isProfile={isProfile?.length > 0 && isVertical}
     isVertical={isVertical?.length > 0 && isVertical}
   >
-    <Link href={postSlug} passHref>
+    <Link href={postSlug} passHref legacyBehavior>
       <a>
         <Image
           src={postImage.length > 0 ? postImage : '/images/no-image-found-diamond.png'}

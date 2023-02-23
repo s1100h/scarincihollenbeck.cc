@@ -15,7 +15,6 @@ export const ButtonLink = styled.a`
   font-weight: 700;
   font-size: 16px;
   line-height: 1;
-  letter-spacing: 0.01em;
   color: #ffffff;
   text-decoration: none;
 

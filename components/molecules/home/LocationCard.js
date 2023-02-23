@@ -72,7 +72,11 @@ export default function LocationCard({ officesData }) {
               </Contact>
             </ContactInfoContent>
             <footer>
-              <Link href={office?.slug ? `location/${office.slug}` : '/location'} passHref>
+              <Link
+                href={office?.slug ? `location/${office.slug}` : '/location'}
+                passHref
+                legacyBehavior
+              >
                 <LinkToAttorneys>Attorneys</LinkToAttorneys>
               </Link>
             </footer>

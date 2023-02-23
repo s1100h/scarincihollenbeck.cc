@@ -24,7 +24,7 @@ const Awards = ({ awards }) => {
     <section className="wrapper-section">
       <TitleBlock>
         <h2>AWARDS & ACCOLADES</h2>
-        <Link href="/awards" passHref>
+        <Link href="/awards" passHref legacyBehavior>
           <RedButtonLink>Award Methodology</RedButtonLink>
         </Link>
       </TitleBlock>

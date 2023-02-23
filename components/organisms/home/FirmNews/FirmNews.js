@@ -33,7 +33,7 @@ const FirmNews = ({ firmNews }) => {
       <NewsWrapper>
         {featuredArticle && (
           <FreshNews>
-            <Link href={featuredArticle?.slug} passHref>
+            <Link href={featuredArticle?.slug} passHref legacyBehavior>
               <LinkContainer>
                 <Image
                   src={featuredArticle?.featuredImage?.sourceUrl}

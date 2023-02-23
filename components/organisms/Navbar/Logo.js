@@ -8,7 +8,7 @@ import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.png';
 const Logo = () => (
   <>
     <LogoWrapper>
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <a>
           <Image
             alt={`${SITE_TITLE}, LLC`}
@@ -21,7 +21,7 @@ const Logo = () => (
       </Link>
     </LogoWrapper>
     <DiamondWrapper>
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <a>
           <Image
             alt={`${SITE_TITLE}, LLC`}

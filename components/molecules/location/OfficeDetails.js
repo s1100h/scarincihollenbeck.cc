@@ -4,7 +4,7 @@ import { getDirectionsFromLocation } from 'utils/helpers';
 
 const OfficeDetails = ({ office }) => (
   <div className="d-flex flex-column">
-    <Link href={office.slug || '/'} passHref>
+    <Link href={office.slug || '/'} passHref legacyBehavior>
       <a>
         {office.title === 'Washington D.C.' ? (
           <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
@@ -37,7 +37,7 @@ const OfficeDetails = ({ office }) => (
         </li>
       )}
       <li className="my-0">
-        <Link href={office.slug}>
+        <Link href={office.slug} legacyBehavior>
           <a className="redTitle">
             <strong>
               <u>Details</u>

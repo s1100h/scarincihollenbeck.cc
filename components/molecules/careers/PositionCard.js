@@ -20,7 +20,7 @@ export default function PositionCard({
   duration,
 }) {
   return (
-    <Link href={`/careers/${slug}`}>
+    <Link href={`/careers/${slug}`} legacyBehavior>
       <a className="text-dark text-decoration-none">
         <CardContainer>
           <TitlePosition>{title}</TitlePosition>

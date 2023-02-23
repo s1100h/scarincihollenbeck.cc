@@ -40,7 +40,7 @@ export const ProfileSidebarAwards = ({ awards }) => {
     <AwardsBox>
       <TitleAndLikBox>
         <SidebarTile>Awards</SidebarTile>
-        <Link scroll={false} href="/awards">
+        <Link scroll={false} href="/awards" legacyBehavior>
           <a>Award Methodology</a>
         </Link>
       </TitleAndLikBox>

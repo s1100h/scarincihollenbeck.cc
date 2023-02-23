@@ -38,6 +38,7 @@ const AboutAuthorCard = ({ authors }) => (
           />
           <Link
             href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}
+            legacyBehavior
           >
             <a className="my-2 mt-1 d-block">
               {author.display_name !== 'Scarinci Hollenbeck'

@@ -4,7 +4,7 @@ import { HolidayLinkBox } from 'styles/HolidayPage.style';
 
 const HappyHolidayLink = () => (
   <HolidayLinkBox>
-    <Link href="/happy-holidays" passHref>
+    <Link href="/happy-holidays" passHref legacyBehavior>
       <h5>Happy Holidays!</h5>
     </Link>
     <Link href="/happy-holidays" passHref>
