@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { KenjoI } from '../../public/fonts/fonts'
 
 const mainFotSize = 16
 
@@ -96,7 +97,6 @@ export const rem = (sizeInPx) => {
 export const GlobalStyle = createGlobalStyle`
 
 body {
-  font-family: --font-montserrat, sans-serif;
   font-weight: 400;
   font-size: ${mainFotSize}px;
   background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
@@ -121,10 +121,7 @@ ul {
 }
 
 h1 {
-  font-family: var(--font-KenjoI);
-}
-h2 {
-  margin: 0 !important;
+  font-family: var(--font-KenjoI), sans-serif;
 }
 
 h3 {
@@ -153,7 +150,7 @@ input {
 }
 
 video {
-  width: -webkit-fill-available;
+  width: var(-webkit-fill-available);
 }
 
 .content {

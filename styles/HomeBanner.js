@@ -4,7 +4,6 @@ import { globalColor } from './global_styles/Global.styles'
 
 export const BannerContainer = styled.div`
   position: relative;
-  margin-bottom: 40px;
   background-size: cover;
   display: flex;
   margin-bottom: 1.5em;
@@ -46,7 +45,7 @@ export const BannerContainer = styled.div`
   }
 
   .text {
-    font-family: var(--font-KenjoI);
+    font-family: var(--font-KenjoI), sans-serif;
     font-weight: 400;
     font-size: 150px;
     line-height: 151px;
@@ -54,7 +53,7 @@ export const BannerContainer = styled.div`
   }
 
   .text:first-child {
-    font-family: var(--font-GothamPro), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
     font-size: 45px;
     line-height: 1;
     color: ${globalColor.gray.gray80};

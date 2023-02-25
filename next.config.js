@@ -32,6 +32,9 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  experimental: {
+    fontLoaders: [{ loader: 'next/font/google', options: { subsets: ['latin'] } }],
+  },
   async rewrites() {
     return [...POST_TYPE_REWRITES, ...POST_CATEGORY_REWRITES, ...SITE_PAGES_REWRITES];
   },

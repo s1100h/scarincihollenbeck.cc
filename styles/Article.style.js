@@ -16,7 +16,7 @@ export const Title = styled.h3`
   font-weight: 600;
   margin-bottom: 10px;
   font-family: ${({ props }) =>
-    props?.isKenjoFont ? 'var(--font-KenjoI)' : 'var(--font-GothamPro)'};
+    props?.isKenjoFont ? 'var(--font-KenjoI), sans-serif' : 'var(--font-montserrat), sans-serif'};
 
   ${media_breakpoint_down('sm')} {
     text-align: center;

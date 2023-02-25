@@ -3,7 +3,7 @@ import { globalColor } from 'styles/global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const LocationTitle = styled.h3`
-  font-style: normal;
+  font-family: var(--font-KenjoI);
   font-weight: 400;
   font-size: 72px;
   line-height: 1.2;
