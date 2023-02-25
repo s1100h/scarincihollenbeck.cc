@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 import Link from 'next/link';
 
 const InfoModal = ({
-  title, miniDescription, link, linkText, description, children,
+  title, miniDescription, link, linkText, description,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isCookie, setIsCookies] = useState(false);
