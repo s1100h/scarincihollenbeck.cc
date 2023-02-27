@@ -8,29 +8,13 @@ import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.png';
 const Logo = () => (
   <>
     <LogoWrapper>
-      <Link href="/" legacyBehavior>
-        <a>
-          <Image
-            alt={`${SITE_TITLE}, LLC`}
-            width={360}
-            height={65}
-            layout="intrinsic"
-            src={SHLogo}
-          />
-        </a>
+      <Link href="/" passHref>
+        <Image alt={`${SITE_TITLE}, LLC`} width={360} height={65} src={SHLogo} />
       </Link>
     </LogoWrapper>
     <DiamondWrapper>
-      <Link href="/" legacyBehavior>
-        <a>
-          <Image
-            alt={`${SITE_TITLE}, LLC`}
-            width={102}
-            height={85}
-            layout="fixed"
-            src={SHDiamond}
-          />
-        </a>
+      <Link href="/" passHref>
+        <Image alt={`${SITE_TITLE}, LLC`} width={102} height={85} src={SHDiamond} />
       </Link>
     </DiamondWrapper>
   </>

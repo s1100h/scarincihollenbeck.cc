@@ -35,14 +35,11 @@ const SingleSubHeader = ({
             </span>
           ) : (
             <Link
-              legacyBehavior
               key={author.display_name}
               href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}
             >
-              <a>
-                {author.display_name}
-                {authors.length > 1 && index !== authors.length - 1 && <>, </>}
-              </a>
+              {author.display_name}
+              {authors.length > 1 && index !== authors.length - 1 && <>, </>}
             </Link>
           )))}
           <span className="mx-3">|</span>

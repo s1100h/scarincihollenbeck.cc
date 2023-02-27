@@ -6,22 +6,22 @@ const FeaturedLinks = () => (
   <ColLinks sm={12} className="px-0 mx-0">
     <ul className="d-flex list-unstyled list-inline px-3 my-3 gap-3">
       <li className="list-inline-item mb-2 md-sm-0">
-        <Link href="/library/category/client-alert" passHref legacyBehavior>
+        <Link href="/library/category/client-alert" passHref>
           <Button variant="danger">Client Alert</Button>
         </Link>
       </li>
       <li className="list-inline-item">
-        <Link href="/library/category/firm-news" passHref legacyBehavior>
+        <Link href="/library/category/firm-news" passHref>
           <Button variant="danger">Firm News</Button>
         </Link>
       </li>
       <li className="list-inline-item">
-        <Link href="/library/category/firm-events" passHref legacyBehavior>
+        <Link href="/library/category/firm-events" passHref>
           <Button variant="danger">Firm Events</Button>
         </Link>
       </li>
       <li className="list-inline-item">
-        <Link href="/library/category/law-firm-insights" passHref legacyBehavior>
+        <Link href="/library/category/law-firm-insights" passHref>
           <Button variant="danger">Firm Insights</Button>
         </Link>
       </li>

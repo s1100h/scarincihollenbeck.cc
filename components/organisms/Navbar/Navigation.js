@@ -8,9 +8,7 @@ const Navigation = ({ scrollTop }) => (
     <Nav className="navContainerWrapper">
       {scrollTop && (
         <Nav.Item id="home">
-          <Link href="/" legacyBehavior>
-            <a>Home</a>
-          </Link>
+          <Link href="/">Home</Link>
         </Nav.Item>
       )}
       {SITE_NAVIGATION.map((nav) => (nav.children ? (

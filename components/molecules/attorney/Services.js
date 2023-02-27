@@ -7,9 +7,7 @@ const Services = ({ services }) => (
     <ServiceList>
       {services.map((service) => (
         <li key={service.title}>
-          <Link href={service.uri} legacyBehavior>
-            <a>{service.title}</a>
-          </Link>
+          <Link href={service.uri}>{service.title}</Link>
         </li>
       ))}
     </ServiceList>

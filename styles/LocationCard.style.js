@@ -52,7 +52,7 @@ export const LocationHeader = styled.header`
   padding: 16px 27px;
   cursor: pointer;
 
-  h1 {
+  h5 {
     color: ${globalColor.black};
     font-weight: 700;
     font-size: 20px;

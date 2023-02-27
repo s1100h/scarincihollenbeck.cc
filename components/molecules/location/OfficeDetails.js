@@ -4,18 +4,16 @@ import { getDirectionsFromLocation } from 'utils/helpers';
 
 const OfficeDetails = ({ office }) => (
   <div className="d-flex flex-column">
-    <Link href={office.slug || '/'} passHref legacyBehavior>
-      <a>
-        {office.title === 'Washington D.C.' ? (
-          <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
-            <strong>Washington, D.C.</strong>
-          </p>
-        ) : (
-          <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
-            <strong>{office.title}</strong>
-          </p>
-        )}
-      </a>
+    <Link href={office.slug || '/'} passHref>
+      {office.title === 'Washington D.C.' ? (
+        <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
+          <strong>Washington, D.C.</strong>
+        </p>
+      ) : (
+        <p style={{ fontSize: '1.13rem', marginBottom: '6px' }}>
+          <strong>{office.title}</strong>
+        </p>
+      )}
     </Link>
     <ul className="list-unstyled ml-0">
       {office.address

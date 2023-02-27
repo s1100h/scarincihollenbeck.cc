@@ -1,26 +1,26 @@
 import styled from 'styled-components'
-import { media_breakpoint_exactly } from './mediaBreakpoints.style'
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
-export const LogoWrapper = styled.div`
+export const DiamondWrapper = styled.div`
   display: none;
 
-  a {
-    > span {
-      bottom: 8px;
-    }
-  }
-
-  ${media_breakpoint_exactly('430px')} {
+  ${media_breakpoint_exactly_down('430px')} {
     display: flex;
   }
 `
 
-export const DiamondWrapper = styled.div`
+export const LogoWrapper = styled.div`
   display: flex;
   position: relative;
   bottom: 33%;
 
-  ${media_breakpoint_exactly('430px')} {
+  ${media_breakpoint_down('sm')} {
+    img {
+      width: 95%;
+    }
+  }
+
+  ${media_breakpoint_exactly_down('430px')} {
     display: none;
   }
 `

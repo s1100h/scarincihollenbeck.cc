@@ -792,6 +792,44 @@ export const administrationPageQuery = `query AdministrationPagesQuery {
   }
 }
 `;
+
+export const administrationPersoneQuery = `query FirmPageQuery($id: ID!) {
+  administration(id: $id, idType: URI) {
+    databaseId
+    uri
+    administration {
+      name
+      biography
+      designation
+      email
+      abbreviation
+      phoneExtension
+      title
+      vizibility
+      featuredImage {
+        sourceUrl
+      }
+      location {
+        ... on OfficeLocation {
+          officeMainInformation {
+            addressLocality
+          }
+          uri
+          id
+        }
+      }
+      socialMediaLinks {
+        channel
+        url
+      }
+    }
+    seo {
+      metaDesc
+      title
+    }
+  }
+}
+`;
 export const adminKaterinTraughQuery = `query AttorneyPostsById {
   administration(id: "20875", idType: DATABASE_ID) {
     title

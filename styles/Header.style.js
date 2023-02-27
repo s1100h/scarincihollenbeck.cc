@@ -37,6 +37,7 @@ export const Wrapper = styled.div`
   width: 100%;
   margin-top: 40px;
   justify-content: space-between;
+  align-items: center;
   height: 46px;
 `
 export const DesktopVisible = styled.div`
@@ -82,4 +83,5 @@ export const LogoBox = styled.div`
 export const LinksBox = styled.div`
   display: flex;
   gap: 20px;
+  height: inherit;
 `

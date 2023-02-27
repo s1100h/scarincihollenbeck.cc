@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import { KenjoI } from '../../public/fonts/fonts'
 
 const mainFotSize = 16
 
@@ -127,11 +126,23 @@ h1 {
   font-family: var(--font-KenjoI), sans-serif;
 }
 
+h2 {
+  font-size: ${rem(38)};
+}
+
 h3 {
   color: ${globalColor.black};
   font-weight: 700;
-  font-size: ${rem(20)};
+  font-size: ${rem(28)};
   margin: 0;
+}
+
+h4, h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.125rem;
 }
 
 input {

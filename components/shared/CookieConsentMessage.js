@@ -10,10 +10,8 @@ const CookieConsentMessage = () => (
     This website uses cookies to enhance the user experience. If you have further concerns please
     review our
     {' '}
-    <Link href="/privacy-policy" legacyBehavior>
-      <a className="text-white">
-        <u>privacy policy.</u>
-      </a>
+    <Link href="/privacy-policy" passHref>
+      <u>privacy policy.</u>
     </Link>
   </CookieConsent>
 );

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ProfileName, SubTitleProfileBox } from 'styles/attorney-page/AttorneyProfile.style';
-import map from '../location/Map';
 
 const ProfileTitle = ({
   name, designation, coChairs, chairs, primaryPractices,
@@ -13,11 +12,9 @@ const ProfileTitle = ({
       <h2>{designation}</h2>
       {primaryPractices
         && primaryPractices.map((practice, idx) => (
-          <Link key={practice.id} href={practice.uri} legacyBehavior>
-            <a>
-              {practice.title}
-              {idx < primaryPractices.length - 1 && ', '}
-            </a>
+          <Link key={practice.id} href={practice.uri}>
+            {practice.title}
+            {idx < primaryPractices.length - 1 && ', '}
           </Link>
         ))}
       {chairs?.length > 0 && (
@@ -25,11 +22,9 @@ const ProfileTitle = ({
           Chair:
           {' '}
           {chairs.map((chair, idx) => (
-            <Link href={chair.link} key={chair.title} legacyBehavior>
-              <a>
-                {chair.title}
-                {idx < chairs.length - 1 && ', '}
-              </a>
+            <Link href={chair.link} key={chair.title}>
+              {chair.title}
+              {idx < chairs.length - 1 && ', '}
             </Link>
           ))}
         </p>
@@ -40,8 +35,8 @@ const ProfileTitle = ({
             Co-Chair:
             {' '}
             {coChairs.map((coChair) => (
-              <Link href={coChair.link} key={coChair.title} legacyBehavior>
-                <a>{coChair.title}</a>
+              <Link href={coChair.link} key={coChair.title}>
+                {coChair.title}
               </Link>
             ))}
           </span>

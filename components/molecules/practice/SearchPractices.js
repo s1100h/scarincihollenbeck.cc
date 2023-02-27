@@ -71,14 +71,14 @@ export default function SearchPractices({ practicesAll }) {
         <DropDownResults>
           {fondPractices.practicesMain.length > 0
             && fondPractices.practicesMain.map(({ title, slug }) => (
-              <Link key={title} href={slug} passHref legacyBehavior>
+              <Link key={title} href={slug} passHref>
                 <li>{title}</li>
               </Link>
             ))}
           {isRenderHr && <hr />}
           {fondPractices.practicesChildren.length > 0
             && fondPractices.practicesChildren.map(({ title, slug }) => (
-              <Link key={title} href={slug} passHref legacyBehavior>
+              <Link key={title} href={slug} passHref>
                 <li>{title}</li>
               </Link>
             ))}

@@ -39,7 +39,7 @@ export default function LocationCard({ officesData }) {
         {officesData.map((office, idx) => (
           <ContactInfoCard key={office.databaseId} openCard={cardIndex === idx}>
             <LocationHeader onClick={() => setCardId(idx)}>
-              <h3>{office.title}</h3>
+              <h5>{office.title}</h5>
               <BsCaretDownFill
                 color={cardIndex === idx ? colorActiveIcons : colorInactiveIcons}
                 size={20}

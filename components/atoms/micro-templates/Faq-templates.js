@@ -10,9 +10,7 @@ export const HawCanIGet = () => (
     <a href="mailto:info@sh-law.com">info@sh-law.com</a>
     {' '}
     or click
-    <Link href="/contact" legacyBehavior>
-      <a> here.</a>
-    </Link>
+    <Link href="/contact">here.</Link>
   </>
 );
 
@@ -20,9 +18,7 @@ export const HawDoIKnow = () => (
   <>
     Different kinds of legal matters require attention from specialized areas of law. You can
     discover the firm`s practice groups or click
-    <Link href="/practices" legacyBehavior>
-      <a> here </a>
-    </Link>
+    <Link href="/practices">here.</Link>
     or if you have no idea where to begin, call
     {' '}
     <a href="tel:201-806-3364"> 201-806-3364</a>
@@ -30,9 +26,7 @@ export const HawDoIKnow = () => (
     {' '}
     <a href="mailto:info@sh-law.com">info@sh-law.com</a>
     or click
-    <Link href="/contact" legacyBehavior>
-      <a> here.</a>
-    </Link>
+    <Link href="/contact">here.</Link>
   </>
 );
 
@@ -40,8 +34,8 @@ export const WhereIsYheFirmLocated = () => (
   <p className="d-flex gap-2">
     The firm has several office locations including
     {OFFICE_LOCATIONS.map(({ label, slug, id }) => (
-      <Link key={id} href={slug} legacyBehavior>
-        <a>{label}</a>
+      <Link key={id} href={slug}>
+        {label}
       </Link>
     ))}
   </p>
@@ -76,9 +70,7 @@ export const WhatAreTheFirms = () => (
     <>
       In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice groups you can learn
       more about
-      <Link href="/practices" legacyBehavior>
-        <a> here.</a>
-      </Link>
+      <Link href="/practices">here.</Link>
     </>
   </>
 );

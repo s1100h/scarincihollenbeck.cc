@@ -10,11 +10,7 @@ export const linkTemplate = (is_target_blank, slugLink, label) => {
     );
   }
 
-  return (
-    <Link href={slugLink} legacyBehavior>
-      <a>{label}</a>
-    </Link>
-  );
+  return <Link href={slugLink}>{label}</Link>;
 };
 
 export default function LinksBox({ linksArr, title, isTargetBlank }) {

@@ -17,8 +17,8 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
     if (locationsOrPractice[0]?.uri) {
       return locationsOrPractice.map((office, idx) => (
         <li key={office.id || useId()}>
-          <Link href={office?.uri} legacyBehavior>
-            <a>{office.officeMainInformation.addressLocality || office.officeMainInformation}</a>
+          <Link href={office?.uri}>
+            {office.officeMainInformation.addressLocality || office.officeMainInformation}
           </Link>
           <>{idx < locationsOrPractice.length - 1 && ','}</>
         </li>
@@ -31,11 +31,9 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
         <div className="d-flx">
           Chair:
           {locationsOrPractice.chair?.map((location) => (
-            <Link key={location.id} href={`/practices/${location.slug}`} legacyBehavior>
-              <a>
-                {' '}
-                {location?.title}
-              </a>
+            <Link key={location.id} href={`/practices/${location.slug}`}>
+              {' '}
+              {location?.title}
             </Link>
           ))}
         </div>
@@ -44,11 +42,9 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
         <div className="d-flx">
           Co-Chair:
           {locationsOrPractice.coChair?.map((location) => (
-            <Link key={location.id} href={`/practice/${location.slug}`} legacyBehavior>
-              <a>
-                {' '}
-                {location?.title}
-              </a>
+            <Link key={location.id} href={`/practice/${location.slug}`}>
+              {' '}
+              {location?.title}
             </Link>
           ))}
         </div>
