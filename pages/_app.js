@@ -8,7 +8,6 @@ import Header from 'components/shared/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
 import * as gtag from 'utils/gtag';
 import SSRProvider from 'react-bootstrap/SSRProvider';
-
 /**
  *
  * 3rd Party Resources
@@ -24,6 +23,7 @@ import 'animate.css/animate.min.css';
  * */
 import 'styles/carousel.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
+import { KenjoI, montserrat } from '../public/fonts/fonts';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -55,7 +55,7 @@ const SHSite = ({ Component, pageProps }) => {
           <GlobalStyle />
           <MainSiteHead />
           <Header />
-          <main>
+          <main className={`${KenjoI.variable} ${montserrat.variable}`}>
             <Component {...pageProps} />
           </main>
           <SiteFooter />

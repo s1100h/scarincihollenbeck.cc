@@ -1,52 +1,60 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import AdminProfile from 'components/pages/AdminProfile';
-import {
-  PRODUCTION_URL, SITE_PHONE, BASE_API_URL, headers,
-} from 'utils/constants';
+import { PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
 import { concatNameUser } from 'utils/helpers';
+import { fetchAPI } from '../../utils/api';
+import { administrationPersoneQuery } from '../../utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
-/** Fetch data from WP-REST API */
-const getAdministrationContent = async (slug) => {
-  const url = `${BASE_API_URL}/wp-json/individual-admin/admin/${slug}`;
-  try {
-    const res = await fetch(url, { headers });
+const getAdminData = async (uriAdmin) => {
+  const {
+    administration: { administration, seo, uri },
+  } = await fetchAPI(administrationPersoneQuery, {
+    variables: {
+      id: uriAdmin,
+    },
+  });
 
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
+  return {
+    profile: {
+      name: concatNameUser(administration.name, administration.abbreviation),
+      biography: administration.biography,
+      profileImage: administration.featuredImage.sourceUrl,
+      title: administration.designation,
+      contact: {
+        email: administration.email,
+        phoneNumber: `${SITE_PHONE} ${administration.phoneExtension}`,
+        vizibility: administration.vizibility,
+        socialMediaLinks: administration.socialMediaLinks,
+      },
+      offices: administration.location.map(({ id, uri, officeMainInformation }) => ({
+        id,
+        uri,
+        name: officeMainInformation.addressLocality,
+      })),
+    },
+    seo: {
+      canonicalLink: uri,
+      metaDescription: seo.metaDesc,
+      title: seo.title,
+    },
+  };
 };
 
 /** Set data from API response to page props */
-export const getServerSideProps = async ({ params, res }) => {
+export const getServerSideProps = async ({ res, resolvedUrl }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  const dataAdmin = await getAdminData(resolvedUrl);
 
-  const slug = params?.slug;
-
-  if (!slug) {
+  if (!resolvedUrl) {
     return {
       notFound: true,
     };
   }
 
-  const response = await getAdministrationContent(params.slug);
-
-  if (JSON.stringify(response) === '{}') {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (Object.keys(response).includes('status') && response.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (!response) {
+  if (!dataAdmin) {
     return {
       notFound: true,
     };
@@ -54,13 +62,13 @@ export const getServerSideProps = async ({ params, res }) => {
 
   return {
     props: {
-      response,
+      dataAdmin,
     },
   };
 };
 
 /** Administration profile component */
-const AdministrationProfile = ({ response }) => {
+const AdministrationProfile = ({ dataAdmin }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -71,24 +79,11 @@ const AdministrationProfile = ({ response }) => {
     );
   }
 
-  const profile = {
-    name: concatNameUser(response.name, response.abbreviation),
-    profileImage: response.image.url,
-    title: response.Title,
-    contact: {
-      email: response.email,
-      phoneNumber: `${SITE_PHONE} ${response.phone_extension}`,
-      vizibility: response.vizibility,
-      socialMediaLinks: response.social_media_links,
-    },
-    offices: response.offices,
-  };
-
-  const canonicalUrl = `${PRODUCTION_URL}/${response.seo.canonicalLink}`;
+  const canonicalUrl = `${PRODUCTION_URL}${dataAdmin.seo.canonicalLink}`;
 
   const adminProps = {
-    response,
-    profile,
+    seo: dataAdmin.seo,
+    profile: dataAdmin.profile,
     canonicalUrl,
   };
 

@@ -52,12 +52,9 @@ export const BackgroundContainer = styled.section`
 export const SubHeaderContent = styled(Container)`
   h1 {
     margin-bottom: 0;
-    font-family: 'Kenjo I';
-    font-size: ${rem(64)};
+    font-size: 3rem;
 
     color: ${globalColor.black};
-    ${(props) => (!props.isBlog ? 'font-size: 3rem' : '')};
-    text-shadow: '2px 3px 3px #000';
   }
 `
 

@@ -41,7 +41,7 @@ export const ProfileSidebarAwards = ({ awards }) => {
       <TitleAndLikBox>
         <SidebarTile>Awards</SidebarTile>
         <Link scroll={false} href="/awards">
-          <a>Award Methodology</a>
+          Award Methodology
         </Link>
       </TitleAndLikBox>
       {renderAwardsOnConditions(

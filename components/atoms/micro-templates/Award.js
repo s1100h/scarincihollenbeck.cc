@@ -20,7 +20,7 @@ const renderAward = (link, image, title, key) => {
     }
     if (link.slice(0, 1) === '/') {
       return (
-        <Link key={key && title} href={link} passHref>
+        <Link key={key && title} href={link} passHref legacyBehavior>
           <AwardImgLinkBox>
             <Image
               data-src={image}

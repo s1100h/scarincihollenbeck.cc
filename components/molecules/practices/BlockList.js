@@ -55,7 +55,7 @@ const BlockList = ({ list }) => {
                 props={{ open: open.id === item.ID && open.isOpen }}
                 variant="link"
               >
-                <Link href={item.slug}>
+                <Link href={item.slug} legacyBehavior>
                   <a onClick={(e) => handleClickStopEvent(e)}>{item.title}</a>
                 </Link>
                 {' '}
@@ -72,7 +72,7 @@ const BlockList = ({ list }) => {
           </Col>
         ) : (
           <Col sm={12} md={4} key={item.title} className="mb-3">
-            <Link href={item.slug} passHref>
+            <Link href={item.slug} passHref legacyBehavior>
               <ButtonTabToggle variant="link" props={{ isButtonLink: 'true' }}>
                 <span>{item.title}</span>
               </ButtonTabToggle>

@@ -9,7 +9,9 @@ const Subscription = () => (
       Please fill out our short form to get the latest articles from the
       {' '}
       {SITE_TITLE}
-      attorneys weekly on the cutting-edge legal topics.
+      {' '}
+      attorneys
+      weekly on the cutting-edge legal topics.
     </p>
     <SubscriptionModal />
   </GradientSubscriptionBox>

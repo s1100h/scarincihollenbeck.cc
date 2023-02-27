@@ -16,7 +16,7 @@ import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
 import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 
-/** Get the attorneys bio data base on their slug */
+/** Get the attorneys bio database on their slug */
 export async function attorneyBySlug(slug) {
   const data = await fetchAPI(attorneyBySlugQuery, {
     variables: { slug },

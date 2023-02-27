@@ -97,73 +97,15 @@ export const rem = (sizeInPx) => {
 }
 
 export const GlobalStyle = createGlobalStyle`
-/** Fonts **/
-@font-face {
-  font-family: 'Proxima Nova Regular';
-  src: url('/fonts/proxima-nova-regular.ttf');
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Proxima Nova Bold';
-  src: url('/fonts/proxima-nova-bold.ttf');
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Proxima Nova Italic';
-  font-style: italic;
-  font-weight: 500;
-  src: url('/fonts/proxima-nova-italic.ttf');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Kenjo I';
-  src: url('/fonts/KenjoI.eot');
-  src: local('Kenjo I'), local('KenjoI'),
-    url('/fonts/KenjoI.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/KenjoI.woff2') format('woff2'), url('/fonts/KenjoI.woff') format('woff'),
-    url('/fonts/KenjoI.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gotham Pro';
-  src: local('Gotham Pro Bold'), local('Gotham-Pro-Bold'),
-    url('/fonts/GothamPro-Bold.woff2') format('woff2'),
-    url('/fonts/GothamPro-Bold.woff') format('woff'),
-    url('/fonts/GothamPro-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Gotham Pro';
-  src: local('Gotham Pro Regular'), local('Gotham-Pro-Regular'),
-    url('/fonts/GothamPro.woff2') format('woff2'), url('/fonts/GothamPro.woff') format('woff'),
-    url('/fonts/GothamPro.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Brand';
-  src: local('Brand'), url('/fonts/Brand.otf') format('otf'),
-    url('/fonts/Brand.woff') format('woff'), url('/fonts/Brand.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 body {
-  font-family: 'Gotham Pro' !important;
-  font-weight: 500;  
+  font-weight: 400;
   font-size: ${mainFotSize}px;
   background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
+  
+  * {
+    letter-spacing: .02rem;
+  }
 }
 
 a {
@@ -175,28 +117,32 @@ a {
 }
 }
 
-strong {
-  font-family: 'Gotham Pro';
-}
-
-em {
-  font-family: 'Proxima Nova Italic';
-}
-
 ul {
 	list-style: none;
   padding: 0;
 }
 
 h1 {
-  font-family: 'Kenjo I';
+  font-family: var(--font-KenjoI), sans-serif;
+}
+
+h2 {
+  font-size: ${rem(38)};
 }
 
 h3 {
   color: ${globalColor.black};
   font-weight: 700;
-  font-size: ${rem(20)};
+  font-size: ${rem(28)};
   margin: 0;
+}
+
+h4, h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.125rem;
 }
 
 input {
@@ -214,12 +160,11 @@ input {
   :focus-visible {
     border: 1px solid ${globalColor.blue.ultramarine};
     border-radius: 0 !important;
-
   }
 }
 
 video {
-  width: -webkit-fill-available;
+  width: var(-webkit-fill-available);
 }
 
 .content {
@@ -339,7 +284,7 @@ footer .wrapper-section {
 }
 
 .box-shadow {
-  box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
+  box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
 }
 
 .dNone {

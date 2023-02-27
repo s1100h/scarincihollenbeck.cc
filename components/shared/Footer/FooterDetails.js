@@ -35,14 +35,10 @@ export default function FooterDetails() {
             </p>
             <BottomLinks>
               <li>
-                <Link href="/privacy-policy">
-                  <a>Privacy policy</a>
-                </Link>
+                <Link href="/privacy-policy">Privacy policy</Link>
               </li>
               <li className="list-inline-item">
-                <Link href="/terms-of-use">
-                  <a>Terms of use</a>
-                </Link>
+                <Link href="/terms-of-use">Terms of use</Link>
               </li>
             </BottomLinks>
           </section>

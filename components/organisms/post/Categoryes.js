@@ -8,10 +8,8 @@ const CategoriesPost = ({ categories }) => (
       {categories.map((category, index) => (
         <li key={category.databaseId} className="list-inline-item">
           <Link href={`/library/category/${category.slug}`}>
-            <a>
-              {category.name}
-              {categories.length - 1 !== index && ', '}
-            </a>
+            {category.name}
+            {categories.length - 1 !== index && ', '}
           </Link>
         </li>
       ))}

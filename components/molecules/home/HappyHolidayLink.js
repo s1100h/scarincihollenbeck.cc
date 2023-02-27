@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { HolidayLinkBox } from 'styles/HolidayPage.style';
 
@@ -8,9 +8,7 @@ const HappyHolidayLink = () => (
       <h5>Happy Holidays!</h5>
     </Link>
     <Link href="/happy-holidays" passHref>
-      <a>
-        <Image height={200} width={200} src="/images/holiday-branch.svg" layout="responsive" />
-      </a>
+      <Image height={200} width={200} src="/images/holiday-branch.svg" layout="responsive" />
     </Link>
   </HolidayLinkBox>
 );

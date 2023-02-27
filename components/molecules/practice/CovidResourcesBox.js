@@ -7,7 +7,7 @@ const CovidResourcesBox = ({ message, title, link }) => (
     </p>
     <p>{message}</p>
     <h5>
-      <Link href={link}>
+      <Link href={link} legacyBehavior>
         <a className="redTitle">
           <strong>
             <u>Resources</u>

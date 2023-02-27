@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useId } from 'react';
-import { SITE_TITLE } from 'utils/constants';
 import { createMarkup } from 'utils/helpers';
 import Image from 'next/image';
 import { AuthorBox } from '../../styles/AboutAuthorFormCard.style';
@@ -25,7 +24,6 @@ const AboutAuthorCard = ({ authors }) => (
             loading="lazy"
             src={author.profileImage}
             alt={author.display_name}
-            layout="fixed"
             width={155}
             height={170}
           />
@@ -38,6 +36,7 @@ const AboutAuthorCard = ({ authors }) => (
           />
           <Link
             href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}
+            legacyBehavior
           >
             <a className="my-2 mt-1 d-block">
               {author.display_name !== 'Scarinci Hollenbeck'

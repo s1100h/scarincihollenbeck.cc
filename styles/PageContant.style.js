@@ -35,21 +35,15 @@ export const ContentContainer = styled.div`
 
     h4 {
       &:first-child {
-        font-weight: 900;
         background-color: #e9e9e9;
         padding: 10px;
         margin-bottom: 30px;
         font-size: 1.2rem;
       }
 
-      font-weight: 900;
       background-color: #e9e9e9;
       padding: 10px;
       margin-bottom: 15px;
     }
-  }
-
-  > h3 {
-    font-size: 1.4rem;
   }
 `

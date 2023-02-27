@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';

@@ -2,6 +2,7 @@ import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import KwesScripts from '../components/shared/KwesScripts';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -50,10 +51,6 @@ export default class MyDocument extends Document {
           `,
             }}
           />
-          {/** Fonts */}
-          <link rel="preload" href="/fonts/proxima-nova-regular.ttf" as="font" crossOrigin=" " />
-          <link rel="preload" href="/fonts/proxima-nova-bold.ttf" as="font" crossOrigin=" " />
-          <link rel="preload" href="/fonts/proxima-nova-italic.ttf" as="font" crossOrigin=" " />
         </Head>
         <body>
           <Main />

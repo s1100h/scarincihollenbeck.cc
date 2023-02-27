@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { globalColor } from './global_styles/Global.styles'
 
 export const BannerContainer = styled.div`
   position: relative;
-  margin-bottom: 40px;
   background-size: cover;
   display: flex;
   margin-bottom: 1.5em;
@@ -45,7 +45,7 @@ export const BannerContainer = styled.div`
   }
 
   .text {
-    font-family: 'Kenjo I';
+    font-family: var(--font-KenjoI), sans-serif;
     font-weight: 400;
     font-size: 150px;
     line-height: 151px;
@@ -53,21 +53,20 @@ export const BannerContainer = styled.div`
   }
 
   .text:first-child {
-    font-family: 'Gotham Pro';
-    font-weight: 400;
+    font-family: var(--font-montserrat), sans-serif;
     font-size: 45px;
     line-height: 1;
-    color: rgba(0, 0, 0, 0.63);
+    color: ${globalColor.gray.gray80};
   }
 
   .quote {
     display: flex;
     width: 65%;
     font-style: italic;
-    font-weight: 500;
     font-size: 20px;
     line-height: 1.8;
-    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05rem;
+    color: ${globalColor.gray.gray40};
   }
 
   .quote:before {

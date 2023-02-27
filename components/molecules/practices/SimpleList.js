@@ -8,10 +8,8 @@ const SimpleList = ({ list }) => (
     <ListSimple>
       {list.map((item) => (
         <li key={item.ID || useId()}>
-          <Link href={item.slug.replace(PRODUCTION_URL, '/')}>
-            <a>
-              <strong>{item.title || item.label}</strong>
-            </a>
+          <Link href={item.slug.replace(PRODUCTION_URL, '/')} passHref>
+            <strong>{item.title || item.label}</strong>
           </Link>
         </li>
       ))}

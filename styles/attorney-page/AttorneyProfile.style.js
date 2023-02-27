@@ -142,6 +142,6 @@ export const ItemContactList = styled.li`
 `
 
 export const ProfileName = styled.h1`
-  font-family: 'Gotham Pro';
+  font-family: var(--font-montserrat), sans-serif;
   font-weight: 600;
 `

@@ -9,7 +9,7 @@ export default function PopularList({ term, list, displayCount = true }) {
       <ul className="p-0">
         {list.map((item) => (
           <li key={item.id}>
-            <Link href={`/library/category/${item.slug}`}>
+            <Link href={`/library/category/${item.slug}`} legacyBehavior>
               <a className="text-dark">
                 {item.name}
                 {displayCount && Object.keys(item).includes('count') && (

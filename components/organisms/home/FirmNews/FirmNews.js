@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { formatDate, createMarkup } from 'utils/helpers';
 import {
   NewsContainer,
@@ -33,7 +33,7 @@ const FirmNews = ({ firmNews }) => {
       <NewsWrapper>
         {featuredArticle && (
           <FreshNews>
-            <Link href={featuredArticle?.slug} passHref>
+            <Link href={featuredArticle?.slug} passHref legacyBehavior>
               <LinkContainer>
                 <Image
                   src={featuredArticle?.featuredImage?.sourceUrl}

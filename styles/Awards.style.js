@@ -10,10 +10,10 @@ export const TitleBlock = styled.div`
   padding: 0 25px;
 
   h2 {
+    font-family: var(--font-KenjoI);
     font-style: normal;
     font-size: 4.5rem;
     color: ${globalColor.black};
-    font-family: 'Brand';
     text-transform: uppercase;
     margin-bottom: 0;
   }

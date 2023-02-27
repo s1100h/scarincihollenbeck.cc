@@ -18,7 +18,7 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
       return locationsOrPractice.map((office, idx) => (
         <li key={office.id || useId()}>
           <Link href={office?.uri}>
-            <a>{office.officeMainInformation.addressLocality || office.officeMainInformation}</a>
+            {office.officeMainInformation.addressLocality || office.officeMainInformation}
           </Link>
           <>{idx < locationsOrPractice.length - 1 && ','}</>
         </li>
@@ -32,10 +32,8 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
           Chair:
           {locationsOrPractice.chair?.map((location) => (
             <Link key={location.id} href={`/practices/${location.slug}`}>
-              <a>
-                {' '}
-                {location?.title}
-              </a>
+              {' '}
+              {location?.title}
             </Link>
           ))}
         </div>
@@ -45,10 +43,8 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
           Co-Chair:
           {locationsOrPractice.coChair?.map((location) => (
             <Link key={location.id} href={`/practice/${location.slug}`}>
-              <a>
-                {' '}
-                {location?.title}
-              </a>
+              {' '}
+              {location?.title}
             </Link>
           ))}
         </div>
@@ -69,7 +65,7 @@ export default function AttorneyCard({
 }) {
   return (
     <AttorneyCardBox>
-      <Link href={link} passHref>
+      <Link href={link} passHref legacyBehavior>
         <LinkBox>
           {image ? (
             <PhotoBox>
