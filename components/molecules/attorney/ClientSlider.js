@@ -1,39 +1,75 @@
-import Slider from 'react-slick';
-
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
+import { useId } from 'react';
+import { sizeWindow } from '../../../styles/sizeWindow.style';
+import { SliderStyled } from '../../../styles/Post/Slider.style';
 
 const ClientSlider = ({
   clients, imgSize, numbers, buttons,
 }) => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
-    slidesToShow: numbers || 3,
-    slidesToScroll: 1,
+    slidesToShow: numbers || 4,
+    slidesToScroll: 3,
     autoplay: true,
     speed: 500,
     easing: 'ease-in',
     arrows: buttons || false,
-    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: sizeWindow.lg,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: sizeWindow.md,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: sizeWindow.sm,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 445,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+    ],
   };
+
   return (
     <>
-      <Slider {...settings}>
-        {clients.map(({ clientImage, clientLink, clientTitle }) => (
-          <div style={{ width: imgSize?.width }} key={clientTitle}>
-            <a href={clientLink}>
-              <Image
-                src={clientImage.sourceUrl}
-                alt={clientTitle}
-                width={imgSize?.width || 300}
-                height={imgSize?.height || 300}
-              />
-            </a>
+      <SliderStyled {...settings}>
+        {clients.map(({ clientImage, clientTitle }) => (
+          <div key={useId()}>
+            <Image
+              src={clientImage.sourceUrl}
+              alt={clientImage.mediaDetails.altText || clientTitle}
+              width={imgSize?.width || 150}
+              height={imgSize?.height || 150}
+            />
           </div>
         ))}
-      </Slider>
+      </SliderStyled>
     </>
   );
 };

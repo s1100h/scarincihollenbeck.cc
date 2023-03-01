@@ -25,8 +25,8 @@ export const SearchForm = styled(Form)`
     }
   }
 
-  ${media_breakpoint_down('sm')} {
-    width: 80%;
+  ${media_breakpoint_down('md')} {
+    width: 80vw;
     align-self: flex-end;
   }
 `
@@ -112,7 +112,7 @@ export const ResultsContainer = styled.div`
   }
 
   .ais-SearchBox-submit {
-    border: 0px;
+    border: 0;
     background-color: #fff;
     border-right: 1px solid #a9a9a9;
   }

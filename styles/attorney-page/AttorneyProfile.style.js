@@ -28,7 +28,7 @@ export const ColForSidebar = styled(ColStyled)`
     const topNum = top.slice(0, -2)
     return top
       ? `
-      ${media_breakpoint_exactly_down('1400px')} {
+      ${media_breakpoint_exactly_down(1400)} {
         top: ${topNum - 10}px;
       }
       ${media_breakpoint_down('lg')} {

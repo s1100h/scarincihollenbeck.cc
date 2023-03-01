@@ -41,7 +41,7 @@ const General = ({ content }) => {
         {clients && clients.length > 0 && (
           <ClientsBox>
             <h3>Clients</h3>
-            <ClientSlider clients={clients} imgSize={{ width: 160, height: 150 }} numbers={4} />
+            <ClientSlider clients={clients} buttons numbers={4} />
           </ClientsBox>
         )}
       </GeneralContainer>

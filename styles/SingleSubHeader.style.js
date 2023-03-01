@@ -43,7 +43,7 @@ export const BackgroundContainer = styled.section`
     background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 54vw bottom 0%')};
   }
 
-  ${media_breakpoint_exactly_down('504px')} {
+  ${media_breakpoint_exactly_down(504)} {
     background-size: ${({ props }) => (props?.isHoliday ? '' : '100%')};
     background-position: ${({ props }) => (props?.isHoliday ? '' : 'bottom 0%')};
   }

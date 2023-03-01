@@ -34,10 +34,10 @@ export const CentralizedBox = styled.div`
     width: 76vw;
   }
 
-  ${media_breakpoint_exactly_down('612px')} {
+  ${media_breakpoint_exactly_down(612)} {
     width: 100vw;
     border: none;
-    ${(props) => props?.notSurface && 'padding: 0 30px;'}
+    ${(props) => props?.notSurface && 'padding: 0 30px;'};
   }
 `
 export const BoxTitle = styled.h2`
@@ -55,7 +55,7 @@ export const RowSpecial = styled.div`
   margin: 20px;
   flex-wrap: wrap;
 
-  ${media_breakpoint_exactly_down('1500px')} {
+  ${media_breakpoint_exactly_down(1500)} {
     justify-content: space-between;
   }
 
@@ -76,7 +76,7 @@ export const FirstColumn = styled.div`
   grid-area: 2/2;
   padding-right: 4vw;
 
-  ${media_breakpoint_exactly_down('1100px')} {
+  ${media_breakpoint_exactly_down(1100)} {
     grid-area: 1/2/1/4;
   }
 `
@@ -84,7 +84,7 @@ export const FirstColumn = styled.div`
 export const SecondColumn = styled.div`
   grid-area: 2/3;
 
-  ${media_breakpoint_exactly_down('1100px')} {
+  ${media_breakpoint_exactly_down(1100)} {
     grid-area: 2/2/2/4;
   }
 `

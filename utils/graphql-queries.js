@@ -71,6 +71,11 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       clients {
         clientImage {
           sourceUrl
+          altText
+          mediaDetails {
+            height
+            width
+          }
         }
         clientLink
         clientTitle

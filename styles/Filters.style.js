@@ -55,7 +55,7 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
       width: fit-content;
       transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-22vw') : null)};
 
-      ${media_breakpoint_exactly_down('1350px')} {
+      ${media_breakpoint_exactly_down(1350)} {
         transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-27vw') : null)};
       }
 

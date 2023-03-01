@@ -21,7 +21,6 @@ import 'animate.css/animate.min.css';
 /**
  * Custom Style Sheets
  * */
-import 'styles/carousel.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import { KenjoI, montserrat } from '../public/fonts/fonts';
 
