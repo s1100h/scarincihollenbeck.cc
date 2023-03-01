@@ -118,7 +118,7 @@ export const OtherNewsBox = styled.div`
     padding: 15px 30px;
   }
 
-  ${media_breakpoint_exactly_down('400px')} {
+  ${media_breakpoint_exactly_down(400)} {
     padding: 15px 5px;
   }
 `
@@ -212,7 +212,7 @@ export const ArticleDescription = styled.section`
   height: 65px;
   margin-bottom: 8px;
 
-  ${media_breakpoint_exactly_down('1600px')} {
+  ${media_breakpoint_exactly_down(1600)} {
     section {
       p {
         ${threeDots(4)}

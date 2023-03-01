@@ -67,22 +67,15 @@ export default function AttorneyCard({
     <AttorneyCardBox>
       <Link href={link} passHref legacyBehavior>
         <LinkBox>
-          {image ? (
-            <PhotoBox>
-              <Image
-                placeholder="blur"
-                blurDataURL={image}
-                loading="lazy"
-                src={image}
-                alt={name}
-                layout="fixed"
-                width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 125}
-                height={150}
-              />
-            </PhotoBox>
-          ) : (
-            <ImageBox image={image} />
-          )}
+          <Image
+            placeholder="blur"
+            blurDataURL={image || '/images/sh-mini-diamond-PNG.png'}
+            loading="lazy"
+            src={image || '/images/sh-mini-diamond-PNG.png'}
+            alt={name}
+            width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 125}
+            height={150}
+          />
           <InfoBox>
             <UserName>{name}</UserName>
 

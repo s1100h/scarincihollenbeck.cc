@@ -113,8 +113,8 @@ a {
   color: ${globalColor.blue.dirtyBlue};
 
   :hover {
-  color: ${globalColor.red.darkRed};
-}
+    color: ${globalColor.red.darkRed};
+  }
 }
 
 ul {

@@ -3,6 +3,16 @@ import styled from 'styled-components'
 import { globalColor, globalGradient } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
+const common = `
+  background: none;
+    :hover {
+      background: none;
+    }
+    :before {
+      color: black;
+    }
+`
+
 export const TitleBlock = styled.div`
   display: flex;
   justify-content: space-between;
@@ -75,10 +85,12 @@ export const AwardsContainer = styled.div`
 export const CarouselStyled = styled(Carousel)`
   .react-multiple-carousel__arrow--right {
     right: -17px !important;
+    ${common};
   }
 
   .react-multiple-carousel__arrow--left {
     left: -17px !important;
+    ${common};
   }
 
   ${media_breakpoint_down('sm')} {

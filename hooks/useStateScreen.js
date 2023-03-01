@@ -9,10 +9,10 @@ export default function useStateScreen() {
     isDesktopScreen: false,
   });
 
-  const isBigTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.lg})` });
-  const isTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.md})` });
+  const isBigTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.lg}px)` });
+  const isTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.md}px)` });
   const isDesktopOrLaptop = useMediaQuery({
-    query: `(min-width: ${sizeWindow.sm})`,
+    query: `(min-width: ${sizeWindow.sm}px)`,
   });
   useEffect(() => {
     if (isTablet) {

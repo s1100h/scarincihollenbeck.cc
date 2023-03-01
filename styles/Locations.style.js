@@ -24,7 +24,7 @@ export const LinkMapBox = styled.div`
 export const MediaBr = styled.br`
   display: none;
 
-  ${media_breakpoint_exactly_down('450px')} {
+  ${media_breakpoint_exactly_down(450)} {
     display: block;
   }
 `

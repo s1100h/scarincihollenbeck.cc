@@ -4,7 +4,7 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBre
 export const DiamondWrapper = styled.div`
   display: none;
 
-  ${media_breakpoint_exactly_down('430px')} {
+  ${media_breakpoint_exactly_down(430)} {
     display: flex;
   }
 `
@@ -20,7 +20,7 @@ export const LogoWrapper = styled.div`
     }
   }
 
-  ${media_breakpoint_exactly_down('430px')} {
+  ${media_breakpoint_exactly_down(430)} {
     display: none;
   }
 `

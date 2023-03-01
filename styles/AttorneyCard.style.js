@@ -15,7 +15,7 @@ export const AttorneyCardBox = styled.article`
     box-shadow: rgb(99 98 98 / 90%) -2px 0px 18px;
   }
 
-  ${media_breakpoint_exactly_down('612px')} {
+  ${media_breakpoint_exactly_down(612)} {
     width: 90vw;
   }
 `
@@ -36,7 +36,7 @@ export const LinkBox = styled.section`
     }
   }
 
-  ${media_breakpoint_exactly_down('612px')} {
+  ${media_breakpoint_exactly_down(612)} {
     gap: 10px;
   }
 `
@@ -67,7 +67,7 @@ export const UserName = styled.h3`
   line-height: 1.3;
   margin-bottom: 0;
 
-  ${media_breakpoint_exactly_down('612px')} {
+  ${media_breakpoint_exactly_down(612)} {
     font-size: 1.1rem;
   }
 `

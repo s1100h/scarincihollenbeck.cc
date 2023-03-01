@@ -20,9 +20,9 @@ export default function FooterDetails() {
       <Advertising>
         <section>
           <Image
-            src="/images/scarinci-hollenbeck-diamond-badge-SVG.svg"
+            src="/images/sh-mini-diamond-PNG.png"
             alt="sh diamond logo favicon"
-            width={100}
+            width={110}
             height={100}
           />
           <section>
