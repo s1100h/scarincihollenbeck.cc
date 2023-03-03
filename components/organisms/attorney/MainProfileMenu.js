@@ -5,6 +5,7 @@ import BlogList from 'components/molecules/attorney/BlogList';
 import Surface from 'components/atoms/micro-templates/surface';
 import MoreTab from 'components/molecules/attorney/MoreTab';
 import General from './General';
+import Images from './Images';
 
 const renderContentTab = (title, content, setActiveTab) => {
   switch (title) {
@@ -51,6 +52,12 @@ const renderContentTab = (title, content, setActiveTab) => {
         <Surface>
           <ContentTitle title="Articles Published on Government & Law" />
           <BlogList content={content} />
+        </Surface>
+      );
+    case 'Images':
+      return (
+        <Surface>
+          <Images images={content} />
         </Surface>
       );
     case 'More':

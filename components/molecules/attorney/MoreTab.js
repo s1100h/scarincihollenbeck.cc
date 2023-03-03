@@ -12,6 +12,7 @@ import Videos from './Videos';
 import Table from './Table';
 import { ArticleBody } from '../../../styles/Article.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
+import Images from '../../organisms/attorney/Images';
 
 const renderContent = (contentItem) => {
   const contentMap = {
@@ -26,6 +27,7 @@ const renderContent = (contentItem) => {
       </>
     ),
     'Government & Law': <BlogList content={contentItem.content} />,
+    Images: <Images images={contentItem.content} />,
   };
 
   return contentMap[contentItem.title];

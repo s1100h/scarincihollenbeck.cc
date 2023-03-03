@@ -308,6 +308,13 @@ export const getServerSideProps = async ({ params, res }) => {
         ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
         : [],
     },
+    {
+      id: 12,
+      title: 'Images',
+      content: attorneyBio.attorneyAwardsClientsBlogsVideos
+        ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
+        : [],
+    },
   ];
 
   const tabs = [
