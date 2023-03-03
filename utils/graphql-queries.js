@@ -56,6 +56,14 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       tabContent5
     }
     attorneyAwardsClientsBlogsVideos {
+    	images {
+        caption
+        image {
+          sourceUrl
+          databaseId
+        }
+        orientationImage
+      }
       attorneyVideos {
         date
         embedVideo
