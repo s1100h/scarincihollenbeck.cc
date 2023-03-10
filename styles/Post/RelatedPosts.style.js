@@ -21,6 +21,7 @@ export const RelatedPostItem = styled.li`
     box-shadow: ${globalShadow.allSideShadow};
     gap: 10px;
     color: ${globalColor.black};
+    align-items: center;
 
     :hover {
       color: ${globalColor.black};
@@ -31,6 +32,7 @@ export const RelatedPostItem = styled.li`
 
     h6 {
       font-size: 1rem;
+      margin-bottom: 0;
     }
   }
 `

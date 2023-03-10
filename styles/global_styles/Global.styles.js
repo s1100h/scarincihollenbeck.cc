@@ -77,6 +77,16 @@ export const globalShadow = {
   blueShadow: `-2px 0px 18px ${globalColor.blue.ultramarine}`,
 }
 
+export const buttonsHoverActive = `
+  &:hover {
+    background-color: ${globalColor.red.liteRed};
+  }
+
+  &:active {
+    background-color: ${globalColor.red.burgundy};
+  }
+`
+
 export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
 }
@@ -179,14 +189,6 @@ button {
 
   &:focus {
     outline: none;
-  }
-
-  &:hover {
-    background-color: ${globalColor.red.liteRed};
-  }
-
-  &:active {
-    background-color: ${globalColor.red.burgundy};
   }
 
   &[disabled] {

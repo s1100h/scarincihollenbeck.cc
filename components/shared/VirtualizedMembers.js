@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import AttorneyCard from './AttorneyCard';
 
 const VirtualizedMembers = ({ members }) => {
@@ -50,7 +49,7 @@ const VirtualizedMembers = ({ members }) => {
                     ? members[virtualRow.index].link
                     : `/attorneys/${members[virtualRow.index].link}`
                 }
-                image={formatSrcToCloudinaryUrl(members[virtualRow.index].image)}
+                image={members[virtualRow.index].image}
                 name={members[virtualRow.index].name}
                 designation={members[virtualRow.index].designation}
                 number={members[virtualRow.index].contact}

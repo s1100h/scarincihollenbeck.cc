@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ButtonLinkCss, globalColor, globalGradient, rem } from './global_styles/Global.styles'
+import { ButtonLinkCss, buttonsHoverActive, rem } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const CheckBoxesList = styled.ul`
@@ -12,33 +12,15 @@ export const CheckBoxesList = styled.ul`
 export const GradientSubscriptionBox = styled.article`
   display: flex;
   flex-direction: column;
-  padding: 20px 8%;
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: ${globalGradient.award};
 
   h5 {
     font-weight: bold;
     font-size: ${rem(28)};
     text-align: start;
-    color: ${globalColor.white};
   }
-
-  p {
-    color: ${globalColor.white};
-  }
-
-  a {
-    width: 100%;
-    height: 50px;
-
-    :hover {
-      background-color: ${globalColor.white};
-      cursor: pointer;
-      transition: 0.8s;
-      color: ${globalColor.red.darkRed};
-    }
 
     ${media_breakpoint_down('lg')} {
       span {
@@ -71,4 +53,14 @@ export const SubscribeBtn = styled.button`
   ${ButtonLinkCss};
   width: 100%;
   height: 55px;
+
+  ${buttonsHoverActive};
+
+  ${media_breakpoint_down('lg')} {
+    width: 50%;
+
+    span {
+      display: flex;
+    }
+  }
 `

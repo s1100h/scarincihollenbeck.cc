@@ -8,6 +8,7 @@ import AboutAuthorCard from '../common/AboutAuthorCard';
 import { ColSideBar } from '../../styles/Sidebar.style';
 import Subscription from '../molecules/subscription/Subscription';
 import RelatedPosts from '../organisms/post/RelatedPosts';
+import RecommendedPosts from '../common/RecommendedPosts';
 
 const PrintOnlyBody = dynamic(() => import('components/organisms/post/PrintOnlyBody'));
 
@@ -19,6 +20,7 @@ const PostPage = ({
   authors,
   corePractices,
   relatedPosts,
+  posts,
 }) => {
   const sideBarProps = {
     authorsForCards: authors,
@@ -38,7 +40,7 @@ const PostPage = ({
         date={post.date}
       />
       <Container className="d-print-none">
-        <Row className="gap-4">
+        <Row className="gap-4 d-flex justify-content-center">
           <Col sm={12} lg={7}>
             <PostBody
               content={post.content}
@@ -47,16 +49,20 @@ const PostPage = ({
               date={post.date}
               categories={categories}
             />
+            <Row>
+              <Col className="d-flex flex-column gap-4" sm={12} lg={6}>
+                <AboutAuthorCard authors={authors} />
+              </Col>
+              <Col className="d-flex flex-column gap-4" sm={12} lg={6}>
+                <Subscription />
+              </Col>
+            </Row>
           </Col>
-          <Col sm={12} lg={4} className="d-print-none px-0">
+          <Col sm={10} lg={4} className="d-print-none px-0">
             <ColSideBar sm={12} lg={4} className="d-print-none px-0">
               <Sidebar {...sideBarProps} />
             </ColSideBar>
             <RelatedPosts posts={relatedPosts} />
-          </Col>
-          <Col className="d-flex flex-column gap-4" sm={12} lg={9}>
-            <AboutAuthorCard authors={authors} />
-            <Subscription />
           </Col>
         </Row>
       </Container>
@@ -67,6 +73,10 @@ const PostPage = ({
         subTitle={post.subTitle}
         authors={authors}
         date={post.date}
+      />
+      <RecommendedPosts
+        titleGeneralBlock="firm News & Press Releases"
+        attorneyFooterNewsArticles={posts}
       />
     </>
   );

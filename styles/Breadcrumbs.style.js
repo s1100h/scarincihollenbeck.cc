@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { globalColor } from './global_styles/Global.styles'
 import Button from 'react-bootstrap/Button'
+import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const BreadcrumbsListContainer = styled.ul`
   display: flex;
@@ -20,6 +21,11 @@ export const BreadcrumbsListContainer = styled.ul`
     span {
       color: ${globalColor.gray.gray80};
     }
+  }
+
+  ${media_breakpoint_down('md')} {
+    align-items: start;
+    flex-direction: column;
   }
 `
 

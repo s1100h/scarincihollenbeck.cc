@@ -63,19 +63,19 @@ export const GradientPracticeBox = styled.nav`
   }
 
   ul {
-    height: 263px;
+    height: 295px;
     overflow-y: auto;
 
     li {
       a {
-        color: ${globalColor.white};
+        color: ${globalColor.grayLite.grayLite50};
         font-size: 1.1rem;
         :before {
           content: '☞';
           margin-right: 5px;
         }
         :hover {
-          color: ${globalColor.red.darkRed};
+          color: ${globalColor.white};
         }
       }
     }

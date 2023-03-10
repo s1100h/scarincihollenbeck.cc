@@ -4,7 +4,7 @@ import { GradientSubscriptionBox } from '../../../styles/Subscription.style';
 
 const Subscription = () => (
   <GradientSubscriptionBox>
-    <h5 className="fs-1_2rem mb-2">Get the latest from our attorneys!</h5>
+    <h5 className="fs-1_2rem mb-2">Sign up to get the latest from our attorneys!</h5>
     <p>
       Please fill out our short form to get the latest articles from the
       {' '}

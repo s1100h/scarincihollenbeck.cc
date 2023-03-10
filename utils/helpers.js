@@ -1,4 +1,4 @@
-import { CLOUDINARY_BASE_URL, OFFICE_LOCATIONS } from './constants';
+import { CLOUDINARY_BASE_URL, OFFICE_LOCATIONS, PRODUCTION_URL } from './constants';
 
 // sort a list by its key
 export function sortByKey(list, key) {
@@ -22,6 +22,8 @@ export const urlify = (str) => str.toLowerCase().replace(/\s/g, '-');
 
 // create mark up
 export const createMarkup = (content) => ({ __html: content });
+
+export const cutDomain = (url) => url.replace(PRODUCTION_URL, '');
 
 // get current directions to office location func
 export function getDirectionsFromLocation(location) {

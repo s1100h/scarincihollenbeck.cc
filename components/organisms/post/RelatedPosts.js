@@ -13,7 +13,7 @@ const RelatedPosts = ({ posts }) => (
     <RelatedPostsList>
       {posts.map((post) => (
         <RelatedPostItem key={post.databaseId}>
-          <Link href={post.uri.replace(PRODUCTION_URL, '')}>
+          <Link href={post.uri.replace(PRODUCTION_URL, '')} passHref>
             <Image src={post.featuredImage} width={160} height={80} alt={post.title} />
             <h6>{post.title}</h6>
           </Link>

@@ -4,7 +4,7 @@ import { PRODUCTION_URL, ScarinciHollenbeckAuthor, SITE_TITLE } from 'utils/cons
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
 import { postQuery } from 'utils/graphql-queries';
-import { getSubTitleFromHTML } from '../../utils/helpers';
+import { cutDomain, getSubTitleFromHTML } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -116,10 +116,18 @@ const getPostContentData = async (slug) => {
     });
   }
 
+  data.posts.nodes.map((post) => {
+    post.featuredImage = post.featuredImage.node.sourceUrl;
+    post.uri = cutDomain(post.uri);
+    post.author = post.author.node.username;
+    return post;
+  });
+
   return {
     postContent: data.post,
     corePractices,
     relatedPosts,
+    posts: data.posts.nodes,
   };
 };
 
@@ -128,7 +136,9 @@ export const getServerSideProps = async ({ params, res, query }) => {
   const postSlug = params.slug[params.slug.length - 1];
   const { category } = query;
 
-  const { postContent, corePractices, relatedPosts } = await getPostContentData(postSlug);
+  const {
+    postContent, corePractices, relatedPosts, posts,
+  } = await getPostContentData(postSlug);
 
   if (!postContent) {
     res.statusCode = 404;
@@ -154,13 +164,21 @@ export const getServerSideProps = async ({ params, res, query }) => {
       category,
       corePractices,
       relatedPosts,
+      posts,
     },
   };
 };
 
 /* The blog post component */
 const SinglePost = ({
-  post, seo, categories, authors, category, corePractices, relatedPosts,
+  post,
+  seo,
+  categories,
+  authors,
+  category,
+  corePractices,
+  relatedPosts,
+  posts,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
@@ -179,6 +197,7 @@ const SinglePost = ({
     authors,
     corePractices,
     relatedPosts,
+    posts,
   };
 
   return <PostPage {...postProps} />;

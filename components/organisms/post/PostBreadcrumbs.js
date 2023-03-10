@@ -27,9 +27,9 @@ const delegatePathFunc = (CrumbsPath, router) => {
         <>
           <li>
             <Link href="/location/little-falls">{CrumbsPath[0].replace(/-/g, ' ')}</Link>
+            <BsChevronRight />
           </li>
           <li>
-            <BsChevronRight />
             <span>{router.query.slug?.replace(/-/g, ' ')}</span>
           </li>
         </>
@@ -43,9 +43,9 @@ const delegatePathFunc = (CrumbsPath, router) => {
             <ButtonBreadcrumb variant="link" onClick={() => router.back()}>
               {CrumbsPath[0].replace(/-/g, ' ')}
             </ButtonBreadcrumb>
+            <BsChevronRight />
           </li>
           <li>
-            <BsChevronRight />
             <span>Author</span>
           </li>
         </>
@@ -59,9 +59,9 @@ const delegatePathFunc = (CrumbsPath, router) => {
             <ButtonBreadcrumb variant="link" onClick={() => router.back()}>
               {CrumbsPath[0].replace(/-/g, ' ')}
             </ButtonBreadcrumb>
+            <BsChevronRight />
           </li>
           <li>
-            <BsChevronRight />
             <span>{CrumbsPath[CrumbsPath.length - 1].replace(/-/g, ' ')}</span>
           </li>
         </>
@@ -74,9 +74,9 @@ const delegatePathFunc = (CrumbsPath, router) => {
           <ButtonBreadcrumb variant="link" onClick={() => router.back()}>
             {CrumbsPath[0].replace(/-/g, ' ')}
           </ButtonBreadcrumb>
+          <BsChevronRight />
         </li>
         <li>
-          <BsChevronRight />
           <span>{CrumbsPath[CrumbsPath.length - 1].replace(/-/g, ' ')}</span>
         </li>
       </>

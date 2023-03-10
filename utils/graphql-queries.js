@@ -416,6 +416,24 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
       }
     }
   }
+  posts(first: 3, where: {categoryId: 98}) {
+    nodes {
+      databaseId
+      uri
+      title
+      date
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      author {
+        node {
+          username
+        }
+      }
+    }
+  }
 }`;
 
 // , order by: {field: DATE, order: DESC}
