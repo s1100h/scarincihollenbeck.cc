@@ -2,6 +2,7 @@ import { changeTitle, createMarkup, formatDate } from 'utils/helpers';
 import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
 import Link from 'next/link';
 import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
+import PostBreadcrumbs from '../components/organisms/post/PostBreadcrumbs';
 
 const SingleSubHeader = ({
   title,
@@ -24,6 +25,7 @@ const SingleSubHeader = ({
     }}
   >
     <SubHeaderContent props={{ isBlog }}>
+      <PostBreadcrumbs />
       <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>
       {isBlog && (
         <p className="mt-4 mb-2">

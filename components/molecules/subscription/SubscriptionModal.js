@@ -5,8 +5,7 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
 import { SITE_TITLE } from 'utils/constants';
-import { CheckBoxesList, FormContainer } from 'styles/Subscription.style';
-import { ButtonLink } from '../../../styles/LinkButtons.style';
+import { CheckBoxesList, FormContainer, SubscribeBtn } from 'styles/Subscription.style';
 import ModalWindow from '../../common/ModalWindow';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
@@ -18,9 +17,9 @@ const SubscriptionModal = () => {
   return (
     <>
       <KwesScripts />
-      <ButtonLink onClick={() => setShow(true)}>
+      <SubscribeBtn onClick={() => setShow(true)}>
         <span>Subscribe Now!</span>
-      </ButtonLink>
+      </SubscribeBtn>
       <ModalWindow isOpen={show} setOpenModal={setShow}>
         <FormContainer>
           <section>

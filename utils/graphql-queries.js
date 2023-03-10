@@ -362,6 +362,20 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
         databaseId
         name
         slug
+        contentNodes(first: 4, where: {dateQuery: {before: {month: 2}}}) {
+          nodes {
+            ... on Post {
+              title
+              uri
+              featuredImage {
+                node {
+                  sourceUrl
+                }
+              }
+              databaseId
+            }
+          }
+        }
       }
     }
     content
@@ -381,6 +395,9 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
             profileImage {
               sourceUrl
             }
+            email
+            phoneNumber
+            designation
           }
           attorneyBiography {
             miniBio
@@ -389,7 +406,18 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
       }
     }
   }
+    practices(first: 200) {
+    nodes {
+      title
+      uri
+      databaseId
+      practicePortalPageContent {
+        practicePortalCategories
+      }
+    }
+  }
 }`;
+
 // , order by: {field: DATE, order: DESC}
 export const categoryPostsByIdQuery = `query categoryPostsById(
   $first: Int

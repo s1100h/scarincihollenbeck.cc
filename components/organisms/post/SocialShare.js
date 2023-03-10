@@ -20,8 +20,7 @@ const SocialShare = ({ title }) => {
 
   return (
     <ShareSocialBox>
-      <h4>Share</h4>
-      <hr className="first-hr" />
+      <h4>Share:</h4>
       <FacebookShareButton url={postUrl} quote={title}>
         <BsFacebook className="faceBookBtn" />
       </FacebookShareButton>

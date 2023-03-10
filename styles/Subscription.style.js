@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { globalColor, globalGradient, rem } from './global_styles/Global.styles'
+import { ButtonLinkCss, globalColor, globalGradient, rem } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const CheckBoxesList = styled.ul`
@@ -65,4 +65,10 @@ export const FormContainer = styled.div`
       font-size: 1.2rem;
     }
   }
+`
+
+export const SubscribeBtn = styled.button`
+  ${ButtonLinkCss};
+  width: 100%;
+  height: 55px;
 `

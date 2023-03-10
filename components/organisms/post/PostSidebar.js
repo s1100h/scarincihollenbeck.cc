@@ -1,10 +1,28 @@
-import Subscription from 'components/molecules/subscription/Subscription';
 import AboutAuthorFormCard from './AboutAuthorFormCard';
+import SocialShare from './SocialShare';
+import { ContactLinksBox } from '../../../styles/Post/PostSideBar.style';
+import AttorneyCard from '../../shared/AttorneyCard';
+import PracticesList from './PracticesList';
 
-const PostSidebar = () => (
+const PostSidebar = ({ authorsForCards, corePractices }) => (
   <div>
-    <Subscription />
-    <AboutAuthorFormCard />
+    <ContactLinksBox>
+      <SocialShare />
+      <h3>Key Contacts</h3>
+      {authorsForCards.map((author) => (
+        <AttorneyCard
+          key={author.databaseId}
+          link={author.uri}
+          name={author.display_name}
+          designation={author.designation}
+          image={author.profileImage}
+          number={author.phoneNumber}
+          email={author.email}
+        />
+      ))}
+      <AboutAuthorFormCard />
+    </ContactLinksBox>
+    <PracticesList corePracticesArr={corePractices} />
   </div>
 );
 
