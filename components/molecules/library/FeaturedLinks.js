@@ -1,32 +1,21 @@
-import Button from 'react-bootstrap/Button';
-import { ColLinks } from 'styles/FeaturedLinks.style';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { ButtonItem, CategoriesLinks } from '../../../styles/BodyHeader.style';
+import { CategoriesButtonsStructure } from '../../../utils/constants';
 
-const FeaturedLinks = () => (
-  <ColLinks sm={12} className="px-0 mx-0">
-    <ul className="d-flex list-unstyled list-inline px-3 my-3 gap-3">
-      <li className="list-inline-item mb-2 md-sm-0">
-        <Link href="/library/category/client-alert" passHref>
-          <Button variant="danger">Client Alert</Button>
-        </Link>
-      </li>
-      <li className="list-inline-item">
-        <Link href="/library/category/firm-news" passHref>
-          <Button variant="danger">Firm News</Button>
-        </Link>
-      </li>
-      <li className="list-inline-item">
-        <Link href="/library/category/firm-events" passHref>
-          <Button variant="danger">Firm Events</Button>
-        </Link>
-      </li>
-      <li className="list-inline-item">
-        <Link href="/library/category/law-firm-insights" passHref>
-          <Button variant="danger">Firm Insights</Button>
-        </Link>
-      </li>
-    </ul>
-  </ColLinks>
-);
+const FeaturedLinks = () => {
+  const { query } = useRouter();
+  return (
+    <CategoriesLinks>
+      {CategoriesButtonsStructure.map((btnLink) => (
+        <ButtonItem page={{ currentPage: query.slug, btnSlug: btnLink.slug }} key={btnLink.id}>
+          <Link href={`/library/category/${btnLink.slug}`} passHref>
+            {btnLink.label}
+          </Link>
+        </ButtonItem>
+      ))}
+    </CategoriesLinks>
+  );
+};
 
 export default FeaturedLinks;

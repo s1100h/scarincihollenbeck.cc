@@ -18,12 +18,6 @@ export const AboutAuthorFormCardContainer = styled.article`
   }
 `
 
-export const AuthorBox = styled.section`
-  .float-start {
-    margin-right: 1.5rem;
-  }
-`
-
 export const ContactNowBtn = styled.button`
   ${ButtonLinkCss};
   width: 100%;

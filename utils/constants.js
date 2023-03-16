@@ -489,6 +489,29 @@ export const inputsGetInTouchAttributes = [
   },
 ];
 
+export const CategoriesButtonsStructure = [
+  {
+    slug: 'client-alert',
+    label: 'Client Alert',
+    id: 0,
+  },
+  {
+    slug: 'firm-news',
+    label: 'News',
+    id: 1,
+  },
+  {
+    slug: 'firm-events',
+    label: 'Events',
+    id: 2,
+  },
+  {
+    slug: 'law-firm-insights',
+    label: 'Insights',
+    id: 3,
+  },
+];
+
 /** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';

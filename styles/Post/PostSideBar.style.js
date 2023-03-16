@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { globalColor, globalGradient } from '../global_styles/Global.styles'
+import { buttonsHoverActive, globalColor, globalGradient } from '../global_styles/Global.styles'
 
 export const ContactLinksBox = styled.section`
   display: flex;
@@ -79,5 +79,20 @@ export const GradientPracticeBox = styled.nav`
         }
       }
     }
+  }
+`
+
+export const SubscriptionPart = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 8%;
+
+  > button {
+    border: 1px solid ${globalColor.red.darkRed};
+    background-color: ${globalColor.white};
+    color: ${globalColor.red.darkRed};
+
+    ${buttonsHoverActive}
   }
 `

@@ -405,6 +405,26 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
         }
       }
     }
+    selectHeroes {
+      selectAttorneys {
+        ... on AttorneyProfile {
+          uri
+          title
+          databaseId
+          attorneyMainInformation {
+            profileImage {
+              sourceUrl
+            }
+            email
+            phoneNumber
+            designation
+          }
+          attorneyBiography {
+            miniBio
+          }
+        }
+      }
+    }
   }
     practices(first: 200) {
     nodes {

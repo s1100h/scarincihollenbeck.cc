@@ -1,8 +1,9 @@
 import AboutAuthorFormCard from './AboutAuthorFormCard';
 import SocialShare from './SocialShare';
-import { ContactLinksBox } from '../../../styles/Post/PostSideBar.style';
+import { ContactLinksBox, SubscriptionPart } from '../../../styles/Post/PostSideBar.style';
 import AttorneyCard from '../../shared/AttorneyCard';
 import PracticesList from './PracticesList';
+import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 
 const PostSidebar = ({ authorsForCards, corePractices }) => (
   <div>
@@ -23,6 +24,9 @@ const PostSidebar = ({ authorsForCards, corePractices }) => (
       <AboutAuthorFormCard />
     </ContactLinksBox>
     <PracticesList corePracticesArr={corePractices} />
+    <SubscriptionPart>
+      <SubscriptionModal />
+    </SubscriptionPart>
   </div>
 );
 

@@ -4,11 +4,27 @@ import { PRODUCTION_URL, ScarinciHollenbeckAuthor, SITE_TITLE } from 'utils/cons
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
 import { postQuery } from 'utils/graphql-queries';
-import { cutDomain, getSubTitleFromHTML } from '../../utils/helpers';
+import { cutDomain, getSubTitleFromHTML, sortByKey } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
  * */
+
+const attorneysSanitize = (attorneysArr) => attorneysArr.map((attorneyAuthor) => {
+  attorneyAuthor.profileImage = attorneyAuthor.attorneyMainInformation.profileImage?.sourceUrl
+      || '/images/no-image-found-diamond-750x350.png';
+  return {
+    uri: attorneyAuthor.uri,
+    display_name: attorneyAuthor.title,
+    databaseId: attorneyAuthor.databaseId,
+    authorDescription: attorneyAuthor.attorneyBiography.miniBio,
+    profileImage: attorneyAuthor.profileImage,
+    email: attorneyAuthor.attorneyMainInformation.email,
+    phoneNumber: attorneyAuthor.attorneyMainInformation.phoneNumber,
+    designation: attorneyAuthor.attorneyMainInformation.designation,
+  };
+});
+
 const getPostContentData = async (slug) => {
   const data = await fetchAPI(postQuery, {
     variables: { id: slug },
@@ -24,21 +40,18 @@ const getPostContentData = async (slug) => {
     data.post.selectAuthors.authorDisplayOrder = ScarinciHollenbeckAuthor;
   }
 
-  data.post.selectAuthors.authorDisplayOrder = data.post.selectAuthors.authorDisplayOrder.map(
-    (attorneyAuthor) => {
-      attorneyAuthor.profileImage = attorneyAuthor.attorneyMainInformation.profileImage.sourceUrl;
-      return {
-        uri: attorneyAuthor.uri,
-        display_name: attorneyAuthor.title,
-        databaseId: attorneyAuthor.databaseId,
-        authorDescription: attorneyAuthor.attorneyBiography.miniBio,
-        profileImage: attorneyAuthor.profileImage,
-        email: attorneyAuthor.attorneyMainInformation.email,
-        phoneNumber: attorneyAuthor.attorneyMainInformation.phoneNumber,
-        designation: attorneyAuthor.attorneyMainInformation.designation,
-      };
-    },
+  data.post.selectAuthors.authorDisplayOrder = attorneysSanitize(
+    data.post.selectAuthors.authorDisplayOrder,
   );
+
+  if (data.post.selectHeroes?.selectAttorneys?.length > 0) {
+    data.post.selectHeroes.selectAttorneys = attorneysSanitize(
+      data.post.selectHeroes.selectAttorneys,
+    );
+    data.post.selectAuthors.authorDisplayOrder = data.post.selectAuthors.authorDisplayOrder.concat(
+      data.post.selectHeroes.selectAttorneys,
+    );
+  }
 
   data.post.seo = {
     metaTitle: data.post.seo.title,
@@ -66,11 +79,13 @@ const getPostContentData = async (slug) => {
 
   if (data.post.categories.nodes.length === 1) {
     data.post.categories.nodes.forEach(({ contentNodes }) => {
-      contentNodes.forEach((contentNodesItem) => {
+      contentNodes.nodes.forEach((contentNodesItem) => {
         relatedPosts.push({
           title: contentNodesItem.title,
           uri: contentNodesItem.uri,
-          featuredImage: contentNodesItem.featuredImage.node.sourceUrl,
+          featuredImage:
+            contentNodesItem.featuredImage?.node.sourceUrl
+            || '/images/no-image-found-diamond-750x350.png',
           databaseId: contentNodesItem.databaseId,
         });
       });
@@ -83,7 +98,9 @@ const getPostContentData = async (slug) => {
         relatedPosts.push({
           title: contentNodes.nodes[0].title,
           uri: contentNodes.nodes[0].uri,
-          featuredImage: contentNodes.nodes[0].featuredImage.node.sourceUrl,
+          featuredImage:
+            contentNodes.nodes[0].featuredImage?.node.sourceUrl
+            || '/images/no-image-found-diamond-750x350.png',
           databaseId: contentNodes.nodes[0].databaseId,
         });
       }
@@ -94,7 +111,9 @@ const getPostContentData = async (slug) => {
             relatedPosts.push({
               title: contentNodesItem.title,
               uri: contentNodesItem.uri,
-              featuredImage: contentNodesItem.featuredImage.node.sourceUrl,
+              featuredImage:
+                contentNodesItem.featuredImage?.node.sourceUrl
+                || '/images/no-image-found-diamond-750x350.png',
               databaseId: contentNodesItem.databaseId,
             });
           }
@@ -109,7 +128,9 @@ const getPostContentData = async (slug) => {
         relatedPosts.push({
           title: contentNodes.nodes[idx].title,
           uri: contentNodes.nodes[idx].uri,
-          featuredImage: contentNodes.nodes[idx].featuredImage.node.sourceUrl,
+          featuredImage:
+            contentNodes.nodes[idx].featuredImage?.node.sourceUrl
+            || '/images/no-image-found-diamond-750x350.png',
           databaseId: contentNodes.nodes[idx].databaseId,
         });
       }
@@ -117,7 +138,7 @@ const getPostContentData = async (slug) => {
   }
 
   data.posts.nodes.map((post) => {
-    post.featuredImage = post.featuredImage.node.sourceUrl;
+    post.featuredImage = post.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png';
     post.uri = cutDomain(post.uri);
     post.author = post.author.node.username;
     return post;
@@ -125,7 +146,7 @@ const getPostContentData = async (slug) => {
 
   return {
     postContent: data.post,
-    corePractices,
+    corePractices: sortByKey(corePractices, 'title'),
     relatedPosts,
     posts: data.posts.nodes,
   };

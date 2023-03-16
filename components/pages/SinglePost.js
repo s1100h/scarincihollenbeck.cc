@@ -4,9 +4,7 @@ import PostSiteHead from 'components/shared/head/PostSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import PostBody from 'components/organisms/post/PostBody';
 import Sidebar from 'components/organisms/post/PostSidebar';
-import AboutAuthorCard from '../common/AboutAuthorCard';
 import { ColSideBar } from '../../styles/Sidebar.style';
-import Subscription from '../molecules/subscription/Subscription';
 import RelatedPosts from '../organisms/post/RelatedPosts';
 import RecommendedPosts from '../common/RecommendedPosts';
 
@@ -49,14 +47,6 @@ const PostPage = ({
               date={post.date}
               categories={categories}
             />
-            <Row>
-              <Col className="d-flex flex-column gap-4" sm={12} lg={6}>
-                <AboutAuthorCard authors={authors} />
-              </Col>
-              <Col className="d-flex flex-column gap-4" sm={12} lg={6}>
-                <Subscription />
-              </Col>
-            </Row>
           </Col>
           <Col sm={10} lg={4} className="d-print-none px-0">
             <ColSideBar sm={12} lg={4} className="d-print-none px-0">
