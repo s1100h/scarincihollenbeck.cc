@@ -13,12 +13,15 @@ import MySearchBox from './MySearchBox';
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_PUBLIC_API);
 
-const RenderSearchResults = connectStateResults(({ searchState }) => (searchState && searchState.attributeForMyQuery ? (
-  <ResultsContainer>
-    <Pagination totalPages={10} />
-    <HitsStyled hitComponent={Hit} />
-  </ResultsContainer>
-) : null));
+const RenderSearchResults = connectStateResults(
+  ({ searchResults }) => searchResults?.query.length > 0
+    && searchResults?.hits.length > 0 && (
+      <ResultsContainer className="results-container">
+        <Pagination totalPages={10} />
+        <HitsStyled hitComponent={Hit} />
+      </ResultsContainer>
+  ),
+);
 
 const connectWithQuery = createConnector({
   displayName: 'WidgetWithQuery',

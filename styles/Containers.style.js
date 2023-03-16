@@ -94,6 +94,11 @@ export const BottomContainer = styled.section`
 `
 
 export const CustomContainer = styled(Container)`
+  .breadcrumb-container {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+
   ${media_breakpoint_down('xl')} {
     max-width: 1200px;
   }

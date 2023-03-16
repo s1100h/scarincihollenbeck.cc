@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { media_breakpoint_down } from '../mediaBreakpoints.style'
 
 const mainFotSize = 16
 
@@ -75,6 +76,16 @@ export const globalShadow = {
   hoveredShadow: `-2px 0px 18px rgb(99 98 98 / 90%)`,
   blueShadow: `-2px 0px 18px ${globalColor.blue.ultramarine}`,
 }
+
+export const buttonsHoverActive = `
+  &:hover {
+    background-color: ${globalColor.red.liteRed};
+  }
+
+  &:active {
+    background-color: ${globalColor.red.burgundy};
+  }
+`
 
 export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
@@ -165,6 +176,24 @@ input {
 
 video {
   width: var(-webkit-fill-available);
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    background-color: ${globalColor.grayLite.grayLite100};
+  }
 }
 
 .content {
@@ -324,4 +353,48 @@ footer .wrapper-section {
   text-decoration: none;
   color: #a91110;
 }
+`
+
+export const ButtonLinkCss = `
+display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 168px;
+  transition: background 0.8s;
+  background: ${globalColor.red.darkRed};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  color: ${globalColor.white};
+  text-decoration: none;
+
+  span {
+    display: flex;
+  }
+
+  svg {
+    display: none;
+  }
+
+  :hover {
+    color: ${globalColor.white};
+    text-decoration: none;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    width: 50px;
+
+    span {
+      display: none;
+    }
+
+    svg {
+      display: block;
+      height: 25px;
+      width: 25px;
+    }
+  }
 `

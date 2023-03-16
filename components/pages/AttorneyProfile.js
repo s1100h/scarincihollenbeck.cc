@@ -7,6 +7,7 @@ import ProfileSidebar from 'components/organisms/attorney/ProfileSidebar';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { CustomContainer } from 'styles/Containers.style';
+import PostBreadCrumbs from '../organisms/post/PostBreadcrumbs';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
 const MainProfileMenu = dynamic(() => import('components/organisms/attorney/MainProfileMenu'));
@@ -61,6 +62,7 @@ const AttorneyPage = ({
       />
       <CustomContainer>
         <Row className="d-flex justify-content-center">
+          <PostBreadCrumbs />
           <ColStyled sm={12} md={11} lg={8} xl={8}>
             <ProfileHeader {...compressPropsHederProfile} />
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (

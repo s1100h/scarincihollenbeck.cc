@@ -60,20 +60,22 @@ export const AttorneysProvider = ({ children }) => {
 
   async function getAsyncAuthors() {
     const data = await fetchAPI(authorsPostQuery);
-    data.attorneyProfiles?.nodes.forEach((attorney, idx) => {
+
+    const filteredAttorneys = data.attorneyProfiles?.nodes.reduce((acc, attorney) => {
       if (
-        !attorney.attorneyAuthorId.authorId
-        || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
+        !(
+          !attorney.attorneyAuthorId.authorId
+          || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
+        )
       ) {
-        data.attorneyProfiles?.nodes.splice(idx, 1);
+        acc.push(attorney);
       }
-      if (attorney.attorneyAuthorId.authorId?.posts.nodes.length === 0) {
-        data.attorneyProfiles?.nodes.splice(idx, 1);
-      }
-    });
-    const sanitizedAuthors = data.attorneyProfiles?.nodes.map((attorney) => ({
-      lastName: attorney.attorneyAuthorId.authorId.lastName,
-      databaseId: attorney.attorneyAuthorId.authorId.databaseId,
+      return acc;
+    }, []);
+
+    const sanitizedAuthors = filteredAttorneys.map((attorney) => ({
+      lastName: attorney.attorneyAuthorId?.authorId?.lastName,
+      databaseId: attorney.attorneyAuthorId?.authorId?.databaseId,
       username: attorney.attorneyAuthorId.authorId.firstName,
       link: attorney.attorneyAuthorId.authorId.uri,
       fullName: attorney.attorneyAuthorId.authorId.name,

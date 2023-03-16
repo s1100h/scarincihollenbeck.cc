@@ -1,4 +1,3 @@
-import PostBreadcrumbs from 'components/organisms/post/PostBreadcrumbs';
 import { ContentContainer } from 'styles/PageContant.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 import CategoriesPost from './Categoryes';
@@ -7,7 +6,6 @@ const PostBody = ({
   content, title, subTitle, categories,
 }) => (
   <>
-    <PostBreadcrumbs />
     <div className="d-none d-print-block">
       <h2>{title}</h2>
       <h3>{subTitle}</h3>

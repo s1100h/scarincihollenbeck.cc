@@ -1,35 +1,44 @@
 import styled from 'styled-components'
+import { globalColor } from './global_styles/Global.styles'
 
-export const SearchedItem = styled.a`
-  color: inherit;
-  padding: 13px 0;
-  display: block;
+export const SearchedItem = styled.section`
+  padding: 10px 30px;
 
-  p {
-    margin-bottom: 0;
+  :hover {
+    background-color: ${globalColor.graySmoke.whiteSmoke};
   }
 
-  .red-border {
-    height: auto;
-    width: 4px;
-    background-color: #db2220;
-    margin-right: 7px;
-  }
+  a {
+    display: flex;
+    color: ${globalColor.grayLite.grayLite80};
 
-  .post-type {
-    color: #db2220;
-    font-size: 15px;
-    line-height: 1.2;
-    font-weight: 700;
-  }
+    article {
+      display: flex;
+      flex-direction: column;
 
-  .details {
-    font-size: 15px;
-  }
+      h4 {
+        width: 100%;
+        display: flex;
+        gap: 10px;
 
-  .title {
-    font-size: 16px;
-    line-height: 1.25;
-    font-weight: bold;
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        strong {
+          color: ${globalColor.black};
+          width: 100%;
+        }
+      }
+
+      p {
+        display: flex;
+        gap: 5px;
+        font-size: 0.9rem;
+        margin-left: 30px;
+        margin-bottom: 0;
+      }
+    }
   }
 `

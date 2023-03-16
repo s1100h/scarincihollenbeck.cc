@@ -18,7 +18,7 @@ export const BackgroundContainer = styled.section`
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => {
     if (props?.isFilter) return '6.5em'
-    if (props?.isTabs) return '1.5em'
+    if (props?.isTabs || props?.isBlog) return '1.5em'
     return '4em'
   }};
   margin-bottom: 50px;

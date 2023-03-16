@@ -4,11 +4,17 @@ import { globalColor } from '../global_styles/Global.styles'
 export const ShareSocialBox = styled.nav`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 40px;
+
   h4 {
     font-size: 1.1rem;
+    margin-right: 5%;
+    margin-bottom: 0;
+    font-weight: bold;
   }
+
   hr {
     margin: 0 2%;
   }
@@ -49,10 +55,5 @@ export const ShareSocialBox = styled.nav`
     :hover {
       color: ${globalColor.socialNetworks.linkedIn};
     }
-  }
-
-  h4 {
-    font-weight: bold;
-    margin: 0;
   }
 `

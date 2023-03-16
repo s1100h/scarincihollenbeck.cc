@@ -44,6 +44,8 @@ export const SearchInput = styled(Form.Control)`
 export const HitsStyled = styled(Hits)`
   .ais-Hits-list {
     padding: 0;
+    overflow-y: scroll;
+    height: 565px;
   }
   .ais-Hits-item {
     border-bottom: 1px solid #dee2e6;
@@ -51,13 +53,13 @@ export const HitsStyled = styled(Hits)`
 `
 
 export const ResultsContainer = styled.div`
-  width: fit-content;
-  padding: 20px 30px;
-  max-height: 600px;
+  max-width: 725px;
+  min-width: 320px;
+  max-height: 670px;
   margin-top: 48px;
+  padding-top: 20px;
   background-color: #fcfaff;
   overflow: hidden;
-  overflow-y: scroll;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   position: absolute;
   left: 50%;
@@ -84,21 +86,24 @@ export const ResultsContainer = styled.div`
     left: 4%;
   }
 
-  .ais-Pagination-list {
-    list-style-type: none;
-    margin-left: -2em;
-    margin-top: 11px;
-    display: flex;
-    justify-content: space-between;
-  }
+  .ais-Pagination {
+    padding: 0 10px;
 
-  .ais-Pagination-item {
-    margin-right: 10px;
-    font-size: 16px;
-  }
+    .ais-Pagination-list {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
 
-  .ais-Pagination-link {
-    color: ${globalColor.black};
+      .ais-Pagination-item {
+        display: flex;
+        justify-content: center;
+
+        .ais-Pagination-link {
+          padding: 5px 10px;
+          color: ${globalColor.black};
+        }
+      }
+    }
   }
 
   .ais-SearchBox-form {
