@@ -48,7 +48,7 @@ const getPostContentData = async (slug) => {
     data.post.selectHeroes.selectAttorneys = attorneysSanitize(
       data.post.selectHeroes.selectAttorneys,
     );
-    data.post.selectAuthors.authorDisplayOrder = data.post.selectAuthors.authorDisplayOrder.concat(
+    data.post.keyContacts = data.post.selectAuthors.authorDisplayOrder.concat(
       data.post.selectHeroes.selectAttorneys,
     );
   }
@@ -182,6 +182,7 @@ export const getServerSideProps = async ({ params, res, query }) => {
       seo: postContent.seo,
       categories: postContent.categories.nodes,
       authors: postContent.selectAuthors.authorDisplayOrder,
+      keyContacts: postContent.keyContacts || postContent.selectAuthors.authorDisplayOrder,
       category,
       corePractices,
       relatedPosts,
@@ -200,6 +201,7 @@ const SinglePost = ({
   corePractices,
   relatedPosts,
   posts,
+  keyContacts,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
@@ -216,6 +218,7 @@ const SinglePost = ({
     metaAuthorLinks,
     category,
     authors,
+    keyContacts,
     corePractices,
     relatedPosts,
     posts,

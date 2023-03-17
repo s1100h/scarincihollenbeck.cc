@@ -20,12 +20,6 @@ const renderContent = (contentItem) => {
     Presentations: <Table content={contentItem.content} />,
     Publications: <Table content={contentItem.content} />,
     Videos: <Videos content={contentItem.content} />,
-    'Constitutional Law Reporter': (
-      <>
-        <ContentTitle title="Articles Published on Constitutional Law Reporter" />
-        <BlogList content={contentItem.content} />
-      </>
-    ),
     'Government & Law': <BlogList content={contentItem.content} />,
     Images: <Images images={contentItem.content} />,
   };
@@ -35,7 +29,6 @@ const renderContent = (contentItem) => {
 const cutTitles = (title) => {
   const TitlesMap = {
     'Representative Matters': 'Matters',
-    'Constitutional Law Reporter': 'Law Reporter',
     'Awards & Recognitions': 'Awards',
   };
 
