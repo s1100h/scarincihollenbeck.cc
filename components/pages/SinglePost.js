@@ -16,12 +16,13 @@ const PostPage = ({
   categories,
   canonicalUrl,
   authors,
+  keyContacts,
   corePractices,
   relatedPosts,
   posts,
 }) => {
   const sideBarProps = {
-    authorsForCards: authors,
+    keyContacts,
     corePractices,
   };
 

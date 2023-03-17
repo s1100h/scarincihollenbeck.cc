@@ -113,12 +113,6 @@ export const getServerSideProps = async ({ params, res }) => {
       const site = availBlogs[i][0];
       const authorId = availBlogs[i][1];
 
-      if (site.includes('constitutionalLawReporter')) {
-        const posts = await fetchExternalPosts(CON_LAW_URL, authorId, 14);
-        conLawPosts.id = authorId;
-        conLawPosts.posts = sanitizeExternalArticles(posts);
-      }
-
       if (site.includes('governmentLaw')) {
         const posts = await fetchExternalPosts(GOV_LAW_URL, authorId, 14);
         govLawPosts.id = authorId;
@@ -251,14 +245,6 @@ export const getServerSideProps = async ({ params, res }) => {
       id: 16,
       title: 'Government & Law',
       content: govLawPosts,
-    });
-  }
-
-  if (Object.keys(conLawPosts).includes('posts')) {
-    externalBlogTabs.push({
-      id: 17,
-      title: 'Constitutional Law Reporter',
-      content: conLawPosts,
     });
   }
 

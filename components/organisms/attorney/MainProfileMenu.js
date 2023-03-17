@@ -40,13 +40,6 @@ const renderContentTab = (title, content, setActiveTab) => {
           <Videos content={content} />
         </Surface>
       );
-    case 'Constitutional Law Reporter':
-      return (
-        <Surface>
-          <ContentTitle title="Articles Published on Constitutional Law Reporter" />
-          <BlogList content={content} />
-        </Surface>
-      );
     case 'Government & Law':
       return (
         <Surface>
