@@ -1,21 +1,22 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
-import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { CLIENT_ALERTS } from 'utils/constants';
 import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { useContext, useEffect } from 'react';
+import {
+  useContext, useEffect, useMemo, useState,
+} from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
+import LibrarySideBar from '../organisms/library/LibrarySideBar';
+import Loader from '../atoms/Loader';
+import { AllArticlesTitle } from '../../styles/LibraryArticles.style';
+import FeaturedArticle from '../organisms/library/FeaturedArticle';
 
 const PostList = dynamic(import('components/molecules/PostList'));
-const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
-const FirmAuthors = dynamic(import('components/organisms/library/FirmAuthors'));
 
 const LibraryDirectory = ({
   news,
@@ -29,8 +30,11 @@ const LibraryDirectory = ({
 }) => {
   const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
-  const mainNews = news[0];
-  const featuredArticles = news.slice(1, news.length);
+
+  const memoDataPosts = useMemo(() => news, [news]);
+  const mainNews = memoDataPosts[0];
+  const featuredArticles = news.slice(1, memoDataPosts.length);
+
   const isAuthor = router.asPath.includes('author');
 
   useEffect(() => {
@@ -67,38 +71,34 @@ const LibraryDirectory = ({
         <BasicSiteHead title={categoryName} metaDescription={description} />
       )}
       <SingleSubHeader span={7} offset={2} title={categoryName} subtitle={description} />
-      <Container className="border mb-5">
+      <Container className="mb-5">
         <Row>
           <BodyHeader />
-          <Col sm={12} lg={9} className="mt-4">
-            {mainNews ? (
+          <Col sm={12} lg={9}>
+            {memoDataPosts.length > 0 && (
               <Col xl={10} className="m-auto">
                 <NewsCard
-                  postSlug={mainNews?.link}
+                  postSlug={mainNews.link}
                   postImage={
                     mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
                   }
-                  postTitle={mainNews?.title}
-                  postDate={mainNews?.date}
-                  postAuthor={mainNews?.author}
-                  postExcerpt={mainNews?.excerpt || mainNews?.description}
+                  postTitle={mainNews.title}
+                  postDate={mainNews.date}
+                  postAuthor={mainNews.author}
+                  postExcerpt={mainNews.excerpt || mainNews.description}
                   isVertical="true"
                 />
               </Col>
-            ) : (
-              noPostsFoundMessage
             )}
-            <ul className="list-unstyled border-top pt-5 mt-5">
-              {featuredArticles ? (
+            <ul className="pt-5 mt-5 mb-5">
+              {featuredArticles.length > 0 ? (
                 <FeaturedArticle articles={featuredArticles} />
               ) : (
                 noPostsFoundMessage
               )}
             </ul>
-            <div className="border-top border-top pt-4">
-              <h4 className="mb-5">
-                <strong className="text-capitalize">All Articles</strong>
-              </h4>
+            <div className="pt-4 mb-5">
+              <AllArticlesTitle>All Articles</AllArticlesTitle>
               <PostList
                 content={{
                   handleNextPagination,
@@ -110,30 +110,14 @@ const LibraryDirectory = ({
               />
             </div>
           </Col>
-          <Col sm={12} lg={3} className="d-flex flex-column justify-content-start mt-3">
-            {isAuthor && (
-              <div className="my-3">
-                <Link href={profileUrl} legacyBehavior>
-                  <a className="redTitle h6">
-                    <strong>
-                      <u>Visit Attorney&apos;s Profile</u>
-                      {' '}
-                      &raquo;
-                    </strong>
-                  </a>
-                </Link>
-              </div>
-            )}
-            {childrenOfCurrentCategory.length > 0 && (
-              <PopularList
-                term="Related Categories"
-                list={childrenOfCurrentCategory}
-                displayCount
-              />
-            )}
-            <PopularList term="Popular Categories" list={popularCategories} displayCount />
-            <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
-            <FirmAuthors authors={authors} />
+          <Col sm={12} lg={3} className="d-flex flex-column justify-content-start">
+            <LibrarySideBar
+              isAuthor={isAuthor}
+              profileUrl={profileUrl}
+              childrenOfCurrentCategory={childrenOfCurrentCategory}
+              popularCategories={popularCategories}
+              authors={authors}
+            />
           </Col>
         </Row>
       </Container>
