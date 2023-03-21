@@ -12,9 +12,9 @@ import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
 import Loader from '../atoms/Loader';
 import { AllArticlesTitle } from '../../styles/LibraryArticles.style';
+import FeaturedArticle from '../organisms/library/FeaturedArticle';
 
 const PostList = dynamic(import('components/molecules/PostList'));
-const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
 
 const LibraryDirectory = ({
   news,
