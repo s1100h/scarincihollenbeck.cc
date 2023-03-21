@@ -11,6 +11,7 @@ import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
 import Loader from '../atoms/Loader';
+import { AllArticlesTitle } from '../../styles/LibraryArticles.style';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
@@ -92,7 +93,7 @@ const LibraryDirectory = ({
       <Container className="mb-5">
         <Row>
           <BodyHeader />
-          <Col sm={12} lg={9} className="mt-4">
+          <Col sm={12} lg={9}>
             {postsNews.isLoading ? (
               <Loader />
             ) : (
@@ -116,7 +117,7 @@ const LibraryDirectory = ({
                 )}
               </>
             )}
-            <ul className="pt-5 mt-5">
+            <ul className="pt-5 mt-5 mb-5">
               {postsNews.isLoading ? (
                 <Loader />
               ) : (
@@ -129,10 +130,8 @@ const LibraryDirectory = ({
                 </>
               )}
             </ul>
-            <div className="pt-4">
-              <h4 className="mb-5">
-                <strong className="text-capitalize">All Articles</strong>
-              </h4>
+            <div className="pt-4 mb-5">
+              <AllArticlesTitle>All Articles</AllArticlesTitle>
               <PostList
                 content={{
                   handleNextPagination,
@@ -144,7 +143,7 @@ const LibraryDirectory = ({
               />
             </div>
           </Col>
-          <Col sm={12} lg={3} className="d-flex flex-column justify-content-start mt-3">
+          <Col sm={12} lg={3} className="d-flex flex-column justify-content-start">
             <LibrarySideBar
               isAuthor={isAuthor}
               profileUrl={profileUrl}
