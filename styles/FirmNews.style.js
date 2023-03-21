@@ -6,6 +6,7 @@ const hoverLink = `
 	&:hover {
 		text-decoration: none;
     color: inherit;
+    cursor: pointer;
 		p {
 			color: inherit;
 		}
@@ -127,7 +128,7 @@ export const OtherNews = styled.article`
   ${newsCommonStyles};
   width: 100%;
 
-  a {
+  .link-wrapper {
     display: grid;
     height: 100%;
     grid-template-columns: 38% 58%;
@@ -242,7 +243,8 @@ export const BottomSection = styled.section`
 
   ul {
     li {
-      div {
+      a {
+        display: flex;
         color: ${globalColor.blue.dirtyBlue};
         :hover {
           color: ${globalColor.red.darkRed};

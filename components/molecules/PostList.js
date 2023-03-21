@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from 'components/atoms/Loader';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import PaginationButtons from 'components/atoms/PaginationButtons';
@@ -8,34 +8,60 @@ const PostList = ({ content, isProfile }) => {
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = content;
+  const [posts, setPosts] = useState({
+    data: [],
+    isLoading: true,
+    error: '',
+    noResults: false,
+  });
 
-  if (error) {
-    return <pre>{JSON.stringify(error)}</pre>;
-  }
-
-  if (data?.posts?.edges.length <= 0) {
-    return <div>No posts found...</div>;
-  }
+  useEffect(() => {
+    if (error) {
+      setPosts((prevState) => {
+        prevState.error = JSON.stringify(error);
+        return prevState;
+      });
+    }
+    if (!loading) {
+      setPosts((prevState) => {
+        prevState.isLoading = loading;
+        return prevState;
+      });
+      if (data?.posts?.edges.length > 0) {
+        setPosts((prevState) => {
+          prevState.data = data?.posts?.edges;
+          return prevState;
+        });
+      }
+      if (data?.posts?.edges.length === 0) {
+        setPosts((prevState) => {
+          prevState.noResults = true;
+          return prevState;
+        });
+      }
+    }
+  }, [data, loading, error]);
 
   return (
-    <div style={{ minHeight: '410px' }}>
-      {loading ? (
+    <>
+      {posts.isLoading ? (
         <Loader />
       ) : (
         <>
-          {data?.posts?.edges.map(({ node }) => (
-            <div className="mb-4" key={node.title}>
-              <NewsCard
-                postSlug={node.uri.replace('https://scarincihollenbeck.com/', '/')}
-                postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
-                postTitle={node.title}
-                postDate={node.date}
-                postExcerpt={isProfile ? null : node.excerpt}
-                postAuthor={node.author.node.name || 'Scarinci Hollenbeck'}
-                isProfile={isProfile}
-              />
-            </div>
-          ))}
+          {!posts.isLoading
+            && posts.data.map(({ node }) => (
+              <div className="mb-4" key={node.title}>
+                <NewsCard
+                  postSlug={node.uri.replace('https://scarincihollenbeck.com/', '/')}
+                  postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
+                  postTitle={node.title}
+                  postDate={node.date}
+                  postExcerpt={isProfile ? null : node.excerpt}
+                  postAuthor={node.author.node.name || 'Scarinci Hollenbeck'}
+                  isProfile={isProfile}
+                />
+              </div>
+            ))}
           <PaginationButtons
             handleNextPagination={handleNextPagination}
             handlePrevPagination={handlePrevPagination}
@@ -43,7 +69,7 @@ const PostList = ({ content, isProfile }) => {
           />
         </>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,30 +1,53 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function PopularList({ term, list, displayCount = true }) {
+const renderCategoriesList = (CategoriesList, routerPath) => {
+  const authorPath = '/library/author/[slug]';
+  const isAuthor = routerPath.includes(authorPath);
+  if (isAuthor || !Object.keys(CategoriesList[0]).includes('count')) {
+    return (
+      <ul>
+        {CategoriesList.map((item) => (
+          <li key={item.id}>
+            <Link href={`/library/category/${item.slug}`} passHref>
+              {item.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <ul>
+      {CategoriesList.map((item) => (
+        <li key={item.id}>
+          {item.name}
+          {Object.keys(item).includes('count') && (
+            <Link href={`/library/category/${item.slug}`} passHref>
+              <strong>
+                <small>
+                  (
+                  {item.count}
+                  )
+                </small>
+              </strong>
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+};
+export default function PopularList({ term, list }) {
+  const { pathname } = useRouter();
+
   return (
     <>
       <h5>
         <strong>{term}</strong>
       </h5>
-      <ul className="p-0">
-        {list.map((item) => (
-          <li key={item.id}>
-            <Link href={`/library/category/${item.slug}`} legacyBehavior>
-              <a className="text-dark">
-                {item.name}
-                {displayCount && Object.keys(item).includes('count') && (
-                  <>
-                    <span className="mx-1">|</span>
-                    <strong>
-                      <small>{item.count}</small>
-                    </strong>
-                  </>
-                )}
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {renderCategoriesList(list, pathname)}
     </>
   );
 }

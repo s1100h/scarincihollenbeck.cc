@@ -1,21 +1,19 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
-import PopularList from 'components/organisms/library/PopularList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { CLIENT_ALERTS } from 'utils/constants';
 import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
+import LibrarySideBar from '../organisms/library/LibrarySideBar';
+import Loader from '../atoms/Loader';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 const FeaturedArticle = dynamic(import('components/organisms/library/FeaturedArticle'));
-const FirmAuthors = dynamic(import('components/organisms/library/FirmAuthors'));
 
 const LibraryDirectory = ({
   news,
@@ -31,6 +29,30 @@ const LibraryDirectory = ({
   const router = useRouter();
   const mainNews = news[0];
   const featuredArticles = news.slice(1, news.length);
+
+  const [postsNews, setPostsNews] = useState({
+    data: [],
+    isLoading: true,
+    noResults: false,
+    mainNews: {},
+  });
+  useEffect(() => {
+    if (news && news.length > 0) {
+      setPostsNews((prevState) => {
+        prevState.data = featuredArticles;
+        prevState.isLoading = false;
+        prevState.mainNews = mainNews;
+        return prevState;
+      });
+    }
+    if (news.length === 0) {
+      setPostsNews((prevState) => {
+        prevState.noResults = true;
+        return prevState;
+      });
+    }
+  }, [news]);
+
   const isAuthor = router.asPath.includes('author');
 
   useEffect(() => {
@@ -67,35 +89,47 @@ const LibraryDirectory = ({
         <BasicSiteHead title={categoryName} metaDescription={description} />
       )}
       <SingleSubHeader span={7} offset={2} title={categoryName} subtitle={description} />
-      <Container className="border mb-5">
+      <Container className="mb-5">
         <Row>
           <BodyHeader />
           <Col sm={12} lg={9} className="mt-4">
-            {mainNews ? (
-              <Col xl={10} className="m-auto">
-                <NewsCard
-                  postSlug={mainNews?.link}
-                  postImage={
-                    mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
-                  }
-                  postTitle={mainNews?.title}
-                  postDate={mainNews?.date}
-                  postAuthor={mainNews?.author}
-                  postExcerpt={mainNews?.excerpt || mainNews?.description}
-                  isVertical="true"
-                />
-              </Col>
+            {postsNews.isLoading ? (
+              <Loader />
             ) : (
-              noPostsFoundMessage
+              <>
+                {postsNews.mainNews?.title.length > 0 && (
+                  <Col xl={10} className="m-auto">
+                    <NewsCard
+                      postSlug={postsNews.mainNews?.link}
+                      postImage={
+                        postsNews.mainNews.image
+                          ? postsNews.mainNews.image
+                          : '/images/no-image-found-diamond-750x350.png'
+                      }
+                      postTitle={postsNews.mainNews?.title}
+                      postDate={postsNews.mainNews?.date}
+                      postAuthor={postsNews.mainNews?.author}
+                      postExcerpt={postsNews.mainNews?.excerpt || postsNews.mainNews?.description}
+                      isVertical="true"
+                    />
+                  </Col>
+                )}
+              </>
             )}
-            <ul className="list-unstyled border-top pt-5 mt-5">
-              {featuredArticles ? (
-                <FeaturedArticle articles={featuredArticles} />
+            <ul className="pt-5 mt-5">
+              {postsNews.isLoading ? (
+                <Loader />
               ) : (
-                noPostsFoundMessage
+                <>
+                  {postsNews.data ? (
+                    <FeaturedArticle articles={postsNews.data} />
+                  ) : (
+                    noPostsFoundMessage
+                  )}
+                </>
               )}
             </ul>
-            <div className="border-top border-top pt-4">
+            <div className="pt-4">
               <h4 className="mb-5">
                 <strong className="text-capitalize">All Articles</strong>
               </h4>
@@ -111,29 +145,13 @@ const LibraryDirectory = ({
             </div>
           </Col>
           <Col sm={12} lg={3} className="d-flex flex-column justify-content-start mt-3">
-            {isAuthor && (
-              <div className="my-3">
-                <Link href={profileUrl} legacyBehavior>
-                  <a className="redTitle h6">
-                    <strong>
-                      <u>Visit Attorney&apos;s Profile</u>
-                      {' '}
-                      &raquo;
-                    </strong>
-                  </a>
-                </Link>
-              </div>
-            )}
-            {childrenOfCurrentCategory.length > 0 && (
-              <PopularList
-                term="Related Categories"
-                list={childrenOfCurrentCategory}
-                displayCount
-              />
-            )}
-            <PopularList term="Popular Categories" list={popularCategories} displayCount />
-            <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
-            <FirmAuthors authors={authors} />
+            <LibrarySideBar
+              isAuthor={isAuthor}
+              profileUrl={profileUrl}
+              childrenOfCurrentCategory={childrenOfCurrentCategory}
+              popularCategories={popularCategories}
+              authors={authors}
+            />
           </Col>
         </Row>
       </Container>

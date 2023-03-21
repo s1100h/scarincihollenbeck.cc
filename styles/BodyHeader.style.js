@@ -7,9 +7,11 @@ export const BodyHeaderContainer = styled.nav`
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px 15px;
+	background-color: ${globalColor.white};
 	box-shadow: ${globalShadow.allSideShadow};
 	gap: 3%;
 	position: relative;
+	top: -100px;
 	
 	form {
 		margin: 0;
