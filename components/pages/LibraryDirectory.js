@@ -6,7 +6,9 @@ import BodyHeader from 'components/organisms/library/BodyHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { useContext, useEffect, useState } from 'react';
+import {
+  useContext, useEffect, useMemo, useState,
+} from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
@@ -28,31 +30,10 @@ const LibraryDirectory = ({
 }) => {
   const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
-  const mainNews = news[0];
-  const featuredArticles = news.slice(1, news.length);
 
-  const [postsNews, setPostsNews] = useState({
-    data: [],
-    isLoading: true,
-    noResults: false,
-    mainNews: {},
-  });
-  useEffect(() => {
-    if (news && news.length > 0) {
-      setPostsNews((prevState) => {
-        prevState.data = featuredArticles;
-        prevState.isLoading = false;
-        prevState.mainNews = mainNews;
-        return prevState;
-      });
-    }
-    if (news.length === 0) {
-      setPostsNews((prevState) => {
-        prevState.noResults = true;
-        return prevState;
-      });
-    }
-  }, [news]);
+  const memoDataPosts = useMemo(() => news, [news]);
+  const mainNews = memoDataPosts[0];
+  const featuredArticles = news.slice(1, memoDataPosts.length);
 
   const isAuthor = router.asPath.includes('author');
 
@@ -94,40 +75,26 @@ const LibraryDirectory = ({
         <Row>
           <BodyHeader />
           <Col sm={12} lg={9}>
-            {postsNews.isLoading ? (
-              <Loader />
-            ) : (
-              <>
-                {postsNews.mainNews?.title.length > 0 && (
-                  <Col xl={10} className="m-auto">
-                    <NewsCard
-                      postSlug={postsNews.mainNews?.link}
-                      postImage={
-                        postsNews.mainNews.image
-                          ? postsNews.mainNews.image
-                          : '/images/no-image-found-diamond-750x350.png'
-                      }
-                      postTitle={postsNews.mainNews?.title}
-                      postDate={postsNews.mainNews?.date}
-                      postAuthor={postsNews.mainNews?.author}
-                      postExcerpt={postsNews.mainNews?.excerpt || postsNews.mainNews?.description}
-                      isVertical="true"
-                    />
-                  </Col>
-                )}
-              </>
+            {memoDataPosts.length > 0 && (
+              <Col xl={10} className="m-auto">
+                <NewsCard
+                  postSlug={mainNews.link}
+                  postImage={
+                    mainNews.image ? mainNews.image : '/images/no-image-found-diamond-750x350.png'
+                  }
+                  postTitle={mainNews.title}
+                  postDate={mainNews.date}
+                  postAuthor={mainNews.author}
+                  postExcerpt={mainNews.excerpt || mainNews.description}
+                  isVertical="true"
+                />
+              </Col>
             )}
             <ul className="pt-5 mt-5 mb-5">
-              {postsNews.isLoading ? (
-                <Loader />
+              {featuredArticles.length > 0 ? (
+                <FeaturedArticle articles={featuredArticles} />
               ) : (
-                <>
-                  {postsNews.data ? (
-                    <FeaturedArticle articles={postsNews.data} />
-                  ) : (
-                    noPostsFoundMessage
-                  )}
-                </>
+                noPostsFoundMessage
               )}
             </ul>
             <div className="pt-4 mb-5">
