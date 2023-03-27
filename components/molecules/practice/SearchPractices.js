@@ -1,7 +1,7 @@
-import MySearchBox from 'components/shared/GlobalSearch/MySearchBox';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { DropDownResults, SearchPracticesBox } from 'styles/SearchPractices.style';
+import PracticeSearch from '../../shared/GlobalSearch/PracticeSearch';
 
 export const uniqArr = (unsortedArr) => {
   const filteredArr = [];
@@ -43,7 +43,7 @@ export default function SearchPractices({ practicesAll }) {
   const { sortedCorePractices, sortedAdditionalPractices } = practicesAll;
 
   const handleSearch = (event) => {
-    const value = event.currentTarget.value;
+    const value = event?.currentTarget?.value;
     setSearchValue(value);
     if (value.length === 0) setPracticesArr(null);
   };
@@ -62,7 +62,7 @@ export default function SearchPractices({ practicesAll }) {
 
   return (
     <SearchPracticesBox>
-      <MySearchBox
+      <PracticeSearch
         currentRefinement={searchValue}
         refine={handleSearch}
         placeholder="Search practices"
