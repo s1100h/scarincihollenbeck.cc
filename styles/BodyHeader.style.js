@@ -21,8 +21,8 @@ export const BodyHeaderContainer = styled.nav`
 		}
 	}
 	
-	.results-container {
-    top: 53px;
+	> div {
+    top: 52px;
     left: 0;
     transform: none;
 	}
