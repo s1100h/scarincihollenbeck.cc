@@ -126,3 +126,5 @@ export const ResultsContainer = styled.div`
     display: none;
   }
 `
+
+export const ResultBox = styled.div``

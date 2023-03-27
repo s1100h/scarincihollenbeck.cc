@@ -1,27 +1,11 @@
 import algoliasearch from 'algoliasearch/lite';
-import {
-  InstantSearch,
-  connectStateResults,
-  createConnector,
-  Pagination,
-} from 'react-instantsearch-dom';
-import { HitsStyled, ResultsContainer } from 'styles/GlobalSearch.style';
+import { InstantSearch, createConnector } from 'react-instantsearch-dom';
 
 import { ALGOLIA_PUBLIC_API, ALGOLIA_APP_ID, ALGOLIA_SEARCH_INDEX } from 'utils/constants';
-import Hit from './Hit';
 import MySearchBox from './MySearchBox';
+import PracticeSearch from './PracticeSearch';
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_PUBLIC_API);
-
-const RenderSearchResults = connectStateResults(
-  ({ searchResults }) => searchResults?.query.length > 0
-    && searchResults?.hits.length > 0 && (
-      <ResultsContainer className="results-container">
-        <Pagination totalPages={10} />
-        <HitsStyled hitComponent={Hit} />
-      </ResultsContainer>
-  ),
-);
 
 const connectWithQuery = createConnector({
   displayName: 'WidgetWithQuery',
@@ -48,12 +32,12 @@ const connectWithQuery = createConnector({
 });
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
+connectWithQuery(PracticeSearch);
 
 export default function GlobalSearch() {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
       <ConnectedSearchBox placeholder="Search" />
-      <RenderSearchResults />
     </InstantSearch>
   );
 }
