@@ -2,7 +2,7 @@ import { Row, Col } from 'react-bootstrap';
 import PracticesSelector from 'components/molecules/attorneys/PracticesSelector';
 import FilterSelector from 'components/molecules/attorneys/Selector';
 import { ContainerFilters } from 'styles/Filters.style';
-import MySearchBox from 'components/shared/GlobalSearch/MySearchBox';
+import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 
 const Filters = ({
   practices,
@@ -17,7 +17,7 @@ const Filters = ({
     <ContainerFilters props={{ isWhite: 'true' }}>
       <Row>
         <Col xl={3} sm={12} md={6}>
-          <MySearchBox
+          <AuxiliarySearch
             currentRefinement={userInput}
             refine={handleChange}
             placeholder="Search by Attorney name"
