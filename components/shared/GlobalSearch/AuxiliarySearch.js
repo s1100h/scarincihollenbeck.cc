@@ -2,7 +2,7 @@ import { Form } from 'react-bootstrap';
 import { BsSearch, BsXLg } from 'react-icons/bs';
 import { SearchForm, SearchInput } from '../../../styles/GlobalSearch.style';
 
-const PracticeSearch = (props) => {
+const AuxiliarySearch = (props) => {
   const handleClear = () => {
     props.refine({
       currentTarget: {
@@ -25,4 +25,4 @@ const PracticeSearch = (props) => {
   );
 };
 
-export default PracticeSearch;
+export default AuxiliarySearch;

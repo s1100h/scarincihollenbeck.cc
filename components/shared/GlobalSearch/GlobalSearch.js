@@ -3,7 +3,7 @@ import { InstantSearch, createConnector } from 'react-instantsearch-dom';
 
 import { ALGOLIA_PUBLIC_API, ALGOLIA_APP_ID, ALGOLIA_SEARCH_INDEX } from 'utils/constants';
 import MySearchBox from './MySearchBox';
-import PracticeSearch from './PracticeSearch';
+import AuxiliarySearch from './AuxiliarySearch';
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_PUBLIC_API);
 
@@ -32,7 +32,7 @@ const connectWithQuery = createConnector({
 });
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
-connectWithQuery(PracticeSearch);
+connectWithQuery(AuxiliarySearch);
 
 export default function GlobalSearch() {
   return (
