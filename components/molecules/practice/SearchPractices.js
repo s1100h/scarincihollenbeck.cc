@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { DropDownResults, SearchPracticesBox } from 'styles/SearchPractices.style';
-import PracticeSearch from '../../shared/GlobalSearch/PracticeSearch';
+import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 
 export const uniqArr = (unsortedArr) => {
   const filteredArr = [];
@@ -62,7 +62,7 @@ export default function SearchPractices({ practicesAll }) {
 
   return (
     <SearchPracticesBox>
-      <PracticeSearch
+      <AuxiliarySearch
         currentRefinement={searchValue}
         refine={handleSearch}
         placeholder="Search practices"
