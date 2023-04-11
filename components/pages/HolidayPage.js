@@ -16,7 +16,7 @@ const HolidayPage = ({
       metaDescription={seo.metaDescription}
       canonicalUrl={canonicalUrl}
     />
-    <SingleSubHeader title={title} subtitle={subTitle} isHoliday />
+    <SingleSubHeader title={title} subtitle={subTitle} isHoliday="true" />
     <Container>
       <HolidayContent content={bodyContent} />
     </Container>

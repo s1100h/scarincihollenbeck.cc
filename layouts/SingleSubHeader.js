@@ -1,5 +1,10 @@
 import { changeTitle, createMarkup, formatDate } from 'utils/helpers';
-import { BackgroundContainer, Description, SubHeaderContent } from 'styles/SingleSubHeader.style';
+import {
+  BackgroundContainer,
+  Description,
+  GradientWrapper,
+  SubHeaderContent,
+} from 'styles/SingleSubHeader.style';
 import Link from 'next/link';
 import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
 import PostBreadcrumbs from '../components/organisms/post/PostBreadcrumbs';
@@ -15,6 +20,7 @@ const SingleSubHeader = ({
   tabs,
   setActiveTab,
   activeTab,
+  backgroundImage,
 }) => (
   <BackgroundContainer
     props={{
@@ -22,8 +28,10 @@ const SingleSubHeader = ({
       isTabs: tabs?.length > 0 && 'true',
       isBlog,
       isFilter,
+      backgroundImage,
     }}
   >
+    {backgroundImage?.length > 0 && <GradientWrapper />}
     <SubHeaderContent props={{ isBlog }}>
       <PostBreadcrumbs />
       <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>

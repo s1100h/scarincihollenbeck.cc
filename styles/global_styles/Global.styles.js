@@ -296,16 +296,28 @@ button {
   }
 }
 
+@media (min-width: 768px) {
+  .container {
+    max-width: 96%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 92%;
+  }
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
 .wrapper-section {
   width: 1650px;
   max-width: 96%;
   margin: 0 auto 150px;
-}
-
-@media only screen and (max-width: 768px) {
-  .wrapper-section {
-    margin: 0 auto 70px;
-  }
 }
 
 footer .wrapper-section {
@@ -340,6 +352,10 @@ footer .wrapper-section {
   .modal-content {
     width: 90%;
     margin: 0 auto;
+  }
+
+  .wrapper-section {
+    margin: 0 auto 70px;
   }
 }
 

@@ -36,7 +36,6 @@ const ProfileHeader = ({
   profileImage,
   title,
   offices,
-  pdf,
   coChair: coChairs,
   chair: chairs,
   primaryPractices,
