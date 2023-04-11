@@ -7,6 +7,7 @@ export const BreadcrumbsListContainer = styled.ul`
   display: flex;
   gap: 5px;
   align-items: center;
+
   svg {
     width: 12px;
     height: 12px;
@@ -24,8 +25,12 @@ export const BreadcrumbsListContainer = styled.ul`
   }
 
   ${media_breakpoint_down('md')} {
-    align-items: start;
-    flex-direction: column;
+    margin-bottom: 0;
+    padding: 20px 0;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    position: relative;
   }
 `
 

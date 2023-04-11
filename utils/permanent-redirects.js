@@ -24,6 +24,11 @@ const PERMANENT_REDIRECTS = [
     destination: '/firm-overview',
     permanent: true,
   },
+  {
+    source: '/location',
+    destination: '/location/little-falls',
+    permanent: true,
+  },
 ];
 
 module.exports = {

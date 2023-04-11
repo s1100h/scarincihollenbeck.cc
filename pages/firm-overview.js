@@ -62,13 +62,7 @@ export const getServerSideProps = async () => {
 
 /** The Firm Overview page component */
 const FirmOverview = ({
-  title,
-  seo,
-  content,
-  firmOverviewTabs,
-  attorneys,
-  administration,
-  FirmMembers,
+  title, seo, content, firmOverviewTabs, administration, FirmMembers,
 }) => {
   const { firmOverviewTitles, setFirmOverviewTitles } = useContext(AttorneysContext);
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
@@ -89,7 +83,6 @@ const FirmOverview = ({
     bodyContent: clearBody,
     subTitle,
     firmOverviewTabs,
-    attorneys,
     administration,
     FirmMembers,
   };

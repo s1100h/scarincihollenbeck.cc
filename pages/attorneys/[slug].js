@@ -12,7 +12,7 @@ import {
   formatSrcToCloudinaryUrlPdf,
   sanitizeExternalArticles,
 } from 'utils/helpers';
-import { CON_LAW_URL, GOV_LAW_URL } from 'utils/constants';
+import { GOV_LAW_URL } from 'utils/constants';
 import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 
@@ -89,7 +89,6 @@ export const getServerSideProps = async ({ params, res }) => {
   }
 
   const attorneyBio = await attorneyBySlug(slug);
-
   if (!attorneyBio) {
     return {
       notFound: true,
