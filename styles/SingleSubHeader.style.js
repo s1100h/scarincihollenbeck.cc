@@ -48,6 +48,7 @@ export const BackgroundContainer = styled.section`
       `
     )
   }}
+
   ${({ props }) => {
     return props?.isHoliday?.length > 0
       ? `${media_breakpoint_down('xl')} {
@@ -65,7 +66,7 @@ export const BackgroundContainer = styled.section`
   }
 
   ${media_breakpoint_exactly_down(504)} {
-    background-size: ${({ props }) => (props?.isHoliday ? '' : '100%')};
+    background-size: ${({ props }) => (props?.isHoliday ? '' : '108%')};
     background-position: ${({ props }) => (props?.isHoliday ? '' : 'bottom 0%')};
   }
 `
@@ -98,10 +99,11 @@ export const SubHeaderContent = styled(Container)`
   }
 `
 
-export const Description = styled.section`
+export const Description = styled.p`
   width: 50vw;
   color: ${globalColor.gray.gray80};
-
+  margin-bottom: 0;
+  background-color: rgb(255 255 255 / 58%);
   ${media_breakpoint_down('xl')} {
     width: 60vw;
   }

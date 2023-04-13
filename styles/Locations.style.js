@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Link from 'next/link'
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -41,7 +42,7 @@ export const MediaBr = styled.br`
   }
 `
 
-export const OfficeTabs = styled.ul`
+export const OfficeTabs = styled.nav`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -49,30 +50,59 @@ export const OfficeTabs = styled.ul`
   z-index: 20;
   top: -50px;
 
-  a {
-    display: flex;
-    justify-content: start;
-    width: 180px;
-    padding: 15px 10px;
-    box-shadow: ${globalShadow.allSideShadow};
-    text-transform: uppercase;
-    font-weight: 600;
-
-    :hover {
-      box-shadow: ${globalShadow.hoveredShadow};
-    }
-  }
-
   ${media_breakpoint_down('md')} {
     gap: 10px;
   }
 
   ${media_breakpoint_down('sm')} {
     top: -20px;
+  }
+`
 
-    a {
-      width: fit-content;
-    }
+export const OfficeTab = styled(Link)`
+  display: flex;
+  justify-content: start;
+  width: 220px;
+  padding: 15px 10px;
+  box-shadow: ${globalShadow.allSideShadow};
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+
+  > div {
+    width: 91%;
+  }
+
+  span {
+    z-index: 1;
+  }
+
+  ${(props) => {
+    return (
+      props?.imgurl?.length > 0 &&
+      `
+      background: no-repeat url(${props?.imgurl});
+      background-size: 50% 138%;
+      background-position: right top 29%;
+      color: ${globalColor.red.darkRed};
+      box-shadow: ${globalShadow.hoveredShadow};
+      cursor: default;
+      pointer-events: none;
+      `
+    )
+  }}
+
+  :hover {
+    box-shadow: ${globalShadow.hoveredShadow};
+  }
+
+  ${media_breakpoint_down('sm')} {
+    width: 48%;
+  }
+
+  ${media_breakpoint_exactly_down(420)} {
+    transition: 0.7s;
+    width: ${(props) => (props?.imgurl?.length > 0 ? '76%' : '220px')};
   }
 `
 

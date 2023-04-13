@@ -62,7 +62,9 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
         backgroundImage={currentOffice.featuredImage}
       />
       <Container className="mb-5">
-        {locations?.length > 0 && <OfficesLinkTabs officesForTabs={locations} />}
+        {locations?.length > 0 && (
+          <OfficesLinkTabs officeImage={currentOffice.featuredImage} officesForTabs={locations} />
+        )}
         <Row>
           <OfficeLocationBoxTitle>{changeTitle(currentOffice.title)}</OfficeLocationBoxTitle>
           <Col sm={12} lg={7}>
