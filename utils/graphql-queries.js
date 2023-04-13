@@ -1289,6 +1289,33 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
   }
 }`;
 
+export const getOffices = `query FirmPageQuery {
+  officeLocations(first: 50) {
+    nodes {
+      databaseId
+      title
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      officeMainInformation {
+        addressLocality
+        addressCountry
+        addressRegion
+        fax
+        floor
+        phone
+        streetAddress
+        postCode
+        mapLink
+      }
+      uri
+      slug
+    }
+  }
+}`;
+
 export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
   officeLocationBy(officeLocationId: 29436) {
     officeMainInformation {

@@ -110,13 +110,14 @@ export const OfficeCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
+  padding: 0 20px;
+  box-shadow: ${globalShadow.allSideShadow};
 
   address {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding: 20px;
-    box-shadow: ${globalShadow.allSideShadow};
+    padding: 20px 0;
     font-size: 1.2rem;
 
     ${media_breakpoint_range_exacly(992, 1500)} {
