@@ -1284,6 +1284,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
         postCode
       }
       uri
+      slug
     }
   }
 }`;

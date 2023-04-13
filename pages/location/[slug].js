@@ -28,10 +28,12 @@ const getOfficeData = async (slug) => {
     seo: officeLocation.seo,
     ...officeLocation.officeMainInformation,
   };
+
   const offices = officeLocations.nodes.map((office) => ({
     databaseId: office.databaseId,
     featuredImage: office.featuredImage.node.sourceUrl,
     uri: office.uri,
+    slug: office.slug,
     ...office.officeMainInformation,
   }));
   return {
