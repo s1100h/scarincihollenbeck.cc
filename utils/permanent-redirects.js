@@ -29,6 +29,11 @@ const PERMANENT_REDIRECTS = [
     destination: '/location/little-falls',
     permanent: true,
   },
+  {
+    source: '/attorney/ronald-s-bienstock',
+    destination: '/attorneys/ronald-s-bienstock',
+    permanent: true,
+  },
 ];
 
 module.exports = {

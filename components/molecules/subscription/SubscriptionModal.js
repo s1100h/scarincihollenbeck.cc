@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/legacy/image';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
@@ -7,6 +8,8 @@ import { SITE_TITLE } from 'utils/constants';
 import { CheckBoxesList, FormContainer, SubscribeBtn } from 'styles/Subscription.style';
 import kwesforms from 'kwesforms';
 import ModalWindow from '../../common/ModalWindow';
+
+const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const SubscriptionModal = () => {
   const [show, setShow] = useState(false);
@@ -18,6 +21,7 @@ const SubscriptionModal = () => {
 
   return (
     <>
+      <KwesScripts />
       <SubscribeBtn onClick={() => setShow(true)}>
         <span>Subscribe Now!</span>
       </SubscribeBtn>

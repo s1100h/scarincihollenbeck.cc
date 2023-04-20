@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
@@ -7,12 +8,17 @@ import {
   inputsGetInTouchAttributes,
   RECAPTCHA_SITE_KEY,
 } from 'utils/constants';
+import kwesforms from 'kwesforms';
 import RenderInputs from './RenderInputs';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 export default function ContactForm() {
   const router = useRouter();
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <FormContainer>
