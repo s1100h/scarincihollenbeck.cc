@@ -5,7 +5,7 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
-    source: '/form-page/:slug*',
+    source: '/contact-us/:slug*',
     destination: '/',
     permanent: true,
   },
