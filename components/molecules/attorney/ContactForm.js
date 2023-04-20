@@ -1,13 +1,19 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Col, Row, Button } from 'react-bootstrap';
 import { KWES_API, RECAPTCHA_SITE_KEY, PRODUCTION_URL } from 'utils/constants';
+import kwesforms from 'kwesforms';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const ContactForm = ({ emailForwarding, name }) => {
   const router = useRouter();
   const emailVarName = ['One', 'Two', 'Three', 'Four'];
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <div className="px-2 mb-3">
