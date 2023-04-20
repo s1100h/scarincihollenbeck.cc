@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import { globalColor, globalShadow } from './global_styles/Global.styles'
+import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { GradientWrapper } from './SingleSubHeader.style'
 
 export const OfficeBtn = styled(Button)`
   display: flex;
@@ -53,6 +55,10 @@ export const OfficeBtn = styled(Button)`
   }
 `
 
+export const OfficeBtnGradientWrapper = styled(GradientWrapper)`
+  width: 100%;
+`
+
 export const LocationsOfficesContainer = styled.section``
 
 export const CardListBox = styled.div`
@@ -94,12 +100,68 @@ export const CardListBox = styled.div`
 `
 
 export const TileBox = styled.article`
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  border: 1px solid ${globalColor.gray.gray60};
+  flex-basis: calc(50% - 10px);
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: ${globalShadow.hoveredShadow};
+  }
 
+  ${media_breakpoint_down('sm')} {
+    flex-basis: 100%;
+  }
+
+  &:first-child,
+  &:nth-child(2) {
+    flex-basis: calc(25% - 15px);
+    ${media_breakpoint_down('xl')} {
+      flex-basis: calc(50% - 10px);
+    }
+    ${media_breakpoint_down('sm')} {
+      flex-basis: 100%;
+    }
+  }
+
+  &:nth-child(3) {
+    div {
+      padding: 0;
+      border: none;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    ${media_breakpoint_down('xl')} {
+      flex-basis: 100%;
+      order: -1;
+    }
+  }
   div {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border: 1px solid ${globalColor.gray.gray10};
+    height: 100%;
+    ${media_breakpoint_down('lg')} {
+      padding: 16px;
+    }
+    h4 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    a {
+      font-weight: 500;
+      color: ${globalColor.blue.ultramarine};
+    }
+  }
+
+  span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +169,7 @@ export const TileBox = styled.article`
     height: 40px;
     background-color: ${globalColor.blue.ultramarine};
     border-radius: 4px;
-
+    margin-bottom: 20px;
     svg {
       color: ${globalColor.white};
       width: 25px;
@@ -118,4 +180,12 @@ export const TileBox = styled.article`
 
 export const PuzzleCotainer = styled.section`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-bottom: 130px;
+  ${media_breakpoint_down('xl')} {
+    margin-top: 40px;
+    margin-bottom: 70px;
+  }
 `

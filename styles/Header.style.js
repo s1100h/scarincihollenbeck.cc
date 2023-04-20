@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
   padding-left: 1.5%;
   padding-right: 1.5%;
   height: fit-content;
-  width: 100vw;
+  width: 100%;
   background: #fff;
   box-shadow: ${({ scrollDown }) => (scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none')};
   position: sticky;

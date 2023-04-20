@@ -10,6 +10,7 @@ const TilePuzzle = () => (
         title={tile.title}
         textContent={tile.textContent}
         icon={tile.icon}
+        image={tile.image}
       />
     ))}
   </PuzzleCotainer>

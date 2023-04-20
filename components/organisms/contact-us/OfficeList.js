@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { CardListBox, LocationsOfficesContainer, OfficeBtn } from '../../../styles/ContactUs.style';
+import {
+  CardListBox,
+  LocationsOfficesContainer,
+  OfficeBtn,
+  OfficeBtnGradientWrapper,
+} from '../../../styles/ContactUs.style';
 import Map from '../../molecules/location/Map';
 import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';
-import { GradientWrapper } from '../../../styles/SingleSubHeader.style';
 
 const OfficeList = ({ officesArr }) => {
   const [chosenOffice, setOffice] = useState(officesArr[0]);
   return (
     <LocationsOfficesContainer>
-      <Map map={chosenOffice.mapLink} />
+      <Map map={chosenOffice.mapLink} height={600} />
       <CardListBox>
         <CurrentOfficeCard {...chosenOffice}>
           <Link href={chosenOffice.uri} className="mt-3 mb-0 fw-bold">
@@ -29,7 +33,7 @@ const OfficeList = ({ officesArr }) => {
                   }}
                 >
                   <span>{office.title}</span>
-                  <GradientWrapper />
+                  <OfficeBtnGradientWrapper />
                   {chosenOffice.databaseId !== office.databaseId && <div className="hover-blur" />}
                 </OfficeBtn>
               </li>

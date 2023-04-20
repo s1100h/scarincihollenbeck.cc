@@ -23,7 +23,7 @@ export const tileContentArr = [
     id: 2,
   },
   {
-    title: '',
+    title: 'phone',
     textContent: '',
     icon: '',
     image: '/images/hands.webp',
