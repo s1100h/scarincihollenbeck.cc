@@ -4,7 +4,6 @@ import { globalColor, rem } from 'styles/global_styles/Global.styles'
 
 export const FormContainer = styled.div`
   margin-bottom: 20px;
-
   .kwes-form {
     display: flex;
     flex-direction: column;

@@ -25,7 +25,7 @@ export const OfficeBtn = styled(Button)`
       props.backimg.isChosen &&
       `
 			background: no-repeat url(${props.backimg.imgOffice});
-			background-size: 50% 138%;
+			background-size: 47% 138%;
 			background-position: right top 29%;
 			pointer-events: none;
 
@@ -41,12 +41,12 @@ export const OfficeBtn = styled(Button)`
     box-shadow: ${globalShadow.hoveredShadow};
     background-color: ${globalColor.white};
     background: no-repeat url(${({ backimg }) => backimg.imgOffice});
-    background-size: 50% 138%;
+    background-size: 47% 138%;
     backdrop-filter: url(${({ backimg }) => backimg.imgOffice}) blur(5px) saturate(150%);
     background-position: right top 29%;
 
     div {
-      width: 86%;
+      width: 100%;
     }
   }
 
@@ -57,6 +57,12 @@ export const OfficeBtn = styled(Button)`
 
 export const OfficeBtnGradientWrapper = styled(GradientWrapper)`
   width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    #fafafa 54%,
+    rgba(255, 255, 255, 0) 100%
+  );
 `
 
 export const LocationsOfficesContainer = styled.section``
@@ -64,17 +70,43 @@ export const LocationsOfficesContainer = styled.section``
 export const CardListBox = styled.div`
   display: flex;
   gap: 25px;
-
+  ${media_breakpoint_down('xl')} {
+    flex-wrap: wrap;
+  }
+  ${media_breakpoint_down('lg')} {
+    flex-wrap: nowrap;
+  }
+  ${media_breakpoint_down('md')} {
+    flex-wrap: wrap;
+  }
   > :first-child {
-    width: 57%;
+    flex-basis: 50%;
+    ${media_breakpoint_down('xl')} {
+      flex-basis: 100%;
+    }
+    ${media_breakpoint_down('lg')} {
+      flex-basis: 50%;
+    }
+    ${media_breakpoint_down('md')} {
+      flex-basis: 100%;
+    }
   }
 
   ul {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    flex-basis: 50%;
     gap: 13px;
-
+    margin-bottom: 0;
+    ${media_breakpoint_down('xl')} {
+      flex-basis: 100%;
+    }
+    ${media_breakpoint_down('lg')} {
+      flex-basis: 50%;
+    }
+    ${media_breakpoint_down('md')} {
+      flex-basis: 100%;
+    }
     li {
       width: 100%;
       position: relative;
@@ -88,7 +120,7 @@ export const CardListBox = styled.div`
         .hover-blur {
           display: flex;
           height: 100%;
-          width: 50%;
+          width: 47%;
           top: 0;
           right: 0;
           background: rgba(255, 255, 255, 60%);

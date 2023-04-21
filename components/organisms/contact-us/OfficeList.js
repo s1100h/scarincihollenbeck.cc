@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   CardListBox,
@@ -9,12 +9,19 @@ import {
 import Map from '../../molecules/location/Map';
 import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';
 
-const OfficeList = ({ officesArr }) => {
+const OfficeList = ({ officesArr, formHeight = 600 }) => {
   const [chosenOffice, setOffice] = useState(officesArr[0]);
+  const locationWrapper = useRef();
+  const [locationHeight, setLocationHeight] = useState(300);
+
+  useEffect(() => {
+    setLocationHeight(locationWrapper.current.clientHeight);
+  }, [locationWrapper]);
+
   return (
     <LocationsOfficesContainer>
-      <Map map={chosenOffice.mapLink} height={600} />
-      <CardListBox>
+      <Map map={chosenOffice.mapLink} height={formHeight - locationHeight - 60} />
+      <CardListBox ref={locationWrapper}>
         <CurrentOfficeCard {...chosenOffice}>
           <Link href={chosenOffice.uri} className="mt-3 mb-0 fw-bold">
             {chosenOffice.title}
