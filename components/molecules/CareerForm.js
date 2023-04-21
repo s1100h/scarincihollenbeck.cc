@@ -1,11 +1,17 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Col, Row, Button } from 'react-bootstrap';
+import kwesforms from 'kwesforms';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const CareerForm = ({ contact, title }) => {
   const router = useRouter();
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <div className="px-2 my-3">

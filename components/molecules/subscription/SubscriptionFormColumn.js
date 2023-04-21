@@ -1,13 +1,19 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
 import { CheckBoxesList } from 'styles/Subscription.style';
+import kwesforms from 'kwesforms';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const SubscriptionFormColumn = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    kwesforms.init();
+  }, []);
 
   return (
     <>
