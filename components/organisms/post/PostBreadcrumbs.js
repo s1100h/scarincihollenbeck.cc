@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BreadcrumbsListContainer, ButtonBreadcrumb } from '../../../styles/Breadcrumbs.style';
 
 const delegatePathFunc = (CrumbsPath, router) => {
@@ -86,13 +86,18 @@ const delegatePathFunc = (CrumbsPath, router) => {
 
 const PostBreadCrumbs = () => {
   const router = useRouter();
-  const crumbs = useMemo(
-    () => router.asPath
+  const [crumbs, setCrumbs] = useState();
+
+  useEffect(() => {
+    const filteredCrumbs = router.asPath
       .split('/')
       .filter((crumb) => crumb !== '')
-      .filter((crumb) => crumb.indexOf('https:') < 0),
-    [router.asPath],
-  );
+      .filter((crumb) => crumb.indexOf('https:') < 0);
+
+    if (filteredCrumbs) {
+      setCrumbs(filteredCrumbs);
+    }
+  }, [router.asPath]);
 
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">

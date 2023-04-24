@@ -4,6 +4,12 @@ import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 import { GradientWrapper } from './SingleSubHeader.style'
 
+const linearGradientPosition = (position) => `
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    #fafafa ${position}%,
+    rgba(255, 255, 255, 0) 100%
+`
 export const OfficeBtn = styled(Button)`
   display: flex;
   padding: 20px 25px;
@@ -47,6 +53,7 @@ export const OfficeBtn = styled(Button)`
 
     div {
       width: 100%;
+      background: linear-gradient(${linearGradientPosition(47)});
     }
   }
 
@@ -57,12 +64,11 @@ export const OfficeBtn = styled(Button)`
 
 export const OfficeBtnGradientWrapper = styled(GradientWrapper)`
   width: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    #fafafa 54%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(${linearGradientPosition(54)});
+
+  ${media_breakpoint_down('md')} {
+    background: linear-gradient(${linearGradientPosition(58)});
+  }
 `
 
 export const LocationsOfficesContainer = styled.section``
@@ -70,23 +76,30 @@ export const LocationsOfficesContainer = styled.section``
 export const CardListBox = styled.div`
   display: flex;
   gap: 25px;
+
   ${media_breakpoint_down('xl')} {
     flex-wrap: wrap;
   }
+
   ${media_breakpoint_down('lg')} {
     flex-wrap: nowrap;
   }
+
   ${media_breakpoint_down('md')} {
     flex-wrap: wrap;
   }
+
   > :first-child {
     flex-basis: 50%;
+
     ${media_breakpoint_down('xl')} {
       flex-basis: 100%;
     }
+
     ${media_breakpoint_down('lg')} {
       flex-basis: 50%;
     }
+
     ${media_breakpoint_down('md')} {
       flex-basis: 100%;
     }
@@ -98,15 +111,19 @@ export const CardListBox = styled.div`
     flex-basis: 50%;
     gap: 13px;
     margin-bottom: 0;
+
     ${media_breakpoint_down('xl')} {
       flex-basis: 100%;
     }
+
     ${media_breakpoint_down('lg')} {
       flex-basis: 50%;
     }
+
     ${media_breakpoint_down('md')} {
       flex-basis: 100%;
     }
+
     li {
       width: 100%;
       position: relative;
@@ -123,7 +140,7 @@ export const CardListBox = styled.div`
           width: 47%;
           top: 0;
           right: 0;
-          background: rgba(255, 255, 255, 60%);
+          background: rgba(255, 255, 255, 25%);
           z-index: 1;
         }
       }
@@ -134,8 +151,9 @@ export const CardListBox = styled.div`
 export const TileBox = styled.article`
   flex-basis: calc(50% - 10px);
   margin-bottom: 20px;
-  cursor: pointer;
+
   &:hover {
+    transition: 0.8s;
     box-shadow: ${globalShadow.hoveredShadow};
   }
 
@@ -146,9 +164,11 @@ export const TileBox = styled.article`
   &:first-child,
   &:nth-child(2) {
     flex-basis: calc(25% - 15px);
+
     ${media_breakpoint_down('xl')} {
       flex-basis: calc(50% - 10px);
     }
+
     ${media_breakpoint_down('sm')} {
       flex-basis: 100%;
     }
@@ -158,6 +178,7 @@ export const TileBox = styled.article`
     div {
       padding: 0;
       border: none;
+
       img {
         width: 100%;
         height: 100%;
@@ -174,22 +195,31 @@ export const TileBox = styled.article`
     display: flex;
     flex-direction: column;
     padding: 25px;
-    border: 1px solid ${globalColor.gray.gray10};
+    border: 1px solid ${globalColor.grayExtraLite.grayExtraLite40};
     height: 100%;
+
     ${media_breakpoint_down('lg')} {
       padding: 16px;
     }
+
     h4 {
       font-size: 32px;
       font-weight: 500;
       margin-bottom: 15px;
     }
+
     p {
       margin-bottom: 0;
     }
+
     a {
       font-weight: 500;
       color: ${globalColor.blue.ultramarine};
+      cursor: pointer;
+
+      :hover {
+        color: ${globalColor.red.darkRed};
+      }
     }
   }
 
@@ -202,6 +232,7 @@ export const TileBox = styled.article`
     background-color: ${globalColor.blue.ultramarine};
     border-radius: 4px;
     margin-bottom: 20px;
+
     svg {
       color: ${globalColor.white};
       width: 25px;
@@ -216,6 +247,7 @@ export const PuzzleCotainer = styled.section`
   justify-content: space-between;
   margin-top: 80px;
   margin-bottom: 130px;
+
   ${media_breakpoint_down('xl')} {
     margin-top: 40px;
     margin-bottom: 70px;

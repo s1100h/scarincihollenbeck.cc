@@ -61,7 +61,8 @@ export const BackgroundContainer = styled.section`
   }}
 
   ${media_breakpoint_down('md')} {
-    background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 54vw bottom 0%')};
+    background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 50vw bottom 0%')};
+    background-size: 100%;
     padding-bottom: 20px;
   }
 
@@ -103,12 +104,13 @@ export const Description = styled.p`
   width: 50vw;
   color: ${globalColor.gray.gray80};
   margin-bottom: 0;
-  background-color: rgb(255 255 255 / 58%);
+
   ${media_breakpoint_down('xl')} {
     width: 60vw;
   }
 
   ${media_breakpoint_down('md')} {
+    background-color: rgb(255 255 255 / 58%);
     color: ${globalColor.black};
   }
 

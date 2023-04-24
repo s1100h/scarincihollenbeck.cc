@@ -8,6 +8,7 @@ import {
 import Link from 'next/link';
 import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
 import PostBreadcrumbs from '../components/organisms/post/PostBreadcrumbs';
+import { JSXWithDynamicLinks } from '../components/atoms/micro-templates/JSXWithDynamicLinks';
 
 const SingleSubHeader = ({
   title,
@@ -56,10 +57,9 @@ const SingleSubHeader = ({
           {formatDate(date)}
         </p>
       )}
-      <Description
-        className="animate__animated animate__fadeInUp animate__fast sub-title"
-        dangerouslySetInnerHTML={createMarkup(subtitle)}
-      />
+      <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
+        <JSXWithDynamicLinks HTML={subtitle} />
+      </Description>
       {tabs?.length > 0 && (
         <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
       )}
