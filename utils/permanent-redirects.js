@@ -5,7 +5,7 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
-    source: '/form-page/:slug*',
+    source: '/contact-us/:slug*',
     destination: '/',
     permanent: true,
   },
@@ -22,6 +22,11 @@ const PERMANENT_REDIRECTS = [
   {
     source: '/attorneys/scarinci-hollenbeck',
     destination: '/firm-overview',
+    permanent: true,
+  },
+  {
+    source: '/location',
+    destination: '/location/little-falls',
     permanent: true,
   },
   {

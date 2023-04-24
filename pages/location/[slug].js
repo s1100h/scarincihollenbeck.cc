@@ -3,13 +3,44 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
-import { getLocationContent } from 'utils/queries';
-import { BASE_API_URL, headers } from 'utils/constants';
+import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { getIdDirectionPdfLittleFallsQuery } from 'utils/graphql-queries';
-import { correctAttorneyLink } from 'utils/helpers';
+import { getOfficeAndMoreData } from 'utils/graphql-queries';
+import { getAttorneys } from '../attorneys';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
+
+const getOfficeData = async (slug) => {
+  const { officeLocation, officeLocations } = await fetchAPI(getOfficeAndMoreData, {
+    variables: { id: slug },
+  });
+  if (officeLocation?.officeMainInformation?.autoMap?.link?.length > 0) {
+    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.link;
+  }
+  if (officeLocation?.officeMainInformation?.trainStationsMap?.link?.length > 0) {
+    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.link;
+  }
+
+  const currentOffice = {
+    databaseId: officeLocation.databaseId,
+    title: officeLocation.title,
+    featuredImage: officeLocation.featuredImage.node.sourceUrl,
+    seo: officeLocation.seo,
+    ...officeLocation.officeMainInformation,
+  };
+
+  const offices = officeLocations.nodes.map((office) => ({
+    databaseId: office.databaseId,
+    featuredImage: office.featuredImage.node.sourceUrl,
+    uri: office.uri,
+    slug: office.slug,
+    ...office.officeMainInformation,
+  }));
+  return {
+    currentOffice,
+    offices,
+  };
+};
 
 /** Fetch all the location pages urls from WP REST API * */
 const getLocationPaths = async () => {
@@ -26,78 +57,64 @@ const getLocationPaths = async () => {
 /** fetch and build urls for static pages generation */
 export const getStaticPaths = async () => {
   const paths = await getLocationPaths();
-
   return {
     paths,
     fallback: 'blocking',
   };
 };
 
-export const getPdfLink = async () => {
-  const { officeLocationBy } = await fetchAPI(getIdDirectionPdfLittleFallsQuery, {});
-  return officeLocationBy.officeMainInformation;
-};
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
   const slug = params?.slug;
-  let autoMap = '';
-  let trainStationsMap = '';
 
   if (!slug) {
     return {
       notFound: true,
     };
   }
-
-  const [locations, currentOffice, currentOfficePosts] = await getLocationContent(slug);
-
-  if (currentOffice.id === 29436) {
-    const id = await getPdfLink();
-    autoMap = id.autoMap.link;
-    trainStationsMap = id.trainStationsMap.link;
-  }
-
-  if (Object.keys(currentOffice).includes('status') && currentOffice.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (Object.keys(currentOffice).includes('data') && currentOffice.data.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  currentOffice.attorneys = currentOffice.attorneys.map((attorney) => {
-    attorney.link = correctAttorneyLink(attorney.link);
-
-    return {
-      ...attorney,
-    };
+  const { currentOffice, offices } = await getOfficeData(slug);
+  const attorneys = await getAttorneys();
+  attorneys.sort((a, b) => {
+    const aLoc = a.location_array.find((loc) => loc.officeMainInformation);
+    const bLoc = b.location_array.find((loc) => loc.officeMainInformation);
+    if (!aLoc || !bLoc) {
+      // If either attorney doesn't have a location with officeMainInformation, don't sort
+      return 0;
+    }
+    return aLoc.officeMainInformation.localeCompare(bLoc.officeMainInformation);
   });
+
+  const makeSlugRegex = /^\/[^/]+\/([^/]+)\//;
+
+  currentOffice.attorneys = attorneys.filter((attorney) => {
+    const location = attorney.location_array[0];
+    const slugFromUri = location.uri.match(makeSlugRegex)[1];
+    return slugFromUri === slug;
+  }) || [];
+
+  if (!currentOffice) {
+    return {
+      notFound: true,
+    };
+  }
 
   const attorneysSchema = currentOffice.attorneys.map((attorney) => ({
     '@type': 'Person',
-    name: attorney.name,
+    name: attorney.title,
     designation: attorney.designation,
-    image: attorney.image,
-    url: attorney.link,
-    telephone: attorney.contact,
+    image: attorney.better_featured_image,
+    url: `${PRODUCTION_URL}/attorneys/${attorney.link}`,
+    telephone: attorney.phone,
     jobTitle: 'Attorney',
   }));
 
   return {
     props: {
-      offices: locations.offices || {},
+      offices: offices || {},
       seo: currentOffice.seo || {},
       currentOffice,
       attorneysSchemaData: attorneysSchema,
-      posts: currentOfficePosts,
-      linkToPdfMap: {
-        autoMap,
-        trainStationsMap,
-      },
+      posts: [],
     },
     revalidate: 86400,
   };
@@ -105,12 +122,7 @@ export const getStaticProps = async ({ params }) => {
 
 /* Single location page component * */
 const SingleLocation = ({
-  seo,
-  offices,
-  currentOffice,
-  posts,
-  linkToPdfMap,
-  attorneysSchemaData,
+  seo, offices, currentOffice, posts, attorneysSchemaData,
 }) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);
@@ -130,7 +142,6 @@ const SingleLocation = ({
     currentOffice,
     attorneysSchemaData,
     posts,
-    linkToPdfMap,
   };
 
   return <LocationPage {...locationProps} />;

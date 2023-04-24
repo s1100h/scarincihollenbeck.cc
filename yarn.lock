@@ -2917,10 +2917,10 @@ jsx-ast-utils@^3.3.3:
     array-includes "^3.1.5"
     object.assign "^4.1.3"
 
-kwesforms@^2.0.5:
-  version "2.1.20"
-  resolved "https://registry.yarnpkg.com/kwesforms/-/kwesforms-2.1.20.tgz#ed8425974a93a0d71e1360ce7529536cc7d4c9e5"
-  integrity sha512-pJnHeOVHgIC1nWcPk338k6B82GdN5/5WLPwWdSn82I1feQzvSD42U3z4KEaz9EDZ4cAOcsLecjF4L7WOz5RAmA==
+kwesforms@^2.1.27:
+  version "2.1.27"
+  resolved "https://registry.yarnpkg.com/kwesforms/-/kwesforms-2.1.27.tgz#6f1c41b9d2cbf088ee9a8a97b96446aad812fecb"
+  integrity sha512-DBePBSWWivBub3cI2y0Dvbr9c5Jh/1U8/DmKnmi/FP1zmw2FzsO1/ZE13V7lLa6ep87Cv4BLpCalipCSZN6IrQ==
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"

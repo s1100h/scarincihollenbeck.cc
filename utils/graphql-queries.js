@@ -1226,6 +1226,96 @@ export const adminsQuery = `query AttorneyPostsById {
   }
 }`;
 
+export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
+  officeLocation(id: $id, idType: SLUG) {
+    databaseId
+    title
+    officeMainInformation {
+      autoMap {
+        link
+        databaseId
+      }
+      fax
+      floor
+      mapLink
+      phone
+      postCode
+      streetAddress
+      addressLocality
+      officePractices {
+        ... on Practice {
+          id
+          uri
+          title
+          databaseId
+        }
+      }
+      trainStationsMap {
+        link
+        databaseId
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    seo {
+      metaDesc
+      title
+    }
+  }
+  officeLocations(first: 50) {
+    nodes {
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      officeMainInformation {
+        addressLocality
+        addressCountry
+        addressRegion
+        fax
+        floor
+        phone
+        streetAddress
+        postCode
+      }
+      uri
+      slug
+    }
+  }
+}`;
+
+export const getOffices = `query FirmPageQuery {
+  officeLocations(first: 50) {
+    nodes {
+      databaseId
+      title
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      officeMainInformation {
+        addressLocality
+        addressCountry
+        addressRegion
+        fax
+        floor
+        phone
+        streetAddress
+        postCode
+        mapLink
+      }
+      uri
+      slug
+    }
+  }
+}`;
+
 export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
   officeLocationBy(officeLocationId: 29436) {
     officeMainInformation {

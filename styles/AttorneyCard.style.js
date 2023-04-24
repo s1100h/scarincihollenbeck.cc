@@ -5,7 +5,8 @@ import { media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 export const AttorneyCardBox = styled.article`
   display: flex;
   border: 0.9px solid ${globalColor.graySmoke.smoke};
-  width: 450px;
+  min-width: 450px;
+  flex-basis: calc(33.3% - 15px);
   padding: 20px 0 17px 20px;
   box-shadow: 0 0.25rem 0.33rem rgba(0, 0, 0, 0.1);
 

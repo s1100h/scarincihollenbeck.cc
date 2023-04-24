@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import AttorneyCard from './AttorneyCard';
+import { ItemVirtual, VirtualListContainer } from '../../styles/VirtualizedMembers';
 
-const VirtualizedMembers = ({ members }) => {
+const VirtualizedMembers = ({ members, title }) => {
   const parentRef = useRef();
 
   const rowVirtualizer = useVirtual({
@@ -14,34 +15,14 @@ const VirtualizedMembers = ({ members }) => {
 
   return (
     <>
-      <div
-        ref={parentRef}
-        style={{
-          height: '450px',
-          width: '100%',
-          overflow: 'auto',
-          borderRadius: '10px',
-        }}
-      >
-        <div
-          style={{
-            height: `${rowVirtualizer.totalSize}px`,
-            width: '100%',
-            position: 'relative',
-          }}
-        >
+      {title.length > 0 && <h4>{title}</h4>}
+      <VirtualListContainer ref={parentRef} listHight={rowVirtualizer.totalSize}>
+        <ul>
           {rowVirtualizer.virtualItems.map((virtualRow) => (
-            <div
+            <ItemVirtual
+              itemTransform={virtualRow.start}
               key={members[virtualRow.index].lastName}
               ref={virtualRow.measureRef}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '205px',
-                transform: `translateY(${virtualRow.start}px)`,
-              }}
             >
               <AttorneyCard
                 link={
@@ -49,18 +30,18 @@ const VirtualizedMembers = ({ members }) => {
                     ? members[virtualRow.index].link
                     : `/attorneys/${members[virtualRow.index].link}`
                 }
-                image={members[virtualRow.index].image}
-                name={members[virtualRow.index].name}
+                image={
+                  members[virtualRow.index].image || members[virtualRow.index].better_featured_image
+                }
+                name={members[virtualRow.index].name || members[virtualRow.index].title}
                 designation={members[virtualRow.index].designation}
-                number={members[virtualRow.index].contact}
+                number={members[virtualRow.index].contact || members[virtualRow.index].phone}
                 email={members[virtualRow.index].email}
-                width={80}
-                height={112}
               />
-            </div>
+            </ItemVirtual>
           ))}
-        </div>
-      </div>
+        </ul>
+      </VirtualListContainer>
     </>
   );
 };

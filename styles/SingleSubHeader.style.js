@@ -12,8 +12,8 @@ export const BackgroundContainer = styled.section`
     url(${({ props }) =>
       props?.isHoliday ? '/images/holiday-banner.webp' : '/images/skyscraper2.png'});
   background-position: ${({ props }) =>
-    props?.isHoliday ? 'right 1% bottom 31%' : 'right 9% bottom 45%'};
-  background-size: ${({ props }) => (props?.isHoliday ? 'auto' : 'contain')};
+    props?.isHoliday?.length > 0 ? 'right 1% bottom 31%' : 'right 9% bottom 45%'};
+  background-size: ${({ props }) => (props?.isHoliday?.length > 0 ? 'auto' : 'contain')};
   height: auto;
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => {
@@ -23,30 +23,66 @@ export const BackgroundContainer = styled.section`
   }};
   margin-bottom: 50px;
   box-shadow: ${rem(21)} 0 ${rem(32)} rgb(0 0 0 / 10%);
-
-  ${media_breakpoint_down('xl')} {
-    ${({ props }) =>
-      props?.isHoliday
-        ? ''
-        : `background-position: right 9% bottom 0%;
-      background-size: 50%;
-      padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
-      `};
-  }
+  position: relative;
 
   ${media_breakpoint_down('lg')} {
     background-size: ${({ props }) => (props?.isHoliday ? 'auto' : 'contain')};
-    /* background-position: ${({ props }) => (props?.isHoliday ? 'right 1% bottom 31%' : '')}; */
   }
 
+  ${({ props }) => {
+    return (
+      props?.backgroundImage?.length > 0 &&
+      `
+      background: no-repeat url(${props?.backgroundImage});
+      background-size: 50% 138%;
+      background-position: right top 29%;
+      
+      ${media_breakpoint_down('lg')} {
+         background-size: 50%;
+        }
+        
+      ${media_breakpoint_down('md')}{
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      `
+    )
+  }}
+
+  ${({ props }) => {
+    return props?.isHoliday?.length > 0
+      ? `${media_breakpoint_down('xl')} {
+             background-position: right 9% bottom 0%;
+             background-size: 50%;
+             padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
+          }
+          `
+      : ''
+  }}
+
   ${media_breakpoint_down('md')} {
-    background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 54vw bottom 0%')};
+    background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 50vw bottom 0%')};
+    background-size: 100%;
+    padding-bottom: 20px;
   }
 
   ${media_breakpoint_exactly_down(504)} {
-    background-size: ${({ props }) => (props?.isHoliday ? '' : '100%')};
+    background-size: ${({ props }) => (props?.isHoliday ? '' : '108%')};
     background-position: ${({ props }) => (props?.isHoliday ? '' : 'bottom 0%')};
   }
+`
+
+export const GradientWrapper = styled.div`
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 50%,
+    ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%,
+    rgba(255, 255, 255, 0) 68%
+  );
 `
 
 export const SubHeaderContent = styled(Container)`
@@ -56,17 +92,25 @@ export const SubHeaderContent = styled(Container)`
 
     color: ${globalColor.black};
   }
+
+  ${media_breakpoint_down('sm')} {
+    h1 {
+      font-size: 1.85rem;
+    }
+  }
 `
 
-export const Description = styled.section`
+export const Description = styled.p`
   width: 50vw;
   color: ${globalColor.gray.gray80};
+  margin-bottom: 0;
 
   ${media_breakpoint_down('xl')} {
     width: 60vw;
   }
 
   ${media_breakpoint_down('md')} {
+    background-color: rgb(255 255 255 / 58%);
     color: ${globalColor.black};
   }
 

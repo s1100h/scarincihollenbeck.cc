@@ -53,7 +53,7 @@ export const getKaterinTraugh = async () => {
   };
 };
 
-const getAttorneys = async () => {
+export const getAttorneys = async () => {
   const { attorneyProfiles } = await fetchAPI(attorneysQuery, {});
 
   attorneyProfiles.nodes.forEach((attorneyItem, idx) => {

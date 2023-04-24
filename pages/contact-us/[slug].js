@@ -1,12 +1,9 @@
-import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FormPageContent from 'components/pages/FormPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { contactSubscribePageQuery } from 'utils/graphql-queries';
-import { LocationContext } from 'contexts/LocationContext';
-import { getLocationContent } from 'utils/queries';
+import { contactSubscribePageQuery, getOffices } from 'utils/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
@@ -19,10 +16,24 @@ const contactSubscribePage = async (slug) => {
   return data?.pageBy;
 };
 
+const getOfficesData = async () => {
+  const { officeLocations } = await fetchAPI(getOffices);
+
+  return officeLocations.nodes.map((office) => ({
+    databaseId: office.databaseId,
+    featuredImage: office.featuredImage.node.sourceUrl,
+    uri: office.uri,
+    slug: office.slug,
+    mapLink: office.mapLink,
+    title: office.title,
+    ...office.officeMainInformation,
+  }));
+};
+
 /** Create urls for form pages for building static pages */
 export const getStaticPaths = () => {
   const formPages = ['contact', 'subscribe'];
-  const modUrls = formPages.map((url) => `/form-page/${url}`);
+  const modUrls = formPages.map((url) => `/contact-us/${url}`);
 
   return {
     paths: modUrls || [],
@@ -34,22 +45,8 @@ export const getStaticPaths = () => {
 export const getStaticProps = async ({ params }) => {
   const slug = params.slug;
   const request = await contactSubscribePage(slug);
-  let offices = [];
+  const offices = await getOfficesData();
 
-  if (slug.includes('contact')) {
-    const [locations] = await getLocationContent('little-falls');
-    const officesMod = locations.offices.map(({
-      id, title, address, phone, fax, slug,
-    }) => ({
-      id,
-      title,
-      address,
-      phone,
-      fax,
-      slug,
-    }));
-    offices = [...officesMod];
-  }
   const {
     seo, title, formPages, content,
   } = request;
@@ -71,17 +68,10 @@ const FormPage = ({
   title, seo, content, formLabel, slug, offices,
 }) => {
   const router = useRouter();
-  const { locations, setLocations } = useContext(LocationContext);
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
-  /** set offices context */
-  useEffect(() => {
-    if (offices && !locations) {
-      setLocations(offices);
-    }
-  }, [offices]);
 
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
@@ -92,6 +82,7 @@ const FormPage = ({
     bodyContent: clearBody,
     canonicalUrl,
     seo,
+    offices,
     site: {
       title,
       description: subTitle,

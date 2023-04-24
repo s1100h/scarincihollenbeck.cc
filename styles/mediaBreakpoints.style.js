@@ -22,3 +22,10 @@ export const media_breakpoint_range = (sizeMin, sizeMax) => {
           and (max-device-width: ${sizeWindow[sizeMax]}px)
           `
 }
+
+export const media_breakpoint_range_exacly = (sizeMin, sizeMax) => {
+  return `@media only screen
+          and (min-device-width: ${sizeMin}px)
+          and (max-device-width: ${sizeMax}px)
+          `
+}

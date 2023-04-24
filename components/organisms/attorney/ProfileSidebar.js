@@ -3,7 +3,7 @@ import { ProfileSidebarContainer, SidebarTile } from 'styles/attorney-page/Profi
 import ProfileSidebarAwards from 'components/molecules/attorney/ProfileSidebarAwards';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 
-const ProfileSidebar = ({ services, awards, content }) => (
+const ProfileSidebar = ({ services, awards }) => (
   <ProfileSidebarContainer>
     <Services services={services} />
     {awards && <ProfileSidebarAwards awards={awards} />}
@@ -11,7 +11,7 @@ const ProfileSidebar = ({ services, awards, content }) => (
       <SidebarTile indent="true" red="true">
         Let`s get in touch
       </SidebarTile>
-      <ContactForm {...content} />
+      <ContactForm />
     </div>
   </ProfileSidebarContainer>
 );
