@@ -19,6 +19,13 @@ export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
         </Link>
       );
     }
+    if (domNode.type === 'tag' && domNode.name === 'a') {
+      return (
+        <Link href={domNode.attribs.href}>
+          {domNode.children[0]?.data || domNode.children[0]?.children[0]?.data}
+        </Link>
+      );
+    }
     if (domNode.type === 'tag' && domNode.name === 'img') {
       return (
         <Image
