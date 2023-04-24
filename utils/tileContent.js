@@ -9,7 +9,7 @@ export const tileContentArr = [
   {
     title: 'For media inquiries',
     textContent: `
-    Please visit page our <strong>Chief Growth Officer</strong> <a href='/administration/peter-s-moeller'>Peter S. Moeller</a>.
+    Please contact <a href='/administration/peter-s-moeller'>Peter S. Moeller</a>, <strong>Chief Growth Officer</strong>.
     `,
     icon: <BsFileEarmarkRichtextFill />,
     id: 1,
@@ -17,7 +17,7 @@ export const tileContentArr = [
   {
     title: 'For job opportunities',
     textContent: `
-    Please visit our <a href='/careers'>Careers page.</a>
+    Please visit our <a href='/careers'>Careers page</a>.
     `,
     icon: <BsFillBriefcaseFill />,
     id: 2,
