@@ -135,11 +135,12 @@ ul {
 }
 
 h1 {
-  font-family: var(--font-KenjoI), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 h2 {
   font-size: ${rem(38)};
+  font-weight: 400;
 }
 
 h3 {

@@ -89,7 +89,8 @@ export const SubHeaderContent = styled(Container)`
   h1 {
     margin-bottom: 0;
     font-size: 3rem;
-
+    font-weight: 400;
+    text-transform: uppercase;
     color: ${globalColor.black};
   }
 
