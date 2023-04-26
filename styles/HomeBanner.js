@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, rem } from './global_styles/Global.styles'
 
 export const BannerContainer = styled.div`
   position: relative;
@@ -47,9 +47,9 @@ export const BannerContainer = styled.div`
   .text {
     font-family: var(--font-poppins), sans-serif;
     font-weight: 400;
-    font-size: 150px;
+    font-size: ${rem(165)};
     line-height: 151px;
-    color: #000000;
+    color: ${globalColor.black};
   }
 
   .text:first-child {
