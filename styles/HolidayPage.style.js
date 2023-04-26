@@ -36,7 +36,7 @@ export const HolidayLinkBox = styled.div`
       transition: 0.3s;
       display: flex;
       color: ${globalColor.white};
-      font-family: var(--font-KenjoI);
+      font-family: var(--font-poppins);
       font-size: ${rem(18)};
       font-weight: 600;
       position: absolute;

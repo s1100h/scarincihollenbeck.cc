@@ -45,7 +45,7 @@ export const BannerContainer = styled.div`
   }
 
   .text {
-    font-family: var(--font-KenjoI), sans-serif;
+    font-family: var(--font-poppins), sans-serif;
     font-weight: 400;
     font-size: 150px;
     line-height: 151px;

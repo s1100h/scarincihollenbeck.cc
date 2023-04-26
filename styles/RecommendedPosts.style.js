@@ -3,7 +3,7 @@ import { rem } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const NewsTitle = styled.h2`
-  font-family: var(--font-KenjoI);
+  font-family: var(--font-poppins);
   font-size: ${rem(72)};
   margin-top: 50px;
   margin-bottom: 35px;

@@ -97,5 +97,5 @@ export const SideBarContainer = styled.nav`
 export const AllArticlesTitle = styled.h3`
   font-weight: 600;
   font-size: 3rem;
-  font-family: var(--font-KenjoI), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 `

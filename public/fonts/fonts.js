@@ -1,5 +1,4 @@
-import localFont from '@next/font/local'
-import { Montserrat } from '@next/font/google';
+import { Montserrat, Poppins } from '@next/font/google';
 
 export const montserrat = Montserrat({
 	weight: ['300', '600', '900'],
@@ -8,15 +7,10 @@ export const montserrat = Montserrat({
 	preload: true,
 })
 
-export const KenjoI = localFont({
-	src: [
-		{
-			path: './KenjoI.ttf',
-			weight: '400',
-			style: 'normal',
-		},
-	],
-	variable: "--font-KenjoI",
+export const poppins = Poppins({
+	weight: ['300', '400', '500', '600', '900'],
+	subsets: ['latin'],
+	variable: '--font-poppins',
 	preload: true,
 });
 

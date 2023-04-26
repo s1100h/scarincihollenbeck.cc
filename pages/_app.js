@@ -22,7 +22,7 @@ import 'animate.css/animate.min.css';
  * Custom Style Sheets
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
-import { KenjoI, montserrat } from '../public/fonts/fonts';
+import { montserrat, poppins } from '../public/fonts/fonts';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -54,7 +54,7 @@ const SHSite = ({ Component, pageProps }) => {
           <GlobalStyle />
           <MainSiteHead />
           <Header />
-          <main className={`${KenjoI.variable} ${montserrat.variable}`}>
+          <main className={`${poppins.variable} ${montserrat.variable}`}>
             <Component {...pageProps} />
           </main>
           <SiteFooter />
