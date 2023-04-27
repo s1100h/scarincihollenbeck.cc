@@ -1,5 +1,10 @@
 import { CLOUDINARY_BASE_URL, OFFICE_LOCATIONS, PRODUCTION_URL } from './constants';
 
+// this is HTML checker
+export function isHTML(text) {
+  const htmlRegex = /^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$/i;
+  return htmlRegex.test(text);
+}
 // sort a list by its key
 export function sortByKey(list, key) {
   if (list !== undefined) {
