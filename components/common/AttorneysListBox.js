@@ -7,7 +7,6 @@ import {
   AttorneysTitleBox,
   UpDownBtn,
 } from 'styles/AttorneysListBox.style';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 const AttorneysListBox = ({ attorneys }) => {
   const { chair, attorneysList } = attorneys;
@@ -22,12 +21,12 @@ const AttorneysListBox = ({ attorneys }) => {
     if (attorneys.length <= 3) {
       return attorneys.map((attorney) => (
         <AttorneyCard
-          key={attorney.ID}
-          link={`/attorneys/${attorney.link}`}
-          image={formatSrcToCloudinaryUrl(attorney.image)}
-          name={attorney.name}
+          key={attorney.databaseId}
+          link={`${attorney.link}`}
+          image={attorney.profileImage}
+          name={attorney.title}
           designation={attorney.designation}
-          number={attorney.contact}
+          number={attorney.phoneNumber}
           email={attorney.email}
           width={80}
           height={112}
@@ -42,16 +41,16 @@ const AttorneysListBox = ({ attorneys }) => {
         isVertical
         componentsArr={attorneys.map((attorney) => (
           <AttorneyCard
-            link={`/attorneys/${attorney.link}`}
-            image={formatSrcToCloudinaryUrl(attorney.image)}
-            name={attorney.name}
+            link={`${attorney.link}`}
+            image={attorney.profileImage}
+            name={attorney.title}
             designation={attorney.designation}
-            number={attorney.contact}
+            number={attorney.phoneNumber}
             email={attorney.email}
             width={80}
             height={112}
             type="/attorneys/[slug]"
-            key={attorney.ID}
+            key={attorney.databaseId}
           />
         ))}
       />
@@ -64,11 +63,11 @@ const AttorneysListBox = ({ attorneys }) => {
         <ChairBox>
           <h5>Chair</h5>
           <AttorneyCard
-            link={`/attorneys/${chair[0].link}`}
-            image={formatSrcToCloudinaryUrl(chair[0].image)}
-            name={chair[0].name}
+            link={`${chair[0].link}`}
+            image={chair[0].profileImage}
+            name={chair[0].title}
             designation={chair[0].designation}
-            number={chair[0].contact}
+            number={chair[0].phoneNumber}
             email={chair[0].email}
             width={80}
             height={112}
