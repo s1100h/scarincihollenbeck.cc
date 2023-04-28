@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
-import { globalColor, rem } from './global_styles/Global.styles'
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
 
 const titlesFontSize = `
 font-size: ${rem(30)};
@@ -81,4 +82,59 @@ export const UpDownBtn = styled(Button)`
   border-radius: 50%;
   transform: ${({ rotate }) => (rotate ? 'rotate(180deg)' : 'none')};
   margin-left: ${({ rotate }) => (rotate ? '5px' : 'none')}; ;
+`
+
+export const AttorneysContainer = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  box-shadow: ${globalShadow.allSideShadow};
+  margin-bottom: 40px;
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1%;
+  }
+
+  article {
+    max-width: 430px;
+    min-width: 410px;
+    margin-bottom: 1%;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    article {
+      min-width: 407px;
+    }
+
+    > div {
+      justify-content: center;
+    }
+  }
+
+  ${media_breakpoint_exactly_down(470)} {
+    padding: 20px 5px;
+
+    h3 {
+      padding-left: 15px;
+    }
+
+    article {
+      padding: 5px;
+      min-width: 90%;
+    }
+  }
+
+  ${media_breakpoint_exactly_down(370)} {
+    article {
+      min-width: 310px;
+    }
+  }
 `

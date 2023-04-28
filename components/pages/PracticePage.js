@@ -73,7 +73,7 @@ const PracticePage = ({
               activeTab={activeTab}
             />
           </ColStyled>
-          <Col sm={4}>
+          <Col sm={12} md={8} lg={5} xl={4}>
             {corePractices.length > 0 && (
               <SideBarPracticeList title="Core Practices" practicesList={corePractices} />
             )}
@@ -83,9 +83,9 @@ const PracticePage = ({
           </Col>
         </Row>
         <Row>
-          <ColStyled sm={12} md={8} lg={5} xl={4}>
+          <ColStyled sm={12}>
             <AttorneysListBox
-              attorneys={{ chair: practice.chair, attorneysList: practice.attorneyList }}
+              attorneys={{ chairs: practice.chair, attorneysList: practice.attorneyList }}
             />
           </ColStyled>
         </Row>
