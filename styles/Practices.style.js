@@ -125,7 +125,8 @@ export const SideBarPracticeBox = styled.nav`
   padding: 10px 20px 20px;
   box-shadow: ${globalShadow.allSideShadow};
   margin-bottom: 20px;
-
+  position: sticky;
+  top: 180px;
   h3 {
     margin-bottom: 10px;
   }

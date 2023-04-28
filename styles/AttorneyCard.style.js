@@ -18,6 +18,7 @@ export const AttorneyCardBox = styled.article`
 
   ${media_breakpoint_exactly_down(612)} {
     width: 90vw;
+    min-width: 100%;
   }
 `
 
