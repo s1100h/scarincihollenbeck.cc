@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { globalColor } from './global_styles/Global.styles'
+import { globalColor, globalShadow } from './global_styles/Global.styles'
 
 export const ButtonTabToggle = styled(Dropdown.Toggle)`
   display: flex;
@@ -118,5 +118,32 @@ export const SearchWithArticle = styled.section`
 
   ${media_breakpoint_down('xl')} {
     flex-direction: column-reverse;
+  }
+`
+
+export const StickyWrapper = styled.div`
+  position: sticky;
+  top: 180px;
+  margin-bottom: 20px;
+`
+
+export const SideBarPracticeBox = styled.nav`
+  padding: 10px 20px 20px;
+  box-shadow: ${globalShadow.allSideShadow};
+  margin-bottom: 20px;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+  ul {
+    padding-left: 25px;
+    list-style: decimal;
+    margin-bottom: 0;
+
+    li {
+      a {
+        font-weight: 500;
+      }
+    }
   }
 `

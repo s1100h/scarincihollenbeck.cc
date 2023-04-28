@@ -66,7 +66,7 @@ const PostPage = ({
         date={post.date}
       />
       <RecommendedPosts
-        titleGeneralBlock="firm News & Press Releases"
+        titleGeneralBlock="Firm News & Press Releases"
         attorneyFooterNewsArticles={posts}
       />
     </>
