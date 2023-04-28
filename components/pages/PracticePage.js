@@ -8,6 +8,7 @@ import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import AttorneysListBox from 'components/common/AttorneysListBox';
 import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
+import { StickyWrapper } from '../../styles/Practices.style';
 
 const Body = dynamic(() => import('components/organisms/practice/Body'));
 
@@ -74,12 +75,14 @@ const PracticePage = ({
             />
           </ColStyled>
           <Col sm={12} md={8} lg={5} xl={4}>
-            {corePractices.length > 0 && (
-              <SideBarPracticeList title="Core Practices" practicesList={corePractices} />
-            )}
-            {practiceChildren.length > 0 && (
-              <SideBarPracticeList title="Related Practices" practicesList={practiceChildren} />
-            )}
+            <StickyWrapper>
+              {corePractices.length > 0 && (
+                <SideBarPracticeList title="Core Practices" practicesList={corePractices} />
+              )}
+              {practiceChildren.length > 0 && (
+                <SideBarPracticeList title="Related Practices" practicesList={practiceChildren} />
+              )}
+            </StickyWrapper>
           </Col>
         </Row>
         <Row>
