@@ -7,9 +7,9 @@ import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import AttorneysListBox from 'components/common/AttorneysListBox';
+import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
 
 const Body = dynamic(() => import('components/organisms/practice/Body'));
-const ListWrapperDynamic = dynamic(() => import('components/organisms/practices/ListWrapper'));
 
 const PracticePage = ({
   corePractices,
@@ -22,7 +22,6 @@ const PracticePage = ({
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
   const blogId = practice.blog_data_id[0];
-
   /** Handle Related Articles Query */
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
@@ -74,23 +73,21 @@ const PracticePage = ({
               activeTab={activeTab}
             />
           </ColStyled>
-          <ColStyled sm={10} md={8} lg={5} xl={4}>
-            <AttorneysListBox
-              attorneys={{ chair: practice.chair, attorneysList: practice.attorneyList }}
-            />
-          </ColStyled>
+          <Col sm={12} md={8} lg={5} xl={4}>
+            {corePractices.length > 0 && (
+              <SideBarPracticeList title="Core Practices" practicesList={corePractices} />
+            )}
+            {practiceChildren.length > 0 && (
+              <SideBarPracticeList title="Related Practices" practicesList={practiceChildren} />
+            )}
+          </Col>
         </Row>
         <Row>
-          <Col sm={12}>
-            {corePractices.length > 0 && (
-              <ListWrapperDynamic title="Core Practices" list={corePractices} isSimple />
-            )}
-          </Col>
-          <Col sm={12}>
-            {practiceChildren.length > 0 && (
-              <ListWrapperDynamic title="Related Practices" list={practiceChildren} isSimple />
-            )}
-          </Col>
+          <ColStyled sm={12}>
+            <AttorneysListBox
+              attorneys={{ chairs: practice.chair, attorneysList: practice.attorneyList }}
+            />
+          </ColStyled>
         </Row>
       </Container>
     </>

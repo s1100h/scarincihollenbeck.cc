@@ -15,7 +15,7 @@ const renderTitle = (titleArg, slugPath) => {
   return titleArg === theFirmManagePartner ? 'Firm management' : titleArg;
 };
 
-const AttorneyCards = (title, content, pathname) => {
+const AttorneyCards = ({ title, content, pathname }) => {
   const theFirmManagePartner = 'Firm Managing Partner';
 
   return (

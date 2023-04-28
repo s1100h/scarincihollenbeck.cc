@@ -1,107 +1,55 @@
-import SliderCommon from 'components/atoms/SliderCommon';
-import AttorneyCard from 'components/shared/AttorneyCard';
-import {
-  ChairBox,
-  ListContainer,
-  AttorneysSliderBox,
-  AttorneysTitleBox,
-  UpDownBtn,
-} from 'styles/AttorneysListBox.style';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import { AttorneysContainer } from 'styles/AttorneysListBox.style';
+import AttorneyCard from '../shared/AttorneyCard';
 
 const AttorneysListBox = ({ attorneys }) => {
-  const { chair, attorneysList } = attorneys;
-
-  let slider = null;
-
-  const setSliderRef = (element) => {
-    slider = element;
-  };
-
-  const renderAttorneysList = (attorneys) => {
-    if (attorneys.length <= 3) {
-      return attorneys.map((attorney) => (
-        <AttorneyCard
-          key={attorney.ID}
-          link={`/attorneys/${attorney.link}`}
-          image={formatSrcToCloudinaryUrl(attorney.image)}
-          name={attorney.name}
-          designation={attorney.designation}
-          number={attorney.contact}
-          email={attorney.email}
-          width={80}
-          height={112}
-          type="/attorneys/[slug]"
-        />
-      ));
-    }
-
-    return (
-      <SliderCommon
-        ref={(el) => setSliderRef(el)}
-        isVertical
-        componentsArr={attorneys.map((attorney) => (
-          <AttorneyCard
-            link={`/attorneys/${attorney.link}`}
-            image={formatSrcToCloudinaryUrl(attorney.image)}
-            name={attorney.name}
-            designation={attorney.designation}
-            number={attorney.contact}
-            email={attorney.email}
-            width={80}
-            height={112}
-            type="/attorneys/[slug]"
-            key={attorney.ID}
-          />
-        ))}
-      />
-    );
-  };
+  const { chairs, attorneysList } = attorneys;
 
   return (
-    <ListContainer>
-      {chair.length > 0 && (
-        <ChairBox>
-          <h5>Chair</h5>
-          <AttorneyCard
-            link={`/attorneys/${chair[0].link}`}
-            image={formatSrcToCloudinaryUrl(chair[0].image)}
-            name={chair[0].name}
-            designation={chair[0].designation}
-            number={chair[0].contact}
-            email={chair[0].email}
-            width={80}
-            height={112}
-            type="/attorneys/[slug]"
-          />
-        </ChairBox>
+    <>
+      {chairs.length > 0 && (
+        <AttorneysContainer>
+          <h3>Chair</h3>
+          <div>
+            {chairs.map((chair) => (
+              <AttorneyCard
+                key={chair.databaseId}
+                link={`${chair.link}`}
+                image={chair.profileImage}
+                name={chair.title}
+                designation={chair.designation}
+                number={chair.phoneNumber}
+                email={chair.email}
+                width={80}
+                height={112}
+                type="/attorneys/[slug]"
+              />
+            ))}
+          </div>
+        </AttorneysContainer>
       )}
 
-      <AttorneysTitleBox isSingle={chair.length === 0 && 'true'}>
-        <h5>Attorneys</h5>
-        <span>
-          (
-          {attorneysList.length}
-          )
-        </span>
-        {attorneysList.length >= 3 && (
-          <>
-            <UpDownBtn variant="secondary" size="sm" onClick={() => slider?.slickNext()}>
-              ▲
-            </UpDownBtn>
-            <UpDownBtn
-              variant="secondary"
-              size="sm"
-              rotate="true"
-              onClick={() => slider?.slickPrev()}
-            >
-              ▲
-            </UpDownBtn>
-          </>
-        )}
-      </AttorneysTitleBox>
-      <AttorneysSliderBox>{renderAttorneysList(attorneysList)}</AttorneysSliderBox>
-    </ListContainer>
+      {attorneysList.length > 0 && (
+        <AttorneysContainer>
+          <h3>Attorneys</h3>
+          <div>
+            {attorneysList.map((attorney) => (
+              <AttorneyCard
+                key={attorney.databaseId}
+                link={`${attorney.link}`}
+                image={attorney.profileImage}
+                name={attorney.title}
+                designation={attorney.designation}
+                number={attorney.phoneNumber}
+                email={attorney.email}
+                width={80}
+                height={112}
+                type="/attorneys/[slug]"
+              />
+            ))}
+          </div>
+        </AttorneysContainer>
+      )}
+    </>
   );
 };
 

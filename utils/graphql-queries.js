@@ -776,6 +776,44 @@ export const practicePageQuery = `query PracticesPagesQuery {
   }
 }`;
 
+export const getAttorneysForPractice = `query FirmPageQuery($id: ID!) {
+  practice(id: $id, idType: URI) {
+    practicesIncluded {
+      includeAttorney {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+          }
+        }
+      }
+      sectionChief {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 /** careers landing page query */
 export const careersPageQuery = `query CareersPagesQuery {
   pageBy(pageId: 46660) {
