@@ -6,7 +6,7 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBre
 export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   justify-content: ${({ props }) => (props?.isTabs || props?.isBlog ? 'flex-start' : 'center')};
   background: no-repeat
     url(${({ props }) =>
