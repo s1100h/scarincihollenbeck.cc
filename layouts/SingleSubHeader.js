@@ -1,4 +1,4 @@
-import { changeTitle, createMarkup, formatDate } from 'utils/helpers';
+import { changeTitle, formatDate } from 'utils/helpers';
 import {
   BackgroundContainer,
   Description,
