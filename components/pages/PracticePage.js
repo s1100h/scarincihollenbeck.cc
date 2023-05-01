@@ -22,7 +22,13 @@ const PracticePage = ({
 }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
+  const [subtitlePractice, setSubtitlePractice] = useState();
   const blogId = practice.blog_data_id[0];
+
+  useEffect(() => {
+    setSubtitlePractice(practice.description);
+  }, [practice.description]);
+
   /** Handle Related Articles Query */
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
@@ -52,7 +58,7 @@ const PracticePage = ({
       />
       <SingleSubHeader
         title={practice.title}
-        subtitle={practice.description}
+        subtitle={(subtitlePractice?.length > 0 && subtitlePractice) || ''}
         offset={0}
         span={8}
         tabs={tabs}
