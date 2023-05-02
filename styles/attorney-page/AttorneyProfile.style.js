@@ -1,7 +1,11 @@
 import { Col } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+  media_breakpoint_up,
+} from '../mediaBreakpoints.style'
 
 export const ProfileHeaderContainer = styled.div`
   padding: ${globalIndents.attorneyProfilePaddings};
@@ -15,9 +19,29 @@ export const ProfileHeaderContainer = styled.div`
 
   ${media_breakpoint_down('sm')} {
     position: sticky;
-    top: calc(-100vh + 250px);
     margin-bottom: 72px;
+    top: calc(-100vh + 150px);
     z-index: 10;
+  }
+
+  ${media_breakpoint_exactly_down(412)} {
+    top: calc(-100vh + 180px);
+  }
+
+  ${media_breakpoint_exactly_down(393)} {
+    top: calc(-100vh + 115px);
+  }
+
+  ${media_breakpoint_exactly_down(390)} {
+    top: calc(-100vh + 157px);
+  }
+
+  ${media_breakpoint_exactly_down(375)} {
+    top: -103vh;
+  }
+
+  ${media_breakpoint_exactly_down(360)} {
+    top: calc(-100vh + 54px);
   }
 `
 
@@ -63,6 +87,10 @@ export const SubTitleProfileBox = styled.div`
   p {
     color: ${globalColor.gray.gray80};
     margin-bottom: 0;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    height: 90px;
   }
 `
 
@@ -156,4 +184,28 @@ export const ItemContactList = styled.li`
 export const ProfileName = styled.h1`
   font-family: var(--font-montserrat), sans-serif;
   font-weight: 600;
+`
+
+export const UpFromMobile = styled.div`
+  ${media_breakpoint_up('md')} {
+    display: block;
+  }
+  ${media_breakpoint_down('sm')} {
+    display: none;
+  }
+`
+export const MobileWrapp = styled.div`
+  display: none;
+  margin-bottom: 10px;
+  ${media_breakpoint_down('sm')} {
+    display: flex;
+    justify-content: center;
+  }
+
+  ${media_breakpoint_exactly_down(391)} {
+    img {
+      width: 300px;
+      height: 350px;
+    }
+  }
 `
