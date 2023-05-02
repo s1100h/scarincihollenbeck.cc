@@ -1,5 +1,12 @@
 import { useId } from 'react';
-import { ButtonGroup, ButtonTab } from 'styles/ButtonsMenu.style';
+import {
+  ButtonDropdown,
+  ButtonGroup,
+  ButtonTab,
+  MobileGroup,
+  NavItem,
+} from 'styles/ButtonsMenu.style';
+import { useRouter } from 'next/router';
 
 const changeTitleMap = {
   'Representative Matters': 'Matters',
@@ -9,32 +16,52 @@ const changeTitleMap = {
   'Notable Facts': 'Facts',
 };
 
-export const ButtonGroupMenu = ({ setActiveTab, activeTab, tabs }) => (
-  <>
-    <ButtonGroup>
-      {tabs.map((tab) => (
-        <ButtonTab
-          key={tab.id}
-          active={activeTab === tab.id ? 'true' : undefined}
-          onClick={() => setActiveTab(tab.id)}
-        >
-          {changeTitleMap[tab.title] || tab.title}
-        </ButtonTab>
-      ))}
-      {tabs.length > 0
-        && tabs.map(
-          (tab) => tab === 'More' && (
+export const ButtonGroupMenu = ({ setActiveTab, activeTab, tabs }) => {
+  const { route } = useRouter();
+  const routsCondition = route.includes('attorneys');
+
+  return (
+    <>
+      <ButtonGroup isNotProfile={routsCondition.toString() === 'true' ? 'true' : ''}>
+        {tabs.map((tab) => (
           <ButtonTab
-            key={useId()}
-            active={activeTab === 18 ? 'true' : undefined}
-            onClick={() => setActiveTab(18)}
+            key={tab.id}
+            active={activeTab === tab.id ? 'true' : undefined}
+            onClick={() => setActiveTab(tab.id)}
           >
-            More
+            {changeTitleMap[tab.title] || tab.title}
           </ButtonTab>
-          ),
-        )}
-    </ButtonGroup>
-  </>
-);
+        ))}
+        {tabs.length > 0
+          && tabs.map(
+            (tab) => tab === 'More' && (
+            <ButtonTab
+              key={useId()}
+              active={activeTab === 18 ? 'true' : undefined}
+              onClick={() => setActiveTab(18)}
+            >
+              More
+            </ButtonTab>
+            ),
+          )}
+      </ButtonGroup>
+      {!routsCondition && (
+        <MobileGroup>
+          <ButtonDropdown title="Menu">
+            {tabs.map((tab) => (
+              <NavItem
+                key={tab.id}
+                active={activeTab === tab.id ? 'true' : undefined}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.title}
+              </NavItem>
+            ))}
+          </ButtonDropdown>
+        </MobileGroup>
+      )}
+    </>
+  );
+};
 
 export default ButtonGroupMenu;

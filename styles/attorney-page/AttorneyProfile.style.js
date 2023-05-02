@@ -15,7 +15,7 @@ export const ProfileHeaderContainer = styled.div`
 
   ${media_breakpoint_down('sm')} {
     position: sticky;
-    top: calc(-100% + 250px);
+    top: calc(-100vh + 250px);
     margin-bottom: 72px;
     z-index: 10;
   }
