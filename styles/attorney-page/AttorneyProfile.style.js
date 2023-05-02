@@ -12,6 +12,13 @@ export const ProfileHeaderContainer = styled.div`
   ${media_breakpoint_down('xl')} {
     padding: 20px 20px;
   }
+
+  ${media_breakpoint_down('sm')} {
+    position: sticky;
+    top: calc(-100% + 250px);
+    margin-bottom: 72px;
+    z-index: 10;
+  }
 `
 
 export const ColStyled = styled(Col)`
@@ -76,6 +83,11 @@ export const AddressBox = styled.address`
   svg {
     color: ${globalColor.gray.gray80};
     width: 20px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    border-bottom: 1px solid ${globalColor.grayExtraLite.grayExtraLite50};
+    padding-bottom: 15px;
   }
 `
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Nav, NavDropdown } from 'react-bootstrap'
 import { globalColor } from './global_styles/Global.styles'
+import { media_breakpoint_down } from './mediaBreakpoints.style'
 
 export const commonBtnStyle = `
   height: 42px;
@@ -15,11 +16,10 @@ export const commonBtnStyle = `
   `
 
 export const ButtonTab = styled.div`
-  ${commonBtnStyle}
+  ${commonBtnStyle};
+  padding: 0.5rem 1rem;
   margin-right: 8px;
-  overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
 
   ${({ active }) =>
     active &&
@@ -28,6 +28,8 @@ export const ButtonTab = styled.div`
     background: ${globalColor.red.darkRed};
 		white-space: initial;
 		opacity: 1;
+		white-space: nowrap;
+
 	`}
 
   ${({ isMore }) =>
@@ -51,7 +53,7 @@ export const ButtonTab = styled.div`
 
 export const ButtonDropdown = styled(NavDropdown)`
   .dropdown-toggle {
-    ${commonBtnStyle}
+    ${commonBtnStyle};
     max-width: 160px;
     min-width: 120px;
 
@@ -73,11 +75,13 @@ export const ButtonDropdown = styled(NavDropdown)`
 `
 
 export const ButtonGroup = styled.div`
-  display: none;
+  display: flex;
+  padding: 10px 0;
   margin-top: ${(props) => props?.marTop || '25px'};
+  overflow-x: auto;
 
-  @media (min-width: 768px) {
-    display: flex;
+  ${media_breakpoint_down('sm')} {
+    margin-bottom: -100px;
   }
 `
 

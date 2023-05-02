@@ -1,11 +1,5 @@
 import { useId } from 'react';
-import {
-  ButtonDropdown,
-  ButtonGroup,
-  ButtonTab,
-  MobileGroup,
-  NavItem,
-} from 'styles/ButtonsMenu.style';
+import { ButtonGroup, ButtonTab } from 'styles/ButtonsMenu.style';
 
 const changeTitleMap = {
   'Representative Matters': 'Matters',
@@ -40,19 +34,6 @@ export const ButtonGroupMenu = ({ setActiveTab, activeTab, tabs }) => (
           ),
         )}
     </ButtonGroup>
-    <MobileGroup>
-      <ButtonDropdown title="Menu">
-        {tabs.map((tab) => (
-          <NavItem
-            key={tab.id}
-            active={activeTab === tab.id ? 'true' : undefined}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.title}
-          </NavItem>
-        ))}
-      </ButtonDropdown>
-    </MobileGroup>
   </>
 );
 
