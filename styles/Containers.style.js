@@ -97,6 +97,7 @@ export const CustomContainer = styled(Container)`
   .breadcrumb-container {
     margin-bottom: 0;
     margin-top: 20px;
+    margin-left: 6%;
   }
 
   ${media_breakpoint_down('xl')} {

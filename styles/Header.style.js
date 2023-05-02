@@ -28,7 +28,7 @@ export const HeaderContainer = styled.header`
   }
 
   ${media_breakpoint_down('md')} {
-    height: 21vh;
+    height: 200px;
   }
 `
 

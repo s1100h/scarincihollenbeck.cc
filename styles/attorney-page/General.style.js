@@ -48,7 +48,11 @@ export const GrayList = styled.div`
   }
 
   ${media_breakpoint_down('sm')} {
+    align-items: start;
     width: 100%;
+    height: fit-content;
+    padding-bottom: 0;
+    padding-top: 10px;
   }
 `
 
