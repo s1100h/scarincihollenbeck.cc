@@ -1,11 +1,7 @@
 import { Col } from 'react-bootstrap'
 import styled from 'styled-components'
 import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles'
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-  media_breakpoint_up,
-} from '../mediaBreakpoints.style'
+import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
 
 export const ProfileHeaderContainer = styled.div`
   padding: ${globalIndents.attorneyProfilePaddings};
@@ -18,10 +14,7 @@ export const ProfileHeaderContainer = styled.div`
   }
 
   ${media_breakpoint_down('sm')} {
-    position: sticky;
     margin-bottom: 72px;
-    top: calc(-100vh + 162px);
-    z-index: 10;
   }
 `
 
@@ -67,10 +60,6 @@ export const SubTitleProfileBox = styled.div`
   p {
     color: ${globalColor.gray.gray80};
     margin-bottom: 0;
-  }
-
-  ${media_breakpoint_down('sm')} {
-    height: 90px;
   }
 `
 
@@ -164,28 +153,4 @@ export const ItemContactList = styled.li`
 export const ProfileName = styled.h1`
   font-family: var(--font-montserrat), sans-serif;
   font-weight: 600;
-`
-
-export const UpFromMobile = styled.div`
-  ${media_breakpoint_up('md')} {
-    display: block;
-  }
-  ${media_breakpoint_down('sm')} {
-    display: none;
-  }
-`
-export const MobileWrapp = styled.div`
-  display: none;
-  margin-bottom: 10px;
-  ${media_breakpoint_down('sm')} {
-    display: flex;
-    justify-content: center;
-  }
-
-  ${media_breakpoint_exactly_down(391)} {
-    img {
-      width: 300px;
-      height: 350px;
-    }
-  }
 `
