@@ -20,28 +20,8 @@ export const ProfileHeaderContainer = styled.div`
   ${media_breakpoint_down('sm')} {
     position: sticky;
     margin-bottom: 72px;
-    top: calc(-100vh + 150px);
+    top: calc(-100vh + 162px);
     z-index: 10;
-  }
-
-  ${media_breakpoint_exactly_down(412)} {
-    top: calc(-100vh + 180px);
-  }
-
-  ${media_breakpoint_exactly_down(393)} {
-    top: calc(-100vh + 115px);
-  }
-
-  ${media_breakpoint_exactly_down(390)} {
-    top: calc(-100vh + 157px);
-  }
-
-  ${media_breakpoint_exactly_down(375)} {
-    top: -103vh;
-  }
-
-  ${media_breakpoint_exactly_down(360)} {
-    top: calc(-100vh + 54px);
   }
 `
 
