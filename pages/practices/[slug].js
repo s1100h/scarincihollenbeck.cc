@@ -41,11 +41,11 @@ const getPracticeAttorneys = async (uri) => {
     },
   });
 
-  const includeAttorney = practice.practicesIncluded.includeAttorney
+  const includeAttorney = practice?.practicesIncluded.includeAttorney
     ? attorneysSanitize(practice.practicesIncluded.includeAttorney)
     : undefined;
 
-  const practiceChief = practice.practicesIncluded.sectionChief
+  const practiceChief = practice?.practicesIncluded.sectionChief
     ? attorneysSanitize(practice.practicesIncluded.sectionChief)
     : undefined;
 

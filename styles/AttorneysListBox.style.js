@@ -107,6 +107,8 @@ export const AttorneysContainer = styled.section`
     max-width: 430px;
     min-width: 410px;
     margin-bottom: 1%;
+    margin-right: 0.93%;
+    height: fit-content;
   }
 
   ${media_breakpoint_down('lg')} {
