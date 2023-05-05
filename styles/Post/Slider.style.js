@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Slider from 'react-slick'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
+import { globalColor } from '../global_styles/Global.styles'
 
 const commonStyleSlider = `
   :before {
@@ -9,6 +10,14 @@ const commonStyleSlider = `
   }
 `
 export const SliderStyled = styled(Slider)`
+  .hovered-client {
+    img {
+      :hover {
+        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite80};
+      }
+    }
+  }
+
   .slick-slide {
     display: flex;
     justify-content: center;
