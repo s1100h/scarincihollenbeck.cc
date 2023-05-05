@@ -7,6 +7,7 @@ import ProfileSidebar from 'components/organisms/attorney/ProfileSidebar';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { ColForSidebar, ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { CustomContainer } from 'styles/Containers.style';
+import { useRouter } from 'next/router';
 import PostBreadCrumbs from '../organisms/post/PostBreadcrumbs';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
@@ -16,12 +17,22 @@ const StringContent = dynamic(() => import('components/organisms/attorney/String
 const AttorneyPage = ({
   seo, profileHeader, attorneyFooterNewsArticles, tabs, attorneyAwards,
 }) => {
+  const { query } = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState({
     type: typeof tabs[0].content,
     title: tabs[0].title,
     content: tabs[0].content,
   });
+
+  useEffect(() => {
+    setActiveTabContent({
+      type: typeof tabs[0].content,
+      title: tabs[0].title,
+      content: tabs[0].content,
+    });
+  }, [query.slug]);
+
   const [isArticle, setIsArticle] = useState(false);
   const [isBlog, setIsBlog] = useState(false);
 
