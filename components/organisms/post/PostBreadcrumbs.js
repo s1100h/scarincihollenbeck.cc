@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BreadcrumbsListContainer, ButtonBreadcrumb } from '../../../styles/Breadcrumbs.style';
 
 const delegatePathFunc = (CrumbsPath, router) => {

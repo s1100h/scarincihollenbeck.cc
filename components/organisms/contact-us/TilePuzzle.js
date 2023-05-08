@@ -1,9 +1,9 @@
-import { PuzzleCotainer } from '../../../styles/ContactUs.style';
+import { PuzzleContainer } from '../../../styles/ContactUs.style';
 import { tileContentArr } from '../../../utils/tileContent';
 import TileContacts from '../../molecules/contact-us/TileContacts';
 
 const TilePuzzle = () => (
-  <PuzzleCotainer>
+  <PuzzleContainer>
     {tileContentArr.map((tile) => (
       <TileContacts
         key={tile.id}
@@ -13,7 +13,7 @@ const TilePuzzle = () => (
         image={tile.image}
       />
     ))}
-  </PuzzleCotainer>
+  </PuzzleContainer>
 );
 
 export default TilePuzzle;
