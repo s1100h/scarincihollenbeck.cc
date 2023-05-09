@@ -62,8 +62,8 @@ export const tile404ContentArr = [
   {
     title: 'Practices',
     textContent: `
-      If you are looking to get in touch with an attorney in regard to becoming a new client, please   
-      call <a href='tel:201-896-4100'>201-896-4100.</a>
+      <strong>Scarinci Hollenbeck</strong> attorneys routinely represent corporate,
+      governmental, and individual clients in a wide range of <a href='/practices'>practices</a>.
    `,
     icon: <BsFillBriefcaseFill />,
     id: 1,
