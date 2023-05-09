@@ -191,6 +191,7 @@ export const TileBox = styled.article`
       order: -1;
     }
   }
+
   div {
     display: flex;
     flex-direction: column;
@@ -241,7 +242,7 @@ export const TileBox = styled.article`
   }
 `
 
-export const PuzzleCotainer = styled.section`
+export const PuzzleContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

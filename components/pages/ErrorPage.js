@@ -1,88 +1,62 @@
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import SingleSubHeader from 'layouts/SingleSubHeader';
-import { SITE_PHONE } from 'utils/constants';
+import Image from 'next/image';
+import {
+  ArticleBox,
+  ImageAttorneysGroup,
+  ImageBlindLady,
+  LinkListBox404,
+  TilesBox,
+} from '../../styles/404.style';
+import PostBreadcrumbs from '../organisms/post/PostBreadcrumbs';
+import { tile404ContentArr } from '../../utils/tileContent';
+import TileContacts from '../molecules/contact-us/TileContacts';
+import { Links404NavArr } from '../../utils/constants';
 
-const ErrorPage = ({ title, subTitle, mainMessage }) => (
+const ErrorPage = ({ title, mainMessage }) => (
   <>
-    <SingleSubHeader title={title} subtitle={subTitle} offset={2} span={7} />
     <Container>
+      <div className="mt-5 mb-5">
+        <PostBreadcrumbs />
+      </div>
       <Row>
-        <Col sm={12} md={{ span: 7, offset: 2 }}>
-          <Card className="p-3 mb-5 mt-2">
-            <p className="lead mb-3">{mainMessage}</p>
-          </Card>
-        </Col>
-        <Col sm={12} className="border-top border-bottom py-5">
-          <p className="lead text-center">
-            {' '}
-            If you are a client, please get in touch with your
-            {' '}
-            <Link href="/attorneys" legacyBehavior>
-              <a className="blue-title">
-                <u>attorney</u>
-              </a>
-            </Link>
-            {' '}
-            contact directly.
-          </p>
-          <p className="lead text-center">
-            If you are looking to get in touch with an attorney under the terms as to becoming a new
-            client please call
-            {' '}
-            <strong>
-              {SITE_PHONE}
-              .
-            </strong>
-          </p>
-        </Col>
-        <Col sm={12} md={{ span: 7, offset: 2 }}>
-          <Card className="p-3 mb-5 mt-5">
-            <p className="h5">
+        <Col sm={12} lg={6}>
+          <ArticleBox>
+            <h1>{title}</h1>
+            <p>{mainMessage}</p>
+          </ArticleBox>
+          <TilesBox>
+            {tile404ContentArr.map((tile) => (
+              <TileContacts
+                key={tile.id}
+                title={tile.title}
+                textContent={tile.textContent}
+                icon={tile.icon}
+                image={tile.image}
+              />
+            ))}
+          </TilesBox>
+          <LinkListBox404>
+            <h3>
               <strong>Or try visiting one of these pages on our site to narrow your search.</strong>
-            </p>
-            <ul style={{ marginLeft: '-1em' }}>
-              <li>
-                <Link href="/attorneys" legacyBehavior>
-                  <a className="u-hover h5">Attorneys</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/practices" legacyBehavior>
-                  <a className="u-hover h5">Practices</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/location" legacyBehavior>
-                  <a className="u-hover h5">Locations</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/library/category/firm-news" legacyBehavior>
-                  <a className="u-hover h5">Firm News</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/library/category/firm-events" legacyBehavior>
-                  <a className="u-hover h5">Firm Events</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/library/category/law-firm-insights" legacyBehavior>
-                  <a className="u-hover h5">Firm Insights</a>
-                </Link>
-              </li>
+            </h3>
+            <ul>
+              {Links404NavArr.map((link) => (
+                <li key={link.id}>
+                  <Link href={link.href}>{link.title}</Link>
+                </li>
+              ))}
             </ul>
-          </Card>
+          </LinkListBox404>
+          <ImageAttorneysGroup>
+            <Image src="/images/group-attorneys.webp" fill alt="Group of attorneys" />
+          </ImageAttorneysGroup>
         </Col>
-        <style jsx>
-          {`
-            li {
-              margin-bottom: 6px;
-            }
-          `}
-        </style>
+        <Col sm={12} lg={6}>
+          <ImageBlindLady>
+            <Image src="/images/404.webp" fill alt="Attorneys near work." />
+          </ImageBlindLady>
+        </Col>
       </Row>
     </Container>
   </>

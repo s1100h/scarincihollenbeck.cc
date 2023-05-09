@@ -378,7 +378,6 @@ export const MAKE_A_PAYMENT_URLS = [
 
 /** the content found on 404 or 500 error pages */
 export const ERROR_PAGE_CONTENT = {
-  subTitle: 'Sorry, there was an issue getting your requested page',
   mainMessage:
     "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
@@ -509,6 +508,39 @@ export const CategoriesButtonsStructure = [
     slug: 'law-firm-insights',
     label: 'Insights',
     id: 3,
+  },
+];
+
+export const Links404NavArr = [
+  {
+    id: 1,
+    title: 'Home Page',
+    href: '/',
+  },
+  {
+    id: 2,
+    title: 'Contact us',
+    href: '/contact',
+  },
+  {
+    id: 3,
+    title: 'Locations',
+    href: '/location',
+  },
+  {
+    id: 4,
+    title: 'Firm News',
+    href: '/library/category/firm-news',
+  },
+  {
+    id: 5,
+    title: 'Firm Events',
+    href: '/library/category/firm-events',
+  },
+  {
+    id: 6,
+    title: 'Firm Insights',
+    href: '/library/category/law-firm-insights',
   },
 ];
 

@@ -34,6 +34,7 @@
     "graphql": "^16.0.1",
     "graphql-tag": "^2.12.6",
     "html-react-parser": "^3.0.1",
+    "is-empty": "^1.2.0",
     "kwesforms": "^2.1.27",
     "mysql2": "^2.3.0",
     "next": "^13.1.6",

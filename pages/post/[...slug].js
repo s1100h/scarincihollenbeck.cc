@@ -4,6 +4,7 @@ import { PRODUCTION_URL, ScarinciHollenbeckAuthor, SITE_TITLE } from 'utils/cons
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
 import { postQuery } from 'utils/graphql-queries';
+import empty from 'is-empty';
 import { cutDomain, getSubTitleFromHTML, sortByKey } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
@@ -30,7 +31,7 @@ const getPostContentData = async (slug) => {
     variables: { id: slug },
   });
 
-  if (!data.post) {
+  if (empty(data.post)) {
     return undefined;
   }
   if (
@@ -124,14 +125,14 @@ const getPostContentData = async (slug) => {
 
   if (data.post.categories.nodes.length >= 3) {
     data.post.categories.nodes.forEach(({ contentNodes }, idx) => {
-      if (idx <= 2) {
+      if (idx <= 2 && contentNodes.nodes[idx]?.title) {
         relatedPosts.push({
-          title: contentNodes.nodes[idx].title,
-          uri: contentNodes.nodes[idx].uri,
+          title: contentNodes.nodes[idx]?.title,
+          uri: contentNodes.nodes[idx]?.uri,
           featuredImage:
-            contentNodes.nodes[idx].featuredImage?.node.sourceUrl
+            contentNodes.nodes[idx]?.featuredImage?.node.sourceUrl
             || '/images/no-image-found-diamond-750x350.png',
-          databaseId: contentNodes.nodes[idx].databaseId,
+          databaseId: contentNodes.nodes[idx]?.databaseId,
         });
       }
     });
@@ -157,36 +158,36 @@ export const getServerSideProps = async ({ params, res, query }) => {
   const postSlug = params.slug[params.slug.length - 1];
   const { category } = query;
 
-  const {
-    postContent, corePractices, relatedPosts, posts,
-  } = await getPostContentData(postSlug);
+  const postData = await getPostContentData(postSlug);
 
-  if (!postContent) {
+  if (empty(postData)) {
     res.statusCode = 404;
     return {
       notFound: true,
     };
   }
-  const { clearBody, subTitle } = getSubTitleFromHTML(postContent.content);
+
+  const { clearBody, subTitle } = getSubTitleFromHTML(postData?.postContent.content);
 
   const post = {
     content: clearBody,
-    title: postContent.title,
-    date: postContent.date,
+    title: postData.postContent.title,
+    date: postData.postContent.date,
     subTitle,
   };
 
   return {
     props: {
       post,
-      seo: postContent.seo,
-      categories: postContent.categories.nodes,
-      authors: postContent.selectAuthors.authorDisplayOrder,
-      keyContacts: postContent.keyContacts || postContent.selectAuthors.authorDisplayOrder,
+      seo: postData.postContent.seo,
+      categories: postData.postContent.categories.nodes,
+      authors: postData.postContent.selectAuthors.authorDisplayOrder,
+      keyContacts:
+        postData.postContent.keyContacts || postData.postContent.selectAuthors.authorDisplayOrder,
       category,
-      corePractices,
-      relatedPosts,
-      posts,
+      corePractices: postData.corePractices,
+      relatedPosts: postData.relatedPosts,
+      posts: postData.posts,
     },
   };
 };
@@ -206,6 +207,7 @@ const SinglePost = ({
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
   const metaAuthorLinks = authors.map((author) => (author.display_name === SITE_TITLE ? PRODUCTION_URL : author.user_url));
+
   if (router.isFallback) {
     return <SiteLoader />;
   }
