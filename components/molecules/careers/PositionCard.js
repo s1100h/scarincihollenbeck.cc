@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CardContainer, TitlePosition } from 'styles/PositionCard.style';
 
 const checkAllOffices = (location) => {
@@ -12,6 +11,7 @@ const checkAllOffices = (location) => {
 };
 
 export default function PositionCard({
+  handleClickToCareer,
   slug,
   title,
   positionLocation,
@@ -20,28 +20,24 @@ export default function PositionCard({
   duration,
 }) {
   return (
-    <Link href={`/careers/${slug}`} legacyBehavior>
-      <a className="text-dark text-decoration-none">
-        <CardContainer>
-          <TitlePosition>{title}</TitlePosition>
-          <p className="my-0">
-            <strong className="mr-1">Location: </strong>
-            {checkAllOffices(positionLocation)}
-          </p>
-          <p className="my-0">
-            <strong className="mr-1">Type: </strong>
-            {positionType}
-          </p>
-          <p className="my-0">
-            <strong className="mr-1">Start: </strong>
-            {startDate}
-          </p>
-          <p className="my-0">
-            <strong className="mr-1">Duration: </strong>
-            {duration}
-          </p>
-        </CardContainer>
-      </a>
-    </Link>
+    <CardContainer onClick={() => handleClickToCareer(slug)}>
+      <TitlePosition>{title}</TitlePosition>
+      <p className="my-0">
+        <strong className="mr-1">Location: </strong>
+        {checkAllOffices(positionLocation)}
+      </p>
+      <p className="my-0">
+        <strong className="mr-1">Type: </strong>
+        {positionType}
+      </p>
+      <p className="my-0">
+        <strong className="mr-1">Start: </strong>
+        {startDate}
+      </p>
+      <p className="my-0">
+        <strong className="mr-1">Duration: </strong>
+        {duration}
+      </p>
+    </CardContainer>
   );
 }
