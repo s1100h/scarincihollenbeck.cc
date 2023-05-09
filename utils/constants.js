@@ -514,13 +514,13 @@ export const CategoriesButtonsStructure = [
 export const Links404NavArr = [
   {
     id: 1,
-    title: 'Attorneys',
-    href: '/attorneys',
+    title: 'Home Page',
+    href: '/',
   },
   {
     id: 2,
-    title: 'Practices',
-    href: '/practices',
+    title: 'Contact us',
+    href: '/contact',
   },
   {
     id: 3,

@@ -9,7 +9,7 @@ import {
   TilesBox,
 } from '../../styles/404.style';
 import PostBreadcrumbs from '../organisms/post/PostBreadcrumbs';
-import { tileContentArr } from '../../utils/tileContent';
+import { tile404ContentArr } from '../../utils/tileContent';
 import TileContacts from '../molecules/contact-us/TileContacts';
 import { Links404NavArr } from '../../utils/constants';
 
@@ -26,8 +26,7 @@ const ErrorPage = ({ title, mainMessage }) => (
             <p>{mainMessage}</p>
           </ArticleBox>
           <TilesBox>
-            {tileContentArr.map(
-              (tile) => (tile.title === 'For clients' || tile.title === 'Get in touch') && (
+            {tile404ContentArr.map((tile) => (
               <TileContacts
                 key={tile.id}
                 title={tile.title}
@@ -35,8 +34,7 @@ const ErrorPage = ({ title, mainMessage }) => (
                 icon={tile.icon}
                 image={tile.image}
               />
-              ),
-            )}
+            ))}
           </TilesBox>
           <LinkListBox404>
             <h3>

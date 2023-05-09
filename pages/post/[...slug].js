@@ -125,14 +125,14 @@ const getPostContentData = async (slug) => {
 
   if (data.post.categories.nodes.length >= 3) {
     data.post.categories.nodes.forEach(({ contentNodes }, idx) => {
-      if (idx <= 2) {
+      if (idx <= 2 && contentNodes.nodes[idx]?.title) {
         relatedPosts.push({
-          title: contentNodes.nodes[idx].title,
-          uri: contentNodes.nodes[idx].uri,
+          title: contentNodes.nodes[idx]?.title,
+          uri: contentNodes.nodes[idx]?.uri,
           featuredImage:
-            contentNodes.nodes[idx].featuredImage?.node.sourceUrl
+            contentNodes.nodes[idx]?.featuredImage?.node.sourceUrl
             || '/images/no-image-found-diamond-750x350.png',
-          databaseId: contentNodes.nodes[idx].databaseId,
+          databaseId: contentNodes.nodes[idx]?.databaseId,
         });
       }
     });
