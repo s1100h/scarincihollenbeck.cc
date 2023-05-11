@@ -71,7 +71,14 @@ const ContactForm = ({ emailForwarding, name }) => {
               className="form-control mx-0"
               name="phone"
               placeholder="Phone number"
-              rules="required|max:255"
+              rules="required|regex:/^(\+?1[-.\s]?)?(\()?\d{3}(\))?[-.\s]?\d{3}[-.\s]?\d{4}$/"
+              title="Please use these formats:
+                    (123) 456-7890
+                    123-456-7890
+                    123.456.7890
+                    123 456 7890
+                    +1 123-456-7890
+                    +1 (123) 456-7890"
             />
           </Col>
         </Row>

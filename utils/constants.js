@@ -477,8 +477,15 @@ export const inputsGetInTouchAttributes = [
     type: 'tel',
     name: 'Phone',
     placeholder: 'Phone number',
-    rules: 'required|max:255',
-    pattern: '[0-9]{3} [0-9]{3} [0-9]{4}',
+    rules: 'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
+    title: `Please use these formats: 
+    (123) 456-7890
+    123-456-7890
+    123.456.7890
+    123 456 7890
+    +1 123-456-7890
+    +1 (123) 456-7890
+    `,
   },
   {
     type: 'text',
