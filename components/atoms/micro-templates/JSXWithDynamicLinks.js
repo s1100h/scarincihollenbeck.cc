@@ -5,7 +5,7 @@ import empty from 'is-empty';
 import { PRODUCTION_URL } from '../../../utils/constants';
 
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
-export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
+export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
   replace: (domNode) => {
     if (
       domNode.type === 'tag'
@@ -28,6 +28,17 @@ export const JSXWithDynamicLinks = ({ HTML }) => parse(HTML, {
       );
     }
     if (domNode.type === 'tag' && domNode.name === 'img') {
+      if (print) {
+        return (
+          <img
+              // blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            alt={domNode.attribs.alt}
+            width={domNode.attribs.width || 500}
+            height={domNode.attribs.height || 300}
+          />
+        );
+      }
       return (
         <Image
           placeholder="blur"

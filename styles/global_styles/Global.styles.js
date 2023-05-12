@@ -120,6 +120,16 @@ body {
   }
 }
 
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 a {
   text-decoration: none;
   color: ${globalColor.blue.dirtyBlue};
