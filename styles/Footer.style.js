@@ -7,9 +7,7 @@ export const FooterContainer = styled.footer`
   background: #381314;
   color: #fff;
   padding: 2vw 3vw 1vw 3vw;
-  position: relative;
   width: 100%;
-  bottom: 0;
 
   a {
     color: #fff;
@@ -143,4 +141,8 @@ export const HiddenSEOBox = styled.section`
   display: flex;
   position: fixed;
   z-index: -1;
+
+  @media print {
+    display: none;
+  }
 `

@@ -70,6 +70,10 @@ export const BackgroundContainer = styled.section`
     background-size: ${({ props }) => (props?.isHoliday ? '' : '108%')};
     background-position: ${({ props }) => (props?.isHoliday ? '' : 'bottom 0%')};
   }
+
+  @media print {
+    display: none;
+  }
 `
 
 export const GradientWrapper = styled.div`

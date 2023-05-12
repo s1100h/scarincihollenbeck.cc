@@ -4,7 +4,7 @@ import { useId } from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 
 const RecommendedPosts = ({ titleGeneralBlock, attorneyFooterNewsArticles }) => (
-  <Container>
+  <Container className="d-print-none">
     <NewsTitle>{titleGeneralBlock}</NewsTitle>
     <Row className="mb-2">
       {attorneyFooterNewsArticles.map(({
