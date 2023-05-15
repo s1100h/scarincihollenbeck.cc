@@ -59,5 +59,23 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
 
       return domNode;
     }
+
+    if (domNode.type === 'tag' && domNode.attribs.class === 'wp-video') {
+      let video;
+
+      domNode.children.forEach((child) => {
+        if (child.name === 'video') {
+          video = child;
+        }
+      });
+
+      return (
+      // eslint bug.
+      // eslint-disable-next-line jsx-a11y/media-has-caption
+        <video preload="metadata" controls>
+          <source type={video.children[0].attribs.type} src={video.children[0].attribs.src} />
+        </video>
+      );
+    }
   },
 });

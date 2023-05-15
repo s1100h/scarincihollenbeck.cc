@@ -33,7 +33,7 @@ const renderContentTab = (title, content, setActiveTab) => {
           <Table content={content} />
         </Surface>
       );
-    case 'Videos':
+    case 'Video':
       return (
         <Surface>
           <ContentTitle title={title} />

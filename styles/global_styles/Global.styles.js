@@ -109,10 +109,12 @@ export const rem = (sizeInPx) => {
 }
 
 export const GlobalStyle = createGlobalStyle`
+html {
+  font-size: ${mainFotSize}px;
+}
 
 body {
   font-weight: 400;
-  font-size: ${mainFotSize}px;
   background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
   
   * {
