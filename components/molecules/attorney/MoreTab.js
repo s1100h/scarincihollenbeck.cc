@@ -19,7 +19,7 @@ const renderContent = (contentItem) => {
     Media: <Table content={contentItem.content} />,
     Presentations: <Table content={contentItem.content} />,
     Publications: <Table content={contentItem.content} />,
-    Videos: <Videos content={contentItem.content} />,
+    Video: <Videos content={contentItem.content} />,
     'Government & Law': <BlogList content={contentItem.content} />,
     Images: <Images images={contentItem.content} />,
   };

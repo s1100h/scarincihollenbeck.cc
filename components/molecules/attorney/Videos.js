@@ -1,11 +1,11 @@
 import { VideoContainer } from 'styles/Video.style';
-import { createMarkup } from 'utils/helpers';
 import { useId } from 'react';
+import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const Videos = ({ content }) => content.map((video) => (
   <VideoContainer key={useId()}>
-    <div dangerouslySetInnerHTML={createMarkup(video.embedVideo)} />
-    <p className="mb-0">
+    <JSXWithDynamicLinks HTML={video.embedVideo} />
+    <p className="mb-5">
       <span className="h6 title">{video.title}</span>
       {' '}
       -

@@ -104,7 +104,6 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Get Attorney External Blog Posts */
   const govLawPosts = {};
-  const conLawPosts = {};
   if (attorneyBio.attorneyAwardsClientsBlogsVideos.blogId) {
     const availBlogs = attorneyBio.attorneyAwardsClientsBlogsVideos.blogId.map((bl) => Object.entries(bl).filter(([, value]) => value !== null))[0];
 
@@ -241,7 +240,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (Object.keys(govLawPosts).includes('posts')) {
     externalBlogTabs.push({
-      id: 16,
+      id: 17,
       title: 'Government & Law',
       content: govLawPosts,
     });
@@ -288,13 +287,13 @@ export const getServerSideProps = async ({ params, res }) => {
     },
     {
       id: 12,
-      title: 'Videos',
+      title: 'Video',
       content: attorneyBio.attorneyAwardsClientsBlogsVideos
         ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
         : [],
     },
     {
-      id: 12,
+      id: 13,
       title: 'Images',
       content: attorneyBio.attorneyAwardsClientsBlogsVideos
         ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
@@ -335,21 +334,21 @@ export const getServerSideProps = async ({ params, res }) => {
         ...commonTabs,
         ...externalBlogTabs,
         {
-          id: 13,
+          id: 14,
           title: 'Blogs',
           content: {
             id: authorId,
           },
         },
         {
-          id: 144,
+          id: 15,
           title: 'News Press Releases',
           content: {
             id: slug,
           },
         },
         {
-          id: 23,
+          id: 16,
           title: 'Events',
           content: {
             id: slug,
