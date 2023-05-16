@@ -22,6 +22,7 @@ import 'animate.css/animate.min.css';
  * Custom Style Sheets
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
+import TagManager from 'react-gtm-module';
 import { montserrat, poppins } from '../public/fonts/fonts';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
@@ -40,6 +41,7 @@ const SHSite = ({ Component, pageProps }) => {
   useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url);
+      TagManager.initialize({ gtmId: 'GTM-PC64FQH' });
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
