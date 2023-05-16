@@ -6,7 +6,6 @@ import { LocationProvider } from 'contexts/LocationContext';
 import { AttorneysProvider } from 'contexts/AttorneysContext';
 import Header from 'components/shared/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
-import * as gtag from 'utils/gtag';
 import SSRProvider from 'react-bootstrap/SSRProvider';
 /**
  *
@@ -39,8 +38,7 @@ const SHSite = ({ Component, pageProps }) => {
 
   /** Effect hook that manages tracking for Google Analytics */
   useEffect(() => {
-    const handleRouteChange = (url) => {
-      gtag.pageview(url);
+    const handleRouteChange = () => {
       TagManager.initialize({ gtmId: 'GTM-PC64FQH' });
     };
     router.events.on('routeChangeComplete', handleRouteChange);
