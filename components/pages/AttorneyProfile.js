@@ -36,7 +36,7 @@ const AttorneyPage = ({
   const [isArticle, setIsArticle] = useState(false);
   const [isBlog, setIsBlog] = useState(false);
 
-  const compressPropsHederProfile = {
+  const compressPropsHeaderProfile = {
     ...profileHeader,
     setActiveTab,
     activeTab,
@@ -75,7 +75,7 @@ const AttorneyPage = ({
         <Row className="d-flex justify-content-center">
           <PostBreadCrumbs />
           <ColStyled sm={12} md={11} lg={8} xl={8}>
-            <ProfileHeader {...compressPropsHederProfile} />
+            <ProfileHeader {...compressPropsHeaderProfile} />
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
             )}

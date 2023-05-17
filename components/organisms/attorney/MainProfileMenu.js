@@ -6,9 +6,12 @@ import Surface from 'components/atoms/micro-templates/surface';
 import MoreTab from 'components/molecules/attorney/MoreTab';
 import General from './General';
 import Images from './Images';
+import Biography from './Biography';
 
 const renderContentTab = (title, content, setActiveTab) => {
   switch (title) {
+    case 'Biography':
+      return <Biography content={content} />;
     case 'General':
       return <General content={content} />;
     case 'Media':

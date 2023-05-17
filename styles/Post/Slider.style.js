@@ -10,14 +10,6 @@ const commonStyleSlider = `
   }
 `
 export const SliderStyled = styled(Slider)`
-  .hovered-client {
-    img {
-      :hover {
-        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite80};
-      }
-    }
-  }
-
   .slick-slide {
     display: flex;
     justify-content: center;

@@ -201,6 +201,12 @@ export const getServerSideProps = async ({ params, res }) => {
   }
   mainTabs.unshift('General');
 
+  // Replace the Biography tab to start
+  const index = mainTabs.findIndex((tab) => tab === 'Biography');
+  if (index !== -1) {
+    [mainTabs[0], mainTabs[index]] = [mainTabs[index], mainTabs[0]];
+  }
+
   const moreMenu = attorneyBio.attorneyTabNavigation?.moreMenu;
 
   if (moreMenu === null) {
@@ -304,6 +310,14 @@ export const getServerSideProps = async ({ params, res }) => {
   const tabs = [
     {
       id: 5,
+      title: 'Biography',
+      content: {
+        bio: attorneyBio.attorneyBiography.biographyContent,
+        clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
+      },
+    },
+    {
+      id: 6,
       title: 'General',
       content: {
         miniBio: attorneyBio.attorneyBiography?.miniBio,
@@ -318,11 +332,6 @@ export const getServerSideProps = async ({ params, res }) => {
             ?.additionalInformation,
         clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
       },
-    },
-    {
-      id: 6,
-      title: 'Biography',
-      content: attorneyBio.attorneyBiography.biographyContent,
     },
     ...additionalTabs,
     ...commonTabs,
