@@ -383,6 +383,14 @@ footer .wrapper-section {
   text-decoration: none;
   color: #a91110;
 }
+
+.hovered-client {
+  img {
+    :hover {
+      border: 1px solid ${globalColor.grayExtraLite.grayExtraLite80};
+    }
+  }
+}
 `
 
 export const ButtonLinkCss = `

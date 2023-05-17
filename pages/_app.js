@@ -33,17 +33,17 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
+const tagManagerInitial = () => {
+  TagManager.initialize({ gtmId: 'GTM-PC64FQH' });
+};
 const SHSite = ({ Component, pageProps }) => {
   const router = useRouter();
 
   /** Effect hook that manages tracking for Google Analytics */
   useEffect(() => {
-    const handleRouteChange = () => {
-      TagManager.initialize({ gtmId: 'GTM-PC64FQH' });
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.on('routeChangeComplete', tagManagerInitial);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
+      router.events.off('routeChangeComplete', tagManagerInitial);
     };
   }, [router.events]);
 
