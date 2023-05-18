@@ -384,6 +384,13 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
     seo {
       opengraphDescription
       title
+      twitterImage {
+        sourceUrl
+      }
+      twitterTitle
+      opengraphImage {
+        sourceUrl
+      }
     }
     selectAuthors {
       authorDisplayOrder {

@@ -57,6 +57,9 @@ const getPostContentData = async (slug) => {
   data.post.seo = {
     metaTitle: data.post.seo.title,
     metaDescription: data.post.seo.opengraphDescription,
+    opengraphImage: data.post.seo.opengraphImage.sourceUrl,
+    twitterImage: data.post.seo.twitterImage.sourceUrl,
+    twitterTitle: data.post.seo.twitterTitle,
   };
 
   const corePractices = [];
