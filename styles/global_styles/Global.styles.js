@@ -391,6 +391,13 @@ footer .wrapper-section {
     }
   }
 }
+
+.bullets-li {
+  ::before {
+    content: '➤';
+    margin-right: 10px;
+  }
+}
 `
 
 export const ButtonLinkCss = `
