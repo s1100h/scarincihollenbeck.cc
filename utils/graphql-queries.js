@@ -384,6 +384,9 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
     seo {
       opengraphDescription
       title
+      opengraphImage {
+        sourceUrl
+      }
     }
     selectAuthors {
       authorDisplayOrder {

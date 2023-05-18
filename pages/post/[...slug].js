@@ -5,6 +5,7 @@ import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'utils/api';
 import { postQuery } from 'utils/graphql-queries';
 import empty from 'is-empty';
+import parse from 'html-react-parser';
 import { cutDomain, getSubTitleFromHTML, sortByKey } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
@@ -54,9 +55,19 @@ const getPostContentData = async (slug) => {
     );
   }
 
+  let seoImageFromPostByParse = '/images/no-image-found-diamond.png';
+  parse(data.post.content, {
+    replace: (domNode) => {
+      if (domNode.type === 'tag' && domNode.name === 'img') {
+        return (seoImageFromPostByParse = domNode.attribs.href);
+      }
+    },
+  });
+
   data.post.seo = {
     metaTitle: data.post.seo.title,
     metaDescription: data.post.seo.opengraphDescription,
+    opengraphImage: data.post.seo.opengraphImage.sourceUrl || seoImageFromPostByParse,
   };
 
   const corePractices = [];

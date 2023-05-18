@@ -4,7 +4,7 @@ import { CURRENT_DOMAIN } from 'utils/constants';
 import { STANDARD_SCHEMA, articleSchema } from 'utils/json-ld-schemas';
 
 const PostSiteHead = ({ seo, post, authors }) => {
-  const { metaTitle, metaDescription } = seo;
+  const { metaTitle, metaDescription, opengraphImage } = seo;
   const router = useRouter();
   const slug = router.asPath;
   const canonicalUrl = CURRENT_DOMAIN + slug;
@@ -34,7 +34,10 @@ const PostSiteHead = ({ seo, post, authors }) => {
         <meta property="og:title" content={metaTitle} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+        <meta
+          property="og:image"
+          content={opengraphImage || `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
+        />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={metaTitle} />
@@ -44,7 +47,7 @@ const PostSiteHead = ({ seo, post, authors }) => {
         <meta name="twitter:description" content={metaDescription} />
         <meta
           name="twitter:image"
-          content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
+          content={opengraphImage || `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
         />
         <script
           key="ScarinciHollenbeck Bio Profile"
