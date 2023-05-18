@@ -4,9 +4,7 @@ import { CURRENT_DOMAIN } from 'utils/constants';
 import { STANDARD_SCHEMA, articleSchema } from 'utils/json-ld-schemas';
 
 const PostSiteHead = ({ seo, post, authors }) => {
-  const {
-    metaTitle, metaDescription, opengraphImage, twitterImage, twitterTitle,
-  } = seo;
+  const { metaTitle, metaDescription, opengraphImage } = seo;
   const router = useRouter();
   const slug = router.asPath;
   const canonicalUrl = CURRENT_DOMAIN + slug;
