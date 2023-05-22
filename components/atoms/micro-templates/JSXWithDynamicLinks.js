@@ -54,6 +54,12 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
       );
     }
 
+    if (domNode.type === 'tag' && domNode.name === 'li') {
+      if (domNode.children[0].name === 'a') {
+        return (domNode.attribs.class = 'bullets-li d-flex');
+      }
+    }
+
     if (domNode.type === 'tag' && domNode.name === 'iframe') {
       domNode.attribs.width = '100%';
       domNode.attribs.height = '300';
