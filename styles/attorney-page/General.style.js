@@ -45,6 +45,12 @@ export const GrayList = styled.div`
     color: ${globalColor.gray.gray80};
     gap: 7px;
     list-style: disc;
+
+    li {
+      ::before {
+        content: '';
+      }
+    }
   }
 
   ${media_breakpoint_down('sm')} {
