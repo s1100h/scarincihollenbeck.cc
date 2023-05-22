@@ -398,6 +398,10 @@ footer .wrapper-section {
     margin-right: 10px;
   }
 }
+
+.slick-track {
+  display: flex;
+}
 `
 
 export const ButtonLinkCss = `
