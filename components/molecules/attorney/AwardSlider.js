@@ -8,28 +8,45 @@ const AwardSlider = ({ awards }) => {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToScroll: 1,
-    slidesToShow: 2,
+    // slidesToScroll: 1,
+    // slidesToShow: 3,
     autoplay: true,
     speed: 4000,
     autoplaySpeed: 5000,
+    variableWidth: true,
     cssEase: 'linear',
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToScroll: 1,
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 546,
-        settings: {
-          slidesToScroll: 1,
-          slidesToShow: 2,
-        },
-      },
-    ],
+    centerMode: true,
+    buttons: false,
+    // responsive: [
+    //   {
+    //     breakpoint: 1400,
+    //     settings: {
+    //       slidesToScroll: 1,
+    //       slidesToShow: 2,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1200,
+    //     settings: {
+    //       slidesToScroll: 1,
+    //       slidesToShow: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 991,
+    //     settings: {
+    //       slidesToScroll: 1,
+    //       slidesToShow: 3,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 546,
+    //     settings: {
+    //       slidesToScroll: 1,
+    //       slidesToShow: 2,
+    //     },
+    //   },
+    // ],
   };
 
   return (

@@ -43,6 +43,8 @@ export const TitleAndLikBox = styled.div`
 `
 
 export const AwardImgLinkBox = styled.a`
+  display: block;
   width: 120px;
+  margin: 0 10px;
   height: 120px;
 `

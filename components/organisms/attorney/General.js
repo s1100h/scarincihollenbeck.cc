@@ -29,12 +29,12 @@ const General = ({ content }) => {
           )}
         </EducationAdmissionBox>
         {affiliations?.length > 0 && (
-          <GrayList isBigWidth="true">
+          <GrayList hightAuto="true">
             <JSXWithDynamicLinks HTML={`<h3>Affiliations</h3>${affiliations}`} />
           </GrayList>
         )}
         {additionalInfo && additionalInfo[0].content && (
-          <GrayList isBigWidth="true">
+          <GrayList>
             <JSXWithDynamicLinks HTML={`<h3>Additional Info</h3>${additionalInfo[0].content}`} />
           </GrayList>
         )}

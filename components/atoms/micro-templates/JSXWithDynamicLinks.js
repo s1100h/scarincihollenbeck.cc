@@ -30,6 +30,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
     if (domNode.type === 'tag' && domNode.name === 'img') {
       if (print) {
         return (
+        // eslint-disable-next-line @next/next/no-img-element
           <img
               // blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
             src={domNode.attribs['data-srcset'] || domNode.attribs.src}
@@ -53,11 +54,21 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
       );
     }
 
+    if (domNode.type === 'tag' && domNode.name === 'li') {
+      if (domNode.children[0].name === 'a') {
+        return (domNode.attribs.class = 'bullets-li d-flex');
+      }
+    }
+
     if (domNode.type === 'tag' && domNode.name === 'iframe') {
       domNode.attribs.width = '100%';
       domNode.attribs.height = '300';
 
       return domNode;
+    }
+
+    if (domNode.type === 'tag' && domNode.name === 'p' && domNode.children[0].name === 'strong') {
+      if (domNode.children[0].children[0].data) return <h5>{domNode.children[0].children[0].data}</h5>;
     }
 
     if (domNode.type === 'tag' && domNode.attribs.class === 'wp-video') {
@@ -76,6 +87,10 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           <source type={video.children[0].attribs.type} src={video.children[0].attribs.src} />
         </video>
       );
+    }
+
+    if (domNode.type === 'tag' && domNode.name === 'li') {
+      domNode.attribs.class = 'bullets-li';
     }
   },
 });

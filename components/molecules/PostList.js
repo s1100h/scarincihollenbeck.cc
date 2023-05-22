@@ -19,7 +19,7 @@ const PostList = ({ content, isProfile }) => {
         <>
           {!loading
             && memoData.map(({ node }) => (
-              <div className="mb-4" key={node.title}>
+              <div key={node.title}>
                 <NewsCard
                   postSlug={node.uri.replace('https://scarincihollenbeck.com/', '/')}
                   postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}

@@ -7,7 +7,7 @@ export const ContentContainer = styled.div`
   line-height: 1.7;
 
   p {
-    margin-bottom: 40px;
+    margin-bottom: 5px;
   }
 
   > {
@@ -24,20 +24,21 @@ export const ContentContainer = styled.div`
           display: inline-block;
           text-overflow: ellipsis;
           white-space: nowrap;
-
-          ::before {
-            content: '➤';
-            margin-right: 5px;
-          }
         }
       }
+    }
+
+    h3,
+    h4,
+    h5 {
+      margin-top: 25px;
+      margin-bottom: 8px;
     }
 
     h4 {
       &:first-child {
         background-color: #e9e9e9;
         padding: 10px;
-        margin-bottom: 30px;
         font-size: 1.2rem;
       }
 

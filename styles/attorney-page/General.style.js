@@ -31,20 +31,27 @@ export const EducationAdmissionBox = styled.div`
 export const GrayList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => (props?.isBigWidth ? 'start' : 'center')};
-  width: ${(props) => (props?.isBigWidth ? '100%' : '400px')};
-  height: 380px;
+  align-items: ${(props) => (props?.hightAuto ? 'start' : 'center')};
+  width: 100%;
+  height: ${(props) => (props?.hightAuto ? 'auto' : '380px')};
   ${commonRules};
   gap: 20px;
   overflow-y: auto;
 
   ul {
     display: flex;
+    width: 100%;
     flex-direction: column;
     padding-left: 12px;
     color: ${globalColor.gray.gray80};
     gap: 7px;
     list-style: disc;
+
+    li {
+      ::before {
+        content: '';
+      }
+    }
   }
 
   ${media_breakpoint_down('sm')} {
