@@ -393,6 +393,8 @@ footer .wrapper-section {
 }
 
 .bullets-li {
+  display: flex;
+  
   ::before {
     content: '➤';
     margin-right: 10px;
