@@ -33,6 +33,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
       additionalInformation {
+      	title
         content
       }
       affiliations

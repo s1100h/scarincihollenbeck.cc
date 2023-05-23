@@ -33,9 +33,17 @@ const General = ({ content }) => {
             <JSXWithDynamicLinks HTML={`<h3>Affiliations</h3>${affiliations}`} />
           </GrayList>
         )}
-        {additionalInfo && additionalInfo[0].content && (
-          <GrayList>
-            <JSXWithDynamicLinks HTML={`<h3>Additional Info</h3>${additionalInfo[0].content}`} />
+        {additionalInfo.length > 0 && (
+          <GrayList hightAuto="true">
+            {additionalInfo.map(({ title, content }) => (
+              <JSXWithDynamicLinks
+                HTML={`
+              <h3>Additional Info</h3>
+              <h5 class='mb-0'>${title}</h5>
+              ${content}
+              `}
+              />
+            ))}
           </GrayList>
         )}
         {clients && clients.length > 0 && (
