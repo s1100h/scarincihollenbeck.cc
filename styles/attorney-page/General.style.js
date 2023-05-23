@@ -48,6 +48,8 @@ export const GrayList = styled.div`
     list-style: disc;
 
     li {
+      display: list-item;
+
       ::before {
         content: '';
       }

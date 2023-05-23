@@ -76,7 +76,7 @@ const LibraryDirectory = ({
           <BodyHeader />
           <Col sm={12} lg={9}>
             {memoDataPosts.length > 0 && (
-              <Col xl={10} className="m-auto">
+              <Col sm={12} xl={8} className="m-auto">
                 <NewsCard
                   postSlug={mainNews.link}
                   postImage={
