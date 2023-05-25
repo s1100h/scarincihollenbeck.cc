@@ -10,7 +10,7 @@ const AttorneysListBox = ({ attorneys }) => {
         <AttorneysContainer>
           <h3>Chair</h3>
           <div>
-            {chairs.map((chair) => (
+            {chairs?.map((chair) => (
               <AttorneyCard
                 key={chair.databaseId}
                 link={`${chair.link}`}

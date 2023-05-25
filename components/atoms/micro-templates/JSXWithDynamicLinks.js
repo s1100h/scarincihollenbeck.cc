@@ -55,7 +55,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
     }
 
     if (domNode.type === 'tag' && domNode.name === 'li') {
-      if (domNode.children[0].name === 'a') {
+      if (domNode.children[0]?.name === 'a') {
         return (domNode.attribs.class = 'bullets-li d-flex');
       }
     }
