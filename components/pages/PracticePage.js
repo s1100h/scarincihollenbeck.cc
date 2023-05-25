@@ -6,11 +6,11 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
-import AttorneysListBox from 'components/common/AttorneysListBox';
 import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
 import { StickyWrapper } from '../../styles/Practices.style';
 
 const Body = dynamic(() => import('components/organisms/practice/Body'));
+const AttorneysListBox = dynamic(() => import('components/common/AttorneysListBox'));
 
 const PracticePage = ({
   corePractices,
@@ -29,6 +29,11 @@ const PracticePage = ({
     setSubtitlePractice(practice.description);
   }, [practice.description]);
 
+  useEffect(() => {
+    const currentTabContent = tabs.filter((t) => t.id === activeTab);
+    setActiveTabContent(currentTabContent[0].content);
+  }, [activeTab]);
+
   /** Handle Related Articles Query */
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
@@ -43,11 +48,6 @@ const PracticePage = ({
     },
   );
 
-  useEffect(() => {
-    const currentTabContent = tabs.filter((t) => t.id === activeTab);
-    setActiveTabContent(currentTabContent[0].content);
-  }, [activeTab]);
-
   return (
     <>
       <BasicSiteHead
@@ -58,7 +58,7 @@ const PracticePage = ({
       />
       <SingleSubHeader
         title={practice.title}
-        subtitle={(subtitlePractice?.length > 0 && subtitlePractice) || ''}
+        subtitle={subtitlePractice}
         offset={0}
         span={8}
         tabs={tabs}
