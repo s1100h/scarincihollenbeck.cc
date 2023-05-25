@@ -33,7 +33,7 @@ const General = ({ content }) => {
             <JSXWithDynamicLinks HTML={`<h3>Affiliations</h3>${affiliations}`} />
           </GrayList>
         )}
-        {additionalInfo.length > 0 && (
+        {additionalInfo?.length > 0 && (
           <GrayList hightAuto="true">
             {additionalInfo.map(({ title, content }) => (
               <JSXWithDynamicLinks

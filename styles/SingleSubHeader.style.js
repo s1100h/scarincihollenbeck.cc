@@ -105,7 +105,7 @@ export const SubHeaderContent = styled(Container)`
   }
 `
 
-export const Description = styled.p`
+export const Description = styled.div`
   width: 50vw;
   color: ${globalColor.gray.gray80};
   margin-bottom: 0;
