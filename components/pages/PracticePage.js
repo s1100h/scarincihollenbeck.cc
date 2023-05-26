@@ -8,9 +8,9 @@ import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
 import { StickyWrapper } from '../../styles/Practices.style';
+import AttorneysListBox from '../common/AttorneysListBox';
 
 const Body = dynamic(() => import('components/organisms/practice/Body'));
-const AttorneysListBox = dynamic(() => import('components/common/AttorneysListBox'));
 
 const PracticePage = ({
   corePractices,
