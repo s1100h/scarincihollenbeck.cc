@@ -81,15 +81,11 @@ export const getServerSideProps = async ({ params, res, req }) => {
     };
   }
 
-  if (includeAttorney) {
-    request.attorneyList = includeAttorney;
-  }
+  request.attorneyList = includeAttorney;
 
-  if (practiceChief) {
-    request.chair = practiceChief;
-  }
+  request.chair = practiceChief;
 
-  const attorneysSchemaChair = request?.chair.map((attorney) => ({
+  const attorneysSchemaChair = request?.chair?.map((attorney) => ({
     '@type': 'Person',
     name: attorney.title,
     image: attorney.profileImage,
@@ -98,7 +94,7 @@ export const getServerSideProps = async ({ params, res, req }) => {
     jobTitle: 'Attorney',
   }));
 
-  const attorneysSchemaAttorneyList = request?.attorneyList.map((attorney) => ({
+  const attorneysSchemaAttorneyList = request?.attorneyList?.map((attorney) => ({
     '@type': 'Person',
     name: attorney.title,
     image: attorney.profileImage,
