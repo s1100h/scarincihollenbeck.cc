@@ -57,7 +57,7 @@ const getPracticeAttorneys = async (uri) => {
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ params, res, req }) => {
-  // res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
 
   const slug = params?.slug;
 
@@ -67,8 +67,8 @@ export const getServerSideProps = async ({ params, res, req }) => {
     };
   }
 
-  const request = await getPracticeContent(params.slug);
   const { includeAttorney, practiceChief } = await getPracticeAttorneys(req.url);
+  const request = await getPracticeContent(params.slug);
 
   if (Object.keys(request).includes('status') && request.status === 404) {
     return {
