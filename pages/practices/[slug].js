@@ -11,19 +11,6 @@ import { getAttorneysForPractice } from '../../utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
-/** Fetch single practice data WP REST API  */
-const getPracticeContent = async (slug) => {
-  try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
-      headers,
-    });
-
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const attorneysSanitize = (attorneysArr) => attorneysArr.map((attorney) => {
   attorney.attorneyMainInformation.profileImage = attorney.attorneyMainInformation.profileImage.sourceUrl;
   return {
@@ -53,6 +40,18 @@ const getPracticeAttorneys = async (uri) => {
     includeAttorney,
     practiceChief,
   };
+};
+/** Fetch single practice data WP REST API  */
+const getPracticeContent = async (slug) => {
+  try {
+    const res = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
+      headers,
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** Set single practice data to page props */
