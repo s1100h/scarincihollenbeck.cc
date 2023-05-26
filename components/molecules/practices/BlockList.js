@@ -55,8 +55,8 @@ const BlockList = ({ list }) => {
                 props={{ open: open.id === item.ID && open.isOpen }}
                 variant="link"
               >
-                <Link href={item.slug} legacyBehavior>
-                  <a onClick={(e) => handleClickStopEvent(e)}>{item.title}</a>
+                <Link href={item.slug} onClick={(e) => handleClickStopEvent(e)}>
+                  {item.title}
                 </Link>
                 {' '}
                 <BsChevronDown />

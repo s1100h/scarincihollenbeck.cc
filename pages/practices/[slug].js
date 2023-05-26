@@ -57,7 +57,7 @@ const getPracticeAttorneys = async (uri) => {
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ params, res, req }) => {
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  // res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
 
   const slug = params?.slug;
 
