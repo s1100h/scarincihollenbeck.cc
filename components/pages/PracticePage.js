@@ -6,6 +6,7 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
+import { useRouter } from 'next/router';
 import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
 import { StickyWrapper } from '../../styles/Practices.style';
 
@@ -19,20 +20,31 @@ const PracticePage = ({
   canonicalUrl,
   tabs,
   attorneysSchemaData,
+  chairPractice,
+  attorneyListPractice,
 }) => {
+  const { query } = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
   const [subtitlePractice, setSubtitlePractice] = useState();
-  const blogId = practice.blog_data_id[0];
+
+  const blogId = practice.practicesIncluded.relatedBlogCategory.map(({ databaseId }) => databaseId);
 
   useEffect(() => {
     setSubtitlePractice(practice.description);
   }, [practice.description]);
 
   useEffect(() => {
-    const currentTabContent = tabs.filter((t) => t.id === activeTab);
+    const currentTabContent = tabs.filter((tab) => tab.id === activeTab);
     setActiveTabContent(currentTabContent[0].content);
   }, [activeTab]);
+
+  useEffect(() => {
+    setActiveTab(tabs[0].id);
+    setActiveTabContent(tabs[0].content);
+  }, [query.slug]);
+
+  const skipOrGo = activeTab !== 99;
 
   /** Handle Related Articles Query */
   const {
@@ -40,12 +52,13 @@ const PracticePage = ({
   } = useApolloQuery(
     categoryPostsByIdQuery,
     {
-      first: 8,
+      first: 5,
       last: null,
       after: null,
       before: null,
-      id: blogId,
+      categoryIn: blogId,
     },
+    skipOrGo,
   );
 
   return (
@@ -94,7 +107,7 @@ const PracticePage = ({
         <Row>
           <ColStyled sm={12}>
             <AttorneysListBox
-              attorneys={{ chairs: practice.chair, attorneysList: practice.attorneyList }}
+              attorneys={{ chairs: chairPractice, attorneysList: attorneyListPractice }}
             />
           </ColStyled>
         </Row>

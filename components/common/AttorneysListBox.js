@@ -6,7 +6,7 @@ const AttorneysListBox = ({ attorneys }) => {
 
   return (
     <>
-      {chairs.length > 0 && (
+      {chairs?.length > 0 && (
         <AttorneysContainer>
           <h3>Chair</h3>
           <div>
@@ -28,7 +28,7 @@ const AttorneysListBox = ({ attorneys }) => {
         </AttorneysContainer>
       )}
 
-      {attorneysList.length > 0 && (
+      {attorneysList?.length > 0 && (
         <AttorneysContainer>
           <h3>Attorneys</h3>
           <div>

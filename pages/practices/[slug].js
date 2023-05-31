@@ -1,120 +1,119 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import {
-  PRODUCTION_URL, CORE_PRACTICES, BASE_API_URL, headers,
-} from 'utils/constants';
+import { PRODUCTION_URL, CORE_PRACTICES } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { fetchAPI } from '../../utils/api';
-import { getAttorneysForPractice } from '../../utils/graphql-queries';
+import { getDataForPractice } from '../../utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
-/** Fetch single practice data WP REST API  */
-const getPracticeContent = async (slug) => {
-  try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/individual-practices/practice/${slug}`, {
-      headers,
-    });
+const attorneysSanitize = (attorneysArr) => {
+  const designationOrder = [
+    'Firm Managing Partner',
+    'Deputy Managing Partner',
+    'Partner',
+    'Counsel',
+    'Of Counsel',
+    'Senior Associate',
+    'Associate',
+  ];
 
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
+  return attorneysArr
+    .map((attorney) => {
+      attorney.attorneyMainInformation.profileImage = attorney.attorneyMainInformation.profileImage.sourceUrl;
+      return {
+        databaseId: attorney.databaseId,
+        link: attorney.uri,
+        title: attorney.title,
+        ...attorney.attorneyMainInformation,
+      };
+    })
+    .sort((a, b) => {
+      const indexA = designationOrder.indexOf(a.designation);
+      const indexB = designationOrder.indexOf(b.designation);
+
+      return indexA - indexB;
+    });
 };
 
-const attorneysSanitize = (attorneysArr) => attorneysArr.map((attorney) => {
-  attorney.attorneyMainInformation.profileImage = attorney.attorneyMainInformation.profileImage.sourceUrl;
-  return {
-    databaseId: attorney.databaseId,
-    link: attorney.uri,
-    title: attorney.title,
-    ...attorney.attorneyMainInformation,
-  };
-});
-
 const getPracticeAttorneys = async (uri) => {
-  const { practice } = await fetchAPI(getAttorneysForPractice, {
+  const data = await fetchAPI(getDataForPractice, {
     variables: {
       id: uri,
     },
   });
 
-  const includeAttorney = practice?.practicesIncluded.includeAttorney
-    ? attorneysSanitize(practice.practicesIncluded.includeAttorney)
+  if (!data) {
+    return {
+      practice: undefined,
+    };
+  }
+
+  if (data.practice) {
+    if (!data.practice?.practicesIncluded?.childPractice) {
+      data.practice.practicesIncluded.childPractice = [];
+    }
+  }
+
+  const includeAttorney = data.practice?.practicesIncluded.includeAttorney
+    ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney)
     : undefined;
 
-  const practiceChief = practice?.practicesIncluded.sectionChief
-    ? attorneysSanitize(practice.practicesIncluded.sectionChief)
+  const practiceChief = data.practice?.practicesIncluded.sectionChief
+    ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
     : undefined;
 
   return {
+    practice: data.practice,
     includeAttorney,
     practiceChief,
   };
 };
 
 /** Set single practice data to page props */
-export const getServerSideProps = async ({ params, res, req }) => {
+export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  const { practice, includeAttorney, practiceChief } = await getPracticeAttorneys(resolvedUrl);
 
-  const slug = params?.slug;
-
-  if (!slug) {
+  if (typeof practice === 'undefined') {
     return {
       notFound: true,
     };
   }
 
-  const request = await getPracticeContent(params.slug);
-  const { includeAttorney, practiceChief } = await getPracticeAttorneys(req.url);
+  const attorneysSchemaChair = practiceChief?.length > 0
+    ? practiceChief?.map((attorney) => ({
+      '@type': 'Person',
+      name: attorney.title,
+      image: attorney.profileImage,
+      url: attorney.link,
+      telephone: attorney.phoneNumber,
+      jobTitle: 'Attorney',
+    }))
+    : [];
 
-  if (Object.keys(request).includes('status') && request.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (Object.keys(request).includes('data') && request.data.status === 404) {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (includeAttorney) {
-    request.attorneyList = includeAttorney;
-  }
-
-  if (practiceChief) {
-    request.chair = practiceChief;
-  }
-
-  const attorneysSchemaChair = request?.chair.map((attorney) => ({
-    '@type': 'Person',
-    name: attorney.title,
-    image: attorney.profileImage,
-    url: attorney.link,
-    telephone: attorney.phoneNumber,
-    jobTitle: 'Attorney',
-  }));
-
-  const attorneysSchemaAttorneyList = request?.attorneyList.map((attorney) => ({
-    '@type': 'Person',
-    name: attorney.title,
-    image: attorney.profileImage,
-    url: attorney.link,
-    telephone: attorney.phoneNumber,
-    jobTitle: 'Attorney',
-  }));
+  const attorneysSchemaAttorneyList = includeAttorney?.length > 0
+    ? includeAttorney?.map((attorney) => ({
+      '@type': 'Person',
+      name: attorney.title,
+      image: attorney.profileImage,
+      url: attorney.link,
+      telephone: attorney.phoneNumber,
+      jobTitle: 'Attorney',
+    }))
+    : [];
 
   const attorneysSchemaAttorney = [...attorneysSchemaChair, ...attorneysSchemaAttorneyList];
 
   return {
     props: {
-      practice: request,
+      practice,
+      chairPractice: practiceChief || [],
+      attorneyListPractice: includeAttorney || [],
       attorneysSchemaData: attorneysSchemaAttorney,
-      practiceChildren: request.children || [],
+      practiceChildren: practice?.practicesIncluded?.childPractice,
       slug: params.slug,
     },
   };
@@ -122,7 +121,12 @@ export const getServerSideProps = async ({ params, res, req }) => {
 
 /** Single practice page component */
 const SinglePractice = ({
-  practice, practiceChildren, slug, attorneysSchemaData,
+  practice,
+  practiceChildren,
+  slug,
+  attorneysSchemaData,
+  chairPractice,
+  attorneyListPractice,
 }) => {
   const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
@@ -133,7 +137,7 @@ const SinglePractice = ({
     return <SiteLoader />;
   }
 
-  const siteTabs = practice.content.map((tab, index) => ({
+  const siteTabs = practice.practicesIncluded.contentSection.map((tab, index) => ({
     ...tab,
     id: index,
   }));
@@ -156,6 +160,8 @@ const SinglePractice = ({
     canonicalUrl,
     tabs: fullTabs,
     slug,
+    chairPractice,
+    attorneyListPractice,
   };
   return (
     <ApolloWrapper>

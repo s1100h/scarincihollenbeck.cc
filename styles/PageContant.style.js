@@ -37,6 +37,7 @@ export const ContentContainer = styled.div`
 
     h4 {
       &:first-child {
+        margin-top: 0;
         background-color: #e9e9e9;
         padding: 10px;
         font-size: 1.2rem;

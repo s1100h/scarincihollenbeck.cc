@@ -466,9 +466,10 @@ export const categoryPostsByIdQuery = `query categoryPostsById(
   $last: Int
   $after: String
   $before: String
-  $id:Int
+  $id: Int
+  $categoryIn: [ID]
 ) {
-  posts(where: {categoryId:$id},  first: $first, last: $last, after: $after, before: $before) {
+  posts(where: {categoryIn: $categoryIn, id: $id}, first: $first, last: $last, after: $after, before: $before) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -780,9 +781,17 @@ export const practicePageQuery = `query PracticesPagesQuery {
   }
 }`;
 
-export const getAttorneysForPractice = `query FirmPageQuery($id: ID!) {
+export const getDataForPractice = `query FirmPageQuery($id: ID!) {
   practice(id: $id, idType: URI) {
+    databaseId
+    slug
+    title
     practicesIncluded {
+      contentSection {
+        title
+        content
+      }
+      description
       includeAttorney {
         ... on AttorneyProfile {
           databaseId
@@ -810,6 +819,34 @@ export const getAttorneysForPractice = `query FirmPageQuery($id: ID!) {
             profileImage {
               sourceUrl
             }
+          }
+        }
+      }
+      childPractice {
+        ... on Practice {
+          databaseId
+          title
+          slug
+        }
+      }
+      relatedBlogCategory {
+        databaseId
+      }
+    }
+    seo {
+      title
+      metaDesc
+    }
+  }
+  practices(first: 100) {
+    nodes {
+      title
+      slug
+      databaseId
+      practicesIncluded {
+        childPractice {
+          ... on Practice {
+            databaseId
           }
         }
       }
