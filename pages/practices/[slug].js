@@ -55,6 +55,10 @@ const getPracticeAttorneys = async (uri) => {
     if (!data.practice?.practicesIncluded?.childPractice) {
       data.practice.practicesIncluded.childPractice = [];
     }
+
+    if (!data.practice?.practicesIncluded?.relatedBlogCategory) {
+      data.practice.practicesIncluded.relatedBlogCategory = [];
+    }
   }
 
   const includeAttorney = data.practice?.practicesIncluded.includeAttorney

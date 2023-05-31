@@ -1,6 +1,7 @@
 import parse from 'html-react-parser';
 import Link from 'next/link';
-import Image from 'next/legacy/image';
+import * as ImageLegacy from 'next/legacy/image';
+import Image from 'next/image';
 import empty from 'is-empty';
 import { PRODUCTION_URL } from '../../../utils/constants';
 
@@ -40,8 +41,24 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           />
         );
       }
+
+      if (domNode.parent?.parent?.attribs?.class === 'wp-block-image') {
+        return (
+          <Image
+            className="floated-image"
+            placeholder="blur"
+            blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            loading="lazy"
+            src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            alt={domNode.attribs.alt}
+            width={domNode.attribs?.width || 500}
+            height={domNode.attribs?.height || 300}
+          />
+        );
+      }
+
       return (
-        <Image
+        <ImageLegacy
           placeholder="blur"
           blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
           loading="lazy"
