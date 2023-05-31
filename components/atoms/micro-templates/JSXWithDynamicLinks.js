@@ -84,10 +84,6 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
       return domNode;
     }
 
-    if (domNode.type === 'tag' && domNode.name === 'p' && domNode.children[0].name === 'strong') {
-      if (domNode.children[0].children[0].data) return <h5>{domNode.children[0].children[0].data}</h5>;
-    }
-
     if (domNode.type === 'tag' && domNode.attribs.class === 'wp-video') {
       let video;
 
