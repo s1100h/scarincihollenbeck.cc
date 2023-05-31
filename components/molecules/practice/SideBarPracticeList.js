@@ -6,7 +6,7 @@ const SideBarPracticeList = ({ title, practicesList }) => (
     <h3>{title}</h3>
     <ul>
       {practicesList.map((practice) => (
-        <li key={practice.id || practice.ID}>
+        <li key={practice.id || practice.ID || practice.databaseId}>
           <Link href={practice.slug}>{practice.label || practice.title}</Link>
         </li>
       ))}

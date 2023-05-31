@@ -55,7 +55,8 @@ const LibraryDirectory = ({
       last: null,
       after: null,
       before: null,
-      id: isAuthor ? categoryId.toString() : categoryId,
+      id: isAuthor ? categoryId.toString() : null,
+      categoryIn: null,
     },
   );
 
