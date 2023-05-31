@@ -60,6 +60,7 @@ export const ContentContainer = styled.div`
     .alignleft,
     .alignright {
       float: none;
+      margin: 0;
     }
   }
 `
