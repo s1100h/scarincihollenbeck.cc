@@ -25,7 +25,7 @@ const PostPage = ({
     keyContacts,
     corePractices,
   };
-  // console.log("post.content", post.content)
+
   return (
     <>
       <PostSiteHead seo={seo} canonicalUrl={canonicalUrl} post={post} authors={authors} />

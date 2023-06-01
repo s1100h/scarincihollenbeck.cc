@@ -7,6 +7,7 @@ export default function useStateScreen() {
     isBigTabletScreen: false,
     isTabletScreen: false,
     isDesktopScreen: false,
+    isMobileScreen: false,
   });
 
   const isBigTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.lg}px)` });
@@ -14,6 +15,7 @@ export default function useStateScreen() {
   const isDesktopOrLaptop = useMediaQuery({
     query: `(min-width: ${sizeWindow.sm}px)`,
   });
+  const isMobile = useMediaQuery({ query: `(max-width: ${sizeWindow.sm}px)` });
   useEffect(() => {
     if (isTablet) {
       setScreenState((prev) => ({
@@ -36,9 +38,20 @@ export default function useStateScreen() {
         isDesktopScreen: prev.isDesktopScreen,
       }));
     }
+    if (isMobile) {
+      setScreenState((prev) => ({
+        isBigTabletScreen: prev.isBigTabletScreen,
+        isTabletScreen: prev.isTabletScreen,
+        isDesktopScreen: prev.isDesktopScreen,
+        isMobileScreen: true,
+      }));
+    }
   }, []);
-  const { isTabletScreen, isDesktopScreen, isBigTabletScreen } = isScreenState;
+  const {
+    isTabletScreen, isDesktopScreen, isBigTabletScreen, isMobileScreen,
+  } = isScreenState;
   return {
+    isMobileScreen,
     isTabletScreen,
     isDesktopScreen,
     isBigTabletScreen,

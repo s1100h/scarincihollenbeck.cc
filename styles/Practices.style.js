@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
 
 export const ButtonTabToggle = styled(Dropdown.Toggle)`
   display: flex;
@@ -145,5 +145,29 @@ export const SideBarPracticeBox = styled.nav`
         font-weight: 500;
       }
     }
+  }
+`
+
+export const CardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: ${globalShadow.allSideShadow};
+
+  h4 {
+    font-size: ${rem(20)};
+    font-weight: 700;
+    margin-bottom: 5px;
+    margin-top: 20px;
+  }
+
+  p {
+    color: ${globalColor.gray.gray80};
+  }
+
+  :hover {
+    transition: 0.7s;
+    box-shadow: ${globalShadow.hoveredShadow};
+    cursor: pointer;
   }
 `
