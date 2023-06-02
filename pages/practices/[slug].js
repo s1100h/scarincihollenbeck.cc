@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { PRODUCTION_URL, CORE_PRACTICES } from 'utils/constants';
+import { CORE_PRACTICES, PRODUCTION_URL } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { fetchAPI } from '../../utils/api';
@@ -34,7 +34,10 @@ const attorneysSanitize = (attorneysArr) => {
       const indexA = designationOrder.indexOf(a.designation);
       const indexB = designationOrder.indexOf(b.designation);
 
-      return indexA - indexB;
+      if (indexA !== indexB) {
+        return indexA - indexB; // Sort by designation order first
+      }
+      return a.lastName.localeCompare(b.lastName); // If designations are the same, sort by last name
     });
 };
 
@@ -61,13 +64,22 @@ const getPracticeAttorneys = async (uri) => {
     }
   }
 
-  const includeAttorney = data.practice?.practicesIncluded.includeAttorney
+  let includeAttorney = data.practice?.practicesIncluded.includeAttorney
     ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney)
     : undefined;
 
   const practiceChief = data.practice?.practicesIncluded.sectionChief
     ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
     : undefined;
+
+  if (includeAttorney && practiceChief) {
+    includeAttorney = includeAttorney.filter((attorney) => {
+      const isDuplicate = practiceChief.some(
+        (sectionAttorney) => attorney.databaseId === sectionAttorney.databaseId,
+      );
+      return !isDuplicate;
+    });
+  }
 
   return {
     practice: data.practice,

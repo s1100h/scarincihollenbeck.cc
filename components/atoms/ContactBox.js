@@ -8,7 +8,7 @@ const ContactBoxTemplate = ({ number, email }) => (
       {' '}
       <span>{number}</span>
     </a>
-    <a onClick={(e) => e.stopPropagation()} href={`mailto:${email}`}>
+    <a title={`${email}`} onClick={(e) => e.stopPropagation()} href={`mailto:${email}`}>
       <BsFillEnvelopeFill />
       {' '}
       <span>{email}</span>

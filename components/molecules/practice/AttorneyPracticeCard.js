@@ -10,14 +10,13 @@ const AttorneyPracticeCard = ({
   designation,
   number,
   email,
-  key,
   width,
   height,
   classNameProp,
 }) => {
   const { push } = useRouter();
   return (
-    <CardBox className={`${classNameProp}`} key={key} onClick={() => push(link)}>
+    <CardBox className={`${classNameProp}`} onClick={() => push(link)}>
       <Image src={image} width={width} height={height} alt={`Attorney, ${name}`} />
       <h4>{name}</h4>
       <p>{designation}</p>

@@ -798,6 +798,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
           uri
           title
           attorneyMainInformation {
+            lastName
             designation
             email
             phoneNumber

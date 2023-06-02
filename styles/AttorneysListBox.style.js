@@ -98,21 +98,22 @@ export const AttorneysContainer = styled.section`
   > div {
     display: flex;
     flex-direction: column;
-
-    :first-child {
-      margin-right: 10px;
-
-      > div {
-        justify-content: flex-start;
-      }
     }
 
-    > div {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1%;
-      margin-bottom: 1%;
-    }
+  .chair-box {
+    margin-right: 10px;
+  }
+    
+   .attorneys-list-box {
+     width: 100%;
+     
+     > div {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 1%;
+       margin-bottom: 1%;
+     }
+   }
   }
 
   .vertical-attorney-card {

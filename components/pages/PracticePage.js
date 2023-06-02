@@ -7,6 +7,7 @@ import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { useRouter } from 'next/router';
+import empty from 'is-empty';
 import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
 import { StickyWrapper } from '../../styles/Practices.style';
 
@@ -104,13 +105,15 @@ const PracticePage = ({
             </StickyWrapper>
           </Col>
         </Row>
-        <Row>
-          <ColStyled sm={12}>
-            <AttorneysListBox
-              attorneys={{ chairs: chairPractice, attorneysList: attorneyListPractice }}
-            />
-          </ColStyled>
-        </Row>
+        {(!empty(chairPractice) || !empty(attorneyListPractice)) && (
+          <Row>
+            <ColStyled sm={12}>
+              <AttorneysListBox
+                attorneys={{ chairs: chairPractice, attorneysList: attorneyListPractice }}
+              />
+            </ColStyled>
+          </Row>
+        )}
       </Container>
     </>
   );
