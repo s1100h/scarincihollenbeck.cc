@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { CORE_PRACTICES, PRODUCTION_URL } from 'utils/constants';
+import { PRODUCTION_URL, ScarinciHollenbeckKeyContact } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
+import empty from 'is-empty';
 import { fetchAPI } from '../../utils/api';
 import { getDataForPractice } from '../../utils/graphql-queries';
 
@@ -27,6 +27,8 @@ const attorneysSanitize = (attorneysArr) => {
         databaseId: attorney.databaseId,
         link: attorney.uri,
         title: attorney.title,
+        keyContactsByPractice:
+          attorney.attorneyPrimaryRelatedPracticesLocationsGroups.keyContactByPractice,
         ...attorney.attorneyMainInformation,
       };
     })
@@ -66,11 +68,15 @@ const getPracticeAttorneys = async (uri) => {
 
   let includeAttorney = data.practice?.practicesIncluded.includeAttorney
     ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney)
-    : undefined;
+    : [];
 
   const practiceChief = data.practice?.practicesIncluded.sectionChief
     ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
-    : undefined;
+    : [];
+
+  const corePractices = data.practices.nodes.filter(
+    (practice) => !empty(practice.practicesIncluded.childPractice) && practice,
+  );
 
   if (includeAttorney && practiceChief) {
     includeAttorney = includeAttorney.filter((attorney) => {
@@ -81,17 +87,41 @@ const getPracticeAttorneys = async (uri) => {
     });
   }
 
+  const concatAttorneys = [...includeAttorney, ...practiceChief];
+  let keyContacts;
+
+  if (concatAttorneys) {
+    const filteredContactsByPractice = concatAttorneys.filter((attorney) => {
+      if (attorney.keyContactsByPractice) {
+        const matchingPractices = attorney.keyContactsByPractice.filter(
+          (practiceInfo) => practiceInfo.databaseId === data.practice.databaseId,
+        );
+        return matchingPractices.length > 0;
+      }
+      return false;
+    });
+    if (!empty(filteredContactsByPractice)) {
+      keyContacts = filteredContactsByPractice;
+    } else {
+      keyContacts = [ScarinciHollenbeckKeyContact];
+    }
+  }
+
   return {
     practice: data.practice,
     includeAttorney,
     practiceChief,
+    keyContactsList: keyContacts,
+    corePractices,
   };
 };
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-  const { practice, includeAttorney, practiceChief } = await getPracticeAttorneys(resolvedUrl);
+  const {
+    practice, includeAttorney, practiceChief, keyContactsList, corePractices,
+  } = await getPracticeAttorneys(resolvedUrl);
 
   if (typeof practice === 'undefined') {
     return {
@@ -128,7 +158,9 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       practice,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
+      keyContactsList,
       attorneysSchemaData: attorneysSchemaAttorney,
+      corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
       slug: params.slug,
     },
@@ -138,13 +170,14 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
 /** Single practice page component */
 const SinglePractice = ({
   practice,
+  corePractices,
   practiceChildren,
   slug,
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
+  keyContactsList,
 }) => {
-  const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
   const canonicalUrl = `${PRODUCTION_URL}/practices/${practice.slug}`;
@@ -178,6 +211,7 @@ const SinglePractice = ({
     slug,
     chairPractice,
     attorneyListPractice,
+    keyContactsList,
   };
   return (
     <ApolloWrapper>

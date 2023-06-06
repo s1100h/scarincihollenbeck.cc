@@ -129,7 +129,6 @@ export const StickyWrapper = styled.div`
 
 export const SideBarPracticeBox = styled.nav`
   padding: 10px 20px 20px;
-  box-shadow: ${globalShadow.allSideShadow};
   margin-bottom: 20px;
 
   h3 {

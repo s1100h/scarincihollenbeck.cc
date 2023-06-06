@@ -38,8 +38,8 @@ const AttorneysListBox = ({ attorneys }) => {
                   designation={chair.designation}
                   number={chair.phoneNumber}
                   email={chair.email}
-                  width={245}
-                  height={270}
+                  width={180}
+                  height={210}
                 />
               ))}
           </div>
@@ -75,8 +75,8 @@ const AttorneysListBox = ({ attorneys }) => {
                   designation={attorney.designation}
                   number={attorney.phoneNumber}
                   email={attorney.email}
-                  width={245}
-                  height={270}
+                  width={180}
+                  height={210}
                 />
               ))}
           </div>

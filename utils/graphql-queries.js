@@ -806,6 +806,14 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
               sourceUrl
             }
           }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            keyContactByPractice {
+              ... on Practice {
+                databaseId
+                title
+              }
+            }
+          }
         }
       }
       sectionChief {
@@ -819,6 +827,14 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
             phoneNumber
             profileImage {
               sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            keyContactByPractice {
+              ... on Practice {
+                databaseId
+                title
+              }
             }
           }
         }
@@ -842,7 +858,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
   practices(first: 100) {
     nodes {
       title
-      slug
+      uri
       databaseId
       practicesIncluded {
         childPractice {
