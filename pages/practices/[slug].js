@@ -27,8 +27,6 @@ const attorneysSanitize = (attorneysArr) => {
         databaseId: attorney.databaseId,
         link: attorney.uri,
         title: attorney.title,
-        keyContactsByPractice:
-          attorney.attorneyPrimaryRelatedPracticesLocationsGroups.keyContactByPractice,
         ...attorney.attorneyMainInformation,
       };
     })
@@ -64,6 +62,10 @@ const getPracticeAttorneys = async (uri) => {
     if (!data.practice?.practicesIncluded?.relatedBlogCategory) {
       data.practice.practicesIncluded.relatedBlogCategory = [];
     }
+
+    if (!data.practice.practicesIncluded.keyContactByPractice) {
+      data.practice.practicesIncluded.keyContactByPractice = [];
+    }
   }
 
   let includeAttorney = data.practice?.practicesIncluded.includeAttorney
@@ -72,6 +74,10 @@ const getPracticeAttorneys = async (uri) => {
 
   const practiceChief = data.practice?.practicesIncluded.sectionChief
     ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
+    : [];
+
+  const keyContactsArr = data.practice.practicesIncluded.keyContactByPractice
+    ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice)
     : [];
 
   const corePractices = data.practices.nodes.filter(
@@ -87,25 +93,8 @@ const getPracticeAttorneys = async (uri) => {
     });
   }
 
-  const concatAttorneys = [...includeAttorney, ...practiceChief];
-  let keyContacts;
-
-  if (concatAttorneys) {
-    const filteredContactsByPractice = concatAttorneys.filter((attorney) => {
-      if (attorney.keyContactsByPractice) {
-        const matchingPractices = attorney.keyContactsByPractice.filter(
-          (practiceInfo) => practiceInfo.databaseId === data.practice.databaseId,
-        );
-        return matchingPractices.length > 0;
-      }
-      return false;
-    });
-    if (!empty(filteredContactsByPractice)) {
-      keyContacts = filteredContactsByPractice;
-    } else {
-      keyContacts = [ScarinciHollenbeckKeyContact];
-    }
-  }
+  const concatAttorneys = [...practiceChief, ...keyContactsArr];
+  const keyContacts = concatAttorneys.length > 0 ? concatAttorneys : [ScarinciHollenbeckKeyContact];
 
   return {
     practice: data.practice,

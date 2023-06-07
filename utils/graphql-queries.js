@@ -798,20 +798,12 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
           uri
           title
           attorneyMainInformation {
-            lastName
             designation
             email
             phoneNumber
+            lastName
             profileImage {
               sourceUrl
-            }
-          }
-          attorneyPrimaryRelatedPracticesLocationsGroups {
-            keyContactByPractice {
-              ... on Practice {
-                databaseId
-                title
-              }
             }
           }
         }
@@ -825,16 +817,9 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
             designation
             email
             phoneNumber
+            lastName
             profileImage {
               sourceUrl
-            }
-          }
-          attorneyPrimaryRelatedPracticesLocationsGroups {
-            keyContactByPractice {
-              ... on Practice {
-                databaseId
-                title
-              }
             }
           }
         }
@@ -848,6 +833,21 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
       }
       relatedBlogCategory {
         databaseId
+      }
+      keyContactByPractice {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+          }
+        }
       }
     }
     seo {
