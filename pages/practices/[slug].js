@@ -5,7 +5,7 @@ import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import { fetchAPI } from '../../utils/api';
-import { getDataForPractice } from '../../utils/graphql-queries';
+import { getDataForPractice, getJustClientAlertOnePost } from '../../utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -40,6 +40,11 @@ const attorneysSanitize = (attorneysArr) => {
       return a.lastName.localeCompare(b.lastName); // If designations are the same, sort by last name
     });
 };
+
+export const postsSanitize = (posts) => posts.map((post) => {
+  post.featuredImage = post.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png';
+  return post;
+});
 
 const getPracticeAttorneys = async (uri) => {
   const data = await fetchAPI(getDataForPractice, {
@@ -80,6 +85,8 @@ const getPracticeAttorneys = async (uri) => {
     ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice)
     : [];
 
+  const postsForSidebar = data.posts?.nodes ? postsSanitize(data.posts.nodes) : [];
+
   const corePractices = data.practices.nodes.filter(
     (practice) => !empty(practice.practicesIncluded.childPractice) && practice,
   );
@@ -102,15 +109,29 @@ const getPracticeAttorneys = async (uri) => {
     practiceChief,
     keyContactsList: keyContacts,
     corePractices,
+    posts: postsForSidebar,
   };
+};
+
+const getClientAlertPost = async () => {
+  const data = await fetchAPI(getJustClientAlertOnePost);
+
+  if (!data) {
+    return [];
+  }
+
+  return postsSanitize(data.posts.nodes);
 };
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
   const {
-    practice, includeAttorney, practiceChief, keyContactsList, corePractices,
+    practice, includeAttorney, practiceChief, keyContactsList, corePractices, posts,
   } = await getPracticeAttorneys(resolvedUrl);
+  const clientAlertPost = await getClientAlertPost();
+
+  const latestFromTheFirm = [...posts, ...clientAlertPost];
 
   if (typeof practice === 'undefined') {
     return {
@@ -151,6 +172,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       attorneysSchemaData: attorneysSchemaAttorney,
       corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
+      latestFromTheFirm,
       slug: params.slug,
     },
   };
@@ -166,6 +188,7 @@ const SinglePractice = ({
   chairPractice,
   attorneyListPractice,
   keyContactsList,
+  latestFromTheFirm,
 }) => {
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
@@ -201,6 +224,7 @@ const SinglePractice = ({
     chairPractice,
     attorneyListPractice,
     keyContactsList,
+    latestFromTheFirm,
   };
   return (
     <ApolloWrapper>

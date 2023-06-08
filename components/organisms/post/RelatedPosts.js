@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import empty from 'is-empty';
 import {
   RelatedPostItem,
   RelatedPostsContainer,
@@ -7,9 +8,9 @@ import {
 } from '../../../styles/Post/RelatedPosts.style';
 import { PRODUCTION_URL } from '../../../utils/constants';
 
-const RelatedPosts = ({ posts }) => (
+const RelatedPosts = ({ posts, title }) => (
   <RelatedPostsContainer>
-    <h5>Related Posts</h5>
+    <h5>{!empty(title) ? title : 'Related Posts'}</h5>
     <RelatedPostsList>
       {posts.map((post) => (
         <RelatedPostItem key={post.databaseId}>
