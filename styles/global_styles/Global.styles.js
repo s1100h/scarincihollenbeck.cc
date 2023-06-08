@@ -395,10 +395,14 @@ footer .wrapper-section {
 }
 
 .bullets-li {
-  
+  padding-left: 20px;
+  position: relative;
+
   ::before {
+    top: 0;
+    left: 0;
     content: '➤';
-    margin-right: 10px;
+    position: absolute;
   }
 }
 
@@ -408,7 +412,7 @@ footer .wrapper-section {
 `
 
 export const ButtonLinkCss = `
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 5px;
