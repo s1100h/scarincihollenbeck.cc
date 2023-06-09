@@ -7,8 +7,10 @@ import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { useRouter } from 'next/router';
-import SideBarPracticeList from '../molecules/practice/SideBarPracticeList';
-import { StickyWrapper } from '../../styles/Practices.style';
+import empty from 'is-empty';
+import Sidebar from '../organisms/post/PostSidebar';
+import { SideBarContainer } from '../../styles/Sidebar.style';
+import RelatedPosts from '../organisms/post/RelatedPosts';
 
 const Body = dynamic(() => import('components/organisms/practice/Body'));
 const AttorneysListBox = dynamic(() => import('components/common/AttorneysListBox'));
@@ -22,6 +24,8 @@ const PracticePage = ({
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
+  keyContactsList,
+  latestFromTheFirm,
 }) => {
   const { query } = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -93,24 +97,28 @@ const PracticePage = ({
               activeTab={activeTab}
             />
           </ColStyled>
-          <Col sm={12} md={8} lg={5} xl={4}>
-            <StickyWrapper>
-              {corePractices.length > 0 && (
-                <SideBarPracticeList title="Core Practices" practicesList={corePractices} />
-              )}
-              {practiceChildren.length > 0 && (
-                <SideBarPracticeList title="Related Practices" practicesList={practiceChildren} />
-              )}
-            </StickyWrapper>
+          <Col className="mb-4" sm={12} md={8} lg={5} xl={4}>
+            <SideBarContainer>
+              <Sidebar
+                keyContacts={keyContactsList}
+                corePractices={corePractices}
+                isPracticeVariant
+              />
+            </SideBarContainer>
+            {!empty(latestFromTheFirm) && (
+              <RelatedPosts title="Latest from the Firm" posts={latestFromTheFirm} />
+            )}
           </Col>
         </Row>
-        <Row>
-          <ColStyled sm={12}>
-            <AttorneysListBox
-              attorneys={{ chairs: chairPractice, attorneysList: attorneyListPractice }}
-            />
-          </ColStyled>
-        </Row>
+        {(!empty(chairPractice) || !empty(attorneyListPractice)) && (
+          <Row>
+            <ColStyled sm={12}>
+              <AttorneysListBox
+                attorneys={{ chairs: chairPractice, attorneysList: attorneyListPractice }}
+              />
+            </ColStyled>
+          </Row>
+        )}
       </Container>
     </>
   );

@@ -17,6 +17,7 @@ export const ContactLinksBox = styled.section`
 
   article {
     width: 100%;
+    min-width: 200px;
     padding: 10px 0 10px 10px;
     margin-top: 10px;
     border: none;

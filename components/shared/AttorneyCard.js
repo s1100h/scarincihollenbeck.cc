@@ -1,16 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  AttorneyCardBox,
-  ContactBox,
-  ImageBox,
-  InfoBox,
-  LinkBox,
-  PhotoBox,
-  UserName,
+  AttorneyCardBox, InfoBox, LinkBox, UserName,
 } from 'styles/AttorneyCard.style';
-import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 import { useId } from 'react';
+import ContactBoxTemplate from '../atoms/ContactBox';
 
 const renderLinkToLocationPractice = (locationsOrPractice) => {
   if (Array.isArray(locationsOrPractice)) {
@@ -84,18 +78,7 @@ export default function AttorneyCard({
             {locations && (
               <ul className="d-flex gap-1 m-0 p-0">{renderLinkToLocationPractice(locations)}</ul>
             )}
-            <ContactBox>
-              <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
-                <BsFillTelephoneFill />
-                {' '}
-                <span>{number}</span>
-              </a>
-              <a onClick={(e) => e.stopPropagation()} href={`mailto:${email}`}>
-                <BsFillEnvelopeFill />
-                {' '}
-                <span>{email}</span>
-              </a>
-            </ContactBox>
+            <ContactBoxTemplate email={email} number={number} />
           </InfoBox>
         </LinkBox>
       </Link>

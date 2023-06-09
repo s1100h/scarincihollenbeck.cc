@@ -397,7 +397,7 @@ footer .wrapper-section {
 .bullets-li {
   padding-left: 20px;
   position: relative;
-
+  
   ::before {
     top: 0;
     left: 0;

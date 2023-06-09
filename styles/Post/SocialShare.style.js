@@ -22,8 +22,9 @@ export const ShareSocialBox = styled.nav`
   .first-hr {
     width: 50%;
   }
+
   .second-hr {
-    width: 10%;
+    width: ${({ isPracticeHr }) => (isPracticeHr ? '35%' : '10%')};
   }
 
   button {

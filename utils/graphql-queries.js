@@ -801,6 +801,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
             designation
             email
             phoneNumber
+            lastName
             profileImage {
               sourceUrl
             }
@@ -816,6 +817,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
             designation
             email
             phoneNumber
+            lastName
             profileImage {
               sourceUrl
             }
@@ -832,6 +834,21 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
       relatedBlogCategory {
         databaseId
       }
+      keyContactByPractice {
+        ... on AttorneyProfile {
+          databaseId
+          uri
+          title
+          attorneyMainInformation {
+            designation
+            email
+            phoneNumber
+            profileImage {
+              sourceUrl
+            }
+          }
+        }
+      }
     }
     seo {
       title
@@ -841,7 +858,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
   practices(first: 100) {
     nodes {
       title
-      slug
+      uri
       databaseId
       practicesIncluded {
         childPractice {
@@ -852,8 +869,35 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
       }
     }
   }
+  posts(where: {categoryIn: [99, 98]}, first: 2) {
+    nodes {
+      uri
+      title
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
+  }  
 }
 `;
+
+export const getJustClientAlertOnePost = `query FirmPageQuery {
+  posts(where: {categoryIn: [20098]}, first: 1) {
+    nodes {
+      uri
+      title
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
+  }
+}`;
 
 /** careers landing page query */
 export const careersPageQuery = `query CareersPagesQuery {
