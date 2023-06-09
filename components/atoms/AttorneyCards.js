@@ -29,7 +29,7 @@ const AttorneyCards = ({ title, content, pathname }) => {
         <RowSpecial>
           {content.map((info) => (
             <AttorneyCard
-              key={info.link || info.uri}
+              key={info.id}
               link={info.link ? `/attorneys/${info.link}` : info.uri}
               image={info.better_featured_image || info.featuredImage}
               name={info.title}

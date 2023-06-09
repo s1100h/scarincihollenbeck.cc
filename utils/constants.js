@@ -11,6 +11,11 @@ import {
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 
+/** Change the company name, phone, fax, email through out the site */
+export const SITE_TITLE = 'Scarinci Hollenbeck';
+export const SITE_PHONE = '201-896-4100';
+export const SITE_FAX = '201-896-8660';
+export const SITE_EMAIL = 'info@sh-law.com';
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
@@ -40,6 +45,9 @@ export const ScarinciHollenbeckAuthor = [
         sourceUrl: '/images/sh-mini-diamond-PNG.png',
       },
     },
+    attorneyPrimaryRelatedPracticesLocationsGroups: {
+      keyContactByPractice: null,
+    },
     attorneyBiography: {
       miniBio: `With a growing practice of more than 60 experienced attorneys,
      Scarinci Hollenbeck is a regional alternative to a National 250 law firm. With offices in New
@@ -48,6 +56,17 @@ export const ScarinciHollenbeckAuthor = [
     },
   },
 ];
+
+export const ScarinciHollenbeckKeyContact = {
+  databaseId: 10000000000001,
+  link: '/attorneys',
+  display_name: 'Scarinci Hollenbeck',
+  keyContactsByPractice: null,
+  profileImage: '/images/sh-mini-diamond-PNG.png',
+  designation: 'The Firm',
+  phoneNumber: SITE_PHONE,
+  email: SITE_EMAIL,
+};
 
 /* List of Firm Pages found in the sidebar and in the footer */
 export const FIRM_PAGES = [
@@ -550,12 +569,6 @@ export const Links404NavArr = [
     href: '/library/category/law-firm-insights',
   },
 ];
-
-/** Change the company name, phone, fax, email through out the site */
-export const SITE_TITLE = 'Scarinci Hollenbeck';
-export const SITE_PHONE = '201-896-4100';
-export const SITE_FAX = '201-896-8660';
-export const SITE_EMAIL = 'info@sh-law.com';
 
 /**  external blog urls  */
 export const MUSIC_ESQ_URL = 'https://musicesq.com';

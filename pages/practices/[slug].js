@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { PRODUCTION_URL, CORE_PRACTICES } from 'utils/constants';
+import { PRODUCTION_URL, ScarinciHollenbeckKeyContact } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
+import empty from 'is-empty';
 import { fetchAPI } from '../../utils/api';
-import { getDataForPractice } from '../../utils/graphql-queries';
+import { getDataForPractice, getJustClientAlertOnePost } from '../../utils/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -34,9 +34,17 @@ const attorneysSanitize = (attorneysArr) => {
       const indexA = designationOrder.indexOf(a.designation);
       const indexB = designationOrder.indexOf(b.designation);
 
-      return indexA - indexB;
+      if (indexA !== indexB) {
+        return indexA - indexB; // Sort by designation order first
+      }
+      return a.lastName.localeCompare(b.lastName); // If designations are the same, sort by last name
     });
 };
+
+export const postsSanitize = (posts) => posts.map((post) => {
+  post.featuredImage = post.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png';
+  return post;
+});
 
 const getPracticeAttorneys = async (uri) => {
   const data = await fetchAPI(getDataForPractice, {
@@ -59,27 +67,71 @@ const getPracticeAttorneys = async (uri) => {
     if (!data.practice?.practicesIncluded?.relatedBlogCategory) {
       data.practice.practicesIncluded.relatedBlogCategory = [];
     }
+
+    if (!data.practice.practicesIncluded.keyContactByPractice) {
+      data.practice.practicesIncluded.keyContactByPractice = [];
+    }
   }
 
-  const includeAttorney = data.practice?.practicesIncluded.includeAttorney
+  let includeAttorney = data.practice?.practicesIncluded.includeAttorney
     ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney)
-    : undefined;
+    : [];
 
   const practiceChief = data.practice?.practicesIncluded.sectionChief
     ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
-    : undefined;
+    : [];
+
+  const keyContactsArr = data.practice.practicesIncluded.keyContactByPractice
+    ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice)
+    : [];
+
+  const postsForSidebar = data.posts?.nodes ? postsSanitize(data.posts.nodes) : [];
+
+  const corePractices = data.practices.nodes.filter(
+    (practice) => !empty(practice.practicesIncluded.childPractice) && practice,
+  );
+
+  if (includeAttorney && practiceChief) {
+    includeAttorney = includeAttorney.filter((attorney) => {
+      const isDuplicate = practiceChief.some(
+        (sectionAttorney) => attorney.databaseId === sectionAttorney.databaseId,
+      );
+      return !isDuplicate;
+    });
+  }
+
+  const concatAttorneys = [...practiceChief, ...keyContactsArr];
+  const keyContacts = concatAttorneys.length > 0 ? concatAttorneys : [ScarinciHollenbeckKeyContact];
 
   return {
     practice: data.practice,
     includeAttorney,
     practiceChief,
+    keyContactsList: keyContacts,
+    corePractices,
+    posts: postsForSidebar,
   };
+};
+
+const getClientAlertPost = async () => {
+  const data = await fetchAPI(getJustClientAlertOnePost);
+
+  if (!data) {
+    return [];
+  }
+
+  return postsSanitize(data.posts.nodes);
 };
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
-  const { practice, includeAttorney, practiceChief } = await getPracticeAttorneys(resolvedUrl);
+  const {
+    practice, includeAttorney, practiceChief, keyContactsList, corePractices, posts,
+  } = await getPracticeAttorneys(resolvedUrl);
+  const clientAlertPost = await getClientAlertPost();
+
+  const latestFromTheFirm = [...posts, ...clientAlertPost];
 
   if (typeof practice === 'undefined') {
     return {
@@ -116,8 +168,11 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       practice,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
+      keyContactsList,
       attorneysSchemaData: attorneysSchemaAttorney,
+      corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
+      latestFromTheFirm,
       slug: params.slug,
     },
   };
@@ -126,13 +181,15 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
 /** Single practice page component */
 const SinglePractice = ({
   practice,
+  corePractices,
   practiceChildren,
   slug,
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
+  keyContactsList,
+  latestFromTheFirm,
 }) => {
-  const [corePractices] = useState(CORE_PRACTICES);
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');
   const canonicalUrl = `${PRODUCTION_URL}/practices/${practice.slug}`;
@@ -166,6 +223,8 @@ const SinglePractice = ({
     slug,
     chairPractice,
     attorneyListPractice,
+    keyContactsList,
+    latestFromTheFirm,
   };
   return (
     <ApolloWrapper>

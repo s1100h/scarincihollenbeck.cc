@@ -4,7 +4,7 @@ import PostSiteHead from 'components/shared/head/PostSiteHead';
 import SingleSubHeader from 'layouts/SingleSubHeader';
 import PostBody from 'components/organisms/post/PostBody';
 import Sidebar from 'components/organisms/post/PostSidebar';
-import { ColSideBar } from '../../styles/Sidebar.style';
+import { SideBarContainer } from '../../styles/Sidebar.style';
 import RelatedPosts from '../organisms/post/RelatedPosts';
 import RecommendedPosts from '../common/RecommendedPosts';
 
@@ -25,7 +25,7 @@ const PostPage = ({
     keyContacts,
     corePractices,
   };
-  // console.log("post.content", post.content)
+
   return (
     <>
       <PostSiteHead seo={seo} canonicalUrl={canonicalUrl} post={post} authors={authors} />
@@ -50,9 +50,9 @@ const PostPage = ({
             />
           </Col>
           <Col sm={10} lg={4} className="d-print-none px-0">
-            <ColSideBar sm={12} lg={4} className="d-print-none px-0">
+            <SideBarContainer>
               <Sidebar {...sideBarProps} />
-            </ColSideBar>
+            </SideBarContainer>
             <RelatedPosts posts={relatedPosts} />
           </Col>
         </Row>
