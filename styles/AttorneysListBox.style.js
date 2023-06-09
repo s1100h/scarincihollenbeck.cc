@@ -119,6 +119,9 @@ export const AttorneysContainer = styled.section`
   .vertical-attorney-card {
     margin-bottom: 1%;
     width: 220px;
+    
+    address {
+      margin-bottom: 0;
   }
 
   ${media_breakpoint_exactly_down(1040)} {
