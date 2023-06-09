@@ -412,7 +412,7 @@ footer .wrapper-section {
 `
 
 export const ButtonLinkCss = `
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 5px;
