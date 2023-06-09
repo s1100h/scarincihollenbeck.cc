@@ -141,6 +141,7 @@ export const getServerSideProps = async ({ params, res }) => {
     profileImage: formatSrcToCloudinaryUrl(
       attorneyBio.attorneyMainInformation.profileImage?.sourceUrl,
     ),
+    representativeVideo: attorneyBio.attorneyMainInformation.representativeVideo,
     title: attorneyBio.attorneyMainInformation?.designation,
     contact: {
       phoneNumber: attorneyBio.attorneyMainInformation?.phoneNumber,
