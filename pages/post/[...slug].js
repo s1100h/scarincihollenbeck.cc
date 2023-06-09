@@ -118,8 +118,8 @@ const getPostContentData = async (slug) => {
       }
 
       if (idx === 1) {
-        contentNodes.nodes.forEach((contentNodesItem, i) => {
-          if (i < 2) {
+        contentNodes.nodes.forEach((contentNodesItem, idx) => {
+          if (idx < 2) {
             relatedPosts.push({
               title: contentNodesItem.title,
               uri: contentNodesItem.uri,

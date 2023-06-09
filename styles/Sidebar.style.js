@@ -16,7 +16,7 @@ export const NavList = styled.ul`
     margin-bottom: 6px;
   }
 `
-export const ColSideBar = styled.div`
+export const SideBarContainer = styled.div`
   box-shadow: ${globalShadow.allSideShadow};
   height: fit-content;
 

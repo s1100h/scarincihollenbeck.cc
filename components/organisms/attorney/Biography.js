@@ -6,7 +6,6 @@ import Clients from '../../common/Clients';
 
 const Biography = ({ content }) => {
   const { bio, clients } = content;
-
   return (
     <Surface unscrollable="true">
       <ContentTitle title="Biography" />

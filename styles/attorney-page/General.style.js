@@ -49,6 +49,7 @@ export const GrayList = styled.div`
 
     li {
       display: list-item;
+      padding-left: 0;
 
       ::before {
         content: '';

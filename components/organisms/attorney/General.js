@@ -33,16 +33,14 @@ const General = ({ content }) => {
             <JSXWithDynamicLinks HTML={`<h3>Affiliations</h3>${affiliations}`} />
           </GrayList>
         )}
-        {additionalInfo.length > 0 && (
+        {additionalInfo?.length > 0 && (
           <GrayList hightAuto="true">
+            <h3>Additional Info</h3>
             {additionalInfo.map(({ title, content }) => (
-              <JSXWithDynamicLinks
-                HTML={`
-              <h3>Additional Info</h3>
-              <h5 class='mb-0'>${title}</h5>
-              ${content}
-              `}
-              />
+              <>
+                {title.length > 0 && <h5 className="mb-0">{title}</h5>}
+                <JSXWithDynamicLinks HTML={`${content}`} />
+              </>
             ))}
           </GrayList>
         )}

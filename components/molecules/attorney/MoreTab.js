@@ -5,7 +5,6 @@ import { ButtonTab } from 'styles/ButtonsMenu.style';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { attorneyPostsQueryByIdAndSlug } from 'utils/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
-import ContentTitle from 'components/atoms/ContentTitle';
 import { useRouter } from 'next/router';
 import BlogList from './BlogList';
 import Videos from './Videos';

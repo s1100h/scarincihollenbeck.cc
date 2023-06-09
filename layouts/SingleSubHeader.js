@@ -58,7 +58,7 @@ const SingleSubHeader = ({
         </p>
       )}
       <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
-        <JSXWithDynamicLinks HTML={subtitle} />
+        {subtitle?.length > 0 && <JSXWithDynamicLinks HTML={subtitle} />}
       </Description>
       {tabs?.length > 0 && (
         <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />

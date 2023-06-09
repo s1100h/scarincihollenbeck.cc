@@ -281,6 +281,7 @@ button {
   flex-direction: column;
   float: left;
   margin-right: 24px;
+  width: min-content;
 }
 
 .alignright {
@@ -290,6 +291,7 @@ button {
   flex-direction: column;
   float: right;
   margin-left: 24px;
+  width: min-content;
 }
 
 .wp-block-columns {
@@ -302,30 +304,6 @@ button {
 
 .has-text-align-center {
   text-align: center;
-}
-
-@media (max-width: 992px) {
-  .wp-block-columns {
-    display: block;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 96%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 92%;
-  }
-}
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 90%;
-  }
 }
 
 .wrapper-section {
@@ -357,6 +335,30 @@ footer .wrapper-section {
 
 .modal-title_my {
   font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .wp-block-columns {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 96%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 92%;
+  }
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 90%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -393,11 +395,14 @@ footer .wrapper-section {
 }
 
 .bullets-li {
-  display: flex;
+  padding-left: 20px;
+  position: relative;
   
   ::before {
+    top: 0;
+    left: 0;
     content: '➤';
-    margin-right: 10px;
+    position: absolute;
   }
 }
 
@@ -407,7 +412,7 @@ footer .wrapper-section {
 `
 
 export const ButtonLinkCss = `
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 5px;
