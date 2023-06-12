@@ -74,7 +74,7 @@ const AttorneyPage = ({
       <CustomContainer>
         <Row className="d-flex justify-content-center">
           <PostBreadCrumbs />
-          <ColStyled sm={12} md={11} lg={8} xl={8}>
+          <ColStyled sm={12} md={11} lg={12} xl={8}>
             <ProfileHeader {...compressPropsHeaderProfile} />
             {activeTabContent.type === 'string' && !isBlog && !isArticle && (
               <StringContent {...activeTabContent} />
@@ -83,7 +83,7 @@ const AttorneyPage = ({
               <MainProfileMenu {...activeTabContent} setActiveTab={setActiveTabContent} />
             )}
           </ColStyled>
-          <ColForSidebar top="45px" sm={12} md={11} lg={3} xl={4}>
+          <ColForSidebar top="45px" sm={12} md={11} lg={8} xl={4}>
             <ProfileSidebar
               services={profileHeader.practices}
               setActiveTab={setActiveTab}
