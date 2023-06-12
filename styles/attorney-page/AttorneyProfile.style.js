@@ -212,6 +212,7 @@ export const CardImageVideoContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
   transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
 `
 
