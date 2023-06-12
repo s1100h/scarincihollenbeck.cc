@@ -44,10 +44,12 @@ const ProfileImage = ({
       </Front>
       {!empty(representativeVideo) && (
         <Back isRotateProp={isRotateConvertToStr}>
-          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-          <video ref={videoRef} preload="metadata" controls>
-            <source type={representativeVideo.mimeType} src={representativeVideo.link} />
-          </video>
+          {isRotated && (
+            /* eslint-disable-next-line jsx-a11y/media-has-caption */
+            <video ref={videoRef} preload="metadata" controls>
+              <source type={representativeVideo.mimeType} src={representativeVideo.link} />
+            </video>
+          )}
         </Back>
       )}
     </CardImageVideoContainer>

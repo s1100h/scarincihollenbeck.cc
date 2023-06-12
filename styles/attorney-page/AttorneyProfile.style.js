@@ -238,6 +238,6 @@ export const Back = styled.div`
 
   video {
     width: inherit;
-    height: inherit;
+    height: -webkit-fill-available;
   }
 `
