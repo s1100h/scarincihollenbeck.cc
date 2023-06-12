@@ -208,12 +208,10 @@ export const VideoButtonStyled = styled.button`
 
 export const CardImageVideoContainer = styled.div`
   perspective: 1000px;
-  transition: transform 0.5s;
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
 `
 
 export const Front = styled.div`
@@ -223,7 +221,8 @@ export const Front = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  transform: rotateY(0deg);
+  transition: transform 0.5s;
+  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
   z-index: ${({ isRotateProp }) => (isRotateProp ? 1 : 2)};
 `
 export const Back = styled.div`
@@ -233,7 +232,8 @@ export const Back = styled.div`
   backface-visibility: ${({ isRotateProp }) => (isRotateProp ? 'visible' : 'hidden')};
   top: 0;
   left: 0;
-  transform: rotateY(180deg);
+  transition: transform 0.5s;
+  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)')};
   position: absolute;
   z-index: ${({ isRotateProp }) => (isRotateProp ? 2 : 1)};
 
