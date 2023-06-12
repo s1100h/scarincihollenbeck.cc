@@ -1,5 +1,5 @@
 import { Col } from 'react-bootstrap'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles'
 import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
 
@@ -153,4 +153,90 @@ export const ItemContactList = styled.li`
 export const ProfileName = styled.h1`
   font-family: var(--font-montserrat), sans-serif;
   font-weight: 600;
+`
+
+const shake = keyframes`
+  1%, 9% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  2%, 8% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  3%, 5%, 7% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  4%, 6% {
+    transform: translate3d(4px, 0, 0);
+  }
+`
+
+export const VideoButtonStyled = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: ${({ isRotatedCard }) => (isRotatedCard ? 0 : '2px')};
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  background-color: ${globalColor.red.darkRed};
+  animation: ${({ isRotatedCard }) => !isRotatedCard && shake} 10s
+    cubic-bezier(0.36, 0.07, 0.19, 0.97) both 5s infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  z-index: 4;
+
+  :hover {
+    background-color: ${globalColor.red.liteRed};
+  }
+
+  :active {
+    background-color: ${globalColor.red.burgundy};
+  }
+
+  svg {
+    color: ${globalColor.white};
+    font-size: 30px;
+  }
+`
+
+export const CardImageVideoContainer = styled.div`
+  perspective: 1000px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+`
+
+export const Front = styled.div`
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+`
+export const Back = styled.div`
+  background: black;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)')};
+  position: absolute;
+
+  video {
+    width: inherit;
+    height: -webkit-fill-available;
+  }
 `
