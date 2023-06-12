@@ -217,25 +217,23 @@ export const CardImageVideoContainer = styled.div`
 export const Front = styled.div`
   width: 100%;
   height: 100%;
-  backface-visibility: ${({ isRotateProp }) => (isRotateProp ? 'hidden' : 'visible')};
+  backface-visibility: hidden;
   position: relative;
   top: 0;
   left: 0;
-  transition: transform 0.5s;
+  transition: 0.5s;
   transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
-  z-index: ${({ isRotateProp }) => (isRotateProp ? 1 : 2)};
 `
 export const Back = styled.div`
   background: black;
   width: 100%;
   height: 100%;
-  backface-visibility: ${({ isRotateProp }) => (isRotateProp ? 'visible' : 'hidden')};
+  backface-visibility: hidden;
   top: 0;
   left: 0;
-  transition: transform 0.5s;
+  transition: 0.5s;
   transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)')};
   position: absolute;
-  z-index: ${({ isRotateProp }) => (isRotateProp ? 2 : 1)};
 
   video {
     width: inherit;
