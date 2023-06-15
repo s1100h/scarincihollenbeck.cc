@@ -8,6 +8,8 @@ const PostList = ({ content, isProfile }) => {
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = content;
+  const disablePrevBtn = !data?.posts?.pageInfo.hasPreviousPage;
+  const disableNextBtn = !data?.posts?.pageInfo.hasNextPage;
 
   const memoData = useMemo(() => data?.posts?.edges, [data]);
 
@@ -35,6 +37,8 @@ const PostList = ({ content, isProfile }) => {
             handleNextPagination={handleNextPagination}
             handlePrevPagination={handlePrevPagination}
             countOfArticles={isProfile && 3}
+            disablePrevBtn={disablePrevBtn}
+            disabledNextBtn={disableNextBtn}
           />
         </>
       )}

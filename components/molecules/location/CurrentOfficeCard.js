@@ -29,10 +29,10 @@ const CurrentOfficeCard = ({
         <BsFillTelephoneFill />
         {phone}
       </a>
-      <span>
+      <a href={`fax:${fax}`}>
         <BsPrinterFill />
         {fax}
-      </span>
+      </a>
     </address>
   </OfficeCardContainer>
 );

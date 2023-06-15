@@ -1,7 +1,13 @@
-import Button from 'react-bootstrap/Button';
 import { GrNext, GrPrevious } from 'react-icons/gr';
+import { PaginationBtn } from '../../styles/PaginationBtn.style';
 
-const PaginationButtons = ({ handleNextPagination, handlePrevPagination, countOfArticles }) => (
+const PaginationButtons = ({
+  handleNextPagination,
+  handlePrevPagination,
+  countOfArticles,
+  disablePrevBtn,
+  disabledNextBtn,
+}) => (
   <div
     className="d-flex flex-row justify-content-between"
     style={{
@@ -10,8 +16,9 @@ const PaginationButtons = ({ handleNextPagination, handlePrevPagination, countOf
       left: '-10px',
     }}
   >
-    <Button
+    <PaginationBtn
       variant="link"
+      disabled={disablePrevBtn}
       className="text-dark"
       onClick={() => handlePrevPagination(countOfArticles)}
     >
@@ -26,15 +33,16 @@ const PaginationButtons = ({ handleNextPagination, handlePrevPagination, countOf
       >
         Previous
       </strong>
-    </Button>
-    <Button
+    </PaginationBtn>
+    <PaginationBtn
       variant="link"
       className="text-dark"
+      disabled={disabledNextBtn}
       onClick={() => handleNextPagination(countOfArticles)}
     >
       <strong style={{ fontSize: '20px', position: 'relative', top: '1px' }}>Next</strong>
       <GrNext style={{ fontSize: '15px', position: 'relative', left: '6px' }} />
-    </Button>
+    </PaginationBtn>
   </div>
 );
 
