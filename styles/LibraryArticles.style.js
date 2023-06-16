@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { globalColor, globalShadow } from './global_styles/Global.styles'
 import { media_breakpoint_down } from './mediaBreakpoints.style'
+import Link from 'next/link'
 
 export const MainArticleTitle = styled.h2`
   margin-bottom: 24px;
@@ -44,6 +45,12 @@ export const VirtualListItem = styled.li`
   height: 28px;
   transform: ${(props) => props?.transform};
   font-size: 1rem;
+`
+
+export const LinkWithEllipsis = styled(Link)`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `
 
 export const SideBarContainer = styled.nav`
