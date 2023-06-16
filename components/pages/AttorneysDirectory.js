@@ -20,10 +20,6 @@ const AttorneysPage = ({
     handleChange, select, onSelect, userInput, clearQuery, attorneysContext, clearAll,
   } = useContext(AttorneysContext);
 
-  const arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map((item) => ({ [item[keyField]]: item })));
-
-  const offices = arrayToObject(OFFICE_LOCATIONS, 'label');
-
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />

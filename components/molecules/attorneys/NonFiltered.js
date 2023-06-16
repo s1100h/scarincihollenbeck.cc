@@ -76,9 +76,18 @@ const NonFiltered = ({ attorneys }) => {
     }
   }, [attorneysTitles, firmOverviewTitles, adminsTitles]);
 
+  // it was done by request from the client as a temporary solution. 16 Jun 2023.
+  // If you want to delete it and revert the old solution,
+  // just replace the justFirmManagementPartners variable with sortedAttorneys.
+  const justFirmManagementPartners = {
+    'Firm Managing Partner': {
+      attorneys: sortedAttorneys['Firm Managing Partner']?.attorneys || [],
+    },
+  };
+
   return (
     <>
-      {Object.entries(sortedAttorneys).map((attorney) => (
+      {Object.entries(justFirmManagementPartners).map((attorney) => (
         <AttorneyCards title={attorney[0]} pathname={pathname} content={attorney[1].attorneys} />
       ))}
     </>
