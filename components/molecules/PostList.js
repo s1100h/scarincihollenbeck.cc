@@ -34,7 +34,7 @@ const PostList = ({ content, isProfile }) => {
           <PaginationButtons
             handleNextPagination={handleNextPagination}
             handlePrevPagination={handlePrevPagination}
-            countOfArticles={isProfile && 3}
+            countOfArticles={(isProfile && 3) || 6}
           />
         </>
       )}

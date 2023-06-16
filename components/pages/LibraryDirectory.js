@@ -33,7 +33,6 @@ const LibraryDirectory = ({
 
   const memoDataPosts = useMemo(() => news, [news]);
   const mainNews = memoDataPosts[0];
-  const featuredArticles = news.slice(1, memoDataPosts.length);
 
   const isAuthor = router.asPath.includes('author');
 
@@ -42,8 +41,6 @@ const LibraryDirectory = ({
       getAsyncAuthors();
     }
   }, [authors]);
-
-  const noPostsFoundMessage = <p>Sorry, no posts found</p>;
 
   /** Handle Article Archive Query */
   const {
@@ -55,8 +52,9 @@ const LibraryDirectory = ({
       last: null,
       after: null,
       before: null,
-      id: isAuthor ? categoryId.toString() : null,
-      categoryIn: null,
+      author: isAuthor ? categoryId : null,
+      id: null,
+      categoryIn: !isAuthor ? [categoryId] : null,
     },
   );
 
@@ -91,15 +89,7 @@ const LibraryDirectory = ({
                 />
               </Col>
             )}
-            <ul className="pt-5 mt-5 mb-5">
-              {featuredArticles.length > 0 ? (
-                <FeaturedArticle articles={featuredArticles} />
-              ) : (
-                noPostsFoundMessage
-              )}
-            </ul>
             <div className="pt-4 mb-5">
-              <AllArticlesTitle>All Articles</AllArticlesTitle>
               <PostList
                 content={{
                   handleNextPagination,
