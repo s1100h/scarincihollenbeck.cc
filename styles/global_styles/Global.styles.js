@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import { media_breakpoint_down } from '../mediaBreakpoints.style'
 
-const mainFotSize = 16
+const mainFontSize = 16
 
 export const globalColor = {
   white: 'white',
@@ -105,12 +105,12 @@ overflow: hidden;
 `
 
 export const rem = (sizeInPx) => {
-  return `${sizeInPx / mainFotSize}rem`
+  return `${sizeInPx / mainFontSize}rem`
 }
 
 export const GlobalStyle = createGlobalStyle`
 html {
-  font-size: ${mainFotSize}px;
+  font-size: ${mainFontSize}px;
 }
 
 body {
@@ -343,6 +343,12 @@ footer .wrapper-section {
   }
 }
 
+@media (min-width: 576px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 96%;
@@ -351,13 +357,7 @@ footer .wrapper-section {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 92%;
-  }
-}
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 90%;
+    max-width: 1440px;
   }
 }
 

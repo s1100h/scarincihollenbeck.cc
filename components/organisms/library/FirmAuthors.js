@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useVirtual } from 'react-virtual';
 import Link from 'next/link';
 import {
+  LinkWithEllipsis,
   MainVirtualizeContainer,
   VirtualizeListBox,
   VirtualListItem,
@@ -33,9 +34,12 @@ export default function FirmAuthors({ authors }) {
                 ref={virtualRow.measureRef}
                 transform={`translateY(${virtualRow.start}px)`}
               >
-                <Link href={`/library${authors[virtualRow.index].link}`}>
+                <LinkWithEllipsis
+                  href={`/library${authors[virtualRow.index].link}`}
+                  title={authors[virtualRow.index].fullName}
+                >
                   {`☞ ${authors[virtualRow.index].fullName}`}
-                </Link>
+                </LinkWithEllipsis>
               </VirtualListItem>
             ))}
           </VirtualizeListBox>

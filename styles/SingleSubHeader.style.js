@@ -83,7 +83,7 @@ export const GradientWrapper = styled.div`
   top: 0;
   background: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0) 27%,
     ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%,
     rgba(255, 255, 255, 0) 68%
   );
