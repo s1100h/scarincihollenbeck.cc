@@ -28,7 +28,7 @@ const getLibraryCategoryContent = async () => {
 };
 
 /** get the current category's latest post WP GRAPHQL API */
-export async function categoryPosts(variables) {
+async function categoryPosts(variables) {
   const data = await fetchAPI(categoryPostQuery, variables);
   return data.categories?.edges;
 }

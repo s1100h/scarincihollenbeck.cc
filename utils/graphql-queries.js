@@ -526,9 +526,9 @@ export const authorPostsByIdQuery = `query authorPostsById(
   $last: Int
   $after: String
   $before: String
-  $id: String
+  $author: Int
 ) {
-  posts(where: {search:$id},  first: $first, last: $last, after: $after, before: $before) {
+  posts(where: {author: $author},  first: $first, last: $last, after: $after, before: $before) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -576,7 +576,7 @@ export const categoryPostQuery = `query CategoryPosts($name:String) {
           }
         }
         description
-        posts(first: 4) {
+        posts(first: 1) {
           edges {
             node {
               categories(first: 1) {

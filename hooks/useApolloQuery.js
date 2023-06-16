@@ -4,6 +4,25 @@ import { useQuery } from 'react-apollo-hooks';
 // Function to update the query with the new results
 const updateQuery = (previousResult, { fetchMoreResult }) => (fetchMoreResult.posts.edges.length ? fetchMoreResult : previousResult);
 
+const fetchMoreGrouped = (numberOfArticles, reqData, variablesObj, fetchMoreCallBack, nextMode) => {
+  const queryVariables = {
+    first: nextMode ? numberOfArticles || 8 : null,
+    last: !nextMode ? numberOfArticles || 8 : null,
+    after: nextMode ? reqData.posts?.pageInfo.endCursor : null,
+    before: !nextMode ? reqData.posts?.pageInfo.startCursor : null,
+  };
+
+  Object.keys(variablesObj).forEach((prop) => {
+    if (!queryVariables.hasOwnProperty(prop)) {
+      queryVariables[prop] = variablesObj[prop];
+    }
+  });
+
+  return fetchMoreCallBack({
+    variables: queryVariables,
+    updateQuery,
+  });
+};
 const useApolloQuery = (query, variables, skip) => {
   const FEED_QUERY = gql`
     ${query}
@@ -16,59 +35,9 @@ const useApolloQuery = (query, variables, skip) => {
     refresh: false,
   });
 
-  const handlePrevPagination = (numbersArticles) => {
-    const base = {
-      first: null,
-      last: numbersArticles || 8,
-      after: null,
-      before: data.posts?.pageInfo.startCursor || null,
-      id: null,
-      categoryIn: null,
-    };
+  const handlePrevPagination = (numbersArticles) => fetchMoreGrouped(numbersArticles, data, variables, fetchMore, false);
 
-    if (Object.keys(variables).includes('name')) {
-      base.name = variables.name;
-    }
-
-    if (Object.keys(variables).includes('id')) {
-      base.id = variables.id;
-    }
-
-    if (Object.keys(variables).includes('categoryIn')) {
-      base.categoryIn = variables.categoryIn;
-    }
-
-    return fetchMore({
-      variables: base,
-      updateQuery,
-    });
-  };
-
-  const handleNextPagination = (numbersArticles) => {
-    const base = {
-      first: numbersArticles || 8,
-      last: null,
-      after: data.posts?.pageInfo.endCursor || null,
-      before: null,
-    };
-
-    if (Object.keys(variables).includes('name')) {
-      base.name = variables.name;
-    }
-
-    if (Object.keys(variables).includes('id')) {
-      base.id = variables.id;
-    }
-
-    if (Object.keys(variables).includes('categoryIn')) {
-      base.categoryIn = variables.categoryIn;
-    }
-
-    fetchMore({
-      variables: base,
-      updateQuery,
-    });
-  };
+  const handleNextPagination = (numbersArticles) => fetchMoreGrouped(numbersArticles, data, variables, fetchMore, true);
 
   return {
     handleNextPagination,
