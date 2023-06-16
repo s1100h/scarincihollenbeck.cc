@@ -62,8 +62,7 @@ export const MobileVisible = styled.div`
 
   ${media_breakpoint_down('md')} {
     display: flex;
-    margin-top: 20px;
-    margin-left: 3%;
+    margin: 30px auto 0;
 
     .scroll-search {
       width: 95%;
