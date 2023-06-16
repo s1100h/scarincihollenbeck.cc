@@ -4,10 +4,7 @@
  */
 
 import {
-  HawCanIGet,
-  HawDoIKnow,
-  WhatAreTheFirms,
-  WhereIsYheFirmLocated,
+  HawCanIGet, HawDoIKnow, WhatAreTheFirms, WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 
@@ -286,8 +283,7 @@ export const OFFICE_LOCATIONS = [
     slug: '/location/red-bank',
     label: 'Red Bank, NJ',
     address: '331 Newman Springs Road Red Bank, NJ 07701',
-    mapUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.34467374956!2d-74.09794688434188!3d40.33469936854769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c231df5cc8d921%3A0x41ee2239f0384ab0!2s331+Newman+Springs+Rd%2C+Red+Bank%2C+NJ+07701!5e0!3m2!1sen!2sus!4v1537300318797',
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.34467374956!2d-74.09794688434188!3d40.33469936854769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c231df5cc8d921%3A0x41ee2239f0384ab0!2s331+Newman+Springs+Rd%2C+Red+Bank%2C+NJ+07701!5e0!3m2!1sen!2sus!4v1537300318797',
     tel: '732-780-5590',
     fax: '732-695-8108',
   },
@@ -397,8 +393,7 @@ export const MAKE_A_PAYMENT_URLS = [
 
 /** the content found on 404 or 500 error pages */
 export const ERROR_PAGE_CONTENT = {
-  mainMessage:
-    "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
+  mainMessage: "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
 
 /** content for /practices and /attorneys FAQ's component */
@@ -497,6 +492,7 @@ export const inputsGetInTouchAttributes = [
     name: 'Phone',
     placeholder: 'Phone number',
     rules: 'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
+    maxLength: 17,
     title: `Please use these formats: 
     (123) 456-7890
     123-456-7890
