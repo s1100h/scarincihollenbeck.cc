@@ -9,6 +9,9 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
 
   // filter by key -- practice
   const filterPractices = (attorney) => {
+    if (attorney.designation === 'Executive Director') {
+      return;
+    }
     if (practices.length > 0 && attorney.practices_array) {
       const prunedPracticeList = attorney.practices_array?.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
       return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
