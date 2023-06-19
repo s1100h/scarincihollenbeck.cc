@@ -14,34 +14,8 @@ const AttorneysListBox = ({ attorneys }) => {
           <h3>Chair</h3>
           <div>
             {isMobileScreen
-              ? chairs?.map((chair) => (
-                <AttorneyCard
-                  key={chair.databaseId}
-                  link={`${chair.link}`}
-                  image={chair.profileImage}
-                  name={chair.title}
-                  designation={chair.designation}
-                  number={chair.phoneNumber}
-                  email={chair.email}
-                  width={80}
-                  height={112}
-                  type="/attorneys/[slug]"
-                />
-              ))
-              : chairs?.map((chair) => (
-                <AttorneyPracticeCard
-                  classNameProp="vertical-attorney-card"
-                  key={chair.databaseId}
-                  link={`${chair.link}`}
-                  image={chair.profileImage}
-                  name={chair.title}
-                  designation={chair.designation}
-                  number={chair.phoneNumber}
-                  email={chair.email}
-                  width={180}
-                  height={210}
-                />
-              ))}
+              ? chairs?.map((chair) => <AttorneyCard key={chair.databaseId} link={`${chair.link}`} image={chair.profileImage} name={chair.title} designation={chair.designation} number={chair.phoneNumber} email={chair.email} width={80} height={112} type="/attorneys/[slug]" />)
+              : chairs?.map((chair) => <AttorneyPracticeCard classNameProp="vertical-attorney-card" key={chair.databaseId} link={`${chair.link}`} image={chair.profileImage} name={chair.title} designation={chair.designation} number={chair.phoneNumber} email={chair.email} width={180} height={210} />)}
           </div>
         </div>
       )}
@@ -52,32 +26,10 @@ const AttorneysListBox = ({ attorneys }) => {
           <div>
             {isMobileScreen
               ? attorneysList.map((attorney) => (
-                <AttorneyCard
-                  key={attorney.databaseId}
-                  link={`${attorney.link}`}
-                  image={attorney.profileImage}
-                  name={attorney.title}
-                  designation={attorney.designation}
-                  number={attorney.phoneNumber}
-                  email={attorney.email}
-                  width={80}
-                  height={112}
-                  type="/attorneys/[slug]"
-                />
+                <AttorneyCard key={attorney.databaseId} link={`${attorney.link}`} image={attorney.profileImage} name={attorney.title} designation={attorney.designation} number={attorney.phoneNumber} email={attorney.email} width={80} height={112} type="/attorneys/[slug]" />
               ))
               : attorneysList.map((attorney) => (
-                <AttorneyPracticeCard
-                  classNameProp="vertical-attorney-card"
-                  key={attorney.databaseId}
-                  link={`${attorney.link}`}
-                  image={attorney.profileImage}
-                  name={attorney.title}
-                  designation={attorney.designation}
-                  number={attorney.phoneNumber}
-                  email={attorney.email}
-                  width={180}
-                  height={210}
-                />
+                <AttorneyPracticeCard classNameProp="vertical-attorney-card" key={attorney.databaseId} link={`${attorney.link}`} image={attorney.profileImage} name={attorney.title} designation={attorney.designation} number={attorney.phoneNumber} email={attorney.email} width={180} height={210} />
               ))}
           </div>
         </div>

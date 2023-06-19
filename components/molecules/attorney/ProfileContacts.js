@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import {
-  BsFillEnvelopeFill,
-  BsFillGeoAltFill,
-  BsFillTelephoneFill,
-  BsPrinterFill,
+  BsFillEnvelopeFill, BsFillGeoAltFill, BsFillTelephoneFill, BsPrinterFill,
 } from 'react-icons/bs';
 import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
 

@@ -7,14 +7,7 @@ const renderAward = (link, image, title, key) => {
     if (link.includes('https')) {
       return (
         <AwardImgLinkBox key={key && title} href={link} target="_blank">
-          <Image
-            data-src={image}
-            src={image}
-            alt={title}
-            width={120}
-            height={120}
-            blurDataURL={image}
-          />
+          <Image data-src={image} src={image} alt={title} width={120} height={120} blurDataURL={image} />
         </AwardImgLinkBox>
       );
     }
@@ -22,14 +15,7 @@ const renderAward = (link, image, title, key) => {
       return (
         <Link key={key && title} href={link} passHref legacyBehavior>
           <AwardImgLinkBox>
-            <Image
-              data-src={image}
-              src={image}
-              alt={title}
-              width={120}
-              height={120}
-              blurDataURL={image}
-            />
+            <Image data-src={image} src={image} alt={title} width={120} height={120} blurDataURL={image} />
           </AwardImgLinkBox>
         </Link>
       );
@@ -38,14 +24,7 @@ const renderAward = (link, image, title, key) => {
 
   return (
     <AwardImgLinkBox key={key && title}>
-      <Image
-        data-src={image}
-        src={image}
-        alt={title}
-        width={120}
-        height={120}
-        blurDataURL={image}
-      />
+      <Image data-src={image} src={image} alt={title} width={120} height={120} blurDataURL={image} />
     </AwardImgLinkBox>
   );
 };

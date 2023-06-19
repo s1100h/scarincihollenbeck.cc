@@ -1,14 +1,14 @@
-import styled from 'styled-components'
-import Slider from 'react-slick'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
-import { globalColor } from '../global_styles/Global.styles'
+import styled from 'styled-components';
+import Slider from 'react-slick';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import { globalColor } from '../global_styles/Global.styles';
 
 const commonStyleSlider = `
   :before {
     font-size: 30px;
     color: black;
   }
-`
+`;
 export const SliderStyled = styled(Slider)`
   .slick-slide {
     display: flex;
@@ -44,4 +44,4 @@ export const SliderStyled = styled(Slider)`
       top: 50%;
     }
   }
-`
+`;

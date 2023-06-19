@@ -34,18 +34,7 @@ const useDesignationHook = (title) => {
 };
 
 const ProfileHeader = ({
-  name,
-  profileImage,
-  title,
-  offices,
-  coChair: coChairs,
-  chair: chairs,
-  primaryPractices,
-  contact,
-  setActiveTab,
-  activeTab,
-  tabs,
-  representativeVideo,
+  name, profileImage, title, offices, coChair: coChairs, chair: chairs, primaryPractices, contact, setActiveTab, activeTab, tabs, representativeVideo,
 }) => {
   const [designation] = useDesignationHook(title);
   const router = useRouter();
@@ -90,9 +79,7 @@ const ProfileHeader = ({
           <Row className="align-items-start">
             <Col sm={12} md={4} lg={4} className="position-relative">
               <ProfileImage {...profileImageProps} />
-              {!empty(representativeVideo) && (
-                <VideoButton onVideoClick={handelRotate} isRotated={isRotated} />
-              )}
+              {!empty(representativeVideo) && <VideoButton onVideoClick={handelRotate} isRotated={isRotated} />}
             </Col>
             <Col sm={12} md={8} lg={8}>
               <ProfileTitle {...profileTitleProps} />

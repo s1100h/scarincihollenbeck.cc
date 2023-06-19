@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
-import { media_breakpoint_down } from '../mediaBreakpoints.style'
+import { createGlobalStyle } from 'styled-components';
+import { media_breakpoint_down } from '../mediaBreakpoints.style';
 
-const mainFontSize = 16
+const mainFontSize = 16;
 
 export const globalColor = {
   white: 'white',
@@ -66,17 +66,17 @@ export const globalColor = {
   trasparents: {
     modal: 'rgba(0,0,0,.175)',
   },
-}
+};
 
 export const globalGradient = {
   award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
-}
+};
 
 export const globalShadow = {
   allSideShadow: `-10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06)`,
   hoveredShadow: `-2px 0px 18px rgb(99 98 98 / 90%)`,
   blueShadow: `-2px 0px 18px ${globalColor.blue.ultramarine}`,
-}
+};
 
 export const buttonsHoverActive = `
   &:hover {
@@ -86,15 +86,15 @@ export const buttonsHoverActive = `
   &:active {
     background-color: ${globalColor.red.burgundy};
   }
-`
+`;
 
 export const globalBackgroundImage = {
   subHeader: '/images/skyscraper.png',
-}
+};
 
 export const globalIndents = {
   attorneyProfilePaddings: '20px 30px',
-}
+};
 
 // this function adds rules with three dots after overfilling a container.
 export const threeDots = (lines) => `
@@ -102,11 +102,11 @@ export const threeDots = (lines) => `
 display: -webkit-box;
 -webkit-box-orient: vertical;
 overflow: hidden;
-`
+`;
 
 export const rem = (sizeInPx) => {
-  return `${sizeInPx / mainFontSize}rem`
-}
+  return `${sizeInPx / mainFontSize}rem`;
+};
 
 export const GlobalStyle = createGlobalStyle`
 html {
@@ -189,7 +189,7 @@ input {
 }
 
 video {
-  width: var(-webkit-fill-available);
+  width: -webkit-fill-available;
 }
 
 button {
@@ -409,7 +409,7 @@ footer .wrapper-section {
 .slick-track {
   display: flex;
 }
-`
+`;
 
 export const ButtonLinkCss = `
   display: flex;
@@ -453,4 +453,4 @@ export const ButtonLinkCss = `
       width: 25px;
     }
   }
-`
+`;

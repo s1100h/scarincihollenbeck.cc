@@ -21,11 +21,7 @@ const FormPageContent = ({
 
   return (
     <>
-      <BasicSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDescription}
-        canonicalUrl={canonicalUrl}
-      />
+      <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
       <SingleSubHeader title={site.title} subtitle={site.description} />
       <Container>
         <Row>

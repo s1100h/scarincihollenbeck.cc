@@ -33,13 +33,7 @@ const PostList = ({ content, isProfile }) => {
                 />
               </div>
             ))}
-          <PaginationButtons
-            handleNextPagination={handleNextPagination}
-            handlePrevPagination={handlePrevPagination}
-            countOfArticles={(isProfile && 3) || 6}
-            disablePrevBtn={disablePrevBtn}
-            disabledNextBtn={disableNextBtn}
-          />
+          <PaginationButtons handleNextPagination={handleNextPagination} handlePrevPagination={handlePrevPagination} countOfArticles={(isProfile && 3) || 6} disablePrevBtn={disablePrevBtn} disabledNextBtn={disableNextBtn} />
         </>
       )}
     </>

@@ -24,17 +24,7 @@ const responsive = {
 
 export default function AwardsSlider({ images }) {
   return (
-    <CarouselStyled
-      ssr
-      aria-label="carousel"
-      responsive={responsive}
-      infinite
-      arrows
-      swipeable
-      showDots
-      renderButtonGroupOutside
-      renderDotsOutside
-    >
+    <CarouselStyled ssr aria-label="carousel" responsive={responsive} infinite arrows swipeable showDots renderButtonGroupOutside renderDotsOutside>
       {images.map((slide) => (
         <div key={slide.id} className="px-4">
           <Accolade image={slide.image} />

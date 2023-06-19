@@ -10,15 +10,7 @@ import { getDataForPractice, getJustClientAlertOnePost } from '../../utils/graph
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 const attorneysSanitize = (attorneysArr) => {
-  const designationOrder = [
-    'Firm Managing Partner',
-    'Deputy Managing Partner',
-    'Partner',
-    'Counsel',
-    'Of Counsel',
-    'Senior Associate',
-    'Associate',
-  ];
+  const designationOrder = ['Firm Managing Partner', 'Deputy Managing Partner', 'Partner', 'Counsel', 'Of Counsel', 'Senior Associate', 'Associate'];
 
   return attorneysArr
     .map((attorney) => {
@@ -73,29 +65,19 @@ const getPracticeAttorneys = async (uri) => {
     }
   }
 
-  let includeAttorney = data.practice?.practicesIncluded.includeAttorney
-    ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney)
-    : [];
+  let includeAttorney = data.practice?.practicesIncluded.includeAttorney ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney) : [];
 
-  const practiceChief = data.practice?.practicesIncluded.sectionChief
-    ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
-    : [];
+  const practiceChief = data.practice?.practicesIncluded.sectionChief ? attorneysSanitize(data.practice.practicesIncluded.sectionChief) : [];
 
-  const keyContactsArr = data.practice.practicesIncluded.keyContactByPractice
-    ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice)
-    : [];
+  const keyContactsArr = data.practice.practicesIncluded.keyContactByPractice ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice) : [];
 
   const postsForSidebar = data.posts?.nodes ? postsSanitize(data.posts.nodes) : [];
 
-  const corePractices = data.practices.nodes.filter(
-    (practice) => !empty(practice.practicesIncluded.childPractice) && practice,
-  );
+  const corePractices = data.practices.nodes.filter((practice) => !empty(practice.practicesIncluded.childPractice) && practice);
 
   if (includeAttorney && practiceChief) {
     includeAttorney = includeAttorney.filter((attorney) => {
-      const isDuplicate = practiceChief.some(
-        (sectionAttorney) => attorney.databaseId === sectionAttorney.databaseId,
-      );
+      const isDuplicate = practiceChief.some((sectionAttorney) => attorney.databaseId === sectionAttorney.databaseId);
       return !isDuplicate;
     });
   }
@@ -180,15 +162,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
 
 /** Single practice page component */
 const SinglePractice = ({
-  practice,
-  corePractices,
-  practiceChildren,
-  slug,
-  attorneysSchemaData,
-  chairPractice,
-  attorneyListPractice,
-  keyContactsList,
-  latestFromTheFirm,
+  practice, corePractices, practiceChildren, slug, attorneysSchemaData, chairPractice, attorneyListPractice, keyContactsList, latestFromTheFirm,
 }) => {
   const router = useRouter();
   const practiceUrl = router.asPath.replace('/practices/', '').replace('/practice/', '');

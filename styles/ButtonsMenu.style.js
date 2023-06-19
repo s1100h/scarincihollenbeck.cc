@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { Nav, NavDropdown } from 'react-bootstrap'
-import { globalColor } from './global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_up } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { Nav, NavDropdown } from 'react-bootstrap';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_up } from './mediaBreakpoints.style';
 
 export const commonBtnStyle = `
   height: 42px;
@@ -13,7 +13,7 @@ export const commonBtnStyle = `
   border: 1px solid ${globalColor.gray.gray80};
   background: ${globalColor.white};
   transition: 0.7s;
-  `
+  `;
 
 export const ButtonTab = styled.div`
   ${commonBtnStyle};
@@ -49,7 +49,7 @@ export const ButtonTab = styled.div`
   :active {
     background: ${globalColor.red.burgundy};
   }
-`
+`;
 
 export const ButtonDropdown = styled(NavDropdown)`
   .dropdown-toggle {
@@ -72,15 +72,13 @@ export const ButtonDropdown = styled(NavDropdown)`
   .dropdown-menu {
     width: -webkit-fill-available;
   }
-`
+`;
 
 export const ButtonGroup = styled.div`
   display: none;
   padding: 10px 0;
   margin-top: ${(props) => props?.marTop || '25px'};
   overflow-x: auto;
-
-
 	
 	${media_breakpoint_up('xs')}{
     display: ${({ isNotProfile }) => (isNotProfile?.length > 0 ? 'flex' : 'none')};
@@ -93,7 +91,7 @@ export const ButtonGroup = styled.div`
   ${media_breakpoint_down('sm')} {
     margin-bottom: -100px;
   }
-`
+`;
 
 export const MobileGroup = styled.div`
   display: inherit;
@@ -101,7 +99,7 @@ export const MobileGroup = styled.div`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 export const NavItem = styled(Nav.Item)`
   display: flex;
@@ -115,4 +113,4 @@ export const NavItem = styled(Nav.Item)`
   :hover {
     border-bottom: 2px solid ${globalColor.red.darkRed};
   }
-`
+`;

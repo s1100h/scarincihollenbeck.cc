@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { globalColor, globalShadow } from '../global_styles/Global.styles'
+import styled from 'styled-components';
+import { globalColor, globalShadow } from '../global_styles/Global.styles';
 
 export const RelatedPostsContainer = styled.div`
   padding-top: 60px;
@@ -7,13 +7,13 @@ export const RelatedPostsContainer = styled.div`
   h5 {
     font-size: 2rem;
   }
-`
+`;
 export const RelatedPostsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding-top: 20px;
-`
+`;
 export const RelatedPostItem = styled.li`
   a {
     display: flex;
@@ -35,4 +35,4 @@ export const RelatedPostItem = styled.li`
       margin-bottom: 0;
     }
   }
-`
+`;

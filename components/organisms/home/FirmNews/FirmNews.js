@@ -3,15 +3,7 @@ import Link from 'next/link';
 import Image from 'next/legacy/image';
 import { formatDate, createMarkup } from 'utils/helpers';
 import {
-  NewsContainer,
-  TitleNews,
-  NewsWrapper,
-  FreshNews,
-  LinkContainer,
-  ArticleNewsTitle,
-  Expert,
-  Bottom,
-  OtherNewsBox,
+  NewsContainer, TitleNews, NewsWrapper, FreshNews, LinkContainer, ArticleNewsTitle, Expert, Bottom, OtherNewsBox,
 } from 'styles/FirmNews.style';
 import NewsCard from './NewsCard';
 
@@ -35,13 +27,7 @@ const FirmNews = ({ firmNews }) => {
           <FreshNews>
             <Link href={featuredArticle?.slug} passHref legacyBehavior>
               <LinkContainer>
-                <Image
-                  src={featuredArticle?.featuredImage?.sourceUrl}
-                  width={750}
-                  height={350}
-                  layout="intrinsic"
-                  alt={featuredArticle.title}
-                />
+                <Image src={featuredArticle?.featuredImage?.sourceUrl} width={750} height={350} layout="intrinsic" alt={featuredArticle.title} />
                 <ArticleNewsTitle>{featuredArticle?.title}</ArticleNewsTitle>
                 <Expert dangerouslySetInnerHTML={createMarkup(featuredArticle?.excerpt)} />
                 <Bottom>
@@ -59,21 +45,11 @@ const FirmNews = ({ firmNews }) => {
         )}
         {olderArticles.length > 0 && (
           <OtherNewsBox>
-            {olderArticles.map(
-              ({
-                date, slug, featuredImage, databaseId, title, excerpt, author,
-              }) => (
-                <NewsCard
-                  key={databaseId}
-                  postSlug={slug}
-                  postImage={featuredImage?.sourceUrl}
-                  postTitle={title}
-                  postExcerpt={excerpt}
-                  postDate={date}
-                  postAuthor={author}
-                />
-              ),
-            )}
+            {olderArticles.map(({
+              date, slug, featuredImage, databaseId, title, excerpt, author,
+            }) => (
+              <NewsCard key={databaseId} postSlug={slug} postImage={featuredImage?.sourceUrl} postTitle={title} postExcerpt={excerpt} postDate={date} postAuthor={author} />
+            ))}
           </OtherNewsBox>
         )}
       </NewsWrapper>

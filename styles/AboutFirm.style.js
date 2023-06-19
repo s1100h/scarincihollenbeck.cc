@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const AboutBox = styled.div`
   height: 100%;
@@ -8,7 +8,7 @@ export const AboutBox = styled.div`
   align-items: flex-start;
   flex-flow: column;
   justify-content: space-between;
-`
+`;
 
 export const AboutContainer = styled.section`
   display: grid;
@@ -24,7 +24,7 @@ export const AboutContainer = styled.section`
     grid-template-columns: auto;
     margin-bottom: 70px;
   }
-`
+`;
 
 export const LinkButtonAbout = styled.a`
   display: flex;
@@ -49,7 +49,7 @@ export const LinkButtonAbout = styled.a`
     justify-content: center;
     align-items: center;
   }
-`
+`;
 
 export const AboutArticle = styled.article`
   display: flex;
@@ -78,11 +78,11 @@ export const AboutArticle = styled.article`
       font-weight: bold;
     }
   }
-`
+`;
 
 export const SubTitleAbout = styled.span`
   font-weight: 700;
   line-height: 1.24;
   margin-bottom: 7px;
   color: ${globalColor.red.darkRed};
-`
+`;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ScrollButtonContainer = styled.div`
   position: sticky;
@@ -54,7 +54,7 @@ export const ScrollButtonContainer = styled.div`
       opacity: 1;
     }
   }
-`
+`;
 
 export const ScrollButtonMouse = styled.div`
   height: 21px;
@@ -63,7 +63,7 @@ export const ScrollButtonMouse = styled.div`
   transform: none;
   border: 2px solid #000;
   top: 170px;
-`
+`;
 
 export const ScrollButtonMouseIn = styled.div`
   height: 5px;
@@ -72,7 +72,7 @@ export const ScrollButtonMouseIn = styled.div`
   margin: 5px auto;
   background: #000;
   position: relative;
-`
+`;
 
 export const ScrollButtonDownArrow = styled.div`
   display: block;
@@ -82,7 +82,7 @@ export const ScrollButtonDownArrow = styled.div`
   border-right: 2px solid #000;
   border-bottom: 2px solid #000;
   margin: 0 0 3px 5px;
-`
+`;
 
 export const ScrollButtonUpArrow = styled.div`
   display: block;
@@ -92,4 +92,4 @@ export const ScrollButtonUpArrow = styled.div`
   border-right: 2px solid #000;
   border-bottom: 2px solid #000;
   margin: 0 0 3px 5px;
-`
+`;

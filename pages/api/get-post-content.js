@@ -196,9 +196,7 @@ export const getPostContent = async (slug, category) => {
   const authorData = [];
 
   for (let i = 0; i < postAuthors.length; i++) {
-    const authorName = postAuthors[i].name === SITE_TITLE
-      ? SITE_TITLE.replace(' ', '-').toLowerCase()
-      : postAuthors[i].name;
+    const authorName = postAuthors[i].name === SITE_TITLE ? SITE_TITLE.replace(' ', '-').toLowerCase() : postAuthors[i].name;
     const [author] = await connection.execute(postAuthorQuery, [authorName]);
 
     // get the authors description
@@ -292,10 +290,7 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     if (req.method === 'GET') {
-      const fetchPost = await getPostContent(
-        'njdep-begins-implementing-environmental-justice-law',
-        'law-firm-insights',
-      );
+      const fetchPost = await getPostContent('njdep-begins-implementing-environmental-justice-law', 'law-firm-insights');
 
       if (fetchPost.status === 404) {
         return res.status(404).send({ ...fetchPost });

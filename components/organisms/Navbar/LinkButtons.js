@@ -11,11 +11,7 @@ const LinkButtons = () => (
         <span>Contact us</span>
       </ButtonLink>
     </Link>
-    <ButtonLink
-      href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
-      target="_blank"
-      rel="noreferrer"
-    >
+    <ButtonLink href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" target="_blank" rel="noreferrer">
       <BsFillCreditCard2BackFill />
       <span>Make payment</span>
     </ButtonLink>

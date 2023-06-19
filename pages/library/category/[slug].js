@@ -95,14 +95,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Library category page component -- /library/category/law-firm-insights etc. */
 const LibraryCategory = ({
-  childrenOfCurrentCategory,
-  description,
-  pageTitle,
-  popularCategories,
-  news,
-  name,
-  categoryId,
-  seo,
+  childrenOfCurrentCategory, description, pageTitle, popularCategories, news, name, categoryId, seo,
 }) => {
   const router = useRouter();
 

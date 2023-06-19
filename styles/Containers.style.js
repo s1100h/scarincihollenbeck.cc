@@ -1,16 +1,16 @@
-import { Container } from 'react-bootstrap'
-import styled from 'styled-components'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import { Container } from 'react-bootstrap';
+import styled from 'styled-components';
+import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const ContainerXXL = styled.section`
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  width: 100vw;
+  width: 100%;
   align-items: center;
-`
+`;
 
 export const CentralizedBox = styled.div`
   display: flex;
@@ -20,10 +20,9 @@ export const CentralizedBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
-  background-color: ${(props) => (props?.notSurface ? 'none' : globalColor.white)};
+  background-color: ${(props) => (props?.notSurface ? 'transparent' : globalColor.white)};
   box-shadow: ${(props) => (props?.notSurface ? 'none' : globalShadow.allSideShadow)};
-  ${({ toColumn }) =>
-    toColumn && toColumn === 'true' ? 'flex-direction: column;' : 'flex-wrap: wrap;'}
+  ${({ toColumn }) => (toColumn && toColumn === 'true' ? 'flex-direction: column;' : 'flex-wrap: wrap;')}
 
   ${media_breakpoint_down('xl')} {
     width: 97vw;
@@ -39,7 +38,7 @@ export const CentralizedBox = styled.div`
     border: none;
     ${(props) => props?.notSurface && 'padding: 0 30px;'};
   }
-`
+`;
 export const BoxTitle = styled.h2`
   display: flex;
   width: 100%;
@@ -47,7 +46,7 @@ export const BoxTitle = styled.h2`
   padding-bottom: 0;
   justify-content: ${({ isBigBoss }) => (isBigBoss === 'true' ? 'center' : 'flex-start')};
   text-transform: uppercase;
-`
+`;
 
 export const RowSpecial = styled.div`
   display: flex;
@@ -62,7 +61,7 @@ export const RowSpecial = styled.div`
   ${media_breakpoint_down('lg')} {
     justify-content: center;
   }
-`
+`;
 
 export const TwoColumnsContainer = styled.section`
   display: grid;
@@ -71,7 +70,7 @@ export const TwoColumnsContainer = styled.section`
   ${media_breakpoint_down('lg')} {
     grid-template-columns: 0.22fr 1.8fr 0.7fr 0.22fr;
   }
-`
+`;
 export const FirstColumn = styled.div`
   grid-area: 2/2;
   padding-right: 4vw;
@@ -79,7 +78,7 @@ export const FirstColumn = styled.div`
   ${media_breakpoint_exactly_down(1100)} {
     grid-area: 1/2/1/4;
   }
-`
+`;
 
 export const SecondColumn = styled.div`
   grid-area: 2/3;
@@ -87,11 +86,11 @@ export const SecondColumn = styled.div`
   ${media_breakpoint_exactly_down(1100)} {
     grid-area: 2/2/2/4;
   }
-`
+`;
 
 export const BottomContainer = styled.section`
   grid-area: 3/2/3/4;
-`
+`;
 
 export const CustomContainer = styled(Container)`
   .breadcrumb-container {
@@ -103,4 +102,4 @@ export const CustomContainer = styled(Container)`
   ${media_breakpoint_down('xl')} {
     max-width: 1200px;
   }
-`
+`;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const VirtualListContainer = styled.div`
   height: 450px;
@@ -10,7 +10,7 @@ export const VirtualListContainer = styled.div`
     position: relative;
     height: ${({ listHight }) => `${listHight}px`};
   }
-`
+`;
 
 export const ItemVirtual = styled.li`
   position: absolute;
@@ -19,4 +19,4 @@ export const ItemVirtual = styled.li`
   width: 100%;
   height: 205px;
   transform: ${({ itemTransform }) => `translateY(${itemTransform}px)`};
-`
+`;

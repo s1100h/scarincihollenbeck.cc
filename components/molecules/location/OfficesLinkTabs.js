@@ -7,11 +7,7 @@ const OfficesLinkTabs = ({ officesForTabs, officeImage }) => {
   return (
     <OfficeTabs>
       {officesForTabs.map((office) => (
-        <OfficeTab
-          key={office.databaseId}
-          href={office.uri}
-          imgurl={(officeImage?.length > 0 && query.slug === office.slug && officeImage) || ''}
-        >
+        <OfficeTab key={office.databaseId} href={office.uri} imgurl={(officeImage?.length > 0 && query.slug === office.slug && officeImage) || ''}>
           {query.slug === office.slug && <GradientWrapper />}
           <span>{office.addressLocality}</span>
         </OfficeTab>

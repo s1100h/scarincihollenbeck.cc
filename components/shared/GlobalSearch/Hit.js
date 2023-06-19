@@ -6,14 +6,7 @@ import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
 export default function Hit({ hit }) {
   return (
     <SearchedItem>
-      <Link
-        href={
-          hit.post_type_label === 'Posts'
-            ? hit.permalink.replace(PRODUCTION_URL, '')
-            : hit.permalink.replace(BASE_API_URL, '')
-        }
-        passHref
-      >
+      <Link href={hit.post_type_label === 'Posts' ? hit.permalink.replace(PRODUCTION_URL, '') : hit.permalink.replace(BASE_API_URL, '')} passHref>
         <article>
           <p>{hit.post_type_label}</p>
           <h4>

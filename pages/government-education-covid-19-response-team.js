@@ -6,10 +6,7 @@ import { getSubTitleFromHTML } from 'utils/helpers';
 
 /** Fetch page content and map it to page props */
 export const getStaticProps = async () => {
-  const [response] = await getCovid19BasedPages(
-    'government-education-covid-19-response-team',
-    COVID_POSTS_ID,
-  );
+  const [response] = await getCovid19BasedPages('government-education-covid-19-response-team', COVID_POSTS_ID);
   const { title, content, seo } = response;
 
   return {

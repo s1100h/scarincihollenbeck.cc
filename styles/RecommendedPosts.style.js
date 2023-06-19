@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const NewsTitle = styled.h2`
   font-family: var(--font-poppins);
@@ -19,4 +19,4 @@ export const NewsTitle = styled.h2`
   ${media_breakpoint_down('sm')} {
     font-size: 2rem;
   }
-`
+`;

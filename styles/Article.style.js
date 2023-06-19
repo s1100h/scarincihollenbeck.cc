@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { poppins } from '../public/fonts/fonts'
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { poppins } from '../public/fonts/fonts';
 
 export const ArticleContainer = styled.article`
   display: flex;
@@ -10,21 +10,18 @@ export const ArticleContainer = styled.article`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 20px;
-`
+`;
 
 export const Title = styled.h3`
   font-size: ${({ props }) => (props?.size ? props.size : '1.5rem')};
   font-weight: 600;
   margin-bottom: 10px;
-  font-family: ${({ props }) =>
-    props?.isPoppinsFont
-      ? 'var(--font-poppins), sans-serif'
-      : 'var(--font-montserrat), sans-serif'};
+  font-family: ${({ props }) => (props?.isPoppinsFont ? 'var(--font-poppins), sans-serif' : 'var(--font-montserrat), sans-serif')};
 
   ${media_breakpoint_down('sm')} {
     text-align: center;
   }
-`
+`;
 
 export const ArticleBody = styled.section`
   font-size: 1.15rem;
@@ -40,4 +37,4 @@ export const ArticleBody = styled.section`
       }
     }
   }
-`
+`;

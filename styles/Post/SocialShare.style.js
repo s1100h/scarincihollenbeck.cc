@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { globalColor } from '../global_styles/Global.styles'
+import styled from 'styled-components';
+import { globalColor } from '../global_styles/Global.styles';
 
 export const ShareSocialBox = styled.nav`
   display: flex;
@@ -57,4 +57,4 @@ export const ShareSocialBox = styled.nav`
       color: ${globalColor.socialNetworks.linkedIn};
     }
   }
-`
+`;

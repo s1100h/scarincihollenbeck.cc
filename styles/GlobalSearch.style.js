@@ -1,8 +1,8 @@
-import { Form } from 'react-bootstrap'
-import { Hits } from 'react-instantsearch-dom'
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { Form } from 'react-bootstrap';
+import { Hits } from 'react-instantsearch-dom';
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SearchForm = styled(Form)`
   width: 100%;
@@ -29,7 +29,7 @@ export const SearchForm = styled(Form)`
     width: 80vw;
     align-self: flex-end;
   }
-`
+`;
 
 export const SearchInput = styled(Form.Control)`
   height: 47px !important;
@@ -39,7 +39,7 @@ export const SearchInput = styled(Form.Control)`
   font-size: 16px;
   color: ${globalColor.gray.gray100};
   border: none;
-`
+`;
 
 export const HitsStyled = styled(Hits)`
   .ais-Hits-list {
@@ -50,7 +50,7 @@ export const HitsStyled = styled(Hits)`
   .ais-Hits-item {
     border-bottom: 1px solid #dee2e6;
   }
-`
+`;
 
 export const ResultsContainer = styled.div`
   max-width: 725px;
@@ -125,6 +125,6 @@ export const ResultsContainer = styled.div`
   .ais-SearchBox-reset {
     display: none;
   }
-`
+`;
 
-export const ResultBox = styled.div``
+export const ResultBox = styled.div``;

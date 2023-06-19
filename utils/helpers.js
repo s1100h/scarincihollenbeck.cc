@@ -76,20 +76,7 @@ export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g,
 // format GMT date
 export function formatDate(date) {
   const dateObj = new Date(date);
-  const month = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   return `${month[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 }
 
@@ -155,9 +142,7 @@ export const formatSrcToCloudinaryUrlPdf = (src) => {
 export const formatPageImageToCloudinaryUrl = (page) => {
   const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';
   if (page.includes(tossUrl)) {
-    const modImageUrlContent = page
-      .replace(/https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g, CLOUDINARY_BASE_URL)
-      .replace(/-\d{3,}x\d{3,}\./g, '.');
+    const modImageUrlContent = page.replace(/https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g, CLOUDINARY_BASE_URL).replace(/-\d{3,}x\d{3,}\./g, '.');
     return modImageUrlContent;
   }
 
@@ -202,8 +187,6 @@ export const changeTitle = (title) => {
     '&#8221;': '"',
     '&amp;': '&',
   };
-  Object.keys(symbolCheckObject).map(
-    (symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])),
-  );
+  Object.keys(symbolCheckObject).map((symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])));
   return title;
 };

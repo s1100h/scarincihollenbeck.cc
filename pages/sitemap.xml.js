@@ -93,12 +93,8 @@ const getCurrentPublishedPages = async () => {
   try {
     const response = await (await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)).json();
 
-    const publishedPages = response
-      .filter((page) => page.status === 'publish')
-      .map((page) => page.slug);
-    const withoutExceptions = publishedPages.filter(
-      (pageSlag) => pageSlag !== exception1 && pageSlag !== exception2 && pageSlag !== exception3,
-    );
+    const publishedPages = response.filter((page) => page.status === 'publish').map((page) => page.slug);
+    const withoutExceptions = publishedPages.filter((pageSlag) => pageSlag !== exception1 && pageSlag !== exception2 && pageSlag !== exception3);
     return clearArrPages.concat(withoutExceptions);
   } catch (error) {
     console.error(error.message);
@@ -120,9 +116,7 @@ export const getServerSideProps = async ({ res }) => {
   const practicePaths = await getPracticePaths();
   const pagePaths = await getCurrentPublishedPages();
   const postPaths = POST_TYPE_REWRITES.map(({ source }) => source.replace('/:path*', ''));
-  const modAttorneyPaths = attorneyPaths.map(
-    ({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`,
-  );
+  const modAttorneyPaths = attorneyPaths.map(({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`);
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>

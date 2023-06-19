@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { buttonsHoverActive, globalColor, globalShadow, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { buttonsHoverActive, globalColor, globalShadow, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const BodyHeaderContainer = styled.nav`
 	display: flex;
@@ -68,7 +68,7 @@ ${media_breakpoint_down('sm')} {
     }
 }
 
-`
+`;
 
 export const CategoriesLinks = styled.ul`
   display: flex;
@@ -77,7 +77,7 @@ export const CategoriesLinks = styled.ul`
   justify-content: space-between;
   margin-bottom: 0;
   gap: 2%;
-`
+`;
 
 export const ButtonItem = styled.li`
   width: 80%;
@@ -102,4 +102,4 @@ export const ButtonItem = styled.li`
       color: white;
     }
   }
-`
+`;
