@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { media_breakpoint_down, media_breakpoint_up, media_breakpoint_exactly } from './mediaBreakpoints.style';
+import { media_breakpoint_down, media_breakpoint_up, media_breakpoint_exactly, media_breakpoint_range } from './mediaBreakpoints.style';
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -35,6 +35,10 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 46px;
+
+  ${media_breakpoint_range('sm', 'lg')} {
+    margin-top: 5px;
+  }
 `;
 export const DesktopVisible = styled.div`
   ${media_breakpoint_down('lg')} {
