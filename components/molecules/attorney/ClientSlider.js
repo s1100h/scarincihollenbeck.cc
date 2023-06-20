@@ -60,28 +60,12 @@ const ClientSlider = ({
     <>
       <SliderStyled {...settings}>
         {clients.map(({ clientImage, clientLink, clientTitle }) => (clientLink?.length > 0 ? (
-          <a
-            className="hovered-client"
-            key={useId()}
-            href={clientLink}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              src={clientImage.sourceUrl}
-              alt={clientImage.mediaDetails.altText || clientTitle}
-              width={imgSize?.width || 150}
-              height={imgSize?.height || 150}
-            />
+          <a className="hovered-client" key={useId()} href={clientLink} target="_blank" rel="noreferrer">
+            <Image src={clientImage.sourceUrl} alt={clientImage.mediaDetails.altText || clientTitle} width={imgSize?.width || 150} height={imgSize?.height || 150} />
           </a>
         ) : (
           <div key={useId()}>
-            <Image
-              src={clientImage.sourceUrl}
-              alt={clientImage.mediaDetails.altText || clientTitle}
-              width={imgSize?.width || 150}
-              height={imgSize?.height || 150}
-            />
+            <Image src={clientImage.sourceUrl} alt={clientImage.mediaDetails.altText || clientTitle} width={imgSize?.width || 150} height={imgSize?.height || 150} />
           </div>
         )))}
       </SliderStyled>

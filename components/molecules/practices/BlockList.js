@@ -51,10 +51,7 @@ const BlockList = ({ list }) => {
         {list.map((item) => (item.children.length > 0 ? (
           <Col sm={12} md={6} lg={4} key={item.ID} className="mb-3">
             <Dropdown onToggle={() => handleRotate(item.ID)}>
-              <ButtonTabToggle
-                props={{ open: open.id === item.ID && open.isOpen }}
-                variant="link"
-              >
+              <ButtonTabToggle props={{ open: open.id === item.ID && open.isOpen }} variant="link">
                 <Link href={item.slug} onClick={(e) => handleClickStopEvent(e)}>
                   {item.title}
                 </Link>

@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
-import { media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const AttorneyCardBox = styled.article`
   display: flex;
@@ -20,7 +20,7 @@ export const AttorneyCardBox = styled.article`
     width: 90vw;
     min-width: 100%;
   }
-`
+`;
 
 export const LinkBox = styled.section`
   display: flex;
@@ -41,7 +41,7 @@ export const LinkBox = styled.section`
   ${media_breakpoint_exactly_down(612)} {
     gap: 10px;
   }
-`
+`;
 
 export const ImageBox = styled.div`
   width: 108px;
@@ -50,9 +50,9 @@ export const ImageBox = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: center;
-`
+`;
 
-export const PhotoBox = styled.div``
+export const PhotoBox = styled.div``;
 
 export const InfoBox = styled.section`
   display: flex;
@@ -62,7 +62,7 @@ export const InfoBox = styled.section`
     font-size: 1rem;
     color: ${globalColor.gray.gray80};
   }
-`
+`;
 
 export const UserName = styled.h3`
   font-size: 1.4rem;
@@ -72,7 +72,7 @@ export const UserName = styled.h3`
   ${media_breakpoint_exactly_down(612)} {
     font-size: 1.1rem;
   }
-`
+`;
 
 export const ContactBox = styled.address`
   display: flex;
@@ -93,4 +93,4 @@ export const ContactBox = styled.address`
       text-decoration: 1px underline;
     }
   }
-`
+`;

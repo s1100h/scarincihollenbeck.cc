@@ -1,6 +1,6 @@
-import { InputGroup, Form } from 'react-bootstrap'
-import styled from 'styled-components'
-import { globalColor, rem } from 'styles/global_styles/Global.styles'
+import { InputGroup, Form } from 'react-bootstrap';
+import styled from 'styled-components';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
 
 export const FormContainer = styled.div`
   margin-bottom: 20px;
@@ -62,18 +62,18 @@ export const FormContainer = styled.div`
       }
     }
   }
-`
+`;
 
 export const InputGroupStyled = styled(InputGroup)`
   .kw-field-error-message {
     position: absolute;
     top: -18px;
   }
-`
+`;
 
 export const FormLabelStyled = styled(Form.Label)`
   position: absolute;
   left: 12px;
   z-index: 5;
   color: ${globalColor.grayExtraLite.grayExtraLite80};
-`
+`;

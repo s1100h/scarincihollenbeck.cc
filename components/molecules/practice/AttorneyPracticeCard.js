@@ -4,15 +4,7 @@ import ContactBoxTemplate from '../../atoms/ContactBox';
 import { CardBox } from '../../../styles/Practices.style';
 
 const AttorneyPracticeCard = ({
-  link,
-  image,
-  name,
-  designation,
-  number,
-  email,
-  width,
-  height,
-  classNameProp,
+  link, image, name, designation, number, email, width, height, classNameProp,
 }) => {
   const { push } = useRouter();
   return (

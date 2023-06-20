@@ -1,7 +1,7 @@
-import Carousel from 'react-multi-carousel'
-import styled from 'styled-components'
-import { globalColor, globalGradient } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import Carousel from 'react-multi-carousel';
+import styled from 'styled-components';
+import { globalColor, globalGradient } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 const common = `
   background: none;
@@ -11,7 +11,7 @@ const common = `
     :before {
       color: black;
     }
-`
+`;
 
 export const TitleBlock = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ export const TitleBlock = styled.div`
       font-size: 2rem;
     }
   }
-`
+`;
 
 export const Award = styled.div`
   padding: 40px;
@@ -66,7 +66,7 @@ export const Award = styled.div`
   align-items: center;
   height: 300px;
   background: ${globalGradient.award};
-`
+`;
 
 export const AwardsContainer = styled.div`
   display: flex;
@@ -77,10 +77,10 @@ export const AwardsContainer = styled.div`
     width: 90%;
   }
 
-  ${media_breakpoint_down('sx')} {
+  ${media_breakpoint_down('xs')} {
     padding: 0 50px;
   }
-`
+`;
 
 export const CarouselStyled = styled(Carousel)`
   .react-multiple-carousel__arrow--right {
@@ -98,4 +98,4 @@ export const CarouselStyled = styled(Carousel)`
       display: block !important;
     }
   }
-`
+`;

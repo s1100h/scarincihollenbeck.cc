@@ -1,8 +1,8 @@
-import { Button } from 'react-bootstrap'
-import styled from 'styled-components'
-import { commonBtnStyle } from './ButtonsMenu.style'
-import { globalColor } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import { Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import { commonBtnStyle } from './ButtonsMenu.style';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const RedButtonLink = styled.a`
   padding: 15px 40px;
@@ -16,16 +16,16 @@ export const RedButtonLink = styled.a`
     text-decoration: none;
     cursor: pointer;
   }
-`
+`;
 
 export const RedButtonBootstrap = styled(RedButtonLink)`
   margin-left: 20px;
-`
+`;
 
 export const ButtonStandardWidth = styled(Button)`
   width: 200px;
   border-radius: 5px;
-`
+`;
 
 export const ClearButton = styled(ButtonStandardWidth)`
   margin-right: 12px;
@@ -59,7 +59,7 @@ export const ClearButton = styled(ButtonStandardWidth)`
   ${media_breakpoint_down('sm')} {
     margin-right: 7px;
   }
-`
+`;
 
 export const StandardRedButton = styled(Button)`
   ${commonBtnStyle};
@@ -81,4 +81,4 @@ export const StandardRedButton = styled(Button)`
     box-shadow: none;
     background-color: ${globalColor.red.burgundy};
   }
-`
+`;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const BigGrayTitle = styled.h2`
   width: 100%;
@@ -8,4 +8,4 @@ export const BigGrayTitle = styled.h2`
   margin-bottom: 1.3rem;
   font-size: 1.2rem;
   text-transform: capitalize;
-`
+`;

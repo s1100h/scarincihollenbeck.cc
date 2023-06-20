@@ -1,15 +1,15 @@
-import styled from 'styled-components'
-import { Button } from 'react-bootstrap'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { GradientWrapper } from './SingleSubHeader.style'
+import styled from 'styled-components';
+import { Button } from 'react-bootstrap';
+import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { GradientWrapper } from './SingleSubHeader.style';
 
 const linearGradientPosition = (position) => `
     to right,
     rgba(255, 255, 255, 0) 0%,
     #fafafa ${position}%,
     rgba(255, 255, 255, 0) 100%
-`
+`;
 export const OfficeBtn = styled(Button)`
   display: flex;
   padding: 20px 25px;
@@ -39,7 +39,7 @@ export const OfficeBtn = styled(Button)`
     		width:  86%;
   		}
 			`
-    )
+    );
   }}
   border: none;
 
@@ -60,7 +60,7 @@ export const OfficeBtn = styled(Button)`
   :first-child:active {
     background-color: ${globalColor.white};
   }
-`
+`;
 
 export const OfficeBtnGradientWrapper = styled(GradientWrapper)`
   width: 100%;
@@ -69,9 +69,9 @@ export const OfficeBtnGradientWrapper = styled(GradientWrapper)`
   ${media_breakpoint_down('md')} {
     background: linear-gradient(${linearGradientPosition(58)});
   }
-`
+`;
 
-export const LocationsOfficesContainer = styled.section``
+export const LocationsOfficesContainer = styled.section``;
 
 export const CardListBox = styled.div`
   display: flex;
@@ -146,7 +146,7 @@ export const CardListBox = styled.div`
       }
     }
   }
-`
+`;
 
 export const TileBox = styled.article`
   flex-basis: calc(50% - 10px);
@@ -240,7 +240,7 @@ export const TileBox = styled.article`
       height: 26px;
     }
   }
-`
+`;
 
 export const PuzzleContainer = styled.section`
   display: flex;
@@ -253,4 +253,4 @@ export const PuzzleContainer = styled.section`
     margin-top: 40px;
     margin-bottom: 70px;
   }
-`
+`;

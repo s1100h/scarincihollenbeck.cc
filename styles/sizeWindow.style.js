@@ -5,4 +5,4 @@ export const sizeWindow = {
   lg: 992,
   xl: 1200,
   xxl: 1680,
-}
+};

@@ -1,11 +1,7 @@
-import styled from 'styled-components'
-import Link from 'next/link'
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-  media_breakpoint_range_exacly,
-} from './mediaBreakpoints.style'
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
+import styled from 'styled-components';
+import Link from 'next/link';
+import { media_breakpoint_down, media_breakpoint_exactly_down, media_breakpoint_range_exacly } from './mediaBreakpoints.style';
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 
 const addressPointConst = `
       span {
@@ -17,13 +13,13 @@ const addressPointConst = `
           }
         }
       }
-`
+`;
 export const LinkMapBox = styled.div`
   display: flex;
   width: fit-content;
   flex-direction: column;
   margin-bottom: 20px;
-`
+`;
 
 export const DownloadTheMap = styled.a`
   display: flex;
@@ -32,7 +28,7 @@ export const DownloadTheMap = styled.a`
   width: fit-content;
   margin-bottom: 15px;
   font-size: 1.2rem;
-`
+`;
 
 export const MediaBr = styled.br`
   display: none;
@@ -40,7 +36,7 @@ export const MediaBr = styled.br`
   ${media_breakpoint_exactly_down(450)} {
     display: block;
   }
-`
+`;
 
 export const OfficeTabs = styled.nav`
   display: flex;
@@ -57,7 +53,7 @@ export const OfficeTabs = styled.nav`
   ${media_breakpoint_down('sm')} {
     top: -20px;
   }
-`
+`;
 
 export const OfficeTab = styled(Link)`
   display: flex;
@@ -89,7 +85,7 @@ export const OfficeTab = styled(Link)`
       cursor: default;
       pointer-events: none;
       `
-    )
+    );
   }}
 
   :hover {
@@ -104,7 +100,7 @@ export const OfficeTab = styled(Link)`
     transition: 0.7s;
     width: ${(props) => (props?.imgurl?.length > 0 ? '76%' : '220px')};
   }
-`
+`;
 
 export const OfficeCardContainer = styled.div`
   display: flex;
@@ -139,7 +135,7 @@ export const OfficeCardContainer = styled.div`
       gap: 5px;
     }
   }
-`
+`;
 
 export const OfficeAttorneysContainer = styled.div`
   h4 {
@@ -169,9 +165,9 @@ export const OfficeAttorneysContainer = styled.div`
       }
     }
   }
-`
+`;
 
 export const OfficeLocationBoxTitle = styled.h4`
   font-size: ${rem(32)};
   text-transform: uppercase;
-`
+`;

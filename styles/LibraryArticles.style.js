@@ -1,18 +1,18 @@
-import styled from 'styled-components'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
-import Link from 'next/link'
+import styled from 'styled-components';
+import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import Link from 'next/link';
 
 export const MainArticleTitle = styled.h2`
   margin-bottom: 24px;
   font-size: 2.2rem;
-`
+`;
 
 export const DateOfArticle = styled.time`
   display: block;
   font-size: 1.2rem;
   margin: 16px 0;
-`
+`;
 
 export const ArticleShortDescription = styled.section`
   margin-bottom: 16px;
@@ -21,7 +21,7 @@ export const ArticleShortDescription = styled.section`
     font-size: 1.2rem;
     line-height: 1.8;
   }
-`
+`;
 
 export const MainVirtualizeContainer = styled.nav`
   height: 600px;
@@ -29,13 +29,13 @@ export const MainVirtualizeContainer = styled.nav`
   overflow: auto;
   background-color: ${globalColor.graySmoke.liteWhiteSmoke};
   border-radius: 5px;
-`
+`;
 
 export const VirtualizeListBox = styled.ul`
   height: ${(props) => props?.height}px;
   width: 100%;
   position: relative;
-`
+`;
 
 export const VirtualListItem = styled.li`
   position: absolute;
@@ -45,13 +45,13 @@ export const VirtualListItem = styled.li`
   height: 28px;
   transform: ${(props) => props?.transform};
   font-size: 1rem;
-`
+`;
 
 export const LinkWithEllipsis = styled(Link)`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-`
+`;
 
 export const SideBarContainer = styled.nav`
   display: flex;
@@ -99,10 +99,10 @@ export const SideBarContainer = styled.nav`
 
   ${media_breakpoint_down('lg')} {
   }
-`
+`;
 
 export const AllArticlesTitle = styled.h3`
   font-weight: 600;
   font-size: 3rem;
   font-family: var(--font-poppins), sans-serif;
-`
+`;

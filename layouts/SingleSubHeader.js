@@ -1,9 +1,6 @@
 import { changeTitle, formatDate } from 'utils/helpers';
 import {
-  BackgroundContainer,
-  Description,
-  GradientWrapper,
-  SubHeaderContent,
+  BackgroundContainer, Description, GradientWrapper, SubHeaderContent,
 } from 'styles/SingleSubHeader.style';
 import Link from 'next/link';
 import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
@@ -11,17 +8,7 @@ import PostBreadcrumbs from '../components/organisms/post/PostBreadcrumbs';
 import { JSXWithDynamicLinks } from '../components/atoms/micro-templates/JSXWithDynamicLinks';
 
 const SingleSubHeader = ({
-  title,
-  subtitle,
-  isBlog,
-  isHoliday,
-  isFilter = false,
-  authors = [],
-  date = '',
-  tabs,
-  setActiveTab,
-  activeTab,
-  backgroundImage,
+  title, subtitle, isBlog, isHoliday, isFilter = false, authors = [], date = '', tabs, setActiveTab, activeTab, backgroundImage,
 }) => (
   <BackgroundContainer
     props={{
@@ -45,10 +32,7 @@ const SingleSubHeader = ({
               {authors.length > 1 && index !== authors.length - 1 && <>, </>}
             </span>
           ) : (
-            <Link
-              key={author.display_name}
-              href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}
-            >
+            <Link key={author.display_name} href={author.display_name !== 'Scarinci Hollenbeck' ? author.uri : '/attorneys'}>
               {author.display_name}
               {authors.length > 1 && index !== authors.length - 1 && <>, </>}
             </Link>
@@ -57,12 +41,8 @@ const SingleSubHeader = ({
           {formatDate(date)}
         </p>
       )}
-      <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
-        {subtitle?.length > 0 && <JSXWithDynamicLinks HTML={subtitle} />}
-      </Description>
-      {tabs?.length > 0 && (
-        <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
-      )}
+      <Description className="animate__animated animate__fadeInUp animate__fast sub-title">{subtitle?.length > 0 && <JSXWithDynamicLinks HTML={subtitle} />}</Description>
+      {tabs?.length > 0 && <ButtonsMenu marTop="0" tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />}
     </SubHeaderContent>
   </BackgroundContainer>
 );

@@ -1,25 +1,22 @@
-import { Container } from 'react-bootstrap'
-import styled from 'styled-components'
-import { globalColor, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import { Container } from 'react-bootstrap';
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: ${({ props }) => (props?.isTabs || props?.isBlog ? 'flex-start' : 'center')};
-  background: no-repeat
-    url(${({ props }) =>
-      props?.isHoliday ? '/images/holiday-banner.webp' : '/images/skyscraper2.png'});
-  background-position: ${({ props }) =>
-    props?.isHoliday?.length > 0 ? 'right 1% bottom 31%' : 'right 9% bottom 45%'};
+  background: no-repeat url(${({ props }) => (props?.isHoliday ? '/images/holiday-banner.webp' : '/images/skyscraper2.png')});
+  background-position: ${({ props }) => (props?.isHoliday?.length > 0 ? 'right 1% bottom 31%' : 'right 9% bottom 45%')};
   background-size: ${({ props }) => (props?.isHoliday?.length > 0 ? 'auto' : 'contain')};
   height: auto;
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => {
-    if (props?.isFilter) return '6.5em'
-    if (props?.isTabs || props?.isBlog) return '1.5em'
-    return '4em'
+    if (props?.isFilter) return '6.5em';
+    if (props?.isTabs || props?.isBlog) return '1.5em';
+    return '4em';
   }};
   margin-bottom: 50px;
   box-shadow: ${rem(21)} 0 ${rem(32)} rgb(0 0 0 / 10%);
@@ -46,7 +43,7 @@ export const BackgroundContainer = styled.section`
           padding-bottom: 0;
         }
       `
-    )
+    );
   }}
 
   ${({ props }) => {
@@ -57,7 +54,7 @@ export const BackgroundContainer = styled.section`
              padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
           }
           `
-      : ''
+      : '';
   }}
 
   ${media_breakpoint_down('md')} {
@@ -74,20 +71,15 @@ export const BackgroundContainer = styled.section`
   @media print {
     display: none;
   }
-`
+`;
 
 export const GradientWrapper = styled.div`
   height: 100%;
   width: 100vw;
   position: absolute;
   top: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 27%,
-    ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%,
-    rgba(255, 255, 255, 0) 68%
-  );
-`
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 27%, ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%, rgba(255, 255, 255, 0) 68%);
+`;
 
 export const SubHeaderContent = styled(Container)`
   h1 {
@@ -103,7 +95,7 @@ export const SubHeaderContent = styled(Container)`
       font-size: 1.85rem;
     }
   }
-`
+`;
 
 export const Description = styled.div`
   width: 50vw;
@@ -123,4 +115,4 @@ export const Description = styled.div`
   ${media_breakpoint_down('sm')} {
     width: 100%;
   }
-`
+`;

@@ -81,15 +81,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Author library page component */
 const LibraryAuthor = ({
-  description,
-  pageTitle,
-  popularCategories,
-  results,
-  childrenOfCurrentCategory,
-  categoryId,
-  profileUrl,
-  seo,
-  name,
+  description, pageTitle, popularCategories, results, childrenOfCurrentCategory, categoryId, profileUrl, seo, name,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;

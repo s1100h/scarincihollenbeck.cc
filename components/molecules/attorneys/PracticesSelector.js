@@ -26,52 +26,27 @@ const PracticesSelector = ({ practices, onSelect }) => {
   const pt = practices.filter((b) => (b.ID === 28273 || b.ID === 28274 ? b : ''));
 
   return (
-    <DropdownSelectorBtn
-      variant="link"
-      title="Filter by practice"
-      className="my-3 my-md-0"
-      props={{ bigMenu: 'true' }}
-    >
+    <DropdownSelectorBtn variant="link" title="Filter by practice" className="my-3 my-md-0" props={{ bigMenu: 'true' }}>
       <Container className="mt--1 p-0" fluid>
         <Row className="rounded-0 m-0">
           <Col sm={12} lg={3} className="mt-md-3">
             {bce.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
+              <PracticeListItem key={ft.ID} title={ft.title} onSelect={onSelect} pChildren={ft.children} />
             ))}
           </Col>
           <Col sm={12} lg={3} className="mt-md-3">
             {cl.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
+              <PracticeListItem key={ft.ID} title={ft.title} onSelect={onSelect} pChildren={ft.children} />
             ))}
           </Col>
           <Col sm={12} lg={3} className="mt-md-3">
             {li.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
+              <PracticeListItem key={ft.ID} title={ft.title} onSelect={onSelect} pChildren={ft.children} />
             ))}
           </Col>
           <Col sm={12} md={3} className="mt-md-3">
             {pt.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
+              <PracticeListItem key={ft.ID} title={ft.title} onSelect={onSelect} pChildren={ft.children} />
             ))}
           </Col>
         </Row>

@@ -20,16 +20,13 @@ const CovidPage = ({
   /** Handle Article Archive Query */
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(
-    categoryPostsByIdQuery,
-    {
-      first: 6,
-      last: null,
-      after: null,
-      before: null,
-      id: contentId,
-    },
-  );
+  } = useApolloQuery(categoryPostsByIdQuery, {
+    first: 6,
+    last: null,
+    after: null,
+    before: null,
+    id: contentId,
+  });
 
   const crisisManagementTemplate = (bodyContentArgs) => {
     const { article, banner, listLinks } = bodyContentArgs;
@@ -46,11 +43,7 @@ const CovidPage = ({
 
   return (
     <>
-      <BasicSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDescription}
-        canonicalUrl={canonicalUrl}
-      />
+      <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
       <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <TwoColumnsContainer>
         <FirstColumn>

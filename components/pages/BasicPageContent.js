@@ -22,9 +22,7 @@ const BasicPageContent = ({
             <PagesBody content={modPage} />
             {pageForm?.enableForm && (
               <>
-                {pageForm.formLabel && (
-                  <BigGrayTitle className="mb-5 w-75">{pageForm.formLabel}</BigGrayTitle>
-                )}
+                {pageForm.formLabel && <BigGrayTitle className="mb-5 w-75">{pageForm.formLabel}</BigGrayTitle>}
                 <ContactForm />
               </>
             )}

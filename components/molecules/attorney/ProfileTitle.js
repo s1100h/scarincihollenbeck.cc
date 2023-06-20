@@ -5,9 +5,7 @@ const ProfileTitle = ({
   name, designation, coChairs, chairs, primaryPractices,
 }) => (
   <>
-    <ProfileName className="animate__animated animate__fadeInDown animate__slow">
-      {name}
-    </ProfileName>
+    <ProfileName className="animate__animated animate__fadeInDown animate__slow">{name}</ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
       {primaryPractices

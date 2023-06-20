@@ -8,22 +8,13 @@ import dynamic from 'next/dynamic';
 import { SearchWithArticle } from 'styles/Practices.style';
 import SearchPractices from 'components/molecules/practice/SearchPractices';
 import { ATTORNEYS_FAQ } from 'utils/constants';
-import {
-  additionalPracticesArticle,
-  corePracticesArticle,
-  legalServicesArticle,
-} from '../../utils/articles-content';
+import { additionalPracticesArticle, corePracticesArticle, legalServicesArticle } from '../../utils/articles-content';
 
 const ListWrapperDynamic = dynamic(() => import('components/organisms/practices/ListWrapper'));
 const FAQ = dynamic(() => import('components/atoms/FAQ'));
 
 const PracticesDirectory = ({
-  site,
-  seo,
-  canonicalUrl,
-  sortedCorePractices,
-  sortedAdditionalPractices,
-  sortedBusinessPractices,
+  site, seo, canonicalUrl, sortedCorePractices, sortedAdditionalPractices, sortedBusinessPractices,
 }) => (
   <>
     <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
@@ -33,24 +24,9 @@ const PracticesDirectory = ({
       <Article contentBody={formatPageImageToCloudinaryUrl(site.bodyContent)} />
     </SearchWithArticle>
     <FullWidth>
-      <ListWrapper
-        title="Core Law Practices"
-        article={corePracticesArticle}
-        list={sortedCorePractices}
-        isBlock
-      />
-      <ListWrapper
-        title="Additional Law Practices"
-        article={additionalPracticesArticle}
-        list={sortedAdditionalPractices}
-        isBlock
-      />
-      <ListWrapperDynamic
-        title="Business-Related Legal Services"
-        article={legalServicesArticle}
-        list={sortedBusinessPractices}
-        isSimple
-      />
+      <ListWrapper title="Core Law Practices" article={corePracticesArticle} list={sortedCorePractices} isBlock />
+      <ListWrapper title="Additional Law Practices" article={additionalPracticesArticle} list={sortedAdditionalPractices} isBlock />
+      <ListWrapperDynamic title="Business-Related Legal Services" article={legalServicesArticle} list={sortedBusinessPractices} isSimple />
       <FAQ faqArrContent={ATTORNEYS_FAQ} />
     </FullWidth>
   </>

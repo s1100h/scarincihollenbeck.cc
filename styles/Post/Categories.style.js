@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor, globalShadow, rem } from '../global_styles/Global.styles'
-import { media_breakpoint_down } from '../mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, globalShadow, rem } from '../global_styles/Global.styles';
+import { media_breakpoint_down } from '../mediaBreakpoints.style';
 
 export const CategoriesNavContainer = styled.nav`
   display: flex;
@@ -23,4 +23,4 @@ export const CategoriesNavContainer = styled.nav`
     flex-direction: column;
     align-items: flex-start;
   }
-`
+`;

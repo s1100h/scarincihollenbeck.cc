@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
-  CardListBox,
-  LocationsOfficesContainer,
-  OfficeBtn,
-  OfficeBtnGradientWrapper,
+  CardListBox, LocationsOfficesContainer, OfficeBtn, OfficeBtnGradientWrapper,
 } from '../../../styles/ContactUs.style';
 import Map from '../../molecules/location/Map';
 import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';

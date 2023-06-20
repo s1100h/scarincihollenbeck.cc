@@ -1,10 +1,7 @@
 import Surface from 'components/atoms/micro-templates/surface';
 import ClientSlider from 'components/molecules/attorney/ClientSlider';
 import {
-  ClientsBox,
-  EducationAdmissionBox,
-  GeneralContainer,
-  GrayList,
+  ClientsBox, EducationAdmissionBox, GeneralContainer, GrayList,
 } from 'styles/attorney-page/General.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 

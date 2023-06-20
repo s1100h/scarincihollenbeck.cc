@@ -14,21 +14,11 @@ export async function getFirmOverviewContent() {
 
 const sanitizeMembers = (members) => members.map((member) => ({
   title: member.title,
-  uri: member.attorneyMainInformation
-    ? `attorneys/${member.slug}`
-    : `administration/${member.slug}`,
-  better_featured_image:
-      member.attorneyMainInformation?.profileImage?.sourceUrl
-      || member.administration?.featuredImage?.sourceUrl,
-  phone:
-      member.attorneyMainInformation?.phoneNumber
-      || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
+  uri: member.attorneyMainInformation ? `attorneys/${member.slug}` : `administration/${member.slug}`,
+  better_featured_image: member.attorneyMainInformation?.profileImage?.sourceUrl || member.administration?.featuredImage?.sourceUrl,
+  phone: member.attorneyMainInformation?.phoneNumber || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
   email: member.attorneyMainInformation?.email || member.administration?.email,
-  designation:
-      (member.attorneyMainInformation?.designation !== 'Firm Managing Partner'
-      && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner'
-        ? member.attorneyChairCoChair
-        : member.attorneyMainInformation.designation) || member.administration?.title,
+  designation: (member.attorneyMainInformation?.designation !== 'Firm Managing Partner' && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner' ? member.attorneyChairCoChair : member.attorneyMainInformation.designation) || member.administration?.title,
 }));
 
 export const getServerSideProps = async () => {

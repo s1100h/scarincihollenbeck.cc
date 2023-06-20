@@ -6,10 +6,7 @@ import {
 } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import {
-  adminKaterinTraughQuery,
-  attorneysPageQuery,
-  attorneysQuery,
-  miniOfficeLocationQuery,
+  adminKaterinTraughQuery, attorneysPageQuery, attorneysQuery, miniOfficeLocationQuery,
 } from 'utils/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 import { sanitizeOffices } from 'pages';
@@ -62,40 +59,32 @@ export const getAttorneys = async () => {
     }
   });
 
-  const sanitaizedAttorneys = attorneyProfiles?.nodes.map(
-    ({
+  const sanitaizedAttorneys = attorneyProfiles?.nodes.map(({
+    title, slug, databaseId, attorneyMainInformation, attorneyPrimaryRelatedPracticesLocationsGroups,
+  }) => {
+    attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(({
+      id, uri, title, officeMainInformation,
+    }) => ({
+      id,
+      uri,
       title,
-      slug,
-      databaseId,
-      attorneyMainInformation,
-      attorneyPrimaryRelatedPracticesLocationsGroups,
-    }) => {
-      attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
-        ({
-          id, uri, title, officeMainInformation,
-        }) => ({
-          id,
-          uri,
-          title,
-          officeMainInformation: officeMainInformation.addressLocality,
-        }),
-      );
+      officeMainInformation: officeMainInformation.addressLocality,
+    }));
 
-      attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices = attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices?.map(({ title }) => title);
-      return {
-        id: databaseId,
-        lastName: attorneyMainInformation.lastName,
-        title,
-        designation: attorneyMainInformation.designation,
-        email: attorneyMainInformation.email,
-        phone: attorneyMainInformation.phoneNumber,
-        practices_array: attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices || [],
-        location_array: attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
-        link: slug,
-        better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
-      };
-    },
-  );
+    attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices = attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices?.map(({ title }) => title);
+    return {
+      id: databaseId,
+      lastName: attorneyMainInformation.lastName,
+      title,
+      designation: attorneyMainInformation.designation,
+      email: attorneyMainInformation.email,
+      phone: attorneyMainInformation.phoneNumber,
+      practices_array: attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices || [],
+      location_array: attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
+      link: slug,
+      better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
+    };
+  });
 
   return sortByKey(sanitaizedAttorneys, 'lastName');
 };
@@ -157,15 +146,7 @@ const Attorneys = ({
   seo, locations, designations, practices, attorneys, site, sectionTitles,
 }) => {
   const {
-    attorneysTitles,
-    setAttorneysTitles,
-    setDataForFilter,
-    userInput,
-    setUserInput,
-    clearQuery,
-    setSelect,
-    dataForFilter,
-    setAttorneysContext,
+    attorneysTitles, setAttorneysTitles, setDataForFilter, userInput, setUserInput, clearQuery, setSelect, dataForFilter, setAttorneysContext,
   } = useContext(AttorneysContext);
   const canonicalUrl = `${PRODUCTION_URL}/attorneys`;
 

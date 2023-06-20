@@ -2,13 +2,7 @@ import { BsFillGeoAltFill, BsFillTelephoneFill, BsPrinterFill } from 'react-icon
 import { OfficeCardContainer } from '../../../styles/Locations.style';
 
 const CurrentOfficeCard = ({
-  children,
-  phone,
-  fax,
-  streetAddress,
-  floor,
-  postCode,
-  addressLocality,
+  children, phone, fax, streetAddress, floor, postCode, addressLocality,
 }) => (
   <OfficeCardContainer>
     {children}

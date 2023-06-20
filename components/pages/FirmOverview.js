@@ -12,13 +12,7 @@ const MainInformation = AdditionalInformation;
 const HeadInformation = AdditionalInformation;
 
 const FirmOverviewPage = ({
-  title,
-  seo,
-  canonicalUrl,
-  bodyContent,
-  subTitle,
-  firmOverviewTabs,
-  FirmMembers,
+  title, seo, canonicalUrl, bodyContent, subTitle, firmOverviewTabs, FirmMembers,
 }) => {
   const { titles } = useContext(AttorneysContext);
 

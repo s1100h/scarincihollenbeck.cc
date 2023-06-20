@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
 
 export const SearchedItem = styled.section`
   padding: 10px 30px;
@@ -41,4 +41,4 @@ export const SearchedItem = styled.section`
       }
     }
   }
-`
+`;

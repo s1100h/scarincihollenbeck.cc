@@ -1,10 +1,6 @@
 import { forwardRef, useEffect, useState } from 'react';
 import {
-  ScrollButtonContainer,
-  ScrollButtonDownArrow,
-  ScrollButtonMouse,
-  ScrollButtonMouseIn,
-  ScrollButtonUpArrow,
+  ScrollButtonContainer, ScrollButtonDownArrow, ScrollButtonMouse, ScrollButtonMouseIn, ScrollButtonUpArrow,
 } from '../../../styles/ScrollButton.style';
 
 const ScrollButton = forwardRef(({ currentPlace, scrollFuncBottom, scrollFuncTop }, ref) => {

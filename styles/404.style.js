@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { globalColor, rem } from './global_styles/Global.styles'
-import { GradientPracticeBox } from './Post/PostSideBar.style'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import { GradientPracticeBox } from './Post/PostSideBar.style';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const ArticleBox = styled.article`
   h1 {
@@ -9,7 +9,7 @@ export const ArticleBox = styled.article`
     font-weight: 600;
     margin-bottom: 30px;
   }
-`
+`;
 
 export const TilesBox = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const TilesBox = styled.div`
   ${media_breakpoint_down('sm')} {
     flex-direction: column;
   }
-`
+`;
 
 export const LinkListBox404 = styled(GradientPracticeBox)`
   display: flex;
@@ -54,7 +54,7 @@ export const LinkListBox404 = styled(GradientPracticeBox)`
       }
     }
   }
-`
+`;
 
 export const ImageBlindLady = styled.div`
   display: flex;
@@ -69,7 +69,7 @@ export const ImageBlindLady = styled.div`
   ${media_breakpoint_down('lg')} {
     display: none;
   }
-`
+`;
 
 export const ImageAttorneysGroup = styled.div`
   display: none;
@@ -88,4 +88,4 @@ export const ImageAttorneysGroup = styled.div`
     width: 55vw;
     bottom: 21vh;
   }
-`
+`;

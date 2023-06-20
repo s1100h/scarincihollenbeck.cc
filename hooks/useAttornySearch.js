@@ -48,11 +48,7 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
     return attorney;
   };
 
-  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg
-    .filter(filterPractices)
-    .filter(filterDesignation)
-    .filter(filterLocation)
-    .filter(filterLikeSearch);
+  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg.filter(filterPractices).filter(filterDesignation).filter(filterLocation).filter(filterLikeSearch);
 
   const attorneysFiltered = useMemo(() => attorneyFiltration(attorneysArr), [selectVariant]);
 

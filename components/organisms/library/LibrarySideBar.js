@@ -8,11 +8,7 @@ import FirmAuthors from './FirmAuthors';
 import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
 const LibrarySideBar = ({
-  isAuthor,
-  profileUrl,
-  childrenOfCurrentCategory,
-  popularCategories,
-  authors,
+  isAuthor, profileUrl, childrenOfCurrentCategory, popularCategories, authors,
 }) => (
   <SideBarContainer>
     <ShareSocialBox>
@@ -34,9 +30,7 @@ const LibrarySideBar = ({
         </strong>
       </Link>
     )}
-    {childrenOfCurrentCategory.length > 0 && (
-      <PopularList term="Related Categories" list={childrenOfCurrentCategory} />
-    )}
+    {childrenOfCurrentCategory.length > 0 && <PopularList term="Related Categories" list={childrenOfCurrentCategory} />}
     <PopularList term="Popular Categories" list={popularCategories} />
     <PopularList term="Client Alerts" list={CLIENT_ALERTS} />
     <FirmAuthors authors={authors} />

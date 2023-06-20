@@ -27,31 +27,13 @@ const AttorneysPage = ({
       <MainAttorneysContainer>
         {/** Filters */}
         {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
-          <Filters
-            practices={sPractices}
-            locations={locations}
-            designation={designations}
-            userInput={userInput}
-            handleChange={handleChange}
-            onSelect={onSelect}
-          >
-            {(userInput.length > 0 || select.length > 0) && (
-              <Selection
-                select={select}
-                clearQuery={clearQuery}
-                userInput={userInput}
-                clearAll={clearAll}
-              />
-            )}
+          <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect}>
+            {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}
           </Filters>
         )}
         {/** End of Filters */}
         {/** Results */}
-        <div className="w-100 mt-5">
-          {attorneysContext.length > 0 && (
-            <Results attorneys={attorneysContext} userInput={userInput} select={select} />
-          )}
-        </div>
+        <div className="w-100 mt-5">{attorneysContext.length > 0 && <Results attorneys={attorneysContext} userInput={userInput} select={select} />}</div>
         <FaqBox>
           <FAQ faqArrContent={ATTORNEYS_FAQ} />
         </FaqBox>

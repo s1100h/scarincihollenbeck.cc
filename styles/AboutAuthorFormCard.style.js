@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { ButtonLinkCss, buttonsHoverActive } from './global_styles/Global.styles'
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { ButtonLinkCss, buttonsHoverActive } from './global_styles/Global.styles';
 
 export const AboutAuthorFormCardContainer = styled.article`
   display: flex;
@@ -16,7 +16,7 @@ export const AboutAuthorFormCardContainer = styled.article`
   ${media_breakpoint_down('lg')} {
     gap: 5px;
   }
-`
+`;
 
 export const ContactNowBtn = styled.button`
   ${ButtonLinkCss};
@@ -32,7 +32,7 @@ export const ContactNowBtn = styled.button`
       display: flex;
     }
   }
-`
+`;
 
 export const FormBox = styled.div`
   width: 500px;
@@ -46,4 +46,4 @@ export const FormBox = styled.div`
   ${media_breakpoint_down('sm')} {
     width: 100%;
   }
-`
+`;

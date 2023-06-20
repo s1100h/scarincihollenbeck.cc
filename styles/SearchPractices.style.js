@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SearchPracticesBox = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ export const SearchPracticesBox = styled.div`
   ${media_breakpoint_down('sm')} {
     width: 100%;
   }
-`
+`;
 
 export const DropDownResults = styled.ul`
   display: flex;
@@ -76,4 +76,4 @@ export const DropDownResults = styled.ul`
     margin: 10px auto;
     color: ${globalColor.gray.gray80};
   }
-`
+`;
