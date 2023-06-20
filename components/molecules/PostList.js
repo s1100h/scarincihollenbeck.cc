@@ -28,7 +28,7 @@ const PostList = ({ content, isProfile }) => {
                   postTitle={node.title}
                   postDate={node.date}
                   postExcerpt={isProfile ? null : node.excerpt}
-                  postAuthor={node.author.node.name || 'Scarinci Hollenbeck'}
+                  postAuthor={node.author}
                   isProfile={isProfile}
                 />
               </div>

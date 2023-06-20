@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { globalColor, rem, globalShadow, threeDots } from './global_styles/Global.styles';
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import Link from 'next/link';
 
 const hoverLink = `
 	&:hover {
@@ -95,6 +96,7 @@ export const FreshNews = styled.article`
 `;
 export const OtherNewsBox = styled.div`
   width: 60%;
+
   ${media_breakpoint_down('xl')} {
     width: 40%;
     height: 76vh;
@@ -127,10 +129,18 @@ export const OtherNewsBox = styled.div`
 export const OtherNews = styled.article`
   ${newsCommonStyles};
   width: 100%;
+  position: relative;
 
   a {
     :hover {
       color: ${globalColor.black};
+    }
+  }
+
+  .news-card-footer {
+    a {
+      position: relative;
+      z-index: 2;
     }
   }
 
@@ -181,6 +191,14 @@ export const OtherNews = styled.article`
   }
 `;
 
+export const NewsLink = styled(Link)`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+`;
 export const TextNews = styled.section`
   display: flex;
   flex-flow: column;
