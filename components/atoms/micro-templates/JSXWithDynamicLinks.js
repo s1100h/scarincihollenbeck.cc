@@ -4,6 +4,7 @@ import * as ImageLegacy from 'next/legacy/image';
 import Image from 'next/image';
 import empty from 'is-empty';
 import { PRODUCTION_URL } from '../../../utils/constants';
+import { getCloudinaryImageUrl } from '../../../utils/helpers';
 
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
@@ -33,7 +34,6 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           />
         );
       }
-
       if (domNode.parent?.parent?.attribs?.class === 'wp-block-image') {
         return (
           <Image
@@ -47,6 +47,10 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
             height={domNode.attribs?.height || 300}
           />
         );
+      }
+      if (!domNode.attribs['data-srcset']?.length) {
+        const imageUrl = getCloudinaryImageUrl(domNode.attribs['data-version'], domNode.attribs['data-public-id']);
+        return <ImageLegacy placeholder="blur" blurDataURL={imageUrl} loading="lazy" src={imageUrl} alt={domNode.attribs.alt} width={domNode.attribs.width || 500} height={domNode.attribs.height || 300} layout="responsive" />;
       }
 
       return (
