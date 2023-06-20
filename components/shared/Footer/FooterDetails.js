@@ -1,13 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  DetailsContainer,
-  BottomLinks,
-  Advertising,
-  LinkTitle,
-  LinkList,
-  ContactsBox,
-  ContactsContainer,
+  DetailsContainer, BottomLinks, Advertising, LinkTitle, LinkList, ContactsBox, ContactsContainer,
 } from 'styles/Footer.style';
 
 import { SITE_PHONE, SITE_FAX, SITE_EMAIL } from 'utils/constants';
@@ -19,19 +13,13 @@ export default function FooterDetails() {
     <DetailsContainer>
       <Advertising>
         <section>
-          <Image
-            src="/images/sh-mini-diamond-PNG.png"
-            alt="sh diamond logo favicon"
-            width={110}
-            height={100}
-          />
+          <Image src="/images/sh-mini-diamond-PNG.png" alt="sh diamond logo favicon" width={110} height={100} />
           <section>
             <p>ATTORNEY ADVERTISING</p>
             <p>
               Prior results do not guarantee a similar outcome. @
               {currentYear}
-              , Scarinci Hollenbeck,
-              LLC, all rights reserved
+              , Scarinci Hollenbeck, LLC, all rights reserved
             </p>
             <BottomLinks>
               <li>

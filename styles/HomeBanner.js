@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { globalColor, rem } from './global_styles/Global.styles'
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { globalColor, rem } from './global_styles/Global.styles';
 
 export const BannerContainer = styled.div`
   position: relative;
@@ -104,4 +104,4 @@ export const BannerContainer = styled.div`
       margin-bottom: 20px;
     }
   }
-`
+`;

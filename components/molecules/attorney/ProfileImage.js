@@ -1,11 +1,7 @@
 import Image from 'next/legacy/image';
 import { useEffect, useRef } from 'react';
 import empty from 'is-empty';
-import {
-  Back,
-  CardImageVideoContainer,
-  Front,
-} from '../../../styles/attorney-page/AttorneyProfile.style';
+import { Back, CardImageVideoContainer, Front } from '../../../styles/attorney-page/AttorneyProfile.style';
 
 const ProfileImage = ({
   name, profileImage, isRotated, representativeVideo,
@@ -30,17 +26,7 @@ const ProfileImage = ({
   return (
     <CardImageVideoContainer isRotateProp={isRotateConvertToStr}>
       <Front isRotateProp={isRotateConvertToStr}>
-        <Image
-          src={profileImage}
-          alt={name}
-          width={743}
-          height={795}
-          layout="intrinsic"
-          quality={100}
-          className="animate__animated animate__fadeInUp animate__fast"
-          priority
-          loading="eager"
-        />
+        <Image src={profileImage} alt={name} width={743} height={795} layout="intrinsic" quality={100} className="animate__animated animate__fadeInUp animate__fast" priority loading="eager" />
       </Front>
       {!empty(representativeVideo) && (
         <Back isRotateProp={isRotateConvertToStr}>

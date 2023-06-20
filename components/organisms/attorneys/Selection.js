@@ -15,14 +15,7 @@ const Selection = ({
           <ul className="no-dots list-inline m-0">
             {userInput.length > 0 && (
               <li className="list-inline-item mt-2">
-                <ResultButton
-                  variant="Primary"
-                  id={userInput}
-                  onClick={() => clearQuery('query')}
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Click on link to remove filter"
-                >
+                <ResultButton variant="Primary" id={userInput} onClick={() => clearQuery('query')} data-toggle="tooltip" data-placement="top" title="Click on link to remove filter">
                   <span dangerouslySetInnerHTML={createMarkup(userInput)} />
                   <BsXLg />
                 </ResultButton>
@@ -30,15 +23,7 @@ const Selection = ({
             )}
             {nonUserInputResults.map((selection) => (
               <li className="list-inline-item mt-2" key={selection.key}>
-                <ResultButton
-                  variant="Primary"
-                  id={selection.selected}
-                  onClick={() => clearQuery(selection.key)}
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  data-html="true"
-                  title="Click on link to remove filter"
-                >
+                <ResultButton variant="Primary" id={selection.selected} onClick={() => clearQuery(selection.key)} data-toggle="tooltip" data-placement="top" data-html="true" title="Click on link to remove filter">
                   {selection.selected}
                   <BsXLg />
                 </ResultButton>

@@ -1,11 +1,11 @@
-import { Button } from 'react-bootstrap'
-import styled from 'styled-components'
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import { Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 const titlesFontSize = `
 font-size: ${rem(30)};
-`
+`;
 
 export const ListContainer = styled.section`
   display: flex;
@@ -34,13 +34,13 @@ export const ListContainer = styled.section`
   h5 {
     ${titlesFontSize}
   }
-`
+`;
 
 export const ChairBox = styled.div`
   margin-bottom: 20px;
   width: 100%;
   padding-left: 15px;
-`
+`;
 
 export const AttorneysSliderBox = styled.div`
   display: flex;
@@ -59,7 +59,7 @@ export const AttorneysSliderBox = styled.div`
       margin-bottom: 15px;
     }
   }
-`
+`;
 
 export const AttorneysTitleBox = styled.div`
   display: flex;
@@ -76,13 +76,13 @@ export const AttorneysTitleBox = styled.div`
     ${titlesFontSize};
     color: ${globalColor.gray.gray80};
   }
-`
+`;
 
 export const UpDownBtn = styled(Button)`
   border-radius: 50%;
   transform: ${({ rotate }) => (rotate ? 'rotate(180deg)' : 'none')};
   margin-left: ${({ rotate }) => (rotate ? '5px' : 'none')}; ;
-`
+`;
 
 export const AttorneysContainer = styled.section`
   display: flex;
@@ -199,4 +199,4 @@ export const AttorneysContainer = styled.section`
       min-width: 310px;
     }
   }
-`
+`;

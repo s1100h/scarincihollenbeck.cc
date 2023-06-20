@@ -6,12 +6,7 @@ const PracticeListItem = ({ title, onSelect, pChildren }) => (
       {title}
     </DropDownItemTitle>
     {pChildren.map((fc) => (
-      <ChildPracticeLink
-        key={fc.ID}
-        variant="link"
-        name="practices"
-        onClick={(e) => onSelect(e, fc.title)}
-      >
+      <ChildPracticeLink key={fc.ID} variant="link" name="practices" onClick={(e) => onSelect(e, fc.title)}>
         {fc.title}
       </ChildPracticeLink>
     ))}

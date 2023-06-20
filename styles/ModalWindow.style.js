@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const ModalContainer = styled.div`
   pointer-events: all;
   transition: 0.5s opacity;
   opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
-`
+`;
 
 export const ModalContent = styled.div`
   display: flex;
@@ -32,10 +32,10 @@ export const ModalContent = styled.div`
     margin-left: auto;
     margin-right: 0;
   }
-`
+`;
 
 export const ChildrenBox = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-`
+`;

@@ -5,12 +5,7 @@ import LinkButtons from 'components/organisms/Navbar/LinkButtons';
 import Navigation from 'components/organisms/Navbar/Navigation';
 import Logo from 'components/organisms/Navbar/Logo';
 import {
-  HeaderContainer,
-  Wrapper,
-  LogoBox,
-  LinksBox,
-  DesktopVisible,
-  MobileVisible,
+  HeaderContainer, Wrapper, LogoBox, LinksBox, DesktopVisible, MobileVisible,
 } from 'styles/Header.style';
 import Filters from 'components/organisms/attorneys/Filters';
 import { AttorneysContext } from 'contexts/AttorneysContext';
@@ -52,22 +47,8 @@ export default function Header() {
       </MobileVisible>
       <Navigation scrollTop={scrollTop} />
       {scrollTop && isAttorneysPage && !isTabletScreen && (
-        <Filters
-          practices={sPractices}
-          locations={locations}
-          designation={designations}
-          userInput={userInput}
-          handleChange={handleChange}
-          onSelect={onSelect}
-        >
-          {(userInput.length > 0 || select.length > 0) && (
-            <Selection
-              select={select}
-              clearQuery={clearQuery}
-              userInput={userInput}
-              clearAll={clearAll}
-            />
-          )}
+        <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect}>
+          {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}
         </Filters>
       )}
     </HeaderContainer>

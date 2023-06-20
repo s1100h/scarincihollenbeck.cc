@@ -1,8 +1,4 @@
-const {
-  SITE_PAGES_REWRITES,
-  POST_TYPE_REWRITES,
-  POST_CATEGORY_REWRITES,
-} = require('./utils/rewrites');
+const { SITE_PAGES_REWRITES, POST_TYPE_REWRITES, POST_CATEGORY_REWRITES } = require('./utils/rewrites');
 const { PERMANENT_REDIRECTS } = require('./utils/permanent-redirects');
 
 module.exports = {
@@ -16,14 +12,7 @@ module.exports = {
     NEXT_PUBLIC_BASE_GRAPHQL_API_URL: process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL,
   },
   images: {
-    domains: [
-      'shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com',
-      'musicesq.com',
-      'scarincilawyer.com',
-      'conqqqshlskopvv.nyc3.digitaloceanspaces.com',
-      'wp.scarincihollenbeck.com',
-      'res.cloudinary.com',
-    ],
+    domains: ['shhcsgmvsndmxmpq.nyc3.digitaloceanspaces.com', 'musicesq.com', 'scarincilawyer.com', 'conqqqshlskopvv.nyc3.digitaloceanspaces.com', 'wp.scarincihollenbeck.com', 'res.cloudinary.com'],
     minimumCacheTTL: 60,
     deviceSizes: [576, 768, 992, 1200, 1456],
     staticPageGenerationTimeout: 120,

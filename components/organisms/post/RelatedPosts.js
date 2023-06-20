@@ -1,11 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import empty from 'is-empty';
-import {
-  RelatedPostItem,
-  RelatedPostsContainer,
-  RelatedPostsList,
-} from '../../../styles/Post/RelatedPosts.style';
+import { RelatedPostItem, RelatedPostsContainer, RelatedPostsList } from '../../../styles/Post/RelatedPosts.style';
 import { PRODUCTION_URL } from '../../../utils/constants';
 
 const RelatedPosts = ({ posts, title }) => (

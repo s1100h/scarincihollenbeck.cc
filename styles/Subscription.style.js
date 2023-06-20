@@ -1,13 +1,13 @@
-import styled from 'styled-components'
-import { ButtonLinkCss, buttonsHoverActive, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { ButtonLinkCss, buttonsHoverActive, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const CheckBoxesList = styled.ul`
   margin: 8px 0 16px 0;
   padding: 0;
   column-count: 2;
   column-gap: 0;
-`
+`;
 
 export const GradientSubscriptionBox = styled.article`
   display: flex;
@@ -28,7 +28,7 @@ export const GradientSubscriptionBox = styled.article`
       }
     }
   }
-`
+`;
 
 export const FormContainer = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ export const FormContainer = styled.div`
       font-size: 1.2rem;
     }
   }
-`
+`;
 
 export const SubscribeBtn = styled.button`
   ${ButtonLinkCss};
@@ -63,4 +63,4 @@ export const SubscribeBtn = styled.button`
       display: flex;
     }
   }
-`
+`;

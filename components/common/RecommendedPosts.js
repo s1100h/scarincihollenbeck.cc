@@ -11,14 +11,7 @@ const RecommendedPosts = ({ titleGeneralBlock, attorneyFooterNewsArticles }) => 
         databaseId, date, featuredImage, title, uri, author,
       }) => (
         <Col sm={12} md={4} key={databaseId || useId()}>
-          <NewsCard
-            postSlug={uri}
-            postImage={featuredImage}
-            postTitle={title}
-            postDate={date}
-            postAuthor={author}
-            isVertical="true"
-          />
+          <NewsCard postSlug={uri} postImage={featuredImage} postTitle={title} postDate={date} postAuthor={author} isVertical="true" />
         </Col>
       ))}
     </Row>

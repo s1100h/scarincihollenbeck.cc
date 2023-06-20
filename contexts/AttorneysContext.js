@@ -25,10 +25,7 @@ export const AttorneysProvider = ({ children }) => {
     if (e.currentTarget && e.currentTarget.value.length === 0) {
       setUserInput('');
     } else {
-      const input = e.target.value.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
-      );
+      const input = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
       const results = { selected: userInput, key: 'query' };
       const concatResults = select.concat(results);
       setUserInput(input);
@@ -62,12 +59,7 @@ export const AttorneysProvider = ({ children }) => {
     const data = await fetchAPI(authorsPostQuery);
 
     const filteredAttorneys = data.attorneyProfiles?.nodes.reduce((acc, attorney) => {
-      if (
-        !(
-          !attorney.attorneyAuthorId.authorId
-          || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
-        )
-      ) {
+      if (!(!attorney.attorneyAuthorId.authorId || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0)) {
         acc.push(attorney);
       }
       return acc;

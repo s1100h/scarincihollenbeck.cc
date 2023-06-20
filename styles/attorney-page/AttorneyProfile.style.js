@@ -1,7 +1,7 @@
-import { Col } from 'react-bootstrap'
-import styled, { keyframes } from 'styled-components'
-import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style'
+import { Col } from 'react-bootstrap';
+import styled, { keyframes } from 'styled-components';
+import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
 
 export const ProfileHeaderContainer = styled.div`
   padding: ${globalIndents.attorneyProfilePaddings};
@@ -16,20 +16,20 @@ export const ProfileHeaderContainer = styled.div`
   ${media_breakpoint_down('sm')} {
     margin-bottom: 72px;
   }
-`
+`;
 
 export const ColStyled = styled(Col)`
   position: relative;
   top: ${({ top }) => (top ? top : 'none')};
   bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
-`
+`;
 
 export const ColForSidebar = styled(ColStyled)`
   margin-bottom: 80px;
   top: ${({ top }) => (top ? top : 'none')};
 
   ${({ top }) => {
-    const topNum = top.slice(0, -2)
+    const topNum = top.slice(0, -2);
     return top
       ? `
       ${media_breakpoint_exactly_down(1400)} {
@@ -40,9 +40,9 @@ export const ColForSidebar = styled(ColStyled)`
         margin-bottom: 25px;
       }
       `
-      : `border: none`
+      : `border: none`;
   }}
-`
+`;
 
 export const SubTitleProfileBox = styled.div`
   margin-top: 0;
@@ -61,7 +61,7 @@ export const SubTitleProfileBox = styled.div`
     color: ${globalColor.gray.gray80};
     margin-bottom: 0;
   }
-`
+`;
 
 export const AddressBox = styled.address`
   display: flex;
@@ -86,7 +86,7 @@ export const AddressBox = styled.address`
     border-bottom: 1px solid ${globalColor.grayExtraLite.grayExtraLite50};
     padding-bottom: 15px;
   }
-`
+`;
 
 export const DetailsBox = styled.div`
   display: flex;
@@ -99,13 +99,13 @@ export const DetailsBox = styled.div`
       padding-left: 0;
     }
   }
-`
+`;
 
 export const ContactList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-`
+`;
 
 export const ItemContactList = styled.li`
   a {
@@ -148,12 +148,12 @@ export const ItemContactList = styled.li`
       }
      }
    `}
-`
+`;
 
 export const ProfileName = styled.h1`
   font-family: var(--font-montserrat), sans-serif;
   font-weight: 600;
-`
+`;
 
 const shake = keyframes`
   1%, 9% {
@@ -171,7 +171,7 @@ const shake = keyframes`
   4%, 6% {
     transform: translate3d(4px, 0, 0);
   }
-`
+`;
 
 export const VideoButtonStyled = styled.button`
   display: flex;
@@ -185,8 +185,7 @@ export const VideoButtonStyled = styled.button`
   right: 30px;
   bottom: 20px;
   background-color: ${globalColor.red.darkRed};
-  animation: ${({ isRotatedCard }) => !isRotatedCard && shake} 10s
-    cubic-bezier(0.36, 0.07, 0.19, 0.97) both 5s infinite;
+  animation: ${({ isRotatedCard }) => !isRotatedCard && shake} 10s cubic-bezier(0.36, 0.07, 0.19, 0.97) both 5s infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
@@ -204,7 +203,7 @@ export const VideoButtonStyled = styled.button`
     color: ${globalColor.white};
     font-size: 30px;
   }
-`
+`;
 
 export const CardImageVideoContainer = styled.div`
   perspective: 1000px;
@@ -212,7 +211,7 @@ export const CardImageVideoContainer = styled.div`
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-`
+`;
 
 export const Front = styled.div`
   width: 100%;
@@ -223,7 +222,7 @@ export const Front = styled.div`
   left: 0;
   transition: 0.5s;
   transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
-`
+`;
 export const Back = styled.div`
   background: black;
   width: 100%;
@@ -239,4 +238,4 @@ export const Back = styled.div`
     width: inherit;
     height: -webkit-fill-available;
   }
-`
+`;

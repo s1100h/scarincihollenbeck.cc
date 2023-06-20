@@ -1,9 +1,5 @@
 import {
-  ButtonTab,
-  ButtonGroup,
-  MobileGroup,
-  NavItem,
-  ButtonDropdown,
+  ButtonTab, ButtonGroup, MobileGroup, NavItem, ButtonDropdown,
 } from 'styles/ButtonsMenu.style';
 
 const ButtonsMenu = ({

@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor, globalShadow, threeDots } from 'styles/global_styles/Global.styles'
-import { media_breakpoint_down } from 'styles/mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, globalShadow, threeDots } from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const MoreTabContainer = styled.section`
   display: flex;
@@ -17,7 +17,7 @@ export const MoreTabContainer = styled.section`
     align-items: center;
     height: fit-content;
   }
-`
+`;
 export const ButtonBox = styled.nav`
   margin-top: 20px;
   .btn-group-vertical {
@@ -33,7 +33,7 @@ export const ButtonBox = styled.nav`
       border-bottom: 1px solid ${globalColor.gray.gray80};
     }
   }
-`
+`;
 
 export const ContentBox = styled.div`
   display: flex;
@@ -42,4 +42,4 @@ export const ContentBox = styled.div`
   flex-direction: column;
   overflow-y: auto;
   padding: 20px 15px 0;
-`
+`;

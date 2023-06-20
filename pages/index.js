@@ -59,36 +59,18 @@ export const getStaticProps = async () => {
   const request = await homePageContent();
   const { seo, homePage } = request;
   const {
-    aboutFirm,
-    aboutFirm2,
-    awards,
-    bannerLineOne,
-    serviceOne,
-    serviceTwo,
-    bannerLineTwo,
-    quote,
-    mainTag,
-    subMainTag,
-    leadership,
-    isHoliday,
+    aboutFirm, aboutFirm2, awards, bannerLineOne, serviceOne, serviceTwo, bannerLineTwo, quote, mainTag, subMainTag, leadership, isHoliday,
   } = homePage;
 
-  const modLeadership = leadership.map(
-    ({
-      title,
-      uri,
-      featuredImage,
-      administration,
-      attorneyMainInformation,
-      attorneyChairCoChair,
-    }) => ({
-      title,
-      slug: uri,
-      featuredImage: formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl),
-      designation: administration ? administration?.title : attorneyMainInformation?.designation,
-      chair: attorneyChairCoChair ? extractChair(attorneyChairCoChair?.chair) : null,
-    }),
-  );
+  const modLeadership = leadership.map(({
+    title, uri, featuredImage, administration, attorneyMainInformation, attorneyChairCoChair,
+  }) => ({
+    title,
+    slug: uri,
+    featuredImage: formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl),
+    designation: administration ? administration?.title : attorneyMainInformation?.designation,
+    chair: attorneyChairCoChair ? extractChair(attorneyChairCoChair?.chair) : null,
+  }));
 
   /** get firm locations */
   // const offices = await homePageLocations();
@@ -122,18 +104,7 @@ export const getStaticProps = async () => {
 
 /** The home page component */
 const Home = ({
-  seo,
-  aboutFirm,
-  aboutFirm2,
-  awards,
-  banner,
-  intro,
-  leadership,
-  offices,
-  serviceOne,
-  serviceTwo,
-  isHoliday,
-  firmNewsArticles,
+  seo, aboutFirm, aboutFirm2, awards, banner, intro, leadership, offices, serviceOne, serviceTwo, isHoliday, firmNewsArticles,
 }) => {
   const homePageProps = {
     seo,

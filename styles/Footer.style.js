@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const FooterContainer = styled.footer`
   display: flex;
@@ -17,7 +17,7 @@ export const FooterContainer = styled.footer`
     flex-direction: column;
     padding: 2vw 6vw 2vw 8vw;
   }
-`
+`;
 
 export const DetailsContainer = styled.section`
   width: 100%;
@@ -29,7 +29,7 @@ export const DetailsContainer = styled.section`
   ${media_breakpoint_down('md')} {
     flex-direction: column;
   }
-`
+`;
 
 export const ContactsContainer = styled.section`
   display: flex;
@@ -50,7 +50,7 @@ export const ContactsContainer = styled.section`
   ${media_breakpoint_exactly_down(430)} {
     flex-direction: column;
   }
-`
+`;
 
 export const BottomLinks = styled.ul`
   display: flex;
@@ -69,7 +69,7 @@ export const BottomLinks = styled.ul`
       color: ${globalColor.white};
     }
   }
-`
+`;
 export const Advertising = styled.article`
   display: flex;
 
@@ -96,19 +96,19 @@ export const Advertising = styled.article`
       margin: 0;
     }
   }
-`
+`;
 
-export const ContactsBox = styled.section`
+export const ContactsBox = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 206px;
-`
+`;
 
 export const LinkTitle = styled.p`
   font-size: 20px;
   margin-bottom: 18px;
   font-weight: 600;
-`
+`;
 export const LinkList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -119,7 +119,7 @@ export const LinkList = styled.ul`
   > li {
     margin-bottom: 5px;
   }
-`
+`;
 
 export const SocialLinks = styled(LinkList)`
   min-width: 140px;
@@ -135,7 +135,7 @@ export const SocialLinks = styled(LinkList)`
       }
     }
   }
-`
+`;
 
 export const HiddenSEOBox = styled.section`
   display: flex;
@@ -145,4 +145,4 @@ export const HiddenSEOBox = styled.section`
   @media print {
     display: none;
   }
-`
+`;
