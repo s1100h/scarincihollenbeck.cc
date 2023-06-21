@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import Button from 'react-bootstrap/Button'
+import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
 
 export const PaginationBtn = styled(Button)`
   :disabled {
@@ -8,4 +8,4 @@ export const PaginationBtn = styled(Button)`
     pointer-events: none;
     cursor: default;
   }
-`
+`;

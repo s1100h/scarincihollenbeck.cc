@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const ContentContainer = styled.div`
   overflow: hidden;
@@ -63,4 +63,4 @@ export const ContentContainer = styled.div`
       margin: 0;
     }
   }
-`
+`;

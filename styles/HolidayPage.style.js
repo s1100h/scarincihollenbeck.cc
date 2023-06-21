@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { globalColor, rem } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const HolidayContentBox = styled.section`
   figure {
@@ -14,7 +14,7 @@ export const HolidayContentBox = styled.section`
   figure:first-of-type {
     text-align: center;
   }
-`
+`;
 
 export const HolidayLinkBox = styled.div`
   width: 200px;
@@ -84,4 +84,4 @@ export const HolidayLinkBox = styled.div`
       }
     }
   }
-`
+`;

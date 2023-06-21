@@ -1,9 +1,6 @@
 import { useRouter } from 'next/router';
 import {
-  EmailShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
+  EmailShareButton, FacebookShareButton, LinkedinShareButton, TwitterShareButton,
 } from 'react-share';
 import Button from 'react-bootstrap/Button';
 import { printScreen } from 'utils/helpers';
@@ -50,12 +47,7 @@ const SocialShare = ({ title, isPractice }) => {
           <EmailShareButton subject={title} body={postUrl} separator="">
             <FaEnvelope />
           </EmailShareButton>
-          <Button
-            variant="link"
-            className="m-0 p-0 text-dark"
-            aria-label="Print Page"
-            onClick={() => printScreen()}
-          >
+          <Button variant="link" className="m-0 p-0 text-dark" aria-label="Print Page" onClick={() => printScreen()}>
             <BsFillPrinterFill />
           </Button>
         </ShareSocialBox>

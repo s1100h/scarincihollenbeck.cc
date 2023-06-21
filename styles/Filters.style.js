@@ -1,16 +1,16 @@
-import { Button, Container } from 'react-bootstrap'
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import styled from 'styled-components'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import { Button, Container } from 'react-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import styled from 'styled-components';
+import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
-const translate3dVariations = (width) => `translate3d(${width}, 49px, 0px)!important`
+const translate3dVariations = (width) => `translate3d(${width}, 49px, 0px)!important`;
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
   margin-top: 5px;
   font-weight: 600;
-`
+`;
 
 export const DropdownSelectorBtn = styled(DropdownButton)`
   > {
@@ -92,7 +92,7 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-`
+`;
 
 export const ContainerFilters = styled(Container)`
   min-width: 86vw;
@@ -118,7 +118,7 @@ export const ContainerFilters = styled(Container)`
       width: 100%;
     }
   }
-`
+`;
 
 export const DropDownItemTitle = styled(Dropdown.Item)`
   font-weight: bold;
@@ -142,7 +142,7 @@ export const DropDownItemTitle = styled(Dropdown.Item)`
     text-transform: uppercase;
     border-bottom: 3px solid #db2220;
   }
-`
+`;
 
 export const ChildPracticeLink = styled(Dropdown.Item)`
   padding: 0;
@@ -155,7 +155,7 @@ export const ChildPracticeLink = styled(Dropdown.Item)`
   &:hover {
     text-decoration: underline;
   }
-`
+`;
 
 export const ResultButton = styled(Button)`
   color: ${globalColor.white};
@@ -181,4 +181,4 @@ export const ResultButton = styled(Button)`
   svg {
     margin-left: 12px;
   }
-`
+`;

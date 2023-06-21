@@ -13,13 +13,7 @@ const organizeAttorneys = (attorneys, titles) => {
   });
 
   attorneys.forEach((attorney, idx) => {
-    if (
-      typeof attorney.designation === 'string'
-      && !attorney.designation.includes('Firm Managing Partner')
-      && !attorney.designation.includes('Deputy Managing Partner')
-      && !attorney.designation.includes('Executive Director')
-      && attorney.designation.includes(' Managing Partner')
-    ) {
+    if (typeof attorney.designation === 'string' && !attorney.designation.includes('Firm Managing Partner') && !attorney.designation.includes('Deputy Managing Partner') && !attorney.designation.includes('Executive Director') && attorney.designation.includes(' Managing Partner')) {
       results.Partners?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Executive Director') {
@@ -42,11 +36,7 @@ const organizeAttorneys = (attorneys, titles) => {
       results['Administrative Management']?.attorneys.push(attorney);
     }
     Object.keys(results).forEach((key) => {
-      if (
-        attorney.designation[0] === key[0]
-        && attorney.designation[0]
-        && !attorney.designation.includes('Deputy Managing Partner')
-      ) {
+      if (attorney.designation[0] === key[0] && attorney.designation[0] && !attorney.designation.includes('Deputy Managing Partner')) {
         results[key].attorneys.push(attorney);
       }
     });

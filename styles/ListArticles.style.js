@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const ImageWrapper = styled.div`
   display: initial;
@@ -8,4 +8,4 @@ export const ImageWrapper = styled.div`
   ${media_breakpoint_down('md')} {
     display: none;
   }
-`
+`;

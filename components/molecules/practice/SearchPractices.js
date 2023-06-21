@@ -6,9 +6,7 @@ import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 export const uniqArr = (unsortedArr) => {
   const filteredArr = [];
   unsortedArr.forEach((item) => {
-    const isUniq = !filteredArr.some(
-      (element) => (element.ID || element.id) === (item.ID || item.id),
-    );
+    const isUniq = !filteredArr.some((element) => (element.ID || element.id) === (item.ID || item.id));
 
     if (isUniq) {
       filteredArr.push(item);
@@ -54,19 +52,12 @@ export default function SearchPractices({ practicesAll }) {
     }
   }, [searchValue]);
 
-  const isRenderList = (fondPractices?.practicesMain?.length > 0 || fondPractices?.practicesChildren?.length > 0)
-    && searchValue.length > 0;
-  const isRenderHr = fondPractices?.practicesMain?.length > 0
-    && fondPractices?.practicesChildren?.length > 0
-    && searchValue.length > 0;
+  const isRenderList = (fondPractices?.practicesMain?.length > 0 || fondPractices?.practicesChildren?.length > 0) && searchValue.length > 0;
+  const isRenderHr = fondPractices?.practicesMain?.length > 0 && fondPractices?.practicesChildren?.length > 0 && searchValue.length > 0;
 
   return (
     <SearchPracticesBox>
-      <AuxiliarySearch
-        currentRefinement={searchValue}
-        refine={handleSearch}
-        placeholder="Search practices"
-      />
+      <AuxiliarySearch currentRefinement={searchValue} refine={handleSearch} placeholder="Search practices" />
       {isRenderList && (
         <DropDownResults>
           {fondPractices.practicesMain.length > 0

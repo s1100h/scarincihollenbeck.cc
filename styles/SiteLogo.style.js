@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 
 export const DiamondWrapper = styled.div`
   display: none;
@@ -7,7 +7,7 @@ export const DiamondWrapper = styled.div`
   ${media_breakpoint_exactly_down(430)} {
     display: flex;
   }
-`
+`;
 
 export const LogoWrapper = styled.div`
   display: flex;
@@ -23,4 +23,4 @@ export const LogoWrapper = styled.div`
   ${media_breakpoint_exactly_down(430)} {
     display: none;
   }
-`
+`;

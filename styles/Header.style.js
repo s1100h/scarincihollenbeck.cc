@@ -1,9 +1,5 @@
-import styled from 'styled-components'
-import {
-  media_breakpoint_down,
-  media_breakpoint_up,
-  media_breakpoint_exactly,
-} from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { media_breakpoint_down, media_breakpoint_up, media_breakpoint_exactly, media_breakpoint_range } from './mediaBreakpoints.style';
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -30,7 +26,7 @@ export const HeaderContainer = styled.header`
   ${media_breakpoint_down('md')} {
     height: 200px;
   }
-`
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -39,7 +35,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 46px;
-`
+
+  ${media_breakpoint_range('sm', 'lg')} {
+    margin-top: 5px;
+  }
+`;
 export const DesktopVisible = styled.div`
   ${media_breakpoint_down('lg')} {
     width: 55%;
@@ -53,7 +53,7 @@ export const DesktopVisible = styled.div`
   ${media_breakpoint_down('md')} {
     display: none;
   }
-`
+`;
 
 export const MobileVisible = styled.div`
   ${media_breakpoint_up('md')} {
@@ -69,18 +69,18 @@ export const MobileVisible = styled.div`
     }
   }
 
-  ${media_breakpoint_exactly('430px')} {
+  ${media_breakpoint_exactly('430')} {
     width: 94vw;
   }
-`
+`;
 
 export const LogoBox = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
 export const LinksBox = styled.div`
   display: flex;
   gap: 20px;
   height: inherit;
-`
+`;

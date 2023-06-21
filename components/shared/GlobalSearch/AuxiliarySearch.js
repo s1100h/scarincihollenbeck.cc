@@ -14,12 +14,7 @@ const AuxiliarySearch = (props) => {
     <SearchForm>
       <Form.Group className="form-group" controlId="siteSearch">
         {!props.currentRefinement ? <BsSearch /> : <BsXLg role="button" onClick={handleClear} />}
-        <SearchInput
-          type="input"
-          value={props.currentRefinement}
-          onChange={props.refine}
-          placeholder={props.placeholder}
-        />
+        <SearchInput type="text" value={props.currentRefinement} onChange={props.refine} placeholder={props.placeholder} />
       </Form.Group>
     </SearchForm>
   );

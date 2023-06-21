@@ -15,8 +15,7 @@ const SITE_FORM_SLUGS = ['new-attorney', 'current-attorney'];
 const headers = {
   method: 'GET',
   headers: {
-    'User-Agent':
-      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
     Accept: 'application/json; charset=UTF-8',
   },
 };
@@ -42,14 +41,8 @@ export const getStaticProps = async ({ params }) => {
     };
   }
 
-  const practiceRequest = await fetch(
-    `${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`,
-    headers,
-  ).then((data) => data.json());
-  const attorneyRequest = await fetch(
-    `${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`,
-    headers,
-  ).then((data) => data.json());
+  const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`, headers).then((data) => data.json());
+  const attorneyRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`, headers).then((data) => data.json());
 
   return {
     props: {

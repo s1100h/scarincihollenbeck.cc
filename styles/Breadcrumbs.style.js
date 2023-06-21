@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { globalColor } from './global_styles/Global.styles'
-import Button from 'react-bootstrap/Button'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
+import Button from 'react-bootstrap/Button';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const BreadcrumbsListContainer = styled.ul`
   display: flex;
@@ -32,7 +32,7 @@ export const BreadcrumbsListContainer = styled.ul`
   ${media_breakpoint_down('sm')} {
     position: relative;
   }
-`
+`;
 
 export const ButtonBreadcrumb = styled(Button)`
   text-decoration: none;
@@ -43,4 +43,4 @@ export const ButtonBreadcrumb = styled(Button)`
   :hover {
     color: ${globalColor.red.darkRed};
   }
-`
+`;

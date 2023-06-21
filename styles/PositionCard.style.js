@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ export const CardContainer = styled.div`
     cursor: pointer;
     background-color: whitesmoke;
   }
-`
+`;
 
 export const TitlePosition = styled.p`
   font-weight: 600;
@@ -26,4 +26,4 @@ export const TitlePosition = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   border-bottom: 1px solid #dee2e6;
-`
+`;

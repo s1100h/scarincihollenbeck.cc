@@ -6,7 +6,6 @@ export const HawCanIGet = () => (
     Call
     <a href="tel:201-806-3364"> 201-806-3364</a>
     , email
-    {' '}
     <a href="mailto:info@sh-law.com">info@sh-law.com</a>
     {' '}
     or click
@@ -16,8 +15,7 @@ export const HawCanIGet = () => (
 
 export const HawDoIKnow = () => (
   <>
-    Different kinds of legal matters require attention from specialized areas of law. You can
-    discover the firm`s practice groups or click
+    Different kinds of legal matters require attention from specialized areas of law. You can discover the firm`s practice groups or click
     <Link href="/practices">here.</Link>
     or if you have no idea where to begin, call
     {' '}
@@ -41,18 +39,7 @@ export const WhereIsYheFirmLocated = () => (
   </p>
 );
 
-const corePracticesIncludeArr = [
-  'Bankruptcy & Creditor`s Rights',
-  'Commercial Real Estate',
-  'Corporate Transactions & Business',
-  'Education Law',
-  'Environmental',
-  'Government Strategies',
-  'Intellectual Property',
-  'Labor & Employment',
-  'Litigation',
-  'Public Law',
-];
+const corePracticesIncludeArr = ['Bankruptcy & Creditor`s Rights', 'Commercial Real Estate', 'Corporate Transactions & Business', 'Education Law', 'Environmental', 'Government Strategies', 'Intellectual Property', 'Labor & Employment', 'Litigation', 'Public Law'];
 
 export const WhatAreTheFirms = () => (
   <>
@@ -68,8 +55,7 @@ export const WhatAreTheFirms = () => (
       ))}
     </ul>
     <>
-      In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice groups you can learn
-      more about
+      In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice groups you can learn more about
       <Link href="/practices">here.</Link>
     </>
   </>

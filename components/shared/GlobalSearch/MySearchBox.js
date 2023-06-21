@@ -1,11 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { BsSearch, BsXLg } from 'react-icons/bs';
 import {
-  HitsStyled,
-  ResultsContainer,
-  SearchForm,
-  SearchInput,
-  ResultBox,
+  HitsStyled, ResultsContainer, SearchForm, SearchInput, ResultBox,
 } from 'styles/GlobalSearch.style';
 import { connectStateResults, Pagination } from 'react-instantsearch-dom';
 import Hit from './Hit';
@@ -36,12 +32,7 @@ function MySearchBox(props) {
       <SearchForm>
         <Form.Group className="form-group" controlId="siteSearch">
           {!props.currentRefinement ? <BsSearch /> : <BsXLg role="button" onClick={handleClear} />}
-          <SearchInput
-            type="input"
-            value={props.currentRefinement}
-            onChange={props.refine}
-            placeholder={props.placeholder}
-          />
+          <SearchInput type="text" value={props.currentRefinement} onChange={props.refine} placeholder={props.placeholder} />
         </Form.Group>
       </SearchForm>
       <RenderSearchResults />

@@ -2,11 +2,7 @@ import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'next/image';
 import {
-  ArticleBox,
-  ImageAttorneysGroup,
-  ImageBlindLady,
-  LinkListBox404,
-  TilesBox,
+  ArticleBox, ImageAttorneysGroup, ImageBlindLady, LinkListBox404, TilesBox,
 } from '../../styles/404.style';
 import PostBreadcrumbs from '../organisms/post/PostBreadcrumbs';
 import { tile404ContentArr } from '../../utils/tileContent';
@@ -27,13 +23,7 @@ const ErrorPage = ({ title, mainMessage }) => (
           </ArticleBox>
           <TilesBox>
             {tile404ContentArr.map((tile) => (
-              <TileContacts
-                key={tile.id}
-                title={tile.title}
-                textContent={tile.textContent}
-                icon={tile.icon}
-                image={tile.image}
-              />
+              <TileContacts key={tile.id} title={tile.title} textContent={tile.textContent} icon={tile.icon} image={tile.image} />
             ))}
           </TilesBox>
           <LinkListBox404>

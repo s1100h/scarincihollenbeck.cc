@@ -19,20 +19,10 @@ const VirtualizedMembers = ({ members, title }) => {
       <VirtualListContainer ref={parentRef} listHight={rowVirtualizer.totalSize}>
         <ul>
           {rowVirtualizer.virtualItems.map((virtualRow) => (
-            <ItemVirtual
-              itemTransform={virtualRow.start}
-              key={members[virtualRow.index].lastName}
-              ref={virtualRow.measureRef}
-            >
+            <ItemVirtual itemTransform={virtualRow.start} key={members[virtualRow.index].lastName} ref={virtualRow.measureRef}>
               <AttorneyCard
-                link={
-                  members[virtualRow.index].link.includes('attorneys')
-                    ? members[virtualRow.index].link
-                    : `/attorneys/${members[virtualRow.index].link}`
-                }
-                image={
-                  members[virtualRow.index].image || members[virtualRow.index].better_featured_image
-                }
+                link={members[virtualRow.index].link.includes('attorneys') ? members[virtualRow.index].link : `/attorneys/${members[virtualRow.index].link}`}
+                image={members[virtualRow.index].image || members[virtualRow.index].better_featured_image}
                 name={members[virtualRow.index].name || members[virtualRow.index].title}
                 designation={members[virtualRow.index].designation}
                 number={members[virtualRow.index].contact || members[virtualRow.index].phone}

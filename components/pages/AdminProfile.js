@@ -7,14 +7,7 @@ import PostBreadCrumbs from '../organisms/post/PostBreadcrumbs';
 
 const AdminProfile = ({ seo, profile, canonicalUrl }) => (
   <>
-    <PersonSiteHead
-      title={seo.title}
-      metaDescription={seo.metaDescription}
-      canonicalUrl={canonicalUrl}
-      name={profile.name}
-      featuredImage={profile.profileImage}
-      designation={profile.designation}
-    />
+    <PersonSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} name={profile.name} featuredImage={profile.profileImage} designation={profile.designation} />
     <Container>
       <Row className="justify-content-center">
         <Col sm={12} lg={10} xl={8}>

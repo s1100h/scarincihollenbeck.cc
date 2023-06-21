@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import Dropdown from 'react-bootstrap/Dropdown'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles'
+import styled from 'styled-components';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 
 export const ButtonTabToggle = styled(Dropdown.Toggle)`
   display: flex;
@@ -9,11 +9,7 @@ export const ButtonTabToggle = styled(Dropdown.Toggle)`
   padding: 10px 30px;
   justify-content: ${({ props }) => (props?.isButtonLink ? 'center' : 'space-between')};
   align-items: center;
-  border: 1px solid
-    ${({ props }) =>
-      props?.isButtonLink
-        ? globalColor.blue.ultramarine
-        : globalColor.grayExtraLite.grayExtraLite100};
+  border: 1px solid ${({ props }) => (props?.isButtonLink ? globalColor.blue.ultramarine : globalColor.grayExtraLite.grayExtraLite100)};
   text-decoration: none;
   transition: All 1s ease;
   -webkit-transition: All 1s ease;
@@ -35,8 +31,7 @@ export const ButtonTabToggle = styled(Dropdown.Toggle)`
   }
 
   :hover {
-    background-color: ${({ props }) =>
-      props?.isButtonLink ? globalColor.blue.dirtyBlue : globalColor.graySmoke.whiteSmoke};
+    background-color: ${({ props }) => (props?.isButtonLink ? globalColor.blue.dirtyBlue : globalColor.graySmoke.whiteSmoke)};
     color: ${({ props }) => (props?.isButtonLink ? globalColor.white : globalColor.gray.gray100)};
     text-decoration: none;
   }
@@ -60,19 +55,19 @@ export const ButtonTabToggle = styled(Dropdown.Toggle)`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-`
+`;
 
 export const DropMenu = styled(Dropdown.Menu)`
   height: fit-content;
   max-height: 250px;
   overflow-y: auto;
-`
+`;
 
 export const DropdownItemPractice = styled(Dropdown.Item)`
   font-size: 1rem;
   overflow-wrap: break-word;
   white-space: pre-wrap;
-`
+`;
 
 export const BlockListBox = styled.section`
   margin-top: 3rem;
@@ -80,7 +75,7 @@ export const BlockListBox = styled.section`
   .container {
     padding: 0;
   }
-`
+`;
 
 export const ListSimple = styled.ul`
   column-count: 3;
@@ -107,7 +102,7 @@ export const ListSimple = styled.ul`
   ${media_breakpoint_down('sm')} {
     column-count: 1;
   }
-`
+`;
 
 export const SearchWithArticle = styled.section`
   display: flex;
@@ -119,13 +114,13 @@ export const SearchWithArticle = styled.section`
   ${media_breakpoint_down('xl')} {
     flex-direction: column-reverse;
   }
-`
+`;
 
 export const StickyWrapper = styled.div`
   position: sticky;
   top: 180px;
   margin-bottom: 20px;
-`
+`;
 
 export const SideBarPracticeBox = styled.nav`
   padding: 10px 20px 20px;
@@ -145,7 +140,7 @@ export const SideBarPracticeBox = styled.nav`
       }
     }
   }
-`
+`;
 
 export const CardBox = styled.div`
   display: flex;
@@ -169,4 +164,4 @@ export const CardBox = styled.div`
     box-shadow: ${globalShadow.hoveredShadow};
     cursor: pointer;
   }
-`
+`;

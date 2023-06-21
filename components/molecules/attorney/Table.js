@@ -45,19 +45,9 @@ const Table = ({ content }) => {
                   paddingBottom: '10px',
                 }}
               >
-                <div
-                  className="h6 mb-0"
-                  dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][0])}
-                />
-                {content.body[virtualRow.index][1] && (
-                  <span dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][1])} />
-                )}
-                {content.body[virtualRow.index][2] && (
-                  <span
-                    className="tag-two"
-                    dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][2])}
-                  />
-                )}
+                <div className="h6 mb-0" dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][0])} />
+                {content.body[virtualRow.index][1] && <span dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][1])} />}
+                {content.body[virtualRow.index][2] && <span className="tag-two" dangerouslySetInnerHTML={createMarkup(content.body[virtualRow.index][2])} />}
               </div>
             ))}
           </div>

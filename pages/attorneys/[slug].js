@@ -1,16 +1,8 @@
 import React from 'react';
 import { fetchAPI } from 'utils/api';
+import { attorneyBySlugQuery, attorneyNewsEventsQuery, checkAttorneyPostsQueryByIdAndSlug } from 'utils/graphql-queries';
 import {
-  attorneyBySlugQuery,
-  attorneyNewsEventsQuery,
-  checkAttorneyPostsQueryByIdAndSlug,
-} from 'utils/graphql-queries';
-import {
-  concatNameUser,
-  fetchExternalPosts,
-  formatSrcToCloudinaryUrl,
-  formatSrcToCloudinaryUrlPdf,
-  sanitizeExternalArticles,
+  concatNameUser, fetchExternalPosts, formatSrcToCloudinaryUrl, formatSrcToCloudinaryUrlPdf, sanitizeExternalArticles,
 } from 'utils/helpers';
 import { GOV_LAW_URL } from 'utils/constants';
 import AttorneyPage from 'components/pages/AttorneyProfile';
@@ -60,9 +52,7 @@ export async function attorneyFirmNewsBlogEvents(slug) {
 }
 
 const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
-  node.featuredImage = node.featuredImage?.node?.sourceUrl
-    ? node.featuredImage?.node?.sourceUrl
-    : '/images/no-image-found-diamond.png';
+  node.featuredImage = node.featuredImage?.node?.sourceUrl ? node.featuredImage?.node?.sourceUrl : '/images/no-image-found-diamond.png';
   node.slug = `/${node.categories.nodes[0].slug}/${node.slug}`;
   let uri = node.uri;
   uri = uri.split('/');
@@ -138,9 +128,7 @@ export const getServerSideProps = async ({ params, res }) => {
   const profileHeader = {
     name: concatNameUser(attorneyBio?.title, attorneyBio?.attorneyMainInformation.abbreviation),
     firstName: attorneyBio.attorneyMainInformation?.firstName,
-    profileImage: formatSrcToCloudinaryUrl(
-      attorneyBio.attorneyMainInformation.profileImage?.sourceUrl,
-    ),
+    profileImage: formatSrcToCloudinaryUrl(attorneyBio.attorneyMainInformation.profileImage?.sourceUrl),
     representativeVideo: attorneyBio.attorneyMainInformation.representativeVideo,
     title: attorneyBio.attorneyMainInformation?.designation,
     contact: {
@@ -148,35 +136,27 @@ export const getServerSideProps = async ({ params, res }) => {
       email: attorneyBio.attorneyMainInformation?.email,
       fax: attorneyBio.attorneyMainInformation?.faxNumber,
       vizibility: attorneyBio.attorneyMainInformation?.vizibility,
-      pdf:
-        formatSrcToCloudinaryUrlPdf(attorneyBio.attorneyMainInformation?.pdfBio?.mediaItemUrl)
-        || null,
+      pdf: formatSrcToCloudinaryUrlPdf(attorneyBio.attorneyMainInformation?.pdfBio?.mediaItemUrl) || null,
       socialMediaLinks: attorneyBio.attorneyMainInformation?.socialMediaLinks,
     },
     primaryPractices:
       attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups?.primaryPractice
-      && attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice.map(
-        ({ uri, title, id }) => ({
-          id,
-          uri,
-          title,
-        }),
-      ),
+      && attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice.map(({ uri, title, id }) => ({
+        id,
+        uri,
+        title,
+      })),
     practices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices
-      ? attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices.map(
-        ({ uri, title }) => ({
-          uri,
-          title,
-        }),
-      )
+      ? attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices.map(({ uri, title }) => ({
+        uri,
+        title,
+      }))
       : [...attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.primaryPractice],
-    offices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
-      ({ uri, id, officeMainInformation }) => ({
-        link: uri,
-        name: officeMainInformation.addressLocality,
-        ID: id,
-      }),
-    ),
+    offices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(({ uri, id, officeMainInformation }) => ({
+      link: uri,
+      name: officeMainInformation.addressLocality,
+      ID: id,
+    })),
     chair: attorneyBio.attorneyChairCoChair.chair
       ? attorneyBio.attorneyChairCoChair.chair.map(({ uri, title }) => ({
         title,
@@ -189,9 +169,7 @@ export const getServerSideProps = async ({ params, res }) => {
         link: uri,
       }))
       : [],
-    emailForwarding: attorneyBio.attorneyMainInformation.forwardingEmailsForContactForm.map(
-      ({ email }) => email,
-    ),
+    emailForwarding: attorneyBio.attorneyMainInformation.forwardingEmailsForContactForm.map(({ email }) => email),
   };
 
   /** Tab list */
@@ -257,16 +235,12 @@ export const getServerSideProps = async ({ params, res }) => {
     {
       id: 7,
       title: 'Representative Matters',
-      content: attorneyBio.attorneyRepresentativeMatters.repMatters
-        ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
-        : [],
+      content: attorneyBio.attorneyRepresentativeMatters.repMatters ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content : [],
     },
     {
       id: 8,
       title: 'Representative Clients',
-      content: attorneyBio.attorneyRepresentativeClients.repClients
-        ? attorneyBio.attorneyRepresentativeClients.repClients[0].content
-        : [],
+      content: attorneyBio.attorneyRepresentativeClients.repClients ? attorneyBio.attorneyRepresentativeClients.repClients[0].content : [],
     },
     {
       id: 9,
@@ -295,16 +269,12 @@ export const getServerSideProps = async ({ params, res }) => {
     {
       id: 12,
       title: 'Video',
-      content: attorneyBio.attorneyAwardsClientsBlogsVideos
-        ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos
-        : [],
+      content: attorneyBio.attorneyAwardsClientsBlogsVideos ? attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos : [],
     },
     {
       id: 13,
       title: 'Images',
-      content: attorneyBio.attorneyAwardsClientsBlogsVideos
-        ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
-        : [],
+      content: attorneyBio.attorneyAwardsClientsBlogsVideos ? attorneyBio.attorneyAwardsClientsBlogsVideos.images : [],
     },
   ];
 
@@ -322,15 +292,10 @@ export const getServerSideProps = async ({ params, res }) => {
       title: 'General',
       content: {
         miniBio: attorneyBio.attorneyBiography?.miniBio,
-        education:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
-        barAdmissions:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
-        affiliations:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
-        additionalInfo:
-          attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
-            ?.additionalInformation,
+        education: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.education,
+        barAdmissions: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.barAdmissions,
+        affiliations: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.affiliations,
+        additionalInfo: attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations?.additionalInformation,
         clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
       },
     },
@@ -369,9 +334,7 @@ export const getServerSideProps = async ({ params, res }) => {
   ];
 
   /** Sanitize main tab section */
-  const mainTabsMatched = mainTabs
-    .map((tabMapItem) => tabs.filter((tabFilterItem) => tabFilterItem.title === tabMapItem)[0])
-    .filter((item) => item !== undefined);
+  const mainTabsMatched = mainTabs.map((tabMapItem) => tabs.filter((tabFilterItem) => tabFilterItem.title === tabMapItem)[0]).filter((item) => item !== undefined);
 
   mainTabsMatched.map((tab) => {
     if (tab.title === 'More') {
@@ -406,11 +369,7 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Attorney profile page component */
 const AttorneyProfile = ({
-  seo,
-  profileHeader,
-  attorneyFooterNewsArticles,
-  tabs,
-  attorneyAwards,
+  seo, profileHeader, attorneyFooterNewsArticles, tabs, attorneyAwards,
 }) => {
   const attorneyPageProps = {
     seo,

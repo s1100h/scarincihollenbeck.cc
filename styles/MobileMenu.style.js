@@ -1,8 +1,8 @@
-import styled from 'styled-components'
-import Accordion from 'react-bootstrap/Accordion'
-import Offcanvas from 'react-bootstrap/Offcanvas'
-import { globalColor, globalShadow } from './global_styles/Global.styles'
-import { media_breakpoint_down } from './mediaBreakpoints.style'
+import styled from 'styled-components';
+import Accordion from 'react-bootstrap/Accordion';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const BurgerBtn = styled.button`
   display: none;
@@ -21,17 +21,17 @@ export const BurgerBtn = styled.button`
   ${media_breakpoint_down('lg')} {
     display: block;
   }
-`
+`;
 
 export const OffcanvasBody = styled(Offcanvas.Body)`
   padding: 0;
-`
+`;
 export const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 3px;
   padding: 10px 0 10px 0;
-`
+`;
 export const AccordionStyled = styled(Accordion)`
   .accordion-item {
     border: 0;
@@ -66,7 +66,7 @@ export const AccordionStyled = styled(Accordion)`
       background-color: white;
     }
   }
-`
+`;
 
 export const GrayButtonLink = styled.a`
   display: flex;
@@ -78,7 +78,7 @@ export const GrayButtonLink = styled.a`
   :hover {
     background-color: ${globalColor.grayExtraLite.grayExtraLite40};
   }
-`
+`;
 
 export const ButtonLinkBox = styled.div`
   display: flex;
@@ -96,4 +96,4 @@ export const ButtonLinkBox = styled.div`
       margin-left: 10px;
     }
   }
-`
+`;

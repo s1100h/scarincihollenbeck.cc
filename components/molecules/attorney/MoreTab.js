@@ -46,29 +46,21 @@ const MoreTab = ({ content }) => {
 
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(
-    attorneyPostsQueryByIdAndSlug,
-    {
-      first: 3,
-      last: null,
-      after: '3',
-      before: null,
-      slug: query.slug,
-      categoryId: categoryIdMap[activeSubTab.title],
-    },
-  );
+  } = useApolloQuery(attorneyPostsQueryByIdAndSlug, {
+    first: 3,
+    last: null,
+    after: '3',
+    before: null,
+    slug: query.slug,
+    categoryId: categoryIdMap[activeSubTab.title],
+  });
 
   return (
     <MoreTabContainer>
       <ButtonBox>
         <ButtonGroup vertical>
           {content.map((tab) => (
-            <ButtonTab
-              key={tab.id}
-              active={activeSubTab.id === tab.id ? 'true' : undefined}
-              onClick={() => setActiveSubTab(tab)}
-              isMore="true"
-            >
+            <ButtonTab key={tab.id} active={activeSubTab.id === tab.id ? 'true' : undefined} onClick={() => setActiveSubTab(tab)} isMore="true">
               {cutTitles(tab.title)}
             </ButtonTab>
           ))}

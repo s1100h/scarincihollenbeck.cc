@@ -11,13 +11,7 @@ const checkAllOffices = (location) => {
 };
 
 export default function PositionCard({
-  handleClickToCareer,
-  slug,
-  title,
-  positionLocation,
-  positionType,
-  startDate,
-  duration,
+  handleClickToCareer, slug, title, positionLocation, positionType, startDate, duration,
 }) {
   return (
     <CardContainer onClick={() => handleClickToCareer(slug)}>

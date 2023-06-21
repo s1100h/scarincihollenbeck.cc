@@ -10,11 +10,7 @@ async function parseFeedResults(feed, sourceUrl) {
       title, link, pubDate, isoDate, content,
     } = post;
 
-    if (
-      content.indexOf('pandemic') > -1
-      || content.indexOf('COVID-19') > -1
-      || content.indexOf('Corona') > -1
-    ) {
+    if (content.indexOf('pandemic') > -1 || content.indexOf('COVID-19') > -1 || content.indexOf('Corona') > -1) {
       // push results into array
       await results.push({
         title,
@@ -45,23 +41,14 @@ export default async (req, res) => {
       const parsedNjBizHealth = await parseFeedResults(njBizHealthFeed, njBizHealthUrl);
 
       // North Jersey health
-      const northJerseyHealthFeed = await parser.parseURL(
-        'http://rssfeeds.northjersey.com/northjerseyhealth&x=1',
-      );
+      const northJerseyHealthFeed = await parser.parseURL('http://rssfeeds.northjersey.com/northjerseyhealth&x=1');
       const northJerseyHealthUrl = '<a href="http://rssfeeds.northjersey.com/northjerseybusiness">NorthJersey.com - Health</a>';
-      const parseNorthJerseyHealth = await parseFeedResults(
-        northJerseyHealthFeed,
-        northJerseyHealthUrl,
-      );
+      const parseNorthJerseyHealth = await parseFeedResults(northJerseyHealthFeed, northJerseyHealthUrl);
 
       // North Jersey health
       const asburyParkPressFeed = await parser.parseURL('http://rssfeeds.app.com/asburypark/home');
       const asburyParkPressUrl = '<a href="https://www.app.com">Asbury Park Press</a>';
-      const parseAsburyParkPress = await parseFeedResults(
-        asburyParkPressFeed,
-        asburyParkPressUrl,
-        'app',
-      );
+      const parseAsburyParkPress = await parseFeedResults(asburyParkPressFeed, asburyParkPressUrl, 'app');
 
       // observer
       const observerPressFeed = await parser.parseURL('https://observer.com/feed');
@@ -73,14 +60,7 @@ export default async (req, res) => {
       const roiNJUrl = '<a href="https://observer.com">ROI-NJ.com</a>';
       const parsedRoiNJ = await parseFeedResults(roiNJPressFeed, roiNJUrl);
 
-      const feed = [
-        ...parsedNjBizGov,
-        ...parsedNjBizHealth,
-        ...parseNorthJerseyHealth,
-        ...parseAsburyParkPress,
-        ...parsedObserver,
-        ...parsedRoiNJ,
-      ];
+      const feed = [...parsedNjBizGov, ...parsedNjBizHealth, ...parseNorthJerseyHealth, ...parseAsburyParkPress, ...parsedObserver, ...parsedRoiNJ];
 
       // sort feed articles by date
       await feed.sort((a, b) => {

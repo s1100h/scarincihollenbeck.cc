@@ -1,11 +1,11 @@
-import styled from 'styled-components'
-import { globalColor, rem } from 'styles/global_styles/Global.styles'
-import { media_breakpoint_down } from 'styles/mediaBreakpoints.style'
+import styled from 'styled-components';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 const commonRules = `
 padding: 40px 20px 40px;
 border: 1px solid ${globalColor.grayLite.grayLite40};
-`
+`;
 
 export const GeneralContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const GeneralContainer = styled.div`
     font-size: ${rem(32)};
     text-transform: capitalize;
   }
-`
+`;
 
 export const EducationAdmissionBox = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ export const EducationAdmissionBox = styled.div`
     flex-direction: column;
     align-items: center;
   }
-`
+`;
 
 export const GrayList = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ export const GrayList = styled.div`
     padding-bottom: 0;
     padding-top: 10px;
   }
-`
+`;
 
 export const ClientsBox = styled.div`
   ${commonRules}
@@ -72,4 +72,4 @@ export const ClientsBox = styled.div`
   h3 {
     margin-bottom: 20px;
   }
-`
+`;

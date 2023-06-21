@@ -17,14 +17,7 @@ const FirmNews = dynamic(() => import('components/organisms/home/FirmNews/FirmNe
 const Awards = dynamic(() => import('components/organisms/home/Awards'), { ssr: true });
 
 const HomePage = ({
-  seo,
-  aboutFirm,
-  aboutFirm2,
-  awards,
-  banner,
-  isHoliday,
-  offices,
-  firmNewsArticles,
+  seo, aboutFirm, aboutFirm2, awards, banner, isHoliday, offices, firmNewsArticles,
 }) => (
   <>
     <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />

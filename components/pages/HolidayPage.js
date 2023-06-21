@@ -11,11 +11,7 @@ const HolidayPage = ({
   seo, title, subTitle, canonicalUrl, bodyContent,
 }) => (
   <>
-    <BasicSiteHead
-      title={seo.title}
-      metaDescription={seo.metaDescription}
-      canonicalUrl={canonicalUrl}
-    />
+    <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
     <SingleSubHeader title={title} subtitle={subTitle} isHoliday="true" />
     <Container>
       <HolidayContent content={bodyContent} />
