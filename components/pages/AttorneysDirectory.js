@@ -17,7 +17,7 @@ const AttorneysPage = ({
   const { isTabletScreen, isDesktopScreen } = useStateScreen();
   const { scrollTop } = useIsScroll();
   const {
-    handleChange, select, onSelect, userInput, clearQuery, attorneysContext, clearAll,
+    handleChange, select, onSelect, userInput, clearQuery, attorneysContext, clearAll, onSelectLetter,
   } = useContext(AttorneysContext);
 
   return (
@@ -27,7 +27,7 @@ const AttorneysPage = ({
       <MainAttorneysContainer>
         {/** Filters */}
         {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
-          <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect}>
+          <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect} onSelectLetter={onSelectLetter} select={select}>
             {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}
           </Filters>
         )}

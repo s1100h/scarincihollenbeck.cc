@@ -6,6 +6,7 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
   const practices = filterByKey(selectVariant, 'practices');
   const designation = filterByKey(selectVariant, 'title');
   const location = filterByKey(selectVariant, 'location');
+  const letterInLastName = filterByKey(selectVariant, 'letterInLastName');
 
   // filter by key -- practice
   const filterPractices = (attorney) => {
@@ -48,7 +49,15 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
     return attorney;
   };
 
-  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg.filter(filterPractices).filter(filterDesignation).filter(filterLocation).filter(filterLikeSearch);
+  const filterByLetterInLastName = (attorney) => {
+    if (letterInLastName.length > 0) {
+      return attorney.lastName.split('')[0] === letterInLastName[0].toUpperCase();
+    }
+    return attorney;
+  };
+
+  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg.filter(filterPractices).filter(filterDesignation).filter(filterLocation).filter(filterLikeSearch)
+    .filter(filterByLetterInLastName);
 
   const attorneysFiltered = useMemo(() => attorneyFiltration(attorneysArr), [selectVariant]);
 
