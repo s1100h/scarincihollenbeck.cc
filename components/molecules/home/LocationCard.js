@@ -29,11 +29,11 @@ export default function LocationCard({ officesData }) {
               <h5>{office.title}</h5>
               <BsCaretDownFill color={cardIndex === idx ? colorActiveIcons : colorInactiveIcons} size={20} />
             </LocationHeader>
-            <ContactInfoContent open={cardIndex === idx}>
+            <ContactInfoContent isOpen={cardIndex === idx}>
               <Contact>
-                <p>
+                <div>
                   <BsFillSignpostFill color={globalColor.red.darkRed} size={sizeIcons} />
-                </p>
+                </div>
                 {office.title}
                 {' '}
                 {office.postCode}
