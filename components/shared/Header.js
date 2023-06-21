@@ -16,7 +16,7 @@ import useStateScreen from 'hooks/useStateScreen';
 
 export default function Header() {
   const {
-    dataForFilter, userInput, select, handleChange, onSelect, clearQuery, clearAll,
+    dataForFilter, userInput, select, handleChange, onSelect, clearQuery, clearAll, onSelectLetter, attorneysContext,
   } = useContext(AttorneysContext);
   const { isTabletScreen } = useStateScreen();
 
@@ -47,7 +47,7 @@ export default function Header() {
       </MobileVisible>
       <Navigation scrollTop={scrollTop} />
       {scrollTop && isAttorneysPage && !isTabletScreen && (
-        <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect}>
+        <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect} attorneysContext={attorneysContext} onSelectLetter={onSelectLetter} select={select}>
           {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}
         </Filters>
       )}

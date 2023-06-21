@@ -182,3 +182,22 @@ export const ResultButton = styled(Button)`
     margin-left: 12px;
   }
 `;
+
+export const LetterSelectorContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const LetterSelectorBtn = styled.button`
+  display: flex;
+  width: 7.69%;
+  justify-content: center;
+  color: ${globalColor.blue.ultramarine};
+  text-decoration: underline;
+
+  :disabled {
+    color: #b3b3b3;
+    background: transparent;
+    text-decoration: none;
+  }
+`;
