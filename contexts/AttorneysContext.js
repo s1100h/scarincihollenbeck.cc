@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import { fetchAPI } from '../utils/api';
 import { authorsPostQuery } from '../utils/graphql-queries';
 import { sortByKey } from '../utils/helpers';
+import { useAttorneysSearch } from '../hooks/useAttornySearch';
 
 export const AttorneysContext = createContext(null);
 
@@ -39,8 +40,15 @@ export const AttorneysProvider = ({ children }) => {
       selected: input,
       key: e.target.name,
     };
-
     setSelect(select.filter((a) => a.key !== results.key).concat(results));
+  }
+
+  /* Click Events */
+  function onSelectLetter(letter) {
+    const results = { selected: letter.toUpperCase(), key: 'letterInLastName' };
+    const concatResults = select.filter((el) => el.key !== 'letterInLastName').concat(results);
+    setAuthors(sortByKey(attorneysContext, 'letterInLastName'));
+    setSelect(concatResults);
   }
 
   /** Clear user query */
@@ -97,6 +105,7 @@ export const AttorneysProvider = ({ children }) => {
     setAdminsTitles,
     authors,
     getAsyncAuthors,
+    onSelectLetter,
   };
 
   return <AttorneysContext.Provider value={values}>{children}</AttorneysContext.Provider>;
