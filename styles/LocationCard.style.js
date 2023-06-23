@@ -76,7 +76,7 @@ export const ContactInfoCard = styled.article`
 `;
 
 export const ContactInfoContent = styled.div`
-  display: ${(props) => (props.open ? 'flex' : 'none')};
+  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: flex-start;
   gap: 22px;

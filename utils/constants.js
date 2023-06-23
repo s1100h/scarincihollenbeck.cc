@@ -8,6 +8,8 @@ import {
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 
+export const LETTERS_LIST = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
 /** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
