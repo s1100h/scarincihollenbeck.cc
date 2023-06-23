@@ -21,7 +21,7 @@ const PostPage = ({
   return (
     <>
       <PostSiteHead seo={seo} canonicalUrl={canonicalUrl} post={post} authors={authors} />
-      <SingleSubHeader title={post.title} subtitle={post.subTitle} isBlog offset={0} span={8} authors={authors} date={post.date} />
+      <SingleSubHeader title={post.title} subtitle={post.subTitle} offset={0} span={8} authors={authors} date={post.date} isBlog />
       <Container className="d-print-none">
         <Row className="gap-4 d-flex justify-content-center">
           <Col sm={12} lg={7}>

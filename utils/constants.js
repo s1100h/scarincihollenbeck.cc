@@ -41,6 +41,9 @@ export const ScarinciHollenbeckAuthor = [
       profileImage: {
         sourceUrl: '/images/sh-mini-diamond-PNG.png',
       },
+      email: SITE_EMAIL,
+      phoneNumber: SITE_PHONE,
+      designation: 'The Firm',
     },
     attorneyPrimaryRelatedPracticesLocationsGroups: {
       keyContactByPractice: null,
