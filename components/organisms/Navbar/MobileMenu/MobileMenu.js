@@ -56,7 +56,7 @@ const MobileMenu = () => {
             ))}
           </NavList>
           <ButtonLinkBox>
-            <LinkButtons />
+            <LinkButtons handleClickAndClose={handleClose} />
           </ButtonLinkBox>
         </OffcanvasBody>
       </Offcanvas>
