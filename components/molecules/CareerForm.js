@@ -1,12 +1,15 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Col, Row, Button } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
+import { StandardRedButton } from '../../styles/Buttons.style';
+import { FormsContext } from '../../contexts/FormsContext';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const CareerForm = ({ contact, title }) => {
+  const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -88,15 +91,15 @@ const CareerForm = ({ contact, title }) => {
             <p className="mb-1">* The use of the Internet or this form for communication with the firm or any individual member of the firm does not establish an attorney-client relationship. Confidential or time-sensitive information should not be sent through this form.</p>
             <fieldset data-kw-group="true" rules="required" className="mb-2">
               <label htmlFor="disclaimer">
-                <input type="checkbox" name="disclaimer" feedback="You must agree before submitting." value="disclaimer" id="disclaimer" label="I have read the disclaimer" />
-                <span className="ml-2">I have read the disclaimer</span>
+                <input type="checkbox" name="disclaimer" feedback="You must agree before submitting." value="disclaimer" id="disclaimer" label="I have read the disclaimer" checked={isCheckedDisclaimer} onChange={handleCheckDisclaimer} />
+                <span className="p-2">I have read the disclaimer</span>
               </label>
             </fieldset>
           </Col>
         </Row>
-        <Button variant="danger" className="mt-2 px-4" type="submit">
+        <StandardRedButton disabled={!isCheckedDisclaimer} className="mt-2 ml-0" type="submit">
           Submit form
-        </Button>
+        </StandardRedButton>
       </form>
     </div>
   );

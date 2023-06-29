@@ -8,6 +8,7 @@ import { SITE_TITLE } from 'utils/constants';
 import { CheckBoxesList, FormContainer, SubscribeBtn } from 'styles/Subscription.style';
 import kwesforms from 'kwesforms';
 import ModalWindow from '../../common/ModalWindow';
+import { StandardRedButton } from '../../../styles/Buttons.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -55,9 +56,7 @@ const SubscriptionModal = () => {
               </CheckBoxesList>
             </fieldset>
             <div className="modal-footer justify-content-start">
-              <Button variant="danger" type="submit" className="px-5">
-                Submit
-              </Button>
+              <StandardRedButton type="submit">Submit</StandardRedButton>
             </div>
           </form>
         </FormContainer>

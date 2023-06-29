@@ -20,6 +20,10 @@ export const FormContainer = styled.div`
       margin-bottom: 0;
     }
 
+    .kw-alert-success {
+      display: flex;
+    }
+
     textarea.form-control {
       height: 160px;
     }

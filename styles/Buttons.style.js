@@ -81,4 +81,8 @@ export const StandardRedButton = styled(Button)`
     box-shadow: none;
     background-color: ${globalColor.red.burgundy};
   }
+
+  :disabled {
+    background-color: ${globalColor.grayExtraLite.grayExtraLite50};
+  }
 `;

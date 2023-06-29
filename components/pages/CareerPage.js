@@ -4,11 +4,16 @@ import SingleCareerBody from 'components/organisms/career/CareerBody';
 import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { CURRENT_DOMAIN, SITE_TITLE } from 'utils/constants';
+import { SITE_TITLE } from 'utils/constants';
+import { useContext, useEffect } from 'react';
+import { FormsContext } from '../../contexts/FormsContext';
 
 const CareerProfile = ({ career, canonicalUrl }) => {
+  const { handleCheckDisclaimer } = useContext(FormsContext);
   const { seo } = career;
   const title = `${seo.title} | Career at ${SITE_TITLE}`;
+
+  useEffect(() => () => handleCheckDisclaimer(false), []);
 
   return (
     <>

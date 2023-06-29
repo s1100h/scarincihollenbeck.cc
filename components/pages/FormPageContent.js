@@ -3,21 +3,27 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import OfficeList from 'components/organisms/contact-us/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import { SidebarTile } from '../../styles/attorney-page/ProfileSidebar.style';
 import Surface from '../atoms/micro-templates/surface';
 import SingleSubHeader from '../../layouts/SingleSubHeader';
+import { FormsContext } from '../../contexts/FormsContext';
 
 const TilePuzzle = dynamic(() => import('../organisms/contact-us/TilePuzzle'));
 const FormPageContent = ({
   canonicalUrl, seo, site, offices,
 }) => {
+  const { handleCheckDisclaimer } = useContext(FormsContext);
   const formWrapper = useRef();
   const [formHeight, setFormHeight] = useState();
 
   useEffect(() => {
     setFormHeight(formWrapper.current.clientHeight);
   }, [formWrapper]);
+
+  useEffect(() => () => handleCheckDisclaimer(false), []);
 
   return (
     <>
