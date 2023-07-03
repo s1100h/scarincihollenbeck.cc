@@ -68,6 +68,11 @@ export const globalColor = {
   },
 };
 
+const canabisLawColors = {
+  cannabisColorGray: '#EBE9E4',
+  cannabisColorDarkGray: '#202020',
+};
+
 export const globalGradient = {
   award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
 };
