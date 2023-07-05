@@ -15,6 +15,15 @@ export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
 export const SITE_FAX = '201-896-8660';
 export const SITE_EMAIL = 'info@sh-law.com';
+
+export const THANKS_MESSAGE = {
+  title: 'Thank you!',
+  getInTouch: 'Thank you for reaching out! We will get in touch with you soon.',
+};
+
+export const SUBSCRIPTION_THANKS = {
+  subscription: 'Thank you for subscribing! You are now part of our newsletter.',
+};
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {

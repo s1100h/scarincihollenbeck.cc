@@ -5,6 +5,8 @@ import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
 import { StandardRedButton } from '../../styles/Buttons.style';
 import { FormsContext } from '../../contexts/FormsContext';
+import { THANKS_MESSAGE } from '../../utils/constants';
+import { CareerFormContainer } from '../../styles/Careers.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -17,9 +19,9 @@ const CareerForm = ({ contact, title }) => {
   }, []);
 
   return (
-    <div className="px-2 my-3">
+    <CareerFormContainer>
       <KwesScripts />
-      <form method="POST" action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW" encType="multipart/form-data" className="kwes-form d-print-none px-1" has-recaptcha-v3="true" recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY">
+      <form method="POST" action="https://kwes.io/api/foreign/forms/rKYfR2fNcm68wzPCSiyW" encType="multipart/form-data" className="kwes-form d-print-none px-1" has-recaptcha-v3="true" recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" success-message={THANKS_MESSAGE.title}>
         <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${router.asPath}`} />
         <input type="hidden" name="currentTitle" value={title} />
         <input type="hidden" name="currentContact" value={contact} />
@@ -101,7 +103,7 @@ const CareerForm = ({ contact, title }) => {
           Submit form
         </StandardRedButton>
       </form>
-    </div>
+    </CareerFormContainer>
   );
 };
 
