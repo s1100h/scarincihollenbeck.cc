@@ -1,9 +1,9 @@
-import { InputGroup, Form } from 'react-bootstrap';
-import styled from 'styled-components';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { THANKS_MESSAGE } from '../../utils/constants';
 
 export const FormContainer = styled.div`
   margin-bottom: 20px;
+  ${({ isPositionRelative }) => isPositionRelative && 'position: relative;'}
+
   .kwes-form {
     display: flex;
     flex-direction: column;
@@ -21,7 +21,10 @@ export const FormContainer = styled.div`
     }
 
     .kw-alert-success {
-      display: flex;
+      ${successMessage}
+      :after {
+        content: ${THANKS_MESSAGE.getInTouch};
+      }
     }
 
     textarea.form-control {
@@ -67,11 +70,19 @@ export const FormContainer = styled.div`
     }
   }
 `;
+import { InputGroup, Form } from 'react-bootstrap';
+import styled from 'styled-components';
+
+import { globalColor, rem, successMessage } from 'styles/global_styles/Global.styles';
 
 export const InputGroupStyled = styled(InputGroup)`
   .kw-field-error-message {
     position: absolute;
     top: -18px;
+  }
+
+  .form-control {
+    margin-left: 0 !important;
   }
 `;
 

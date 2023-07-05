@@ -36,7 +36,7 @@ const FormPageContent = ({
               <SidebarTile indent="true" red="true">
                 {site.formLabel}
               </SidebarTile>
-              <ContactForm />
+              <ContactForm isPositionRelativeProp />
             </Surface>
           </Col>
           <Col sm={12} lg={6} xl={8}>

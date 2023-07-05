@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ButtonLinkCss, buttonsHoverActive, rem } from './global_styles/Global.styles';
+import { ButtonLinkCss, buttonsHoverActive, rem, successMessage } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const CheckBoxesList = styled.ul`
@@ -30,7 +30,7 @@ export const GradientSubscriptionBox = styled.article`
   }
 `;
 
-export const FormContainer = styled.div`
+export const FormSubscriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 500px;
@@ -45,6 +45,13 @@ export const FormContainer = styled.div`
     h4 {
       margin-bottom: 0;
       font-size: 1.2rem;
+    }
+  }
+
+  .kw-alert-success {
+    ${successMessage}
+    &:after {
+      content: 'Thank you for subscribing! You are now part of our newsletter.';
     }
   }
 `;
