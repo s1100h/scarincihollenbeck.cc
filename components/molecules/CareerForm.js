@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
@@ -11,12 +11,37 @@ import { CareerFormContainer } from '../../styles/Careers.style';
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const CareerForm = ({ contact, title }) => {
-  const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
   const router = useRouter();
+  const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
+  const [isFileAdded, setIsFileAdded] = useState({
+    coverLetter: false,
+    resume: false,
+  });
+
+  const resumeInputName = 'resume';
+  const coverLetterInputName = 'coverLetter';
 
   useEffect(() => {
     kwesforms.init();
   }, []);
+
+  const handleAddFile = (event) => {
+    const inputName = event.target.name;
+    if (inputName === resumeInputName) {
+      setIsFileAdded((prev) => ({
+        resume: true,
+        coverLetter: prev.coverLetter,
+      }));
+    }
+    if (inputName === coverLetterInputName) {
+      setIsFileAdded((prev) => ({
+        resume: prev.resume,
+        coverLetter: true,
+      }));
+    }
+  };
+
+  const isDisabledSubmitButton = !isCheckedDisclaimer || !isFileAdded.resume || !isFileAdded.coverLetter;
 
   return (
     <CareerFormContainer>
@@ -57,18 +82,20 @@ const CareerForm = ({ contact, title }) => {
         <Row>
           <Col sm={12} className="mx-0 px-1">
             <label htmlFor="coverLetter">
-              <span className="d-block w-100 my-2">
+              <span className="d-flex w-100 my-2 gap-1 flex-wrap">
                 <strong>Upload your cover letter</strong>
+                <span>(this is required field)</span>
               </span>
-              <input type="file" name="coverLetter" id="coverLetter" rules="required" />
+              <input onChange={handleAddFile} type="file" name={coverLetterInputName} id="coverLetter" rules="required" />
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
             <label htmlFor="resume">
-              <span className="d-block w-100 my-2">
+              <span className="d-flex w-100 my-2 gap-1 flex-wrap">
                 <strong>Upload your resume</strong>
+                <span>(this is required field)</span>
               </span>
-              <input type="file" name="resume" id="resume" rules="required" />
+              <input onChange={handleAddFile} type="file" name={resumeInputName} id="resume" rules="required" />
             </label>
           </Col>
           <Col sm={12} className="mx-0 px-1">
@@ -99,7 +126,7 @@ const CareerForm = ({ contact, title }) => {
             </fieldset>
           </Col>
         </Row>
-        <StandardRedButton disabled={!isCheckedDisclaimer} className="mt-2 ml-0" type="submit">
+        <StandardRedButton disabled={isDisabledSubmitButton} className="mt-2 ml-0" type="submit">
           Submit form
         </StandardRedButton>
       </form>
