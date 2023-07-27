@@ -23,6 +23,11 @@ export const UploadTitle = styled.div`
   font-size: 18px;
   margin-bottom: 15px;
   font-weight: 700;
+
+  span {
+    font-size: 14px;
+    font-weight: 400;
+  }
 `;
 
 export const UploadIcon = styled.div`
