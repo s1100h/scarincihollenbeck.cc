@@ -84,6 +84,14 @@ export const InputGroupStyled = styled(InputGroup)`
   .form-control {
     margin-left: 0 !important;
   }
+
+  input[type='file']::file-selector-button {
+    display: none;
+  }
+
+  input[type='file']::file-selector-button:hover {
+    background: #0d45a5;
+  }
 `;
 
 export const FormLabelStyled = styled(Form.Label)`
@@ -91,4 +99,16 @@ export const FormLabelStyled = styled(Form.Label)`
   left: 12px;
   z-index: 5;
   color: ${globalColor.grayExtraLite.grayExtraLite80};
+`;
+
+export const TwoColumnsForm = styled.form`
+  .career-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 30px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
 `;

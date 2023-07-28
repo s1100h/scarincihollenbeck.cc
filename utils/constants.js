@@ -482,6 +482,70 @@ export const administrationTitles = [
   { name: 'Administrative Management', order: 3 },
 ];
 
+export const inputsCareerForm = [
+  {
+    type: 'text',
+    name: 'FirstName',
+    placeholder: 'First name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'text',
+    name: 'LastName',
+    placeholder: 'Last name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'email',
+    name: 'Email',
+    placeholder: 'Email address',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'tel',
+    name: 'Phone',
+    placeholder: 'Phone number',
+    rules: 'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
+    maxLength: 17,
+    title: `Please use these formats: 
+    (123) 456-7890
+    123-456-7890
+    123.456.7890
+    123 456 7890
+    +1 123-456-7890
+    +1 (123) 456-7890
+    `,
+  },
+  {
+    type: 'file',
+    name: 'CoverLetter',
+    rules: 'required',
+    label: 'Upload your cover letter',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+  {
+    type: 'file',
+    name: 'Resume',
+    rules: 'required',
+    label: 'Upload your resume',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+  {
+    type: 'file',
+    name: 'WritingSample',
+    rules: 'required',
+    label: 'Upload a writing sample',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+  {
+    type: 'file',
+    name: 'Transcript',
+    rules: 'required',
+    label: 'Upload a transcript',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+];
+
 export const inputsGetInTouchAttributes = [
   {
     type: 'text',
@@ -521,6 +585,14 @@ export const inputsGetInTouchAttributes = [
     name: 'Subject',
     placeholder: 'Subject',
     rules: 'required|max:1000',
+  },
+  {
+    type: 'textarea',
+    name: 'Message',
+    placeholder: 'Message',
+    rules: 'required|max:1000',
+    rows: 8,
+    cols: 4,
   },
 ];
 

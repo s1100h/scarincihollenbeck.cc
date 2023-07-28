@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { FormLabelStyled, InputGroupStyled } from 'styles/attorney-page/GetInTouchForm.styles';
+import UploadFileInput from '../../atoms/UploadFileInput';
 
 const InputField = ({ onChange, ...props }) => {
   const [value, setValue] = useState('');
@@ -13,11 +14,26 @@ const InputField = ({ onChange, ...props }) => {
   return <Form.Control value={value} onChange={onInput} {...props} />;
 };
 
+const InputsController = ({ attributes, handleChangeValue, isNotEmptyInput }) => {
+  if (attributes.type === 'file') {
+    return <UploadFileInput {...attributes} onChange={handleChangeValue} />;
+  }
+  if (attributes.type === 'textarea') {
+    return <textarea {...attributes} onChange={handleChangeValue} className="form-control" />;
+  }
+  return (
+    <>
+      <FormLabelStyled visuallyHidden={isNotEmptyInput}>{attributes.name}</FormLabelStyled>
+      <InputField {...attributes} onChange={handleChangeValue} />
+    </>
+  );
+};
+
 const RenderInputs = ({ arrayOfAttributes, attorneySlug }) => {
   const [isNotEmptyInput, setIsNotEmpty] = useState([]);
 
   const handleChangeValue = (e, nameInput) => {
-    const value = e.target.value;
+    const value = e.target.attributes.type.value !== 'file' ? e.target.value : e.target.files[0];
     if (value.length === 0) setIsNotEmpty(isNotEmptyInput.filter((itemValue) => itemValue !== nameInput));
     return !isNotEmptyInput.includes(nameInput) && setIsNotEmpty([...isNotEmptyInput, nameInput]);
   };
@@ -27,11 +43,9 @@ const RenderInputs = ({ arrayOfAttributes, attorneySlug }) => {
       <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${attorneySlug}`} />
       {arrayOfAttributes.map((attributes) => (
         <InputGroupStyled key={attributes.name}>
-          <FormLabelStyled visuallyHidden={!isNotEmptyInput.includes(attributes.name)}>{attributes.name}</FormLabelStyled>
-          <InputField {...attributes} onChange={(event) => handleChangeValue(event, attributes.name)} />
+          <InputsController attributes={attributes} handleChangeValue={(event) => handleChangeValue(event, attributes.name)} isNotEmptyInput={!isNotEmptyInput.includes(attributes.name)} />
         </InputGroupStyled>
       ))}
-      <textarea type="textarea" rows="8" cols="4" className="form-control" name="Message" placeholder="Message" rules="required|max:1000" />
     </>
   );
 };
