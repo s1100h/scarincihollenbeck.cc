@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { successMessage } from './global_styles/Global.styles';
 
 export const CareerFormContainer = styled.div`
-  padding: 20px 40px;
+  padding: 20px 0;
   position: relative;
 
   .kw-alert-success {
