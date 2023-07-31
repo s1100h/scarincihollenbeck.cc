@@ -3,7 +3,7 @@ import Image from 'next/legacy/image';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import ContentTitle from 'components/atoms/ContentTitle';
@@ -44,7 +44,7 @@ const CovidPage = ({
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
-      <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
+      <SubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <TwoColumnsContainer>
         <FirstColumn>
           {typeof bodyContent !== 'string' ? (

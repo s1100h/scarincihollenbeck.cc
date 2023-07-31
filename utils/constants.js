@@ -588,6 +588,8 @@ export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbe
 /** a helper header data when making requests to WP backend */
 export const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
 
+export const MAKE_A_PAYMENT = 'https://secure.lawpay.com/pages/scarincihollenbeck/operating';
+
 /** constant data that comes from hidden files for security */
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const GRAPHQL_API_URL = process.env.NEXT_PUBLIC_BASE_GRAPHQL_API_URL;

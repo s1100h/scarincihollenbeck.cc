@@ -1,22 +1,16 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { SITE_TITLE } from 'utils/constants';
-import { LogoWrapper, DiamondWrapper } from 'styles/SiteLogo.style';
-import SHLogo from '../../../public/images/sh-logo-diamond.svg';
+import { CombinedLogo } from 'styles/SiteLogo.style';
 import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.png';
+import LogoLetters from '../../../public/images/lattersLogo.png';
+import LogoLettersBlack from '../../../public/images/lettarsLogoblack.png';
 
-const Logo = () => (
+const Logo = ({ whiteVariant }) => (
   <>
-    <LogoWrapper>
-      <Link href="/" passHref>
-        <Image alt={`${SITE_TITLE}, LLC`} width={360} height={65} src={SHLogo} />
-      </Link>
-    </LogoWrapper>
-    <DiamondWrapper>
-      <Link href="/" passHref>
-        <Image alt={`${SITE_TITLE}, LLC`} width={102} height={85} src={SHDiamond} />
-      </Link>
-    </DiamondWrapper>
+    <CombinedLogo href="/" passHref>
+      <Image alt={`${SITE_TITLE}, LLC`} width={82} height={70} src={SHDiamond} />
+      {whiteVariant ? <Image className="logo-letters" alt={`${SITE_TITLE}, LLC`} width={320} height={50} src={LogoLetters} /> : <Image className="logo-letters" alt={`${SITE_TITLE}, LLC`} width={320} height={50} src={LogoLettersBlack} />}
+    </CombinedLogo>
   </>
 );
 

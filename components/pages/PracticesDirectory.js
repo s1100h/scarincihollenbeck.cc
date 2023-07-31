@@ -1,4 +1,4 @@
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import ListWrapper from 'components/organisms/practices/ListWrapper';
@@ -18,7 +18,7 @@ const PracticesDirectory = ({
 }) => (
   <>
     <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
-    <SingleSubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
+    <SubHeader title={site.title} subtitle={site.description} span={7} offset={2} />
     <SearchWithArticle>
       <SearchPractices practicesAll={{ sortedCorePractices, sortedAdditionalPractices }} />
       <Article contentBody={formatPageImageToCloudinaryUrl(site.bodyContent)} />

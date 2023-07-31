@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 import PostSiteHead from 'components/shared/head/PostSiteHead';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import PostBody from 'components/organisms/post/PostBody';
 import Sidebar from 'components/organisms/post/PostSidebar';
 import { SideBarContainer } from '../../styles/Sidebar.style';
@@ -21,7 +21,7 @@ const PostPage = ({
   return (
     <>
       <PostSiteHead seo={seo} canonicalUrl={canonicalUrl} post={post} authors={authors} />
-      <SingleSubHeader title={post.title} subtitle={post.subTitle} offset={0} span={8} authors={authors} date={post.date} isBlog />
+      <SubHeader title={post.title} subtitle={post.subTitle} offset={0} span={8} authors={authors} date={post.date} isBlog />
       <Container className="d-print-none">
         <Row className="gap-4 d-flex justify-content-center">
           <Col sm={12} lg={7}>

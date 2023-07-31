@@ -68,7 +68,7 @@ export const globalColor = {
   },
 };
 
-const canabisLawColors = {
+export const cannabisLawColors = {
   cannabisColorGray: '#EBE9E4',
   cannabisColorDarkGray: '#202020',
 };
@@ -90,6 +90,16 @@ export const buttonsHoverActive = `
 
   &:active {
     background-color: ${globalColor.red.burgundy};
+  }
+`;
+
+export const buttonHoverActive = (hoverColor, activeColor) => `
+    &:hover {
+    background-color: ${hoverColor};
+  }
+
+  &:active {
+    background-color: ${activeColor};
   }
 `;
 

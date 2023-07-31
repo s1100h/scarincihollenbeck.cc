@@ -2,14 +2,14 @@ import Selection from 'components/organisms/attorneys/Selection';
 import Filters from 'components/organisms/attorneys/Filters';
 import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
 import useIsScroll from 'hooks/useIsScroll';
 import useStateScreen from 'hooks/useStateScreen';
 import { useContext } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import FAQ from 'components/atoms/FAQ';
-import { ATTORNEYS_FAQ, OFFICE_LOCATIONS } from 'utils/constants';
+import { ATTORNEYS_FAQ } from 'utils/constants';
 
 const AttorneysPage = ({
   sPractices, seo, locations, designations, site, canonicalUrl,
@@ -23,7 +23,7 @@ const AttorneysPage = ({
   return (
     <>
       <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
-      <SingleSubHeader isFilter title={site.title} subtitle={site.description} />
+      <SubHeader isFilter title={site.title} subtitle={site.description} />
       <MainAttorneysContainer>
         {/** Filters */}
         {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (

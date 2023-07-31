@@ -1,4 +1,4 @@
-import { Montserrat, Poppins } from '@next/font/google';
+import { Montserrat, Poppins, Rajdhani } from '@next/font/google';
 
 export const montserrat = Montserrat({
 	weight: ['300', '500', '600', '900'],
@@ -14,3 +14,9 @@ export const poppins = Poppins({
 	preload: true,
 });
 
+export const rajdhani = Rajdhani({
+	weight: ['400'],
+	subsets: ['latin'],
+	variable: '--font-rajdhani',
+	preload: true,
+});

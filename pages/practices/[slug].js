@@ -6,6 +6,7 @@ import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import { fetchAPI } from '../../utils/api';
 import { getDataForPractice, getJustClientAlertOnePost } from '../../utils/graphql-queries';
+import CannabisLawPage from '../../components/practices-special/cannabis-law/CannabisLawPage';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -160,6 +161,14 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   };
 };
 
+const renderPracticePage = (pageSlug, propsPage) => {
+  const pagesMap = {
+    'new-jersey-cannabis-law': <CannabisLawPage {...propsPage} />,
+  };
+
+  return pagesMap[pageSlug] || <PracticePage {...propsPage} />;
+};
+
 /** Single practice page component */
 const SinglePractice = ({
   practice, corePractices, practiceChildren, slug, attorneysSchemaData, chairPractice, attorneyListPractice, keyContactsList, latestFromTheFirm,
@@ -200,11 +209,8 @@ const SinglePractice = ({
     keyContactsList,
     latestFromTheFirm,
   };
-  return (
-    <ApolloWrapper>
-      <PracticePage {...practiceProps} />
-    </ApolloWrapper>
-  );
+
+  return <ApolloWrapper>{renderPracticePage(slug, practiceProps)}</ApolloWrapper>;
 };
 
 export default SinglePractice;

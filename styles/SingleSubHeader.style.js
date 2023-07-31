@@ -99,7 +99,7 @@ export const SubHeaderContent = styled(Container)`
 
 export const Description = styled.div`
   width: 50vw;
-  color: ${globalColor.gray.gray80};
+  color: ${({ whiteVariant }) => (whiteVariant ? globalColor.white : globalColor.gray.gray80)};
   margin-bottom: 0;
   font-size: ${rem(20)};
 

@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import SingleCareerBody from 'components/organisms/career/CareerBody';
 import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
@@ -18,7 +18,7 @@ const CareerProfile = ({ career, canonicalUrl }) => {
   return (
     <>
       <BasicSiteHead title={title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
-      <SingleSubHeader title={career.title} subtitle={seo.metaDescription} offset={0} span={8} />
+      <SubHeader title={career.title} subtitle={seo.metaDescription} offset={0} span={8} />
       <Container>
         <Row>
           <Col sm={12} lg={9} className="mt-3">

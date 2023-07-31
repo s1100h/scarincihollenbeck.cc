@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { ATTORNEYS_FAQ, PRODUCTION_URL } from 'utils/constants';
@@ -48,7 +48,7 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
           }}
         />
       </Head>
-      <SingleSubHeader title={currentOffice.title} subtitle={seo.metaDesc} backgroundImage={currentOffice.featuredImage} />
+      <SubHeader title={currentOffice.title} subtitle={seo.metaDesc} backgroundImage={currentOffice.featuredImage} />
       <Container className="mb-5">
         {locations?.length > 0 && <OfficesLinkTabs officeImage={currentOffice.featuredImage} officesForTabs={locations} />}
         <Row>

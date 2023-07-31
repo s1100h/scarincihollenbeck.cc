@@ -1,4 +1,4 @@
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { ContainerXXL } from 'styles/Containers.style';
 import NonFiltered from '../molecules/attorneys/NonFiltered';
@@ -8,7 +8,7 @@ const AdministrationPage = ({
 }) => (
   <>
     <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
-    <SingleSubHeader title={site.title} subtitle={site.description} offset={2} span={7} />
+    <SubHeader title={site.title} subtitle={site.description} offset={2} span={7} />
     <ContainerXXL>
       <NonFiltered attorneys={admins} />
     </ContainerXXL>

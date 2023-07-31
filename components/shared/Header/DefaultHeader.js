@@ -1,44 +1,36 @@
 import { useContext } from 'react';
-import MobileMenu from 'components/organisms/Navbar/MobileMenu/MobileMenu';
-import GlobalSearch from 'components/shared/GlobalSearch/GlobalSearch';
-import LinkButtons from 'components/organisms/Navbar/LinkButtons';
-import Navigation from 'components/organisms/Navbar/Navigation';
-import Logo from 'components/organisms/Navbar/Logo';
-import {
-  HeaderContainer, Wrapper, LogoBox, LinksBox, DesktopVisible, MobileVisible,
-} from 'styles/Header.style';
-import Filters from 'components/organisms/attorneys/Filters';
-import { AttorneysContext } from 'contexts/AttorneysContext';
-import Selection from 'components/organisms/attorneys/Selection';
-import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
-import useStateScreen from 'hooks/useStateScreen';
+import {
+  DesktopVisible, HeaderContainer, LinksBox, LogoBox, MobileVisible, Wrapper,
+} from '../../../styles/Header.style';
+import Logo from '../../organisms/Navbar/Logo';
+import GlobalSearch from '../GlobalSearch/GlobalSearch';
+import LinkButtons from '../../organisms/Navbar/LinkButtons';
+import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
+import Navigation from '../../organisms/Navbar/Navigation';
+import Filters from '../../organisms/attorneys/Filters';
+import Selection from '../../organisms/attorneys/Selection';
+import { AttorneysContext } from '../../../contexts/AttorneysContext';
+import useStateScreen from '../../../hooks/useStateScreen';
 
-export default function Header() {
+const DefaultHeader = ({ scrollTop, pathname }) => {
   const {
     dataForFilter, userInput, select, handleChange, onSelect, clearQuery, clearAll, onSelectLetter, attorneysContext,
   } = useContext(AttorneysContext);
   const { isTabletScreen } = useStateScreen();
-
   const { sPractices, locations, designations } = dataForFilter;
-
-  const { scrollTop } = useIsScroll();
-
-  const { pathname } = useRouter();
-
   const isAttorneysPage = pathname === '/attorneys';
-
   return (
     <HeaderContainer scrollDown={scrollTop}>
       <Wrapper>
         <LogoBox>
-          <Logo scrollTop={scrollTop} />
+          <Logo />
         </LogoBox>
         <DesktopVisible>
           <GlobalSearch scrollTop={scrollTop} />
         </DesktopVisible>
         <LinksBox>
-          <LinkButtons />
+          <LinkButtons variant="default" />
         </LinksBox>
         <MobileMenu />
       </Wrapper>
@@ -53,4 +45,6 @@ export default function Header() {
       )}
     </HeaderContainer>
   );
-}
+};
+
+export default DefaultHeader;
