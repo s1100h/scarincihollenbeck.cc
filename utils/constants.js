@@ -521,6 +521,7 @@ export const inputsCareerForm = [
     name: 'CoverLetter',
     rules: 'required',
     label: 'Upload your cover letter',
+    addInformation: ' (This field is required)',
     accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
   },
   {
@@ -528,19 +529,18 @@ export const inputsCareerForm = [
     name: 'Resume',
     rules: 'required',
     label: 'Upload your resume',
+    addInformation: ' (This field is required)',
     accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
   },
   {
     type: 'file',
     name: 'WritingSample',
-    rules: 'required',
     label: 'Upload a writing sample',
     accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
   },
   {
     type: 'file',
     name: 'Transcript',
-    rules: 'required',
     label: 'Upload a transcript',
     accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
   },
