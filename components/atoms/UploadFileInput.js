@@ -29,7 +29,10 @@ const UploadFileInput = ({ onChange, ...attributes }) => {
 
   return (
     <UploadContainer>
-      <UploadTitle>{attributes.label}</UploadTitle>
+      <UploadTitle>
+        {attributes.label}
+        <span>{attributes.addInformation}</span>
+      </UploadTitle>
       <UploadRow>
         <UploadIcon>
           <BsPaperclip size={20} />

@@ -98,30 +98,30 @@ export const AttorneysContainer = styled.section`
   > div {
     display: flex;
     flex-direction: column;
-    }
+  }
 
   .chair-box {
     margin-right: 10px;
   }
-    
-   .attorneys-list-box {
-     width: 100%;
-     
-     > div {
-       display: flex;
-       flex-wrap: wrap;
-       gap: 1%;
-       margin-bottom: 1%;
-     }
-   }
+
+  .attorneys-list-box {
+    width: 100%;
+
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1%;
+      margin-bottom: 1%;
+    }
   }
 
   .vertical-attorney-card {
     margin-bottom: 1%;
     width: 220px;
-    
+
     address {
       margin-bottom: 0;
+    }
   }
 
   ${media_breakpoint_exactly_down(1040)} {
