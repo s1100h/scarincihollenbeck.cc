@@ -29,10 +29,3 @@ export async function fetchAPI(query, { variables } = {}) {
     throw new Error('Failed to fetch API');
   }
 }
-
-/** Get locations for home page */
-export async function homePageLocations() {
-  const data = await fetchAPI(homePageLocationsQuery, {});
-
-  return data?.officeLocations?.edges;
-}

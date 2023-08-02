@@ -1,6 +1,16 @@
 import styled from 'styled-components';
-import { successMessage } from './global_styles/Global.styles';
+import { globalColor, successMessage } from './global_styles/Global.styles';
 
+export const CareerBlockTitle = styled.h2`
+  font-size: 2rem;
+  text-transform: capitalize;
+  font-weight: 500;
+`;
+
+export const CareerBlockSubtitle = styled.p`
+  color: ${globalColor.gray.gray80};
+  margin-bottom: 40px;
+`;
 export const CareerFormContainer = styled.div`
   padding: 20px 0;
   position: relative;
