@@ -1,15 +1,16 @@
 import React, { useId } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import empty from 'is-empty';
 import Loader from '../../atoms/Loader';
 import PositionCard from '../../molecules/careers/PositionCard';
-import { CareerBlockSubtitle, CareerBlockTitle } from '../../../styles/Careers.style';
+import { CareerBlockSubtitle, CareerBlockTitle, CareersBlock } from '../../../styles/Careers.style';
+import { OptionalIndent } from '../../../styles/global_styles/Global.styles';
 
 const EmptyResults = dynamic(() => import('components/molecules/careers/EmptyResults'));
 const renderCareersBlocks = (careersObj, handleClickCareerCallback) => Object.keys(careersObj).map((careerType) => (
-  <React.Fragment key={useId()}>
+  <CareersBlock key={useId()}>
     <CareerBlockTitle>{`${careerType}s`}</CareerBlockTitle>
     <CareerBlockSubtitle>
       Open position in our
@@ -31,9 +32,38 @@ const renderCareersBlocks = (careersObj, handleClickCareerCallback) => Object.ke
         />
       </Col>
     ))}
-  </React.Fragment>
+  </CareersBlock>
 ));
-
+const arr = {
+  attorney: [
+    {
+      contact: ['careers@sh-law.com'],
+      databaseId: 164117,
+      duration: null,
+      jobSummaryForCard:
+        'Reporting to the Environmental Partner this role will be responsible to provide professional legal counsel in a leading and supervisory role in one or more of the areas of the firm’s environmental practice, including litigation, permitting, land use, redevelopment, regulatory compliance, and transactional s',
+      position: 'Environmental Partner (Attorney)',
+      positionLocation: 'Little Falls, NJ, Red Bank, NJ, New York, NY',
+      positionType: 'Attorney',
+      slug: 'environmental-partner-attorney',
+      startDate: 'June 2023',
+    },
+  ],
+  administration: [
+    {
+      contact: ['careers@sh-law.com'],
+      databaseId: 164117,
+      duration: null,
+      jobSummaryForCard:
+        'Reporting to the Environmental Partner this role will be responsible to provide professional legal counsel in a leading and supervisory role in one or more of the areas of the firm’s environmental practice, including litigation, permitting, land use, redevelopment, regulatory compliance, and transactional s',
+      position: 'Environmental Partner (Attorney)',
+      positionLocation: 'Little Falls, NJ, Red Bank, NJ, New York, NY',
+      positionType: 'Attorney',
+      slug: 'environmental-partner-attorney',
+      startDate: 'June 2023',
+    },
+  ],
+};
 const CareersResults = ({ positions }) => {
   const { push } = useRouter();
   const handleClickCareer = (slug) => push(slug);
@@ -43,11 +73,10 @@ const CareersResults = ({ positions }) => {
       {empty(positions) ? (
         <Loader />
       ) : !empty(positions) ? (
-        <div className="w-100 mt-0">
-          <Container className="mt-2">
-            <Row>{renderCareersBlocks(positions, handleClickCareer)}</Row>
-          </Container>
-        </div>
+        <>
+          <OptionalIndent mt={30} />
+          {renderCareersBlocks(positions, handleClickCareer)}
+        </>
       ) : (
         <EmptyResults />
       )}

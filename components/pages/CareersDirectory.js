@@ -13,11 +13,7 @@ const CareersPage = ({
     <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
     <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={7} />
     <FullWidth>
-      {careers && (
-        <div className="mb-5">
-          <CareersResults positions={careers} />
-        </div>
-      )}
+      {careers && <CareersResults positions={careers} />}
       <CareersEqualOpportunity title="Equal Employment Opportunity" contentBody={site.bodyContent} />
     </FullWidth>
   </>
