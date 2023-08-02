@@ -34,36 +34,7 @@ const renderCareersBlocks = (careersObj, handleClickCareerCallback) => Object.ke
     ))}
   </CareersBlock>
 ));
-const arr = {
-  attorney: [
-    {
-      contact: ['careers@sh-law.com'],
-      databaseId: 164117,
-      duration: null,
-      jobSummaryForCard:
-        'Reporting to the Environmental Partner this role will be responsible to provide professional legal counsel in a leading and supervisory role in one or more of the areas of the firm’s environmental practice, including litigation, permitting, land use, redevelopment, regulatory compliance, and transactional s',
-      position: 'Environmental Partner (Attorney)',
-      positionLocation: 'Little Falls, NJ, Red Bank, NJ, New York, NY',
-      positionType: 'Attorney',
-      slug: 'environmental-partner-attorney',
-      startDate: 'June 2023',
-    },
-  ],
-  administration: [
-    {
-      contact: ['careers@sh-law.com'],
-      databaseId: 164117,
-      duration: null,
-      jobSummaryForCard:
-        'Reporting to the Environmental Partner this role will be responsible to provide professional legal counsel in a leading and supervisory role in one or more of the areas of the firm’s environmental practice, including litigation, permitting, land use, redevelopment, regulatory compliance, and transactional s',
-      position: 'Environmental Partner (Attorney)',
-      positionLocation: 'Little Falls, NJ, Red Bank, NJ, New York, NY',
-      positionType: 'Attorney',
-      slug: 'environmental-partner-attorney',
-      startDate: 'June 2023',
-    },
-  ],
-};
+
 const CareersResults = ({ positions }) => {
   const { push } = useRouter();
   const handleClickCareer = (slug) => push(slug);
