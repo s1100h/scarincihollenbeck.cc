@@ -1,29 +1,65 @@
 import styled from 'styled-components';
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 
-export const CardContainer = styled.div`
+export const CareerCard = styled.div`
   display: flex;
-  padding: 8px;
+  padding: 20px;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  position: relative;
-
+  box-shadow: ${globalShadow.allSideShadow};
   transition: 0.8s;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: ${globalColor.blue.dirtyBlue};
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+  }
+
+  .position-location-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .icon-and-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+
+    svg {
+      color: ${globalColor.gray.gray80};
+    }
+  }
+
+  .position-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    width: fit-content;
+    height: 30px;
+    background-color: ${globalColor.graySmoke.whiteSmoke};
+    border-radius: 28px;
+  }
+
+  .job-mini-description {
+    display: -webkit-box;
+    color: ${globalColor.gray.gray80};
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 30px;
+    font-size: ${rem(14)};
+  }
+
   :hover {
     cursor: pointer;
-    background-color: whitesmoke;
+    box-shadow: ${globalShadow.hoveredShadow};
   }
-`;
-
-export const TitlePosition = styled.p`
-  font-weight: 600;
-  color: #b50000;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  border-bottom: 1px solid #dee2e6;
 `;

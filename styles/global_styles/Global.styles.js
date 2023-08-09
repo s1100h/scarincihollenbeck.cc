@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
 
 const mainFontSize = 16;
@@ -362,6 +362,7 @@ footer .wrapper-section {
 @media (min-width: 1200px) {
   .container {
     max-width: 1440px;
+    padding: 0 5%;
   }
 }
 
@@ -493,4 +494,9 @@ export const successMessage = `
     font-size: 1rem;
     font-weight: 400;
   }
+`;
+
+export const OptionalIndent = styled.div`
+  margin-top: ${({ mt }) => (mt ? `${mt}px` : '0')};
+  margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
 `;
