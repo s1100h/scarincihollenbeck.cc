@@ -933,6 +933,7 @@ export const careersQuery = `query BasicPageQuery {
         startDate
         positionLocation
         positionType
+        jobSummaryForCard
       }
     }
   }
