@@ -3,8 +3,8 @@ import { Nav, NavDropdown } from 'react-bootstrap';
 import { NavbarStyled } from 'styles/Navigation.style';
 import { SITE_NAVIGATION } from 'utils/constants';
 
-const Navigation = ({ scrollTop }) => (
-  <NavbarStyled className="navContainer">
+const Navigation = ({ scrollTop, isHidden }) => (
+  <NavbarStyled className={`${isHidden && 'd-none'} navContainer`}>
     <Nav className="navContainerWrapper">
       {scrollTop && (
         <Nav.Item id="home">

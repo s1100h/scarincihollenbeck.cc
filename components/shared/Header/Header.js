@@ -2,6 +2,7 @@ import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
 import SpecialHeader from './SpecialHeader';
 import DefaultHeader from './DefaultHeader';
+import { getSlugFromUrl } from '../../../utils/helpers';
 
 const renderHeader = (pageSlug, props) => {
   const pagesMap = {
@@ -12,8 +13,8 @@ const renderHeader = (pageSlug, props) => {
 };
 export default function Header() {
   const { scrollTop } = useIsScroll();
-  const { pathname, query } = useRouter();
-  const slug = query.slug;
+  const { pathname } = useRouter();
+  const slug = getSlugFromUrl(pathname);
 
   const headerProps = {
     scrollTop,

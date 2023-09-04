@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'utils/graphql-queries';
+import { authorPostsByIdQuery, categoryPostsByIdQuery } from 'requests/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { useContext, useEffect, useMemo } from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';

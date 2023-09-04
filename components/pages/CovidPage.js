@@ -4,7 +4,7 @@ import ContactForm from 'components/shared/ContactForm/ContactForm';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
-import { categoryPostsByIdQuery } from 'utils/graphql-queries';
+import { categoryPostsByIdQuery } from 'requests/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import ContentTitle from 'components/atoms/ContentTitle';
 import { FirstColumn, SecondColumn, TwoColumnsContainer } from 'styles/Containers.style';

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { cannabisLawColors, globalColor } from '../global_styles/Global.styles';
+import Link from 'next/link';
 
-export const ScrollDownContainer = styled.div`
+export const ScrollDownContainer = styled(Link)`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -25,5 +26,15 @@ export const CircleArrowBox = styled.div`
 
   svg {
     font-size: 40px;
+    color: ${cannabisLawColors.cannabisColorDarkGray};
+  }
+
+  :hover {
+    background-color: transparent;
+    border: 1px solid ${globalColor.white};
+
+    svg {
+      color: ${globalColor.white};
+    }
   }
 `;

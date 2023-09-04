@@ -13,8 +13,8 @@ export const BurgerBtn = styled.button`
   border: 0;
 
   .icon {
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
     color: black;
   }
 

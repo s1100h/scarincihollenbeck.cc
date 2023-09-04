@@ -1,6 +1,5 @@
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, createConnector } from 'react-instantsearch-dom';
-
 import { ALGOLIA_PUBLIC_API, ALGOLIA_APP_ID, ALGOLIA_SEARCH_INDEX } from 'utils/constants';
 import MySearchBox from './MySearchBox';
 import AuxiliarySearch from './AuxiliarySearch';
@@ -34,10 +33,10 @@ const connectWithQuery = createConnector({
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
 connectWithQuery(AuxiliarySearch);
 
-export default function GlobalSearch() {
+export default function GlobalSearch({ onHandleClickSearch }) {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
-      <ConnectedSearchBox placeholder="Search" />
+      <ConnectedSearchBox isOpenCloseSearch={onHandleClickSearch} placeholder="Search" />
     </InstantSearch>
   );
 }

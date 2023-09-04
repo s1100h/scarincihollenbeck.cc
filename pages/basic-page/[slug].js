@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import BasicPageContent from 'components/pages/BasicPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { basicPagesQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { basicPagesQuery } from 'requests/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));

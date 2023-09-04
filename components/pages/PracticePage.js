@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { categoryPostsByIdQuery } from 'utils/graphql-queries';
+import { categoryPostsByIdQuery } from 'requests/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { useRouter } from 'next/router';

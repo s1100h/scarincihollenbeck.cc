@@ -22,11 +22,12 @@ export const SearchForm = styled(Form)`
       right: 23px;
       top: calc(50% - 0.5em);
       transform: translateY(-6%);
+      z-index: 101;
     }
   }
 
   ${media_breakpoint_down('md')} {
-    width: 80vw;
+    width: -webkit-fill-available;
     align-self: flex-end;
   }
 `;
@@ -53,38 +54,17 @@ export const HitsStyled = styled(Hits)`
 `;
 
 export const ResultsContainer = styled.div`
-  max-width: 725px;
-  min-width: 320px;
-  max-height: 670px;
+  width: -webkit-fill-available;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-top: 48px;
   padding-top: 20px;
+  max-height: 670px;
   background-color: #fcfaff;
   overflow: hidden;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   position: absolute;
-  left: 50%;
-  transform: translate(-50%);
   z-index: 99;
-
-  ${media_breakpoint_down('xl')} {
-    transform: translate(-23%);
-    left: 30%;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    transform: translate(-12%);
-    left: 20%;
-  }
-
-  ${media_breakpoint_down('md')} {
-    transform: translate(-4%);
-    left: 10%;
-  }
-
-  ${media_breakpoint_down('sm')} {
-    width: 100%;
-    left: 4%;
-  }
 
   .ais-Pagination {
     padding: 0 10px;

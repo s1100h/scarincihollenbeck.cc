@@ -1,7 +1,6 @@
 import { useContext } from 'react';
-import { useRouter } from 'next/router';
 import {
-  DesktopVisible, HeaderContainer, LinksBox, LogoBox, MobileVisible, Wrapper,
+  DefaultHeaderSearchContainer, HeaderContainer, LinksBox, LogoBox, Wrapper,
 } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
 import GlobalSearch from '../GlobalSearch/GlobalSearch';
@@ -26,17 +25,14 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
         <LogoBox>
           <Logo />
         </LogoBox>
-        <DesktopVisible>
-          <GlobalSearch scrollTop={scrollTop} />
-        </DesktopVisible>
+        <DefaultHeaderSearchContainer>
+          <GlobalSearch />
+        </DefaultHeaderSearchContainer>
         <LinksBox>
           <LinkButtons variant="default" />
         </LinksBox>
         <MobileMenu />
       </Wrapper>
-      <MobileVisible>
-        <GlobalSearch scrollTop={scrollTop} />
-      </MobileVisible>
       <Navigation scrollTop={scrollTop} />
       {scrollTop && isAttorneysPage && !isTabletScreen && (
         <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect} attorneysContext={attorneysContext} onSelectLetter={onSelectLetter} select={select}>

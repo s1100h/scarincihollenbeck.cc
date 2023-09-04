@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LinksBox, LogoBox, MobileVisible } from '../../../styles/Header.style';
+import { LogoBox } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
 import GlobalSearch from '../GlobalSearch/GlobalSearch';
 import LinkButtons from '../../organisms/Navbar/LinkButtons';
@@ -7,30 +7,35 @@ import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
 import Navigation from '../../organisms/Navbar/Navigation';
 import useIsScroll from '../../../hooks/useIsScroll';
 import {
-  SearchBoxContainer, SearchOpenBtn, SpecialHeaderContainer, VisibleHiddenSearch,
+  LinksBoxSpecial, SearchBoxContainer, SearchOpenBtn, SpecialHeaderContainer, VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
 
 const SpecialHeader = () => {
   const { scrollTop } = useIsScroll();
   const [isOpenSearch, setOpenSearch] = useState(false);
+
+  const handleOpenSearch = () => {
+    setOpenSearch(!isOpenSearch);
+  };
+
   return (
     <>
-      <SpecialHeaderContainer scrollDown={scrollTop}>
+      <SpecialHeaderContainer isChangeOrder={isOpenSearch} scrollDown={scrollTop}>
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
-        <Navigation scrollTop={scrollTop} />
-        <SearchBoxContainer>
-          <SearchOpenBtn onClick={() => setOpenSearch(true)} />
+        <Navigation isHidden={isOpenSearch} scrollTop={scrollTop} />
+        <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
+          <GlobalSearch onHandleClickSearch={handleOpenSearch} />
+        </VisibleHiddenSearch>
+        <SearchBoxContainer isOpenSearch={isOpenSearch ? 'true' : ''}>
+          <SearchOpenBtn onClick={handleOpenSearch} />
         </SearchBoxContainer>
-        <LinksBox>
+        <LinksBoxSpecial>
           <LinkButtons variant="special" />
           <MobileMenu />
-        </LinksBox>
+        </LinksBoxSpecial>
       </SpecialHeaderContainer>
-      <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
-        <GlobalSearch />
-      </VisibleHiddenSearch>
     </>
   );
 };

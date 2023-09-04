@@ -810,6 +810,15 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
               sourceUrl
             }
           }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                databaseId
+                uri
+                title
+              }
+            }
+          }
         }
       }
       sectionChief {
@@ -824,6 +833,15 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
             lastName
             profileImage {
               sourceUrl
+            }
+          }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                databaseId
+                uri
+                title
+              }
             }
           }
         }
@@ -851,12 +869,86 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
               sourceUrl
             }
           }
+          attorneyPrimaryRelatedPracticesLocationsGroups {
+            officeLocation {
+              ... on OfficeLocation {
+                databaseId
+                uri
+                title
+              }
+            }
+          }
         }
       }
     }
     seo {
       title
       metaDesc
+    }
+        practiceContentByCategory {
+      cannabisLaw {
+        cardsInfo {
+          cards {
+            title
+            paragraph
+          }
+        }
+        photoBlock {
+          articleBox {
+            paragraph
+            title
+          }
+          photo1 {
+            altText
+            caption
+            sourceUrl
+          }
+          photo2 {
+            altText
+            sourceUrl
+            caption
+          }
+        }
+        descriptionSubheader
+        subTitle
+        attorneysArticleBlock {
+          paragraph
+          title
+        }
+        allwaysArticleBlock
+        keycontactsblock {
+          listOfLegalGuidanceRegarding {
+            issue
+          }
+          underlay {
+            altText
+            sourceUrl
+          }
+        }
+        helpArticleBlock {
+          title
+          paragraphs {
+            paragraph
+          }
+        }
+        newspaperBlock {
+          article {
+            paragraph
+            title
+          }
+          newspaperBox {
+            newspaperArticle
+            newspaperPhotoBox {
+              altText
+              sourceUrl
+              caption
+            }
+          }
+        }
+        subheaderBackgroundVideo {
+          link
+        }
+      }
     }
   }
   practices(first: 100) {
@@ -884,7 +976,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
         }
       }
     }
-  }  
+  }
 }
 `;
 

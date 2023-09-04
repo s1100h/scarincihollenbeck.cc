@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { PRODUCTION_URL } from 'utils/constants';
 import HolidayPage from 'components/pages/HolidayPage';
-import { fetchAPI } from 'utils/api';
-import { holidayPageQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { holidayPageQuery } from 'requests/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));

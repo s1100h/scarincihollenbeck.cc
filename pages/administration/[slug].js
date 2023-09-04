@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic';
 import AdminProfile from 'components/pages/AdminProfile';
 import { PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
 import { concatNameUser } from 'utils/helpers';
-import { fetchAPI } from '../../utils/api';
-import { administrationPersoneQuery } from '../../utils/graphql-queries';
+import { fetchAPI } from '../../requests/api';
+import { administrationPersoneQuery } from '../../requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

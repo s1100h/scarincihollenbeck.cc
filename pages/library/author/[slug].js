@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic';
 import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { getSEOforAuthorPosts } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { getSEOforAuthorPosts } from 'requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

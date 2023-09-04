@@ -1,8 +1,7 @@
 import React, { createContext, useState } from 'react';
-import { fetchAPI } from '../utils/api';
-import { authorsPostQuery } from '../utils/graphql-queries';
+import { fetchAPI } from '../requests/api';
+import { authorsPostQuery } from '../requests/graphql-queries';
 import { sortByKey } from '../utils/helpers';
-import { useAttorneysSearch } from '../hooks/useAttornySearch';
 
 export const AttorneysContext = createContext(null);
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { fetchAPI } from 'utils/api';
-import { attorneyBySlugQuery, attorneyNewsEventsQuery, checkAttorneyPostsQueryByIdAndSlug } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { attorneyBySlugQuery, attorneyNewsEventsQuery, checkAttorneyPostsQueryByIdAndSlug } from 'requests/graphql-queries';
 import {
   concatNameUser, fetchExternalPosts, formatSrcToCloudinaryUrl, formatSrcToCloudinaryUrlPdf, sanitizeExternalArticles,
 } from 'utils/helpers';

@@ -3,7 +3,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import { ButtonBox, ContentBox, MoreTabContainer } from 'styles/attorney-page/MoreTab.style';
 import { ButtonTab } from 'styles/ButtonsMenu.style';
 import useApolloQuery from 'hooks/useApolloQuery';
-import { attorneyPostsQueryByIdAndSlug } from 'utils/graphql-queries';
+import { attorneyPostsQueryByIdAndSlug } from 'requests/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import { useRouter } from 'next/router';
 import BlogList from './BlogList';

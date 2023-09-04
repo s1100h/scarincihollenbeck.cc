@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import SpecialSubHeader from './SpecialSubHeader';
 import DefaultSubHeader from './DefaultSubHeader';
+import { getSlugFromUrl } from '../../utils/helpers';
 
 const renderSubHeader = (pageSlug, props) => {
   const pagesMap = {
@@ -10,10 +11,10 @@ const renderSubHeader = (pageSlug, props) => {
   return pagesMap[pageSlug] || <DefaultSubHeader {...props} />;
 };
 const SubHeader = ({
-  title, subtitle, isBlog, isHoliday, isFilter = false, authors = [], date = '', tabs, setActiveTab, activeTab, backgroundImage,
+  title, subtitle, isBlog, isHoliday, isFilter = false, authors = [], date = '', tabs, setActiveTab, activeTab, backgroundImage, anchorId, article, backgroundVideo,
 }) => {
-  const { query } = useRouter();
-  const slug = query.slug;
+  const { pathname } = useRouter();
+  const slug = getSlugFromUrl(pathname);
   const subHeaderProps = {
     title,
     subtitle,
@@ -26,6 +27,9 @@ const SubHeader = ({
     setActiveTab,
     activeTab,
     backgroundImage,
+    anchorId,
+    article,
+    backgroundVideo,
   };
 
   return <>{renderSubHeader(slug, subHeaderProps)}</>;

@@ -4,8 +4,8 @@ import LibraryDirectory from 'components/pages/LibraryDirectory';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import { fetchAPI } from 'utils/api';
-import { categoryPostQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { categoryPostQuery } from 'requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

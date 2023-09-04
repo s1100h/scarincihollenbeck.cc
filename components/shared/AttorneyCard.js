@@ -6,7 +6,7 @@ import {
 import { useId } from 'react';
 import ContactBoxTemplate from '../atoms/ContactBox';
 
-const renderLinkToLocationPractice = (locationsOrPractice) => {
+export const renderLinkToLocationPractice = (locationsOrPractice) => {
   if (Array.isArray(locationsOrPractice)) {
     if (locationsOrPractice[0]?.uri) {
       return locationsOrPractice.map((office, idx) => (
@@ -49,7 +49,7 @@ export default function AttorneyCard({
   link, image, name, designation, locations, number, email, title,
 }) {
   return (
-    <AttorneyCardBox>
+    <AttorneyCardBox className="attorney-card-box">
       <Link href={link} passHref legacyBehavior>
         <LinkBox>
           <Image placeholder="blur" blurDataURL={image || '/images/sh-mini-diamond-PNG.png'} loading="lazy" src={image || '/images/sh-mini-diamond-PNG.png'} alt={name} width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 125} height={150} />

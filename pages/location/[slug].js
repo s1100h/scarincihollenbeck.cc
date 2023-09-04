@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
 import { LocationContext } from 'contexts/LocationContext';
 import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { getOfficeAndMoreData } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { getOfficeAndMoreData } from 'requests/graphql-queries';
 import { getAttorneys } from '../attorneys';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));

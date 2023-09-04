@@ -9,8 +9,7 @@ export const ButtonLink = styled(Link)`
 
 export const SpecialButtonLink = styled(Link)`
   ${ButtonLinkCss};
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 13px 8px 13px 8px;
   background-color: transparent;
   border-radius: 41px;
   border: 1.5px solid ${cannabisLawColors.cannabisColorGray};

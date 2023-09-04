@@ -1,7 +1,7 @@
 import { sortByKey } from 'utils/helpers';
 import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { practicePageQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { practicePageQuery } from 'requests/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 
 /** Sanitize the practice data and organized it by core practices, additional practices, etc. */
