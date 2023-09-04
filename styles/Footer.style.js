@@ -102,6 +102,10 @@ export const ContactsBox = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 206px;
+
+  ${media_breakpoint_down('sm')} {
+    min-width: auto;
+  }
 `;
 
 export const LinkTitle = styled.p`
