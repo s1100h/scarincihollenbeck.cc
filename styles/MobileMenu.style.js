@@ -3,6 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import empty from 'is-empty';
 
 export const BurgerBtn = styled.button`
   display: none;
@@ -23,6 +24,51 @@ export const BurgerBtn = styled.button`
   }
 `;
 
+export const OffcanvasContainer = styled(Offcanvas)`
+  ${({ variants }) =>
+    !empty(variants) &&
+    `
+  .offcanvas-header {
+    background-color: ${variants.bgColor};
+  }
+
+  .offcanvas-body {
+   	background-color: ${variants.bgColor};
+  }
+
+  .accordion {
+    background-color: ${variants.bgColor};
+  }
+
+  .accordion-body {
+    padding: 0;
+    ul {
+      li {
+        background-color: ${variants.bgColor};
+      }
+    }
+  }
+
+  .accordion-button {
+    background-color: ${variants.bgColor};
+  }
+  
+  .link-btn-header {
+		color: ${variants.buttonsColors.color};
+    svg {
+			fill: ${variants.buttonsColors.color};
+    }
+    border: 1.5px solid ${variants.buttonsColors.color};
+		
+		:hover {
+      color: ${variants.buttonsColors.hover};
+      svg {
+        fill: ${variants.buttonsColors.hover};
+      }
+		}
+  }
+  `}
+`;
 export const OffcanvasBody = styled(Offcanvas.Body)`
   padding: 0;
 `;
