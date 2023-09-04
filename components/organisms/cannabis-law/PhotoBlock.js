@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { PhotoBlockContainer, PhotoCannabisBox } from '../../../styles/practices-special-style/canabis-law/PhotoBlock.style';
-import scarinci from '../../../public/images/Scarinci_word.webp';
-import hollenbeck from '../../../public/images/Hollenbeck_word.webp';
-import wordsPicture from '../../../public/images/Helping_Cannabis_words.webp';
+import scarinci from '../../../public/images/scarinci_word.webp';
+import hollenbeck from '../../../public/images/hollenbeck_word.webp';
+import wordsPicture from '../../../public/images/helping_Cannabis_words.webp';
 import PhotoCardPolaroid from '../../atoms/PhotoCardPolaroid';
 import ArticleCannabis from '../../molecules/cannabis-law/ArticleCannabis';
 
