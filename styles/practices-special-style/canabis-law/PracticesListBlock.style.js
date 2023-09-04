@@ -86,6 +86,10 @@ export const PracticesListContainer = styled.section`
   }
 
   ${media_breakpoint_exactly_down(520)} {
+    .cannabis-leafs-box {
+      width: auto;
+    }
+
     ul {
       column-count: 1;
     }
