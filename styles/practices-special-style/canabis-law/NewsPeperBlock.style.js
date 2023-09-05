@@ -101,6 +101,7 @@ export const NewsPaperContainer = styled.section`
   ${media_breakpoint_down('sm')} {
     div {
       article {
+        align-items: start;
         .article-common-title {
           font-size: 1.5rem;
         }

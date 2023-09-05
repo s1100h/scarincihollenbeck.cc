@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { globalColor } from '../../global_styles/Global.styles';
-import { media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
 
 export const CardsBlockContainer = styled.section`
   display: flex;
@@ -71,13 +71,21 @@ export const CardCannabis = styled.li`
     }
   }
 
+  ${media_breakpoint_down('sm')} {
+    .circle-number {
+      width: 50px;
+      height: 50px;
+    }
+
+    .article-common-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+  }
+
   ${media_breakpoint_exactly_down(445)} {
     width: 400px;
     height: 482px;
-
-    .article-common-title {
-      font-size: 1.8rem;
-    }
 
     p {
       font-size: 1.3rem;

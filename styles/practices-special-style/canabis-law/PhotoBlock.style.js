@@ -111,6 +111,7 @@ export const PhotoCannabisBox = styled.div`
 
   ${media_breakpoint_down('sm')} {
     .words-picture {
+      margin-top: -34px;
       width: 300px;
       height: 120px;
     }
@@ -148,9 +149,21 @@ export const ArticlePhotoContainer = styled.div`
   }
 
   ${media_breakpoint_down('sm')} {
+    justify-content: flex-start;
+    width: 100%;
+
+    article {
+      align-items: flex-start;
+    }
+
     .article-common-title {
+      text-align: start;
       font-size: 1.8rem;
       margin-bottom: 15px;
+    }
+
+    p {
+      text-align: start;
     }
   }
 `;

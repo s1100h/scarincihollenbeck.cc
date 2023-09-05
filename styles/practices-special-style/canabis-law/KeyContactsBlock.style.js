@@ -115,4 +115,10 @@ export const KeyContactsWrapper = styled.div`
       width: 360px;
     }
   }
+
+  ${media_breakpoint_down('sm')} {
+    .attorney-card-box {
+      width: 100%;
+    }
+  }
 `;

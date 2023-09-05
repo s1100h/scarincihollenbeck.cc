@@ -22,20 +22,25 @@ export const AttorneysCannabisContainer = styled.section`
   .attorney-card-box {
     ${attorneyCardForCannabis}
   }
-	
+
+  ${media_breakpoint_down('sm')} {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .attorneys-article-box {
     ${media_breakpoint_down('xl')} {
       p {
-        width: 70%;
+        width: 80%;
       }
     }
 
     ${media_breakpoint_down('lg')} {
       h3 {
-				font-size: 2rem;
-				width: 70%;
-				text-align: center;
-			}
+        font-size: 2rem;
+        width: 70%;
+        text-align: center;
+      }
 
       p {
         font-size: 1.2rem;
@@ -44,18 +49,26 @@ export const AttorneysCannabisContainer = styled.section`
 
     ${media_breakpoint_down('md')} {
       h3 {
-				width: 80%;
-			}
-			
+        width: 80%;
+      }
+
       p {
         font-size: 1.1rem;
       }
-		}
+    }
 
     ${media_breakpoint_down('sm')} {
+      align-items: start;
+
+      h3 {
+        text-align: start;
+      }
+
       p {
+        text-align: start;
         width: 90%;
-				font-size: 1rem;
+        font-size: 1rem;
       }
     }
+  }
 `;

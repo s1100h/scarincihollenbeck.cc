@@ -13,12 +13,14 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
   ${media_breakpoint_down('xl')} {
     .attorneys-article-box {
+      width: 80%;
+
       h3 {
         font-size: 2.3rem;
       }
 
       p {
-        width: 80%;
+        width: 100%;
       }
     }
   }
@@ -37,14 +39,15 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
   ${media_breakpoint_down('sm')} {
     .attorneys-article-box {
+      width: 100%;
+
       h3 {
         font-size: 1.5rem;
-        width: 70%;
-        text-align: center;
+        text-align: start;
       }
 
       p {
-        font-size: 0.8rem;
+        text-align: start;
       }
     }
   }

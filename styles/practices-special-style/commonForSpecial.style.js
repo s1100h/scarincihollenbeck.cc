@@ -17,9 +17,14 @@ export const ArticleCommonBox = styled.article`
   }
 
   p {
+    text-transform: uppercase;
     font-family: var(--font-rajdhani), sans-serif;
     font-size: ${({ paragraphFontSize }) => (!empty(paragraphFontSize) ? `${rem(paragraphFontSize)}` : `${rem(20)}`)};
     font-weight: 500;
     color: ${({ isColorWordsWhite }) => (!empty(isColorWordsWhite) ? `${globalColor.white}` : `${cannabisLawColors.cannabisColorDarkGray}`)};
   }
+`;
+
+export const FullHDContainer = styled.div`
+  width: 1950px;
 `;

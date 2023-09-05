@@ -38,4 +38,20 @@ export const WeAdviseThisBlockContainer = styled.div`
       font-size: 1rem;
     }
   }
+
+  ${media_breakpoint_down('sm')} {
+    justify-content: start;
+    padding-left: 15px;
+    padding-right: 15px;
+    div {
+      text-align: start;
+      width: 100%;
+
+      img {
+        right: 8px;
+        bottom: -70px;
+        transform: rotate(-3deg);
+      }
+    }
+  }
 `;
