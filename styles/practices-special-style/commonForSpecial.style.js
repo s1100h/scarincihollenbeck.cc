@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { cannabisLawColors, globalColor, rem } from '../global_styles/Global.styles';
 import empty from 'is-empty';
+import { media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
 
 export const ArticleCommonBox = styled.article`
   display: flex;
@@ -27,4 +28,9 @@ export const ArticleCommonBox = styled.article`
 
 export const FullHDContainer = styled.div`
   width: 1950px;
+
+  ${media_breakpoint_exactly_down(1980)} {
+    // display: ${({ display }) => (display ? display : 'block')};
+    width: 100%;
+  }
 `;

@@ -17,6 +17,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
       h3 {
         font-size: 2.3rem;
+        text-align: center;
       }
 
       p {
@@ -40,7 +41,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
   ${media_breakpoint_down('sm')} {
     .attorneys-article-box {
       width: 100%;
-
+      align-items: start;
       h3 {
         font-size: 1.5rem;
         text-align: start;

@@ -8,6 +8,10 @@ export const KeyContactsBlockContainer = styled.section`
   background-color: ${cannabisLawColors.cannabisColorDarkGray};
   padding: 140px 3% 140px 3%;
 
+  > div {
+    display: flex;
+  }
+
   .list-smoker-box {
     margin-right: 40px;
 
@@ -49,8 +53,10 @@ export const KeyContactsBlockContainer = styled.section`
     top: 73%;
   }
 
-  ${media_breakpoint_down('xl')} {
-    flex-direction: column;
+  ${media_breakpoint_exactly_down(1440)} {
+    > div {
+      flex-direction: column;
+    }
 
     .list-smoker-box {
       margin-right: 0;
@@ -108,7 +114,7 @@ export const KeyContactsWrapper = styled.div`
     ${attorneyCardForCannabis}
   }
 
-  ${media_breakpoint_down('xl')} {
+  ${media_breakpoint_exactly_down(1440)} {
     margin-top: 140px;
 
     .attorney-card-box {

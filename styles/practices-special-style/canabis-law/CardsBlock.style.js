@@ -10,17 +10,21 @@ export const CardsBlockContainer = styled.section`
 
   ul {
     display: flex;
+    justify-content: center;
     gap: 3%;
   }
 
   ${media_breakpoint_exactly_down(1310)} {
-    overflow: auto;
-    justify-content: flex-start;
-    padding-left: 20px;
-    padding-right: 20px;
+    .list-card-box {
+      overflow: auto;
+      justify-content: flex-start;
+      padding-left: 20px;
+      padding-right: 20px;
 
-    ul {
-      gap: 1%;
+      ul {
+        gap: 1%;
+        width: fit-content;
+      }
     }
   }
 `;
@@ -66,7 +70,7 @@ export const CardCannabis = styled.li`
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 20px;
     }
   }

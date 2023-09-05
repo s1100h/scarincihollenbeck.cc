@@ -5,27 +5,30 @@ import { MiddleContainer, SpecialSubHeaderContainer } from '../../styles/practic
 import ScrollDownArrow from '../../components/common/ScrollDownArrow';
 import DescriptionPlusBtn from '../../components/organisms/cannabis-law/DescriptionPlusBtn';
 import { CannabisSubTitle } from '../../styles/practices-special-style/canabis-law/CannabisSubHeader';
+import { FullHDContainer } from '../../styles/practices-special-style/commonForSpecial.style';
 
 const SpecialSubHeader = ({
   title, subtitle, backgroundImage = '/images/smoke.png', anchorId, article, backgroundVideo,
 }) => (
   <SpecialSubHeaderContainer backgroundImage={!empty(backgroundVideo) ? backgroundImage : ''}>
-    {!empty(backgroundVideo) && (
-      <video autoPlay loop muted playsInline>
-        <source src={backgroundVideo} type="video/mp4" />
-      </video>
-    )}
-    <PostBreadcrumbs />
-    <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>
-    {!empty(subtitle) && (
-      <CannabisSubTitle>
-        <p>{subtitle}</p>
-      </CannabisSubTitle>
-    )}
-    <MiddleContainer>
-      <ScrollDownArrow anchorId={anchorId} text="Learn more?" />
-      <DescriptionPlusBtn labelForBtn="See attorneys" text={article} />
-    </MiddleContainer>
+    <FullHDContainer>
+      {!empty(backgroundVideo) && (
+        <video autoPlay loop muted playsInline>
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+      )}
+      <PostBreadcrumbs />
+      <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>
+      {!empty(subtitle) && (
+        <CannabisSubTitle>
+          <p>{subtitle}</p>
+        </CannabisSubTitle>
+      )}
+      <MiddleContainer>
+        <ScrollDownArrow anchorId={anchorId} text="Learn more?" />
+        <DescriptionPlusBtn labelForBtn="See attorneys" text={article} />
+      </MiddleContainer>
+    </FullHDContainer>
   </SpecialSubHeaderContainer>
 );
 

@@ -13,7 +13,7 @@ export const DescrBtnContainer = styled.div`
     font-family: var(--font-rajdhani), sans-serif;
     margin-bottom: 0;
     color: ${globalColor.white};
-    font-size: 1.25rem;
+    font-size: 1rem;
     text-transform: uppercase;
     font-weight: 400;
   }

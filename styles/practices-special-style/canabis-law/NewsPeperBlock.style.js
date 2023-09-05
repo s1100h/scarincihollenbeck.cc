@@ -5,9 +5,17 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../medi
 export const NewsPaperContainer = styled.section`
   display: flex;
   gap: 50px;
-  background: url('/images/sport-smoke.webp') ${cannabisLawColors.cannabisColorDarkGray};
   justify-content: center;
+  background-color: ${cannabisLawColors.cannabisColorDarkGray};
   padding: 140px 20px;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    background: url('/images/sport-smoke.webp') no-repeat right;
+    padding-right: 3%;
+    padding-left: 3%;
+  }
 
   ${media_breakpoint_down('xl')} {
     div {
@@ -26,27 +34,37 @@ export const NewsPaperContainer = styled.section`
   }
 
   ${media_breakpoint_exactly_down(1120)} {
-    flex-direction: column;
-    align-items: center;
-    div {
-      width: 80%;
+    background: url('/images/sport-smoke.webp') ${cannabisLawColors.cannabisColorDarkGray} no-repeat bottom;
 
-      article {
-        align-items: center;
-        .article-common-title {
-          font-size: 2.3rem;
-          margin-bottom: 30px;
-        }
+    > div {
+      flex-direction: column;
+      align-items: center;
+      background-image: none;
 
-        p {
-          font-size: 1.3rem;
+      div {
+        width: 80%;
+
+        article {
+          align-items: center;
+          margin-bottom: 80px;
+
+          .article-common-title {
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            text-align: center;
+          }
+
+          p {
+            font-size: 1.3rem;
+            text-align: center;
+          }
         }
       }
-    }
 
-    > :last-child {
-      width: 80vw;
-      height: 65vw;
+      > :last-child {
+        width: 80vw;
+        height: 65vw;
+      }
     }
   }
 
@@ -54,82 +72,93 @@ export const NewsPaperContainer = styled.section`
     padding-top: 80px;
     padding-bottom: 80px;
 
-    div {
+    > div {
       width: 96%;
-    }
 
-    > :last-child {
-      p {
-        font-size: 1rem;
-        margin-bottom: 0;
-      }
+      > :last-child {
+        p {
+          font-size: 1rem;
+          margin-bottom: 0;
+        }
 
-      figure {
-        margin-right: 0;
+        figure {
+          margin-right: 0;
+        }
       }
     }
   }
 
   ${media_breakpoint_exactly_down(880)} {
-    > :last-child {
-      p {
-        font-size: 0.9rem;
-        margin-bottom: 0;
-      }
+    > div {
+      > :last-child {
+        p {
+          font-size: 0.9rem;
+          margin-bottom: 0;
+        }
 
-      figure {
-        width: 150px;
-        height: 180px;
-        margin-right: -15px;
+        figure {
+          width: 150px;
+          height: 180px;
+          margin-right: -15px;
 
-        img {
-          width: 125px;
-          height: 136px;
+          img {
+            width: 125px;
+            height: 136px;
+          }
         }
       }
     }
   }
 
   ${media_breakpoint_down('md')} {
-    > :last-child {
-      width: 98vw;
-      height: 80vw;
-      padding-bottom: 10px;
+    > div {
+      > :last-child {
+        width: 98vw;
+        height: 80vw;
+        padding-bottom: 10px;
+      }
     }
   }
 
   ${media_breakpoint_down('sm')} {
-    div {
-      article {
-        align-items: start;
-        .article-common-title {
-          font-size: 1.5rem;
+    > div {
+      > div {
+        width: 100%;
+
+        article {
+          align-items: start;
+
+          .article-common-title {
+            font-size: 1.5rem;
+            text-align: left;
+          }
+
+          p {
+            font-size: 1rem;
+            text-align: left;
+          }
         }
+      }
+
+      > :last-child {
+        padding-left: 15px;
 
         p {
-          font-size: 1rem;
+          height: 190px;
+          overflow-y: auto;
+          font-size: 0.7rem;
         }
-      }
-    }
 
-    > :last-child {
-      padding-left: 15px;
+        figure {
+          width: 120px;
+          height: 150px;
+          margin-right: -25px;
+          margin-bottom: 10px;
 
-      p {
-        height: 190px;
-        overflow-y: auto;
-        font-size: 0.7rem;
-      }
-
-      figure {
-        width: 120px;
-        height: 150px;
-        margin-right: -25px;
-        margin-bottom: 10px;
-
-        img {
-          width: 95px;
-          height: 106px;
+          img {
+            width: 95px;
+            height: 106px;
+          }
         }
       }
     }

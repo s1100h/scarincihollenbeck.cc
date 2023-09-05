@@ -6,32 +6,47 @@ export const PhotoBlockContainer = styled.section`
   display: flex;
   padding: 120px 84px 140px;
   background-color: ${cannabisLawColors.cannabisColorGray};
-  gap: 8%;
   align-items: center;
+  justify-content: center;
+
+  .photo-article-box {
+    display: flex;
+    justify-content: center;
+    gap: 8%;
+  }
 
   ${media_breakpoint_exactly_down(1478)} {
-    justify-content: center;
-    gap: 4%;
-    padding-left: 42px;
-    padding-right: 42px;
+    .photo-article-box {
+      justify-content: center;
+      gap: 4%;
+      padding-left: 42px;
+      padding-right: 42px;
+    }
   }
 
   ${media_breakpoint_down('xl')} {
-    padding-left: 12px;
-    padding-right: 12px;
+    .photo-article-box {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
   }
 
   ${media_breakpoint_down('lg')} {
-    flex-direction: column;
-    padding-top: 80px;
-    padding-bottom: 60px;
+    padding: 0;
+    align-items: center;
+    .photo-article-box {
+      align-items: center;
+      flex-direction: column;
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
   }
 `;
 
 export const PhotoCannabisBox = styled.div`
   display: flex;
   gap: 20px;
-  height: 780px;
+  height: 680px;
   position: relative;
   margin-bottom: 40px;
 
@@ -51,6 +66,8 @@ export const PhotoCannabisBox = styled.div`
   }
 
   ${media_breakpoint_range_exacly(992, 1478)} {
+    height: 550px;
+
     figure {
       width: 316px;
       height: 456px;
@@ -64,6 +81,8 @@ export const PhotoCannabisBox = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
+    height: 550px;
+
     figure {
       width: 316px;
       height: 456px;
@@ -73,6 +92,12 @@ export const PhotoCannabisBox = styled.div`
       > :first-child {
         width: 278px;
       }
+    }
+  }
+
+  ${media_breakpoint_exactly_down(816)} {
+    .words-picture {
+      bottom: -128px;
     }
   }
 

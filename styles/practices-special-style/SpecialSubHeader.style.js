@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
   flex-direction: column;
   padding: 155px 10% 0;
-  height: 947px;
+  height: 100vh;
   background: url(${({ backgroundImage }) => backgroundImage}) no-repeat;
   position: relative;
+  align-items: center;
   overflow: hidden;
 
   video {
@@ -18,9 +20,9 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   h1 {
-    width: 50%;
+    width: 44%;
     position: absolute;
-    bottom: -28px;
+    bottom: -32px;
     font-size: 12rem;
     font-weight: 300;
     line-height: 142px;
@@ -98,6 +100,7 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBr
 export const MiddleContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: start;
   position: relative;
 
   ${media_breakpoint_exactly_down(645)} {

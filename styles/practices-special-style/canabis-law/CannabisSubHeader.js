@@ -10,7 +10,7 @@ export const CannabisSubTitle = styled.div`
   p {
     ${paragraphStyles};
     text-align: start;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: ${globalColor.white};
     width: 670px;
   }
