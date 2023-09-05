@@ -30,7 +30,8 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ul {
-    position: inherit;
+    position: relative;
+    margin-bottom: 40px;
 
     > :last-child {
       span {

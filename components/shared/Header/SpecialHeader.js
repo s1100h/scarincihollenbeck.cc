@@ -24,7 +24,7 @@ const SpecialHeader = () => {
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
-        <Navigation isHidden={isOpenSearch} scrollTop={scrollTop} />
+        <Navigation isHidden={isOpenSearch} />
         <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
           <GlobalSearch onHandleClickSearch={handleOpenSearch} />
         </VisibleHiddenSearch>

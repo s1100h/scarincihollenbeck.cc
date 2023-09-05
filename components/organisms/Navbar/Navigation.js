@@ -3,14 +3,9 @@ import { Nav, NavDropdown } from 'react-bootstrap';
 import { NavbarStyled } from 'styles/Navigation.style';
 import { SITE_NAVIGATION } from 'utils/constants';
 
-const Navigation = ({ scrollTop, isHidden }) => (
+const Navigation = ({ isHidden }) => (
   <NavbarStyled className={`${isHidden && 'd-none'} navContainer`}>
     <Nav className="navContainerWrapper">
-      {scrollTop && (
-        <Nav.Item id="home">
-          <Link href="/">Home</Link>
-        </Nav.Item>
-      )}
       {SITE_NAVIGATION.map((nav) => (nav.children ? (
         <NavDropdown key={nav.label} title={`${nav.label}`} id={nav.menuId}>
           {nav.children.map((child) => (

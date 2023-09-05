@@ -15,7 +15,7 @@ export const poppins = Poppins({
 });
 
 export const rajdhani = Rajdhani({
-	weight: ['400'],
+	weight: ['400', '500', '700'],
 	subsets: ['latin'],
 	variable: '--font-rajdhani',
 	preload: true,

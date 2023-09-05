@@ -33,7 +33,7 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
         </LinksBox>
         <MobileMenu />
       </Wrapper>
-      <Navigation scrollTop={scrollTop} />
+      <Navigation />
       {scrollTop && isAttorneysPage && !isTabletScreen && (
         <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect} attorneysContext={attorneysContext} onSelectLetter={onSelectLetter} select={select}>
           {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}

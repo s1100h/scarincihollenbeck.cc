@@ -151,6 +151,10 @@ export const ArticlePhotoContainer = styled.div`
       margin-bottom: 22px;
       line-height: 20px;
     }
+
+    .article-common-title {
+      margin-bottom: 32px;
+    }
   }
 
   ${media_breakpoint_range_exacly(992, 1478)} {

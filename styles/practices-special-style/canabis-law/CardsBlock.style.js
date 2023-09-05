@@ -59,6 +59,7 @@ export const CardCannabis = styled.li`
     overflow-y: auto;
     padding-bottom: 5px;
     margin-bottom: 0;
+    font-size: 1.2rem;
   }
 
   ${media_breakpoint_exactly_down(1478)} {

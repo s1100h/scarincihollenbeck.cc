@@ -539,6 +539,11 @@ export const attorneyCardForCannabis = `
             fill: ${globalColor.white};
           }
         }
+        address {
+          a {
+            font-weight: 500;
+          }
+        }
       }
     }
 `;
