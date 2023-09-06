@@ -61,6 +61,16 @@ export function getDirectionsFromLocation(location) {
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
+export const cutAnchorUrl = (slug) => {
+  const index = slug.indexOf('#');
+
+  if (index !== -1) {
+    return slug.substring(0, index);
+  }
+
+  return slug;
+};
+
 // filter by key
 export function filterByKey(list, key) {
   const results = [];

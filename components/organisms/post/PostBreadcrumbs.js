@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import { BreadcrumbsListContainer, ButtonBreadcrumb } from '../../../styles/Breadcrumbs.style';
+import { cutAnchorUrl } from '../../../utils/helpers';
 
 const delegatePathFunc = (CrumbsPath, router) => {
   if (router.pathname === '/404') {
@@ -77,7 +78,7 @@ const delegatePathFunc = (CrumbsPath, router) => {
           <BsChevronRight />
         </li>
         <li>
-          <span>{CrumbsPath[CrumbsPath.length - 1].replace(/-/g, ' ')}</span>
+          <span>{cutAnchorUrl(CrumbsPath[CrumbsPath.length - 1].replace(/-/g, ' '))}</span>
         </li>
       </>
     );
