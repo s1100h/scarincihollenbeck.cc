@@ -12,11 +12,11 @@ const SpecialSubHeader = ({
 }) => (
   <SpecialSubHeaderContainer backgroundImage={!empty(backgroundVideo) ? backgroundImage : ''}>
     <FullHDContainer>
-      {/* {!empty(backgroundVideo) && ( */}
-      {/*  <video autoPlay loop muted playsInline> */}
-      {/*    <source src={backgroundVideo} type="video/mp4" /> */}
-      {/*  </video> */}
-      {/* )} */}
+      {!empty(backgroundVideo) && (
+        <video autoPlay loop muted playsInline>
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+      )}
       <PostBreadcrumbs />
       <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>
       {!empty(subtitle) && (
