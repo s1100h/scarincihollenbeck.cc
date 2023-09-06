@@ -8,10 +8,10 @@ import ArticleCannabis from '../../molecules/cannabis-law/ArticleCannabis';
 import { FullHDContainer } from '../../../styles/practices-special-style/commonForSpecial.style';
 
 const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => (
-  <PhotoBlockContainer id={anchorIdBlock}>
+  <PhotoBlockContainer>
     <FullHDContainer>
       <div className="photo-article-box">
-        <PhotoCannabisBox>
+        <PhotoCannabisBox id={anchorIdBlock}>
           <PhotoCardPolaroid capture={photoBlockData.photo1.caption} imgUrl={photoBlockData.photo1.sourceUrl} imgAlt={photoBlockData.photo1.altText}>
             <Image src={scarinci} alt="Scarinci word" />
           </PhotoCardPolaroid>

@@ -8,15 +8,15 @@ import { CannabisSubTitle } from '../../styles/practices-special-style/canabis-l
 import { FullHDContainer } from '../../styles/practices-special-style/commonForSpecial.style';
 
 const SpecialSubHeader = ({
-  title, subtitle, backgroundImage = '/images/smoke.png', anchorId, article, backgroundVideo,
+  title, subtitle, backgroundImage = '/images/smoke.png', anchorId, article, backgroundVideo, handleClickAnchor,
 }) => (
   <SpecialSubHeaderContainer backgroundImage={!empty(backgroundVideo) ? backgroundImage : ''}>
     <FullHDContainer>
-      {!empty(backgroundVideo) && (
-        <video autoPlay loop muted playsInline>
-          <source src={backgroundVideo} type="video/mp4" />
-        </video>
-      )}
+      {/* {!empty(backgroundVideo) && ( */}
+      {/*  <video autoPlay loop muted playsInline> */}
+      {/*    <source src={backgroundVideo} type="video/mp4" /> */}
+      {/*  </video> */}
+      {/* )} */}
       <PostBreadcrumbs />
       <h1 className="animate__animated animate__fadeInDown animate__fast">{changeTitle(title)}</h1>
       {!empty(subtitle) && (
@@ -25,7 +25,7 @@ const SpecialSubHeader = ({
         </CannabisSubTitle>
       )}
       <MiddleContainer>
-        <ScrollDownArrow anchorId={anchorId} text="Learn more?" />
+        <ScrollDownArrow handleOnClick={handleClickAnchor} anchorId={anchorId} text="Learn more?" />
         <DescriptionPlusBtn labelForBtn="See attorneys" text={article} />
       </MiddleContainer>
     </FullHDContainer>

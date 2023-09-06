@@ -6,6 +6,7 @@ export const SpecialSubHeaderContainer = styled.section`
   padding: 155px 10% 0;
   height: 100vh;
   background: url(${({ backgroundImage }) => backgroundImage}) no-repeat;
+  background-size: cover;
   position: relative;
   align-items: center;
   overflow: hidden;

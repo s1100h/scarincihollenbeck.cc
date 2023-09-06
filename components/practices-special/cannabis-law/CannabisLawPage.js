@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import empty from 'is-empty';
+import { useEffect, useState } from 'react';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
 
@@ -15,13 +16,23 @@ const PracticesListBlock = dynamic(() => import('../../organisms/cannabis-law/Pr
 const CannabisLawPage = ({
   practice, canonicalUrl, attorneysSchemaData, corePractices, chairPractice, attorneyListPractice, keyContactsList, cannabisLawData,
 }) => {
+  const [hrefToId, setHref] = useState('');
   const anchorIdBlock = 'photoBlock';
+
+  const handleClickByAnchor = () => setHref(anchorIdBlock);
+
+  useEffect(() => {
+    const clearId = setTimeout(() => {
+      setHref('');
+    }, 100);
+    return () => clearTimeout(clearId);
+  }, [hrefToId]);
 
   return (
     <>
       <BasicSiteHead title={practice.seo.title} metaDescription={practice.seo.metaDescription} canonicalUrl={canonicalUrl} personDataForSchema={attorneysSchemaData} />
-      <SubHeader backgroundVideo={cannabisLawData.subheaderBackgroundVideo.link} anchorId={anchorIdBlock} title={practice.title} subtitle={cannabisLawData.subTitle} article={cannabisLawData.descriptionSubheader} />
-      <PhotoBlock anchorIdBlock={anchorIdBlock} photoBlockData={cannabisLawData.photoBlock} />
+      <SubHeader handleClickAnchor={handleClickByAnchor} backgroundVideo={cannabisLawData.subheaderBackgroundVideo.link} anchorId={anchorIdBlock} title={practice.title} subtitle={cannabisLawData.subTitle} article={cannabisLawData.descriptionSubheader} />
+      <PhotoBlock anchorIdBlock={hrefToId} photoBlockData={cannabisLawData.photoBlock} />
       <CardsBlock cardsBlockData={cannabisLawData.cardsInfo.cards} />
       <AttorneysBlock attorneysBlockArticle={cannabisLawData.attorneysArticleBlock} attorneyListPractice={attorneyListPractice} chairPractice={chairPractice} />
       {!empty(cannabisLawData.allwaysArticleBlock) && <WeAdviseThisBlock WeAdviseThisBlockData={cannabisLawData.allwaysArticleBlock} />}

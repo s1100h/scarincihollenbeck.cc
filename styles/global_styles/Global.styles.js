@@ -139,6 +139,7 @@ export const paragraphStyles = `
 export const GlobalStyle = createGlobalStyle`
   html {
     font-size: ${mainFontSize}px;
+    scroll-behavior: smooth;
   }
 
   body {
