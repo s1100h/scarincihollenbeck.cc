@@ -24,7 +24,8 @@ export const CannabisSubTitle = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
-    top: 91%;
+    top: 81%;
+
     p {
       width: 505px;
       font-size: 0.8rem;
@@ -32,6 +33,8 @@ export const CannabisSubTitle = styled.div`
   }
 
   ${media_breakpoint_down('md')} {
+    top: 76%;
+
     p {
       width: 364px;
     }

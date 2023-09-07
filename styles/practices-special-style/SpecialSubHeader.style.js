@@ -23,10 +23,10 @@ export const SpecialSubHeaderContainer = styled.section`
   h1 {
     width: 44%;
     position: absolute;
-    bottom: -32px;
+    top: 63%;
     font-size: 12rem;
     font-weight: 300;
-    line-height: 142px;
+    line-height: 170px;
     color: ${globalColor.white};
   }
 
@@ -51,8 +51,6 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('lg')} {
-    height: 770px;
-
     h1 {
       font-size: 8rem;
       bottom: -38px;
@@ -61,15 +59,9 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('md')} {
-    height: 670px;
-
     h1 {
       font-size: 8rem;
     }
-  }
-
-  ${media_breakpoint_exactly_down(645)} {
-    height: 770px;
   }
 
   ${media_breakpoint_exactly_down(630)} {
@@ -82,6 +74,7 @@ export const SpecialSubHeaderContainer = styled.section`
 
   ${media_breakpoint_down('sm')} {
     h1 {
+      top: 70%;
       font-size: 5rem;
       bottom: -20px;
       line-height: 69px;

@@ -15,8 +15,9 @@ const SubHeader = ({
 }) => {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
+
   const subHeaderProps = {
-    title,
+    title: title.replace(/Law/i, 'law'),
     subtitle,
     isBlog,
     isHoliday,
