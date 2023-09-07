@@ -1,3 +1,4 @@
+import { Fragment, useId } from 'react';
 import dynamic from 'next/dynamic';
 import {
   BoxTitle, CentralizedBox, ContainerXXL, RowSpecial,
@@ -28,18 +29,20 @@ const AttorneyCards = ({ title, content, pathname }) => {
         )}
         <RowSpecial>
           {content.map((info) => (
-            <AttorneyCard
-              key={info.id}
-              link={info.link ? `/attorneys/${info.link}` : info.uri}
-              image={info.better_featured_image || info.featuredImage}
-              name={info.title}
-              designation={typeof info.designation !== 'string' ? null : info.designation}
-              locations={info.location_array ? info.location_array : info.designation}
-              number={info.phone}
-              email={info.email}
-              width={80}
-              height={112}
-            />
+            <Fragment key={useId()}>
+              <AttorneyCard
+                key={info.id}
+                link={info.link ? `/attorneys/${info.link}` : info.uri}
+                image={info.better_featured_image || info.featuredImage}
+                name={info.title}
+                designation={typeof info.designation !== 'string' ? null : info.designation}
+                locations={info.location_array ? info.location_array : info.designation}
+                number={info.phone}
+                email={info.email}
+                width={80}
+                height={112}
+              />
+            </Fragment>
           ))}
         </RowSpecial>
       </CentralizedBox>

@@ -74,10 +74,11 @@ const NonFiltered = ({ attorneys }) => {
       attorneys: sortedAttorneys['Firm Managing Partner']?.attorneys || [],
     },
   };
-
+  const isFirmOverviewPage = pathname.includes('/firm-overview');
+  const differentAttorneysKit = isFirmOverviewPage ? sortedAttorneys : justFirmManagementPartners;
   return (
     <>
-      {Object.entries(justFirmManagementPartners).map((attorney) => (
+      {Object.entries(differentAttorneysKit).map((attorney) => (
         <AttorneyCards title={attorney[0]} pathname={pathname} content={attorney[1].attorneys} />
       ))}
     </>
