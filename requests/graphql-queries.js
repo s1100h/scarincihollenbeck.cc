@@ -915,8 +915,8 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
           paragraph
           title
         }
-        allwaysArticleBlock
         keycontactsblock {
+        	article
           listOfLegalGuidanceRegarding {
             issue
           }

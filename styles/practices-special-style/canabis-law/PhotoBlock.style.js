@@ -50,12 +50,6 @@ export const PhotoCannabisBox = styled.div`
   position: relative;
   margin-bottom: 40px;
 
-  .words-picture {
-    position: absolute;
-    bottom: -93px;
-    right: 19%;
-  }
-
   & > :first-child {
     margin-top: auto;
     margin-bottom: 0;
@@ -95,12 +89,6 @@ export const PhotoCannabisBox = styled.div`
     }
   }
 
-  ${media_breakpoint_exactly_down(816)} {
-    .words-picture {
-      bottom: -128px;
-    }
-  }
-
   ${media_breakpoint_exactly_down(685)} {
     width: 100%;
     flex-direction: column;
@@ -126,19 +114,6 @@ export const PhotoCannabisBox = styled.div`
 
     & > :nth-child(2) {
       display: none;
-    }
-
-    .words-picture {
-      position: initial;
-      margin-top: -45px;
-    }
-  }
-
-  ${media_breakpoint_down('sm')} {
-    .words-picture {
-      margin-top: -34px;
-      width: 300px;
-      height: 120px;
     }
   }
 `;

@@ -7,7 +7,6 @@ import SubHeader from '../../../layouts/SubHeader/SubHeader';
 const PhotoBlock = dynamic(() => import('../../organisms/cannabis-law/PhotoBlock'));
 const CardsBlock = dynamic(() => import('../../organisms/cannabis-law/CardsBlock'));
 const AttorneysBlock = dynamic(() => import('../../organisms/cannabis-law/AttorneysBlock'));
-const WeAdviseThisBlock = dynamic(() => import('../../organisms/cannabis-law/WeAdviseThisBlock'));
 const KeyContactsBlock = dynamic(() => import('../../organisms/cannabis-law/KeyContactsBlock'));
 const HelpArticleBlock = dynamic(() => import('../../organisms/cannabis-law/HelpArticleBlock'));
 const NewsPaperBlock = dynamic(() => import('../../organisms/cannabis-law/NewsPaperBlock'));
@@ -35,7 +34,6 @@ const CannabisLawPage = ({
       <PhotoBlock anchorIdBlock={hrefToId} photoBlockData={cannabisLawData.photoBlock} />
       <CardsBlock cardsBlockData={cannabisLawData.cardsInfo.cards} />
       <AttorneysBlock attorneysBlockArticle={cannabisLawData.attorneysArticleBlock} attorneyListPractice={attorneyListPractice} chairPractice={chairPractice} />
-      {!empty(cannabisLawData.allwaysArticleBlock) && <WeAdviseThisBlock WeAdviseThisBlockData={cannabisLawData.allwaysArticleBlock} />}
       <KeyContactsBlock keyContactsData={cannabisLawData.keycontactsblock} keyContacts={keyContactsList} />
       {(!empty(cannabisLawData.helpArticleBlock.title) || !empty(cannabisLawData.helpArticleBlock.paragraphs)) && <HelpArticleBlock helpArticleBlockData={cannabisLawData.helpArticleBlock} />}
       <NewsPaperBlock article={cannabisLawData.newspaperBlock.article} newsPepperArticle={cannabisLawData.newspaperBlock.newspaperBox} />

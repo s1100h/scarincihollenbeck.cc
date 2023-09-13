@@ -1,15 +1,21 @@
 import styled from 'styled-components';
-import { attorneyCardForCannabis, beforeDoteStyledList, cannabisLawColors, globalColor } from '../../global_styles/Global.styles';
+import { attorneyCardForCannabis, beforeDoteStyledList, cannabisLawColors, globalColor, paragraphStyles } from '../../global_styles/Global.styles';
 import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
 
 export const KeyContactsBlockContainer = styled.section`
   display: flex;
   justify-content: center;
-  background-color: ${cannabisLawColors.cannabisColorDarkGray};
+  background: url('/images/smoke_overlay.webp') center/cover no-repeat;
   padding: 140px 3% 140px 3%;
 
   > div {
     display: flex;
+
+    p {
+      ${paragraphStyles};
+      text-align: start;
+      width: 100%;
+    }
   }
 
   .list-smoker-box {
@@ -36,21 +42,15 @@ export const KeyContactsBlockContainer = styled.section`
 
   .smoker {
     width: 100%;
-    height: 304px;
+    height: 404px;
     padding: 10px;
     background-color: ${globalColor.black};
     position: relative;
 
     > :first-child {
-      height: 282px;
-      width: 700px;
+      height: 100%;
+      width: 100%;
     }
-  }
-
-  .words-picture {
-    position: absolute;
-    right: 110px;
-    top: 73%;
   }
 
   ${media_breakpoint_exactly_down(1440)} {
@@ -78,30 +78,27 @@ export const KeyContactsBlockContainer = styled.section`
     }
 
     .smoker {
+      height: auto;
+
       > :first-child {
         height: 80%;
-        width: 80%;
+        width: 100%;
       }
-    }
-
-    .words-picture {
-      height: 50%;
-      width: 270px;
-      top: 79%;
     }
   }
 
   ${media_breakpoint_down('sm')} {
+    .list-smoker-box {
+      ul {
+        column-count: 1;
+      }
+    }
+
     .smoker {
       > :first-child {
         height: 70%;
         width: 100%;
       }
-    }
-
-    .words-picture {
-      height: 40%;
-      right: 0;
     }
   }
 `;
