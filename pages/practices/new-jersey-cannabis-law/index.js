@@ -4,6 +4,7 @@ import { PRODUCTION_URL } from '../../../utils/constants';
 import SiteLoader from '../../../components/shared/SiteLoader';
 import { getPracticeAttorneys, headMetaData } from '../../../requests/practices/practice-default';
 import { getSlugFromUrl } from '../../../utils/helpers';
+import ApolloWrapper from '../../../layouts/ApolloWrapper';
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ res, resolvedUrl }) => {
@@ -73,7 +74,11 @@ const CannabisLaw = ({
     keyContactsList,
     cannabisLawData,
   };
-  return <CannabisLawPage {...propsPage} />;
+  return (
+    <ApolloWrapper>
+      <CannabisLawPage {...propsPage} />
+    </ApolloWrapper>
+  );
 };
 
 export default CannabisLaw;

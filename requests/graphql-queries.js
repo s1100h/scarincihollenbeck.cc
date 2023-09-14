@@ -471,9 +471,10 @@ export const categoryPostsByIdQuery = `query categoryPostsById(
   $after: String
   $before: String
   $id: Int
-  $categoryIn: [ID]
+  $categoryId: Int = 911,
+  $parent1: ID = "client-alert"
 ) {
-  posts(where: {categoryIn: $categoryIn, id: $id}, first: $first, last: $last, after: $after, before: $before) {
+  posts(where: {categoryId: $categoryId, parent: $parent1, id: $id}, first: $first, last: $last, after: $after, before: $before) {
     pageInfo {
       hasNextPage
       hasPreviousPage

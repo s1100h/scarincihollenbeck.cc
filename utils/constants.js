@@ -519,22 +519,22 @@ export const CategoriesButtonsStructure = [
   {
     slug: 'client-alert',
     label: 'Client Alert',
-    id: 0,
+    databaseId: 20098,
   },
   {
     slug: 'firm-news',
     label: 'News',
-    id: 1,
+    databaseId: 98,
   },
   {
     slug: 'firm-events',
     label: 'Events',
-    id: 2,
+    databaseId: 99,
   },
   {
     slug: 'law-firm-insights',
     label: 'Insights',
-    id: 3,
+    databaseId: 599,
   },
 ];
 
