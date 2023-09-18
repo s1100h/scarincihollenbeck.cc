@@ -1,22 +1,6 @@
-// ID
-// 	:
-// 	29592
-// category
-// 	:
-// 	"Additional Practices"
-// children
-// 	:
-// 	[]
-// slug
-// 	:
-// 	"/practices/new-jersey-cannabis-law"
-// test
-// 	:
-// 	""
-// title
-// 	:
 import empty from 'is-empty';
 import Link from 'next/link';
+import { Fragment } from 'react';
 import { PracticesTilesContainer, PracticeTile } from '../../../styles/Practices.style';
 import { Back, Front } from '../../../styles/attorney-page/AttorneyProfile.style';
 
@@ -24,26 +8,26 @@ const PracticesTiles = ({ practicesList }) => (
   <PracticesTilesContainer>
     <ul>
       {practicesList.map(({
-        ID, children, slug, title,
+        databaseId, childPractice, uri, title, practiceImage,
       }) => (
-        <>
-          {!empty(children) ? (
-            <PracticeTile key={ID}>
+        <Fragment key={databaseId}>
+          {!empty(childPractice) ? (
+            <PracticeTile backgroundImg={!empty(practiceImage?.sourceUrl) ? practiceImage?.sourceUrl : ''}>
               <Front>{title}</Front>
               <Back>
                 <ul>
-                  {children.map(({ ID, slug, title }) => (
-                    <li key={ID}>
-                      <Link href={slug}>{title}</Link>
+                  {childPractice.map(({ databaseId, uri, title }) => (
+                    <li key={databaseId}>
+                      <Link href={uri}>{title}</Link>
                     </li>
                   ))}
                 </ul>
               </Back>
             </PracticeTile>
           ) : (
-            <PracticeTile key={ID}>{title}</PracticeTile>
+            <PracticeTile key={databaseId}>{title}</PracticeTile>
           )}
-        </>
+        </Fragment>
       ))}
     </ul>
   </PracticesTilesContainer>

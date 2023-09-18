@@ -14,7 +14,7 @@ const ListWrapperDynamic = dynamic(() => import('components/organisms/practices/
 const FAQ = dynamic(() => import('components/atoms/FAQ'));
 
 const PracticesDirectory = ({
-  site, seo, canonicalUrl, sortedCorePractices, sortedAdditionalPractices, sortedBusinessPractices,
+  site, seo, canonicalUrl, sortedCorePractices, sortedAdditionalPractices, sortedBusinessPractices, practices,
 }) => (
   <>
     <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
@@ -24,7 +24,7 @@ const PracticesDirectory = ({
       <Article contentBody={formatPageImageToCloudinaryUrl(site.bodyContent)} />
     </SearchWithArticle>
     <FullWidth>
-      <ListWrapper title="Core Law Practices" article={corePracticesArticle} list={sortedCorePractices} isBlock />
+      <ListWrapper title="Core Law Practices" article={corePracticesArticle} list={practices} isBlock />
       <ListWrapper title="Additional Law Practices" article={additionalPracticesArticle} list={sortedAdditionalPractices} isBlock />
       <ListWrapperDynamic title="Business-Related Legal Services" article={legalServicesArticle} list={sortedBusinessPractices} isSimple />
       <FAQ faqArrContent={ATTORNEYS_FAQ} />

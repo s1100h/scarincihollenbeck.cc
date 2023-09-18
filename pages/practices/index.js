@@ -1,7 +1,7 @@
 import { sortByKey } from 'utils/helpers';
 import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
-import { practicePageQuery } from 'utils/graphql-queries';
+import { getPracticesQuery, practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 
 /** Sanitize the practice data and organized it by core practices, additional practices, etc. */
@@ -33,11 +33,27 @@ const getAllPractices = async () => {
   }
 };
 
+const getPractices = async () => {
+  const data = await fetchAPI(getPracticesQuery, {});
+  const practicesFiltered = data.practices.nodes
+    .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes('Core Practices'))
+    .map(({
+      databaseId, title, uri, practicesIncluded, practicePortalPageContent,
+    }) => ({
+      databaseId,
+      title,
+      uri,
+      ...practicesIncluded,
+      ...practicePortalPageContent,
+    }));
+  return practicesFiltered;
+};
 /** Map practice page data to page props */
 export const getStaticProps = async () => {
   const allPractices = await getAllPractices();
   const page = await practicesPageContent();
   const results = sortPracticeCategories(allPractices);
+  const practices = await getPractices();
   const { core, additional, business } = results;
   const { title, seo, practiceArchives } = page;
 
@@ -48,6 +64,7 @@ export const getStaticProps = async () => {
       core,
       additional,
       business,
+      practices,
       site: {
         title,
         description: practiceArchives?.description,
@@ -60,7 +77,7 @@ export const getStaticProps = async () => {
 
 /** Practice directory page component */
 const PracticesPageDirectory = ({
-  core, additional, business, seo, site,
+  core, additional, business, practices, seo, site,
 }) => {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
@@ -74,6 +91,7 @@ const PracticesPageDirectory = ({
     sortedCorePractices,
     sortedAdditionalPractices,
     sortedBusinessPractices,
+    practices,
   };
 
   return <PracticesDirectory {...practicesPageProps} />;

@@ -785,6 +785,31 @@ export const practicePageQuery = `query PracticesPagesQuery {
   }
 }`;
 
+export const getPracticesQuery = `query NewQuery {
+  practices(first: 100) {
+    nodes {
+      databaseId
+      title
+      uri
+      practicesIncluded {
+        childPractice {
+          ... on Practice {
+            databaseId
+            title
+            uri
+          }
+        }
+        practiceImage {
+          sourceUrl
+        }
+      }
+      practicePortalPageContent {
+        practicePortalCategories
+      }
+    }
+  }
+}`;
+
 export const getDataForPractice = `query FirmPageQuery($id: ID!) {
   practice(id: $id, idType: URI) {
     databaseId

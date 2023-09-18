@@ -108,10 +108,11 @@ export const rem = (sizeInPx) => {
   return `${sizeInPx / mainFontSize}rem`;
 };
 
+export const imageCoverBlock = (imgUrl) => `url(${imgUrl}) center/cover no-repeat;`;
+
 export const GlobalStyle = createGlobalStyle`
 html {
   font-size: ${mainFontSize}px;
-}
 
 body {
   font-weight: 400;
