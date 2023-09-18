@@ -165,3 +165,7 @@ export const CardBox = styled.div`
     cursor: pointer;
   }
 `;
+
+export const PracticesTilesContainer = styled.div``;
+
+export const PracticeTile = styled.li``;
