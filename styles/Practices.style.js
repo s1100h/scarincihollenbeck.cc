@@ -170,7 +170,17 @@ export const CardBox = styled.div`
 export const PracticesTilesContainer = styled.div``;
 
 export const PracticeTile = styled.li`
+  display: flex;
   width: 395px;
   height: 280px;
   background: ${({ backgroundImg }) => (!empty(backgroundImg) ? imageCoverBlock(backgroundImg) : imageCoverBlock('images/no-image-found-diamond-750x350.png'))};
+  justify-content: center;
+  align-items: center;
+
+  div {
+    width: fit-content;
+    height: fit-content;
+    font-weight: 700;
+    color: ${globalColor.white};
+  }
 `;

@@ -15,7 +15,7 @@ const BlockListWrapper = ({
     <Title props={{ size: '2rem' }}>{title}</Title>
     {article && <Article contentBody={formatPageImageToCloudinaryUrl(article)} />}
     {/* {isBlock && <BlockList list={list} />} */}
-    {/* {isBlock && <PracticesTiles practicesList={list} />} */}
+    {isBlock && <PracticesTiles practicesList={list} />}
     {isSimple && <SimpleList list={list} />}
   </BlockListBox>
 );
