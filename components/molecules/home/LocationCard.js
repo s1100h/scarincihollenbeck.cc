@@ -38,7 +38,7 @@ export default function LocationCard({ officesData }) {
                 {office.streetAddress}
                 ,
                 {office.floor}
-                {!empty(office.floor) && ', '}
+                {!empty(office?.floor) && ', '}
                 {office.title}
                 {' '}
                 {office.postCode}
