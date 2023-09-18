@@ -36,9 +36,9 @@ export default function LocationCard({ officesData }) {
                   <BsFillSignpostFill color={globalColor.red.darkRed} size={sizeIcons} />
                 </div>
                 {office.streetAddress}
-                ,
+                {!empty(office.streetAddress) && ', '}
                 {office.floor}
-                {!empty(office.floor) && ', '}
+                {!empty(office?.floor) && ', '}
                 {office.title}
                 {' '}
                 {office.postCode}
