@@ -1,5 +1,5 @@
 import { sortByKey } from 'utils/helpers';
-import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
+import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { getPracticesQuery, practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
@@ -19,7 +19,7 @@ const sortPracticeCategories = (list) => {
 /** Fetch the practice page content WP GRAPHQL API */
 const practicesPageContent = async () => {
   const data = await fetchAPI(practicePageQuery, {});
-  return data?.pageBy;
+  return data?.page;
 };
 
 /** Fetch all the practices from WP REST API */
@@ -35,7 +35,7 @@ const getAllPractices = async () => {
 
 const getPractices = async () => {
   const data = await fetchAPI(getPracticesQuery, {});
-  const practicesFiltered = data.practices.nodes
+  return data.practices.nodes
     .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes('Core Practices'))
     .map(({
       databaseId, title, uri, practicesIncluded, practicePortalPageContent,
@@ -46,7 +46,6 @@ const getPractices = async () => {
       ...practicesIncluded,
       ...practicePortalPageContent,
     }));
-  return practicesFiltered;
 };
 /** Map practice page data to page props */
 export const getStaticProps = async () => {
@@ -55,7 +54,9 @@ export const getStaticProps = async () => {
   const results = sortPracticeCategories(allPractices);
   const practices = await getPractices();
   const { core, additional, business } = results;
-  const { title, seo, practiceArchives } = page;
+  const {
+    title, seo, practiceArchives, featuredImage,
+  } = page;
 
   return {
     props: {
@@ -65,6 +66,7 @@ export const getStaticProps = async () => {
       additional,
       business,
       practices,
+      subheaderOverlay: featuredImage?.node?.sourceUrl,
       site: {
         title,
         description: practiceArchives?.description,
@@ -77,7 +79,7 @@ export const getStaticProps = async () => {
 
 /** Practice directory page component */
 const PracticesPageDirectory = ({
-  core, additional, business, practices, seo, site,
+  core, additional, business, practices, subheaderOverlay, seo, site,
 }) => {
   const sortedCorePractices = sortByKey(core, 'title');
   const sortedAdditionalPractices = sortByKey(additional, 'title');
@@ -91,6 +93,7 @@ const PracticesPageDirectory = ({
     sortedCorePractices,
     sortedAdditionalPractices,
     sortedBusinessPractices,
+    subheaderOverlay,
     practices,
   };
 

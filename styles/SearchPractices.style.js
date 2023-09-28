@@ -13,6 +13,12 @@ export const SearchPracticesBox = styled.div`
 
   form {
     margin: 0;
+
+    .form-group {
+      .form-control {
+        text-transform: capitalize;
+      }
+    }
   }
 
   ${media_breakpoint_down('xl')} {
@@ -20,11 +26,11 @@ export const SearchPracticesBox = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
-    width: 70%;
+    width: 50%;
   }
 
   ${media_breakpoint_down('md')} {
-    width: 80%;
+    width: 100%;
 
     form {
       width: 100%;

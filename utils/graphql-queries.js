@@ -772,7 +772,7 @@ export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
 
 /** practices landing page query */
 export const practicePageQuery = `query PracticesPagesQuery {
-  pageBy(pageId: 46644) {
+  page(id: 46644, idType: DATABASE_ID) {
     title
     seo {
       metaDesc
@@ -781,6 +781,11 @@ export const practicePageQuery = `query PracticesPagesQuery {
     practiceArchives {
       description
       mainTag
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
     }
   }
 }`;
