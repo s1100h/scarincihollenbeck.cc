@@ -13,7 +13,7 @@ import { ArticleSearchBox } from '../../styles/Practices.style';
 const FAQ = dynamic(() => import('components/atoms/FAQ'));
 
 const PracticesDirectory = ({
-  site, seo, canonicalUrl, sortedCorePractices, sortedAdditionalPractices, sortedBusinessPractices, practices, subheaderOverlay,
+  site, seo, canonicalUrl, practices, subheaderOverlay,
 }) => (
   <>
     <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
@@ -22,7 +22,7 @@ const PracticesDirectory = ({
       <Title props={{ size: '2rem' }}>Law Practices</Title>
       <ArticleSearchBox>
         <Article contentBody={formatPageImageToCloudinaryUrl(site.bodyContent)} />
-        <SearchPractices practicesAll={{ sortedCorePractices, sortedAdditionalPractices }} />
+        <SearchPractices practicesAll={practices} />
       </ArticleSearchBox>
       <ListWrapper list={practices} isBlock />
       <FAQ faqArrContent={ATTORNEYS_FAQ} />

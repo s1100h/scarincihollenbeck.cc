@@ -13,12 +13,6 @@ export const SearchPracticesBox = styled.div`
 
   form {
     margin: 0;
-
-    .form-group {
-      .form-control {
-        text-transform: capitalize;
-      }
-    }
   }
 
   ${media_breakpoint_down('xl')} {
