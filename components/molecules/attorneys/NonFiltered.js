@@ -74,7 +74,7 @@ const NonFiltered = ({ attorneys }) => {
       attorneys: sortedAttorneys['Firm Managing Partner']?.attorneys || [],
     },
   };
-  const isFirmOverviewPage = pathname.includes('/firm-overview');
+  const isFirmOverviewPage = pathname.includes('/firm-overview') || pathname.includes('/administration');
   const differentAttorneysKit = isFirmOverviewPage ? sortedAttorneys : justFirmManagementPartners;
   return (
     <>

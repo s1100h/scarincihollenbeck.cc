@@ -7,6 +7,7 @@ import {
   BsCaretDownFill, BsFillPrinterFill, BsFillSignpostFill, BsFillTelephoneFill,
 } from 'react-icons/bs';
 import { globalColor } from 'styles/global_styles/Global.styles';
+import empty from 'is-empty';
 import Map from '../location/Map';
 
 const colorActiveIcons = globalColor.red.darkRed;
@@ -34,15 +35,13 @@ export default function LocationCard({ officesData }) {
                 <div>
                   <BsFillSignpostFill color={globalColor.red.darkRed} size={sizeIcons} />
                 </div>
+                {office.streetAddress}
+                {!empty(office.streetAddress) && ', '}
+                {office.floor}
+                {!empty(office?.floor) && ', '}
                 {office.title}
                 {' '}
                 {office.postCode}
-                ,
-                {' '}
-                {office.streetAddress}
-                ,
-                {' '}
-                {office.floor}
               </Contact>
               <Contact>
                 <BsFillTelephoneFill color={colorActiveIcons} size={sizeIcons} />

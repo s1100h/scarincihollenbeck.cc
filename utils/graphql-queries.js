@@ -1401,6 +1401,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
       postCode
       streetAddress
       addressLocality
+      addressRegion
       officePractices {
         ... on Practice {
           id
