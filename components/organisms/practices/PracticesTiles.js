@@ -12,7 +12,7 @@ const renderPracticesList = (practices, title, uri, isShowMoreArg, handleShowMor
     <h6>{title}</h6>
     <ul>
       <li>
-        <Link href={uri}>{`${title} overview.`}</Link>
+        <Link href={uri}>{`${title} overview`}</Link>
       </li>
       {practices.map(({ databaseId, uri, title }) => (
         <li key={databaseId}>

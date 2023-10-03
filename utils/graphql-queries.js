@@ -228,6 +228,7 @@ export const officeLocationQuery = `query BasicPageQuery {
       slug
       officeMainInformation {
         addressLocality
+        addressRegion
         mapLink
         phone
         streetAddress

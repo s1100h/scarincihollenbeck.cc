@@ -151,6 +151,7 @@ export const CardBox = styled.div`
 
 export const ArticleSearchBox = styled.div`
   display: flex;
+  gap: 3%;
 
   ${media_breakpoint_down('lg')} {
     flex-direction: column;
@@ -256,7 +257,7 @@ export const PracticeTile = styled.li`
     opacity: 0;
     pointer-events: none;
     width: 100%;
-    max-height: ${({ isSowMoreProp }) => (!empty(isSowMoreProp) ? '205%' : '100%')};
+    max-height: ${({ isSowMoreProp }) => (!empty(isSowMoreProp) ? '214%' : '100%')};
     min-height: 100%;
     padding: 20px 20px 20px 20px;
     flex-direction: column;
@@ -264,6 +265,7 @@ export const PracticeTile = styled.li`
     align-items: start;
     background-color: rgba(255, 255, 255);
     position: absolute;
+    box-shadow: ${globalShadow.allSideShadow};
     top: 0;
     z-index: 4;
 
@@ -278,8 +280,8 @@ export const PracticeTile = styled.li`
 
     ul {
       height: 80%;
-      overflow-x: hidden;
-      margin-bottom: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
       list-style: disc;
 
       li {
