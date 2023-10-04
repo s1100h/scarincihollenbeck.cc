@@ -20,11 +20,11 @@ export const SearchPracticesBox = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
-    width: 70%;
+    width: 50%;
   }
 
   ${media_breakpoint_down('md')} {
-    width: 80%;
+    width: 100%;
 
     form {
       width: 100%;
