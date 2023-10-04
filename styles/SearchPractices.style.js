@@ -10,6 +10,7 @@ export const SearchPracticesBox = styled.div`
   padding: 28px 41px;
   box-shadow: ${globalShadow.allSideShadow};
   position: relative;
+  height: fit-content;
 
   form {
     margin: 0;
