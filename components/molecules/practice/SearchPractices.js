@@ -6,7 +6,7 @@ import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 export const uniqArr = (unsortedArr) => {
   const filteredArr = [];
   unsortedArr.forEach((item) => {
-    const isUniq = !filteredArr.some((element) => (element.ID || element.id) === (item.ID || item.id));
+    const isUniq = !filteredArr.some((element) => (element.ID || element.databaseId) === (item.ID || item.databaseId));
 
     if (isUniq) {
       filteredArr.push(item);
@@ -16,20 +16,19 @@ export const uniqArr = (unsortedArr) => {
   return filteredArr;
 };
 
-const findTheFirst = (searchCharacter, sortedCorePracticesArg, sortedAdditionalPracticesArg) => {
+const findTheFirst = (searchCharacter, sortedCorePracticesArg) => {
   const childrenArr = [];
 
   const findCore = sortedCorePracticesArg?.filter(({ title }) => title.includes(searchCharacter));
-  const additional = sortedAdditionalPracticesArg?.filter(({ title }) => title.includes(searchCharacter));
 
-  sortedCorePracticesArg?.forEach(({ children }) => {
-    if (children?.filter(({ title }) => title.includes(searchCharacter)).length > 0) {
-      childrenArr.push(children.filter(({ title }) => title.includes(searchCharacter)));
+  sortedCorePracticesArg?.forEach(({ childPractice }) => {
+    if (childPractice?.filter(({ title }) => title.includes(searchCharacter)).length > 0) {
+      childrenArr.push(childPractice.filter(({ title }) => title.includes(searchCharacter)));
     }
   });
 
   return {
-    practicesMain: uniqArr(findCore.concat(additional)),
+    practicesMain: uniqArr(findCore),
     practicesChildren: uniqArr(childrenArr.flat()),
   };
 };
@@ -37,8 +36,6 @@ const findTheFirst = (searchCharacter, sortedCorePracticesArg, sortedAdditionalP
 export default function SearchPractices({ practicesAll }) {
   const [searchValue, setSearchValue] = useState('');
   const [fondPractices, setPracticesArr] = useState(null);
-
-  const { sortedCorePractices, sortedAdditionalPractices } = practicesAll;
 
   const handleSearch = (event) => {
     const value = event?.currentTarget?.value;
@@ -48,7 +45,7 @@ export default function SearchPractices({ practicesAll }) {
 
   useEffect(() => {
     if (searchValue) {
-      setPracticesArr(findTheFirst(searchValue, sortedCorePractices, sortedAdditionalPractices));
+      setPracticesArr(findTheFirst(searchValue, practicesAll));
     }
   }, [searchValue]);
 
@@ -61,15 +58,15 @@ export default function SearchPractices({ practicesAll }) {
       {isRenderList && (
         <DropDownResults>
           {fondPractices.practicesMain.length > 0
-            && fondPractices.practicesMain.map(({ title, slug }) => (
-              <Link key={title} href={slug} passHref>
+            && fondPractices.practicesMain.map(({ title, uri }) => (
+              <Link key={title} href={uri} passHref>
                 <li>{title}</li>
               </Link>
             ))}
           {isRenderHr && <hr />}
           {fondPractices.practicesChildren.length > 0
-            && fondPractices.practicesChildren.map(({ title, slug }) => (
-              <Link key={title} href={slug} passHref>
+            && fondPractices.practicesChildren.map(({ title, uri }) => (
+              <Link key={title} href={uri} passHref>
                 <li>{title}</li>
               </Link>
             ))}

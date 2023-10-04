@@ -49,7 +49,7 @@ export const BackgroundContainer = styled.section`
   ${({ props }) => {
     return props?.isHoliday?.length > 0
       ? `${media_breakpoint_down('xl')} {
-             background-position: right 9% bottom 0%;
+             background-position: right 9% bottom 0;
              background-size: 50%;
              padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
           }
