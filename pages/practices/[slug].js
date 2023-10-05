@@ -69,7 +69,7 @@ const getPracticeAttorneys = async (uri) => {
 
   const practiceChief = data.practice?.practicesIncluded.sectionChief ? attorneysSanitize(data.practice.practicesIncluded.sectionChief) : [];
 
-  const keyContactsArr = data.practice.practicesIncluded.keyContactByPractice ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice) : [];
+  const keyContactsArr = data.practice?.practicesIncluded.keyContactByPractice ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice) : [];
 
   const postsForSidebar = data.posts?.nodes ? postsSanitize(data.posts.nodes) : [];
 
@@ -115,7 +115,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
 
-  if (typeof practice === 'undefined') {
+  if (empty(practice)) {
     return {
       notFound: true,
     };
