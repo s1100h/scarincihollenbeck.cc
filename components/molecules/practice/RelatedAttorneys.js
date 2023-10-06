@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+import { Fragment, useId } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttorneyCard from 'components/shared/AttorneyCard';
@@ -14,7 +15,9 @@ const PracticeRelatedAttorneys = ({ members, chair, title }) => (
         <Row className="my-5">
           {sortByKey(chair, 'lastName').map((attorney) => (
             <Col sm={12} md={12} lg={6} key={attorney.ID}>
-              <AttorneyCard link={`/attorneys/${attorney.link}`} image={formatSrcToCloudinaryUrl(attorney.image)} name={attorney.name} title={attorney.designation} number={attorney.contact} email={attorney.email} width={80} height={112} type="/attorneys/[slug]" />
+              <Fragment key={useId()}>
+                <AttorneyCard link={`/attorneys/${attorney.link}`} image={formatSrcToCloudinaryUrl(attorney.image)} name={attorney.name} title={attorney.designation} number={attorney.contact} email={attorney.email} width={80} height={112} type="/attorneys/[slug]" />
+              </Fragment>
             </Col>
           ))}
         </Row>

@@ -32,6 +32,7 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
     fax: currentOffice.fax,
     streetAddress: currentOffice.streetAddress,
     floor: currentOffice.floor,
+    addressRegion: currentOffice.addressRegion,
     postCode: currentOffice.postCode,
     addressLocality: currentOffice.addressLocality,
   };

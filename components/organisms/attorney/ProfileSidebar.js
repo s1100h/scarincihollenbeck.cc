@@ -13,7 +13,7 @@ const ProfileSidebar = ({ services, awards }) => (
       <SidebarTile indent="true" red="true">
         Let`s get in touch
       </SidebarTile>
-      <ContactForm />
+      <ContactForm isPositionRelativeProp />
     </div>
   </ProfileSidebarContainer>
 );

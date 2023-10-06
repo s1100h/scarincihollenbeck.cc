@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
 
 const mainFontSize = 16;
@@ -142,147 +142,146 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
-  body {
-    font-weight: 400;
-    background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
-
-    * {
-      letter-spacing: .02rem;
-    }
+body {
+  font-weight: 400;
+  background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
+  
+  * {
+    letter-spacing: .02rem;
   }
+}
 
-  #__next {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  main {
-    flex: 1;
-  }
+main {
+  flex: 1;
+}
 
-  a {
-    text-decoration: none;
-    color: ${globalColor.blue.dirtyBlue};
+a {
+  text-decoration: none;
+  color: ${globalColor.blue.dirtyBlue};
 
-    :hover {
-      color: ${globalColor.red.darkRed};
-    }
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  h1 {
-    font-family: var(--font-poppins), sans-serif;
-  }
-
-  h2 {
-    font-size: ${rem(38)};
-    font-weight: 400;
-  }
-
-  h3 {
-    color: ${globalColor.black};
-    font-weight: 700;
-    font-size: ${rem(28)};
-    margin: 0;
-  }
-
-  h4, h5 {
-    font-size: 1.2rem;
-  }
-
-  h6 {
-    font-size: 1.125rem;
-  }
-
-  input {
-    border-radius: 0;
-    border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
-    background-color: ${globalColor.graySmoke.liteWhiteSmoke};
-
-    ::placeholder {
-      color: ${globalColor.grayExtraLite.grayExtraLite80};
-    }
-
-    :active {
-      border-color: ${globalColor.blue.ultramarine};
-    }
-
-    :focus-visible {
-      border: 1px solid ${globalColor.blue.ultramarine};
-      border-radius: 0;
-    }
-  }
-
-  video {
-    width: -webkit-fill-available;
-  }
-
-  button {
-    border: none;
-    background: none;
-    padding: 0;
-    margin: 0;
-    font-size: inherit;
-    font-family: inherit;
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
-    }
-
-    &[disabled] {
-      background-color: ${globalColor.grayLite.grayLite100};
-    }
-  }
-
-  .content {
-    h4 {
-      font-weight: bold;
-    }
-
-    p {
-      margin-bottom: 1.125rem;
-      line-height: 1.7;
-    }
-
-    li {
-      font-size: 1rem;
-    }
-
-    img {
-      max-width: 100%;
-    }
-  }
-
-  .slick-list {
-    text-align: center;
-  }
-
-  .smallExcerpt {
-    font-size: 13px;
-    line-height: 1.5;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .fs-1_2rem {
-    font-size: 1.2rem;
-  }
-
-  .redTitle {
+  :hover {
     color: ${globalColor.red.darkRed};
   }
+}
 
-  /** Button Styling **/
-  .btn-danger {
-    font-weight: bold;
-    background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
+ul {
+	list-style: none;
+  padding: 0;
+}
+
+h1 {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+h2 {
+  font-size: ${rem(38)};
+  font-weight: 400;
+}
+
+h3 {
+  color: ${globalColor.black};
+  font-weight: 700;
+  font-size: ${rem(28)};
+  margin: 0;
+}
+
+h4, h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+input {
+  border-radius: 0;
+  border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+  background-color: ${globalColor.graySmoke.liteWhiteSmoke};
+  ::placeholder {
+    color: ${globalColor.grayExtraLite.grayExtraLite80};
   }
+
+  :active {
+    border-color: ${globalColor.blue.ultramarine};
+  }
+
+  :focus-visible {
+    border: 1px solid ${globalColor.blue.ultramarine};
+    border-radius: 0 !important;
+  }
+}
+
+video {
+  width: -webkit-fill-available;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    background-color: ${globalColor.grayLite.grayLite100};
+  }
+}
+
+.content {
+  h4 {
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 1.125rem;
+    line-height: 1.7;
+  }
+
+  li {
+    font-size: 1rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.slick-list {
+  text-align: center;
+}
+
+.smallExcerpt {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.fs-1_2rem {
+  font-size: 1.2rem;
+}
+
+.redTitle {
+  color: ${globalColor.red.darkRed};
+}
+
+/** Button Styling **/
+.btn-danger {
+  font-weight: bold;
+  background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
+}
 
   /** Hide captcha in print **/
   @media print {
@@ -290,151 +289,162 @@ export const GlobalStyle = createGlobalStyle`
       display: none !important;
     }
   }
+.kw-border-success {
+  margin-left: 0;
+}
 
-  /** Handle center button styles from wordpress **/
-  .aligncenter > img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+/** Hide captcha in print **/
+@media print {
+  .grecaptcha-badge {
+    display: none !important;
   }
+}
 
-  .aligncenter > figcaption {
-    text-align: center;
-    margin-top: 8px;
-    font-size: 14px;
-  }
+/** Handle center button styles from wordpress **/
+.aligncenter > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .alignleft {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: column;
-    float: left;
-    margin-right: 24px;
-    width: min-content;
-  }
+.aligncenter > figcaption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+}
 
-  .alignright {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    flex-direction: column;
-    float: right;
-    margin-left: 24px;
-    width: min-content;
-  }
+.alignleft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: column;
+  float: left;
+  margin-right: 24px;
+  width: min-content;
+}
 
+.alignright {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-direction: column;
+  float: right;
+  margin-left: 24px;
+  width: min-content;
+}
+
+.wp-block-columns {
+  display: flex;
+}
+
+.wp-block-column {
+  flex: 1;
+}
+
+.has-text-align-center {
+  text-align: center;
+}
+
+.wrapper-section {
+  width: 1650px;
+  max-width: 96%;
+  margin: 0 auto 150px;
+}
+
+footer .wrapper-section {
+  margin-bottom: 0;
+}
+
+.box-shadow {
+  box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
+}
+
+.dNone {
+  display: none;
+}
+
+.modal-header_my {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+}
+
+.modal-title_my {
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
   .wp-block-columns {
-    display: flex;
+    display: block;
   }
+}
 
-  .wp-block-column {
-    flex: 1;
+@media (min-width: 576px) {
+  .container {
+    max-width: 90%;
   }
+}
 
-  .has-text-align-center {
-    text-align: center;
+@media (min-width: 768px) {
+  .container {
+    max-width: 96%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 5%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-dialog {
+    margin: 0;
+  }
+  .modal-content {
+    width: 90%;
+    margin: 0 auto;
   }
 
   .wrapper-section {
-    width: 1650px;
-    max-width: 96%;
-    margin: 0 auto 150px;
+    margin: 0 auto 70px;
   }
+}
 
-  footer .wrapper-section {
-    margin-bottom: 0;
-  }
+.modal-link {
+  font-weight: bold;
+  color: #a91110;
+  margin-bottom: 10px;
+}
 
-  .box-shadow {
-    box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
-  }
+.modal-link:hover {
+  text-decoration: none;
+  color: #a91110;
+}
 
-  .dNone {
-    display: none;
-  }
-
-  .modal-header_my {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    padding: 30px;
-    position: relative;
-    text-align: center;
-  }
-
-  .modal-title_my {
-    font-weight: bold;
-  }
-
-  @media (max-width: 992px) {
-    .wp-block-columns {
-      display: block;
+.hovered-client {
+  img {
+    :hover {
+      border: 1px solid ${globalColor.grayExtraLite.grayExtraLite80};
     }
   }
+}
 
-  @media (min-width: 576px) {
-    .container {
-      max-width: 90%;
-    }
+.bullets-li {
+  padding-left: 20px;
+  position: relative;
+  
+  ::before {
+    top: 0;
+    left: 0;
+    content: '➤';
+    position: absolute;
   }
-
-  @media (min-width: 768px) {
-    .container {
-      max-width: 96%;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .container {
-      max-width: 1440px;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    .modal-dialog {
-      margin: 0;
-    }
-    .modal-content {
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    .wrapper-section {
-      margin: 0 auto 70px;
-    }
-  }
-
-  .modal-link {
-    font-weight: bold;
-    color: #a91110;
-    margin-bottom: 10px;
-  }
-
-  .modal-link:hover {
-    text-decoration: none;
-    color: #a91110;
-  }
-
-  .hovered-client {
-    img {
-      :hover {
-        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite80};
-      }
-    }
-  }
-
-  .bullets-li {
-    padding-left: 20px;
-    position: relative;
-
-    ::before {
-      top: 0;
-      left: 0;
-      content: '➤';
-      position: absolute;
-    }
-  }
+}
 
   .slick-track {
     display: flex;
@@ -547,4 +557,45 @@ export const attorneyCardForCannabis = `
         }
       }
     }
+`;
+
+export const successMessage = `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  background-color: ${globalColor.white};
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+  color: ${globalColor.black};
+
+  :before {
+    content: '';
+    display: inline-block;
+    width: 84px;
+    height: 75px;
+    background-image: url('/images/sh-mini-diamond-PNG.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right center;
+  }
+
+  :after {
+    content: 'Thank you for reaching out! We will get in touch with you soon.';
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+`;
+
+export const OptionalIndent = styled.div`
+  margin-top: ${({ mt }) => (mt ? `${mt}px` : '0')};
+  margin-bottom: ${({ mb }) => (mb ? `${mb}px` : '0')};
 `;

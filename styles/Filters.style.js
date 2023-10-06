@@ -4,6 +4,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import styled from 'styled-components';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import empty from 'is-empty';
 
 const translate3dVariations = (width) => `translate3d(${width}, 49px, 0px)!important`;
 
@@ -96,8 +97,8 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
 
 export const ContainerFilters = styled(Container)`
   min-width: 86vw;
-  padding: 22px 20px;
-  background-color: ${({ props }) => (props?.isWhite ? globalColor.white : '#495057')};
+  padding: 22px 20px !important;
+  background-color: ${({ props }) => (!empty(props?.isWhite) ? globalColor.white : '#495057')};
   box-shadow: ${globalShadow.allSideShadow};
 
   form {

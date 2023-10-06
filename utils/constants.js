@@ -15,6 +15,15 @@ export const SITE_TITLE = 'Scarinci Hollenbeck';
 export const SITE_PHONE = '201-896-4100';
 export const SITE_FAX = '201-896-8660';
 export const SITE_EMAIL = 'info@sh-law.com';
+
+export const THANKS_MESSAGE = {
+  title: 'Thank you!',
+  getInTouch: 'Thank you for reaching out! We will get in touch with you soon.',
+};
+
+export const SUBSCRIPTION_THANKS = {
+  subscription: 'Thank you for subscribing! You are now part of our newsletter.',
+};
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
@@ -473,6 +482,73 @@ export const administrationTitles = [
   { name: 'Administrative Management', order: 3 },
 ];
 
+export const inputsCareerForm = [
+  {
+    type: 'text',
+    name: 'FirstName',
+    placeholder: 'First name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'text',
+    name: 'LastName',
+    placeholder: 'Last name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'email',
+    name: 'Email',
+    placeholder: 'Email address',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'tel',
+    name: 'Phone',
+    placeholder: 'Phone number',
+    rules: 'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
+    maxLength: 17,
+    title: `Please use these formats: 
+    (123) 456-7890
+    123-456-7890
+    123.456.7890
+    123 456 7890
+    +1 123-456-7890
+    +1 (123) 456-7890
+    `,
+  },
+  {
+    id: 'coverLetter',
+    type: 'file',
+    name: 'coverLetter',
+    rules: 'required',
+    label: 'Upload your cover letter',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+    htmlFor: 'coverLetter',
+  },
+  {
+    id: 'resume',
+    type: 'file',
+    name: 'resume',
+    rules: 'required',
+    label: 'Upload your resume',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+  {
+    id: 'writing',
+    type: 'file',
+    name: 'writing',
+    label: 'Upload a writing sample',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+  {
+    id: 'transcript',
+    type: 'file',
+    name: 'transcript',
+    label: 'Upload a transcript',
+    accept: '.txt, .rtf, .doc, .docx, .pdf, .odt, .tex, .md, .csv, .html, .xml',
+  },
+];
+
 export const inputsGetInTouchAttributes = [
   {
     type: 'text',
@@ -512,6 +588,14 @@ export const inputsGetInTouchAttributes = [
     name: 'Subject',
     placeholder: 'Subject',
     rules: 'required|max:1000',
+  },
+  {
+    type: 'textarea',
+    name: 'Message',
+    placeholder: 'Message',
+    rules: 'required|max:1000',
+    rows: 8,
+    cols: 4,
   },
 ];
 

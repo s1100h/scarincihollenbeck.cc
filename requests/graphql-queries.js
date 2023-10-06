@@ -228,6 +228,7 @@ export const officeLocationQuery = `query BasicPageQuery {
       slug
       officeMainInformation {
         addressLocality
+        addressRegion
         mapLink
         phone
         streetAddress
@@ -773,7 +774,7 @@ export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
 
 /** practices landing page query */
 export const practicePageQuery = `query PracticesPagesQuery {
-  pageBy(pageId: 46644) {
+  page(id: 46644, idType: DATABASE_ID) {
     title
     seo {
       metaDesc
@@ -782,6 +783,36 @@ export const practicePageQuery = `query PracticesPagesQuery {
     practiceArchives {
       description
       mainTag
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+  }
+}`;
+
+export const getPracticesQuery = `query NewQuery {
+  practices(first: 100) {
+    nodes {
+      databaseId
+      title
+      uri
+      practicesIncluded {
+        childPractice {
+          ... on Practice {
+            databaseId
+            title
+            uri
+          }
+        }
+        practiceImage {
+          sourceUrl
+        }
+      }
+      practicePortalPageContent {
+        practicePortalCategories
+      }
     }
   }
 }`;
@@ -1026,6 +1057,7 @@ export const careersQuery = `query BasicPageQuery {
         startDate
         positionLocation
         positionType
+        jobSummaryForCard
       }
     }
   }
@@ -1462,6 +1494,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
       postCode
       streetAddress
       addressLocality
+      addressRegion
       officePractices {
         ... on Practice {
           id

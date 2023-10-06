@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import Image from 'next/legacy/image';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import Button from 'react-bootstrap/Button';
 import { checkboxes } from 'utils/categories';
-import { SITE_TITLE } from 'utils/constants';
-import { CheckBoxesList, FormContainer, SubscribeBtn } from 'styles/Subscription.style';
+import { SITE_TITLE, THANKS_MESSAGE } from 'utils/constants';
+import { CheckBoxesList, FormSubscriptionContainer, SubscribeBtn } from 'styles/Subscription.style';
 import kwesforms from 'kwesforms';
 import ModalWindow from '../../common/ModalWindow';
 import { StandardRedButton } from '../../../styles/Buttons.style';
@@ -27,7 +26,7 @@ const SubscriptionModal = () => {
         <span>Subscribe Now!</span>
       </SubscribeBtn>
       <ModalWindow isOpen={show} setOpenModal={setShow}>
-        <FormContainer>
+        <FormSubscriptionContainer>
           <section>
             <Image src="/images/sh-mini-diamond-PNG.png" width={130} height={107} alt={`${SITE_TITLE} diamond`} layout="intrinsic" />
             <h4>
@@ -37,7 +36,7 @@ const SubscriptionModal = () => {
               attorneys!
             </h4>
           </section>
-          <form className="kwes-form" action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD" has-recaptcha-v3="true" recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY">
+          <form className="kwes-form" action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD" has-recaptcha-v3="true" recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY" success-message={THANKS_MESSAGE.title}>
             <input type="hidden" name="currentPage" value={`https://scarincihollenbeck.com${router.asPath}`} />
             <input type="text" className="form-control mb-2" name="firstName" placeholder="First name" rules="required|max:255" />
             <input type="text" className="form-control mb-2" name="lastName" placeholder="Last name" rules="required|max:255" />
@@ -59,7 +58,7 @@ const SubscriptionModal = () => {
               <StandardRedButton type="submit">Submit</StandardRedButton>
             </div>
           </form>
-        </FormContainer>
+        </FormSubscriptionContainer>
       </ModalWindow>
     </>
   );
