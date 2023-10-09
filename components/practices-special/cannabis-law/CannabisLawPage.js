@@ -16,7 +16,14 @@ const NewsPaperBlock = dynamic(() => import('../../organisms/cannabis-law/NewsPa
 const PracticesListBlock = dynamic(() => import('../../organisms/cannabis-law/PracticesListBlock'));
 
 const CannabisLawPage = ({
-  practice, canonicalUrl, attorneysSchemaData, corePractices, chairPractice, attorneyListPractice, keyContactsList, cannabisLawData,
+  practice,
+  canonicalUrl,
+  attorneysSchemaData,
+  corePractices,
+  chairPractice,
+  attorneyListPractice,
+  keyContactsList,
+  cannabisLawData,
 }) => {
   const [hrefToId, setHref] = useState('');
   const anchorIdBlock = 'photoBlock';
@@ -49,17 +56,59 @@ const CannabisLawPage = ({
     // skipOrGo,
   );
 
+  const paginationDataProps = {
+    handleNextPagination,
+    handlePrevPagination,
+    data,
+    loading,
+    error,
+  };
+
   return (
     <>
-      <BasicSiteHead title={practice.seo.title} metaDescription={practice.seo.metaDescription} canonicalUrl={canonicalUrl} personDataForSchema={attorneysSchemaData} />
-      <SubHeader handleClickAnchor={handleClickByAnchor} backgroundVideo={cannabisLawData.subheaderBackgroundVideo.link} anchorId={anchorIdBlock} title={practice.title} subtitle={cannabisLawData.subTitle} article={cannabisLawData.descriptionSubheader} />
-      <PhotoBlock anchorIdBlock={hrefToId} photoBlockData={cannabisLawData.photoBlock} />
+      <BasicSiteHead
+        title={practice.seo.title}
+        metaDescription={practice.seo.metaDescription}
+        canonicalUrl={canonicalUrl}
+        personDataForSchema={attorneysSchemaData}
+      />
+      <SubHeader
+        handleClickAnchor={handleClickByAnchor}
+        backgroundVideo={cannabisLawData.subheaderBackgroundVideo.link}
+        anchorId={anchorIdBlock}
+        title={practice.title}
+        subtitle={cannabisLawData.subTitle}
+        article={cannabisLawData.descriptionSubheader}
+      />
+      <PhotoBlock
+        anchorIdBlock={hrefToId}
+        photoBlockData={cannabisLawData.photoBlock}
+      />
       <CardsBlock cardsBlockData={cannabisLawData.cardsInfo.cards} />
-      <AttorneysBlock attorneysBlockArticle={cannabisLawData.attorneysArticleBlock} attorneyListPractice={attorneyListPractice} chairPractice={chairPractice} />
-      <KeyContactsBlock keyContactsData={cannabisLawData.keycontactsblock} keyContacts={keyContactsList} />
-      {(!empty(cannabisLawData.helpArticleBlock.title) || !empty(cannabisLawData.helpArticleBlock.paragraphs)) && <HelpArticleBlock helpArticleBlockData={cannabisLawData.helpArticleBlock} />}
-      <NewsPaperBlock article={cannabisLawData.newspaperBlock.article} newsPepperArticle={cannabisLawData.newspaperBlock.newspaperBox} />
-      <ArticlesBlock categoryData={data} handleClickByTabCategory={setBlogId} activeTabSlug={blogFields.databaseId} />
+      <AttorneysBlock
+        attorneysBlockArticle={cannabisLawData.attorneysArticleBlock}
+        attorneyListPractice={attorneyListPractice}
+        chairPractice={chairPractice}
+      />
+      <KeyContactsBlock
+        keyContactsData={cannabisLawData.keycontactsblock}
+        keyContacts={keyContactsList}
+      />
+      {(!empty(cannabisLawData.helpArticleBlock.title)
+        || !empty(cannabisLawData.helpArticleBlock.paragraphs)) && (
+        <HelpArticleBlock
+          helpArticleBlockData={cannabisLawData.helpArticleBlock}
+        />
+      )}
+      <NewsPaperBlock
+        article={cannabisLawData.newspaperBlock.article}
+        newsPepperArticle={cannabisLawData.newspaperBlock.newspaperBox}
+      />
+      <ArticlesBlock
+        paginationData={paginationDataProps}
+        handleClickByTabCategory={setBlogId}
+        activeTabLabel={blogFields.label}
+      />
       <PracticesListBlock practiceList={corePractices} />
     </>
   );

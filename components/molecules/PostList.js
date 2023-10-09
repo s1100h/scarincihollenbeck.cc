@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import Loader from 'components/atoms/Loader';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import PaginationButtons from 'components/atoms/PaginationButtons';
@@ -21,19 +21,31 @@ const PostList = ({ content, isProfile }) => {
         <>
           {!loading
             && memoData.map(({ node }) => (
-              <div key={node.title}>
+              <Fragment key={node.title}>
                 <NewsCard
-                  postSlug={node.uri.replace('https://scarincihollenbeck.com/', '/')}
-                  postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
+                  postSlug={node.uri.replace(
+                    'https://scarincihollenbeck.com/',
+                    '/',
+                  )}
+                  postImage={formatSrcToCloudinaryUrl(
+                    node.featuredImage?.node?.sourceUrl,
+                  )}
                   postTitle={node.title}
                   postDate={node.date}
                   postExcerpt={isProfile ? null : node.excerpt}
                   postAuthor={node.author}
                   isProfile={isProfile}
+                  isVertical={isProfile}
                 />
-              </div>
+              </Fragment>
             ))}
-          <PaginationButtons handleNextPagination={handleNextPagination} handlePrevPagination={handlePrevPagination} countOfArticles={(isProfile && 3) || 6} disablePrevBtn={disablePrevBtn} disabledNextBtn={disableNextBtn} />
+          <PaginationButtons
+            handleNextPagination={handleNextPagination}
+            handlePrevPagination={handlePrevPagination}
+            countOfArticles={(isProfile && 3) || 6}
+            disablePrevBtn={disablePrevBtn}
+            disabledNextBtn={disableNextBtn}
+          />
         </>
       )}
     </>
