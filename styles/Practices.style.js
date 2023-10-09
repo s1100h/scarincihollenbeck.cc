@@ -8,9 +8,14 @@ export const ButtonTabToggle = styled(Dropdown.Toggle)`
   display: flex;
   width: 100%;
   padding: 10px 30px;
-  justify-content: ${({ props }) => (props?.isButtonLink ? 'center' : 'space-between')};
+  justify-content: ${({ props }) =>
+    props?.isButtonLink ? 'center' : 'space-between'};
   align-items: center;
-  border: 1px solid ${({ props }) => (props?.isButtonLink ? globalColor.blue.ultramarine : globalColor.grayExtraLite.grayExtraLite100)};
+  border: 1px solid
+    ${({ props }) =>
+      props?.isButtonLink
+        ? globalColor.blue.ultramarine
+        : globalColor.grayExtraLite.grayExtraLite100};
   text-decoration: none;
   transition: All 1s ease;
   -webkit-transition: All 1s ease;
@@ -32,8 +37,12 @@ export const ButtonTabToggle = styled(Dropdown.Toggle)`
   }
 
   :hover {
-    background-color: ${({ props }) => (props?.isButtonLink ? globalColor.blue.dirtyBlue : globalColor.graySmoke.whiteSmoke)};
-    color: ${({ props }) => (props?.isButtonLink ? globalColor.white : globalColor.gray.gray100)};
+    background-color: ${({ props }) =>
+      props?.isButtonLink
+        ? globalColor.blue.dirtyBlue
+        : globalColor.graySmoke.whiteSmoke};
+    color: ${({ props }) =>
+      props?.isButtonLink ? globalColor.white : globalColor.gray.gray100};
     text-decoration: none;
   }
 
@@ -48,7 +57,8 @@ export const ButtonTabToggle = styled(Dropdown.Toggle)`
   svg {
     transition: 0.8s;
     fill: ${globalColor.gray.gray40};
-    ${({ props }) => (props?.open ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)')};
+    ${({ props }) =>
+      props?.open ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)'};
   }
 
   span {
@@ -181,7 +191,8 @@ export const ShowMoreBtn = styled.button`
   svg {
     margin-left: 5px;
     stroke-width: 1px;
-    transform: ${({ isRotateChevron }) => (!empty(isRotateChevron) ? 'rotate(180deg)' : 'rotate(0deg)')};
+    transform: ${({ isRotateChevron }) =>
+      !empty(isRotateChevron) ? 'rotate(180deg)' : 'rotate(0deg)'};
   }
 
   ${media_breakpoint_down('sm')} {
@@ -257,7 +268,8 @@ export const PracticeTile = styled.li`
     opacity: 0;
     pointer-events: none;
     width: 100%;
-    max-height: ${({ isSowMoreProp }) => (!empty(isSowMoreProp) ? '214%' : '100%')};
+    max-height: ${({ isSowMoreProp }) =>
+      !empty(isSowMoreProp) ? '214%' : '100%'};
     min-height: 100%;
     padding: 20px 20px 20px 20px;
     flex-direction: column;
@@ -329,7 +341,10 @@ export const PracticeTile = styled.li`
         display: block;
         stroke-width: 1.5px;
         transition: 0.8s;
-        ${({ isRotateCard }) => (isRotateCard ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)')};
+        ${({ isRotateCard }) =>
+          isRotateCard
+            ? 'transform: rotate(180deg)'
+            : 'transform: rotate(0deg)'};
       }
     }
 

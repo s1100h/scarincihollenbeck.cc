@@ -75,7 +75,7 @@ export const BackgroundContainer = styled.section`
 
 export const GradientWrapper = styled.div`
   height: 100%;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 27%, ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%, rgba(255, 255, 255, 0) 68%);

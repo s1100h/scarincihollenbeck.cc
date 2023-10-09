@@ -4,7 +4,7 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const NewsTitle = styled.h2`
   font-family: var(--font-poppins);
-  font-size: ${rem(72)};
+  font-size: ${rem(48)};
   margin-top: 50px;
   margin-bottom: 35px;
 
