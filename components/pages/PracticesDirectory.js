@@ -13,15 +13,31 @@ import { ArticleSearchBox } from '../../styles/Practices.style';
 const FAQ = dynamic(() => import('components/atoms/FAQ'));
 
 const PracticesDirectory = ({
-  site, seo, canonicalUrl, practices, subheaderOverlay,
+  site,
+  seo,
+  canonicalUrl,
+  practices,
+  subheaderOverlay,
 }) => (
   <>
-    <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
-    <SingleSubHeader backgroundImage={subheaderOverlay} title={site.title} subtitle={site.description} span={7} offset={2} />
-    <FullWidth>
+    <BasicSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDesc}
+      canonicalUrl={canonicalUrl}
+    />
+    <SingleSubHeader
+      backgroundImage={subheaderOverlay}
+      title={site.title}
+      subtitle={site.description}
+      span={7}
+      offset={2}
+    />
+    <FullWidth classes="container--practises">
       <Title props={{ size: '2rem' }}>Law Practices</Title>
       <ArticleSearchBox>
-        <Article contentBody={formatPageImageToCloudinaryUrl(site.bodyContent)} />
+        <Article
+          contentBody={formatPageImageToCloudinaryUrl(site.bodyContent)}
+        />
         <SearchPractices practicesAll={practices} />
       </ArticleSearchBox>
       <ListWrapper list={practices} isBlock />
