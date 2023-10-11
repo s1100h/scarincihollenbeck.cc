@@ -52,6 +52,10 @@ export const PostsBox = styled.div`
       .link-wrapper {
         flex-direction: column;
       }
+
+      .news-card-footer {
+        display: flex;
+      }
     }
 
     :hover {
