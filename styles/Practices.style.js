@@ -228,7 +228,7 @@ export const PracticeTile = styled.li`
     ${media_breakpoint_down('sm')} {
       flex-direction: column;
       background-color: white;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 15px;
     }
   }
@@ -335,7 +335,7 @@ export const PracticeTile = styled.li`
       flex-direction: column;
       align-items: center;
       font-size: 1.2rem;
-      top: 20%;
+      /* top: 20%; */
 
       svg {
         display: block;
