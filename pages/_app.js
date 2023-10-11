@@ -56,7 +56,9 @@ const SHSite = ({ Component, pageProps }) => {
             <GlobalStyle />
             <MainSiteHead />
             <Header />
-            <main className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable}`}>
+            <main
+              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable}`}
+            >
               <Component {...pageProps} />
             </main>
             <SiteFooter />

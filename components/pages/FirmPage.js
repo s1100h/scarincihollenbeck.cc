@@ -7,7 +7,10 @@ import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
 import Article from 'components/atoms/Article';
 import {
-  FirstColumn, BottomContainer, SecondColumn, TwoColumnsContainer,
+  FirstColumn,
+  BottomContainer,
+  SecondColumn,
+  TwoColumnsContainer,
 } from 'styles/Containers.style';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
@@ -15,7 +18,13 @@ const RelatedAttorneys = dynamic(() => import('components/molecules/practice/Rel
 
 export default function FirmPage({ page, canonicalUrl, handleLink }) {
   const {
-    seo, tabs, relatedPages, attorneysRecommendedPosts, title, description, members,
+    seo,
+    tabs,
+    relatedPages,
+    attorneysRecommendedPosts,
+    title,
+    description,
+    members,
   } = page;
 
   const titlesMap = {
@@ -25,12 +34,21 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
 
   return (
     <>
-      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
+      <BasicSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDesc}
+        canonicalUrl={canonicalUrl}
+      />
       <SubHeader title={title} subtitle={description} />
       <TwoColumnsContainer>
         <FirstColumn>
           {tabs.map((tab) => (
-            <Article key={tab.title} title={tab.title} highlight contentBody={formatPageImageToCloudinaryUrl(tab.content)} />
+            <Article
+              key={tab.title}
+              title={tab.title}
+              highlight
+              contentBody={formatPageImageToCloudinaryUrl(tab.content)}
+            />
           ))}
         </FirstColumn>
         <SecondColumn>
@@ -42,11 +60,21 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
         </SecondColumn>
       </TwoColumnsContainer>
       <BottomContainer>
-        {members && <RelatedAttorneys members={members.member} chair={members.chair} handleLink={handleLink} title="Chair" />}
+        {members && (
+          <RelatedAttorneys
+            members={members.member}
+            chair={members.chair}
+            handleLink={handleLink}
+            title="Chair"
+          />
+        )}
 
         {attorneysRecommendedPosts.length > 0 && (
           <div className="mt-lg-5">
-            <RecommendedPosts titleGeneralBlock={titlesMap[title] || 'Latest from the firm'} attorneyFooterNewsArticles={attorneysRecommendedPosts} />
+            <RecommendedPosts
+              titleGeneralBlock={titlesMap[title] || 'Latest from the firm'}
+              attorneyFooterNewsArticles={attorneysRecommendedPosts}
+            />
           </div>
         )}
       </BottomContainer>

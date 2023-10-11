@@ -1,6 +1,14 @@
 import styled from 'styled-components';
-import { beforeDoteStyledList, globalColor, imageCoverBlock, paragraphStyles } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import {
+  beforeDoteStyledList,
+  globalColor,
+  imageCoverBlock,
+  paragraphStyles,
+} from '../../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../../mediaBreakpoints.style';
 
 export const PracticesListContainer = styled.section`
   display: flex;

@@ -25,32 +25,53 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
           <h3>Chair</h3>
           <div>
             {isMobileScreen
-              ? chairs?.map((chair) => <AttorneyCard key={chair.databaseId} link={`${chair.link}`} image={chair.profileImage} name={chair.title} designation={chair.designation} number={chair.phoneNumber} email={chair.email} width={80} height={112} type="/attorneys/[slug]" />)
-              : chairs?.map(({
-                databaseId, link, profileImage, title, designation, phoneNumber, email,
-              }) => (
-                <Fragment key={databaseId}>
-                  {renderCardsByVariants(
-                    variant,
-                    {
-                      classNameProp: 'vertical-attorney-card',
-                      key: databaseId,
-                      link,
-                      image: profileImage,
-                      name: title,
-                      designation,
-                      number: phoneNumber,
-                      email,
-                      width: 180,
-                      height: 210,
-                      setterId: setCardIdHovered,
-                      cardIdHovered,
-                      databaseId,
-                    },
-                    CardVariantsMap,
-                  )}
-                </Fragment>
-              ))}
+              ? chairs?.map((chair) => (
+                <AttorneyCard
+                  key={chair.databaseId}
+                  link={`${chair.link}`}
+                  image={chair.profileImage}
+                  name={chair.title}
+                  designation={chair.designation}
+                  number={chair.phoneNumber}
+                  email={chair.email}
+                  width={80}
+                  height={112}
+                  type="/attorneys/[slug]"
+                />
+              ))
+              : chairs?.map(
+                ({
+                  databaseId,
+                  link,
+                  profileImage,
+                  title,
+                  designation,
+                  phoneNumber,
+                  email,
+                }) => (
+                  <Fragment key={databaseId}>
+                    {renderCardsByVariants(
+                      variant,
+                      {
+                        classNameProp: 'vertical-attorney-card',
+                        key: databaseId,
+                        link,
+                        image: profileImage,
+                        name: title,
+                        designation,
+                        number: phoneNumber,
+                        email,
+                        width: 180,
+                        height: 210,
+                        setterId: setCardIdHovered,
+                        cardIdHovered,
+                        databaseId,
+                      },
+                      CardVariantsMap,
+                    )}
+                  </Fragment>
+                ),
+              )}
           </div>
         </div>
       )}
@@ -61,33 +82,52 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
           <div>
             {isMobileScreen
               ? attorneysList.map((attorney) => (
-                <AttorneyCard key={attorney.databaseId} link={`${attorney.link}`} image={attorney.profileImage} name={attorney.title} designation={attorney.designation} number={attorney.phoneNumber} email={attorney.email} width={80} height={112} type="/attorneys/[slug]" />
+                <AttorneyCard
+                  key={attorney.databaseId}
+                  link={`${attorney.link}`}
+                  image={attorney.profileImage}
+                  name={attorney.title}
+                  designation={attorney.designation}
+                  number={attorney.phoneNumber}
+                  email={attorney.email}
+                  width={80}
+                  height={112}
+                  type="/attorneys/[slug]"
+                />
               ))
-              : attorneysList.map(({
-                databaseId, link, profileImage, title, designation, phoneNumber, email,
-              }) => (
-                <Fragment key={databaseId}>
-                  {renderCardsByVariants(
-                    variant,
-                    {
-                      classNameProp: 'vertical-attorney-card',
-                      key: databaseId,
-                      link,
-                      image: profileImage,
-                      name: title,
-                      designation,
-                      number: phoneNumber,
-                      email,
-                      width: 180,
-                      height: 210,
-                      setterId: setCardIdHovered,
-                      cardIdHovered,
-                      databaseId,
-                    },
-                    CardVariantsMap,
-                  )}
-                </Fragment>
-              ))}
+              : attorneysList.map(
+                ({
+                  databaseId,
+                  link,
+                  profileImage,
+                  title,
+                  designation,
+                  phoneNumber,
+                  email,
+                }) => (
+                  <Fragment key={databaseId}>
+                    {renderCardsByVariants(
+                      variant,
+                      {
+                        classNameProp: 'vertical-attorney-card',
+                        key: databaseId,
+                        link,
+                        image: profileImage,
+                        name: title,
+                        designation,
+                        number: phoneNumber,
+                        email,
+                        width: 180,
+                        height: 210,
+                        setterId: setCardIdHovered,
+                        cardIdHovered,
+                        databaseId,
+                      },
+                      CardVariantsMap,
+                    )}
+                  </Fragment>
+                ),
+              )}
           </div>
         </div>
       )}

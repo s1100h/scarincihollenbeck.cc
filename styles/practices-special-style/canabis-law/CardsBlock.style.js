@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import { globalColor } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../../mediaBreakpoints.style';
 
 export const CardsBlockContainer = styled.section`
   display: flex;
   padding: 100px 0;
   justify-content: center;
-  background: url('/images/darck_cannabis_background.webp') center/cover no-repeat;
+  background: url('/images/darck_cannabis_background.webp') center/cover
+    no-repeat;
 
   ul {
     display: flex;
@@ -44,7 +48,8 @@ export const CardCannabis = styled.li`
     margin-left: 0;
     margin-right: auto;
     border-radius: 50px;
-    background: ${globalColor.black} url('/images/cuted_leaf.webp') no-repeat 3% 0 / contain;
+    background: ${globalColor.black} url('/images/cuted_leaf.webp') no-repeat 3%
+      0 / contain;
     color: ${globalColor.white};
     font-size: 2rem;
     margin-bottom: 30px;

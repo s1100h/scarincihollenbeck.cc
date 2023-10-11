@@ -90,7 +90,10 @@ export const SpecialSubHeaderContainer = styled.section`
 `;
 import { globalColor } from '../global_styles/Global.styles';
 
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 
 export const MiddleContainer = styled.div`
   display: flex;

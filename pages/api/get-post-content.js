@@ -10,7 +10,9 @@ const { formatDate } = require('../../utils/helpers');
 
 // this request to DB for a post content, was mothballed.
 export const getPostContent = async (slug, category) => {
-  const connection = await mysql.createConnection(process.env.MYSQL_CONNECTION_URL);
+  const connection = await mysql.createConnection(
+    process.env.MYSQL_CONNECTION_URL,
+  );
 
   // post, post meta, post categories, and category name
   const postContentQuery = `SELECT ID, post_author, post_date, post_title, post_content FROM ${process.env.POST_TABLE} WHERE post_name= ? AND post_status = 'publish'`;
@@ -32,8 +34,12 @@ export const getPostContent = async (slug, category) => {
   }
 
   const [postMeta] = await connection.execute(postMetaQuery, [post[0].ID]);
-  const [tagsMeta] = await connection.execute(postCategoriesQuery, [post[0].ID]);
-  const [catSlug] = await connection.execute(currentCategoryFromSlugQuery, [category]);
+  const [tagsMeta] = await connection.execute(postCategoriesQuery, [
+    post[0].ID,
+  ]);
+  const [catSlug] = await connection.execute(currentCategoryFromSlugQuery, [
+    category,
+  ]);
 
   const getFieldData = (arr, field) => {
     const check = arr.filter((post) => post.meta_key === field);
@@ -46,7 +52,9 @@ export const getPostContent = async (slug, category) => {
   };
 
   const getFeaturedImageCaption = (content) => {
-    const featuredImageCaption = content.match(/<\s*figcaption(?:.*)>(.*)<\/figcaption>/g);
+    const featuredImageCaption = content.match(
+      /<\s*figcaption(?:.*)>(.*)<\/figcaption>/g,
+    );
 
     if (featuredImageCaption) {
       return featuredImageCaption[0];
@@ -177,7 +185,9 @@ export const getPostContent = async (slug, category) => {
    */
 
   for (let i = 0; i < allTagsMeta.length; i++) {
-    const [row] = await connection.execute(currentTagsFromIdQuery, [allTagsMeta[i][0].term_id]);
+    const [row] = await connection.execute(currentTagsFromIdQuery, [
+      allTagsMeta[i][0].term_id,
+    ]);
 
     if (row.length > 0) {
       allTags.push({
@@ -196,16 +206,22 @@ export const getPostContent = async (slug, category) => {
   const authorData = [];
 
   for (let i = 0; i < postAuthors.length; i++) {
-    const authorName = postAuthors[i].name === SITE_TITLE ? SITE_TITLE.replace(' ', '-').toLowerCase() : postAuthors[i].name;
+    const authorName = postAuthors[i].name === SITE_TITLE
+      ? SITE_TITLE.replace(' ', '-').toLowerCase()
+      : postAuthors[i].name;
     const [author] = await connection.execute(postAuthorQuery, [authorName]);
 
     // get the authors description
     if (author.length > 0) {
-      const [authorMeta] = await connection.execute(postAuthorMetaQuery, [author[0].ID]);
+      const [authorMeta] = await connection.execute(postAuthorMetaQuery, [
+        author[0].ID,
+      ]);
 
       const authorDescription = getFieldData(authorMeta, 'description');
 
-      author[0].user_url = author[0].user_url.substr(author[0].user_url.lastIndexOf('/') + 1);
+      author[0].user_url = author[0].user_url.substr(
+        author[0].user_url.lastIndexOf('/') + 1,
+      );
 
       const isPublishedProfile = await fetchAPI(profileStatusQuery, {
         variables: {
@@ -222,7 +238,9 @@ export const getPostContent = async (slug, category) => {
   }
 
   /** Query author order and sort authors */
-  const [authorsByOrderResults] = await connection.execute(sortedAuthorQuery, [post[0].ID]);
+  const [authorsByOrderResults] = await connection.execute(sortedAuthorQuery, [
+    post[0].ID,
+  ]);
   const authorOrder = [];
 
   if (authorsByOrderResults.length > 0) {
@@ -239,7 +257,9 @@ export const getPostContent = async (slug, category) => {
   }
 
   if (authorOrder.length > 0) {
-    authorData.sort((a, b) => authorOrder.indexOf(a.ID) - authorOrder.indexOf(b.ID));
+    authorData.sort(
+      (a, b) => authorOrder.indexOf(a.ID) - authorOrder.indexOf(b.ID),
+    );
   }
 
   const categories = allTags.filter((tag) => tag.label === 'category');
@@ -271,7 +291,10 @@ export const getPostContent = async (slug, category) => {
     seo: {
       metaDescription: getFieldData(postMeta, '_yoast_wpseo_metadesc'),
       metaTitle: getFieldData(postMeta, '_yoast_wpseo_title'),
-      readTime: getFieldData(postMeta, '_yoast_wpseo_estimated-reading-time-minutes'),
+      readTime: getFieldData(
+        postMeta,
+        '_yoast_wpseo_estimated-reading-time-minutes',
+      ),
     },
     categories,
     tags,
@@ -290,13 +313,19 @@ export const getPostContent = async (slug, category) => {
 export default async (req, res) => {
   try {
     if (req.method === 'GET') {
-      const fetchPost = await getPostContent('njdep-begins-implementing-environmental-justice-law', 'law-firm-insights');
+      const fetchPost = await getPostContent(
+        'njdep-begins-implementing-environmental-justice-law',
+        'law-firm-insights',
+      );
 
       if (fetchPost.status === 404) {
         return res.status(404).send({ ...fetchPost });
       }
 
-      res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+      res.setHeader(
+        'Cache-Control',
+        'max-age=0, s-maxage=60, stale-while-revalidate',
+      );
       return res.status(200).send({ ...fetchPost });
     }
   } catch (error) {

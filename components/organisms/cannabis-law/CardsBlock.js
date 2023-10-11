@@ -10,7 +10,11 @@ const CardsBlock = ({ cardsBlockData }) => (
         <ul>
           {cardsBlockData.map(({ title, paragraph }, idx) => (
             <Fragment key={useId()}>
-              <CardCannabisArticle title={title} number={idx + 1} paragraph={paragraph} />
+              <CardCannabisArticle
+                title={title}
+                number={idx + 1}
+                paragraph={paragraph}
+              />
             </Fragment>
           ))}
         </ul>

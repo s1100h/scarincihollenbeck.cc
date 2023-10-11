@@ -1,6 +1,14 @@
 import styled from 'styled-components';
-import { globalColor, rem, globalShadow, threeDots } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  globalColor,
+  rem,
+  globalShadow,
+  threeDots,
+} from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import Link from 'next/link';
 
 const hoverLink = `
@@ -16,7 +24,7 @@ const hoverLink = `
 
 const newsCommonStyles = `
   padding: 15px;
-  box-shadow: -2px 0px 10px rgb(0 0 0 / 13%);
+  box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
   margin-bottom: 20px;
 `;
 

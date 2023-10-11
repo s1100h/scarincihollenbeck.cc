@@ -12,19 +12,35 @@ const MainInformation = AdditionalInformation;
 const HeadInformation = AdditionalInformation;
 
 const FirmOverviewPage = ({
-  title, seo, canonicalUrl, bodyContent, subTitle, firmOverviewTabs, FirmMembers,
+  title,
+  seo,
+  canonicalUrl,
+  bodyContent,
+  subTitle,
+  firmOverviewTabs,
+  FirmMembers,
 }) => {
   const { titles } = useContext(AttorneysContext);
 
   return (
     <>
-      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
+      <BasicSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDesc}
+        canonicalUrl={canonicalUrl}
+      />
       <SubHeader title={title} subtitle={subTitle} span={6} offset={3} />
       <ContainerXXL>
         <CentralizedBox notSurface="true">
-          <HeadInformation contentBody={formatPageImageToCloudinaryUrl(bodyContent)} />
+          <HeadInformation
+            contentBody={formatPageImageToCloudinaryUrl(bodyContent)}
+          />
           {firmOverviewTabs.mainTabs.map(({ subtitle, title, content }) => (
-            <MainInformation key={title} title={subtitle} contentBody={content} />
+            <MainInformation
+              key={title}
+              title={subtitle}
+              contentBody={content}
+            />
           ))}
         </CentralizedBox>
       </ContainerXXL>
@@ -32,7 +48,12 @@ const FirmOverviewPage = ({
       <ContainerXXL>
         <CentralizedBox notSurface="true">
           {firmOverviewTabs.additionalContent.map(({ content, title }) => (
-            <AdditionalInformation key={title} highlight title={title} contentBody={content} />
+            <AdditionalInformation
+              key={title}
+              highlight
+              title={title}
+              contentBody={content}
+            />
           ))}
         </CentralizedBox>
       </ContainerXXL>

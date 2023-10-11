@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { globalColor, globalIndents, globalShadow, rem } from 'styles/global_styles/Global.styles';
+import {
+  globalColor,
+  globalIndents,
+  globalShadow,
+  rem,
+} from 'styles/global_styles/Global.styles';
 
 export const ProfileSidebarContainer = styled.div`
   display: flex;
@@ -14,7 +19,8 @@ export const SidebarTile = styled.h3`
   margin-right: 15px;
   font-size: ${rem(30)};
   font-weight: 400;
-  color: ${(props) => (props?.red ? globalColor.red.darkRed : globalColor.black)};
+  color: ${(props) =>
+    props?.red ? globalColor.red.darkRed : globalColor.black};
   margin-bottom: ${(props) => (props?.indent ? '15px' : '0')};
 `;
 

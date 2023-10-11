@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { globalColor, paragraphStyles } from '../../global_styles/Global.styles';
+import {
+  globalColor,
+  paragraphStyles,
+} from '../../global_styles/Global.styles';
 import { media_breakpoint_down } from '../../mediaBreakpoints.style';
 
 export const CannabisSubTitle = styled.div`

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { media_breakpoint_down, media_breakpoint_range, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_range,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import { globalColor } from './global_styles/Global.styles';
 
 export const HeaderContainer = styled.header`
@@ -11,7 +15,8 @@ export const HeaderContainer = styled.header`
   height: fit-content;
   width: 100%;
   background: ${globalColor.white};
-  box-shadow: ${({ scrollDown }) => (scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none')};
+  box-shadow: ${({ scrollDown }) =>
+    scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none'};
   position: sticky;
   top: 0;
   z-index: 1020;

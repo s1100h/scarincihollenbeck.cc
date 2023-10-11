@@ -7,7 +7,11 @@ import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
 import Navigation from '../../organisms/Navbar/Navigation';
 import useIsScroll from '../../../hooks/useIsScroll';
 import {
-  LinksBoxSpecial, SearchBoxContainer, SearchOpenBtn, SpecialHeaderContainer, VisibleHiddenSearch,
+  LinksBoxSpecial,
+  SearchBoxContainer,
+  SearchOpenBtn,
+  SpecialHeaderContainer,
+  VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
 
 const SpecialHeader = () => {
@@ -20,7 +24,10 @@ const SpecialHeader = () => {
 
   return (
     <>
-      <SpecialHeaderContainer isChangeOrder={isOpenSearch} scrollDown={scrollTop}>
+      <SpecialHeaderContainer
+        isChangeOrder={isOpenSearch}
+        scrollDown={scrollTop}
+      >
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>

@@ -7,8 +7,17 @@ const AdministrationPage = ({
   admins, seo, site, canonicalUrl,
 }) => (
   <>
-    <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
-    <SubHeader title={site.title} subtitle={site.description} offset={2} span={7} />
+    <BasicSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDescription}
+      canonicalUrl={canonicalUrl}
+    />
+    <SubHeader
+      title={site.title}
+      subtitle={site.description}
+      offset={2}
+      span={7}
+    />
     <ContainerXXL>
       <NonFiltered attorneys={admins} />
     </ContainerXXL>

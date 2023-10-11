@@ -1,6 +1,12 @@
 import styled from 'styled-components';
-import { cannabisLawColors, globalColor } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import {
+  cannabisLawColors,
+  globalColor,
+} from '../../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../../mediaBreakpoints.style';
 import { BsSearch } from 'react-icons/bs';
 import { LinksBox } from '../../Header.style';
 
@@ -126,7 +132,8 @@ export const VisibleHiddenSearch = styled.div`
       border-radius: 25px;
       position: relative;
       z-index: 100;
-      box-shadow: inset 200px 200px ${globalColor.graySmoke.smoke}, inset -200px -200px ${globalColor.graySmoke.smoke};
+      box-shadow: inset 200px 200px ${globalColor.graySmoke.smoke},
+        inset -200px -200px ${globalColor.graySmoke.smoke};
 
       :focus-visible,
       :focus,

@@ -125,7 +125,8 @@ export const rem = (sizeInPx) => {
   return `${sizeInPx / mainFontSize}rem`;
 };
 
-export const imageCoverBlock = (imgUrl) => `url(${imgUrl}) center/cover no-repeat;`;
+export const imageCoverBlock = (imgUrl) =>
+  `url(${imgUrl}) center/cover no-repeat;`;
 
 export const paragraphStyles = `
 	font-weight: 500;

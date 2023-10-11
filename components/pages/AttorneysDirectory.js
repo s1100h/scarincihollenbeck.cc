@@ -12,28 +12,68 @@ import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
 
 const AttorneysPage = ({
-  sPractices, seo, locations, designations, site, canonicalUrl,
+  sPractices,
+  seo,
+  locations,
+  designations,
+  site,
+  canonicalUrl,
 }) => {
   const { isTabletScreen, isDesktopScreen } = useStateScreen();
   const { scrollTop } = useIsScroll();
   const {
-    handleChange, select, onSelect, userInput, clearQuery, attorneysContext, clearAll, onSelectLetter,
+    handleChange,
+    select,
+    onSelect,
+    userInput,
+    clearQuery,
+    attorneysContext,
+    clearAll,
+    onSelectLetter,
   } = useContext(AttorneysContext);
 
   return (
     <>
-      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} />
+      <BasicSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDesc}
+        canonicalUrl={canonicalUrl}
+      />
       <SubHeader isFilter title={site.title} subtitle={site.description} />
       <MainAttorneysContainer>
         {/** Filters */}
         {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
-          <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect} onSelectLetter={onSelectLetter} select={select}>
-            {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}
+          <Filters
+            practices={sPractices}
+            locations={locations}
+            designation={designations}
+            userInput={userInput}
+            handleChange={handleChange}
+            onSelect={onSelect}
+            onSelectLetter={onSelectLetter}
+            select={select}
+          >
+            {(userInput.length > 0 || select.length > 0) && (
+              <Selection
+                select={select}
+                clearQuery={clearQuery}
+                userInput={userInput}
+                clearAll={clearAll}
+              />
+            )}
           </Filters>
         )}
         {/** End of Filters */}
         {/** Results */}
-        <div className="w-100 mt-5">{attorneysContext.length > 0 && <Results attorneys={attorneysContext} userInput={userInput} select={select} />}</div>
+        <div className="w-100 mt-5">
+          {attorneysContext.length > 0 && (
+            <Results
+              attorneys={attorneysContext}
+              userInput={userInput}
+              select={select}
+            />
+          )}
+        </div>
         <FaqBox>
           <FAQ faqArrContent={ATTORNEYS_FAQ} />
         </FaqBox>

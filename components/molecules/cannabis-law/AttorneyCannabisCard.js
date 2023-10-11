@@ -5,7 +5,18 @@ import { renderLinkToLocationPractice } from '../../shared/AttorneyCard';
 import ContactBoxTemplate from '../../atoms/ContactBox';
 
 const AttorneyCannabisCard = ({
-  link, image, name, designation, number, email, width, height, locations, setterId, cardIdHovered, databaseId,
+  link,
+  image,
+  name,
+  designation,
+  number,
+  email,
+  width,
+  height,
+  locations,
+  setterId,
+  cardIdHovered,
+  databaseId,
 }) => {
   const { push } = useRouter();
   const isCardHovered = () => {
@@ -23,12 +34,21 @@ const AttorneyCannabisCard = ({
   const handleNotHovered = () => setterId(undefined);
 
   return (
-    <CardCannabisAttorney cardIsHovered={isCardHovered()} onMouseLeave={() => handleNotHovered()} onMouseEnter={() => handleSetIdCardByHover()} onClick={() => push(link)}>
+    <CardCannabisAttorney
+      cardIsHovered={isCardHovered()}
+      onMouseLeave={() => handleNotHovered()}
+      onMouseEnter={() => handleSetIdCardByHover()}
+      onClick={() => push(link)}
+    >
       <Image height={height} width={width} src={image} alt={name} />
       <div className="attorney-info">
         <span className="attorney-name">{name}</span>
         <span>{designation}</span>
-        {locations && <ul className="d-flex gap-1 m-0 p-0">{renderLinkToLocationPractice(locations)}</ul>}
+        {locations && (
+          <ul className="d-flex gap-1 m-0 p-0">
+            {renderLinkToLocationPractice(locations)}
+          </ul>
+        )}
         <ContactBoxTemplate email={email} number={number} />
       </div>
     </CardCannabisAttorney>

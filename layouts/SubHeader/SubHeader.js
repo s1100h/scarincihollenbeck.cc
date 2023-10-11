@@ -11,7 +11,21 @@ const renderSubHeader = (pageSlug, props) => {
   return pagesMap[pageSlug] || <DefaultSubHeader {...props} />;
 };
 const SubHeader = ({
-  title, subtitle, isBlog, isHoliday, handleClickAnchor, isFilter = false, authors = [], date = '', tabs, setActiveTab, activeTab, backgroundImage, anchorId, article, backgroundVideo,
+  title,
+  subtitle,
+  isBlog,
+  isHoliday,
+  handleClickAnchor,
+  isFilter = false,
+  authors = [],
+  date = '',
+  tabs,
+  setActiveTab,
+  activeTab,
+  backgroundImage,
+  anchorId,
+  article,
+  backgroundVideo,
 }) => {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);

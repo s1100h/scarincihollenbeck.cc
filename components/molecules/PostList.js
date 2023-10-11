@@ -4,7 +4,9 @@ import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import PaginationButtons from 'components/atoms/PaginationButtons';
 import NewsCard from 'components/organisms/home/FirmNews/NewsCard';
 
-const PostList = ({ content, isProfile }) => {
+const PostList = ({
+  content, isProfile, classNameForCard, justArrow,
+}) => {
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = content;
@@ -36,10 +38,12 @@ const PostList = ({ content, isProfile }) => {
                   postAuthor={node.author}
                   isProfile={isProfile}
                   isVertical={isProfile}
+                  classNameProp={classNameForCard}
                 />
               </Fragment>
             ))}
           <PaginationButtons
+            justArrow={justArrow}
             handleNextPagination={handleNextPagination}
             handlePrevPagination={handlePrevPagination}
             countOfArticles={(isProfile && 3) || 6}

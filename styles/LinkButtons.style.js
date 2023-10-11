@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { buttonHoverActive, ButtonLinkCss, buttonsHoverActive, cannabisLawColors, globalColor } from './global_styles/Global.styles';
+import {
+  buttonHoverActive,
+  ButtonLinkCss,
+  buttonsHoverActive,
+  cannabisLawColors,
+  globalColor,
+} from './global_styles/Global.styles';
 import Link from 'next/link';
 
 export const ButtonLink = styled(Link)`
@@ -14,7 +20,10 @@ export const SpecialButtonLink = styled(Link)`
   border-radius: 41px;
   border: 1.5px solid ${cannabisLawColors.cannabisColorGray};
 
-  ${buttonHoverActive(globalColor.black, cannabisLawColors.cannabisColorDarkGray)}
+  ${buttonHoverActive(
+    globalColor.black,
+    cannabisLawColors.cannabisColorDarkGray,
+  )}
   :hover {
     border: none;
   }

@@ -8,7 +8,9 @@ const PostList = dynamic(import('components/molecules/PostList'));
 const Body = ({ activeTabContent, activeTab, content }) => (
   <>
     <ContentContainer>
-      <JSXWithDynamicLinks HTML={formatPageImageToCloudinaryUrl(activeTabContent)} />
+      <JSXWithDynamicLinks
+        HTML={formatPageImageToCloudinaryUrl(activeTabContent)}
+      />
     </ContentContainer>
     {activeTab === 99 && <PostList content={content} />}
   </>

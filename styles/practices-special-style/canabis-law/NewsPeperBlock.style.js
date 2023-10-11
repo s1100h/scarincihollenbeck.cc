@@ -1,6 +1,13 @@
 import styled from 'styled-components';
-import { cannabisLawColors, imageCoverBlock, paragraphStyles } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import {
+  cannabisLawColors,
+  imageCoverBlock,
+  paragraphStyles,
+} from '../../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../../mediaBreakpoints.style';
 
 export const NewsPaperContainer = styled.section`
   display: flex;
@@ -34,7 +41,8 @@ export const NewsPaperContainer = styled.section`
   }
 
   ${media_breakpoint_exactly_down(1120)} {
-    background: url('/images/sport-smoke.webp') ${cannabisLawColors.cannabisColorDarkGray} no-repeat bottom;
+    background: url('/images/sport-smoke.webp')
+      ${cannabisLawColors.cannabisColorDarkGray} no-repeat bottom;
 
     > div {
       flex-direction: column;

@@ -34,7 +34,12 @@ export async function getStaticProps() {
 
 /** COVID-19 Crisis Management Unit page component */
 const Covid19CrisisManagementUnit = ({
-  title, subtitle, article, banner, listLinks, seo,
+  title,
+  subtitle,
+  article,
+  banner,
+  listLinks,
+  seo,
 }) => {
   const canonicalUrl = `${PRODUCTION_URL}/covid-19-crisis-management-unit`;
 

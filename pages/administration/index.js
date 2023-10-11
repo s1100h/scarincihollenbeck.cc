@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router';
 import AdministrationPage from 'components/pages/AdminDirectory';
-import { administrationTitles, PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
+import {
+  administrationTitles,
+  PRODUCTION_URL,
+  SITE_PHONE,
+} from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { administrationPageQuery, adminsQuery } from 'requests/graphql-queries';
 import { useContext, useEffect } from 'react';

@@ -34,7 +34,10 @@ async function categoryPosts(variables) {
 }
 
 export const getServerSideProps = async ({ params, res }) => {
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  res.setHeader(
+    'Cache-Control',
+    'max-age=0, s-maxage=60, stale-while-revalidate',
+  );
   const [popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
     variables: {
@@ -67,14 +70,16 @@ export const getServerSideProps = async ({ params, res }) => {
 
   const categoryChildren = content.children.nodes.length > 0 ? content.children.nodes : [];
 
-  const modPopCategories = popularCategories.map(({
-    id, slug, name, postCount,
-  }) => ({
-    id,
-    slug,
-    name,
-    count: postCount,
-  }));
+  const modPopCategories = popularCategories.map(
+    ({
+      id, slug, name, postCount,
+    }) => ({
+      id,
+      slug,
+      name,
+      count: postCount,
+    }),
+  );
 
   return {
     props: {
@@ -95,7 +100,14 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Library category page component -- /library/category/law-firm-insights etc. */
 const LibraryCategory = ({
-  childrenOfCurrentCategory, description, pageTitle, popularCategories, news, name, categoryId, seo,
+  childrenOfCurrentCategory,
+  description,
+  pageTitle,
+  popularCategories,
+  news,
+  name,
+  categoryId,
+  seo,
 }) => {
   const router = useRouter();
 

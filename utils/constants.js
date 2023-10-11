@@ -4,11 +4,41 @@
  */
 
 import {
-  HawCanIGet, HawDoIKnow, WhatAreTheFirms, WhereIsYheFirmLocated,
+  HawCanIGet,
+  HawDoIKnow,
+  WhatAreTheFirms,
+  WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 
-export const LETTERS_LIST = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+export const LETTERS_LIST = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+];
 
 /** Change the company name, phone, fax, email through out the site */
 export const SITE_TITLE = 'Scarinci Hollenbeck';
@@ -22,7 +52,8 @@ export const THANKS_MESSAGE = {
 };
 
 export const SUBSCRIPTION_THANKS = {
-  subscription: 'Thank you for subscribing! You are now part of our newsletter.',
+  subscription:
+    'Thank you for subscribing! You are now part of our newsletter.',
 };
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
@@ -297,7 +328,8 @@ export const OFFICE_LOCATIONS = [
     slug: '/location/red-bank',
     label: 'Red Bank, NJ',
     address: '331 Newman Springs Road Red Bank, NJ 07701',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.34467374956!2d-74.09794688434188!3d40.33469936854769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c231df5cc8d921%3A0x41ee2239f0384ab0!2s331+Newman+Springs+Rd%2C+Red+Bank%2C+NJ+07701!5e0!3m2!1sen!2sus!4v1537300318797',
+    mapUrl:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.34467374956!2d-74.09794688434188!3d40.33469936854769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c231df5cc8d921%3A0x41ee2239f0384ab0!2s331+Newman+Springs+Rd%2C+Red+Bank%2C+NJ+07701!5e0!3m2!1sen!2sus!4v1537300318797',
     tel: '732-780-5590',
     fax: '732-695-8108',
   },
@@ -407,7 +439,8 @@ export const MAKE_A_PAYMENT_URLS = [
 
 /** the content found on 404 or 500 error pages */
 export const ERROR_PAGE_CONTENT = {
-  mainMessage: "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
+  mainMessage:
+    "It's possible you entered the address incorrectly, we moved the desired page, or there is an issue on our servers. Try searching our site to find what you are looking for.",
 };
 
 /** content for /practices and /attorneys FAQ's component */
@@ -435,7 +468,8 @@ export const ATTORNEYS_FAQ = [
   },
   {
     id: 5,
-    title: 'I am located outside of New Jersey and New York. Can you still help me?',
+    title:
+      'I am located outside of New Jersey and New York. Can you still help me?',
     body: `
     It depends on the nature of the matter. <strong>Scarinci Hollenbeck</strong> represents clients around the world.
     We service our clients in a large variety of matters. In areas such as Intellectual Property,
@@ -505,7 +539,8 @@ export const inputsCareerForm = [
     type: 'tel',
     name: 'Phone',
     placeholder: 'Phone number',
-    rules: 'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
+    rules:
+      'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
     maxLength: 17,
     title: `Please use these formats: 
     (123) 456-7890
@@ -572,7 +607,8 @@ export const inputsGetInTouchAttributes = [
     type: 'tel',
     name: 'Phone',
     placeholder: 'Phone number',
-    rules: 'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
+    rules:
+      'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
     maxLength: 17,
     title: `Please use these formats: 
     (123) 456-7890
@@ -670,7 +706,10 @@ export const EMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-holl
 export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
 
 /** a helper header data when making requests to WP backend */
-export const headers = { Accept: 'application/json', 'Content-Type': 'application/json' };
+export const headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};
 
 export const MAKE_A_PAYMENT = 'https://secure.lawpay.com/pages/scarincihollenbeck/operating';
 
@@ -681,7 +720,9 @@ export const PRODUCTION_URL = process.env.NEXT_PUBLIC_PRODUCTION_URL;
 export const ALGOLIA_PUBLIC_API = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API;
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID;
 export const ALGOLIA_SEARCH_INDEX = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_INDEX;
-export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production' ? 'https://scarincihollenbeck.com' : 'http://localhost:7700';
+export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production'
+  ? 'https://scarincihollenbeck.com'
+  : 'http://localhost:7700';
 export const KWES_API = process.env.NEXT_PUBLIC_KWES_API;
 export const GET_IN_TOUCH_FORM_API = process.env.NEXT_PUBLIC_GET_IN_TOUCH_FORM_API;
 export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;

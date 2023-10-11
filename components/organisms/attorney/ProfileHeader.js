@@ -5,7 +5,10 @@ import ProfileTitle from 'components/molecules/attorney/ProfileTitle';
 import ProfileContacts from 'components/molecules/attorney/ProfileContacts';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
 import ContactIcons from 'components/molecules/attorney/ContactIcons';
-import { DetailsBox, ProfileHeaderContainer } from 'styles/attorney-page/AttorneyProfile.style';
+import {
+  DetailsBox,
+  ProfileHeaderContainer,
+} from 'styles/attorney-page/AttorneyProfile.style';
 import ButtonGroupMenu from 'components/molecules/attorney/ButtonGroupMenu';
 import empty from 'is-empty';
 import VideoButton from '../../molecules/attorney/VideoButton';
@@ -34,12 +37,25 @@ const useDesignationHook = (title) => {
 };
 
 const ProfileHeader = ({
-  name, profileImage, title, offices, coChair: coChairs, chair: chairs, primaryPractices, contact, setActiveTab, activeTab, tabs, representativeVideo,
+  name,
+  profileImage,
+  title,
+  offices,
+  coChair: coChairs,
+  chair: chairs,
+  primaryPractices,
+  contact,
+  setActiveTab,
+  activeTab,
+  tabs,
+  representativeVideo,
 }) => {
   const [designation] = useDesignationHook(title);
   const router = useRouter();
   const slug = router.asPath;
-  const linkedIn = contact.socialMediaLinks.filter((a) => a.channel === 'LinkedIn')[0];
+  const linkedIn = contact.socialMediaLinks.filter(
+    (a) => a.channel === 'LinkedIn',
+  )[0];
   const [isRotated, setIsRotated] = useState(false);
   const handelRotate = () => setIsRotated(!isRotated);
   const profileImageProps = {
@@ -79,7 +95,12 @@ const ProfileHeader = ({
           <Row className="align-items-start">
             <Col sm={12} md={4} lg={4} className="position-relative">
               <ProfileImage {...profileImageProps} />
-              {!empty(representativeVideo) && <VideoButton onVideoClick={handelRotate} isRotated={isRotated} />}
+              {!empty(representativeVideo) && (
+                <VideoButton
+                  onVideoClick={handelRotate}
+                  isRotated={isRotated}
+                />
+              )}
             </Col>
             <Col sm={12} md={8} lg={8}>
               <ProfileTitle {...profileTitleProps} />

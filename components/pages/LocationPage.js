@@ -14,7 +14,10 @@ import { sortByKey } from '../../utils/helpers';
 import AttorneysOfficeList from '../molecules/location/AttorneysOfficeList';
 import CurrentOfficeCard from '../molecules/location/CurrentOfficeCard';
 import {
-  DownloadTheMap, LinkMapBox, MediaBr, OfficeLocationBoxTitle,
+  DownloadTheMap,
+  LinkMapBox,
+  MediaBr,
+  OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
 import { LocationListPracticeArticle } from '../../utils/articles-content';
 
@@ -39,36 +42,63 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
 
   return (
     <>
-      <BasicSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={canonicalUrl} personDataForSchema={attorneysSchemaData} />
+      <BasicSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDesc}
+        canonicalUrl={canonicalUrl}
+        personDataForSchema={attorneysSchemaData}
+      />
       <Head>
         <script
           key={currentOffice.name}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildLocationSchema(seo, currentOffice.mapLink)),
+            __html: JSON.stringify(
+              buildLocationSchema(seo, currentOffice.mapLink),
+            ),
           }}
         />
       </Head>
-      <SubHeader title={currentOffice.title} subtitle={seo.metaDesc} backgroundImage={currentOffice.featuredImage} />
+      <SubHeader
+        title={currentOffice.title}
+        subtitle={seo.metaDesc}
+        backgroundImage={currentOffice.featuredImage}
+      />
       <Container className="mb-5">
-        {locations?.length > 0 && <OfficesLinkTabs officeImage={currentOffice.featuredImage} officesForTabs={locations} />}
+        {locations?.length > 0 && (
+          <OfficesLinkTabs
+            officeImage={currentOffice.featuredImage}
+            officesForTabs={locations}
+          />
+        )}
         <Row>
-          <OfficeLocationBoxTitle>{changeTitle(currentOffice.title)}</OfficeLocationBoxTitle>
+          <OfficeLocationBoxTitle>
+            {changeTitle(currentOffice.title)}
+          </OfficeLocationBoxTitle>
           <Col sm={12} lg={7}>
             <Map title={currentOffice.title} map={currentOffice.mapLink} />
           </Col>
           <Col sm={12} lg={5}>
             <CurrentOfficeCard {...addressInfo} />
-            {(currentOffice.autoMap?.length > 0 || currentOffice.trainStationsMap?.length > 0) && (
+            {(currentOffice.autoMap?.length > 0
+              || currentOffice.trainStationsMap?.length > 0) && (
               <LinkMapBox>
                 {currentOffice?.trainStationsMap.length > 0 && (
-                  <DownloadTheMap href={currentOffice.trainStationsMap} target="_blank" download>
+                  <DownloadTheMap
+                    href={currentOffice.trainStationsMap}
+                    target="_blank"
+                    download
+                  >
                     NJ Transit Rail System Map
                     <BsDownload />
                   </DownloadTheMap>
                 )}
                 {currentOffice?.autoMap.length > 0 && (
-                  <DownloadTheMap href={currentOffice.autoMap} target="_blank" download>
+                  <DownloadTheMap
+                    href={currentOffice.autoMap}
+                    target="_blank"
+                    download
+                  >
                     Directions to the Overlook
                     {' '}
                     <MediaBr />
@@ -79,9 +109,20 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
               </LinkMapBox>
             )}
           </Col>
-          {currentOffice?.attorneys.length > 0 && <AttorneysOfficeList attorneys={sortByKey(currentOffice.attorneys, 'lastName')} />}
+          {currentOffice?.attorneys.length > 0 && (
+            <AttorneysOfficeList
+              attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
+            />
+          )}
         </Row>
-        {currentOffice?.officePractices.length > 0 && <BlockListWrapper article={LocationListPracticeArticle} title="Services We Offer" list={currentOffice.officePractices} isSimple />}
+        {currentOffice?.officePractices.length > 0 && (
+          <BlockListWrapper
+            article={LocationListPracticeArticle}
+            title="Services We Offer"
+            list={currentOffice.officePractices}
+            isSimple
+          />
+        )}
         <FAQ faqArrContent={ATTORNEYS_FAQ} />
       </Container>
     </>

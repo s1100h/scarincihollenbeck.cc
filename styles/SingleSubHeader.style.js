@@ -1,16 +1,28 @@
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { globalColor, rem } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: ${({ props }) => (props?.isTabs || props?.isBlog ? 'flex-start' : 'center')};
-  background: no-repeat url(${({ props }) => (props?.isHoliday ? '/images/holiday-banner.webp' : '/images/skyscraper2.png')});
-  background-position: ${({ props }) => (props?.isHoliday?.length > 0 ? 'right 1% bottom 31%' : 'right 9% bottom 45%')};
-  background-size: ${({ props }) => (props?.isHoliday?.length > 0 ? 'auto' : 'contain')};
+  justify-content: ${({ props }) =>
+    props?.isTabs || props?.isBlog ? 'flex-start' : 'center'};
+  background: no-repeat
+    url(${({ props }) =>
+      props?.isHoliday
+        ? '/images/holiday-banner.webp'
+        : '/images/skyscraper2.png'});
+  background-position: ${({ props }) =>
+    props?.isHoliday?.length > 0
+      ? 'right 1% bottom 31%'
+      : 'right 9% bottom 45%'};
+  background-size: ${({ props }) =>
+    props?.isHoliday?.length > 0 ? 'auto' : 'contain'};
   height: auto;
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => {
@@ -58,14 +70,16 @@ export const BackgroundContainer = styled.section`
   }}
 
   ${media_breakpoint_down('md')} {
-    background-position: ${({ props }) => (props?.isHoliday ? '' : 'left 50vw bottom 0%')};
+    background-position: ${({ props }) =>
+      props?.isHoliday ? '' : 'left 50vw bottom 0%'};
     background-size: 100%;
     padding-bottom: 20px;
   }
 
   ${media_breakpoint_exactly_down(504)} {
     background-size: ${({ props }) => (props?.isHoliday ? '' : '108%')};
-    background-position: ${({ props }) => (props?.isHoliday ? '' : 'bottom 0%')};
+    background-position: ${({ props }) =>
+      props?.isHoliday ? '' : 'bottom 0%'};
   }
 
   @media print {
@@ -78,7 +92,12 @@ export const GradientWrapper = styled.div`
   width: 100vw;
   position: absolute;
   top: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 27%, ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%, rgba(255, 255, 255, 0) 68%);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 27%,
+    ${globalColor.graySmoke.extraLiteWhiteSmoke} 50%,
+    rgba(255, 255, 255, 0) 68%
+  );
 `;
 
 export const SubHeaderContent = styled(Container)`
@@ -99,7 +118,8 @@ export const SubHeaderContent = styled(Container)`
 
 export const Description = styled.div`
   width: 50vw;
-  color: ${({ whiteVariant }) => (whiteVariant ? globalColor.white : globalColor.gray.gray80)};
+  color: ${({ whiteVariant }) =>
+    whiteVariant ? globalColor.white : globalColor.gray.gray80};
   margin-bottom: 0;
   font-size: ${rem(20)};
 

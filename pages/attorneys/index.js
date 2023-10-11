@@ -2,11 +2,17 @@ import { useEffect, useContext } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import { sortByKey } from 'utils/helpers';
 import {
-  PRODUCTION_URL, BASE_API_URL, headers, SITE_PHONE,
+  PRODUCTION_URL,
+  BASE_API_URL,
+  headers,
+  SITE_PHONE,
 } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import {
-  adminKaterinTraughQuery, attorneysPageQuery, attorneysQuery, miniOfficeLocationQuery,
+  adminKaterinTraughQuery,
+  attorneysPageQuery,
+  attorneysQuery,
+  miniOfficeLocationQuery,
 } from 'requests/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 import { sanitizeOffices } from 'pages';
@@ -37,14 +43,16 @@ export const getKaterinTraugh = async () => {
     designation,
     email,
     phone: `${SITE_PHONE} ${phoneExtension}`,
-    location_array: location.map(({
-      id, uri, title, officeMainInformation,
-    }) => ({
-      id,
-      uri,
-      title,
-      officeMainInformation: officeMainInformation.addressLocality,
-    })),
+    location_array: location.map(
+      ({
+        id, uri, title, officeMainInformation,
+      }) => ({
+        id,
+        uri,
+        title,
+        officeMainInformation: officeMainInformation.addressLocality,
+      }),
+    ),
     uri,
     better_featured_image: sourceUrl,
   };
@@ -59,32 +67,44 @@ export const getAttorneys = async () => {
     }
   });
 
-  const sanitaizedAttorneys = attorneyProfiles?.nodes.map(({
-    title, slug, databaseId, attorneyMainInformation, attorneyPrimaryRelatedPracticesLocationsGroups,
-  }) => {
-    attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(({
-      id, uri, title, officeMainInformation,
-    }) => ({
-      id,
-      uri,
+  const sanitaizedAttorneys = attorneyProfiles?.nodes.map(
+    ({
       title,
-      officeMainInformation: officeMainInformation.addressLocality,
-    }));
+      slug,
+      databaseId,
+      attorneyMainInformation,
+      attorneyPrimaryRelatedPracticesLocationsGroups,
+    }) => {
+      attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
+        ({
+          id, uri, title, officeMainInformation,
+        }) => ({
+          id,
+          uri,
+          title,
+          officeMainInformation: officeMainInformation.addressLocality,
+        }),
+      );
 
-    attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices = attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices?.map(({ title }) => title);
-    return {
-      id: databaseId,
-      lastName: attorneyMainInformation.lastName,
-      title,
-      designation: attorneyMainInformation.designation,
-      email: attorneyMainInformation.email,
-      phone: attorneyMainInformation.phoneNumber,
-      practices_array: attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices || [],
-      location_array: attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
-      link: slug,
-      better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
-    };
-  });
+      attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices = attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices?.map(
+        ({ title }) => title,
+      );
+      return {
+        id: databaseId,
+        lastName: attorneyMainInformation.lastName,
+        title,
+        designation: attorneyMainInformation.designation,
+        email: attorneyMainInformation.email,
+        phone: attorneyMainInformation.phoneNumber,
+        practices_array:
+          attorneyPrimaryRelatedPracticesLocationsGroups.relatedPractices || [],
+        location_array:
+          attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
+        link: slug,
+        better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
+      };
+    },
+  );
 
   return sortByKey(sanitaizedAttorneys, 'lastName');
 };
@@ -143,10 +163,24 @@ export async function getStaticProps() {
 
 /* Attorneys page component */
 const Attorneys = ({
-  seo, locations, designations, practices, attorneys, site, sectionTitles,
+  seo,
+  locations,
+  designations,
+  practices,
+  attorneys,
+  site,
+  sectionTitles,
 }) => {
   const {
-    attorneysTitles, setAttorneysTitles, setDataForFilter, userInput, setUserInput, clearQuery, setSelect, dataForFilter, setAttorneysContext,
+    attorneysTitles,
+    setAttorneysTitles,
+    setDataForFilter,
+    userInput,
+    setUserInput,
+    clearQuery,
+    setSelect,
+    dataForFilter,
+    setAttorneysContext,
   } = useContext(AttorneysContext);
   const canonicalUrl = `${PRODUCTION_URL}/attorneys`;
 

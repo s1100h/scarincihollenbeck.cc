@@ -3,7 +3,11 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:@next/next/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:@next/next/recommended',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

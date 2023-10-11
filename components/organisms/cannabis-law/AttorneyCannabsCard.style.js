@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { cannabisLawColors, rem } from '../../../styles/global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  rem,
+} from '../../../styles/global_styles/Global.styles';
 
 const hoveredSystemMap = {
   default: 'grayscale(1)',

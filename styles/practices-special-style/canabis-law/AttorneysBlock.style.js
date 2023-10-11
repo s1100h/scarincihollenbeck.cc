@@ -1,6 +1,12 @@
 import styled from 'styled-components';
-import { attorneyCardForCannabis, cannabisLawColors } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import {
+  attorneyCardForCannabis,
+  cannabisLawColors,
+} from '../../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../../mediaBreakpoints.style';
 
 export const AttorneysCannabisContainer = styled.section`
   display: flex;

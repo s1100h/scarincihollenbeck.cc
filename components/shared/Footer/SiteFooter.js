@@ -1,6 +1,9 @@
 import CookieConsentMessage from 'components/shared/CookieConsentMessage';
 import {
-  FIRM_PAGES, OFFICE_LOCATIONS, CORE_PRACTICES, MAKE_A_PAYMENT_URLS,
+  FIRM_PAGES,
+  OFFICE_LOCATIONS,
+  CORE_PRACTICES,
+  MAKE_A_PAYMENT_URLS,
 } from 'utils/constants';
 import { FooterContainer, HiddenSEOBox } from 'styles/Footer.style';
 import { useRouter } from 'next/router';
@@ -29,7 +32,11 @@ export default function Footer() {
       <HiddenSEOBox>
         <LinksBox title="Firm Pages" linksArr={FIRM_PAGES} />
         <LinksBox title="Office Locations" linksArr={OFFICE_LOCATIONS} />
-        <LinksBox title="Client Services" linksArr={MAKE_A_PAYMENT_URLS} isTargetBlank />
+        <LinksBox
+          title="Client Services"
+          linksArr={MAKE_A_PAYMENT_URLS}
+          isTargetBlank
+        />
         <LinksBox title="Core Practices" linksArr={colOnePractices} />
         <LinksBox linksArr={colTwoPractices} />
       </HiddenSEOBox>

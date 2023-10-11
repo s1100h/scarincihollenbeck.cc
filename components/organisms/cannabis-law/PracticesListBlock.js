@@ -17,8 +17,20 @@ const PracticesListBlock = ({ practiceList }) => (
           ))}
         </ul>
         <div className="cannabis-leafs-box">
-          <Image className="cannabis-big-leaf" width={125} height={127} src={cannabisSmallLeaf} alt="small cannabis leaf" />
-          <Image className="cannabis-big-leaf" width={125} height={127} src={cannabisSmallLeaf} alt="small cannabis leaf" />
+          <Image
+            className="cannabis-big-leaf"
+            width={125}
+            height={127}
+            src={cannabisSmallLeaf}
+            alt="small cannabis leaf"
+          />
+          <Image
+            className="cannabis-big-leaf"
+            width={125}
+            height={127}
+            src={cannabisSmallLeaf}
+            alt="small cannabis leaf"
+          />
         </div>
       </div>
     </FullHDContainer>

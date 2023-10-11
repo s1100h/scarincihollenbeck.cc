@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { ButtonLinkCss, buttonsHoverActive, rem, successMessage } from './global_styles/Global.styles';
+import {
+  ButtonLinkCss,
+  buttonsHoverActive,
+  rem,
+  successMessage,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const CheckBoxesList = styled.ul`

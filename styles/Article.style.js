@@ -16,7 +16,10 @@ export const Title = styled.h3`
   font-size: ${({ props }) => (props?.size ? props.size : '1.5rem')};
   font-weight: 600;
   margin-bottom: 10px;
-  font-family: ${({ props }) => (props?.isPoppinsFont ? 'var(--font-poppins), sans-serif' : 'var(--font-montserrat), sans-serif')};
+  font-family: ${({ props }) =>
+    props?.isPoppinsFont
+      ? 'var(--font-poppins), sans-serif'
+      : 'var(--font-montserrat), sans-serif'};
 
   ${media_breakpoint_down('sm')} {
     text-align: center;

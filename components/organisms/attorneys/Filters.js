@@ -7,22 +7,44 @@ import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 
 // it was done by request from the client as a temporary solution. 16 Jun 2023. 38 - 45str
 const Filters = ({
-  practices, locations, designation, userInput, handleChange, onSelect, onSelectLetter, children, select,
+  practices,
+  locations,
+  designation,
+  userInput,
+  handleChange,
+  onSelect,
+  onSelectLetter,
+  children,
+  select,
 }) => (
   <>
     <ContainerFilters props={{ isWhite: 'true' }}>
       <Row>
         <Col xl={3} sm={12} md={6}>
-          <AuxiliarySearch currentRefinement={userInput} refine={handleChange} placeholder="Search by Attorney name" />
+          <AuxiliarySearch
+            currentRefinement={userInput}
+            refine={handleChange}
+            placeholder="Search by Attorney name"
+          />
         </Col>
         <Col xl={3} sm={12} md={6}>
           <PracticesSelector practices={practices} onSelect={onSelect} />
         </Col>
         <Col xl={3} sm={12} md={6}>
-          <FilterSelector selectionList={locations} onSelect={onSelect} title="Filter by location" nameItem="location" />
+          <FilterSelector
+            selectionList={locations}
+            onSelect={onSelect}
+            title="Filter by location"
+            nameItem="location"
+          />
         </Col>
         <Col xl={3} sm={12} md={6}>
-          <LetterSelector onSelectLetter={onSelectLetter} title="Filter by letters" select={select} userInput={userInput} />
+          <LetterSelector
+            onSelectLetter={onSelectLetter}
+            title="Filter by letters"
+            select={select}
+            userInput={userInput}
+          />
         </Col>
         {/* <Col xl={3} sm={12} md={6}> */}
         {/*  <FilterSelector */}

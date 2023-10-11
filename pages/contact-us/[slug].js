@@ -3,7 +3,10 @@ import dynamic from 'next/dynamic';
 import FormPageContent from 'components/pages/FormPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
-import { contactSubscribePageQuery, getOffices } from 'requests/graphql-queries';
+import {
+  contactSubscribePageQuery,
+  getOffices,
+} from 'requests/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));

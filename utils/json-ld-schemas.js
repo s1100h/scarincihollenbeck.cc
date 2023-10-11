@@ -30,7 +30,11 @@ export const articleSchema = (body) => ({
           latitude: '40.871378894707746 ',
           longitude: '-74.19506817327908',
         },
-        sameAs: ['https://www.facebook.com/ScarinciHollenbeck/', 'https://www.linkedin.com/company/scarinci-hollenbeck-llc', 'https://twitter.com/s_h_law'],
+        sameAs: [
+          'https://www.facebook.com/ScarinciHollenbeck/',
+          'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+          'https://twitter.com/s_h_law',
+        ],
         openingHours: 'Mo,Tu,We,Th,Fr, 8:300-6:00',
       },
       ...body,
@@ -63,7 +67,11 @@ export const buildBusinessSchema = () => ({
         latitude: '40.871378894707746 ',
         longitude: '-74.19506817327908',
       },
-      sameAs: ['https://www.facebook.com/ScarinciHollenbeck/', 'https://www.linkedin.com/company/scarinci-hollenbeck-llc', 'https://twitter.com/s_h_law'],
+      sameAs: [
+        'https://www.facebook.com/ScarinciHollenbeck/',
+        'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+        'https://twitter.com/s_h_law',
+      ],
       openingHours: 'Mo,Tu,We,Th,Fr, 8:300-6:00',
     },
     {
@@ -109,17 +117,30 @@ export const buildLocationSchema = (location) => ({
     longitude: location.longitude,
   },
   priceRange: '$$$$',
-  sameAs: ['https://www.facebook.com/ScarinciHollenbeck/', 'https://www.linkedin.com/company/scarinci-hollenbeck-llc', 'https://twitter.com/s_h_law'],
+  sameAs: [
+    'https://www.facebook.com/ScarinciHollenbeck/',
+    'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+    'https://twitter.com/s_h_law',
+  ],
 });
 
-export const buildAttorneyProfileSchema = (name, url, imageUrl, socialMediaLinks, jobTitle) => {
+export const buildAttorneyProfileSchema = (
+  name,
+  url,
+  imageUrl,
+  socialMediaLinks,
+  jobTitle,
+) => {
   let links;
 
   if (socialMediaLinks) {
     links = socialMediaLinks.map((link) => link.url);
 
     if (socialMediaLinks.length === 0) {
-      links = ['https://www.facebook.com/ScarinciHollenbeck/', 'https://www.linkedin.com/company/scarinci-hollenbeck-llc'];
+      links = [
+        'https://www.facebook.com/ScarinciHollenbeck/',
+        'https://www.linkedin.com/company/scarinci-hollenbeck-llc',
+      ];
     }
   }
 

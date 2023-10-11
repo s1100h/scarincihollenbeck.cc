@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { PRODUCTION_URL, ScarinciHollenbeckAuthor, SITE_TITLE } from 'utils/constants';
+import {
+  PRODUCTION_URL,
+  ScarinciHollenbeckAuthor,
+  SITE_TITLE,
+} from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'requests/api';
 import { postQuery } from 'requests/graphql-queries';
@@ -13,7 +17,8 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
  * */
 
 const attorneysSanitize = (attorneysArr) => attorneysArr.map((attorneyAuthor) => {
-  attorneyAuthor.profileImage = attorneyAuthor.attorneyMainInformation.profileImage?.sourceUrl || '/images/no-image-found-diamond-750x350.png';
+  attorneyAuthor.profileImage = attorneyAuthor.attorneyMainInformation.profileImage?.sourceUrl
+      || '/images/no-image-found-diamond-750x350.png';
   return {
     uri: attorneyAuthor.uri,
     display_name: attorneyAuthor.title,
@@ -34,15 +39,24 @@ const getPostContentData = async (slug) => {
   if (empty(data.post)) {
     return undefined;
   }
-  if (!data.post.selectAuthors.authorDisplayOrder || data.post.selectAuthors.authorDisplayOrder.length === 0) {
+  if (
+    !data.post.selectAuthors.authorDisplayOrder
+    || data.post.selectAuthors.authorDisplayOrder.length === 0
+  ) {
     data.post.selectAuthors.authorDisplayOrder = ScarinciHollenbeckAuthor;
   }
 
-  data.post.selectAuthors.authorDisplayOrder = attorneysSanitize(data.post.selectAuthors.authorDisplayOrder);
+  data.post.selectAuthors.authorDisplayOrder = attorneysSanitize(
+    data.post.selectAuthors.authorDisplayOrder,
+  );
 
   if (data.post.selectHeroes?.selectAttorneys?.length > 0) {
-    data.post.selectHeroes.selectAttorneys = attorneysSanitize(data.post.selectHeroes.selectAttorneys);
-    data.post.keyContacts = data.post.selectAuthors.authorDisplayOrder.concat(data.post.selectHeroes.selectAttorneys);
+    data.post.selectHeroes.selectAttorneys = attorneysSanitize(
+      data.post.selectHeroes.selectAttorneys,
+    );
+    data.post.keyContacts = data.post.selectAuthors.authorDisplayOrder.concat(
+      data.post.selectHeroes.selectAttorneys,
+    );
   }
 
   let seoImageFromPostByParse = '/images/no-image-found-diamond.png';
@@ -57,13 +71,20 @@ const getPostContentData = async (slug) => {
   data.post.seo = {
     metaTitle: data.post.seo.title,
     metaDescription: data.post.seo.opengraphDescription,
-    opengraphImage: data.post.seo.opengraphImage?.sourceUrl || seoImageFromPostByParse,
+    opengraphImage:
+      data.post.seo.opengraphImage?.sourceUrl || seoImageFromPostByParse,
   };
 
   const corePractices = [];
 
   data.practices.nodes.forEach((practice) => {
-    if (Array.isArray(practice.practicePortalPageContent.practicePortalCategories) && practice.practicePortalPageContent.practicePortalCategories[0] === 'Core Practices') {
+    if (
+      Array.isArray(
+        practice.practicePortalPageContent.practicePortalCategories,
+      )
+      && practice.practicePortalPageContent.practicePortalCategories[0]
+        === 'Core Practices'
+    ) {
       corePractices.push(practice);
     }
   });
@@ -82,7 +103,9 @@ const getPostContentData = async (slug) => {
         relatedPosts.push({
           title: contentNodesItem.title,
           uri: contentNodesItem.uri,
-          featuredImage: contentNodesItem.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png',
+          featuredImage:
+            contentNodesItem.featuredImage?.node.sourceUrl
+            || '/images/no-image-found-diamond-750x350.png',
           databaseId: contentNodesItem.databaseId,
         });
       });
@@ -95,7 +118,9 @@ const getPostContentData = async (slug) => {
         relatedPosts.push({
           title: contentNodes.nodes[0].title,
           uri: contentNodes.nodes[0].uri,
-          featuredImage: contentNodes.nodes[0].featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png',
+          featuredImage:
+            contentNodes.nodes[0].featuredImage?.node.sourceUrl
+            || '/images/no-image-found-diamond-750x350.png',
           databaseId: contentNodes.nodes[0].databaseId,
         });
       }
@@ -106,7 +131,9 @@ const getPostContentData = async (slug) => {
             relatedPosts.push({
               title: contentNodesItem.title,
               uri: contentNodesItem.uri,
-              featuredImage: contentNodesItem.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png',
+              featuredImage:
+                contentNodesItem.featuredImage?.node.sourceUrl
+                || '/images/no-image-found-diamond-750x350.png',
               databaseId: contentNodesItem.databaseId,
             });
           }
@@ -121,7 +148,9 @@ const getPostContentData = async (slug) => {
         relatedPosts.push({
           title: contentNodes.nodes[idx]?.title,
           uri: contentNodes.nodes[idx]?.uri,
-          featuredImage: contentNodes.nodes[idx]?.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png',
+          featuredImage:
+            contentNodes.nodes[idx]?.featuredImage?.node.sourceUrl
+            || '/images/no-image-found-diamond-750x350.png',
           databaseId: contentNodes.nodes[idx]?.databaseId,
         });
       }
@@ -129,7 +158,8 @@ const getPostContentData = async (slug) => {
   }
 
   data.posts.nodes.map((post) => {
-    post.featuredImage = post.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png';
+    post.featuredImage = post.featuredImage?.node.sourceUrl
+      || '/images/no-image-found-diamond-750x350.png';
     post.uri = cutDomain(post.uri);
     post.author = post.author.node.username;
     return post;
@@ -144,7 +174,10 @@ const getPostContentData = async (slug) => {
 };
 
 export const getServerSideProps = async ({ params, res, query }) => {
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  res.setHeader(
+    'Cache-Control',
+    'max-age=0, s-maxage=60, stale-while-revalidate',
+  );
   const postSlug = params.slug[params.slug.length - 1];
   const { category } = query;
 
@@ -157,7 +190,9 @@ export const getServerSideProps = async ({ params, res, query }) => {
     };
   }
 
-  const { clearBody, subTitle } = getSubTitleFromHTML(postData?.postContent.content);
+  const { clearBody, subTitle } = getSubTitleFromHTML(
+    postData?.postContent.content,
+  );
 
   const post = {
     content: clearBody,
@@ -172,7 +207,9 @@ export const getServerSideProps = async ({ params, res, query }) => {
       seo: postData.postContent.seo,
       categories: postData.postContent.categories.nodes,
       authors: postData.postContent.selectAuthors.authorDisplayOrder,
-      keyContacts: postData.postContent.keyContacts || postData.postContent.selectAuthors.authorDisplayOrder,
+      keyContacts:
+        postData.postContent.keyContacts
+        || postData.postContent.selectAuthors.authorDisplayOrder,
       category,
       corePractices: postData.corePractices,
       relatedPosts: postData.relatedPosts,
@@ -183,7 +220,15 @@ export const getServerSideProps = async ({ params, res, query }) => {
 
 /* The blog post component */
 const SinglePost = ({
-  post, seo, categories, authors, category, corePractices, relatedPosts, posts, keyContacts,
+  post,
+  seo,
+  categories,
+  authors,
+  category,
+  corePractices,
+  relatedPosts,
+  posts,
+  keyContacts,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;

@@ -12,11 +12,22 @@ const LinkButtons = ({ handleClickAndClose, variant }) => {
 
   return (
     <>
-      <Component className="link-btn-header" onClick={handleClickAndClose} href="/contact" passHref>
+      <Component
+        className="link-btn-header"
+        onClick={handleClickAndClose}
+        href="/contact"
+        passHref
+      >
         <BsFillTelephoneFill />
         <span>Contact us</span>
       </Component>
-      <Component className="link-btn-header" onClick={handleClickAndClose} href={MAKE_A_PAYMENT} target="_blank" rel="noreferrer">
+      <Component
+        className="link-btn-header"
+        onClick={handleClickAndClose}
+        href={MAKE_A_PAYMENT}
+        target="_blank"
+        rel="noreferrer"
+      >
         <BsFillCreditCard2BackFill />
         <span>Make payment</span>
       </Component>

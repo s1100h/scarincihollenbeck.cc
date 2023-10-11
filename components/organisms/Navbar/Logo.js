@@ -8,8 +8,29 @@ import LogoLettersBlack from '../../../public/images/lettarsLogoblack.png';
 const Logo = ({ whiteVariant }) => (
   <>
     <CombinedLogo href="/" passHref>
-      <Image alt={`${SITE_TITLE}, LLC`} width={82} height={70} src={SHDiamond} />
-      {whiteVariant ? <Image className="logo-letters" alt={`${SITE_TITLE}, LLC`} width={320} height={50} src={LogoLetters} /> : <Image className="logo-letters" alt={`${SITE_TITLE}, LLC`} width={320} height={50} src={LogoLettersBlack} />}
+      <Image
+        alt={`${SITE_TITLE}, LLC`}
+        width={82}
+        height={70}
+        src={SHDiamond}
+      />
+      {whiteVariant ? (
+        <Image
+          className="logo-letters"
+          alt={`${SITE_TITLE}, LLC`}
+          width={320}
+          height={50}
+          src={LogoLetters}
+        />
+      ) : (
+        <Image
+          className="logo-letters"
+          alt={`${SITE_TITLE}, LLC`}
+          width={320}
+          height={50}
+          src={LogoLettersBlack}
+        />
+      )}
     </CombinedLogo>
   </>
 );

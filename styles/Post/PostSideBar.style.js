@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { buttonsHoverActive, globalColor, globalGradient } from '../global_styles/Global.styles';
+import {
+  buttonsHoverActive,
+  globalColor,
+  globalGradient,
+} from '../global_styles/Global.styles';
 
 export const ContactLinksBox = styled.section`
   display: flex;

@@ -1,7 +1,11 @@
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import {
-  ArticleDescription, BottomSection, NewsLink, OtherNews, TextNews,
+  ArticleDescription,
+  BottomSection,
+  NewsLink,
+  OtherNews,
+  TextNews,
 } from 'styles/FirmNews.style';
 import { createMarkup, formatDate } from 'utils/helpers';
 import empty from 'is-empty';
@@ -36,15 +40,41 @@ const renderAuthors = (authorItem) => {
   return <span>{authorItem}</span>;
 };
 const NewsCard = ({
-  postSlug, postImage, postTitle, postExcerpt, postDate, postAuthor, isVertical, isProfile,
+  postSlug,
+  postImage,
+  postTitle,
+  postExcerpt,
+  postDate,
+  postAuthor,
+  isVertical,
+  isProfile,
+  classNameProp,
 }) => (
-  <OtherNews isProfile={isProfile?.length > 0 && isVertical} isVertical={isVertical?.length > 0 && isVertical}>
+  <OtherNews
+    isProfile={isProfile?.length > 0 && isVertical}
+    isVertical={isVertical?.length > 0 && isVertical}
+    className={classNameProp}
+  >
     <NewsLink href={postSlug} passHref />
     <div className="link-wrapper">
-      <Image src={postImage.length > 0 ? postImage : '/images/no-image-found-diamond.png'} alt={postTitle} width={750} height={350} layout="intrinsic" />
+      <Image
+        src={
+          postImage.length > 0
+            ? postImage
+            : '/images/no-image-found-diamond.png'
+        }
+        alt={postTitle}
+        width={750}
+        height={350}
+        layout="intrinsic"
+      />
       <TextNews>
         <h2>{postTitle}</h2>
-        {postExcerpt?.length > 0 && <ArticleDescription dangerouslySetInnerHTML={createMarkup(postExcerpt)} />}
+        {postExcerpt?.length > 0 && (
+          <ArticleDescription
+            dangerouslySetInnerHTML={createMarkup(postExcerpt)}
+          />
+        )}
         <BottomSection>
           <div className="news-card-footer">
             <strong>Author: </strong>

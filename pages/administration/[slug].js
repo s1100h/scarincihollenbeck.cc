@@ -29,11 +29,13 @@ const getAdminData = async (uriAdmin) => {
         vizibility: administration.vizibility,
         socialMediaLinks: administration.socialMediaLinks,
       },
-      offices: administration.location.map(({ id, uri, officeMainInformation }) => ({
-        id,
-        uri,
-        name: officeMainInformation.addressLocality,
-      })),
+      offices: administration.location.map(
+        ({ id, uri, officeMainInformation }) => ({
+          id,
+          uri,
+          name: officeMainInformation.addressLocality,
+        }),
+      ),
     },
     seo: {
       canonicalLink: uri,
@@ -45,7 +47,10 @@ const getAdminData = async (uriAdmin) => {
 
 /** Set data from API response to page props */
 export const getServerSideProps = async ({ res, resolvedUrl }) => {
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  res.setHeader(
+    'Cache-Control',
+    'max-age=0, s-maxage=60, stale-while-revalidate',
+  );
   const dataAdmin = await getAdminData(resolvedUrl);
 
   if (!resolvedUrl) {

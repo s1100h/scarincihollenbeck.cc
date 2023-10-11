@@ -4,12 +4,21 @@ import { getDataForPractice } from '../graphql-queries';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
 
 export const postsSanitize = (posts) => posts.map((post) => {
-  post.featuredImage = post.featuredImage?.node.sourceUrl || '/images/no-image-found-diamond-750x350.png';
+  post.featuredImage = post.featuredImage?.node.sourceUrl
+      || '/images/no-image-found-diamond-750x350.png';
   return post;
 });
 
 export const attorneysSanitize = (attorneysArr) => {
-  const designationOrder = ['Firm Managing Partner', 'Deputy Managing Partner', 'Partner', 'Counsel', 'Of Counsel', 'Senior Associate', 'Associate'];
+  const designationOrder = [
+    'Firm Managing Partner',
+    'Deputy Managing Partner',
+    'Partner',
+    'Counsel',
+    'Of Counsel',
+    'Senior Associate',
+    'Associate',
+  ];
 
   return attorneysArr
     .map((attorney) => {
@@ -59,25 +68,39 @@ export const getPracticeAttorneys = async (uri) => {
     }
   }
 
-  let includeAttorney = data.practice?.practicesIncluded.includeAttorney ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney) : [];
+  let includeAttorney = data.practice?.practicesIncluded.includeAttorney
+    ? attorneysSanitize(data.practice.practicesIncluded.includeAttorney)
+    : [];
 
-  const practiceChief = data.practice?.practicesIncluded.sectionChief ? attorneysSanitize(data.practice.practicesIncluded.sectionChief) : [];
+  const practiceChief = data.practice?.practicesIncluded.sectionChief
+    ? attorneysSanitize(data.practice.practicesIncluded.sectionChief)
+    : [];
 
-  const keyContactsArr = data.practice?.practicesIncluded.keyContactByPractice ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice) : [];
+  const keyContactsArr = data.practice?.practicesIncluded.keyContactByPractice
+    ? attorneysSanitize(data.practice.practicesIncluded.keyContactByPractice)
+    : [];
 
-  const postsForSidebar = data.posts?.nodes ? postsSanitize(data.posts.nodes) : [];
+  const postsForSidebar = data.posts?.nodes
+    ? postsSanitize(data.posts.nodes)
+    : [];
 
-  const corePractices = data.practices.nodes.filter((practice) => !empty(practice.practicesIncluded.childPractice) && practice);
+  const corePractices = data.practices.nodes.filter(
+    (practice) => !empty(practice.practicesIncluded.childPractice) && practice,
+  );
 
   if (includeAttorney && practiceChief) {
     includeAttorney = includeAttorney.filter((attorney) => {
-      const isDuplicate = practiceChief.some((sectionAttorney) => attorney.databaseId === sectionAttorney.databaseId);
+      const isDuplicate = practiceChief.some(
+        (sectionAttorney) => attorney.databaseId === sectionAttorney.databaseId,
+      );
       return !isDuplicate;
     });
   }
 
   const concatAttorneys = [...practiceChief, ...keyContactsArr];
-  const keyContacts = concatAttorneys.length > 0 ? concatAttorneys : [ScarinciHollenbeckKeyContact];
+  const keyContacts = concatAttorneys.length > 0
+    ? concatAttorneys
+    : [ScarinciHollenbeckKeyContact];
 
   return {
     practice: data.practice,

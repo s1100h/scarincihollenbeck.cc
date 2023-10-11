@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
-import { ButtonBox, ContentBox, MoreTabContainer } from 'styles/attorney-page/MoreTab.style';
+import {
+  ButtonBox,
+  ContentBox,
+  MoreTabContainer,
+} from 'styles/attorney-page/MoreTab.style';
 import { ButtonTab } from 'styles/ButtonsMenu.style';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { attorneyPostsQueryByIdAndSlug } from 'requests/graphql-queries';
@@ -60,7 +64,12 @@ const MoreTab = ({ content }) => {
       <ButtonBox>
         <ButtonGroup vertical>
           {content.map((tab) => (
-            <ButtonTab key={tab.id} active={activeSubTab.id === tab.id ? 'true' : undefined} onClick={() => setActiveSubTab(tab)} isMore="true">
+            <ButtonTab
+              key={tab.id}
+              active={activeSubTab.id === tab.id ? 'true' : undefined}
+              onClick={() => setActiveSubTab(tab)}
+              isMore="true"
+            >
               {cutTitles(tab.title)}
             </ButtonTab>
           ))}

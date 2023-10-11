@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import { useId } from 'react';
-import { KeyContactsBlockContainer, KeyContactsWrapper } from '../../../styles/practices-special-style/canabis-law/KeyContactsBlock.style';
+import {
+  KeyContactsBlockContainer,
+  KeyContactsWrapper,
+} from '../../../styles/practices-special-style/canabis-law/KeyContactsBlock.style';
 import AttorneyCard from '../../shared/AttorneyCard';
 import { FullHDContainer } from '../../../styles/practices-special-style/commonForSpecial.style';
 
@@ -15,13 +18,26 @@ const KeyContactsBlock = ({ keyContactsData, keyContacts }) => (
           ))}
         </ul>
         <div className="smoker">
-          <Image width={500} height={404} src={keyContactsData.underlay.sourceUrl} alt={keyContactsData.underlay.altText} />
+          <Image
+            width={500}
+            height={404}
+            src={keyContactsData.underlay.sourceUrl}
+            alt={keyContactsData.underlay.altText}
+          />
         </div>
       </div>
       <KeyContactsWrapper>
         <h3 className="key-contacts-title">Key Contacts</h3>
         {keyContacts.map((author) => (
-          <AttorneyCard key={author.databaseId} link={author.uri || author.link} name={author.display_name || author.title} designation={author.designation} image={author.profileImage} number={author.phoneNumber} email={author.email} />
+          <AttorneyCard
+            key={author.databaseId}
+            link={author.uri || author.link}
+            name={author.display_name || author.title}
+            designation={author.designation}
+            image={author.profileImage}
+            number={author.phoneNumber}
+            email={author.email}
+          />
         ))}
       </KeyContactsWrapper>
     </FullHDContainer>

@@ -10,7 +10,13 @@ const BlogList = ({ content }) => {
       {content.posts.map(({
         link, title, date, id,
       }) => (
-        <a key={id} href={link} target="_blank" rel="noreferrer noopener" className="h6 mb-4">
+        <a
+          key={id}
+          href={link}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="h6 mb-4"
+        >
           <strong>{title}</strong>
           {' '}
           -

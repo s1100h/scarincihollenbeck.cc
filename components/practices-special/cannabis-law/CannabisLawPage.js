@@ -27,11 +27,6 @@ const CannabisLawPage = ({
 }) => {
   const [hrefToId, setHref] = useState('');
   const anchorIdBlock = 'photoBlock';
-  const [blogFields, setBlogId] = useState({
-    label: 'News',
-    databaseId: 98,
-    slug: 'firm-news',
-  });
   const handleClickByAnchor = () => setHref(anchorIdBlock);
 
   useEffect(() => {
@@ -50,8 +45,7 @@ const CannabisLawPage = ({
       last: null,
       after: null,
       before: null,
-      categoryId: blogFields.databaseId,
-      parent: blogFields.slug,
+      categoryId: 911,
     },
     // skipOrGo,
   );
@@ -104,11 +98,7 @@ const CannabisLawPage = ({
         article={cannabisLawData.newspaperBlock.article}
         newsPepperArticle={cannabisLawData.newspaperBlock.newspaperBox}
       />
-      <ArticlesBlock
-        paginationData={paginationDataProps}
-        handleClickByTabCategory={setBlogId}
-        activeTabLabel={blogFields.label}
-      />
+      <ArticlesBlock paginationData={paginationDataProps} />
       <PracticesListBlock practiceList={corePractices} />
     </>
   );

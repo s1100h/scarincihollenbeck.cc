@@ -5,7 +5,11 @@ import { Col } from 'react-bootstrap';
 import empty from 'is-empty';
 import Loader from '../../atoms/Loader';
 import PositionCard from '../../molecules/careers/PositionCard';
-import { CareerBlockSubtitle, CareerBlockTitle, CareersBlock } from '../../../styles/Careers.style';
+import {
+  CareerBlockSubtitle,
+  CareerBlockTitle,
+  CareersBlock,
+} from '../../../styles/Careers.style';
 import { OptionalIndent } from '../../../styles/global_styles/Global.styles';
 
 const EmptyResults = dynamic(() => import('components/molecules/careers/EmptyResults'));
@@ -19,7 +23,13 @@ const renderCareersBlocks = (careersObj, handleClickCareerCallback) => Object.ke
       team.
     </CareerBlockSubtitle>
     {careersObj[careerType].map((position) => (
-      <Col sm={12} md={6} xl={4} className="mt-3 mb-2" key={position.databaseId}>
+      <Col
+        sm={12}
+        md={6}
+        xl={4}
+        className="mt-3 mb-2"
+        key={position.databaseId}
+      >
         <PositionCard
           handleClickToCareer={handleClickCareerCallback}
           slug={`careers/${position.slug}`}

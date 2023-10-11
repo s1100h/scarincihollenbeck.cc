@@ -1,7 +1,10 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import empty from 'is-empty';
 
 const titlesFontSize = `
@@ -66,7 +69,8 @@ export const AttorneysTitleBox = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  padding: ${(props) => (props?.isSingle ? '0 0 20px 15px' : '20px 0 20px 15px')};
+  padding: ${(props) =>
+    props?.isSingle ? '0 0 20px 15px' : '20px 0 20px 15px'};
 
   h5 {
     ${titlesFontSize};

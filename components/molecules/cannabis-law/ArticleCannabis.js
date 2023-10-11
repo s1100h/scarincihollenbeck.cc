@@ -8,7 +8,10 @@ const ArticleCannabis = ({
   title, paragraph, titleSize, isColorWhite,
 }) => (
   <ArticlePhotoContainer>
-    <ArticleCommonBox isColorWordsWhite={convertBooleanToString(isColorWhite)} titleFontSize={titleSize}>
+    <ArticleCommonBox
+      isColorWordsWhite={convertBooleanToString(isColorWhite)}
+      titleFontSize={titleSize}
+    >
       <Image src={cannabisIcon} alt="cannabis leaf" />
       <h3 className="article-common-title">{title}</h3>
       <p>{paragraph}</p>

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { ButtonLinkCss, buttonsHoverActive } from './global_styles/Global.styles';
+import {
+  ButtonLinkCss,
+  buttonsHoverActive,
+} from './global_styles/Global.styles';
 
 export const AboutAuthorFormCardContainer = styled.article`
   display: flex;

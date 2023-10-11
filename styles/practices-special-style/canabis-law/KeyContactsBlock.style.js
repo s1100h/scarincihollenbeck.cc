@@ -1,6 +1,15 @@
 import styled from 'styled-components';
-import { attorneyCardForCannabis, beforeDoteStyledList, cannabisLawColors, globalColor, paragraphStyles } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../../mediaBreakpoints.style';
+import {
+  attorneyCardForCannabis,
+  beforeDoteStyledList,
+  cannabisLawColors,
+  globalColor,
+  paragraphStyles,
+} from '../../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../../mediaBreakpoints.style';
 
 export const KeyContactsBlockContainer = styled.section`
   display: flex;

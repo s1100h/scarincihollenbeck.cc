@@ -37,7 +37,9 @@ const getCareersPaths = async () => {
 
 /** get all the author urls */
 const getAuthorPaths = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/author/list`, { headers })
+  const request = await fetch(`${BASE_API_URL}/wp-json/author/list`, {
+    headers,
+  })
     .then((data) => data.json())
     .catch((err) => err);
 
@@ -48,7 +50,10 @@ const getAuthorPaths = async () => {
 
 /** get all the category urls */
 const getCategoryPaths = async () => {
-  const request = await fetch(`${BASE_API_URL}/wp-json/wp/v2/categories?per_page=100`, { headers })
+  const request = await fetch(
+    `${BASE_API_URL}/wp-json/wp/v2/categories?per_page=100`,
+    { headers },
+  )
     .then((data) => data.json())
     .catch((err) => err);
 
@@ -60,7 +65,9 @@ const getCategoryPaths = async () => {
 /** get all the location urls for a category */
 const getLocationPaths = async () => {
   try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, { headers });
+    const res = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
+      headers,
+    });
     const resToJson = await res.json();
 
     return resToJson.offices.map((office) => office.slug);
@@ -72,7 +79,10 @@ const getLocationPaths = async () => {
 /** get all the practice page urls */
 const getPracticePaths = async (isArticles) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/practice-portal/all-links`, { headers });
+    const res = await fetch(
+      `${BASE_API_URL}/wp-json/practice-portal/all-links`,
+      { headers },
+    );
     const resToJson = await res.json();
 
     const genPath = (slug) => (isArticles ? `/practices/${slug}/articles` : `/practices/${slug}`);
@@ -91,10 +101,18 @@ const getCurrentPublishedPages = async () => {
 
   const clearArrPages = [];
   try {
-    const response = await (await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)).json();
+    const response = await (
+      await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)
+    ).json();
 
-    const publishedPages = response.filter((page) => page.status === 'publish').map((page) => page.slug);
-    const withoutExceptions = publishedPages.filter((pageSlag) => pageSlag !== exception1 && pageSlag !== exception2 && pageSlag !== exception3);
+    const publishedPages = response
+      .filter((page) => page.status === 'publish')
+      .map((page) => page.slug);
+    const withoutExceptions = publishedPages.filter(
+      (pageSlag) => pageSlag !== exception1
+        && pageSlag !== exception2
+        && pageSlag !== exception3,
+    );
     return clearArrPages.concat(withoutExceptions);
   } catch (error) {
     console.error(error.message);
@@ -116,7 +134,9 @@ export const getServerSideProps = async ({ res }) => {
   const practicePaths = await getPracticePaths();
   const pagePaths = await getCurrentPublishedPages();
   const postPaths = POST_TYPE_REWRITES.map(({ source }) => source.replace('/:path*', ''));
-  const modAttorneyPaths = attorneyPaths.map(({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`);
+  const modAttorneyPaths = attorneyPaths.map(
+    ({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`,
+  );
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
@@ -235,7 +255,10 @@ export const getServerSideProps = async ({ res }) => {
     .join('')}
     </urlset>
   `;
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400, stale-while-revalidate');
+  res.setHeader(
+    'Cache-Control',
+    'max-age=0, s-maxage=86400, stale-while-revalidate',
+  );
   res.setHeader('Content-Type', 'text/xml');
   res.write(sitemap);
   res.end();

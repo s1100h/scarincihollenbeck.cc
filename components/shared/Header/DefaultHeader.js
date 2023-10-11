@@ -1,6 +1,10 @@
 import { useContext } from 'react';
 import {
-  DefaultHeaderSearchContainer, HeaderContainer, LinksBox, LogoBox, Wrapper,
+  DefaultHeaderSearchContainer,
+  HeaderContainer,
+  LinksBox,
+  LogoBox,
+  Wrapper,
 } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
 import GlobalSearch from '../GlobalSearch/GlobalSearch';
@@ -14,7 +18,15 @@ import useStateScreen from '../../../hooks/useStateScreen';
 
 const DefaultHeader = ({ scrollTop, pathname }) => {
   const {
-    dataForFilter, userInput, select, handleChange, onSelect, clearQuery, clearAll, onSelectLetter, attorneysContext,
+    dataForFilter,
+    userInput,
+    select,
+    handleChange,
+    onSelect,
+    clearQuery,
+    clearAll,
+    onSelectLetter,
+    attorneysContext,
   } = useContext(AttorneysContext);
   const { isTabletScreen } = useStateScreen();
   const { sPractices, locations, designations } = dataForFilter;
@@ -35,8 +47,25 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
       </Wrapper>
       <Navigation />
       {scrollTop && isAttorneysPage && !isTabletScreen && (
-        <Filters practices={sPractices} locations={locations} designation={designations} userInput={userInput} handleChange={handleChange} onSelect={onSelect} attorneysContext={attorneysContext} onSelectLetter={onSelectLetter} select={select}>
-          {(userInput.length > 0 || select.length > 0) && <Selection select={select} clearQuery={clearQuery} userInput={userInput} clearAll={clearAll} />}
+        <Filters
+          practices={sPractices}
+          locations={locations}
+          designation={designations}
+          userInput={userInput}
+          handleChange={handleChange}
+          onSelect={onSelect}
+          attorneysContext={attorneysContext}
+          onSelectLetter={onSelectLetter}
+          select={select}
+        >
+          {(userInput.length > 0 || select.length > 0) && (
+            <Selection
+              select={select}
+              clearQuery={clearQuery}
+              userInput={userInput}
+              clearAll={clearAll}
+            />
+          )}
         </Filters>
       )}
     </HeaderContainer>

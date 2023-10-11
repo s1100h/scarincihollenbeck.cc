@@ -1,6 +1,10 @@
 import { useId } from 'react';
 import {
-  ButtonDropdown, ButtonGroup, ButtonTab, MobileGroup, NavItem,
+  ButtonDropdown,
+  ButtonGroup,
+  ButtonTab,
+  MobileGroup,
+  NavItem,
 } from 'styles/ButtonsMenu.style';
 import { useRouter } from 'next/router';
 
@@ -18,16 +22,26 @@ export const ButtonGroupMenu = ({ setActiveTab, activeTab, tabs }) => {
 
   return (
     <>
-      <ButtonGroup isNotProfile={routsCondition.toString() === 'true' ? 'true' : ''}>
+      <ButtonGroup
+        isNotProfile={routsCondition.toString() === 'true' ? 'true' : ''}
+      >
         {tabs.map((tab) => (
-          <ButtonTab key={tab.id} active={activeTab === tab.id ? 'true' : undefined} onClick={() => setActiveTab(tab.id)}>
+          <ButtonTab
+            key={tab.id}
+            active={activeTab === tab.id ? 'true' : undefined}
+            onClick={() => setActiveTab(tab.id)}
+          >
             {changeTitleMap[tab.title] || tab.title}
           </ButtonTab>
         ))}
         {tabs.length > 0
           && tabs.map(
             (tab) => tab === 'More' && (
-            <ButtonTab key={useId()} active={activeTab === 18 ? 'true' : undefined} onClick={() => setActiveTab(18)}>
+            <ButtonTab
+              key={useId()}
+              active={activeTab === 18 ? 'true' : undefined}
+              onClick={() => setActiveTab(18)}
+            >
               More
             </ButtonTab>
             ),
@@ -37,7 +51,11 @@ export const ButtonGroupMenu = ({ setActiveTab, activeTab, tabs }) => {
         <MobileGroup>
           <ButtonDropdown title="Menu">
             {tabs.map((tab) => (
-              <NavItem key={tab.id} active={activeTab === tab.id ? 'true' : undefined} onClick={() => setActiveTab(tab.id)}>
+              <NavItem
+                key={tab.id}
+                active={activeTab === tab.id ? 'true' : undefined}
+                onClick={() => setActiveTab(tab.id)}
+              >
                 {tab.title}
               </NavItem>
             ))}

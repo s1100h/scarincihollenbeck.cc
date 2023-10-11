@@ -60,7 +60,9 @@ const FuneralAnnouncement = ({
 
   if (content) {
     extractSubTitle = content.match(/<h2(.*?)>(.*?)<\/h2>/g);
-    subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+    subTitle = extractSubTitle !== null
+      ? extractSubTitle[0].replace(/<[^>]*>?/gm, '')
+      : '';
     bodyContent = content.replace(subTitle, '');
   }
 

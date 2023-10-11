@@ -25,7 +25,10 @@ export const AttorneysProvider = ({ children }) => {
     if (e.currentTarget && e.currentTarget.value.length === 0) {
       setUserInput('');
     } else {
-      const input = e.target.value.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+      const input = e.target.value.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
+      );
       const results = { selected: userInput, key: 'query' };
       const concatResults = select.concat(results);
       setUserInput(input);
@@ -45,7 +48,9 @@ export const AttorneysProvider = ({ children }) => {
   /* Click Events */
   function onSelectLetter(letter) {
     const results = { selected: letter.toUpperCase(), key: 'letterInLastName' };
-    const concatResults = select.filter((el) => el.key !== 'letterInLastName').concat(results);
+    const concatResults = select
+      .filter((el) => el.key !== 'letterInLastName')
+      .concat(results);
     setAuthors(sortByKey(attorneysContext, 'letterInLastName'));
     setSelect(concatResults);
   }
@@ -65,12 +70,20 @@ export const AttorneysProvider = ({ children }) => {
   async function getAsyncAuthors() {
     const data = await fetchAPI(authorsPostQuery);
 
-    const filteredAttorneys = data.attorneyProfiles?.nodes.reduce((acc, attorney) => {
-      if (!(!attorney.attorneyAuthorId.authorId || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0)) {
-        acc.push(attorney);
-      }
-      return acc;
-    }, []);
+    const filteredAttorneys = data.attorneyProfiles?.nodes.reduce(
+      (acc, attorney) => {
+        if (
+          !(
+            !attorney.attorneyAuthorId.authorId
+            || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
+          )
+        ) {
+          acc.push(attorney);
+        }
+        return acc;
+      },
+      [],
+    );
 
     const sanitizedAuthors = filteredAttorneys.map((attorney) => ({
       lastName: attorney.attorneyAuthorId?.authorId?.lastName,
@@ -107,5 +120,9 @@ export const AttorneysProvider = ({ children }) => {
     onSelectLetter,
   };
 
-  return <AttorneysContext.Provider value={values}>{children}</AttorneysContext.Provider>;
+  return (
+    <AttorneysContext.Provider value={values}>
+      {children}
+    </AttorneysContext.Provider>
+  );
 };

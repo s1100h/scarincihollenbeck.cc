@@ -22,10 +22,22 @@ const responsive = {
 };
 
 const ClientSlider = ({ content }) => (
-  <Carousel aria-label="carousel" responsive={responsive} infinite arrows swipeable>
+  <Carousel
+    aria-label="carousel"
+    responsive={responsive}
+    infinite
+    arrows
+    swipeable
+  >
     {content.map((slide) => (
       <div key={slide.id} className="pb-2 px-4">
-        <Image src={slide.image || '/images/no-image-found-diamond.png'} width={300} height={300} layout="intrinsic" alt={slide.title} />
+        <Image
+          src={slide.image || '/images/no-image-found-diamond.png'}
+          width={300}
+          height={300}
+          layout="intrinsic"
+          alt={slide.title}
+        />
       </div>
     ))}
   </Carousel>

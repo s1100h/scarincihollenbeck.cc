@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { cannabisLawColors } from '../../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down, media_breakpoint_range_exacly } from '../../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+  media_breakpoint_range_exacly,
+} from '../../mediaBreakpoints.style';
 
 export const PhotoBlockContainer = styled.section`
   display: flex;

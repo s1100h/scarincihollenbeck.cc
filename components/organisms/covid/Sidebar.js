@@ -8,7 +8,11 @@ const CovidSidebar = () => (
     <Subscription />
     <CommonSidebarLinks />
     <hr />
-    <PopularList term="Client Alerts" list={CLIENT_ALERTS} displayCount={false} />
+    <PopularList
+      term="Client Alerts"
+      list={CLIENT_ALERTS}
+      displayCount={false}
+    />
   </>
 );
 
