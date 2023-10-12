@@ -15,7 +15,8 @@ const SITE_FORM_SLUGS = ['new-attorney', 'current-attorney'];
 const headers = {
   method: 'GET',
   headers: {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
+    'User-Agent':
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
     Accept: 'application/json; charset=UTF-8',
   },
 };
@@ -41,8 +42,14 @@ export const getStaticProps = async ({ params }) => {
     };
   }
 
-  const practiceRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`, headers).then((data) => data.json());
-  const attorneyRequest = await fetch(`${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`, headers).then((data) => data.json());
+  const practiceRequest = await fetch(
+    `${BASE_API_URL}/wp-json/wp/v2/practices?per_page=100`,
+    headers,
+  ).then((data) => data.json());
+  const attorneyRequest = await fetch(
+    `${BASE_API_URL}/wp-json/wp/v2/attorneys?per_page=100`,
+    headers,
+  ).then((data) => data.json());
 
   return {
     props: {
@@ -50,7 +57,9 @@ export const getStaticProps = async ({ params }) => {
       attorneys: attorneyRequest
         .map((attorney) => ({
           email: attorney.acf.email,
-          name: attorney.title.rendered.replace(/&#8221;/g, '"').replace(/&#8220;/g, '"'),
+          name: attorney.title.rendered
+            .replace(/&#8221;/g, '"')
+            .replace(/&#8220;/g, '"'),
           link: attorney.link.replace('wp.', ''),
         }))
         .sort((a, b) => {
@@ -58,7 +67,9 @@ export const getStaticProps = async ({ params }) => {
           return -1;
         }),
       practices: practiceRequest
-        .map((practice) => practice.title.rendered.replace(/&#038;/g, '&').replace(/&#8217;/g, "'"))
+        .map((practice) => practice.title.rendered
+          .replace(/&#038;/g, '&')
+          .replace(/&#8217;/g, "'"))
         .sort((a, b) => {
           if (a > b) return 1;
           return -1;

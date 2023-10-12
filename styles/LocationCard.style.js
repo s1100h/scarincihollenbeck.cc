@@ -51,7 +51,8 @@ export const LocationHeader = styled.div`
   align-items: center;
   padding: 16px 27px;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? 'whitesmoke' : 'transparent')};
+  background-color: ${(props) =>
+    props.isActive ? 'whitesmoke' : 'transparent'};
 
   h5 {
     color: ${globalColor.black};

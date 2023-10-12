@@ -8,16 +8,26 @@ import FirmAuthors from './FirmAuthors';
 import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
 const LibrarySideBar = ({
-  isAuthor, profileUrl, childrenOfCurrentCategory, popularCategories, authors,
+  isAuthor,
+  profileUrl,
+  childrenOfCurrentCategory,
+  popularCategories,
+  authors,
 }) => (
   <SideBarContainer>
     <ShareSocialBox>
       <h4>Follow us:</h4>
       <hr className="second-hr" />
-      <FacebookShareButton url={SOCIAL_MEDIA_LINKS[1].url} quote={SOCIAL_MEDIA_LINKS[1].label}>
+      <FacebookShareButton
+        url={SOCIAL_MEDIA_LINKS[1].url}
+        quote={SOCIAL_MEDIA_LINKS[1].label}
+      >
         <BsFacebook className="faceBookBtn" />
       </FacebookShareButton>
-      <LinkedinShareButton url={SOCIAL_MEDIA_LINKS[0].url} quote={SOCIAL_MEDIA_LINKS[1].label}>
+      <LinkedinShareButton
+        url={SOCIAL_MEDIA_LINKS[0].url}
+        quote={SOCIAL_MEDIA_LINKS[1].label}
+      >
         <BsLinkedin className="linkedIn" />
       </LinkedinShareButton>
     </ShareSocialBox>
@@ -30,7 +40,9 @@ const LibrarySideBar = ({
         </strong>
       </Link>
     )}
-    {childrenOfCurrentCategory.length > 0 && <PopularList term="Related Categories" list={childrenOfCurrentCategory} />}
+    {childrenOfCurrentCategory.length > 0 && (
+      <PopularList term="Related Categories" list={childrenOfCurrentCategory} />
+    )}
     <PopularList term="Popular Categories" list={popularCategories} />
     <PopularList term="Client Alerts" list={CLIENT_ALERTS} />
     <FirmAuthors authors={authors} />

@@ -2,7 +2,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
-import { BreadcrumbsListContainer, ButtonBreadcrumb } from '../../../styles/Breadcrumbs.style';
+import {
+  BreadcrumbsListContainer,
+  ButtonBreadcrumb,
+} from '../../../styles/Breadcrumbs.style';
 
 const delegatePathFunc = (CrumbsPath, router) => {
   if (router.pathname === '/404') {
@@ -26,7 +29,9 @@ const delegatePathFunc = (CrumbsPath, router) => {
       return (
         <>
           <li>
-            <Link href="/location/little-falls">{CrumbsPath[0].replace(/-/g, ' ')}</Link>
+            <Link href="/location/little-falls">
+              {CrumbsPath[0].replace(/-/g, ' ')}
+            </Link>
             <BsChevronRight />
           </li>
           <li>
@@ -52,7 +57,11 @@ const delegatePathFunc = (CrumbsPath, router) => {
       );
     }
 
-    if (CrumbsPath.length > 1 && CrumbsPath.includes('library') && !CrumbsPath.includes('author')) {
+    if (
+      CrumbsPath.length > 1
+      && CrumbsPath.includes('library')
+      && !CrumbsPath.includes('author')
+    ) {
       return (
         <>
           <li>

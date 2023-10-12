@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow, threeDots } from 'styles/global_styles/Global.styles';
+import {
+  globalColor,
+  globalShadow,
+  threeDots,
+} from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const MoreTabContainer = styled.section`

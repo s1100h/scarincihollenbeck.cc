@@ -10,7 +10,12 @@ const BlockListWrapper = ({
   title, list, isBlock, isSimple, article,
 }) => (
   <BlockListBox>
-    {article && <Article title={title} contentBody={formatPageImageToCloudinaryUrl(article)} />}
+    {article && (
+      <Article
+        title={title}
+        contentBody={formatPageImageToCloudinaryUrl(article)}
+      />
+    )}
     {isBlock && <PracticesTiles practicesList={list} />}
     {isSimple && <SimpleList list={list} />}
   </BlockListBox>

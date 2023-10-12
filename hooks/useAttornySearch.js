@@ -15,7 +15,11 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
     }
     if (practices.length > 0 && attorney.practices_array) {
       const prunedPracticeList = attorney.practices_array?.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
-      return prunedPracticeList.indexOf(practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase()) > -1;
+      return (
+        prunedPracticeList.indexOf(
+          practices[0].replace(/[^a-zA-Z ]/g, '').toLowerCase(),
+        ) > -1
+      );
     }
 
     return attorney;
@@ -51,15 +55,24 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
 
   const filterByLetterInLastName = (attorney) => {
     if (letterInLastName.length > 0) {
-      return attorney.lastName.split('')[0] === letterInLastName[0].toUpperCase();
+      return (
+        attorney.lastName.split('')[0] === letterInLastName[0].toUpperCase()
+      );
     }
     return attorney;
   };
 
-  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg.filter(filterPractices).filter(filterDesignation).filter(filterLocation).filter(filterLikeSearch)
+  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg
+    .filter(filterPractices)
+    .filter(filterDesignation)
+    .filter(filterLocation)
+    .filter(filterLikeSearch)
     .filter(filterByLetterInLastName);
 
-  const attorneysFiltered = useMemo(() => attorneyFiltration(attorneysArr), [selectVariant]);
+  const attorneysFiltered = useMemo(
+    () => attorneyFiltration(attorneysArr),
+    [selectVariant],
+  );
 
   return { attorneysFiltered };
 };

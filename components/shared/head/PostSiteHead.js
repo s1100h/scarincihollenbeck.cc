@@ -34,15 +34,30 @@ const PostSiteHead = ({ seo, post, authors }) => {
         <meta property="og:title" content={metaTitle} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={opengraphImage || `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+        <meta
+          property="og:image"
+          content={
+            opengraphImage
+            || `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`
+          }
+        />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={metaTitle} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={opengraphImage || `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+        <meta
+          name="twitter:image"
+          content={
+            opengraphImage
+            || `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`
+          }
+        />
         <script
           key="ScarinciHollenbeck Bio Profile"
           type="application/ld+json"

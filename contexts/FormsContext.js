@@ -18,5 +18,7 @@ export const FormContextProvider = ({ children }) => {
     isCheckedDisclaimer,
   };
 
-  return <FormsContext.Provider value={values}>{children}</FormsContext.Provider>;
+  return (
+    <FormsContext.Provider value={values}>{children}</FormsContext.Provider>
+  );
 };

@@ -7,7 +7,12 @@ const LinkButtons = ({ handleClickAndClose }) => (
       <BsFillTelephoneFill />
       <span>Contact us</span>
     </ButtonLink>
-    <ButtonLink onClick={handleClickAndClose} href="https://secure.lawpay.com/pages/scarincihollenbeck/operating" target="_blank" rel="noreferrer">
+    <ButtonLink
+      onClick={handleClickAndClose}
+      href="https://secure.lawpay.com/pages/scarincihollenbeck/operating"
+      target="_blank"
+      rel="noreferrer"
+    >
       <BsFillCreditCard2BackFill />
       <span>Make payment</span>
     </ButtonLink>

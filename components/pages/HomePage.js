@@ -7,20 +7,42 @@ import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
 // import InfoModal from '../atoms/InfoModal';
 
 // !! Attention the modal window was turned off. 12/31/2022
-const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'), {
+const AllOfficeLocations = dynamic(
+  () => import('components/organisms/home/AllOfficeLocations'),
+  {
+    ssr: true,
+  },
+);
+const AboutFirmSection = dynamic(
+  () => import('components/organisms/home/AboutFirm'),
+  {
+    ssr: true,
+  },
+);
+const FirmNews = dynamic(
+  () => import('components/organisms/home/FirmNews/FirmNews'),
+  { ssr: true },
+);
+const Awards = dynamic(() => import('components/organisms/home/Awards'), {
   ssr: true,
 });
-const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirm'), {
-  ssr: true,
-});
-const FirmNews = dynamic(() => import('components/organisms/home/FirmNews/FirmNews'), { ssr: true });
-const Awards = dynamic(() => import('components/organisms/home/Awards'), { ssr: true });
 
 const HomePage = ({
-  seo, aboutFirm, aboutFirm2, awards, banner, isHoliday, offices, firmNewsArticles,
+  seo,
+  aboutFirm,
+  aboutFirm2,
+  awards,
+  banner,
+  isHoliday,
+  offices,
+  firmNewsArticles,
 }) => (
   <>
-    <HomeSiteHead title={seo.title} metaDescription={seo.metaDesc} canonicalUrl={CURRENT_DOMAIN} />
+    <HomeSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDesc}
+      canonicalUrl={CURRENT_DOMAIN}
+    />
     <HomeBanner {...banner} />
     {isHoliday && <HappyHolidayLink />}
     {/* <InfoModal /> */}

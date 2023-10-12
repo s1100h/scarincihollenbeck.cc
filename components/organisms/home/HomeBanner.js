@@ -18,7 +18,9 @@ const HomeBanner = ({ lineOne, lineTwo, quote }) => {
       <div className="redBanner animate__animated animate__fadeInLeft animate__slow">
         <div className="homeBannerContainer">
           <div className="d-flex flex-column">
-            <p className="text animate__animated animate__fadeInDown animate__slow">{lineOne}</p>
+            <p className="text animate__animated animate__fadeInDown animate__slow">
+              {lineOne}
+            </p>
             {!empty(lineTwoState) && (
               <div className="text animate__animated animate__fadeInDown animate__slow">
                 <JSXWithDynamicLinks HTML={lineTwoState} />

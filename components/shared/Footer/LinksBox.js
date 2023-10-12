@@ -23,7 +23,13 @@ export default function LinksBox({ linksArr, title, isTargetBlank }) {
       )}
       <LinkList>
         {linksArr.map((link) => (
-          <li key={link.id}>{linkTemplate(isTargetBlank, link.slug ? link.slug : link.url, link.label)}</li>
+          <li key={link.id}>
+            {linkTemplate(
+              isTargetBlank,
+              link.slug ? link.slug : link.url,
+              link.label,
+            )}
+          </li>
         ))}
       </LinkList>
     </div>

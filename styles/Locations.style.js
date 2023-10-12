@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import { media_breakpoint_down, media_breakpoint_exactly_down, media_breakpoint_range_exacly } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+  media_breakpoint_range_exacly,
+} from './mediaBreakpoints.style';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 
 const addressPointConst = `

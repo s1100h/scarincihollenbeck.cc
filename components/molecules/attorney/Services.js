@@ -1,5 +1,8 @@
 import Link from 'next/link';
-import { ServiceList, SidebarTile } from 'styles/attorney-page/ProfileSidebar.style';
+import {
+  ServiceList,
+  SidebarTile,
+} from 'styles/attorney-page/ProfileSidebar.style';
 
 const Services = ({ services }) => (
   <div>

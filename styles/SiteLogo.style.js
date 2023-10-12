@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const DiamondWrapper = styled.div`
   display: none;

@@ -3,10 +3,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import styled from 'styled-components';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import empty from 'is-empty';
 
-const translate3dVariations = (width) => `translate3d(${width}, 49px, 0px)!important`;
+const translate3dVariations = (width) =>
+  `translate3d(${width}, 49px, 0px)!important`;
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
   margin-top: 5px;
@@ -54,18 +58,22 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
 
     div {
       width: fit-content;
-      transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-22vw') : null)};
+      transform: ${({ props }) =>
+        props?.bigMenu ? translate3dVariations('-22vw') : null};
 
       ${media_breakpoint_exactly_down(1350)} {
-        transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-27vw') : null)};
+        transform: ${({ props }) =>
+          props?.bigMenu ? translate3dVariations('-27vw') : null};
       }
 
       ${media_breakpoint_down('xl')} {
-        transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('-46vw') : null)};
+        transform: ${({ props }) =>
+          props?.bigMenu ? translate3dVariations('-46vw') : null};
       }
 
       ${media_breakpoint_down('md')} {
-        transform: ${({ props }) => (props?.bigMenu ? translate3dVariations('0') : null)};
+        transform: ${({ props }) =>
+          props?.bigMenu ? translate3dVariations('0') : null};
       }
 
       ${({ props }) =>
@@ -98,7 +106,8 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
 export const ContainerFilters = styled(Container)`
   min-width: 86vw;
   padding: 22px 20px !important;
-  background-color: ${({ props }) => (!empty(props?.isWhite) ? globalColor.white : '#495057')};
+  background-color: ${({ props }) =>
+    !empty(props?.isWhite) ? globalColor.white : '#495057'};
   box-shadow: ${globalShadow.allSideShadow};
 
   form {
