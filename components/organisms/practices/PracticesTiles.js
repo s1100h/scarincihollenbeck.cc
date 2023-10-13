@@ -83,82 +83,78 @@ const PracticesTiles = ({ practicesList }) => {
             databaseId, childPractice, uri, title, practiceImage,
           }) => (
             <Fragment key={databaseId}>
-              {!empty(childPractice) ? (
-                <PracticeTile
-                  isOpenListPractice={isDropDownOpen}
-                  isRotateCard={isTileRotateId === databaseId ? 'true' : ''}
-                  isSowMoreProp={
-                    isShowMore && isTileRotateId === databaseId ? 'true' : ''
+              <PracticeTile
+                isOpenListPractice={isDropDownOpen}
+                isRotateCard={isTileRotateId === databaseId ? 'true' : ''}
+                isSowMoreProp={
+                  isShowMore && isTileRotateId === databaseId ? 'true' : ''
+                }
+              >
+                <Front
+                  isRotateProp={
+                    !isMobileScreen
+                      ? isTileRotateId === databaseId
+                        ? 'true'
+                        : ''
+                      : ''
+                  }
+                  onMouseEnter={
+                    !isBigTabletScreen
+                      ? () => setTileRotateId(databaseId)
+                      : undefined
+                  }
+                  onClick={() => handleClickByTile(databaseId)}
+                >
+                  <Image
+                    src={
+                      !empty(practiceImage?.sourceUrl)
+                        ? practiceImage?.sourceUrl
+                        : 'images/no-image-found-diamond-750x350.png'
+                    }
+                    alt={title}
+                    width={395}
+                    height={280}
+                  />
+                  <div className="light-title">
+                    {title}
+                    <BsChevronDown />
+                  </div>
+                  {renderPracticesList(
+                    childPractice,
+                    title,
+                    uri,
+                    isShowMore,
+                    handleShowMore,
+                  )}
+                </Front>
+                <Back
+                  isRotateProp={isTileRotateId === databaseId ? 'true' : ''}
+                  onMouseLeave={
+                    !isBigTabletScreen
+                      ? () => {
+                        setTileRotateId(undefined);
+                        setSowMore(false);
+                      }
+                      : undefined
+                  }
+                  onClick={
+                    isBigTabletScreen
+                      ? () => {
+                        setTileRotateId(undefined);
+                        setSowMore(false);
+                      }
+                      : undefined
                   }
                 >
-                  <Front
-                    isRotateProp={
-                      !isMobileScreen
-                        ? isTileRotateId === databaseId
-                          ? 'true'
-                          : ''
-                        : ''
-                    }
-                    onMouseEnter={
-                      !isBigTabletScreen
-                        ? () => setTileRotateId(databaseId)
-                        : undefined
-                    }
-                    onClick={() => handleClickByTile(databaseId)}
-                  >
-                    <Image
-                      src={
-                        !empty(practiceImage?.sourceUrl)
-                          ? practiceImage?.sourceUrl
-                          : 'images/no-image-found-diamond-750x350.png'
-                      }
-                      alt={title}
-                      width={395}
-                      height={280}
-                    />
-                    <div className="light-title">
-                      {title}
-                      <BsChevronDown />
-                    </div>
-                    {renderPracticesList(
-                      childPractice,
-                      title,
-                      uri,
-                      isShowMore,
-                      handleShowMore,
-                    )}
-                  </Front>
-                  <Back
-                    isRotateProp={isTileRotateId === databaseId ? 'true' : ''}
-                    onMouseLeave={
-                      !isBigTabletScreen
-                        ? () => {
-                          setTileRotateId(undefined);
-                          setSowMore(false);
-                        }
-                        : undefined
-                    }
-                    onClick={
-                      isBigTabletScreen
-                        ? () => {
-                          setTileRotateId(undefined);
-                          setSowMore(false);
-                        }
-                        : undefined
-                    }
-                  >
-                    {renderPracticesList(
-                      childPractice,
-                      title,
-                      uri,
-                      isShowMore,
-                      handleShowMore,
-                    )}
-                  </Back>
-                </PracticeTile>
-              ) : (
-                <PracticeTile key={databaseId}>{title}</PracticeTile>
-              )}
+                  {renderPracticesList(
+                    childPractice,
+                    title,
+                    uri,
+                    isShowMore,
+                    handleShowMore,
+                  )}
+                </Back>
+              </PracticeTile>
             </Fragment>
           ),
         )}

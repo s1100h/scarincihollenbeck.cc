@@ -32,7 +32,7 @@ const PracticesDirectory = ({
       span={7}
       offset={2}
     />
-    <FullWidth>
+    <FullWidth classes="container--practises">
       <Title props={{ size: '2rem' }}>Law Practices</Title>
       <ArticleSearchBox>
         <Article

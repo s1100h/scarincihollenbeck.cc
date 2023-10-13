@@ -1,6 +1,7 @@
 import { sortByKey } from 'utils/helpers';
 import { PRODUCTION_URL } from 'utils/constants';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
+import empty from 'is-empty';
 import { fetchAPI } from '../../requests/api';
 import {
   getPracticesQuery,
@@ -26,13 +27,18 @@ const getPractices = async () => {
         uri,
         practicesIncluded,
         practicePortalPageContent,
-      }) => ({
-        databaseId,
-        title,
-        uri,
-        ...practicesIncluded,
-        ...practicePortalPageContent,
-      }),
+      }) => {
+        if (empty(practicesIncluded.childPractice)) {
+          practicesIncluded.childPractice = [];
+        }
+        return {
+          databaseId,
+          title,
+          uri,
+          ...practicesIncluded,
+          ...practicePortalPageContent,
+        };
+      },
     );
 };
 /** Map practice page data to page props */
