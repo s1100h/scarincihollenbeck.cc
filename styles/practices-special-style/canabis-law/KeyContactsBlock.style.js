@@ -117,7 +117,7 @@ export const KeyContactsWrapper = styled.div`
   flex-direction: column;
 
   .attorney-card-box {
-    ${attorneyCardForCannabis}
+    ${attorneyCardForCannabis};
   }
 
   ${media_breakpoint_exactly_down(1440)} {

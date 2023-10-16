@@ -523,6 +523,43 @@ export const ButtonLinkCss = `
   }
 `;
 
+export const beforeDoteStyledList = `
+:before {
+	 content: '';
+	 width: 3px;
+	 height: 5px;
+	 margin-right: 5px;
+	 background-color: ${globalColor.black};
+	 position: absolute;
+	 left: -10px;
+	 top: 12px;
+	 border-radius: 1px;
+}
+`;
+
+export const attorneyCardForCannabis = `
+	border: none;
+
+    section {
+      section {
+        h3, p, address {
+          font-family: var(--font-rajdhani), sans-serif;
+          text-transform: uppercase;
+          color: ${globalColor.white};
+
+          svg {
+            fill: ${globalColor.white};
+          }
+        }
+        address {
+          a {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+`;
+
 export const successMessage = `
   display: flex;
   flex-direction: column;
