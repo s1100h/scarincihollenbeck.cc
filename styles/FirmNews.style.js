@@ -1,6 +1,14 @@
 import styled from 'styled-components';
-import { globalColor, rem, globalShadow, threeDots } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  globalColor,
+  rem,
+  globalShadow,
+  threeDots,
+} from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import Link from 'next/link';
 
 const hoverLink = `

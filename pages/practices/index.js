@@ -3,6 +3,7 @@ import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { getPracticesQuery, practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
+import empty from 'is-empty';
 
 /** Fetch the practice page content WP GRAPHQL API */
 const practicesPageContent = async () => {
@@ -13,16 +14,29 @@ const practicesPageContent = async () => {
 const getPractices = async () => {
   const data = await fetchAPI(getPracticesQuery, {});
   return data.practices.nodes
-    .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes('Core Practices'))
-    .map(({
-      databaseId, title, uri, practicesIncluded, practicePortalPageContent,
-    }) => ({
-      databaseId,
-      title,
-      uri,
-      ...practicesIncluded,
-      ...practicePortalPageContent,
-    }));
+    .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes(
+      'Core Practices',
+    ))
+    .map(
+      ({
+        databaseId,
+        title,
+        uri,
+        practicesIncluded,
+        practicePortalPageContent,
+      }) => {
+        if (empty(practicesIncluded.childPractice)) {
+          practicesIncluded.childPractice = [];
+        }
+        return {
+          databaseId,
+          title,
+          uri,
+          ...practicesIncluded,
+          ...practicePortalPageContent,
+        };
+      },
+    );
 };
 /** Map practice page data to page props */
 export const getStaticProps = async () => {
