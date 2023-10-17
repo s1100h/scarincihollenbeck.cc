@@ -1,5 +1,8 @@
 import {
-  AboutArticle, AboutBox, LinkButtonAbout, SubTitleAbout,
+  AboutArticle,
+  AboutBox,
+  LinkButtonAbout,
+  SubTitleAbout,
 } from 'styles/AboutFirm.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 

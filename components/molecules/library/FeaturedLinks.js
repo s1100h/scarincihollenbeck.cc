@@ -8,7 +8,10 @@ const FeaturedLinks = () => {
   return (
     <CategoriesLinks>
       {CategoriesButtonsStructure.map((btnLink) => (
-        <ButtonItem page={{ currentPage: query.slug, btnSlug: btnLink.slug }} key={btnLink.id}>
+        <ButtonItem
+          page={{ currentPage: query.slug, btnSlug: btnLink.slug }}
+          key={btnLink.id}
+        >
           <Link href={`/library/category/${btnLink.slug}`} passHref>
             {btnLink.label}
           </Link>

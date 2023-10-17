@@ -6,7 +6,10 @@ const fetch = require('node-fetch');
 const getPageContent = async (slug) => {
   let respToJson;
   try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/single-page/page/${slug}`, { headers });
+    const res = await fetch(
+      `${BASE_API_URL}/wp-json/single-page/page/${slug}`,
+      { headers },
+    );
     respToJson = await res.json();
   } catch (error) {
     console.error(error);
@@ -21,10 +24,14 @@ const getLocationContent = async (slug) => {
       fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, { headers })
         .then((data) => data.json())
         .catch((err) => err),
-      fetch(`${BASE_API_URL}/wp-json/individual-location/office/${slug}`, { headers })
+      fetch(`${BASE_API_URL}/wp-json/individual-location/office/${slug}`, {
+        headers,
+      })
         .then((data) => data.json())
         .catch((err) => err),
-      fetch(`${BASE_API_URL}/wp-json/individual-location/posts/${slug}`, { headers })
+      fetch(`${BASE_API_URL}/wp-json/individual-location/posts/${slug}`, {
+        headers,
+      })
         .then((data) => data.json())
         .catch((err) => err),
     ]);
@@ -41,7 +48,10 @@ const getCovid19BasedPages = async (slug, id) => {
       fetch(`${BASE_API_URL}/wp-json/single-page/page/${slug}`, { headers })
         .then((data) => data.json())
         .catch((err) => err),
-      fetch(`${BASE_API_URL}/wp-json/wp/v2/posts?categories=${id}&per_page=100`, { headers })
+      fetch(
+        `${BASE_API_URL}/wp-json/wp/v2/posts?categories=${id}&per_page=100`,
+        { headers },
+      )
         .then((data) => data.json())
         .catch((err) => err),
     ]);

@@ -2,7 +2,10 @@ import { useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { BsPaperclip } from 'react-icons/bs';
 import {
-  UploadContainer, UploadIcon, UploadRow, UploadTitle,
+  UploadContainer,
+  UploadIcon,
+  UploadRow,
+  UploadTitle,
 } from '../../styles/UploadFileInput.style';
 
 const UploadFileInput = ({ onChange, ...attributes }) => {
@@ -31,7 +34,9 @@ const UploadFileInput = ({ onChange, ...attributes }) => {
     <UploadContainer>
       <UploadTitle>
         {attributes.label}
-        {attributes.rules?.includes('required') && <span> (This field is required)</span>}
+        {attributes.rules?.includes('required') && (
+          <span> (This field is required)</span>
+        )}
       </UploadTitle>
       <UploadRow>
         <UploadIcon>

@@ -47,7 +47,8 @@ export const DropDownResults = styled.ul`
   padding: 15px 0;
   overflow-y: auto;
   background-color: ${globalColor.white};
-  box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06),
+    0px -7px 16px 0px rgba(0, 0, 0, 0.06);
   position: absolute;
   z-index: 10;
   top: 85%;

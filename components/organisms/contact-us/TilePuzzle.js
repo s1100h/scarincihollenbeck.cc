@@ -5,7 +5,13 @@ import TileContacts from '../../molecules/contact-us/TileContacts';
 const TilePuzzle = () => (
   <PuzzleContainer>
     {tileContentArr.map((tile) => (
-      <TileContacts key={tile.id} title={tile.title} textContent={tile.textContent} icon={tile.icon} image={tile.image} />
+      <TileContacts
+        key={tile.id}
+        title={tile.title}
+        textContent={tile.textContent}
+        icon={tile.icon}
+        image={tile.image}
+      />
     ))}
   </PuzzleContainer>
 );

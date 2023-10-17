@@ -9,15 +9,29 @@ import { getCloudinaryImageUrl } from '../../../utils/helpers';
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
   replace: (domNode) => {
-    if (domNode.type === 'tag' && domNode.name === 'a' && domNode.attribs.href?.includes(PRODUCTION_URL)) {
+    if (
+      domNode.type === 'tag'
+        && domNode.name === 'a'
+        && domNode.attribs.href?.includes(PRODUCTION_URL)
+    ) {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
-      return <Link href={uriSliced}>{domNode.children[0]?.data || domNode.children[0]?.children[0]?.data}</Link>;
+      return (
+        <Link href={uriSliced}>
+          {domNode.children[0]?.data
+              || domNode.children[0]?.children[0]?.data}
+        </Link>
+      );
     }
-    if (domNode.type === 'tag' && domNode.name === 'a' && !empty(domNode.attribs.href)) {
+    if (
+      domNode.type === 'tag'
+        && domNode.name === 'a'
+        && !empty(domNode.attribs.href)
+    ) {
       return (
         <Link href={domNode.attribs.href} target="_blank">
-          {domNode.children[0]?.data || domNode.children[0]?.children[0]?.data}
+          {domNode.children[0]?.data
+              || domNode.children[0]?.children[0]?.data}
         </Link>
       );
     }
@@ -39,7 +53,9 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           <Image
             className="floated-image"
             placeholder="blur"
-            blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            blurDataURL={
+                domNode.attribs['data-srcset'] || domNode.attribs.src
+              }
             loading="lazy"
             src={domNode.attribs['data-srcset'] || domNode.attribs.src}
             alt={domNode.attribs.alt}
@@ -49,8 +65,22 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
         );
       }
       if (!domNode.attribs['data-srcset']?.length) {
-        const imageUrl = getCloudinaryImageUrl(domNode.attribs['data-version'], domNode.attribs['data-public-id']);
-        return <ImageLegacy placeholder="blur" blurDataURL={imageUrl} loading="lazy" src={imageUrl} alt={domNode.attribs.alt} width={domNode.attribs.width || 500} height={domNode.attribs.height || 300} layout="responsive" />;
+        const imageUrl = getCloudinaryImageUrl(
+          domNode.attribs['data-version'],
+          domNode.attribs['data-public-id'],
+        );
+        return (
+          <ImageLegacy
+            placeholder="blur"
+            blurDataURL={imageUrl}
+            loading="lazy"
+            src={imageUrl}
+            alt={domNode.attribs.alt}
+            width={domNode.attribs.width || 500}
+            height={domNode.attribs.height || 300}
+            layout="responsive"
+          />
+        );
       }
 
       return (
@@ -93,7 +123,10 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
       // eslint bug.
       // eslint-disable-next-line jsx-a11y/media-has-caption
         <video preload="metadata" controls>
-          <source type={video.children[0].attribs.type} src={video.children[0].attribs.src} />
+          <source
+            type={video.children[0].attribs.type}
+            src={video.children[0].attribs.src}
+          />
         </video>
       );
     }

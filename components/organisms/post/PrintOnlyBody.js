@@ -14,7 +14,13 @@ const PrintOnlyBody = ({
       </h3>
       {!empty(featuredImage) && (
         <div className="d-block w-100">
-          <Image fill width={700} className="mt-2 mb-4" src={featuredImage} alt={title} />
+          <Image
+            fill
+            width={700}
+            className="mt-2 mb-4"
+            src={featuredImage}
+            alt={title}
+          />
         </div>
       )}
       <div className="d-block w-100 mb-3">

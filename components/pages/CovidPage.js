@@ -7,7 +7,11 @@ import SingleSubHeader from 'layouts/SingleSubHeader';
 import { categoryPostsByIdQuery } from 'utils/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import ContentTitle from 'components/atoms/ContentTitle';
-import { FirstColumn, SecondColumn, TwoColumnsContainer } from 'styles/Containers.style';
+import {
+  FirstColumn,
+  SecondColumn,
+  TwoColumnsContainer,
+} from 'styles/Containers.style';
 import { ContentContainer } from 'styles/PageContant.style';
 import { JSXWithDynamicLinks } from '../atoms/micro-templates/JSXWithDynamicLinks';
 
@@ -15,7 +19,12 @@ const PostList = dynamic(import('components/molecules/PostList'));
 const Sidebar = dynamic(import('components/organisms/covid/Sidebar'));
 
 const CovidPage = ({
-  title, seo, bodyContent, canonicalUrl, subTitle, contentId,
+  title,
+  seo,
+  bodyContent,
+  canonicalUrl,
+  subTitle,
+  contentId,
 }) => {
   /** Handle Article Archive Query */
   const {
@@ -43,7 +52,11 @@ const CovidPage = ({
 
   return (
     <>
-      <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
+      <BasicSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDescription}
+        canonicalUrl={canonicalUrl}
+      />
       <SingleSubHeader title={title} subtitle={subTitle} span={8} offset={0} />
       <TwoColumnsContainer>
         <FirstColumn>
@@ -51,7 +64,9 @@ const CovidPage = ({
             crisisManagementTemplate(bodyContent)
           ) : (
             <ContentContainer>
-              <JSXWithDynamicLinks HTML={formatPageImageToCloudinaryUrl(bodyContent)} />
+              <JSXWithDynamicLinks
+                HTML={formatPageImageToCloudinaryUrl(bodyContent)}
+              />
             </ContentContainer>
           )}
           <div className="border-top border-top pt-4 px-2">

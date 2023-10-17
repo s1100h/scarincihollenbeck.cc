@@ -10,11 +10,23 @@ const CareersPage = ({
   careers, seo, site, canonicalUrl,
 }) => (
   <>
-    <BasicSiteHead title={seo.title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
-    <SingleSubHeader title={site.title} subtitle={site.description} offset={3} span={7} />
+    <BasicSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDescription}
+      canonicalUrl={canonicalUrl}
+    />
+    <SingleSubHeader
+      title={site.title}
+      subtitle={site.description}
+      offset={3}
+      span={7}
+    />
     <FullWidth>
       {careers && <CareersResults positions={careers} />}
-      <CareersEqualOpportunity title="Equal Employment Opportunity" contentBody={site.bodyContent} />
+      <CareersEqualOpportunity
+        title="Equal Employment Opportunity"
+        contentBody={site.bodyContent}
+      />
     </FullWidth>
   </>
 );

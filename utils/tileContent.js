@@ -1,5 +1,8 @@
 import {
-  BsFileEarmarkRichtextFill, BsFillBriefcaseFill, BsPeopleFill, BsPersonPlusFill,
+  BsFileEarmarkRichtextFill,
+  BsFillBriefcaseFill,
+  BsPeopleFill,
+  BsPersonPlusFill,
 } from 'react-icons/bs';
 
 export const tileContentArr = [

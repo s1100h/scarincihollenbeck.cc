@@ -1,5 +1,9 @@
 import FirmOverviewPage from 'components/pages/FirmOverview';
-import { firmOverViewTitles, SITE_PHONE, PRODUCTION_URL } from 'utils/constants';
+import {
+  firmOverViewTitles,
+  SITE_PHONE,
+  PRODUCTION_URL,
+} from 'utils/constants';
 import { fetchAPI } from 'utils/api';
 import { firmOverviewQuery } from 'utils/graphql-queries';
 import { AttorneysContext } from 'contexts/AttorneysContext';
@@ -14,11 +18,24 @@ export async function getFirmOverviewContent() {
 
 const sanitizeMembers = (members) => members.map((member) => ({
   title: member.title,
-  uri: member.attorneyMainInformation ? `attorneys/${member.slug}` : `administration/${member.slug}`,
-  better_featured_image: member.attorneyMainInformation?.profileImage?.sourceUrl || member.administration?.featuredImage?.sourceUrl,
-  phone: member.attorneyMainInformation?.phoneNumber || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
-  email: member.attorneyMainInformation?.email || member.administration?.email,
-  designation: (member.attorneyMainInformation?.designation !== 'Firm Managing Partner' && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner' ? member.attorneyChairCoChair : member.attorneyMainInformation.designation) || member.administration?.title,
+  uri: member.attorneyMainInformation
+    ? `attorneys/${member.slug}`
+    : `administration/${member.slug}`,
+  better_featured_image:
+      member.attorneyMainInformation?.profileImage?.sourceUrl
+      || member.administration?.featuredImage?.sourceUrl,
+  phone:
+      member.attorneyMainInformation?.phoneNumber
+      || `${SITE_PHONE} #${member.administration?.phoneExtension}`,
+  email:
+      member.attorneyMainInformation?.email || member.administration?.email,
+  designation:
+      (member.attorneyMainInformation?.designation
+        !== 'Firm Managing Partner'
+      && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner'
+        ? member.attorneyChairCoChair
+        : member.attorneyMainInformation.designation)
+      || member.administration?.title,
 }));
 
 export const getServerSideProps = async () => {
@@ -52,7 +69,12 @@ export const getServerSideProps = async () => {
 
 /** The Firm Overview page component */
 const FirmOverview = ({
-  title, seo, content, firmOverviewTabs, administration, FirmMembers,
+  title,
+  seo,
+  content,
+  firmOverviewTabs,
+  administration,
+  FirmMembers,
 }) => {
   const { firmOverviewTitles, setFirmOverviewTitles } = useContext(AttorneysContext);
   const { clearBody, subTitle } = getSubTitleFromHTML(content);

@@ -43,7 +43,11 @@ const InfoModal = ({
             <p>{description}</p>
           </div>
           <ModalFooter>
-            <RedButtonBootstrap color="secondary" type="button" onClick={handleClick}>
+            <RedButtonBootstrap
+              color="secondary"
+              type="button"
+              onClick={handleClick}
+            >
               Close
             </RedButtonBootstrap>
           </ModalFooter>

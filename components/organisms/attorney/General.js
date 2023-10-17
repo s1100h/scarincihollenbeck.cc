@@ -1,13 +1,21 @@
 import Surface from 'components/atoms/micro-templates/surface';
 import ClientSlider from 'components/molecules/attorney/ClientSlider';
 import {
-  ClientsBox, EducationAdmissionBox, GeneralContainer, GrayList,
+  ClientsBox,
+  EducationAdmissionBox,
+  GeneralContainer,
+  GrayList,
 } from 'styles/attorney-page/General.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 
 const General = ({ content }) => {
   const {
-    miniBio, education, barAdmissions, additionalInfo, clients, affiliations,
+    miniBio,
+    education,
+    barAdmissions,
+    additionalInfo,
+    clients,
+    affiliations,
   } = content;
   return (
     <Surface unscrollable="true">
@@ -21,13 +29,17 @@ const General = ({ content }) => {
           )}
           {barAdmissions && (
             <GrayList>
-              <JSXWithDynamicLinks HTML={`<h3>Admissions</h3>${barAdmissions}`} />
+              <JSXWithDynamicLinks
+                HTML={`<h3>Admissions</h3>${barAdmissions}`}
+              />
             </GrayList>
           )}
         </EducationAdmissionBox>
         {affiliations?.length > 0 && (
           <GrayList hightAuto="true">
-            <JSXWithDynamicLinks HTML={`<h3>Affiliations</h3>${affiliations}`} />
+            <JSXWithDynamicLinks
+              HTML={`<h3>Affiliations</h3>${affiliations}`}
+            />
           </GrayList>
         )}
         {additionalInfo?.length > 0 && (

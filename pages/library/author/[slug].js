@@ -11,7 +11,13 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** Get all the author data and posts for the page using WP REST API */
 const getAuthorContent = async (slug) => {
   try {
-    const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await Promise.all([
+    const [
+      results,
+      authors,
+      childrenOfCurrentCategory,
+      popularCategories,
+      authorBio,
+    ] = await Promise.all([
       fetch(`${BASE_API_URL}/wp-json/author/posts/${slug}/1`, { headers })
         .then((data) => data.json())
         .catch((err) => err),
@@ -29,7 +35,13 @@ const getAuthorContent = async (slug) => {
         .catch((err) => err),
     ]);
 
-    return [results, authors, childrenOfCurrentCategory, popularCategories, authorBio];
+    return [
+      results,
+      authors,
+      childrenOfCurrentCategory,
+      popularCategories,
+      authorBio,
+    ];
   } catch (error) {
     console.error(error);
   }
@@ -43,10 +55,19 @@ const getUserSeo = async (id) => {
 
 /** Set the author posts and related data to page props */
 export const getServerSideProps = async ({ params, res }) => {
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate');
+  res.setHeader(
+    'Cache-Control',
+    'max-age=0, s-maxage=60, stale-while-revalidate',
+  );
   const { slug } = params;
 
-  const [results, authors, childrenOfCurrentCategory, popularCategories, authorBio] = await getAuthorContent(slug);
+  const [
+    results,
+    authors,
+    childrenOfCurrentCategory,
+    popularCategories,
+    authorBio,
+  ] = await getAuthorContent(slug);
   const { seo } = await getUserSeo(results.id);
   const news = results.results.map((node, index) => ({
     ID: index,
@@ -81,7 +102,15 @@ export const getServerSideProps = async ({ params, res }) => {
 
 /** Author library page component */
 const LibraryAuthor = ({
-  description, pageTitle, popularCategories, results, childrenOfCurrentCategory, categoryId, profileUrl, seo, name,
+  description,
+  pageTitle,
+  popularCategories,
+  results,
+  childrenOfCurrentCategory,
+  categoryId,
+  profileUrl,
+  seo,
+  name,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;

@@ -1,7 +1,15 @@
 import { Col } from 'react-bootstrap';
 import styled, { keyframes } from 'styled-components';
-import { globalColor, globalIndents, globalShadow, rem } from '../global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import {
+  globalColor,
+  globalIndents,
+  globalShadow,
+  rem,
+} from '../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 
 export const ProfileHeaderContainer = styled.div`
   padding: ${globalIndents.attorneyProfilePaddings};
@@ -115,7 +123,9 @@ export const ItemContactList = styled.li`
   }
 
   svg {
-    fill: ${(props) => globalColor.socialNetworks[props?.socialNetwork] || globalColor.gray.gray80};
+    fill: ${(props) =>
+      globalColor.socialNetworks[props?.socialNetwork] ||
+      globalColor.gray.gray80};
   }
 
   ${(props) =>
@@ -185,7 +195,8 @@ export const VideoButtonStyled = styled.button`
   right: 30px;
   bottom: 20px;
   background-color: ${globalColor.red.darkRed};
-  animation: ${({ isRotatedCard }) => !isRotatedCard && shake} 10s cubic-bezier(0.36, 0.07, 0.19, 0.97) both 5s infinite;
+  animation: ${({ isRotatedCard }) => !isRotatedCard && shake} 10s
+    cubic-bezier(0.36, 0.07, 0.19, 0.97) both 5s infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
@@ -221,7 +232,8 @@ export const Front = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s;
-  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+  transform: ${({ isRotateProp }) =>
+    isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)'};
 `;
 export const Back = styled.div`
   background: black;
@@ -231,7 +243,8 @@ export const Back = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s;
-  transform: ${({ isRotateProp }) => (isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)')};
+  transform: ${({ isRotateProp }) =>
+    isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)'};
   position: absolute;
 
   video {

@@ -11,13 +11,18 @@ import { getAttorneys } from '../attorneys';
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 const getOfficeData = async (slug) => {
-  const { officeLocation, officeLocations } = await fetchAPI(getOfficeAndMoreData, {
-    variables: { id: slug },
-  });
+  const { officeLocation, officeLocations } = await fetchAPI(
+    getOfficeAndMoreData,
+    {
+      variables: { id: slug },
+    },
+  );
   if (officeLocation?.officeMainInformation?.autoMap?.link?.length > 0) {
     officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.link;
   }
-  if (officeLocation?.officeMainInformation?.trainStationsMap?.link?.length > 0) {
+  if (
+    officeLocation?.officeMainInformation?.trainStationsMap?.link?.length > 0
+  ) {
     officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.link;
   }
 
@@ -45,7 +50,9 @@ const getOfficeData = async (slug) => {
 /** Fetch all the location pages urls from WP REST API * */
 const getLocationPaths = async () => {
   try {
-    const res = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, { headers });
+    const res = await fetch(`${BASE_API_URL}/wp-json/location-portal/offices`, {
+      headers,
+    });
     const resToJson = await res.json();
 
     return resToJson.offices.map((o) => o.slug);
@@ -122,7 +129,11 @@ export const getStaticProps = async ({ params }) => {
 
 /* Single location page component * */
 const SingleLocation = ({
-  seo, offices, currentOffice, posts, attorneysSchemaData,
+  seo,
+  offices,
+  currentOffice,
+  posts,
+  attorneysSchemaData,
 }) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);

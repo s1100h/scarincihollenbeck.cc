@@ -5,7 +5,11 @@ export default function Error({ statusCode }) {
   const title = `${statusCode} Error`;
   const { subTitle, mainMessage } = ERROR_PAGE_CONTENT;
 
-  return statusCode && <ErrorPage title={title} subTitle={subTitle} mainMessage={mainMessage} />;
+  return (
+    statusCode && (
+      <ErrorPage title={title} subTitle={subTitle} mainMessage={mainMessage} />
+    )
+  );
 }
 
 Error.getInitialProps = ({ res, err }) => {

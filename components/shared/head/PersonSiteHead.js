@@ -2,16 +2,29 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { CURRENT_DOMAIN } from 'utils/constants';
-import { STANDARD_SCHEMA, buildAttorneyProfileSchema } from 'utils/json-ld-schemas';
+import {
+  STANDARD_SCHEMA,
+  buildAttorneyProfileSchema,
+} from 'utils/json-ld-schemas';
 
 const PersonSiteHead = ({
-  title, metaDescription, canonicalUrl, name, featuredImage, designation, socialMediaLinks,
+  title,
+  metaDescription,
+  canonicalUrl,
+  name,
+  featuredImage,
+  designation,
+  socialMediaLinks,
 }) => {
   const router = useRouter();
   const slug = router.asPath;
   const currentUrl = CURRENT_DOMAIN + slug;
   const standardImage = `${CURRENT_DOMAIN}/images/no-image-found-diamond.png`;
-  const standardSocial = [{ url: 'https://twitter.com/S_H_Law' }, { url: 'https://www.facebook.com/ScarinciHollenbeck/' }, { url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/' }];
+  const standardSocial = [
+    { url: 'https://twitter.com/S_H_Law' },
+    { url: 'https://www.facebook.com/ScarinciHollenbeck/' },
+    { url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/' },
+  ];
 
   return (
     <Head>
@@ -25,12 +38,23 @@ const PersonSiteHead = ({
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={title} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }}
+      />
       <script
         key="ScarinciHollenbeck Bio Profile"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildAttorneyProfileSchema(title, canonicalUrl || currentUrl, featuredImage || standardImage, socialMediaLinks || standardSocial, designation)),
+          __html: JSON.stringify(
+            buildAttorneyProfileSchema(
+              title,
+              canonicalUrl || currentUrl,
+              featuredImage || standardImage,
+              socialMediaLinks || standardSocial,
+              designation,
+            ),
+          ),
         }}
       />
       <meta name="twitter:card" content="summary_large_image" />

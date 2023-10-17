@@ -1,12 +1,17 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { DropDownResults, SearchPracticesBox } from 'styles/SearchPractices.style';
+import {
+  DropDownResults,
+  SearchPracticesBox,
+} from 'styles/SearchPractices.style';
 import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 
 export const uniqArr = (unsortedArr) => {
   const filteredArr = [];
   unsortedArr.forEach((item) => {
-    const isUniq = !filteredArr.some((element) => (element.ID || element.databaseId) === (item.ID || item.databaseId));
+    const isUniq = !filteredArr.some(
+      (element) => (element.ID || element.databaseId) === (item.ID || item.databaseId),
+    );
 
     if (isUniq) {
       filteredArr.push(item);
@@ -22,8 +27,13 @@ const findTheFirst = (searchCharacter, sortedCorePracticesArg) => {
   const findCore = sortedCorePracticesArg?.filter(({ title }) => title.includes(searchCharacter));
 
   sortedCorePracticesArg?.forEach(({ childPractice }) => {
-    if (childPractice?.filter(({ title }) => title.includes(searchCharacter)).length > 0) {
-      childrenArr.push(childPractice.filter(({ title }) => title.includes(searchCharacter)));
+    if (
+      childPractice?.filter(({ title }) => title.includes(searchCharacter))
+        .length > 0
+    ) {
+      childrenArr.push(
+        childPractice.filter(({ title }) => title.includes(searchCharacter)),
+      );
     }
   });
 
@@ -49,12 +59,20 @@ export default function SearchPractices({ practicesAll }) {
     }
   }, [searchValue]);
 
-  const isRenderList = (fondPractices?.practicesMain?.length > 0 || fondPractices?.practicesChildren?.length > 0) && searchValue.length > 0;
-  const isRenderHr = fondPractices?.practicesMain?.length > 0 && fondPractices?.practicesChildren?.length > 0 && searchValue.length > 0;
+  const isRenderList = (fondPractices?.practicesMain?.length > 0
+      || fondPractices?.practicesChildren?.length > 0)
+    && searchValue.length > 0;
+  const isRenderHr = fondPractices?.practicesMain?.length > 0
+    && fondPractices?.practicesChildren?.length > 0
+    && searchValue.length > 0;
 
   return (
     <SearchPracticesBox>
-      <AuxiliarySearch currentRefinement={searchValue} refine={handleSearch} placeholder="Search practices" />
+      <AuxiliarySearch
+        currentRefinement={searchValue}
+        refine={handleSearch}
+        placeholder="Search practices"
+      />
       {isRenderList && (
         <DropDownResults>
           {fondPractices.practicesMain.length > 0

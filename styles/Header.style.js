@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { media_breakpoint_down, media_breakpoint_up, media_breakpoint_exactly, media_breakpoint_range } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_up,
+  media_breakpoint_exactly,
+  media_breakpoint_range,
+} from './mediaBreakpoints.style';
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -10,7 +15,8 @@ export const HeaderContainer = styled.header`
   height: fit-content;
   width: 100%;
   background: #fff;
-  box-shadow: ${({ scrollDown }) => (scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none')};
+  box-shadow: ${({ scrollDown }) =>
+    scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none'};
   position: sticky;
   top: 0;
   z-index: 1020;

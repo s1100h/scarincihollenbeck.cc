@@ -1,7 +1,10 @@
 import { Fragment, useId } from 'react';
 import dynamic from 'next/dynamic';
 import {
-  BoxTitle, CentralizedBox, ContainerXXL, RowSpecial,
+  BoxTitle,
+  CentralizedBox,
+  ContainerXXL,
+  RowSpecial,
 } from 'styles/Containers.style';
 
 const AttorneyCard = dynamic(() => import('components/shared/AttorneyCard'));
@@ -23,7 +26,9 @@ const AttorneyCards = ({ title, content, pathname }) => {
     <ContainerXXL key={title}>
       <CentralizedBox toColumn="true">
         {renderTitle(title, pathname).length > 0 && (
-          <BoxTitle isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}>
+          <BoxTitle
+            isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}
+          >
             <strong>{renderTitle(title, pathname)}</strong>
           </BoxTitle>
         )}
@@ -35,8 +40,12 @@ const AttorneyCards = ({ title, content, pathname }) => {
                 link={info.link ? `/attorneys/${info.link}` : info.uri}
                 image={info.better_featured_image || info.featuredImage}
                 name={info.title}
-                designation={typeof info.designation !== 'string' ? null : info.designation}
-                locations={info.location_array ? info.location_array : info.designation}
+                designation={
+                  typeof info.designation !== 'string' ? null : info.designation
+                }
+                locations={
+                  info.location_array ? info.location_array : info.designation
+                }
                 number={info.phone}
                 email={info.email}
                 width={80}

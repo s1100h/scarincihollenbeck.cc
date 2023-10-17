@@ -17,8 +17,10 @@ export const ImageAlbumBox = styled.li`
 
   div {
     position: relative;
-    width: ${({ orientation }) => (isLandscape(orientation) ? '300px' : '170px')};
-    height: ${({ orientation }) => (isLandscape(orientation) ? '200px' : '200px')};
+    width: ${({ orientation }) =>
+      isLandscape(orientation) ? '300px' : '170px'};
+    height: ${({ orientation }) =>
+      isLandscape(orientation) ? '200px' : '200px'};
     object-fit: contain;
   }
 

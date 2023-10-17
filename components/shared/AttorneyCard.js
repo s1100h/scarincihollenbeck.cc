@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  AttorneyCardBox, InfoBox, LinkBox, UserName,
+  AttorneyCardBox,
+  InfoBox,
+  LinkBox,
+  UserName,
 } from 'styles/AttorneyCard.style';
 import { useId } from 'react';
 import ContactBoxTemplate from '../atoms/ContactBox';
@@ -11,7 +14,10 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
     if (locationsOrPractice[0]?.uri) {
       return locationsOrPractice.map((office, idx) => (
         <li key={office.id || useId()}>
-          <Link href={office?.uri}>{office.officeMainInformation.addressLocality || office.officeMainInformation}</Link>
+          <Link href={office?.uri}>
+            {office.officeMainInformation.addressLocality
+              || office.officeMainInformation}
+          </Link>
           <>{idx < locationsOrPractice.length - 1 && ','}</>
         </li>
       ));
@@ -46,19 +52,42 @@ const renderLinkToLocationPractice = (locationsOrPractice) => {
 };
 
 export default function AttorneyCard({
-  link, image, name, designation, locations, number, email, title,
+  link,
+  image,
+  name,
+  designation,
+  locations,
+  number,
+  email,
+  title,
 }) {
   return (
     <AttorneyCardBox>
       <Link href={link} passHref legacyBehavior>
         <LinkBox>
-          <Image placeholder="blur" blurDataURL={image || '/images/sh-mini-diamond-PNG.png'} loading="lazy" src={image || '/images/sh-mini-diamond-PNG.png'} alt={name} width={!Array.isArray(locations) && typeof locations !== 'undefined' ? 130 : 125} height={150} />
+          <Image
+            placeholder="blur"
+            blurDataURL={image || '/images/sh-mini-diamond-PNG.png'}
+            loading="lazy"
+            src={image || '/images/sh-mini-diamond-PNG.png'}
+            alt={name}
+            width={
+              !Array.isArray(locations) && typeof locations !== 'undefined'
+                ? 130
+                : 125
+            }
+            height={150}
+          />
           <InfoBox>
             <UserName>{name}</UserName>
 
             <p>{designation}</p>
 
-            {locations && <ul className="d-flex gap-1 m-0 p-0">{renderLinkToLocationPractice(locations)}</ul>}
+            {locations && (
+              <ul className="d-flex gap-1 m-0 p-0">
+                {renderLinkToLocationPractice(locations)}
+              </ul>
+            )}
             <ContactBoxTemplate email={email} number={number} />
           </InfoBox>
         </LinkBox>

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { buttonsHoverActive, globalColor, globalShadow, rem } from './global_styles/Global.styles';
+import {
+  buttonsHoverActive,
+  globalColor,
+  globalShadow,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const BodyHeaderContainer = styled.nav`

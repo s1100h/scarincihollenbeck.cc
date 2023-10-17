@@ -10,7 +10,9 @@ export default function useStateScreen() {
     isMobileScreen: false,
   });
 
-  const isBigTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.lg}px)` });
+  const isBigTablet = useMediaQuery({
+    query: `(max-width: ${sizeWindow.lg}px)`,
+  });
   const isTablet = useMediaQuery({ query: `(max-width: ${sizeWindow.md}px)` });
   const isDesktopOrLaptop = useMediaQuery({
     query: `(min-width: ${sizeWindow.sm}px)`,

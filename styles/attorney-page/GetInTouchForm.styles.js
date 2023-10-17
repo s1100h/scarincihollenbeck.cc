@@ -73,7 +73,11 @@ export const FormContainer = styled.div`
 import { InputGroup, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { globalColor, rem, successMessage } from 'styles/global_styles/Global.styles';
+import {
+  globalColor,
+  rem,
+  successMessage,
+} from 'styles/global_styles/Global.styles';
 
 export const InputGroupStyled = styled(InputGroup)`
   .kw-field-error-message {

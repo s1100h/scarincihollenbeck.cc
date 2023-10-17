@@ -1,6 +1,10 @@
 import HomePage from 'components/pages/HomePage';
 import { fetchAPI } from 'utils/api';
-import { firmNewsQuery, homePageQuery, officeLocationQuery } from 'utils/graphql-queries';
+import {
+  firmNewsQuery,
+  homePageQuery,
+  officeLocationQuery,
+} from 'utils/graphql-queries';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 /** pull out the attorney chair data from attorney response */
@@ -38,17 +42,19 @@ export const sanitizeOffices = (offices) => offices.map(({
   ...officeMainInformation,
 }));
 
-export const sanitizeFirmNews = (news) => news.map(({
-  date, databaseId, slug, featuredImage, title, excerpt, author,
-}) => ({
-  date,
-  databaseId,
-  slug: `/firm-news/${slug}`,
-  featuredImage: featuredImage.node,
-  title,
-  excerpt,
-  author: author.node.name,
-}));
+export const sanitizeFirmNews = (news) => news.map(
+  ({
+    date, databaseId, slug, featuredImage, title, excerpt, author,
+  }) => ({
+    date,
+    databaseId,
+    slug: `/firm-news/${slug}`,
+    featuredImage: featuredImage.node,
+    title,
+    excerpt,
+    author: author.node.name,
+  }),
+);
 
 /** Map the home page query data to page props */
 export const getStaticProps = async () => {
@@ -59,18 +65,40 @@ export const getStaticProps = async () => {
   const request = await homePageContent();
   const { seo, homePage } = request;
   const {
-    aboutFirm, aboutFirm2, awards, bannerLineOne, serviceOne, serviceTwo, bannerLineTwo, quote, mainTag, subMainTag, leadership, isHoliday,
+    aboutFirm,
+    aboutFirm2,
+    awards,
+    bannerLineOne,
+    serviceOne,
+    serviceTwo,
+    bannerLineTwo,
+    quote,
+    mainTag,
+    subMainTag,
+    leadership,
+    isHoliday,
   } = homePage;
 
-  const modLeadership = leadership.map(({
-    title, uri, featuredImage, administration, attorneyMainInformation, attorneyChairCoChair,
-  }) => ({
-    title,
-    slug: uri,
-    featuredImage: formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl),
-    designation: administration ? administration?.title : attorneyMainInformation?.designation,
-    chair: attorneyChairCoChair ? extractChair(attorneyChairCoChair?.chair) : null,
-  }));
+  const modLeadership = leadership.map(
+    ({
+      title,
+      uri,
+      featuredImage,
+      administration,
+      attorneyMainInformation,
+      attorneyChairCoChair,
+    }) => ({
+      title,
+      slug: uri,
+      featuredImage: formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl),
+      designation: administration
+        ? administration?.title
+        : attorneyMainInformation?.designation,
+      chair: attorneyChairCoChair
+        ? extractChair(attorneyChairCoChair?.chair)
+        : null,
+    }),
+  );
 
   /** get firm locations */
   // const offices = await homePageLocations();
@@ -104,7 +132,18 @@ export const getStaticProps = async () => {
 
 /** The home page component */
 const Home = ({
-  seo, aboutFirm, aboutFirm2, awards, banner, intro, leadership, offices, serviceOne, serviceTwo, isHoliday, firmNewsArticles,
+  seo,
+  aboutFirm,
+  aboutFirm2,
+  awards,
+  banner,
+  intro,
+  leadership,
+  offices,
+  serviceOne,
+  serviceTwo,
+  isHoliday,
+  firmNewsArticles,
 }) => {
   const homePageProps = {
     seo,

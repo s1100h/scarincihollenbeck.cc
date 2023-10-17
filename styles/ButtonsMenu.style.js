@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { globalColor } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_up } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_up,
+} from './mediaBreakpoints.style';
 
 export const commonBtnStyle = `
   height: 42px;
@@ -81,7 +84,8 @@ export const ButtonGroup = styled.div`
   overflow-x: auto;
 	
 	${media_breakpoint_up('xs')}{
-    display: ${({ isNotProfile }) => (isNotProfile?.length > 0 ? 'flex' : 'none')};
+    display: ${({ isNotProfile }) =>
+      isNotProfile?.length > 0 ? 'flex' : 'none'};
 	}
 	
 	${media_breakpoint_up('md')}{
