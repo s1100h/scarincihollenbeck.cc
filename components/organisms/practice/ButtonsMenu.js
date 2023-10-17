@@ -1,5 +1,9 @@
 import {
-  ButtonTab, ButtonGroup, MobileGroup, NavItem, ButtonDropdown,
+  ButtonTab,
+  ButtonGroup,
+  MobileGroup,
+  NavItem,
+  ButtonDropdown,
 } from 'styles/ButtonsMenu.style';
 
 const ButtonsMenu = ({
@@ -8,7 +12,11 @@ const ButtonsMenu = ({
   <>
     <ButtonGroup marTop={marTop}>
       {tabs.map((tab) => (
-        <ButtonTab key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
+        <ButtonTab
+          key={tab.id}
+          active={activeTab === tab.id}
+          onClick={() => setActiveTab(tab.id)}
+        >
           {tab.title}
         </ButtonTab>
       ))}

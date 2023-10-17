@@ -23,8 +23,13 @@ const PostList = ({ content, isProfile }) => {
             && memoData.map(({ node }) => (
               <div key={node.title}>
                 <NewsCard
-                  postSlug={node.uri.replace('https://scarincihollenbeck.com/', '/')}
-                  postImage={formatSrcToCloudinaryUrl(node.featuredImage?.node?.sourceUrl)}
+                  postSlug={node.uri.replace(
+                    'https://scarincihollenbeck.com/',
+                    '/',
+                  )}
+                  postImage={formatSrcToCloudinaryUrl(
+                    node.featuredImage?.node?.sourceUrl,
+                  )}
                   postTitle={node.title}
                   postDate={node.date}
                   postExcerpt={isProfile ? null : node.excerpt}
@@ -33,7 +38,13 @@ const PostList = ({ content, isProfile }) => {
                 />
               </div>
             ))}
-          <PaginationButtons handleNextPagination={handleNextPagination} handlePrevPagination={handlePrevPagination} countOfArticles={(isProfile && 3) || 6} disablePrevBtn={disablePrevBtn} disabledNextBtn={disableNextBtn} />
+          <PaginationButtons
+            handleNextPagination={handleNextPagination}
+            handlePrevPagination={handlePrevPagination}
+            countOfArticles={(isProfile && 3) || 6}
+            disablePrevBtn={disablePrevBtn}
+            disabledNextBtn={disableNextBtn}
+          />
         </>
       )}
     </>

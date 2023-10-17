@@ -17,12 +17,25 @@ const CareerProfile = ({ career, canonicalUrl }) => {
 
   return (
     <>
-      <BasicSiteHead title={title} metaDescription={seo.metaDescription} canonicalUrl={canonicalUrl} />
-      <SingleSubHeader title={career.title} subtitle={seo.metaDescription} offset={0} span={8} />
+      <BasicSiteHead
+        title={title}
+        metaDescription={seo.metaDescription}
+        canonicalUrl={canonicalUrl}
+      />
+      <SingleSubHeader
+        title={career.title}
+        subtitle={seo.metaDescription}
+        offset={0}
+        span={8}
+      />
       <Container>
         <Row>
           <Col sm={12} lg={9} className="mt-3">
-            <SingleCareerBody title={career.title} position={career.positionDescription} contact={career.contact} />
+            <SingleCareerBody
+              title={career.title}
+              position={career.positionDescription}
+              contact={career.contact}
+            />
           </Col>
           <Col sm={12} lg={3}>
             <Subscription />

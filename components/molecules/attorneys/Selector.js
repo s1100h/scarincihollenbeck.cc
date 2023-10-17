@@ -1,5 +1,8 @@
 import { useId } from 'react';
-import { DropDownItemSelector, DropdownSelectorBtn } from 'styles/Filters.style';
+import {
+  DropDownItemSelector,
+  DropdownSelectorBtn,
+} from 'styles/Filters.style';
 
 const FilterSelector = ({
   selectionList, onSelect, title, nameItem,
@@ -7,7 +10,12 @@ const FilterSelector = ({
   <DropdownSelectorBtn variant="link" title={title}>
     {selectionList
       && selectionList.map((selectedItem) => (
-        <DropDownItemSelector key={selectedItem.ID || selectedItem.databaseId || useId()} value={selectedItem.title} name={nameItem} onClick={(e) => onSelect(e, selectedItem.title)}>
+        <DropDownItemSelector
+          key={selectedItem.ID || selectedItem.databaseId || useId()}
+          value={selectedItem.title}
+          name={nameItem}
+          onClick={(e) => onSelect(e, selectedItem.title)}
+        >
           {selectedItem.title}
         </DropDownItemSelector>
       ))}

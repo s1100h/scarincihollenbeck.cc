@@ -1,5 +1,9 @@
 import { CareerCard } from 'styles/PositionCard.style';
-import { BsFillBriefcaseFill, BsFillClockFill, BsFillGeoAltFill } from 'react-icons/bs';
+import {
+  BsFillBriefcaseFill,
+  BsFillClockFill,
+  BsFillGeoAltFill,
+} from 'react-icons/bs';
 
 const checkAllOffices = (location) => {
   const splitLocs = location.split(',').filter((i) => i.trim() !== 'NJ');
@@ -12,7 +16,14 @@ const checkAllOffices = (location) => {
 };
 
 export default function PositionCard({
-  handleClickToCareer, slug, title, miniDescription, positionLocation, positionType, startDate, duration,
+  handleClickToCareer,
+  slug,
+  title,
+  miniDescription,
+  positionLocation,
+  positionType,
+  startDate,
+  duration,
 }) {
   return (
     <CareerCard onClick={() => handleClickToCareer(slug)}>

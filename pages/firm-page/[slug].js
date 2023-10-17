@@ -37,9 +37,16 @@ const diversityCategoryId = (slug) => {
 
 /** Set firm page data to props */
 export const getServerSideProps = async ({ params }) => {
-  const req = await getFirmPageContent(params.slug, diversityCategoryId(params.slug));
+  const req = await getFirmPageContent(
+    params.slug,
+    diversityCategoryId(params.slug),
+  );
   const {
-    title, seo, firmPagesRelatedPostsMembers, firmPagesDescription, firmPagesTabs,
+    title,
+    seo,
+    firmPagesRelatedPostsMembers,
+    firmPagesDescription,
+    firmPagesTabs,
   } = req;
   const { groupChair, groupMembers, relatedPosts } = firmPagesRelatedPostsMembers;
   let blogRecommendedPosts = [];
@@ -54,7 +61,9 @@ export const getServerSideProps = async ({ params }) => {
     }));
   }
 
-  const relatedPages = FIRM_PAGES.filter((a) => a.slug.replace('/', '') !== params.slug);
+  const relatedPages = FIRM_PAGES.filter(
+    (a) => a.slug.replace('/', '') !== params.slug,
+  );
 
   const firstTab = {};
   if (firmPagesTabs?.tabContent) {

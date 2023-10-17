@@ -16,14 +16,25 @@ const Body = dynamic(() => import('components/organisms/practice/Body'));
 const AttorneysListBox = dynamic(() => import('components/common/AttorneysListBox'));
 
 const PracticePage = ({
-  corePractices, practice, practiceChildren, canonicalUrl, tabs, attorneysSchemaData, chairPractice, attorneyListPractice, keyContactsList, latestFromTheFirm,
+  corePractices,
+  practice,
+  practiceChildren,
+  canonicalUrl,
+  tabs,
+  attorneysSchemaData,
+  chairPractice,
+  attorneyListPractice,
+  keyContactsList,
+  latestFromTheFirm,
 }) => {
   const { query } = useRouter();
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeTabContent, setActiveTabContent] = useState(tabs[0].content);
   const [subtitlePractice, setSubtitlePractice] = useState();
 
-  const blogId = practice.practicesIncluded.relatedBlogCategory.map(({ databaseId }) => databaseId);
+  const blogId = practice.practicesIncluded.relatedBlogCategory.map(
+    ({ databaseId }) => databaseId,
+  );
 
   useEffect(() => {
     setSubtitlePractice(practice.description);
@@ -58,8 +69,21 @@ const PracticePage = ({
 
   return (
     <>
-      <BasicSiteHead title={practice.seo.title} metaDescription={practice.seo.metaDescription} canonicalUrl={canonicalUrl} personDataForSchema={attorneysSchemaData} />
-      <SingleSubHeader title={practice.title} subtitle={subtitlePractice} offset={0} span={8} tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
+      <BasicSiteHead
+        title={practice.seo.title}
+        metaDescription={practice.seo.metaDescription}
+        canonicalUrl={canonicalUrl}
+        personDataForSchema={attorneysSchemaData}
+      />
+      <SingleSubHeader
+        title={practice.title}
+        subtitle={subtitlePractice}
+        offset={0}
+        span={8}
+        tabs={tabs}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+      />
       <Container>
         <Row>
           <ColStyled sm={12} lg={7} xl={8}>
@@ -77,15 +101,29 @@ const PracticePage = ({
           </ColStyled>
           <Col className="mb-4" sm={12} md={8} lg={5} xl={4}>
             <SideBarContainer>
-              <Sidebar keyContacts={keyContactsList} corePractices={corePractices} isPracticeVariant />
+              <Sidebar
+                keyContacts={keyContactsList}
+                corePractices={corePractices}
+                isPracticeVariant
+              />
             </SideBarContainer>
-            {!empty(latestFromTheFirm) && <RelatedPosts title="Latest from the Firm" posts={latestFromTheFirm} />}
+            {!empty(latestFromTheFirm) && (
+              <RelatedPosts
+                title="Latest from the Firm"
+                posts={latestFromTheFirm}
+              />
+            )}
           </Col>
         </Row>
         {(!empty(chairPractice) || !empty(attorneyListPractice)) && (
           <Row>
             <ColStyled sm={12}>
-              <AttorneysListBox attorneys={{ chairs: chairPractice, attorneysList: attorneyListPractice }} />
+              <AttorneysListBox
+                attorneys={{
+                  chairs: chairPractice,
+                  attorneysList: attorneyListPractice,
+                }}
+              />
             </ColStyled>
           </Row>
         )}

@@ -1,5 +1,8 @@
 import {
-  CLOUDINARY_BASE_URL, EMAGE_UPLOAD_CLOUDINARY, OFFICE_LOCATIONS, PRODUCTION_URL,
+  CLOUDINARY_BASE_URL,
+  EMAGE_UPLOAD_CLOUDINARY,
+  OFFICE_LOCATIONS,
+  PRODUCTION_URL,
 } from './constants';
 
 // this is HTML checker
@@ -47,7 +50,9 @@ export function getDirectionsFromLocation(location) {
     const currentOffice = location.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
 
     // filter through available offices
-    const destination = OFFICE_LOCATIONS.filter((v) => v.label === currentOffice)[0].address;
+    const destination = OFFICE_LOCATIONS.filter(
+      (v) => v.label === currentOffice,
+    )[0].address;
     const map = `https://www.google.com/maps/dir/${lat}+${long}/${destination}`;
     window.open(map, '_blank');
   };
@@ -78,8 +83,23 @@ export const makeTitle = (string) => string.replace(/-|\s/g, ' ').replace(/\+/g,
 // format GMT date
 export function formatDate(date) {
   const dateObj = new Date(date);
-  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return `${month[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+  const month = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  return `${
+    month[dateObj.getMonth()]
+  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 }
 
 // print screen event
@@ -144,7 +164,12 @@ export const formatSrcToCloudinaryUrlPdf = (src) => {
 export const formatPageImageToCloudinaryUrl = (page) => {
   const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';
   if (page.includes(tossUrl)) {
-    const modImageUrlContent = page.replace(/https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g, CLOUDINARY_BASE_URL).replace(/-\d{3,}x\d{3,}\./g, '.');
+    const modImageUrlContent = page
+      .replace(
+        /https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g,
+        CLOUDINARY_BASE_URL,
+      )
+      .replace(/-\d{3,}x\d{3,}\./g, '.');
     return modImageUrlContent;
   }
 
@@ -172,7 +197,9 @@ export const concatNameUser = (name, abbreviation) => {
 
 export const getSubTitleFromHTML = (htmlContent) => {
   const extractSubTitle = htmlContent.match(/<h2(.*?)>(.*?)<\/h2>/g);
-  const subTitle = extractSubTitle !== null ? extractSubTitle[0].replace(/<[^>]*>?/gm, '') : '';
+  const subTitle = extractSubTitle !== null
+    ? extractSubTitle[0].replace(/<[^>]*>?/gm, '')
+    : '';
   const bodyContentCutSubTitle = htmlContent.replace(subTitle, '');
   return {
     clearBody: bodyContentCutSubTitle.replace(/<h2(.*?)><\/h2>/gim, ''),
@@ -191,6 +218,8 @@ export const changeTitle = (title) => {
     '&#8221;': '"',
     '&amp;': '&',
   };
-  Object.keys(symbolCheckObject).map((symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])));
+  Object.keys(symbolCheckObject).map(
+    (symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])),
+  );
   return title;
 };

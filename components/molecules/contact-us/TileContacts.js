@@ -8,7 +8,13 @@ const TileContacts = ({
   <TileBox>
     {image ? (
       <div>
-        <Image src={image} alt={title} blurDataURL={image} width={700} height={300} />
+        <Image
+          src={image}
+          alt={title}
+          blurDataURL={image}
+          width={700}
+          height={300}
+        />
       </div>
     ) : (
       <div>

@@ -17,7 +17,10 @@ const HomeSiteHead = ({ title, metaDescription, canonicalUrl }) => {
       <meta property="og:title" content={title} />
       <meta property="og:locale" content="en_US" />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+      <meta
+        property="og:image"
+        content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
+      />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={title} />
@@ -31,8 +34,14 @@ const HomeSiteHead = ({ title, metaDescription, canonicalUrl }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
-      <meta name="google-site-verification" content="Vb4fICdLxnhQzqJEDL11a-Tk0X5f4XhW35pA0qoeh1E" />
+      <meta
+        name="twitter:image"
+        content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
+      />
+      <meta
+        name="google-site-verification"
+        content="Vb4fICdLxnhQzqJEDL11a-Tk0X5f4XhW35pA0qoeh1E"
+      />
     </Head>
   );
 };

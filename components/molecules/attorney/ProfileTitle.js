@@ -1,11 +1,20 @@
 import Link from 'next/link';
-import { ProfileName, SubTitleProfileBox } from 'styles/attorney-page/AttorneyProfile.style';
+import {
+  ProfileName,
+  SubTitleProfileBox,
+} from 'styles/attorney-page/AttorneyProfile.style';
 
 const ProfileTitle = ({
-  name, designation, coChairs, chairs, primaryPractices,
+  name,
+  designation,
+  coChairs,
+  chairs,
+  primaryPractices,
 }) => (
   <>
-    <ProfileName className="animate__animated animate__fadeInDown animate__slow">{name}</ProfileName>
+    <ProfileName className="animate__animated animate__fadeInDown animate__slow">
+      {name}
+    </ProfileName>
     <SubTitleProfileBox>
       <h2>{designation}</h2>
       {primaryPractices

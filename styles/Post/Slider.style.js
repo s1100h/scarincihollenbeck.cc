@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 import { globalColor } from '../global_styles/Global.styles';
 
 const commonStyleSlider = `

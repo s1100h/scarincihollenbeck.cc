@@ -12,7 +12,9 @@ const Biography = ({ content }) => {
       <ArticleBody>
         <JSXWithDynamicLinks HTML={bio} />
       </ArticleBody>
-      {clients && clients.length > 0 && <Clients title="Clients" clients={clients} />}
+      {clients && clients.length > 0 && (
+        <Clients title="Clients" clients={clients} />
+      )}
     </Surface>
   );
 };

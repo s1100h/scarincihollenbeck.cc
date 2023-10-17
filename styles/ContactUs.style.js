@@ -48,7 +48,8 @@ export const OfficeBtn = styled(Button)`
     background-color: ${globalColor.white};
     background: no-repeat url(${({ backimg }) => backimg.imgOffice});
     background-size: 47% 138%;
-    backdrop-filter: url(${({ backimg }) => backimg.imgOffice}) blur(5px) saturate(150%);
+    backdrop-filter: url(${({ backimg }) => backimg.imgOffice}) blur(5px)
+      saturate(150%);
     background-position: right top 29%;
 
     div {

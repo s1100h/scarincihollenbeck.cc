@@ -1,5 +1,8 @@
 import Services from 'components/molecules/attorney/Services';
-import { ProfileSidebarContainer, SidebarTile } from 'styles/attorney-page/ProfileSidebar.style';
+import {
+  ProfileSidebarContainer,
+  SidebarTile,
+} from 'styles/attorney-page/ProfileSidebar.style';
 import ProfileSidebarAwards from 'components/molecules/attorney/ProfileSidebarAwards';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import React from 'react';

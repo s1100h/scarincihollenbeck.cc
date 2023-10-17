@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import ContactForm from '../../shared/ContactForm/ContactForm';
-import { AboutAuthorFormCardContainer, ContactNowBtn, FormBox } from '../../../styles/AboutAuthorFormCard.style';
+import {
+  AboutAuthorFormCardContainer,
+  ContactNowBtn,
+  FormBox,
+} from '../../../styles/AboutAuthorFormCard.style';
 import ModalWindow from '../../common/ModalWindow';
 
 const AboutAuthorFormCard = () => {

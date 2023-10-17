@@ -2,7 +2,11 @@ import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'next/image';
 import {
-  ArticleBox, ImageAttorneysGroup, ImageBlindLady, LinkListBox404, TilesBox,
+  ArticleBox,
+  ImageAttorneysGroup,
+  ImageBlindLady,
+  LinkListBox404,
+  TilesBox,
 } from '../../styles/404.style';
 import PostBreadcrumbs from '../organisms/post/PostBreadcrumbs';
 import { tile404ContentArr } from '../../utils/tileContent';
@@ -23,12 +27,21 @@ const ErrorPage = ({ title, mainMessage }) => (
           </ArticleBox>
           <TilesBox>
             {tile404ContentArr.map((tile) => (
-              <TileContacts key={tile.id} title={tile.title} textContent={tile.textContent} icon={tile.icon} image={tile.image} />
+              <TileContacts
+                key={tile.id}
+                title={tile.title}
+                textContent={tile.textContent}
+                icon={tile.icon}
+                image={tile.image}
+              />
             ))}
           </TilesBox>
           <LinkListBox404>
             <h3>
-              <strong>Or try visiting one of these pages on our site to narrow your search.</strong>
+              <strong>
+                Or try visiting one of these pages on our site to narrow your
+                search.
+              </strong>
             </h3>
             <ul>
               {Links404NavArr.map((link) => (
@@ -39,7 +52,11 @@ const ErrorPage = ({ title, mainMessage }) => (
             </ul>
           </LinkListBox404>
           <ImageAttorneysGroup>
-            <Image src="/images/group-attorneys.webp" fill alt="Group of attorneys" />
+            <Image
+              src="/images/group-attorneys.webp"
+              fill
+              alt="Group of attorneys"
+            />
           </ImageAttorneysGroup>
         </Col>
         <Col sm={12} lg={6}>

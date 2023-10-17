@@ -1,7 +1,10 @@
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const ContainerXXL = styled.section`
   display: flex;
@@ -20,9 +23,14 @@ export const CentralizedBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
-  background-color: ${(props) => (props?.notSurface ? 'transparent' : globalColor.white)};
-  box-shadow: ${(props) => (props?.notSurface ? 'none' : globalShadow.allSideShadow)};
-  ${({ toColumn }) => (toColumn && toColumn === 'true' ? 'flex-direction: column;' : 'flex-wrap: wrap;')}
+  background-color: ${(props) =>
+    props?.notSurface ? 'transparent' : globalColor.white};
+  box-shadow: ${(props) =>
+    props?.notSurface ? 'none' : globalShadow.allSideShadow};
+  ${({ toColumn }) =>
+    toColumn && toColumn === 'true'
+      ? 'flex-direction: column;'
+      : 'flex-wrap: wrap;'}
 
   ${media_breakpoint_down('xl')} {
     width: 97vw;
@@ -44,7 +52,8 @@ export const BoxTitle = styled.h2`
   width: 100%;
   padding: 45px;
   padding-bottom: 0;
-  justify-content: ${({ isBigBoss }) => (isBigBoss === 'true' ? 'center' : 'flex-start')};
+  justify-content: ${({ isBigBoss }) =>
+    isBigBoss === 'true' ? 'center' : 'flex-start'};
   text-transform: uppercase;
 `;
 

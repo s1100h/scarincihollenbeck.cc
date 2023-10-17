@@ -1,6 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import { useContext } from 'react';
-import { ChildrenBox, ModalContainer, ModalContent } from '../../styles/ModalWindow.style';
+import {
+  ChildrenBox,
+  ModalContainer,
+  ModalContent,
+} from '../../styles/ModalWindow.style';
 import { FormsContext } from '../../contexts/FormsContext';
 
 const ModalWindow = ({ children, isOpen, setOpenModal }) => {

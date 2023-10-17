@@ -4,7 +4,13 @@ import { useQuery } from 'react-apollo-hooks';
 // Function to update the query with the new results
 const updateQuery = (previousResult, { fetchMoreResult }) => (fetchMoreResult.posts.edges.length ? fetchMoreResult : previousResult);
 
-const fetchMoreGrouped = (numberOfArticles, reqData, variablesObj, fetchMoreCallBack, nextMode) => {
+const fetchMoreGrouped = (
+  numberOfArticles,
+  reqData,
+  variablesObj,
+  fetchMoreCallBack,
+  nextMode,
+) => {
   const queryVariables = {
     first: nextMode ? numberOfArticles || 8 : null,
     last: !nextMode ? numberOfArticles || 8 : null,

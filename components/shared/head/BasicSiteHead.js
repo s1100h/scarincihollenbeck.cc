@@ -14,7 +14,10 @@ const renderSchema = (routerSlug, personsSchema) => {
 };
 
 const BasicSiteHead = ({
-  title, metaDescription, canonicalUrl, personDataForSchema,
+  title,
+  metaDescription,
+  canonicalUrl,
+  personDataForSchema,
 }) => {
   const router = useRouter();
   const slug = router.asPath;
@@ -28,20 +31,31 @@ const BasicSiteHead = ({
       <meta property="og:title" content={title} />
       <meta property="og:locale" content="en_US" />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+      <meta
+        property="og:image"
+        content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
+      />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={title} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: STANDARD_SCHEMA }}
+      />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`} />
+      <meta
+        name="twitter:image"
+        content={`${CURRENT_DOMAIN}/images/no-image-found-diamond.png`}
+      />
       <script
         key="ScarinciHollenbeck Bio Profile"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(renderSchema(router.route, personDataForSchema)),
+          __html: JSON.stringify(
+            renderSchema(router.route, personDataForSchema),
+          ),
         }}
       />
     </Head>
