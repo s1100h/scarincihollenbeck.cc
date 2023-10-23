@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+import { fetchAPI } from 'requests/api';
+import { getPracticesQuery } from 'requests/graphql-queries';
 import EntertainmentAndMediaPage from '../../../components/practices-special/entertainment-and-media/EntertainmentAndMediaPage';
 import { PRODUCTION_URL } from '../../../utils/constants';
 import SiteLoader from '../../../components/shared/SiteLoader';
@@ -6,8 +8,21 @@ import {
   getPracticeAttorneys,
   headMetaData,
 } from '../../../requests/practices/practice-default';
-import { getSlugFromUrl } from '../../../utils/helpers';
+import { getSlugFromUrl, sortByKey } from '../../../utils/helpers';
 import ApolloWrapper from '../../../layouts/ApolloWrapper';
+
+const getPractices = async () => {
+  const data = await fetchAPI(getPracticesQuery, {});
+  return data.practices.nodes
+    .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes(
+      'Core Practices',
+    ))
+    .map(({ databaseId, title, uri }) => ({
+      databaseId,
+      title,
+      uri,
+    }));
+};
 
 /** Set single practice data to page props */
 export const getServerSideProps = async ({ res, resolvedUrl }) => {
@@ -25,140 +40,405 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
     corePractices,
   } = await getPracticeAttorneys(resolvedUrl);
 
+  const practices = await getPractices();
+
   practice.practiceContentByCategory.entAndMedia = {
-    cardsInfo: {
-      cards: [
-        {
-          title: 'Deep Commitment',
-          paragraph:
-            'Our attorneys have been involved in the cannabis space since its infancy and are deeply invested in the success of our clients and the overall cannabis industry. As the industry grows and becomes more competitive, the importance of sound legal guidance and practical business advice in the cannabis space will grow increasingly important.',
-        },
-        {
-          title: 'Trailblazing Spirit',
-          paragraph:
-            'Our attorneys understand that cannabis businesses face obstacles that are unique to the industry. We are constantly advocating for legal and regulatory solutions that help even the playing field. We are also committed to helping the cannabis industry expand while also providing guidance regarding the emerging hemp, CBD, and psychedelics industries.',
-        },
-        {
-          title: 'Industry Insight',
-          paragraph:
-            'As industry insiders we have developed strong relationships with other key players, including regulators, trade organizations, investors, and vendors. Our cannabis attorneys stay continually informed on any changes to local, state, and federal cannabis laws and stand ready to help our clients quickly take advantage of new opportunities as they arise.',
-        },
-      ],
-    },
-    photoBlock: {
-      articleBox: {
-        paragraph:
-          'The ever-evolving legal landscape can pose significant challenges for businesses operating in the cannabis, hemp, and cannabidiol (CBD) industries. Our cannabis law attorneys have the knowledge and experience needed to successfully navigate this complex and often self-contradictory regulatory landscape.',
-        title: 'Helping Cannabis Businesses Navigate Complex Laws',
+    subHeaderBtns: [
+      {
+        btnText: 'See attorneys',
+        btnLink: '/practices/12',
       },
-      photo1: {
-        altText: '',
-        caption: null,
-        sourceUrl:
-          'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1697024131/wp.scarincihollenbeck/top-200-cannabis-lawyers_164966b9dca/top-200-cannabis-lawyers_164966b9dca.webp?_i=AA',
+      {
+        btnText: 'Know more',
+        btnLink: '/practices/1',
       },
-      photo2: {
-        altText: '',
-        sourceUrl:
-          'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1697024177/wp.scarincihollenbeck/very-best-lawyers-for-cannabis-page/very-best-lawyers-for-cannabis-page.webp?_i=AA',
-        caption: null,
-      },
-    },
-    descriptionSubheader:
-      'While the number of states legalizing cannabis for medical and adult use continues to grow, businesses operating in the cannabis industry still face legal uncertainty due to the ongoing dichotomy between state and federal cannabis law. ',
+    ],
     subTitle:
-      'Scarinci Hollenbeck was one of the first in the region to establish a dedicated Cannabis Group and remains at the forefront of the industry.',
-    attorneysArticleBlock: {
-      paragraph:
-        'The rapidly developing legal cannabis industry is creating enormous opportunity for interested parties and will continually require participants to address novel and complex legal issues. Our Cannabis Law practice group provides the critical legal insight needed to successfully address these issues, mitigate related risk, and achieve business goals.',
-      title: 'What Our Cannabis Attorneys Do',
+      'Scarinci Hollenbeck’s dedicated Gaming Group provides regulatory and transactional legal advice to clients throughout the gaming industry. Our attorneys routinely help clients navigate the maze of state, federal, and international regulations, avoid compliance mistakes, and negotiate complex deals.',
+    slidesData: [
+      {
+        id: 1,
+        title: 'Entertainment',
+        image: '/images/entAndMediaIntro.png',
+      },
+      {
+        id: 2,
+        title: 'Media',
+        image: '/images/entAndMediaIntro2.jpg',
+      },
+      {
+        id: 3,
+        title: 'Sport',
+        image: '/images/entAndMediaIntr3.png',
+      },
+    ],
+    sliderCfg: {
+      isSlidesAutoPlay: true,
+      autoPlaySpeed: 3000,
     },
-    keycontactsblock: {
-      article:
-        'WE advise cannabis industry clients on a myriad of issues, whether its obtaining a recreational cannabis license, negotiating a lease for a retail dispensary, or implementing banking and tax strategies. Our attorneys routinely provide legal guidance regarding:',
-      listOfLegalGuidanceRegarding: [
+    attorneysBlockTitle: 'Meet our team',
+    enterntainmentClientsData: {
+      title: 'Attorneys in Action',
+      description:
+        'Our clients are as diverse as our experience. We have represented artists, songwriters, composers, bands, producers, engineers, managers, on-screen talent, models, fiction and non-fiction writers, studios, media production companies, music, recording and publishing companies, television production companies, new media and internet companies in various emerging markets, and non-profit organizations, amongst others. Below is a list of representative clients:',
+      itemsPerPage: 3,
+      toggleItems: [
         {
-          issue: 'Advertising, Marketing, and Branding',
+          id: 1,
+          category: 'Media Law',
+          name: 'Blue Cheer',
+          profession: 'Rock band',
+          image: '/images/artist.png',
+          color: '#EFD090',
         },
         {
-          issue: 'Business Operations',
+          id: 2,
+          category: 'Entertainment Law',
+          name: 'Artie Fletcher',
+          profession: 'Comedian',
+          image: '/images/artist.png',
+          color: '#DFA043',
         },
         {
-          issue: 'Data Privacy and Security',
+          id: 3,
+          category: 'Media Law',
+          name: 'Dave Ellefson – Megadeth',
+          profession: 'Musician',
+          image: '/images/artist.png',
+          color: '#D36F5A',
         },
         {
-          issue: 'Entity Formation',
+          id: 4,
+          category: 'Sport Law',
+          name: 'Ashley Massaro',
+          profession: 'Wrestler',
+          image: '/images/artist.png',
+          color: '#DFA043',
         },
         {
-          issue: 'Environmental Considerations',
+          id: 5,
+          category: 'Media Law',
+          name: 'Shawn Patterson – “Lego Movie” / “Everything is Awesome”',
+          profession: 'Composer and songwriter',
+          image: '/images/artist.png',
+          color: '#EFD090',
         },
         {
-          issue: 'Federal, State and Local Tax Issues',
+          id: 6,
+          category: 'Media Law',
+          name: 'John Ginty – Robert Randolph',
+          profession: 'Organist, keyboardist and session musician',
+          image: '/images/artist.png',
+          color: '#DFA043',
         },
         {
-          issue: 'Financing and Joint Ventures',
+          id: 7,
+          category: 'Media Law',
+          name: 'Chuck Burgi – Billy Joel Band',
+          profession: 'Drummer',
+          image: '/images/artist.png',
+          color: '#D36F5A',
         },
         {
-          issue: 'Intellectual Property',
+          id: 8,
+          category: 'Media Law',
+          name: 'Zebra',
+          profession: 'Music band',
+          image: '/images/artist.png',
+          color: '#DFA043',
         },
         {
-          issue:
-            'Labor & Employment (employment contracts, employee handbooks, drug testing, and workplace policies)',
+          id: 9,
+          category: 'Media Law',
+          name: 'Rod Morgenstein',
+          profession: 'Drummer',
+          image: '/images/artist.png',
+          color: '#EFD090',
         },
         {
-          issue: 'Licensing (medical and recreational)',
-        },
-        {
-          issue: 'Local Zoning and Permitting Requirements',
-        },
-        {
-          issue: 'Municipal Approvals',
-        },
-        {
-          issue: 'Real Estate Transactions',
-        },
-        {
-          issue: 'Regulatory Compliance',
+          id: 10,
+          category: 'Media Law',
+          name: 'Little Anthony & the Imperials',
+          profession: 'Vocal group',
+          image: '/images/artist.png',
+          color: '#DFA043',
         },
       ],
-      underlay: {
-        altText: 'smoker',
-        sourceUrl:
-          'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1693813529/wp.scarincihollenbeck/smoker/smoker.png?_i=AA',
-      },
     },
-    helpArticleBlock: {
-      title: 'Who Our Cannabis Attorneys Help',
-      paragraphs: [
+    practicesFooterImage: {
+      sourceUrl: '/images/practicesFooterImage.jpg',
+      altText: 'Hollywood',
+      width: 4096,
+      height: 1530,
+    },
+    infoBlock: {
+      tabs: [
         {
-          paragraph:
-            'We advise entrepreneurs and businesses involved at every level of the cannabis supply chain, including cannabis cultivation, processing, distribution, and retail sale, as well as those that provide ancillary services to the industry. Since many cannabis businesses are also start-ups, we collaborate with the firm’s other practice groups to provide guidance on contracts, employment, intellectual property, insurance, financing, tax, and real estate matters.',
+          id: 11,
+          variant: 'first',
+          title: 'Entertainment',
+          image: '/images/entAndMediaInfoBlock.jpg',
+          imageWidth: 4096,
+          imageHeight: 2305,
+          description:
+            'Our entertainment attorneys have expertise in areas including literature, fine art, music, television, motion picture, broadcast and cable television, radio, advertisement, and digital technologies. Our entertainment law services include drafting and negotiating agreements for the creation, development, production, distribution, licensing and dissemination of all manner of entertainment content, products and services, such as',
+          listServices: [
+            'Music recording and publishing agreements',
+            'Producer agreements',
+            'Music licenses for film and television',
+            'Artist intra-band agreements',
+            'Scripted and non-scripted television and film production agreements',
+            'On-screen and crew talent agreements for a myriad of media',
+            'Management agreements',
+            'Work-for-hire agreements',
+            'Personal appearance agreements',
+            'Book publishing agreements',
+            'Name and likeness & endorsement agreements',
+            'Content option agreements',
+          ],
+          modalData: {
+            id: 111,
+            modalList: [
+              {
+                id: 1,
+                title: 'Sponsorship and Endorsement Agreements',
+              },
+              {
+                id: 2,
+                title: 'Film and Television Production Agreements',
+              },
+              {
+                id: 3,
+                title: 'Book Distribution Agreements',
+              },
+              {
+                id: 4,
+                title: 'Sale and Acquisition of Professional Sports Teams',
+              },
+              {
+                id: 5,
+                title: 'Author-Agent Agreements',
+              },
+              {
+                id: 6,
+                title:
+                  'Copyright/Trademark Ownership, Registration and Enforcement',
+              },
+              {
+                id: 7,
+                title: 'Talent/Management Disputes',
+              },
+              {
+                id: 8,
+                title: 'Co-Promotion and Strategic Alliances',
+              },
+              {
+                id: 9,
+                title: 'Composer/Music Publishing Agreements',
+              },
+              {
+                id: 10,
+                title: 'Restraining Orders and Other Types of Litigation',
+              },
+              {
+                id: 11,
+                title: 'Right to Privacy/Publicity',
+              },
+              {
+                id: 12,
+                title: 'Composer/Music Publishing Agreements',
+              },
+              {
+                id: 13,
+                title: 'Restraining Orders and Other Types of Litigation',
+              },
+              {
+                id: 14,
+                title: 'Right to Privacy/Publicity',
+              },
+              {
+                id: 15,
+                title: 'Tax and Labor Law',
+              },
+            ],
+            modalDescription:
+              'Our attorneys are pioneers and leaders in the field of entertainment law, who have handled virtually every type of transaction that an entertainment or media business may require, including music recording and publishing agreements, producer agreements, music licenses for film and television, artist intra-band agreements, scripted and non-scripted television and film production agreements, on-screen and crew talent agreements for a myriad of media, management agreements, work-for-hire agreements, personal appearance agreements, book publishing agreements, name and likeness, and endorsement agreements.',
+          },
         },
         {
-          paragraph:
-            'Our practice is not limited to cannabis businesses. We also advise employers, municipalities, real property owners, banks, insurance companies, private equity firms, investors, and service providers about how local, state, and federal cannabis law may impact their operations.',
+          id: 22,
+          variant: 'second',
+          title: 'Media',
+          image: '/images/entAndMediaInfoBlock2.jpg',
+          imageWidth: 4096,
+          imageHeight: 2731,
+          description:
+            'Due to the development of new technologies, media companies face new legal challenges. Our media law services include:',
+          listServices: [
+            'First Amendment and newsgathering advice and defense',
+            'Negotiating media rights',
+            'Unfair competition matters',
+            'Antitrust issues',
+            'Privacy issues, including misrepresentation of photographic images',
+            'Cease and desist notices',
+            'Regulatory compliance',
+            'Mergers and acquisitions of media properties and businesses',
+            'Trademark and copyright registration, licensing, and enforcement',
+          ],
+          modalData: {
+            id: 222,
+            modalList: [
+              {
+                id: 1,
+                title: 'Sponsorship Sponsorship',
+              },
+              {
+                id: 2,
+                title: 'Film and Television Production Agreements',
+              },
+              {
+                id: 3,
+                title: 'Book Distribution Agreements',
+              },
+              {
+                id: 4,
+                title: 'Sale and Acquisition of Professional Sports Teams',
+              },
+              {
+                id: 5,
+                title: 'Author-Agent Agreements',
+              },
+              {
+                id: 6,
+                title:
+                  'Copyright/Trademark Ownership, Registration and Enforcement',
+              },
+              {
+                id: 7,
+                title: 'Talent/Management Disputes',
+              },
+              {
+                id: 8,
+                title: 'Co-Promotion and Strategic Alliances',
+              },
+              {
+                id: 9,
+                title: 'Composer/Music Publishing Agreements',
+              },
+              {
+                id: 10,
+                title: 'Restraining Orders and Other Types of Litigation',
+              },
+              {
+                id: 11,
+                title: 'Right to Privacy/Publicity',
+              },
+              {
+                id: 12,
+                title: 'Composer/Music Publishing Agreements',
+              },
+              {
+                id: 13,
+                title: 'Restraining Orders and Other Types of Litigation',
+              },
+              {
+                id: 14,
+                title: 'Right to Privacy/Publicity',
+              },
+              {
+                id: 15,
+                title: 'Tax and Labor Law',
+              },
+            ],
+            modalDescription:
+              'Our attorneys are pioneers and leaders in the field of entertainment law, who have handled virtually every type of transaction that an entertainment or media business may require, including music recording and publishing agreements, producer agreements, music licenses for film and television, artist intra-band agreements, scripted and non-scripted television and film production agreements, on-screen and crew talent agreements for a myriad of media, management agreements, work-for-hire agreements, personal appearance agreements, book publishing agreements, name and likeness, and endorsement agreements.',
+          },
+        },
+        {
+          id: 33,
+          variant: 'third',
+          title: 'Sport',
+          image: '/images/entAndMediaInfoBlock3.jpg',
+          imageWidth: 2504,
+          imageHeight: 3756,
+          description:
+            'The firm’s IP attorneys are well-versed in the unique issues and challenges of the sports industry. We serve athletes, coaches, sports agents, sports marketing companies, franchises, esports businesses, and other industry players. Our sports law services include:',
+          listServices: [
+            'Contract drafting and negotiation, including licensing, sponsorship, and merchandising agreements',
+            'Brand protection strategies for professional, amateur, and collegiate athletes',
+            'Corporate formation and business transaction guidance for various sports ventures',
+            'Advising Esports companies and players',
+          ],
+          modalData: {
+            id: 333,
+            modalList: [
+              {
+                id: 1,
+                title: 'Sponsorship Sponsorship Sponsorship',
+              },
+              {
+                id: 2,
+                title: 'Film and Television Production Agreements',
+              },
+              {
+                id: 3,
+                title: 'Book Distribution Agreements',
+              },
+              {
+                id: 4,
+                title: 'Sale and Acquisition of Professional Sports Teams',
+              },
+              {
+                id: 5,
+                title: 'Author-Agent Agreements',
+              },
+              {
+                id: 6,
+                title:
+                  'Copyright/Trademark Ownership, Registration and Enforcement',
+              },
+              {
+                id: 7,
+                title: 'Talent/Management Disputes',
+              },
+              {
+                id: 8,
+                title: 'Co-Promotion and Strategic Alliances',
+              },
+              {
+                id: 9,
+                title: 'Composer/Music Publishing Agreements',
+              },
+              {
+                id: 10,
+                title: 'Restraining Orders and Other Types of Litigation',
+              },
+              {
+                id: 11,
+                title: 'Right to Privacy/Publicity',
+              },
+              {
+                id: 12,
+                title: 'Composer/Music Publishing Agreements',
+              },
+              {
+                id: 13,
+                title: 'Restraining Orders and Other Types of Litigation',
+              },
+              {
+                id: 14,
+                title: 'Right to Privacy/Publicity',
+              },
+              {
+                id: 15,
+                title: 'Tax and Labor Law',
+              },
+            ],
+            modalDescription:
+              'Our attorneys are pioneers and leaders in the field of entertainment law, who have handled virtually every type of transaction that an entertainment or media business may require, including music recording and publishing agreements, producer agreements, music licenses for film and television, artist intra-band agreements, scripted and non-scripted television and film production agreements, on-screen and crew talent agreements for a myriad of media, management agreements, work-for-hire agreements, personal appearance agreements, book publishing agreements, name and likeness, and endorsement agreements.',
+          },
         },
       ],
-    },
-    newspaperBlock: {
-      article: {
-        paragraph:
-          'Scarinci Hollenbeck is proud of the success of our cannabis industry clients. Our client Roll Up Life, Inc. was named a 2022 Minority Business of the Year at the annual NJ Cannabis Insider awards ceremony. We advise the New Jersey-based cannabis company, which plans to apply for a license to operate as an adult-use cannabis delivery service, in a variety of areas including corporate, real estate, and strategic planning.',
-        title: 'Our Cannabis Attorneys in Action',
-      },
-      newspaperBox: {
-        newspaperArticle:
-          'We are also proud to be active members of the cannabis industry. Our Cannabis Group members speak extensively on panels covering a variety of developments in cannabis law and serve on panels, roundtables, and committees addressing legal issues impacting the cannabis space. Partner and Cannabis Group Chair Daniel McKillop was named a 2018 Trailblazer in Cannabis Law by the National Law Journal. Mr. McKillop has served as an Executive member of the NJSBA Cannabis Law Committee since 2021, and in 2022he established and now co-chairs the NJSBA’s Psychedelic Law Subcommittee.',
-        newspaperPhotoBox: {
-          altText: 'Trailblazers',
-          sourceUrl:
-            'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1693829021/wp.scarincihollenbeck/trailblazers/trailblazers.png?_i=AA',
-          caption: null,
-        },
-      },
-    },
-    subheaderBackgroundImg: {
-      link: '/images/entAndMediaIntro.png',
     },
   };
 
@@ -179,6 +459,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
       corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
       slug,
+      practices: sortByKey(practices, 'title'),
     },
   };
 };
@@ -193,6 +474,7 @@ const EnterteimentAndMedia = ({
   attorneyListPractice,
   keyContactsList,
   entAndMediaData,
+  practices,
 }) => {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -233,6 +515,7 @@ const EnterteimentAndMedia = ({
     attorneyListPractice,
     keyContactsList,
     entAndMediaData,
+    practices,
   };
   return (
     <ApolloWrapper>

@@ -9,12 +9,16 @@ import { FooterContainer, HiddenSEOBox } from 'styles/Footer.style';
 import { useRouter } from 'next/router';
 import LinksBox from './LinksBox';
 import FooterDetails from './FooterDetails';
-import { cannabisLawColors } from '../../../styles/global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  globalColor,
+} from '../../../styles/global_styles/Global.styles';
 import { getSlugFromUrl } from '../../../utils/helpers';
 
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
     'new-jersey-cannabis-law': cannabisLawColors.cannabisColorDarkGray,
+    'entertainment-and-media': globalColor.black,
   };
   return footerColorsMap[page];
 };

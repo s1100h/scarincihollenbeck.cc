@@ -1,22 +1,23 @@
-import empty from 'is-empty';
-import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
-import { Container, Row } from 'react-bootstrap';
-import AttorneysListBox from 'components/common/AttorneysListBox';
+import dynamic from 'next/dynamic';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
 import useApolloQuery from '../../../hooks/useApolloQuery';
 import { categoryPostsByIdQuery } from '../../../requests/graphql-queries';
-import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
+
+const AttorneysBlock = dynamic(() => import('../../organisms/ent-and-media/AttorneysBlock'));
+const EntertainmentInfoBlock = dynamic(() => import('../../organisms/ent-and-media/EntertainmentInfoBlock'));
+const EntertainmentClientsBlock = dynamic(() => import('../../organisms/ent-and-media/EntertainmentClientsBlock'));
+const ArticlesBlock = dynamic(() => import('../../organisms/ent-and-media/ArticlesBlock'));
+const PracticesLinksBlock = dynamic(() => import('../../organisms/ent-and-media/PracticesLinksBlock'));
 
 const EntertainmentAndMediaPage = ({
   practice,
   canonicalUrl,
   attorneysSchemaData,
-  corePractices,
   chairPractice,
   attorneyListPractice,
-  keyContactsList,
   entAndMediaData,
+  practices,
 }) => {
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
@@ -48,23 +49,34 @@ const EntertainmentAndMediaPage = ({
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <SubHeader title={practice.title} subtitle={entAndMediaData.subTitle} />
+      <SubHeader
+        slidesData={entAndMediaData.slidesData}
+        subtitle={entAndMediaData.subTitle}
+        title={practice.title}
+        sliderCfg={entAndMediaData.sliderCfg}
+        subHeaderBtns={entAndMediaData.subHeaderBtns}
+      />
 
-      {(!empty(chairPractice) || !empty(attorneyListPractice)) && (
-        <Container>
-          <Row>
-            <ColStyled sm={12}>
-              <AttorneysListBox
-                attorneys={{
-                  chairs: chairPractice,
-                  attorneysList: attorneyListPractice,
-                }}
-              />
-            </ColStyled>
-          </Row>
-        </Container>
-      )}
+      <AttorneysBlock
+        attorneyListPractice={attorneyListPractice}
+        chairPractice={chairPractice}
+        title={entAndMediaData.attorneysBlockTitle}
+      />
+
+      <EntertainmentInfoBlock tabs={entAndMediaData.infoBlock.tabs} />
+
+      <EntertainmentClientsBlock
+        items={entAndMediaData.enterntainmentClientsData.toggleItems}
+        itemsPerPage={entAndMediaData.enterntainmentClientsData.itemsPerPage}
+        title={entAndMediaData.enterntainmentClientsData.title}
+        description={entAndMediaData.enterntainmentClientsData.description}
+      />
       <ArticlesBlock paginationData={paginationDataProps} />
+
+      <PracticesLinksBlock
+        practices={practices}
+        practicesFooterImage={entAndMediaData.practicesFooterImage}
+      />
     </>
   );
 };

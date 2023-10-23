@@ -47,3 +47,22 @@ export const FullHDContainer = styled.div`
     width: 100%;
   }
 `;
+
+export const ContainerContent = styled.div`
+  width: ${rem(1920)};
+  max-width: 100%;
+  padding: 0 135px;
+  margin: 0 auto;
+
+  @media (max-width: 1850px) {
+    padding: 0 84px;
+  }
+
+  @media (max-width: 1440px) {
+    padding: 0 32px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+`;

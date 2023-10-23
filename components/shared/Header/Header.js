@@ -1,14 +1,13 @@
 import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
 import SpecialHeader from './SpecialHeader';
-import EntertainmentAndMediaHeader from './EntertainmentAndMediaHeader';
 import DefaultHeader from './DefaultHeader';
 import { getSlugFromUrl } from '../../../utils/helpers';
 
 const renderHeader = (pageSlug, props) => {
   const pagesMap = {
     'new-jersey-cannabis-law': <SpecialHeader {...props} />,
-    'entertainment-and-media': <EntertainmentAndMediaHeader {...props} />,
+    'entertainment-and-media': <SpecialHeader {...props} />,
   };
 
   return pagesMap[pageSlug] || <DefaultHeader {...props} />;
