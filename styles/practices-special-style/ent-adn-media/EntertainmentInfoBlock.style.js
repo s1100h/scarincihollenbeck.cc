@@ -51,12 +51,10 @@ export const EnterntainmentTabHeader = styled.div`
   justify-content: space-between;
 
   .delimiter {
-    margin-top: ${rem(50)};
-  }
-
-  @media (max-width: 1850px) {
-    .delimiter {
-      margin-top: ${rem(42)};
+    margin: ${rem(40)} ${rem(100)} 0;
+    
+    svg {
+      width: 100%;
     }
   }
 
@@ -64,12 +62,8 @@ export const EnterntainmentTabHeader = styled.div`
     align-items: center;
 
     .delimiter {
-      margin-top: ${rem(25)};
+      margin: ${rem(25)} ${rem(50)} 0;
       align-self: flex-start;
-      svg {
-        width: ${rem(80)};
-        height: ${rem(6)};
-      }
     }
   }
 
@@ -84,6 +78,7 @@ export const EnterntainmentTabHeader = styled.div`
   }
 `;
 export const EnterntainmentTabTitleWrapper = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
 `;
@@ -98,21 +93,33 @@ export const EnterntainmentTabTitle = styled.h2`
   font-style: italic;
 
   &.title-indent {
-    margin-left: 15%;
+    margin-left: ${rem(90)};
   }
 
   @media (max-width: 1850px) {
     font-size: ${rem(64)};
+
+    &.title-indent {
+      margin-left: ${rem(70)};
+    }
   }
 
   @media (max-width: 1440px) {
     font-size: ${rem(48)};
     line-height: ${rem(72)};
+
+    &.title-indent {
+      margin-left: ${rem(50)};
+    }
   }
 
   @media (max-width: 768px) {
     font-size: ${rem(32)};
     line-height: ${rem(48)};
+
+    &.title-indent {
+      margin-left: ${rem(30)};
+    }
   }
 
 `;
@@ -139,6 +146,7 @@ export const EnterntainmentTabBtns = styled.div`
   }
 `;
 export const EnterntainmentTabBtn = styled.a`
+  min-width: max-content;
   cursor: pointer;
   padding: ${rem(16)} ${rem(24)};
   font-size: ${rem(18)};
@@ -176,6 +184,10 @@ export const EnterntainmentTabBtn = styled.a`
   }
 
   @media (max-width: 1440px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     font-size: ${rem(14)};
     line-height: ${rem(21)};
   }

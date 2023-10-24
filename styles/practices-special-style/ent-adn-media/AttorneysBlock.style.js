@@ -120,7 +120,7 @@ export const AttorneySection = styled.section`
       }
     }
 
-    @media (min-width: 1440px) and (max-width: 1850px) {
+    @media (max-width: 1850px) {
       .attorneys-list-box {
         > div {
           gap: ${rem(30)};

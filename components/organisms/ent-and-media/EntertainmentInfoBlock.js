@@ -61,7 +61,14 @@ const EntertainmentInfoBlock = ({ tabs }) => {
         </EnterntainmentTabNumber>
         <EnterntainmentTabHeader>
           <EnterntainmentTabTitleWrapper>
-            <EnterntainmentTabTitle>Enterntainment</EnterntainmentTabTitle>
+            {tabs.map(
+              (tab, index) => activeTab === index && (
+              <EnterntainmentTabTitle key={tab.id}>
+                {tab.title}
+              </EnterntainmentTabTitle>
+              ),
+            )}
+
             <EnterntainmentTabTitle className="title-indent">
               Law
             </EnterntainmentTabTitle>
@@ -70,13 +77,11 @@ const EntertainmentInfoBlock = ({ tabs }) => {
           <div className="delimiter">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="258"
-              height="6"
-              viewBox="0 0 258 6"
+              viewBox="0 0 180 6"
               fill="none"
             >
               <path
-                d="M258 3L253 0.113249V5.88675L258 3ZM0 3.5L253.5 3.5V2.5L0 2.5L0 3.5Z"
+                d="M180 3L175 0.113249V5.88675L180 3ZM0 3.5L175.5 3.5V2.5L0 2.5L0 3.5Z"
                 fill="black"
               />
             </svg>

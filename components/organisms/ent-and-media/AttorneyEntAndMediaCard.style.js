@@ -10,7 +10,7 @@ export const ImageWrapper = styled.div`
   width: ${rem(275)};
   height: ${rem(340)};
 
-  @media (min-width: 1440px) and (max-width: 1850px) {
+  @media (max-width: 1850px) {
     width: ${rem(228)};
     height: ${rem(280)};
   }
@@ -99,7 +99,7 @@ export const CardEntAndMediaAttorney = styled.div`
     }
   }
 
-  @media (min-width: 1440px) and (max-width: 1850px) {
+  @media (max-width: 1850px) {
     width: ${rem(228)};
   }
 
