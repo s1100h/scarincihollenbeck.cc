@@ -916,28 +916,12 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
       title
       metaDesc
     }
-        practiceContentByCategory {
+    practiceContentByCategory {
       cannabisLaw {
         cardsInfo {
           cards {
             title
             paragraph
-          }
-        }
-        photoBlock {
-          articleBox {
-            paragraph
-            title
-          }
-          photo1 {
-            altText
-            caption
-            sourceUrl
-          }
-          photo2 {
-            altText
-            sourceUrl
-            caption
           }
         }
         descriptionSubheader
@@ -947,7 +931,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
           title
         }
         keycontactsblock {
-        	article
+          article
           listOfLegalGuidanceRegarding {
             issue
           }
@@ -978,6 +962,23 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
         }
         subheaderBackgroundVideo {
           link
+        }
+        photoBlock {
+          articleBox {
+            paragraph
+            title
+          }
+          cannabisClients {
+            clientLink {
+              title
+              url
+            }
+            clientLogo {
+              databaseId
+              sourceUrl
+              title
+            }
+          }
         }
       }
     }
