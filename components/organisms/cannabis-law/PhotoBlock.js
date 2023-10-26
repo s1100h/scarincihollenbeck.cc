@@ -69,8 +69,8 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
                     >
                       <PhotoCardPolaroid
                         capture={clientTitle}
-                        imgUrl={clientLogo.sourceUrl}
-                        imgAlt={clientLogo.title}
+                        imgUrl={clientLogo?.sourceUrl}
+                        imgAlt={clientLogo?.title}
                       />
                     </PhotoCardLink>
                   ) : (
@@ -94,13 +94,13 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
 
             {photoBlockData.cannabisClients.map(({ clientLogo }, index) => (
               <PhotoClient
-                key={clientLogo.databaseId}
+                key={clientLogo?.databaseId}
                 onClick={() => setActiveIndex(index)}
                 className={activeIndex === index ? 'active' : ''}
               >
                 <Image
-                  src={clientLogo.sourceUrl}
-                  alt={clientLogo.title}
+                  src={clientLogo?.sourceUrl}
+                  alt={clientLogo?.title}
                   width="300"
                   height="300"
                 />
