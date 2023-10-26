@@ -31,7 +31,7 @@ import {
 } from 'styles/practices-special-style/ent-adn-media/EntertainmentModal.style';
 
 const EntertainmentInfoBlock = ({ tabs }) => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [isShowModal, setIsShowModal] = useState(false);
 
   const setTabStyles = (variant) => {
@@ -44,30 +44,24 @@ const EntertainmentInfoBlock = ({ tabs }) => {
   };
 
   const handleTabClick = (index) => {
-    setActiveTab(index);
+    setActiveTabIndex(index);
   };
 
   const handleModalOpenerClick = () => {
     setIsShowModal(true);
   };
 
+  const activeTab = tabs[activeTabIndex];
+
   return (
     <EntertainmentInfoSection>
       <ContainerContent>
         <EnterntainmentTabNumber>
-          {tabs.map(
-            (tab, index) => activeTab === index && (index < 9 ? `0${index + 1}` : index + 1),
-          )}
+          {activeTabIndex < 9 ? `0${activeTabIndex + 1}` : activeTabIndex + 1}
         </EnterntainmentTabNumber>
         <EnterntainmentTabHeader>
           <EnterntainmentTabTitleWrapper>
-            {tabs.map(
-              (tab, index) => activeTab === index && (
-              <EnterntainmentTabTitle key={tab.id}>
-                {tab.title}
-              </EnterntainmentTabTitle>
-              ),
-            )}
+            <EnterntainmentTabTitle>{activeTab.title}</EnterntainmentTabTitle>
 
             <EnterntainmentTabTitle className="title-indent">
               Law
@@ -101,52 +95,49 @@ const EntertainmentInfoBlock = ({ tabs }) => {
             <EnterntainmentTabNavbarItem
               key={tab.id}
               onClick={() => handleTabClick(index)}
-              className={activeTab === index ? 'active' : ''}
+              className={activeTabIndex === index ? 'active' : ''}
             >
               {`${tab.title} Law`}
             </EnterntainmentTabNavbarItem>
           ))}
         </EnterntainmentTabNavbar>
         <AnimatePresence exitBeforeEnter>
-          {tabs.map(
-            (tab, index) => activeTab === index && (
-            <motion.div
-              key={tab.id}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
+          <motion.div
+            key={activeTabIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+          >
+            <EnterntainmentTabContent
+              className={`${setTabStyles(activeTab.variant)}`}
             >
-              <EnterntainmentTabContent
-                className={`${setTabStyles(tab.variant)}`}
-              >
-                <EnterntainmentTabImage>
-                  <Image
-                    src={tab.image}
-                    alt={tab.title}
-                    width={tab.imageWidth}
-                    height={tab.imageHeight}
-                  />
-                </EnterntainmentTabImage>
-                <EnterntainmentTabDescription>
-                  {tab.description}
-                </EnterntainmentTabDescription>
-                <EnterntainmentTabList>
-                  {tab.listServices.map((item) => (
-                    <EnterntainmentTabListItem key={item}>
-                      {item}
-                    </EnterntainmentTabListItem>
-                  ))}
-                </EnterntainmentTabList>
-              </EnterntainmentTabContent>
-            </motion.div>
-            ),
-          )}
+              <EnterntainmentTabImage>
+                <Image
+                  src={activeTab.image}
+                  alt={activeTab.title}
+                  width={activeTab.imageWidth}
+                  height={activeTab.imageHeight}
+                  loading="lazy"
+                />
+              </EnterntainmentTabImage>
+              <EnterntainmentTabDescription>
+                {activeTab.description}
+              </EnterntainmentTabDescription>
+              <EnterntainmentTabList>
+                {activeTab.listServices.map((item) => (
+                  <EnterntainmentTabListItem key={item}>
+                    {item}
+                  </EnterntainmentTabListItem>
+                ))}
+              </EnterntainmentTabList>
+            </EnterntainmentTabContent>
+          </motion.div>
         </AnimatePresence>
       </ContainerContent>
 
       <AnimatePresence>
         {isShowModal && (
-          <div>
+          <>
             <EntertainmentModalBackground
               onClick={() => setIsShowModal(false)}
             />
@@ -159,32 +150,25 @@ const EntertainmentInfoBlock = ({ tabs }) => {
                 <EntertainmentModalClose
                   onClick={() => setIsShowModal(false)}
                 />
-
-                {tabs.map(
-                  ({ modalData }, index) => activeTab === index && (
-                  <Fragment key={modalData.id}>
-                    <EntertainmentModalList>
-                      {modalData.modalList.map((item, index) => (
-                        <EntertainmentModalListItem key={item.id}>
-                          <EntertainmentModalListNumber>
-                            {index < 9 ? `0${index + 1}` : index + 1}
-                          </EntertainmentModalListNumber>
-                          {item.title}
-                        </EntertainmentModalListItem>
-                      ))}
-                    </EntertainmentModalList>
-                    <EntertainmentModalDescription>
-                      {modalData.modalDescription}
-                    </EntertainmentModalDescription>
-                  </Fragment>
-                  ),
-                )}
+                <EntertainmentModalList>
+                  {activeTab.modalData.modalList.map((item, index) => (
+                    <EntertainmentModalListItem key={item.id}>
+                      <EntertainmentModalListNumber>
+                        {index < 9 ? `0${index + 1}` : index + 1}
+                      </EntertainmentModalListNumber>
+                      {item.title}
+                    </EntertainmentModalListItem>
+                  ))}
+                </EntertainmentModalList>
+                <EntertainmentModalDescription>
+                  {activeTab.modalData.modalDescription}
+                </EntertainmentModalDescription>
               </EntertainmentModalContent>
               <EntertainmentModalFooter>
                 <EnterntainmentTabBtn>See attorneys</EnterntainmentTabBtn>
               </EntertainmentModalFooter>
             </EntertainmentModal>
-          </div>
+          </>
         )}
       </AnimatePresence>
     </EntertainmentInfoSection>

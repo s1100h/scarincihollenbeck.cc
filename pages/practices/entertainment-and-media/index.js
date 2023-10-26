@@ -178,8 +178,8 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
           variant: 'first',
           title: 'Entertainment',
           image: '/images/entAndMediaInfoBlock.jpg',
-          imageWidth: 4096,
-          imageHeight: 2305,
+          imageWidth: 1920,
+          imageHeight: 1080,
           description:
             'Our entertainment attorneys have expertise in areas including literature, fine art, music, television, motion picture, broadcast and cable television, radio, advertisement, and digital technologies. Our entertainment law services include drafting and negotiating agreements for the creation, development, production, distribution, licensing and dissemination of all manner of entertainment content, products and services, such as',
           listServices: [
@@ -270,8 +270,8 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
           variant: 'second',
           title: 'Media',
           image: '/images/entAndMediaInfoBlock2.jpg',
-          imageWidth: 4096,
-          imageHeight: 2731,
+          imageWidth: 1920,
+          imageHeight: 1080,
           description:
             'Due to the development of new technologies, media companies face new legal challenges. Our media law services include:',
           listServices: [
@@ -359,8 +359,8 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
           variant: 'third',
           title: 'Sport',
           image: '/images/entAndMediaInfoBlock3.jpg',
-          imageWidth: 2504,
-          imageHeight: 3756,
+          imageWidth: 1920,
+          imageHeight: 1080,
           description:
             'The firm’s IP attorneys are well-versed in the unique issues and challenges of the sports industry. We serve athletes, coaches, sports agents, sports marketing companies, franchises, esports businesses, and other industry players. Our sports law services include:',
           listServices: [

@@ -318,9 +318,9 @@ export const EnterntainmentTabContent = styled.div`
   }
 `;
 export const EnterntainmentTabImage = styled.div`
-  height: 100%;
   width: 100%;
-  /* max-height: ${rem(552)}; */
+  max-height: ${rem(624)};
+  height: 100%;
   grid-row: span 2;
 
   img {

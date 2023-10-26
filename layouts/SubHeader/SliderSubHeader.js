@@ -90,33 +90,31 @@ const SliderSubHeader = ({
     }
   }, [activeSlideIndex]);
 
+  const activeSlide = slidesData[activeSlideIndex];
+
   return (
     <SliderSubHeaderContainer>
       <ContainerContent>
         <PostBreadcrumbs />
         {!empty(slidesData) && (
           <SlideSubHeader>
-            {!empty(slidesData[activeSlideIndex].image) && (
+            {!empty(activeSlide.image) && (
               <AnimatePresence>
-                {slidesData.map(
-                  (slide, index) => index === activeSlideIndex && (
-                  <motion.div
-                    key={slide.id}
-                    initial={{ opacity: 0.7 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    className="animation-wrapper"
-                  >
-                    <Image
-                      src={slidesData[activeSlideIndex].image}
-                      alt={slidesData[activeSlideIndex].title}
-                      width={1920}
-                      height={1080}
-                    />
-                  </motion.div>
-                  ),
-                )}
+                <motion.div
+                  key={activeSlide.id}
+                  initial={{ opacity: 0.5 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0.5 }}
+                  transition={{ duration: 1 }}
+                  className="animation-wrapper"
+                >
+                  <Image
+                    src={activeSlide.image}
+                    alt={activeSlide.title}
+                    width={1920}
+                    height={1080}
+                  />
+                </motion.div>
               </AnimatePresence>
             )}
             <SlideSidebar>
@@ -136,32 +134,21 @@ const SliderSubHeader = ({
                 </SlideSmallTitle>
                 <AnimateTitleWrapper titleHeight={titleHeight}>
                   <AnimatePresence type="crossfade">
-                    {slidesData.map(
-                      (slide, index) => index === activeSlideIndex && (
-                      <motion.div
-                        key={slide.title}
-                        initial={{
-                          opacity: 0,
-                          y: 100,
-                        }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{
-                          opacity: 0,
-                          y: -100,
-                          position: 'absolute',
-                        }}
-                        transition={{
-                          duration: 0.5,
-                          type: 'spring',
-                          damping: 15,
-                          stiffness: 80,
-                        }}
-                        ref={titleRef}
-                      >
-                        <SlideTitle>{slide.title}</SlideTitle>
-                      </motion.div>
-                      ),
-                    )}
+                    <motion.div
+                      key={activeSlide.title}
+                      initial={{ opacity: 0, y: '100%' }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: '-100%', position: 'absolute' }}
+                      transition={{
+                        duration: 0.5,
+                        type: 'spring',
+                        damping: 20,
+                        stiffness: 80,
+                      }}
+                      ref={titleRef}
+                    >
+                      <SlideTitle>{activeSlide.title}</SlideTitle>
+                    </motion.div>
                   </AnimatePresence>
                 </AnimateTitleWrapper>
                 <SlideTitle className="slide__title-margin">In law</SlideTitle>
