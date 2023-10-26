@@ -515,7 +515,7 @@ export const ButtonLinkCss = `
   }
 
   ${media_breakpoint_down('lg')} {
-    width: 57px;
+    width: 50px;
 
     span {
       display: none;

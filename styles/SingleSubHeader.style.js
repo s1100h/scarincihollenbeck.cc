@@ -89,7 +89,7 @@ export const BackgroundContainer = styled.section`
 
 export const GradientWrapper = styled.div`
   height: 100%;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 0;
   background: linear-gradient(

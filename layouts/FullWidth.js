@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 
-const FullWidth = ({ children }) => (
-  <Container>
+const FullWidth = ({ children, classes }) => (
+  <Container className={classes}>
     <Row>
       <Col sm={12}>{children}</Col>
     </Row>

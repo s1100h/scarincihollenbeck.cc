@@ -1,4 +1,9 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { entAndMediaColors, globalColor, rem } from '../global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
@@ -88,12 +93,6 @@ export const SpecialSubHeaderContainer = styled.section`
     }
   }
 `;
-import { entAndMediaColors, globalColor, rem } from '../global_styles/Global.styles';
-
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-} from '../mediaBreakpoints.style';
 
 export const MiddleContainer = styled.div`
   display: flex;

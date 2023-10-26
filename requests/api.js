@@ -1,5 +1,4 @@
 import { GRAPHQL_API_URL } from 'utils/constants';
-import { homePageLocationsQuery } from './graphql-queries';
 
 export const headers = {
   'Content-Type': 'application/json',

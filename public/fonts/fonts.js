@@ -1,4 +1,4 @@
-import { Montserrat, Poppins, Rajdhani } from '@next/font/google';
+import { Licorice, Montserrat, Poppins, Rajdhani } from '@next/font/google';
 
 export const montserrat = Montserrat({
 	weight: ['300', '500', '600', '900'],
@@ -18,5 +18,12 @@ export const rajdhani = Rajdhani({
 	weight: ['400', '500', '700'],
 	subsets: ['latin'],
 	variable: '--font-rajdhani',
+	preload: true,
+});
+
+export const licorice = Licorice({
+	weight: ['400'],
+	subsets: ['latin'],
+	variable: '--font-licorice',
 	preload: true,
 });

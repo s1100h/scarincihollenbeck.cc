@@ -21,9 +21,9 @@ const PhotoCardPolaroid = ({
         loading="lazy"
       />
       {!empty(capture) && (
-        <caption className="d-none">
+        <figcaption>
           <JSXWithDynamicLinks HTML={capture} />
-        </caption>
+        </figcaption>
       )}
       {children}
     </PhotoCardFigure>
