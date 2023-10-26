@@ -9,9 +9,9 @@ export const PhotoCardFigure = styled.figure`
     !empty(isBlackBackground)
       ? `${globalColor.black}`
       : `${globalColor.white}`};
-  width: 416px;
-  height: 556px;
-  padding: 28px;
+  width: 400px;
+  height: 550px;
+  padding: 20px;
   gap: 48px;
 
   img {

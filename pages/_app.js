@@ -23,7 +23,9 @@ import 'animate.css/animate.min.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import TagManager from 'react-gtm-module';
 import { FormContextProvider } from '../contexts/FormsContext';
-import { montserrat, poppins, rajdhani } from '../public/fonts/fonts';
+import {
+  montserrat, poppins, rajdhani, licorice,
+} from '../public/fonts/fonts';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -57,7 +59,7 @@ const SHSite = ({ Component, pageProps }) => {
             <MainSiteHead />
             <Header />
             <main
-              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable}`}
+              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable}`}
             >
               <Component {...pageProps} />
             </main>

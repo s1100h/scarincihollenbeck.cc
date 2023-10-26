@@ -978,6 +978,7 @@ export const getDataForPractice = `query FirmPageQuery($id: ID!) {
               sourceUrl
               title
             }
+            clientTitle
           }
         }
       }

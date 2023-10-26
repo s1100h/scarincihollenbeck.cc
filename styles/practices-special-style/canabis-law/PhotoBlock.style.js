@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { cannabisLawColors } from '../../global_styles/Global.styles';
+import { cannabisLawColors, globalColor, rem } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
   media_breakpoint_range_exacly,
 } from '../../mediaBreakpoints.style';
+import { PhotoCardFigure, PhotoCardImageWrapper } from 'styles/PhotoCardPolaroid.style';
+import { motion } from 'framer-motion';
 
 export const PhotoBlockContainer = styled.section`
   display: flex;
@@ -15,14 +17,13 @@ export const PhotoBlockContainer = styled.section`
 
   .photo-article-box {
     display: flex;
-    justify-content: center;
-    gap: 8%;
+    justify-content: space-between;
+    gap: 3%;
   }
 
   ${media_breakpoint_exactly_down(1478)} {
     .photo-article-box {
       justify-content: center;
-      gap: 4%;
       padding-left: 42px;
       padding-right: 42px;
     }
@@ -37,7 +38,7 @@ export const PhotoBlockContainer = styled.section`
 
   ${media_breakpoint_down('lg')} {
     padding: 0;
-    align-items: center;
+
     .photo-article-box {
       align-items: center;
       flex-direction: column;
@@ -48,77 +49,130 @@ export const PhotoBlockContainer = styled.section`
 `;
 
 export const PhotoCannabisBox = styled.div`
-  display: flex;
-  gap: 20px;
-  height: 680px;
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  gap: ${rem(20)};
   position: relative;
-  margin-bottom: 40px;
 
-  & > :first-child {
-    margin-top: auto;
-    margin-bottom: 0;
+  .prev-arrow, .next-arrow {
+    display: none;
+    position: absolute;
+    top: 280px;
+    transform: translateY(-50%);
+    cursor: pointer;
   }
 
-  & > :last-child {
-    align-items: flex-end;
+  .prev-arrow {
+    left: -44px;
   }
 
-  ${media_breakpoint_range_exacly(992, 1478)} {
-    height: 550px;
-
-    figure {
-      width: 316px;
-      height: 456px;
-      padding: 18px;
-      gap: 32px;
-
-      > :first-child {
-        width: 278px;
-      }
-    }
+  .next-arrow {
+    right: -50px;
   }
 
-  ${media_breakpoint_down('lg')} {
-    height: 550px;
-
-    figure {
-      width: 316px;
-      height: 456px;
-      padding: 18px;
-      gap: 32px;
-
-      > :first-child {
-        width: 278px;
-      }
-    }
-  }
-
-  ${media_breakpoint_exactly_down(685)} {
+  ${PhotoCardFigure} {
+    margin: 0;
+    height: 100%;
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-    height: auto;
 
-    figure {
-      width: 96%;
-      height: 115vw;
+    img {
+      border: 1px solid rgba(0, 0, 0, 0.38);
+      width: 100%;
+      height: 100%;
+    }
 
-      > :first-child {
-        width: 100%;
-        height: 100%;
+    figcaption {
+      font-family: var(--font-licorice), sans-serif;
+      font-size: ${rem(52)};
+      font-weight: 400;
+      color: ${cannabisLawColors.cannabisColorDarkGray};
+      line-height: ${rem(52)};
+      letter-spacing: ${rem(2.6)};
+    }
+  }
+
+  .big-image {
+    margin: 0 ${rem(30)} ${rem(30)} 0;
+    grid-area: 1 / 1 / 6 / 5;
+  }
+
+  @media (max-width: 1440px) {
+    grid-template-columns: repeat(4, 100px);
+
+    .big-image {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .prev-arrow, .next-arrow {
+      font-size: 44px;
+      color: ${globalColor.white};
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
+    grid-template-columns: repeat(3, 100px);
+    gap: ${rem(8)};
+    justify-items: center;
+
+    .prev-arrow, .next-arrow {
+      top: 193px;
+      font-size: 30px;
+    }
+
+    .prev-arrow {
+      left: -15px;
+    }
+
+    .next-arrow {
+      right: -20px;
+    }
+
+    ${PhotoCardFigure} {
+      gap: 36px;
+    }
+
+    .big-image {
+      margin-bottom: ${rem(16)};
+      grid-area: 1 / 1 / 6 / 4;
+      width: 300px;
+      height: 385px;
+    }
+  }
+`;
+
+export const PhotoCardLink = styled(motion.a)`
+  cursor: pointer;
+
+  &:hover {
+    ${PhotoCardFigure} {
+      figcaption {
+        color: #314AF5;
       }
-      > :last-child {
-        margin-bottom: 20px;
-      }
     }
+  }
+`;
 
-    & > :first-child {
-      margin-top: 0;
-    }
+export const PhotoClient = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${rem(100)};
+  height: ${rem(100)};
+  cursor: pointer;
+  filter: grayscale(100%);
 
-    & > :nth-child(2) {
-      display: none;
-    }
+  &.active {
+    filter: none;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

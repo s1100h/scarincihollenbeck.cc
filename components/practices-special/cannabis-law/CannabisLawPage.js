@@ -74,10 +74,10 @@ const CannabisLawPage = ({
         subtitle={cannabisLawData.subTitle}
         article={cannabisLawData.descriptionSubheader}
       />
-      {/* <PhotoBlock */}
-      {/*  anchorIdBlock={hrefToId} */}
-      {/*  photoBlockData={cannabisLawData.photoBlock} */}
-      {/* /> */}
+      <PhotoBlock
+        anchorIdBlock={hrefToId}
+        photoBlockData={cannabisLawData.photoBlock}
+      />
       <CardsBlock cardsBlockData={cannabisLawData.cardsInfo.cards} />
       <AttorneysBlock
         attorneysBlockArticle={cannabisLawData.attorneysArticleBlock}
