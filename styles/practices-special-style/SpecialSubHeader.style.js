@@ -8,17 +8,23 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
+import { FullHDContainer } from './commonForSpecial.style';
 
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 155px 10% 0;
-  height: 100vh;
+  padding: 155px 10% 50px;
+  min-height: 100vh;
   background: url(${({ backgroundImage }) => backgroundImage}) no-repeat;
   background-size: cover;
   position: relative;
-  align-items: center;
   overflow: hidden;
+
+  ${FullHDContainer} {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
   video {
     position: absolute;
@@ -30,9 +36,7 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   h1 {
-    width: 44%;
-    position: absolute;
-    top: 63%;
+    width: 400px;
     font-size: 12rem;
     font-weight: 300;
     line-height: 170px;
@@ -51,18 +55,18 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('xl')} {
-    padding: 155px 2% 0;
+    padding: 155px 2% 50px;
 
     h1 {
+      width: 350px;
       font-size: 10rem;
-      bottom: -32px;
     }
   }
 
   ${media_breakpoint_down('lg')} {
     h1 {
+      width: 300px;
       font-size: 8rem;
-      bottom: -38px;
       line-height: 112px;
     }
   }
@@ -75,17 +79,15 @@ export const SpecialSubHeaderContainer = styled.section`
 
   ${media_breakpoint_exactly_down(630)} {
     h1 {
+      width: 220px;
       font-size: 6rem;
-      bottom: -44px;
       line-height: 100px;
     }
   }
 
   ${media_breakpoint_down('sm')} {
     h1 {
-      top: 70%;
       font-size: 5rem;
-      bottom: -20px;
       line-height: 69px;
     }
   }
