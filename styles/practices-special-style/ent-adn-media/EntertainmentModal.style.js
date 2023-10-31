@@ -1,6 +1,10 @@
-import styled from "styled-components";
-import { entAndMediaColors, globalColor, rem } from "styles/global_styles/Global.styles";
-import { EnterntainmentTabBtn } from "./EntertainmentInfoBlock.style";
+import styled from 'styled-components';
+import {
+  entAndMediaColors,
+  globalColor,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import { EnterntainmentTabBtn } from './EntertainmentInfoBlock.style';
 import { motion } from 'framer-motion';
 
 export const EntertainmentModal = styled(motion.div)`
@@ -56,8 +60,9 @@ export const EntertainmentModalClose = styled.div`
   transform: rotate(45deg);
   transition: all 0.5s ease;
 
-  &::before, &::after {
-    content: "";
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
     background-color: ${globalColor.black};
   }
@@ -126,7 +131,7 @@ export const EntertainmentModalListNumber = styled.div`
   color: ${entAndMediaColors.entAndMediaColorGray};
 
   ::before {
-    content: "";
+    content: '';
     display: flex;
     width: 0;
     height: 0;

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { entAndMediaColors, globalColor, rem } from '../global_styles/Global.styles';
+import {
+  entAndMediaColors,
+  globalColor,
+  rem,
+} from '../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -111,14 +115,14 @@ export const MiddleContainer = styled.div`
   }
 `;
 
-
 export const SliderSubHeaderContainer = styled.section`
   padding: 137px 0;
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  background: url(${({ backgroundImage }) => backgroundImage}) no-repeat center / cover;
+  background: url(${({ backgroundImage }) => backgroundImage}) no-repeat center /
+    cover;
   position: relative;
 
   @media (max-width: 1440px) {
@@ -138,8 +142,6 @@ export const ImageWrapper = styled.div`
   height: 100%;
   z-index: -1;
   background-color: ${globalColor.black};
-
-  
 `;
 
 export const SlideSubHeader = styled.div`
@@ -160,7 +162,7 @@ export const SlideSubHeader = styled.div`
     width: 100%;
     height: 100%;
     z-index: -1;
-    
+
     ::before {
       content: '';
       position: absolute;
@@ -168,7 +170,11 @@ export const SlideSubHeader = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%);
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
     }
 
     img {
@@ -212,7 +218,6 @@ export const SlideBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 `;
 export const SlideSmallTitle = styled.h5`
   margin: 0 0 ${rem(28)} 0;
@@ -338,7 +343,8 @@ export const SliderPaginationArrowUp = styled.div`
   background: url('${({ arrowUp }) => arrowUp}') no-repeat center / cover;
 
   &.disabled {
-    background: url('${({ arrowUpDisabled }) => arrowUpDisabled}') no-repeat center / cover;
+    background: url('${({ arrowUpDisabled }) => arrowUpDisabled}') no-repeat
+      center / cover;
   }
 
   @media (max-width: 1440px) {
@@ -368,7 +374,7 @@ export const SliderPaginationDote = styled.div`
   &.active {
     background: ${globalColor.grayExtraLite.grayExtraLite50};
   }
-  
+
   @media (max-width: 1440px) {
     width: ${rem(12)};
     height: ${rem(12)};
@@ -381,7 +387,8 @@ export const SliderPaginationArrowDown = styled.div`
   background: url('${({ arrowDown }) => arrowDown}') no-repeat center / cover;
 
   &.disabled {
-    background: url('${({ arrowDownDisabled }) => arrowDownDisabled}') no-repeat center / cover;
+    background: url('${({ arrowDownDisabled }) => arrowDownDisabled}') no-repeat
+      center / cover;
   }
 
   @media (max-width: 1440px) {
@@ -399,9 +406,9 @@ export const SlideDarkText = styled.div`
   line-height: ${rem(24)};
 
   @media (max-width: 1440px) {
-      font-size: ${rem(14)};
-      line-height: ${rem(21)};
-    }
+    font-size: ${rem(14)};
+    line-height: ${rem(21)};
+  }
 
   &.slide__company {
     transform: translateY(calc(100% + ${rem(40)}));
@@ -414,7 +421,7 @@ export const SlideDarkText = styled.div`
 
   &.slide__date {
     display: none;
-    
+
     @media (max-width: 1440px) {
       display: block;
     }

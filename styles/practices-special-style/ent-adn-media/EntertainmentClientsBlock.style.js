@@ -1,6 +1,10 @@
-import styled, { keyframes } from "styled-components";
-import { ContentTooltip } from "styles/Tooltip.style";
-import { entAndMediaColors, globalColor, rem } from "styles/global_styles/Global.styles";
+import styled, { keyframes } from 'styled-components';
+import { ContentTooltip } from 'styles/Tooltip.style';
+import {
+  entAndMediaColors,
+  globalColor,
+  rem,
+} from 'styles/global_styles/Global.styles';
 
 const fadeIn = keyframes`
   0% {
@@ -105,7 +109,6 @@ export const EntertainmentClientsDescription = styled.p`
   }
 `;
 export const EntertainmentClientsList = styled.div`
-
   .pagination {
     margin: 0 0 ${rem(20)} 0;
     column-gap: ${rem(16)};
@@ -155,17 +158,15 @@ export const EntertainmentClientsListItems = styled.div`
 `;
 
 export const EntertainmentClientsItem = styled.div`
-
-  ${({color}) => {
-      return `background-color: ${color};`
-    }
-  }
+  ${({ color }) => {
+    return `background-color: ${color};`;
+  }}
   cursor: pointer;
   animation: ${fadeIn} 1s ease;
 
   &.open {
-    ${props => {
-        return `
+    ${(props) => {
+      return `
           ${EntertainmentClientsItemOpener} {
             padding: 0;
             display: grid;
@@ -243,7 +244,7 @@ export const EntertainmentClientsItemCategory = styled.div`
   font-weight: 400;
   line-height: ${rem(24)};
   color: ${globalColor.black};
-  
+
   :before {
     content: '';
     position: absolute;

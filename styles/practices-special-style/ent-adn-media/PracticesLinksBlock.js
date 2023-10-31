@@ -1,5 +1,9 @@
-import styled from "styled-components";
-import { entAndMediaColors, globalColor, rem } from "styles/global_styles/Global.styles";
+import styled from 'styled-components';
+import {
+  entAndMediaColors,
+  globalColor,
+  rem,
+} from 'styles/global_styles/Global.styles';
 
 export const PracticesSection = styled.section`
   padding: ${rem(140)} 0 ${rem(120)};
@@ -98,7 +102,7 @@ export const PracticesLinks = styled.ul`
     align-items: center;
 
     ::before {
-      content: "•";
+      content: '•';
       color: white;
       margin-right: 0.5em;
     }

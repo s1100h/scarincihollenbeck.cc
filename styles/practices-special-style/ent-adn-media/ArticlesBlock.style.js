@@ -1,16 +1,17 @@
-import styled from "styled-components";
-import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { LinkToCategory, TitleButtonBox } from "../ArticlesBlock.style";
-import { PaginationBtn } from "styles/PaginationBtn.style";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
-import { BottomSection, TextNews } from "styles/FirmNews.style";
+import styled from 'styled-components';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { LinkToCategory, TitleButtonBox } from '../ArticlesBlock.style';
+import { PaginationBtn } from 'styles/PaginationBtn.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
+import { BottomSection, TextNews } from 'styles/FirmNews.style';
 
 export const ArticlesSection = styled.section`
   padding: ${rem(140)} 0;
 
-
   ${TitleButtonBox} {
-
     h3 {
       color: ${globalColor.black};
       font-family: var(--font-poppins), sans-serif;
@@ -80,7 +81,7 @@ export const ArticlesSection = styled.section`
       color: ${globalColor.black};
     }
   }
-  
+
   .entertainment-news {
     padding: 0;
     width: 32%;
@@ -134,7 +135,6 @@ export const ArticlesSection = styled.section`
         line-height: ${rem(36)};
         font-weight: 600;
         color: ${globalColor.black};
-
 
         @media (max-width: 1850px) {
           font-size: ${rem(20)};

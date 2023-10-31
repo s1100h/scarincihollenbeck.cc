@@ -79,7 +79,7 @@ export const entAndMediaColors = {
   entAndMediaColorGold: '#D1C09D',
   entAndMediaColorMediumGray: '#505050',
   entAndMediaColorGray: '#4F4F4F',
-}
+};
 
 export const globalGradient = {
   award: 'linear-gradient(180deg, #101113 68.23%, #60191b 94.79%)',
