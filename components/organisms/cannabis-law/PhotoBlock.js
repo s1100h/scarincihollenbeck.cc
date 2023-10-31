@@ -58,6 +58,7 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
                   />
                   {!empty(clientLink) ? (
                     <PhotoCardLink
+                      key={clientLogo.title}
                       href={clientLink.url}
                       target="_blank"
                       rel="noreferrer"
@@ -75,6 +76,7 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
                     </PhotoCardLink>
                   ) : (
                     <motion.div
+                      key={clientLogo.title}
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.5 }}

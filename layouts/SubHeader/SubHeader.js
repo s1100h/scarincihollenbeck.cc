@@ -31,7 +31,7 @@ const SubHeader = ({
   const slug = getSlugFromUrl(pathname);
 
   const subHeaderProps = {
-    title: title.replace(/Law/i, 'law'),
+    title,
     subtitle,
     isBlog,
     isHoliday,
