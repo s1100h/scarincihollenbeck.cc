@@ -42,7 +42,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
 
   const practices = await getPractices();
 
-  practice.practiceContentByCategory.entAndMedia = {
+  practice.practiceContentForEntertainmentLaw.entAndMedia = {
     subHeaderBtns: [
       {
         btnText: 'See attorneys',
@@ -451,7 +451,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
   return {
     props: {
       practice,
-      entAndMediaData: practice.practiceContentByCategory.entAndMedia,
+      entAndMediaData: practice.practiceContentForEntertainmentLaw.entAndMedia,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
       keyContactsList,
