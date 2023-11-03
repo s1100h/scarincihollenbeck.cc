@@ -1,7 +1,6 @@
 import empty from 'is-empty';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import Slider from 'react-slick';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import PostBreadcrumbs from '../../components/organisms/post/PostBreadcrumbs';
@@ -98,10 +97,10 @@ const SliderSubHeader = ({
         <PostBreadcrumbs />
         {!empty(slidesData) && (
           <SlideSubHeader>
-            {!empty(activeSlide.image) && (
+            {!empty(activeSlide.backgroundImage) && (
               <AnimatePresence>
                 <motion.div
-                  key={activeSlide.id}
+                  key={activeSlide.backgroundImage.databaseId}
                   initial={{ opacity: 0.5 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0.5 }}
@@ -109,8 +108,8 @@ const SliderSubHeader = ({
                   className="animation-wrapper"
                 >
                   <Image
-                    src={activeSlide.image}
-                    alt={activeSlide.title}
+                    src={activeSlide.backgroundImage.sourceUrl}
+                    alt={activeSlide.backgroundImage.title}
                     width={1920}
                     height={1080}
                   />
@@ -174,7 +173,7 @@ const SliderSubHeader = ({
                 <SliderPaginationDots>
                   {slidesData.map((slide, index) => (
                     <SliderPaginationDote
-                      key={slide.id}
+                      key={slide.backgroundImage.databaseId}
                       className={index === activeSlideIndex ? 'active' : ''}
                     />
                   ))}

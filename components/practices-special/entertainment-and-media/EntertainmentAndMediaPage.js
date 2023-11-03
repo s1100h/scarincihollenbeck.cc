@@ -2,7 +2,10 @@ import dynamic from 'next/dynamic';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
 import useApolloQuery from '../../../hooks/useApolloQuery';
-import { categoryPostsByIdQuery } from '../../../requests/graphql-queries';
+import {
+  categoryPostsByIdQuery,
+  getClientsQuery,
+} from '../../../requests/graphql-queries';
 
 const AttorneysBlock = dynamic(() => import('../../organisms/ent-and-media/AttorneysBlock'));
 const EntertainmentInfoBlock = dynamic(() => import('../../organisms/ent-and-media/EntertainmentInfoBlock'));
@@ -16,11 +19,28 @@ const EntertainmentAndMediaPage = ({
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
-  entAndMediaData,
+  entertainmentAndMediaData,
   practices,
 }) => {
   const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
+    handleClientsPrevPagination,
+    handleClientsNextPagination,
+    clients,
+    loadingClients,
+  } = useApolloQuery(getClientsQuery, {
+    first: 3,
+    last: null,
+    after: null,
+    before: null,
+  });
+
+  const {
+    handleNextPagination,
+    handlePrevPagination,
+    data,
+    loadingPosts,
+    error,
+    posts,
   } = useApolloQuery(
     categoryPostsByIdQuery,
     {
@@ -28,7 +48,7 @@ const EntertainmentAndMediaPage = ({
       last: null,
       after: null,
       before: null,
-      categoryId: 911,
+      categoryId: 1066,
     },
     // skipOrGo,
   );
@@ -36,10 +56,34 @@ const EntertainmentAndMediaPage = ({
   const paginationDataProps = {
     handleNextPagination,
     handlePrevPagination,
-    data,
-    loading,
+    data: posts,
+    loading: loadingPosts,
     error,
   };
+
+  const clientsPaginationProps = {
+    handleClientsPrevPagination,
+    handleClientsNextPagination,
+    data: clients,
+    loading: loadingClients,
+    error,
+  };
+
+  const sliderCfg = {
+    isSlidesAutoPlay: true,
+    autoPlaySpeed: 3000,
+  };
+
+  const subHeaderBtns = [
+    {
+      btnText: 'See attorneys',
+      btnLink: '/practices/12',
+    },
+    {
+      btnText: 'Know more',
+      btnLink: '/practices/1',
+    },
+  ];
 
   return (
     <>
@@ -50,32 +94,36 @@ const EntertainmentAndMediaPage = ({
         personDataForSchema={attorneysSchemaData}
       />
       <SubHeader
-        slidesData={entAndMediaData.slidesData}
-        subtitle={entAndMediaData.subTitle}
+        slidesData={entertainmentAndMediaData.sliderBackgrounds}
+        subtitle={entertainmentAndMediaData.subTitle}
         title={practice.title}
-        sliderCfg={entAndMediaData.sliderCfg}
-        subHeaderBtns={entAndMediaData.subHeaderBtns}
+        sliderCfg={sliderCfg}
+        subHeaderBtns={subHeaderBtns}
       />
 
       <AttorneysBlock
         attorneyListPractice={attorneyListPractice}
         chairPractice={chairPractice}
-        title={entAndMediaData.attorneysBlockTitle}
+        title={entertainmentAndMediaData.attorneysTitleBox}
       />
 
-      <EntertainmentInfoBlock tabs={entAndMediaData.infoBlock.tabs} />
+      <EntertainmentInfoBlock
+        tabs={entertainmentAndMediaData.entertainmentInfoBlock.tabs}
+      />
 
       <EntertainmentClientsBlock
-        items={entAndMediaData.enterntainmentClientsData.toggleItems}
-        itemsPerPage={entAndMediaData.enterntainmentClientsData.itemsPerPage}
-        title={entAndMediaData.enterntainmentClientsData.title}
-        description={entAndMediaData.enterntainmentClientsData.description}
+        title={entertainmentAndMediaData.clientsBlock.title}
+        description={entertainmentAndMediaData.clientsBlock.description}
+        clientsApolloProps={clientsPaginationProps}
       />
       <ArticlesBlock paginationData={paginationDataProps} />
 
       <PracticesLinksBlock
+        practicesListTitle={entertainmentAndMediaData.practicesList.title}
         practices={practices}
-        practicesFooterImage={entAndMediaData.practicesFooterImage}
+        practicesFooterImage={
+          entertainmentAndMediaData.practicesList.imageUnderTitle
+        }
       />
     </>
   );

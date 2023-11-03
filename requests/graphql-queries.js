@@ -465,6 +465,37 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
   }
 }`;
 
+export const getClientsQuery = `query FirmPageQuery(
+  $after: String, 
+  $before: String, 
+  $first: Int, 
+  $last: Int
+) {
+  clients(after: $after, before: $before, first: $first, last: $last) {
+     edges {
+      node {
+        databaseId
+        title
+        clientsFields {
+          clientImage {
+            sourceUrl
+            title
+          }
+          entertainmentSubcategory
+          lineColor
+          proffesion
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }
+}`;
+
 // , order by: {field: DATE, order: DESC}
 export const categoryPostsByIdQuery = `query categoryPostsById(
   $first: Int

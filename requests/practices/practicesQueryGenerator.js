@@ -1,10 +1,61 @@
 export const practicesQueryGenerator = (uri) => {
   const practiceMap = {
     '/practices/entertainment-and-media': `practiceContentForEntertainmentLaw {
-				entertainmentMedia {
-					subTitle
-				}
-			}
+      entertainmentMedia {
+        subTitle
+        attorneysTitleBox
+        sliderBackgrounds {
+          backgroundImage {
+            sourceUrl
+            title
+            databaseId
+          }
+          title
+        }
+        entertainmentInfoBlock {
+          tabs {
+            imageBackground {
+              databaseId
+              sourceUrl
+              title
+              mediaDetails {
+                height
+                width
+              }
+            }
+            imagePosition
+            lawInfo {
+              description
+              servicesList {
+                title
+              }
+            }
+            modalData {
+              modalServicesDescription
+              moreServicesList {
+                title
+              }
+            }
+            title
+          }
+        }
+        clientsBlock {
+          description
+          title
+        }
+        practicesList {
+          imageUnderTitle {
+            sourceUrl
+            title
+            mediaDetails {
+              height
+              width
+            }
+          }
+          title
+        }
+      }
+    }
 		`,
     '/practices/new-jersey-cannabis-law': `practiceContentForeCannabisLaw {
 				cannabisLaw {

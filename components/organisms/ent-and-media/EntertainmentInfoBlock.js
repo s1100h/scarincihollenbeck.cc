@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
   EnterntainmentTabBtn,
@@ -37,8 +37,8 @@ const EntertainmentInfoBlock = ({ tabs }) => {
   const setTabStyles = (variant) => {
     const tabStyle = {
       first: '',
-      second: 'full-image',
-      third: 'right-image',
+      middle: 'full-image',
+      second: 'right-image',
     };
     return tabStyle[variant];
   };
@@ -93,7 +93,7 @@ const EntertainmentInfoBlock = ({ tabs }) => {
         <EnterntainmentTabNavbar>
           {tabs.map((tab, index) => (
             <EnterntainmentTabNavbarItem
-              key={tab.id}
+              key={tab.imageBackground.databaseId}
               onClick={() => handleTabClick(index)}
               className={activeTabIndex === index ? 'active' : ''}
             >
@@ -109,24 +109,24 @@ const EntertainmentInfoBlock = ({ tabs }) => {
             exit={{ opacity: 0, x: -50 }}
           >
             <EnterntainmentTabContent
-              className={`${setTabStyles(activeTab.variant)}`}
+              className={`${setTabStyles(activeTab.imagePosition)}`}
             >
               <EnterntainmentTabImage>
                 <Image
-                  src={activeTab.image}
-                  alt={activeTab.title}
-                  width={activeTab.imageWidth}
-                  height={activeTab.imageHeight}
+                  src={activeTab.imageBackground.sourceUrl}
+                  alt={activeTab.imageBackground.title}
+                  width={activeTab.imageBackground.mediaDetails.width}
+                  height={activeTab.imageBackground.mediaDetails.height}
                   loading="lazy"
                 />
               </EnterntainmentTabImage>
               <EnterntainmentTabDescription>
-                {activeTab.description}
+                {activeTab.lawInfo.description}
               </EnterntainmentTabDescription>
               <EnterntainmentTabList>
-                {activeTab.listServices.map((item) => (
-                  <EnterntainmentTabListItem key={item}>
-                    {item}
+                {activeTab.lawInfo.servicesList.map((item) => (
+                  <EnterntainmentTabListItem key={item.title}>
+                    {item.title}
                   </EnterntainmentTabListItem>
                 ))}
               </EnterntainmentTabList>
@@ -151,8 +151,8 @@ const EntertainmentInfoBlock = ({ tabs }) => {
                   onClick={() => setIsShowModal(false)}
                 />
                 <EntertainmentModalList>
-                  {activeTab.modalData.modalList.map((item, index) => (
-                    <EntertainmentModalListItem key={item.id}>
+                  {activeTab.modalData.moreServicesList.map((item, index) => (
+                    <EntertainmentModalListItem key={item.title}>
                       <EntertainmentModalListNumber>
                         {index < 9 ? `0${index + 1}` : index + 1}
                       </EntertainmentModalListNumber>
@@ -161,7 +161,7 @@ const EntertainmentInfoBlock = ({ tabs }) => {
                   ))}
                 </EntertainmentModalList>
                 <EntertainmentModalDescription>
-                  {activeTab.modalData.modalDescription}
+                  {activeTab.modalData.modalServicesDescription}
                 </EntertainmentModalDescription>
               </EntertainmentModalContent>
               <EntertainmentModalFooter>
