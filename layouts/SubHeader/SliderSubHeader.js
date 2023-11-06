@@ -36,7 +36,8 @@ const SliderSubHeader = ({
   subtitle,
   slidesData,
   sliderCfg,
-  subHeaderBtns,
+  handleClickAnchor,
+  anchorId,
 }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [dots, setDots] = useState([]);
@@ -44,7 +45,6 @@ const SliderSubHeader = ({
   const isNextBtnDisabled = activeSlideIndex === slidesData?.length - 1;
   const titleRef = useRef(null);
   const [titleHeight, setTitleHeight] = useState(0);
-
   const goToPrevSlide = () => {
     if (activeSlideIndex > 0) {
       setActiveSlideIndex(activeSlideIndex - 1);
@@ -153,9 +153,11 @@ const SliderSubHeader = ({
                 <SlideTitle className="slide__title-margin">In law</SlideTitle>
                 <SlideSubTitle>{subtitle}</SlideSubTitle>
                 <SlideBtns>
-                  {subHeaderBtns.map((btn) => (
-                    <SlideBtn key={btn.btnLink}>{btn.btnText}</SlideBtn>
-                  ))}
+                  <SlideBtn onClick={handleClickAnchor} href={`#${anchorId}`}>
+                    See attorneys
+                  </SlideBtn>
+                  {/* href Plug!!!! */}
+                  <SlideBtn href="/attorneys">Know more</SlideBtn>
                 </SlideBtns>
               </SlideBlock>
               <SlideNumbers>

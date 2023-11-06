@@ -3,8 +3,13 @@ import { ContainerContent } from 'styles/practices-special-style/commonForSpecia
 import { AttorneySection } from 'styles/practices-special-style/ent-adn-media/AttorneysBlock.style';
 import AttorneysListBox from '../../common/AttorneysListBox';
 
-const AttorneysBlock = ({ chairPractice, attorneyListPractice, title }) => (
-  <AttorneySection>
+const AttorneysBlock = ({
+  chairPractice,
+  attorneyListPractice,
+  title,
+  anchorLinkToAttorneys,
+}) => (
+  <AttorneySection id={anchorLinkToAttorneys}>
     <ContainerContent>
       <h2 className="attorney-title">{title}</h2>
       {(!empty(chairPractice) || !empty(attorneyListPractice)) && (

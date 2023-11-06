@@ -9,6 +9,7 @@ import {
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
 import { FullHDContainer } from './commonForSpecial.style';
+import Link from 'next/link';
 
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
@@ -147,13 +148,13 @@ export const ImageWrapper = styled.div`
 `;
 
 export const SlideSubHeader = styled.div`
-  padding-top: ${rem(40)};
+  padding-top: 40px;
   flex: 1;
   display: flex;
-  column-gap: ${rem(32)};
+  column-gap: 32px;
 
   @media (max-width: 1440px) {
-    padding-top: ${rem(12)};
+    padding-top: 12px;
     flex-direction: column;
   }
 
@@ -187,13 +188,13 @@ export const SlideSubHeader = styled.div`
   }
 `;
 export const SlideSidebar = styled.div`
-  width: ${rem(119)};
+  width: 119px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 
   @media (max-width: 1440px) {
-    margin-bottom: ${rem(40)};
+    margin-bottom: 40px;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
@@ -201,7 +202,7 @@ export const SlideSidebar = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin-bottom: ${rem(32)};
+    margin-bottom: 32px;
   }
 `;
 export const SlideContent = styled.div`
@@ -211,30 +212,30 @@ export const SlideContent = styled.div`
 
   @media (max-width: 1440px) {
     flex-direction: column;
-    row-gap: ${rem(40)};
+    row-gap: 40px;
   }
 `;
 export const SlideBlock = styled.div`
-  max-width: ${rem(1033)};
+  max-width: 1033px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 export const SlideSmallTitle = styled.h5`
-  margin: 0 0 ${rem(28)} 0;
+  margin: 0 0 28px 0;
   color: ${entAndMediaColors.entAndMediaColorGray};
-  font-size: ${rem(16)};
+  font-size: 1rem;
   font-family: var(--font-poppins);
   font-weight: 400;
-  line-height: ${rem(24)};
-  letter-spacing: ${rem(1.6)};
+  line-height: 24px;
+  letter-spacing: 1.6px;
 
   @media (max-width: 1440px) {
-    margin: 0 0 ${rem(22)} 0;
+    margin: 0 0 22px 0;
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
-    letter-spacing: ${rem(1.4)};
+    line-height: 21px;
+    letter-spacing: 1.4px;
   }
 `;
 export const SlideTitle = styled.h1`
@@ -243,7 +244,7 @@ export const SlideTitle = styled.h1`
   color: ${globalColor.white};
   font-size: clamp(${rem(40)}, 7vw, ${rem(128)});
   font-weight: 400;
-  line-height: clamp(${rem(60)}, 7vw, ${rem(170)});
+  line-height: clamp(60px, 7vw, 170px);
   text-transform: uppercase;
 
   &.slide__title-margin {
@@ -268,7 +269,7 @@ export const SlideBtns = styled.div`
   display: flex;
   column-gap: ${rem(24)};
 `;
-export const SlideBtn = styled.a`
+export const SlideBtn = styled(Link)`
   cursor: pointer;
   border-radius: ${rem(40)};
   border: ${rem(2)} solid ${globalColor.white};

@@ -6,6 +6,7 @@ import {
   categoryPostsByIdQuery,
   getClientsQuery,
 } from '../../../requests/graphql-queries';
+import useAnchorLink from '../../../hooks/useAnchorLink';
 
 const AttorneysBlock = dynamic(() => import('../../organisms/ent-and-media/AttorneysBlock'));
 const EntertainmentInfoBlock = dynamic(() => import('../../organisms/ent-and-media/EntertainmentInfoBlock'));
@@ -22,6 +23,10 @@ const EntertainmentAndMediaPage = ({
   entertainmentAndMediaData,
   practices,
 }) => {
+  const { setHref, hrefToId } = useAnchorLink();
+  const anchorIdToAttorneys = 'practiceAttorneys';
+  const handleClickByAnchorToAttorneys = () => setHref(anchorIdToAttorneys);
+
   const {
     handleClientsPrevPagination,
     handleClientsNextPagination,
@@ -74,17 +79,6 @@ const EntertainmentAndMediaPage = ({
     autoPlaySpeed: 3000,
   };
 
-  const subHeaderBtns = [
-    {
-      btnText: 'See attorneys',
-      btnLink: '/practices/12',
-    },
-    {
-      btnText: 'Know more',
-      btnLink: '/practices/1',
-    },
-  ];
-
   return (
     <>
       <BasicSiteHead
@@ -98,26 +92,24 @@ const EntertainmentAndMediaPage = ({
         subtitle={entertainmentAndMediaData.subTitle}
         title={practice.title}
         sliderCfg={sliderCfg}
-        subHeaderBtns={subHeaderBtns}
+        handleClickAnchor={handleClickByAnchorToAttorneys}
+        anchorId={anchorIdToAttorneys}
       />
-
       <AttorneysBlock
         attorneyListPractice={attorneyListPractice}
         chairPractice={chairPractice}
         title={entertainmentAndMediaData.attorneysTitleBox}
+        anchorLinkToAttorneys={hrefToId}
       />
-
       <EntertainmentInfoBlock
         tabs={entertainmentAndMediaData.entertainmentInfoBlock.tabs}
       />
-
       <EntertainmentClientsBlock
         title={entertainmentAndMediaData.clientsBlock.title}
         description={entertainmentAndMediaData.clientsBlock.description}
         clientsApolloProps={clientsPaginationProps}
       />
       <ArticlesBlock paginationData={paginationDataProps} />
-
       <PracticesLinksBlock
         practicesListTitle={entertainmentAndMediaData.practicesList.title}
         practices={practices}

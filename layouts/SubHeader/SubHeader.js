@@ -18,6 +18,7 @@ const SubHeader = ({
   isBlog,
   isHoliday,
   handleClickAnchor,
+  anchorId,
   isFilter = false,
   authors = [],
   date = '',
@@ -25,12 +26,10 @@ const SubHeader = ({
   setActiveTab,
   activeTab,
   backgroundImage,
-  anchorId,
   article,
   backgroundVideo,
   slidesData,
   sliderCfg,
-  subHeaderBtns,
 }) => {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
@@ -47,13 +46,12 @@ const SubHeader = ({
     setActiveTab,
     activeTab,
     backgroundImage,
-    anchorId,
     article,
     backgroundVideo,
+    anchorId,
     handleClickAnchor,
     slidesData,
     sliderCfg,
-    subHeaderBtns,
   };
 
   return <>{renderSubHeader(slug, subHeaderProps)}</>;
