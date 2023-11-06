@@ -27,6 +27,8 @@ export function sortByKey(list, key) {
   return list;
 }
 
+export const convertBooleanToString = (booleanArg) => (booleanArg ? 'true' : '');
+
 // take a term lower case and replace white spaces with dashes
 export const urlify = (str) => str.toLowerCase().replace(/\s/g, '-');
 
@@ -63,6 +65,16 @@ export function getDirectionsFromLocation(location) {
 
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
+
+export const cutAnchorUrl = (slug) => {
+  const index = slug.indexOf('#');
+
+  if (index !== -1) {
+    return slug.substring(0, index);
+  }
+
+  return slug;
+};
 
 // filter by key
 export function filterByKey(list, key) {
@@ -164,13 +176,12 @@ export const formatSrcToCloudinaryUrlPdf = (src) => {
 export const formatPageImageToCloudinaryUrl = (page) => {
   const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';
   if (page.includes(tossUrl)) {
-    const modImageUrlContent = page
+    return page
       .replace(
         /https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g,
         CLOUDINARY_BASE_URL,
       )
       .replace(/-\d{3,}x\d{3,}\./g, '.');
-    return modImageUrlContent;
   }
 
   return page;
@@ -222,4 +233,15 @@ export const changeTitle = (title) => {
     (symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])),
   );
   return title;
+};
+
+export const getSlugFromUrl = (inputString) => {
+  const pattern = /\/([^/]+)$/; // Match the last slash and capture non-slash characters after it
+  const match = pattern.exec(inputString);
+
+  if (match && match[1]) {
+    return match[1];
+  }
+
+  return inputString;
 };

@@ -1,4 +1,5 @@
 import { GrNext, GrPrevious } from 'react-icons/gr';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { PaginationBtn } from '../../styles/PaginationBtn.style';
 
 const PaginationButtons = ({
@@ -7,6 +8,7 @@ const PaginationButtons = ({
   countOfArticles,
   disablePrevBtn,
   disabledNextBtn,
+  justArrow,
 }) => (
   <div
     className="d-flex flex-row justify-content-between"
@@ -22,17 +24,23 @@ const PaginationButtons = ({
       className="text-dark"
       onClick={() => handlePrevPagination(countOfArticles)}
     >
-      <GrPrevious style={{ fontSize: '15px' }} />
-      <strong
-        style={{
-          fontSize: '20px',
-          position: 'relative',
-          left: '6px',
-          top: '1px',
-        }}
-      >
-        Previous
-      </strong>
+      {justArrow ? (
+        <BsArrowLeft />
+      ) : (
+        <strong
+          style={{
+            fontSize: '20px',
+            position: 'relative',
+            left: '6px',
+            top: '1px',
+          }}
+        >
+          <GrPrevious
+            style={{ fontSize: '15px', position: 'relative', right: '6px' }}
+          />
+          Previous
+        </strong>
+      )}
     </PaginationBtn>
     <PaginationBtn
       variant="link"
@@ -40,10 +48,16 @@ const PaginationButtons = ({
       disabled={disabledNextBtn}
       onClick={() => handleNextPagination(countOfArticles)}
     >
-      <strong style={{ fontSize: '20px', position: 'relative', top: '1px' }}>
-        Next
-      </strong>
-      <GrNext style={{ fontSize: '15px', position: 'relative', left: '6px' }} />
+      {justArrow ? (
+        <BsArrowRight />
+      ) : (
+        <strong style={{ fontSize: '20px', position: 'relative', top: '1px' }}>
+          Next
+          <GrNext
+            style={{ fontSize: '15px', position: 'relative', left: '6px' }}
+          />
+        </strong>
+      )}
     </PaginationBtn>
   </div>
 );

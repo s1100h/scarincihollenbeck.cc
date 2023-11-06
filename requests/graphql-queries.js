@@ -472,9 +472,9 @@ export const categoryPostsByIdQuery = `query categoryPostsById(
   $after: String
   $before: String
   $id: Int
-  $categoryIn: [ID]
+  $categoryId: Int
 ) {
-  posts(where: {categoryIn: $categoryIn, id: $id}, first: $first, last: $last, after: $after, before: $before) {
+  posts(where: {categoryId: $categoryId, id: $id}, first: $first, last: $last, after: $after, before: $before) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -815,109 +815,6 @@ export const getPracticesQuery = `query NewQuery {
     }
   }
 }`;
-
-export const getDataForPractice = `query FirmPageQuery($id: ID!) {
-  practice(id: $id, idType: URI) {
-    databaseId
-    slug
-    title
-    practicesIncluded {
-      contentSection {
-        title
-        content
-      }
-      description
-      includeAttorney {
-        ... on AttorneyProfile {
-          databaseId
-          uri
-          title
-          attorneyMainInformation {
-            designation
-            email
-            phoneNumber
-            lastName
-            profileImage {
-              sourceUrl
-            }
-          }
-        }
-      }
-      sectionChief {
-        ... on AttorneyProfile {
-          databaseId
-          uri
-          title
-          attorneyMainInformation {
-            designation
-            email
-            phoneNumber
-            lastName
-            profileImage {
-              sourceUrl
-            }
-          }
-        }
-      }
-      childPractice {
-        ... on Practice {
-          databaseId
-          title
-          slug
-        }
-      }
-      relatedBlogCategory {
-        databaseId
-      }
-      keyContactByPractice {
-        ... on AttorneyProfile {
-          databaseId
-          uri
-          title
-          attorneyMainInformation {
-            designation
-            email
-            phoneNumber
-            profileImage {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-    seo {
-      title
-      metaDesc
-    }
-  }
-  practices(first: 100) {
-    nodes {
-      title
-      uri
-      databaseId
-      practicesIncluded {
-        childPractice {
-          ... on Practice {
-            databaseId
-          }
-        }
-      }
-    }
-  }
-  posts(where: {categoryIn: [99, 98]}, first: 2) {
-    nodes {
-      uri
-      title
-      databaseId
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-    }
-  }  
-}
-`;
 
 export const getJustClientAlertOnePost = `query FirmPageQuery {
   posts(where: {categoryIn: [20098]}, first: 1) {

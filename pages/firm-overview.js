@@ -4,8 +4,8 @@ import {
   SITE_PHONE,
   PRODUCTION_URL,
 } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { firmOverviewQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { firmOverviewQuery } from 'requests/graphql-queries';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import { useContext, useEffect } from 'react';
 import { getSubTitleFromHTML } from 'utils/helpers';

@@ -1,7 +1,7 @@
 import { CURRENT_DOMAIN, BASE_API_URL, headers } from 'utils/constants';
 import { POST_TYPE_REWRITES } from 'utils/rewrites';
-import { attorneysSiteMapQuery } from '../utils/graphql-queries';
-import { fetchAPI } from '../utils/api';
+import { attorneysSiteMapQuery } from '../requests/graphql-queries';
+import { fetchAPI } from '../requests/api';
 
 /** get all the administration urls */
 const getAdministrationPaths = async () => {

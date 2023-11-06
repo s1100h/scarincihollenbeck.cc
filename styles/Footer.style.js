@@ -7,7 +7,10 @@ import {
 
 export const FooterContainer = styled.footer`
   display: flex;
-  background: #381314;
+  background-color: ${({ backgroundFooterColor }) =>
+    backgroundFooterColor
+      ? backgroundFooterColor
+      : globalColor.red.darkBurgundy};
   color: #fff;
   padding: 2vw 3vw 1vw 3vw;
   width: 100%;
@@ -105,6 +108,10 @@ export const ContactsBox = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 206px;
+
+  ${media_breakpoint_down('sm')} {
+    min-width: auto;
+  }
 `;
 
 export const LinkTitle = styled.p`

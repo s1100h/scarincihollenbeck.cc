@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PagesBody from 'components/organisms/page/BasicPageBody';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { BigGrayTitle } from 'styles/BigGrayTitle.style';
 
@@ -23,7 +23,7 @@ const BasicPageContent = ({
         metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
-      <SingleSubHeader
+      <SubHeader
         title={site.title}
         subtitle={site.description}
         span={7}

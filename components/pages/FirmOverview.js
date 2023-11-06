@@ -1,4 +1,4 @@
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import dynamic from 'next/dynamic';
@@ -29,7 +29,7 @@ const FirmOverviewPage = ({
         metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
-      <SingleSubHeader title={title} subtitle={subTitle} span={6} offset={3} />
+      <SubHeader title={title} subtitle={subTitle} span={6} offset={3} />
       <ContainerXXL>
         <CentralizedBox notSurface="true">
           <HeadInformation

@@ -18,14 +18,14 @@ export const media_breakpoint_exactly_down = (size) => {
 
 export const media_breakpoint_range = (sizeMin, sizeMax) => {
   return `@media only screen
-          and (min-device-width: ${sizeWindow[sizeMin]}px)
-          and (max-device-width: ${sizeWindow[sizeMax]}px)
+          and (min-width: ${sizeWindow[sizeMin]}px)
+          and (max-width: ${sizeWindow[sizeMax]}px)
           `;
 };
 
 export const media_breakpoint_range_exacly = (sizeMin, sizeMax) => {
   return `@media only screen
-          and (min-device-width: ${sizeMin}px)
-          and (max-device-width: ${sizeMax}px)
+          and (min-width: ${sizeMin}px)
+          and (max-width: ${sizeMax}px)
           `;
 };

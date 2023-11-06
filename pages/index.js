@@ -1,10 +1,10 @@
 import HomePage from 'components/pages/HomePage';
-import { fetchAPI } from 'utils/api';
+import { fetchAPI } from 'requests/api';
 import {
   firmNewsQuery,
   homePageQuery,
   officeLocationQuery,
-} from 'utils/graphql-queries';
+} from 'requests/graphql-queries';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 /** pull out the attorney chair data from attorney response */

@@ -1,23 +1,23 @@
-import { changeTitle, formatDate } from 'utils/helpers';
+import Link from 'next/link';
 import {
   BackgroundContainer,
   Description,
   GradientWrapper,
   SubHeaderContent,
-} from 'styles/SingleSubHeader.style';
-import Link from 'next/link';
-import ButtonsMenu from 'components/organisms/practice/ButtonsMenu';
-import PostBreadcrumbs from '../components/organisms/post/PostBreadcrumbs';
-import { JSXWithDynamicLinks } from '../components/atoms/micro-templates/JSXWithDynamicLinks';
+} from '../../styles/SingleSubHeader.style';
+import PostBreadcrumbs from '../../components/organisms/post/PostBreadcrumbs';
+import { changeTitle, formatDate } from '../../utils/helpers';
+import { JSXWithDynamicLinks } from '../../components/atoms/micro-templates/JSXWithDynamicLinks';
+import ButtonsMenu from '../../components/organisms/practice/ButtonsMenu';
 
-const SingleSubHeader = ({
+const DefaultSubHeader = ({
   title,
   subtitle,
   isBlog,
   isHoliday,
-  isFilter = false,
-  authors = [],
-  date = '',
+  isFilter,
+  authors,
+  date,
   tabs,
   setActiveTab,
   activeTab,
@@ -78,4 +78,4 @@ const SingleSubHeader = ({
   </BackgroundContainer>
 );
 
-export default SingleSubHeader;
+export default DefaultSubHeader;

@@ -1,14 +1,25 @@
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
+import { Fragment, useState } from 'react';
 import AttorneyPracticeCard from '../molecules/practice/AttorneyPracticeCard';
 import useStateScreen from '../../hooks/useStateScreen';
 import AttorneyCard from '../shared/AttorneyCard';
+import AttorneyCannabisCard from '../molecules/cannabis-law/AttorneyCannabisCard';
 
-const AttorneysListBox = ({ attorneys }) => {
+const CardVariantsMap = {
+  default: AttorneyPracticeCard,
+  cannabis: AttorneyCannabisCard,
+};
+const renderCardsByVariants = (variant, propsCard, cardsMap) => {
+  const AttorneysCardVariable = cardsMap[variant];
+  return <AttorneysCardVariable {...propsCard} />;
+};
+
+const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
   const { chairs, attorneysList } = attorneys;
   const { isMobileScreen } = useStateScreen();
-
+  const [cardIdHovered, setCardIdHovered] = useState();
   return (
-    <AttorneysContainer>
+    <AttorneysContainer isNotDefault={variant}>
       {chairs?.length > 0 && (
         <div className="chair-box">
           <h3>Chair</h3>
@@ -28,20 +39,39 @@ const AttorneysListBox = ({ attorneys }) => {
                   type="/attorneys/[slug]"
                 />
               ))
-              : chairs?.map((chair) => (
-                <AttorneyPracticeCard
-                  classNameProp="vertical-attorney-card"
-                  key={chair.databaseId}
-                  link={`${chair.link}`}
-                  image={chair.profileImage}
-                  name={chair.title}
-                  designation={chair.designation}
-                  number={chair.phoneNumber}
-                  email={chair.email}
-                  width={180}
-                  height={210}
-                />
-              ))}
+              : chairs?.map(
+                ({
+                  databaseId,
+                  link,
+                  profileImage,
+                  title,
+                  designation,
+                  phoneNumber,
+                  email,
+                }) => (
+                  <Fragment key={databaseId}>
+                    {renderCardsByVariants(
+                      variant,
+                      {
+                        classNameProp: 'vertical-attorney-card',
+                        key: databaseId,
+                        link,
+                        image: profileImage,
+                        name: title,
+                        designation,
+                        number: phoneNumber,
+                        email,
+                        width: 180,
+                        height: 210,
+                        setterId: setCardIdHovered,
+                        cardIdHovered,
+                        databaseId,
+                      },
+                      CardVariantsMap,
+                    )}
+                  </Fragment>
+                ),
+              )}
           </div>
         </div>
       )}
@@ -65,20 +95,39 @@ const AttorneysListBox = ({ attorneys }) => {
                   type="/attorneys/[slug]"
                 />
               ))
-              : attorneysList.map((attorney) => (
-                <AttorneyPracticeCard
-                  classNameProp="vertical-attorney-card"
-                  key={attorney.databaseId}
-                  link={`${attorney.link}`}
-                  image={attorney.profileImage}
-                  name={attorney.title}
-                  designation={attorney.designation}
-                  number={attorney.phoneNumber}
-                  email={attorney.email}
-                  width={180}
-                  height={210}
-                />
-              ))}
+              : attorneysList.map(
+                ({
+                  databaseId,
+                  link,
+                  profileImage,
+                  title,
+                  designation,
+                  phoneNumber,
+                  email,
+                }) => (
+                  <Fragment key={databaseId}>
+                    {renderCardsByVariants(
+                      variant,
+                      {
+                        classNameProp: 'vertical-attorney-card',
+                        key: databaseId,
+                        link,
+                        image: profileImage,
+                        name: title,
+                        designation,
+                        number: phoneNumber,
+                        email,
+                        width: 180,
+                        height: 210,
+                        setterId: setCardIdHovered,
+                        cardIdHovered,
+                        databaseId,
+                      },
+                      CardVariantsMap,
+                    )}
+                  </Fragment>
+                ),
+              )}
           </div>
         </div>
       )}

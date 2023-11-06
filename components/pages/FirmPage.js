@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Subscription from 'components/molecules/subscription/Subscription';
 import Sidebar from 'components/shared/Sidebar';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import { FIRM_BLOG_PAGES } from 'utils/constants';
@@ -39,7 +39,7 @@ export default function FirmPage({ page, canonicalUrl, handleLink }) {
         metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
-      <SingleSubHeader title={title} subtitle={description} />
+      <SubHeader title={title} subtitle={description} />
       <TwoColumnsContainer>
         <FirstColumn>
           {tabs.map((tab) => (
