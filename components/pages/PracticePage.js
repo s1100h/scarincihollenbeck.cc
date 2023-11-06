@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { categoryPostsByIdQuery } from 'utils/graphql-queries';
+import { categoryPostsByIdQuery } from 'requests/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
 import { ColStyled } from 'styles/attorney-page/AttorneyProfile.style';
 import { useRouter } from 'next/router';
@@ -75,11 +75,9 @@ const PracticePage = ({
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <SingleSubHeader
+      <SubHeader
         title={practice.title}
         subtitle={subtitlePractice}
-        offset={0}
-        span={8}
         tabs={tabs}
         setActiveTab={setActiveTab}
         activeTab={activeTab}

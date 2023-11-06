@@ -1,4 +1,3 @@
-import SingleSubHeader from 'layouts/SingleSubHeader';
 import FullWidth from 'layouts/FullWidth';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import ListWrapper from 'components/organisms/practices/ListWrapper';
@@ -9,6 +8,7 @@ import SearchPractices from 'components/molecules/practice/SearchPractices';
 import { ATTORNEYS_FAQ } from 'utils/constants';
 import { Title } from '../../styles/Article.style';
 import { ArticleSearchBox } from '../../styles/Practices.style';
+import SubHeader from '../../layouts/SubHeader/SubHeader';
 
 const FAQ = dynamic(() => import('components/atoms/FAQ'));
 
@@ -25,7 +25,7 @@ const PracticesDirectory = ({
       metaDescription={seo.metaDesc}
       canonicalUrl={canonicalUrl}
     />
-    <SingleSubHeader
+    <SubHeader
       backgroundImage={subheaderOverlay}
       title={site.title}
       subtitle={site.description}

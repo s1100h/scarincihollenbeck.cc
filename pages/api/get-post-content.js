@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import { fetchAPI } from 'utils/api';
+import { fetchAPI } from 'requests/api';
 import { CLOUDINARY_BASE_URL, SITE_TITLE } from 'utils/constants';
-import { profileStatusQuery } from 'utils/graphql-queries';
+import { profileStatusQuery } from 'requests/graphql-queries';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 
 require('dotenv').config();

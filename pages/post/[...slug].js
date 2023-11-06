@@ -6,8 +6,8 @@ import {
   SITE_TITLE,
 } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
-import { fetchAPI } from 'utils/api';
-import { postQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { postQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import parse from 'html-react-parser';
 import { cutDomain, getSubTitleFromHTML, sortByKey } from '../../utils/helpers';

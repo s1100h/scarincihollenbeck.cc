@@ -1,10 +1,10 @@
 import React from 'react';
-import { fetchAPI } from 'utils/api';
+import { fetchAPI } from 'requests/api';
 import {
   attorneyBySlugQuery,
   attorneyNewsEventsQuery,
   checkAttorneyPostsQueryByIdAndSlug,
-} from 'utils/graphql-queries';
+} from 'requests/graphql-queries';
 import {
   concatNameUser,
   fetchExternalPosts,

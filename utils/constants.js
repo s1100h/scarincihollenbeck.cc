@@ -639,22 +639,22 @@ export const CategoriesButtonsStructure = [
   {
     slug: 'client-alert',
     label: 'Client Alert',
-    id: 0,
+    databaseId: 20098,
   },
   {
     slug: 'firm-news',
     label: 'News',
-    id: 1,
+    databaseId: 98,
   },
   {
     slug: 'firm-events',
     label: 'Events',
-    id: 2,
+    databaseId: 99,
   },
   {
     slug: 'law-firm-insights',
     label: 'Insights',
-    id: 3,
+    databaseId: 599,
   },
 ];
 
@@ -710,6 +710,8 @@ export const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
+
+export const MAKE_A_PAYMENT = 'https://secure.lawpay.com/pages/scarincihollenbeck/operating';
 
 /** constant data that comes from hidden files for security */
 export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;

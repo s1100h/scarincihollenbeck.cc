@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { SidebarTile } from '../../styles/attorney-page/ProfileSidebar.style';
 import Surface from '../atoms/micro-templates/surface';
-import SingleSubHeader from '../../layouts/SingleSubHeader';
+import SubHeader from '../../layouts/SubHeader/SubHeader';
 import { FormsContext } from '../../contexts/FormsContext';
 
 const TilePuzzle = dynamic(() => import('../organisms/contact-us/TilePuzzle'));
@@ -32,7 +32,7 @@ const FormPageContent = ({
         metaDescription={seo.metaDescription}
         canonicalUrl={canonicalUrl}
       />
-      <SingleSubHeader title={site.title} subtitle={site.description} />
+      <SubHeader title={site.title} subtitle={site.description} />
       <Container>
         <Row>
           <Col sm={12} lg={6} xl={4} ref={formWrapper}>

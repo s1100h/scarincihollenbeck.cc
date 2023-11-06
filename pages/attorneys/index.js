@@ -7,13 +7,13 @@ import {
   headers,
   SITE_PHONE,
 } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
+import { fetchAPI } from 'requests/api';
 import {
   adminKaterinTraughQuery,
   attorneysPageQuery,
   attorneysQuery,
   miniOfficeLocationQuery,
-} from 'utils/graphql-queries';
+} from 'requests/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 import { sanitizeOffices } from 'pages';
 

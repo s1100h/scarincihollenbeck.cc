@@ -1,9 +1,12 @@
 import { sortByKey } from 'utils/helpers';
 import { PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { getPracticesQuery, practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 import empty from 'is-empty';
+import { fetchAPI } from '../../requests/api';
+import {
+  getPracticesQuery,
+  practicePageQuery,
+} from '../../requests/graphql-queries';
 
 /** Fetch the practice page content WP GRAPHQL API */
 const practicesPageContent = async () => {

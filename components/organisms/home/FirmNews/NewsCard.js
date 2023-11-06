@@ -48,10 +48,12 @@ const NewsCard = ({
   postAuthor,
   isVertical,
   isProfile,
+  classNameProp,
 }) => (
   <OtherNews
     isProfile={isProfile?.length > 0 && isVertical}
     isVertical={isVertical?.length > 0 && isVertical}
+    className={classNameProp}
   >
     <NewsLink href={postSlug} passHref />
     <div className="link-wrapper">

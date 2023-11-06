@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { firmPagesQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { firmPagesQuery } from 'requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

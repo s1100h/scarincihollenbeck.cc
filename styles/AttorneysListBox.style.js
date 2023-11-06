@@ -5,6 +5,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
+import empty from 'is-empty';
 
 const titlesFontSize = `
 font-size: ${rem(30)};
@@ -96,6 +97,14 @@ export const AttorneysContainer = styled.section`
   margin-bottom: 40px;
 
   h3 {
+    ${({ isNotDefault }) => {
+      if (!empty(isNotDefault)) {
+        return `
+        color: ${globalColor.white};
+        text-transform: uppercase;
+        `;
+      }
+    }};
     margin-bottom: 20px;
   }
 

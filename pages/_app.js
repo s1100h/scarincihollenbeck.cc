@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
 import { LocationProvider } from 'contexts/LocationContext';
 import { AttorneysProvider } from 'contexts/AttorneysContext';
-import Header from 'components/shared/Header';
+import Header from 'components/shared/Header/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
 import SSRProvider from 'react-bootstrap/SSRProvider';
 /**
@@ -23,7 +23,9 @@ import 'animate.css/animate.min.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import TagManager from 'react-gtm-module';
 import { FormContextProvider } from '../contexts/FormsContext';
-import { montserrat, poppins } from '../public/fonts/fonts';
+import {
+  montserrat, poppins, rajdhani, licorice,
+} from '../public/fonts/fonts';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -56,7 +58,9 @@ const SHSite = ({ Component, pageProps }) => {
             <GlobalStyle />
             <MainSiteHead />
             <Header />
-            <main className={`${poppins.variable} ${montserrat.variable}`}>
+            <main
+              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable}`}
+            >
               <Component {...pageProps} />
             </main>
             <SiteFooter />

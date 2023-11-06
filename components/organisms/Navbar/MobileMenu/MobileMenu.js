@@ -10,14 +10,35 @@ import {
   ButtonLinkBox,
   NavList,
   OffcanvasBody,
+  OffcanvasContainer,
 } from 'styles/MobileMenu.style';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Accordion from 'react-bootstrap/Accordion';
 import ButtonGrayLink from './ButtonGrayLink';
 import LinkButtons from '../LinkButtons';
+import {
+  cannabisLawColors,
+  globalColor,
+} from '../../../../styles/global_styles/Global.styles';
+import { useRouter } from 'next/router';
+import { getSlugFromUrl } from '../../../../utils/helpers';
+import empty from 'is-empty';
+
+const specialPageColors = {
+  'new-jersey-cannabis-law': {
+    bgColor: cannabisLawColors.cannabisColorGray,
+    buttonsColors: {
+      color: cannabisLawColors.cannabisColorDarkGray,
+      hover: globalColor.white,
+    },
+  },
+};
 
 const MobileMenu = () => {
   const [show, setShow] = useState(false);
+
+  const { pathname } = useRouter();
+  const slug = getSlugFromUrl(pathname);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -32,7 +53,12 @@ const MobileMenu = () => {
           <IoMenuSharp className="icon" />
         </BurgerBtn>
       )}
-      <Offcanvas show={show} onHide={handleClose} placement="end">
+      <OffcanvasContainer
+        variants={specialPageColors[slug]}
+        show={show}
+        onHide={handleClose}
+        placement="end"
+      >
         <Offcanvas.Header closeButton />
         <OffcanvasBody>
           <NavList>
@@ -77,10 +103,13 @@ const MobileMenu = () => {
             ))}
           </NavList>
           <ButtonLinkBox>
-            <LinkButtons handleClickAndClose={handleClose} />
+            <LinkButtons
+              variant={!empty(specialPageColors[slug]) ? 'special' : 'default'}
+              handleClickAndClose={handleClose}
+            />
           </ButtonLinkBox>
         </OffcanvasBody>
-      </Offcanvas>
+      </OffcanvasContainer>
     </>
   );
 };

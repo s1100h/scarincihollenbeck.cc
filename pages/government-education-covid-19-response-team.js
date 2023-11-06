@@ -1,7 +1,7 @@
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import CovidPage from 'components/pages/CovidPage';
 import { PRODUCTION_URL, COVID_POSTS_ID } from 'utils/constants';
-import { getCovid19BasedPages } from 'utils/queries';
+import { getCovid19BasedPages } from 'requests/queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
 
 /** Fetch page content and map it to page props */

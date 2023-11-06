@@ -1,4 +1,4 @@
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { Container } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
@@ -19,7 +19,7 @@ const HolidayPage = ({
       metaDescription={seo.metaDescription}
       canonicalUrl={canonicalUrl}
     />
-    <SingleSubHeader title={title} subtitle={subTitle} isHoliday="true" />
+    <SubHeader title={title} subtitle={subTitle} isHoliday="true" />
     <Container>
       <HolidayContent content={bodyContent} />
     </Container>

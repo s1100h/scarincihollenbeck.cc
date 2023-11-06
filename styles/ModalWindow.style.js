@@ -7,7 +7,7 @@ export const ModalContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: ${globalColor.trasparents.modal};
+  background-color: ${globalColor.transparentBlack.modal};
   position: fixed;
   z-index: ${({ isOpen }) => (isOpen ? 1055 : -1)};
   top: 0;

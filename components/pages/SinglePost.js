@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 import PostSiteHead from 'components/shared/head/PostSiteHead';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import PostBody from 'components/organisms/post/PostBody';
 import Sidebar from 'components/organisms/post/PostSidebar';
 import { SideBarContainer } from '../../styles/Sidebar.style';
@@ -34,7 +34,7 @@ const PostPage = ({
         post={post}
         authors={authors}
       />
-      <SingleSubHeader
+      <SubHeader
         title={post.title}
         subtitle={post.subTitle}
         offset={0}
