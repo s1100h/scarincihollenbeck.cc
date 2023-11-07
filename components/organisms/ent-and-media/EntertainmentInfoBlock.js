@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
   EnterntainmentTabBtn,
@@ -29,8 +29,17 @@ import {
   EntertainmentModalListItem,
   EntertainmentModalListNumber,
 } from 'styles/practices-special-style/ent-adn-media/EntertainmentModal.style';
+import empty from 'is-empty';
+import { EntertainmentInfoContext } from '../../../contexts/EntertainmentInfoContext';
 
-const EntertainmentInfoBlock = ({ tabs }) => {
+const openTabByAnchorLink = (practiceInfoTabs, titleFromSlider) => practiceInfoTabs.findIndex(({ title }) => title.includes(titleFromSlider));
+
+const EntertainmentInfoBlock = ({
+  tabs,
+  anchorToAttorneysBlock,
+  handleClickForAnchor,
+}) => {
+  const { hrefToId, currentSlideTitle } = useContext(EntertainmentInfoContext);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -51,10 +60,16 @@ const EntertainmentInfoBlock = ({ tabs }) => {
     setIsShowModal(true);
   };
 
+  useEffect(() => {
+    if (!empty(currentSlideTitle)) {
+      setActiveTabIndex(openTabByAnchorLink(tabs, currentSlideTitle));
+    }
+  }, [hrefToId]);
+
   const activeTab = tabs[activeTabIndex];
 
   return (
-    <EntertainmentInfoSection>
+    <EntertainmentInfoSection id={hrefToId}>
       <ContainerContent>
         <EnterntainmentTabNumber>
           {activeTabIndex < 9 ? `0${activeTabIndex + 1}` : activeTabIndex + 1}
@@ -84,7 +99,11 @@ const EntertainmentInfoBlock = ({ tabs }) => {
             <EnterntainmentTabBtn onClick={handleModalOpenerClick}>
               Know more
             </EnterntainmentTabBtn>
-            <EnterntainmentTabBtn className="btn-white">
+            <EnterntainmentTabBtn
+              href={`#${anchorToAttorneysBlock}`}
+              onClick={handleClickForAnchor}
+              className="btn-white"
+            >
               See attorneys
             </EnterntainmentTabBtn>
           </EnterntainmentTabBtns>

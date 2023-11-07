@@ -71,7 +71,7 @@ const EntertainmentClientsBlock = ({
             justArrow
             handleNextPagination={handleClientsNextPagination}
             handlePrevPagination={handleClientsPrevPagination}
-            countOfArticles={3}
+            countOfArticles={10}
             disablePrevBtn={disablePrevBtn}
             disabledNextBtn={disableNextBtn}
           />

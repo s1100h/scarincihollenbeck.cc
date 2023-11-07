@@ -10,6 +10,7 @@ import {
 } from '../../../requests/practices/practice-default';
 import { getSlugFromUrl, sortByKey } from '../../../utils/helpers';
 import ApolloWrapper from '../../../layouts/ApolloWrapper';
+import { EntertainmentInfoProvider } from '../../../contexts/EntertainmentInfoContext';
 
 const getPractices = async () => {
   const data = await fetchAPI(getPracticesQuery, {});
@@ -120,7 +121,9 @@ const EnterteimentAndMedia = ({
   };
   return (
     <ApolloWrapper>
-      <EntertainmentAndMediaPage {...propsPage} />
+      <EntertainmentInfoProvider>
+        <EntertainmentAndMediaPage {...propsPage} />
+      </EntertainmentInfoProvider>
     </ApolloWrapper>
   );
 };

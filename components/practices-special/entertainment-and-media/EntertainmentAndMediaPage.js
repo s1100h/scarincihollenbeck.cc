@@ -33,7 +33,7 @@ const EntertainmentAndMediaPage = ({
     clients,
     loadingClients,
   } = useApolloQuery(getClientsQuery, {
-    first: 3,
+    first: 10,
     last: null,
     after: null,
     before: null,
@@ -102,6 +102,8 @@ const EntertainmentAndMediaPage = ({
         anchorLinkToAttorneys={hrefToId}
       />
       <EntertainmentInfoBlock
+        handleClickForAnchor={handleClickByAnchorToAttorneys}
+        anchorToAttorneysBlock={anchorIdToAttorneys}
         tabs={entertainmentAndMediaData.entertainmentInfoBlock.tabs}
       />
       <EntertainmentClientsBlock

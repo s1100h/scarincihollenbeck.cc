@@ -1,6 +1,8 @@
 import empty from 'is-empty';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import PostBreadcrumbs from '../../components/organisms/post/PostBreadcrumbs';
@@ -26,6 +28,8 @@ import {
   SliderPaginationDots,
   SliderSubHeaderContainer,
 } from '../../styles/practices-special-style/SpecialSubHeader.style';
+import { EntertainmentInfoContext } from '../../contexts/EntertainmentInfoContext';
+import useAnchorLink from '../../hooks/useAnchorLink';
 
 const arrowUp = '/images/arrow-up.svg';
 const arrowDown = '/images/arrow-down.svg';
@@ -39,8 +43,12 @@ const SliderSubHeader = ({
   handleClickAnchor,
   anchorId,
 }) => {
+  const {
+    clickByAnchorToEntertainmentInfoAndOpenPractice,
+    hrefToId,
+    anchorToEntertainmentInfoBlock,
+  } = useContext(EntertainmentInfoContext);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const [dots, setDots] = useState([]);
   const isPrevBtnDisabled = activeSlideIndex === 0;
   const isNextBtnDisabled = activeSlideIndex === slidesData?.length - 1;
   const titleRef = useRef(null);
@@ -50,7 +58,6 @@ const SliderSubHeader = ({
       setActiveSlideIndex(activeSlideIndex - 1);
     }
   };
-
   const goToNextSlide = () => {
     if (activeSlideIndex < slidesData.length - 1) {
       setActiveSlideIndex(activeSlideIndex + 1);
@@ -64,14 +71,6 @@ const SliderSubHeader = ({
       setActiveSlideIndex(0);
     }
   };
-
-  useEffect(() => {
-    setDots(
-      new Array(slidesData?.length)
-        .fill(0)
-        .map((_, index) => index === activeSlideIndex),
-    );
-  }, [activeSlideIndex, slidesData]);
 
   useEffect(() => {
     if (titleRef.current) {
@@ -91,31 +90,35 @@ const SliderSubHeader = ({
 
   const activeSlide = slidesData[activeSlideIndex];
 
+  const handleClickToEntertainmentInfo = () => {
+    clickByAnchorToEntertainmentInfoAndOpenPractice(
+      slidesData[activeSlideIndex].title,
+    );
+  };
+
   return (
     <SliderSubHeaderContainer>
       <ContainerContent>
         <PostBreadcrumbs />
         {!empty(slidesData) && (
           <SlideSubHeader>
-            {!empty(activeSlide.backgroundImage) && (
-              <AnimatePresence>
-                <motion.div
-                  key={activeSlide.backgroundImage.databaseId}
-                  initial={{ opacity: 0.5 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0.5 }}
-                  transition={{ duration: 1 }}
-                  className="animation-wrapper"
-                >
-                  <Image
-                    src={activeSlide.backgroundImage.sourceUrl}
-                    alt={activeSlide.backgroundImage.title}
-                    width={1920}
-                    height={1080}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            )}
+            <AnimatePresence>
+              <motion.div
+                key={activeSlide.backgroundImage.databaseId}
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0.5 }}
+                transition={{ duration: 1 }}
+                className="animation-wrapper"
+              >
+                <Image
+                  src={activeSlide.backgroundImage.sourceUrl}
+                  alt={activeSlide.backgroundImage.title}
+                  width={1920}
+                  height={1080}
+                />
+              </motion.div>
+            </AnimatePresence>
             <SlideSidebar>
               <SlideDarkText className="slide__company">
                 Scarinci Hollenbeck’s
@@ -157,7 +160,12 @@ const SliderSubHeader = ({
                     See attorneys
                   </SlideBtn>
                   {/* href Plug!!!! */}
-                  <SlideBtn href="/attorneys">Know more</SlideBtn>
+                  <SlideBtn
+                    onClick={handleClickToEntertainmentInfo}
+                    href={`#${hrefToId || anchorToEntertainmentInfoBlock}`}
+                  >
+                    Know more
+                  </SlideBtn>
                 </SlideBtns>
               </SlideBlock>
               <SlideNumbers>
