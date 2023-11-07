@@ -1056,8 +1056,11 @@ export const holidayPageQuery = `query BasicPageQuery {
 `;
 
 /** querying firm pages content */
-export const firmPagesQuery = `query FirmPageQuery($slug: String) {
-  pageBy(uri: $slug) {
+export const firmPagesQuery = `query FirmPageQuery(
+	$slug: ID!,
+  $categoryId: Int
+  ) {
+  page(idType: URI, id: $slug) {
     title
     seo {
       metaDesc
@@ -1101,7 +1104,7 @@ export const firmPagesQuery = `query FirmPageQuery($slug: String) {
         }
       }
       relatedPosts {
-        posts(first: 3) {
+        posts(first: 3, where: {categoryId: $categoryId}) {
           edges {
             node {
               id
@@ -1109,15 +1112,15 @@ export const firmPagesQuery = `query FirmPageQuery($slug: String) {
               date
               excerpt
               title(format: RENDERED)
-              featuredImage{
-                node{
+              featuredImage {
+                node {
                   sourceUrl
                 }
               }
               author {
-                 node {
-                   name
-                 }
+                node {
+                  name
+                }
               }
             }
           }

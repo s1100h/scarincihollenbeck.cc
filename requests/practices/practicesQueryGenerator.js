@@ -76,10 +76,6 @@ export const practicesQueryGenerator = (uri) => {
 						listOfLegalGuidanceRegarding {
 							issue
 						}
-						underlay {
-							altText
-							sourceUrl
-						}
 					}
 					helpArticleBlock {
 						title
