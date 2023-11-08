@@ -32,6 +32,16 @@ const specialPageColors = {
       hover: globalColor.white,
     },
   },
+  'entertainment-and-media': {
+    buttonsColors: {
+      bgColor: globalColor.black,
+      color: globalColor.white,
+      hover: globalColor.black,
+      btnHoverColor: globalColor.black,
+      btnHoverBgColor: globalColor.white,
+      borderColor: globalColor.black,
+    },
+  },
 };
 
 const MobileMenu = () => {
