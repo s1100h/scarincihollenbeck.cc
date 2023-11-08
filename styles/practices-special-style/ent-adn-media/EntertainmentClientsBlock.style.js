@@ -56,12 +56,11 @@ export const EntertainmentClientsSubtitle = styled.h5`
 export const EntertainmentClientsTitle = styled.h2`
   margin: 0 0 ${rem(48)} 0;
   color: ${entAndMediaColors.entAndMediaColorGold};
-  font-family: var(--font-poppins), sans-serif;
+  font-family: var(--font-carilo);
   font-style: italic;
   font-size: ${rem(84)};
   font-weight: 400;
   line-height: ${rem(100)};
-  text-transform: uppercase;
 
   @media (max-width: 1850px) {
     margin: 0 0 ${rem(40)} 0;

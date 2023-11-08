@@ -240,12 +240,11 @@ export const SlideSmallTitle = styled.h5`
 `;
 export const SlideTitle = styled.h1`
   margin: 0;
-  font-family: var(--font-poppins);
+  font-family: var(--font-carilo);
   color: ${globalColor.white};
   font-size: clamp(${rem(40)}, 7vw, ${rem(128)});
   font-weight: 400;
   line-height: clamp(60px, 7vw, 170px);
-  text-transform: uppercase;
 
   &.slide__title-margin {
     margin-left: 9.3vw;

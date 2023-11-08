@@ -90,7 +90,7 @@ export const EnterntainmentTabTitleWrapper = styled.div`
 export const EnterntainmentTabTitle = styled.h2`
   margin: 0;
   color: ${globalColor.black};
-  font-family: var(--font-poppins), sans-serif;
+  font-family: var(--font-carilo), sans-serif;
   font-size: ${rem(84)};
   line-height: ${rem(100)};
   font-weight: 400;

@@ -14,11 +14,12 @@ export const ArticlesSection = styled.section`
   ${TitleButtonBox} {
     h3 {
       color: ${globalColor.black};
-      font-family: var(--font-poppins), sans-serif;
+      font-family: var(--font-carilo);
       font-size: ${rem(84)};
       font-weight: 400;
       line-height: ${rem(100)};
       font-style: italic;
+      text-transform: capitalize;
 
       @media (max-width: 1850px) {
         font-size: ${rem(64)};

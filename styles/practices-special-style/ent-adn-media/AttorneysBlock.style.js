@@ -19,10 +19,10 @@ export const AttorneySection = styled.section`
   .attorney-title {
     margin: 0 0 ${rem(40)} 0;
     color: ${globalColor.black};
+    font-family: var(--font-carilo);
     font-size: ${rem(64)};
     font-weight: 400;
     line-height: ${rem(100)};
-    font-style: italic;
   }
 
   ${ContainerContent} {
