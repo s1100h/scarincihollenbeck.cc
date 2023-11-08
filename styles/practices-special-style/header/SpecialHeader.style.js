@@ -24,6 +24,13 @@ export const SpecialHeaderContainer = styled.header`
   z-index: 1000;
   border-bottom: 4px solid ${cannabisLawColors.cannabisColorGray};
 
+  ${({ headerType }) =>
+    headerType === 'entAndMedia' &&
+    `
+    background: rgba(34, 26, 20, 0.40);
+    border-bottom: none;
+  `}
+
   .nav-item > a {
     color: ${cannabisLawColors.cannabisColorGray};
   }

@@ -2,10 +2,12 @@ import { useRouter } from 'next/router';
 import SpecialSubHeader from './SpecialSubHeader';
 import DefaultSubHeader from './DefaultSubHeader';
 import { getSlugFromUrl } from '../../utils/helpers';
+import SliderSubHeader from './SliderSubHeader';
 
 const renderSubHeader = (pageSlug, props) => {
   const pagesMap = {
     'new-jersey-cannabis-law': <SpecialSubHeader {...props} />,
+    'entertainment-and-media': <SliderSubHeader {...props} />,
   };
 
   return pagesMap[pageSlug] || <DefaultSubHeader {...props} />;
@@ -16,6 +18,7 @@ const SubHeader = ({
   isBlog,
   isHoliday,
   handleClickAnchor,
+  anchorId,
   isFilter = false,
   authors = [],
   date = '',
@@ -23,9 +26,10 @@ const SubHeader = ({
   setActiveTab,
   activeTab,
   backgroundImage,
-  anchorId,
   article,
   backgroundVideo,
+  slidesData,
+  sliderCfg,
 }) => {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
@@ -42,10 +46,12 @@ const SubHeader = ({
     setActiveTab,
     activeTab,
     backgroundImage,
-    anchorId,
     article,
     backgroundVideo,
+    anchorId,
     handleClickAnchor,
+    slidesData,
+    sliderCfg,
   };
 
   return <>{renderSubHeader(slug, subHeaderProps)}</>;

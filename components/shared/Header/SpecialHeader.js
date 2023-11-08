@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { getSlugFromUrl } from 'utils/helpers';
 import { LogoBox } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
 import GlobalSearch from '../GlobalSearch/GlobalSearch';
@@ -14,9 +16,19 @@ import {
   VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
 
+const headerType = (pageSlug) => {
+  const pagesMap = {
+    'entertainment-and-media': 'entAndMedia',
+  };
+
+  return pagesMap[pageSlug] || '';
+};
+
 const SpecialHeader = () => {
   const { scrollTop } = useIsScroll();
   const [isOpenSearch, setOpenSearch] = useState(false);
+  const { pathname } = useRouter();
+  const slug = getSlugFromUrl(pathname);
 
   const handleOpenSearch = () => {
     setOpenSearch(!isOpenSearch);
@@ -27,6 +39,7 @@ const SpecialHeader = () => {
       <SpecialHeaderContainer
         isChangeOrder={isOpenSearch}
         scrollDown={scrollTop}
+        headerType={headerType(slug)}
       >
         <LogoBox>
           <Logo whiteVariant />

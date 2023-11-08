@@ -1,8 +1,8 @@
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 import { ContactBox } from '../../styles/AttorneyCard.style';
 
-const ContactBoxTemplate = ({ number, email }) => (
-  <ContactBox>
+const ContactBoxTemplate = ({ number, email, classes }) => (
+  <ContactBox className={classes}>
     <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
       <BsFillTelephoneFill />
       {' '}
