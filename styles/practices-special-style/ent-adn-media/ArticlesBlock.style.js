@@ -9,7 +9,7 @@ import {
 import { BottomSection, TextNews } from 'styles/FirmNews.style';
 
 export const ArticlesSection = styled.section`
-  padding: ${rem(140)} 0;
+  padding: 140px 0;
 
   ${TitleButtonBox} {
     h3 {
@@ -34,6 +34,10 @@ export const ArticlesSection = styled.section`
       @media (max-width: 768px) {
         font-size: ${rem(32)};
         line-height: ${rem(48)};
+      }
+
+      ${media_breakpoint_down('sm')} {
+        margin-bottom: 20px;
       }
     }
 
@@ -153,5 +157,9 @@ export const ArticlesSection = styled.section`
         }
       }
     }
+  }
+
+  ${media_breakpoint_down('sm')} {
+    padding: 70px 0 0;
   }
 `;

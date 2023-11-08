@@ -14,15 +14,15 @@ import {
 import styled from 'styled-components';
 
 export const AttorneySection = styled.section`
-  padding: ${rem(120)} 0 0 0;
+  padding: 120px 0 0 0;
 
   .attorney-title {
-    margin: 0 0 ${rem(40)} 0;
+    margin: 0 0 40px 0;
     color: ${globalColor.black};
     font-family: var(--font-carilo);
     font-size: ${rem(64)};
     font-weight: 400;
-    line-height: ${rem(100)};
+    line-height: 100px;
   }
 
   ${ContainerContent} {

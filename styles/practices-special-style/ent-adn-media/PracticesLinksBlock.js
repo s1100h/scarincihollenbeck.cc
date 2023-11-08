@@ -74,7 +74,7 @@ export const PracticesTitle = styled.h2`
   }
 `;
 export const PracticesImage = styled.div`
-  margin-left: auto;
+  margin-left: 100px;
   width: 428px;
   height: 98px;
 
