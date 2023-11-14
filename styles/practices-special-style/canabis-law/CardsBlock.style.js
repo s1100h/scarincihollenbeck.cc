@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from '../../global_styles/Global.styles';
+import { globalColor, rem } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -88,19 +88,20 @@ export const CardCannabis = styled.li`
     }
 
     .article-common-title {
-      font-size: 1.4rem;
+      font-size: ${rem(20)};
       margin-bottom: 15px;
+      line-height: 26px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 24px;
     }
   }
 
   ${media_breakpoint_exactly_down(445)} {
     width: 400px;
     height: 482px;
-
-    p {
-      font-size: 1.3rem;
-      line-height: 25px;
-    }
 
     article {
       height: 72%;
@@ -111,10 +112,5 @@ export const CardCannabis = styled.li`
     width: 300px;
     height: 400px;
     padding: 15px;
-
-    p {
-      font-size: 1rem;
-      line-height: 20px;
-    }
   }
 `;

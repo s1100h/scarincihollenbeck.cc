@@ -225,14 +225,17 @@ export const ArticlePhotoContainer = styled.div`
       align-items: flex-start;
     }
 
-    .article-common-title {
+    h3.article-common-title {
       text-align: start;
-      font-size: 1.8rem;
+      font-size: ${rem(24)};
+      line-height: ${rem(32)};
       margin-bottom: 15px;
     }
 
     p {
+      font-size: 1rem;
       text-align: start;
+      line-height: 24px;
     }
   }
 `;

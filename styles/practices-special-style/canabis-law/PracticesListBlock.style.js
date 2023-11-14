@@ -4,6 +4,7 @@ import {
   globalColor,
   imageCoverBlock,
   paragraphStyles,
+  rem,
 } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
@@ -89,6 +90,13 @@ export const PracticesListContainer = styled.section`
             font-size: 1.2rem;
           }
         }
+      }
+    }
+
+    ${media_breakpoint_down('sm')} {
+      h3 {
+        font-size: ${rem(24)};
+        line-height: 32px;
       }
     }
 
