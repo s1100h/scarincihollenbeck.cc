@@ -4,22 +4,23 @@ import {
   globalColor,
   rem,
 } from 'styles/global_styles/Global.styles';
+import { media_breakpoint_exactly_down } from 'styles/mediaBreakpoints.style';
 
 export const ImageWrapper = styled.div`
-  margin-bottom: ${rem(20)};
-  width: ${rem(275)};
-  height: ${rem(340)};
+  margin-bottom: 20px;
+  width: 275px;
+  height: 340px;
 
-  @media (max-width: 1850px) {
-    width: ${rem(228)};
-    height: ${rem(280)};
+  ${media_breakpoint_exactly_down(1850)} {
+    width: 228px;
+    height: 280px;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     margin-bottom: 0;
-    width: ${rem(140)};
-    min-width: ${rem(140)};
-    height: ${rem(151)};
+    width: 140px;
+    min-width: 140px;
+    height: 151px;
   }
 
   img {
@@ -36,7 +37,7 @@ export const CardEntAndMediaAttorney = styled.div`
 
   &:hover {
     ${ImageWrapper} {
-      box-shadow: 0 ${rem(4)} ${rem(33)} 0 rgba(0, 0, 0, 0.33);
+      box-shadow: 0 4px 33px 0 rgba(0, 0, 0, 0.33);
     }
   }
 
@@ -48,11 +49,11 @@ export const CardEntAndMediaAttorney = styled.div`
   }
 
   .attorney-name {
-    margin-bottom: ${rem(8)};
+    margin-bottom: 8px;
     font-family: var(--font-poppins), sans-serif;
     font-size: ${rem(24)};
     font-weight: 600;
-    line-height: ${rem(36)};
+    line-height: 36px;
     color: ${globalColor.black};
     flex: 1;
     display: flex;
@@ -64,28 +65,28 @@ export const CardEntAndMediaAttorney = styled.div`
     font-family: var(--font-poppins), sans-serif;
     font-size: ${rem(16)};
     font-weight: 400;
-    line-height: ${rem(24)};
+    line-height: 24px;
     color: ${entAndMediaColors.entAndMediaColorMediumGray};
   }
 
   .attorney-designation {
-    margin-bottom: ${rem(4)};
+    margin-bottom: 4px;
   }
 
   .attorney-address {
-    margin-bottom: ${rem(12)};
+    margin-bottom: 12px;
   }
 
   .attorney-contact {
     margin: 0;
-    row-gap: ${rem(4)};
+    row-gap: 4px;
     a {
-      column-gap: ${rem(8)};
+      column-gap: 8px;
       span {
         font-family: var(--font-poppins), sans-serif;
         font-size: ${rem(14)};
         font-weight: 600;
-        line-height: ${rem(21)};
+        line-height: 21px;
         color: ${globalColor.black};
         text-decoration: none;
       }
@@ -99,27 +100,26 @@ export const CardEntAndMediaAttorney = styled.div`
     }
   }
 
-  @media (max-width: 1850px) {
-    width: ${rem(228)};
+  ${media_breakpoint_exactly_down(1850)} {
+    width: 228px;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     flex-direction: row;
     align-items: center;
-    column-gap: ${rem(8)};
+    column-gap: 8px;
     width: 100%;
-    /* width: calc(50% - ${rem(16)}); */
 
     .attorney-name {
-      margin-bottom: ${rem(4)};
+      margin-bottom: 4px;
       font-size: ${rem(18)};
-      line-height: ${rem(27)};
+      line-height: 27px;
     }
 
     .attorney-designation,
     .attorney-address {
       font-size: ${rem(14)};
-      line-height: ${rem(21)};
+      line-height: 21px;
     }
   }
 `;

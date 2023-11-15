@@ -4,34 +4,38 @@ import {
   globalColor,
   rem,
 } from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const EntertainmentInfoSection = styled.section`
-  padding: ${rem(140)} 0;
+  padding: 140px 0;
   position: relative;
   overflow: hidden;
 
-  @media (max-width: 1850px) {
-    padding: ${rem(120)} 0;
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 120px 0;
   }
 
-  @media (max-width: 1440px) {
-    padding: ${rem(100)} 0;
+  ${media_breakpoint_exactly_down(1440)} {
+    padding: 100px 0;
   }
 
-  @media (max-width: 768px) {
-    padding: ${rem(80)} 0;
+  ${media_breakpoint_down('md')} {
+    padding: 80px 0;
   }
 `;
 export const EnterntainmentTabNumber = styled.span`
-  margin: 0 0 ${rem(32)} 0;
+  margin: 0 0 32px 0;
   font-family: var(--font-poppins), sans-serif;
   font-size: ${rem(16)};
-  line-height: ${rem(24)};
+  line-height: 24px;
   font-weight: 400;
   color: ${entAndMediaColors.entAndMediaColorGray};
   display: flex;
   align-items: center;
-  column-gap: ${rem(10)};
+  column-gap: 10px;
 
   :before {
     content: '';
@@ -43,36 +47,36 @@ export const EnterntainmentTabNumber = styled.span`
     border-bottom: 5px solid transparent;
   }
 
-  @media (max-width: 1440px) {
-    margin: 0 0 ${rem(26)} 0;
+  ${media_breakpoint_exactly_down(1440)} {
+    margin: 0 0 26px 0;
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const EnterntainmentTabHeader = styled.div`
-  margin-bottom: ${rem(32)};
+  margin-bottom: 32px;
   display: flex;
   justify-content: space-between;
 
   .delimiter {
-    margin: ${rem(40)} ${rem(100)} 0;
+    margin: 40px 100px 0;
 
     svg {
       width: 100%;
     }
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     align-items: center;
 
     .delimiter {
-      margin: ${rem(25)} ${rem(50)} 0;
+      margin: 25px 50px 0;
       align-self: flex-start;
     }
   }
 
-  @media (max-width: 768px) {
-    margin-bottom: ${rem(26)};
+  ${media_breakpoint_down('md')} {
+    margin-bottom: 26px;
     align-items: flex-start;
     flex-direction: column;
 
@@ -92,85 +96,85 @@ export const EnterntainmentTabTitle = styled.h2`
   color: ${globalColor.black};
   font-family: var(--font-carilo), sans-serif;
   font-size: ${rem(84)};
-  line-height: ${rem(100)};
+  line-height: 100px;
   font-weight: 400;
   font-style: italic;
 
   &.title-indent {
-    margin-left: ${rem(90)};
+    margin-left: 90px;
   }
 
-  @media (max-width: 1850px) {
+  ${media_breakpoint_exactly_down(1850)} {
     font-size: ${rem(64)};
 
     &.title-indent {
-      margin-left: ${rem(70)};
+      margin-left: 70px;
     }
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(48)};
-    line-height: ${rem(72)};
+    line-height: 72px;
 
     &.title-indent {
-      margin-left: ${rem(50)};
+      margin-left: 50px;
     }
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     font-size: ${rem(32)};
-    line-height: ${rem(48)};
+    line-height: 48px;
 
     &.title-indent {
-      margin-left: ${rem(30)};
+      margin-left: 30px;
     }
   }
 `;
 export const EnterntainmentTabBtns = styled.div`
-  margin-top: ${rem(20)};
+  margin-top: 20px;
   display: flex;
   align-items: flex-start;
-  column-gap: ${rem(24)};
+  column-gap: 24px;
 
-  @media (max-width: 1850px) {
-    margin-top: ${rem(25)};
+  ${media_breakpoint_exactly_down(1850)} {
+    margin-top: 25px;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     margin-top: 0;
     align-items: flex-end;
     flex-direction: column;
-    row-gap: ${rem(24)};
+    row-gap: 24px;
   }
 
-  @media (max-width: 768px) {
-    row-gap: ${rem(16)};
+  ${media_breakpoint_down('md')} {
+    row-gap: 16px;
     align-self: flex-end;
   }
 `;
 export const EnterntainmentTabBtn = styled.a`
   min-width: max-content;
   cursor: pointer;
-  padding: ${rem(16)} ${rem(24)};
+  padding: 16px 24px;
   font-size: ${rem(18)};
   font-weight: 600;
-  line-height: ${rem(27)};
+  line-height: 27px;
   font-family: var(--font-poppins), sans-serif;
   color: ${globalColor.white};
   background-color: ${globalColor.black};
-  border-radius: ${rem(40)};
-  border: ${rem(2)} solid transparent;
+  border-radius: 40px;
+  border: 2px solid transparent;
   transition: all 0.5s ease;
   display: block;
 
   &:hover {
-    border: ${rem(2)} solid ${globalColor.black};
+    border: 2px solid ${globalColor.black};
     background-color: ${globalColor.white};
     color: ${globalColor.black};
   }
 
   &.btn-white {
-    border: ${rem(2)} solid ${globalColor.black};
+    border: 2px solid ${globalColor.black};
     background-color: ${globalColor.white};
     color: ${globalColor.black};
 
@@ -180,31 +184,31 @@ export const EnterntainmentTabBtn = styled.a`
     }
   }
 
-  @media (max-width: 1850px) {
-    padding: ${rem(12)} ${rem(24)};
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 12px 24px;
     font-size: ${rem(16)};
-    line-height: ${rem(24)};
+    line-height: 24px;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const EnterntainmentTabNavbar = styled.div`
-  margin: 0 0 ${rem(48)} 0;
+  margin: 0 0 48px 0;
   display: flex;
   flex-direction: column;
-  row-gap: ${rem(11)};
+  row-gap: 11px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
-    margin-bottom: ${rem(32)};
+    line-height: 21px;
+    margin-bottom: 32px;
   }
 `;
 export const EnterntainmentTabNavbarItem = styled.div`
@@ -212,11 +216,11 @@ export const EnterntainmentTabNavbarItem = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  column-gap: ${rem(10)};
+  column-gap: 10px;
   font-size: ${rem(16)};
   font-family: var(--font-poppins), sans-serif;
   font-weight: 400;
-  line-height: ${rem(24)};
+  line-height: 24px;
   color: ${globalColor.grayExtraLite.grayExtraLite50};
   transition: all 0.5s ease;
 
@@ -241,19 +245,19 @@ export const EnterntainmentTabNavbarItem = styled.div`
   }
 `;
 export const EnterntainmentTabContent = styled.div`
-  padding: 0 ${rem(140)};
+  padding: 0 140px;
   display: grid;
   grid-template-columns: 1fr 40%;
   align-items: center;
-  gap: ${rem(48)};
+  gap: 48px;
 
   &.full-image {
     grid-template-columns: 1fr;
-    row-gap: ${rem(32)};
+    row-gap: 32px;
     ${() => {
       return `
         ${EnterntainmentTabImage} {
-          max-height: ${rem(328)};
+          max-height: 328px;
           order: 2;
         }
         ${EnterntainmentTabDescription} {
@@ -262,10 +266,10 @@ export const EnterntainmentTabContent = styled.div`
         ${EnterntainmentTabList} {
           order: 3;
           display: grid;
-          column-gap: ${rem(20)};
+          column-gap: 20px;
           grid-template-columns: 1fr 1fr;
 
-          @media (max-width: 768px) {
+          ${media_breakpoint_down('md')} {
             grid-template-columns: 1fr;
           }
         }
@@ -281,48 +285,48 @@ export const EnterntainmentTabContent = styled.div`
           order: 3;
           grid-column: 2 / 3;
           grid-row: 1 / span 2;
-          height: ${rem(552)};
+          height: 552px;
 
-          @media (max-width: 768px) {
+          ${media_breakpoint_down('md')} {
             grid-column: 1;
             grid-row: 1;
-            height: ${rem(240)};
+            height: 240px;
           }
         }
         ${EnterntainmentTabDescription} {
           order: 1;
         }
         ${EnterntainmentTabList} {
-          max-width: ${rem(537)};
+          max-width: 537px;
           order: 2;
           margin-left: auto;
         }
       `;
     }}
 
-    @media (max-width: 768px) {
+    ${media_breakpoint_down('md')} {
       grid-template-columns: 1fr;
     }
   }
 
-  @media (max-width: 1850px) {
-    padding: 0 ${rem(108)};
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 0 108px;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     padding: 0;
-    gap: ${rem(32)};
+    gap: 32px;
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     grid-template-columns: 1fr;
-    gap: ${rem(28)};
+    gap: 28px;
   }
 `;
 export const EnterntainmentTabImage = styled.div`
   width: 100%;
-  max-height: ${rem(624)};
+  max-height: 624px;
   height: 100%;
   grid-row: span 2;
 
@@ -334,21 +338,21 @@ export const EnterntainmentTabImage = styled.div`
     filter: grayscale(100%);
   }
 
-  @media (max-width: 768px) {
-    height: ${rem(240)};
+  ${media_breakpoint_down('md')} {
+    height: 240px;
   }
 `;
 export const EnterntainmentTabDescription = styled.div`
   color: ${entAndMediaColors.entAndMediaColorMediumGray};
   font-family: var(--font-poppins), sans-serif;
   font-size: ${rem(16)};
-  line-height: ${rem(24)};
+  line-height: 24px;
   font-weight: 400;
   text-transform: uppercase;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const EnterntainmentTabList = styled.ul`
@@ -358,7 +362,7 @@ export const EnterntainmentTabListItem = styled.li`
   color: ${globalColor.black};
   font-family: var(--font-poppins), sans-serif;
   font-size: ${rem(16)};
-  line-height: ${rem(24)};
+  line-height: 24px;
   font-weight: 600;
   display: flex;
 
@@ -368,8 +372,8 @@ export const EnterntainmentTabListItem = styled.li`
     margin-right: 0.5em;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;

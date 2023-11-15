@@ -5,7 +5,10 @@ import {
   rem,
 } from '../global_styles/Global.styles';
 import empty from 'is-empty';
-import { media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 
 export const ArticleCommonBox = styled.article`
   display: flex;
@@ -49,20 +52,20 @@ export const FullHDContainer = styled.div`
 `;
 
 export const ContainerContent = styled.div`
-  width: ${rem(1920)};
+  width: 1920px;
   max-width: 100%;
   padding: 0 135px;
   margin: 0 auto;
 
-  @media (max-width: 1850px) {
+  ${media_breakpoint_exactly_down(1850)} {
     padding: 0 84px;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     padding: 0 32px;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     padding: 0 16px;
   }
 `;

@@ -12,6 +12,10 @@ import {
   UserName,
 } from 'styles/AttorneyCard.style';
 import styled from 'styled-components';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const AttorneySection = styled.section`
   padding: 120px 0 0 0;
@@ -27,7 +31,7 @@ export const AttorneySection = styled.section`
 
   ${ContainerContent} {
     position: relative;
-    padding-bottom: ${rem(120)};
+    padding-bottom: 120px;
 
     &::after {
       content: '';
@@ -35,21 +39,21 @@ export const AttorneySection = styled.section`
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - ${rem(270)});
+      width: calc(100% - 270px);
       height: 1px;
       background-color: ${globalColor.grayExtraLite.grayExtraLite50};
     }
 
-    @media (max-width: 1440px) {
-      padding-bottom: ${rem(100)};
+    ${media_breakpoint_exactly_down(1440)} {
+      padding-bottom: 100px;
 
       &::after {
-        width: calc(100% - ${rem(64)});
+        width: calc(100% - 64px);
       }
     }
 
-    @media (max-width: 768px) {
-      padding-bottom: ${rem(80)};
+    ${media_breakpoint_down('md')} {
+      padding-bottom: 80px;
     }
   }
 
@@ -57,17 +61,17 @@ export const AttorneySection = styled.section`
     margin: 0;
     padding: 0;
     box-shadow: none;
-    column-gap: ${rem(40)};
+    column-gap: 40px;
 
     .chair-box,
     .attorneys-list-box {
       h3 {
-        margin: 0 0 ${rem(32)} 0;
+        margin: 0 0 32px 0;
         color: ${globalColor.black};
         font-family: var(--font-poppins), sans-serif;
         font-size: ${rem(36)};
         font-weight: 500;
-        line-height: ${rem(54)};
+        line-height: 54px;
         text-transform: none;
       }
     }
@@ -78,7 +82,7 @@ export const AttorneySection = styled.section`
 
     .attorneys-list-box {
       > div {
-        gap: ${rem(40)};
+        gap: 40px;
         margin: 0;
       }
     }
@@ -89,69 +93,69 @@ export const AttorneySection = styled.section`
       padding: 0;
 
       ${LinkBox} {
-        column-gap: ${rem(8)};
+        column-gap: 8px;
         align-items: center;
       }
 
       ${UserName} {
-        margin-bottom: ${rem(4)};
+        margin-bottom: 4px;
         font-family: var(--font-poppins), sans-serif;
         color: ${globalColor.black};
         font-size: ${rem(18)};
         font-weight: 600;
-        line-height: ${rem(27)};
+        line-height: 27px;
       }
 
       ${InfoBox} {
         p {
-          margin-bottom: ${rem(12)};
+          margin-bottom: 12px;
           font-family: var(--font-poppins), sans-serif;
           font-size: ${rem(14)};
           font-weight: 400;
-          line-height: ${rem(21)};
+          line-height: 21px;
           color: ${entAndMediaColors.entAndMediaColorMediumGray};
         }
       }
 
       ${ContactBox} {
         margin: 0;
-        row-gap: ${rem(4)};
+        row-gap: 4px;
         a {
-          column-gap: ${rem(8)};
+          column-gap: 8px;
           span {
             color: ${globalColor.black};
             font-family: var(--font-poppins), sans-serif;
             font-size: ${rem(14)};
             font-weight: 600;
-            line-height: ${rem(21)};
+            line-height: 21px;
             text-decoration: none;
           }
         }
       }
     }
 
-    @media (max-width: 1850px) {
+    ${media_breakpoint_exactly_down(1850)} {
       .attorneys-list-box {
         > div {
-          gap: ${rem(30)};
+          gap: 30px;
         }
       }
     }
 
-    @media (max-width: 1440px) {
+    ${media_breakpoint_exactly_down(1440)} {
       flex-direction: column;
 
       .chair-box,
       .attorneys-list-box {
         h3 {
-          margin: 0 0 ${rem(24)} 0;
+          margin: 0 0 24px 0;
           font-size: ${rem(32)};
-          line-height: ${rem(48)};
+          line-height: 48px;
         }
       }
 
       .chair-box {
-        margin-bottom: ${rem(28)};
+        margin-bottom: 28px;
       }
 
       .attorneys-list-box {
@@ -159,40 +163,40 @@ export const AttorneySection = styled.section`
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
-          column-gap: ${rem(16)};
-          row-gap: ${rem(20)};
+          column-gap: 16px;
+          row-gap: 20px;
         }
       }
     }
 
-    @media (max-width: 768px) {
+    ${media_breakpoint_down('md')} {
       .attorneys-list-box {
         > div {
           display: grid;
           grid-template-columns: 1fr;
 
-          row-gap: ${rem(16)};
+          row-gap: 16px;
         }
       }
     }
   }
 
-  @media (max-width: 1440px) {
-    padding-top: ${rem(100)};
+  ${media_breakpoint_exactly_down(1440)} {
+    padding-top: 100px;
     .attorney-title {
-      margin: 0 0 ${rem(24)} 0;
+      margin: 0 0 24px 0;
       font-size: ${rem(48)};
-      line-height: ${rem(72)};
+      line-height: 72px;
     }
   }
 
-  @media (max-width: 768px) {
-    padding-top: ${rem(80)};
+  ${media_breakpoint_down('md')} {
+    padding-top: 80px;
 
     .attorney-title {
-      margin: 0 0 ${rem(20)} 0;
+      margin: 0 0 20px 0;
       font-size: ${rem(32)};
-      line-height: ${rem(48)};
+      line-height: 48px;
     }
   }
 `;

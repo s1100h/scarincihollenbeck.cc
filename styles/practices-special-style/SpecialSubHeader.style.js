@@ -128,11 +128,11 @@ export const SliderSubHeaderContainer = styled.section`
     cover;
   position: relative;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     padding: 114px 0 80px 0;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     padding: 114px 0 40px 0;
   }
 `;
@@ -153,7 +153,7 @@ export const SlideSubHeader = styled.div`
   display: flex;
   column-gap: 32px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     padding-top: 12px;
     flex-direction: column;
   }
@@ -193,7 +193,7 @@ export const SlideSidebar = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     margin-bottom: 40px;
     flex-direction: row;
     justify-content: space-between;
@@ -201,7 +201,7 @@ export const SlideSidebar = styled.div`
     align-items: flex-end;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     margin-bottom: 32px;
   }
 `;
@@ -210,7 +210,7 @@ export const SlideContent = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     flex-direction: column;
     row-gap: 40px;
   }
@@ -231,7 +231,7 @@ export const SlideSmallTitle = styled.h5`
   line-height: 24px;
   letter-spacing: 1.6px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     margin: 0 0 22px 0;
     font-size: ${rem(14)};
     line-height: 21px;
@@ -251,32 +251,32 @@ export const SlideTitle = styled.h1`
   }
 `;
 export const SlideSubTitle = styled.p`
-  margin: ${rem(28)} 0 ${rem(32)} 0;
+  margin: 28px 0 32px 0;
   font-family: var(--font-poppins);
   color: ${globalColor.grayExtraLite.grayExtraLite50};
   font-size: ${rem(16)};
   font-weight: 400;
-  line-height: ${rem(24)};
+  line-height: 24px;
 
-  @media (max-width: 1440px) {
-    margin: ${rem(16)} 0 ${rem(40)} 0;
+  ${media_breakpoint_exactly_down(1440)} {
+    margin: 16px 0 40px 0;
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const SlideBtns = styled.div`
   display: flex;
-  column-gap: ${rem(24)};
+  column-gap: 24px;
 `;
 export const SlideBtn = styled(Link)`
   cursor: pointer;
-  border-radius: ${rem(40)};
-  border: ${rem(2)} solid ${globalColor.white};
+  border-radius: 40px;
+  border: 2px solid ${globalColor.white};
   font-family: var(--font-poppins);
   font-size: ${rem(18)};
   font-weight: 600;
-  line-height: ${rem(27)};
-  padding: ${rem(16)} ${rem(24)};
+  line-height: 27px;
+  padding: 16px 24px;
   color: ${globalColor.white};
   transition: all 0.5s ease;
 
@@ -285,21 +285,21 @@ export const SlideBtn = styled(Link)`
     background-color: ${globalColor.white};
   }
 
-  @media (max-width: 1440px) {
-    padding: ${rem(12)} ${rem(24)};
+  ${media_breakpoint_exactly_down(1440)} {
+    padding: 12px 24px;
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const SlideNumbers = styled.div`
   align-self: flex-start;
   display: flex;
   align-items: flex-end;
-  column-gap: ${rem(10)};
+  column-gap: 10px;
   transform: translateY(60%);
   padding: 0 5%;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     padding: 0;
     align-self: flex-end;
     transform: none;
@@ -310,11 +310,11 @@ export const SlideNumberActive = styled.span`
   font-size: ${rem(96)};
   color: ${globalColor.white};
   font-weight: 400;
-  line-height: ${rem(96)};
+  line-height: 96px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(40)};
-    line-height: ${rem(40)};
+    line-height: 40px;
   }
 `;
 export const SlideNumberCount = styled.span`
@@ -322,11 +322,11 @@ export const SlideNumberCount = styled.span`
   font-family: var(--font-poppins);
   font-size: ${rem(32)};
   font-weight: 400;
-  line-height: ${rem(48)};
+  line-height: 48px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(16)};
-    line-height: ${rem(24)};
+    line-height: 24px;
   }
 `;
 export const SliderPagination = styled.div`
@@ -334,13 +334,13 @@ export const SliderPagination = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     flex-direction: row;
   }
 `;
 export const SliderPaginationArrowUp = styled.div`
-  width: ${rem(48)};
-  height: ${rem(48)};
+  width: 48px;
+  height: 48px;
   cursor: pointer;
   background: url('${({ arrowUp }) => arrowUp}') no-repeat center / cover;
 
@@ -349,9 +349,9 @@ export const SliderPaginationArrowUp = styled.div`
       center / cover;
   }
 
-  @media (max-width: 1440px) {
-    width: ${rem(40)};
-    height: ${rem(40)};
+  ${media_breakpoint_exactly_down(1440)} {
+    width: 40px;
+    height: 40px;
     transform: rotate(-90deg);
   }
 `;
@@ -360,31 +360,31 @@ export const SliderPaginationDots = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  row-gap: ${rem(64)};
+  row-gap: 64px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     flex-direction: row;
-    column-gap: ${rem(60)};
+    column-gap: 60px;
   }
 `;
 export const SliderPaginationDote = styled.div`
-  width: ${rem(15)};
-  height: ${rem(15)};
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  border: ${rem(1)} solid ${entAndMediaColors.entAndMediaColorGray};
+  border: 1px solid ${entAndMediaColors.entAndMediaColorGray};
 
   &.active {
     background: ${globalColor.grayExtraLite.grayExtraLite50};
   }
 
-  @media (max-width: 1440px) {
-    width: ${rem(12)};
-    height: ${rem(12)};
+  ${media_breakpoint_exactly_down(1440)} {
+    width: 12px;
+    height: 12px;
   }
 `;
 export const SliderPaginationArrowDown = styled.div`
-  width: ${rem(48)};
-  height: ${rem(48)};
+  width: 48px;
+  height: 48px;
   cursor: pointer;
   background: url('${({ arrowDown }) => arrowDown}') no-repeat center / cover;
 
@@ -393,9 +393,9 @@ export const SliderPaginationArrowDown = styled.div`
       center / cover;
   }
 
-  @media (max-width: 1440px) {
-    width: ${rem(40)};
-    height: ${rem(40)};
+  ${media_breakpoint_exactly_down(1440)} {
+    width: 40px;
+    height: 40px;
     transform: rotate(-90deg);
   }
 `;
@@ -405,26 +405,26 @@ export const SlideDarkText = styled.div`
   font-size: ${rem(16)};
   font-family: var(--font-poppins);
   font-weight: 400;
-  line-height: ${rem(24)};
+  line-height: 24px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 
   &.slide__company {
-    transform: translateY(calc(100% + ${rem(40)}));
+    transform: translateY(calc(100% + 40px));
 
-    @media (max-width: 1440px) {
+    ${media_breakpoint_exactly_down(1440)} {
       transform: none;
-      max-width: ${rem(119)};
+      max-width: 119px;
     }
   }
 
   &.slide__date {
     display: none;
 
-    @media (max-width: 1440px) {
+    ${media_breakpoint_exactly_down(1440)} {
       display: block;
     }
   }

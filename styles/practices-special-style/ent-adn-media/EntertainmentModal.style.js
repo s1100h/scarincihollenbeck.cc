@@ -6,6 +6,10 @@ import {
 } from 'styles/global_styles/Global.styles';
 import { EnterntainmentTabBtn } from './EntertainmentInfoBlock.style';
 import { motion } from 'framer-motion';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const EntertainmentModal = styled(motion.div)`
   display: flex;
@@ -16,15 +20,15 @@ export const EntertainmentModal = styled(motion.div)`
   width: 50%;
   height: 100%;
   background-color: ${globalColor.white};
-  box-shadow: 0 ${rem(4)} ${rem(33)} 0 rgba(0, 0, 0, 0.33);
+  box-shadow: 0 4px 33px 0 rgba(0, 0, 0, 0.33);
   z-index: 1;
   overflow: auto;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     width: 75%;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     width: 100%;
   }
 `;
@@ -37,25 +41,25 @@ export const EntertainmentModalBackground = styled.div`
   left: 0;
 `;
 export const EntertainmentModalContent = styled.div`
-  padding: ${rem(40)} ${rem(135)} 0 ${rem(40)};
+  padding: 40px 135px 0 40px;
 
-  @media (max-width: 1850px) {
-    padding: ${rem(40)} ${rem(84)} 0 ${rem(40)};
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 40px 84px 0 40px;
   }
 
-  @media (max-width: 1440px) {
-    padding: ${rem(40)} ${rem(32)} 0 ${rem(40)};
+  ${media_breakpoint_exactly_down(1440)} {
+    padding: 40px 32px 0 40px;
   }
 
-  @media (max-width: 768px) {
-    padding: ${rem(40)} ${rem(16)};
+  ${media_breakpoint_down('md')} {
+    padding: 40px 16px;
   }
 `;
 export const EntertainmentModalClose = styled.div`
   margin: 0 0 0 auto;
   cursor: pointer;
-  width: ${rem(30)};
-  height: ${rem(30)};
+  width: 30px;
+  height: 30px;
   position: relative;
   transform: rotate(45deg);
   transition: all 0.5s ease;
@@ -68,58 +72,58 @@ export const EntertainmentModalClose = styled.div`
   }
 
   &::before {
-    width: ${rem(30)};
-    height: ${rem(2)};
-    top: ${rem(14)};
+    width: 30px;
+    height: 2px;
+    top: 14px;
     left: 0;
   }
 
   &::after {
-    width: ${rem(2)};
-    height: ${rem(30)};
+    width: 2px;
+    height: 30px;
     top: 0;
-    left: ${rem(14)};
+    left: 14px;
   }
 
   &:hover {
     transform: rotate(225deg);
   }
 
-  @media (max-width: 768px) {
-    width: ${rem(20)};
-    height: ${rem(20)};
+  ${media_breakpoint_down('md')} {
+    width: 20px;
+    height: 20px;
 
     &::before {
-      width: ${rem(20)};
-      height: ${rem(2)};
-      top: ${rem(9)};
+      width: 20px;
+      height: 2px;
+      top: 9px;
       left: 0;
     }
 
     &::after {
-      width: ${rem(2)};
-      height: ${rem(20)};
+      width: 2px;
+      height: 20px;
       top: 0;
-      left: ${rem(9)};
+      left: 9px;
     }
   }
 `;
 export const EntertainmentModalList = styled.div`
-  margin-bottom: ${rem(50)};
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  row-gap: ${rem(15)};
+  row-gap: 15px;
 `;
 export const EntertainmentModalListItem = styled.div`
   display: flex;
   align-items: center;
-  column-gap: ${rem(24)};
+  column-gap: 24px;
   font-family: var(--font-poppins), sans-serif;
   color: ${globalColor.black};
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const EntertainmentModalListNumber = styled.div`
@@ -127,7 +131,7 @@ export const EntertainmentModalListNumber = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: ${rem(8)};
+  column-gap: 8px;
   color: ${entAndMediaColors.entAndMediaColorGray};
 
   ::before {
@@ -140,26 +144,26 @@ export const EntertainmentModalListNumber = styled.div`
     border-bottom: 5px solid transparent;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 
 export const EntertainmentModalDescription = styled.div`
-  margin-bottom: ${rem(50)};
+  margin-bottom: 50px;
   font-family: var(--font-poppins), sans-serif;
   color: ${entAndMediaColors.entAndMediaColorGray};
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: ${rem(21)};
+    line-height: 21px;
   }
 `;
 export const EntertainmentModalFooter = styled.div`
   margin-top: auto;
   background-color: ${globalColor.black};
-  padding: ${rem(20)} ${rem(135)} ${rem(20)} ${rem(40)};
+  padding: 20px 135px 20px 40px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -168,15 +172,15 @@ export const EntertainmentModalFooter = styled.div`
     border-color: white;
   }
 
-  @media (max-width: 1850px) {
-    padding: ${rem(20)} ${rem(84)} ${rem(20)} ${rem(40)};
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 20px 84px 20px 40px;
   }
 
-  @media (max-width: 1440px) {
-    padding: ${rem(20)} ${rem(32)} ${rem(20)} ${rem(40)};
+  ${media_breakpoint_exactly_down(1440)} {
+    padding: 20px 32px 20px 40px;
   }
 
-  @media (max-width: 768px) {
-    padding: ${rem(20)} ${rem(16)};
+  ${media_breakpoint_down('md')} {
+    padding: 20px 16px;
   }
 `;

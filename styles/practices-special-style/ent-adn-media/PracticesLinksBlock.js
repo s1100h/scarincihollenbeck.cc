@@ -4,21 +4,25 @@ import {
   globalColor,
   rem,
 } from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const PracticesSection = styled.section`
-  padding: ${rem(140)} 0 ${rem(120)};
+  padding: 140px 0 120px;
   background-color: ${globalColor.black};
 
-  @media (max-width: 1850px) {
-    padding: ${rem(120)} 0 ${rem(100)};
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 120px 0 100px;
   }
 
-  @media (max-width: 1440px) {
-    padding: ${rem(100)} 0 ${rem(80)};
+  ${media_breakpoint_exactly_down(1440)} {
+    padding: 100px 0 80px;
   }
 
-  @media (max-width: 768px) {
-    padding: ${rem(80)} 0 ${rem(60)};
+  ${media_breakpoint_down('md')} {
+    padding: 80px 0 60px;
   }
 `;
 
@@ -28,10 +32,10 @@ export const PracticesContent = styled.div`
   justify-content: space-between;
   column-gap: 5%;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     flex-direction: column;
     align-items: start;
-    row-gap: ${rem(48)};
+    row-gap: 48px;
   }
 `;
 export const PracticesPreview = styled.div`
@@ -40,12 +44,12 @@ export const PracticesPreview = styled.div`
   flex-direction: column;
   row-gap: 8px;
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     align-items: flex-start;
     width: 380px;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     align-items: flex-start;
     max-width: 343px;
     width: 100%;
@@ -59,16 +63,16 @@ export const PracticesTitle = styled.h2`
   font-weight: 400;
   color: ${entAndMediaColors.entAndMediaColorGold};
 
-  @media (max-width: 1850px) {
+  ${media_breakpoint_exactly_down(1850)} {
     font-size: ${rem(64)};
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     font-size: ${rem(48)};
     line-height: 72px;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     font-size: ${rem(32)};
     line-height: 48px;
   }
@@ -84,9 +88,13 @@ export const PracticesImage = styled.div`
     object-fit: cover;
   }
 
-  @media (max-width: 1850px) {
+  ${media_breakpoint_exactly_down(1850)} {
     width: 260px;
     height: 80px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    margin-left: 80px;
   }
 `;
 export const PracticesLinks = styled.ul`
@@ -123,11 +131,11 @@ export const PracticesLinks = styled.ul`
     }
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     width: 100%;
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     grid-template-columns: 1fr;
   }
 `;

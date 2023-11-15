@@ -17,37 +17,33 @@ export const ArticlesSection = styled.section`
       font-family: var(--font-carilo);
       font-size: ${rem(84)};
       font-weight: 400;
-      line-height: ${rem(100)};
+      line-height: 100px;
       font-style: italic;
       text-transform: capitalize;
 
-      @media (max-width: 1850px) {
+      ${media_breakpoint_exactly_down(1850)} {
         font-size: ${rem(64)};
-        line-height: ${rem(80)};
+        line-height: 80px;
       }
 
-      @media (max-width: 1440px) {
+      ${media_breakpoint_exactly_down(1440)} {
         font-size: ${rem(48)};
-        line-height: ${rem(72)};
+        line-height: 72px;
       }
 
-      @media (max-width: 768px) {
+      ${media_breakpoint_down('md')} {
         font-size: ${rem(32)};
-        line-height: ${rem(48)};
-      }
-
-      ${media_breakpoint_down('sm')} {
-        margin-bottom: 20px;
+        line-height: 48px;
       }
     }
 
     ${LinkToCategory} {
-      border: ${rem(2)} solid ${globalColor.black};
+      border: 2px solid ${globalColor.black};
       background-color: transparent;
       color: ${globalColor.black};
       font-size: ${rem(18)};
       font-weight: 600;
-      line-height: ${rem(27)};
+      line-height: 27px;
       font-family: var(--font-poppins), sans-serif;
 
       &:hover {
@@ -55,28 +51,28 @@ export const ArticlesSection = styled.section`
         color: ${globalColor.white};
       }
 
-      @media (max-width: 1850px) {
-        padding: ${rem(12)} ${rem(24)};
+      ${media_breakpoint_exactly_down(1850)} {
+        padding: 12px 24px;
         font-size: ${rem(16)};
-        line-height: ${rem(24)};
+        line-height: 24px;
       }
 
-      @media (max-width: 1440px) {
+      ${media_breakpoint_exactly_down(1440)} {
         font-size: ${rem(14)};
-        line-height: ${rem(21)};
+        line-height: 21px;
       }
 
-      @media (max-width: 768px) {
+      ${media_breakpoint_down('md')} {
         margin-left: auto;
       }
     }
 
-    @media (max-width: 1850px) {
-      margin: 0 0 ${rem(32)} 0;
+    ${media_breakpoint_exactly_down(1850)} {
+      margin: 0 0 32px 0;
     }
 
-    @media (max-width: 768px) {
-      column-gap: ${rem(15)};
+    ${media_breakpoint_down('md')} {
+      column-gap: 15px;
       flex-wrap: wrap;
     }
   }
@@ -137,23 +133,23 @@ export const ArticlesSection = styled.section`
       h2 {
         font-size: ${rem(24)};
         font-family: var(--font-poppins), sans-serif;
-        line-height: ${rem(36)};
+        line-height: 36px;
         font-weight: 600;
         color: ${globalColor.black};
 
-        @media (max-width: 1850px) {
+        ${media_breakpoint_exactly_down(1850)} {
           font-size: ${rem(20)};
-          line-height: ${rem(30)};
+          line-height: 30px;
         }
 
-        @media (max-width: 1440px) {
+        ${media_breakpoint_exactly_down(1440)} {
           font-size: ${rem(18)};
-          line-height: ${rem(27)};
+          line-height: 27px;
         }
 
-        @media (max-width: 768px) {
+        ${media_breakpoint_down('md')} {
           font-size: ${rem(16)};
-          line-height: ${rem(24)};
+          line-height: 24px;
         }
       }
     }

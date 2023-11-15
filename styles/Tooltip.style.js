@@ -6,8 +6,8 @@ export const ContentTooltip = styled.div`
   bottom: 100%;
   background-color: white;
   color: ${globalColor.black};
-  padding: ${rem(3)};
-  border-radius: ${rem(4)};
+  padding: 3px;
+  border-radius: 4px;
   font-size: ${rem(14)};
   font-weight: 400;
   white-space: normal;
