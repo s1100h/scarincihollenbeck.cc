@@ -31,6 +31,10 @@ export const CardsBlockContainer = styled.section`
       }
     }
   }
+
+  ${media_breakpoint_down('sm')} {
+    padding: 60px 0;
+  }
 `;
 
 export const CardCannabis = styled.li`
