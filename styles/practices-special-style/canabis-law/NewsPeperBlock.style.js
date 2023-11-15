@@ -152,9 +152,10 @@ export const NewsPaperContainer = styled.section`
         padding-left: 15px;
 
         p {
-          height: 190px;
+          height: 170px;
           overflow-y: auto;
           font-size: 0.7rem;
+          line-height: 12px;
         }
 
         figure {
@@ -175,7 +176,7 @@ export const NewsPaperContainer = styled.section`
   ${media_breakpoint_exactly_down(400)} {
     > :last-child {
       p {
-        height: 158px;
+        height: 220px;
       }
     }
   }
