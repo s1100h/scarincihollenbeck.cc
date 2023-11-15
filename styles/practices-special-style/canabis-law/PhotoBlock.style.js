@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 
 export const PhotoBlockContainer = styled.section`
   display: flex;
-  padding: 120px 84px 140px;
+  padding: 120px 0 140px;
   background-color: ${cannabisLawColors.cannabisColorGray};
   align-items: center;
   justify-content: center;
@@ -28,15 +28,6 @@ export const PhotoBlockContainer = styled.section`
   ${media_breakpoint_exactly_down(1478)} {
     .photo-article-box {
       justify-content: center;
-      padding-left: 42px;
-      padding-right: 42px;
-    }
-  }
-
-  ${media_breakpoint_down('xl')} {
-    .photo-article-box {
-      padding-left: 12px;
-      padding-right: 12px;
     }
   }
 
@@ -184,16 +175,41 @@ export const PhotoClient = styled.div`
 `;
 
 export const ArticlePhotoContainer = styled.div`
-  width: 35%;
+  width: 36%;
 
   article {
     > :first-child {
-      margin-bottom: 22px;
-      line-height: 20px;
-    }
-
-    .article-common-title {
       margin-bottom: 32px;
+      line-height: 20px;
+
+      ${media_breakpoint_down('xxl')} {
+        margin-bottom: 24px;
+      }
+    }
+  }
+
+  .article-common-title {
+    margin-bottom: 48px;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: ${rem(54)};
+    line-height: 70px;
+    font-weight: 600;
+
+    ${media_breakpoint_down('xxl')} {
+      margin-bottom: 32px;
+      font-size: ${rem(36)};
+      line-height: 47px;
+    }
+  }
+
+  p {
+    font-size: ${rem(20)};
+    line-height: 30px;
+    font-weight: 500;
+
+    ${media_breakpoint_down('xxl')} {
+      font-size: ${rem(16)};
+      line-height: 24px;
     }
   }
 

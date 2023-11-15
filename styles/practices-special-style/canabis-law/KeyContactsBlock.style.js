@@ -5,17 +5,24 @@ import {
   cannabisLawColors,
   globalColor,
   paragraphStyles,
+  rem,
 } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from '../../mediaBreakpoints.style';
+import {
+  ContactBox,
+  InfoBox,
+  LinkBox,
+  UserName,
+} from 'styles/AttorneyCard.style';
 
 export const KeyContactsBlockContainer = styled.section`
   display: flex;
   justify-content: center;
   background: url('/images/smoke_overlay.webp') center/cover no-repeat;
-  padding: 140px 3% 140px 3%;
+  padding: 140px 0;
 
   > div {
     display: flex;
@@ -30,6 +37,13 @@ export const KeyContactsBlockContainer = styled.section`
   .list-smoker-box {
     margin-right: 40px;
 
+    p {
+      color: ${cannabisLawColors.cannabisColorGray};
+      font-size: ${rem(20)};
+      line-height: 30px;
+      font-weight: 500;
+    }
+
     ul {
       padding: 40px;
       background-color: ${cannabisLawColors.cannabisColorGray};
@@ -38,8 +52,11 @@ export const KeyContactsBlockContainer = styled.section`
       column-span: all;
 
       li {
+        color: ${cannabisLawColors.cannabisColorDarkGray};
         display: flex;
-        font-size: 1.35rem;
+        font-size: ${rem(20)};
+        font-weight: 500;
+        line-height: 30px;
         font-family: var(--font-rajdhani), sans-serif;
         text-transform: uppercase;
         position: relative;
@@ -116,16 +133,34 @@ export const KeyContactsWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
+  .key-contacts-title {
+    margin: 0 0 40px 0;
+    color: ${cannabisLawColors.cannabisColorGray};
+    font-size: ${rem(54)};
+    line-height: 70px;
+    font-weight: 600;
+    font-family: var(--font-poppins), sans-serif;
+
+    ${media_breakpoint_down('xxl')} {
+      margin: 0 0 32px 0;
+      font-size: ${rem(36)};
+      line-height: 47px;
+    }
+
+    ${media_breakpoint_exactly_down(1440)} {
+      font-size: ${rem(32)};
+      line-height: 42px;
+    }
+  }
+
   .attorney-card-box {
     ${attorneyCardForCannabis};
   }
 
   ${media_breakpoint_exactly_down(1440)} {
-    margin-top: 140px;
-
-    .attorney-card-box {
-      width: 360px;
-    }
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
   }
 
   ${media_breakpoint_down('sm')} {

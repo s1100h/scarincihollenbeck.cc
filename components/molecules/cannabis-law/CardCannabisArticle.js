@@ -4,7 +4,7 @@ import { ArticleCommonBox } from '../../../styles/practices-special-style/common
 const CardCannabisArticle = ({ number, title, paragraph }) => (
   <CardCannabis>
     <div className="circle-number">{number < 10 ? `0${number}` : number}</div>
-    <ArticleCommonBox mbTitle={20} titleFontSize={32} paragraphFontSize={23}>
+    <ArticleCommonBox mbTitle={20} titleFontSize={32} paragraphFontSize={20}>
       <h3 className="article-common-title">{title}</h3>
       <p>{paragraph}</p>
     </ArticleCommonBox>
