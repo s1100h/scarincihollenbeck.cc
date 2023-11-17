@@ -66,19 +66,6 @@ export const KeyContactsBlockContainer = styled.section`
     }
   }
 
-  .smoker {
-    width: 100%;
-    height: 404px;
-    padding: 10px;
-    background-color: ${globalColor.black};
-    position: relative;
-
-    > :first-child {
-      height: 100%;
-      width: 100%;
-    }
-  }
-
   ${media_breakpoint_exactly_down(1440)} {
     > div {
       flex-direction: column;
@@ -102,28 +89,12 @@ export const KeyContactsBlockContainer = styled.section`
         }
       }
     }
-
-    .smoker {
-      height: auto;
-
-      > :first-child {
-        height: 80%;
-        width: 100%;
-      }
-    }
   }
 
   ${media_breakpoint_down('sm')} {
     .list-smoker-box {
       ul {
         column-count: 1;
-      }
-    }
-
-    .smoker {
-      > :first-child {
-        height: 70%;
-        width: 100%;
       }
     }
   }
@@ -164,6 +135,10 @@ export const KeyContactsWrapper = styled.div`
   }
 
   ${media_breakpoint_down('sm')} {
+    > h3 {
+      font-size: ${rem(24)};
+      line-height: 32px;
+    }
     .attorney-card-box {
       width: 100%;
     }

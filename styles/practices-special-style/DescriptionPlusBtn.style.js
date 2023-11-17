@@ -28,6 +28,7 @@ export const DescrBtnContainer = styled.div`
   ${media_breakpoint_down('lg')} {
     p {
       font-size: 1rem;
+      line-height: 24px;
     }
   }
 

@@ -106,6 +106,13 @@ export const PracticesListContainer = styled.section`
       }
     }
 
+    ${media_breakpoint_down('sm')} {
+      h3 {
+        font-size: ${rem(24)};
+        line-height: 32px;
+      }
+    }
+
     ${media_breakpoint_exactly_down(520)} {
       .cannabis-leafs-box {
         > :last-child {

@@ -18,8 +18,10 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
   const { chairs, attorneysList } = attorneys;
   const { isMobileScreen } = useStateScreen();
   const [cardIdHovered, setCardIdHovered] = useState();
+  const isDefault = variant.includes('default') ? 'true' : '';
+
   return (
-    <AttorneysContainer isNotDefault={variant}>
+    <AttorneysContainer isNotDefault={isDefault}>
       {chairs?.length > 0 && (
         <div className="chair-box">
           <h3>Chair</h3>

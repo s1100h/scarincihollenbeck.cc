@@ -85,6 +85,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
       p {
         text-align: start;
+        line-height: 24px;
       }
     }
   }

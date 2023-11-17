@@ -93,6 +93,7 @@ export const AttorneysCannabisContainer = styled.section`
 
       p {
         font-size: 1.1rem;
+        line-height: 24px;
       }
     }
 
@@ -101,6 +102,8 @@ export const AttorneysCannabisContainer = styled.section`
 
       h3 {
         text-align: start;
+        font-size: ${rem(24)};
+        line-height: 32px;
       }
 
       p {

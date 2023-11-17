@@ -159,6 +159,7 @@ export const NewsPaperContainer = styled.section`
           padding-right: 20px;
           overflow-y: auto;
           font-size: 0.7rem;
+          line-height: 12px;
         }
 
         figure {
