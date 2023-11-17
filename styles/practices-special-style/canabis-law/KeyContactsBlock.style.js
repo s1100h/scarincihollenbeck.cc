@@ -17,6 +17,12 @@ import {
   LinkBox,
   UserName,
 } from 'styles/AttorneyCard.style';
+import {
+  AboutAuthorFormCardContainer,
+  ContactNowBtn,
+  FormBox,
+} from 'styles/AboutAuthorFormCard.style';
+import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
 
 export const KeyContactsBlockContainer = styled.section`
   display: flex;
@@ -126,6 +132,94 @@ export const KeyContactsWrapper = styled.div`
 
   .attorney-card-box {
     ${attorneyCardForCannabis};
+  }
+
+  ${AboutAuthorFormCardContainer} {
+    margin: 0;
+    padding: 0;
+
+    ${ContactNowBtn} {
+      max-width: 300px;
+      padding: 14px 24px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: 2px solid ${cannabisLawColors.cannabisColorGray};
+      color: ${cannabisLawColors.cannabisColorGray};
+      border-radius: 40px;
+      transition: all 0.3s ease;
+
+      span {
+        font-size: ${rem(20)};
+        line-height: 30px;
+        font-weight: 600;
+        font-family: var(--font-poppins), sans-serif;
+      }
+
+      :hover {
+        background-color: ${cannabisLawColors.cannabisColorGray};
+        color: ${cannabisLawColors.cannabisColorDarkGray};
+      }
+
+      ${media_breakpoint_exactly_down(1440)} {
+        padding: 10px 24px;
+
+        span {
+          font-size: ${rem(16)};
+          line-height: 24px;
+        }
+      }
+    }
+
+    ${ModalContent} {
+      max-width: 600px;
+      background-color: ${cannabisLawColors.cannabisColorGray};
+
+      ${ChildrenBox} {
+        padding: 0 10px;
+      }
+
+      ${FormBox} {
+        width: 100%;
+        button {
+          padding: 14px 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: ${cannabisLawColors.cannabisColorDarkGray};
+          border: 2px solid ${cannabisLawColors.cannabisColorDarkGray};
+          color: ${globalColor.white};
+          border-radius: 40px;
+          font-size: ${rem(18)};
+          line-height: 27px;
+          font-weight: 600;
+          font-family: var(--font-poppins), sans-serif;
+          transition: all 0.3s ease;
+
+          :hover {
+            color: ${cannabisLawColors.cannabisColorDarkGray};
+            background-color: transparent;
+          }
+
+          ${media_breakpoint_down('xxl')} {
+            padding: 10px 24px;
+            font-size: ${rem(16)};
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+    ${media_breakpoint_exactly_down(1440)} {
+      width: 100%;
+
+      ${ContactNowBtn} {
+        align-self: center;
+        max-width: 450px;
+      }
+    }
   }
 
   ${media_breakpoint_exactly_down(1440)} {

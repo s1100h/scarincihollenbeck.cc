@@ -1,14 +1,11 @@
-import {
-  ButtonLinkToAttorneys,
-  DescrBtnContainer,
-} from '../../../styles/practices-special-style/DescriptionPlusBtn.style';
+import { SubscriptionPart } from 'styles/Post/PostSideBar.style';
+import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
+import { DescrBtnContainer } from '../../../styles/practices-special-style/DescriptionPlusBtn.style';
 
 const DescriptionPlusBtn = ({ text, labelForBtn }) => (
   <DescrBtnContainer>
     <p>{text}</p>
-    <ButtonLinkToAttorneys href="/attorneys">
-      {labelForBtn}
-    </ButtonLinkToAttorneys>
+    <SubscriptionModal />
   </DescrBtnContainer>
 );
 
