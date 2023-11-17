@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 import {
   cannabisLawColors,
   rem,
@@ -17,11 +18,17 @@ export const CardCannabisAttorney = styled.div`
 
   img {
     filter: ${({ cardIsHovered }) => hoveredSystemMap[cardIsHovered]};
-    width: 200px;
-    height: 225px;
+    width: 241px;
+    height: 305px;
+    object-fit: cover;
 
     :hover {
       cursor: pointer;
+    }
+
+    ${media_breakpoint_down('xxl')} {
+      width: 185px;
+      height: 234px;
     }
   }
 
@@ -29,7 +36,7 @@ export const CardCannabisAttorney = styled.div`
     display: none;
     padding: 10px;
     flex-direction: column;
-    width: 200px;
+    width: 100%;
     background-color: ${cannabisLawColors.cannabisColorGray};
     position: absolute;
     top: 100%;
@@ -39,9 +46,14 @@ export const CardCannabisAttorney = styled.div`
       width: inherit;
       font-family: var(--font-poppins), sans-serif;
       font-size: ${rem(18)};
+      line-height: 26px;
       font-weight: 600;
       text-transform: uppercase;
       word-wrap: inherit;
+    }
+
+    a {
+      column-gap: 8px;
     }
 
     span {

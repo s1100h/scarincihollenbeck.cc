@@ -62,7 +62,7 @@ const getPostContentData = async (slug) => {
   let seoImageFromPostByParse = '/images/no-image-found-diamond.png';
   parse(data.post.content, {
     replace: (domNode) => {
-      if (domNode.type === 'tag' && domNode.name === 'img') {
+      if (domNode.type === 'tag' && domNode.name === 'img' && !empty(domNode.attribs.href)) {
         return (seoImageFromPostByParse = domNode.attribs.href);
       }
     },
@@ -72,7 +72,7 @@ const getPostContentData = async (slug) => {
     metaTitle: data.post.seo.title,
     metaDescription: data.post.seo.opengraphDescription,
     opengraphImage:
-      data.post.seo.opengraphImage?.sourceUrl || seoImageFromPostByParse,
+      !empty(data.post.seo.opengraphImage?.sourceUrl) || seoImageFromPostByParse,
   };
 
   const corePractices = [];

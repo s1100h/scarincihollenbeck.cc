@@ -32,6 +32,14 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
         <Link href={domNode.attribs.href} target="_blank">
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
+          {domNode.children[0].name === 'img' && (
+            <ImageLegacy
+              src={domNode.children[0]?.attribs['data-srcset']}
+              alt={domNode.children[0]?.attribs?.alt}
+              width={domNode.children[0]?.attribs?.width}
+              height={domNode.children[0]?.attribs?.height}
+            />
+          )}
         </Link>
       );
     }
@@ -64,7 +72,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           />
         );
       }
-      if (!domNode.attribs['data-srcset']?.length) {
+      if (!domNode.attribs['data-srcset']?.length && domNode.attribs['data-version'] && domNode.attribs['data-public-id']) {
         const imageUrl = getCloudinaryImageUrl(
           domNode.attribs['data-version'],
           domNode.attribs['data-public-id'],
