@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import empty from 'is-empty';
 import { useEffect, useState } from 'react';
+import KeyContactsBlock from 'components/organisms/cannabis-law/KeyContactsBlock';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
 import useApolloQuery from '../../../hooks/useApolloQuery';
@@ -10,7 +11,6 @@ import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
 const PhotoBlock = dynamic(() => import('../../organisms/cannabis-law/PhotoBlock'));
 const CardsBlock = dynamic(() => import('../../organisms/cannabis-law/CardsBlock'));
 const AttorneysBlock = dynamic(() => import('../../organisms/cannabis-law/AttorneysBlock'));
-const KeyContactsBlock = dynamic(() => import('../../organisms/cannabis-law/KeyContactsBlock'));
 const HelpArticleBlock = dynamic(() => import('../../organisms/cannabis-law/HelpArticleBlock'));
 const NewsPaperBlock = dynamic(() => import('../../organisms/cannabis-law/NewsPaperBlock'));
 const PracticesListBlock = dynamic(() => import('../../organisms/cannabis-law/PracticesListBlock'));

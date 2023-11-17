@@ -6,6 +6,7 @@ import {
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
 import { FullHDContainer } from './commonForSpecial.style';
+import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
 
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
@@ -62,7 +63,7 @@ export const SpecialSubHeaderContainer = styled.section`
     color: ${globalColor.white};
   }
 
-  ul {
+  ${BreadcrumbsListContainer} {
     position: relative;
     margin-bottom: 40px;
 
