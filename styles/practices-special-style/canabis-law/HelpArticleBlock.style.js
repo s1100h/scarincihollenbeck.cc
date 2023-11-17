@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { WeAdviseThisBlockContainer } from './WeAdviseThisBlock.style';
-import { cannabisLawColors } from '../../global_styles/Global.styles';
+import { cannabisLawColors, rem } from '../../global_styles/Global.styles';
 import { media_breakpoint_down } from '../../mediaBreakpoints.style';
 
 export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
@@ -9,6 +9,42 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
   article {
     margin-bottom: 0;
+  }
+
+  .attorneys-article-box {
+    h3 {
+      margin: 0 0 48px 0;
+      color: ${cannabisLawColors.cannabisColorGray};
+      font-family: var(--font-poppins), sans-serif;
+      font-size: ${rem(54)};
+      line-height: 70px;
+      font-weight: 600;
+
+      ${media_breakpoint_down('xxl')} {
+        margin: 0 0 32px 0;
+        font-size: ${rem(36)};
+        line-height: 47px;
+      }
+
+      ${media_breakpoint_down('md')} {
+        font-size: ${rem(32)};
+        line-height: 42px;
+      }
+    }
+
+    p {
+      margin: 0 0 32px 0;
+      font-size: ${rem(20)};
+      font-weight: 500;
+      line-height: 30px;
+      color: ${cannabisLawColors.cannabisColorGray};
+
+      ${media_breakpoint_down('xxl')} {
+        margin: 0 0 24px 0;
+        font-size: ${rem(16)};
+        line-height: 24px;
+      }
+    }
   }
 
   ${media_breakpoint_down('xl')} {

@@ -5,7 +5,10 @@ import {
   rem,
 } from '../global_styles/Global.styles';
 import empty from 'is-empty';
-import { media_breakpoint_exactly_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from '../mediaBreakpoints.style';
 
 export const ArticleCommonBox = styled.article`
   display: flex;
@@ -40,10 +43,20 @@ export const ArticleCommonBox = styled.article`
 `;
 
 export const FullHDContainer = styled.div`
-  width: 1950px;
+  width: 1920px;
+  max-width: 100%;
+  padding: 0 135px;
+  margin: 0 auto;
 
-  ${media_breakpoint_exactly_down(1980)} {
-    // display: ${({ display }) => (display ? display : 'block')};
-    width: 100%;
+  ${media_breakpoint_down('xxl')} {
+    padding: 0 84px;
+  }
+
+  ${media_breakpoint_down('xl')} {
+    padding: 0 32px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    padding: 0 16px;
   }
 `;

@@ -538,26 +538,79 @@ export const beforeDoteStyledList = `
 `;
 
 export const attorneyCardForCannabis = `
-	border: none;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+
+  :hover {
+    box-shadow: none;
+  }
+
+  section {
+    img {
+      width: 166px;
+      height: 166px;
+      object-fit: cover;
+
+      ${media_breakpoint_down('sm')} {
+        width: 140px;
+        height: 150px;
+      }
+    }
 
     section {
-      section {
-        h3, p, address {
-          font-family: var(--font-rajdhani), sans-serif;
-          text-transform: uppercase;
-          color: ${globalColor.white};
+      h3 {
+        margin: 0 0 2px 0;
+        color: ${globalColor.white};
+        font-family: var(--font-poppins);
+        font-size: ${rem(20)};
+        font-weight: 700;
+        line-height: 30px;
+
+        ${media_breakpoint_down('sm')} {
+          font-size: ${rem(18)};
+          line-height: 27px;
+        }
+      }
+
+      p {
+        margin: 0 0 20px 0;
+        color: ${globalColor.white};
+        font-family: var(--font-rajdhani);
+        font-size: ${rem(16)};
+        line-height: 24px;
+        font-weight: 500;
+
+        ${media_breakpoint_down('md')} {
+          margin: 0 0 16px 0;
+        }
+      }
+
+      address {
+        row-gap: 8px;
+        a {
+          column-gap: 8px;
 
           svg {
             fill: ${globalColor.white};
           }
-        }
-        address {
-          a {
-            font-weight: 500;
+
+          span {
+            font-size: ${rem(18)};
+            font-family: var(--font-rajdhani);
+            line-height: 27px;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            ${media_breakpoint_down('sm')} {
+              font-size: ${rem(16)};
+              line-height: 24px;
+            }
           }
         }
       }
     }
+  }
 `;
 
 export const successMessage = `
