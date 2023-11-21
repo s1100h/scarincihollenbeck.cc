@@ -62,7 +62,11 @@ const getPostContentData = async (slug) => {
   let seoImageFromPostByParse = '/images/no-image-found-diamond.png';
   parse(data.post.content, {
     replace: (domNode) => {
-      if (domNode.type === 'tag' && domNode.name === 'img' && !empty(domNode.attribs.href)) {
+      if (
+        domNode.type === 'tag'
+        && domNode.name === 'img'
+        && !empty(domNode.attribs.href)
+      ) {
         return (seoImageFromPostByParse = domNode.attribs.href);
       }
     },
@@ -71,8 +75,9 @@ const getPostContentData = async (slug) => {
   data.post.seo = {
     metaTitle: data.post.seo.title,
     metaDescription: data.post.seo.opengraphDescription,
-    opengraphImage:
-      !empty(data.post.seo.opengraphImage?.sourceUrl) || seoImageFromPostByParse,
+    opengraphImage: !empty(data.post.seo.opengraphImage?.sourceUrl)
+      ? data.post.seo.opengraphImage?.sourceUrl
+      : seoImageFromPostByParse,
   };
 
   const corePractices = [];
@@ -193,7 +198,6 @@ export const getServerSideProps = async ({ params, res, query }) => {
   const { clearBody, subTitle } = getSubTitleFromHTML(
     postData?.postContent.content,
   );
-
   const post = {
     content: clearBody,
     title: postData.postContent.title,

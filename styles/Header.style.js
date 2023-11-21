@@ -112,3 +112,22 @@ export const LinksBox = styled.div`
     margin-right: 10px;
   }
 `;
+
+export const AddressSubscriptionContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+
+  address {
+    flex-direction: row;
+    width: 350px;
+    gap: 26px;
+    margin-right: 32px;
+
+    a {
+      gap: 8px;
+    }
+  }
+`;
+
+export const SubscptionHeaderBtn = styled.button``;
