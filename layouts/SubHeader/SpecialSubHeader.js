@@ -1,4 +1,5 @@
 import empty from 'is-empty';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import PostBreadcrumbs from '../../components/organisms/post/PostBreadcrumbs';
 import { changeTitle } from '../../utils/helpers';
 import {
@@ -41,9 +42,7 @@ const SpecialSubHeader = ({
         <DescriptionPlusBtn labelForBtn="See attorneys" text={article} />
       </MiddleContainer>
       <CannabisTitle>
-        <h1 className="animate__animated animate__fadeInDown animate__fast">
-          {changeTitle(title)}
-        </h1>
+        <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
 
         {!empty(subtitle) && (
           <CannabisSubTitle>

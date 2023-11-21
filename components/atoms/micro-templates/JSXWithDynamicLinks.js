@@ -3,16 +3,28 @@ import Link from 'next/link';
 import * as ImageLegacy from 'next/legacy/image';
 import Image from 'next/image';
 import empty from 'is-empty';
-import { PRODUCTION_URL } from '../../../utils/constants';
+import {
+  HTTP_PRODUCTION_URL,
+  HTTP_WWW_PRODUCTION_URL,
+  PRODUCTION_URL,
+} from '../../../utils/constants';
 import { getCloudinaryImageUrl } from '../../../utils/helpers';
 
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
   replace: (domNode) => {
+    if (domNode.type === 'tag' && domNode.name === 'h1') {
+      domNode.attribs.class = 'animate__animated animate__fadeInDown animate__fast';
+    }
+    const productionUrls = [
+      PRODUCTION_URL,
+      HTTP_PRODUCTION_URL,
+      HTTP_WWW_PRODUCTION_URL,
+    ];
     if (
       domNode.type === 'tag'
         && domNode.name === 'a'
-        && domNode.attribs.href?.includes(PRODUCTION_URL)
+        && productionUrls.some((url) => domNode.attribs.href?.includes(url))
     ) {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
@@ -33,12 +45,12 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
           {domNode.children[0].name === 'img' && (
-            <ImageLegacy
-              src={domNode.children[0]?.attribs['data-srcset']}
-              alt={domNode.children[0]?.attribs?.alt}
-              width={domNode.children[0]?.attribs?.width}
-              height={domNode.children[0]?.attribs?.height}
-            />
+          <ImageLegacy
+            src={domNode.children[0]?.attribs['data-srcset']}
+            alt={domNode.children[0]?.attribs?.alt}
+            width={domNode.children[0]?.attribs?.width}
+            height={domNode.children[0]?.attribs?.height}
+          />
           )}
         </Link>
       );
@@ -57,6 +69,28 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
         );
       }
       if (domNode.parent?.parent?.attribs?.class === 'wp-block-image') {
+        if (
+          !domNode.attribs['data-srcset']?.length
+            && domNode.attribs['data-version']
+            && domNode.attribs['data-public-id']
+        ) {
+          const imageUrl = getCloudinaryImageUrl(
+            domNode.attribs['data-version'],
+            domNode.attribs['data-public-id'],
+          );
+          return (
+            <Image
+              className="floated-image"
+              placeholder="blur"
+              blurDataURL={imageUrl}
+              loading="lazy"
+              src={imageUrl}
+              alt={domNode.attribs.alt}
+              width={domNode.attribs?.width || 500}
+              height={domNode.attribs?.height || 300}
+            />
+          );
+        }
         return (
           <Image
             className="floated-image"
@@ -72,7 +106,11 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           />
         );
       }
-      if (!domNode.attribs['data-srcset']?.length && domNode.attribs['data-version'] && domNode.attribs['data-public-id']) {
+      if (
+        !domNode.attribs['data-srcset']?.length
+          && domNode.attribs['data-version']
+          && domNode.attribs['data-public-id']
+      ) {
         const imageUrl = getCloudinaryImageUrl(
           domNode.attribs['data-version'],
           domNode.attribs['data-public-id'],
