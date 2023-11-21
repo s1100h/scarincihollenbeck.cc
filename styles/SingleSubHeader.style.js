@@ -107,6 +107,10 @@ export const SubHeaderContent = styled(Container)`
     font-weight: 400;
     text-transform: uppercase;
     color: ${globalColor.black};
+
+    span {
+      text-transform: lowercase;
+    }
   }
 
   ${media_breakpoint_down('sm')} {
