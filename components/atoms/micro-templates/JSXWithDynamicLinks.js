@@ -72,7 +72,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           />
         );
       }
-      if (!domNode.attribs['data-srcset']?.length) {
+      if (!domNode.attribs['data-srcset']?.length && domNode.attribs['data-version'] && domNode.attribs['data-public-id']) {
         const imageUrl = getCloudinaryImageUrl(
           domNode.attribs['data-version'],
           domNode.attribs['data-public-id'],
