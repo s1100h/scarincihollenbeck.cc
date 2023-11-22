@@ -116,17 +116,18 @@ const getPostContentData = async (slug) => {
       });
     });
   }
-
   if (data.post.categories.nodes.length === 2) {
     data.post.categories.nodes.forEach(({ contentNodes }, idx) => {
-      if (idx === 0) {
+      if (idx === 0 && !empty(contentNodes.nodes[0]?.title)) {
         relatedPosts.push({
-          title: contentNodes.nodes[0].title,
-          uri: contentNodes.nodes[0].uri,
-          featuredImage:
-            contentNodes.nodes[0].featuredImage?.node.sourceUrl
-            || '/images/no-image-found-diamond-750x350.png',
-          databaseId: contentNodes.nodes[0].databaseId,
+          title: contentNodes.nodes[0]?.title,
+          uri: contentNodes.nodes[0]?.uri,
+          featuredImage: !empty(
+            contentNodes.nodes[0]?.featuredImage?.node.sourceUrl,
+          )
+            ? contentNodes.nodes[0]?.featuredImage?.node.sourceUrl
+            : '/images/no-image-found-diamond-750x350.png',
+          databaseId: contentNodes.nodes[0]?.databaseId,
         });
       }
 
@@ -134,12 +135,14 @@ const getPostContentData = async (slug) => {
         contentNodes.nodes.forEach((contentNodesItem, idx) => {
           if (idx < 2) {
             relatedPosts.push({
-              title: contentNodesItem.title,
-              uri: contentNodesItem.uri,
-              featuredImage:
-                contentNodesItem.featuredImage?.node.sourceUrl
-                || '/images/no-image-found-diamond-750x350.png',
-              databaseId: contentNodesItem.databaseId,
+              title: contentNodesItem?.title,
+              uri: contentNodesItem?.uri,
+              featuredImage: !empty(
+                contentNodesItem.featuredImage?.node?.sourceUrl,
+              )
+                ? contentNodesItem.featuredImage?.node?.sourceUrl
+                : '/images/no-image-found-diamond-750x350.png',
+              databaseId: contentNodesItem?.databaseId,
             });
           }
         });
