@@ -15,6 +15,7 @@ import Filters from '../../organisms/attorneys/Filters';
 import Selection from '../../organisms/attorneys/Selection';
 import { AttorneysContext } from '../../../contexts/AttorneysContext';
 import useStateScreen from '../../../hooks/useStateScreen';
+import AddressSubscription from './AddressSubscription';
 
 const DefaultHeader = ({ scrollTop, pathname }) => {
   const {
@@ -33,6 +34,7 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
   const isAttorneysPage = pathname === '/attorneys';
   return (
     <HeaderContainer scrollDown={scrollTop}>
+      <AddressSubscription />
       <Wrapper>
         <LogoBox>
           <Logo />
