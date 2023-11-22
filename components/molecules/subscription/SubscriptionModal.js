@@ -10,12 +10,13 @@ import {
   SubscribeBtn,
 } from 'styles/Subscription.style';
 import kwesforms from 'kwesforms';
+import empty from 'is-empty';
 import ModalWindow from '../../common/ModalWindow';
 import { StandardRedButton } from '../../../styles/Buttons.style';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-const SubscriptionModal = () => {
+const SubscriptionModal = ({ children, customClass }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
 
@@ -26,9 +27,15 @@ const SubscriptionModal = () => {
   return (
     <>
       <KwesScripts />
-      <SubscribeBtn onClick={() => setShow(true)}>
-        <span>Subscribe Now!</span>
-      </SubscribeBtn>
+      {!empty(children) ? (
+        <button onClick={() => setShow(true)} className={customClass}>
+          {children}
+        </button>
+      ) : (
+        <SubscribeBtn onClick={() => setShow(true)}>
+          <span>Subscribe Now!</span>
+        </SubscribeBtn>
+      )}
       <ModalWindow isOpen={show} setOpenModal={setShow}>
         <FormSubscriptionContainer>
           <section>
