@@ -29,13 +29,17 @@ export const HeaderContainer = styled.header`
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 5px;
+  margin-top: 54px;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 
   ${media_breakpoint_range('sm', 'lg')} {
-    margin-top: 5px;
+    margin-top: 54px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    margin-top: 88px;
   }
 `;
 export const DefaultHeaderSearchContainer = styled.div`
@@ -110,5 +114,55 @@ export const LinksBox = styled.div`
   ${media_breakpoint_down('xl')} {
     margin-left: auto;
     margin-right: 10px;
+  }
+`;
+
+export const AddressSubscriptionContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: ${globalColor.red.darkBurgundy};
+  padding: 8px 2%;
+  position: absolute;
+
+  address {
+    flex-direction: row;
+    gap: 26px;
+    margin-right: 32px;
+    margin-bottom: 0;
+
+    a {
+      gap: 8px;
+      color: ${globalColor.white};
+
+      span {
+        text-decoration: none;
+        font-weight: 400;
+      }
+
+      svg {
+        fill: ${globalColor.white};
+      }
+    }
+  }
+
+  .header-subscription-btn {
+    display: flex;
+    color: ${globalColor.white};
+    gap: 8px;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  ${media_breakpoint_exactly_down(564)} {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    address {
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
   }
 `;

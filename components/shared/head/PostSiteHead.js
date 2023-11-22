@@ -12,7 +12,7 @@ const PostSiteHead = ({ seo, post, authors }) => {
   const articleJsonLD = {
     headline: metaTitle,
     alternativeHeadline: metaDescription,
-    image: post.featuredImage,
+    image: opengraphImage,
     author: {
       '@type': 'Person',
       url: authors.map((a) => a.uri).join(', '),

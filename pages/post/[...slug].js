@@ -201,7 +201,6 @@ export const getServerSideProps = async ({ params, res, query }) => {
   const { clearBody, subTitle } = getSubTitleFromHTML(
     postData?.postContent.content,
   );
-
   const post = {
     content: clearBody,
     title: postData.postContent.title,
