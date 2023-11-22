@@ -34,7 +34,7 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
   const isAttorneysPage = pathname === '/attorneys';
   return (
     <HeaderContainer scrollDown={scrollTop}>
-      {/* <AddressSubscription /> */}
+      <AddressSubscription />
       <Wrapper>
         <LogoBox>
           <Logo />
