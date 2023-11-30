@@ -1,4 +1,3 @@
-import { SubscriptionPart } from 'styles/Post/PostSideBar.style';
 import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
 import { DescrBtnContainer } from '../../../styles/practices-special-style/DescriptionPlusBtn.style';
 

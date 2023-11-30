@@ -84,7 +84,7 @@ export const getPracticeAttorneys = async (uri) => {
     ? postsSanitize(data.posts.nodes)
     : [];
 
-  const corePractices = data.practices.nodes.filter(
+  const corePractices = data.practices?.nodes.filter(
     (practice) => !empty(practice.practicesIncluded.childPractice) && practice,
   );
 
