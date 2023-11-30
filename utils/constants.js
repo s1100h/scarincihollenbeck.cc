@@ -55,6 +55,34 @@ export const SUBSCRIPTION_THANKS = {
   subscription:
     'Thank you for subscribing! You are now part of our newsletter.',
 };
+
+export const footerNavList = [
+  {
+    linkTitle: 'Attorneys',
+    link: '/attorneys',
+    id: 1,
+  },
+  {
+    linkTitle: 'Careers',
+    link: '/careers',
+    id: 2,
+  },
+  {
+    linkTitle: 'Firm Overview',
+    link: '/firm-overview',
+    id: 3,
+  },
+  {
+    linkTitle: 'Legal practices',
+    link: '/practices',
+    id: 4,
+  },
+  {
+    linkTitle: 'Locations',
+    link: '/location/little-falls',
+    id: 5,
+  },
+];
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
@@ -131,11 +159,6 @@ export const FIRM_PAGES = [
     id: 'women-lead',
     label: 'Women Lead',
     slug: '/women-lead',
-  },
-  {
-    id: 'subscribe',
-    label: 'Subscribe',
-    slug: '/subscribe',
   },
 ];
 
@@ -410,6 +433,16 @@ export const CORE_PRACTICES = [
     slug: '/practices/tax-trusts-estates',
     label: 'Tax, Trusts & Estates',
   },
+  {
+    id: 12,
+    slug: '/practices/entertainment-and-media',
+    label: 'Entertainment & Media',
+  },
+  {
+    id: 13,
+    slug: '/practices/new-jersey-cannabis-law',
+    label: 'Cannabis Law',
+  },
 ];
 
 /** Social Media links found in the footer */
@@ -425,15 +458,6 @@ export const SOCIAL_MEDIA_LINKS = [
     url: 'https://www.facebook.com/ScarinciHollenbeck',
     label: 'Facebook',
     icon: <BsFacebook />,
-  },
-];
-
-/** Make a payment link found in the footer */
-export const MAKE_A_PAYMENT_URLS = [
-  {
-    id: 1,
-    url: 'https://secure.lawpay.com/pages/scarincihollenbeck/operating',
-    label: 'Make a payment',
   },
 ];
 

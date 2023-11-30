@@ -51,6 +51,7 @@ export const globalColor = {
     darkRed: '#A91110',
     burgundy: '#60191B',
     darkBurgundy: '#381314',
+    ultraLiteRed: '#F6A2A2',
   },
 
   blue: {
