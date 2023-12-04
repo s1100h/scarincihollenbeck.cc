@@ -40,6 +40,7 @@ export const SearchInput = styled(Form.Control)`
   font-size: 16px;
   color: ${globalColor.gray.gray100};
   border: none;
+  text-transform: capitalize;
 `;
 
 export const HitsStyled = styled(Hits)`
