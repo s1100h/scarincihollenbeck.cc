@@ -26,9 +26,13 @@ const FAQ = dynamic(() => import('../atoms/FAQ'));
 
 const changeTitle = (title) => title.replace(/(^|\s+)Lawyers(\s+|$)/g, ' ');
 
-const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
+const LocationPage = ({
+  seo,
+  currentOffice,
+  attorneysSchemaData,
+  canonicalUrl,
+}) => {
   const { locations } = useContext(LocationContext);
-  const canonicalUrl = `${PRODUCTION_URL}/location/little-falls`;
 
   const addressInfo = {
     phone: currentOffice.phone,
