@@ -28,8 +28,12 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
     ) {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
+      const urlCutPossibleSlash = uriSliced.endsWith('/')
+        ? uriSliced.slice(0, -1)
+        : uriSliced;
+
       return (
-        <Link href={uriSliced}>
+        <Link href={urlCutPossibleSlash}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
         </Link>
