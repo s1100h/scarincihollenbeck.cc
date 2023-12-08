@@ -8,7 +8,10 @@ import {
   HTTP_WWW_PRODUCTION_URL,
   PRODUCTION_URL,
 } from '../../../utils/constants';
-import { getCloudinaryImageUrl } from '../../../utils/helpers';
+import {
+  cutSlashFromTheEnd,
+  getCloudinaryImageUrl,
+} from '../../../utils/helpers';
 
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
@@ -28,9 +31,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
     ) {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
-      const urlCutPossibleSlash = uriSliced.endsWith('/')
-        ? uriSliced.slice(0, -1)
-        : uriSliced;
+      const urlCutPossibleSlash = cutSlashFromTheEnd(uriSliced);
 
       return (
         <Link href={urlCutPossibleSlash}>
@@ -44,8 +45,17 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
         && domNode.name === 'a'
         && !empty(domNode.attribs.href)
     ) {
+      const alienUrl = domNode.attribs.href;
+      const modifiedAlienUrl = alienUrl.startsWith('http:')
+        ? `https:${alienUrl.slice(5)}`
+        : alienUrl;
+      const modifiedAlienUrlCutSlash = !modifiedAlienUrl.includes(PRODUCTION_URL)
+          && modifiedAlienUrl.endsWith('/')
+        ? cutSlashFromTheEnd(modifiedAlienUrl)
+        : modifiedAlienUrl;
+
       return (
-        <Link href={domNode.attribs.href} target="_blank">
+        <Link href={modifiedAlienUrlCutSlash} target="_blank">
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
           {domNode.children[0].name === 'img' && (

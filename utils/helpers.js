@@ -254,3 +254,5 @@ export const getSlugFromUrl = (inputString) => {
 
   return inputString;
 };
+
+export const cutSlashFromTheEnd = (url) => (url.endsWith('/') ? url.slice(0, -1) : url);
