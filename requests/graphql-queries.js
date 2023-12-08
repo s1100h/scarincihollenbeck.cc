@@ -1291,7 +1291,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
     title
     officeMainInformation {
       autoMap {
-        link
+        mediaItemUrl
         databaseId
       }
       fax
@@ -1311,7 +1311,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
         }
       }
       trainStationsMap {
-        link
+        mediaItemUrl
         databaseId
       }
     }

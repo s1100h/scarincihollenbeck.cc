@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import AdminProfile from 'components/pages/AdminProfile';
-import { PRODUCTION_URL, SITE_PHONE } from 'utils/constants';
+import { SITE_PHONE } from 'utils/constants';
 import { concatNameUser } from 'utils/helpers';
 import { fetchAPI } from '../../requests/api';
 import { administrationPersoneQuery } from '../../requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
-const getAdminData = async (uriAdmin) => {
+const getAdminData = async (uriAdmin, canonicalUrl) => {
   const {
-    administration: { administration, seo, uri },
+    administration: { administration, seo },
   } = await fetchAPI(administrationPersoneQuery, {
     variables: {
       id: uriAdmin,
@@ -38,7 +38,7 @@ const getAdminData = async (uriAdmin) => {
       ),
     },
     seo: {
-      canonicalLink: uri,
+      canonicalLink: canonicalUrl,
       metaDescription: seo.metaDesc,
       title: seo.title,
     },
@@ -46,12 +46,13 @@ const getAdminData = async (uriAdmin) => {
 };
 
 /** Set data from API response to page props */
-export const getServerSideProps = async ({ res, resolvedUrl }) => {
+export const getServerSideProps = async ({ res, req, resolvedUrl }) => {
   res.setHeader(
     'Cache-Control',
     'max-age=0, s-maxage=60, stale-while-revalidate',
   );
-  const dataAdmin = await getAdminData(resolvedUrl);
+
+  const dataAdmin = await getAdminData(resolvedUrl, req.headers.referer);
 
   if (!resolvedUrl) {
     return {
@@ -84,12 +85,10 @@ const AdministrationProfile = ({ dataAdmin }) => {
     );
   }
 
-  const canonicalUrl = `${PRODUCTION_URL}${dataAdmin.seo.canonicalLink}`;
-
   const adminProps = {
     seo: dataAdmin.seo,
     profile: dataAdmin.profile,
-    canonicalUrl,
+    canonicalUrl: dataAdmin.seo.canonicalLink,
   };
 
   return <AdminProfile {...adminProps} />;

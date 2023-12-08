@@ -17,13 +17,16 @@ const getOfficeData = async (slug) => {
       variables: { id: slug },
     },
   );
-  if (officeLocation?.officeMainInformation?.autoMap?.link?.length > 0) {
-    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.link;
+  if (
+    officeLocation?.officeMainInformation?.autoMap?.mediaItemUrl?.length > 0
+  ) {
+    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.mediaItemUrl;
   }
   if (
-    officeLocation?.officeMainInformation?.trainStationsMap?.link?.length > 0
+    officeLocation?.officeMainInformation?.trainStationsMap?.mediaItemUrl
+      ?.length > 0
   ) {
-    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.link;
+    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.mediaItemUrl;
   }
 
   const currentOffice = {
