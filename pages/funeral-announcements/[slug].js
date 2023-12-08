@@ -66,7 +66,7 @@ const FuneralAnnouncement = ({
     bodyContent = content.replace(subTitle, '');
   }
 
-  const canonicalUrl = `${PRODUCTION_URL}/funeral-announcements/${slug}`;
+  const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
 
   const sitePageProps = {
     bodyContent,

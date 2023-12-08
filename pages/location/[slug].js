@@ -125,6 +125,7 @@ export const getStaticProps = async ({ params }) => {
       currentOffice,
       attorneysSchemaData: attorneysSchema,
       posts: [],
+      canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
     },
     revalidate: 86400,
   };
@@ -137,6 +138,7 @@ const SingleLocation = ({
   currentOffice,
   posts,
   attorneysSchemaData,
+  canonicalUrl,
 }) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);
@@ -156,6 +158,7 @@ const SingleLocation = ({
     currentOffice,
     attorneysSchemaData,
     posts,
+    canonicalUrl,
   };
 
   return <LocationPage {...locationProps} />;
