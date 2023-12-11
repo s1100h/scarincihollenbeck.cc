@@ -10,7 +10,12 @@ import { fetchAPI } from 'requests/api';
 import { postQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import parse from 'html-react-parser';
-import { cutDomain, getSubTitleFromHTML, sortByKey } from '../../utils/helpers';
+import {
+  cutDomain,
+  cutSlashFromTheEnd,
+  getSubTitleFromHTML,
+  sortByKey,
+} from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -221,6 +226,7 @@ export const getServerSideProps = async ({ params, res, query }) => {
       corePractices: postData.corePractices,
       relatedPosts: postData.relatedPosts,
       posts: postData.posts,
+      canonicalUrl: cutSlashFromTheEnd(postData.postContent.link),
     },
   };
 };
@@ -236,11 +242,10 @@ const SinglePost = ({
   relatedPosts,
   posts,
   keyContacts,
+  canonicalUrl,
 }) => {
   const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
   const metaAuthorLinks = authors.map((author) => (author.display_name === SITE_TITLE ? PRODUCTION_URL : author.user_url));
-
   if (router.isFallback) {
     return <SiteLoader />;
   }
