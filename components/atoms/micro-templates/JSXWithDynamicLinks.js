@@ -32,9 +32,8 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
       const urlCutPossibleSlash = cutSlashFromTheEnd(uriSliced);
-
       return (
-        <Link href={urlCutPossibleSlash}>
+        <Link href={!urlCutPossibleSlash ? '/' : urlCutPossibleSlash}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
         </Link>
@@ -53,7 +52,6 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           && modifiedAlienUrl.endsWith('/')
         ? cutSlashFromTheEnd(modifiedAlienUrl)
         : modifiedAlienUrl;
-
       return (
         <Link href={modifiedAlienUrlCutSlash} target="_blank">
           {domNode.children[0]?.data

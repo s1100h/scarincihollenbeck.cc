@@ -213,15 +213,17 @@ export const getServerSideProps = async ({ params, res, query }) => {
     subTitle,
   };
 
+  const authors = postData.postContent.selectAuthors.authorDisplayOrder.filter(
+    ({ uri }) => !uri.includes('post_type'),
+  );
+
   return {
     props: {
       post,
       seo: postData.postContent.seo,
       categories: postData.postContent.categories.nodes,
-      authors: postData.postContent.selectAuthors.authorDisplayOrder,
-      keyContacts:
-        postData.postContent.keyContacts
-        || postData.postContent.selectAuthors.authorDisplayOrder,
+      authors,
+      keyContacts: postData.postContent.keyContacts || authors,
       category,
       corePractices: postData.corePractices,
       relatedPosts: postData.relatedPosts,
@@ -263,7 +265,6 @@ const SinglePost = ({
     relatedPosts,
     posts,
   };
-
   return <PostPage {...postProps} />;
 };
 
