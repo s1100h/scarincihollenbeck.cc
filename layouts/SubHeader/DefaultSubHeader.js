@@ -61,9 +61,12 @@ const DefaultSubHeader = ({
           {formatDate(date)}
         </p>
       )}
-      <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
-        {subtitle?.length > 0 && <JSXWithDynamicLinks HTML={subtitle} />}
-      </Description>
+      {subtitle?.length > 0 && (
+        <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
+          <JSXWithDynamicLinks HTML={subtitle} />
+        </Description>
+      )}
+
       {tabs?.length > 0 && (
         <ButtonsMenu
           marTop="0"
