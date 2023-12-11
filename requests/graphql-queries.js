@@ -386,6 +386,7 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
     }
     content
     title
+    link
     date
     seo {
       opengraphDescription

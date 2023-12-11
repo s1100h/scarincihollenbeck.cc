@@ -1,28 +1,56 @@
 import styled from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
-import { media_breakpoint_down } from './mediaBreakpoints.style';
-
-export const AboutBox = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  flex-flow: column;
-  justify-content: space-between;
-`;
+import {
+  buttonHoverActive,
+  buttonsHoverActive,
+  globalColor,
+  rem,
+} from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const AboutContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   justify-content: space-around;
+  flex-direction: column;
   width: 1650px;
   margin: 0 auto;
   margin-bottom: 150px;
   max-width: 96%;
   gap: 44px;
 
-  ${media_breakpoint_down('md')} {
-    grid-template-columns: auto;
+  .links-box {
+    display: flex;
+    gap: 60px;
+  }
+
+  ${media_breakpoint_exactly_down(820)} {
     margin-bottom: 70px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    .links-box {
+      gap: 2%;
+    }
+  }
+
+  ${media_breakpoint_exactly_down(477)} {
+    .links-box {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  }
+`;
+
+export const AboutBox = styled.div`
+  height: 400px;
+  display: flex;
+  gap: 44px;
+
+  ${media_breakpoint_exactly_down(820)} {
+    flex-direction: column;
+    height: auto;
   }
 `;
 
@@ -35,19 +63,10 @@ export const LinkButtonAbout = styled.a`
   font-weight: 700;
   color: ${globalColor.white};
 
-  :hover {
-    color: white;
-    text-decoration: none;
-  }
+  ${buttonsHoverActive}
 
-  :after {
-    margin-left: 15px;
-    content: url('/images/arrow_right.svg');
-    width: 19px;
-    height: 19px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  :hover {
+    color: ${globalColor.white};
   }
 `;
 
@@ -72,6 +91,7 @@ export const AboutArticle = styled.article`
 
   p {
     font-size: 1.1rem;
+    overflow-y: auto;
 
     strong {
       color: ${globalColor.red.darkRed};
