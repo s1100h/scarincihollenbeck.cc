@@ -67,7 +67,6 @@ const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
   let uri = node.uri;
   uri = uri.split('/');
   uri = `/${uri.slice(3).join('/')}`;
-  uri = uri[uri.length - 1] === '/' && uri.substring(0, uri.length - 1);
   node.uri = uri;
   node.author = node.author.node.name;
   return {
@@ -419,7 +418,6 @@ export const getServerSideProps = async ({ params, res }) => {
 
   /** Awards */
   const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
-
   return {
     props: {
       seo,

@@ -1,5 +1,9 @@
-import { CURRENT_DOMAIN, BASE_API_URL, headers } from 'utils/constants';
-import { POST_TYPE_REWRITES } from 'utils/rewrites';
+import {
+  CURRENT_DOMAIN,
+  BASE_API_URL,
+  headers,
+  sitemapAddon,
+} from 'utils/constants';
 import { attorneysSiteMapQuery } from '../requests/graphql-queries';
 import { fetchAPI } from '../requests/api';
 
@@ -122,7 +126,6 @@ const getCurrentPublishedPages = async () => {
 };
 
 const Sitemap = () => null;
-const iii = 0;
 export const getServerSideProps = async ({ res }) => {
   const baseUrl = CURRENT_DOMAIN;
   const adminPaths = await getAdministrationPaths();
@@ -133,7 +136,12 @@ export const getServerSideProps = async ({ res }) => {
   const locationPaths = await getLocationPaths();
   const practicePaths = await getPracticePaths();
   const pagePaths = await getCurrentPublishedPages();
-  const postPaths = POST_TYPE_REWRITES.map(({ source }) => source.replace('/:path*', ''));
+
+  adminPaths.unshift('/administration');
+  attorneyPaths.unshift({ databaseId: 16581501, uri: '/attorneys' });
+  careerPaths.unshift('/careers');
+  practicePaths.unshift('/practices');
+
   const modAttorneyPaths = attorneyPaths.map(
     ({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`,
   );
@@ -151,8 +159,8 @@ export const getServerSideProps = async ({ res }) => {
               <url>
                 <loc>${baseUrl}${url}</loc>
                 <lastmod>${new Date().toISOString()}</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>1.0</priority>
+                <changefreq>daily</changefreq>
+                <priority>0.9</priority>
               </url>
             `,
     )
@@ -163,8 +171,8 @@ export const getServerSideProps = async ({ res }) => {
                 <url>
                   <loc>${baseUrl}${url}</loc>
                   <lastmod>${new Date().toISOString()}</lastmod>
-                  <changefreq>monthly</changefreq>
-                  <priority>1.0</priority>
+                  <changefreq>daily</changefreq>
+                  <priority>0.9</priority>
                 </url>
               `,
     )
@@ -175,8 +183,8 @@ export const getServerSideProps = async ({ res }) => {
                   <url>
                     <loc>${baseUrl}${url}</loc>
                     <lastmod>${new Date().toISOString()}</lastmod>
-                    <changefreq>monthly</changefreq>
-                    <priority>1.0</priority>
+                    <changefreq>daily</changefreq>
+                    <priority>0.9</priority>
                   </url>
                 `,
     )
@@ -188,7 +196,7 @@ export const getServerSideProps = async ({ res }) => {
                       <loc>${baseUrl}${url}</loc>
                       <lastmod>${new Date().toISOString()}</lastmod>
                       <changefreq>monthly</changefreq>
-                      <priority>1.0</priority>
+                      <priority>0.9</priority>
                     </url>
                   `,
     )
@@ -199,8 +207,8 @@ export const getServerSideProps = async ({ res }) => {
                     <url>
                       <loc>${baseUrl}${url}</loc>
                       <lastmod>${new Date().toISOString()}</lastmod>
-                      <changefreq>monthly</changefreq>
-                      <priority>1.0</priority>
+                      <changefreq>daily</changefreq>
+                      <priority>0.9</priority>
                     </url>
                   `,
     )
@@ -211,8 +219,8 @@ export const getServerSideProps = async ({ res }) => {
                       <url>
                         <loc>${baseUrl}${url}</loc>
                         <lastmod>${new Date().toISOString()}</lastmod>
-                        <changefreq>monthly</changefreq>
-                        <priority>1.0</priority>
+                        <changefreq>daily</changefreq>
+                        <priority>0.9</priority>
                       </url>
                     `,
     )
@@ -223,8 +231,8 @@ export const getServerSideProps = async ({ res }) => {
                         <url>
                           <loc>${baseUrl}${url}</loc>
                           <lastmod>${new Date().toISOString()}</lastmod>
-                          <changefreq>monthly</changefreq>
-                          <priority>1.0</priority>
+                          <changefreq>daily</changefreq>
+                          <priority>0.9</priority>
                         </url>
                       `,
     )
@@ -235,24 +243,22 @@ export const getServerSideProps = async ({ res }) => {
                           <url>
                             <loc>${baseUrl}/${url}</loc>
                             <lastmod>${new Date().toISOString()}</lastmod>
-                            <changefreq>monthly</changefreq>
-                            <priority>1.0</priority>
+                            <changefreq>daily</changefreq>
+                            <priority>0.9</priority>
                           </url>
                         `,
     )
     .join('')}
-        ${postPaths
-    .map(
-      (url) => `
-                            <url>
-                              <loc>${baseUrl}${url}</loc>
-                              <lastmod>${new Date().toISOString()}</lastmod>
-                              <changefreq>monthly</changefreq>
-                              <priority>1.0</priority>
-                            </url>
-                          `,
-    )
-    .join('')}
+    ${sitemapAddon.map(
+    (url) => `
+                          <url>
+                            <loc>${baseUrl}/${url}</loc>
+                            <lastmod>${new Date().toISOString()}</lastmod>
+                            <changefreq>daily</changefreq>
+                            <priority>0.9</priority>
+                          </url>
+    `,
+  )}
     </urlset>
   `;
   res.setHeader(

@@ -162,6 +162,18 @@ export const FIRM_PAGES = [
   },
 ];
 
+export const sitemapAddon = [
+  'community-involvement',
+  'diversity',
+  'pro-bono',
+  'women-lead',
+  'contact',
+  'privacy-policy',
+  'terms-of-use',
+  'awards',
+  'covid-19-crisis-management-unit',
+];
+
 /** Header navigation links */
 export const SITE_NAVIGATION = [
   {

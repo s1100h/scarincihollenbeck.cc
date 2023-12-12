@@ -94,12 +94,10 @@ export const getStaticProps = async ({ params }) => {
     return aLoc.officeMainInformation.localeCompare(bLoc.officeMainInformation);
   });
 
-  const makeSlugRegex = /^\/[^/]+\/([^/]+)\//;
-
   currentOffice.attorneys = attorneys.filter((attorney) => {
     const location = attorney.location_array[0];
-    const slugFromUri = location.uri.match(makeSlugRegex)[1];
-    return slugFromUri === slug;
+    const slugFromUri = location.uri;
+    return slugFromUri.includes(slug);
   }) || [];
 
   if (!currentOffice) {
