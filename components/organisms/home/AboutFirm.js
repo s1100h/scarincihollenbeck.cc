@@ -21,7 +21,7 @@ const AboutFirm = ({ infos, linksBtn }) => {
       </div>
       <AboutBox>
         {content.infos.map((info) => (
-          <AboutArticle>
+          <AboutArticle key={info.title}>
             <SubTitleAbout>{info.subTitle}</SubTitleAbout>
             <h3>{info.title}</h3>
             <JSXWithDynamicLinks HTML={info.description} />
