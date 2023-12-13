@@ -1,8 +1,8 @@
 User-agent: *
 Disallow: /wp-admin/
-Disallow: /?p=
+Disallow: /?
 Disallow: /wp-content/uploads/wpo-plugins-tables-list.json
 Allow: /wp-admin/admin-ajax.php
 
 Sitemap: https://scarincihollenbeck.com/sitemap.xml
-Sitemap: https://wp.scarincihollenbeck.com/wp-sitemap-posts-post-1.xml
+Sitemap: https://scarincihollenbeck.com/sitemap-posts.xml

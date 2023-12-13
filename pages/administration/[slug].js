@@ -3,19 +3,24 @@ import dynamic from 'next/dynamic';
 import AdminProfile from 'components/pages/AdminProfile';
 import { SITE_PHONE } from 'utils/constants';
 import { concatNameUser } from 'utils/helpers';
+import empty from 'is-empty';
 import { fetchAPI } from '../../requests/api';
 import { administrationPersoneQuery } from '../../requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 const getAdminData = async (uriAdmin, canonicalUrl) => {
-  const {
-    administration: { administration, seo },
-  } = await fetchAPI(administrationPersoneQuery, {
+  const data = await fetchAPI(administrationPersoneQuery, {
     variables: {
       id: uriAdmin,
     },
   });
+  const administration = data?.administration?.administration;
+  const seo = data?.administration?.seo;
+
+  if (empty(administration)) {
+    return undefined;
+  }
 
   return {
     profile: {
@@ -53,12 +58,6 @@ export const getServerSideProps = async ({ res, req, resolvedUrl }) => {
   );
 
   const dataAdmin = await getAdminData(resolvedUrl, req.headers.referer);
-
-  if (!resolvedUrl) {
-    return {
-      notFound: true,
-    };
-  }
 
   if (!dataAdmin) {
     return {
