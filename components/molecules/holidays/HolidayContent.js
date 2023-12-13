@@ -3,7 +3,7 @@ import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicL
 
 const HolidayContent = ({ content }) => (
   <HolidayContentBox>
-    <JSXWithDynamicLinks HTML={content} />
+    <JSXWithDynamicLinks HTML={content} isHoliday />
   </HolidayContentBox>
 );
 
