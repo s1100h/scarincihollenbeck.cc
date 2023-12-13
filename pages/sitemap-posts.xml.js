@@ -30,7 +30,7 @@ export const getServerSideProps = async ({ res }) => {
                                     <loc>${url.link}</loc>
                                     <lastmod>${url.modify_date}</lastmod>
                                     <changefreq>daily</changefreq>
-                                    <priority>8.0</priority>
+                                    <priority>0.9</priority>
                                   </url>
                                 `,
     )
