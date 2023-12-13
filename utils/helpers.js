@@ -256,3 +256,8 @@ export const getSlugFromUrl = (inputString) => {
 };
 
 export const cutSlashFromTheEnd = (url) => (url.endsWith('/') ? url.slice(0, -1) : url);
+
+export const convertUnixTimestampToISO = (unixTimestamp) => {
+  const date = new Date(unixTimestamp * 1000); // Convert Unix timestamp to milliseconds
+  return date.toISOString(); // Convert to ISO 8601 string
+};

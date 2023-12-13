@@ -4,6 +4,7 @@ import {
   headers,
   sitemapAddon,
 } from 'utils/constants';
+import fetch from 'node-fetch';
 import { attorneysSiteMapQuery } from '../requests/graphql-queries';
 import { fetchAPI } from '../requests/api';
 
@@ -146,11 +147,11 @@ export const getServerSideProps = async ({ res }) => {
     ({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`,
   );
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
           <loc>${baseUrl}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>monthly</changefreq>
+          <changefreq>daily</changefreq>
           <priority>1.0</priority>
         </url>
         ${adminPaths
