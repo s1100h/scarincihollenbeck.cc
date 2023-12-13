@@ -14,7 +14,7 @@ import {
 } from '../../../utils/helpers';
 
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
-export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
+export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
   replace: (domNode) => {
     if (domNode.type === 'tag' && domNode.name === 'h1') {
       domNode.attribs.class = 'animate__animated animate__fadeInDown animate__fast';
@@ -127,6 +127,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
           domNode.attribs['data-version'],
           domNode.attribs['data-public-id'],
         );
+
         return (
           <ImageLegacy
             placeholder="blur"
@@ -136,7 +137,7 @@ export const JSXWithDynamicLinks = ({ HTML, print }) => parse(HTML, {
             alt={domNode.attribs.alt}
             width={domNode.attribs.width || 500}
             height={domNode.attribs.height || 300}
-            layout="responsive"
+            layout={isHoliday ? '' : 'responsive'}
           />
         );
       }
