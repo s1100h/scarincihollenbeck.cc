@@ -5,7 +5,7 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 export const HolidayContentBox = styled.section`
   figure {
     video {
-      max-width: fit-content;
+      max-width: 80%;
       min-width: 300px;
       height: fit-content;
     }
