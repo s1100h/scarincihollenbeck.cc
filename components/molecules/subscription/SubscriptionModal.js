@@ -21,7 +21,7 @@ const SubscriptionModal = ({ children, customClass }) => {
   const router = useRouter();
   useEffect(() => {
     kwesforms.init();
-  }, []);
+  }, [show]);
 
   return (
     <>
