@@ -20,8 +20,7 @@ const getCareersContent = async (slug) => {
 /** Set career post data to props */
 export async function getServerSideProps({ params }) {
   const careersContent = await getCareersContent(params.slug);
-
-  if (!careersContent) {
+  if (careersContent.status === 404) {
     return {
       notFound: true,
     };

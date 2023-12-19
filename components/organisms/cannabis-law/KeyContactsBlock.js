@@ -6,6 +6,7 @@ import {
 } from '../../../styles/practices-special-style/canabis-law/KeyContactsBlock.style';
 import AttorneyCard from '../../shared/AttorneyCard';
 import { FullHDContainer } from '../../../styles/practices-special-style/commonForSpecial.style';
+import AboutAuthorFormCard from '../post/AboutAuthorFormCard';
 
 const KeyContactsBlock = ({ keyContactsData, keyContacts }) => (
   <KeyContactsBlockContainer>
@@ -31,6 +32,7 @@ const KeyContactsBlock = ({ keyContactsData, keyContacts }) => (
             email={author.email}
           />
         ))}
+        <AboutAuthorFormCard />
       </KeyContactsWrapper>
     </FullHDContainer>
   </KeyContactsBlockContainer>

@@ -61,8 +61,7 @@ export const BackgroundContainer = styled.section`
   ${({ props }) => {
     return props?.isHoliday?.length > 0
       ? `${media_breakpoint_down('xl')} {
-             background-position: right 9% bottom 0;
-             background-size: 50%;
+             background-position: right;
              padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
           }
           `
@@ -72,7 +71,8 @@ export const BackgroundContainer = styled.section`
   ${media_breakpoint_down('md')} {
     background-position: ${({ props }) =>
       props?.isHoliday ? '' : 'left 50vw bottom 0%'};
-    background-size: 100%;
+    ${({ props }) => !props?.isHoliday && 'background-size: 100%;'};
+
     padding-bottom: 20px;
   }
 
@@ -107,6 +107,10 @@ export const SubHeaderContent = styled(Container)`
     font-weight: 400;
     text-transform: uppercase;
     color: ${globalColor.black};
+
+    span {
+      text-transform: lowercase;
+    }
   }
 
   ${media_breakpoint_down('sm')} {

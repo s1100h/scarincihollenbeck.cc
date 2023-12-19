@@ -14,14 +14,16 @@ export const NewsPaperContainer = styled.section`
   gap: 50px;
   justify-content: center;
   background-color: ${cannabisLawColors.cannabisColorDarkGray};
-  padding: 140px 20px;
+  padding: 140px 0;
 
   > div {
     display: flex;
     justify-content: space-between;
     background: url('/images/sport-smoke.webp') no-repeat right;
-    padding-right: 3%;
-    padding-left: 3%;
+  }
+
+  .article-common-title {
+    color: ${cannabisLawColors.cannabisColorGray};
   }
 
   ${media_breakpoint_down('xl')} {
@@ -66,6 +68,10 @@ export const NewsPaperContainer = styled.section`
             font-size: 1.3rem;
             text-align: center;
           }
+
+          ${media_breakpoint_down('sm')} {
+            margin-bottom: 20px;
+          }
         }
       }
 
@@ -81,8 +87,6 @@ export const NewsPaperContainer = styled.section`
     padding-bottom: 80px;
 
     > div {
-      width: 96%;
-
       > :last-child {
         p {
           font-size: 1rem;
@@ -152,9 +156,10 @@ export const NewsPaperContainer = styled.section`
         padding-left: 15px;
 
         p {
-          height: 190px;
+          padding-right: 20px;
           overflow-y: auto;
           font-size: 0.7rem;
+          line-height: 12px;
         }
 
         figure {
@@ -168,14 +173,6 @@ export const NewsPaperContainer = styled.section`
             height: 106px;
           }
         }
-      }
-    }
-  }
-
-  ${media_breakpoint_exactly_down(400)} {
-    > :last-child {
-      p {
-        height: 158px;
       }
     }
   }
@@ -196,6 +193,13 @@ export const NewsPaperBox = styled.div`
     color: ${cannabisLawColors.cannabisColorDarkGray};
     text-align: start;
     width: 420px;
+    height: 56%;
+    padding-right: 15px;
+    overflow-y: auto;
+
+    ${media_breakpoint_down('lg')} {
+      padding-right: 40px;
+    }
   }
 
   figure {

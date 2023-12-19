@@ -3,19 +3,19 @@ import {
   entAndMediaColors,
   globalColor,
   rem,
+  rem,
 } from '../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
 import { FullHDContainer } from './commonForSpecial.style';
-import Link from 'next/link';
+import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
 
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 155px 10% 50px;
-  min-height: 100vh;
+  padding: 155px 0 50px;
   background: url(${({ backgroundImage }) => backgroundImage}) no-repeat;
   background-size: cover;
   position: relative;
@@ -25,6 +25,29 @@ export const SpecialSubHeaderContainer = styled.section`
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+
+  .breadcrumb-container {
+    li {
+      a,
+      button {
+        color: ${globalColor.grayExtraLite.grayExtraLite50};
+        font-size: ${rem(14)};
+        line-height: 21px;
+        font-weight: 400;
+      }
+
+      span {
+        color: ${globalColor.gray.gray40};
+        font-size: ${rem(14)};
+        line-height: 21px;
+        font-weight: 400;
+      }
+
+      svg {
+        color: ${globalColor.grayExtraLite.grayExtraLite50};
+      }
+    }
   }
 
   video {
@@ -44,7 +67,7 @@ export const SpecialSubHeaderContainer = styled.section`
     color: ${globalColor.white};
   }
 
-  ul {
+  ${BreadcrumbsListContainer} {
     position: relative;
     margin-bottom: 40px;
 
@@ -56,7 +79,7 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('xl')} {
-    padding: 155px 2% 50px;
+    padding: 155px 0 50px;
 
     h1 {
       width: 350px;
@@ -65,6 +88,7 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('lg')} {
+    padding: 112px 0 50px;
     h1 {
       width: 300px;
       font-size: 8rem;
@@ -73,6 +97,7 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('md')} {
+    padding: 95px 0 50px;
     h1 {
       font-size: 8rem;
     }
@@ -87,6 +112,7 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('sm')} {
+    padding: 95px 0 50px;
     h1 {
       font-size: 5rem;
       line-height: 69px;
@@ -102,6 +128,7 @@ export const SpecialSubHeaderContainer = styled.section`
 `;
 
 export const MiddleContainer = styled.div`
+  margin-bottom: 55px;
   display: flex;
   justify-content: space-between;
   align-items: start;

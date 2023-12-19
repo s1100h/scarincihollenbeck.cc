@@ -35,9 +35,7 @@ const DefaultSubHeader = ({
     {backgroundImage?.length > 0 && <GradientWrapper />}
     <SubHeaderContent props={{ isBlog }}>
       <PostBreadcrumbs />
-      <h1 className="animate__animated animate__fadeInDown animate__fast">
-        {changeTitle(title)}
-      </h1>
+      <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
       {isBlog && (
         <p className="mt-4 mb-2">
           <strong>Author: </strong>
@@ -63,9 +61,12 @@ const DefaultSubHeader = ({
           {formatDate(date)}
         </p>
       )}
-      <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
-        {subtitle?.length > 0 && <JSXWithDynamicLinks HTML={subtitle} />}
-      </Description>
+      {subtitle?.length > 0 && (
+        <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
+          <JSXWithDynamicLinks HTML={subtitle} />
+        </Description>
+      )}
+
       {tabs?.length > 0 && (
         <ButtonsMenu
           marTop="0"

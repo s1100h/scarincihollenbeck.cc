@@ -17,13 +17,16 @@ const getOfficeData = async (slug) => {
       variables: { id: slug },
     },
   );
-  if (officeLocation?.officeMainInformation?.autoMap?.link?.length > 0) {
-    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.link;
+  if (
+    officeLocation?.officeMainInformation?.autoMap?.mediaItemUrl?.length > 0
+  ) {
+    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.mediaItemUrl;
   }
   if (
-    officeLocation?.officeMainInformation?.trainStationsMap?.link?.length > 0
+    officeLocation?.officeMainInformation?.trainStationsMap?.mediaItemUrl
+      ?.length > 0
   ) {
-    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.link;
+    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.mediaItemUrl;
   }
 
   const currentOffice = {
@@ -91,12 +94,10 @@ export const getStaticProps = async ({ params }) => {
     return aLoc.officeMainInformation.localeCompare(bLoc.officeMainInformation);
   });
 
-  const makeSlugRegex = /^\/[^/]+\/([^/]+)\//;
-
   currentOffice.attorneys = attorneys.filter((attorney) => {
     const location = attorney.location_array[0];
-    const slugFromUri = location.uri.match(makeSlugRegex)[1];
-    return slugFromUri === slug;
+    const slugFromUri = location.uri;
+    return slugFromUri.includes(slug);
   }) || [];
 
   if (!currentOffice) {
@@ -122,6 +123,7 @@ export const getStaticProps = async ({ params }) => {
       currentOffice,
       attorneysSchemaData: attorneysSchema,
       posts: [],
+      canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
     },
     revalidate: 86400,
   };
@@ -134,6 +136,7 @@ const SingleLocation = ({
   currentOffice,
   posts,
   attorneysSchemaData,
+  canonicalUrl,
 }) => {
   const router = useRouter();
   const { locations, setLocations } = useContext(LocationContext);
@@ -153,6 +156,7 @@ const SingleLocation = ({
     currentOffice,
     attorneysSchemaData,
     posts,
+    canonicalUrl,
   };
 
   return <LocationPage {...locationProps} />;

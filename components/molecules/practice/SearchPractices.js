@@ -24,16 +24,12 @@ export const uniqArr = (unsortedArr) => {
 const findTheFirst = (searchCharacter, sortedCorePracticesArg) => {
   const childrenArr = [];
 
-  const findCore = sortedCorePracticesArg?.filter(({ title }) => title.includes(searchCharacter));
+  const findCore = sortedCorePracticesArg?.filter(({ title }) => title.match(new RegExp(searchCharacter, 'gi')));
 
   sortedCorePracticesArg?.forEach(({ childPractice }) => {
-    if (
-      childPractice?.filter(({ title }) => title.includes(searchCharacter))
-        .length > 0
-    ) {
-      childrenArr.push(
-        childPractice.filter(({ title }) => title.includes(searchCharacter)),
-      );
+    const matchedChildren = childPractice?.filter(({ title }) => title.match(new RegExp(searchCharacter, 'gi')));
+    if (matchedChildren.length > 0) {
+      childrenArr.push(matchedChildren);
     }
   });
 

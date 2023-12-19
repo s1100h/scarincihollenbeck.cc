@@ -1,11 +1,8 @@
-Disallow: /wp-content/uploads/wpo-plugins-tables-list.json
-
-# START YOAST BLOCK
-# ---------------------------
 User-agent: *
 Disallow: /wp-admin/
+Disallow: /?
+Disallow: /wp-content/uploads/wpo-plugins-tables-list.json
 Allow: /wp-admin/admin-ajax.php
 
 Sitemap: https://scarincihollenbeck.com/sitemap.xml
-# ---------------------------
-# END YOAST BLOCK
+Sitemap: https://scarincihollenbeck.com/sitemap-posts.xml

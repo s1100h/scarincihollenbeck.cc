@@ -106,6 +106,13 @@ export const SearchBoxContainer = styled.div`
   :hover {
     cursor: pointer;
   }
+
+  ${media_breakpoint_down('xl')} {
+    svg {
+      width: 34px;
+      height: 34px;
+    }
+  }
 `;
 export const SearchOpenBtn = styled(BsSearch)`
   width: 30px;
@@ -165,6 +172,9 @@ export const VisibleHiddenSearch = styled.div`
 `;
 
 export const LinksBoxSpecial = styled(LinksBox)`
+  display: flex;
+  align-items: center;
+
   button {
     .icon {
       color: ${globalColor.white};
@@ -174,5 +184,17 @@ export const LinksBoxSpecial = styled(LinksBox)`
   ${media_breakpoint_down('xl')} {
     margin-left: 10px;
     margin-right: 10px;
+
+    .link-btn-header {
+      width: 34px;
+      height: 34px;
+    }
+
+    button {
+      .icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
 `;

@@ -9,9 +9,9 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
+import { BottomSection } from 'styles/FirmNews.style';
 
 export const ArticlesContainer = styled.section`
-  padding: 0 5%;
   background-color: ${cannabisLawColors.cannabisColorDarkGray};
 `;
 
@@ -32,6 +32,35 @@ export const PostsBox = styled.div`
   .cannabis-law-news {
     width: 32%;
     background-color: ${cannabisLawColors.cannabisColorGray};
+
+    h2 {
+      font-family: var(--font-poppins), sans-serif;
+      font-size: ${rem(18)};
+      line-height: 27px;
+      font-weight: 700;
+      color: ${cannabisLawColors.cannabisColorDarkGray};
+      text-transform: uppercase;
+    }
+
+    ${BottomSection} {
+      span {
+        color: ${cannabisLawColors.cannabisColorDarkGrayLight};
+        font-family: var(--font-rajdhani), sans-serif;
+        font-size: ${rem(16)};
+        font-weight: 500;
+        line-height: 24px;
+        text-transform: uppercase;
+      }
+    }
+
+    .news-card-footer {
+      color: ${cannabisLawColors.cannabisColorDarkGrayLight};
+      font-family: var(--font-rajdhani), sans-serif;
+      font-size: ${rem(16)};
+      font-weight: 500;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
 
     ${media_breakpoint_down('lg')} {
       h2 {
@@ -71,13 +100,21 @@ export const PostsBox = styled.div`
 export const TitleButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   align-items: center;
 
   h3 {
-    color: ${globalColor.white};
-    font-size: ${rem(44)};
+    font-family: var(--font-poppins), sans-serif;
+    color: ${cannabisLawColors.cannabisColorGray};
+    font-size: ${rem(54)};
+    line-height: 70px;
+    font-weight: 600;
     text-transform: uppercase;
+
+    ${media_breakpoint_down('xxl')} {
+      font-size: ${rem(36)};
+      line-height: 47px;
+    }
 
     ${media_breakpoint_down('sm')} {
       font-size: 2rem;
@@ -91,6 +128,10 @@ export const LinkToCategory = styled(Link)`
   background-color: ${cannabisLawColors.cannabisColorDarkGrayLight};
   color: ${globalColor.white};
   transition: background-color 0.8s;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: ${rem(18)};
+  font-weight: 600;
+  line-height: 27px;
 
   :hover {
     color: ${globalColor.black};
@@ -99,5 +140,6 @@ export const LinkToCategory = styled(Link)`
 
   ${media_breakpoint_down('sm')} {
     padding: 10px 24px;
+    font-size: ${rem(16)};
   }
 `;

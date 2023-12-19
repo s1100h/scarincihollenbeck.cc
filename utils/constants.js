@@ -55,6 +55,34 @@ export const SUBSCRIPTION_THANKS = {
   subscription:
     'Thank you for subscribing! You are now part of our newsletter.',
 };
+
+export const footerNavList = [
+  {
+    linkTitle: 'Attorneys',
+    link: '/attorneys',
+    id: 1,
+  },
+  {
+    linkTitle: 'Careers',
+    link: '/careers',
+    id: 2,
+  },
+  {
+    linkTitle: 'Firm Overview',
+    link: '/firm-overview',
+    id: 3,
+  },
+  {
+    linkTitle: 'Legal practices',
+    link: '/practices',
+    id: 4,
+  },
+  {
+    linkTitle: 'Locations',
+    link: '/location/little-falls',
+    id: 5,
+  },
+];
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
   {
@@ -132,11 +160,18 @@ export const FIRM_PAGES = [
     label: 'Women Lead',
     slug: '/women-lead',
   },
-  {
-    id: 'subscribe',
-    label: 'Subscribe',
-    slug: '/subscribe',
-  },
+];
+
+export const sitemapAddon = [
+  'community-involvement',
+  'diversity',
+  'pro-bono',
+  'women-lead',
+  'contact',
+  'privacy-policy',
+  'terms-of-use',
+  'awards',
+  'covid-19-crisis-management-unit',
 ];
 
 /** Header navigation links */
@@ -410,6 +445,16 @@ export const CORE_PRACTICES = [
     slug: '/practices/tax-trusts-estates',
     label: 'Tax, Trusts & Estates',
   },
+  {
+    id: 12,
+    slug: '/practices/entertainment-and-media',
+    label: 'Entertainment & Media',
+  },
+  {
+    id: 13,
+    slug: '/practices/new-jersey-cannabis-law',
+    label: 'Cannabis Law',
+  },
 ];
 
 /** Social Media links found in the footer */
@@ -425,15 +470,6 @@ export const SOCIAL_MEDIA_LINKS = [
     url: 'https://www.facebook.com/ScarinciHollenbeck',
     label: 'Facebook',
     icon: <BsFacebook />,
-  },
-];
-
-/** Make a payment link found in the footer */
-export const MAKE_A_PAYMENT_URLS = [
-  {
-    id: 1,
-    url: 'https://secure.lawpay.com/pages/scarincihollenbeck/operating',
-    label: 'Make a payment',
   },
 ];
 
@@ -702,7 +738,7 @@ export const COVID_POSTS_ID = 20250;
 /** Image CDN URLs */
 export const IMAGE_NOT_FOUND_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v1637157143/wp.scarincihollenbeck/no-image-found-diamond_33141f5498/no-image-found-diamond_33141f5498-png?_i=AA';
 
-export const EMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-hollenbeck/image/upload/v';
+export const EMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v';
 export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
 
 /** a helper header data when making requests to WP backend */
@@ -726,3 +762,6 @@ export const CURRENT_DOMAIN = process.env.NODE_ENV === 'production'
 export const KWES_API = process.env.NEXT_PUBLIC_KWES_API;
 export const GET_IN_TOUCH_FORM_API = process.env.NEXT_PUBLIC_GET_IN_TOUCH_FORM_API;
 export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+// thats url for exceptions for wrong urls
+export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
+export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';

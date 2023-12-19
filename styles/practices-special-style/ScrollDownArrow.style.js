@@ -1,6 +1,11 @@
 import styled from 'styled-components';
-import { cannabisLawColors, globalColor } from '../global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  globalColor,
+  rem,
+} from '../global_styles/Global.styles';
 import Link from 'next/link';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const ScrollDownContainer = styled(Link)`
   display: flex;
@@ -10,9 +15,16 @@ export const ScrollDownContainer = styled(Link)`
   p {
     font-family: var(--font-rajdhani), sans-serif;
     color: ${globalColor.white};
-    font-size: 1.25rem;
+    font-size: ${rem(20)};
+    line-height: 30px;
+    font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 0;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(16)};
+      line-height: 24px;
+    }
   }
 `;
 export const CircleArrowBox = styled.div`
@@ -35,6 +47,33 @@ export const CircleArrowBox = styled.div`
 
     svg {
       color: ${globalColor.white};
+    }
+  }
+
+  ${media_breakpoint_down('xxl')} {
+    width: 64px;
+    height: 64px;
+
+    svg {
+      width: 30px;
+    }
+  }
+
+  ${media_breakpoint_down('md')} {
+    width: 48px;
+    height: 48px;
+
+    svg {
+      width: 24px;
+    }
+  }
+
+  ${media_breakpoint_down('sm')} {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 20px;
     }
   }
 `;

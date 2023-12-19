@@ -10,7 +10,12 @@ import { fetchAPI } from 'requests/api';
 import { postQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import parse from 'html-react-parser';
-import { cutDomain, getSubTitleFromHTML, sortByKey } from '../../utils/helpers';
+import {
+  cutDomain,
+  cutSlashFromTheEnd,
+  getSubTitleFromHTML,
+  sortByKey,
+} from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** fetch all the post data and map it the page props.
@@ -62,7 +67,11 @@ const getPostContentData = async (slug) => {
   let seoImageFromPostByParse = '/images/no-image-found-diamond.png';
   parse(data.post.content, {
     replace: (domNode) => {
-      if (domNode.type === 'tag' && domNode.name === 'img') {
+      if (
+        domNode.type === 'tag'
+        && domNode.name === 'img'
+        && !empty(domNode.attribs.href)
+      ) {
         return (seoImageFromPostByParse = domNode.attribs.href);
       }
     },
@@ -71,8 +80,9 @@ const getPostContentData = async (slug) => {
   data.post.seo = {
     metaTitle: data.post.seo.title,
     metaDescription: data.post.seo.opengraphDescription,
-    opengraphImage:
-      data.post.seo.opengraphImage?.sourceUrl || seoImageFromPostByParse,
+    opengraphImage: !empty(data.post.seo.opengraphImage?.sourceUrl)
+      ? data.post.seo.opengraphImage?.sourceUrl
+      : seoImageFromPostByParse,
   };
 
   const corePractices = [];
@@ -111,17 +121,18 @@ const getPostContentData = async (slug) => {
       });
     });
   }
-
   if (data.post.categories.nodes.length === 2) {
     data.post.categories.nodes.forEach(({ contentNodes }, idx) => {
-      if (idx === 0) {
+      if (idx === 0 && !empty(contentNodes.nodes[0]?.title)) {
         relatedPosts.push({
-          title: contentNodes.nodes[0].title,
-          uri: contentNodes.nodes[0].uri,
-          featuredImage:
-            contentNodes.nodes[0].featuredImage?.node.sourceUrl
-            || '/images/no-image-found-diamond-750x350.png',
-          databaseId: contentNodes.nodes[0].databaseId,
+          title: contentNodes.nodes[0]?.title,
+          uri: contentNodes.nodes[0]?.uri,
+          featuredImage: !empty(
+            contentNodes.nodes[0]?.featuredImage?.node.sourceUrl,
+          )
+            ? contentNodes.nodes[0]?.featuredImage?.node.sourceUrl
+            : '/images/no-image-found-diamond-750x350.png',
+          databaseId: contentNodes.nodes[0]?.databaseId,
         });
       }
 
@@ -129,12 +140,14 @@ const getPostContentData = async (slug) => {
         contentNodes.nodes.forEach((contentNodesItem, idx) => {
           if (idx < 2) {
             relatedPosts.push({
-              title: contentNodesItem.title,
-              uri: contentNodesItem.uri,
-              featuredImage:
-                contentNodesItem.featuredImage?.node.sourceUrl
-                || '/images/no-image-found-diamond-750x350.png',
-              databaseId: contentNodesItem.databaseId,
+              title: contentNodesItem?.title,
+              uri: contentNodesItem?.uri,
+              featuredImage: !empty(
+                contentNodesItem.featuredImage?.node?.sourceUrl,
+              )
+                ? contentNodesItem.featuredImage?.node?.sourceUrl
+                : '/images/no-image-found-diamond-750x350.png',
+              databaseId: contentNodesItem?.databaseId,
             });
           }
         });
@@ -193,7 +206,6 @@ export const getServerSideProps = async ({ params, res, query }) => {
   const { clearBody, subTitle } = getSubTitleFromHTML(
     postData?.postContent.content,
   );
-
   const post = {
     content: clearBody,
     title: postData.postContent.title,
@@ -201,19 +213,22 @@ export const getServerSideProps = async ({ params, res, query }) => {
     subTitle,
   };
 
+  const authors = postData.postContent.selectAuthors.authorDisplayOrder.filter(
+    ({ uri }) => !uri.includes('post_type'),
+  );
+
   return {
     props: {
       post,
       seo: postData.postContent.seo,
       categories: postData.postContent.categories.nodes,
-      authors: postData.postContent.selectAuthors.authorDisplayOrder,
-      keyContacts:
-        postData.postContent.keyContacts
-        || postData.postContent.selectAuthors.authorDisplayOrder,
+      authors,
+      keyContacts: postData.postContent.keyContacts || authors,
       category,
       corePractices: postData.corePractices,
       relatedPosts: postData.relatedPosts,
       posts: postData.posts,
+      canonicalUrl: cutSlashFromTheEnd(postData.postContent.link),
     },
   };
 };
@@ -229,11 +244,10 @@ const SinglePost = ({
   relatedPosts,
   posts,
   keyContacts,
+  canonicalUrl,
 }) => {
   const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
   const metaAuthorLinks = authors.map((author) => (author.display_name === SITE_TITLE ? PRODUCTION_URL : author.user_url));
-
   if (router.isFallback) {
     return <SiteLoader />;
   }
@@ -251,7 +265,6 @@ const SinglePost = ({
     relatedPosts,
     posts,
   };
-
   return <PostPage {...postProps} />;
 };
 

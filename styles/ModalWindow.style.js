@@ -13,8 +13,8 @@ export const ModalContainer = styled.div`
   top: 0;
   left: 0;
   pointer-events: all;
-  transition: 0.5s opacity;
-  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  transition: 0.5s opacity, scale;
+  scale: ${({ isOpen }) => (isOpen ? '1' : '0')};
 `;
 
 export const ModalContent = styled.div`

@@ -386,6 +386,7 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
     }
     content
     title
+    link
     date
     seo {
       opengraphDescription
@@ -1322,7 +1323,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
     title
     officeMainInformation {
       autoMap {
-        link
+        mediaItemUrl
         databaseId
       }
       fax
@@ -1342,7 +1343,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
         }
       }
       trainStationsMap {
-        link
+        mediaItemUrl
         databaseId
       }
     }

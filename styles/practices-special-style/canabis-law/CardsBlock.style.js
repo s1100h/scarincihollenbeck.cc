@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from '../../global_styles/Global.styles';
+import { globalColor, rem } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -15,15 +15,13 @@ export const CardsBlockContainer = styled.section`
   ul {
     display: flex;
     justify-content: center;
-    gap: 3%;
+    gap: 40px;
   }
 
   ${media_breakpoint_exactly_down(1310)} {
     .list-card-box {
       overflow: auto;
       justify-content: flex-start;
-      padding-left: 20px;
-      padding-right: 20px;
 
       ul {
         gap: 1%;
@@ -31,12 +29,16 @@ export const CardsBlockContainer = styled.section`
       }
     }
   }
+
+  ${media_breakpoint_down('sm')} {
+    padding: 60px 0;
+  }
 `;
 
 export const CardCannabis = styled.li`
   width: 522px;
   height: 504px;
-  padding: 30px;
+  padding: 32px;
   background-color: ${globalColor.white};
 
   .circle-number {
@@ -59,12 +61,21 @@ export const CardCannabis = styled.li`
     height: 78%;
   }
 
+  .article-common-title {
+    color: ${globalColor.black};
+    font-size: ${rem(32)};
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: 600;
+    line-height: 42px;
+  }
+
   p {
+    font-size: ${rem(20)};
     line-height: 30px;
+    font-weight: 500;
     overflow-y: auto;
     padding-bottom: 5px;
     margin-bottom: 0;
-    font-size: 1.2rem;
   }
 
   ${media_breakpoint_exactly_down(1478)} {
@@ -88,19 +99,20 @@ export const CardCannabis = styled.li`
     }
 
     .article-common-title {
-      font-size: 1.4rem;
+      font-size: ${rem(20)};
       margin-bottom: 15px;
+      line-height: 26px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 24px;
     }
   }
 
   ${media_breakpoint_exactly_down(445)} {
     width: 400px;
     height: 482px;
-
-    p {
-      font-size: 1.3rem;
-      line-height: 25px;
-    }
 
     article {
       height: 72%;
@@ -111,10 +123,5 @@ export const CardCannabis = styled.li`
     width: 300px;
     height: 400px;
     padding: 15px;
-
-    p {
-      font-size: 1rem;
-      line-height: 20px;
-    }
   }
 `;

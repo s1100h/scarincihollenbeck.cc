@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import {
   beforeDoteStyledList,
+  cannabisLawColors,
   globalColor,
   imageCoverBlock,
   paragraphStyles,
+  rem,
 } from '../../global_styles/Global.styles';
 import {
   media_breakpoint_down,
@@ -15,7 +17,7 @@ export const PracticesListContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 120px 6% 160px;
+  padding: 120px 0 160px;
   background: ${imageCoverBlock('/images/smoge.webp')};
   position: relative;
 
@@ -26,6 +28,17 @@ export const PracticesListContainer = styled.section`
     h3 {
       margin-left: 0;
       margin-right: auto;
+      margin-bottom: 50px;
+      color: ${cannabisLawColors.cannabisColorGray};
+      font-size: ${rem(54)};
+      line-height: 70px;
+      font-weight: 600;
+      font-family: var(--font-poppins), sans-serif;
+
+      ${media_breakpoint_down('xxl')} {
+        font-size: ${rem(36)};
+        line-height: 47px;
+      }
     }
 
     ul {
@@ -35,6 +48,7 @@ export const PracticesListContainer = styled.section`
       z-index: 2;
 
       li {
+        padding-left: 15px;
         a {
           ${paragraphStyles}
           ${beforeDoteStyledList}
@@ -89,6 +103,13 @@ export const PracticesListContainer = styled.section`
             font-size: 1.2rem;
           }
         }
+      }
+    }
+
+    ${media_breakpoint_down('sm')} {
+      h3 {
+        font-size: ${rem(24)};
+        line-height: 32px;
       }
     }
 

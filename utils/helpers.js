@@ -223,7 +223,7 @@ export const correctAttorneyLink = (link) => {
   return link.replace(regEx, 'attorneys');
 };
 
-export const changeTitle = (title) => {
+export const changeTitle = (title, isH1) => {
   const symbolCheckObject = {
     '&#8220;': '"',
     '&#8221;': '"',
@@ -232,6 +232,15 @@ export const changeTitle = (title) => {
   Object.keys(symbolCheckObject).map(
     (symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])),
   );
+
+  const pattern = /(\d+)th/g;
+  title = title.replace(pattern, (match, number) => `${number}<span>th</span>`);
+
+  if (!isH1 || typeof isH1 === 'undefined') {
+    return title;
+  }
+
+  title = `<h1>${title}</h1>`;
   return title;
 };
 
@@ -244,4 +253,11 @@ export const getSlugFromUrl = (inputString) => {
   }
 
   return inputString;
+};
+
+export const cutSlashFromTheEnd = (url) => (url.endsWith('/') ? url.slice(0, -1) : url);
+
+export const convertUnixTimestampToISO = (unixTimestamp) => {
+  const date = new Date(unixTimestamp * 1000); // Convert Unix timestamp to milliseconds
+  return date.toISOString(); // Convert to ISO 8601 string
 };
