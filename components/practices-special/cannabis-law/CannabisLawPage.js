@@ -9,24 +9,12 @@ import { categoryPostsByIdQuery } from '../../../requests/graphql-queries';
 import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
 import useAnchorLink from '../../../hooks/useAnchorLink';
 
-const PhotoBlock = dynamic(() =>
-  import('../../organisms/cannabis-law/PhotoBlock'),
-);
-const CardsBlock = dynamic(() =>
-  import('../../organisms/cannabis-law/CardsBlock'),
-);
-const AttorneysBlock = dynamic(() =>
-  import('../../organisms/cannabis-law/AttorneysBlock'),
-);
-const HelpArticleBlock = dynamic(() =>
-  import('../../organisms/cannabis-law/HelpArticleBlock'),
-);
-const NewsPaperBlock = dynamic(() =>
-  import('../../organisms/cannabis-law/NewsPaperBlock'),
-);
-const PracticesListBlock = dynamic(() =>
-  import('../../organisms/cannabis-law/PracticesListBlock'),
-);
+const PhotoBlock = dynamic(() => import('../../organisms/cannabis-law/PhotoBlock'));
+const CardsBlock = dynamic(() => import('../../organisms/cannabis-law/CardsBlock'));
+const AttorneysBlock = dynamic(() => import('../../organisms/cannabis-law/AttorneysBlock'));
+const HelpArticleBlock = dynamic(() => import('../../organisms/cannabis-law/HelpArticleBlock'));
+const NewsPaperBlock = dynamic(() => import('../../organisms/cannabis-law/NewsPaperBlock'));
+const PracticesListBlock = dynamic(() => import('../../organisms/cannabis-law/PracticesListBlock'));
 
 const CannabisLawPage = ({
   practice,
@@ -42,18 +30,19 @@ const CannabisLawPage = ({
   const anchorIdBlock = 'photoBlock';
   const handleClickByAnchorToPhotoBlock = () => setHref(anchorIdBlock);
 
-  const { handleNextPagination, handlePrevPagination, data, loading, error } =
-    useApolloQuery(
-      categoryPostsByIdQuery,
-      {
-        first: 3,
-        last: null,
-        after: null,
-        before: null,
-        categoryId: 911,
-      },
-      // skipOrGo,
-    );
+  const {
+    handleNextPagination, handlePrevPagination, data, loading, error,
+  } = useApolloQuery(
+    categoryPostsByIdQuery,
+    {
+      first: 3,
+      last: null,
+      after: null,
+      before: null,
+      categoryId: 911,
+    },
+    // skipOrGo,
+  );
 
   const paginationDataProps = {
     handleNextPagination,
@@ -93,8 +82,8 @@ const CannabisLawPage = ({
         keyContactsData={cannabisLawData.keycontactsblock}
         keyContacts={keyContactsList}
       />
-      {(!empty(cannabisLawData.helpArticleBlock.title) ||
-        !empty(cannabisLawData.helpArticleBlock.paragraphs)) && (
+      {(!empty(cannabisLawData.helpArticleBlock.title)
+        || !empty(cannabisLawData.helpArticleBlock.paragraphs)) && (
         <HelpArticleBlock
           helpArticleBlockData={cannabisLawData.helpArticleBlock}
         />
