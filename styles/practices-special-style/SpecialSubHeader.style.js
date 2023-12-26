@@ -3,7 +3,6 @@ import {
   entAndMediaColors,
   globalColor,
   rem,
-  rem,
 } from '../global_styles/Global.styles';
 import {
   media_breakpoint_down,
@@ -11,6 +10,8 @@ import {
 } from '../mediaBreakpoints.style';
 import { FullHDContainer } from './commonForSpecial.style';
 import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
+import Link from 'next/link';
+
 
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;

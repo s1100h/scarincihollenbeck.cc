@@ -1,4 +1,4 @@
-import { Licorice, Montserrat, Poppins, Rajdhani } from '@next/font/google';
+import { Licorice, Montserrat, Poppins, Rajdhani, Roboto } from '@next/font/google';
 import localFont from '@next/font/local'
 
 export const montserrat = Montserrat({
@@ -39,3 +39,10 @@ export const carilo = localFont({
 		variable: '--font-carilo',
 		preload: true,
 });
+
+export const roboto = Roboto({
+	weight: ['400', '500', '700'],
+	subsets: ['latin'],
+	variable: '--font-roboto',
+	preload: true,
+})

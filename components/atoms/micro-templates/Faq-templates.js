@@ -30,7 +30,7 @@ export const HawDoIKnow = () => (
 );
 
 export const WhereIsYheFirmLocated = () => (
-  <p className="d-flex gap-2">
+  <p className="d-flex flex-wrap gap-2">
     The firm has several office locations including
     {OFFICE_LOCATIONS.map(({ label, slug, id }) => (
       <Link key={id} href={slug}>

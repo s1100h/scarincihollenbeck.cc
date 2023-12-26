@@ -1,11 +1,12 @@
 import Accordion from 'react-bootstrap/Accordion';
 import { Title } from 'styles/Article.style';
+import { FaqWrapper } from 'styles/Faq.style';
 import { createMarkup } from 'utils/helpers';
 
-export default function FAQ({ faqArrContent }) {
+export default function FAQ({ faqArrContent, title }) {
   return (
-    <section className="mb-5">
-      <Title>FAQ</Title>
+    <FaqWrapper>
+      <Title>{`FAQ about ${title}` || FAQ}</Title>
       <Accordion defaultActiveKey={['0']} alwaysOpen>
         {faqArrContent.map(({ id, title, body }) => (
           <Accordion.Item key={id} eventKey={id.toString()}>
@@ -18,6 +19,6 @@ export default function FAQ({ faqArrContent }) {
           </Accordion.Item>
         ))}
       </Accordion>
-    </section>
+    </FaqWrapper>
   );
 }

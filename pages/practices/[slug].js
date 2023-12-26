@@ -4,6 +4,7 @@ import { PRODUCTION_URL } from 'utils/constants';
 import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
+import PracticePageNew from 'components/pages/PracticePageNew';
 import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
@@ -146,7 +147,7 @@ const SinglePractice = ({
   };
   return (
     <ApolloWrapper>
-      <PracticePage {...practiceProps} />
+      <PracticePageNew {...practiceProps} />
     </ApolloWrapper>
   );
 };

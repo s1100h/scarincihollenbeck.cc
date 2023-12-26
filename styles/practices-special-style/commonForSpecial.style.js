@@ -67,8 +67,16 @@ export const ContainerContent = styled.div`
   padding: 0 135px;
   margin: 0 auto;
 
+  &.practice-container {
+    padding: 0 132px;
+  }
+
   ${media_breakpoint_exactly_down(1850)} {
     padding: 0 84px;
+
+    &.practice-container {
+      padding: 0 120px;
+    }
   }
 
   ${media_breakpoint_exactly_down(1440)} {
@@ -77,5 +85,9 @@ export const ContainerContent = styled.div`
 
   ${media_breakpoint_down('md')} {
     padding: 0 16px;
+
+    &.practice-container {
+      padding: 0 12px;
+    }
   }
 `;

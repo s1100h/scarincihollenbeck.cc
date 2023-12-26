@@ -18,7 +18,7 @@ import {
 
 const headerType = (pageSlug) => {
   const pagesMap = {
-    'entertainment-and-media': 'entAndMedia',
+    // 'entertainment-and-media': 'entAndMedia', // page ready for deploy in prod but paused, commit 26.12.2023
   };
 
   return pagesMap[pageSlug] || '';
@@ -27,12 +27,20 @@ const headerType = (pageSlug) => {
 const SpecialHeader = () => {
   const { scrollTop } = useIsScroll();
   const [isOpenSearch, setOpenSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
 
   const handleOpenSearch = () => {
     setOpenSearch(!isOpenSearch);
+
+    if (showMenu) {
+      setShowMenu(false);
+    }
   };
+
+  const handleCloseMenu = () => setShowMenu(false);
+  const handleShowMenu = () => setShowMenu(true);
 
   return (
     <>
@@ -53,7 +61,11 @@ const SpecialHeader = () => {
         </SearchBoxContainer>
         <LinksBoxSpecial>
           <LinkButtons variant="special" />
-          <MobileMenu />
+          <MobileMenu
+            show={showMenu}
+            handleShow={handleShowMenu}
+            handleClose={handleCloseMenu}
+          />
         </LinksBoxSpecial>
       </SpecialHeaderContainer>
     </>

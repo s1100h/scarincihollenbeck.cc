@@ -25,7 +25,6 @@ const SocialShare = ({ title, isPractice }) => {
     <>
       {isPractice ? (
         <ShareSocialBox isPracticeHr={isPractice ? 'true' : ''}>
-          <h4>Share:</h4>
           <hr className="second-hr" />
           <FacebookShareButton url={postUrl} quote={title}>
             <BsFacebook className="faceBookBtn" />

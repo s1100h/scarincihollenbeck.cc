@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
+import { HeaderContainer } from 'styles/Header.style';
 
 const mainFontSize = 16;
 
@@ -58,6 +59,7 @@ export const globalColor = {
     greyBlue: '#37B7D7',
     dirtyBlue: '#5787CF',
     ultramarine: '#2564E1',
+    darkBlue: '#060B2A',
   },
   socialNetworks: {
     linkedIn: '#0077B5',
@@ -156,6 +158,15 @@ body {
   
   * {
     letter-spacing: .02rem;
+  }
+
+  &.modal-open {
+    ${() => {
+      return `
+      ${HeaderContainer} {
+        width: calc(100% + 17px);
+      }`;
+    }
   }
 }
 
@@ -505,6 +516,7 @@ export const ButtonLinkCss = `
   line-height: 1;
   color: ${globalColor.white};
   text-decoration: none;
+  border-radius: 2px;
 
   span {
     display: flex;

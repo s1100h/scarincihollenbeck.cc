@@ -9,6 +9,7 @@ import {
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import LinksBox from './LinksBox';
 import FooterDetails from './FooterDetails';
 import {
@@ -16,12 +17,16 @@ import {
   globalColor,
 } from '../../../styles/global_styles/Global.styles';
 import { getSlugFromUrl } from '../../../utils/helpers';
-import NavigationAndSubscription from './NavigationAndSubscription';
+
+const NavigationAndSubscription = dynamic(
+  () => import('./NavigationAndSubscription'),
+  { ssr: false },
+);
 
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
     'new-jersey-cannabis-law': cannabisLawColors.cannabisColorDarkGray,
-    'entertainment-and-media': globalColor.black,
+    // 'entertainment-and-media': globalColor.black, // page ready for deploy in prod but paused, commit 26.12.2023
   };
   return footerColorsMap[page];
 };

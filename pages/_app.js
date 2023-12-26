@@ -29,6 +29,7 @@ import {
   rajdhani,
   licorice,
   carilo,
+  roboto,
 } from '../public/fonts/fonts';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
@@ -63,7 +64,7 @@ const SHSite = ({ Component, pageProps }) => {
             <MainSiteHead />
             <Header />
             <main
-              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable}`}
+              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
             >
               <Component {...pageProps} />
             </main>

@@ -7,7 +7,7 @@ import { getSlugFromUrl } from '../../../utils/helpers';
 const renderHeader = (pageSlug, props) => {
   const pagesMap = {
     'new-jersey-cannabis-law': <SpecialHeader {...props} />,
-    'entertainment-and-media': <SpecialHeader {...props} />,
+    // 'entertainment-and-media': <SpecialHeader {...props} />, // page ready for deploy in prod but paused, commit 26.12.2023
   };
 
   return pagesMap[pageSlug] || <DefaultHeader {...props} />;
