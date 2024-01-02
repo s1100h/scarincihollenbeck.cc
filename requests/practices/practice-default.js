@@ -22,7 +22,11 @@ export const attorneysSanitize = (attorneysArr) => {
 
   return attorneysArr
     .map((attorney) => {
-      attorney.attorneyMainInformation.profileImage = attorney.attorneyMainInformation.profileImage.sourceUrl;
+      attorney.attorneyMainInformation.profileImage = !empty(
+        attorney.attorneyMainInformation?.profileImage?.sourceUrl,
+      )
+        ? attorney.attorneyMainInformation.profileImage.sourceUrl
+        : '/images/no-image-found-diamond-750x350.png';
       return {
         databaseId: attorney.databaseId,
         link: attorney.uri,
@@ -37,7 +41,7 @@ export const attorneysSanitize = (attorneysArr) => {
       if (indexA !== indexB) {
         return indexA - indexB; // Sort by designation order first
       }
-      return a.lastName.localeCompare(b.lastName); // If designations are the same, sort by last name
+      return a.lastName?.localeCompare(b.lastName); // If designations are the same, sort by last name
     });
 };
 

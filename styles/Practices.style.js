@@ -205,9 +205,7 @@ export const PracticeTile = styled.li`
     z-index: 4;
 
     h6 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      flex-wrap: wrap;
       color: ${globalColor.gray.gray80};
       font-weight: 700;
       min-height: 25px;
