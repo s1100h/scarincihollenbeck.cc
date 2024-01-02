@@ -1,5 +1,7 @@
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
-import { Fragment, useState } from 'react';
+import {
+  Fragment, useEffect, useRef, useState,
+} from 'react';
 import AttorneyEntAndMediaCard from 'components/molecules/ent-and-media/AttorneyEntAndMediaCard';
 import AttorneyPracticeCard from '../molecules/practice/AttorneyPracticeCard';
 import useStateScreen from '../../hooks/useStateScreen';
@@ -16,19 +18,33 @@ const renderCardsByVariants = (variant, propsCard, cardsMap) => {
   return <AttorneysCardVariable {...propsCard} />;
 };
 
-const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
+const AttorneysListBox = ({
+  attorneys,
+  variant = 'default',
+  handleCardParams,
+  handleCardGap,
+}) => {
   const { chairs, attorneysList } = attorneys;
   const { isMobileScreen } = useStateScreen();
   const [cardIdHovered, setCardIdHovered] = useState();
   const isDefault = variant.includes('default') ? 'true' : '';
+  const contRef = useRef();
+
+  useEffect(() => {
+    if (handleCardGap && contRef.current) {
+      const compStyle = getComputedStyle(contRef.current);
+      const gap = compStyle.getPropertyValue('gap');
+      handleCardGap(parseInt(gap, 10));
+    }
+  }, [handleCardGap]);
 
   return (
-    <AttorneysContainer isNotDefault={isDefault}>
+    <AttorneysContainer isNotDefault={isDefault} ref={contRef}>
       {chairs?.length > 0 && (
         <div className="chair-box">
           <h3>Chair</h3>
           <div>
-            {isMobileScreen
+            {isMobileScreen && !isDefault
               ? chairs?.map((chair) => (
                 <AttorneyCard
                   key={chair.databaseId}
@@ -70,6 +86,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                         setterId: setCardIdHovered,
                         cardIdHovered,
                         databaseId,
+                        handleCardParams,
                       },
                       CardVariantsMap,
                     )}
@@ -84,7 +101,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
         <div className="attorneys-list-box">
           <h3>Attorneys</h3>
           <div>
-            {isMobileScreen
+            {isMobileScreen && !isDefault
               ? attorneysList.map((attorney) => (
                 <AttorneyCard
                   key={attorney.databaseId}
@@ -126,6 +143,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                         setterId: setCardIdHovered,
                         cardIdHovered,
                         databaseId,
+                        handleCardParams,
                       },
                       CardVariantsMap,
                     )}

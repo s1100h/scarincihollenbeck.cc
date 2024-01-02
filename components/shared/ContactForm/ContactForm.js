@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
-import { StandardRedButton } from 'styles/Buttons.style';
+import { StandardBlueButton, StandardRedButton } from 'styles/Buttons.style';
 import {
   GET_IN_TOUCH_FORM_API,
   inputsGetInTouchAttributes,
@@ -59,13 +59,13 @@ export default function ContactForm({ isPositionRelativeProp }) {
             <span className="ml-2">I have read the disclaimer</span>
           </label>
         </fieldset>
-        <StandardRedButton
+        <StandardBlueButton
           disabled={!isCheckedDisclaimer}
           className="mt-2"
           type="submit"
         >
           Submit form
-        </StandardRedButton>
+        </StandardBlueButton>
       </form>
     </FormContainer>
   );

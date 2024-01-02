@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { ShareSocialBox } from "styles/Post/SocialShare.style";
 import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
+import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
 
 
 export const PracticeContentSection = styled.section`
@@ -16,6 +15,18 @@ export const PracticeContentSection = styled.section`
 export const PractiseContentHolder = styled.div`
   display: flex;
   column-gap: 60px;
+
+  ${media_breakpoint_exactly_down(1850)} {
+    column-gap: 24px;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    column-gap: 16px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    column-gap: 8px;
+  }
 `;
 
 export const PracticeDescription = styled.div`
@@ -23,19 +34,34 @@ export const PracticeDescription = styled.div`
 
   .content-block {
     margin-bottom: 40px;
-  }
 
-  .collapse-opener {
-    transform: translateY(calc(-100% - 48px));
+    ${media_breakpoint_exactly_down(1439)} {
+      margin-bottom: 16px;
+    }
+
+    &:last-of-type {
+      ${media_breakpoint_exactly_down(1439)} {
+        margin-bottom: 40px;
+      }
+      ${media_breakpoint_down('md')} {
+        margin-bottom: 32px;
+      }
+    }
   }
 
   h4 {
-    margin: 0 0 4px 0;
+    margin: 0 0 8px 0;
     color: #000;
     font-family: var(--font-poppins);
     font-size: ${rem(28)};
     font-weight: 600;
     line-height: 36px;
+
+    ${media_breakpoint_down('sm')} {
+      font-size: ${rem(16)};
+      line-height: 20px;
+      font-weight: 700;
+    }
   }
 
   p {
@@ -45,6 +71,11 @@ export const PracticeDescription = styled.div`
     font-size: ${rem(16)};
     line-height: 29px;
     font-weight: 400;
+
+    ${media_breakpoint_down('sm')} {
+      font-size: ${rem(14)};
+      line-height: 24px;
+    }
   }
 
   ul {
@@ -55,70 +86,28 @@ export const PracticeDescription = styled.div`
       font-size: ${rem(16)};
       line-height: 29px;
       font-weight: 400;
+
+      ${media_breakpoint_down('sm')} {
+        font-size: ${rem(14)};
+        line-height: 24px;
+      }
     }
   }
 `;
 
 export const PracticeSidebar = styled.div`
-  width: 30%;
-`;
+  margin-bottom: 40px;
+  width: 25%;
 
-export const PracticeSidebarContent = styled.div`
-  padding: 12px 16px;
-  background-color: #FBFBFB;
-  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 150px;
-  max-height: calc(100vh - 170px);
-  overflow: auto;
-
-  ${ShareSocialBox} {
-    padding: 8px 0;
-    margin: 0 0 12px 0;
+  ${media_breakpoint_exactly_down(1850)} {
+    width: 35.5%;
   }
 
-  .second-hr {
-    color: #164587;
-    width: calc(100% + 16px);
-    margin-left: -16px;
-    height: 1px;
+  ${media_breakpoint_exactly_down(1439)} {
+    margin-bottom: 32px;
   }
 
-  button {
-    margin: 0 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      color: #164587;
-      transition: all 0.3s ease;
-      width: 20px;
-      height: 20px;
-    }
-
-    &:first-of-type {
-      margin-left: 0;
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-    }
-  }
-
-  > h3 {
-    margin: 0 0 4px 0;
-    color: #231E1E;
-    font-size: ${rem(24)};
-    line-height: 32px;
-    font-weight: 400;
-  }
-
-  p {
-    color: #231E1E;
-    font-size: ${rem(12)};
-    line-height: 16px;
-    font-weight: 400;
-    font-family: var(--font-roboto);
+  ${media_breakpoint_down('lg')} {
+    width: auto;
   }
 `;

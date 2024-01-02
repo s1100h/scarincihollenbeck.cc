@@ -81,6 +81,10 @@ export const ContainerContent = styled.div`
 
   ${media_breakpoint_exactly_down(1440)} {
     padding: 0 32px;
+
+    &.practice-container {
+      padding: 0 32px;
+    }
   }
 
   ${media_breakpoint_down('md')} {

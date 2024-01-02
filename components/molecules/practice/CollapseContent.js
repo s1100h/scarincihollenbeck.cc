@@ -7,43 +7,49 @@ import {
 
 const CollapseContent = ({ content, id }) => {
   const [open, setOpen] = useState(false);
-  const [isCollapse, setIsCollapse] = useState(false);
   const contentRef = useRef(null);
+  const isContentShort = contentRef.current && contentRef.current.clientHeight < 500;
 
   useEffect(() => {
-    if (contentRef.current) {
-      if (contentRef.current.clientHeight < 500) {
-        setOpen(true);
-        setIsCollapse(false);
-      } else {
-        setIsCollapse(true);
+    const handleContentHeight = () => {
+      if (contentRef.current) {
+        if (contentRef.current.clientHeight < 500) {
+          setOpen(true);
+        } else {
+          setOpen(false);
+        }
       }
-    }
-  }, []);
+    };
 
-  return isCollapse ? (
-    <>
+    handleContentHeight();
+  }, [content]);
+
+  if (isContentShort) {
+    return (
+      <div
+        ref={contentRef}
+        className="content-block margin-scroll"
+        id={`${id}-section`}
+      >
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <div className="content-block margin-scroll" id={`${id}-section`}>
       <Collapse in={open}>
-        <CollapseContentWrapper
-          id={`content-${id}`}
-          ref={contentRef}
-          className="content-block"
-        >
-          {content}
+        <CollapseContentWrapper>
+          <div ref={contentRef}>{content}</div>
         </CollapseContentWrapper>
       </Collapse>
       <CollapseButton
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        aria-controls={`content-${id}`}
         className="collapse-opener"
       >
         {open ? '' : 'Read more'}
       </CollapseButton>
-    </>
-  ) : (
-    <div ref={contentRef} className="content-block">
-      {content}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { rem } from "./global_styles/Global.styles";
+import { globalColor, rem } from "./global_styles/Global.styles";
 
 export const CollapseContentWrapper = styled.div`
   &.collapse:not(.show) {
@@ -34,4 +34,10 @@ export const CollapseButton = styled.button`
   font-size: ${rem(16)};
   line-height: 24px;
   font-weight: 700;
+  font-family: var(--font-roboto);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: ${globalColor.red.darkRed};
+  }
 `;

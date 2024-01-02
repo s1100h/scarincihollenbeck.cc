@@ -161,11 +161,14 @@ body {
   }
 
   &.modal-open {
-    ${() => {
-      return `
-      ${HeaderContainer} {
-        width: calc(100% + 17px);
-      }`;
+    padding-right: 0 !important;
+  }
+
+  .margin-scroll {
+    scroll-margin-top: 250px;
+
+    ${media_breakpoint_down('md')} {
+      scroll-margin-top: 180px;
     }
   }
 }

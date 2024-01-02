@@ -1,9 +1,28 @@
 import styled from "styled-components";
 import { globalColor, rem } from "./global_styles/Global.styles";
+import { media_breakpoint_down, media_breakpoint_exactly_down } from "./mediaBreakpoints.style";
 
 
 export const FaqWrapper = styled.section`
   margin-bottom: 40px;
+
+  h3 {
+    margin: 0 0 14px 0;
+    color: #000;
+    font-size: ${rem(28)};
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    line-height: 36px;
+    text-align: start;
+
+    ${media_breakpoint_down('sm')} {
+      margin: 0 0 8px 0;
+      font-size: ${rem(16)};
+      line-height: 20px;
+      font-weight: 700;
+      color: #0D0D0D;
+    }
+  }
 
   .accordion {
     display: flex;
@@ -16,9 +35,21 @@ export const FaqWrapper = styled.section`
     &-item {
       padding-bottom: 8px;
       background-color: #AFDCF5;
-      box-shadow: 0px 0px 8px 0px rgba(10, 33, 65, 0.22);
       border-radius: 0;
       border: none;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06);
+      }
+
+      ${media_breakpoint_exactly_down(1439)} {
+        padding-bottom: 4px;
+      }
+
+      ${media_breakpoint_down('sm')} {
+        padding-bottom: 0;
+      }
     }
 
     &-header {
@@ -28,6 +59,13 @@ export const FaqWrapper = styled.section`
       font-size: ${rem(16)};
       font-weight: 600;
       line-height: 24px;
+
+      ${media_breakpoint_down('sm')} {
+        font-size: ${rem(14)};
+        line-height: 20px;
+        font-weight: 400;
+        color: #0D0D0D;
+      }
     }
 
     &-button {
@@ -38,6 +76,18 @@ export const FaqWrapper = styled.section`
       border-radius: 0;
       color: #231E1E;
       font-weight: 600;
+
+      ${media_breakpoint_exactly_down(1850)} {
+        padding: 16px 16px 12px 16px;
+      }
+
+      ${media_breakpoint_down('sm')} {
+        padding: 12px 8px 12px 8px;
+        font-size: ${rem(14)};
+        line-height: 20px;
+        font-weight: 400;
+        color: #0D0D0D;
+      }
     }
 
     &-body {
@@ -47,6 +97,17 @@ export const FaqWrapper = styled.section`
       line-height: 24px;
       font-weight: 400;
       font-family: var(--font-poppins);
+
+      ${media_breakpoint_exactly_down(1850)} {
+        padding: 0 16px 12px;
+      }
+
+      ${media_breakpoint_down('sm')} {
+        padding: 0 8px 12px;
+        font-size: ${rem(14)};
+        line-height: 24px;
+        font-weight: 400;
+      }
     }
 
   }

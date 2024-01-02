@@ -3,9 +3,9 @@ import { Title } from 'styles/Article.style';
 import { FaqWrapper } from 'styles/Faq.style';
 import { createMarkup } from 'utils/helpers';
 
-export default function FAQ({ faqArrContent, title }) {
+export default function FAQ({ faqArrContent, title, anchorId }) {
   return (
-    <FaqWrapper>
+    <FaqWrapper className="margin-scroll" id={anchorId}>
       <Title>{`FAQ about ${title}` || FAQ}</Title>
       <Accordion defaultActiveKey={['0']} alwaysOpen>
         {faqArrContent.map(({ id, title, body }) => (
