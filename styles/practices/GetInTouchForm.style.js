@@ -1,16 +1,13 @@
 import styled from "styled-components";
 import { ShareSocialBox } from "styles/Post/SocialShare.style";
-import { rem } from "styles/global_styles/Global.styles";
+import { globalColor, rem } from "styles/global_styles/Global.styles";
 import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
 
 export const GetInTouchFormWrapper = styled.div`
   padding: 12px 16px;
   background-color: #FBFBFB;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 250px;
-  max-height: calc(100vh - 290px);
-  overflow: auto;
+  ${({isSticky}) => isSticky && 'position: sticky; top: 250px; overflow: auto; max-height: calc(100vh - 290px);'}
   border: 1px solid transparent;
   transition: all 0.5s ease-in-out;
 
@@ -70,8 +67,37 @@ export const GetInTouchFormWrapper = styled.div`
     font-family: var(--font-roboto);
   }
 
+  &:has(.kw-alert-success:not([style="display: none;"])) {
+    background-color: #164587;
+
+    ${ShareSocialBox} {
+      margin: 0 0 28px 0;
+      .second-hr {
+        color: ${globalColor.white};
+      }
+      
+      .react-share__ShareButton {
+        svg {
+          color: ${globalColor.white};
+        }
+      }
+    }
+
+    > h3 {
+      display: none;
+    }
+
+    > p {
+      display: none;
+    }
+
+    .kw-alert-success {
+      justify-content: flex-start;
+    }
+  }
+
   ${media_breakpoint_down('lg')} {
-    display: none;
+    ${({isMobileBtn}) => isMobileBtn && `display: none;`}
   }
 `;
 

@@ -61,8 +61,10 @@ export const AnchorsTopBarItem = styled.a`
     color: #164587;
   }
 
-  &:hover {
-    background-color: ${globalColor.white};
-    color: #164587;
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${globalColor.white};
+      color: #164587;
+    }
   }
 `;

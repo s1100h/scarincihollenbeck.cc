@@ -10,11 +10,11 @@ import ModalWindow from 'components/common/ModalWindow';
 import { FormBox } from 'styles/AboutAuthorFormCard.style';
 import SocialShare from '../post/SocialShare';
 
-const GetInTouchForm = () => {
+const GetInTouchForm = ({ isMobileBtn = true, isSticky = true }) => {
   const { isBigTabletScreen } = useStateScreen();
   const [show, setShow] = useState(false);
 
-  if (isBigTabletScreen) {
+  if (isBigTabletScreen && isMobileBtn) {
     return (
       <>
         <GetInTouchMobileBtn onClick={() => setShow(true)}>
@@ -24,7 +24,7 @@ const GetInTouchForm = () => {
         <ModalWindow isOpen={show} setOpenModal={setShow}>
           <FormBox>
             <h4>Let`s get in touch!</h4>
-            <ContactForm />
+            <ContactForm blockName="sidebarmobile" />
           </FormBox>
         </ModalWindow>
       </>
@@ -32,13 +32,13 @@ const GetInTouchForm = () => {
   }
 
   return (
-    <GetInTouchFormWrapper>
+    <GetInTouchFormWrapper isMobileBtn={isMobileBtn} isSticky={isSticky}>
       <SocialShare isPractice />
       <h3>Let&apos;s get in touch</h3>
       <p>
         Form instructions (Please feel free to contact us with any question.)
       </p>
-      <ContactForm isPositionRelativeProp />
+      <ContactForm isPositionRelativeProp blockName="sidebar" />
     </GetInTouchFormWrapper>
   );
 };

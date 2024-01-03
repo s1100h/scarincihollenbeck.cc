@@ -39,7 +39,7 @@ const PracticePageNew = ({
 
   useEffect(() => {
     if (!empty(tabs)) {
-      tabs?.slice(0, -1)?.forEach(
+      tabs?.forEach(
         (tab) => (updatedAnchorData = {
           ...updatedAnchorData,
           [tab.id]: {

@@ -124,11 +124,12 @@ const SinglePractice = ({
 
   const fullTabs = [
     ...siteTabs,
-    {
-      id: 99,
-      title: 'Related Articles',
-      content: '<h4>Related Articles</h4>',
-    },
+    // related articles not used on new pages practices 02.01.2024
+    // {
+    //   id: 99,
+    //   title: 'Related Articles',
+    //   content: '<h4>Related Articles</h4>',
+    // },
   ];
 
   const practiceProps = {

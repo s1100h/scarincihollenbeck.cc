@@ -9,19 +9,11 @@ import {
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import LinksBox from './LinksBox';
 import FooterDetails from './FooterDetails';
-import {
-  cannabisLawColors,
-  globalColor,
-} from '../../../styles/global_styles/Global.styles';
+import { cannabisLawColors } from '../../../styles/global_styles/Global.styles';
 import { getSlugFromUrl } from '../../../utils/helpers';
-
-const NavigationAndSubscription = dynamic(
-  () => import('./NavigationAndSubscription'),
-  { ssr: false },
-);
+import NavigationAndSubscription from './NavigationAndSubscription';
 
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {

@@ -64,8 +64,44 @@ export const FormContainer = styled.div`
 
     .kw-alert-success {
       ${successMessage}
-      :after {
-        content: ${THANKS_MESSAGE.getInTouch};
+      margin: 0;
+      background-color: #164587;
+      border-radius: 0;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: start;
+      color: ${globalColor.white};
+      order: 1;
+      text-transform: uppercase;
+      font-size: ${rem(57)};
+      font-family: var(--font-roboto);
+      line-height: 64px;
+      font-weight: 400;
+
+      &:before {
+        margin: 40px 0 16px 0;
+        content: 'Your message has been sent successfully';
+        background: transparent;
+        width: auto;
+        height: auto;
+        color: ${globalColor.white};
+        font-family: var(--font-roboto);
+        font-size: ${rem(22)};
+        line-height: 28px;
+        font-weight: 400;
+        order: 2;
+        text-transform: none;
+      }
+
+      &:after {
+        content: 'We’ll be in touch shortly!';
+        color: ${globalColor.white};
+        font-size: ${rem(28)};
+        line-height: 36px;
+        font-weight: 400;
+        font-family: var(--font-roboto);
+        order: 3;
+        text-transform: none;
       }
     }
 

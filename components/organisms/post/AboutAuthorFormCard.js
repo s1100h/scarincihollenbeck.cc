@@ -7,7 +7,7 @@ import {
 } from '../../../styles/AboutAuthorFormCard.style';
 import ModalWindow from '../../common/ModalWindow';
 
-const AboutAuthorFormCard = () => {
+const AboutAuthorFormCard = ({ blockName }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ const AboutAuthorFormCard = () => {
       <ModalWindow isOpen={show} setOpenModal={setShow}>
         <FormBox>
           <h4>Let`s get in touch!</h4>
-          <ContactForm />
+          <ContactForm blockName={blockName} />
         </FormBox>
       </ModalWindow>
     </AboutAuthorFormCardContainer>

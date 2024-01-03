@@ -101,7 +101,7 @@ const DefaultSubHeaderNew = ({
             />
           ))}
         </DefaultSubHeaderKeyContactsCards>
-        <AboutAuthorFormCard />
+        <AboutAuthorFormCard blockName="subheader" />
       </DefaultSubHeaderKeyContacts>
     </DefaultSubHeaderHolder>
   );

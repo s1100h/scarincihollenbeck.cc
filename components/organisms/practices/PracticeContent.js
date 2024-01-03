@@ -19,8 +19,7 @@ const PracticeContent = ({
     <ContainerContent className="practice-container">
       <PractiseContentHolder>
         <PracticeDescription>
-          {/* slise used for delete last element - releted articles title */}
-          {data?.slice(0, data.length - 1).map((item) => (
+          {data?.map((item) => (
             <CollapseContent
               key={item.id}
               content={<JSXWithDynamicLinks HTML={item.content} />}
