@@ -22,6 +22,7 @@ import 'animate.css/animate.min.css';
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import TagManager from 'react-gtm-module';
+import { PracticesContextProvider } from 'contexts/PracticesContext';
 import { FormContextProvider } from '../contexts/FormsContext';
 import {
   montserrat,
@@ -44,6 +45,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const tagManagerInitial = () => {
   TagManager.initialize({ gtmId: 'GTM-PC64FQH' });
 };
+
 const SHSite = ({ Component, pageProps }) => {
   const router = useRouter();
 
@@ -60,15 +62,17 @@ const SHSite = ({ Component, pageProps }) => {
       <AttorneysProvider>
         <LocationProvider>
           <FormContextProvider>
-            <GlobalStyle />
-            <MainSiteHead />
-            <Header />
-            <main
-              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
-            >
-              <Component {...pageProps} />
-            </main>
-            <SiteFooter />
+            <PracticesContextProvider>
+              <GlobalStyle />
+              <MainSiteHead />
+              <Header />
+              <main
+                className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
+              >
+                <Component {...pageProps} />
+              </main>
+              <SiteFooter />
+            </PracticesContextProvider>
           </FormContextProvider>
         </LocationProvider>
       </AttorneysProvider>

@@ -24,7 +24,7 @@ const headerType = (pageSlug) => {
   return pagesMap[pageSlug] || '';
 };
 
-const SpecialHeader = () => {
+const SpecialHeader = ({ practices }) => {
   const { scrollTop } = useIsScroll();
   const [isOpenSearch, setOpenSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -52,7 +52,7 @@ const SpecialHeader = () => {
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
-        <Navigation isHidden={isOpenSearch} />
+        <Navigation isHidden={isOpenSearch} practices={practices} />
         <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
           <GlobalSearch onHandleClickSearch={handleOpenSearch} />
         </VisibleHiddenSearch>
@@ -65,6 +65,7 @@ const SpecialHeader = () => {
             show={showMenu}
             handleShow={handleShowMenu}
             handleClose={handleCloseMenu}
+            practices={practices}
           />
         </LinksBoxSpecial>
       </SpecialHeaderContainer>

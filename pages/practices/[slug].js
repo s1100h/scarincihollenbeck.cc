@@ -5,6 +5,7 @@ import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
+import { getGoogleReviews } from 'requests/getGoogleReviews';
 import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
@@ -42,6 +43,8 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
     posts,
   } = await getPracticeAttorneys(resolvedUrl);
   const clientAlertPost = await getClientAlertPost();
+  const googleReviews = await getGoogleReviews();
+  // console.log(googleReviews);
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
 

@@ -1,6 +1,6 @@
 /* eslint-disable */
 // file has strange eslint error. Without any problems
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { IoMenuSharp, IoCloseSharp } from 'react-icons/io5';
 import { SITE_NAVIGATION } from 'utils/constants';
@@ -33,12 +33,34 @@ const specialPageClass = {
   // 'entertainment-and-media': 'menu-entertainment', // page ready for deploy in prod but paused, commit 26.12.2023
 };
 
-const MobileMenu = ({ show, handleClose, handleShow }) => {
+const MobileMenu = ({ show, handleClose, handleShow, practices }) => {
   const [isSecondLvl, setIsSecondLvl] = useState(false);
   const [secondLvlData, setSecondLvlData] = useState([]);
   const [activeItemId, setActiveItemId] = useState(null);
   const { isTabletScreen } = useStateScreen();
 
+  const practiceWithOverview = useMemo(() => {
+    if (!practices) return null;
+
+    return practices.map((practice) => {
+      const overviewChild = {
+        databaseId: practice.databaseId + '_' + practice.title,
+        title: `${practice.title} overview`,
+        uri: practice.uri,
+      };
+
+      const updatedChildPractice = [overviewChild, ...practice.childPractice];
+
+      return {
+        ...practice,
+        childPractice: updatedChildPractice,
+      };
+    });
+  }, [practices]);
+
+  if (!practiceWithOverview) {
+    return null;
+  }
   const handleClickFirstLvl = (data) => {
     setIsSecondLvl(true);
     setSecondLvlData(data);
@@ -78,6 +100,98 @@ const MobileMenu = ({ show, handleClose, handleShow }) => {
         <OffcanvasBody>
           <NavList>
             <AccordionStyled>
+              <Accordion.Item
+                eventKey="practices"
+                className="mobile-menu__first-accordion"
+              >
+                <Accordion.Header as="h4" onClick={() => hideSecondLvl()}>
+                  Practices
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ul className="mobile-menu__first-lvl">
+                    {practiceWithOverview?.map((practice) =>
+                      practice?.childPractice ? (
+                        <li key={practice?.databaseId}>
+                          {isTabletScreen ? (
+                            <Accordion className="mobile-menu__second-accordion">
+                              <Accordion.Item eventKey={practice?.databaseId}>
+                                <Accordion.Header>
+                                  {practice?.title}
+                                </Accordion.Header>
+                                <Accordion.Body>
+                                  <ul>
+                                    {practice?.childPractice.map((child) => (
+                                      <li
+                                        key={child?.databaseId}
+                                        className={
+                                          fullPath === child?.uri
+                                            ? 'active'
+                                            : ''
+                                        }
+                                      >
+                                        <Link
+                                          href={child?.uri}
+                                          passHref
+                                          legacyBehavior
+                                        >
+                                          <a onClick={handleClose}>
+                                            {child.title}
+                                          </a>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </Accordion.Body>
+                              </Accordion.Item>
+                            </Accordion>
+                          ) : (
+                            <button
+                              className={`mobile-item__with-child ${
+                                activeItemId === practice?.databaseId
+                                  ? 'active'
+                                  : ''
+                              }`}
+                              key={practice?.databaseId}
+                              onClick={() => {
+                                handleMobileItemClick(practice?.databaseId);
+                                handleClickFirstLvl(practice?.childPractice);
+                              }}
+                            >
+                              {practice?.title}
+                            </button>
+                          )}
+                        </li>
+                      ) : (
+                        <li key={practice?.databaseId}>
+                          <Link href={practice?.uri} passHref legacyBehavior>
+                            <a onClick={handleClose}>{practice?.title}</a>
+                          </Link>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                  {isSecondLvl && !isTabletScreen && (
+                    <ul className="mobile-menu__second-lvl">
+                      {secondLvlData &&
+                        secondLvlData?.map((child) => (
+                          <li
+                            key={child.databaseId}
+                            className={fullPath === child.uri ? 'active' : ''}
+                          >
+                            <Link
+                              key={child.databaseId}
+                              href={child.uri}
+                              passHref
+                              legacyBehavior
+                            >
+                              <a onClick={handleClose}>{child.title}</a>
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+                </Accordion.Body>
+              </Accordion.Item>
               {SITE_NAVIGATION.map(({ id, label, children, slug }) => (
                 <div key={id}>
                   {children?.length > 0 ? (
@@ -92,33 +206,35 @@ const MobileMenu = ({ show, handleClose, handleShow }) => {
                       {children?.length > 0 && (
                         <Accordion.Body>
                           <ul className="mobile-menu__first-lvl">
-                            {children.map((link) =>
+                            {children?.map((link) =>
                               link?.children ? (
-                                <li key={link.id}>
+                                <li key={link?.databaseId}>
                                   {isTabletScreen ? (
                                     <Accordion className="mobile-menu__second-accordion">
-                                      <Accordion.Item eventKey={link.id}>
+                                      <Accordion.Item
+                                        eventKey={link?.databaseId}
+                                      >
                                         <Accordion.Header>
-                                          {link.label}
+                                          {link?.title}
                                         </Accordion.Header>
                                         <Accordion.Body>
                                           <ul>
-                                            {link.children.map((child) => (
+                                            {link?.children.map((child) => (
                                               <li
-                                                key={child.id}
+                                                key={child?.databaseId}
                                                 className={
-                                                  fullPath === child.slug
+                                                  fullPath === child?.uri
                                                     ? 'active'
                                                     : ''
                                                 }
                                               >
                                                 <Link
-                                                  href={child.slug}
+                                                  href={child?.uri}
                                                   passHref
                                                   legacyBehavior
                                                 >
                                                   <a onClick={handleClose}>
-                                                    {child.label}
+                                                    {child.title}
                                                   </a>
                                                 </Link>
                                               </li>
@@ -130,26 +246,28 @@ const MobileMenu = ({ show, handleClose, handleShow }) => {
                                   ) : (
                                     <button
                                       className={`mobile-item__with-child ${
-                                        activeItemId === link.id ? 'active' : ''
+                                        activeItemId === link?.databaseId
+                                          ? 'active'
+                                          : ''
                                       }`}
-                                      key={link.id}
+                                      key={link?.databaseId}
                                       onClick={() => {
-                                        handleMobileItemClick(link.id);
-                                        handleClickFirstLvl(link.children);
+                                        handleMobileItemClick(link?.databaseId);
+                                        handleClickFirstLvl(link?.children);
                                       }}
                                     >
-                                      {link.label}
+                                      {link?.title}
                                     </button>
                                   )}
                                 </li>
                               ) : (
-                                <li key={link.id}>
+                                <li key={link?.databaseId}>
                                   <Link
-                                    href={link.slug}
+                                    href={link?.uri}
                                     passHref
                                     legacyBehavior
                                   >
-                                    <a onClick={handleClose}>{link.label}</a>
+                                    <a onClick={handleClose}>{link?.title}</a>
                                   </Link>
                                 </li>
                               ),
@@ -160,18 +278,18 @@ const MobileMenu = ({ show, handleClose, handleShow }) => {
                               {secondLvlData &&
                                 secondLvlData?.map((child) => (
                                   <li
-                                    key={child.id}
+                                    key={child.databaseId}
                                     className={
-                                      fullPath === child.slug ? 'active' : ''
+                                      fullPath === child.uri ? 'active' : ''
                                     }
                                   >
                                     <Link
-                                      key={child.id}
-                                      href={child.slug}
+                                      key={child.databaseId}
+                                      href={child.uri}
                                       passHref
                                       legacyBehavior
                                     >
-                                      <a onClick={handleClose}>{child.label}</a>
+                                      <a onClick={handleClose}>{child.title}</a>
                                     </Link>
                                   </li>
                                 ))}

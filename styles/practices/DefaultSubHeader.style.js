@@ -349,11 +349,11 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
         &:hover {
           span {
-            color: #8DC0F2;
+            color: ${globalColor.blue.skyBlue};
           }
 
           svg {
-            fill: #8DC0F2;
+            fill: ${globalColor.blue.skyBlue};
           }
         }
       }

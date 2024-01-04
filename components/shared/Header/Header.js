@@ -1,5 +1,7 @@
 import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { PracticesContext } from 'contexts/PracticesContext';
 import SpecialHeader from './SpecialHeader';
 import DefaultHeader from './DefaultHeader';
 import { getSlugFromUrl } from '../../../utils/helpers';
@@ -16,10 +18,12 @@ export default function Header() {
   const { scrollTop } = useIsScroll();
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
+  const { practices } = useContext(PracticesContext);
 
   const headerProps = {
     scrollTop,
     pathname,
+    practices,
   };
 
   return <>{renderHeader(slug, headerProps)}</>;

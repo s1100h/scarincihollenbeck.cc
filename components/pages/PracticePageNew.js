@@ -69,7 +69,7 @@ const PracticePageNew = ({
         subtitle={practice.practicesIncluded.description}
         keyContacts={keyContactsList}
       />
-      <PracticeAnchors anchorData={anchorData} />
+      <PracticeAnchors anchorData={anchorData} title={practice.title} />
       <PracticeContent
         data={tabs}
         title={practice.title}
