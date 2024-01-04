@@ -32,7 +32,9 @@ const sanitizeMembers = (members) => members.map((member) => ({
   designation:
       (member.attorneyMainInformation?.designation
         !== 'Firm Managing Partner'
-      && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner'
+      && member.attorneyMainInformation?.designation
+        !== 'Deputy Managing Partner'
+      && member.attorneyMainInformation?.designation !== 'NYC Managing Partner'
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation)
       || member.administration?.title,
@@ -50,7 +52,6 @@ export const getServerSideProps = async () => {
     directors,
     firmLeaders,
   } = firmOverviewTabs;
-
   return {
     props: {
       title,
