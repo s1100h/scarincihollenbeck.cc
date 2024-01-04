@@ -18,6 +18,7 @@ const organizeAttorneys = (attorneys, titles) => {
       && !attorney.designation.includes('Firm Managing Partner')
       && !attorney.designation.includes('Deputy Managing Partner')
       && !attorney.designation.includes('Executive Director')
+      && !attorney.designation.includes('NYC Managing Partner')
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners?.attorneys.push(attorney);
@@ -31,6 +32,10 @@ const organizeAttorneys = (attorneys, titles) => {
       results['Practice Leaders']?.attorneys.push(attorney);
     }
     if (attorney.designation === 'Deputy Managing Partner') {
+      results['Firm Managing Partner']?.attorneys.push(attorney);
+      results['Firm management']?.attorneys.push(attorney);
+    }
+    if (attorney.designation === 'NYC Managing Partner') {
       results['Firm Managing Partner']?.attorneys.push(attorney);
       results['Firm management']?.attorneys.push(attorney);
     }
@@ -49,6 +54,7 @@ const organizeAttorneys = (attorneys, titles) => {
         attorney.designation[0] === key[0]
         && attorney.designation[0]
         && !attorney.designation.includes('Deputy Managing Partner')
+        && !attorney.designation.includes('NYC Managing Partner')
       ) {
         results[key].attorneys.push(attorney);
       }
