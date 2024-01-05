@@ -1,5 +1,8 @@
-import styled, { keyframes } from "styled-components";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
+import styled, { keyframes } from 'styled-components';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 const fade = keyframes`
   from {
@@ -29,7 +32,7 @@ export const PracticeAnchorsHolder = styled.div`
     transform: translateY(0);
     transition: all 0.3s ease;
 
-    ${media_breakpoint_down("md")} {
+    ${media_breakpoint_down('md')} {
       top: 70px;
     }
   }
@@ -40,7 +43,7 @@ export const PracticeAnchorsHolder = styled.div`
 `;
 
 export const PracticeAnchorEmpty = styled.div`
-  display: ${({ show }) => (show ? "block" : "none")};
+  display: ${({ show }) => (show ? 'block' : 'none')};
   margin-top: 40px;
   height: ${({ height }) => `${height}px`};
 

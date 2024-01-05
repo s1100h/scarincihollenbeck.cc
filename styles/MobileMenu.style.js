@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import Accordion from 'react-bootstrap/Accordion';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import empty from 'is-empty';
 
 export const BurgerBtn = styled.button`
@@ -66,7 +69,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
 `;
 export const OffcanvasBody = styled(Offcanvas.Body)`
   padding: 0;
-  background-color: #060B2A;
+  background-color: #060b2a;
 `;
 export const NavList = styled.div`
   margin: 0;
@@ -81,7 +84,7 @@ export const NavList = styled.div`
   }
 
   & ::-webkit-scrollbar-track {
-    background-color: #0B1136;
+    background-color: #0b1136;
     border-radius: 8px;
     opacity: 0;
   }
@@ -89,7 +92,7 @@ export const NavList = styled.div`
   & ::-webkit-scrollbar {
     width: 2px;
     height: 4px;
-    background-color: #0B1136;
+    background-color: #0b1136;
   }
 
   & ::-webkit-scrollbar-thumb {
@@ -97,7 +100,7 @@ export const NavList = styled.div`
     border-radius: 8px;
   }
 
-  scrollbar-color: #162153 #0B1136;
+  scrollbar-color: #162153 #0b1136;
   scrollbar-width: thin;
 
   ${media_breakpoint_down('md')} {
@@ -137,7 +140,8 @@ export const AccordionStyled = styled(Accordion)`
             flex-direction: column;
           }
 
-          a, .mobile-item__with-child {
+          a,
+          .mobile-item__with-child {
             width: 100%;
             padding: 13px 8px 11px;
             font-size: ${rem(14)};
@@ -148,12 +152,12 @@ export const AccordionStyled = styled(Accordion)`
 
             &:hover {
               background-color: transparent;
-              color: #377EC4;
+              color: #377ec4;
             }
 
             &.active {
               border-radius: 4px;
-              background-color: #162153;      
+              background-color: #162153;
             }
           }
 
@@ -180,7 +184,7 @@ export const AccordionStyled = styled(Accordion)`
                 width: 12px;
                 height: 20px;
                 background-color: #162153;
-                clip-path: polygon(100% 50%,0 0,0% 100%);
+                clip-path: polygon(100% 50%, 0 0, 0% 100%);
                 opacity: 1;
               }
 
@@ -238,13 +242,13 @@ export const AccordionStyled = styled(Accordion)`
                   padding: 0;
                   font-size: ${rem(14)};
                   font-weight: 400;
-                  color: #E6E6E6;
+                  color: #e6e6e6;
                   line-height: 28px;
 
                   &:hover {
                     background-color: transparent;
                     text-decoration: underline;
-                    
+
                     &:after {
                       content: none;
                     }
@@ -252,16 +256,15 @@ export const AccordionStyled = styled(Accordion)`
                 }
 
                 &.active {
-                  color: #AFDCF5;
+                  color: #afdcf5;
 
                   > a {
-                    color: #AFDCF5;
+                    color: #afdcf5;
                   }
                 }
               }
             }
           }
-
         }
 
         ${media_breakpoint_down('md')} {
@@ -289,11 +292,11 @@ export const AccordionStyled = styled(Accordion)`
           }
 
           &:hover {
-            color: #8DC0F2;
+            color: #8dc0f2;
 
             a {
               background-color: transparent;
-              color: #8DC0F2;
+              color: #8dc0f2;
 
               &:after {
                 content: none;
@@ -305,15 +308,15 @@ export const AccordionStyled = styled(Accordion)`
             padding: 0;
             font-size: ${rem(14)};
             font-weight: 400;
-            color: #E6E6E6;
+            color: #e6e6e6;
             line-height: 28px;
           }
 
           &.active {
-            color: #AFDCF5;
+            color: #afdcf5;
 
             > a {
-              color: #AFDCF5;
+              color: #afdcf5;
             }
           }
         }
@@ -350,7 +353,6 @@ export const AccordionStyled = styled(Accordion)`
           margin-right: 0;
         }
       }
-
     }
     .accordion-button:not(.collapsed) {
       border-bottom: 0;
@@ -396,13 +398,18 @@ export const ButtonLinkBox = styled.div`
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(266deg, #060B2A -13.67%, #C00100 79.43%, #DF143D 125.91%);
+      background: linear-gradient(
+        266deg,
+        #060b2a -13.67%,
+        #c00100 79.43%,
+        #df143d 125.91%
+      );
       z-index: -1;
       opacity: 0;
       transition: all 0.5s ease;
@@ -447,8 +454,8 @@ export const CommunicationLinks = styled.div`
       text-decoration: underline;
 
       &:hover {
-      text-decoration: none;
-    }
+        text-decoration: none;
+      }
     }
 
     &:hover {

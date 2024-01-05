@@ -113,11 +113,11 @@ export const StandardBlueButton = styled(Button)`
 
   :focus-visible {
     box-shadow: none;
-    background-color: #377EC4;
+    background-color: #377ec4;
   }
 
   :disabled {
-    background-color: rgba(22, 69, 135, 0.20);
+    background-color: rgba(22, 69, 135, 0.2);
   }
 
   &::after {
@@ -128,7 +128,7 @@ export const StandardBlueButton = styled(Button)`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: linear-gradient(89deg, #377EC4 2.36%, #AFDCF5 107.09%);
+    background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }

@@ -79,7 +79,7 @@ export const DefaultHeaderSearchContainer = styled.div`
     svg {
       display: ${({ isOpenBlock }) => (isOpenBlock ? 'none' : 'block')};
 
-      &[role="button"] {
+      &[role='button'] {
         display: block;
         z-index: 102;
         background-color: #ebebeb;
@@ -90,7 +90,7 @@ export const DefaultHeaderSearchContainer = styled.div`
   ${SearchInput} {
     border: 1px solid transparent;
     transition: all 0.5s ease;
-    
+
     &:hover {
       border: 1px solid ${globalColor.gray.gray70};
       background-color: ${globalColor.white};
@@ -148,13 +148,18 @@ export const LinksBox = styled.div`
     z-index: 0;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(266deg, #060B2A -13.67%, #C00100 79.43%, #DF143D 125.91%);
+      background: linear-gradient(
+        266deg,
+        #060b2a -13.67%,
+        #c00100 79.43%,
+        #df143d 125.91%
+      );
       z-index: -1;
       opacity: 0;
       transition: all 0.5s ease;

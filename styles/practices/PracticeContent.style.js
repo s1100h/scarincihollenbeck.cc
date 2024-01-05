@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
-
+import styled from 'styled-components';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const PracticeContentSection = styled.section`
   padding-top: 40px;
@@ -79,7 +81,6 @@ export const PracticeDescription = styled.div`
   }
 
   ul {
-
     li {
       color: ${globalColor.gray.gray80};
       font-family: var(--font-poppins);
