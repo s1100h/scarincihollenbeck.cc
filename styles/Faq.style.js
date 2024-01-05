@@ -98,6 +98,20 @@ export const FaqWrapper = styled.section`
       font-weight: 400;
       font-family: var(--font-poppins);
 
+
+      p {
+        &:last-child {
+          margin: 0;
+        }
+        line-height: 24px;
+      }
+
+      ul {
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
       ${media_breakpoint_exactly_down(1850)} {
         padding: 0 16px 12px;
       }

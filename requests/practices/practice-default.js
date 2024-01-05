@@ -113,6 +113,7 @@ export const getPracticeAttorneys = async (uri) => {
     keyContactsList: keyContacts,
     corePractices,
     posts: postsForSidebar,
+    faq: data.practice?.practicesIncluded?.faq,
   };
 };
 

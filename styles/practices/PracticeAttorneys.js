@@ -299,3 +299,10 @@ export const PracticeAttorneysCard = styled.div`
     }
   }
 `;
+
+export const PracticeNoAttorneys = styled.div`
+  margin: 16px 0;
+  font-size: ${rem(18)};
+  font-weight: 700;
+  text-align: center;
+`;

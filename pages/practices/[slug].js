@@ -41,6 +41,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
     keyContactsList,
     corePractices,
     posts,
+    faq,
   } = await getPracticeAttorneys(resolvedUrl);
   const clientAlertPost = await getClientAlertPost();
   const googleReviews = await getGoogleReviews();
@@ -92,6 +93,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       practiceChildren: practice?.practicesIncluded?.childPractice,
       latestFromTheFirm,
       slug: params.slug,
+      faq,
     },
   };
 };
@@ -107,6 +109,7 @@ const SinglePractice = ({
   attorneyListPractice,
   keyContactsList,
   latestFromTheFirm,
+  faq,
 }) => {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -148,6 +151,7 @@ const SinglePractice = ({
     attorneyListPractice,
     keyContactsList,
     latestFromTheFirm,
+    faq,
   };
   return (
     <ApolloWrapper>

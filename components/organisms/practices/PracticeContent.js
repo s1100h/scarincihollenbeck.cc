@@ -13,7 +13,7 @@ import { ATTORNEYS_FAQ } from 'utils/constants';
 import GetInTouchForm from './GetInTouchForm';
 
 const PracticeContent = ({
-  data, title, anchorId, anchorIdFaq,
+  data, title, anchorId, anchorIdFaq, faqData,
 }) => (
   <PracticeContentSection id={anchorId} className="margin-scroll">
     <ContainerContent className="practice-container">
@@ -30,6 +30,7 @@ const PracticeContent = ({
             faqArrContent={ATTORNEYS_FAQ}
             title={title}
             anchorId={anchorIdFaq}
+            faqData={faqData}
           />
         </PracticeDescription>
         <PracticeSidebar>

@@ -32,6 +32,7 @@ const PracticePageNew = ({
   tabs,
   chairPractice,
   attorneyListPractice,
+  faq,
 }) => {
   const [anchorData, setAnchorData] = useState(anchorDataDefault);
 
@@ -75,6 +76,7 @@ const PracticePageNew = ({
         title={practice.title}
         anchorId={anchorData.overview?.id}
         anchorIdFaq={anchorData.faq.id}
+        faqData={faq}
       />
       <PracticeAttorneys
         attorneys={attorneyListPractice}

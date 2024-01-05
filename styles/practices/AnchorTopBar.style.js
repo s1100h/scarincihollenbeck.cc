@@ -29,6 +29,10 @@ export const AnchorsTopBarWrapper = styled.div`
     }
   }
 
+  > nav {
+    overflow: auto;
+  }
+
   ${media_breakpoint_exactly_down(1439)} {
     padding: 12px 24px;
   }
@@ -37,14 +41,21 @@ export const AnchorsTopBarWrapper = styled.div`
     padding: 10px 24px;
   }
 `;
-export const AnchorsTopBarItems = styled.div`
+export const AnchorsTopBarItems = styled.ul`
+  margin: 0;
   width: 100%;
   display: flex;
   column-gap: 12px;
   overflow-x: auto;
+
+  li {
+    min-width: max-content;
+    display: flex;
+  }
 `;
 export const AnchorsTopBarItem = styled.a`
-  min-width: max-content;
+  width: 100%;
+  height: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   background-color: transparent;

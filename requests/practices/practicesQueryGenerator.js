@@ -128,6 +128,10 @@ export const practicesQueryGenerator = (uri) => {
     slug
     title
     practicesIncluded {
+      faq {
+        title
+        description
+      }
       contentSection {
         title
         content

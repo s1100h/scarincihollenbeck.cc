@@ -37,18 +37,21 @@ const AnchorsTopBar = ({ title, anchorData }) => {
   return (
     <AnchorsTopBarWrapper>
       <h5>{title}</h5>
-      <AnchorsTopBarItems>
-        {!empty(anchorData)
-          && Object.values(anchorData)?.map((item) => (
-            <AnchorsTopBarItem
-              key={item.id}
-              href={`#${item.id}`}
-              className={activeSection === item.id ? 'active' : ''}
-            >
-              {item.title}
-            </AnchorsTopBarItem>
-          ))}
-      </AnchorsTopBarItems>
+      <nav>
+        <AnchorsTopBarItems>
+          {!empty(anchorData)
+            && Object.values(anchorData)?.map((item) => (
+              <li key={item.id}>
+                <AnchorsTopBarItem
+                  href={`#${item.id}`}
+                  className={activeSection === item.id ? 'active' : ''}
+                >
+                  {item.title}
+                </AnchorsTopBarItem>
+              </li>
+            ))}
+        </AnchorsTopBarItems>
+      </nav>
     </AnchorsTopBarWrapper>
   );
 };
