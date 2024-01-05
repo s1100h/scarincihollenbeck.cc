@@ -24,7 +24,7 @@ export const BurgerBtn = styled.button`
 `;
 
 export const OffcanvasContainer = styled(Offcanvas)`
-  margin-top: 136px;
+  margin-top: 116px;
   width: 100%;
   --bs-offcanvas-width: 100%;
 
@@ -37,10 +37,10 @@ export const OffcanvasContainer = styled(Offcanvas)`
   }
 
   ${media_breakpoint_exactly_down(1439)} {
-    margin-top: 132px;
+    margin-top: 112px;
 
     &.menu-cannabis {
-      margin-top: 95px;
+      margin-top: 96px;
     }
 
     &.menu-entertainment {
@@ -49,7 +49,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
   }
 
   ${media_breakpoint_down('lg')} {
-    margin-top: 126px;
+    margin-top: 116px;
 
     &.menu-cannabis {
       margin-top: 76px;

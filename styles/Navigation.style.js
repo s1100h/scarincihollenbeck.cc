@@ -40,7 +40,7 @@ export const NavbarStyled = styled(Navbar)`
         }
 
         > a {
-          color: #164587;
+          color: ${globalColor.blue.blue500};
         }
       }
 
@@ -60,13 +60,22 @@ export const NavbarStyled = styled(Navbar)`
       column-gap: 32px;
 
       .dropdown__first-lvl {
+        width: 20vw;
         max-height: 70vh;
         overflow-y: auto;
-        padding-right: 20px;
+        overflow-x: hidden;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: column;
       }
 
       .dropdown__second-lvl {
-        overflow: auto;
+        flex: 1;
+        width: 30vw;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
         max-height: 70vh;
 
         ul {
@@ -125,6 +134,7 @@ export const NavbarStyled = styled(Navbar)`
       display: flex;
       align-items: center;
       outline: none;
+      white-space: normal;
 
       &:focus {
         background-color: ${globalColor.blue.darkUltramarine};

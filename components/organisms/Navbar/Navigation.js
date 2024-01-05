@@ -33,6 +33,15 @@ const Navigation = ({ isHidden, practices }) => {
       <Nav className="navContainerWrapper">
         <NavDropdown title="Practices" id={3} onClick={() => hideSecondLvl()}>
           <div className="dropdown__first-lvl">
+            <Link href="/practices" passHref legacyBehavior>
+              <NavDropdown.Item
+                onMouseEnter={() => {
+                  handleClickFirstLvl('');
+                }}
+              >
+                View all practices
+              </NavDropdown.Item>
+            </Link>
             {practices?.map((practice) => (
               <Link
                 key={practice?.databaseId}

@@ -194,7 +194,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
     height: auto;
     padding: 10px 89px;
     line-height: 24px;
-    background-color: #164587;
+    background-color: ${globalColor.blue.blue500};
     position: relative;
     z-index: 0;
     border-radius: 2px;
@@ -252,6 +252,8 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
     box-shadow: none;
 
     &:hover {
+      box-shadow: none;
+
       ${LinkBox} {
         img {
           filter: grayscale(0%);
@@ -312,7 +314,7 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
       margin: 0;
       row-gap: 8px;
 
-      p, a {
+      .contact-offices, a {
         margin: 0;
         display: flex;
         align-items: center;
@@ -346,10 +348,9 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
         }
       }
 
-      a {
-
+      .contact-offices, a {
         &:hover {
-          span {
+          > span {
             color: ${globalColor.blue.skyBlue};
           }
 

@@ -32,6 +32,7 @@ export const attorneysSanitize = (attorneysArr) => {
         link: attorney.uri,
         title: attorney.title,
         ...attorney.attorneyMainInformation,
+        ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
       };
     })
     .sort((a, b) => {

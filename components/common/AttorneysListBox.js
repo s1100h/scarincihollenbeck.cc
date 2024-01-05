@@ -52,6 +52,7 @@ const AttorneysListBox = ({
                   image={chair.profileImage}
                   name={chair.title}
                   designation={chair.designation}
+                  officeLocations={chair.officeLocation}
                   number={chair.phoneNumber}
                   email={chair.email}
                   width={80}
@@ -66,6 +67,7 @@ const AttorneysListBox = ({
                   profileImage,
                   title,
                   designation,
+                  officeLocation,
                   phoneNumber,
                   email,
                 }) => (
@@ -79,6 +81,7 @@ const AttorneysListBox = ({
                         image: profileImage,
                         name: title,
                         designation,
+                        officeLocations: officeLocation,
                         number: phoneNumber,
                         email,
                         width: 180,
@@ -109,6 +112,7 @@ const AttorneysListBox = ({
                   image={attorney.profileImage}
                   name={attorney.title}
                   designation={attorney.designation}
+                  officeLocations={attorney.officeLocation}
                   number={attorney.phoneNumber}
                   email={attorney.email}
                   width={80}
@@ -123,6 +127,7 @@ const AttorneysListBox = ({
                   profileImage,
                   title,
                   designation,
+                  officeLocation,
                   phoneNumber,
                   email,
                 }) => (
@@ -136,6 +141,7 @@ const AttorneysListBox = ({
                         image: profileImage,
                         name: title,
                         designation,
+                        officeLocations: officeLocation,
                         number: phoneNumber,
                         email,
                         width: 180,

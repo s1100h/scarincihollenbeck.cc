@@ -31,8 +31,8 @@ export const HeaderContainer = styled.header`
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 60px;
-  padding-bottom: 20px;
+  margin-top: 50px;
+  padding-bottom: 10px;
   justify-content: space-between;
   align-items: center;
   column-gap: 20px;

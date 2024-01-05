@@ -64,6 +64,7 @@ export default function AttorneyCard({
   height,
   svgPhone,
   svgEmail,
+  officeLocations,
 }) {
   return (
     <AttorneyCardBox className="attorney-card-box">
@@ -94,6 +95,7 @@ export default function AttorneyCard({
               </ul>
             )}
             <ContactBoxTemplate
+              officeLocations={officeLocations}
               email={email}
               number={number}
               svgEmail={svgEmail}

@@ -4,6 +4,7 @@ import empty from 'is-empty';
 import dynamic from 'next/dynamic';
 import DefaultSubHeaderNew from 'layouts/SubHeader/DefaultSubHeaderNew';
 import PracticeContent from 'components/organisms/practices/PracticeContent';
+import AnchorTop from 'components/atoms/AnchorTop';
 
 const PracticeAnchors = dynamic(() => import('components/organisms/practices/PracticeAnchors'));
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
@@ -84,6 +85,7 @@ const PracticePageNew = ({
         anchorId={anchorData.attorneys.id}
       />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
+      <AnchorTop />
     </>
   );
 };

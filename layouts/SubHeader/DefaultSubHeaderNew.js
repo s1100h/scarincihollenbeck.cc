@@ -67,6 +67,7 @@ const DefaultSubHeaderNew = ({
             name={keyContact.display_name || keyContact.title}
             designation={keyContact.designation}
             image={keyContact.profileImage}
+            officeLocations={keyContact.officeLocation}
             number={keyContact.phoneNumber}
             email={keyContact.email}
             width={300}

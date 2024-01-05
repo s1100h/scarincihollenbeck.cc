@@ -61,19 +61,26 @@ const MobileMenu = ({ show, handleClose, handleShow, practices }) => {
   if (!practiceWithOverview) {
     return null;
   }
-  const handleClickFirstLvl = (data) => {
-    setIsSecondLvl(true);
-    setSecondLvlData(data);
+  const handleClickFirstLvl = (data, id) => {
+    if (!empty(data)) {
+      setIsSecondLvl(true);
+      setSecondLvlData(data);
+      setActiveItemId(id);
+    } else {
+      setIsSecondLvl(false);
+      setSecondLvlData([]);
+    }
   };
 
-  const hideSecondLvl = () => {
-    setIsSecondLvl(false);
-    setSecondLvlData([]);
-    setActiveItemId(null);
-  };
-
-  const handleMobileItemClick = (id) => {
-    setActiveItemId(id);
+  const handleClickAccordionOpener = (firstItemChildren, firstItemId) => {
+    if (firstItemChildren) {
+      setSecondLvlData(firstItemChildren);
+      setIsSecondLvl(true);
+      setActiveItemId(firstItemId);
+    } else {
+      setIsSecondLvl(false);
+      setSecondLvlData([]);
+    }
   };
 
   const { pathname, query } = useRouter();
@@ -104,11 +111,24 @@ const MobileMenu = ({ show, handleClose, handleShow, practices }) => {
                 eventKey="practices"
                 className="mobile-menu__first-accordion"
               >
-                <Accordion.Header as="h4" onClick={() => hideSecondLvl()}>
+                <Accordion.Header
+                  as="h4"
+                  onClick={() =>
+                    handleClickAccordionOpener(
+                      practiceWithOverview[0].childPractice,
+                      practiceWithOverview[0].databaseId,
+                    )
+                  }
+                >
                   Practices
                 </Accordion.Header>
                 <Accordion.Body>
                   <ul className="mobile-menu__first-lvl">
+                    <li>
+                      <Link href="/practices" passHref legacyBehavior>
+                        <a onClick={handleClose}>View all practices</a>
+                      </Link>
+                    </li>
                     {practiceWithOverview?.map((practice) =>
                       practice?.childPractice ? (
                         <li key={practice?.databaseId}>
@@ -153,8 +173,10 @@ const MobileMenu = ({ show, handleClose, handleShow, practices }) => {
                               }`}
                               key={practice?.databaseId}
                               onClick={() => {
-                                handleMobileItemClick(practice?.databaseId);
-                                handleClickFirstLvl(practice?.childPractice);
+                                handleClickFirstLvl(
+                                  practice?.childPractice,
+                                  practice?.databaseId,
+                                );
                               }}
                             >
                               {practice?.title}
@@ -196,7 +218,15 @@ const MobileMenu = ({ show, handleClose, handleShow, practices }) => {
                 <div key={id}>
                   {children?.length > 0 ? (
                     <Accordion.Item eventKey={id}>
-                      <Accordion.Header as="h4" onClick={() => hideSecondLvl()}>
+                      <Accordion.Header
+                        as="h4"
+                        onClick={() =>
+                          handleClickAccordionOpener(
+                            children[0].children,
+                            children[0].databaseId,
+                          )
+                        }
+                      >
                         {slug.length > 0 ? (
                           <Link href={slug}>{label}</Link>
                         ) : (
@@ -252,8 +282,10 @@ const MobileMenu = ({ show, handleClose, handleShow, practices }) => {
                                       }`}
                                       key={link?.databaseId}
                                       onClick={() => {
-                                        handleMobileItemClick(link?.databaseId);
-                                        handleClickFirstLvl(link?.children);
+                                        handleClickFirstLvl(
+                                          link?.children,
+                                          link?.databaseId,
+                                        );
                                       }}
                                     >
                                       {link?.title}

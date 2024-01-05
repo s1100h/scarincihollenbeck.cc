@@ -1,3 +1,4 @@
+import Tooltip from 'components/atoms/Tooltip';
 import empty from 'is-empty';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -15,7 +16,7 @@ const AnchorsTopBar = ({ title, anchorData }) => {
     const newActiveSection = Object.values(anchorData).find((item) => {
       const sectionElement = document.getElementById(item.id);
       if (sectionElement) {
-        const sectionTop = sectionElement.offsetTop - 300;
+        const sectionTop = sectionElement.offsetTop - 250;
         const sectionBottom = sectionTop + sectionElement.clientHeight;
 
         return scrollPosition >= sectionTop && scrollPosition < sectionBottom;
@@ -36,7 +37,9 @@ const AnchorsTopBar = ({ title, anchorData }) => {
 
   return (
     <AnchorsTopBarWrapper>
-      <h5>{title}</h5>
+      <Tooltip textTooltip={title}>
+        <h5>{title}</h5>
+      </Tooltip>
       <nav>
         <AnchorsTopBarItems>
           {!empty(anchorData)

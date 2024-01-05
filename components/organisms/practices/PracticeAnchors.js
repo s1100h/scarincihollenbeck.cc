@@ -20,13 +20,11 @@ const PracticeAnchors = ({ handleClickAnchorLink, anchorData, title }) => {
       let holderPosition = Math.floor(
         ref.current.getBoundingClientRect().top + window.scrollY,
       );
-      let headerHeight = header.offsetHeight
-        + parseInt(getComputedStyle(ref.current).marginTop, 10);
+      let headerHeight = header.offsetHeight + 8;
 
       const updateValues = () => {
         setHolderHeight(ref.current.clientHeight);
-        headerHeight = header.offsetHeight
-          + parseInt(getComputedStyle(ref.current).marginTop, 10);
+        headerHeight = header.offsetHeight + 8;
         if (!fixed && window.scrollY < holderPosition - headerHeight) {
           holderPosition = Math.floor(
             ref.current.getBoundingClientRect().top + window.scrollY,
