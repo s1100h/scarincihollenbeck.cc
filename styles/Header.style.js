@@ -156,7 +156,7 @@ export const LinksBox = styled.div`
       height: 100%;
       background: linear-gradient(
         266deg,
-        #060b2a -13.67%,
+        ${globalColor.blue.darkBlue} -13.67%,
         #c00100 79.43%,
         #df143d 125.91%
       );

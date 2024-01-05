@@ -69,7 +69,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
 `;
 export const OffcanvasBody = styled(Offcanvas.Body)`
   padding: 0;
-  background-color: #060b2a;
+  background-color: ${globalColor.blue.darkBlue};
 `;
 export const NavList = styled.div`
   margin: 0;
@@ -80,7 +80,7 @@ export const NavList = styled.div`
     width: 100%;
     color: ${globalColor.white};
     padding-bottom: 20px;
-    border-bottom: 1px solid #162153;
+    border-bottom: 1px solid ${globalColor.blue.darkUltramarine};
   }
 
   & ::-webkit-scrollbar-track {
@@ -96,11 +96,11 @@ export const NavList = styled.div`
   }
 
   & ::-webkit-scrollbar-thumb {
-    background-color: #162153;
+    background-color: ${globalColor.blue.darkUltramarine};
     border-radius: 8px;
   }
 
-  scrollbar-color: #162153 #0b1136;
+  scrollbar-color: ${globalColor.blue.darkUltramarine} #0b1136;
   scrollbar-width: thin;
 
   ${media_breakpoint_down('md')} {
@@ -124,7 +124,7 @@ export const AccordionStyled = styled(Accordion)`
 
     .accordion-body {
       padding: 0 0 44px;
-      border-bottom: 1px solid #162153;
+      border-bottom: 1px solid ${globalColor.blue.darkUltramarine};
       display: flex;
       column-gap: 40px;
 
@@ -157,7 +157,7 @@ export const AccordionStyled = styled(Accordion)`
 
             &.active {
               border-radius: 4px;
-              background-color: #162153;
+              background-color: ${globalColor.blue.darkUltramarine};
             }
           }
 
@@ -183,7 +183,7 @@ export const AccordionStyled = styled(Accordion)`
                 transform: translateY(-50%);
                 width: 12px;
                 height: 20px;
-                background-color: #162153;
+                background-color: ${globalColor.blue.darkUltramarine};
                 clip-path: polygon(100% 50%, 0 0, 0% 100%);
                 opacity: 1;
               }
@@ -215,7 +215,7 @@ export const AccordionStyled = styled(Accordion)`
 
           .accordion-button:not(.collapsed) {
             margin-bottom: 4px;
-            background-color: #162153;
+            background-color: ${globalColor.blue.darkUltramarine};
             border-radius: 4px;
           }
 
@@ -278,7 +278,6 @@ export const AccordionStyled = styled(Accordion)`
         display: flex;
         flex-direction: column;
         column-gap: 12px;
-        max-height: 475px;
         row-gap: 4px;
         list-style: disc;
         overflow: auto;
@@ -292,11 +291,11 @@ export const AccordionStyled = styled(Accordion)`
           }
 
           &:hover {
-            color: #8dc0f2;
+            color: ${globalColor.blue.skyBlue};
 
             a {
               background-color: transparent;
-              color: #8dc0f2;
+              color: ${globalColor.blue.skyBlue};
 
               &:after {
                 content: none;
@@ -333,7 +332,7 @@ export const AccordionStyled = styled(Accordion)`
       color: ${globalColor.white};
       background-color: transparent;
       padding-bottom: 20px;
-      border-bottom: 1px solid #162153;
+      border-bottom: 1px solid ${globalColor.blue.darkUltramarine};
       --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
       transition: border 0s;
       outline: none;
@@ -406,7 +405,7 @@ export const ButtonLinkBox = styled.div`
       height: 100%;
       background: linear-gradient(
         266deg,
-        #060b2a -13.67%,
+        ${globalColor.blue.darkBlue} -13.67%,
         #c00100 79.43%,
         #df143d 125.91%
       );

@@ -6,7 +6,7 @@ import {
   PracticeAnchorsHolder,
 } from 'styles/practices/PracticeAnchors.style';
 
-const PracticeAnchors = ({ handleClickAnchorLink, anchorData }) => {
+const PracticeAnchors = ({ handleClickAnchorLink, anchorData, title }) => {
   const [fixed, setFixed] = useState(false);
   const [holderHeight, setHolderHeight] = useState(0);
 
@@ -58,14 +58,14 @@ const PracticeAnchors = ({ handleClickAnchorLink, anchorData }) => {
         window.removeEventListener('resize', handleResize);
       };
     }
-  }, []);
+  }, [anchorData]);
 
   return (
     <>
       <PracticeAnchorsHolder ref={ref} className={fixed ? 'fixed' : ''}>
         <ContainerContent className="practice-container">
           <AnchorsTopBar
-            title="Commercial condominiums & community associations"
+            title={title}
             handleClickAnchorLink={handleClickAnchorLink}
             anchorData={anchorData}
           />

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import {
   AboutAuthorFormCardContainer,
@@ -391,11 +390,11 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
       a {
         &:hover {
           span {
-            color: #8dc0f2;
+            color: ${globalColor.blue.skyBlue};
           }
 
           svg {
-            fill: #8dc0f2;
+            fill: ${globalColor.blue.skyBlue};
           }
         }
       }

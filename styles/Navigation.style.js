@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { Navbar } from 'react-bootstrap';
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 import { globalColor, rem } from './global_styles/Global.styles';
 
 export const NavbarStyled = styled(Navbar)`
@@ -25,7 +22,7 @@ export const NavbarStyled = styled(Navbar)`
   }
 
   & ::-webkit-scrollbar-thumb {
-    background-color: #162153;
+    background-color: ${globalColor.blue.darkUltramarine};
     border-radius: 8px;
   }
 
@@ -51,20 +48,26 @@ export const NavbarStyled = styled(Navbar)`
         transition: all 0.5s ease;
 
         &:hover {
-          color: #8dc0f2;
+          color: ${globalColor.blue.skyBlue};
         }
       }
     }
 
     .dropdown-menu {
       padding: 16px 40px;
-      background-color: #060b2a;
+      background-color: ${globalColor.blue.darkBlue};
       box-shadow: 2px 8px 20px 0px rgba(6, 11, 42, 0.52);
       column-gap: 32px;
 
+      .dropdown__first-lvl {
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-right: 20px;
+      }
+
       .dropdown__second-lvl {
         overflow: auto;
-        max-height: 500px;
+        max-height: 70vh;
 
         ul {
           padding-right: 20px;
@@ -124,7 +127,7 @@ export const NavbarStyled = styled(Navbar)`
       outline: none;
 
       &:focus {
-        background-color: #162153;
+        background-color: ${globalColor.blue.darkUltramarine};
 
         &::after {
           content: '';
@@ -134,7 +137,7 @@ export const NavbarStyled = styled(Navbar)`
           transform: translateY(-50%);
           width: 12px;
           height: 20px;
-          background-color: #162153;
+          background-color: ${globalColor.blue.darkUltramarine};
           clip-path: polygon(100% 50%, 0 0, 0% 100%);
           opacity: 1;
         }
@@ -149,7 +152,7 @@ export const NavbarStyled = styled(Navbar)`
 
       &:hover {
         border-radius: 4px;
-        background-color: #162153;
+        background-color: ${globalColor.blue.darkUltramarine};
       }
 
       &.with-child {
@@ -162,7 +165,7 @@ export const NavbarStyled = styled(Navbar)`
             transform: translateY(-50%);
             width: 12px;
             height: 20px;
-            background-color: #162153;
+            background-color: ${globalColor.blue.darkUltramarine};
             clip-path: polygon(100% 50%, 0 0, 0% 100%);
             opacity: 1;
           }

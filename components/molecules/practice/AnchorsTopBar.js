@@ -32,7 +32,7 @@ const AnchorsTopBar = ({ title, anchorData }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [anchorData]);
 
   return (
     <AnchorsTopBarWrapper>
