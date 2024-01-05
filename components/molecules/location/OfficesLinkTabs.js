@@ -1,25 +1,41 @@
 import { useRouter } from 'next/router';
-import { OfficeTab, OfficeTabs } from '../../../styles/Locations.style';
+import {
+  BlueLinkTab,
+  OfficeTab,
+  OfficeTabs,
+} from '../../../styles/Locations.style';
 import { GradientWrapper } from '../../../styles/SingleSubHeader.style';
 
-const OfficesLinkTabs = ({ officesForTabs, officeImage }) => {
+const OfficesLinkTabs = ({ officesForTabs, officeImage, isBlueVariant }) => {
   const { query } = useRouter();
   return (
-    <OfficeTabs>
+    <OfficeTabs isBlueVariant={isBlueVariant ? 'true' : ''}>
       {officesForTabs.map((office) => (
-        <OfficeTab
-          key={office.databaseId}
-          href={office.uri}
-          imgurl={
-            (officeImage?.length > 0
-              && query.slug === office.slug
-              && officeImage)
-            || ''
-          }
-        >
-          {query.slug === office.slug && <GradientWrapper />}
-          <span>{office.addressLocality}</span>
-        </OfficeTab>
+        <>
+          {!isBlueVariant ? (
+            <OfficeTab
+              key={office.databaseId}
+              href={office.uri}
+              imgurl={
+                (officeImage?.length > 0
+                  && query.slug === office.slug
+                  && officeImage)
+                || ''
+              }
+            >
+              {query.slug === office.slug && <GradientWrapper />}
+              <span>{office.addressLocality}</span>
+            </OfficeTab>
+          ) : (
+            <BlueLinkTab
+              key={office.databaseId}
+              href={office.uri}
+              locationTurned={query.slug === office.slug ? 'true' : ''}
+            >
+              {office.addressLocality}
+            </BlueLinkTab>
+          )}
+        </>
       ))}
     </OfficeTabs>
   );

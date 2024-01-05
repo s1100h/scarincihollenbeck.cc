@@ -4,7 +4,13 @@ import { useState } from 'react';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { NavbarStyled } from 'styles/Navigation.style';
 import { SITE_NAVIGATION } from 'utils/constants';
-import { getSlugFromUrl } from 'utils/helpers';
+import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';
+
+const renderLocationCardMemu = (locationData) => (
+  <div className="location-card-menu">
+    <CurrentOfficeCard {...locationData} />
+  </div>
+);
 
 const Navigation = ({ isHidden }) => {
   const [isSecondLvl, setIsSecondLvl] = useState(false);

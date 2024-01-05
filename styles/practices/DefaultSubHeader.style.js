@@ -1,10 +1,17 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { AboutAuthorFormCardContainer, ContactNowBtn } from "styles/AboutAuthorFormCard.style";
-import { ContactBox, InfoBox, LinkBox } from "styles/AttorneyCard.style";
-import { BreadcrumbsListContainer } from "styles/Breadcrumbs.style";
-import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
+import Link from 'next/link';
+import styled from 'styled-components';
+import {
+  AboutAuthorFormCardContainer,
+  ContactNowBtn,
+} from 'styles/AboutAuthorFormCard.style';
+import { ContactBox, InfoBox, LinkBox } from 'styles/AttorneyCard.style';
+import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
+import { OfficeCardContainer } from '../Locations.style';
 
 export const DefaultSubHeaderHolder = styled.div`
   background-color: ${globalColor.gray.gray10};
@@ -13,7 +20,6 @@ export const DefaultSubHeaderHolder = styled.div`
   padding-bottom: ${({ props }) => (props?.isFilter ? '80px' : '0')};
 
   .sub-header {
-
     &__image {
       width: 20%;
 
@@ -56,8 +62,8 @@ export const DefaultSubHeaderContent = styled.div`
     margin: 16px 0 0 0;
 
     li {
-
-      a, button {
+      a,
+      button {
         color: ${globalColor.grayExtraLite.grayExtraLite50};
         transition: all 0.5s ease;
 
@@ -74,7 +80,9 @@ export const DefaultSubHeaderContent = styled.div`
         color: #888;
       }
 
-      a, span, button {
+      a,
+      span,
+      button {
         font-size: ${rem(14)};
         line-height: 13px;
       }
@@ -155,6 +163,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
   align-items: flex-start;
   justify-content: center;
   row-gap: 12px;
+  color: ${globalColor.white};
 
   > h3 {
     font-family: var(--font-poppins);
@@ -166,6 +175,40 @@ export const DefaultSubHeaderKeyContacts = styled.div`
     ${media_breakpoint_down('md')} {
       font-size: ${rem(16)};
       line-height: 20px;
+    }
+  }
+
+  ${OfficeCardContainer} {
+    padding: 5%;
+    .current-office-card-title {
+      color: ${globalColor.blue.skyBlue};
+      line-height: 24px;
+      font-size: rem(20);
+      font-weight: 700;
+    }
+    svg {
+      fill: ${globalColor.white};
+    }
+
+    address {
+      font-size: 1rem;
+      span {
+        span {
+          top: auto;
+        }
+      }
+      a {
+        color: ${globalColor.white};
+        transition: all 0.5s ease-in-out;
+
+        :hover {
+          color: ${globalColor.blue.skyBlue};
+          svg {
+            transition: all 0.5s ease-in-out;
+            fill: ${globalColor.blue.skyBlue};
+          }
+        }
+      }
     }
   }
 
@@ -200,15 +243,13 @@ export const DefaultSubHeaderKeyContacts = styled.div`
     border-radius: 2px;
 
     &:hover {
-
       &::after {
         opacity: 1;
       }
     }
 
-
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -216,7 +257,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
       height: 100%;
       z-index: -1;
       opacity: 0;
-      background-image: linear-gradient(89deg, #377EC4 2.36%, #AFDCF5 107.09%);
+      background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
       transition: all 0.5s ease;
     }
   }
@@ -264,7 +305,7 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
       img {
         width: 164px;
         height: 172px;
-        filter: grayscale(100%); 
+        filter: grayscale(100%);
         object-fit: cover;
         transition: all 0.5s ease;
 
@@ -276,7 +317,8 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
     }
 
     ${InfoBox} {
-      h3, p {
+      h3,
+      p {
         font-family: var(--font-poppins);
       }
 
@@ -295,7 +337,7 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
       p {
         margin: 0 0 auto 0;
-        color: #B3B3B3;
+        color: #b3b3b3;
         font-size: ${rem(12)};
         line-height: 16px;
         font-weight: 400;
@@ -311,12 +353,13 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
       margin: 0;
       row-gap: 8px;
 
-      p, a {
+      p,
+      a {
         margin: 0;
         display: flex;
         align-items: center;
         column-gap: 8px;
-        
+
         span {
           font-family: var(--font-poppins);
           color: ${globalColor.white};
@@ -333,7 +376,7 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
         }
 
         svg {
-          fill: #AFDCF5;
+          fill: #afdcf5;
           width: 20px;
           height: 20px;
           transition: all 0.5s ease;
@@ -346,19 +389,17 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
       }
 
       a {
-
         &:hover {
           span {
-            color: #8DC0F2;
+            color: #8dc0f2;
           }
 
           svg {
-            fill: #8DC0F2;
+            fill: #8dc0f2;
           }
         }
       }
     }
-
   }
 
   ${media_breakpoint_down('sm')} {

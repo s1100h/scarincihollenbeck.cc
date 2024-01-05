@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Navbar } from 'react-bootstrap';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import { globalColor, rem } from './global_styles/Global.styles';
 
 export const NavbarStyled = styled(Navbar)`
@@ -10,7 +13,7 @@ export const NavbarStyled = styled(Navbar)`
   transition: all 0.5s ease-in-out;
 
   & ::-webkit-scrollbar-track {
-    background-color: #0B1136;
+    background-color: #0b1136;
     border-radius: 8px;
     opacity: 0;
   }
@@ -18,7 +21,7 @@ export const NavbarStyled = styled(Navbar)`
   & ::-webkit-scrollbar {
     width: 2px;
     height: 4px;
-    background-color: #0B1136;
+    background-color: #0b1136;
   }
 
   & ::-webkit-scrollbar-thumb {
@@ -48,14 +51,14 @@ export const NavbarStyled = styled(Navbar)`
         transition: all 0.5s ease;
 
         &:hover {
-          color: #8DC0F2;
+          color: #8dc0f2;
         }
       }
     }
 
     .dropdown-menu {
       padding: 16px 40px;
-      background-color: #060B2A;
+      background-color: #060b2a;
       box-shadow: 2px 8px 20px 0px rgba(6, 11, 42, 0.52);
       column-gap: 32px;
 
@@ -81,10 +84,10 @@ export const NavbarStyled = styled(Navbar)`
             }
 
             &:hover {
-              color: #608ED2;
+              color: #608ed2;
               .dropdown-item {
                 background-color: transparent;
-                color: #608ED2;
+                color: #608ed2;
               }
             }
 
@@ -92,15 +95,15 @@ export const NavbarStyled = styled(Navbar)`
               padding: 0;
               font-size: ${rem(14)};
               font-weight: 400;
-              color: #E6E6E6;
+              color: #e6e6e6;
               line-height: 28px;
             }
 
             &.active {
-              color: #AFDCF5;
+              color: #afdcf5;
 
               .dropdown-item {
-                color: #AFDCF5;
+                color: #afdcf5;
               }
             }
           }
@@ -132,7 +135,7 @@ export const NavbarStyled = styled(Navbar)`
           width: 12px;
           height: 20px;
           background-color: #162153;
-          clip-path: polygon(100% 50%,0 0,0% 100%);
+          clip-path: polygon(100% 50%, 0 0, 0% 100%);
           opacity: 1;
         }
       }
@@ -146,11 +149,10 @@ export const NavbarStyled = styled(Navbar)`
 
       &:hover {
         border-radius: 4px;
-        background-color: #162153;      
+        background-color: #162153;
       }
 
       &.with-child {
-
         &:hover {
           &::after {
             content: '';
@@ -161,12 +163,16 @@ export const NavbarStyled = styled(Navbar)`
             width: 12px;
             height: 20px;
             background-color: #162153;
-            clip-path: polygon(100% 50%,0 0,0% 100%);
+            clip-path: polygon(100% 50%, 0 0, 0% 100%);
             opacity: 1;
           }
         }
       }
     }
+  }
+
+  .location-card-menu {
+    background-color: ${globalColor.blue.darkUltramarine};
   }
 
   a {

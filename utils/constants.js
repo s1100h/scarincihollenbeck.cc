@@ -1000,7 +1000,32 @@ export const SITE_NAVIGATION = [
     label: 'Locations',
     slug: '/location/little-falls',
     menuId: 'locations',
-    children: undefined,
+    children: [
+      {
+        id: 404,
+        label: 'Little Falls, NJ',
+        menuId: 'little-falls',
+        slug: '/location/little-falls',
+      },
+      {
+        id: 405,
+        label: 'New York city',
+        menuId: 'new-york',
+        slug: '/location/new-york',
+      },
+      {
+        id: 406,
+        label: 'Washington, D.C.',
+        menuId: 'washington-dc',
+        slug: '/location/washington-dc',
+      },
+      {
+        id: 407,
+        label: 'Red Bank',
+        menuId: 'red-bank',
+        slug: '/location/red-bank',
+      },
+    ],
   },
 ];
 

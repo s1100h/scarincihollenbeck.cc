@@ -6,6 +6,7 @@ import {
   media_breakpoint_range_exacly,
 } from './mediaBreakpoints.style';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
+import empty from 'is-empty';
 
 const addressPointConst = `
       span {
@@ -50,12 +51,66 @@ export const OfficeTabs = styled.nav`
   z-index: 20;
   top: -50px;
 
+  ${({ isBlueVariant }) =>
+    !empty(isBlueVariant) &&
+    `
+    top: auto;
+    gap: 8px;
+    flex-direction: column;
+  `};
+
   ${media_breakpoint_down('md')} {
     gap: 10px;
   }
 
   ${media_breakpoint_down('sm')} {
     top: -20px;
+  }
+`;
+
+export const BlueLinkTab = styled(Link)`
+  padding: 13px 8px;
+  color: ${globalColor.white};
+  font-size: ${rem(14)};
+  font-weight: 700;
+  line-height: 13px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  outline: none;
+  ${({ locationTurned }) =>
+    !empty(locationTurned) &&
+    `
+      background-color: #162153;
+      pointer-events: none;
+    `}
+
+  :before {
+    transition-delay: 0.1s;
+    transition: all 0.5s ease-in-out;
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    width: 12px;
+    height: 20px;
+    background-color: #162153;
+    clip-path: polygon(100% 50%, 0 0, 0% 100%);
+    opacity: ${({ locationTurned }) => (!empty(locationTurned) ? '1' : '0')};
+  }
+
+  :hover {
+    cursor: ${({ locationTurned }) =>
+      !empty(locationTurned) ? 'not-allowed' : 'pointer'};
+    border-radius: 4px;
+    background-color: #162153;
+    color: ${globalColor.white};
+
+    :before {
+      opacity: 1;
+    }
   }
 `;
 
@@ -112,6 +167,9 @@ export const OfficeCardContainer = styled.div`
   justify-content: start;
   padding: 0 20px;
   box-shadow: ${globalShadow.allSideShadow};
+  ${({ backgroundColor }) => `
+    background-color: ${backgroundColor};
+  `}
 
   address {
     display: flex;

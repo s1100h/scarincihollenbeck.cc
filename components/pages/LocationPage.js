@@ -1,18 +1,15 @@
 import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
-import { ATTORNEYS_FAQ, PRODUCTION_URL } from 'utils/constants';
+import { ATTORNEYS_FAQ } from 'utils/constants';
 import { useContext } from 'react';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { BsDownload } from 'react-icons/bs';
-import OfficesLinkTabs from '../molecules/location/OfficesLinkTabs';
 import { LocationContext } from '../../contexts/LocationContext';
 import { sortByKey } from '../../utils/helpers';
 import AttorneysOfficeList from '../molecules/location/AttorneysOfficeList';
-import CurrentOfficeCard from '../molecules/location/CurrentOfficeCard';
 import {
   DownloadTheMap,
   LinkMapBox,
@@ -20,6 +17,7 @@ import {
   OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
 import { LocationListPracticeArticle } from '../../utils/articles-content';
+import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
 
 const BlockListWrapper = dynamic(() => import('../organisms/practices/ListWrapper'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
@@ -63,18 +61,14 @@ const LocationPage = ({
           }}
         />
       </Head>
-      <SubHeader
+      <DefaultSubHeaderNew
         title={currentOffice.title}
         subtitle={seo.metaDesc}
         backgroundImage={currentOffice.featuredImage}
+        officeInfo={addressInfo}
+        locations={locations}
       />
       <Container className="mb-5">
-        {locations?.length > 0 && (
-          <OfficesLinkTabs
-            officeImage={currentOffice.featuredImage}
-            officesForTabs={locations}
-          />
-        )}
         <Row>
           <OfficeLocationBoxTitle>
             {changeTitle(currentOffice.title)}
@@ -83,7 +77,6 @@ const LocationPage = ({
             <Map title={currentOffice.title} map={currentOffice.mapLink} />
           </Col>
           <Col sm={12} lg={5}>
-            <CurrentOfficeCard {...addressInfo} />
             {(currentOffice.autoMap?.length > 0
               || currentOffice.trainStationsMap?.length > 0) && (
               <LinkMapBox>

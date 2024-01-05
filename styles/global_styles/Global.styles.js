@@ -56,10 +56,12 @@ export const globalColor = {
   },
 
   blue: {
+    skyBlue: '#8DC0F2',
     greyBlue: '#37B7D7',
     dirtyBlue: '#5787CF',
     ultramarine: '#2564E1',
     darkBlue: '#060B2A',
+    darkUltramarine: '#162153',
   },
   socialNetworks: {
     linkedIn: '#0077B5',
