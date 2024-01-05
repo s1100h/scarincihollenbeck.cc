@@ -51,9 +51,9 @@ const DefaultSubHeaderNew = ({
         <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
 
         {subtitle?.length > 0 && (
-        <DefaultSubHeaderDescription className="animate__animated animate__fadeInUp animate__fast sub-title">
-          <JSXWithDynamicLinks HTML={subtitle} />
-        </DefaultSubHeaderDescription>
+          <DefaultSubHeaderDescription className="animate__animated animate__fadeInUp animate__fast sub-title">
+            <JSXWithDynamicLinks HTML={subtitle} />
+          </DefaultSubHeaderDescription>
         )}
       </div>
     </DefaultSubHeaderContent>
@@ -88,7 +88,7 @@ const DefaultSubHeaderNew = ({
             <h3 className="current-office-card-title">{title}</h3>
           </CurrentOfficeCard>
           {locations?.length > 0 && (
-          <OfficesLinkTabs officesForTabs={locations} isBlueVariant />
+            <OfficesLinkTabs officesForTabs={locations} isBlueVariant />
           )}
         </div>
       )}
