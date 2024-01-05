@@ -164,6 +164,10 @@ body {
 
   &.modal-open {
     padding-right: 0 !important;
+
+    .offcanvas-backdrop {
+      z-index: 1019;
+    }
   }
 
   .margin-scroll {

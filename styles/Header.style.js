@@ -21,7 +21,7 @@ export const HeaderContainer = styled.header`
     scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none'};
   position: sticky;
   top: 0;
-  z-index: 1041;
+  z-index: 1020;
 
   @media print {
     display: none;

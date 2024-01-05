@@ -241,9 +241,10 @@ export const DefaultSubHeaderKeyContacts = styled.div`
 export const DefaultSubHeaderKeyContactsCards = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  gap: 24px;
 
   .attorney-card-box {
+    flex: 1;
     padding: 0;
     border: none;
     min-width: auto;
@@ -361,7 +362,14 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
   }
 
+  ${media_breakpoint_exactly_down(1439)} {
+    column-gap: 40px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
   ${media_breakpoint_down('sm')} {
-    row-gap: 12px;
+    gap: 12px;
   }
 `;
