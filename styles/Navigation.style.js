@@ -174,8 +174,68 @@ export const NavbarStyled = styled(Navbar)`
     }
   }
 
-  .location-card-menu {
-    background-color: ${globalColor.blue.darkUltramarine};
+  .locations-dropdown {
+    .dropdown-menu {
+      width: 1140px;
+      min-width: 800px;
+      left: -600%;
+
+      .dropdown__first-lvl {
+        display: flex;
+        width: inherit;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding-right: 0;
+
+        .dropdown-item {
+          padding: 0;
+          max-width: 504px;
+          min-width: 306px;
+
+          .location-card-menu {
+            width: inherit;
+            background-color: ${globalColor.blue.darkUltramarine};
+
+            div {
+              padding: 24px;
+              transition: 0.5s transform;
+
+              :hover {
+                transform: scale(1.04);
+              }
+
+              h3 {
+                font-size: rem(20);
+                line-height: 24px;
+                color: ${globalColor.blue.skyBlue};
+              }
+
+              address {
+                display: flex;
+                width: 354px;
+                flex-wrap: wrap;
+                font-size: 1rem;
+                font-weight: 400;
+                gap: 12px;
+                margin-bottom: 0;
+
+                span {
+                  white-space: normal;
+                  line-height: 24px;
+                }
+
+                a,
+                * {
+                  color: ${globalColor.white};
+                  pointer-events: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   a {

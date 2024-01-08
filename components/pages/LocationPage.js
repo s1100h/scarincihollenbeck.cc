@@ -3,11 +3,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { ATTORNEYS_FAQ } from 'utils/constants';
-import { useContext } from 'react';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { BsDownload } from 'react-icons/bs';
-import { LocationContext } from '../../contexts/LocationContext';
 import { sortByKey } from '../../utils/helpers';
 import AttorneysOfficeList from '../molecules/location/AttorneysOfficeList';
 import {
@@ -29,9 +27,8 @@ const LocationPage = ({
   currentOffice,
   attorneysSchemaData,
   canonicalUrl,
+  locations,
 }) => {
-  const { locations } = useContext(LocationContext);
-
   const addressInfo = {
     phone: currentOffice.phone,
     fax: currentOffice.fax,

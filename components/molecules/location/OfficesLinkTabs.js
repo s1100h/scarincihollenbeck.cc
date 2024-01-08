@@ -14,7 +14,7 @@ const OfficesLinkTabs = ({ officesForTabs, officeImage, isBlueVariant }) => {
         <>
           {!isBlueVariant ? (
             <OfficeTab
-              key={office.databaseId}
+              key={office.databaseId * 3}
               href={office.uri}
               imgurl={
                 (officeImage?.length > 0
@@ -28,9 +28,9 @@ const OfficesLinkTabs = ({ officesForTabs, officeImage, isBlueVariant }) => {
             </OfficeTab>
           ) : (
             <BlueLinkTab
-              key={office.databaseId}
+              key={office.databaseId * 2}
               href={office.uri}
-              locationTurned={query.slug === office.slug ? 'true' : ''}
+              locationturned={query.slug === office.slug ? 'true' : ''}
             >
               {office.addressLocality}
             </BlueLinkTab>

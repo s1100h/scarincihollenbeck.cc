@@ -5,6 +5,7 @@ import { PracticesContext } from 'contexts/PracticesContext';
 import SpecialHeader from './SpecialHeader';
 import DefaultHeader from './DefaultHeader';
 import { getSlugFromUrl } from '../../../utils/helpers';
+import { LocationContext } from '../../../contexts/LocationContext';
 
 const renderHeader = (pageSlug, props) => {
   const pagesMap = {
@@ -19,11 +20,13 @@ export default function Header() {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
   const { practices } = useContext(PracticesContext);
+  const { locations } = useContext(LocationContext);
 
   const headerProps = {
     scrollTop,
     pathname,
     practices,
+    locations,
   };
 
   return <>{renderHeader(slug, headerProps)}</>;

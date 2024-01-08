@@ -6,19 +6,24 @@ import { NavbarStyled } from 'styles/Navigation.style';
 import { SITE_NAVIGATION } from 'utils/constants';
 import empty from 'is-empty';
 import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';
+import { globalColor } from '../../../styles/global_styles/Global.styles';
 
 const renderLocationCardMemu = (locationData) => (
   <div className="location-card-menu">
-    <CurrentOfficeCard {...locationData} />
+    <CurrentOfficeCard
+      {...locationData}
+      backgroundColor={globalColor.blue.darkUltramarine}
+    >
+      <h3>{locationData.title}</h3>
+    </CurrentOfficeCard>
   </div>
 );
 
-const Navigation = ({ isHidden, practices }) => {
+const Navigation = ({ isHidden, practices, locations }) => {
   const [isSecondLvl, setIsSecondLvl] = useState(false);
   const [secondLvlData, setSecondLvlData] = useState([]);
   const { pathname, query } = useRouter();
   const slug = pathname.replace('[slug]', query.slug);
-
   const handleClickFirstLvl = (data) => {
     if (!empty(data)) {
       setIsSecondLvl(true);
@@ -150,6 +155,29 @@ const Navigation = ({ isHidden, practices }) => {
             </Link>
           </Nav.Item>
         )))}
+        {!empty(locations) && (
+          <NavDropdown
+            className="locations-dropdown"
+            title="Locations"
+            id={3}
+            onClick={() => hideSecondLvl()}
+          >
+            <div className="dropdown__first-lvl">
+              {locations.map((office) => (
+                <Link
+                  key={office?.databaseId}
+                  href={office?.uri}
+                  passHref
+                  legacyBehavior
+                >
+                  <NavDropdown.Item>
+                    {renderLocationCardMemu(office)}
+                  </NavDropdown.Item>
+                </Link>
+              ))}
+            </div>
+          </NavDropdown>
+        )}
       </Nav>
     </NavbarStyled>
   );
