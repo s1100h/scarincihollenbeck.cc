@@ -18,22 +18,18 @@ const fade = keyframes`
 export const PracticeAnchorsHolder = styled.div`
   margin-top: 40px;
   position: relative;
-  opacity: 1;
-  transform: translateY(0);
   transition: all 0.3s ease;
 
   &.fixed {
     width: 100%;
     position: fixed;
-    top: 130px;
+    top: 88px;
     left: 0;
     z-index: 10;
     opacity: 1;
-    transform: translateY(0);
-    transition: all 0.3s ease;
 
     ${media_breakpoint_down('md')} {
-      top: 70px;
+      top: 48px;
     }
   }
 

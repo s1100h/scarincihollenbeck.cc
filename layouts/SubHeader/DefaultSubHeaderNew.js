@@ -63,13 +63,14 @@ const DefaultSubHeaderNew = ({
         <>
           <h3>Key Contacts</h3>
           <DefaultSubHeaderKeyContactsCards>
-            {keyContacts?.slice(0, 2)?.map((keyContact, index) => (
+            {keyContacts?.slice(0, 2)?.map((keyContact) => (
               <AttorneyCard
                 key={keyContact.databaseId}
                 link={keyContact.uri || keyContact.link}
                 name={keyContact.display_name || keyContact.title}
                 designation={keyContact.designation}
                 image={keyContact.profileImage}
+                officeLocations={keyContact.officeLocation}
                 number={keyContact.phoneNumber}
                 email={keyContact.email}
                 width={300}

@@ -1,5 +1,9 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { media_breakpoint_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_up,
+} from '../mediaBreakpoints.style';
+import { HeaderContainer } from 'styles/Header.style';
 
 const mainFontSize = 16;
 
@@ -61,6 +65,8 @@ export const globalColor = {
     ultramarine: '#2564E1',
     darkBlue: '#060B2A',
     darkUltramarine: '#162153',
+    lightBlue: '#8AD',
+    blue500: '#164587',
   },
   socialNetworks: {
     linkedIn: '#0077B5',
@@ -153,6 +159,30 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+  * {
+    ${media_breakpoint_up('lg')} {
+      &::-webkit-scrollbar-track {
+        background-color: #cbcbcb;
+        border-radius: 8px;
+        opacity: 0;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+        background-color: #0B1136;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #162153;
+        border-radius: 8px;
+      }
+
+      scrollbar-color: #162153 #cbcbcb;
+      scrollbar-width: thin;
+    }
+  }
+
 body {
   font-weight: 400;
   background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
@@ -163,13 +193,17 @@ body {
 
   &.modal-open {
     padding-right: 0 !important;
+
+    .offcanvas-backdrop {
+      z-index: 1019;
+    }
   }
 
   .margin-scroll {
-    scroll-margin-top: 250px;
+    scroll-margin-top: 210px;
 
     ${media_breakpoint_down('md')} {
-      scroll-margin-top: 180px;
+      scroll-margin-top: 140px;
     }
   }
 }

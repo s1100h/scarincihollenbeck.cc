@@ -41,7 +41,7 @@ export const carilo = localFont({
 });
 
 export const roboto = Roboto({
-	weight: ['400', '500', '700'],
+	weight: ['400', '500', '700', '900'],
 	subsets: ['latin'],
 	variable: '--font-roboto',
 	preload: true,

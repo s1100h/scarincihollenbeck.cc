@@ -41,7 +41,7 @@ export const PracticeAttorneysSection = styled.section`
       }
 
       &:active {
-        color: #164587;
+        color: ${globalColor.blue.blue500};
       }
 
       ${media_breakpoint_down('sm')} {
@@ -78,7 +78,7 @@ export const PracticeAttorneysSection = styled.section`
     .chair-box {
       height: 100%;
       margin: 0;
-      background-color: #164587;
+      background-color: ${globalColor.blue.blue500};
 
       > h3 {
         padding: 8px 4px 0 4px;
@@ -245,7 +245,8 @@ export const PracticeAttorneysCard = styled.div`
         row-gap: 4px;
         min-height: 0;
 
-        > a {
+        a,
+        .contact-offices {
           align-items: center;
           column-gap: 4px;
           font-size: ${rem(12)};
@@ -255,7 +256,7 @@ export const PracticeAttorneysCard = styled.div`
           color: ${globalColor.blue.darkBlue};
 
           &:hover {
-            span {
+            > span {
               text-decoration: underline;
             }
           }
@@ -268,6 +269,14 @@ export const PracticeAttorneysCard = styled.div`
             fill: ${globalColor.blue.darkBlue};
             width: 12px;
             height: 12px;
+          }
+        }
+
+        .contact-offices__links {
+          > a {
+            &::after {
+              background-color: ${globalColor.blue.darkBlue};
+            }
           }
         }
       }
@@ -300,4 +309,11 @@ export const PracticeAttorneysCard = styled.div`
       transition: all 0.3s linear;
     }
   }
+`;
+
+export const PracticeNoAttorneys = styled.div`
+  margin: 16px 0;
+  font-size: ${rem(18)};
+  font-weight: 700;
+  text-align: center;
 `;

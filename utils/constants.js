@@ -136,6 +136,28 @@ export const ScarinciHollenbeckKeyContact = {
   designation: 'The Firm',
   phoneNumber: SITE_PHONE,
   email: SITE_EMAIL,
+  officeLocation: [
+    {
+      databaseId: 29438,
+      uri: '/location/new-york',
+      title: 'New York City',
+    },
+    {
+      databaseId: 29440,
+      uri: '/location/washington-dc',
+      title: 'Washington, D.C.',
+    },
+    {
+      databaseId: 29437,
+      uri: '/location/red-bank',
+      title: 'Red Bank, NJ',
+    },
+    {
+      databaseId: 29436,
+      uri: '/location/little-falls',
+      title: 'Little Falls, NJ',
+    },
+  ],
 };
 
 /* List of Firm Pages found in the sidebar and in the footer */

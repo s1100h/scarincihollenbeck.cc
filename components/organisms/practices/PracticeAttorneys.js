@@ -5,7 +5,10 @@ import React, {
   createRef, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
-import { PracticeAttorneysSection } from 'styles/practices/PracticeAttorneys';
+import {
+  PracticeAttorneysSection,
+  PracticeNoAttorneys,
+} from 'styles/practices/PracticeAttorneys';
 import { PracticeTitle } from 'styles/practices/PracticeCommon.style';
 
 const PracticeAttorneys = ({ attorneys, chairs, anchorId }) => {
@@ -56,6 +59,17 @@ const PracticeAttorneys = ({ attorneys, chairs, anchorId }) => {
   const handleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  if (totalItems === 0) {
+    return (
+      <PracticeAttorneysSection id={anchorId} className="margin-scroll">
+        <ContainerContent className="practice-container">
+          <PracticeTitle>Practice Area Attorneys</PracticeTitle>
+          <PracticeNoAttorneys>Attorneys will appear soon!</PracticeNoAttorneys>
+        </ContainerContent>
+      </PracticeAttorneysSection>
+    );
+  }
 
   return (
     <PracticeAttorneysSection
