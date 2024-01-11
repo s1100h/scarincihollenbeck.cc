@@ -55,6 +55,7 @@ const organizeAttorneys = (attorneys, titles) => {
         && attorney.designation[0]
         && !attorney.designation.includes('Deputy Managing Partner')
         && !attorney.designation.includes('NYC Managing Partner')
+        && !attorney.designation.includes('Chief Executive Officer')
       ) {
         results[key].attorneys.push(attorney);
       }
