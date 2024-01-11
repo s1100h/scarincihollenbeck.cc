@@ -15,7 +15,6 @@ import {
   MediaBr,
   OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
-import { LocationListPracticeArticle } from '../../utils/articles-content';
 import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
 import GetInTouchForm from '../organisms/practices/GetInTouchForm';
@@ -23,7 +22,6 @@ import InfoBlockLocation from '../organisms/location/InfoBlockLocation';
 import WhyChooseUs from '../organisms/practices/WhyChooseUs';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
-const BlockListWrapper = dynamic(() => import('../organisms/practices/ListWrapper'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
 
 const changeTitle = (title) => title.replace(/(^|\s+)Lawyers(\s+|$)/g, ' ');
@@ -158,14 +156,6 @@ const LocationPage = ({
           )}
         </Row>
         <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-        {currentOffice?.officePractices.length > 0 && (
-          <BlockListWrapper
-            article={LocationListPracticeArticle}
-            title="Services We Offer"
-            list={currentOffice.officePractices}
-            isSimple
-          />
-        )}
       </LocationPageContainer>
     </>
   );

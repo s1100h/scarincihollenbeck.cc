@@ -143,6 +143,12 @@ export const DropdownFirstLvl = styled.div`
   display: flex;
   flex-direction: column;
 
+  > :first-child {
+    :hover {
+      cursor: pointer !important;
+    }
+  }
+
   .dropdown-item {
     padding: 13px 8px;
     color: ${globalColor.white};
@@ -166,6 +172,7 @@ export const DropdownFirstLvl = styled.div`
     :hover {
       border-radius: 4px;
       background-color: ${globalColor.blue.darkUltramarine};
+      cursor: grab;
     }
   }
 

@@ -25,6 +25,11 @@ export const LocationPageContainer = styled.section`
     padding-right: 7%;
     padding-left: 7%;
   }
+
+  ${media_breakpoint_exactly_down(1440)} {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
 `;
 export const LinkMapBox = styled.div`
   display: flex;

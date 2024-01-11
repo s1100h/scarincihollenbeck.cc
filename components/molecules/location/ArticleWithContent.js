@@ -13,7 +13,9 @@ const ArticleWithContent = ({
   return (
     <ArticleLocationBox background={backgroundImage}>
       <div>
-        <JSXWithDynamicLinks HTML={article} />
+        <p>
+          <JSXWithDynamicLinks HTML={article} />
+        </p>
         {!empty(children) && children}
       </div>
       {!isBackgroundImage && (

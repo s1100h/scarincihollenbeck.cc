@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { globalColor, rem } from './global_styles/Global.styles';
 import empty from 'is-empty';
-import { media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const InfoContainer = styled.section`
   display: grid;
@@ -51,8 +54,13 @@ export const InfoContainer = styled.section`
 
     div {
       width: 30%;
-      margin-right: 32px;
+      padding-right: 32px;
       padding-bottom: 0;
+      height: inherit;
+
+      p {
+        overflow-y: auto;
+      }
 
       article {
         width: 100%;
@@ -96,6 +104,19 @@ export const InfoContainer = styled.section`
     }
   }
 
+  ${media_breakpoint_exactly_down(1650)} {
+    > :nth-child(2) {
+      flex-direction: column;
+      div {
+        padding-right: 32px;
+      }
+
+      img {
+        display: none;
+      }
+    }
+  }
+
   ${media_breakpoint_exactly_down(1440)} {
     > :nth-child(1) {
       img {
@@ -105,11 +126,6 @@ export const InfoContainer = styled.section`
 
     > :nth-child(2) {
       flex-direction: column;
-
-      img {
-        width: 100%;
-        height: 164px;
-      }
     }
 
     > :nth-child(3) {
@@ -118,7 +134,70 @@ export const InfoContainer = styled.section`
 
     > :nth-child(4) {
       div {
-        margin-right: 0;
+        height: inherit;
+      }
+    }
+  }
+
+  ${media_breakpoint_down('xl')} {
+    > :nth-child(1) {
+      padding-right: 12px;
+
+      img {
+        height: 92px;
+        width: 106px;
+      }
+    }
+  }
+
+  ${media_breakpoint_exactly_down(1080)} {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    > :nth-child(3) {
+      grid-area: 1 / 1 / 2 / 3;
+      width: 100%;
+      height: fit-content;
+
+      img {
+        display: none;
+      }
+    }
+    > :nth-child(1) {
+      grid-area: 2 / 1 / 3 / 2;
+
+      img {
+        display: none;
+      }
+    }
+
+    > :nth-child(2) {
+      grid-area: 3 / 1 / 4 / 2;
+
+      img {
+        display: none;
+      }
+    }
+
+    > :nth-child(4) {
+      grid-area: 2 / 2 / 4 / 3;
+      height: auto;
+      flex-direction: column-reverse;
+
+      div {
+        width: 100%;
+        flex-direction: column;
+        padding-right: 16px;
+
+        article {
+          button {
+            width: 100%;
+          }
+        }
+      }
+
+      img {
+        display: none;
       }
     }
   }
