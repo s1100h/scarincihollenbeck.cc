@@ -88,18 +88,19 @@ const NonFiltered = ({ attorneys }) => {
   // it was done by request from the client as a temporary solution. 16 Jun 2023.
   // If you want to delete it and revert the old solution,
   // just replace the justFirmManagementPartners variable with sortedAttorneys.
-  const justFirmManagementPartners = {
-    'Firm Managing Partner': {
-      attorneys: sortedAttorneys['Firm Managing Partner']?.attorneys || [],
-    },
-  };
-  const isFirmOverviewPage = pathname.includes('/firm-overview') || pathname.includes('/administration');
-  const differentAttorneysKit = isFirmOverviewPage
-    ? justFirmManagementPartners
-    : sortedAttorneys;
+  // const justFirmManagementPartners = {
+  //   'Firm Managing Partner': {
+  //     attorneys: sortedAttorneys['Firm Managing Partner']?.attorneys || [],
+  //   },
+  // };
+  // const isFirmOverviewPage = pathname.includes('/firm-overview') || pathname.includes('/administration');
+  // const differentAttorneysKit = isFirmOverviewPage
+  //   ? sortedAttorneys
+  //   : justFirmManagementPartners;
+
   return (
     <>
-      {Object.entries(differentAttorneysKit).map((attorney) => (
+      {Object.entries(sortedAttorneys).map((attorney) => (
         <AttorneyCards
           title={attorney[0]}
           pathname={pathname}
