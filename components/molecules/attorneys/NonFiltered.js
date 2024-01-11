@@ -95,8 +95,8 @@ const NonFiltered = ({ attorneys }) => {
   };
   const isFirmOverviewPage = pathname.includes('/firm-overview') || pathname.includes('/administration');
   const differentAttorneysKit = isFirmOverviewPage
-    ? sortedAttorneys
-    : justFirmManagementPartners;
+    ? justFirmManagementPartners
+    : sortedAttorneys;
   return (
     <>
       {Object.entries(differentAttorneysKit).map((attorney) => (
