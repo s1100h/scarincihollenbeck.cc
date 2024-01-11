@@ -2,11 +2,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Nav, NavDropdown } from 'react-bootstrap';
-import { NavbarStyled } from 'styles/Navigation.style';
+import {
+  DropdownFirstLvl,
+  DropdownSecondLvl,
+  NavbarStyled,
+} from 'styles/Navigation.style';
 import { SITE_NAVIGATION } from 'utils/constants';
 import empty from 'is-empty';
 import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';
 import { globalColor } from '../../../styles/global_styles/Global.styles';
+import DropdownMenu from '../../common/DropdownMenu';
 
 const renderLocationCardMemu = (locationData) => (
   <div className="location-card-menu">
@@ -38,63 +43,16 @@ const Navigation = ({ isHidden, practices, locations }) => {
     setIsSecondLvl(false);
     setSecondLvlData([]);
   };
-
   return (
     <NavbarStyled className={`${isHidden && 'd-none'} navContainer`}>
       <Nav className="navContainerWrapper">
         <NavDropdown title="Practices" id={3} onClick={() => hideSecondLvl()}>
-          <div className="dropdown__first-lvl">
-            <Link href="/practices" passHref legacyBehavior>
-              <NavDropdown.Item
-                onMouseEnter={() => {
-                  handleClickFirstLvl('');
-                }}
-              >
-                View all practices
-              </NavDropdown.Item>
-            </Link>
-            {practices?.map((practice) => (
-              <Link
-                key={practice?.databaseId}
-                href={practice?.uri}
-                passHref
-                legacyBehavior
-              >
-                <NavDropdown.Item
-                  onMouseEnter={() => {
-                    handleClickFirstLvl(practice?.childPractice);
-                  }}
-                  className={
-                    practice?.childPractice?.length > 0 ? 'with-child' : ''
-                  }
-                >
-                  {practice?.title}
-                </NavDropdown.Item>
-              </Link>
-            ))}
-          </div>
-          {isSecondLvl && (
-            <div className="dropdown__second-lvl">
-              <ul>
-                {secondLvlData
-                  && secondLvlData?.map((child) => (
-                    <li
-                      key={child?.databaseId}
-                      className={slug === child?.uri ? 'active' : ''}
-                    >
-                      <Link
-                        key={child?.databaseId}
-                        href={child?.uri}
-                        passHref
-                        legacyBehavior
-                      >
-                        <NavDropdown.Item>{child?.title}</NavDropdown.Item>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          )}
+          <DropdownMenu
+            practices={practices}
+            handleClickOnMouseEnter={handleClickFirstLvl}
+            isSecondLvl={isSecondLvl}
+            secondLvlData={secondLvlData}
+          />
         </NavDropdown>
         {SITE_NAVIGATION.map((nav) => (nav?.children ? (
           <NavDropdown
@@ -103,7 +61,7 @@ const Navigation = ({ isHidden, practices, locations }) => {
             id={nav?.menuId}
             onClick={() => hideSecondLvl()}
           >
-            <div className="dropdown__first-lvl">
+            <DropdownFirstLvl>
               {nav?.children?.map((child) => (child?.children ? (
                 <button
                   className="dropdown-item with-child"
@@ -133,9 +91,9 @@ const Navigation = ({ isHidden, practices, locations }) => {
                   </NavDropdown.Item>
                 </Link>
               )))}
-            </div>
+            </DropdownFirstLvl>
             {isSecondLvl && (
-            <div className="dropdown__second-lvl">
+            <DropdownSecondLvl>
               <ul>
                 {secondLvlData
                       && secondLvlData?.map((child) => (
@@ -154,7 +112,7 @@ const Navigation = ({ isHidden, practices, locations }) => {
                         </li>
                       ))}
               </ul>
-            </div>
+            </DropdownSecondLvl>
             )}
           </NavDropdown>
         ) : (
@@ -171,7 +129,7 @@ const Navigation = ({ isHidden, practices, locations }) => {
             id={3}
             onClick={() => hideSecondLvl()}
           >
-            <div className="dropdown__first-lvl">
+            <DropdownFirstLvl className="dropdown-location">
               {locations.map((office) => (
                 <Link
                   key={office?.databaseId}
@@ -184,7 +142,7 @@ const Navigation = ({ isHidden, practices, locations }) => {
                   </NavDropdown.Item>
                 </Link>
               ))}
-            </div>
+            </DropdownFirstLvl>
           </NavDropdown>
         )}
       </Nav>

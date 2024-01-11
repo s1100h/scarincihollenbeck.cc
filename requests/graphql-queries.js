@@ -1340,6 +1340,22 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
           uri
           title
           databaseId
+          practicesIncluded {
+            childPractice {
+              ... on Practice {
+                id
+                databaseId
+                title
+                uri
+                practicePortalPageContent {
+                  practicePortalCategories
+                }
+              }
+            }
+          }
+          practicePortalPageContent {
+            practicePortalCategories
+          }
         }
       }
       trainStationsMap {

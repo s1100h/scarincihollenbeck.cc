@@ -19,6 +19,13 @@ const addressPointConst = `
         }
       }
 `;
+
+export const LocationPageContainer = styled.section`
+  ${media_breakpoint_down('fullHd')} {
+    padding-right: 7%;
+    padding-left: 7%;
+  }
+`;
 export const LinkMapBox = styled.div`
   display: flex;
   width: fit-content;
@@ -29,7 +36,7 @@ export const LinkMapBox = styled.div`
 export const DownloadTheMap = styled.a`
   display: flex;
   gap: 15px;
-  color: #a91110;
+  color: ${globalColor.blue.ultramarine};
   width: fit-content;
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -232,4 +239,5 @@ export const OfficeAttorneysContainer = styled.div`
 export const OfficeLocationBoxTitle = styled.h4`
   font-size: ${rem(32)};
   text-transform: uppercase;
+  margin-bottom: 24px;
 `;

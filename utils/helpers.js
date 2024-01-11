@@ -1,3 +1,4 @@
+import empty from 'is-empty';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -261,3 +262,28 @@ export const convertUnixTimestampToISO = (unixTimestamp) => {
   const date = new Date(unixTimestamp * 1000); // Convert Unix timestamp to milliseconds
   return date.toISOString(); // Convert to ISO 8601 string
 };
+
+export const sanitizePracticesByChildren = (practices) => practices
+  .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes(
+    'Core Practices',
+  ))
+  .map(
+    ({
+      databaseId,
+      title,
+      uri,
+      practicesIncluded,
+      practicePortalPageContent,
+    }) => {
+      if (empty(practicesIncluded.childPractice)) {
+        practicesIncluded.childPractice = [];
+      }
+      return {
+        databaseId,
+        title,
+        uri,
+        ...practicesIncluded,
+        ...practicePortalPageContent,
+      };
+    },
+  );

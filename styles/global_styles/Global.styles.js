@@ -3,7 +3,6 @@ import {
   media_breakpoint_down,
   media_breakpoint_up,
 } from '../mediaBreakpoints.style';
-import { HeaderContainer } from 'styles/Header.style';
 
 const mainFontSize = 16;
 

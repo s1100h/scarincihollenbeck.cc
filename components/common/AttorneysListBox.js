@@ -123,12 +123,14 @@ const AttorneysListBox = ({
               : attorneysList.map(
                 ({
                   databaseId,
+                  id,
                   link,
                   profileImage,
                   title,
                   designation,
                   officeLocation,
                   phoneNumber,
+                  phone,
                   email,
                 }) => (
                   <Fragment key={databaseId}>
@@ -136,13 +138,13 @@ const AttorneysListBox = ({
                       variant,
                       {
                         classNameProp: 'vertical-attorney-card',
-                        key: databaseId,
+                        key: databaseId || id,
                         link,
                         image: profileImage,
                         name: title,
                         designation,
                         officeLocations: officeLocation,
-                        number: phoneNumber,
+                        number: phoneNumber || phone,
                         email,
                         width: 180,
                         height: 210,

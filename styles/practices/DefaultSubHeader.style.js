@@ -190,6 +190,8 @@ export const DefaultSubHeaderKeyContacts = styled.div`
 
     address {
       font-size: 1rem;
+      color: ${globalColor.white};
+
       span {
         span {
           top: auto;

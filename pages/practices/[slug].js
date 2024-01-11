@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { PRODUCTION_URL } from 'utils/constants';
-import PracticePage from 'components/pages/PracticePage';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
