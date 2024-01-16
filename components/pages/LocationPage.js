@@ -21,6 +21,7 @@ import PracticeAnchors from '../organisms/practices/PracticeAnchors';
 import GetInTouchForm from '../organisms/practices/GetInTouchForm';
 import InfoBlockLocation from '../organisms/location/InfoBlockLocation';
 import WhyChooseUs from '../organisms/practices/WhyChooseUs';
+import GoogleReviews from '../organisms/common/GoogleReviews';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
@@ -59,6 +60,7 @@ const LocationPage = ({
   attorneysSchemaData,
   canonicalUrl,
   locations,
+  googleReviews,
 }) => {
   const [anchorData] = useState(anchorLocationsData);
   const [articles, setArticles] = useState();
@@ -170,6 +172,10 @@ const LocationPage = ({
           />
         )}
         <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
+        <GoogleReviews
+          reviews={googleReviews}
+          anchorId={anchorData.reviews.id}
+        />
       </LocationPageContainer>
     </>
   );

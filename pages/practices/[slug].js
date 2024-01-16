@@ -155,6 +155,7 @@ const SinglePractice = ({
     keyContactsList,
     latestFromTheFirm,
     faq,
+    googleReviews,
   };
   return (
     <ApolloWrapper>
