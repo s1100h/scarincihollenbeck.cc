@@ -12,7 +12,7 @@ const AboutAuthorFormCard = ({ blockName }) => {
 
   return (
     <AboutAuthorFormCardContainer className="d-print-none mt-4">
-      <ContactNowBtn onClick={() => setShow(true)}>
+      <ContactNowBtn className="contact-now-btn" onClick={() => setShow(true)}>
         <span>Contact now</span>
       </ContactNowBtn>
       <ModalWindow isOpen={show} setOpenModal={setShow}>

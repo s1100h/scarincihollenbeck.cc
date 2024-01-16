@@ -1,6 +1,6 @@
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
 import {
-  Fragment, useEffect, useRef, useState,
+  Fragment, useEffect, useId, useRef, useState,
 } from 'react';
 import AttorneyEntAndMediaCard from 'components/molecules/ent-and-media/AttorneyEntAndMediaCard';
 import AttorneyPracticeCard from '../molecules/practice/AttorneyPracticeCard';
@@ -123,26 +123,28 @@ const AttorneysListBox = ({
               : attorneysList.map(
                 ({
                   databaseId,
+                  id,
                   link,
                   profileImage,
                   title,
                   designation,
                   officeLocation,
                   phoneNumber,
+                  phone,
                   email,
                 }) => (
-                  <Fragment key={databaseId}>
+                  <Fragment key={databaseId || useId()}>
                     {renderCardsByVariants(
                       variant,
                       {
                         classNameProp: 'vertical-attorney-card',
-                        key: databaseId,
+                        key: databaseId || id,
                         link,
                         image: profileImage,
                         name: title,
                         designation,
                         officeLocations: officeLocation,
-                        number: phoneNumber,
+                        number: phoneNumber || phone,
                         email,
                         width: 180,
                         height: 210,

@@ -1,15 +1,17 @@
-import styled from "styled-components";
-import { ContentTooltip, TooltipWrapper } from "styles/Tooltip.style";
-import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
-
+import styled from 'styled-components';
+import { ContentTooltip, TooltipWrapper } from 'styles/Tooltip.style';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const AnchorsTopBarWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 8px 32px;
   border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.40);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: ${globalColor.blue.blue500};
   box-shadow: 0px 0px 8px 0px rgba(22, 58, 107, 0.34);
   column-gap: 12px;
@@ -101,5 +103,4 @@ export const AnchorsTopBarItem = styled.a`
       font-weight: 900;
     }
   }
-
 `;

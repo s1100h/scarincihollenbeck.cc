@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { media_breakpoint_down, media_breakpoint_up } from '../mediaBreakpoints.style';
-import { HeaderContainer } from 'styles/Header.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_up,
+} from '../mediaBreakpoints.style';
 
 const mainFontSize = 16;
 
@@ -70,7 +72,7 @@ export const globalColor = {
   yellow: {
     liteYellow: '#FCD503',
   },
-  
+
   socialNetworks: {
     linkedIn: '#0077B5',
     faceBook: '#4267B2',

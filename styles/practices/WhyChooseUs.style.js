@@ -1,8 +1,10 @@
-import styled from "styled-components";
-import { PracticeTitle } from "./PracticeCommon.style";
-import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
-
+import styled from 'styled-components';
+import { PracticeTitle } from './PracticeCommon.style';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const WhyChooseUsSection = styled.div`
   margin: 0 0 40px 0;
@@ -48,7 +50,7 @@ export const WhyChooseUsCardWrapper = styled.div`
   display: flex;
   column-gap: 48px;
   border-radius: 4px;
-  background: linear-gradient(98deg, ${globalColor.blue.darkBlue} -0.14%, #377EC4 108.53%);
+  background: linear-gradient(98deg, #060b2a -0.14%, #377ec4 108.53%);
   overflow: hidden;
 
   ${media_breakpoint_exactly_down(1850)} {

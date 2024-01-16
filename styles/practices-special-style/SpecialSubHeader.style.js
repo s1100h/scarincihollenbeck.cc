@@ -12,7 +12,6 @@ import { FullHDContainer } from './commonForSpecial.style';
 import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
 import Link from 'next/link';
 
-
 export const SpecialSubHeaderContainer = styled.section`
   display: flex;
   flex-direction: column;

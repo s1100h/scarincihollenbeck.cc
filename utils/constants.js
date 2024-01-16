@@ -10,6 +10,7 @@ import {
   WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
+import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
 
 export const LETTERS_LIST = [
   'a',
@@ -280,13 +281,6 @@ export const SITE_NAVIGATION = [
         uri: '/library/category/law-firm-insights',
       },
     ],
-  },
-  {
-    id: 5,
-    label: 'Locations',
-    slug: '/location/little-falls',
-    menuId: 'locations',
-    children: undefined,
   },
 ];
 
@@ -727,6 +721,59 @@ export const Links404NavArr = [
     id: 6,
     title: 'Firm Insights',
     href: '/library/category/law-firm-insights',
+  },
+];
+
+export const locationInfoBlockArticles = [
+  {
+    id: 0,
+    article: `
+    <p>
+      OUR commitment to excellence, combined with our mission to deliver outstanding client service, has earned our firm a solid reputation.
+    </p>
+    <p>
+      Scarinci Hollenbeck is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
+    </p>
+    `,
+    image: '/images/sh-mini-diamond-PNG.png',
+    reactComponent: null,
+  },
+  {
+    id: 1,
+    article: `
+    <p>
+      Our focus is niche areas of law most often required by corporate entities, owners, leaders, and operators. 
+      Our prestigious roster of attorneys offers the experience and proven results that businesses need to move projects forward.
+    </p>
+    <p>
+      Regardless of the size of your business or the scale of the project, we embrace the unique complexity that comes 
+      with doing business in an evolving economy. Contact us today to learn more about how we can assist you
+    </p>
+    `,
+    image: '/images/beautiful-office.webp',
+    reactComponent: null,
+  },
+  {
+    id: 2,
+    article: '',
+    reactComponent: 'custom',
+  },
+  {
+    id: 3,
+    article: `
+    <p>
+      Scarinci Hollenbeck also offers services in a wide range of other legal practice areas not listed here.
+    </p>
+    <p>
+      If you have a legal need that is not mentioned, please contact us to discuss how we may help you.
+    </p>
+    <p>
+      Our experienced attorneys are ready to provide the quality representation you deserve.
+    </p>
+    `,
+    image: '/images/beautiful-office.webp',
+    isBackgroundImage: true,
+    reactComponent: <AboutAuthorFormCard blockName="articleBlock" />,
   },
 ];
 

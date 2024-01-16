@@ -1,19 +1,22 @@
-import styled from "styled-components";
-import { ShareSocialBox } from "styles/Post/SocialShare.style";
-import { globalColor, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
+import styled from 'styled-components';
+import { ShareSocialBox } from 'styles/Post/SocialShare.style';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const GetInTouchFormWrapper = styled.div`
   padding: 12px 16px;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
-  ${({isSticky}) => isSticky && 'position: sticky; top: 200px; overflow: auto; max-height: calc(100vh - 240px);'}
+  ${({ isSticky }) =>
+    isSticky &&
+    'position: sticky; top: 200px; overflow: auto; max-height: calc(100vh - 240px);'}
   border: 1px solid transparent;
   transition: all 0.5s ease-in-out;
 
   &:hover {
     border: 1px solid ${globalColor.blue.blue500};
-    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.11), 0px 0px 8px 0px rgba(6, 11, 42, 0.09);
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.11),
+      0px 0px 8px 0px rgba(6, 11, 42, 0.09);
   }
 
   ${ShareSocialBox} {
@@ -52,7 +55,7 @@ export const GetInTouchFormWrapper = styled.div`
 
   > h3 {
     margin: 0 0 4px 0;
-    color: #231E1E;
+    color: #231e1e;
     font-size: ${rem(24)};
     line-height: 32px;
     font-weight: 400;
@@ -60,14 +63,14 @@ export const GetInTouchFormWrapper = styled.div`
   }
 
   p {
-    color: #231E1E;
+    color: #231e1e;
     font-size: ${rem(12)};
     line-height: 16px;
     font-weight: 400;
     font-family: var(--font-roboto);
   }
 
-  &:has(.kw-alert-success:not([style="display: none;"])) {
+  &:has(.kw-alert-success:not([style='display: none;'])) {
     background-color: ${globalColor.blue.blue500};
 
     ${ShareSocialBox} {
@@ -75,7 +78,7 @@ export const GetInTouchFormWrapper = styled.div`
       .second-hr {
         color: ${globalColor.white};
       }
-      
+
       .react-share__ShareButton {
         svg {
           color: ${globalColor.white};
@@ -97,7 +100,7 @@ export const GetInTouchFormWrapper = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
-    ${({isMobileBtn}) => isMobileBtn && `display: none;`}
+    ${({ isMobileBtn }) => isMobileBtn && `display: none;`}
   }
 `;
 

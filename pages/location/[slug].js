@@ -1,8 +1,6 @@
-import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
-import { LocationContext } from 'contexts/LocationContext';
 import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { getOfficeAndMoreData } from 'requests/graphql-queries';
@@ -139,17 +137,10 @@ const SingleLocation = ({
   canonicalUrl,
 }) => {
   const router = useRouter();
-  const { locations, setLocations } = useContext(LocationContext);
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
-
-  useEffect(() => {
-    if (!locations) {
-      setLocations(offices);
-    }
-  }, [offices]);
 
   const locationProps = {
     seo,
@@ -157,6 +148,7 @@ const SingleLocation = ({
     attorneysSchemaData,
     posts,
     canonicalUrl,
+    locations: offices,
   };
 
   return <LocationPage {...locationProps} />;
