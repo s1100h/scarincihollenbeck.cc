@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 import {
   BlueLinkTab,
   OfficeTab,
@@ -11,10 +12,9 @@ const OfficesLinkTabs = ({ officesForTabs, officeImage, isBlueVariant }) => {
   return (
     <OfficeTabs isBlueVariant={isBlueVariant ? 'true' : ''}>
       {officesForTabs.map((office) => (
-        <>
+        <Fragment key={office.databaseId}>
           {!isBlueVariant ? (
             <OfficeTab
-              key={office.databaseId * 3}
               href={office.uri}
               imgurl={
                 (officeImage?.length > 0
@@ -28,14 +28,13 @@ const OfficesLinkTabs = ({ officesForTabs, officeImage, isBlueVariant }) => {
             </OfficeTab>
           ) : (
             <BlueLinkTab
-              key={office.databaseId * 2}
               href={office.uri}
               locationturned={query.slug === office.slug ? 'true' : ''}
             >
               {office.addressLocality}
             </BlueLinkTab>
           )}
-        </>
+        </Fragment>
       ))}
     </OfficeTabs>
   );

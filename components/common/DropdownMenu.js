@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { NavDropdown } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import { useId } from 'react';
 import {
   DropdownFirstLvl,
   DropdownSecondLvl,
@@ -11,12 +12,14 @@ const DropdownMenu = ({
   handleClickOnMouseEnter,
   isSecondLvl,
   secondLvlData,
+  title,
 }) => {
   const { pathname, query } = useRouter();
   const slug = pathname.replace('[slug]', query.slug);
   return (
     <>
       <DropdownFirstLvl>
+        {title && <h4>{title}</h4>}
         <Link href="/practices" passHref legacyBehavior>
           <NavDropdown.Item onMouseEnter={() => handleClickOnMouseEnter('')}>
             View all practices
@@ -24,6 +27,7 @@ const DropdownMenu = ({
         </Link>
         {practices?.map((practice) => (
           <NavDropdown.Item
+            key={useId()}
             onMouseEnter={() => handleClickOnMouseEnter(practice?.childPractice)}
             className={practice?.childPractice?.length > 0 ? 'with-child' : ''}
           >

@@ -6,11 +6,14 @@ import {
 } from '../../../styles/InfoBlockLocation.style';
 import ArticleWithContent from '../../molecules/location/ArticleWithContent';
 import DropdownMenu from '../../common/DropdownMenu';
+import MobileMenu from '../Navbar/MobileMenu/MobileMenu';
+import useStateScreen from '../../../hooks/useStateScreen';
 
-const InfoBlockLocation = ({ practices, articles }) => {
+const InfoBlockLocation = ({ practices, articles, anchorData }) => {
   const [isSecondLvl, setIsSecondLvl] = useState(false);
   const [secondLvlData, setSecondLvlData] = useState([]);
-
+  const [showMenu, setShowMenu] = useState(false);
+  const { isMobileScreen } = useStateScreen();
   const handleClickFirstLvl = (data) => {
     if (!empty(data)) {
       setIsSecondLvl(true);
@@ -20,36 +23,50 @@ const InfoBlockLocation = ({ practices, articles }) => {
       setSecondLvlData([]);
     }
   };
+
+  const handleCloseMenu = () => setShowMenu(false);
+  const handleShowMenu = () => setShowMenu(true);
+
   return (
-    <InfoContainer>
+    <InfoContainer id={anchorData}>
       {!empty(practices)
         && articles.map(
           ({
             id, article, image, reactComponent, isBackgroundImage,
           }) => (
-            <>
+            <Fragment key={id}>
               {typeof reactComponent === 'string'
               && reactComponent?.includes('custom') ? (
                 <PracticesLocationBox>
-                  <DropdownMenu
-                    practices={practices}
-                    handleClickOnMouseEnter={handleClickFirstLvl}
-                    isSecondLvl={isSecondLvl}
-                    secondLvlData={secondLvlData}
-                  />
+                  {isMobileScreen ? (
+                    <MobileMenu
+                      title="How can we help?"
+                      justPractice
+                      show={showMenu}
+                      handleClose={handleCloseMenu}
+                      handleShow={handleShowMenu}
+                      practices={practices}
+                    />
+                  ) : (
+                    <DropdownMenu
+                      title="How can we help?"
+                      practices={practices}
+                      handleClickOnMouseEnter={handleClickFirstLvl}
+                      isSecondLvl={isSecondLvl}
+                      secondLvlData={secondLvlData}
+                    />
+                  )}
                 </PracticesLocationBox>
                 ) : (
-                  <Fragment key={id}>
-                    <ArticleWithContent
-                      isBackgroundImage={isBackgroundImage}
-                      article={article}
-                      image={image}
-                    >
-                      {reactComponent}
-                    </ArticleWithContent>
-                  </Fragment>
+                  <ArticleWithContent
+                    isBackgroundImage={isBackgroundImage}
+                    article={article}
+                    image={image}
+                  >
+                    {reactComponent}
+                  </ArticleWithContent>
                 )}
-            </>
+            </Fragment>
           ),
         )}
     </InfoContainer>

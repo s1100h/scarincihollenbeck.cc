@@ -52,7 +52,7 @@ export const InfoContainer = styled.section`
       object-fit: cover;
     }
 
-    div {
+    .content-box {
       width: 30%;
       padding-right: 32px;
       padding-bottom: 0;
@@ -68,7 +68,7 @@ export const InfoContainer = styled.section`
         padding-right: 0;
         margin-top: 0;
 
-        button {
+        .contact-now-btn {
           height: auto;
           padding: 10px 89px;
           line-height: 24px;
@@ -133,7 +133,7 @@ export const InfoContainer = styled.section`
     }
 
     > :nth-child(4) {
-      div {
+      .content-box {
         height: inherit;
       }
     }
@@ -153,11 +153,16 @@ export const InfoContainer = styled.section`
   ${media_breakpoint_exactly_down(1080)} {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    height: 1200px;
 
     > :nth-child(3) {
       grid-area: 1 / 1 / 2 / 3;
       width: 100%;
-      height: fit-content;
+      height: 538px;
+
+      div {
+        width: 32vw;
+      }
 
       img {
         display: none;
@@ -184,13 +189,13 @@ export const InfoContainer = styled.section`
       height: auto;
       flex-direction: column-reverse;
 
-      div {
+      .content-box {
         width: 100%;
         flex-direction: column;
         padding-right: 16px;
 
         article {
-          button {
+          .contact-now-btn {
             width: 100%;
           }
         }
@@ -199,6 +204,41 @@ export const InfoContainer = styled.section`
       img {
         display: none;
       }
+    }
+  }
+
+  ${media_breakpoint_down('md')} {
+    height: auto;
+    grid-gap: 18px;
+
+    > :nth-child(3) {
+      height: 400px;
+
+      div {
+        width: 300px;
+      }
+    }
+  }
+
+  ${media_breakpoint_exactly_down(620)} {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > :nth-child(1) {
+      order: 2;
+    }
+
+    > :nth-child(2) {
+      order: 3;
+    }
+
+    > :nth-child(3) {
+      order: 1;
+    }
+
+    > :nth-child(4) {
+      order: 4;
     }
   }
 `;
@@ -215,7 +255,7 @@ export const ArticleLocationBox = styled.article`
   background-repeat: no-repeat;
 	`}
 
-  div {
+  .content-box {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -235,7 +275,7 @@ export const ArticleLocationBox = styled.article`
   ${media_breakpoint_exactly_down(1440)} {
     align-items: flex-start;
 
-    div {
+    .content-box {
       padding: 16px;
 
       p {

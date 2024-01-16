@@ -12,7 +12,7 @@ const ArticleWithContent = ({
   const backgroundImage = isBackgroundImage ? image : '';
   return (
     <ArticleLocationBox background={backgroundImage}>
-      <div>
+      <div className="content-box">
         <p>
           <JSXWithDynamicLinks HTML={article} />
         </p>

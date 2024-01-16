@@ -21,6 +21,17 @@ const addressPointConst = `
 `;
 
 export const LocationPageContainer = styled.section`
+  .form-column {
+    margin-top: 60px;
+    padding-bottom: 40px;
+  }
+
+  .row-content {
+    ${media_breakpoint_exactly_down(1080)} {
+      margin-right: 3%;
+      margin-left: 3%;
+    }
+  }
   ${media_breakpoint_down('fullHd')} {
     padding-right: 7%;
     padding-left: 7%;
@@ -29,6 +40,11 @@ export const LocationPageContainer = styled.section`
   ${media_breakpoint_exactly_down(1440)} {
     padding-right: 3%;
     padding-left: 3%;
+  }
+
+  ${media_breakpoint_exactly_down(1080)} {
+    padding-right: 0;
+    padding-left: 0;
   }
 `;
 export const LinkMapBox = styled.div`
@@ -76,7 +92,7 @@ export const OfficeTabs = styled.nav`
   }
 
   ${media_breakpoint_down('sm')} {
-    top: -20px;
+    top: ${({ isBlueVariant }) => (isBlueVariant ? '0' : '-20px')};
   }
 `;
 

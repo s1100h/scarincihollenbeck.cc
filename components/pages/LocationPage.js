@@ -6,7 +6,8 @@ import { ATTORNEYS_FAQ, locationInfoBlockArticles } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { BsDownload } from 'react-icons/bs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import empty from 'is-empty';
 import { sanitizePracticesByChildren, sortByKey } from '../../utils/helpers';
 import {
   DownloadTheMap,
@@ -60,6 +61,7 @@ const LocationPage = ({
   locations,
 }) => {
   const [anchorData] = useState(anchorLocationsData);
+  const [articles, setArticles] = useState();
   const practicesSorted = sanitizePracticesByChildren(
     currentOffice.officePractices,
   );
@@ -73,6 +75,14 @@ const LocationPage = ({
     postCode: currentOffice.postCode,
     addressLocality: currentOffice.addressLocality,
   };
+
+  useEffect(() => {
+    const clearId = setTimeout(() => {
+      setArticles(locationInfoBlockArticles);
+    }, 100);
+    return () => clearTimeout(clearId);
+  }, []);
+
   return (
     <>
       <BasicSiteHead
@@ -101,11 +111,11 @@ const LocationPage = ({
       />
       <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
       <LocationPageContainer className="mb-5 mt-5">
-        <OfficeLocationBoxTitle>
-          {changeTitle(currentOffice.title)}
-        </OfficeLocationBoxTitle>
-        <Row>
-          <Col sm={12} lg={9}>
+        <Row className="row-content">
+          <Col xs={11} sm={11} md={11} lg={8} xl={9}>
+            <OfficeLocationBoxTitle>
+              {changeTitle(currentOffice.title)}
+            </OfficeLocationBoxTitle>
             <Map
               title={currentOffice.title}
               map={currentOffice.mapLink}
@@ -140,21 +150,25 @@ const LocationPage = ({
                 )}
               </LinkMapBox>
             )}
-            <FAQ faqArrContent={ATTORNEYS_FAQ} />
+            <FAQ anchorId={anchorData.faq.id} faqArrContent={ATTORNEYS_FAQ} />
           </Col>
-          <Col sm={12} lg={3}>
+          <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={3}>
             <GetInTouchForm />
           </Col>
+        </Row>
+        {!empty(articles) && (
           <InfoBlockLocation
-            articles={locationInfoBlockArticles}
+            anchorData={anchorData.howCanWeHelp.id}
+            articles={articles}
             practices={practicesSorted}
           />
-          {currentOffice?.attorneys.length > 0 && (
-            <PracticeAttorneys
-              attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
-            />
-          )}
-        </Row>
+        )}
+        {!empty(currentOffice?.attorneys) && (
+          <PracticeAttorneys
+            anchorId={anchorData.attorneys.id}
+            attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
+          />
+        )}
         <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       </LocationPageContainer>
     </>

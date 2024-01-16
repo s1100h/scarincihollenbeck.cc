@@ -143,6 +143,11 @@ export const DropdownFirstLvl = styled.div`
   display: flex;
   flex-direction: column;
 
+  h4 {
+    font-size: ${rem(24)};
+    margin-bottom: 28px;
+  }
+
   > :first-child {
     :hover {
       cursor: pointer !important;
