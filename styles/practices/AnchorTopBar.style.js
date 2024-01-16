@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ContentTooltip, TooltipWrapper } from "styles/Tooltip.style";
 import { globalColor, rem } from "styles/global_styles/Global.styles";
 import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/mediaBreakpoints.style";
 
@@ -6,27 +7,48 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from "styles/med
 export const AnchorsTopBarWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 12px 32px;
+  padding: 8px 32px;
   border-radius: 40px;
   border: 1px solid rgba(255, 255, 255, 0.40);
-  background-color: #164587;
+  background-color: ${globalColor.blue.blue500};
   box-shadow: 0px 0px 8px 0px rgba(22, 58, 107, 0.34);
   column-gap: 12px;
 
+  ${TooltipWrapper} {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+
+  ${ContentTooltip} {
+    ${media_breakpoint_down('sm')} {
+      bottom: unset;
+      top: 100%;
+    }
+  }
+
   h5 {
     margin: 0;
+    padding-right: 12px;
     color: ${globalColor.white};
     font-size: ${rem(14)};
     line-height: 16px;
     font-weight: 400;
-    font-family: var(--font-poppins);
+    font-family: var(--font-montserrat);
     letter-spacing: normal;
     max-width: 210px;
+    border-right: 1px solid #295491;
+    border-radius: 4px;
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(10)};
       line-height: 16px;
     }
+  }
+
+  > nav {
+    overflow: auto;
   }
 
   ${media_breakpoint_exactly_down(1439)} {
@@ -37,34 +59,47 @@ export const AnchorsTopBarWrapper = styled.div`
     padding: 10px 24px;
   }
 `;
-export const AnchorsTopBarItems = styled.div`
+export const AnchorsTopBarItems = styled.ul`
+  margin: 0;
   width: 100%;
   display: flex;
   column-gap: 12px;
   overflow-x: auto;
+
+  li {
+    min-width: max-content;
+    display: flex;
+  }
 `;
 export const AnchorsTopBarItem = styled.a`
-  min-width: max-content;
-  padding: 8px 16px;
-  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 2px 16px;
   background-color: transparent;
-  transition: all 0.5s ease;
   font-size: ${rem(14)};
   line-height: 20px;
-  font-weight: 500;
+  font-weight: 400;
   font-family: var(--font-roboto);
-  color: ${globalColor.white};
+  color: ${globalColor.blue.lightBlue};
   cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: all 0.5s ease;
+
+  &:hover {
+    color: ${globalColor.blue.lightBlue};
+  }
 
   &.active {
-    background-color: ${globalColor.white};
-    color: #164587;
+    font-weight: 900;
+    color: ${globalColor.white};
+    border-bottom: 1px solid ${globalColor.white};
   }
 
   @media (hover: hover) {
     &:hover {
-      background-color: ${globalColor.white};
-      color: #164587;
+      color: ${globalColor.white};
+      font-weight: 900;
     }
   }
+
 `;

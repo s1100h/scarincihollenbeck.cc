@@ -17,6 +17,7 @@ const AttorneyPracticeCard = ({
   height,
   classNameProp,
   handleCardParams,
+  officeLocations,
 }) => {
   const { push } = useRouter();
   const [isActive, setIsActive] = useState(false);
@@ -59,7 +60,11 @@ const AttorneyPracticeCard = ({
           <h4>{name}</h4>
           <p>{designation}</p>
           <div className="attorney__contact">
-            <ContactBoxTemplate email={email} number={number} />
+            <ContactBoxTemplate
+              email={email}
+              number={number}
+              officeLocations={officeLocations}
+            />
           </div>
         </button>
       ) : (
@@ -67,7 +72,11 @@ const AttorneyPracticeCard = ({
           <h4>{name}</h4>
           <p>{designation}</p>
           <div className="attorney__contact">
-            <ContactBoxTemplate email={email} number={number} />
+            <ContactBoxTemplate
+              email={email}
+              number={number}
+              officeLocations={officeLocations}
+            />
           </div>
         </div>
       )}

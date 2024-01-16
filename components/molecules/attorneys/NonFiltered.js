@@ -17,13 +17,13 @@ const organizeAttorneys = (attorneys, titles) => {
       typeof attorney.designation === 'string'
       && !attorney.designation.includes('Firm Managing Partner')
       && !attorney.designation.includes('Deputy Managing Partner')
-      && !attorney.designation.includes('Executive Director')
+      && !attorney.designation.includes('Chief Executive Officer')
       && !attorney.designation.includes('NYC Managing Partner')
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners?.attorneys.push(attorney);
     }
-    if (attorney.designation === 'Executive Director') {
+    if (attorney.designation === 'Chief Executive Officer') {
       results['Firm Managing Partner']?.attorneys.push(attorney);
       results['Firm Leaders']?.attorneys.unshift(attorney);
       results['Firm management']?.attorneys.unshift(attorney);

@@ -21,7 +21,7 @@ export const HeaderContainer = styled.header`
     scrollDown ? '-2px 0px 10px rgb(0 0 0 / 13%);' : 'none'};
   position: sticky;
   top: 0;
-  z-index: 1041;
+  z-index: 1020;
 
   @media print {
     display: none;
@@ -31,8 +31,8 @@ export const HeaderContainer = styled.header`
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 60px;
-  padding-bottom: 20px;
+  margin-top: 50px;
+  padding-bottom: 10px;
   justify-content: space-between;
   align-items: center;
   column-gap: 20px;
@@ -154,7 +154,7 @@ export const LinksBox = styled.div`
       top: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(266deg, #060B2A -13.67%, #C00100 79.43%, #DF143D 125.91%);
+      background: linear-gradient(266deg, ${globalColor.blue.darkBlue} -13.67%, #C00100 79.43%, #DF143D 125.91%);
       z-index: -1;
       opacity: 0;
       transition: all 0.5s ease;

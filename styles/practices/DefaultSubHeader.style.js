@@ -194,7 +194,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
     height: auto;
     padding: 10px 89px;
     line-height: 24px;
-    background-color: #164587;
+    background-color: ${globalColor.blue.blue500};
     position: relative;
     z-index: 0;
     border-radius: 2px;
@@ -241,9 +241,10 @@ export const DefaultSubHeaderKeyContacts = styled.div`
 export const DefaultSubHeaderKeyContactsCards = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  gap: 24px;
 
   .attorney-card-box {
+    flex: 1;
     padding: 0;
     border: none;
     min-width: auto;
@@ -251,6 +252,8 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
     box-shadow: none;
 
     &:hover {
+      box-shadow: none;
+
       ${LinkBox} {
         img {
           filter: grayscale(0%);
@@ -311,7 +314,7 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
       margin: 0;
       row-gap: 8px;
 
-      p, a {
+      .contact-offices, a {
         margin: 0;
         display: flex;
         align-items: center;
@@ -345,15 +348,14 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
         }
       }
 
-      a {
-
+      .contact-offices, a {
         &:hover {
-          span {
-            color: #8DC0F2;
+          > span {
+            color: ${globalColor.blue.skyBlue};
           }
 
           svg {
-            fill: #8DC0F2;
+            fill: ${globalColor.blue.skyBlue};
           }
         }
       }
@@ -361,7 +363,14 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
   }
 
+  ${media_breakpoint_exactly_down(1439)} {
+    column-gap: 40px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
   ${media_breakpoint_down('sm')} {
-    row-gap: 12px;
+    gap: 12px;
   }
 `;

@@ -7,12 +7,12 @@ export const GetInTouchFormWrapper = styled.div`
   padding: 12px 16px;
   background-color: #FBFBFB;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
-  ${({isSticky}) => isSticky && 'position: sticky; top: 250px; overflow: auto; max-height: calc(100vh - 290px);'}
+  ${({isSticky}) => isSticky && 'position: sticky; top: 200px; overflow: auto; max-height: calc(100vh - 240px);'}
   border: 1px solid transparent;
   transition: all 0.5s ease-in-out;
 
   &:hover {
-    border: 1px solid #164587;
+    border: 1px solid ${globalColor.blue.blue500};
     box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.11), 0px 0px 8px 0px rgba(6, 11, 42, 0.09);
   }
 
@@ -22,7 +22,7 @@ export const GetInTouchFormWrapper = styled.div`
   }
 
   .second-hr {
-    color: #164587;
+    color: ${globalColor.blue.blue500};
     width: calc(100% + 16px);
     margin-left: -16px;
     height: 1px;
@@ -35,7 +35,7 @@ export const GetInTouchFormWrapper = styled.div`
     justify-content: center;
 
     svg {
-      color: #164587;
+      color: ${globalColor.blue.blue500};
       transition: all 0.3s ease;
       width: 20px;
       height: 20px;
@@ -68,7 +68,7 @@ export const GetInTouchFormWrapper = styled.div`
   }
 
   &:has(.kw-alert-success:not([style="display: none;"])) {
-    background-color: #164587;
+    background-color: ${globalColor.blue.blue500};
 
     ${ShareSocialBox} {
       margin: 0 0 28px 0;
@@ -103,7 +103,7 @@ export const GetInTouchFormWrapper = styled.div`
 
 export const GetInTouchMobileBtn = styled.div`
   position: sticky;
-  top: 150px;
+  top: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,7 +114,7 @@ export const GetInTouchMobileBtn = styled.div`
   span {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    color: #164587;
+    color: ${globalColor.blue.blue500};
     font-family: var(--font-roboto);
     font-size: ${rem(24)};
     line-height: 32px;
@@ -130,7 +130,7 @@ export const GetInTouchMobileBtn = styled.div`
   svg {
     width: 32px;
     height: 32px;
-    color: #164587;
+    color: ${globalColor.blue.blue500};
 
     ${media_breakpoint_down('sm')} {
       width: 24px;
@@ -139,11 +139,11 @@ export const GetInTouchMobileBtn = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
-    top: 240px;
+    top: 220px;
   }
 
   ${media_breakpoint_down('md')} {
-    top: 180px;
+    top: 160px;
   }
 
   ${media_breakpoint_down('sm')} {

@@ -22,7 +22,7 @@ export const NavbarStyled = styled(Navbar)`
   }
 
   & ::-webkit-scrollbar-thumb {
-    background-color: #162153;
+    background-color: ${globalColor.blue.darkUltramarine};
     border-radius: 8px;
   }
 
@@ -40,7 +40,7 @@ export const NavbarStyled = styled(Navbar)`
         }
 
         > a {
-          color: #164587;
+          color: ${globalColor.blue.blue500};
         }
       }
 
@@ -48,20 +48,35 @@ export const NavbarStyled = styled(Navbar)`
         transition: all 0.5s ease;
 
         &:hover {
-          color: #8DC0F2;
+          color: ${globalColor.blue.skyBlue};
         }
       }
     }
 
     .dropdown-menu {
       padding: 16px 40px;
-      background-color: #060B2A;
+      background-color: ${globalColor.blue.darkBlue};
       box-shadow: 2px 8px 20px 0px rgba(6, 11, 42, 0.52);
       column-gap: 32px;
 
+      .dropdown__first-lvl {
+        width: 20vw;
+        max-height: 70vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: column;
+      }
+
       .dropdown__second-lvl {
-        overflow: auto;
-        max-height: 500px;
+        flex: 1;
+        width: 30vw;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        max-height: 70vh;
 
         ul {
           padding-right: 20px;
@@ -119,9 +134,10 @@ export const NavbarStyled = styled(Navbar)`
       display: flex;
       align-items: center;
       outline: none;
+      white-space: normal;
 
       &:focus {
-        background-color: #162153;
+        background-color: ${globalColor.blue.darkUltramarine};
 
         &::after {
           content: '';
@@ -131,7 +147,7 @@ export const NavbarStyled = styled(Navbar)`
           transform: translateY(-50%);
           width: 12px;
           height: 20px;
-          background-color: #162153;
+          background-color: ${globalColor.blue.darkUltramarine};
           clip-path: polygon(100% 50%,0 0,0% 100%);
           opacity: 1;
         }
@@ -146,7 +162,7 @@ export const NavbarStyled = styled(Navbar)`
 
       &:hover {
         border-radius: 4px;
-        background-color: #162153;      
+        background-color: ${globalColor.blue.darkUltramarine};      
       }
 
       &.with-child {
@@ -160,7 +176,7 @@ export const NavbarStyled = styled(Navbar)`
             transform: translateY(-50%);
             width: 12px;
             height: 20px;
-            background-color: #162153;
+            background-color: ${globalColor.blue.darkUltramarine};
             clip-path: polygon(100% 50%,0 0,0% 100%);
             opacity: 1;
           }

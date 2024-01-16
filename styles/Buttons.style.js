@@ -92,7 +92,7 @@ export const StandardBlueButton = styled(Button)`
   width: 100%;
   border: none;
   border-radius: 0;
-  background-color: #164587;
+  background-color: ${globalColor.blue.blue500};
   color: ${globalColor.white};
   font-size: ${rem(16)};
   line-height: 24px;

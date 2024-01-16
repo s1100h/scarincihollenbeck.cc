@@ -18,7 +18,7 @@ import { AttorneysContext } from '../../../contexts/AttorneysContext';
 import useStateScreen from '../../../hooks/useStateScreen';
 import AddressSubscription from './AddressSubscription';
 
-const DefaultHeader = ({ scrollTop, pathname }) => {
+const DefaultHeader = ({ scrollTop, pathname, practices }) => {
   const {
     dataForFilter,
     userInput,
@@ -59,7 +59,7 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
         <LogoBox>
           <Logo />
         </LogoBox>
-        <Navigation />
+        <Navigation practices={practices} />
         <DefaultHeaderSearchContainer
           isOpenBlock={isOpenSearch}
           onClick={handleOpenSearch}
@@ -87,6 +87,7 @@ const DefaultHeader = ({ scrollTop, pathname }) => {
           show={showMenu}
           handleShow={handleShowMenu}
           handleClose={handleCloseMenu}
+          practices={practices}
         />
       </Wrapper>
       {scrollTop && isAttorneysPage && !isTabletScreen && (

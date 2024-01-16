@@ -48,7 +48,7 @@ export const WhyChooseUsCardWrapper = styled.div`
   display: flex;
   column-gap: 48px;
   border-radius: 4px;
-  background: linear-gradient(98deg, #060B2A -0.14%, #377EC4 108.53%);
+  background: linear-gradient(98deg, ${globalColor.blue.darkBlue} -0.14%, #377EC4 108.53%);
   overflow: hidden;
 
   ${media_breakpoint_exactly_down(1850)} {

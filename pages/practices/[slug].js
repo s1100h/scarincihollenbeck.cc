@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { PRODUCTION_URL } from 'utils/constants';
-import PracticePage from 'components/pages/PracticePage';
+import { PRODUCTION_URL, googleLocationIds } from 'utils/constants';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
+import { getGoogleReviewsForPalaces } from 'requests/getGoogleReviews';
 import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
@@ -40,8 +40,13 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
     keyContactsList,
     corePractices,
     posts,
+    faq,
   } = await getPracticeAttorneys(resolvedUrl);
   const clientAlertPost = await getClientAlertPost();
+
+  const googleReviews = await getGoogleReviewsForPalaces(
+    Object.values(googleLocationIds),
+  );
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
 
@@ -89,6 +94,8 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       practiceChildren: practice?.practicesIncluded?.childPractice,
       latestFromTheFirm,
       slug: params.slug,
+      faq,
+      googleReviews: googleReviews.flat(),
     },
   };
 };
@@ -104,6 +111,8 @@ const SinglePractice = ({
   attorneyListPractice,
   keyContactsList,
   latestFromTheFirm,
+  faq,
+  googleReviews,
 }) => {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -145,6 +154,8 @@ const SinglePractice = ({
     attorneyListPractice,
     keyContactsList,
     latestFromTheFirm,
+    faq,
+    googleReviews,
   };
   return (
     <ApolloWrapper>
