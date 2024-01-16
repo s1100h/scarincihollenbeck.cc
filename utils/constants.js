@@ -768,3 +768,10 @@ export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 // thats url for exceptions for wrong urls
 export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
 export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';
+
+export const googleLocationIds = {
+  'little-falls': 'ChIJT4-XoRdWwokR_STT5apGtEc',
+  'new-york': 'ChIJZSMV5ABZwokRvTg94J92jfU',
+  'washington-dc': 'ChIJMxTvAVS3t4kRnkctX9qxKtc',
+  'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
+};

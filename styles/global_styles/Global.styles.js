@@ -8,6 +8,7 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray110: '#6A6A6A',
     gray100: '#424242',
     gray90: '#4a4a4a',
     gray80: '#5E5E5E',
@@ -65,6 +66,11 @@ export const globalColor = {
     lightBlue: '#8AD',
     blue500: '#164587',
   },
+
+  yellow: {
+    liteYellow: '#FCD503',
+  },
+  
   socialNetworks: {
     linkedIn: '#0077B5',
     faceBook: '#4267B2',

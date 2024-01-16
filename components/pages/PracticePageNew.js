@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import DefaultSubHeaderNew from 'layouts/SubHeader/DefaultSubHeaderNew';
 import PracticeContent from 'components/organisms/practices/PracticeContent';
 import AnchorTop from 'components/atoms/AnchorTop';
+import GoogleReviews from 'components/organisms/common/GoogleReviews';
 
 const PracticeAnchors = dynamic(() => import('components/organisms/practices/PracticeAnchors'));
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
@@ -23,6 +24,10 @@ const anchorDataDefault = {
     id: 'why-choose-us-section',
     title: 'Why choose us',
   },
+  googleReviews: {
+    id: 'reviews-section',
+    title: 'Reviews',
+  },
 };
 
 const PracticePageNew = ({
@@ -34,6 +39,7 @@ const PracticePageNew = ({
   chairPractice,
   attorneyListPractice,
   faq,
+  googleReviews,
 }) => {
   const [anchorData, setAnchorData] = useState(anchorDataDefault);
 
@@ -85,6 +91,10 @@ const PracticePageNew = ({
         anchorId={anchorData.attorneys.id}
       />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
+      <GoogleReviews
+        reviews={googleReviews}
+        anchorId={anchorData.googleReviews.id}
+      />
       <AnchorTop />
     </>
   );
