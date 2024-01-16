@@ -102,6 +102,7 @@ export const getAttorneys = async () => {
           attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
         link: slug,
         better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
+        profileImage: attorneyMainInformation.profileImage.sourceUrl,
       };
     },
   );

@@ -78,7 +78,8 @@ export const ContactBox = styled.address`
   display: flex;
   flex-direction: column;
 
-  .contact-offices, a {
+  .contact-offices,
+  a {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -95,7 +96,6 @@ export const ContactBox = styled.address`
   }
 
   .contact-offices {
-
     svg {
       flex-shrink: 0;
     }

@@ -1,12 +1,16 @@
-import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
-import { LocationContext } from 'contexts/LocationContext';
-import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
+import {
+  BASE_API_URL,
+  googleLocationIds,
+  headers,
+  PRODUCTION_URL,
+} from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { getOfficeAndMoreData } from 'requests/graphql-queries';
 import { getAttorneys } from '../attorneys';
+import { getGoogleReviewsForPalaces } from '../../requests/getGoogleReviews';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -75,6 +79,9 @@ export const getStaticPaths = async () => {
 
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
+  const googleReviews = await getGoogleReviewsForPalaces(
+    Object.values(googleLocationIds),
+  );
   const slug = params?.slug;
 
   if (!slug) {
@@ -124,6 +131,7 @@ export const getStaticProps = async ({ params }) => {
       attorneysSchemaData: attorneysSchema,
       posts: [],
       canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
+      googleReviews: googleReviews.flat(),
     },
     revalidate: 86400,
   };
@@ -137,19 +145,13 @@ const SingleLocation = ({
   posts,
   attorneysSchemaData,
   canonicalUrl,
+  googleReviews,
 }) => {
   const router = useRouter();
-  const { locations, setLocations } = useContext(LocationContext);
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
-
-  useEffect(() => {
-    if (!locations) {
-      setLocations(offices);
-    }
-  }, [offices]);
 
   const locationProps = {
     seo,
@@ -157,6 +159,8 @@ const SingleLocation = ({
     attorneysSchemaData,
     posts,
     canonicalUrl,
+    locations: offices,
+    googleReviews,
   };
 
   return <LocationPage {...locationProps} />;

@@ -9,7 +9,8 @@ export const FormContainer = styled.div`
     column-gap: 8px;
 
     .input-group {
-      &--0, &--1 {
+      &--0,
+      &--1 {
         height: 100%;
         width: calc(50% - 4px);
       }
@@ -17,7 +18,6 @@ export const FormContainer = styled.div`
       &:last-of-type {
         margin-bottom: 8px;
       }
-      
     }
 
     .form-control {
@@ -31,21 +31,21 @@ export const FormContainer = styled.div`
       font-size: ${rem(14)};
       line-height: 20px;
       font-weight: 400;
-      color: #040C10;
-      
+      color: #040c10;
+
       &:hover {
-        border-bottom: 1px solid var(--Kate-400, #377EC4);
+        border-bottom: 1px solid var(--Kate-400, #377ec4);
         background-color: ${globalColor.gray.gray10};
       }
 
       &:focus {
-        border-bottom: 1px solid var(--Kate-400, #377EC4);
-        background-color: #FBFBFB;
+        border-bottom: 1px solid var(--Kate-400, #377ec4);
+        background-color: #fbfbfb;
         box-shadow: none;
       }
 
       &::placeholder {
-        color: #568EDC;
+        color: #568edc;
         font-size: ${rem(14)};
         font-weight: 400;
         line-height: 20px;
@@ -54,7 +54,7 @@ export const FormContainer = styled.div`
 
       &.kw-border-success {
         border-color: #23d160;
-      }    
+      }
     }
 
     .kw-alert-error,
@@ -179,8 +179,8 @@ export const InputGroupStyled = styled(InputGroup)`
 
   &:has(.kw-field-error-message) {
     .form-control {
-      background-color: #FDE8E8;
-      border-bottom: 1px solid #BA1212;
+      background-color: #fde8e8;
+      border-bottom: 1px solid #ba1212;
     }
   }
 

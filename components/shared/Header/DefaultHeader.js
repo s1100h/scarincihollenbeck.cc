@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import dynamic from 'next/dynamic';
 import Logo from 'components/organisms/Navbar/Logo';
 import {
   DefaultHeaderSearchContainer,
@@ -18,7 +17,9 @@ import { AttorneysContext } from '../../../contexts/AttorneysContext';
 import useStateScreen from '../../../hooks/useStateScreen';
 import AddressSubscription from './AddressSubscription';
 
-const DefaultHeader = ({ scrollTop, pathname, practices }) => {
+const DefaultHeader = ({
+  scrollTop, pathname, practices, locations,
+}) => {
   const {
     dataForFilter,
     userInput,
@@ -31,7 +32,7 @@ const DefaultHeader = ({ scrollTop, pathname, practices }) => {
     attorneysContext,
   } = useContext(AttorneysContext);
   const { isTabletScreen } = useStateScreen();
-  const { sPractices, locations, designations } = dataForFilter;
+  const { sPractices, designations } = dataForFilter;
   const isAttorneysPage = pathname === '/attorneys';
   const [isOpenSearch, setOpenSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -59,7 +60,7 @@ const DefaultHeader = ({ scrollTop, pathname, practices }) => {
         <LogoBox>
           <Logo />
         </LogoBox>
-        <Navigation practices={practices} />
+        <Navigation practices={practices} locations={locations} />
         <DefaultHeaderSearchContainer
           isOpenBlock={isOpenSearch}
           onClick={handleOpenSearch}

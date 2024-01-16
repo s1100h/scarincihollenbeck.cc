@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { globalColor, rem } from "./global_styles/Global.styles";
-import Link from "next/link";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import Link from 'next/link';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const GoogleReviewsSection = styled.section`
   padding: 40px 0;
@@ -12,7 +12,6 @@ export const GoogleReviewsSection = styled.section`
   }
 `;
 export const GoogleReviewsHolder = styled.div`
-
   .slick-slider {
     padding: 0 48px;
     position: relative;
@@ -34,7 +33,8 @@ export const GoogleReviewsHolder = styled.div`
     }
   }
 
-  .slick-next, .slick-prev {
+  .slick-next,
+  .slick-prev {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +83,8 @@ export const GoogleReviewsCard = styled.div`
   row-gap: 16px;
   background-color: ${globalColor.white};
   border-radius: 2px;
-  box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06),
+    0px -7px 16px 0px rgba(0, 0, 0, 0.06);
   user-select: none;
 
   .review {

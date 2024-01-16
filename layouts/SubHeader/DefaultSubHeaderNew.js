@@ -11,6 +11,10 @@ import {
   DefaultSubHeaderKeyContactsCards,
 } from 'styles/practices/DefaultSubHeader.style';
 import { changeTitle } from 'utils/helpers';
+import empty from 'is-empty';
+import CurrentOfficeCard from '../../components/molecules/location/CurrentOfficeCard';
+import { globalColor } from '../../styles/global_styles/Global.styles';
+import OfficesLinkTabs from '../../components/molecules/location/OfficesLinkTabs';
 
 const DefaultSubHeaderNew = ({
   title,
@@ -18,13 +22,10 @@ const DefaultSubHeaderNew = ({
   isBlog,
   isHoliday,
   isFilter,
-  authors,
-  date,
-  tabs,
-  setActiveTab,
-  activeTab,
   backgroundImage,
   keyContacts,
+  officeInfo,
+  locations,
 }) => (
   <DefaultSubHeaderHolder
     props={{
@@ -36,7 +37,7 @@ const DefaultSubHeaderNew = ({
     {/* изменить на данные которые будут приходить с бэка */}
     <div className="sub-header__image">
       <Image
-        src="/images/gamingSubHeader.png"
+        src={backgroundImage || '/images/no-image-found-diamond-750x350.png'}
         alt={title}
         width={1400}
         height={900}
@@ -58,24 +59,40 @@ const DefaultSubHeaderNew = ({
     </DefaultSubHeaderContent>
 
     <DefaultSubHeaderKeyContacts>
-      <h3>Key Contacts</h3>
-      <DefaultSubHeaderKeyContactsCards>
-        {keyContacts?.slice(0, 2)?.map((keyContact, index) => (
-          <AttorneyCard
-            key={keyContact.databaseId}
-            link={keyContact.uri || keyContact.link}
-            name={keyContact.display_name || keyContact.title}
-            designation={keyContact.designation}
-            image={keyContact.profileImage}
-            officeLocations={keyContact.officeLocation}
-            number={keyContact.phoneNumber}
-            email={keyContact.email}
-            width={300}
-            height={300}
-          />
-        ))}
-      </DefaultSubHeaderKeyContactsCards>
-      <AboutAuthorFormCard blockName="subheader" />
+      {!empty(keyContacts) ? (
+        <>
+          <h3>Key Contacts</h3>
+          <DefaultSubHeaderKeyContactsCards>
+            {keyContacts?.slice(0, 2)?.map((keyContact) => (
+              <AttorneyCard
+                key={keyContact.databaseId}
+                link={keyContact.uri || keyContact.link}
+                name={keyContact.display_name || keyContact.title}
+                designation={keyContact.designation}
+                image={keyContact.profileImage}
+                officeLocations={keyContact.officeLocation}
+                number={keyContact.phoneNumber}
+                email={keyContact.email}
+                width={300}
+                height={300}
+              />
+            ))}
+          </DefaultSubHeaderKeyContactsCards>
+          <AboutAuthorFormCard blockName="subheader" />
+        </>
+      ) : (
+        <div className="d-flex gap-4">
+          <CurrentOfficeCard
+            {...officeInfo}
+            backgroundColor={globalColor.blue.darkUltramarine}
+          >
+            <h3 className="current-office-card-title">{title}</h3>
+          </CurrentOfficeCard>
+          {locations?.length > 0 && (
+            <OfficesLinkTabs officesForTabs={locations} isBlueVariant />
+          )}
+        </div>
+      )}
     </DefaultSubHeaderKeyContacts>
   </DefaultSubHeaderHolder>
 );

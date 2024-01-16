@@ -1,8 +1,7 @@
 import AttorneysListBox from 'components/common/AttorneysListBox';
-import useStateScreen from 'hooks/useStateScreen';
 import empty from 'is-empty';
 import React, {
-  createRef, useEffect, useMemo, useRef, useState,
+  useEffect, useMemo, useRef, useState,
 } from 'react';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
@@ -11,14 +10,13 @@ import {
 } from 'styles/practices/PracticeAttorneys';
 import { PracticeTitle } from 'styles/practices/PracticeCommon.style';
 
-const PracticeAttorneys = ({ attorneys, chairs, anchorId }) => {
+const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   const [containerWidth, setContainerWidth] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
   const [cardHeight, setCardHeight] = useState(0);
   const [cardGap, setCardGap] = useState(0);
   const containerRef = useRef();
-  const { isMobileScreen } = useStateScreen(0);
   const totalItems = attorneys.length + chairs.length;
 
   useEffect(() => {

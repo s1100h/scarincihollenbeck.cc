@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import { globalColor, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "./mediaBreakpoints.style";
-
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const FaqWrapper = styled.section`
   margin-bottom: 40px;
@@ -20,7 +22,7 @@ export const FaqWrapper = styled.section`
       font-size: ${rem(16)};
       line-height: 20px;
       font-weight: 700;
-      color: #0D0D0D;
+      color: #0d0d0d;
     }
   }
 
@@ -34,13 +36,14 @@ export const FaqWrapper = styled.section`
 
     &-item {
       padding-bottom: 8px;
-      background-color: #AFDCF5;
+      background-color: #afdcf5;
       border-radius: 0;
       border: none;
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06), 0px -7px 16px 0px rgba(0, 0, 0, 0.06);
+        box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06),
+          0px -7px 16px 0px rgba(0, 0, 0, 0.06);
       }
 
       ${media_breakpoint_exactly_down(1439)} {
@@ -54,7 +57,7 @@ export const FaqWrapper = styled.section`
 
     &-header {
       margin: 0;
-      color: #231E1E;
+      color: #231e1e;
       font-family: var(--font-poppins);
       font-size: ${rem(16)};
       font-weight: 600;
@@ -64,7 +67,7 @@ export const FaqWrapper = styled.section`
         font-size: ${rem(14)};
         line-height: 20px;
         font-weight: 400;
-        color: #0D0D0D;
+        color: #0d0d0d;
       }
     }
 
@@ -74,7 +77,7 @@ export const FaqWrapper = styled.section`
       box-shadow: none;
       padding: 20px 24px 12px 24px;
       border-radius: 0;
-      color: #231E1E;
+      color: #231e1e;
       font-weight: 600;
 
       ${media_breakpoint_exactly_down(1850)} {
@@ -86,7 +89,7 @@ export const FaqWrapper = styled.section`
         font-size: ${rem(14)};
         line-height: 20px;
         font-weight: 400;
-        color: #0D0D0D;
+        color: #0d0d0d;
       }
     }
 
@@ -97,7 +100,6 @@ export const FaqWrapper = styled.section`
       line-height: 24px;
       font-weight: 400;
       font-family: var(--font-poppins);
-
 
       p {
         &:last-child {
@@ -123,6 +125,5 @@ export const FaqWrapper = styled.section`
         font-weight: 400;
       }
     }
-
   }
 `;
