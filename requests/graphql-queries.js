@@ -190,6 +190,7 @@ export const attorneysQuery = `query FirmPageQuery {
       databaseId
       slug
       title
+      uri
       attorneyMainInformation {
         designation
         email
