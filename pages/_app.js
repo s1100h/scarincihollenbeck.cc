@@ -22,10 +22,12 @@ import 'animate.css/animate.min.css';
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import TagManager from 'react-gtm-module';
+import Script from 'next/script';
 import { FormContextProvider } from '../contexts/FormsContext';
 import {
   montserrat, poppins, rajdhani, licorice,
 } from '../public/fonts/fonts';
+import { createMarkup } from '../utils/helpers';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -58,6 +60,20 @@ const SHSite = ({ Component, pageProps }) => {
             <GlobalStyle />
             <MainSiteHead />
             <Header />
+            {/* <!-- Google tag (gtag.js) --> */}
+            <Script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-EQ890E606W"
+            />
+            <Script
+              id="G-EQ890E606W"
+              dangerouslySetInnerHTML={createMarkup(`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-EQ890E606W');
+            `)}
+            />
             <main
               className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable}`}
             >
