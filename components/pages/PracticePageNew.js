@@ -63,7 +63,6 @@ const PracticePageNew = ({
       ...updatedAnchorData,
     });
   }, [tabs]);
-
   return (
     <>
       <BasicSiteHead
@@ -76,6 +75,7 @@ const PracticePageNew = ({
         title={practice.title}
         subtitle={practice.practicesIncluded.description}
         keyContacts={keyContactsList}
+        backgroundImage={practice.practicesIncluded?.practiceImage?.sourceUrl}
       />
       <PracticeAnchors anchorData={anchorData} title={practice.title} />
       <PracticeContent

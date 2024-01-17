@@ -177,12 +177,12 @@ export const DropdownFirstLvl = styled.div`
     :hover {
       border-radius: 4px;
       background-color: ${globalColor.blue.darkUltramarine};
-      cursor: grab;
     }
   }
 
   .with-child {
     :hover {
+      cursor: pointer;
       ::after {
         content: '';
         position: absolute;

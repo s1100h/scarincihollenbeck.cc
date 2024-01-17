@@ -26,13 +26,21 @@ const DropdownMenu = ({
           </NavDropdown.Item>
         </Link>
         {practices?.map((practice) => (
-          <NavDropdown.Item
-            key={useId()}
-            onMouseEnter={() => handleClickOnMouseEnter(practice?.childPractice)}
-            className={practice?.childPractice?.length > 0 ? 'with-child' : ''}
+          <Link
+            key={practice?.databaseId}
+            href={practice?.uri}
+            passHref
+            legacyBehavior
           >
-            {practice?.title}
-          </NavDropdown.Item>
+            <NavDropdown.Item
+              onMouseEnter={() => handleClickOnMouseEnter(practice?.childPractice)}
+              className={
+                practice?.childPractice?.length > 0 ? 'with-child' : ''
+              }
+            >
+              {practice?.title}
+            </NavDropdown.Item>
+          </Link>
         ))}
       </DropdownFirstLvl>
       {isSecondLvl && (
