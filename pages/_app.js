@@ -21,7 +21,6 @@ import 'animate.css/animate.min.css';
  * Custom Style Sheets
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
-import TagManager from 'react-gtm-module';
 import Script from 'next/script';
 import { FormContextProvider } from '../contexts/FormsContext';
 import {
@@ -38,53 +37,38 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const tagManagerInitial = () => {
-  TagManager.initialize({ gtmId: 'GTM-PC64FQH' });
-};
-const SHSite = ({ Component, pageProps }) => {
-  const router = useRouter();
-
-  /** Effect hook that manages tracking for Google Analytics */
-  useEffect(() => {
-    router.events.on('routeChangeComplete', tagManagerInitial);
-    return () => {
-      router.events.off('routeChangeComplete', tagManagerInitial);
-    };
-  }, [router.events]);
-
-  return (
-    <SSRProvider>
-      <AttorneysProvider>
-        <LocationProvider>
-          <FormContextProvider>
-            <GlobalStyle />
-            <MainSiteHead />
-            <Header />
-            {/* <!-- Google tag (gtag.js) --> */}
-            <Script
-              async
-              src="https://www.googletagmanager.com/gtag/js?id=G-EQ890E606W"
-            />
-            <Script
-              id="G-EQ890E606W"
-              dangerouslySetInnerHTML={createMarkup(`
+const SHSite = ({ Component, pageProps }) => (
+  <SSRProvider>
+    <AttorneysProvider>
+      <LocationProvider>
+        <FormContextProvider>
+          <GlobalStyle />
+          <MainSiteHead />
+          <Header />
+          {/* <!-- Google tag (gtag.js) --> */}
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-EQ890E606W"
+          />
+          <Script
+            id="G-EQ890E606W"
+            dangerouslySetInnerHTML={createMarkup(`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-EQ890E606W');
             `)}
-            />
-            <main
-              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable}`}
-            >
-              <Component {...pageProps} />
-            </main>
-            <SiteFooter />
-          </FormContextProvider>
-        </LocationProvider>
-      </AttorneysProvider>
-    </SSRProvider>
-  );
-};
+          />
+          <main
+            className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable}`}
+          >
+            <Component {...pageProps} />
+          </main>
+          <SiteFooter />
+        </FormContextProvider>
+      </LocationProvider>
+    </AttorneysProvider>
+  </SSRProvider>
+);
 
 export default SHSite;
