@@ -53,9 +53,8 @@ export const InfoContainer = styled.section`
     }
 
     .content-box {
-      width: 30%;
-      padding-right: 32px;
-      padding-bottom: 0;
+      width: 32%;
+      padding: 20px 20px 0 20px;
       height: inherit;
 
       p {
@@ -66,7 +65,7 @@ export const InfoContainer = styled.section`
         width: 100%;
         padding-left: 0;
         padding-right: 0;
-        margin-top: 0;
+        margin-top: 0 !important;
 
         .contact-now-btn {
           height: auto;
@@ -155,6 +154,14 @@ export const InfoContainer = styled.section`
     grid-template-rows: repeat(3, 1fr);
     height: 1200px;
 
+    > :nth-child(1) {
+      grid-area: 2 / 1 / 3 / 2;
+
+      img {
+        display: none;
+      }
+    }
+
     > :nth-child(3) {
       grid-area: 1 / 1 / 2 / 3;
       width: 100%;
@@ -163,13 +170,6 @@ export const InfoContainer = styled.section`
       div {
         width: 32vw;
       }
-
-      img {
-        display: none;
-      }
-    }
-    > :nth-child(1) {
-      grid-area: 2 / 1 / 3 / 2;
 
       img {
         display: none;
@@ -188,6 +188,7 @@ export const InfoContainer = styled.section`
       grid-area: 2 / 2 / 4 / 3;
       height: auto;
       flex-direction: column-reverse;
+      background-size: auto;
 
       .content-box {
         width: 100%;

@@ -112,9 +112,9 @@ const LocationPage = ({
         locations={locations}
       />
       <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
-      <LocationPageContainer className="mb-5 mt-5">
+      <LocationPageContainer className="mt-5">
         <Row className="row-content">
-          <Col xs={11} sm={11} md={11} lg={8} xl={9}>
+          <Col xs={11} sm={11} md={11} lg={8} xl={8}>
             <OfficeLocationBoxTitle>
               {changeTitle(currentOffice.title)}
             </OfficeLocationBoxTitle>
@@ -154,7 +154,7 @@ const LocationPage = ({
             )}
             <FAQ anchorId={anchorData.faq.id} faqArrContent={ATTORNEYS_FAQ} />
           </Col>
-          <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={3}>
+          <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>
             <GetInTouchForm />
           </Col>
         </Row>
@@ -165,18 +165,17 @@ const LocationPage = ({
             practices={practicesSorted}
           />
         )}
-        {!empty(currentOffice?.attorneys) && (
-          <PracticeAttorneys
-            anchorId={anchorData.attorneys.id}
-            attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
-          />
-        )}
-        <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-        <GoogleReviews
-          reviews={googleReviews}
-          anchorId={anchorData.reviews.id}
-        />
       </LocationPageContainer>
+      {!empty(currentOffice?.attorneys) && (
+        <PracticeAttorneys
+          anchorId={anchorData.attorneys.id}
+          attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
+        />
+      )}
+      <LocationPageContainer>
+        <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
+      </LocationPageContainer>
+      <GoogleReviews reviews={googleReviews} anchorId={anchorData.reviews.id} />
     </>
   );
 };

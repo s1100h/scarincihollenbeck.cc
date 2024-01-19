@@ -4,6 +4,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
   media_breakpoint_range_exacly,
+  media_breakpoint_up,
 } from './mediaBreakpoints.style';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 import empty from 'is-empty';
@@ -32,6 +33,11 @@ export const LocationPageContainer = styled.section`
       margin-left: 3%;
     }
   }
+  ${media_breakpoint_up('fullHd')} {
+    padding-right: 7%;
+    padding-left: 7%;
+  }
+
   ${media_breakpoint_down('fullHd')} {
     padding-right: 7%;
     padding-left: 7%;
