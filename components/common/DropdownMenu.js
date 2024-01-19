@@ -26,7 +26,12 @@ const DropdownMenu = ({
           </NavDropdown.Item>
         </Link>
         {practices?.map((practice) => (
-          <Link key={useId()} href={practice?.uri} passHref legacyBehavior>
+          <Link
+            key={practice.databaseId || practice?.title}
+            href={practice?.uri}
+            passHref
+            legacyBehavior
+          >
             <NavDropdown.Item
               onMouseEnter={() => handleClickOnMouseEnter(practice?.childPractice)}
               className={

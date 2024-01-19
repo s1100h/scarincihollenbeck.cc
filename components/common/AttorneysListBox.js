@@ -1,6 +1,6 @@
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
 import {
-  Fragment, useEffect, useId, useRef, useState,
+  Fragment, useEffect, useRef, useState,
 } from 'react';
 import AttorneyEntAndMediaCard from 'components/molecules/ent-and-media/AttorneyEntAndMediaCard';
 import AttorneyPracticeCard from '../molecules/practice/AttorneyPracticeCard';
@@ -133,7 +133,7 @@ const AttorneysListBox = ({
                   phone,
                   email,
                 }) => (
-                  <Fragment key={databaseId || useId()}>
+                  <Fragment key={databaseId || title}>
                     {renderCardsByVariants(
                       variant,
                       {
