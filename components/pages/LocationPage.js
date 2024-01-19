@@ -172,9 +172,7 @@ const LocationPage = ({
           attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
         />
       )}
-      <LocationPageContainer>
-        <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-      </LocationPageContainer>
+      <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       <GoogleReviews reviews={googleReviews} anchorId={anchorData.reviews.id} />
     </>
   );
