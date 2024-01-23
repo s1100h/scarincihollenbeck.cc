@@ -84,11 +84,7 @@ const GoogleReviews = ({ reviews, anchorId }) => {
                     </div>
                   </div>
                   <div className="review__description">
-                    {review?.text.length > 0 ? (
-                      <p>{review.text}</p>
-                    ) : (
-                      <p>{`${review.author_name} did not write the text for the review`}</p>
-                    )}
+                    <p>{review.text}</p>
                   </div>
                 </GoogleReviewsCard>
               ))}

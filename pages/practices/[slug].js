@@ -8,6 +8,7 @@ import { getGoogleReviewsForPalaces } from 'requests/getGoogleReviews';
 import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
+import { deleteReviewsWithoutComment } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -95,7 +96,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       latestFromTheFirm,
       slug: params.slug,
       faq,
-      googleReviews: googleReviews.flat(),
+      googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
   };
 };

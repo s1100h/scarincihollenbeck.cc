@@ -11,6 +11,7 @@ import { fetchAPI } from 'requests/api';
 import { getOfficeAndMoreData } from 'requests/graphql-queries';
 import { getAttorneys } from '../attorneys';
 import { getGoogleReviewsForPalaces } from '../../requests/getGoogleReviews';
+import { deleteReviewsWithoutComment } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -131,7 +132,7 @@ export const getStaticProps = async ({ params }) => {
       attorneysSchemaData: attorneysSchema,
       posts: [],
       canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
-      googleReviews: googleReviews.flat(),
+      googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 86400,
   };

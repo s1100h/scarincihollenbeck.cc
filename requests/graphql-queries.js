@@ -1363,6 +1363,10 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
         mediaItemUrl
         databaseId
       }
+      faq {
+        description
+        title
+      }
     }
     featuredImage {
       node {

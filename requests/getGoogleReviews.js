@@ -9,9 +9,7 @@ export async function getGoogleReviewsForPalace(placeId) {
       console.error(`Failed to fetch reviews for place ${data.status}`);
       return [];
     }
-
-    const reviews = data.result.reviews || [];
-    return reviews;
+    return data.result.reviews || [];
   } catch (error) {
     console.error(
       `Error fetching reviews for place ${placeId}: ${error.message}`,
@@ -23,9 +21,7 @@ export async function getGoogleReviewsForPalace(placeId) {
 export async function getGoogleReviewsForPalaces(placesIds) {
   try {
     const reviewsPromises = placesIds.map(async (placeId) => getGoogleReviewsForPalace(placeId));
-
-    const reviewsData = await Promise.all(reviewsPromises);
-    return reviewsData;
+    return await Promise.all(reviewsPromises);
   } catch (error) {
     console.error(`Error fetching reviews for places: ${error.message}`);
     return [];

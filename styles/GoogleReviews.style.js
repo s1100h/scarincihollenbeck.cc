@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { globalColor, rem } from './global_styles/Global.styles';
-import Link from 'next/link';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const GoogleReviewsSection = styled.section`
@@ -83,7 +82,7 @@ export const GoogleReviewsCard = styled.div`
   row-gap: 16px;
   background-color: ${globalColor.white};
   border-radius: 2px;
-  box-shadow: -10px 10px 19px 0px rgba(0, 0, 0, 0.06),
+  box-shadow: -10px 10px 19px 0 rgba(0, 0, 0, 0.06),
     0px -7px 16px 0px rgba(0, 0, 0, 0.06);
   user-select: none;
 

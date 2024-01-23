@@ -80,10 +80,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
           <PracticeTitle>Practice Area Attorneys</PracticeTitle>
           {totalItems > calculateItemsPerRow
             && (!isCollapsed ? (
-              <button onClick={handleCollapse}>
-                See all
-                {` ${totalItems}`}
-              </button>
+              <button onClick={handleCollapse}>See all</button>
             ) : (
               <button onClick={handleCollapse}>HIDE</button>
             ))}

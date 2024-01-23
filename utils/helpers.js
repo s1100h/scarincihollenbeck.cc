@@ -287,3 +287,5 @@ export const sanitizePracticesByChildren = (practices) => practices
       };
     },
   );
+
+export const deleteReviewsWithoutComment = (reviews) => reviews.filter((review) => !empty(review.text));

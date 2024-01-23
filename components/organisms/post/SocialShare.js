@@ -13,7 +13,7 @@ import {
   BsFacebook,
   BsFillPrinterFill,
   BsLinkedin,
-  BsTwitter,
+  BsTwitterX,
 } from 'react-icons/bs';
 import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
@@ -30,7 +30,7 @@ const SocialShare = ({ title, isPractice }) => {
             <BsFacebook className="faceBookBtn" />
           </FacebookShareButton>
           <TwitterShareButton url={postUrl} quote={title}>
-            <BsTwitter className="twitterBtn" />
+            <BsTwitterX className="twitterBtn" />
           </TwitterShareButton>
           <LinkedinShareButton url={postUrl} quote={title}>
             <BsLinkedin className="linkedIn" />
@@ -44,7 +44,7 @@ const SocialShare = ({ title, isPractice }) => {
             <BsFacebook className="faceBookBtn" />
           </FacebookShareButton>
           <TwitterShareButton url={postUrl} quote={title}>
-            <BsTwitter className="twitterBtn" />
+            <BsTwitterX className="twitterBtn" />
           </TwitterShareButton>
           <LinkedinShareButton url={postUrl} quote={title}>
             <BsLinkedin className="linkedIn" />
