@@ -78,7 +78,7 @@ const PracticesTiles = ({ practicesList }) => {
   return (
     <PracticesTilesContainer>
       <ul>
-        {practicesList.map(
+        {practicesList?.map(
           ({
             databaseId, childPractice, uri, title, practiceImage,
           }) => (

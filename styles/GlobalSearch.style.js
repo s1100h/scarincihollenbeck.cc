@@ -6,8 +6,6 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SearchForm = styled(Form)`
   width: 100%;
-  margin-left: 20px;
-  margin-right: 20px;
 
   .form-group {
     margin-bottom: 0;
@@ -33,8 +31,9 @@ export const SearchForm = styled(Form)`
 `;
 
 export const SearchInput = styled(Form.Control)`
-  height: 47px !important;
-  border-radius: 0;
+  padding-right: 50px;
+  height: 40px !important;
+  border-radius: 2px;
   background: #ebebeb;
   font-weight: 400;
   font-size: 16px;
@@ -56,8 +55,6 @@ export const HitsStyled = styled(Hits)`
 
 export const ResultsContainer = styled.div`
   width: -webkit-fill-available;
-  margin-left: 20px;
-  margin-right: 20px;
   margin-top: 48px;
   padding-top: 20px;
   max-height: 670px;

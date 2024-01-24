@@ -84,7 +84,7 @@ const CovidPage = ({
             />
           </div>
           <ContentTitle title="Contact A Firm Representative" />
-          <ContactForm />
+          <ContactForm isPositionRelativeProp />
         </FirstColumn>
         <SecondColumn>
           <Sidebar />

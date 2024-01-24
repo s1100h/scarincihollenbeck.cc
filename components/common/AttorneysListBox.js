@@ -1,5 +1,8 @@
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
-import { Fragment, useState } from 'react';
+import {
+  Fragment, useEffect, useRef, useState,
+} from 'react';
+import AttorneyEntAndMediaCard from 'components/molecules/ent-and-media/AttorneyEntAndMediaCard';
 import AttorneyPracticeCard from '../molecules/practice/AttorneyPracticeCard';
 import useStateScreen from '../../hooks/useStateScreen';
 import AttorneyCard from '../shared/AttorneyCard';
@@ -8,25 +11,40 @@ import AttorneyCannabisCard from '../molecules/cannabis-law/AttorneyCannabisCard
 const CardVariantsMap = {
   default: AttorneyPracticeCard,
   cannabis: AttorneyCannabisCard,
+  entandmedia: AttorneyEntAndMediaCard,
 };
 const renderCardsByVariants = (variant, propsCard, cardsMap) => {
   const AttorneysCardVariable = cardsMap[variant];
   return <AttorneysCardVariable {...propsCard} />;
 };
 
-const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
+const AttorneysListBox = ({
+  attorneys,
+  variant = 'default',
+  handleCardParams,
+  handleCardGap,
+}) => {
   const { chairs, attorneysList } = attorneys;
   const { isMobileScreen } = useStateScreen();
   const [cardIdHovered, setCardIdHovered] = useState();
   const isDefault = variant.includes('default') ? 'true' : '';
+  const contRef = useRef();
+
+  useEffect(() => {
+    if (handleCardGap && contRef.current) {
+      const compStyle = getComputedStyle(contRef.current);
+      const gap = compStyle.getPropertyValue('gap');
+      handleCardGap(parseInt(gap, 10));
+    }
+  }, [handleCardGap]);
 
   return (
-    <AttorneysContainer isNotDefault={isDefault}>
+    <AttorneysContainer isNotDefault={isDefault} ref={contRef}>
       {chairs?.length > 0 && (
         <div className="chair-box">
           <h3>Chair</h3>
           <div>
-            {isMobileScreen
+            {isMobileScreen && !isDefault
               ? chairs?.map((chair) => (
                 <AttorneyCard
                   key={chair.databaseId}
@@ -34,6 +52,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                   image={chair.profileImage}
                   name={chair.title}
                   designation={chair.designation}
+                  officeLocations={chair.officeLocation}
                   number={chair.phoneNumber}
                   email={chair.email}
                   width={80}
@@ -48,6 +67,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                   profileImage,
                   title,
                   designation,
+                  officeLocation,
                   phoneNumber,
                   email,
                 }) => (
@@ -61,6 +81,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                         image: profileImage,
                         name: title,
                         designation,
+                        officeLocations: officeLocation,
                         number: phoneNumber,
                         email,
                         width: 180,
@@ -68,6 +89,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                         setterId: setCardIdHovered,
                         cardIdHovered,
                         databaseId,
+                        handleCardParams,
                       },
                       CardVariantsMap,
                     )}
@@ -82,7 +104,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
         <div className="attorneys-list-box">
           <h3>Attorneys</h3>
           <div>
-            {isMobileScreen
+            {isMobileScreen && !isDefault
               ? attorneysList.map((attorney) => (
                 <AttorneyCard
                   key={attorney.databaseId}
@@ -90,6 +112,7 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
                   image={attorney.profileImage}
                   name={attorney.title}
                   designation={attorney.designation}
+                  officeLocations={attorney.officeLocation}
                   number={attorney.phoneNumber}
                   email={attorney.email}
                   width={80}
@@ -100,30 +123,35 @@ const AttorneysListBox = ({ attorneys, variant = 'default' }) => {
               : attorneysList.map(
                 ({
                   databaseId,
+                  id,
                   link,
                   profileImage,
                   title,
                   designation,
+                  officeLocation,
                   phoneNumber,
+                  phone,
                   email,
                 }) => (
-                  <Fragment key={databaseId}>
+                  <Fragment key={databaseId || title}>
                     {renderCardsByVariants(
                       variant,
                       {
                         classNameProp: 'vertical-attorney-card',
-                        key: databaseId,
+                        key: databaseId || id,
                         link,
                         image: profileImage,
                         name: title,
                         designation,
-                        number: phoneNumber,
+                        officeLocations: officeLocation,
+                        number: phoneNumber || phone,
                         email,
                         width: 180,
                         height: 210,
                         setterId: setCardIdHovered,
                         cardIdHovered,
                         databaseId,
+                        handleCardParams,
                       },
                       CardVariantsMap,
                     )}

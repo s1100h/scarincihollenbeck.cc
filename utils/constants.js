@@ -10,6 +10,7 @@ import {
   WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
+import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
 
 export const LETTERS_LIST = [
   'a',
@@ -136,6 +137,28 @@ export const ScarinciHollenbeckKeyContact = {
   designation: 'The Firm',
   phoneNumber: SITE_PHONE,
   email: SITE_EMAIL,
+  officeLocation: [
+    {
+      databaseId: 29438,
+      uri: '/location/new-york',
+      title: 'New York City',
+    },
+    {
+      databaseId: 29440,
+      uri: '/location/washington-dc',
+      title: 'Washington, D.C.',
+    },
+    {
+      databaseId: 29437,
+      uri: '/location/red-bank',
+      title: 'Red Bank, NJ',
+    },
+    {
+      databaseId: 29436,
+      uri: '/location/little-falls',
+      title: 'Little Falls, NJ',
+    },
+  ],
 };
 
 /* List of Firm Pages found in the sidebar and in the footer */
@@ -183,52 +206,44 @@ export const SITE_NAVIGATION = [
     slug: '',
     children: [
       {
-        id: 11,
-        label: 'Administration',
-        slug: '/administration',
-        menuId: 'administration',
+        databaseId: 101,
+        title: 'Administration',
+        uri: '/administration',
       },
       {
-        id: 12,
-        label: 'Careers',
-        slug: '/careers',
-        menuId: 'careers',
+        databaseId: 102,
+        title: 'Careers',
+        uri: '/careers',
       },
       {
-        id: 13,
-        label: 'Community Involvement',
-        slug: '/community-involvement',
-        menuId: 'community-involvement',
+        databaseId: 103,
+        title: 'Community Involvement',
+        uri: '/community-involvement',
       },
       {
-        id: 14,
-        label: 'COVID-19 Crisis Management Unit',
-        menuId: 'covid-19-crisis-management-unit',
-        slug: '/covid-19-crisis-management-unit',
+        databaseId: 104,
+        title: 'COVID-19 Crisis Management Unit',
+        uri: '/covid-19-crisis-management-unit',
       },
       {
-        id: 15,
-        label: 'Diversity',
-        menuId: 'diversity',
-        slug: '/diversity',
+        databaseId: 105,
+        title: 'Diversity',
+        uri: '/diversity',
       },
       {
-        id: 16,
-        label: 'Firm Overview',
-        menuId: 'firm-overview',
-        slug: '/firm-overview',
+        databaseId: 106,
+        title: 'Firm Overview',
+        uri: '/firm-overview',
       },
       {
-        id: 17,
-        label: 'Pro Bono',
-        menuId: 'pro-bono',
-        slug: '/pro-bono',
+        databaseId: 107,
+        title: 'Pro Bono',
+        uri: '/pro-bono',
       },
       {
-        id: 18,
-        label: 'Women Lead',
-        menuId: 'women-lead',
-        slug: '/women-lead',
+        databaseId: 108,
+        title: 'Women Lead',
+        uri: '/women-lead',
       },
     ],
   },
@@ -240,50 +255,32 @@ export const SITE_NAVIGATION = [
     menuId: 'attorneys',
   },
   {
-    id: 3,
-    label: 'Practices',
-    slug: '/practices',
-    menuId: 'practices',
-    children: undefined,
-  },
-  {
     id: 4,
     label: 'Library',
     menuId: 'library',
     slug: '',
     children: [
       {
-        id: 101,
-        label: 'Client Alerts',
-        menuId: 'client-alerts',
-        slug: '/library/category/client-alert',
+        databaseId: 401,
+        title: 'Client Alerts',
+        uri: '/library/category/client-alert',
       },
       {
-        id: 201,
-        label: 'Firm News',
-        menuId: 'firm-news',
-        slug: '/library/category/firm-news',
+        databaseId: 402,
+        title: 'Firm News',
+        uri: '/library/category/firm-news',
       },
       {
-        id: 301,
-        label: 'Firm Events',
-        menuId: 'firm-events',
-        slug: '/library/category/firm-events',
+        databaseId: 403,
+        title: 'Firm Events',
+        uri: '/library/category/firm-events',
       },
       {
-        id: 401,
-        label: 'Firm Insights',
-        menuId: 'firm-insights',
-        slug: '/library/category/law-firm-insights',
+        databaseId: 404,
+        title: 'Firm Insights',
+        uri: '/library/category/law-firm-insights',
       },
     ],
-  },
-  {
-    id: 5,
-    label: 'Locations',
-    slug: '/location/little-falls',
-    menuId: 'locations',
-    children: undefined,
   },
 ];
 
@@ -727,6 +724,59 @@ export const Links404NavArr = [
   },
 ];
 
+export const locationInfoBlockArticles = [
+  {
+    id: 0,
+    article: `
+    <p>
+      OUR commitment to excellence, combined with our mission to deliver outstanding client service, has earned our firm a solid reputation.
+    </p>
+    <p>
+      Scarinci Hollenbeck is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
+    </p>
+    `,
+    image: '/images/sh-mini-diamond-PNG.png',
+    reactComponent: null,
+  },
+  {
+    id: 1,
+    article: `
+    <p>
+      Our focus is niche areas of law most often required by corporate entities, owners, leaders, and operators. 
+      Our prestigious roster of attorneys offers the experience and proven results that businesses need to move projects forward.
+    </p>
+    <p>
+      Regardless of the size of your business or the scale of the project, we embrace the unique complexity that comes 
+      with doing business in an evolving economy. Contact us today to learn more about how we can assist you
+    </p>
+    `,
+    image: '/images/beautiful-office.webp',
+    reactComponent: null,
+  },
+  {
+    id: 2,
+    article: '',
+    reactComponent: 'custom',
+  },
+  {
+    id: 3,
+    article: `
+    <p>
+      Scarinci Hollenbeck also offers services in a wide range of other legal practice areas not listed here.
+    </p>
+    <p>
+      If you have a legal need that is not mentioned, please contact us to discuss how we may help you.
+    </p>
+    <p>
+      Our experienced attorneys are ready to provide the quality representation you deserve.
+    </p>
+    `,
+    image: '/images/beautiful-office.webp',
+    isBackgroundImage: true,
+    reactComponent: <AboutAuthorFormCard blockName="articleBlock" />,
+  },
+];
+
 /**  external blog urls  */
 export const MUSIC_ESQ_URL = 'https://musicesq.com';
 export const CON_LAW_URL = 'https://constitutionallawreporter.com';
@@ -765,3 +815,10 @@ export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 // thats url for exceptions for wrong urls
 export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
 export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';
+
+export const googleLocationIds = {
+  'little-falls': 'ChIJT4-XoRdWwokR_STT5apGtEc',
+  'new-york': 'ChIJZSMV5ABZwokRvTg94J92jfU',
+  'washington-dc': 'ChIJMxTvAVS3t4kRnkctX9qxKtc',
+  'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
+};

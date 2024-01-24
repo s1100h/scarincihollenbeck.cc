@@ -37,7 +37,7 @@ const AttorneyCards = ({ title, content, pathname }) => {
             <Fragment key={useId()}>
               <AttorneyCard
                 key={info.id}
-                link={info.link ? `/attorneys/${info.link}` : info.uri}
+                link={info.link ? `${info.link}` : info.uri}
                 image={info.better_featured_image || info.featuredImage}
                 name={info.title}
                 designation={

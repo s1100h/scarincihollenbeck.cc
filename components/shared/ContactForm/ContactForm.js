@@ -1,8 +1,10 @@
-import { useContext, useEffect } from 'react';
+import {
+  useContext, useEffect, useMemo, useState, useId,
+} from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
-import { StandardRedButton } from 'styles/Buttons.style';
+import { StandardBlueButton, StandardRedButton } from 'styles/Buttons.style';
 import {
   GET_IN_TOUCH_FORM_API,
   inputsGetInTouchAttributes,
@@ -10,13 +12,31 @@ import {
   THANKS_MESSAGE,
 } from 'utils/constants';
 import kwesforms from 'kwesforms';
+import empty from 'is-empty';
 import RenderInputs from './RenderInputs';
 import { FormsContext } from '../../../contexts/FormsContext';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
-export default function ContactForm({ isPositionRelativeProp }) {
+export default function ContactForm({
+  isPositionRelativeProp,
+  blockName = 'default',
+}) {
   const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
+
+  const handleCheck = (event) => {
+    const target = event.target;
+    const isChecked = target.checked;
+
+    if (blockName === target.dataset.id) {
+      if (isChecked) {
+        handleCheckDisclaimer(blockName);
+      } else {
+        handleCheckDisclaimer('');
+      }
+    }
+  };
+
   const router = useRouter();
   useEffect(() => {
     kwesforms.init();
@@ -42,30 +62,33 @@ export default function ContactForm({ isPositionRelativeProp }) {
           attorney-client relationship. Confidential or time-sensitive
           information should not be sent through this form.
         </p>
-        <fieldset data-kw-group="true" rules="required" className="mb-2">
-          <label htmlFor="disclaimer">
-            <input
-              className="disclaimer-input"
-              type="checkbox"
-              name="disclaimer"
-              feedback="You must agree before submitting."
-              value="disclaimer"
-              id="disclaimer"
-              label="I have read the disclaimer"
-              checked={isCheckedDisclaimer}
-              onChange={handleCheckDisclaimer}
-            />
-            <span className="disclaimer-checkbox" />
-            <span className="ml-2">I have read the disclaimer</span>
-          </label>
-        </fieldset>
-        <StandardRedButton
-          disabled={!isCheckedDisclaimer}
+        {!empty(blockName) && (
+          <fieldset data-kw-group="true" rules="required" className="mb-2">
+            <label htmlFor={`disclaimer-${blockName}`}>
+              <input
+                className="disclaimer-input"
+                type="checkbox"
+                name={`disclaimer-${blockName}`}
+                feedback="You must agree before submitting."
+                value={`disclaimer-${blockName}`}
+                id={`disclaimer-${blockName}`}
+                label="I have read the disclaimer"
+                data-id={blockName}
+                checked={isCheckedDisclaimer === blockName}
+                onChange={handleCheck}
+              />
+              <span className="disclaimer-checkbox" />
+              <span className="ml-2">I have read the disclaimer</span>
+            </label>
+          </fieldset>
+        )}
+        <StandardBlueButton
+          disabled={!(isCheckedDisclaimer === blockName)}
           className="mt-2"
           type="submit"
         >
           Submit form
-        </StandardRedButton>
+        </StandardBlueButton>
       </form>
     </FormContainer>
   );

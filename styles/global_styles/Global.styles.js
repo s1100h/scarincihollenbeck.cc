@@ -1,5 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { media_breakpoint_down } from '../mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_up,
+} from '../mediaBreakpoints.style';
 
 const mainFontSize = 16;
 
@@ -7,6 +10,7 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray110: '#6A6A6A',
     gray100: '#424242',
     gray90: '#4a4a4a',
     gray80: '#5E5E5E',
@@ -55,10 +59,20 @@ export const globalColor = {
   },
 
   blue: {
+    skyBlue: '#8DC0F2',
     greyBlue: '#37B7D7',
     dirtyBlue: '#5787CF',
     ultramarine: '#2564E1',
+    darkBlue: '#060B2A',
+    darkUltramarine: '#162153',
+    lightBlue: '#8AD',
+    blue500: '#164587',
   },
+
+  yellow: {
+    liteYellow: '#FCD503',
+  },
+
   socialNetworks: {
     linkedIn: '#0077B5',
     faceBook: '#4267B2',
@@ -74,6 +88,12 @@ export const cannabisLawColors = {
   cannabisColorDarkGray: '#202020',
   cannabisTransparentBlack: '#0000009e',
   cannabisColorDarkGrayLight: '#313131',
+};
+
+export const entAndMediaColors = {
+  entAndMediaColorGold: '#D1C09D',
+  entAndMediaColorMediumGray: '#505050',
+  entAndMediaColorGray: '#4F4F4F',
 };
 
 export const globalGradient = {
@@ -144,12 +164,52 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+  * {
+    ${media_breakpoint_up('lg')} {
+      &::-webkit-scrollbar-track {
+        background-color: #cbcbcb;
+        border-radius: 8px;
+        opacity: 0;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+        background-color: #0B1136;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #162153;
+        border-radius: 8px;
+      }
+
+      scrollbar-color: #162153 #cbcbcb;
+      scrollbar-width: thin;
+    }
+  }
+
 body {
   font-weight: 400;
   background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
   
   * {
     letter-spacing: .02rem;
+  }
+
+  &.modal-open {
+    padding-right: 0 !important;
+
+    .offcanvas-backdrop {
+      z-index: 1019;
+    }
+  }
+
+  .margin-scroll {
+    scroll-margin-top: 210px;
+
+    ${media_breakpoint_down('md')} {
+      scroll-margin-top: 140px;
+    }
   }
 }
 
@@ -499,6 +559,7 @@ export const ButtonLinkCss = `
   line-height: 1;
   color: ${globalColor.white};
   text-decoration: none;
+  border-radius: 2px;
 
   span {
     display: flex;

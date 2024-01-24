@@ -12,7 +12,7 @@ const ModalWindow = ({ children, isOpen, setOpenModal }) => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    return isCheckedDisclaimer && handleCheckDisclaimer(false);
+    handleCheckDisclaimer('');
   };
 
   const autoStopPropagation = (event) => event.stopPropagation();

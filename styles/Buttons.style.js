@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { commonBtnStyle } from './ButtonsMenu.style';
-import { globalColor } from './global_styles/Global.styles';
+import { globalColor, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const RedButtonLink = styled.a`
@@ -84,5 +84,52 @@ export const StandardRedButton = styled(Button)`
 
   :disabled {
     background-color: ${globalColor.grayExtraLite.grayExtraLite50};
+  }
+`;
+
+export const StandardBlueButton = styled(Button)`
+  padding: 10px 18px;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  background-color: ${globalColor.blue.blue500};
+  color: ${globalColor.white};
+  font-size: ${rem(16)};
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  font-weight: 500;
+  position: relative;
+  z-index: 0;
+
+  :hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  :active {
+    background-color: ${globalColor.red.burgundy} !important;
+  }
+
+  :focus-visible {
+    box-shadow: none;
+    background-color: #377ec4;
+  }
+
+  :disabled {
+    background-color: rgba(22, 69, 135, 0.2);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 `;

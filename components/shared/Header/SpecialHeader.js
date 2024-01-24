@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { getSlugFromUrl } from 'utils/helpers';
 import { LogoBox } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
 import GlobalSearch from '../GlobalSearch/GlobalSearch';
@@ -14,24 +16,43 @@ import {
   VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
 
-const SpecialHeader = () => {
+const headerType = (pageSlug) => {
+  const pagesMap = {
+    // 'entertainment-and-media': 'entAndMedia', // page ready for deploy in prod but paused, commit 26.12.2023
+  };
+
+  return pagesMap[pageSlug] || '';
+};
+
+const SpecialHeader = ({ practices }) => {
   const { scrollTop } = useIsScroll();
   const [isOpenSearch, setOpenSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const { pathname } = useRouter();
+  const slug = getSlugFromUrl(pathname);
 
   const handleOpenSearch = () => {
     setOpenSearch(!isOpenSearch);
+
+    if (showMenu) {
+      setShowMenu(false);
+    }
   };
+
+  const handleCloseMenu = () => setShowMenu(false);
+  const handleShowMenu = () => setShowMenu(true);
 
   return (
     <>
       <SpecialHeaderContainer
         isChangeOrder={isOpenSearch}
         scrollDown={scrollTop}
+        headerType={headerType(slug)}
       >
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
-        <Navigation isHidden={isOpenSearch} />
+        <Navigation isHidden={isOpenSearch} practices={practices} />
         <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
           <GlobalSearch onHandleClickSearch={handleOpenSearch} />
         </VisibleHiddenSearch>
@@ -40,7 +61,12 @@ const SpecialHeader = () => {
         </SearchBoxContainer>
         <LinksBoxSpecial>
           <LinkButtons variant="special" />
-          <MobileMenu />
+          <MobileMenu
+            show={showMenu}
+            handleShow={handleShowMenu}
+            handleClose={handleCloseMenu}
+            practices={practices}
+          />
         </LinksBoxSpecial>
       </SpecialHeaderContainer>
     </>
