@@ -190,6 +190,7 @@ export const attorneysQuery = `query FirmPageQuery {
       databaseId
       slug
       title
+      uri
       attorneyMainInformation {
         designation
         email
@@ -462,6 +463,37 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
           username
         }
       }
+    }
+  }
+}`;
+
+export const getClientsQuery = `query FirmPageQuery(
+  $after: String, 
+  $before: String, 
+  $first: Int, 
+  $last: Int
+) {
+  clients(after: $after, before: $before, first: $first, last: $last) {
+     edges {
+      node {
+        databaseId
+        title
+        clientsFields {
+          clientImage {
+            sourceUrl
+            title
+          }
+          entertainmentSubcategory
+          lineColor
+          proffesion
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
     }
   }
 }`;
@@ -1309,11 +1341,31 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
           uri
           title
           databaseId
+          practicesIncluded {
+            childPractice {
+              ... on Practice {
+                id
+                databaseId
+                title
+                uri
+                practicePortalPageContent {
+                  practicePortalCategories
+                }
+              }
+            }
+          }
+          practicePortalPageContent {
+            practicePortalCategories
+          }
         }
       }
       trainStationsMap {
         mediaItemUrl
         databaseId
+      }
+      faq {
+        description
+        title
       }
     }
     featuredImage {

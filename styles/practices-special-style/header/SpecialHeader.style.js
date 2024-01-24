@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  buttonHoverActive,
   cannabisLawColors,
   globalColor,
 } from '../../global_styles/Global.styles';
@@ -11,18 +12,25 @@ import { BsSearch } from 'react-icons/bs';
 import { LinksBox } from '../../Header.style';
 
 export const SpecialHeaderContainer = styled.header`
+  padding: 20px 1.5%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 1.5%;
-  padding-right: 1.5%;
   height: fit-content;
   width: 100%;
   filter: blur(10%);
   background-color: ${cannabisLawColors.cannabisTransparentBlack};
   position: fixed;
-  z-index: 1000;
+  z-index: 1041;
   border-bottom: 4px solid ${cannabisLawColors.cannabisColorGray};
+  column-gap: 20px;
+
+  ${({ headerType }) =>
+    headerType === 'entAndMedia' &&
+    `
+    background: rgba(34, 26, 20, 0.40);
+    border-bottom: none;
+  `}
 
   .nav-item > a {
     color: ${cannabisLawColors.cannabisColorGray};
@@ -43,29 +51,6 @@ export const SpecialHeaderContainer = styled.header`
     }
   }
 
-  ${media_breakpoint_exactly_down(1415)} {
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    .navContainer {
-      display: flex;
-      width: 100%;
-      order: 3;
-
-      .navbar-nav {
-        justify-content: center;
-      }
-    }
-  }
-
-  ${media_breakpoint_exactly_down(1200)} {
-    ${({ isChangeOrder }) =>
-      isChangeOrder &&
-      `
-      > :nth-child(3) { order: 3; width: 100%; flex: none; }
-  `}
-  }
-
   ${media_breakpoint_down('lg')} {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -79,14 +64,6 @@ export const SpecialHeaderContainer = styled.header`
     .logo-letters {
       display: none;
     }
-
-    ${({ isChangeOrder }) =>
-      isChangeOrder &&
-      `
-      > :nth-child(1) { order: 1; }
-      > :nth-child(3) { order: 2; }
-      > :nth-child(5) { order: 1; }
-  `}
   }
 `;
 export const SearchBoxContainer = styled.div`
@@ -119,7 +96,7 @@ export const SearchOpenBtn = styled(BsSearch)`
 
 export const VisibleHiddenSearch = styled.div`
   display: ${({ isOpenBlock }) => (isOpenBlock ? 'flex' : 'none')};
-  margin: 15px auto 15px auto;
+  margin: 5px auto;
   flex: 1;
   position: relative;
 
@@ -167,6 +144,15 @@ export const VisibleHiddenSearch = styled.div`
 export const LinksBoxSpecial = styled(LinksBox)`
   display: flex;
   align-items: center;
+  gap: 32px;
+
+  .link-btn-header {
+    height: 50px;
+
+    ${media_breakpoint_down('lg')} {
+      display: none;
+    }
+  }
 
   button {
     .icon {
@@ -189,5 +175,9 @@ export const LinksBoxSpecial = styled(LinksBox)`
         height: 40px;
       }
     }
+  }
+
+  ${media_breakpoint_down('lg')} {
+    margin-left: 0;
   }
 `;

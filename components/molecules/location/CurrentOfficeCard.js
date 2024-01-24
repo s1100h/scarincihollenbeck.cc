@@ -14,8 +14,9 @@ const CurrentOfficeCard = ({
   postCode,
   addressLocality,
   addressRegion,
+  backgroundColor,
 }) => (
-  <OfficeCardContainer>
+  <OfficeCardContainer backgroundColor={backgroundColor}>
     {children}
     <address>
       <span>

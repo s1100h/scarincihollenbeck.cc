@@ -46,7 +46,7 @@ export const PhotoBlockContainer = styled.section`
 export const PhotoCannabisBox = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 100px);
-  gap: ${rem(20)};
+  gap: 20px;
   position: relative;
 
   .prev-arrow,
@@ -82,17 +82,17 @@ export const PhotoCannabisBox = styled.div`
       font-size: ${rem(52)};
       font-weight: 400;
       color: ${cannabisLawColors.cannabisColorDarkGray};
-      line-height: ${rem(52)};
-      letter-spacing: ${rem(2.6)};
+      line-height: 52px;
+      letter-spacing: 2.6px;
     }
   }
 
   .big-image {
-    margin: 0 ${rem(30)} ${rem(30)} 0;
+    margin: 0 30px 30px 0;
     grid-area: 1 / 1 / 6 / 5;
   }
 
-  @media (max-width: 1440px) {
+  ${media_breakpoint_exactly_down(1440)} {
     grid-template-columns: repeat(4, 100px);
 
     .big-image {
@@ -100,7 +100,7 @@ export const PhotoCannabisBox = styled.div`
     }
   }
 
-  @media (max-width: 992px) {
+  ${media_breakpoint_down('lg')} {
     .prev-arrow,
     .next-arrow {
       font-size: 44px;
@@ -109,10 +109,10 @@ export const PhotoCannabisBox = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  ${media_breakpoint_down('md')} {
     margin-bottom: 32px;
     grid-template-columns: repeat(3, 100px);
-    gap: ${rem(8)};
+    gap: 8px;
     justify-items: center;
 
     .prev-arrow,
@@ -134,7 +134,7 @@ export const PhotoCannabisBox = styled.div`
     }
 
     .big-image {
-      margin-bottom: ${rem(16)};
+      margin-bottom: 16px;
       grid-area: 1 / 1 / 6 / 4;
       width: 300px;
       height: 385px;
@@ -158,8 +158,8 @@ export const PhotoClient = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${rem(100)};
-  height: ${rem(100)};
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   filter: grayscale(100%);
 

@@ -60,3 +60,38 @@ export const FullHDContainer = styled.div`
     padding: 0 16px;
   }
 `;
+
+export const ContainerContent = styled.div`
+  width: 1920px;
+  max-width: 100%;
+  padding: 0 135px;
+  margin: 0 auto;
+
+  &.practice-container {
+    padding: 0 132px;
+  }
+
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 0 84px;
+
+    &.practice-container {
+      padding: 0 120px;
+    }
+  }
+
+  ${media_breakpoint_exactly_down(1440)} {
+    padding: 0 32px;
+
+    &.practice-container {
+      padding: 0 32px;
+    }
+  }
+
+  ${media_breakpoint_down('md')} {
+    padding: 0 16px;
+
+    &.practice-container {
+      padding: 0 12px;
+    }
+  }
+`;

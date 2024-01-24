@@ -7,6 +7,7 @@ import {
   globalColor,
 } from './global_styles/Global.styles';
 import Link from 'next/link';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const ButtonLink = styled(Link)`
   ${ButtonLinkCss};
@@ -24,7 +25,12 @@ export const SpecialButtonLink = styled(Link)`
     globalColor.black,
     cannabisLawColors.cannabisColorDarkGray,
   )}
+
   :hover {
-    border: none;
+    border: 1.5px solid transparent;
+  }
+
+  &::after {
+    display: none;
   }
 `;

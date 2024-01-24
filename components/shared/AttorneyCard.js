@@ -60,6 +60,11 @@ export default function AttorneyCard({
   number,
   email,
   title,
+  width,
+  height,
+  svgPhone,
+  svgEmail,
+  officeLocations,
 }) {
   return (
     <AttorneyCardBox className="attorney-card-box">
@@ -72,11 +77,12 @@ export default function AttorneyCard({
             src={image || '/images/sh-mini-diamond-PNG.png'}
             alt={name}
             width={
-              !Array.isArray(locations) && typeof locations !== 'undefined'
+              width
+              || (!Array.isArray(locations) && typeof locations !== 'undefined'
                 ? 130
-                : 125
+                : 125)
             }
-            height={150}
+            height={height || 150}
           />
           <InfoBox>
             <UserName>{name}</UserName>
@@ -88,7 +94,13 @@ export default function AttorneyCard({
                 {renderLinkToLocationPractice(locations)}
               </ul>
             )}
-            <ContactBoxTemplate email={email} number={number} />
+            <ContactBoxTemplate
+              officeLocations={officeLocations}
+              email={email}
+              number={number}
+              svgEmail={svgEmail}
+              svgPhone={svgPhone}
+            />
           </InfoBox>
         </LinkBox>
       </Link>

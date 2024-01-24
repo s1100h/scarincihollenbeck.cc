@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+import React from 'react';
+import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import NProgress from 'nprogress';
 import { LocationProvider } from 'contexts/LocationContext';
@@ -22,9 +22,15 @@ import 'animate.css/animate.min.css';
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import Script from 'next/script';
+import { PracticesContextProvider } from 'contexts/PracticesContext';
 import { FormContextProvider } from '../contexts/FormsContext';
 import {
-  montserrat, poppins, rajdhani, licorice,
+  montserrat,
+  poppins,
+  rajdhani,
+  licorice,
+  carilo,
+  roboto,
 } from '../public/fonts/fonts';
 import { createMarkup } from '../utils/helpers';
 
@@ -42,29 +48,31 @@ const SHSite = ({ Component, pageProps }) => (
     <AttorneysProvider>
       <LocationProvider>
         <FormContextProvider>
-          <GlobalStyle />
-          <MainSiteHead />
-          <Header />
-          {/* <!-- Google tag (gtag.js) --> */}
-          <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-EQ890E606W"
-          />
-          <Script
-            id="G-EQ890E606W"
-            dangerouslySetInnerHTML={createMarkup(`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-EQ890E606W');
-            `)}
-          />
-          <main
-            className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable}`}
-          >
-            <Component {...pageProps} />
-          </main>
-          <SiteFooter />
+          <PracticesContextProvider>
+            <GlobalStyle />
+            <MainSiteHead />
+            <Header />
+            {/* <!-- Google tag (gtag.js) --> */}
+            <Script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-EQ890E606W"
+            />
+            <Script
+              id="G-EQ890E606W"
+              dangerouslySetInnerHTML={createMarkup(`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-EQ890E606W');
+              `)}
+            />
+            <main
+              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
+            >
+              <Component {...pageProps} />
+            </main>
+            <SiteFooter />
+          </PracticesContextProvider>
         </FormContextProvider>
       </LocationProvider>
     </AttorneysProvider>

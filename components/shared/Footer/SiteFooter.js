@@ -18,6 +18,7 @@ import NavigationAndSubscription from './NavigationAndSubscription';
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
     'new-jersey-cannabis-law': cannabisLawColors.cannabisColorDarkGray,
+    // 'entertainment-and-media': globalColor.black, // page ready for deploy in prod but paused, commit 26.12.2023
   };
   return footerColorsMap[page];
 };
