@@ -9,9 +9,10 @@ const Logo = ({ whiteVariant }) => (
   <>
     <CombinedLogo href="/" passHref>
       <Image
+        className="logo-diamond"
         alt={`${SITE_TITLE}, LLC`}
-        width={82}
-        height={70}
+        width={52}
+        height={52}
         src={SHDiamond}
       />
       {whiteVariant ? (

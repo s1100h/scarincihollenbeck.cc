@@ -78,6 +78,7 @@ export const ContactBox = styled.address`
   display: flex;
   flex-direction: column;
 
+  .contact-offices,
   a {
     display: flex;
     align-items: center;
@@ -91,6 +92,39 @@ export const ContactBox = styled.address`
     span {
       font-weight: 600;
       text-decoration: 1px underline;
+    }
+  }
+
+  .contact-offices {
+    svg {
+      flex-shrink: 0;
+    }
+
+    &__links {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 4px;
+
+      > a {
+        padding-right: 4px;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 1px;
+          height: 100%;
+          background-color: ${globalColor.white};
+        }
+
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
     }
   }
 `;

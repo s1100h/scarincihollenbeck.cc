@@ -20,7 +20,7 @@ export const ModalContainer = styled.div`
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
-  height: 600px;
+  /* height: 600px; */
   padding: 20px;
   border-radius: 0.5rem;
   background-color: ${globalColor.white};

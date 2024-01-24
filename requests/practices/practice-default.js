@@ -32,6 +32,7 @@ export const attorneysSanitize = (attorneysArr) => {
         link: attorney.uri,
         title: attorney.title,
         ...attorney.attorneyMainInformation,
+        ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
       };
     })
     .sort((a, b) => {
@@ -113,6 +114,7 @@ export const getPracticeAttorneys = async (uri) => {
     keyContactsList: keyContacts,
     corePractices,
     posts: postsForSidebar,
+    faq: data.practice?.practicesIncluded?.faq,
   };
 };
 

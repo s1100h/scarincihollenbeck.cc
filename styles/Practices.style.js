@@ -192,7 +192,7 @@ export const PracticeTile = styled.li`
     pointer-events: none;
     width: 100%;
     max-height: ${({ isSowMoreProp }) =>
-      !empty(isSowMoreProp) ? '214%' : '100%'};
+      !empty(isSowMoreProp) ? '222%' : '100%'};
     min-height: 100%;
     padding: 20px 20px 20px 20px;
     flex-direction: column;

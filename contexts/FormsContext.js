@@ -3,14 +3,13 @@ import React, { createContext, useState } from 'react';
 export const FormsContext = createContext(null);
 
 export const FormContextProvider = ({ children }) => {
-  const [isCheckedDisclaimer, setCheckDisclaimer] = useState(false);
+  const [isCheckedDisclaimer, setCheckDisclaimer] = useState('');
 
   const handleCheckDisclaimer = (event) => {
     if (typeof event === 'boolean') {
       return setCheckDisclaimer(event);
     }
-    const isChecked = event.target.checked;
-    setCheckDisclaimer(isChecked);
+    setCheckDisclaimer(event);
   };
 
   const values = {

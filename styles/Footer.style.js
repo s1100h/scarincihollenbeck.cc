@@ -15,9 +15,7 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   padding-top: 32px;
   background-color: ${({ backgroundFooterColor }) =>
-    backgroundFooterColor
-      ? backgroundFooterColor
-      : globalColor.red.darkBurgundy};
+    backgroundFooterColor ? backgroundFooterColor : globalColor.blue.darkBlue};
   color: ${globalColor.white};
 
   a {
@@ -182,7 +180,7 @@ export const ContactsContainer = styled.section`
   li {
     gap: 10px;
     svg {
-      fill: ${globalColor.red.ultraLiteRed};
+      fill: ${globalColor.blue.skyBlue};
     }
   }
 
@@ -231,6 +229,11 @@ export const SocialLinks = styled(LinkList)`
       display: flex;
       align-items: center;
       gap: 10px;
+
+      svg {
+        fill: ${globalColor.blue.skyBlue};
+      }
+
       ${media_breakpoint_down('sm')} {
         div {
           display: none;

@@ -4,8 +4,10 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
   media_breakpoint_range_exacly,
+  media_breakpoint_up,
 } from './mediaBreakpoints.style';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
+import empty from 'is-empty';
 
 const addressPointConst = `
       span {
@@ -18,6 +20,39 @@ const addressPointConst = `
         }
       }
 `;
+
+export const LocationPageContainer = styled.section`
+  .form-column {
+    margin-top: 60px;
+    padding-bottom: 40px;
+  }
+
+  .row-content {
+    ${media_breakpoint_exactly_down(1080)} {
+      margin-right: 3%;
+      margin-left: 3%;
+    }
+  }
+  ${media_breakpoint_up('fullHd')} {
+    padding-right: 7%;
+    padding-left: 7%;
+  }
+
+  ${media_breakpoint_down('fullHd')} {
+    padding-right: 7%;
+    padding-left: 7%;
+  }
+
+  ${media_breakpoint_exactly_down(1440)} {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+
+  ${media_breakpoint_exactly_down(1080)} {
+    padding-right: 0;
+    padding-left: 0;
+  }
+`;
 export const LinkMapBox = styled.div`
   display: flex;
   width: fit-content;
@@ -28,7 +63,7 @@ export const LinkMapBox = styled.div`
 export const DownloadTheMap = styled.a`
   display: flex;
   gap: 15px;
-  color: #a91110;
+  color: ${globalColor.blue.ultramarine};
   width: fit-content;
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -50,12 +85,66 @@ export const OfficeTabs = styled.nav`
   z-index: 20;
   top: -50px;
 
+  ${({ isBlueVariant }) =>
+    !empty(isBlueVariant) &&
+    `
+    top: auto;
+    gap: 8px;
+    flex-direction: column;
+  `};
+
   ${media_breakpoint_down('md')} {
     gap: 10px;
   }
 
   ${media_breakpoint_down('sm')} {
-    top: -20px;
+    top: ${({ isBlueVariant }) => (isBlueVariant ? '0' : '-20px')};
+  }
+`;
+
+export const BlueLinkTab = styled(Link)`
+  padding: 13px 8px;
+  color: ${globalColor.white};
+  font-size: ${rem(14)};
+  font-weight: 700;
+  line-height: 13px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  outline: none;
+  ${({ locationturned }) =>
+    !empty(locationturned) &&
+    `
+      background-color: #162153;
+      pointer-events: none;
+    `}
+
+  :before {
+    transition-delay: 0.1s;
+    transition: all 0.5s ease-in-out;
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    width: 12px;
+    height: 20px;
+    background-color: #162153;
+    clip-path: polygon(100% 50%, 0 0, 0% 100%);
+    opacity: ${({ locationturned }) => (!empty(locationturned) ? '1' : '0')};
+  }
+
+  :hover {
+    cursor: ${({ locationturned }) =>
+      !empty(locationturned) ? 'not-allowed' : 'pointer'};
+    border-radius: 4px;
+    background-color: #162153;
+    color: ${globalColor.white};
+
+    :before {
+      opacity: 1;
+    }
   }
 `;
 
@@ -112,6 +201,9 @@ export const OfficeCardContainer = styled.div`
   justify-content: start;
   padding: 0 20px;
   box-shadow: ${globalShadow.allSideShadow};
+  ${({ backgroundColor }) => `
+    background-color: ${backgroundColor};
+  `}
 
   address {
     display: flex;
@@ -174,4 +266,5 @@ export const OfficeAttorneysContainer = styled.div`
 export const OfficeLocationBoxTitle = styled.h4`
   font-size: ${rem(32)};
   text-transform: uppercase;
+  margin-bottom: 24px;
 `;
