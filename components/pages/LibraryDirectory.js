@@ -41,17 +41,21 @@ const LibraryDirectory = ({
   }, [authors]);
 
   /** Handle Article Archive Query */
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery, {
+  const params = {
     first: 6,
     last: null,
     after: null,
     before: null,
     author: isAuthor ? categoryId : null,
     id: null,
-    categoryIn: !isAuthor ? [categoryId] : null,
-  });
+    categoryId: !isAuthor ? categoryId : null,
+  };
+  const {
+    handleNextPagination, handlePrevPagination, data, loading, error,
+  } = useApolloQuery(
+    isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery,
+    params,
+  );
 
   return (
     <>
