@@ -62,7 +62,20 @@ const organizeAttorneys = (attorneys, titles) => {
     });
   });
 
-  results['Firm Managing Partner']?.attorneys.reverse();
+  const recreatedPositions = results['Firm Managing Partner']?.attorneys.reverse();
+
+  const designationIndex = recreatedPositions.findIndex(
+    (attorney) => attorney.designation === 'NYC Managing Partner',
+  );
+
+  if (designationIndex !== -1) {
+    const removedDesignation = recreatedPositions.splice(
+      designationIndex,
+      1,
+    )[0];
+    recreatedPositions.push(removedDesignation);
+  }
+
   return results;
 };
 
