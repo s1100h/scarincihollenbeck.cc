@@ -39,7 +39,6 @@ export const getStaticProps = async () => {
   const careerList = await getCareerList();
   const page = await careersPageContent();
   const { seo, title, careersPage } = page;
-
   return {
     props: {
       seo,
