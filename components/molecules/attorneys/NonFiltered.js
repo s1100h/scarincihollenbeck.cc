@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import AttorneyCards from 'components/atoms/AttorneyCards';
 import { useRouter } from 'next/router';
+import empty from 'is-empty';
 
 const organizeAttorneys = (attorneys, titles) => {
   const results = {};
@@ -64,11 +65,11 @@ const organizeAttorneys = (attorneys, titles) => {
 
   const recreatedPositions = results['Firm Managing Partner']?.attorneys.reverse();
 
-  const designationIndex = recreatedPositions.findIndex(
+  const designationIndex = recreatedPositions?.findIndex(
     (attorney) => attorney.designation === 'NYC Managing Partner',
   );
 
-  if (designationIndex !== -1) {
+  if (!empty(recreatedPositions) && designationIndex !== -1) {
     const removedDesignation = recreatedPositions.splice(
       designationIndex,
       1,
