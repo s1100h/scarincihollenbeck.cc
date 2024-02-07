@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { OFFICE_LOCATIONS } from 'utils/constants';
+import { useContext } from 'react';
+import { PracticesContext } from '../../../contexts/PracticesContext';
 
 export const HawCanIGet = () => (
   <>
@@ -53,23 +55,28 @@ const corePracticesIncludeArr = [
   'Public Law',
 ];
 
-export const WhatAreTheFirms = () => (
-  <>
-    <ul className="p-0">
-      <p className="mb-2">
-        <strong>The firm`s core practices include:</strong>
-      </p>
-      {corePracticesIncludeArr.map((practice) => (
-        <li key={practice} className="d-flex gap-2">
-          <div>➢</div>
-          <em>{practice}</em>
-        </li>
-      ))}
-    </ul>
+export const WhatAreTheFirms = () => {
+  const { practices } = useContext(PracticesContext);
+  return (
     <>
-      In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice
-      groups you can learn more about
-      <Link href="/practices"> here.</Link>
+      <ul className="p-0">
+        <p className="mb-2">
+          <strong>The firm`s core practices include:</strong>
+        </p>
+        {practices.map((practice) => (
+          <li key={practice.databaseId}>
+            <Link className="d-flex gap-2" href={practice.uri}>
+              <div>➢</div>
+              <em>{practice.title}</em>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <>
+        In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice
+        groups you can learn more about
+        <Link href="/practices"> here.</Link>
+      </>
     </>
-  </>
-);
+  );
+};
