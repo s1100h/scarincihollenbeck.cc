@@ -27,6 +27,7 @@ const useDesignationHook = (title) => {
     if (title === 'Washington, D.C. Managing Partner') {
       setDesignation('Washington, D.C. Office Managing Partner');
     }
+    setDesignation(title);
   }, [title]);
 
   return [designation, setDesignation];
