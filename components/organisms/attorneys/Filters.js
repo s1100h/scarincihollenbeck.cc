@@ -20,7 +20,7 @@ const Filters = ({
   <>
     <ContainerFilters props={{ isWhite: 'true' }}>
       <Row>
-        <Col xl={3} sm={12} md={6}>
+        <Col sm={12} xl={3}>
           <AuxiliarySearch
             currentRefinement={userInput}
             refine={handleChange}

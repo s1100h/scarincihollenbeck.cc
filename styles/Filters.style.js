@@ -123,7 +123,7 @@ export const ContainerFilters = styled(Container)`
     }
   }
 
-  ${media_breakpoint_down('sm')} {
+  ${media_breakpoint_down('md')} {
     form {
       width: 100%;
     }
