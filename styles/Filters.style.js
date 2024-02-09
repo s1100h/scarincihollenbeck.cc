@@ -96,11 +96,6 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
           : null}
     }
   }
-
-  ${media_breakpoint_down('md')} {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
 `;
 
 export const ContainerFilters = styled(Container)`
@@ -124,8 +119,18 @@ export const ContainerFilters = styled(Container)`
   }
 
   ${media_breakpoint_down('md')} {
-    form {
-      width: 100%;
+    .row {
+      > :nth-child(-n + 2) {
+        margin-bottom: 0;
+      }
+
+      > :nth-child(3) {
+        margin-bottom: 10px;
+      }
+
+      form {
+        width: 100%;
+      }
     }
   }
 `;
