@@ -40,7 +40,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
   }
 
   ${media_breakpoint_exactly_down(1439)} {
-    margin-top: 112px;
+    margin-top: 149px;
 
     &.menu-cannabis {
       margin-top: 96px;

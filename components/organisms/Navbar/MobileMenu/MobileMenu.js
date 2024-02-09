@@ -128,6 +128,7 @@ const MobileMenu = ({
   practices,
   justPractice,
   title,
+  locations,
 }) => {
   const [isSecondLvl, setIsSecondLvl] = useState(false);
   const [secondLvlData, setSecondLvlData] = useState([]);
@@ -152,6 +153,20 @@ const MobileMenu = ({
       };
     });
   }, [practices]);
+
+  const menuStructure = useMemo(
+    () => [
+      ...SITE_NAVIGATION,
+      {
+        children: locations,
+        id: 170,
+        label: 'Locations',
+        menuId: 'locations',
+        slug: '',
+      },
+    ],
+    [locations],
+  );
 
   if (!practiceWithOverview) {
     return null;
@@ -255,135 +270,146 @@ const MobileMenu = ({
                       )}
                     </Accordion.Body>
                   </Accordion.Item>
-                  {SITE_NAVIGATION.map(({ id, label, children, slug }) => (
-                    <div key={id}>
-                      {children?.length > 0 ? (
-                        <Accordion.Item eventKey={id}>
-                          <Accordion.Header
-                            as="h4"
-                            onClick={() =>
-                              handleClickAccordionOpener(
-                                children[0].children,
-                                children[0].databaseId,
-                              )
-                            }
-                          >
-                            {slug.length > 0 ? (
-                              <Link href={slug}>{label}</Link>
-                            ) : (
-                              label
-                            )}
-                          </Accordion.Header>
-                          {children?.length > 0 && (
-                            <Accordion.Body>
-                              <ul className="mobile-menu__first-lvl">
-                                {children?.map((link) =>
-                                  link?.children ? (
-                                    <li key={link?.databaseId}>
-                                      {isTabletScreen ? (
-                                        <Accordion className="mobile-menu__second-accordion">
-                                          <Accordion.Item
-                                            eventKey={link?.databaseId}
+                  {menuStructure.map(
+                    ({ id, databaseId, label, children, slug }) => (
+                      <div key={id}>
+                        {children?.length > 0 ? (
+                          <Accordion.Item eventKey={id || databaseId}>
+                            <Accordion.Header
+                              as="h4"
+                              onClick={() =>
+                                handleClickAccordionOpener(
+                                  children[0].children,
+                                  children[0].databaseId,
+                                )
+                              }
+                            >
+                              {slug.length > 0 ? (
+                                <Link href={slug}>{label}</Link>
+                              ) : (
+                                label
+                              )}
+                            </Accordion.Header>
+                            {children?.length > 0 && (
+                              <Accordion.Body>
+                                <ul className="mobile-menu__first-lvl">
+                                  {children?.map((link) =>
+                                    link?.children ? (
+                                      <li key={link?.databaseId}>
+                                        {isTabletScreen ? (
+                                          <Accordion className="mobile-menu__second-accordion">
+                                            <Accordion.Item
+                                              eventKey={link?.databaseId}
+                                            >
+                                              <Accordion.Header>
+                                                {link?.title}
+                                              </Accordion.Header>
+                                              <Accordion.Body>
+                                                <ul>
+                                                  {link?.children.map(
+                                                    (child) => (
+                                                      <li
+                                                        key={child?.databaseId}
+                                                        className={
+                                                          fullPath ===
+                                                          child?.uri
+                                                            ? 'active'
+                                                            : ''
+                                                        }
+                                                      >
+                                                        <Link
+                                                          href={child?.uri}
+                                                          passHref
+                                                          legacyBehavior
+                                                        >
+                                                          <a
+                                                            onClick={
+                                                              handleClose
+                                                            }
+                                                          >
+                                                            {child.title}
+                                                          </a>
+                                                        </Link>
+                                                      </li>
+                                                    ),
+                                                  )}
+                                                </ul>
+                                              </Accordion.Body>
+                                            </Accordion.Item>
+                                          </Accordion>
+                                        ) : (
+                                          <button
+                                            className={`mobile-item__with-child ${
+                                              activeItemId === link?.databaseId
+                                                ? 'active'
+                                                : ''
+                                            }`}
+                                            key={link?.databaseId}
+                                            onClick={() => {
+                                              handleClickFirstLvl(
+                                                link?.children,
+                                                link?.databaseId,
+                                              );
+                                            }}
                                           >
-                                            <Accordion.Header>
-                                              {link?.title}
-                                            </Accordion.Header>
-                                            <Accordion.Body>
-                                              <ul>
-                                                {link?.children.map((child) => (
-                                                  <li
-                                                    key={child?.databaseId}
-                                                    className={
-                                                      fullPath === child?.uri
-                                                        ? 'active'
-                                                        : ''
-                                                    }
-                                                  >
-                                                    <Link
-                                                      href={child?.uri}
-                                                      passHref
-                                                      legacyBehavior
-                                                    >
-                                                      <a onClick={handleClose}>
-                                                        {child.title}
-                                                      </a>
-                                                    </Link>
-                                                  </li>
-                                                ))}
-                                              </ul>
-                                            </Accordion.Body>
-                                          </Accordion.Item>
-                                        </Accordion>
-                                      ) : (
-                                        <button
-                                          className={`mobile-item__with-child ${
-                                            activeItemId === link?.databaseId
-                                              ? 'active'
-                                              : ''
-                                          }`}
-                                          key={link?.databaseId}
-                                          onClick={() => {
-                                            handleClickFirstLvl(
-                                              link?.children,
-                                              link?.databaseId,
-                                            );
-                                          }}
-                                        >
-                                          {link?.title}
-                                        </button>
-                                      )}
-                                    </li>
-                                  ) : (
-                                    <li key={link?.databaseId}>
-                                      <Link
-                                        href={link?.uri}
-                                        passHref
-                                        legacyBehavior
-                                      >
-                                        <a onClick={handleClose}>
-                                          {link?.title}
-                                        </a>
-                                      </Link>
-                                    </li>
-                                  ),
-                                )}
-                              </ul>
-                              {isSecondLvl && !isTabletScreen && (
-                                <ul className="mobile-menu__second-lvl">
-                                  {secondLvlData &&
-                                    secondLvlData?.map((child) => (
-                                      <li
-                                        key={child.databaseId}
-                                        className={
-                                          fullPath === child.uri ? 'active' : ''
-                                        }
-                                      >
+                                            {link?.title}
+                                          </button>
+                                        )}
+                                      </li>
+                                    ) : (
+                                      <li key={link?.databaseId}>
                                         <Link
-                                          key={child.databaseId}
-                                          href={child.uri}
+                                          href={link?.uri}
                                           passHref
                                           legacyBehavior
                                         >
                                           <a onClick={handleClose}>
-                                            {child.title}
+                                            {link?.title}
                                           </a>
                                         </Link>
                                       </li>
-                                    ))}
+                                    ),
+                                  )}
                                 </ul>
-                              )}
-                            </Accordion.Body>
-                          )}
-                        </Accordion.Item>
-                      ) : (
-                        <Link href={slug} passHref legacyBehavior>
-                          <a className="menu-item" onClick={handleClose}>
-                            {label}
-                          </a>
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                                {isSecondLvl && !isTabletScreen && (
+                                  <ul className="mobile-menu__second-lvl">
+                                    {secondLvlData &&
+                                      secondLvlData?.map((child) => (
+                                        <li
+                                          key={child.databaseId}
+                                          className={
+                                            fullPath === child.uri
+                                              ? 'active'
+                                              : ''
+                                          }
+                                        >
+                                          <Link
+                                            key={child.databaseId}
+                                            href={child.uri}
+                                            passHref
+                                            legacyBehavior
+                                          >
+                                            <a onClick={handleClose}>
+                                              {child.title}
+                                            </a>
+                                          </Link>
+                                        </li>
+                                      ))}
+                                  </ul>
+                                )}
+                              </Accordion.Body>
+                            )}
+                          </Accordion.Item>
+                        ) : (
+                          <Link href={slug} passHref legacyBehavior>
+                            <a className="menu-item" onClick={handleClose}>
+                              {label}
+                            </a>
+                          </Link>
+                        )}
+                      </div>
+                    ),
+                  )}
                 </AccordionStyled>
               </NavList>
               <ButtonLinkBox>

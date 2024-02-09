@@ -89,6 +89,7 @@ const DefaultHeader = ({
           handleShow={handleShowMenu}
           handleClose={handleCloseMenu}
           practices={practices}
+          locations={locations}
         />
       </Wrapper>
       {scrollTop && isAttorneysPage && !isTabletScreen && (
