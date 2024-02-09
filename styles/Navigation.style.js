@@ -29,7 +29,7 @@ export const NavbarStyled = styled(Navbar)`
   .navContainerWrapper {
     width: 100%;
     display: flex;
-    gap: 40px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
 
@@ -127,6 +127,14 @@ export const NavbarStyled = styled(Navbar)`
 
   a {
     color: ${globalColor.black};
+  }
+
+  ${media_breakpoint_exactly_down(1480)} {
+    justify-content: end;
+
+    .navContainerWrapper {
+      width: 90%;
+    }
   }
 
   ${media_breakpoint_exactly_down(1439)} {
