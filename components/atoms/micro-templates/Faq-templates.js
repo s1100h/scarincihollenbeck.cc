@@ -42,19 +42,6 @@ export const WhereIsYheFirmLocated = () => (
   </p>
 );
 
-const corePracticesIncludeArr = [
-  'Bankruptcy & Creditor`s Rights',
-  'Commercial Real Estate',
-  'Corporate Transactions & Business',
-  'Education Law',
-  'Environmental',
-  'Government Strategies',
-  'Intellectual Property',
-  'Labor & Employment',
-  'Litigation',
-  'Public Law',
-];
-
 export const WhatAreTheFirms = () => {
   const { practices } = useContext(PracticesContext);
   return (
@@ -65,7 +52,7 @@ export const WhatAreTheFirms = () => {
         </p>
         {practices.map((practice) => (
           <li key={practice.databaseId}>
-            <Link className="d-flex gap-2" href={practice.uri}>
+            <Link className="d-flex gap-2" href={practice.uri} passHref>
               <div>➢</div>
               <em>{practice.title}</em>
             </Link>

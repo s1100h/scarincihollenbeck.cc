@@ -24,7 +24,7 @@ const headerType = (pageSlug) => {
   return pagesMap[pageSlug] || '';
 };
 
-const SpecialHeader = ({ practices }) => {
+const SpecialHeader = ({ practices, locations }) => {
   const { scrollTop } = useIsScroll();
   const [isOpenSearch, setOpenSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -66,6 +66,7 @@ const SpecialHeader = ({ practices }) => {
             handleShow={handleShowMenu}
             handleClose={handleCloseMenu}
             practices={practices}
+            locations={locations}
           />
         </LinksBoxSpecial>
       </SpecialHeaderContainer>
