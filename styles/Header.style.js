@@ -52,6 +52,24 @@ export const Wrapper = styled.div`
     margin-top: 0;
     padding: 8px 0;
   }
+  ${media_breakpoint_exactly_down(640)} {
+    > :nth-child(1) {
+      order: 1;
+      width: 77%;
+      justify-content: flex-start;
+    }
+    > :nth-child(3) {
+      order: 5;
+      width: 100%;
+      margin-top: 10px;
+      .form-group {
+        width: 100%;
+      }
+    }
+    > :nth-child(5) {
+      order: 2;
+    }
+  }
 `;
 export const DefaultHeaderSearchContainer = styled.div`
   flex: 1;
@@ -102,23 +120,24 @@ export const DefaultHeaderSearchContainer = styled.div`
     }
   }
 
-  /* ${media_breakpoint_down('lg')} {
-    width: 80%;
-    margin: auto auto 10px;
-    order: 3;
-    flex: none;
-  } */
-
   ${media_breakpoint_down('md')} {
     .search-result-container {
       width: -webkit-fill-available;
     }
   }
+  max-width: ${({ isOpenBlock }) => (isOpenBlock ? '56%' : '134px')};
 
+  ${media_breakpoint_exactly_down(1480)} {
+    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '48%' : '134px')};
+  }
   ${media_breakpoint_exactly_down(1439)} {
     margin-left: auto;
-    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '100%' : '134px')};
+
     transition: all 0.5s ease;
+  }
+
+  ${media_breakpoint_exactly_down(640)} {
+    max-width: none;
   }
 `;
 
@@ -126,7 +145,7 @@ export const LogoBox = styled.div`
   display: flex;
   justify-content: center;
 
-  ${media_breakpoint_exactly_down(700)} {
+  ${media_breakpoint_exactly_down(400)} {
     a {
       width: auto;
 
