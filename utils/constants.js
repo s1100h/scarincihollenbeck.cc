@@ -52,11 +52,6 @@ export const THANKS_MESSAGE = {
   getInTouch: 'Thank you for reaching out! We will get in touch with you soon.',
 };
 
-export const SUBSCRIPTION_THANKS = {
-  subscription:
-    'Thank you for subscribing! You are now part of our newsletter.',
-};
-
 export const footerNavList = [
   {
     linkTitle: 'Attorneys',
@@ -281,41 +276,6 @@ export const SITE_NAVIGATION = [
         uri: '/library/category/law-firm-insights',
       },
     ],
-  },
-];
-
-/** The links in the dark gray banner in the footer */
-export const SITE_FOOTER_NAVIGATION = [
-  {
-    id: 1,
-    slug: '/attorneys',
-    label: 'Attorneys',
-  },
-  {
-    id: 2,
-    label: 'Careers',
-    slug: '/careers',
-  },
-  {
-    id: 3,
-    label: 'COVID-19',
-    slug: '/covid-19-crisis-management-unit',
-  },
-
-  {
-    id: 4,
-    slug: '/firm-overview',
-    label: 'Firm Overview',
-  },
-  {
-    id: 5,
-    slug: '/practices',
-    label: 'Legal Practices',
-  },
-  {
-    id: 6,
-    slug: '/locations',
-    label: 'Locations',
   },
 ];
 
@@ -776,17 +736,10 @@ export const locationInfoBlockArticles = [
     reactComponent: <AboutAuthorFormCard blockName="articleBlock" />,
   },
 ];
-
-/**  external blog urls  */
-export const MUSIC_ESQ_URL = 'https://musicesq.com';
-export const CON_LAW_URL = 'https://constitutionallawreporter.com';
 export const GOV_LAW_URL = 'https://scarincilawyer.com';
 
 /** the blog id for covid pages  */
 export const COVID_POSTS_ID = 20250;
-
-/** Image CDN URLs */
-export const IMAGE_NOT_FOUND_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v1637157143/wp.scarincihollenbeck/no-image-found-diamond_33141f5498/no-image-found-diamond_33141f5498-png?_i=AA';
 
 export const EMAGE_UPLOAD_CLOUDINARY = 'https://res.cloudinary.com/scarinci-hollenbeck/images/v';
 export const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/scarinci-hollenbeck/wp.scarincihollenbeck/';
