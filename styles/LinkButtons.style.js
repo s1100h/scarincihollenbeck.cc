@@ -12,6 +12,10 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 export const ButtonLink = styled(Link)`
   ${ButtonLinkCss};
   ${buttonsHoverActive};
+
+  span {
+    color: ${globalColor.white} !important;
+  }
 `;
 
 export const SpecialButtonLink = styled(Link)`

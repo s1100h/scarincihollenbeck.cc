@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import Accordion from 'react-bootstrap/Accordion';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  globalColor,
+  globalShadow,
+  rem,
+} from './global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -32,7 +37,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
   --bs-offcanvas-width: 100%;
 
   &.menu-cannabis {
-    margin-top: 100px;
+    margin-top: 128px;
   }
 
   &.menu-entertainment {
@@ -41,10 +46,6 @@ export const OffcanvasContainer = styled(Offcanvas)`
 
   ${media_breakpoint_exactly_down(1439)} {
     margin-top: 149px;
-
-    &.menu-cannabis {
-      margin-top: 96px;
-    }
 
     &.menu-entertainment {
       margin-top: 92px;
@@ -69,7 +70,8 @@ export const OffcanvasContainer = styled(Offcanvas)`
 `;
 export const OffcanvasBody = styled(Offcanvas.Body)`
   padding: 0;
-  background-color: ${globalColor.blue.darkBlue};
+  background-color: ${({ background }) =>
+    !empty(background) ? background : globalColor.blue.darkBlue};
 `;
 export const NavList = styled.div`
   margin: 0;
@@ -112,11 +114,41 @@ export const AccordionStyled = styled(Accordion)`
   flex-direction: column;
   gap: 20px;
 
+  .menu-item {
+    color: ${({ menuprops }) =>
+      !empty(menuprops) ? globalColor.black : globalColor.white};
+  }
+
+  .accordion-item:last-of-type .accordion-button.collapsed {
+    border-radius: 0;
+  }
+
   .accordion-item {
     background-color: transparent;
     border: 0;
     border-radius: 0;
     box-shadow: none;
+
+    button.accordion-button {
+      color: ${({ menuprops }) =>
+        !empty(menuprops) ? globalColor.black : globalColor.white};
+      border-radius: 0;
+      justify-content: space-between;
+
+      ${({ menuprops }) =>
+        !empty(menuprops)
+          ? `
+         :after {
+          display: none;
+         }
+         
+        `
+          : `
+         .chevron-down {
+          display: none;
+         }
+        `};
+    }
 
     :hover {
       box-shadow: none;
@@ -145,7 +177,8 @@ export const AccordionStyled = styled(Accordion)`
             width: 100%;
             padding: 13px 8px 11px;
             font-size: ${rem(14)};
-            color: ${globalColor.white};
+            color: ${({ menuprops }) =>
+              !empty(menuprops) ? globalColor.black : globalColor.white};
             font-weight: 700;
             line-height: 13px;
             transition: all 0.5s ease-in-out;
@@ -161,7 +194,7 @@ export const AccordionStyled = styled(Accordion)`
             }
           }
 
-          .mobile-item__with-child {
+          a.mobile-item__with-child {
             display: flex;
             align-items: flex-start;
             text-align: start;
@@ -203,7 +236,8 @@ export const AccordionStyled = styled(Accordion)`
           .accordion-button {
             padding: 13px 8px;
             border-bottom: none;
-            color: ${globalColor.white};
+            color: ${({ menuprops }) =>
+              !empty(menuprops) ? globalColor.black : globalColor.white};
             font-size: ${rem(14)};
             font-weight: 700;
             line-height: 13px;
@@ -215,8 +249,12 @@ export const AccordionStyled = styled(Accordion)`
 
           .accordion-button:not(.collapsed) {
             margin-bottom: 4px;
-            background-color: ${globalColor.blue.darkUltramarine};
+            background-color: ${({ menuprops }) =>
+              !empty(menuprops)
+                ? cannabisLawColors.cannabisColorDarkGrayLight
+                : globalColor.blue.darkUltramarine};
             border-radius: 4px;
+            color: ${globalColor.white};
           }
 
           .accordion-body {
@@ -232,7 +270,8 @@ export const AccordionStyled = styled(Accordion)`
               li {
                 display: list-item;
                 margin-left: 20px;
-                color: ${globalColor.white};
+                color: ${({ menuprops }) =>
+                  !empty(menuprops) ? globalColor.black : globalColor.white};
 
                 &::marker {
                   font-size: ${rem(12)};
@@ -242,7 +281,8 @@ export const AccordionStyled = styled(Accordion)`
                   padding: 0;
                   font-size: ${rem(14)};
                   font-weight: 400;
-                  color: #e6e6e6;
+                  color: ${({ menuprops }) =>
+                    !empty(menuprops) ? globalColor.black : globalColor.white};
                   line-height: 28px;
 
                   &:hover {
@@ -256,10 +296,12 @@ export const AccordionStyled = styled(Accordion)`
                 }
 
                 &.active {
-                  color: #afdcf5;
+                  color: ${({ menuprops }) =>
+                    !empty(menuprops) ? globalColor.black : '#afdcf5'};
 
                   > a {
-                    color: #afdcf5;
+                    color: ${({ menuprops }) =>
+                      !empty(menuprops) ? globalColor.black : '#afdcf5'};
                   }
                 }
               }
@@ -630,13 +672,11 @@ export const ButtonLinkBox = styled.div`
     min-width: max-content;
     position: relative;
     z-index: 0;
+    border: 1.5px solid ${cannabisLawColors.cannabisColorDarkGray};
 
     span {
       display: flex;
-      font-size: ${rem(16)};
-      color: ${globalColor.white};
-      font-weight: 700;
-      line-height: 15px;
+      color: ${cannabisLawColors.cannabisColorDarkGray};
     }
 
     svg {
@@ -662,6 +702,9 @@ export const ButtonLinkBox = styled.div`
     }
 
     &:hover {
+      span {
+        color: ${globalColor.white};
+      }
       &::after {
         opacity: 1;
       }
@@ -691,10 +734,16 @@ export const CommunicationLinks = styled.div`
   align-items: flex-start;
 
   .communication-link {
-    color: ${globalColor.white};
+    color: ${({ menuprops }) =>
+      !empty(menuprops) ? globalColor.black : globalColor.white};
     display: flex;
     column-gap: 8px;
     align-items: center;
+
+    svg {
+      fill: ${({ menuprops }) =>
+        !empty(menuprops) ? globalColor.black : globalColor.white};
+    }
 
     &.underline {
       text-decoration: underline;

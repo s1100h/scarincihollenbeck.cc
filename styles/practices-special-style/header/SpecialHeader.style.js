@@ -24,6 +24,7 @@ export const SpecialHeaderContainer = styled.header`
   z-index: 1041;
   border-bottom: 4px solid ${cannabisLawColors.cannabisColorGray};
   column-gap: 20px;
+  flex-wrap: wrap;
 
   ${({ headerType }) =>
     headerType === 'entAndMedia' &&
@@ -51,6 +52,27 @@ export const SpecialHeaderContainer = styled.header`
     }
   }
 
+  ${media_breakpoint_down('xl')} {
+    a.link-btn-header {
+      width: 50px;
+      height: 50px;
+    }
+
+    button {
+      svg.icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    > :nth-child(4) {
+      svg {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+
   ${media_breakpoint_down('lg')} {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -58,11 +80,57 @@ export const SpecialHeaderContainer = styled.header`
     .navContainer {
       display: none;
     }
+
+    > :nth-child(4) {
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 
   ${media_breakpoint_exactly_down(700)} {
     .logo-letters {
       display: none;
+    }
+  }
+
+  ${media_breakpoint_exactly_down(530)} {
+    justify-content: space-between;
+    > :nth-child(1) {
+      order: 1;
+      width: 20%;
+      justify-content: flex-start;
+    }
+    > :nth-child(3) {
+      order: 5;
+      width: 85vw;
+      margin-top: 10px;
+      justify-content: center;
+      form {
+        .form-group {
+          justify-content: center;
+        }
+      }
+      .search-result-container {
+        margin-top: 23px;
+      }
+    }
+    > :nth-child(4) {
+      order: 2;
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    > :nth-child(5) {
+      order: 3;
+      button {
+        svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
   }
 `;
@@ -99,8 +167,11 @@ export const VisibleHiddenSearch = styled.div`
   margin: 5px auto;
   flex: 1;
   position: relative;
+  justify-content: end;
+  width: 90%;
 
   .search-result-container {
+    width: inherit;
     background-color: ${globalColor.graySmoke.smoke};
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -108,12 +179,13 @@ export const VisibleHiddenSearch = styled.div`
   }
 
   form {
+    width: inherit;
     .form-control {
       display: ${({ isOpenBlock }) => (isOpenBlock ? 'flex' : 'none')};
       padding: 6px 12px;
       background-color: ${globalColor.graySmoke.smoke};
       color: ${globalColor.black};
-      border-radius: 25px;
+      border-radius: 25px !important;
       position: relative;
       z-index: 100;
       box-shadow: inset 200px 200px ${globalColor.graySmoke.smoke},
