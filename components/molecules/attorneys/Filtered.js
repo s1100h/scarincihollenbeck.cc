@@ -34,8 +34,8 @@ const Filtered = ({
                   locations={info.location_array}
                   number={info.phone}
                   email={info.email}
-                  width={80}
-                  height={112}
+                  width={130}
+                  height={152}
                   offices={offices}
                 />
               ))}
