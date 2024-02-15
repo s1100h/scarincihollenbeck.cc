@@ -6,7 +6,7 @@ import { ATTORNEYS_FAQ, locationInfoBlockArticles } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { BsDownload } from 'react-icons/bs';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import empty from 'is-empty';
 import { sanitizePracticesByChildren, sortByKey } from '../../utils/helpers';
 import {
@@ -62,7 +62,13 @@ const LocationPage = ({
   locations,
   googleReviews,
 }) => {
-  const [anchorData] = useState(anchorLocationsData);
+  const anchorData = useMemo(() => {
+    if (empty(googleReviews)) {
+      delete anchorLocationsData.reviews;
+    }
+    return anchorLocationsData;
+  }, [googleReviews]);
+
   const [articles, setArticles] = useState();
   const practicesSorted = sanitizePracticesByChildren(
     currentOffice.officePractices,
@@ -177,7 +183,10 @@ const LocationPage = ({
         />
       )}
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-      <GoogleReviews reviews={googleReviews} anchorId={anchorData.reviews.id} />
+      <GoogleReviews
+        reviews={googleReviews}
+        anchorId={anchorData?.reviews?.id}
+      />
     </>
   );
 };

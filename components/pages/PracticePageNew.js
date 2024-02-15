@@ -1,5 +1,5 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import empty from 'is-empty';
 import dynamic from 'next/dynamic';
 import DefaultSubHeaderNew from 'layouts/SubHeader/DefaultSubHeaderNew';
@@ -41,11 +41,9 @@ const PracticePageNew = ({
   faq,
   googleReviews,
 }) => {
-  const [anchorData, setAnchorData] = useState(anchorDataDefault);
+  const anchorData = useMemo(() => {
+    let updatedAnchorData = {};
 
-  let updatedAnchorData = {};
-
-  useEffect(() => {
     if (!empty(tabs)) {
       tabs?.forEach(
         (tab) => (updatedAnchorData = {
@@ -58,11 +56,16 @@ const PracticePageNew = ({
       );
     }
 
-    setAnchorData({
+    if (empty(googleReviews)) {
+      delete anchorDataDefault.googleReviews;
+    }
+
+    return {
       ...anchorDataDefault,
       ...updatedAnchorData,
-    });
-  }, [tabs]);
+    };
+  }, [googleReviews]);
+
   return (
     <>
       <BasicSiteHead
@@ -93,7 +96,7 @@ const PracticePageNew = ({
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       <GoogleReviews
         reviews={googleReviews}
-        anchorId={anchorData.googleReviews.id}
+        anchorId={anchorData?.googleReviews?.id}
       />
       <AnchorTop />
     </>
