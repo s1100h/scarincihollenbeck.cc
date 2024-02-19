@@ -125,14 +125,10 @@ export const DefaultHeaderSearchContainer = styled.div`
       width: -webkit-fill-available;
     }
   }
-  max-width: ${({ isOpenBlock }) => (isOpenBlock ? '56%' : '134px')};
 
-  ${media_breakpoint_exactly_down(1480)} {
-    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '48%' : '134px')};
-  }
   ${media_breakpoint_exactly_down(1439)} {
+    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '48%' : '134px')};
     margin-left: auto;
-
     transition: all 0.5s ease;
   }
 
