@@ -24,7 +24,6 @@ import SubscriptionModal from 'components/molecules/subscription/SubscriptionMod
 import {
   BsFillEnvelopePlusFill,
   BsChevronDown,
-  BsChevronUp,
   BsFillTelephoneFill,
   BsFillEnvelopeFill,
 } from 'react-icons/bs';

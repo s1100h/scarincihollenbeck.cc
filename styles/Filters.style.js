@@ -18,6 +18,124 @@ export const DropDownItemSelector = styled(Dropdown.Item)`
 `;
 
 export const DropdownSelectorBtn = styled(DropdownButton)`
+  .show {
+    display: ${({ props }) => (props?.bigMenu ? 'flex' : 'block')};
+    background-color: ${globalColor.blue.darkBlue};
+    height: ${({ props }) => (props?.bigMenu ? '600px' : 'auto')};
+
+    ${({ props }) =>
+      props?.bigMenu
+        ? `
+      min-width: 60vw;
+      
+      ${media_breakpoint_down('xl')} {
+         min-width: 80vw;
+       }
+       
+       ${media_breakpoint_down('lg')} {
+         min-width: 87vw;
+         
+         .active {
+            &::after {
+              content: '';
+              position: absolute;
+              right: -12px;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 12px;
+              height: 20px;
+              background-color: ${globalColor.white};
+              clip-path: polygon(100% 50%, 0 0, 0% 100%);
+              opacity: 1;
+            }
+         }
+       }
+       
+       ${media_breakpoint_down('md')} {
+          min-width: 100%;
+       }
+      `
+        : ''};
+
+    .mobile-filter {
+      width: 100%;
+      margin-bottom: 5px;
+      background-color: ${globalColor.blue.darkUltramarine};
+
+      .accordion-item {
+        background-color: ${globalColor.blue.darkUltramarine};
+        border: none;
+      }
+      .collapsed {
+        :after {
+          background-image: var(--bs-accordion-btn-active-icon);
+        }
+      }
+      .show {
+        height: auto;
+
+        .accordion-body {
+          width: 100%;
+        }
+      }
+      .accordion-button {
+        background-color: ${globalColor.blue.darkUltramarine};
+        border-radius: 0;
+        width: 100%;
+
+        //:after {
+        //  display: none;
+        //}
+
+        :focus {
+          border: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .dropdown-item {
+      color: ${globalColor.white};
+
+      :hover {
+        background-color: ${globalColor.blue.darkUltramarine};
+      }
+    }
+
+    .active {
+      :hover {
+        &::after {
+          content: '';
+          position: absolute;
+          right: -12px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 12px;
+          height: 20px;
+          background-color: ${globalColor.blue.darkUltramarine};
+          clip-path: polygon(100% 50%, 0 0, 0% 100%);
+          opacity: 1;
+        }
+      }
+    }
+
+    button {
+      color: ${globalColor.white};
+      font-weight: 700;
+      padding: 7px;
+      width: 95%;
+      text-align: start;
+      position: relative;
+
+      :hover {
+        background-color: ${globalColor.blue.darkUltramarine};
+      }
+
+      ${media_breakpoint_down('lg')} {
+        width: 92%;
+      }
+    }
+  }
   > {
     button {
       width: 100%;
@@ -54,46 +172,6 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
         color: ${globalColor.black};
         text-decoration: none;
       }
-    }
-
-    div {
-      width: fit-content;
-      transform: ${({ props }) =>
-        props?.bigMenu ? translate3dVariations('-22vw') : null};
-
-      ${media_breakpoint_exactly_down(1350)} {
-        transform: ${({ props }) =>
-          props?.bigMenu ? translate3dVariations('-27vw') : null};
-      }
-
-      ${media_breakpoint_down('xl')} {
-        transform: ${({ props }) =>
-          props?.bigMenu ? translate3dVariations('-46vw') : null};
-      }
-
-      ${media_breakpoint_down('md')} {
-        transform: ${({ props }) =>
-          props?.bigMenu ? translate3dVariations('0') : null};
-      }
-
-      ${({ props }) =>
-        props?.bigMenu
-          ? `
-					min-width: 100%;
-
-					@media (min-width: 767px) {
-							min-width: 660px;
-					}
-
-					@media (min-width: 992px) {
-						min-width: 920px;
-					}
-
-					@media (min-width: 1200px) {
-							min-width: 1200px;
-					}
-				`
-          : null}
     }
   }
 `;
@@ -214,5 +292,32 @@ export const LetterSelectorBtn = styled.button`
     color: #b3b3b3;
     background: transparent;
     text-decoration: none;
+  }
+`;
+
+export const FilterBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  box-shadow: ${globalShadow.allSideShadow};
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  h6 {
+    margin-left: auto;
+    margin-right: auto;
+    color: ${globalColor.white};
+    width: 80%;
+    text-align: center;
+    padding: 7px;
+    border-radius: 5px;
+    text-decoration: 1px solid black;
+    background-color: ${globalColor.blue.darkUltramarine};
+  }
+
+  ${media_breakpoint_down('md')} {
+    width: 100%;
   }
 `;

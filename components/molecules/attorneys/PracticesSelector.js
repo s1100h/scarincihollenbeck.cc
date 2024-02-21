@@ -1,29 +1,28 @@
 import dynamic from 'next/dynamic';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { DropdownSelectorBtn } from 'styles/Filters.style';
+import { DropdownSelectorBtn, FilterBox } from 'styles/Filters.style';
+import Accordion from 'react-bootstrap/Accordion';
+import empty from 'is-empty';
+import { useState } from 'react';
+import useStateScreen from '../../../hooks/useStateScreen';
 
 const PracticeListItem = dynamic(() => import('components/atoms/PracticeListItem'));
 
 const PracticesSelector = ({ practices, onSelect }) => {
-  /**
-   *
-   * Filter each item into a column
-   *
-   * */
-
-  // bankruptcy, intel, public
-  const bce = practices.filter((b) => (b.ID === 28345 || b.ID === 29587 || b.ID === 28276 ? b : ''));
-
-  // commercial, labor, tax
-  const cl = practices.filter((b) => (b.ID === 29624 || b.ID === 28271 || b.ID === 29588 ? b : ''));
-
-  // corporate
-  const li = practices.filter((b) => b.ID === 28270);
-
-  // env, litigation
-  const pt = practices.filter((b) => (b.ID === 28273 || b.ID === 28274 ? b : ''));
+  const { isTabletScreen } = useStateScreen();
+  const [isSecondLvl, setIsSecondLvl] = useState(false);
+  const [secondLvlData, setSecondLvlData] = useState([]);
+  const [activeItemTitle, setActiveItemTitle] = useState(null);
+  const handleClickFirstLvl = (event, data, id, title) => {
+    if (!empty(data)) {
+      setIsSecondLvl(true);
+      setSecondLvlData(data);
+      setActiveItemTitle(title);
+    } else {
+      setIsSecondLvl(false);
+      setSecondLvlData([]);
+      onSelect(event, title);
+    }
+  };
 
   return (
     <DropdownSelectorBtn
@@ -32,50 +31,87 @@ const PracticesSelector = ({ practices, onSelect }) => {
       className="my-3 my-md-0"
       props={{ bigMenu: 'true' }}
     >
-      <Container className="mt--1 p-0" fluid>
-        <Row className="rounded-0 m-0">
-          <Col sm={12} lg={3} className="mt-md-3">
-            {bce.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
+      <FilterBox>
+        {practices?.map((practice) => (
+          <>
+            {isTabletScreen && !empty(practice?.childPractice) ? (
+              <Accordion className="mobile-filter">
+                <Accordion.Item
+                  onClick={() => setActiveItemTitle(practice?.title)}
+                  eventKey={practice?.databaseId}
+                >
+                  <Accordion.Header>{practice?.title}</Accordion.Header>
+                  <Accordion.Body>
+                    <FilterBox>
+                      <button
+                        onClick={(event) => onSelect(event, activeItemTitle)}
+                      >
+                        {activeItemTitle}
+                        {', '}
+                        main
+                      </button>
+                      {practice?.childPractice.map((child) => (
+                        <button
+                          key={child?.databaseId}
+                          onClick={(event) => onSelect(event, child.title)}
+                        >
+                          {child.title}
+                        </button>
+                      ))}
+                    </FilterBox>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            ) : (
+              <button
+                className={`w-100 mb-1 ${
+                  !empty(practice?.childPractice) ? 'active' : ''
+                }`}
+                key={practice?.databaseId}
+                onClick={(event) => {
+                  handleClickFirstLvl(
+                    event,
+                    practice?.childPractice,
+                    practice?.databaseId,
+                    practice.title,
+                  );
+                }}
+              >
+                {practice?.title}
+              </button>
+            )}
+          </>
+        ))}
+      </FilterBox>
+      {isSecondLvl && !isTabletScreen && (
+        <FilterBox>
+          <h6>{activeItemTitle}</h6>
+          <button onClick={(event) => onSelect(event, activeItemTitle)}>
+            {activeItemTitle}
+            {', '}
+            main
+          </button>
+          {secondLvlData
+            && secondLvlData?.map((child) => (
+              <button
+                key={child.databaseId}
+                onClick={(event) => onSelect(event, child.title)}
+              >
+                {child.title}
+              </button>
             ))}
-          </Col>
-          <Col sm={12} lg={3} className="mt-md-3">
-            {cl.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
-            ))}
-          </Col>
-          <Col sm={12} lg={3} className="mt-md-3">
-            {li.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
-            ))}
-          </Col>
-          <Col sm={12} md={3} className="mt-md-3">
-            {pt.map((ft) => (
-              <PracticeListItem
-                key={ft.ID}
-                title={ft.title}
-                onSelect={onSelect}
-                pChildren={ft.children}
-              />
-            ))}
-          </Col>
-        </Row>
-      </Container>
+        </FilterBox>
+      )}
+      {/* <Col className="rounded-0 m-0"> */}
+      {/*    {practices.map((ft) => ( */}
+      {/*        <PracticeListItem */}
+      {/*          key={ft.databaseId} */}
+      {/*          title={ft.title} */}
+      {/*          onSelect={onSelect} */}
+      {/*          pChildren={ft.childPractice} */}
+      {/*        /> */}
+      {/*    ))} */}
+      {/* </Col> */}
     </DropdownSelectorBtn>
   );
 };
