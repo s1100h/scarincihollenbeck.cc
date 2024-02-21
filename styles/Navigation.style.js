@@ -130,7 +130,7 @@ export const NavbarStyled = styled(Navbar)`
   }
 
   ${media_breakpoint_exactly_down(1480)} {
-    justify-content: end;
+    justify-content: center;
 
     .navContainerWrapper {
       width: 90%;

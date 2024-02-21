@@ -1,7 +1,7 @@
 const Map = ({
   map, title, anchorIdMap, height = 300,
 }) => (
-  <div className="w-100 d-block mb-4" id={anchorIdMap}>
+  <div className="w-100 d-block mb-4 margin-scroll" id={anchorIdMap}>
     <iframe
       rel="preconnect"
       title={`${title} map`}

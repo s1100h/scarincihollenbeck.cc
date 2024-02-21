@@ -6,7 +6,7 @@ import {
 import Link from 'next/link';
 
 export const CombinedLogo = styled(Link)`
-  max-width: 293px;
+  /* max-width: 293px; */
   height: 89px;
   display: flex;
   align-items: center;

@@ -28,7 +28,7 @@ const InfoBlockLocation = ({ practices, articles, anchorData }) => {
   const handleShowMenu = () => setShowMenu(true);
 
   return (
-    <InfoContainer id={anchorData}>
+    <InfoContainer id={anchorData} className="margin-scroll">
       {!empty(practices)
         && articles.map(
           ({
