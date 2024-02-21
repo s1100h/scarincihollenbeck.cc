@@ -9,7 +9,7 @@ export const GetInTouchFormWrapper = styled.div`
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
   ${({ isSticky }) =>
     isSticky &&
-    'position: sticky; top: 200px; overflow: auto; max-height: calc(100vh - 240px);'}
+    'position: sticky; top: 210px; overflow: auto; max-height: calc(100vh - 230px);'}
   border: 1px solid transparent;
   transition: all 0.5s ease-in-out;
 

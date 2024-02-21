@@ -23,10 +23,14 @@ export const PracticeAnchorsHolder = styled.div`
   &.fixed {
     width: 100%;
     position: fixed;
-    top: 135px;
+    top: 115px;
     left: 0;
     z-index: 10;
     opacity: 1;
+
+    ${media_breakpoint_exactly_down(1439)} {
+      top: 125px;
+    }
 
     ${media_breakpoint_down('lg')} {
       top: 100px;

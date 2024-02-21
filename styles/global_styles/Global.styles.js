@@ -208,7 +208,7 @@ body {
     scroll-margin-top: 210px;
 
     ${media_breakpoint_down('md')} {
-      scroll-margin-top: 140px;
+      scroll-margin-top: 200px;
     }
   }
 }
