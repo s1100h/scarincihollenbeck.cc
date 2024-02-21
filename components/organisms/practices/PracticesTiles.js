@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Fragment, useState } from 'react';
 import Image from 'next/image';
 import { BsChevronDown } from 'react-icons/bs';
-import { useRouter } from 'next/router';
 import {
   PracticesTilesContainer,
   PracticeTile,
@@ -55,7 +54,6 @@ const PracticesTiles = ({ practicesList }) => {
   const [isShowMore, setSowMore] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const { isBigTabletScreen, isMobileScreen } = useStateScreen();
-  const router = useRouter();
   const handleShowMore = (e) => {
     e.stopPropagation();
     setSowMore(!isShowMore);
@@ -77,14 +75,10 @@ const PracticesTiles = ({ practicesList }) => {
     return isMobileScreen || isBigTabletScreen ? openList(tileId) : undefined;
   };
 
-  const handleClickByFront = (url) => {
-    router.push(url);
-  };
-
   return (
     <PracticesTilesContainer>
       <ul>
-        {practicesList.map(
+        {practicesList?.map(
           ({
             databaseId, childPractice, uri, title, practiceImage,
           }) => (

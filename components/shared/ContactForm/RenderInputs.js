@@ -71,8 +71,11 @@ const RenderInputs = ({ arrayOfAttributes, attorneySlug }) => {
         name="currentPage"
         value={`https://scarincihollenbeck.com${attorneySlug}`}
       />
-      {arrayOfAttributes.map((attributes) => (
-        <InputGroupStyled key={attributes.name}>
+      {arrayOfAttributes.map((attributes, index) => (
+        <InputGroupStyled
+          key={attributes.name}
+          className={`input-group--${index}`}
+        >
           <InputsController
             attributes={attributes}
             handleChangeValue={(event) => handleChangeValue(event, attributes.name)}

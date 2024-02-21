@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { LinkTitle, LinkList } from 'styles/Footer.style';
+import empty from 'is-empty';
 
 export const linkTemplate = (is_target_blank, slugLink, label) => {
   if (is_target_blank) {
@@ -13,15 +14,16 @@ export const linkTemplate = (is_target_blank, slugLink, label) => {
   return <Link href={slugLink}>{label}</Link>;
 };
 
-export default function LinksBox({ linksArr, title, isTargetBlank }) {
+export default function LinksBox({
+  linksArr,
+  title,
+  isTargetBlank,
+  classList,
+}) {
   return (
     <div>
-      {title && (
-        <LinkTitle>
-          <strong>{title}</strong>
-        </LinkTitle>
-      )}
-      <LinkList>
+      {title && <LinkTitle>{title}</LinkTitle>}
+      <LinkList className={!empty(classList) ? classList : ''}>
         {linksArr.map((link) => (
           <li key={link.id}>
             {linkTemplate(

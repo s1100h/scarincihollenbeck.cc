@@ -10,7 +10,7 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
 
   // filter by key -- practice
   const filterPractices = (attorney) => {
-    if (attorney.designation === 'Executive Director') {
+    if (attorney.designation === 'Chief Executive Officer') {
       return;
     }
     if (practices.length > 0 && attorney.practices_array) {

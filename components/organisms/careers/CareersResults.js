@@ -13,14 +13,27 @@ import {
 import { OptionalIndent } from '../../../styles/global_styles/Global.styles';
 
 const EmptyResults = dynamic(() => import('components/molecules/careers/EmptyResults'));
+
+const addPluralToEnd = (title) => {
+  const titleMap = {
+    attorney: 'attorneys',
+  };
+
+  return titleMap[title] || title;
+};
+
+const renderSubTitle = (title) => {
+  const subTitleMap = {
+    attorneys: 'Open attorney positions at Scarinci Hollenbeck.',
+  };
+
+  return subTitleMap[title] || `Open position in our ${title} team`;
+};
 const renderCareersBlocks = (careersObj, handleClickCareerCallback) => Object.keys(careersObj).map((careerType) => (
   <CareersBlock key={useId()}>
-    <CareerBlockTitle>{`${careerType}s`}</CareerBlockTitle>
+    <CareerBlockTitle>{addPluralToEnd(careerType)}</CareerBlockTitle>
     <CareerBlockSubtitle>
-      Open position in our
-      {`${careerType}s`}
-      {' '}
-      team.
+      {renderSubTitle(addPluralToEnd(careerType))}
     </CareerBlockSubtitle>
     {careersObj[careerType].map((position) => (
       <Col

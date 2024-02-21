@@ -1,9 +1,9 @@
 import { sortByKey } from 'utils/helpers';
 import { PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { getPracticesQuery, practicePageQuery } from 'utils/graphql-queries';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
-import empty from 'is-empty';
+import { getPractices } from 'requests/getPractices';
+import { fetchAPI } from '../../requests/api';
+import { practicePageQuery } from '../../requests/graphql-queries';
 
 /** Fetch the practice page content WP GRAPHQL API */
 const practicesPageContent = async () => {
@@ -11,33 +11,6 @@ const practicesPageContent = async () => {
   return data?.page;
 };
 
-const getPractices = async () => {
-  const data = await fetchAPI(getPracticesQuery, {});
-  return data.practices.nodes
-    .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes(
-      'Core Practices',
-    ))
-    .map(
-      ({
-        databaseId,
-        title,
-        uri,
-        practicesIncluded,
-        practicePortalPageContent,
-      }) => {
-        if (empty(practicesIncluded.childPractice)) {
-          practicesIncluded.childPractice = [];
-        }
-        return {
-          databaseId,
-          title,
-          uri,
-          ...practicesIncluded,
-          ...practicePortalPageContent,
-        };
-      },
-    );
-};
 /** Map practice page data to page props */
 export const getStaticProps = async () => {
   const page = await practicesPageContent();
@@ -66,13 +39,11 @@ export const getStaticProps = async () => {
 const PracticesPageDirectory = ({
   practices, subheaderOverlay, seo, site,
 }) => {
-  const sortedCorePractices = practices;
   const canonicalUrl = `${PRODUCTION_URL}/practices`;
   const practicesPageProps = {
     site,
     seo,
     canonicalUrl,
-    sortedCorePractices,
     subheaderOverlay,
     practices,
   };

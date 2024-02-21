@@ -1,84 +1,7 @@
 import styled from 'styled-components';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 import empty from 'is-empty';
-
-export const ButtonTabToggle = styled(Dropdown.Toggle)`
-  display: flex;
-  width: 100%;
-  padding: 10px 30px;
-  justify-content: ${({ props }) =>
-    props?.isButtonLink ? 'center' : 'space-between'};
-  align-items: center;
-  border: 1px solid
-    ${({ props }) =>
-      props?.isButtonLink
-        ? globalColor.blue.ultramarine
-        : globalColor.grayExtraLite.grayExtraLite100};
-  text-decoration: none;
-  transition: All 1s ease;
-  -webkit-transition: All 1s ease;
-  -moz-transition: All 1s ease;
-  border-radius: 0;
-  text-align: center;
-  font-weight: 600;
-
-  a {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: ${globalColor.gray.gray80};
-
-    :hover {
-      color: ${globalColor.red.darkRed};
-      text-decoration: underline;
-    }
-  }
-
-  :hover {
-    background-color: ${({ props }) =>
-      props?.isButtonLink
-        ? globalColor.blue.dirtyBlue
-        : globalColor.graySmoke.whiteSmoke};
-    color: ${({ props }) =>
-      props?.isButtonLink ? globalColor.white : globalColor.gray.gray100};
-    text-decoration: none;
-  }
-
-  :focus {
-    box-shadow: none;
-  }
-
-  :after {
-    display: none;
-  }
-
-  svg {
-    transition: 0.8s;
-    fill: ${globalColor.gray.gray40};
-    ${({ props }) =>
-      props?.open ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)'};
-  }
-
-  span {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-`;
-
-export const DropMenu = styled(Dropdown.Menu)`
-  height: fit-content;
-  max-height: 250px;
-  overflow-y: auto;
-`;
-
-export const DropdownItemPractice = styled(Dropdown.Item)`
-  font-size: 1rem;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-`;
 
 export const BlockListBox = styled.section`
   margin-top: 3rem;
@@ -269,7 +192,7 @@ export const PracticeTile = styled.li`
     pointer-events: none;
     width: 100%;
     max-height: ${({ isSowMoreProp }) =>
-      !empty(isSowMoreProp) ? '214%' : '100%'};
+      !empty(isSowMoreProp) ? '222%' : '100%'};
     min-height: 100%;
     padding: 20px 20px 20px 20px;
     flex-direction: column;
@@ -282,9 +205,7 @@ export const PracticeTile = styled.li`
     z-index: 4;
 
     h6 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      flex-wrap: wrap;
       color: ${globalColor.gray.gray80};
       font-weight: 700;
       min-height: 25px;

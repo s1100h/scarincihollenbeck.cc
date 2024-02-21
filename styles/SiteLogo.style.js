@@ -3,27 +3,40 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
+import Link from 'next/link';
 
-export const DiamondWrapper = styled.div`
-  display: none;
-
-  ${media_breakpoint_exactly_down(430)} {
-    display: flex;
-  }
-`;
-
-export const LogoWrapper = styled.div`
+export const CombinedLogo = styled(Link)`
+  /* max-width: 293px; */
+  height: 89px;
   display: flex;
-  position: relative;
-  bottom: 33%;
+  align-items: center;
+  column-gap: 9px;
 
-  ${media_breakpoint_down('sm')} {
-    img {
-      width: 95%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .logo-diamond {
+    aspect-ratio: 1;
+  }
+
+  .logo-letters {
+    max-width: 250px;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    max-width: 253px;
+    height: 52px;
+
+    .logo-letters {
+      max-width: 190px;
     }
   }
-
-  ${media_breakpoint_exactly_down(430)} {
-    display: none;
+  ${media_breakpoint_exactly_down(320)} {
+    .logo-letters {
+      display: none;
+    }
   }
 `;

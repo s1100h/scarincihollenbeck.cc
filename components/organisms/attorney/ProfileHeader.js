@@ -20,10 +20,6 @@ const useDesignationHook = (title) => {
       setDesignation('Red Bank, NJ  Office Managing Partner');
     }
 
-    if (title === 'NYC Managing Partner') {
-      setDesignation('NYC Office Managing Partner');
-    }
-
     if (title === 'Managing Partner') {
       setDesignation('Firm Managing Partner');
     }
@@ -31,6 +27,7 @@ const useDesignationHook = (title) => {
     if (title === 'Washington, D.C. Managing Partner') {
       setDesignation('Washington, D.C. Office Managing Partner');
     }
+    setDesignation(title);
   }, [title]);
 
   return [designation, setDesignation];

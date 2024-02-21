@@ -1,12 +1,17 @@
-import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
-import { LocationContext } from 'contexts/LocationContext';
-import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { getOfficeAndMoreData } from 'utils/graphql-queries';
+import {
+  BASE_API_URL,
+  googleLocationIds,
+  headers,
+  PRODUCTION_URL,
+} from 'utils/constants';
+import { fetchAPI } from 'requests/api';
+import { getOfficeAndMoreData } from 'requests/graphql-queries';
 import { getAttorneys } from '../attorneys';
+import { getGoogleReviewsForPalaces } from '../../requests/getGoogleReviews';
+import { deleteReviewsWithoutComment } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -17,13 +22,16 @@ const getOfficeData = async (slug) => {
       variables: { id: slug },
     },
   );
-  if (officeLocation?.officeMainInformation?.autoMap?.link?.length > 0) {
-    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.link;
+  if (
+    officeLocation?.officeMainInformation?.autoMap?.mediaItemUrl?.length > 0
+  ) {
+    officeLocation.officeMainInformation.autoMap = officeLocation.officeMainInformation.autoMap.mediaItemUrl;
   }
   if (
-    officeLocation?.officeMainInformation?.trainStationsMap?.link?.length > 0
+    officeLocation?.officeMainInformation?.trainStationsMap?.mediaItemUrl
+      ?.length > 0
   ) {
-    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.link;
+    officeLocation.officeMainInformation.trainStationsMap = officeLocation.officeMainInformation.trainStationsMap.mediaItemUrl;
   }
 
   const currentOffice = {
@@ -72,6 +80,9 @@ export const getStaticPaths = async () => {
 
 /** set location data to page props */
 export const getStaticProps = async ({ params }) => {
+  const googleReviews = await getGoogleReviewsForPalaces(
+    Object.values(googleLocationIds),
+  );
   const slug = params?.slug;
 
   if (!slug) {
@@ -91,12 +102,10 @@ export const getStaticProps = async ({ params }) => {
     return aLoc.officeMainInformation.localeCompare(bLoc.officeMainInformation);
   });
 
-  const makeSlugRegex = /^\/[^/]+\/([^/]+)\//;
-
   currentOffice.attorneys = attorneys.filter((attorney) => {
     const location = attorney.location_array[0];
-    const slugFromUri = location.uri.match(makeSlugRegex)[1];
-    return slugFromUri === slug;
+    const slugFromUri = location.uri;
+    return slugFromUri.includes(slug);
   }) || [];
 
   if (!currentOffice) {
@@ -122,6 +131,8 @@ export const getStaticProps = async ({ params }) => {
       currentOffice,
       attorneysSchemaData: attorneysSchema,
       posts: [],
+      canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
+      googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 86400,
   };
@@ -134,25 +145,23 @@ const SingleLocation = ({
   currentOffice,
   posts,
   attorneysSchemaData,
+  canonicalUrl,
+  googleReviews,
 }) => {
   const router = useRouter();
-  const { locations, setLocations } = useContext(LocationContext);
 
   if (router.isFallback) {
     return <SiteLoader />;
   }
-
-  useEffect(() => {
-    if (!locations) {
-      setLocations(offices);
-    }
-  }, [offices]);
 
   const locationProps = {
     seo,
     currentOffice,
     attorneysSchemaData,
     posts,
+    canonicalUrl,
+    locations: offices,
+    googleReviews,
   };
 
   return <LocationPage {...locationProps} />;

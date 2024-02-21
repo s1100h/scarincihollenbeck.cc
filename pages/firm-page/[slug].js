@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { firmPagesQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { firmPagesQuery } from 'requests/graphql-queries';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -20,16 +20,27 @@ const sanitizeAttorneyProfile = (node) => ({
 });
 
 /** firm page content  WP GRAPHQL query */
-export async function getFirmPageContent(slug) {
+export async function getFirmPageContent(slug, relatedPostsCategoryId) {
   const data = await fetchAPI(firmPagesQuery, {
-    variables: { slug },
+    variables: { slug, categoryId: relatedPostsCategoryId },
   });
-  return data?.pageBy;
+  return data?.page;
 }
+
+const diversityCategoryId = (slug) => {
+  const pagesMap = {
+    diversity: 5789,
+  };
+
+  return pagesMap[slug] || 98;
+};
 
 /** Set firm page data to props */
 export const getServerSideProps = async ({ params }) => {
-  const req = await getFirmPageContent(params.slug);
+  const req = await getFirmPageContent(
+    params.slug,
+    diversityCategoryId(params.slug),
+  );
   const {
     title,
     seo,

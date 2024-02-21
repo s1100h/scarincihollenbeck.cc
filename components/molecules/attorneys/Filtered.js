@@ -27,15 +27,15 @@ const Filtered = ({
               {attorneysFiltered.map((info) => (
                 <AttorneyCard
                   key={info.id}
-                  link={`/attorneys/${info.link}`}
+                  link={`/${info.link}`}
                   image={info.better_featured_image}
                   name={info.title}
                   designation={info.designation}
                   locations={info.location_array}
                   number={info.phone}
                   email={info.email}
-                  width={80}
-                  height={112}
+                  width={130}
+                  height={152}
                   offices={offices}
                 />
               ))}

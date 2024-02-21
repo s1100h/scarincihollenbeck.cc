@@ -3,16 +3,15 @@ import { useRouter } from 'next/router';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { STANDARD_SCHEMA, articleSchema } from 'utils/json-ld-schemas';
 
-const PostSiteHead = ({ seo, post, authors }) => {
+const PostSiteHead = ({
+  seo, post, authors, canonicalUrl,
+}) => {
   const { metaTitle, metaDescription, opengraphImage } = seo;
-  const router = useRouter();
-  const slug = router.asPath;
-  const canonicalUrl = CURRENT_DOMAIN + slug;
 
   const articleJsonLD = {
     headline: metaTitle,
     alternativeHeadline: metaDescription,
-    image: post.featuredImage,
+    image: opengraphImage,
     author: {
       '@type': 'Person',
       url: authors.map((a) => a.uri).join(', '),
@@ -31,6 +30,7 @@ const PostSiteHead = ({ seo, post, authors }) => {
       <Head>
         <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:url" content={canonicalUrl} />

@@ -1,23 +1,18 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import {
   authorPostsByIdQuery,
   categoryPostsByIdQuery,
-} from 'utils/graphql-queries';
+} from 'requests/graphql-queries';
 import useApolloQuery from 'hooks/useApolloQuery';
-import {
-  useContext, useEffect, useMemo, useState,
-} from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
-import Loader from '../atoms/Loader';
-import { AllArticlesTitle } from '../../styles/LibraryArticles.style';
-import FeaturedArticle from '../organisms/library/FeaturedArticle';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 
@@ -33,7 +28,7 @@ const LibraryDirectory = ({
 }) => {
   const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
-
+  const logoImage = '/images/no-image-found-diamond-750x350.png';
   const memoDataPosts = useMemo(() => news, [news]);
   const mainNews = memoDataPosts[0];
 
@@ -46,17 +41,21 @@ const LibraryDirectory = ({
   }, [authors]);
 
   /** Handle Article Archive Query */
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery, {
+  const params = {
     first: 6,
     last: null,
     after: null,
     before: null,
     author: isAuthor ? categoryId : null,
     id: null,
-    categoryIn: !isAuthor ? [categoryId] : null,
-  });
+    categoryId: !isAuthor ? categoryId : null,
+  };
+  const {
+    handleNextPagination, handlePrevPagination, data, loading, error,
+  } = useApolloQuery(
+    isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery,
+    params,
+  );
 
   return (
     <>
@@ -69,12 +68,7 @@ const LibraryDirectory = ({
       ) : (
         <BasicSiteHead title={categoryName} metaDescription={description} />
       )}
-      <SingleSubHeader
-        span={7}
-        offset={2}
-        title={categoryName}
-        subtitle={description}
-      />
+      <SubHeader title={categoryName} subtitle={description} />
       <Container className="mb-5">
         <Row>
           <BodyHeader />
@@ -83,11 +77,7 @@ const LibraryDirectory = ({
               <Col sm={12} xl={8} className="m-auto">
                 <NewsCard
                   postSlug={mainNews.link}
-                  postImage={
-                    mainNews.image
-                      ? mainNews.image
-                      : '/images/no-image-found-diamond-750x350.png'
-                  }
+                  postImage={mainNews.image ? mainNews.image : logoImage}
                   postTitle={mainNews.title}
                   postDate={mainNews.date}
                   postAuthor={mainNews.author}

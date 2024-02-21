@@ -1,28 +1,37 @@
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, createConnector } from 'react-instantsearch-dom';
-
 import {
   ALGOLIA_PUBLIC_API,
   ALGOLIA_APP_ID,
   ALGOLIA_SEARCH_INDEX,
 } from 'utils/constants';
+import empty from 'is-empty';
 import MySearchBox from './MySearchBox';
 import AuxiliarySearch from './AuxiliarySearch';
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_PUBLIC_API);
 function customSortByPost_type(a, b) {
-  const order = { attorneys: 0, practices: 1, post: 2 };
+  const order = {
+    attorneys: 0,
+    practices: 1,
+    post: 2,
+    client: 3,
+  };
   return order[a.post_type] - order[b.post_type];
 }
 const connectWithQuery = createConnector({
   displayName: 'WidgetWithQuery',
   getProvidedProps(props, searchState, searchResults) {
-    // this code sorts by "post_type" field
+    if (!empty(searchResults.results?.hits)) {
+      searchResults.results.hits = searchResults.results.hits
+        .filter(({ post_type }) => post_type !== 'client')
+        .sort(customSortByPost_type);
+    }
+
     searchResults = {
       ...searchResults,
       results: {
         ...searchResults.results,
-        hits: searchResults?.results?.hits?.sort(customSortByPost_type),
       },
     };
 
@@ -50,10 +59,13 @@ const connectWithQuery = createConnector({
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
 connectWithQuery(AuxiliarySearch);
 
-export default function GlobalSearch() {
+export default function GlobalSearch({ onHandleClickSearch }) {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
-      <ConnectedSearchBox placeholder="Search" />
+      <ConnectedSearchBox
+        isOpenCloseSearch={onHandleClickSearch}
+        placeholder="Search"
+      />
     </InstantSearch>
   );
 }

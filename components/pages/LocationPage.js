@@ -1,34 +1,78 @@
 import Head from 'next/head';
-import { Container, Row, Col } from 'react-bootstrap';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import { Row, Col } from 'react-bootstrap';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
-import { ATTORNEYS_FAQ, PRODUCTION_URL } from 'utils/constants';
-import { useContext } from 'react';
+import { ATTORNEYS_FAQ, locationInfoBlockArticles } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { BsDownload } from 'react-icons/bs';
-import OfficesLinkTabs from '../molecules/location/OfficesLinkTabs';
-import { LocationContext } from '../../contexts/LocationContext';
-import { sortByKey } from '../../utils/helpers';
-import AttorneysOfficeList from '../molecules/location/AttorneysOfficeList';
-import CurrentOfficeCard from '../molecules/location/CurrentOfficeCard';
+import { useEffect, useMemo, useState } from 'react';
+import empty from 'is-empty';
+import { sanitizePracticesByChildren, sortByKey } from '../../utils/helpers';
 import {
   DownloadTheMap,
   LinkMapBox,
+  LocationPageContainer,
   MediaBr,
   OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
-import { LocationListPracticeArticle } from '../../utils/articles-content';
+import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
+import PracticeAnchors from '../organisms/practices/PracticeAnchors';
+import GetInTouchForm from '../organisms/practices/GetInTouchForm';
+import InfoBlockLocation from '../organisms/location/InfoBlockLocation';
+import WhyChooseUs from '../organisms/practices/WhyChooseUs';
+import GoogleReviews from '../organisms/common/GoogleReviews';
 
-const BlockListWrapper = dynamic(() => import('../organisms/practices/ListWrapper'));
+const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
 
 const changeTitle = (title) => title.replace(/(^|\s+)Lawyers(\s+|$)/g, ' ');
 
-const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
-  const { locations } = useContext(LocationContext);
-  const canonicalUrl = `${PRODUCTION_URL}/location/little-falls`;
+const anchorLocationsData = {
+  map: {
+    id: 'map',
+    title: 'Map',
+  },
+  faq: {
+    id: 'faq-section',
+    title: 'FAQs',
+  },
+  howCanWeHelp: {
+    id: 'how-can-we-help',
+    title: 'How can we help?',
+  },
+  attorneys: {
+    id: 'attorneys-section',
+    title: 'Attorneys',
+  },
+  whyChooseUs: {
+    id: 'why-choose-us-section',
+    title: 'Why choose us',
+  },
+  reviews: {
+    id: 'reviews',
+    title: 'Reviews',
+  },
+};
+const LocationPage = ({
+  seo,
+  currentOffice,
+  attorneysSchemaData,
+  canonicalUrl,
+  locations,
+  googleReviews,
+}) => {
+  const anchorData = useMemo(() => {
+    if (empty(googleReviews)) {
+      delete anchorLocationsData.reviews;
+    }
+    return anchorLocationsData;
+  }, [googleReviews]);
+
+  const [articles, setArticles] = useState();
+  const practicesSorted = sanitizePracticesByChildren(
+    currentOffice.officePractices,
+  );
 
   const addressInfo = {
     phone: currentOffice.phone,
@@ -39,6 +83,13 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
     postCode: currentOffice.postCode,
     addressLocality: currentOffice.addressLocality,
   };
+
+  useEffect(() => {
+    const clearId = setTimeout(() => {
+      setArticles(locationInfoBlockArticles);
+    }, 100);
+    return () => clearTimeout(clearId);
+  }, []);
 
   return (
     <>
@@ -59,27 +110,26 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
           }}
         />
       </Head>
-      <SingleSubHeader
+      <DefaultSubHeaderNew
         title={currentOffice.title}
         subtitle={seo.metaDesc}
         backgroundImage={currentOffice.featuredImage}
+        officeInfo={addressInfo}
+        locations={locations}
       />
-      <Container className="mb-5">
-        {locations?.length > 0 && (
-          <OfficesLinkTabs
-            officeImage={currentOffice.featuredImage}
-            officesForTabs={locations}
-          />
-        )}
-        <Row>
-          <OfficeLocationBoxTitle>
-            {changeTitle(currentOffice.title)}
-          </OfficeLocationBoxTitle>
-          <Col sm={12} lg={7}>
-            <Map title={currentOffice.title} map={currentOffice.mapLink} />
-          </Col>
-          <Col sm={12} lg={5}>
-            <CurrentOfficeCard {...addressInfo} />
+      <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
+      <LocationPageContainer className="mt-5">
+        <Row className="row-content">
+          <Col xs={11} sm={11} md={11} lg={8} xl={8}>
+            <OfficeLocationBoxTitle>
+              {changeTitle(currentOffice.title)}
+            </OfficeLocationBoxTitle>
+            <Map
+              title={currentOffice.title}
+              map={currentOffice.mapLink}
+              anchorIdMap={anchorData.map.id}
+              height={600}
+            />
             {(currentOffice.autoMap?.length > 0
               || currentOffice.trainStationsMap?.length > 0) && (
               <LinkMapBox>
@@ -108,23 +158,35 @@ const LocationPage = ({ seo, currentOffice, attorneysSchemaData }) => {
                 )}
               </LinkMapBox>
             )}
-          </Col>
-          {currentOffice?.attorneys.length > 0 && (
-            <AttorneysOfficeList
-              attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
+            <FAQ
+              anchorId={anchorData.faq.id}
+              faqArrContent={ATTORNEYS_FAQ}
+              faqData={currentOffice.faq}
             />
-          )}
+          </Col>
+          <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>
+            <GetInTouchForm />
+          </Col>
         </Row>
-        {currentOffice?.officePractices.length > 0 && (
-          <BlockListWrapper
-            article={LocationListPracticeArticle}
-            title="Services We Offer"
-            list={currentOffice.officePractices}
-            isSimple
+        {!empty(articles) && (
+          <InfoBlockLocation
+            anchorData={anchorData.howCanWeHelp.id}
+            articles={articles}
+            practices={practicesSorted}
           />
         )}
-        <FAQ faqArrContent={ATTORNEYS_FAQ} />
-      </Container>
+      </LocationPageContainer>
+      {!empty(currentOffice?.attorneys) && (
+        <PracticeAttorneys
+          anchorId={anchorData.attorneys.id}
+          attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
+        />
+      )}
+      <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
+      <GoogleReviews
+        reviews={googleReviews}
+        anchorId={anchorData?.reviews?.id}
+      />
     </>
   );
 };

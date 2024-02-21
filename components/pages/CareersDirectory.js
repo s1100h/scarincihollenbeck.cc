@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import FullWidth from 'layouts/FullWidth';
-import SingleSubHeader from 'layouts/SingleSubHeader';
+import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import CareersResults from '../organisms/careers/CareersResults';
 
@@ -15,7 +15,7 @@ const CareersPage = ({
       metaDescription={seo.metaDescription}
       canonicalUrl={canonicalUrl}
     />
-    <SingleSubHeader
+    <SubHeader
       title={site.title}
       subtitle={site.description}
       offset={3}

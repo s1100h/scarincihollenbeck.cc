@@ -4,8 +4,8 @@ import {
   SITE_PHONE,
   PRODUCTION_URL,
 } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { firmOverviewQuery } from 'utils/graphql-queries';
+import { fetchAPI } from 'requests/api';
+import { firmOverviewQuery } from 'requests/graphql-queries';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import { useContext, useEffect } from 'react';
 import { getSubTitleFromHTML } from 'utils/helpers';
@@ -32,7 +32,9 @@ const sanitizeMembers = (members) => members.map((member) => ({
   designation:
       (member.attorneyMainInformation?.designation
         !== 'Firm Managing Partner'
-      && member.attorneyMainInformation?.designation !== 'Deputy Managing Partner'
+      && member.attorneyMainInformation?.designation
+        !== 'Deputy Managing Partner'
+      && member.attorneyMainInformation?.designation !== 'NYC Managing Partner'
         ? member.attorneyChairCoChair
         : member.attorneyMainInformation.designation)
       || member.administration?.title,
@@ -50,7 +52,6 @@ export const getServerSideProps = async () => {
     directors,
     firmLeaders,
   } = firmOverviewTabs;
-
   return {
     props: {
       title,

@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import CareersPage from 'components/pages/CareersDirectory';
 import { PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'utils/api';
-import { careersPageQuery, careersQuery } from 'utils/graphql-queries';
+import { fetchAPI } from '../../requests/api';
+import { careersPageQuery, careersQuery } from '../../requests/graphql-queries';
 
 /** return careers page content  */
 const careersPageContent = async () => {
@@ -39,7 +39,6 @@ export const getStaticProps = async () => {
   const careerList = await getCareerList();
   const page = await careersPageContent();
   const { seo, title, careersPage } = page;
-
   return {
     props: {
       seo,

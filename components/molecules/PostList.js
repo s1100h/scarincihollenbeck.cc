@@ -1,10 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import Loader from 'components/atoms/Loader';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import PaginationButtons from 'components/atoms/PaginationButtons';
 import NewsCard from 'components/organisms/home/FirmNews/NewsCard';
 
-const PostList = ({ content, isProfile }) => {
+const PostList = ({
+  content, isProfile, classNameForCard, justArrow,
+}) => {
   const {
     handleNextPagination, handlePrevPagination, data, loading, error,
   } = content;
@@ -12,7 +14,6 @@ const PostList = ({ content, isProfile }) => {
   const disableNextBtn = !data?.posts?.pageInfo.hasNextPage;
 
   const memoData = useMemo(() => data?.posts?.edges, [data]);
-
   return (
     <>
       {loading ? (
@@ -21,7 +22,7 @@ const PostList = ({ content, isProfile }) => {
         <>
           {!loading
             && memoData.map(({ node }) => (
-              <div key={node.title}>
+              <Fragment key={node.title}>
                 <NewsCard
                   postSlug={node.uri.replace(
                     'https://scarincihollenbeck.com/',
@@ -35,10 +36,13 @@ const PostList = ({ content, isProfile }) => {
                   postExcerpt={isProfile ? null : node.excerpt}
                   postAuthor={node.author}
                   isProfile={isProfile}
+                  isVertical={isProfile}
+                  classNameProp={classNameForCard}
                 />
-              </div>
+              </Fragment>
             ))}
           <PaginationButtons
+            justArrow={justArrow}
             handleNextPagination={handleNextPagination}
             handlePrevPagination={handlePrevPagination}
             countOfArticles={(isProfile && 3) || 6}

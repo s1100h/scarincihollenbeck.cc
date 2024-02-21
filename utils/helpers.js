@@ -1,3 +1,4 @@
+import empty from 'is-empty';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -26,6 +27,8 @@ export function sortByKey(list, key) {
 
   return list;
 }
+
+export const convertBooleanToString = (booleanArg) => (booleanArg ? 'true' : '');
 
 // take a term lower case and replace white spaces with dashes
 export const urlify = (str) => str.toLowerCase().replace(/\s/g, '-');
@@ -63,6 +66,16 @@ export function getDirectionsFromLocation(location) {
 
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
+
+export const cutAnchorUrl = (slug) => {
+  const index = slug.indexOf('#');
+
+  if (index !== -1) {
+    return slug.substring(0, index);
+  }
+
+  return slug;
+};
 
 // filter by key
 export function filterByKey(list, key) {
@@ -164,13 +177,12 @@ export const formatSrcToCloudinaryUrlPdf = (src) => {
 export const formatPageImageToCloudinaryUrl = (page) => {
   const tossUrl = 'https://wp.scarincihollenbeck.com/wp-content/uploads/';
   if (page.includes(tossUrl)) {
-    const modImageUrlContent = page
+    return page
       .replace(
         /https:\/\/wp.scarincihollenbeck.com\/wp-content\/uploads\//g,
         CLOUDINARY_BASE_URL,
       )
       .replace(/-\d{3,}x\d{3,}\./g, '.');
-    return modImageUrlContent;
   }
 
   return page;
@@ -212,7 +224,7 @@ export const correctAttorneyLink = (link) => {
   return link.replace(regEx, 'attorneys');
 };
 
-export const changeTitle = (title) => {
+export const changeTitle = (title, isH1) => {
   const symbolCheckObject = {
     '&#8220;': '"',
     '&#8221;': '"',
@@ -221,5 +233,59 @@ export const changeTitle = (title) => {
   Object.keys(symbolCheckObject).map(
     (symbol) => (title = title.replace(symbol, symbolCheckObject[symbol])),
   );
+
+  const pattern = /(\d+)th/g;
+  title = title.replace(pattern, (match, number) => `${number}<span>th</span>`);
+
+  if (!isH1 || typeof isH1 === 'undefined') {
+    return title;
+  }
+
+  title = `<h1>${title}</h1>`;
   return title;
 };
+
+export const getSlugFromUrl = (inputString) => {
+  const pattern = /\/([^/]+)$/; // Match the last slash and capture non-slash characters after it
+  const match = pattern.exec(inputString);
+
+  if (match && match[1]) {
+    return match[1];
+  }
+
+  return inputString;
+};
+
+export const cutSlashFromTheEnd = (url) => (url.endsWith('/') ? url.slice(0, -1) : url);
+
+export const convertUnixTimestampToISO = (unixTimestamp) => {
+  const date = new Date(unixTimestamp * 1000); // Convert Unix timestamp to milliseconds
+  return date.toISOString(); // Convert to ISO 8601 string
+};
+
+export const sanitizePracticesByChildren = (practices) => practices
+  .filter(({ practicePortalPageContent }) => practicePortalPageContent?.practicePortalCategories?.includes(
+    'Core Practices',
+  ))
+  .map(
+    ({
+      databaseId,
+      title,
+      uri,
+      practicesIncluded,
+      practicePortalPageContent,
+    }) => {
+      if (empty(practicesIncluded.childPractice)) {
+        practicesIncluded.childPractice = [];
+      }
+      return {
+        databaseId,
+        title,
+        uri,
+        ...practicesIncluded,
+        ...practicePortalPageContent,
+      };
+    },
+  );
+
+export const deleteReviewsWithoutComment = (reviews) => reviews.filter((review) => !empty(review.text));
