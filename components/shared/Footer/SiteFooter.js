@@ -45,7 +45,7 @@ export default function Footer() {
         <FooterDetails />
         <Advertising>
           <Image
-            src="/images/sh-mini-diamond-PNG.png"
+            src="/images/sh-mini-diamond-PNG.svg"
             alt="sh diamond logo favicon"
             width={110}
             height={100}

@@ -12,12 +12,12 @@ const filterTune = (practice) => {
 
   return !titleMap[practice.title];
 };
-export const PracticesContextProvider = ({ children }) => {
+export const PracticesContextProvider = ({ children, includedAttorneys }) => {
   const [practices, setPractices] = useState([]);
   const values = { practices, setPractices };
 
   useEffect(() => {
-    if (empty(practices)) {
+    if (empty(practices) && !includedAttorneys) {
       (async () => {
         const practices = await getPractices();
         const practicesSorted = sortByKey(practices, 'title').filter(

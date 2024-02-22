@@ -849,6 +849,31 @@ export const getPracticesQuery = `query NewQuery {
   }
 }`;
 
+export const getPracticesWithAttorneysQuery = `query NewQuery {
+  practices(first: 100) {
+    nodes {
+      databaseId
+      title
+      practicesIncluded {
+        childPractice {
+          ... on Practice {
+            databaseId
+            title
+          }
+        }
+        includeAttorney {
+        ... on AttorneyProfile {
+            databaseId
+          }
+        }
+      }
+      practicePortalPageContent {
+        practicePortalCategories
+      }
+    }
+  }
+}`;
+
 export const getJustClientAlertOnePost = `query FirmPageQuery {
   posts(where: {categoryIn: [20098]}, first: 1) {
     nodes {

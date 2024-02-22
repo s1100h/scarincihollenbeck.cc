@@ -11,7 +11,7 @@ const PracticeListItem = ({ title, onSelect, pChildren }) => (
     </DropDownItemTitle>
     {pChildren.map((fc) => (
       <ChildPracticeLink
-        key={fc.ID}
+        key={fc.databaseId}
         variant="link"
         name="practices"
         onClick={(e) => onSelect(e, fc.title)}

@@ -281,11 +281,38 @@ export const sanitizePracticesByChildren = (practices) => practices
       return {
         databaseId,
         title,
-        uri,
+        uri: empty(uri) ? '' : uri,
         ...practicesIncluded,
         ...practicePortalPageContent,
       };
     },
   );
+
+export const rebuildDataForAttorneysCards = (practices, attorneys) => {
+  // Iterate through each practice
+  practices.forEach((practice) => {
+    // Iterate through each attorney
+    attorneys.forEach((attorney) => {
+      // Check if the attorney's id matches any of the databaseId values in the includeAttorney array of the practice
+      if (
+        practice.practicesIncluded
+        && practice.practicesIncluded.includeAttorney
+      ) {
+        const matchingAttorney = practice.practicesIncluded.includeAttorney.find(
+          (att) => att.databaseId === attorney.id,
+        );
+        if (matchingAttorney) {
+          // If there's a match, add the practice title to the attorney's practices_array
+          if (!attorney.practices_array) {
+            attorney.practices_array = [];
+          }
+          attorney.practices_array.push(practice.title);
+        }
+      }
+    });
+  });
+
+  return attorneys;
+};
 
 export const deleteReviewsWithoutComment = (reviews) => reviews.filter((review) => !empty(review.text));

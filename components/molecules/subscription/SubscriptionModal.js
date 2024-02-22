@@ -41,7 +41,7 @@ const SubscriptionModal = ({ children, customClass }) => {
             <>
               <section>
                 <Image
-                  src="/images/sh-mini-diamond-PNG.png"
+                  src="/images/sh-mini-diamond-PNG.svg"
                   width={130}
                   height={107}
                   alt={`${SITE_TITLE} diamond`}

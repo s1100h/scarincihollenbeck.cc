@@ -1,6 +1,10 @@
 import { useEffect, useContext } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
-import { sortByKey } from 'utils/helpers';
+import {
+  rebuildDataForAttorneysCards,
+  sanitizePracticesByChildren,
+  sortByKey,
+} from 'utils/helpers';
 import {
   PRODUCTION_URL,
   BASE_API_URL,
@@ -12,6 +16,7 @@ import {
   adminKaterinTraughQuery,
   attorneysPageQuery,
   attorneysQuery,
+  getPracticesWithAttorneysQuery,
   miniOfficeLocationQuery,
 } from 'requests/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
@@ -22,6 +27,12 @@ export const attorneysPageContent = async () => {
   const data = await fetchAPI(attorneysPageQuery, {});
   return data?.pageBy;
 };
+
+export const getPracticesWithAttorneys = async () => {
+  const { practices: nodes } = await fetchAPI(getPracticesWithAttorneysQuery);
+  return nodes.nodes;
+};
+
 export const getKaterinTraugh = async () => {
   const data = await fetchAPI(adminKaterinTraughQuery);
   const {
@@ -138,20 +149,27 @@ export async function getStaticProps() {
   const page = await attorneysPageContent();
   const { title, seo, attorneyArchives } = page;
   const katerinTraugh = await getKaterinTraugh();
+  const practicesWithAttorneys = await getPracticesWithAttorneys();
+  const sanitizedPracticesByChildren = sanitizePracticesByChildren(
+    practicesWithAttorneys,
+  );
+  const attorneysRebuildData = rebuildDataForAttorneysCards(
+    practicesWithAttorneys,
+    attorneys,
+  );
 
   if (!page) {
     return {
       notFound: true,
     };
   }
-
   return {
     props: {
       seo,
       locations,
       designations,
-      practices,
-      attorneys: [...attorneys, katerinTraugh],
+      practices: sanitizedPracticesByChildren,
+      attorneys: [...attorneysRebuildData, katerinTraugh],
       site: {
         title,
         description: attorneyArchives?.description,

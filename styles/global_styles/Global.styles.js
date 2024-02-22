@@ -701,7 +701,7 @@ export const successMessage = `
     display: inline-block;
     width: 84px;
     height: 75px;
-    background-image: url('/images/sh-mini-diamond-PNG.png');
+    background-image: url('/images/sh-mini-diamond-PNG.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right center;
