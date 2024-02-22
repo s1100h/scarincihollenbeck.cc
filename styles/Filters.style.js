@@ -3,14 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import styled from 'styled-components';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 import empty from 'is-empty';
-
-const translate3dVariations = (width) =>
-  `translate3d(${width}, 49px, 0px)!important`;
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
   margin-top: 5px;
@@ -183,7 +177,8 @@ export const ContainerFilters = styled(Container)`
     !empty(props?.isWhite) ? globalColor.white : '#495057'};
   box-shadow: ${globalShadow.allSideShadow};
 
-  form {
+  #siteSearch {
+    height: 48px !important;
     margin-left: 0;
     margin-right: 50px;
   }

@@ -52,7 +52,11 @@ const SpecialHeader = ({ practices, locations }) => {
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
-        <Navigation isHidden={isOpenSearch} practices={practices} />
+        <Navigation
+          isHidden={isOpenSearch}
+          practices={practices}
+          locations={locations}
+        />
         <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
           <GlobalSearch onHandleClickSearch={handleOpenSearch} />
         </VisibleHiddenSearch>

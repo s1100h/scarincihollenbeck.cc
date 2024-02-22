@@ -105,7 +105,7 @@ export const ScarinciHollenbeckAuthor = [
     databaseId: 10000000000001,
     attorneyMainInformation: {
       profileImage: {
-        sourceUrl: '/images/sh-mini-diamond-PNG.png',
+        sourceUrl: '/images/sh-mini-diamond-PNG.svg',
       },
       email: SITE_EMAIL,
       phoneNumber: SITE_PHONE,
@@ -128,7 +128,7 @@ export const ScarinciHollenbeckKeyContact = {
   link: '/attorneys',
   display_name: 'Scarinci Hollenbeck',
   keyContactsByPractice: null,
-  profileImage: '/images/sh-mini-diamond-PNG.png',
+  profileImage: '/images/sh-mini-diamond-PNG.svg',
   designation: 'The Firm',
   phoneNumber: SITE_PHONE,
   email: SITE_EMAIL,
@@ -695,7 +695,7 @@ export const locationInfoBlockArticles = [
       Scarinci Hollenbeck is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
     </p>
     `,
-    image: '/images/sh-mini-diamond-PNG.png',
+    image: '/images/sh-mini-diamond-PNG.svg',
     reactComponent: null,
   },
   {

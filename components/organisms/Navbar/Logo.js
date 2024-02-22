@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { SITE_TITLE } from 'utils/constants';
 import { CombinedLogo } from 'styles/SiteLogo.style';
-import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.png';
+import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
 import LogoLetters from '../../../public/images/lattersLogo.png';
 import LogoLettersBlack from '../../../public/images/lettarsLogoblack.png';
 

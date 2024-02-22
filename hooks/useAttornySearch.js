@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { filterByKey } from 'utils/helpers';
+import empty from 'is-empty';
 
 export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
   // filter through results
@@ -13,7 +14,7 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
     if (attorney.designation === 'Chief Executive Officer') {
       return;
     }
-    if (practices.length > 0 && attorney.practices_array) {
+    if (!empty(practices) && !empty(attorney.practices_array)) {
       const prunedPracticeList = attorney.practices_array?.map((p) => p.replace(/[^a-zA-Z ]/g, '').toLowerCase());
       return (
         prunedPracticeList.indexOf(

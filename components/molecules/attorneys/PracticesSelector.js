@@ -20,9 +20,11 @@ const PracticesSelector = ({ practices, onSelect }) => {
     } else {
       setIsSecondLvl(false);
       setSecondLvlData([]);
-      onSelect(event, title);
+      onSelect({ target: { name: 'practices' } }, title);
     }
   };
+
+  const handleSelectPractice = () => onSelect({ target: { name: 'practices' } }, activeItemTitle);
 
   return (
     <DropdownSelectorBtn
@@ -43,9 +45,7 @@ const PracticesSelector = ({ practices, onSelect }) => {
                   <Accordion.Header>{practice?.title}</Accordion.Header>
                   <Accordion.Body>
                     <FilterBox>
-                      <button
-                        onClick={(event) => onSelect(event, activeItemTitle)}
-                      >
+                      <button onClick={handleSelectPractice}>
                         {activeItemTitle}
                         {', '}
                         main
@@ -53,7 +53,10 @@ const PracticesSelector = ({ practices, onSelect }) => {
                       {practice?.childPractice.map((child) => (
                         <button
                           key={child?.databaseId}
-                          onClick={(event) => onSelect(event, child.title)}
+                          onClick={() => onSelect(
+                            { target: { name: 'practices' } },
+                            child.title,
+                          )}
                         >
                           {child.title}
                         </button>
@@ -86,7 +89,7 @@ const PracticesSelector = ({ practices, onSelect }) => {
       {isSecondLvl && !isTabletScreen && (
         <FilterBox>
           <h6>{activeItemTitle}</h6>
-          <button onClick={(event) => onSelect(event, activeItemTitle)}>
+          <button onClick={handleSelectPractice}>
             {activeItemTitle}
             {', '}
             main
@@ -95,7 +98,7 @@ const PracticesSelector = ({ practices, onSelect }) => {
             && secondLvlData?.map((child) => (
               <button
                 key={child.databaseId}
-                onClick={(event) => onSelect(event, child.title)}
+                onClick={() => onSelect({ target: { name: 'practices' } }, child.title)}
               >
                 {child.title}
               </button>

@@ -72,9 +72,9 @@ export default function AttorneyCard({
         <LinkBox>
           <Image
             placeholder="blur"
-            blurDataURL={image || '/images/sh-mini-diamond-PNG.png'}
+            blurDataURL={image || '/images/sh-mini-diamond-PNG.svg'}
             loading="lazy"
-            src={image || '/images/sh-mini-diamond-PNG.png'}
+            src={image || '/images/sh-mini-diamond-PNG.svg'}
             alt={name}
             width={
               width

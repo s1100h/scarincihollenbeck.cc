@@ -20,7 +20,7 @@ const renderClientsList = (clientsArr) => (
             <Image
               src={
                 client.clientImage.sourceUrl
-                || '/images/sh-mini-diamond-PNG.png'
+                || '/images/sh-mini-diamond-PNG.svg'
               }
               width={150}
               height={150}
@@ -30,7 +30,7 @@ const renderClientsList = (clientsArr) => (
         ) : (
           <Image
             src={
-              client.clientImage.sourceUrl || '/images/sh-mini-diamond-PNG.png'
+              client.clientImage.sourceUrl || '/images/sh-mini-diamond-PNG.svg'
             }
             width={150}
             height={150}

@@ -46,7 +46,7 @@ export const LinkBox = styled.section`
 export const ImageBox = styled.div`
   width: 108px;
   height: 148px;
-  background-image: url(${'/images/sh-mini-diamond-PNG.png'});
+  background-image: url(${'/images/sh-mini-diamond-PNG.svg'});
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: center;
