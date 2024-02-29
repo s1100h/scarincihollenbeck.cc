@@ -71,9 +71,18 @@ export const SpecialSubHeaderContainer = styled.section`
     position: relative;
     margin-bottom: 40px;
 
-    > :last-child {
-      span {
-        color: ${globalColor.white};
+    li {
+      a {
+        transition: all 0.3s ease-out;
+        &:hover {
+          color: ${globalColor.white};
+        }
+      }
+      
+      &.active {
+        > a, span {
+          color: ${globalColor.white};
+        }
       }
     }
   }
