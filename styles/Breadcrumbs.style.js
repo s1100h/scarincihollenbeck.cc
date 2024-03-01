@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { globalColor } from './global_styles/Global.styles';
 import Button from 'react-bootstrap/Button';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import Link from 'next/link';
 
 export const BreadcrumbsListContainer = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   align-items: center;
 
@@ -18,6 +20,14 @@ export const BreadcrumbsListContainer = styled.ul`
     align-items: center;
     text-transform: capitalize;
     gap: 5px;
+
+    &.active {
+      pointer-events: none;
+
+      > a {
+        color: ${globalColor.gray.gray80};
+      }
+    }
 
     span {
       color: ${globalColor.gray.gray80};
@@ -34,7 +44,7 @@ export const BreadcrumbsListContainer = styled.ul`
   }
 `;
 
-export const ButtonBreadcrumb = styled(Button)`
+export const ButtonBreadcrumb = styled(Link)`
   text-decoration: none;
   color: ${globalColor.blue.dirtyBlue};
   text-transform: capitalize;

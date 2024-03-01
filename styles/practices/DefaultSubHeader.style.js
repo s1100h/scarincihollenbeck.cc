@@ -61,8 +61,7 @@ export const DefaultSubHeaderContent = styled.div`
     margin: 16px 0 0 0;
 
     li {
-      a,
-      button {
+      a {
         color: ${globalColor.grayExtraLite.grayExtraLite50};
         transition: all 0.5s ease;
 
@@ -79,9 +78,14 @@ export const DefaultSubHeaderContent = styled.div`
         color: #888;
       }
 
+      &.active {
+        > a {
+          color: #888;
+        }
+      }
+
       a,
-      span,
-      button {
+      span {
         font-size: ${rem(14)};
         line-height: 13px;
       }
