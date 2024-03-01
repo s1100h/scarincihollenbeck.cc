@@ -1,14 +1,18 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
-import { useEffect, useState } from 'react';
+import { useId } from 'react';
+import empty from 'is-empty';
+import { CategoriesButtonsStructure } from 'utils/constants';
 import {
   BreadcrumbsListContainer,
   ButtonBreadcrumb,
 } from '../../../styles/Breadcrumbs.style';
 import { cutAnchorUrl } from '../../../utils/helpers';
 
-const delegatePathFunc = (CrumbsPath, router) => {
+const delegatePathFunc = (list, router, data) => {
+  if (empty(list)) return;
+
   if (router.pathname === '/404') {
     return (
       <li>
@@ -17,99 +21,112 @@ const delegatePathFunc = (CrumbsPath, router) => {
     );
   }
 
-  if (Array.isArray(CrumbsPath)) {
-    if (CrumbsPath.length === 1) {
-      return (
-        <li>
-          <span>{CrumbsPath[0].replace(/-/g, ' ')}</span>
-        </li>
-      );
-    }
+  if (list.length === 1) {
+    return (
+      <li>
+        <span>{list[0].replace(/-/g, ' ')}</span>
+      </li>
+    );
+  }
 
-    if (CrumbsPath.includes('location')) {
-      return (
-        <>
-          <li>
-            <Link href="/location/little-falls">
-              {CrumbsPath[0].replace(/-/g, ' ')}
-            </Link>
-            <BsChevronRight />
-          </li>
-          <li>
-            <span>{router.query.slug?.replace(/-/g, ' ')}</span>
-          </li>
-        </>
-      );
-    }
-
-    if (CrumbsPath.length > 1 && CrumbsPath.includes('author')) {
-      return (
-        <>
-          <li>
-            <ButtonBreadcrumb variant="link" onClick={() => router.back()}>
-              {CrumbsPath[0].replace(/-/g, ' ')}
-            </ButtonBreadcrumb>
-            <BsChevronRight />
-          </li>
-          <li>
-            <span>Author</span>
-          </li>
-        </>
-      );
-    }
-
-    if (
-      CrumbsPath.length > 1
-      && CrumbsPath.includes('library')
-      && !CrumbsPath.includes('author')
-    ) {
-      return (
-        <>
-          <li>
-            <ButtonBreadcrumb variant="link" onClick={() => router.back()}>
-              {CrumbsPath[0].replace(/-/g, ' ')}
-            </ButtonBreadcrumb>
-            <BsChevronRight />
-          </li>
-          <li>
-            <span>{CrumbsPath[CrumbsPath.length - 1].replace(/-/g, ' ')}</span>
-          </li>
-        </>
-      );
-    }
-
+  if (list.includes('location')) {
     return (
       <>
-        <li>
-          <ButtonBreadcrumb variant="link" onClick={() => router.back()}>
-            {CrumbsPath[0].replace(/-/g, ' ')}
-          </ButtonBreadcrumb>
+        <li className={list?.includes('little-falls') ? 'active' : ''}>
+          <Link href="/location/little-falls">
+            {list[0].replace(/-/g, ' ')}
+          </Link>
           <BsChevronRight />
         </li>
         <li>
-          <span>
-            {cutAnchorUrl(CrumbsPath[CrumbsPath.length - 1].replace(/-/g, ' '))}
-          </span>
+          <span>{router.query.slug?.replace(/-/g, ' ')}</span>
         </li>
       </>
     );
   }
+
+  if (list.length > 1 && list.includes('author')) {
+    return (
+      <>
+        <li>
+          <ButtonBreadcrumb
+            href={`/library/category/${CategoriesButtonsStructure[0].slug}`}
+          >
+            {list[0].replace(/-/g, ' ')}
+          </ButtonBreadcrumb>
+          <BsChevronRight />
+        </li>
+        <li>
+          <span>{`Author - ${data?.title.replace(/\sArticles$/, '')}`}</span>
+        </li>
+      </>
+    );
+  }
+
+  if (list.length > 1 && list.includes('library') && !list.includes('author')) {
+    return (
+      <>
+        <li className={list?.includes(CategoriesButtonsStructure[0].slug) ? 'active' : ''}>
+          <ButtonBreadcrumb
+            href={`/library/category/${CategoriesButtonsStructure[0].slug}`}
+          >
+            {list[0].replace(/-/g, ' ')}
+          </ButtonBreadcrumb>
+          <BsChevronRight />
+        </li>
+        <li>
+          <span>{list[list.length - 1].replace(/-/g, ' ')}</span>
+        </li>
+      </>
+    );
+  }
+
+  if (router.pathname.includes('/post/')) {
+    return (
+      <>
+        {list?.slice(0, -1)?.map((item) => (
+          <li key={useId()}>
+            <ButtonBreadcrumb
+              href={`/library/category/${item}`}
+            >
+              {item.replace(/-/g, ' ')}
+            </ButtonBreadcrumb>
+            <BsChevronRight />
+          </li>
+        ))}
+        <li className="active">
+          <ButtonBreadcrumb
+            href={`/${list.join('/')}`}
+          >
+            {list[list.length - 1].replace(/-/g, ' ')}
+          </ButtonBreadcrumb>
+        </li>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {list?.map((item, index) => (
+        <li
+          key={useId()}
+          className={`${index === list.length - 1 ? 'active' : ''}`}
+        >
+          <ButtonBreadcrumb
+            href={`/${list.slice(0, index + 1).join('/')}`}
+          >
+            {cutAnchorUrl(item.replace(/-/g, ' '))}
+          </ButtonBreadcrumb>
+          {index !== list.length - 1 && <BsChevronRight />}
+        </li>
+      ))}
+    </>
+  );
 };
 
-const PostBreadCrumbs = () => {
+const PostBreadCrumbs = ({ data }) => {
   const router = useRouter();
-  const [crumbs, setCrumbs] = useState();
-
-  useEffect(() => {
-    const filteredCrumbs = router.asPath
-      .split('/')
-      .filter((crumb) => crumb !== '')
-      .filter((crumb) => crumb.indexOf('https:') < 0);
-
-    if (filteredCrumbs) {
-      setCrumbs(filteredCrumbs);
-    }
-  }, [router.asPath]);
+  const slug = router.asPath.split('/').filter((crumb) => crumb !== '');
 
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">
@@ -117,7 +134,7 @@ const PostBreadCrumbs = () => {
         <Link href="/">Home</Link>
         <BsChevronRight />
       </li>
-      {delegatePathFunc(crumbs, router)}
+      {delegatePathFunc(slug, router, data)}
     </BreadcrumbsListContainer>
   );
 };

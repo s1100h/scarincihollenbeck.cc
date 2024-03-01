@@ -34,7 +34,7 @@ const DefaultSubHeader = ({
   >
     {backgroundImage?.length > 0 && <GradientWrapper />}
     <SubHeaderContent props={{ isBlog }}>
-      <PostBreadcrumbs />
+      <PostBreadcrumbs data={{ title }} />
       <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
       {isBlog && (
         <p className="mt-4 mb-2">
