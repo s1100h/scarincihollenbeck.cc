@@ -40,3 +40,10 @@ yarn-error.log*
 /.idea
 /.vscode
 .vscode/find-unused-exports.json
+
+#pwa system ignore
+sw.js
+sw.js.map
+swe-worker-*.js
+workbox-*.js
+workbox-*.js.map
