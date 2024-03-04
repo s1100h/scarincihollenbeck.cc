@@ -28,17 +28,17 @@ module.exports = {
     ],
     minimumCacheTTL: 60,
     deviceSizes: [576, 768, 992, 1200, 1456],
-    staticPageGenerationTimeout: 120,
-    swcMinify: true,
+    // staticPageGenerationTimeout: 120,
+    // swcMinify: true,
   },
   compiler: {
     styledComponents: true,
   },
-  experimental: {
-    fontLoaders: [
-      { loader: 'next/font/google', options: { subsets: ['latin'] } },
-    ],
-  },
+  // experimental: {
+  //   fontLoaders: [
+  //     { loader: 'next/font/google', options: { subsets: ['latin'] } },
+  //   ],
+  // },
   async rewrites() {
     return [
       ...POST_TYPE_REWRITES,

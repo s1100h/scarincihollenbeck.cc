@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import SpecialSubHeader from './SpecialSubHeader';
 import DefaultSubHeader from './DefaultSubHeader';
 import { getSlugFromUrl } from '../../utils/helpers';
-import SliderSubHeader from './SliderSubHeader';
-import DefaultSubHeaderNew from './DefaultSubHeaderNew';
 
 const renderSubHeader = (pageSlug, props) => {
   const pagesMap = {
