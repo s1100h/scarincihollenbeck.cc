@@ -66,7 +66,11 @@ const delegatePathFunc = (list, router, data) => {
   if (list.length > 1 && list.includes('library') && !list.includes('author')) {
     return (
       <>
-        <li className={list?.includes(CategoriesButtonsStructure[0].slug) ? 'active' : ''}>
+        <li
+          className={
+            list?.includes(CategoriesButtonsStructure[0].slug) ? 'active' : ''
+          }
+        >
           <ButtonBreadcrumb
             href={`/library/category/${CategoriesButtonsStructure[0].slug}`}
           >
@@ -86,18 +90,14 @@ const delegatePathFunc = (list, router, data) => {
       <>
         {list?.slice(0, -1)?.map((item) => (
           <li key={useId()}>
-            <ButtonBreadcrumb
-              href={`/library/category/${item}`}
-            >
+            <ButtonBreadcrumb href={`/library/category/${item}`}>
               {item.replace(/-/g, ' ')}
             </ButtonBreadcrumb>
             <BsChevronRight />
           </li>
         ))}
         <li className="active">
-          <ButtonBreadcrumb
-            href={`/${list.join('/')}`}
-          >
+          <ButtonBreadcrumb href={`/${list.join('/')}`}>
             {list[list.length - 1].replace(/-/g, ' ')}
           </ButtonBreadcrumb>
         </li>
@@ -112,9 +112,7 @@ const delegatePathFunc = (list, router, data) => {
           key={useId()}
           className={`${index === list.length - 1 ? 'active' : ''}`}
         >
-          <ButtonBreadcrumb
-            href={`/${list.slice(0, index + 1).join('/')}`}
-          >
+          <ButtonBreadcrumb href={`/${list.slice(0, index + 1).join('/')}`}>
             {cutAnchorUrl(item.replace(/-/g, ' '))}
           </ButtonBreadcrumb>
           {index !== list.length - 1 && <BsChevronRight />}

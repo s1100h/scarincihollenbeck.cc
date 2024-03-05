@@ -78,9 +78,10 @@ export const SpecialSubHeaderContainer = styled.section`
           color: ${globalColor.white};
         }
       }
-      
+
       &.active {
-        > a, span {
+        > a,
+        span {
           color: ${globalColor.white};
         }
       }
