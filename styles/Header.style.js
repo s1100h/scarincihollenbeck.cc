@@ -143,7 +143,7 @@ export const LogoBox = styled.div`
 
   ${media_breakpoint_exactly_down(400)} {
     a {
-      width: auto;
+      width: 52px;
 
       .logo-letters {
         display: none;
