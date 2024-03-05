@@ -1,5 +1,5 @@
-import { Licorice, Montserrat, Poppins, Rajdhani, Roboto } from '@next/font/google';
-import localFont from '@next/font/local'
+import { Licorice, Montserrat, Poppins, Rajdhani, Roboto } from "next/font/google";
+import localFont from "next/font/local"
 
 export const montserrat = Montserrat({
 	weight: ['300', '500', '600', '900'],
