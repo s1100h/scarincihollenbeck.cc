@@ -1,6 +1,5 @@
 import { BASE_API_URL, headers } from 'utils/constants';
-
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 /** Get page content by page url */
 const getPageContent = async (slug) => {
