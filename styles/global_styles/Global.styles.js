@@ -3,6 +3,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_up,
 } from '../mediaBreakpoints.style';
+import 'react-toastify/dist/ReactToastify.css';
 
 const mainFontSize = 16;
 

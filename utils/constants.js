@@ -769,6 +769,22 @@ export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
 export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';
 
+export const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
+};
+
+export const initialAdminFCM = {
+  clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
+  privateKey: process.env.NEXT_PUBLIC_FIREBASE_PRIVAT_KEY,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+};
+
 export const googleLocationIds = {
   'little-falls': 'ChIJT4-XoRdWwokR_STT5apGtEc',
   'new-york': 'ChIJZSMV5ABZwokRvTg94J92jfU',
