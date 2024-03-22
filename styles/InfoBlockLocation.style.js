@@ -261,7 +261,7 @@ export const ArticleLocationBox = styled.article`
     flex-direction: column;
     align-items: flex-start;
     padding: 32px;
-    padding-right: 0;
+    padding-right: 20px;
     background-color: ${globalColor.blue.darkBlue};
 
     p {
