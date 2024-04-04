@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo } from 'react';
 import Loader from 'components/atoms/Loader';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
+import { changePostLink, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import PaginationButtons from 'components/atoms/PaginationButtons';
 import NewsCard from 'components/organisms/home/FirmNews/NewsCard';
 
@@ -24,10 +24,7 @@ const PostList = ({
             && memoData.map(({ node }) => (
               <Fragment key={node.title}>
                 <NewsCard
-                  postSlug={node.uri.replace(
-                    'https://scarincihollenbeck.com/',
-                    '/',
-                  )}
+                  postSlug={changePostLink(node.uri)}
                   postImage={formatSrcToCloudinaryUrl(
                     node.featuredImage?.node?.sourceUrl,
                   )}

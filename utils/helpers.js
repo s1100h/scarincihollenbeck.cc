@@ -316,3 +316,9 @@ export const rebuildDataForAttorneysCards = (practices, attorneys) => {
 };
 
 export const deleteReviewsWithoutComment = (reviews) => reviews.filter((review) => !empty(review.text));
+
+export const changePostLink = (url) => {
+  const parts = url.replace(`${PRODUCTION_URL}/`, '').split('/');
+  const result = `/${parts[0]}/${parts[parts.length - 1]}`;
+  return result;
+};

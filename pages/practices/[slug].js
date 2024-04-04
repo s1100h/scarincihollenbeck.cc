@@ -4,11 +4,9 @@ import { PRODUCTION_URL, googleLocationIds } from 'utils/constants';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
-import { getGoogleReviewsForPalaces } from 'requests/getGoogleReviews';
 import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
-import { deleteReviewsWithoutComment } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -45,9 +43,10 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   } = await getPracticeAttorneys(resolvedUrl);
   const clientAlertPost = await getClientAlertPost();
 
-  const googleReviews = await getGoogleReviewsForPalaces(
-    Object.values(googleLocationIds),
-  );
+  // 04.04.2024 Google reviews temporarily disabled
+  // const googleReviews = await getGoogleReviewsForPalaces(
+  //   Object.values(googleLocationIds),
+  // );
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
 
@@ -96,7 +95,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       latestFromTheFirm,
       slug: params.slug,
       faq,
-      googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
+      // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
   };
 };

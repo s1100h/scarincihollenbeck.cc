@@ -4,6 +4,8 @@ import PostSiteHead from 'components/shared/head/PostSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import PostBody from 'components/organisms/post/PostBody';
 import Sidebar from 'components/organisms/post/PostSidebar';
+import { changePostLink } from 'utils/helpers';
+import { PRODUCTION_URL } from 'utils/constants';
 import { SideBarContainer } from '../../styles/Sidebar.style';
 import RelatedPosts from '../organisms/post/RelatedPosts';
 import RecommendedPosts from '../common/RecommendedPosts';
@@ -30,7 +32,7 @@ const PostPage = ({
     <>
       <PostSiteHead
         seo={seo}
-        canonicalUrl={canonicalUrl}
+        canonicalUrl={`${PRODUCTION_URL}${changePostLink(canonicalUrl)}`}
         post={post}
         authors={authors}
       />
