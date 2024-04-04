@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
-import { useId } from 'react';
 import empty from 'is-empty';
 import { CategoriesButtonsStructure } from 'utils/constants';
 import {
@@ -89,7 +88,7 @@ const delegatePathFunc = (list, router, data) => {
     return (
       <>
         {list?.slice(0, -1)?.map((item) => (
-          <li key={useId()}>
+          <li key={`${item} + breadcrumb`}>
             <ButtonBreadcrumb href={`/library/category/${item}`}>
               {item.replace(/-/g, ' ')}
             </ButtonBreadcrumb>
@@ -109,7 +108,7 @@ const delegatePathFunc = (list, router, data) => {
     <>
       {list?.map((item, index) => (
         <li
-          key={useId()}
+          key={`${item} + breadcrumb`}
           className={`${index === list.length - 1 ? 'active' : ''}`}
         >
           <ButtonBreadcrumb href={`/${list.slice(0, index + 1).join('/')}`}>
