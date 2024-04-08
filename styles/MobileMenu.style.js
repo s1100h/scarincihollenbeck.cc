@@ -4,7 +4,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import {
   cannabisLawColors,
   globalColor,
-  globalShadow,
   rem,
 } from './global_styles/Global.styles';
 import {
@@ -38,6 +37,25 @@ export const OffcanvasContainer = styled(Offcanvas)`
 
   &.menu-cannabis {
     margin-top: 128px;
+    .accordion-item {
+      .accordion-body {
+        .mobile-menu__first-lvl {
+          .mobile-item__with-child {
+            &.active {
+              color: ${cannabisLawColors.cannabisColorGray};
+            }
+          }
+        }
+        .mobile-menu__second-lvl {
+          li {
+            a {
+              color: ${globalColor.black};
+            }
+            color: ${globalColor.black};
+          }
+        }
+      }
+    }
   }
 
   &.menu-entertainment {
@@ -53,7 +71,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
   }
 
   ${media_breakpoint_down('lg')} {
-    margin-top: 116px;
+    margin-top: 112px;
 
     &.menu-cannabis {
       margin-top: 76px;
@@ -138,15 +156,13 @@ export const AccordionStyled = styled(Accordion)`
       ${({ menuprops }) =>
         !empty(menuprops)
           ? `
-         :after {
-          display: none;
-         }
-         
-        `
+          :after {
+            display: none;
+          }`
           : `
-         .chevron-down {
-          display: none;
-         }
+          .chevron-down {
+            display: none;
+          }
         `};
     }
 
@@ -181,6 +197,7 @@ export const AccordionStyled = styled(Accordion)`
               !empty(menuprops) ? globalColor.black : globalColor.white};
             font-weight: 700;
             line-height: 13px;
+            text-align: start;
             transition: all 0.5s ease-in-out;
 
             &:hover {

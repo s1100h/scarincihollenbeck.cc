@@ -322,3 +322,5 @@ export const changePostLink = (url) => {
   const result = `/${parts[0]}/${parts[parts.length - 1]}`;
   return result;
 };
+
+export const checkOnPublish = (array) => array.filter((item) => item?.status === 'publish') || [];

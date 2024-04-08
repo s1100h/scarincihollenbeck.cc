@@ -145,6 +145,7 @@ export const practicesQueryGenerator = (uri) => {
           databaseId
           uri
           title
+          status
           attorneyMainInformation {
             designation
             email
@@ -170,6 +171,7 @@ export const practicesQueryGenerator = (uri) => {
           databaseId
           uri
           title
+          status
           attorneyMainInformation {
             designation
             email
@@ -205,6 +207,7 @@ export const practicesQueryGenerator = (uri) => {
           databaseId
           uri
           title
+          status
           attorneyMainInformation {
             designation
             email
