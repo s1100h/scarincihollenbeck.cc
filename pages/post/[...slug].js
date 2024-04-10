@@ -224,7 +224,7 @@ export const getServerSideProps = async ({ params, res, query }) => {
       categories: postData.postContent.categories.nodes,
       authors,
       keyContacts: postData.postContent.keyContacts || authors,
-      category,
+      category: category || '',
       corePractices: postData.corePractices,
       relatedPosts: postData.relatedPosts,
       posts: postData.posts,

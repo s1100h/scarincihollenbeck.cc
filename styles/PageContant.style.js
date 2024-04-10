@@ -61,6 +61,7 @@ export const ContentContainer = styled.div`
     .alignright {
       float: none;
       margin: 0;
+      max-width: 100%;
     }
   }
 `;

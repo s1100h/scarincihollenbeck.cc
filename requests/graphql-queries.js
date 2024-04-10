@@ -185,7 +185,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
 }`;
 
 export const attorneysQuery = `query FirmPageQuery {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
     nodes {
       databaseId
       slug
@@ -796,7 +796,7 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
 
 /** attorneys landing page query */
 export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
-  attorneyProfiles(first: 200) {
+  attorneyProfiles(first: 200, where: {status: PUBLISH}) {
     nodes {
       databaseId
       uri
@@ -951,7 +951,7 @@ export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
 }`;
 
 export const authorsPostQuery = `query FirmPageQuery {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
     nodes {
       attorneyAuthorId {
         authorId {
@@ -1273,7 +1273,7 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
 }`;
 
 export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
-  attorneyProfiles(first: 30) {
+  attorneyProfiles(first: 30, where: {status: PUBLISH}) {
     edges {
       node {
         featuredImage {

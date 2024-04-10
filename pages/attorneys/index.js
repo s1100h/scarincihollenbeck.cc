@@ -21,6 +21,9 @@ import {
 } from 'requests/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 import { sanitizeOffices } from 'pages';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import empty from 'is-empty';
 
 /** Fetch the page content from WP GRAPHQL API */
 export const attorneysPageContent = async () => {
@@ -202,6 +205,9 @@ const Attorneys = ({
     setAttorneysContext,
   } = useContext(AttorneysContext);
   const canonicalUrl = `${PRODUCTION_URL}/attorneys`;
+  const router = useRouter();
+  const searchParams = new URLSearchParams(router.query);
+  const notifyTime = 5000;
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');
@@ -224,9 +230,45 @@ const Attorneys = ({
       setAttorneysContext(attorneys);
     }
   }, []);
+
   useEffect(() => {
     if (!userInput) clearQuery('query');
   }, [userInput]);
+
+  useEffect(() => {
+    const notFound = searchParams.get('notFound');
+    if (notFound) {
+      toast.error("Attorney doesn't exist!", {
+        position: 'bottom-left',
+        autoClose: notifyTime,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+
+      searchParams.delete('notFound');
+
+      setTimeout(() => {
+        const updatedQueryString = searchParams.toString();
+        if (!empty(updatedQueryString)) {
+          router.replace(
+            `${router.pathname}?${updatedQueryString}`,
+            undefined,
+            {
+              shallow: true,
+            },
+          );
+        } else {
+          router.replace(`${router.pathname}`, undefined, {
+            shallow: true,
+          });
+        }
+      }, notifyTime);
+    }
+  }, [router]);
 
   const attorneysPageProps = {
     sPractices,

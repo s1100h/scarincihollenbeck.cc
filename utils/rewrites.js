@@ -1,8 +1,8 @@
 // redirects for change url naming
 const POST_TYPE_REWRITES = [
   // {
-  //   source: '/attorneys/:path*',
-  //   destination: '/attorney/:path*',
+  //   source: '/attorney/:path*',
+  //   destination: '/attorneys/:path*',
   // },
   // {
   //   source: '/practices/:path*',

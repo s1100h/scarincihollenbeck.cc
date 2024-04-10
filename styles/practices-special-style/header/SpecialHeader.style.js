@@ -220,10 +220,6 @@ export const LinksBoxSpecial = styled(LinksBox)`
 
   .link-btn-header {
     height: 50px;
-
-    ${media_breakpoint_down('lg')} {
-      display: none;
-    }
   }
 
   button {
