@@ -117,6 +117,7 @@ const NonFiltered = ({ attorneys }) => {
     <>
       {Object.entries(sortedAttorneys).map((attorney) => (
         <AttorneyCards
+          key={`${attorney[0]}-attorney`}
           title={attorney[0]}
           pathname={pathname}
           content={attorney[1].attorneys}

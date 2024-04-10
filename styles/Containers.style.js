@@ -5,6 +5,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
+import { FormContainer } from './attorney-page/GetInTouchForm.styles';
 
 export const ContainerXXL = styled.section`
   display: flex;
@@ -83,6 +84,10 @@ export const TwoColumnsContainer = styled.section`
 export const FirstColumn = styled.div`
   grid-area: 2/2;
   padding-right: 4vw;
+
+  ${FormContainer} {
+    margin: 0 0 32px 0;
+  }
 
   ${media_breakpoint_exactly_down(1100)} {
     grid-area: 1/2/1/4;

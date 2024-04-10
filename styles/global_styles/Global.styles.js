@@ -367,6 +367,9 @@ button {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .aligncenter > figcaption {
@@ -382,7 +385,13 @@ button {
   flex-direction: column;
   float: left;
   margin-right: 24px;
-  width: min-content;
+  max-width: 50%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .alignright {
@@ -392,7 +401,13 @@ button {
   flex-direction: column;
   float: right;
   margin-left: 24px;
-  width: min-content;
+  max-width: 50%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .wp-block-columns {
@@ -401,6 +416,13 @@ button {
 
 .wp-block-column {
   flex: 1;
+}
+
+.wp-block-table {
+  td {
+    padding: 0 10px;
+    border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+  }
 }
 
 .has-text-align-center {

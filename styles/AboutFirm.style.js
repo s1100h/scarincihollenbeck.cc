@@ -47,6 +47,7 @@ export const AboutBox = styled.div`
   height: 400px;
   display: flex;
   gap: 44px;
+  background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
 
   ${media_breakpoint_exactly_down(820)} {
     flex-direction: column;

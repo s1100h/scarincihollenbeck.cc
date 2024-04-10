@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { DropdownSelectorBtn, FilterBox } from 'styles/Filters.style';
 import Accordion from 'react-bootstrap/Accordion';
 import empty from 'is-empty';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import useStateScreen from '../../../hooks/useStateScreen';
 
 const PracticeListItem = dynamic(() => import('components/atoms/PracticeListItem'));
@@ -35,7 +35,7 @@ const PracticesSelector = ({ practices, onSelect }) => {
     >
       <FilterBox>
         {practices?.map((practice) => (
-          <>
+          <Fragment key={practice?.databaseId}>
             {isTabletScreen && !empty(practice?.childPractice) ? (
               <Accordion className="mobile-filter">
                 <Accordion.Item
@@ -83,7 +83,7 @@ const PracticesSelector = ({ practices, onSelect }) => {
                 {practice?.title}
               </button>
             )}
-          </>
+          </Fragment>
         ))}
       </FilterBox>
       {isSecondLvl && !isTabletScreen && (
