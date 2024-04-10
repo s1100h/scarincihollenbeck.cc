@@ -93,7 +93,10 @@ export const getServerSideProps = async ({ params, res }) => {
   const attorneyBio = await attorneyBySlug(slug);
   if (!attorneyBio) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/attorneys?notFound=true',
+        permanent: false,
+      },
     };
   }
 

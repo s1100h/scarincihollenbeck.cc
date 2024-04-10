@@ -30,8 +30,63 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
-    source: '/attorney/ronald-s-bienstock',
-    destination: '/attorneys/ronald-s-bienstock',
+    source: '/attorney/:slug*',
+    destination: '/attorneys/:slug*',
+    permanent: true,
+  },
+  {
+    source: '/attorneys/partners/:slug*',
+    destination: '/attorneys/:slug*',
+    permanent: true,
+  },
+  {
+    source: '/practices/sports-and-entertainment-law',
+    destination: '/practices/entertainment-and-media',
+    permanent: true,
+  },
+  {
+    source: '/practices/sports-and-entertainment',
+    destination: '/practices/entertainment-and-media',
+    permanent: true,
+  },
+  {
+    source: '/practices/tax-trust-and-estate-law',
+    destination: '/practices/tax-trusts-estates',
+    permanent: true,
+  },
+  {
+    source: '/practices/tax-trusts-and-estates',
+    destination: '/practices/tax-trusts-estates',
+    permanent: true,
+  },
+  {
+    source: '/practices/corporate-transactions-and-business-law',
+    destination: '/practices/corporate-transactions-business',
+    permanent: true,
+  },
+  {
+    source: '/practices/corporate-transactions-and-business',
+    destination: '/practices/corporate-transactions-business',
+    permanent: true,
+  },
+  {
+    source: '/practices/cyber-security-and-data-protection',
+    destination: '/practices/cyber-security-data-privacy',
+    permanent: true,
+  },
+  {
+    source: '/practices/cyber-security-data-protection',
+    destination: '/practices/cyber-security-data-privacy',
+    permanent: true,
+  },
+  {
+    source: '/practices/intellectual-property-technology',
+    destination: '/practices/intellectual-property',
+    permanent: true,
+  },
+  {
+    source: '/practices/environmental-and-land-use',
+    destination: '/practices/environmental',
     permanent: true,
   },
 ];
