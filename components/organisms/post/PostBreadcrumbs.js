@@ -123,7 +123,10 @@ const delegatePathFunc = (list, router, data) => {
 
 const PostBreadCrumbs = ({ data }) => {
   const router = useRouter();
-  const slug = router.asPath.split('?')[0].split('/').filter((crumb) => crumb !== '');
+  const slug = router.asPath
+    .split('?')[0]
+    .split('/')
+    .filter((crumb) => crumb !== '');
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">
       <li>

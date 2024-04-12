@@ -52,7 +52,7 @@ export const FooterContainer = styled.div`
       order: 4;
     }
 
-    ${media_breakpoint_down("xxl")} {
+    ${media_breakpoint_down('xxl')} {
       padding: 40px 120px 32px;
       > :nth-child(1) {
         padding-left: 0;
@@ -214,7 +214,6 @@ export const LinksSEOBox = styled.section`
   }
 
   ${media_breakpoint_down('xxl')} {
-
     > :nth-child(2) {
       margin-top: -40px;
       grid-column: 1 / 2;
@@ -269,7 +268,7 @@ export const NavContainer = styled.section`
     }
   }
 
-  ${media_breakpoint_down("xxl")} {
+  ${media_breakpoint_down('xxl')} {
     padding: 12px 120px;
   }
 

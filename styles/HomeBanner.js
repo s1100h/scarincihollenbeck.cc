@@ -15,7 +15,8 @@ export const BannerContainer = styled.div`
     height: calc(100% + 115px);
     width: 50%;
     position: absolute;
-    background: url(/images/photo-first-screen.webp) no-repeat right bottom / contain;
+    background: url(/images/photo-first-screen.webp) no-repeat right bottom /
+      contain;
     right: 0;
     z-index: -1;
   }

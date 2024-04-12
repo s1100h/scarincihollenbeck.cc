@@ -40,7 +40,10 @@ export default function Footer() {
         <div className="footer-wrapper">
           <LinksSEOBox>
             <LinksBox title="Core Practices" linksArr={colOnePractices} />
-            <LinksBox classList="list-without-title" linksArr={colTwoPractices} />
+            <LinksBox
+              classList="list-without-title"
+              linksArr={colTwoPractices}
+            />
             <LinksBox title="Firm Pages" linksArr={FIRM_PAGES} />
             <LinksBox title="Office Locations" linksArr={OFFICE_LOCATIONS} />
           </LinksSEOBox>
@@ -55,10 +58,14 @@ export default function Footer() {
             <section>
               <p>ATTORNEY ADVERTISING</p>
               <p>
+                No Aspect of the advertisement on this website or any of its
+                pages, including awards and accolades, has been approved by the
+                Supreme Court of NJ or NY.
+              </p>
+              <p>
                 Prior results do not guarantee a similar outcome. @
                 {currentYear}
-                ,
-                Scarinci Hollenbeck, LLC, all rights reserved
+                , Scarinci Hollenbeck, LLC, all rights reserved
               </p>
               <BottomLinks>
                 <li>

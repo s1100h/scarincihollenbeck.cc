@@ -1,5 +1,8 @@
 import { BsFillEnvelopePlusFill } from 'react-icons/bs';
-import { AddressSubscriptionContainer, AddressSubscriptionWrapper } from '../../../styles/Header.style';
+import {
+  AddressSubscriptionContainer,
+  AddressSubscriptionWrapper,
+} from '../../../styles/Header.style';
 import ContactBoxTemplate from '../../atoms/ContactBox';
 import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 

@@ -50,7 +50,7 @@ export const Wrapper = styled.div`
   ${media_breakpoint_down('md')} {
     padding: 8px 1.5%;
   }
-  
+
   ${media_breakpoint_exactly_down(640)} {
     > :nth-child(1) {
       order: 1;
