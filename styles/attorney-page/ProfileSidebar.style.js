@@ -43,9 +43,13 @@ export const AwardsBox = styled.div`
 export const TitleAndLikBox = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   margin-bottom: 18px;
   flex-wrap: wrap;
+
+  > a {
+    font-weight: 600;
+  }
 `;
 
 export const AwardImgLinkBox = styled.a`
