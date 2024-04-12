@@ -30,6 +30,10 @@ export const ColStyled = styled(Col)`
   position: relative;
   top: ${({ top }) => (top ? top : 'none')};
   bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
+
+  .attorney-warning {
+    text-align: center;
+  }
 `;
 
 export const ColForSidebar = styled(ColStyled)`
