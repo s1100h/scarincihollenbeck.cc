@@ -53,6 +53,11 @@ export default function Footer() {
           <section>
             <p>ATTORNEY ADVERTISING</p>
             <p>
+              No Aspect of the advertisement on this website or any of its
+              pages, including awards and accolades, has been approved by the
+              Supreme Court of NJ or NY.
+            </p>
+            <p>
               Prior results do not guarantee a similar outcome. @
               {currentYear}
               ,
