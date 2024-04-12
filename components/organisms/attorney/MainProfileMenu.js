@@ -63,6 +63,13 @@ const renderContentTab = (title, content, setActiveTab) => {
   }
 };
 
-const MainProfileMenu = ({ title, content, setActiveTab }) => renderContentTab(title, content, setActiveTab);
+const MainProfileMenu = ({ title, content, setActiveTab }) => (
+  <>
+    {renderContentTab(title, content, setActiveTab)}
+    <p className="attorney-warning">
+      ATTORNEY ADVERTISING: Prior results do not guarantee a similar outcome.
+    </p>
+  </>
+);
 
 export default MainProfileMenu;
