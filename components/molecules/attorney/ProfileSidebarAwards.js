@@ -67,6 +67,15 @@ export const ProfileSidebarAwards = ({ awards }) => {
         renderAward,
         AwardSlider,
       )}
+      <div className="additional-info">
+        <p className="disclaimer">
+          &quot;Attorney Advertising Disclaimer&quot;
+        </p>
+        <p>
+          Results may vary depending on your particular facts and legal
+          circumstances
+        </p>
+      </div>
     </AwardsBox>
   );
 };
