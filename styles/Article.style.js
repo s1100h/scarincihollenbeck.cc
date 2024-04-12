@@ -30,6 +30,16 @@ export const ArticleBody = styled.section`
   font-size: 1.15rem;
   color: ${globalColor.gray.gray80};
 
+  .awards-and-content {
+    display: flex;
+    word-break: break-all;
+    align-items: start;
+
+    a {
+      width: 300px;
+    }
+  }
+
   ul {
     padding: 0;
     li {
@@ -38,6 +48,14 @@ export const ArticleBody = styled.section`
         content: '➤';
         margin-right: 10px;
       }
+    }
+  }
+  ${media_breakpoint_down('md')} {
+    .awards-and-content {
+      flex-direction: column;
+    }
+    .content {
+      font-size: 0.8rem;
     }
   }
 `;
