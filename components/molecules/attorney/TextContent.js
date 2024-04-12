@@ -20,6 +20,17 @@ const TextContent = ({ title, content }) => {
       )}
       <ArticleBody>
         <JSXWithDynamicLinks HTML={content} />
+        {isAwards && (
+          <div className="awards-and-content">
+            <Link scroll={false} href="/awards">
+              Award Methodology
+            </Link>
+            <p className="content">
+              - *No aspect of this advertisement has been approved by the
+              Supreme Court of New Jersey and New York.
+            </p>
+          </div>
+        )}
       </ArticleBody>
     </Surface>
   );
