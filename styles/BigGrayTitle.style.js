@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const BigGrayTitle = styled.h2`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   font-weight: 700;
   background-color: #e9e9e9;
