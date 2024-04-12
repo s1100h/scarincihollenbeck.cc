@@ -24,7 +24,7 @@ const addPluralToEnd = (title) => {
 
 const renderSubTitle = (title) => {
   const subTitleMap = {
-    attorneys: 'Open attorney positions at Scarinci Hollenbeck.',
+    attorneys: 'Open attorney positions at Scarinci Hollenbeck, LLC.',
   };
 
   return subTitleMap[title] || `Open position in our ${title} team`;
