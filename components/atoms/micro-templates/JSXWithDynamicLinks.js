@@ -32,11 +32,14 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
       const urlCutPossibleSlash = cutSlashFromTheEnd(uriSliced);
+      const href = !urlCutPossibleSlash ? '/' : urlCutPossibleSlash;
+      // Using default tag <a> because with Next component <Link> don't work redirects from next config.
+      // Example redirect - from /practices/sports-and-entertainment-law to /practices/entertainment-and-media
       return (
-        <Link href={!urlCutPossibleSlash ? '/' : urlCutPossibleSlash}>
+        <a href={href}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
-        </Link>
+        </a>
       );
     }
     if (
@@ -52,11 +55,15 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
           && modifiedAlienUrl.endsWith('/')
         ? cutSlashFromTheEnd(modifiedAlienUrl)
         : modifiedAlienUrl;
+      const hrefTarget = modifiedAlienUrlCutSlash.includes('http')
+          && !modifiedAlienUrlCutSlash.includes('scarincihollenbeck.com')
+        ? '_blank'
+        : domNode.attribs?.target;
       return (
-        <Link href={modifiedAlienUrlCutSlash} target="_blank">
+        <Link href={modifiedAlienUrlCutSlash} target={hrefTarget}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
-          {domNode.children[0].name === 'img' && (
+          {domNode.children[0]?.name === 'img' && (
           <ImageLegacy
             src={domNode.children[0]?.attribs['data-srcset']}
             alt={domNode.children[0]?.attribs?.alt}

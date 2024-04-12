@@ -23,6 +23,7 @@ import 'animate.css/animate.min.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import Script from 'next/script';
 import { PracticesContextProvider } from 'contexts/PracticesContext';
+import { ToastContainer } from 'react-toastify';
 import { FormContextProvider } from '../contexts/FormsContext';
 import {
   montserrat,
@@ -33,6 +34,7 @@ import {
   roboto,
 } from '../public/fonts/fonts';
 import { createMarkup } from '../utils/helpers';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 
@@ -51,6 +53,7 @@ const SHSite = ({ Component, pageProps }) => (
           <PracticesContextProvider>
             <GlobalStyle />
             <MainSiteHead />
+            <ToastContainer />
             <Header />
             {/* <!-- Google tag (gtag.js) --> */}
             <Script

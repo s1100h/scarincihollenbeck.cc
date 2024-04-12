@@ -1,4 +1,5 @@
 import empty from 'is-empty';
+import { checkOnPublish } from 'utils/helpers';
 import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
 import { practicesQueryGenerator } from './practicesQueryGenerator';
@@ -31,6 +32,7 @@ export const attorneysSanitize = (attorneysArr) => {
         databaseId: attorney.databaseId,
         link: attorney.uri,
         title: attorney.title,
+        status: attorney.status,
         ...attorney.attorneyMainInformation,
         ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
       };
@@ -104,13 +106,13 @@ export const getPracticeAttorneys = async (uri) => {
 
   const concatAttorneys = [...practiceChief, ...keyContactsArr];
   const keyContacts = concatAttorneys.length > 0
-    ? concatAttorneys
+    ? checkOnPublish(concatAttorneys)
     : [ScarinciHollenbeckKeyContact];
 
   return {
     practice: data.practice,
-    includeAttorney,
-    practiceChief,
+    includeAttorney: checkOnPublish(includeAttorney),
+    practiceChief: checkOnPublish(practiceChief),
     keyContactsList: keyContacts,
     corePractices,
     posts: postsForSidebar,

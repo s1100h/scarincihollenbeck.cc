@@ -3,22 +3,20 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { globalColor, rem } from './global_styles/Global.styles';
 
 export const BannerContainer = styled.div`
-  position: relative;
   background-size: cover;
   display: flex;
   margin-bottom: 1.5em;
   height: fit-content;
+  position: relative;
 
   :before {
     display: block;
     content: '';
-    height: 63vh;
+    height: calc(100% + 115px);
     width: 50%;
     position: absolute;
-    background-image: url(/images/photo-first-screen.webp);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right center;
+    background: url(/images/photo-first-screen.webp) no-repeat right bottom /
+      contain;
     right: 0;
     z-index: -1;
   }
@@ -26,9 +24,7 @@ export const BannerContainer = styled.div`
   ${media_breakpoint_down('xl')} {
     flex-direction: column;
     :before {
-      height: 77vh;
-      bottom: 0;
-      background-position: right bottom;
+      height: 100%;
     }
   }
 
@@ -37,6 +33,8 @@ export const BannerContainer = styled.div`
     width: 1650px;
     margin: 0 auto;
     max-width: 96%;
+    mix-blend-mode: exclusion;
+    filter: invert(1);
   }
 
   .homeBannerContainer {

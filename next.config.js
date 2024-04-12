@@ -50,6 +50,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+      },
     ],
     minimumCacheTTL: 60,
     deviceSizes: [576, 768, 992, 1200, 1456],
