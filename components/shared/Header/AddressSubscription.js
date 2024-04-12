@@ -9,6 +9,7 @@ import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 const AddressSubscription = () => (
   <AddressSubscriptionWrapper>
     <AddressSubscriptionContainer>
+      <p className="top-header-name">Scarinci Hollenbeck, LLC</p>
       <ContactBoxTemplate number="201-896-4100" email="info@sh-law.com" />
       <SubscriptionModal customClass="header-subscription-btn">
         <>

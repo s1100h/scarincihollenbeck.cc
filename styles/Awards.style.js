@@ -70,11 +70,19 @@ export const Award = styled.div`
 
 export const AwardsContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   position: relative;
   height: 45vh;
+
   > div {
     width: 90%;
+  }
+
+  .slider-warning {
+    margin: 16px 0;
+    text-align: center;
   }
 
   ${media_breakpoint_down('xs')} {

@@ -30,6 +30,9 @@ const Awards = ({ awards }) => {
       </TitleBlock>
       <AwardsContainer>
         <AwardsSlider images={formattedAwards} />
+        <p className="slider-warning">
+          No aspect of the advertisement has been approved by the Supreme Court
+        </p>
       </AwardsContainer>
     </section>
   );
