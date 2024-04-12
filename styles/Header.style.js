@@ -256,6 +256,12 @@ export const AddressSubscriptionContainer = styled.div`
     font-weight: 600;
   }
 
+  .top-header-name {
+    margin: 0 auto 0 0;
+    color: ${globalColor.white};
+    font-weight: 500;
+  }
+
   ${media_breakpoint_exactly_down(1850)} {
     padding: 8px 2%;
   }
