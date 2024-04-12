@@ -189,7 +189,6 @@ export const sitemapAddon = [
   'privacy-policy',
   'terms-of-use',
   'awards',
-  'covid-19-crisis-management-unit',
 ];
 
 /** Header navigation links */
@@ -214,11 +213,6 @@ export const SITE_NAVIGATION = [
         databaseId: 103,
         title: 'Community Involvement',
         uri: '/community-involvement',
-      },
-      {
-        databaseId: 104,
-        title: 'COVID-19 Crisis Management Unit',
-        uri: '/covid-19-crisis-management-unit',
       },
       {
         databaseId: 105,

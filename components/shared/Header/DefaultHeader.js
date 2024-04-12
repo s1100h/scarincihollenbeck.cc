@@ -34,11 +34,11 @@ const DefaultHeader = ({
   const { isTabletScreen } = useStateScreen();
   const { sPractices, designations } = dataForFilter;
   const isAttorneysPage = pathname === '/attorneys';
-  const [isOpenSearch, setOpenSearch] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const handleOpenSearch = () => {
-    setOpenSearch(true);
+    setIsOpenSearch(true);
 
     if (showMenu) {
       setShowMenu(false);
@@ -47,7 +47,7 @@ const DefaultHeader = ({
 
   const handleHideSearch = (e) => {
     e.stopPropagation();
-    setOpenSearch(false);
+    setIsOpenSearch(false);
   };
 
   const handleCloseMenu = () => setShowMenu(false);
@@ -65,7 +65,7 @@ const DefaultHeader = ({
           isOpenBlock={isOpenSearch}
           onClick={handleOpenSearch}
         >
-          <GlobalSearch />
+          <GlobalSearch setIsOpenSearch={setIsOpenSearch} />
           <button className="search-icon" onClick={(e) => handleHideSearch(e)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
