@@ -33,7 +33,7 @@ export const tileContentArr = [
     title: 'For clients',
     textContent: `
     If you are a client, please get in touch with your 
-    <a href='/attorneys'>Scarinci Hollenbeck attorneys</a> contact directly.
+    <a href='/attorneys'>Scarinci Hollenbeck, LLC attorneys</a> contact directly.
     `,
     icon: <BsPeopleFill />,
     id: 4,
@@ -54,7 +54,7 @@ export const tile404ContentArr = [
     title: 'Attorneys',
     textContent: `
     If you are a client, please get in touch with your 
-    <a href='/attorneys'>Scarinci Hollenbeck attorneys</a> contact directly.
+    <a href='/attorneys'>Scarinci Hollenbeck, LLC attorneys</a> contact directly.
     `,
     icon: <BsPeopleFill />,
     id: 0,
@@ -62,7 +62,7 @@ export const tile404ContentArr = [
   {
     title: 'Practices',
     textContent: `
-      <strong>Scarinci Hollenbeck</strong> attorneys routinely represent corporate,
+      <strong>Scarinci Hollenbeck, LLC</strong> attorneys routinely represent corporate,
       governmental, and individual clients in a wide range of <a href='/practices'>practices</a>.
    `,
     icon: <BsFillBriefcaseFill />,

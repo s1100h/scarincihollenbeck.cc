@@ -60,8 +60,8 @@ export const WhatAreTheFirms = () => {
         ))}
       </ul>
       <>
-        In addition, Scarinci Hollenbeck offers a variety of niche, sub-practice
-        groups you can learn more about
+        In addition, Scarinci Hollenbeck, LLC offers a variety of niche,
+        sub-practice groups you can learn more about
         <Link href="/practices"> here.</Link>
       </>
     </>

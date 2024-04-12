@@ -121,7 +121,7 @@ const SliderSubHeader = ({
             </AnimatePresence>
             <SlideSidebar>
               <SlideDarkText className="slide__company">
-                Scarinci Hollenbeck’s
+                Scarinci Hollenbeck’s, LLC
               </SlideDarkText>
               <SlideDarkText className="slide__date">2023</SlideDarkText>
             </SlideSidebar>

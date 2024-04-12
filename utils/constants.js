@@ -42,7 +42,7 @@ export const LETTERS_LIST = [
 ];
 
 /** Change the company name, phone, fax, email through out the site */
-export const SITE_TITLE = 'Scarinci Hollenbeck';
+export const SITE_TITLE = 'Scarinci Hollenbeck, LLC';
 export const SITE_PHONE = '201-896-4100';
 export const SITE_FAX = '201-896-8660';
 export const SITE_EMAIL = 'info@sh-law.com';
@@ -101,7 +101,7 @@ export const FIRM_BLOG_PAGES = [
 export const ScarinciHollenbeckAuthor = [
   {
     uri: '/attorneys',
-    title: 'Scarinci Hollenbeck',
+    title: 'Scarinci Hollenbeck, LLC',
     databaseId: 10000000000001,
     attorneyMainInformation: {
       profileImage: {
@@ -116,7 +116,7 @@ export const ScarinciHollenbeckAuthor = [
     },
     attorneyBiography: {
       miniBio: `With a growing practice of more than 60 experienced attorneys,
-     Scarinci Hollenbeck is a regional alternative to a National 250 law firm. With offices in New
+     Scarinci Hollenbeck, LLC is a regional alternative to a National 250 law firm. With offices in New
       Jersey, New York City, and the District of Columbia, we serve the niche practice areas most often
        required by institutions, corporations, entities, and the people who own and control them.`,
     },
@@ -126,7 +126,7 @@ export const ScarinciHollenbeckAuthor = [
 export const ScarinciHollenbeckKeyContact = {
   databaseId: 10000000000001,
   link: '/attorneys',
-  display_name: 'Scarinci Hollenbeck',
+  display_name: 'Scarinci Hollenbeck, LLC',
   keyContactsByPractice: null,
   profileImage: '/images/sh-mini-diamond-PNG.svg',
   designation: 'The Firm',
@@ -464,7 +464,7 @@ export const ATTORNEYS_FAQ = [
     title:
       'I am located outside of New Jersey and New York. Can you still help me?',
     body: `
-    It depends on the nature of the matter. <strong>Scarinci Hollenbeck</strong> represents clients around the world.
+    It depends on the nature of the matter. <strong>Scarinci Hollenbeck, LLC</strong> represents clients around the world.
     We service our clients in a large variety of matters. In areas such as Intellectual Property,
     including trademark, copyright, or patent-related matters, we can service these requests regardless
     of where our clients are based. However, we predominantly handle legal matters whose jurisdiction
@@ -477,7 +477,7 @@ export const ATTORNEYS_FAQ = [
   {
     id: 6,
     title: 'What kind of clients does your firm service?',
-    body: `Scarinci Hollenbeck routinely serves business owners, corporate entities, leaders, and operators
+    body: `Scarinci Hollenbeck, LLC routinely serves business owners, corporate entities, leaders, and operators
      of small businesses and Fortune 500 companies alike.`,
   },
   {
@@ -492,7 +492,7 @@ export const ATTORNEYS_FAQ = [
   },
   {
     id: 8,
-    title: 'How do you pronounce "Scarinci Hollenbeck"?',
+    title: 'How do you pronounce "Scarinci Hollenbeck, LLC"?',
     body: 'SCUH-RIN-SEE HALL-EN-BEK',
   },
 ];
@@ -692,7 +692,7 @@ export const locationInfoBlockArticles = [
       OUR commitment to excellence, combined with our mission to deliver outstanding client service, has earned our firm a solid reputation.
     </p>
     <p>
-      Scarinci Hollenbeck is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
+      Scarinci Hollenbeck, LLC is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
     </p>
     `,
     image: '/images/sh-mini-diamond-PNG.svg',
@@ -722,7 +722,7 @@ export const locationInfoBlockArticles = [
     id: 3,
     article: `
     <p>
-      Scarinci Hollenbeck also offers services in a wide range of other legal practice areas not listed here.
+      Scarinci Hollenbeck, LLC also offers services in a wide range of other legal practice areas not listed here.
     </p>
     <p>
       If you have a legal need that is not mentioned, please contact us to discuss how we may help you.

@@ -12,7 +12,7 @@ const whyChooseUsData = {
   cards: [
     {
       title: 'Dedicated attorneys',
-      text: 'When your livelihood is on the line, having an SEC investigations attorney well-versed in securities law and the ever evolving regulatory landscape is paramount. At Scarinci Hollenbeck, our dedicated attorneys boast multiple decades of extensive experience handling cases tied to securities investigations.',
+      text: 'When your livelihood is on the line, having an SEC investigations attorney well-versed in securities law and the ever evolving regulatory landscape is paramount. At Scarinci Hollenbeck, LLC, our dedicated attorneys boast multiple decades of extensive experience handling cases tied to securities investigations.',
       image: {
         src: '/images/whyChooseUs1.jpg',
         width: 1000,
