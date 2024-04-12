@@ -38,6 +38,19 @@ export const AwardsBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
+
+  .additional-info {
+    margin-top: 50px;
+    font-weight: bold;
+
+    .disclaimer {
+      font-size: 1.2rem;
+      text-decoration: underline;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const TitleAndLikBox = styled.div`
