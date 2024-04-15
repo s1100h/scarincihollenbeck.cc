@@ -40,12 +40,23 @@ const PERMANENT_REDIRECTS = [
     permanent: true,
   },
   {
+    source: '/attorneys/counsel/:slug*',
+    destination: '/attorneys/:slug*',
+    permanent: true,
+  },
+  {
     source: '/practices/sports-and-entertainment-law',
     destination: '/practices/entertainment-and-media',
     permanent: true,
   },
   {
     source: '/practices/sports-and-entertainment',
+    destination: '/practices/entertainment-and-media',
+    permanent: true,
+  },
+  {
+    source:
+      '/practices/sports-and-entertainment-law/intellectual-property-and-technology-law',
     destination: '/practices/entertainment-and-media',
     permanent: true,
   },
@@ -66,6 +77,11 @@ const PERMANENT_REDIRECTS = [
   },
   {
     source: '/practices/corporate-transactions-and-business',
+    destination: '/practices/corporate-transactions-business',
+    permanent: true,
+  },
+  {
+    source: '/practices/corporate-transactions-and-business-law/:slug*',
     destination: '/practices/corporate-transactions-business',
     permanent: true,
   },

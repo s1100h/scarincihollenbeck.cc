@@ -9,6 +9,8 @@ import {
 } from '../../../styles/Breadcrumbs.style';
 import { cutAnchorUrl } from '../../../utils/helpers';
 
+const convertPath = (path) => path.replace(/-/g, ' ');
+
 const delegatePathFunc = (list, router, data) => {
   if (empty(list)) return;
 
@@ -23,7 +25,7 @@ const delegatePathFunc = (list, router, data) => {
   if (list.length === 1) {
     return (
       <li>
-        <span>{list[0].replace(/-/g, ' ')}</span>
+        <span>{convertPath(list[0])}</span>
       </li>
     );
   }
@@ -32,13 +34,11 @@ const delegatePathFunc = (list, router, data) => {
     return (
       <>
         <li className={list?.includes('little-falls') ? 'active' : ''}>
-          <Link href="/location/little-falls">
-            {list[0].replace(/-/g, ' ')}
-          </Link>
+          <Link href="/location/little-falls">{convertPath(list[0])}</Link>
           <BsChevronRight />
         </li>
         <li>
-          <span>{router.query.slug?.replace(/-/g, ' ')}</span>
+          <span>{convertPath(router.query.slug)}</span>
         </li>
       </>
     );
@@ -51,7 +51,7 @@ const delegatePathFunc = (list, router, data) => {
           <ButtonBreadcrumb
             href={`/library/category/${CategoriesButtonsStructure[0].slug}`}
           >
-            {list[0].replace(/-/g, ' ')}
+            {convertPath(list[0])}
           </ButtonBreadcrumb>
           <BsChevronRight />
         </li>
@@ -73,12 +73,12 @@ const delegatePathFunc = (list, router, data) => {
           <ButtonBreadcrumb
             href={`/library/category/${CategoriesButtonsStructure[0].slug}`}
           >
-            {list[0].replace(/-/g, ' ')}
+            {convertPath(list[0])}
           </ButtonBreadcrumb>
           <BsChevronRight />
         </li>
         <li>
-          <span>{list[list.length - 1].replace(/-/g, ' ')}</span>
+          <span>{convertPath(list[list.length - 1])}</span>
         </li>
       </>
     );
@@ -87,18 +87,17 @@ const delegatePathFunc = (list, router, data) => {
   if (router.pathname.includes('/post/')) {
     return (
       <>
-        {list?.slice(0, -1)?.map((item) => (
-          <li key={`${item} + breadcrumb`}>
-            <ButtonBreadcrumb href={`/library/category/${item}`}>
-              {item.replace(/-/g, ' ')}
-            </ButtonBreadcrumb>
-            <BsChevronRight />
-          </li>
-        ))}
+        {list[0] !== 'post'
+          && list?.slice(0, -1)?.map((item) => (
+            <li key={`${item} + breadcrumb`}>
+              <ButtonBreadcrumb href={`/library/category/${item}`}>
+                {convertPath(item)}
+              </ButtonBreadcrumb>
+              <BsChevronRight />
+            </li>
+          ))}
         <li className="active">
-          <ButtonBreadcrumb href={`/${list.join('/')}`}>
-            {list[list.length - 1].replace(/-/g, ' ')}
-          </ButtonBreadcrumb>
+          <span>{convertPath(list[list.length - 1])}</span>
         </li>
       </>
     );
@@ -112,7 +111,7 @@ const delegatePathFunc = (list, router, data) => {
           className={`${index === list.length - 1 ? 'active' : ''}`}
         >
           <ButtonBreadcrumb href={`/${list.slice(0, index + 1).join('/')}`}>
-            {cutAnchorUrl(item.replace(/-/g, ' '))}
+            {cutAnchorUrl(convertPath(item))}
           </ButtonBreadcrumb>
           {index !== list.length - 1 && <BsChevronRight />}
         </li>
@@ -123,7 +122,10 @@ const delegatePathFunc = (list, router, data) => {
 
 const PostBreadCrumbs = ({ data }) => {
   const router = useRouter();
-  const slug = router.asPath.split('?')[0].split('/').filter((crumb) => crumb !== '');
+  const slug = router.asPath
+    .split('?')[0]
+    .split('/')
+    .filter((crumb) => crumb !== '');
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">
       <li>

@@ -367,7 +367,7 @@ button {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  max-width: 80%;
   height: 100%;
   object-fit: cover;
 }
