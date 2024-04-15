@@ -32,6 +32,7 @@ export const ColStyled = styled(Col)`
   bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
 
   .attorney-warning {
+    margin: 30px 0;
     text-align: center;
   }
 `;
