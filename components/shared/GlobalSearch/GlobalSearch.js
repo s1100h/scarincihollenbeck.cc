@@ -59,12 +59,13 @@ const connectWithQuery = createConnector({
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
 connectWithQuery(AuxiliarySearch);
 
-export default function GlobalSearch({ onHandleClickSearch }) {
+export default function GlobalSearch({ onHandleClickSearch, setIsOpenSearch }) {
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
       <ConnectedSearchBox
         isOpenCloseSearch={onHandleClickSearch}
         placeholder="Search"
+        setIsOpenSearch={setIsOpenSearch}
       />
     </InstantSearch>
   );
