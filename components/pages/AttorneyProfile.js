@@ -92,6 +92,10 @@ const AttorneyPage = ({
                 setActiveTab={setActiveTabContent}
               />
             )}
+            <p className="attorney-warning">
+              ATTORNEY ADVERTISING: Prior results do not guarantee a similar
+              outcome.
+            </p>
           </ColStyled>
           <ColForSidebar top="45px" sm={12} md={11} lg={8} xl={4}>
             <ProfileSidebar

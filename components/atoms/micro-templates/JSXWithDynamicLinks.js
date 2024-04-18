@@ -4,6 +4,7 @@ import * as ImageLegacy from 'next/legacy/image';
 import Image from 'next/image';
 import empty from 'is-empty';
 import {
+  BASE_API_URL,
   HTTP_PRODUCTION_URL,
   HTTP_WWW_PRODUCTION_URL,
   PRODUCTION_URL,
@@ -13,6 +14,7 @@ import {
   getCloudinaryImageUrl,
 } from '../../../utils/helpers';
 
+const getWikiLink = (href) => href?.replace('//upload.wikimedia.org/', 'https://upload.wikimedia.org/');
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
   replace: (domNode) => {
@@ -23,11 +25,13 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
       PRODUCTION_URL,
       HTTP_PRODUCTION_URL,
       HTTP_WWW_PRODUCTION_URL,
+      BASE_API_URL,
     ];
     if (
       domNode.type === 'tag'
         && domNode.name === 'a'
         && productionUrls.some((url) => domNode.attribs.href?.includes(url))
+        && !domNode.attribs.href.includes('/wp-content/')
     ) {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
@@ -41,6 +45,10 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
               || domNode.children[0]?.children[0]?.data}
         </a>
       );
+    }
+    if (domNode.type === 'tag' && domNode.name === 'img') {
+      getWikiLink(domNode.children[0]?.attribs['data-srcset']);
+      getWikiLink(domNode.children[0]?.attribs.src);
     }
     if (
       domNode.type === 'tag'
@@ -65,10 +73,13 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
               || domNode.children[0]?.children[0]?.data}
           {domNode.children[0]?.name === 'img' && (
           <ImageLegacy
-            src={domNode.children[0]?.attribs['data-srcset']}
+            src={
+                  getWikiLink(domNode.children[0]?.attribs['data-srcset'])
+                  || getWikiLink(domNode.children[0]?.attribs.src)
+                }
             alt={domNode.children[0]?.attribs?.alt}
-            width={domNode.children[0]?.attribs?.width}
-            height={domNode.children[0]?.attribs?.height}
+            width={domNode.children[0]?.attribs?.width || 750}
+            height={domNode.children[0]?.attribs?.height || 350}
           />
           )}
         </Link>
@@ -80,10 +91,13 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
         // eslint-disable-next-line @next/next/no-img-element
           <img
               // blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
-            src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            src={
+                getWikiLink(domNode.attribs['data-srcset'])
+                || getWikiLink(domNode.attribs.src)
+              }
             alt={domNode.attribs.alt}
-            width={domNode.attribs.width || 500}
-            height={domNode.attribs.height || 300}
+            width={domNode.attribs.width || 750}
+            height={domNode.attribs.height || 350}
           />
         );
       }
@@ -103,10 +117,10 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
               placeholder="blur"
               blurDataURL={imageUrl}
               loading="lazy"
-              src={imageUrl}
+              src={getWikiLink(imageUrl)}
               alt={domNode.attribs.alt}
-              width={domNode.attribs?.width || 500}
-              height={domNode.attribs?.height || 300}
+              width={domNode.attribs?.width || 750}
+              height={domNode.attribs?.height || 350}
             />
           );
         }
@@ -118,10 +132,13 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
                 domNode.attribs['data-srcset'] || domNode.attribs.src
               }
             loading="lazy"
-            src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            src={
+                getWikiLink(domNode.attribs['data-srcset'])
+                || getWikiLink(domNode.attribs.src)
+              }
             alt={domNode.attribs.alt}
-            width={domNode.attribs?.width || 500}
-            height={domNode.attribs?.height || 300}
+            width={domNode.attribs?.width || 750}
+            height={domNode.attribs?.height || 350}
           />
         );
       }
@@ -140,10 +157,10 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
             placeholder="blur"
             blurDataURL={imageUrl}
             loading="lazy"
-            src={imageUrl}
+            src={getWikiLink(imageUrl)}
             alt={domNode.attribs.alt}
-            width={domNode.attribs.width || 500}
-            height={domNode.attribs.height || 300}
+            width={domNode.attribs.width || 750}
+            height={domNode.attribs.height || 350}
             layout={isHoliday ? '' : 'responsive'}
           />
         );
@@ -154,10 +171,13 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
           placeholder="blur"
           blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
           loading="lazy"
-          src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+          src={
+              getWikiLink(domNode.attribs['data-srcset'])
+              || getWikiLink(domNode.attribs.src)
+            }
           alt={domNode.attribs.alt}
-          width={domNode.attribs.width || 500}
-          height={domNode.attribs.height || 300}
+          width={domNode.attribs.width || 750}
+          height={domNode.attribs.height || 350}
           layout="responsive"
         />
       );
