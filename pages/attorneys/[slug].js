@@ -95,7 +95,7 @@ export const getServerSideProps = async ({ params, res }) => {
     return {
       redirect: {
         destination: '/attorneys?notFound=true',
-        permanent: false,
+        permanent: true,
       },
     };
   }

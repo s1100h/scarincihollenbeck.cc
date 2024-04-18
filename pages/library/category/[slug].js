@@ -6,6 +6,7 @@ import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { fetchAPI } from 'requests/api';
 import { categoryPostQuery } from 'requests/graphql-queries';
+import useNotFoundNotification from 'hooks/useNotFoundNotification';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -47,7 +48,10 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (pageContent.length <= 0) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/library/category/client-alert?notFound=true',
+        permanent: true,
+      },
     };
   }
   const content = pageContent[0].node;
@@ -135,6 +139,8 @@ const LibraryCategory = ({
     description,
     categoryId,
   };
+
+  useNotFoundNotification("Category doesn't exist!");
 
   return (
     <ApolloWrapper>
