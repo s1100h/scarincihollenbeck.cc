@@ -362,9 +362,10 @@ export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
     }
   }}
 `;
-export const postQuery = `query FirmPageQuery($id: ID!) {
+export const postQuery = `
+query FirmPageQuery($id: ID!) {
   post(id: $id, idType: SLUG) {
-      categories {
+    categories {
       nodes {
         databaseId
         name
@@ -389,6 +390,7 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
     title
     link
     date
+    status
     seo {
       opengraphDescription
       title
@@ -437,7 +439,11 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
       }
     }
   }
-    practices(first: 200) {
+}`;
+
+export const getPracticesForPostQuery = `
+query getPracticesForPostQuery {
+  practices(first: 200) {
     nodes {
       title
       uri
@@ -447,6 +453,10 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
       }
     }
   }
+}`;
+
+export const getThreePostsQuery = `
+query getThreePostsQuery {
   posts(first: 3, where: {categoryId: 98}) {
     nodes {
       databaseId
@@ -924,25 +934,6 @@ export const careersQuery = `query BasicPageQuery {
     }
   }
 }`;
-
-export const covid19CrisisManagement = `query CareersPagesQuery {
-  page(id: 32495, idType: DATABASE_ID) {
-    title
-    seo {
-      metaDesc
-      title
-    }
-    COVID19CrisisManagement {
-      article
-      banner {
-        link
-      }
-      listLinks
-      subtitle
-    }
-  }
-}
-`;
 
 export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
   attorneyProfile(id: $id, idType: SLUG) {
