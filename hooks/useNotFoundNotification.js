@@ -1,18 +1,18 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import empty from 'is-empty';
 
 export default function useNotFoundNotification(message) {
   const router = useRouter();
-  const notifyTime = 500000;
+  const notifyTime = 5000;
   const searchParams = new URLSearchParams(router.query);
 
   useEffect(() => {
     const notFound = searchParams.get('notFound');
     if (notFound) {
       toast.error(message, {
-        position: 'bottom-left',
+        position: 'bottom-right',
         autoClose: notifyTime,
         hideProgressBar: false,
         closeOnClick: true,
