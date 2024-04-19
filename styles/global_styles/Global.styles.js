@@ -564,6 +564,13 @@ footer .wrapper-section {
       ${paragraphStyles};
     }
   }
+  
+  .error-notify {
+    &.Toastify__toast--error {
+      border-radius: 0;
+      background-color: ${globalColor.red.darkRed};
+    }
+  }
 `;
 
 export const ButtonLinkCss = `
