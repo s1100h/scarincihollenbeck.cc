@@ -5,7 +5,7 @@ import empty from 'is-empty';
 
 export default function useNotFoundNotification(message) {
   const router = useRouter();
-  const notifyTime = 5000;
+  const notifyTime = 500000;
   const searchParams = new URLSearchParams(router.query);
 
   useEffect(() => {
@@ -19,7 +19,8 @@ export default function useNotFoundNotification(message) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: 'dark',
+        theme: 'colored',
+        className: 'error-notify',
       });
 
       searchParams.delete('notFound');
