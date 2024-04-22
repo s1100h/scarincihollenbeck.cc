@@ -93,8 +93,8 @@ const AttorneyPage = ({
               />
             )}
             <p className="attorney-warning">
-              ATTORNEY ADVERTISING: Prior results do not guarantee a similar
-              outcome.
+              Results may vary depending on your particular facts and legal
+              circumstances.
             </p>
           </ColStyled>
           <ColForSidebar top="45px" sm={12} md={11} lg={8} xl={4}>

@@ -69,7 +69,8 @@ export const ProfileSidebarAwards = ({ awards }) => {
       )}
       <div className="additional-info">
         <p className="disclaimer">
-          &quot;Attorney Advertising Disclaimer&quot;
+          &quot;No Aspect of the advertisement has been approved by the Supreme
+          Court&quot;
         </p>
         <p>
           Results may vary depending on your particular facts and legal
