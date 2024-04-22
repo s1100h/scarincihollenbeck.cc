@@ -44,8 +44,7 @@ export const AwardsBox = styled.div`
     font-weight: bold;
 
     .disclaimer {
-      font-size: 1.2rem;
-      text-decoration: underline;
+      font-size: 1rem;
     }
     p {
       margin-bottom: 0;
