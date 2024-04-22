@@ -72,10 +72,6 @@ export const ProfileSidebarAwards = ({ awards }) => {
           &quot;No Aspect of the advertisement has been approved by the Supreme
           Court&quot;
         </p>
-        <p>
-          Results may vary depending on your particular facts and legal
-          circumstances
-        </p>
       </div>
     </AwardsBox>
   );
