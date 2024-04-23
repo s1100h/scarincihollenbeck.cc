@@ -232,7 +232,7 @@ const Attorneys = ({
     if (!userInput) clearQuery('query');
   }, [userInput]);
 
-  useNotFoundNotification("Attorney doesn't exist!");
+  useNotFoundNotification('The selected profile no longer exists.');
 
   const attorneysPageProps = {
     sPractices,
