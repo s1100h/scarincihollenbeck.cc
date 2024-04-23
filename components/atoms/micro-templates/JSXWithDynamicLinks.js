@@ -14,7 +14,29 @@ import {
   getCloudinaryImageUrl,
 } from '../../../utils/helpers';
 
-const getWikiLink = (href) => href?.replace('//upload.wikimedia.org/', 'https://upload.wikimedia.org/');
+const createImageSrc = (attribs) => {
+  if (
+    empty(attribs?.['data-srcset'])
+    && !empty(attribs?.['data-version'])
+    && !empty(attribs?.['data-public-id'])
+  ) {
+    return getCloudinaryImageUrl(
+      attribs?.['data-version'],
+      attribs?.['data-public-id'],
+    );
+  }
+  return attribs?.['data-srcset'] || attribs?.src;
+};
+
+const getWikiLink = (href) => {
+  if (!empty(href) && !href.includes('http')) {
+    return href?.replace(
+      '//upload.wikimedia.org/',
+      'https://upload.wikimedia.org/',
+    );
+  }
+  return href;
+};
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
   replace: (domNode) => {
@@ -46,10 +68,6 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
         </a>
       );
     }
-    if (domNode.type === 'tag' && domNode.name === 'img') {
-      getWikiLink(domNode.children[0]?.attribs['data-srcset']);
-      getWikiLink(domNode.children[0]?.attribs.src);
-    }
     if (
       domNode.type === 'tag'
         && domNode.name === 'a'
@@ -67,16 +85,15 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
           && !modifiedAlienUrlCutSlash.includes('scarincihollenbeck.com')
         ? '_blank'
         : domNode.attribs?.target;
+      const imageSrc = createImageSrc(domNode?.children[0]?.attribs);
+
       return (
         <Link href={modifiedAlienUrlCutSlash} target={hrefTarget}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
           {domNode.children[0]?.name === 'img' && (
           <ImageLegacy
-            src={
-                  getWikiLink(domNode.children[0]?.attribs['data-srcset'])
-                  || getWikiLink(domNode.children[0]?.attribs.src)
-                }
+            src={getWikiLink(imageSrc)}
             alt={domNode.children[0]?.attribs?.alt}
             width={domNode.children[0]?.attribs?.width || 750}
             height={domNode.children[0]?.attribs?.height || 350}
@@ -86,99 +103,44 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
       );
     }
     if (domNode.type === 'tag' && domNode.name === 'img') {
+      const imageSrc = createImageSrc(domNode?.attribs);
       if (print) {
         return (
         // eslint-disable-next-line @next/next/no-img-element
           <img
               // blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
-            src={
-                getWikiLink(domNode.attribs['data-srcset'])
-                || getWikiLink(domNode.attribs.src)
-              }
+            src={getWikiLink(imageSrc)}
             alt={domNode.attribs.alt}
             width={domNode.attribs.width || 750}
             height={domNode.attribs.height || 350}
           />
         );
       }
+
       if (domNode.parent?.parent?.attribs?.class === 'wp-block-image') {
-        if (
-          !domNode.attribs['data-srcset']?.length
-            && domNode.attribs['data-version']
-            && domNode.attribs['data-public-id']
-        ) {
-          const imageUrl = getCloudinaryImageUrl(
-            domNode.attribs['data-version'],
-            domNode.attribs['data-public-id'],
-          );
-          return (
-            <Image
-              className="floated-image"
-              placeholder="blur"
-              blurDataURL={imageUrl}
-              loading="lazy"
-              src={getWikiLink(imageUrl)}
-              alt={domNode.attribs.alt}
-              width={domNode.attribs?.width || 750}
-              height={domNode.attribs?.height || 350}
-            />
-          );
-        }
         return (
           <Image
             className="floated-image"
             placeholder="blur"
-            blurDataURL={
-                domNode.attribs['data-srcset'] || domNode.attribs.src
-              }
+            blurDataURL={imageSrc}
             loading="lazy"
-            src={
-                getWikiLink(domNode.attribs['data-srcset'])
-                || getWikiLink(domNode.attribs.src)
-              }
+            src={getWikiLink(imageSrc)}
             alt={domNode.attribs.alt}
             width={domNode.attribs?.width || 750}
             height={domNode.attribs?.height || 350}
           />
         );
       }
-      if (
-        !domNode.attribs['data-srcset']?.length
-          && domNode.attribs['data-version']
-          && domNode.attribs['data-public-id']
-      ) {
-        const imageUrl = getCloudinaryImageUrl(
-          domNode.attribs['data-version'],
-          domNode.attribs['data-public-id'],
-        );
-
-        return (
-          <ImageLegacy
-            placeholder="blur"
-            blurDataURL={imageUrl}
-            loading="lazy"
-            src={getWikiLink(imageUrl)}
-            alt={domNode.attribs.alt}
-            width={domNode.attribs.width || 750}
-            height={domNode.attribs.height || 350}
-            layout={isHoliday ? '' : 'responsive'}
-          />
-        );
-      }
-
       return (
         <ImageLegacy
           placeholder="blur"
-          blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
+          blurDataURL={imageSrc}
           loading="lazy"
-          src={
-              getWikiLink(domNode.attribs['data-srcset'])
-              || getWikiLink(domNode.attribs.src)
-            }
+          src={getWikiLink(imageSrc)}
           alt={domNode.attribs.alt}
           width={domNode.attribs.width || 750}
           height={domNode.attribs.height || 350}
-          layout="responsive"
+          layout={isHoliday ? '' : 'responsive'}
         />
       );
     }
