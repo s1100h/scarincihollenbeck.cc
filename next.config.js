@@ -1,3 +1,5 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')();
+
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   cacheOnFrontEndNav: true,
@@ -101,6 +103,7 @@ const nextConfig = {
     ];
   },
 };
-
 // @ts-ignore
-module.exports = withPWA(nextConfig);
+module.exports = process.env.ANALYZE === 'true'
+  ? withBundleAnalyzer(withPWA(nextConfig))
+  : withPWA(nextConfig);
