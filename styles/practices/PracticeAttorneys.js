@@ -197,6 +197,14 @@ export const PracticeAttorneysCard = styled.div`
   }
 
   .attorney {
+    &__link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
     &__image {
       height: 100%;
       filter: grayscale(100%);
@@ -221,7 +229,7 @@ export const PracticeAttorneysCard = styled.div`
       background-color: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(2px);
       flex-direction: column;
-      z-index: 0;
+      z-index: 2;
       text-align: start;
 
       &::after {
