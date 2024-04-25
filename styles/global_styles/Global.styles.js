@@ -641,7 +641,7 @@ export const attorneyCardForCannabis = `
     box-shadow: none;
   }
 
-  section {
+  > div {
     img {
       width: 166px;
       height: 166px;

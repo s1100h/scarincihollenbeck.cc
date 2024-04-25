@@ -284,6 +284,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
 `;
 
 export const DefaultSubHeaderKeyContactsCards = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -298,6 +299,12 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
     &:hover {
       box-shadow: none;
+
+      > div {
+        h3 {
+          color: ${globalColor.white};
+        }
+      }
 
       ${LinkBox} {
         img {
