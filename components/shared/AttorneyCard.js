@@ -68,42 +68,41 @@ export default function AttorneyCard({
 }) {
   return (
     <AttorneyCardBox className="attorney-card-box">
-      <Link href={link} passHref legacyBehavior>
-        <LinkBox>
-          <Image
-            placeholder="blur"
-            blurDataURL={image || '/images/sh-mini-diamond-PNG.svg'}
-            loading="lazy"
-            src={image || '/images/sh-mini-diamond-PNG.svg'}
-            alt={name}
-            width={
-              width
-              || (!Array.isArray(locations) && typeof locations !== 'undefined'
-                ? 130
-                : 125)
-            }
-            height={height || 150}
+      <Link href={link} className="attorney-card-link" />
+      <LinkBox>
+        <Image
+          placeholder="blur"
+          blurDataURL={image || '/images/sh-mini-diamond-PNG.svg'}
+          loading="lazy"
+          src={image || '/images/sh-mini-diamond-PNG.svg'}
+          alt={name}
+          width={
+            width
+            || (!Array.isArray(locations) && typeof locations !== 'undefined'
+              ? 130
+              : 125)
+          }
+          height={height || 150}
+        />
+        <InfoBox>
+          <UserName>{name}</UserName>
+
+          <p>{designation}</p>
+
+          {locations && (
+            <ul className="d-flex gap-1 m-0 p-0">
+              {renderLinkToLocationPractice(locations)}
+            </ul>
+          )}
+          <ContactBoxTemplate
+            officeLocations={officeLocations}
+            email={email}
+            number={number}
+            svgEmail={svgEmail}
+            svgPhone={svgPhone}
           />
-          <InfoBox>
-            <UserName>{name}</UserName>
-
-            <p>{designation}</p>
-
-            {locations && (
-              <ul className="d-flex gap-1 m-0 p-0">
-                {renderLinkToLocationPractice(locations)}
-              </ul>
-            )}
-            <ContactBoxTemplate
-              officeLocations={officeLocations}
-              email={email}
-              number={number}
-              svgEmail={svgEmail}
-              svgPhone={svgPhone}
-            />
-          </InfoBox>
-        </LinkBox>
-      </Link>
+        </InfoBox>
+      </LinkBox>
     </AttorneyCardBox>
   );
 }

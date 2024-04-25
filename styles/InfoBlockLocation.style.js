@@ -57,7 +57,8 @@ export const InfoContainer = styled.section`
       padding: 20px 20px 0 20px;
       height: inherit;
 
-      p {
+      > div {
+        margin-bottom: 12px;
         overflow-y: auto;
       }
 

@@ -117,7 +117,7 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
         );
       }
 
-      if (domNode.parent?.parent?.attribs?.class === 'wp-block-image') {
+      if (domNode.parent?.parent?.attribs?.class.includes('wp-block-image')) {
         return (
           <Image
             className="floated-image"
@@ -131,6 +131,7 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
           />
         );
       }
+
       return (
         <ImageLegacy
           placeholder="blur"

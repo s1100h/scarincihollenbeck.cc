@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ShareSocialBox } from 'styles/Post/SocialShare.style';
 import { globalColor, rem } from 'styles/global_styles/Global.styles';
-import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from 'styles/mediaBreakpoints.style';
 
 export const GetInTouchFormWrapper = styled.div`
   padding: 12px 16px;
@@ -9,7 +9,13 @@ export const GetInTouchFormWrapper = styled.div`
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
   ${({ isSticky }) =>
     isSticky &&
-    'position: sticky; top: 210px; overflow: auto; max-height: calc(100vh - 230px);'}
+    `position: sticky; top: 210px; overflow: auto; max-height: calc(100vh - 230px);
+
+    ${media_breakpoint_exactly_down(1439)} {
+      top: 225px;
+    }
+    `
+  }
   border: 1px solid transparent;
   transition: all 0.5s ease-in-out;
 

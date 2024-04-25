@@ -9,11 +9,27 @@ export const AttorneyCardBox = styled.article`
   flex-basis: calc(33.3% - 15px);
   padding: 20px 0 17px 20px;
   box-shadow: 0 0.25rem 0.33rem rgba(0, 0, 0, 0.1);
+  position: relative;
 
   :hover {
     cursor: pointer;
     transition: 0.8s;
     box-shadow: rgb(99 98 98 / 90%) -2px 0px 18px;
+
+    > div {
+      h3 {
+        color: ${globalColor.red.darkRed};
+      }
+    }
+  }
+
+  .attorney-card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   ${media_breakpoint_exactly_down(612)} {
@@ -22,21 +38,12 @@ export const AttorneyCardBox = styled.article`
   }
 `;
 
-export const LinkBox = styled.section`
+export const LinkBox = styled.div`
   display: flex;
   width: 100%;
   text-decoration: none;
   color: black;
   gap: 20px;
-
-  :hover {
-    text-decoration: none;
-    color: inherit;
-
-    h3 {
-      color: ${globalColor.red.darkRed};
-    }
-  }
 
   ${media_breakpoint_exactly_down(612)} {
     gap: 10px;
@@ -62,6 +69,10 @@ export const InfoBox = styled.section`
     font-size: 1rem;
     color: ${globalColor.gray.gray80};
   }
+
+  > ul {
+    z-index: 2;
+  }
 `;
 
 export const UserName = styled.h3`
@@ -77,6 +88,7 @@ export const UserName = styled.h3`
 export const ContactBox = styled.address`
   display: flex;
   flex-direction: column;
+  z-index: 2;
 
   .contact-offices,
   a {
