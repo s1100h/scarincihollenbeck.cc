@@ -5,6 +5,7 @@ import { getPractices } from 'requests/getPractices';
 import empty from 'is-empty';
 import { fetchAPI } from '../../requests/api';
 import { practicePageQuery } from '../../requests/graphql-queries';
+import useNotFoundNotification from '../../hooks/useNotFoundNotification';
 
 /** Fetch the practice page content WP GRAPHQL API */
 const practicesPageContent = async () => {
@@ -46,6 +47,8 @@ export const getStaticProps = async () => {
 const PracticesPageDirectory = ({
   practices, subheaderOverlay, seo, site,
 }) => {
+  useNotFoundNotification('The practice no longer exists.');
+
   const canonicalUrl = `${PRODUCTION_URL}/practices`;
   const practicesPageProps = {
     site,

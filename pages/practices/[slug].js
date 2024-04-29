@@ -49,10 +49,12 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   // );
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
-
   if (empty(practice)) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/practices?notFound=true',
+        permanent: true,
+      },
     };
   }
 
