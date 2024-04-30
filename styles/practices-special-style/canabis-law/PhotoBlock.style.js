@@ -18,11 +18,17 @@ export const PhotoBlockContainer = styled.section`
   background-color: ${cannabisLawColors.cannabisColorGray};
   align-items: center;
   justify-content: center;
+  position: relative;
 
   .photo-article-box {
     display: flex;
     justify-content: space-between;
     gap: 3%;
+  }
+
+  .disclaimer-cannabis {
+    position: absolute;
+    bottom: 0;
   }
 
   ${media_breakpoint_exactly_down(1478)} {
@@ -39,6 +45,12 @@ export const PhotoBlockContainer = styled.section`
       flex-direction: column;
       padding-top: 80px;
       padding-bottom: 60px;
+    }
+  }
+
+  ${media_breakpoint_down('md')} {
+    .disclaimer-cannabis {
+      padding: 0 16px;
     }
   }
 `;

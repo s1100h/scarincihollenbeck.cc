@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
   cannabisLawColors,
+  globalColor,
   imageCoverBlock,
   paragraphStyles,
 } from '../../global_styles/Global.styles';
@@ -15,6 +16,13 @@ export const NewsPaperContainer = styled.section`
   justify-content: center;
   background-color: ${cannabisLawColors.cannabisColorDarkGray};
   padding: 140px 0;
+  position: relative;
+
+  .disclaimer-cannabis {
+    position: absolute;
+    bottom: 0;
+    color: ${globalColor.white};
+  }
 
   > div {
     display: flex;
@@ -123,6 +131,9 @@ export const NewsPaperContainer = styled.section`
   }
 
   ${media_breakpoint_down('md')} {
+    .disclaimer-cannabis {
+      padding: 0 16px;
+    }
     > div {
       > :last-child {
         width: 98vw;
