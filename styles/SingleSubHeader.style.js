@@ -16,7 +16,7 @@ export const BackgroundContainer = styled.section`
     url(${({ props }) =>
       props?.isHoliday
         ? '/images/holiday-banner.webp'
-        : '/images/skyscraper2.png'});
+        : '/images/skyscraper2.webp'});
   background-position: ${({ props }) =>
     props?.isHoliday?.length > 0
       ? 'right 1% bottom 31%'
