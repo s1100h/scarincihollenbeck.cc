@@ -89,8 +89,12 @@ const POST_CATEGORY_REWRITES = [
     destination: '/post/:slug*?category=diversity',
   },
   {
+    source: '/women-lead',
+    destination: '/firm-page/women-lead',
+  },
+  {
     source: '/women-lead/:slug*',
-    destination: '/post/:slug*?category=diversity',
+    destination: '/post/:slug*?category=women-lead',
   },
 ];
 
