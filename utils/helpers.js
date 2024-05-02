@@ -324,3 +324,80 @@ export const changePostLink = (url) => {
 };
 
 export const checkOnPublish = (array) => array.filter((item) => item?.status === 'publish') || [];
+
+export const sortAttorneysByCategory = (attorneys, titles) => {
+  if (!attorneys || !titles) return null;
+  const results = {};
+
+  titles.forEach((title) => {
+    results[title.name] = {
+      attorneys: [],
+    };
+  });
+
+  attorneys.forEach((attorney, idx) => {
+    if (
+      typeof attorney.designation === 'string'
+      && !attorney.designation.includes('Firm Managing Partner')
+      && !attorney.designation.includes('Deputy Managing Partner')
+      && !attorney.designation.includes('Chief Executive Officer')
+      && !attorney.designation.includes('NYC Managing Partner')
+      && attorney.designation.includes(' Managing Partner')
+    ) {
+      results.Partners?.attorneys.push(attorney);
+    }
+    if (attorney.designation === 'Chief Executive Officer') {
+      results['Firm Managing Partner']?.attorneys.push(attorney);
+      results['Firm Leaders']?.attorneys.unshift(attorney);
+      results['Firm management']?.attorneys.unshift(attorney);
+    }
+    if (typeof attorney.designation !== 'string') {
+      results['Practice Leaders']?.attorneys.push(attorney);
+    }
+    if (attorney.designation === 'Deputy Managing Partner') {
+      results['Firm Managing Partner']?.attorneys.push(attorney);
+      results['Firm management']?.attorneys.push(attorney);
+    }
+    if (attorney.designation === 'NYC Managing Partner') {
+      results['Firm Managing Partner']?.attorneys.push(attorney);
+      results['Firm management']?.attorneys.push(attorney);
+    }
+    if (attorney.designation === 'Chief Growth Officer') {
+      results['Administrative Management']?.attorneys.push(attorney);
+      results.Directors?.attorneys.push(attorney);
+    }
+    if (
+      typeof attorney.designation === 'string'
+      && attorney?.designation?.includes('Director ')
+    ) {
+      results['Administrative Management']?.attorneys.push(attorney);
+    }
+    Object.keys(results).forEach((key) => {
+      if (
+        attorney.designation[0] === key[0]
+        && attorney.designation[0]
+        && !attorney.designation.includes('Deputy Managing Partner')
+        && !attorney.designation.includes('NYC Managing Partner')
+        && !attorney.designation.includes('Chief Executive Officer')
+      ) {
+        results[key].attorneys.push(attorney);
+      }
+    });
+  });
+
+  const recreatedPositions = results['Firm Managing Partner']?.attorneys.reverse();
+
+  const designationIndex = recreatedPositions?.findIndex(
+    (attorney) => attorney.designation === 'NYC Managing Partner',
+  );
+
+  if (!empty(recreatedPositions) && designationIndex !== -1) {
+    const removedDesignation = recreatedPositions.splice(
+      designationIndex,
+      1,
+    )[0];
+    recreatedPositions.push(removedDesignation);
+  }
+
+  return results;
+};
