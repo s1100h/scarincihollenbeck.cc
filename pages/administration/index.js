@@ -7,8 +7,7 @@ import {
 } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { administrationPageQuery, adminsQuery } from 'requests/graphql-queries';
-import { useContext, useEffect } from 'react';
-import { AttorneysContext } from 'contexts/AttorneysContext';
+import { sortAttorneysByCategory, sortByKey } from 'utils/helpers';
 
 /** Fetch page data from WP GRAPHQL API */
 const archivesPageContent = async () => {
@@ -37,6 +36,12 @@ export async function getStaticProps() {
   const admins = await getAdministration();
   const page = await archivesPageContent();
   const { title, seo, administrationArchive } = page;
+  const sortedAdminsByOrder = sortByKey(admins, 'order');
+  const sortedTitlesByOrder = sortByKey(administrationTitles, 'order');
+  const sorteredAdmins = sortAttorneysByCategory(
+    sortedAdminsByOrder,
+    sortedTitlesByOrder,
+  );
 
   return {
     props: {
@@ -45,24 +50,19 @@ export async function getStaticProps() {
         title,
         description: administrationArchive.description,
       },
-      admins: admins.sort((a, b) => (a.order > b.order ? 1 : -1)),
+      admins: sorteredAdmins,
+      orderedTitles: sortedTitlesByOrder,
     },
     revalidate: 86400,
   };
 }
 
 /** Administration directory page component */
-const Administration = ({ admins, seo, site }) => {
-  const { adminsTitles, setAdminsTitles } = useContext(AttorneysContext);
+const Administration = ({
+  admins, seo, site, orderedTitles,
+}) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}${router.asPath}`;
-
-  useEffect(() => {
-    if (!adminsTitles) {
-      const orderedTitles = administrationTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
-      setAdminsTitles(orderedTitles);
-    }
-  }, [adminsTitles]);
 
   const adminProps = {
     admins,

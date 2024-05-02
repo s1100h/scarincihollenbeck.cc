@@ -18,6 +18,8 @@ const AttorneysPage = ({
   designations,
   site,
   canonicalUrl,
+  attorneys,
+  sortedAttorneys,
 }) => {
   const { isTabletScreen, isDesktopScreen } = useStateScreen();
   const { scrollTop } = useIsScroll();
@@ -27,7 +29,6 @@ const AttorneysPage = ({
     onSelect,
     userInput,
     clearQuery,
-    attorneysContext,
     clearAll,
     onSelectLetter,
   } = useContext(AttorneysContext);
@@ -66,9 +67,10 @@ const AttorneysPage = ({
         {/** End of Filters */}
         {/** Results */}
         <div className="w-100 mt-5">
-          {attorneysContext.length > 0 && (
+          {attorneys.length > 0 && (
             <Results
-              attorneys={attorneysContext}
+              attorneys={attorneys}
+              sortedAttorneys={sortedAttorneys}
               userInput={userInput}
               select={select}
             />
