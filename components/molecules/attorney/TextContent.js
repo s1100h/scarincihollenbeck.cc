@@ -7,6 +7,7 @@ import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicL
 
 const TextContent = ({ title, content }) => {
   const isAwards = title === 'Awards & Recognitions';
+  const isMatters = title === 'Representative Matters';
   return (
     <Surface>
       {title && (
@@ -20,6 +21,12 @@ const TextContent = ({ title, content }) => {
       )}
       <ArticleBody>
         <JSXWithDynamicLinks HTML={content} />
+        {isMatters && (
+          <p className="content">
+            * Results may vary depending on your particular facts and legal
+            circumstances.
+          </p>
+        )}
         {isAwards && (
           <div className="awards-and-content">
             <Link scroll={false} href="/awards">

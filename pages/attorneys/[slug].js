@@ -122,7 +122,7 @@ export const getServerSideProps = async ({ params, res }) => {
         const posts = await fetchExternalPosts(GOV_LAW_URL, authorId, 14);
         govLawPosts.id = authorId;
 
-        if (posts.length > 0) {
+        if (posts?.length > 0) {
           govLawPosts.posts = sanitizeExternalArticles(posts);
         } else {
           govLawPosts.posts = [];
