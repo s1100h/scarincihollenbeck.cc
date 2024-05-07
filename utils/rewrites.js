@@ -85,10 +85,6 @@ const POST_CATEGORY_REWRITES = [
     destination: '/post/:slug*?category=mandarin',
   },
   {
-    source: '/diversity/:slug*',
-    destination: '/post/:slug*?category=diversity',
-  },
-  {
     source: '/women-lead',
     destination: '/firm-page/women-lead',
   },
@@ -143,6 +139,10 @@ const SITE_PAGES_REWRITES = [
   {
     source: '/diversity',
     destination: '/firm-page/diversity',
+  },
+  {
+    source: '/diversity/:slug*',
+    destination: '/post/:slug*?category=diversity',
   },
   {
     source: '/community-involvement',
