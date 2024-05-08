@@ -8,6 +8,7 @@ import {
   TitleAndLikBox,
 } from 'styles/attorney-page/ProfileSidebar.style';
 import AwardSlider from './AwardSlider';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const renderAwardsOnConditions = (
   awardsArr,
@@ -68,10 +69,7 @@ export const ProfileSidebarAwards = ({ awards }) => {
         AwardSlider,
       )}
       <div className="additional-info">
-        <p className="disclaimer-sidebar">
-          &quot;No Aspect of the advertisement has been approved by the Supreme
-          Court&quot;
-        </p>
+        <DisclaimerText text="No Aspect of the advertisement has been approved by the Supreme Court." />
       </div>
     </AwardsBox>
   );

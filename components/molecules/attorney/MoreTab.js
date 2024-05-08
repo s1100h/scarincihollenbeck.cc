@@ -16,6 +16,7 @@ import Table from './Table';
 import { ArticleBody } from '../../../styles/Article.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 import Images from '../../organisms/attorney/Images';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const renderContent = (contentItem) => {
   const contentMap = {
@@ -80,10 +81,10 @@ const MoreTab = ({ content }) => {
           <ArticleBody>
             <JSXWithDynamicLinks HTML={activeSubTab.content} />
             {isMattersInMore && (
-              <p className="content">
-                * Results may vary depending on your particular facts and legal
-                circumstances.
-              </p>
+              <DisclaimerText
+                text="* Results may vary depending on your particular facts and legal
+                circumstances."
+              />
             )}
           </ArticleBody>
         ) : (

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { ArticleBody } from '../../../styles/Article.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const TextContent = ({ title, content }) => {
   const isAwards = title === 'Awards & Recognitions';
@@ -22,20 +23,20 @@ const TextContent = ({ title, content }) => {
       <ArticleBody>
         <JSXWithDynamicLinks HTML={content} />
         {isMatters && (
-          <p className="content">
-            * Results may vary depending on your particular facts and legal
-            circumstances.
-          </p>
+          <DisclaimerText
+            text="* Results may vary depending on your particular facts and legal
+            circumstances."
+          />
         )}
         {isAwards && (
           <div className="awards-and-content">
             <Link scroll={false} href="/awards">
               Award Methodology
             </Link>
-            <p className="content">
-              - *No aspect of this advertisement has been approved by the
-              Supreme Court of New Jersey and New York.
-            </p>
+            <DisclaimerText
+              text="- * No aspect of this advertisement has been approved by the
+              Supreme Court of New Jersey and New York."
+            />
           </div>
         )}
       </ArticleBody>

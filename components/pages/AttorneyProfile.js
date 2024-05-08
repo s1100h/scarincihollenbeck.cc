@@ -12,6 +12,7 @@ import {
 import { CustomContainer } from 'styles/Containers.style';
 import { useRouter } from 'next/router';
 import PostBreadCrumbs from '../organisms/post/PostBreadcrumbs';
+import DisclaimerText from '../atoms/DisclaimerText';
 
 const RecommendedPosts = dynamic(() => import('components/common/RecommendedPosts'));
 const MainProfileMenu = dynamic(() => import('components/organisms/attorney/MainProfileMenu'));
@@ -92,10 +93,10 @@ const AttorneyPage = ({
                 setActiveTab={setActiveTabContent}
               />
             )}
-            <p className="attorney-warning">
-              Results may vary depending on your particular facts and legal
-              circumstances.
-            </p>
+            <DisclaimerText
+              text="Results may vary depending on your particular facts and legal
+              circumstances."
+            />
           </ColStyled>
           <ColForSidebar top="45px" sm={12} md={11} lg={8} xl={4}>
             <ProfileSidebar

@@ -18,7 +18,7 @@ export const NewsPaperContainer = styled.section`
   padding: 140px 0;
   position: relative;
 
-  .disclaimer-cannabis {
+  .disclaimer {
     position: absolute;
     bottom: 0;
     color: ${globalColor.white};
@@ -131,7 +131,7 @@ export const NewsPaperContainer = styled.section`
   }
 
   ${media_breakpoint_down('md')} {
-    .disclaimer-cannabis {
+    .disclaimer {
       padding: 0 16px;
     }
     > div {
