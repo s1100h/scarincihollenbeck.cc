@@ -43,7 +43,7 @@ export const AwardsBox = styled.div`
     margin-top: 50px;
     font-weight: bold;
 
-    .disclaimer {
+    .disclaimer-sidebar {
       font-size: 1rem;
     }
     p {

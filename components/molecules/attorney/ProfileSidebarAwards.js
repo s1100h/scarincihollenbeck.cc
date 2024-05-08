@@ -68,7 +68,7 @@ export const ProfileSidebarAwards = ({ awards }) => {
         AwardSlider,
       )}
       <div className="additional-info">
-        <p className="disclaimer">
+        <p className="disclaimer-sidebar">
           &quot;No Aspect of the advertisement has been approved by the Supreme
           Court&quot;
         </p>

@@ -571,6 +571,10 @@ footer .wrapper-section {
       background-color: ${globalColor.red.darkRed};
     }
   }
+  
+  .disclaimer {
+    font-weight: 700;
+  }
 `;
 
 export const ButtonLinkCss = `

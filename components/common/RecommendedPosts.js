@@ -27,9 +27,10 @@ const RecommendedPosts = ({
         ),
       )}
     </Row>
-    <p className="content">
+    <p className="disclaimer">
       No Aspect of the advertisement has been approved by the Supreme Court.
-      Results may vary depending on your particular facts and legal.
+      Results may vary depending on your particular facts and legal
+      circumstances.
     </p>
   </Container>
 );
