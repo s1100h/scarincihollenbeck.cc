@@ -573,6 +573,7 @@ footer .wrapper-section {
   }
   
   .disclaimer {
+    font-size: 1rem;
     font-weight: 700;
   }
 `;

@@ -85,6 +85,10 @@ export const AwardsContainer = styled.div`
     text-align: center;
   }
 
+  .disclaimer {
+    margin-top: 20px;
+  }
+
   ${media_breakpoint_down('xs')} {
     padding: 0 50px;
   }

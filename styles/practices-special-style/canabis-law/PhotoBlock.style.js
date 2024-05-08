@@ -26,7 +26,7 @@ export const PhotoBlockContainer = styled.section`
     gap: 3%;
   }
 
-  .disclaimer-cannabis {
+  .disclaimer {
     position: absolute;
     bottom: 0;
   }
@@ -49,7 +49,7 @@ export const PhotoBlockContainer = styled.section`
   }
 
   ${media_breakpoint_down('md')} {
-    .disclaimer-cannabis {
+    .disclaimer {
       padding: 0 16px;
     }
   }

@@ -31,7 +31,7 @@ export const ColStyled = styled(Col)`
   top: ${({ top }) => (top ? top : 'none')};
   bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
 
-  .attorney-warning {
+  .disclaimer {
     margin: 30px 0;
     text-align: center;
   }
