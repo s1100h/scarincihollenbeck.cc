@@ -22,7 +22,9 @@ export default function FooterDetails() {
           <li>
             <BsFillTelephoneFill />
             {' '}
-            {SITE_PHONE}
+            <a className="phone-mail-footer" href={`tel:${SITE_PHONE}`}>
+              {SITE_PHONE}
+            </a>
           </li>
           <li>
             <BsPrinterFill />
@@ -32,7 +34,9 @@ export default function FooterDetails() {
           <li>
             <BsFillEnvelopeFill />
             {' '}
-            {SITE_EMAIL}
+            <a className="phone-mail-footer" href={`mailto:${SITE_EMAIL}`}>
+              {SITE_EMAIL}
+            </a>
           </li>
         </LinkList>
       </ContactsContainer>

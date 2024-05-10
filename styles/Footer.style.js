@@ -182,6 +182,14 @@ export const LinkList = styled.ul`
     line-height: 24px;
     font-weight: 400;
   }
+
+  .phone-mail-footer {
+    border-bottom: 1px solid ${globalColor.white};
+
+    :hover {
+      color: ${globalColor.blue.lightBlue};
+    }
+  }
 `;
 
 export const SocialLinks = styled(LinkList)`
