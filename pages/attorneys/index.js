@@ -172,6 +172,19 @@ export async function getStaticProps() {
     sortedTitlesByOrder,
   );
 
+  // it was done by request from the client as a temporary solution. 9 May 2024.
+  // If you want to delete it and revert the old solution,
+  // just replace the justFirmManagementPartners variable with sortedAttorneysByCategory.
+  // const justFirmManagementPartners = {
+  //   'Firm Managing Partner': {
+  //     attorneys: sortedAttorneysByCategory['Firm Managing Partner']?.attorneys || [],
+  //   },
+  // };
+  // const isFirmOverviewPage = pathname.includes('/firm-overview') || pathname.includes('/administration');
+  // const differentAttorneysKit = isFirmOverviewPage
+  //   ? sortedAttorneys
+  //   : justFirmManagementPartners;
+
   if (!page) {
     return {
       notFound: true,
