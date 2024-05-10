@@ -78,6 +78,11 @@ export const footerNavList = [
     link: '/location/little-falls',
     id: 5,
   },
+  {
+    linkTitle: 'Awards',
+    link: '/awards',
+    id: 6,
+  },
 ];
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
