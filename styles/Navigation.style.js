@@ -34,6 +34,11 @@ export const NavbarStyled = styled(Navbar)`
     justify-content: center;
 
     .nav-item {
+      .dropdown-toggle {
+        :after {
+          display: none;
+        }
+      }
       &.show {
         .dropdown-menu {
           display: flex;
@@ -41,6 +46,10 @@ export const NavbarStyled = styled(Navbar)`
 
         > a {
           color: ${globalColor.blue.blue500};
+        }
+
+        .chevron {
+          rotate: 180deg;
         }
       }
 
@@ -56,7 +65,7 @@ export const NavbarStyled = styled(Navbar)`
     .dropdown-menu {
       padding: 16px 40px;
       background-color: ${globalColor.blue.darkBlue};
-      box-shadow: 2px 8px 20px 0px rgba(6, 11, 42, 0.52);
+      box-shadow: 2px 8px 20px 0 rgba(6, 11, 42, 0.52);
       column-gap: 32px;
     }
   }
@@ -257,5 +266,16 @@ export const DropdownSecondLvl = styled.div`
         }
       }
     }
+  }
+`;
+
+export const TitleBlock = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .chevron {
+    transition: 0.3s;
+    rotate: 0deg;
   }
 `;
