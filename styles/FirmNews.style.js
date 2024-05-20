@@ -74,52 +74,48 @@ export const NewsWrapper = styled.div`
 
 export const FreshNews = styled.article`
   ${newsCommonStyles};
-  width: 40%;
-  a {
-    span {
-      width: 100% !important;
-    }
-  }
+  flex: 1;
+  margin: 0;
 
-  ${media_breakpoint_down('xl')} {
-    width: 60%;
+  ${media_breakpoint_down('lg')} {
+    a {
+      span {
+        width: 100% !important;
+      }
+    }
   }
 
   ${media_breakpoint_down('md')} {
     width: 100%;
-    a {
-      div {
-        width: 40%;
-      }
-    }
-
-    ${media_breakpoint_down('sm')} {
-      a {
-        div {
-          width: 100%;
-        }
-      }
-    }
   }
 `;
 export const OtherNewsBox = styled.div`
   width: 60%;
 
+  > article {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   ${media_breakpoint_down('xl')} {
     width: 40%;
-    height: 76vh;
-    overflow-y: auto;
-    padding: 0 20px;
-    background-color: whitesmoke;
+    max-height: 660px;
+    height: 100%;
+    overflow: auto;
+    padding: 10px 20px;
+    margin: -10px 0;
+    background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
   }
 
   ${media_breakpoint_down('lg')} {
-    height: 45vh;
+    max-height: 620px;
   }
 
   ${media_breakpoint_down('md')} {
     width: 100%;
     height: auto;
+    max-height: 100%;
     overflow-y: visible;
     background-color: transparent;
     padding: 15px 5px;
@@ -242,21 +238,13 @@ export const TextNews = styled.section`
 export const ArticleDescription = styled.section`
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 65px;
   margin-bottom: 8px;
-
-  ${media_breakpoint_exactly_down(1600)} {
-    section {
-      p {
-        ${threeDots(4)}
-      }
-    }
-  }
-
-  ${media_breakpoint_down('xl')} {
-    section {
-      margin: 10px 0;
-    }
+  
+  > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 `;
 export const BottomSection = styled.section`
@@ -292,6 +280,9 @@ export const BottomSection = styled.section`
 
 export const LinkContainer = styled.a`
   ${hoverLink}
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 export const ArticleNewsTitle = styled.h1`
   font-weight: 600;
@@ -300,6 +291,11 @@ export const ArticleNewsTitle = styled.h1`
   color: ${globalColor.black};
   margin-top: 27px;
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const Expert = styled.div`
   font-size: 1.3rem;
@@ -316,9 +312,11 @@ export const Expert = styled.div`
 export const Bottom = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 1.2rem;
   color: ${globalColor.gray.gray100};
   margin-bottom: 0;
+  margin-top: auto;
 
   ${media_breakpoint_down('lg')} {
     flex-direction: column;

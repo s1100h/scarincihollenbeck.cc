@@ -391,8 +391,8 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
         svg {
           fill: #afdcf5;
-          width: 20px;
-          height: 20px;
+          width: 16px;
+          height: 16px;
           transition: all 0.5s ease;
 
           ${media_breakpoint_down('sm')} {
@@ -402,7 +402,14 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
         }
       }
 
-      .contact-offices,
+      .contact-offices {
+        &:hover {
+          svg {
+            fill: ${globalColor.blue.skyBlue};
+          }
+        }
+      }
+
       a {
         &:hover {
           span {
