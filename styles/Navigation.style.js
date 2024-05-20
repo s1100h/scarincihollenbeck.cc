@@ -7,7 +7,7 @@ export const NavbarStyled = styled(Navbar)`
   display: flex;
   margin: 0 auto;
   flex: 4;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s linear;
 
   & ::-webkit-scrollbar-track {
     background-color: #0b1136;
