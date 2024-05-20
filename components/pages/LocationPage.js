@@ -183,10 +183,12 @@ const LocationPage = ({
         />
       )}
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-      <GoogleReviews
-        reviews={googleReviews}
-        anchorId={anchorData?.reviews?.id}
-      />
+      {!empty(googleReviews) && (
+        <GoogleReviews
+          reviews={googleReviews}
+          anchorId={anchorData?.reviews?.id}
+        />
+      )}
     </>
   );
 };
