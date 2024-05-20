@@ -154,7 +154,7 @@ export const GetInTouchMobileBtn = styled.div`
   }
 
   ${media_breakpoint_down('md')} {
-    top: 160px;
+    top: 190px;
   }
 
   ${media_breakpoint_down('sm')} {

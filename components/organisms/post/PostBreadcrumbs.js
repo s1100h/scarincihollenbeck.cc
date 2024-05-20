@@ -10,6 +10,10 @@ import {
 import { cutAnchorUrl } from '../../../utils/helpers';
 
 const convertPath = (path) => path.replace(/-/g, ' ');
+const convertSlug = (slug) => slug
+  .split('?')[0]
+  .split('/')
+  .filter((crumb) => crumb !== '');
 
 const delegatePathFunc = (list, router, data) => {
   if (empty(list)) return;
@@ -122,10 +126,16 @@ const delegatePathFunc = (list, router, data) => {
 
 const PostBreadCrumbs = ({ data }) => {
   const router = useRouter();
-  const slug = router.asPath
-    .split('?')[0]
-    .split('/')
-    .filter((crumb) => crumb !== '');
+  let slug = convertSlug(router.asPath);
+
+  if (slug.includes('contact')) {
+    slug = ['contact'];
+  }
+
+  if (slug.includes('subscribe')) {
+    slug = ['subscribe'];
+  }
+
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">
       <li>
