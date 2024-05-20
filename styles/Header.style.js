@@ -38,8 +38,8 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
 
   ${NavbarStyled} {
-    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '0' : '100%')};
-    overflow: ${({ isOpenBlock }) => (isOpenBlock ? 'hidden' : 'unset')};
+    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '0' : '925px')};
+    pointer-events: ${({ isOpenBlock }) => (isOpenBlock ? 'none' : 'auto')};
     opacity: ${({ isOpenBlock }) => (isOpenBlock ? '0' : '1')};
   }
 

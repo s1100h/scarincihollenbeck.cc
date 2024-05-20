@@ -38,11 +38,11 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [containerRef.current]);
 
   const calculateItemsPerRow = useMemo(() => {
     const availableWidth = containerWidth + cardGap;
-    return Math.floor(availableWidth / (cardWidth + cardGap));
+    return Math.floor(availableWidth / (cardWidth + cardGap)) || 0;
   }, [containerWidth, cardWidth, cardGap]);
 
   const handleCardParams = (width, height) => {

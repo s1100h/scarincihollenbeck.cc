@@ -41,6 +41,7 @@ const DefaultSubHeaderNew = ({
         alt={title}
         width={1400}
         height={900}
+        priority
       />
     </div>
 

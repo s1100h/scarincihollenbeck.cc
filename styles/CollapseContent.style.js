@@ -18,7 +18,6 @@ export const CollapseContentWrapper = styled.div`
       background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
     }
   }
-
   &.collapsing {
     min-height: 500px;
   }

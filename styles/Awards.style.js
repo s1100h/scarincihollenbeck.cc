@@ -17,7 +17,10 @@ export const TitleBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
   padding: 0 25px;
+  margin: 0 0 16px 0;
 
   h2 {
     font-family: var(--font-poppins);
@@ -46,7 +49,6 @@ export const TitleBlock = styled.div`
 
     h2 {
       font-size: 3rem;
-      margin-bottom: 15px;
     }
   }
 
@@ -74,19 +76,20 @@ export const AwardsContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 45vh;
+  row-gap: 16px;
 
   > div {
     width: 90%;
   }
 
-  .slider-warning {
-    margin: 16px 0;
+  .disclaimer {
     text-align: center;
+    margin: 0;
   }
 
-  .disclaimer {
-    margin-top: 20px;
+  .react-multi-carousel-dot-list {
+    position: static;
+    order: 3;
   }
 
   ${media_breakpoint_down('xs')} {
