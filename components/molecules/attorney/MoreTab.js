@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import {
   ButtonBox,
@@ -16,6 +16,7 @@ import Table from './Table';
 import { ArticleBody } from '../../../styles/Article.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 import Images from '../../organisms/attorney/Images';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const renderContent = (contentItem) => {
   const contentMap = {
@@ -41,7 +42,7 @@ const cutTitles = (title) => {
 const MoreTab = ({ content }) => {
   const [activeSubTab, setActiveSubTab] = useState(content[0]);
   const { query } = useRouter();
-
+  const isMattersInMore = activeSubTab.title === 'Representative Matters';
   const categoryIdMap = {
     Blogs: 599,
     'News Press Releases': 98,
@@ -79,6 +80,12 @@ const MoreTab = ({ content }) => {
         {typeof activeSubTab.content === 'string' ? (
           <ArticleBody>
             <JSXWithDynamicLinks HTML={activeSubTab.content} />
+            {isMattersInMore && (
+              <DisclaimerText
+                text="* Results may vary depending on your particular facts and legal
+                circumstances."
+              />
+            )}
           </ArticleBody>
         ) : (
           renderContent(activeSubTab)

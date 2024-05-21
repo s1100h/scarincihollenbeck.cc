@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { PracticeAttorneysCard } from 'styles/practices/PracticeAttorneys';
 import { useEffect, useRef, useState } from 'react';
 import useStateScreen from 'hooks/useStateScreen';
+import Link from 'next/link';
 import ContactBoxTemplate from '../../atoms/ContactBox';
-import { CardBox } from '../../../styles/Practices.style';
 
 const AttorneyPracticeCard = ({
   link,
@@ -41,9 +41,9 @@ const AttorneyPracticeCard = ({
   return (
     <PracticeAttorneysCard
       className={`${classNameProp} ${isActive ? 'active' : ''}`}
-      onClick={() => push(link)}
       ref={cardRef}
     >
+      <Link href={link} className="attorney__link" />
       <div className="attorney__image">
         <Image
           src={image}

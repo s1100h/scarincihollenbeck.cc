@@ -78,6 +78,11 @@ export const footerNavList = [
     link: '/location/little-falls',
     id: 5,
   },
+  {
+    linkTitle: 'Awards',
+    link: '/awards',
+    id: 6,
+  },
 ];
 /** List of firm blog category links found in the sidebar */
 export const FIRM_BLOG_PAGES = [
@@ -762,6 +767,7 @@ export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 // thats url for exceptions for wrong urls
 export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
 export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';
+export const PROJECT_MODE = process.env.NEXT_PUBLIC_PROJECT_MODE;
 
 export const googleLocationIds = {
   'little-falls': 'ChIJT4-XoRdWwokR_STT5apGtEc',

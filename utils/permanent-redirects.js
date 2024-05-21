@@ -237,6 +237,11 @@ const PERMANENT_REDIRECTS = [
     destination: '/practices/public-employment-law',
     permanent: true,
   },
+  {
+    source: '/firm-news/top-nj-and-nyc-law-firms-unite',
+    destination: '/firm-news/nj-and-nyc-law-firms-unite',
+    permanent: true,
+  },
 ];
 
 module.exports = {

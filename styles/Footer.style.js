@@ -182,6 +182,14 @@ export const LinkList = styled.ul`
     line-height: 24px;
     font-weight: 400;
   }
+
+  .phone-mail-footer {
+    border-bottom: 1px solid ${globalColor.white};
+
+    :hover {
+      color: ${globalColor.blue.lightBlue};
+    }
+  }
 `;
 
 export const SocialLinks = styled(LinkList)`
@@ -282,7 +290,7 @@ export const NavContainer = styled.section`
 `;
 export const FooterNavigation = styled.nav`
   display: flex;
-  width: 540px;
+  width: 644px;
 
   ul {
     display: flex;
@@ -301,7 +309,7 @@ export const FooterNavigation = styled.nav`
     }
   }
 
-  ${media_breakpoint_down('sm')} {
+  ${media_breakpoint_down('md')} {
     width: auto;
     ul {
       flex-wrap: wrap;

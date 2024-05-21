@@ -284,6 +284,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
 `;
 
 export const DefaultSubHeaderKeyContactsCards = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -298,6 +299,12 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
     &:hover {
       box-shadow: none;
+
+      > div {
+        h3 {
+          color: ${globalColor.white};
+        }
+      }
 
       ${LinkBox} {
         img {
@@ -384,8 +391,8 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
 
         svg {
           fill: #afdcf5;
-          width: 20px;
-          height: 20px;
+          width: 16px;
+          height: 16px;
           transition: all 0.5s ease;
 
           ${media_breakpoint_down('sm')} {
@@ -395,7 +402,14 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
         }
       }
 
-      .contact-offices,
+      .contact-offices {
+        &:hover {
+          svg {
+            fill: ${globalColor.blue.skyBlue};
+          }
+        }
+      }
+
       a {
         &:hover {
           span {

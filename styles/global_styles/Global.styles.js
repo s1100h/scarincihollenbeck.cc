@@ -211,6 +211,10 @@ body {
       scroll-margin-top: 200px;
     }
   }
+
+  &:has(.modal-open) {
+    overflow: hidden;
+  }
 }
 
 #__next {
@@ -571,6 +575,11 @@ footer .wrapper-section {
       background-color: ${globalColor.red.darkRed};
     }
   }
+  
+  .disclaimer {
+    font-size: 1rem;
+    font-weight: 700;
+  }
 `;
 
 export const ButtonLinkCss = `
@@ -641,7 +650,7 @@ export const attorneyCardForCannabis = `
     box-shadow: none;
   }
 
-  section {
+  > div {
     img {
       width: 166px;
       height: 166px;

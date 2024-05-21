@@ -3,6 +3,7 @@ import { AttorneysContext } from 'contexts/AttorneysContext';
 import {
   rebuildDataForAttorneysCards,
   sanitizePracticesByChildren,
+  sortAttorneysByCategory,
   sortByKey,
 } from 'utils/helpers';
 import {
@@ -21,7 +22,6 @@ import {
 } from 'requests/graphql-queries';
 import AttorneysPage from 'components/pages/AttorneysDirectory';
 import { sanitizeOffices } from 'pages';
-import { useRouter } from 'next/router';
 import useNotFoundNotification from 'hooks/useNotFoundNotification';
 
 /** Fetch the page content from WP GRAPHQL API */
@@ -159,6 +159,31 @@ export async function getStaticProps() {
     practicesWithAttorneys,
     attorneys,
   );
+  // Here we move sort attorneys by category on server side from client side, but data size when building is biggest limit in 128Kb(attorneys.json) and we have warning.
+  // Commit 02.05.2024
+  // TODO fix this problem with rendering on server, if rendering on client this problem doesn't exist
+  const attorneysWithKaterin = [...attorneysRebuildData, katerinTraugh];
+  const sortedTitlesByOrder = sortByKey(
+    attorneyArchives?.designationSectionTitles,
+    'order',
+  );
+  const sortedAttorneysByCategory = sortAttorneysByCategory(
+    attorneysWithKaterin,
+    sortedTitlesByOrder,
+  );
+
+  // it was done by request from the client as a temporary solution. 9 May 2024.
+  // If you want to delete it and revert the old solution,
+  // just replace the justFirmManagementPartners variable with sortedAttorneysByCategory.
+  // const justFirmManagementPartners = {
+  //   'Firm Managing Partner': {
+  //     attorneys: sortedAttorneysByCategory['Firm Managing Partner']?.attorneys || [],
+  //   },
+  // };
+  // const isFirmOverviewPage = pathname.includes('/firm-overview') || pathname.includes('/administration');
+  // const differentAttorneysKit = isFirmOverviewPage
+  //   ? sortedAttorneys
+  //   : justFirmManagementPartners;
 
   if (!page) {
     return {
@@ -171,12 +196,12 @@ export async function getStaticProps() {
       locations,
       designations,
       practices: sanitizedPracticesByChildren,
-      attorneys: [...attorneysRebuildData, katerinTraugh],
+      attorneys: attorneysWithKaterin,
+      sortedAttorneys: sortedAttorneysByCategory,
       site: {
         title,
         description: attorneyArchives?.description,
       },
-      sectionTitles: attorneyArchives?.designationSectionTitles,
     },
     revalidate: 86400,
   };
@@ -189,12 +214,10 @@ const Attorneys = ({
   designations,
   practices,
   attorneys,
+  sortedAttorneys,
   site,
-  sectionTitles,
 }) => {
   const {
-    attorneysTitles,
-    setAttorneysTitles,
     setDataForFilter,
     userInput,
     setUserInput,
@@ -204,19 +227,11 @@ const Attorneys = ({
     setAttorneysContext,
   } = useContext(AttorneysContext);
   const canonicalUrl = `${PRODUCTION_URL}/attorneys`;
-  const router = useRouter();
 
   // sort practices, designations, location
   const sPractices = sortByKey(practices, 'title');
 
   /** set section titles to context provider */
-  useEffect(() => {
-    if (!attorneysTitles) {
-      const orderedTitles = sectionTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
-      setAttorneysTitles(orderedTitles);
-    }
-  }, []);
-
   useEffect(() => {
     if (dataForFilter.sPractices.length === 0) {
       setDataForFilter({
@@ -245,6 +260,8 @@ const Attorneys = ({
     setSelect,
     site,
     canonicalUrl,
+    attorneys,
+    sortedAttorneys,
   };
 
   return <AttorneysPage {...attorneysPageProps} />;

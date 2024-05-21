@@ -7,6 +7,7 @@ export const UploadContainer = styled.label`
 
 export const UploadRow = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   position: relative;
 
@@ -32,7 +33,7 @@ export const UploadTitle = styled.div`
 
 export const UploadIcon = styled.div`
   position: absolute;
-  top: 50%;
+  top: 5px;
   right: 12px;
-  transform: translateY(-50%) rotate(45deg);
+  transform: rotate(45deg);
 `;

@@ -33,7 +33,7 @@ export default function FAQ({
       <Title>{`${!empty(title) ? `FAQ about ${title}` : 'FAQ'}`}</Title>
       <Accordion defaultActiveKey={['0']} alwaysOpen>
         {faqData.map(({ title, description }) => (
-          <Accordion.Item key={useId()} eventKey={useId().toString()}>
+          <Accordion.Item key={title} eventKey={title}>
             <Accordion.Header as="h4">{title}</Accordion.Header>
             <Accordion.Body>
               <JSXWithDynamicLinks HTML={description} />

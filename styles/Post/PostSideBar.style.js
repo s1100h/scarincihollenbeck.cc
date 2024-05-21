@@ -27,6 +27,7 @@ export const ContactLinksBox = styled.section`
     border: none;
     box-shadow: none;
 
+    > div,
     section {
       gap: 10px;
     }

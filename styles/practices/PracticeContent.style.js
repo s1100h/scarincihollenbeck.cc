@@ -49,21 +49,49 @@ export const PracticeDescription = styled.div`
         margin-bottom: 32px;
       }
     }
+
+    h2,
+    h3,
+    h4 {
+      margin: 0 0 8px 0;
+      color: #000;
+      font-family: var(--font-poppins);
+      font-size: ${rem(26)};
+      font-weight: 600;
+      line-height: 34px;
+
+      & * {
+        font-style: normal;
+        color: #000;
+        font-family: var(--font-poppins);
+        font-weight: 600;
+      }
+
+      ${media_breakpoint_down('sm')} {
+        font-size: ${rem(20)};
+        line-height: 28px;
+        font-weight: 700;
+      }
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: ${rem(22)};
+      line-height: 30px;
+
+      ${media_breakpoint_down('sm')} {
+        font-size: ${rem(18)};
+        line-height: 26px;
+      }
+    }
   }
 
-  h4 {
-    margin: 0 0 8px 0;
-    color: #000;
-    font-family: var(--font-poppins);
-    font-size: ${rem(28)};
+  strong,
+  b {
     font-weight: 600;
-    line-height: 36px;
-
-    ${media_breakpoint_down('sm')} {
-      font-size: ${rem(16)};
-      line-height: 20px;
-      font-weight: 700;
-    }
+    color: ${globalColor.black};
   }
 
   p {
@@ -73,6 +101,10 @@ export const PracticeDescription = styled.div`
     font-size: ${rem(16)};
     line-height: 29px;
     font-weight: 400;
+
+    &:last-child {
+      margin: 0;
+    }
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(14)};
@@ -88,10 +120,18 @@ export const PracticeDescription = styled.div`
       line-height: 29px;
       font-weight: 400;
 
+      &:last-child {
+        margin: 0;
+      }
+
       ${media_breakpoint_down('sm')} {
         font-size: ${rem(14)};
         line-height: 24px;
       }
+    }
+
+    &:last-child {
+      margin: 0;
     }
   }
 `;

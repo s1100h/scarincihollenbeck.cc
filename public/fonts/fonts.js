@@ -6,6 +6,7 @@ export const montserrat = Montserrat({
 	subsets: ['latin'],
 	variable: '--font-montserrat',
 	preload: true,
+	display: 'swap',
 })
 
 export const poppins = Poppins({
@@ -13,6 +14,7 @@ export const poppins = Poppins({
 	subsets: ['latin'],
 	variable: '--font-poppins',
 	preload: true,
+	display: 'swap',
 });
 
 export const rajdhani = Rajdhani({
@@ -20,6 +22,7 @@ export const rajdhani = Rajdhani({
 	subsets: ['latin'],
 	variable: '--font-rajdhani',
 	preload: true,
+	display: 'swap',
 });
 
 export const licorice = Licorice({
@@ -27,6 +30,7 @@ export const licorice = Licorice({
 	subsets: ['latin'],
 	variable: '--font-licorice',
 	preload: true,
+	display: 'swap',
 });
 
 export const carilo = localFont({
@@ -35,9 +39,11 @@ export const carilo = localFont({
 			path: './Carilo.ttf',
 			weight: '400',
 			style: 'normal',
-		},],
-		variable: '--font-carilo',
-		preload: true,
+		},
+	],
+	variable: '--font-carilo',
+	preload: true,
+	display: 'swap',
 });
 
 export const roboto = Roboto({
@@ -45,4 +51,5 @@ export const roboto = Roboto({
 	subsets: ['latin'],
 	variable: '--font-roboto',
 	preload: true,
+	display: 'swap',
 })

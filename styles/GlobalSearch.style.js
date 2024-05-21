@@ -83,6 +83,11 @@ export const ResultsContainer = styled.div`
         .ais-Pagination-link {
           padding: 5px 10px;
           color: ${globalColor.black};
+
+          &.ais-Pagination-link--selected {
+            color: #162153;
+            font-weight: 700;
+          }
         }
       }
     }

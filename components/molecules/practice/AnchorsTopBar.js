@@ -1,6 +1,6 @@
 import Tooltip from 'components/atoms/Tooltip';
 import empty from 'is-empty';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AnchorsTopBarItem,
   AnchorsTopBarItems,

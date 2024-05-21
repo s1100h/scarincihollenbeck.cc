@@ -48,7 +48,6 @@ const PracticesPageDirectory = ({
   practices, subheaderOverlay, seo, site,
 }) => {
   useNotFoundNotification('The practice no longer exists.');
-
   const canonicalUrl = `${PRODUCTION_URL}/practices`;
   const practicesPageProps = {
     site,

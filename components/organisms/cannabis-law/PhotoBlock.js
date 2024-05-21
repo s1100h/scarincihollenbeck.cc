@@ -12,6 +12,7 @@ import {
 import PhotoCardPolaroid from '../../atoms/PhotoCardPolaroid';
 import ArticleCannabis from '../../molecules/cannabis-law/ArticleCannabis';
 import { FullHDContainer } from '../../../styles/practices-special-style/commonForSpecial.style';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -93,7 +94,6 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
                 </>
               )}
             </AnimatePresence>
-
             {photoBlockData.cannabisClients.map(({ clientLogo }, index) => (
               <PhotoClient
                 key={clientLogo?.databaseId}
@@ -116,6 +116,7 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
           />
         </div>
       </FullHDContainer>
+      <DisclaimerText text="Results may vary depending on your particular facts and legal circumstances." />
     </PhotoBlockContainer>
   );
 };
