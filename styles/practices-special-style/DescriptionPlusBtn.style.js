@@ -10,7 +10,7 @@ import {
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
 import { SubscribeBtn } from 'styles/Subscription.style';
-import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
+import { ModalContent } from 'styles/ModalWindow.style';
 
 export const DescrBtnContainer = styled.div`
   display: flex;
@@ -65,10 +65,6 @@ export const DescrBtnContainer = styled.div`
 
   ${ModalContent} {
     background-color: ${cannabisLawColors.cannabisColorGray};
-
-    ${ChildrenBox} {
-      padding: 0 10px;
-    }
 
     #field-error-category {
       margin-bottom: 10px;

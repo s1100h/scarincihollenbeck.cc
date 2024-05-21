@@ -211,6 +211,10 @@ body {
       scroll-margin-top: 200px;
     }
   }
+
+  &:has(.modal-open) {
+    overflow: hidden;
+  }
 }
 
 #__next {

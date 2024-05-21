@@ -10,7 +10,7 @@ export const PracticeAnchorsHolder = styled.div`
   top: 155px;
   left: 0;
   transition: all 0.3s ease;
-  z-index: 2;
+  z-index: 3;
 
   ${media_breakpoint_exactly_down(1439)} {
     margin-top: 32px;
