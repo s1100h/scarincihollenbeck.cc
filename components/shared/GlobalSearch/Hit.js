@@ -7,7 +7,9 @@ import { changeTitle } from '../../../utils/helpers';
 export default function Hit({ hit, setIsOpenSearch, handleClear }) {
   const handleClickItem = (e) => {
     e.stopPropagation();
-    setIsOpenSearch(false);
+    if (setIsOpenSearch) {
+      setIsOpenSearch(false);
+    }
     handleClear();
   };
   return (

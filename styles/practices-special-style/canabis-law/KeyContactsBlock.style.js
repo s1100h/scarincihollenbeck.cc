@@ -177,10 +177,6 @@ export const KeyContactsWrapper = styled.div`
       max-width: 600px;
       background-color: ${cannabisLawColors.cannabisColorGray};
 
-      ${ChildrenBox} {
-        padding: 0 10px;
-      }
-
       ${FormBox} {
         width: 100%;
         button {
@@ -201,6 +197,10 @@ export const KeyContactsWrapper = styled.div`
           :hover {
             color: ${cannabisLawColors.cannabisColorDarkGray};
             background-color: transparent;
+
+            &::after {
+              display: none;
+            }
           }
 
           ${media_breakpoint_down('xxl')} {
