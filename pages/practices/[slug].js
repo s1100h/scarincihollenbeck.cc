@@ -49,7 +49,6 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
   // );
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
-
   if (empty(practice)) {
     return {
       redirect: {

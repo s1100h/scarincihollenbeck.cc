@@ -21,7 +21,6 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-radius: 0.5rem;
   background-color: ${globalColor.white};
   pointer-events: all;
   transition: 0.8s;
@@ -32,6 +31,12 @@ export const ModalContent = styled.div`
   .btn-light {
     margin-left: auto;
     margin-right: 0;
+    background-color: ${globalColor.white};
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: bold;
+    :hover {
+      border: 1px solid ${globalColor.white};
+    }
   }
 `;
 

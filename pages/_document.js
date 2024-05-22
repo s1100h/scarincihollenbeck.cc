@@ -3,6 +3,14 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { createMarkup } from '../utils/helpers';
+import {
+  carilo,
+  licorice,
+  montserrat,
+  poppins,
+  rajdhani,
+  roboto,
+} from '../public/fonts/fonts';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -54,7 +62,9 @@ export default class MyDocument extends Document {
           />
           {/* End Google Tag Manager */}
         </Head>
-        <body>
+        <body
+          className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
+        >
           {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
