@@ -43,7 +43,6 @@ const SpecialSubHeader = ({
       </MiddleContainer>
       <CannabisTitle>
         <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
-
         {!empty(subtitle) && (
           <CannabisSubTitle>
             <p>{subtitle}</p>

@@ -61,7 +61,7 @@ export const FormContainer = styled.div`
     }
 
     .kw-alert-success {
-      ${successMessage}
+      ${successMessage};
       margin: 0;
       background-color: ${globalColor.blue.blue500};
       border-radius: 0;
