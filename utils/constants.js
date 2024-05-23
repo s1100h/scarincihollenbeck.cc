@@ -627,6 +627,27 @@ export const inputsGetInTouchAttributes = [
   },
 ];
 
+export const subscriptionInputs = [
+  {
+    type: 'text',
+    name: 'FirstName',
+    placeholder: 'First name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'text',
+    name: 'LastName',
+    placeholder: 'Last name',
+    rules: 'required|max:255',
+  },
+  {
+    type: 'email',
+    name: 'Email',
+    placeholder: 'Email address',
+    rules: 'required|max:255',
+  },
+];
+
 export const CategoriesButtonsStructure = [
   {
     slug: 'client-alert',

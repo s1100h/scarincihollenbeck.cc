@@ -101,6 +101,5 @@ const nextConfig = {
     ];
   },
 };
-
 // @ts-ignore
 module.exports = withPWA(nextConfig);

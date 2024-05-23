@@ -239,7 +239,7 @@ export const ArticleDescription = styled.section`
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 8px;
-  
+
   > p {
     display: -webkit-box;
     -webkit-line-clamp: 4;

@@ -69,9 +69,7 @@ const SHSite = ({ Component, pageProps }) => (
                 gtag('config', 'G-EQ890E606W');
               `)}
             />
-            <main
-              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
-            >
+            <main>
               <Component {...pageProps} />
             </main>
             <SiteFooter />
