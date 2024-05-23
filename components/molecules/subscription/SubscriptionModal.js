@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { checkboxes } from 'utils/categories';
 import {
   SITE_TITLE,
   subscriptionInputs,
@@ -20,6 +19,8 @@ import ModalWindow from '../../common/ModalWindow';
 import { StandardBlueButton } from '../../../styles/Buttons.style';
 import RenderInputs from '../../shared/ContactForm/RenderInputs';
 import { FormContainer } from '../../../styles/attorney-page/GetInTouchForm.styles';
+import Loader from '../../atoms/Loader';
+import decodeResponse from '../../../utils/decodeResponse';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 const isArraysIdentical = (chosenIds, originalIds) => {
@@ -28,8 +29,26 @@ const isArraysIdentical = (chosenIds, originalIds) => {
   }
   return chosenIds.every((element, index) => element === originalIds[index]);
 };
-const originalCategoriesIds = checkboxes.map((category) => category.id);
+const originalCategoriesIds = (categoryArr) => categoryArr.map((category) => category.id);
 const SubscriptionModal = ({ children, customClass }) => {
+  const [categoriesFromWP, setCategoriesFromWP] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const blogCategories = await fetch('api/revalidate-categories');
+      const resDecoded = await decodeResponse(blogCategories);
+      if (!empty(resDecoded.data?.categories?.nodes)) {
+        const categoriesSanitized = resDecoded.data.categories.nodes?.map(
+          (category) => ({
+            id: category.databaseId,
+            name: category.name,
+          }),
+        );
+        setCategoriesFromWP(categoriesSanitized);
+      }
+    })();
+  }, []);
+
   const [show, setShow] = useState(false);
   const [categoriesChosen, setCategories] = useState([]);
 
@@ -50,8 +69,7 @@ const SubscriptionModal = ({ children, customClass }) => {
   };
   const handleChooseAllClearAll = (isAllChosen) => {
     if (isAllChosen) {
-      const categoriesIds = checkboxes.map((category) => category.id);
-      setCategories(categoriesIds);
+      setCategories(originalCategoriesIds(categoriesFromWP));
     } else {
       setCategories([]);
     }
@@ -116,7 +134,7 @@ const SubscriptionModal = ({ children, customClass }) => {
                         onClick={() => handleChooseAllClearAll(true)}
                         disabled={isArraysIdentical(
                           categoriesChosen,
-                          originalCategoriesIds,
+                          originalCategoriesIds(categoriesFromWP),
                         )}
                       >
                         Select all
@@ -130,24 +148,29 @@ const SubscriptionModal = ({ children, customClass }) => {
                       </Button>
                     </div>
                     <CheckBoxesList>
-                      {checkboxes.map((type) => (
-                        <li key={type.key}>
-                          <label htmlFor={type.key} className="mb-0">
-                            <input
-                              type="checkbox"
-                              className="disclaimer-input"
-                              id={type.key}
-                              name="category"
-                              label={type.label}
-                              value={type.label}
-                              onChange={() => handleCheckCategory(type.id)}
-                              checked={categoriesChosen.includes(type.id)}
-                            />
-                            <span className="disclaimer-checkbox" />
-                            <span className="checkbox-label">{type.label}</span>
-                          </label>
-                        </li>
-                      ))}
+                      {!empty(categoriesFromWP) ? (
+                        <>
+                          {categoriesFromWP?.map(({ id, name }) => (
+                            <li key={id}>
+                              <label htmlFor={id} className="mb-0">
+                                <input
+                                  type="checkbox"
+                                  className="disclaimer-input"
+                                  id={id}
+                                  name="category"
+                                  value={name}
+                                  onChange={() => handleCheckCategory(id)}
+                                  checked={categoriesChosen.includes(id)}
+                                />
+                                <span className="disclaimer-checkbox" />
+                                <span className="checkbox-label">{name}</span>
+                              </label>
+                            </li>
+                          ))}
+                        </>
+                      ) : (
+                        <Loader />
+                      )}
                     </CheckBoxesList>
                   </fieldset>
                   <StandardBlueButton
