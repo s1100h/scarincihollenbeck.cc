@@ -4,12 +4,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import {
-  authorPostsByIdQuery,
-  categoryPostsByIdQuery,
-} from 'requests/graphql-queries';
-import useApolloQuery from 'hooks/useApolloQuery';
 import { useContext, useEffect, useMemo } from 'react';
+import {
+  postsForPaginationByAuthorIdQuery,
+  postsForPaginationByCategoryIdQuery,
+} from 'requests/graphql-queries';
+import { getPaginationData } from 'requests/getPaginationData';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
@@ -25,6 +25,7 @@ const LibraryDirectory = ({
   seo,
   profileUrl,
   categoryId,
+  currentPage,
 }) => {
   const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
@@ -40,20 +41,18 @@ const LibraryDirectory = ({
     }
   }, [authors]);
 
-  /** Handle Article Archive Query */
   const params = {
-    first: 6,
-    last: null,
-    after: null,
-    before: null,
-    author: isAuthor ? categoryId : null,
     id: null,
+    authorId: isAuthor ? categoryId : null,
     categoryId: !isAuthor ? categoryId : null,
+    currentPage,
+    itemsPerPage: 6,
   };
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(
-    isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery,
+
+  const paginationData = getPaginationData(
+    isAuthor
+      ? postsForPaginationByAuthorIdQuery
+      : postsForPaginationByCategoryIdQuery,
     params,
   );
 
@@ -87,15 +86,7 @@ const LibraryDirectory = ({
               </Col>
             )}
             <div className="pt-4 mb-5">
-              <PostList
-                content={{
-                  handleNextPagination,
-                  handlePrevPagination,
-                  data,
-                  loading,
-                  error,
-                }}
-              />
+              <PostList content={paginationData} />
             </div>
           </Col>
           <Col

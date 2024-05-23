@@ -1,11 +1,9 @@
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { getPaginationData } from 'requests/getPaginationData';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
-import useApolloQuery from '../../../hooks/useApolloQuery';
-import {
-  categoryPostsByIdQuery,
-  getClientsQuery,
-} from '../../../requests/graphql-queries';
+import { postsForPaginationByCategoryIdQuery } from '../../../requests/graphql-queries';
 import useAnchorLink from '../../../hooks/useAnchorLink';
 
 const AttorneysBlock = dynamic(() => import('../../organisms/ent-and-media/AttorneysBlock'));
@@ -26,53 +24,18 @@ const EntertainmentAndMediaPage = ({
   const { setHref, hrefToId } = useAnchorLink();
   const anchorIdToAttorneys = 'practiceAttorneys';
   const handleClickByAnchorToAttorneys = () => setHref(anchorIdToAttorneys);
+  const { query } = useRouter();
 
-  const {
-    handleClientsPrevPagination,
-    handleClientsNextPagination,
-    clients,
-    loadingClients,
-  } = useApolloQuery(getClientsQuery, {
-    first: 10,
-    last: null,
-    after: null,
-    before: null,
-  });
+  const params = {
+    categoryId: 1066,
+    currentPage: query?.page || 1,
+    itemsPerPage: 3,
+  };
 
-  const {
-    handleNextPagination,
-    handlePrevPagination,
-    data,
-    loadingPosts,
-    error,
-    posts,
-  } = useApolloQuery(
-    categoryPostsByIdQuery,
-    {
-      first: 3,
-      last: null,
-      after: null,
-      before: null,
-      categoryId: 1066,
-    },
-    // skipOrGo,
+  const paginationData = getPaginationData(
+    postsForPaginationByCategoryIdQuery,
+    params,
   );
-
-  const paginationDataProps = {
-    handleNextPagination,
-    handlePrevPagination,
-    data: posts,
-    loading: loadingPosts,
-    error,
-  };
-
-  const clientsPaginationProps = {
-    handleClientsPrevPagination,
-    handleClientsNextPagination,
-    data: clients,
-    loading: loadingClients,
-    error,
-  };
 
   const sliderCfg = {
     isSlidesAutoPlay: true,
@@ -106,12 +69,12 @@ const EntertainmentAndMediaPage = ({
         anchorToAttorneysBlock={anchorIdToAttorneys}
         tabs={entertainmentAndMediaData.entertainmentInfoBlock.tabs}
       />
-      <EntertainmentClientsBlock
+      {/* <EntertainmentClientsBlock
         title={entertainmentAndMediaData.clientsBlock.title}
         description={entertainmentAndMediaData.clientsBlock.description}
         clientsApolloProps={clientsPaginationProps}
-      />
-      <ArticlesBlock paginationData={paginationDataProps} />
+      /> */}
+      <ArticlesBlock paginationData={paginationData} />
       <PracticesLinksBlock
         practicesListTitle={entertainmentAndMediaData.practicesList.title}
         practices={practices}

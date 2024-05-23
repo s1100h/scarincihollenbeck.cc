@@ -54,7 +54,7 @@ const getUserSeo = async (id) => {
 };
 
 /** Set the author posts and related data to page props */
-export const getServerSideProps = async ({ params, res }) => {
+export const getServerSideProps = async ({ params, res, query }) => {
   res.setHeader(
     'Cache-Control',
     'max-age=0, s-maxage=60, stale-while-revalidate',
@@ -90,12 +90,13 @@ export const getServerSideProps = async ({ params, res }) => {
       name: authorBio.bio[0].name,
       profileUrl: authorBio.bio[0].link,
       pageTitle: params.slug,
-      categoryId: results.id,
       seo: {
         title: results.seo.title,
         canonicalLink: results.seo.canonicalLink,
         metaDescription: seo.metaDesc,
       },
+      categoryId: results.id,
+      currentPage: query?.page || 1,
     },
   };
 };
@@ -107,10 +108,11 @@ const LibraryAuthor = ({
   popularCategories,
   results,
   childrenOfCurrentCategory,
-  categoryId,
   profileUrl,
   seo,
   name,
+  categoryId,
+  currentPage,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;
@@ -124,12 +126,13 @@ const LibraryAuthor = ({
     },
     news: results,
     popularCategories,
-    categoryId,
     currentPageTitle: name,
     childrenOfCurrentCategory,
     categoryName: `${name} Articles`,
     description,
     profileUrl,
+    categoryId,
+    currentPage,
   };
 
   return (
