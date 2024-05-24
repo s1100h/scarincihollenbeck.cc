@@ -4,8 +4,6 @@ import ContactForm from 'components/shared/ContactForm/ContactForm';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
-import { categoryPostsByIdQuery } from 'requests/graphql-queries';
-import useApolloQuery from 'hooks/useApolloQuery';
 import ContentTitle from 'components/atoms/ContentTitle';
 import {
   FirstColumn,
@@ -13,6 +11,9 @@ import {
   TwoColumnsContainer,
 } from 'styles/Containers.style';
 import { ContentContainer } from 'styles/PageContant.style';
+import { useRouter } from 'next/router';
+import { getPaginationData } from 'requests/getPaginationData';
+import { postsForPaginationByCategoryIdQuery } from 'requests/graphql-queries';
 import { JSXWithDynamicLinks } from '../atoms/micro-templates/JSXWithDynamicLinks';
 
 const PostList = dynamic(import('components/molecules/PostList'));
@@ -26,16 +27,7 @@ const CovidPage = ({
   subTitle,
   contentId,
 }) => {
-  /** Handle Article Archive Query */
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(categoryPostsByIdQuery, {
-    first: 6,
-    last: null,
-    after: null,
-    before: null,
-    id: contentId,
-  });
+  const { query } = useRouter();
 
   const crisisManagementTemplate = (bodyContentArgs) => {
     const { article, banner, listLinks } = bodyContentArgs;
@@ -49,6 +41,17 @@ const CovidPage = ({
       </>
     );
   };
+
+  const params = {
+    categoryId: contentId,
+    currentPage: query?.page,
+    itemsPerPage: 6,
+  };
+
+  const paginationData = getPaginationData(
+    postsForPaginationByCategoryIdQuery,
+    params,
+  );
 
   return (
     <>
@@ -73,15 +76,7 @@ const CovidPage = ({
             <h4 className="mb-5">
               <strong className="text-capitalize">COVID-19 Articles</strong>
             </h4>
-            <PostList
-              content={{
-                handleNextPagination,
-                handlePrevPagination,
-                data,
-                loading,
-                error,
-              }}
-            />
+            <PostList content={paginationData} />
           </div>
           <ContentTitle title="Contact A Firm Representative" />
           <ContactForm isPositionRelativeProp />

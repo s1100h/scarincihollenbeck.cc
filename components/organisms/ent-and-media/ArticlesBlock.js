@@ -20,11 +20,10 @@ const ArticlesBlock = ({ paginationData }) => (
       </TitleButtonBox>
       <PostsBox>
         <PostList
-          classNameForCard="entertainment-news"
+          postsClassName="entertainment-news"
           content={paginationData}
           isProfile="true"
           isVertical="true"
-          justArrow
         />
       </PostsBox>
     </ContainerContent>

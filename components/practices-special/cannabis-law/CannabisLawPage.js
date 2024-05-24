@@ -1,11 +1,10 @@
 import dynamic from 'next/dynamic';
 import empty from 'is-empty';
-import { useEffect, useState } from 'react';
 import KeyContactsBlock from 'components/organisms/cannabis-law/KeyContactsBlock';
+import { getPaginationData } from 'requests/getPaginationData';
+import { postsForPaginationByCategoryIdQuery } from 'requests/graphql-queries';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
-import useApolloQuery from '../../../hooks/useApolloQuery';
-import { categoryPostsByIdQuery } from '../../../requests/graphql-queries';
 import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
 import useAnchorLink from '../../../hooks/useAnchorLink';
 
@@ -25,32 +24,22 @@ const CannabisLawPage = ({
   attorneyListPractice,
   keyContactsList,
   cannabisLawData,
+  currentPage,
 }) => {
   const { setHref, hrefToId } = useAnchorLink();
   const anchorIdBlock = 'photoBlock';
   const handleClickByAnchorToPhotoBlock = () => setHref(anchorIdBlock);
 
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(
-    categoryPostsByIdQuery,
-    {
-      first: 3,
-      last: null,
-      after: null,
-      before: null,
-      categoryId: 911,
-    },
-    // skipOrGo,
-  );
-
-  const paginationDataProps = {
-    handleNextPagination,
-    handlePrevPagination,
-    data,
-    loading,
-    error,
+  const params = {
+    categoryId: 911,
+    currentPage,
+    itemsPerPage: 3,
   };
+
+  const paginationData = getPaginationData(
+    postsForPaginationByCategoryIdQuery,
+    params,
+  );
 
   return (
     <>
@@ -92,7 +81,7 @@ const CannabisLawPage = ({
         article={cannabisLawData.newspaperBlock.article}
         newsPepperArticle={cannabisLawData.newspaperBlock.newspaperBox}
       />
-      <ArticlesBlock paginationData={paginationDataProps} />
+      <ArticlesBlock paginationData={paginationData} />
       <PracticesListBlock practiceList={corePractices} />
     </>
   );

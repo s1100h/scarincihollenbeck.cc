@@ -308,41 +308,42 @@ export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: Stri
       }
     }`;
 
-export const attorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
-  $categoryId: [ID]
-  $slug: String
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
-        edges {
-      node {
-        date
-        featuredImage {
-          node {
-            sourceUrl
-          }
+export const attorneyPostsQueryByIdAndSlug = `
+  query AttorneyPostsById(
+    $categoryId: [ID],
+    $slug: String,
+    $offsetPosts: Int,
+    $postsPerPage: Int
+    ) {
+    posts(where: {categoryIn: $categoryId, search: $slug, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
         }
-        uri
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            url
+      }
+      edges {
+        node {
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
           }
         }
       }
     }
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }}
+  }
 `;
 
 export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
@@ -509,42 +510,44 @@ export const getClientsQuery = `query FirmPageQuery(
 }`;
 
 // , order by: {field: DATE, order: DESC}
-export const categoryPostsByIdQuery = `query categoryPostsById(
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  $id: Int
-  $categoryId: Int
-) {
-  posts(where: {categoryId: $categoryId, id: $id}, first: $first, last: $last, after: $after, before: $before) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    edges {
-    node {
-      date
-      featuredImage {
-        node {
-          sourceUrl
+export const postsForPaginationByCategoryIdQuery = `
+  query postsForPaginationByCategoryId(
+    $categoryId: Int, 
+    $offsetPosts: Int, 
+    $postsPerPage: Int
+  ) {
+    posts(
+      where: {categoryId: $categoryId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+    ) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
         }
       }
-      uri
-      title(format: RENDERED)
-      excerpt(format: RENDERED)
-      author {
+      edges {
         node {
-          name
-          url
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
+          }
         }
       }
     }
   }
-  }
-}`;
+`;
 
 export const homePageAwardsQuery = `query HomePageAwardsQuery {
   homePageAwards {
@@ -565,41 +568,44 @@ export const homePageAwardsQuery = `query HomePageAwardsQuery {
   }
 }`;
 
-export const authorPostsByIdQuery = `query authorPostsById(
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  $author: Int
-) {
-  posts(where: {author: $author},  first: $first, last: $last, after: $after, before: $before) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    edges {
-    node {
-      date
-      featuredImage {
-        node {
-          sourceUrl
+export const postsForPaginationByAuthorIdQuery = `
+  query postsForPaginationByAuthorId(
+    $authorId: Int, 
+    $offsetPosts: Int, 
+    $postsPerPage: Int
+  ) {
+    posts(
+      where: {author: $authorId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+    ) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
         }
       }
-      uri
-      title(format: RENDERED)
-      excerpt(format: RENDERED)
-      author {
+      edges {
         node {
-          name
-          url
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
+          }
         }
       }
     }
   }
-  }
-}`;
+`;
 
 // Category Landing Page Query
 export const categoryPostQuery = `query CategoryPosts($name:String) {
