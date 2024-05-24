@@ -1482,11 +1482,13 @@ export const getAuthorsQuery = `query FirmPageQuery {
 }
 `;
 
-export const getCategoriesQuery = `query categoryPostsById {
-  categories(first: 100, where: {childless: true}) {
+export const getCategoriesQuery = `query subscriptions {
+  subscriptions {
     nodes {
-      databaseId
-      name
+      categories {
+        name
+        databaseId
+      }
     }
   }
 }`;

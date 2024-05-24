@@ -37,13 +37,11 @@ const SubscriptionModal = ({ children, customClass }) => {
     (async () => {
       const blogCategories = await fetch('api/revalidate-categories');
       const resDecoded = await decodeResponse(blogCategories);
-      if (!empty(resDecoded.data?.categories?.nodes)) {
-        const categoriesSanitized = resDecoded.data.categories.nodes?.map(
-          (category) => ({
-            id: category.databaseId,
-            name: category.name,
-          }),
-        );
+      if (!empty(resDecoded.data?.subscriptions?.nodes?.categories)) {
+        const categoriesSanitized = resDecoded.data.subscriptions.nodes?.categories?.map((category) => ({
+          id: category.databaseId,
+          name: category.name,
+        }));
         setCategoriesFromWP(categoriesSanitized);
       }
     })();
