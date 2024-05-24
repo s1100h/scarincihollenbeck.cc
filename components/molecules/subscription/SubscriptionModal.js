@@ -35,7 +35,7 @@ const SubscriptionModal = ({ children, customClass }) => {
 
   useEffect(() => {
     (async () => {
-      const blogCategories = await fetch('api/revalidate-categories');
+      const blogCategories = await fetch('/api/revalidate-categories');
       const resDecoded = await decodeResponse(blogCategories);
       if (!empty(resDecoded.data?.subscriptions?.nodes?.categories)) {
         const categoriesSanitized = resDecoded.data.subscriptions.nodes?.categories?.map((category) => ({

@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { globalColor, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const CustomPaginationWrapper = styled.div`
   display: flex;
@@ -27,7 +27,8 @@ export const CustomPaginationWrapper = styled.div`
     --bs-pagination-hover-border-color: ${globalColor.gray.gray10};
     --bs-pagination-disabled-color: ${globalColor.grayLite.grayLite90};
     --bs-pagination-disabled-bg: ${globalColor.graySmoke.liteWhiteSmoke};
-    --bs-pagination-disabled-border-color: ${globalColor.graySmoke.liteWhiteSmoke};
+    --bs-pagination-disabled-border-color: ${globalColor.graySmoke
+      .liteWhiteSmoke};
     --bs-pagination-focus-color: ${globalColor.blue.blue600};
     --bs-pagination-focus-bg: ${globalColor.gray.gray10};
     --bs-pagination-focus-box-shadow: none;
@@ -103,4 +104,4 @@ export const CustomPaginationItemsCount = styled.span`
   align-self: flex-start;
   font-family: var(--font-roboto);
   color: ${globalColor.gray.gray120};
-`
+`;
