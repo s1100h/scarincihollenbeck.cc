@@ -34,7 +34,7 @@ async function categoryPosts(variables) {
   return data.categories?.edges;
 }
 
-export const getServerSideProps = async ({ params, res }) => {
+export const getServerSideProps = async ({ params, res, query }) => {
   res.setHeader(
     'Cache-Control',
     'max-age=0, s-maxage=60, stale-while-revalidate',
@@ -93,11 +93,12 @@ export const getServerSideProps = async ({ params, res }) => {
       description: content.description,
       name: content.name,
       pageTitle: params.slug,
-      categoryId: content.databaseId,
       seo: {
         title: content.seo.title,
         metaDescription: content.seo.metaDesc,
       },
+      categoryId: content.databaseId,
+      currentPage: query?.page || 1,
     },
   };
 };
@@ -110,8 +111,9 @@ const LibraryCategory = ({
   popularCategories,
   news,
   name,
-  categoryId,
   seo,
+  categoryId,
+  currentPage,
 }) => {
   const router = useRouter();
 
@@ -138,6 +140,7 @@ const LibraryCategory = ({
     categoryName: name,
     description,
     categoryId,
+    currentPage,
   };
 
   useNotFoundNotification("Category doesn't exist!");

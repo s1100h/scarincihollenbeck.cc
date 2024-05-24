@@ -630,19 +630,19 @@ export const inputsGetInTouchAttributes = [
 export const subscriptionInputs = [
   {
     type: 'text',
-    name: 'FirstName',
+    name: 'firstName',
     placeholder: 'First name',
     rules: 'required|max:255',
   },
   {
     type: 'text',
-    name: 'LastName',
+    name: 'lastName',
     placeholder: 'Last name',
     rules: 'required|max:255',
   },
   {
     type: 'email',
-    name: 'Email',
+    name: 'email',
     placeholder: 'Email address',
     rules: 'required|max:255',
   },
