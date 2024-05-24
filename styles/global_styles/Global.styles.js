@@ -10,6 +10,8 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray130: '#4D4D4D',
+    gray120: '#666',
     gray110: '#6A6A6A',
     gray100: '#424242',
     gray90: '#4a4a4a',
@@ -67,6 +69,7 @@ export const globalColor = {
     darkUltramarine: '#162153',
     lightBlue: '#8AD',
     blue500: '#164587',
+    blue600: '#377EC4',
   },
 
   yellow: {

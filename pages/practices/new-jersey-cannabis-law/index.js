@@ -10,12 +10,12 @@ import { getSlugFromUrl } from '../../../utils/helpers';
 import ApolloWrapper from '../../../layouts/ApolloWrapper';
 
 /** Set single practice data to page props */
-export const getServerSideProps = async ({ res, resolvedUrl }) => {
+export const getServerSideProps = async ({ res, resolvedUrl, query }) => {
   res.setHeader(
     'Cache-Control',
     'max-age=0, s-maxage=60, stale-while-revalidate',
   );
-  const slug = getSlugFromUrl(resolvedUrl);
+  const slug = getSlugFromUrl(resolvedUrl).split('?')[0];
 
   const {
     practice,
@@ -23,7 +23,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
     practiceChief,
     keyContactsList,
     corePractices,
-  } = await getPracticeAttorneys(resolvedUrl);
+  } = await getPracticeAttorneys(resolvedUrl.split('?')[0]);
 
   if (typeof practice === 'undefined') {
     return {
@@ -34,7 +34,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
   return {
     props: {
       practice,
-      cannabisLawData: practice.practiceContentForeCannabisLaw.cannabisLaw,
+      cannabisLawData: practice?.practiceContentForeCannabisLaw?.cannabisLaw,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
       keyContactsList,
@@ -42,6 +42,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
       corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
       slug,
+      currentPage: query?.page || 1,
     },
   };
 };
@@ -55,6 +56,7 @@ const CannabisLaw = ({
   attorneyListPractice,
   keyContactsList,
   cannabisLawData,
+  currentPage,
 }) => {
   const router = useRouter();
   const practiceUrl = router.asPath
@@ -95,6 +97,7 @@ const CannabisLaw = ({
     attorneyListPractice,
     keyContactsList,
     cannabisLawData,
+    currentPage,
   };
   return (
     <ApolloWrapper>
