@@ -1487,3 +1487,14 @@ export const getAuthorsQuery = `query FirmPageQuery {
   }
 }
 `;
+
+export const getCategoriesQuery = `query subscriptions {
+  subscriptions {
+    nodes {
+      categories {
+        name
+        databaseId
+      }
+    }
+  }
+}`;
