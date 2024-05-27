@@ -31,15 +31,14 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
     'Cache-Control',
     'max-age=0, s-maxage=60, stale-while-revalidate',
   );
-  const slug = getSlugFromUrl(resolvedUrl);
-
+  const slug = getSlugFromUrl(resolvedUrl).split('?')[0];
   const {
     practice,
     includeAttorney,
     practiceChief,
     keyContactsList,
     corePractices,
-  } = await getPracticeAttorneys(resolvedUrl);
+  } = await getPracticeAttorneys(resolvedUrl.split('?')[0]);
 
   const practices = await getPractices();
 
@@ -53,7 +52,7 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
     props: {
       practice,
       entertainmentAndMediaData:
-        practice.practiceContentForEntertainmentLaw.entertainmentMedia,
+        practice.practiceContentForEntertainmentLaw?.entertainmentMedia,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
       keyContactsList,

@@ -18,7 +18,7 @@ import {
 
 const headerType = (pageSlug) => {
   const pagesMap = {
-    // 'entertainment-and-media': 'entAndMedia', // page ready for deploy in prod but paused, commit 26.12.2023
+    'entertainment-and-media': 'entAndMedia', // page ready for deploy in prod but paused, commit 26.12.2023
   };
 
   return pagesMap[pageSlug] || '';

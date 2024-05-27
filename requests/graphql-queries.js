@@ -478,13 +478,8 @@ query getThreePostsQuery {
   }
 }`;
 
-export const getClientsQuery = `query FirmPageQuery(
-  $after: String, 
-  $before: String, 
-  $first: Int, 
-  $last: Int
-) {
-  clients(after: $after, before: $before, first: $first, last: $last) {
+export const getClientsQuery = `query FirmPageQuery {
+  clients {
      edges {
       node {
         databaseId
@@ -501,10 +496,11 @@ export const getClientsQuery = `query FirmPageQuery(
       }
     }
     pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
+      offsetPagination {
+        total
+        hasPrevious
+        hasMore
+      }
     }
   }
 }`;
