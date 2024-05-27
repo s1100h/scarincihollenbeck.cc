@@ -25,14 +25,6 @@ import Script from 'next/script';
 import { PracticesContextProvider } from 'contexts/PracticesContext';
 import { ToastContainer } from 'react-toastify';
 import { FormContextProvider } from '../contexts/FormsContext';
-import {
-  montserrat,
-  poppins,
-  rajdhani,
-  licorice,
-  carilo,
-  roboto,
-} from '../public/fonts/fonts';
 import { createMarkup } from '../utils/helpers';
 import 'react-toastify/dist/ReactToastify.css';
 
