@@ -1,7 +1,5 @@
+import { getOfficesData } from 'requests/getOfficesData';
 import { setResponseHeaders } from 'utils/helpers';
-import empty from 'is-empty';
-import { fetchAPI } from '../../requests/api';
-import { getCategoriesQuery } from '../../requests/graphql-queries';
 
 let lastFetchTime = 0;
 let data;
@@ -12,7 +10,7 @@ export default async function handler(req, res) {
   const cacheDurationSeconds = 8600;
   const cacheDuration = cacheDurationSeconds * 1000; // 8600 seconds in milliseconds
 
-  if (timeSinceLastFetch < cacheDuration && !empty(data)) {
+  if (timeSinceLastFetch < cacheDuration && data?.length > 0) {
     // Return cached data with headers
     setResponseHeaders(res, cacheDurationSeconds, 'HIT');
     return res.status(200).json({ data });
@@ -20,17 +18,13 @@ export default async function handler(req, res) {
 
   // Fetch new data
   try {
-    const categories = await fetchAPI(getCategoriesQuery);
-    data = categories.subscriptions.nodes?.categories?.map((category) => ({
-      id: category.databaseId,
-      name: category.name,
-    }));
+    data = await getOfficesData();
     lastFetchTime = currentTime;
     // Return new data with headers
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');
     return res.status(200).json({ data });
   } catch (err) {
-    if (!empty(data)) {
+    if (data?.length > 0) {
       // Return cached data if fetch fails
       setResponseHeaders(res, cacheDurationSeconds, 'HIT');
       return res.status(200).json({ data });

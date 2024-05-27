@@ -401,3 +401,12 @@ export const sortAttorneysByCategory = (attorneys, titles) => {
 
   return results;
 };
+
+export const setResponseHeaders = (res, revalidateTime, cacheStatus) => {
+  res.setHeader(
+    'Cache-Control',
+    `s-maxage=${revalidateTime}, stale-while-revalidate`,
+  );
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('X-Cache-Status', cacheStatus);
+};

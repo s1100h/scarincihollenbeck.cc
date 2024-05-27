@@ -1,8 +1,6 @@
 import empty from 'is-empty';
-import { client } from 'layouts/ApolloWrapper';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import { fetchAPI } from './api';
 
 export const getPaginationData = (query, params) => {
   const {

@@ -75,6 +75,7 @@ export const NavbarStyled = styled(Navbar)`
       width: 1140px;
       min-width: 800px;
       left: -600%;
+      overflow: auto;
 
       .dropdown-location {
         display: flex;
@@ -83,6 +84,8 @@ export const NavbarStyled = styled(Navbar)`
         justify-content: center;
         gap: 20px;
         padding-right: 0;
+        flex-direction: row;
+        overflow: unset;
 
         .dropdown-item {
           padding: 0;
