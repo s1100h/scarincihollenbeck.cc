@@ -134,13 +134,14 @@ const Navigation = ({ isHidden, practices, locations }) => {
             </Link>
           </Nav.Item>
         )))}
-        {!empty(locations) && (
-          <NavDropdown
-            className="locations-dropdown"
-            title={renderTitle('Locations')}
-            id={3}
-            onClick={() => hideSecondLvl()}
-          >
+
+        <NavDropdown
+          className="locations-dropdown"
+          title={renderTitle('Locations')}
+          id={3}
+          onClick={() => hideSecondLvl()}
+        >
+          {!empty(locations) && (
             <DropdownFirstLvl className="dropdown-location">
               {locations.map((office) => (
                 <Link
@@ -155,8 +156,8 @@ const Navigation = ({ isHidden, practices, locations }) => {
                 </Link>
               ))}
             </DropdownFirstLvl>
-          </NavDropdown>
-        )}
+          )}
+        </NavDropdown>
       </Nav>
     </NavbarStyled>
   );

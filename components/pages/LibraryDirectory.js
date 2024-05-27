@@ -62,7 +62,7 @@ const LibraryDirectory = ({
         <BasicSiteHead
           title={seo.title}
           metaDescription={seo.metaDescription}
-          canonical={seo.canonicalUrl}
+          canonicalUrl={seo.canonicalUrl}
         />
       ) : (
         <BasicSiteHead title={categoryName} metaDescription={description} />
