@@ -154,39 +154,65 @@ export const EntertainmentClientsList = styled.div`
 
   .page-item {
     width: 43px;
-    height: 12px;
-    border-radius: 20px;
+    height: 43px;
+    border-radius: 50px;
     border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
     background-color: transparent;
     overflow: hidden;
+    a,
+    span {
+      color: ${entAndMediaColors.entAndMediaColorGold};
+    }
 
     &.active {
       background-color: ${entAndMediaColors.entAndMediaColorGold};
+      span {
+        color: ${globalColor.gray.gray130};
+      }
+    }
+    &.disabled {
+      .pagination-icon {
+        color: ${globalColor.gray.gray130};
+      }
+    }
+
+    :hover {
+      a,
+      span,
+      svg {
+        color: ${globalColor.white};
+      }
     }
   }
 
   .page-link {
-    width: 100%;
-    height: 100%;
     padding: 0;
-    color: transparent;
     background-color: transparent;
     border: 0;
-  }
+    span {
+      svg {
+        color: ${entAndMediaColors.entAndMediaColorGold};
+      }
+    }
 
-  ${media_breakpoint_exactly_down(1850)} {
-    .page-item {
-      width: 30px;
-      height: 10px;
+    :hover {
+      color: ${globalColor.white};
     }
   }
 
-  ${media_breakpoint_exactly_down(1440)} {
-    .page-item {
-      width: 35px;
-      height: 12px;
-    }
-  }
+  // ${media_breakpoint_exactly_down(1850)} {
+  //   .page-item {
+  //     width: 30px;
+  //     height: 10px;
+  //   }
+  // }
+
+  // ${media_breakpoint_exactly_down(1440)} {
+  //   .page-item {
+  //     width: 35px;
+  //     height: 12px;
+  //   }
+  // }
 `;
 
 export const EntertainmentClientsListItems = styled.div`
