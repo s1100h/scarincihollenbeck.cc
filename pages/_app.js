@@ -12,6 +12,7 @@ import SSRProvider from 'react-bootstrap/SSRProvider';
  * 3rd Party Resources
  *
  * */
+import { GoogleTagManager } from '@next/third-parties/google';
 import 'nprogress/nprogress.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -21,11 +22,9 @@ import 'animate.css/animate.min.css';
  * Custom Style Sheets
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
-import Script from 'next/script';
 import { PracticesContextProvider } from 'contexts/PracticesContext';
 import { ToastContainer } from 'react-toastify';
 import { FormContextProvider } from '../contexts/FormsContext';
-import { createMarkup } from '../utils/helpers';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
@@ -48,19 +47,7 @@ const SHSite = ({ Component, pageProps }) => (
             <ToastContainer />
             <Header />
             {/* <!-- Google tag (gtag.js) --> */}
-            <Script
-              async
-              src="https://www.googletagmanager.com/gtag/js?id=G-EQ890E606W"
-            />
-            <Script
-              id="G-EQ890E606W"
-              dangerouslySetInnerHTML={createMarkup(`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-EQ890E606W');
-              `)}
-            />
+            <GoogleTagManager gtmId="GTM-PBD4BN" />
             <main>
               <Component {...pageProps} />
             </main>

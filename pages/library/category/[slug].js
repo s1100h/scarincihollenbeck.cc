@@ -34,11 +34,31 @@ async function categoryPosts(variables) {
   return data.categories?.edges;
 }
 
-export const getServerSideProps = async ({ params, res, query }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
+const categoriesSlugsQuery = `
+query categoriesSlugs {
+  categories(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`;
+
+export const getStaticPaths = async () => {
+  const listId = await fetchAPI(categoriesSlugsQuery);
+
+  const paths = [];
+
+  listId.categories.nodes.forEach((node) => {
+    paths.push(`/library/category/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
   const [popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
     variables: {
@@ -98,8 +118,8 @@ export const getServerSideProps = async ({ params, res, query }) => {
         metaDescription: content.seo.metaDesc,
       },
       categoryId: content.databaseId,
-      currentPage: query?.page || 1,
     },
+    revalidate: 3600,
   };
 };
 
@@ -113,7 +133,6 @@ const LibraryCategory = ({
   name,
   seo,
   categoryId,
-  currentPage,
 }) => {
   const router = useRouter();
 
@@ -140,7 +159,6 @@ const LibraryCategory = ({
     categoryName: name,
     description,
     categoryId,
-    currentPage,
   };
 
   useNotFoundNotification("Category doesn't exist!");

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { LinkTitle, LinkList } from 'styles/Footer.style';
 import empty from 'is-empty';
 
-export const linkTemplate = (is_target_blank, slugLink, label) => {
+const linkTemplate = (is_target_blank, slugLink, label) => {
   if (is_target_blank) {
     return (
       <a href={slugLink} target="_blank" rel="noreferrer">

@@ -38,50 +38,6 @@ export const ListSimple = styled.ul`
   }
 `;
 
-export const SideBarPracticeBox = styled.nav`
-  padding: 10px 20px 20px;
-  margin-bottom: 20px;
-
-  h3 {
-    margin-bottom: 10px;
-  }
-  ul {
-    padding-left: 25px;
-    list-style: decimal;
-    margin-bottom: 0;
-
-    li {
-      a {
-        font-weight: 500;
-      }
-    }
-  }
-`;
-
-export const CardBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: ${globalShadow.allSideShadow};
-
-  h4 {
-    font-size: ${rem(20)};
-    font-weight: 700;
-    margin-bottom: 5px;
-    margin-top: 20px;
-  }
-
-  p {
-    color: ${globalColor.gray.gray80};
-  }
-
-  :hover {
-    transition: 0.7s;
-    box-shadow: ${globalShadow.hoveredShadow};
-    cursor: pointer;
-  }
-`;
-
 export const ArticleSearchBox = styled.div`
   display: flex;
   gap: 3%;

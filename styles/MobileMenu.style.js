@@ -667,18 +667,6 @@ export const AccordionMobile = styled(Accordion)`
   }
 `;
 
-export const GrayButtonLink = styled.a`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  padding: 15px 0 15px 22px;
-  color: inherit;
-
-  :hover {
-    background-color: ${globalColor.grayExtraLite.grayExtraLite40};
-  }
-`;
-
 export const ButtonLinkBox = styled.div`
   padding: 0 32px 16px;
   display: flex;

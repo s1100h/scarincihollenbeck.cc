@@ -9,7 +9,7 @@ const mysql = require('mysql2/promise');
 const { formatDate } = require('../../utils/helpers');
 
 // this request to DB for a post content, was mothballed.
-export const getPostContent = async (slug, category) => {
+const getPostContent = async (slug, category) => {
   const connection = await mysql.createConnection(
     process.env.MYSQL_CONNECTION_URL,
   );

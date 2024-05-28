@@ -3,26 +3,6 @@ import { globalColor, globalShadow } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
-export const MainArticleTitle = styled.h2`
-  margin-bottom: 24px;
-  font-size: 2.2rem;
-`;
-
-export const DateOfArticle = styled.time`
-  display: block;
-  font-size: 1.2rem;
-  margin: 16px 0;
-`;
-
-export const ArticleShortDescription = styled.section`
-  margin-bottom: 16px;
-
-  p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-  }
-`;
-
 export const MainVirtualizeContainer = styled.nav`
   height: 600px;
   width: 100%;
@@ -99,10 +79,4 @@ export const SideBarContainer = styled.nav`
 
   ${media_breakpoint_down('lg')} {
   }
-`;
-
-export const AllArticlesTitle = styled.h3`
-  font-weight: 600;
-  font-size: 3rem;
-  font-family: var(--font-poppins), sans-serif;
 `;

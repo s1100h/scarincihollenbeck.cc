@@ -2,7 +2,7 @@ import { ButtonLink, SpecialButtonLink } from 'styles/LinkButtons.style';
 import { BsFillTelephoneFill, BsFillCreditCard2BackFill } from 'react-icons/bs';
 import { MAKE_A_PAYMENT } from '../../../utils/constants';
 
-export const userPageTabFactory = {
+const userPageTabFactory = {
   default: ButtonLink,
   special: SpecialButtonLink,
 };
