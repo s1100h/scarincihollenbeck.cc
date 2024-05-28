@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react';
-import { fetchAPI } from '../requests/api';
-import { authorsPostQuery } from '../requests/graphql-queries';
-import { sortByKey } from '../utils/helpers';
+import decodeResponse from 'utils/decodeResponse';
+import empty from 'is-empty';
 
 export const AttorneysContext = createContext(null);
 
@@ -47,7 +46,6 @@ export const AttorneysProvider = ({ children }) => {
     const concatResults = select
       .filter((el) => el.key !== 'letterInLastName')
       .concat(results);
-    setAuthors(sortByKey(attorneysContext, 'letterInLastName'));
     setSelect(concatResults);
   }
 
@@ -64,32 +62,12 @@ export const AttorneysProvider = ({ children }) => {
   }
 
   async function getAsyncAuthors() {
-    const data = await fetchAPI(authorsPostQuery);
+    const authors = await fetch('/api/revalidate-authors');
+    const resDecoded = await decodeResponse(authors);
 
-    const filteredAttorneys = data.attorneyProfiles?.nodes.reduce(
-      (acc, attorney) => {
-        if (
-          !(
-            !attorney.attorneyAuthorId.authorId
-            || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
-          )
-        ) {
-          acc.push(attorney);
-        }
-        return acc;
-      },
-      [],
-    );
-
-    const sanitizedAuthors = filteredAttorneys.map((attorney) => ({
-      lastName: attorney.attorneyAuthorId?.authorId?.lastName,
-      databaseId: attorney.attorneyAuthorId?.authorId?.databaseId,
-      username: attorney.attorneyAuthorId.authorId.firstName,
-      link: attorney.attorneyAuthorId.authorId.uri,
-      fullName: attorney.attorneyAuthorId.authorId.name,
-      firstName: attorney.attorneyAuthorId.authorId.firstName,
-    }));
-    setAuthors(sortByKey(sanitizedAuthors, 'firstName'));
+    if (!empty(resDecoded?.data)) {
+      setAuthors(resDecoded?.data);
+    }
   }
 
   const values = {
