@@ -6,7 +6,7 @@ import {
 } from 'styles/SearchPractices.style';
 import AuxiliarySearch from '../../shared/GlobalSearch/AuxiliarySearch';
 
-export const uniqArr = (unsortedArr) => {
+const uniqArr = (unsortedArr) => {
   const filteredArr = [];
   unsortedArr.forEach((item) => {
     const isUniq = !filteredArr.some(

@@ -25,17 +25,17 @@ import { sanitizeOffices } from 'pages';
 import useNotFoundNotification from 'hooks/useNotFoundNotification';
 
 /** Fetch the page content from WP GRAPHQL API */
-export const attorneysPageContent = async () => {
+const attorneysPageContent = async () => {
   const data = await fetchAPI(attorneysPageQuery, {});
   return data?.pageBy;
 };
 
-export const getPracticesWithAttorneys = async () => {
+const getPracticesWithAttorneys = async () => {
   const { practices: nodes } = await fetchAPI(getPracticesWithAttorneysQuery);
   return nodes.nodes;
 };
 
-export const getKaterinTraugh = async () => {
+const getKaterinTraugh = async () => {
   const data = await fetchAPI(adminKaterinTraughQuery);
   const {
     title,

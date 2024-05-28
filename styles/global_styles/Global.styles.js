@@ -129,10 +129,6 @@ export const buttonHoverActive = (hoverColor, activeColor) => `
   }
 `;
 
-export const globalBackgroundImage = {
-  subHeader: '/images/skyscraper.png',
-};
-
 export const globalIndents = {
   attorneyProfilePaddings: '20px 30px',
 };
@@ -186,8 +182,11 @@ export const GlobalStyle = createGlobalStyle`
         border-radius: 8px;
       }
 
-      scrollbar-color: #162153 #cbcbcb;
-      scrollbar-width: thin;
+      // FireFox
+      @supports not selector(::-webkit-scrollbar-thumb) {
+        scrollbar-color: #162153 #cbcbcb;
+        scrollbar-width: thin;
+      }
     }
   }
 

@@ -25,7 +25,6 @@ const LibraryDirectory = ({
   seo,
   profileUrl,
   categoryId,
-  currentPage,
 }) => {
   const { getAsyncAuthors, authors } = useContext(AttorneysContext);
   const router = useRouter();
@@ -45,7 +44,7 @@ const LibraryDirectory = ({
     id: null,
     authorId: isAuthor ? categoryId : null,
     categoryId: !isAuthor ? categoryId : null,
-    currentPage,
+    currentPage: router?.query?.page || 1,
     itemsPerPage: 6,
   };
 

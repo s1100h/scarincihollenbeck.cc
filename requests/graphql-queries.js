@@ -478,37 +478,6 @@ query getThreePostsQuery {
   }
 }`;
 
-export const getClientsQuery = `query FirmPageQuery(
-  $after: String, 
-  $before: String, 
-  $first: Int, 
-  $last: Int
-) {
-  clients(after: $after, before: $before, first: $first, last: $last) {
-     edges {
-      node {
-        databaseId
-        title
-        clientsFields {
-          clientImage {
-            sourceUrl
-            title
-          }
-          entertainmentSubcategory
-          lineColor
-          proffesion
-        }
-      }
-    }
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }
-}`;
-
 // , order by: {field: DATE, order: DESC}
 export const postsForPaginationByCategoryIdQuery = `
   query postsForPaginationByCategoryId(
@@ -548,25 +517,6 @@ export const postsForPaginationByCategoryIdQuery = `
     }
   }
 `;
-
-export const homePageAwardsQuery = `query HomePageAwardsQuery {
-  homePageAwards {
-    edges {
-      node {
-        title
-        homePageAwards {
-          label
-          image {
-            sourceUrl(size: LARGE)
-          }
-          appearanceOrder
-          imageWidth
-          imageHeight
-        }
-      }
-    }
-  }
-}`;
 
 export const postsForPaginationByAuthorIdQuery = `
   query postsForPaginationByAuthorId(
@@ -773,24 +723,6 @@ export const homePageQuery = `query HomePageQuery {
   }
 }
 `;
-
-/** home page locations query */
-export const homePageLocationsQuery = `query LocationPagesQuery {
-  officeLocations {
-    edges {
-      node {
-        id
-        slug
-        title
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}`;
 
 /** attorneys landing page query */
 export const attorneysPageQuery = `query AttorneysPagesQuery {
@@ -1269,49 +1201,6 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
   }
 }`;
 
-export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
-  attorneyProfiles(first: 30, where: {status: PUBLISH}) {
-    edges {
-      node {
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        uri
-        title
-        attorneyMainInformation {
-          phoneNumber
-          email
-          designation
-          lastName
-        }
-      }
-    }
-  }
-  administrations {
-    edges {
-      node {
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title
-        uri
-        administration {
-          title
-          phoneExtension
-          email
-          lastname
-          order
-        }
-      }
-    }
-  }
-}
-`;
-
 export const adminsQuery = `query AttorneyPostsById {
   administrations {
     nodes {
@@ -1451,20 +1340,6 @@ export const getOffices = `query FirmPageQuery {
   }
 }`;
 
-export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
-  officeLocationBy(officeLocationId: 29436) {
-    officeMainInformation {
-      autoMap {
-        link
-      }
-      trainStationsMap {
-        link
-      }
-    }
-  }
-}
-`;
-
 export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
   user(id: $id, idType: DATABASE_ID) {
     seo {
@@ -1474,19 +1349,6 @@ export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
     }
   }
 }`;
-
-export const getAuthorsQuery = `query FirmPageQuery {
-  users(first: 100) {
-    nodes {
-      databaseId
-      uri
-      lastName
-      firstName
-      description
-    }
-  }
-}
-`;
 
 export const getCategoriesQuery = `query subscriptions {
   subscriptions {

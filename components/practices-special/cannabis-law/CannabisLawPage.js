@@ -3,6 +3,7 @@ import empty from 'is-empty';
 import KeyContactsBlock from 'components/organisms/cannabis-law/KeyContactsBlock';
 import { getPaginationData } from 'requests/getPaginationData';
 import { postsForPaginationByCategoryIdQuery } from 'requests/graphql-queries';
+import { useRouter } from 'next/router';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
 import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
@@ -24,15 +25,15 @@ const CannabisLawPage = ({
   attorneyListPractice,
   keyContactsList,
   cannabisLawData,
-  currentPage,
 }) => {
   const { setHref, hrefToId } = useAnchorLink();
   const anchorIdBlock = 'photoBlock';
   const handleClickByAnchorToPhotoBlock = () => setHref(anchorIdBlock);
+  const { query } = useRouter();
 
   const params = {
     categoryId: 911,
-    currentPage,
+    currentPage: query?.page || 1,
     itemsPerPage: 3,
   };
 

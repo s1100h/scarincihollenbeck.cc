@@ -10,7 +10,7 @@ import { getPracticeAttorneys } from '../../requests/practices/practice-default'
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
-export const postsSanitize = (posts) => posts.map((post) => {
+const postsSanitize = (posts) => posts.map((post) => {
   post.featuredImage = post.featuredImage?.node.sourceUrl
       || '/images/no-image-found-diamond-750x350.png';
   return post;
@@ -26,12 +26,40 @@ const getClientAlertPost = async () => {
   return postsSanitize(data.posts.nodes);
 };
 
+const practicesSlugsQuery = `
+query practicesSlugs {
+  practices(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`;
+
+const excludedSlugs = [
+  'new-jersey-cannabis-law',
+  'entertainment-and-media-pause',
+];
+
 /** Set single practice data to page props */
-export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
+export const getStaticPaths = async () => {
+  const listId = await fetchAPI(practicesSlugsQuery);
+
+  const paths = [];
+
+  listId?.practices?.nodes?.forEach((node) => {
+    if (excludedSlugs.includes(node?.slug)) {
+      return;
+    }
+    paths.push(`/practices/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
   const {
     practice,
     includeAttorney,
@@ -40,7 +68,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
     corePractices,
     posts,
     faq,
-  } = await getPracticeAttorneys(resolvedUrl);
+  } = await getPracticeAttorneys(`/practices/${params.slug}`);
   const clientAlertPost = await getClientAlertPost();
 
   // 04.04.2024 Google reviews temporarily disabled
@@ -99,6 +127,7 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       faq,
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
+    revalidate: 8600,
   };
 };
 

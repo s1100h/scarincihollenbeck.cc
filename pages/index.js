@@ -42,7 +42,7 @@ export const sanitizeOffices = (offices) => offices.map(({
   ...officeMainInformation,
 }));
 
-export const sanitizeFirmNews = (news) => news.map(
+const sanitizeFirmNews = (news) => news.map(
   ({
     date, databaseId, slug, featuredImage, title, excerpt, author,
   }) => ({
