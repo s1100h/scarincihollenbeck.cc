@@ -33,8 +33,6 @@ export const BannerContainer = styled.div`
     width: 1650px;
     margin: 0 auto;
     max-width: 96%;
-    mix-blend-mode: exclusion;
-    filter: invert(1);
   }
 
   .homeBannerContainer {
