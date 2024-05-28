@@ -233,36 +233,6 @@ export const OfficeCardContainer = styled.div`
   }
 `;
 
-export const OfficeAttorneysContainer = styled.div`
-  h4 {
-    font-size: ${rem(32)};
-  }
-
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.8%;
-
-    li {
-      margin-bottom: 1.8%;
-      article {
-        width: 410px;
-      }
-    }
-  }
-
-  ${media_breakpoint_down('sm')} {
-    ul {
-      li {
-        width: 100%;
-        article {
-          width: 100%;
-        }
-      }
-    }
-  }
-`;
-
 export const OfficeLocationBoxTitle = styled.h4`
   font-size: ${rem(32)};
   text-transform: uppercase;

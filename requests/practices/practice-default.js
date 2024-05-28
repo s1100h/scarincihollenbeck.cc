@@ -4,13 +4,13 @@ import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
 import { practicesQueryGenerator } from './practicesQueryGenerator';
 
-export const postsSanitize = (posts) => posts.map((post) => {
+const postsSanitize = (posts) => posts.map((post) => {
   post.featuredImage = post.featuredImage?.node.sourceUrl
       || '/images/no-image-found-diamond-750x350.png';
   return post;
 });
 
-export const attorneysSanitize = (attorneysArr) => {
+const attorneysSanitize = (attorneysArr) => {
   const designationOrder = [
     'Firm Managing Partner',
     'Deputy Managing Partner',

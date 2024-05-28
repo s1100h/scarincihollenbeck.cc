@@ -9,7 +9,7 @@ import {
 export const AnchorsTopBarWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 8px 32px;
+  padding: 0 32px;
   border-radius: 40px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: ${globalColor.blue.blue500};
@@ -51,14 +51,22 @@ export const AnchorsTopBarWrapper = styled.div`
 
   > nav {
     overflow: auto;
+    padding: 12px 0;
   }
 
   ${media_breakpoint_exactly_down(1439)} {
-    padding: 12px 24px;
+    padding: 8px 24px;
+
+    > nav {
+      padding: 8px 0;
+    }
   }
 
   ${media_breakpoint_down('md')} {
-    padding: 10px 24px;
+    padding: 4px 24px;
+    > nav {
+      padding: 11px 0;
+    }
   }
 `;
 export const AnchorsTopBarItems = styled.ul`
@@ -66,7 +74,6 @@ export const AnchorsTopBarItems = styled.ul`
   width: 100%;
   display: flex;
   column-gap: 12px;
-  overflow-x: auto;
 
   li {
     min-width: max-content;

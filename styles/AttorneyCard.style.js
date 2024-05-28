@@ -50,17 +50,6 @@ export const LinkBox = styled.div`
   }
 `;
 
-export const ImageBox = styled.div`
-  width: 108px;
-  height: 148px;
-  background-image: url(${'/images/sh-mini-diamond-PNG.svg'});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-y: center;
-`;
-
-export const PhotoBox = styled.div``;
-
 export const InfoBox = styled.section`
   display: flex;
   flex-direction: column;

@@ -174,16 +174,6 @@ export const SliderSubHeaderContainer = styled.section`
   }
 `;
 
-export const ImageWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: ${globalColor.black};
-`;
-
 export const SlideSubHeader = styled.div`
   padding-top: 40px;
   flex: 1;
