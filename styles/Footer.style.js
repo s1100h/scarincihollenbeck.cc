@@ -290,7 +290,7 @@ export const NavContainer = styled.section`
 `;
 export const FooterNavigation = styled.nav`
   display: flex;
-  width: 644px;
+  width: 782px;
 
   ul {
     display: flex;

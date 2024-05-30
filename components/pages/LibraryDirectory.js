@@ -10,6 +10,7 @@ import {
   postsForPaginationByCategoryIdQuery,
 } from 'requests/graphql-queries';
 import { getPaginationData } from 'requests/getPaginationData';
+import empty from 'is-empty';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
@@ -35,7 +36,7 @@ const LibraryDirectory = ({
   const isAuthor = router.asPath.includes('author');
 
   useEffect(() => {
-    if (authors.length === 0) {
+    if (empty(authors)) {
       getAsyncAuthors();
     }
   }, [authors]);
