@@ -79,7 +79,7 @@ export const footerNavList = [
     id: 5,
   },
   {
-    linkTitle: 'Awards',
+    linkTitle: 'Awards Methodology',
     link: '/awards',
     id: 6,
   },
