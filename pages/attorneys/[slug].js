@@ -74,13 +74,37 @@ const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
   };
 });
 
-/** Set data from API response to page props WARNING: This is a large function */
-export const getServerSideProps = async ({ params, res }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
+const attorneysSlugsQuery = `
+query attorneysSlugs {
+  attorneyProfiles(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`;
 
+const excludedSlugs = ['scarinci-hollenbeck'];
+
+export async function getStaticPaths() {
+  const listId = await fetchAPI(attorneysSlugsQuery);
+
+  const paths = [];
+
+  listId.attorneyProfiles.nodes.forEach((node) => {
+    if (excludedSlugs.includes(node?.slug)) {
+      return;
+    }
+    paths.push(`/attorneys/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
+/** Set data from API response to page props WARNING: This is a large function */
+export const getStaticProps = async ({ params }) => {
   /** Get Attorney Bio  */
   const slug = params?.slug;
 
@@ -93,7 +117,10 @@ export const getServerSideProps = async ({ params, res }) => {
   const attorneyBio = await attorneyBySlug(slug);
   if (!attorneyBio) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/attorneys?notFound=true',
+        permanent: true,
+      },
     };
   }
 
@@ -119,7 +146,7 @@ export const getServerSideProps = async ({ params, res }) => {
         const posts = await fetchExternalPosts(GOV_LAW_URL, authorId, 14);
         govLawPosts.id = authorId;
 
-        if (posts.length > 0) {
+        if (posts?.length > 0) {
           govLawPosts.posts = sanitizeExternalArticles(posts);
         } else {
           govLawPosts.posts = [];
@@ -427,6 +454,7 @@ export const getServerSideProps = async ({ params, res }) => {
       additionalTabs,
       attorneyAwards,
     },
+    revalidate: 3600,
   };
 };
 

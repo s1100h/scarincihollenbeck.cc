@@ -2,8 +2,10 @@ import { sortByKey } from 'utils/helpers';
 import { PRODUCTION_URL } from 'utils/constants';
 import PracticesDirectory from 'components/pages/PracticesDirectory';
 import { getPractices } from 'requests/getPractices';
+import empty from 'is-empty';
 import { fetchAPI } from '../../requests/api';
 import { practicePageQuery } from '../../requests/graphql-queries';
+import useNotFoundNotification from '../../hooks/useNotFoundNotification';
 
 /** Fetch the practice page content WP GRAPHQL API */
 const practicesPageContent = async () => {
@@ -15,6 +17,12 @@ const practicesPageContent = async () => {
 export const getStaticProps = async () => {
   const page = await practicesPageContent();
   const practices = await getPractices();
+  const practicesSorted = practices.map((practice) => {
+    if (!empty(practice.childPractice)) {
+      practice.childPractice = sortByKey(practice.childPractice, 'title');
+    }
+    return practice;
+  });
   const {
     title, seo, practiceArchives, featuredImage,
   } = page;
@@ -23,7 +31,7 @@ export const getStaticProps = async () => {
     props: {
       seo,
       title,
-      practices: sortByKey(practices, 'title'),
+      practices: sortByKey(practicesSorted, 'title'),
       subheaderOverlay: featuredImage?.node?.sourceUrl,
       site: {
         title,
@@ -39,6 +47,7 @@ export const getStaticProps = async () => {
 const PracticesPageDirectory = ({
   practices, subheaderOverlay, seo, site,
 }) => {
+  useNotFoundNotification('The practice no longer exists.');
   const canonicalUrl = `${PRODUCTION_URL}/practices`;
   const practicesPageProps = {
     site,

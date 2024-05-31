@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { checkboxes } from 'utils/categories';
-import { SITE_TITLE, THANKS_MESSAGE } from 'utils/constants';
+import {
+  SITE_TITLE,
+  subscriptionInputs,
+  THANKS_MESSAGE,
+} from 'utils/constants';
 import {
   CheckBoxesList,
   FormSubscriptionContainer,
@@ -11,17 +14,60 @@ import {
 } from 'styles/Subscription.style';
 import kwesforms from 'kwesforms';
 import empty from 'is-empty';
+import Button from 'react-bootstrap/Button';
 import ModalWindow from '../../common/ModalWindow';
-import { StandardRedButton } from '../../../styles/Buttons.style';
+import { StandardBlueButton } from '../../../styles/Buttons.style';
+import RenderInputs from '../../shared/ContactForm/RenderInputs';
+import { FormContainer } from '../../../styles/attorney-page/GetInTouchForm.styles';
+import Loader from '../../atoms/Loader';
+import decodeResponse from '../../../utils/decodeResponse';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
-
+const isArraysIdentical = (chosenIds, originalIds) => {
+  if (chosenIds.length !== originalIds.length) {
+    return false;
+  }
+  return chosenIds.every((element, index) => element === originalIds[index]);
+};
+const originalCategoriesIds = (categoryArr) => categoryArr.map((category) => category.id);
 const SubscriptionModal = ({ children, customClass }) => {
+  const [categoriesFromWP, setCategoriesFromWP] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const blogCategories = await fetch('/api/revalidate-categories');
+      const resDecoded = await decodeResponse(blogCategories);
+      if (!empty(resDecoded.data)) {
+        setCategoriesFromWP(resDecoded.data);
+      }
+    })();
+  }, []);
+
   const [show, setShow] = useState(false);
+  const [categoriesChosen, setCategories] = useState([]);
+
   const router = useRouter();
   useEffect(() => {
     kwesforms.init();
   }, [show]);
+  const handleCheckCategory = (categoryId) => {
+    if (categoriesChosen.includes(categoryId)) {
+      setCategories(
+        categoriesChosen.filter(
+          (categoryIdChosen) => categoryIdChosen !== categoryId,
+        ),
+      );
+    } else {
+      setCategories([...categoriesChosen, categoryId]);
+    }
+  };
+  const handleChooseAllClearAll = (isAllChosen) => {
+    if (isAllChosen) {
+      setCategories(originalCategoriesIds(categoriesFromWP));
+    } else {
+      setCategories([]);
+    }
+  };
 
   return (
     <>
@@ -41,78 +87,94 @@ const SubscriptionModal = ({ children, customClass }) => {
             <>
               <section>
                 <Image
+                  className="modal-subscription-logo"
                   src="/images/sh-mini-diamond-PNG.svg"
-                  width={130}
-                  height={107}
+                  width={80}
+                  height={80}
                   alt={`${SITE_TITLE} diamond`}
                   layout="intrinsic"
                 />
                 <h4>
                   Sign up to get the latest from the
+                  {' '}
                   {SITE_TITLE}
                   {' '}
                   attorneys!
                 </h4>
               </section>
-
-              <form
-                className="kwes-form"
-                action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
-                has-recaptcha-v3="true"
-                recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
-                success-message={THANKS_MESSAGE.title}
-              >
-                <input
-                  type="hidden"
-                  name="currentPage"
-                  value={`https://scarincihollenbeck.com${router.asPath}`}
-                />
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  name="firstName"
-                  placeholder="First name"
-                  rules="required|max:255"
-                />
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  name="lastName"
-                  placeholder="Last name"
-                  rules="required|max:255"
-                />
-                <input
-                  type="email"
-                  className="form-control mb-2"
-                  name="email"
-                  placeholder="Email address"
-                  rules="required|max:255"
-                />
-                <fieldset data-kw-group="true" rules="required">
-                  <span className="smallExcerpt">
-                    Please select a category(s) below:
-                  </span>
-                  <CheckBoxesList>
-                    {checkboxes.map((type) => (
-                      <li key={type.key}>
-                        <label htmlFor={type.key} className="mb-0">
-                          <input
-                            type="checkbox"
-                            id={type.key}
-                            name="category"
-                            label={type.label}
-                            value={type.label}
-                          />
-                          <span className="mx-2">{type.label}</span>
-                        </label>
-                      </li>
-                    ))}
-                  </CheckBoxesList>
-                </fieldset>
-                <div className="modal-footer justify-content-start">
-                  <StandardRedButton type="submit">Submit</StandardRedButton>
-                </div>
-              </form>
+              <FormContainer>
+                <form
+                  className="kwes-form"
+                  action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
+                  has-recaptcha-v3="true"
+                  recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
+                  success-message={THANKS_MESSAGE.title}
+                >
+                  <RenderInputs
+                    arrayOfAttributes={subscriptionInputs}
+                    attorneySlug={router.asPath}
+                  />
+                  <fieldset
+                    className="checkboxes-box"
+                    data-kw-group="true"
+                    rules="required"
+                  >
+                    <span className="smallExcerpt">
+                      Please select a category(s) below:
+                    </span>
+                    <div className="btn-choose-box">
+                      <Button
+                        variant="link"
+                        onClick={() => handleChooseAllClearAll(true)}
+                        disabled={isArraysIdentical(
+                          categoriesChosen,
+                          originalCategoriesIds(categoriesFromWP),
+                        )}
+                      >
+                        Select all
+                      </Button>
+                      <Button
+                        variant="link"
+                        onClick={() => handleChooseAllClearAll(false)}
+                        disabled={empty(categoriesChosen)}
+                      >
+                        Clear all
+                      </Button>
+                    </div>
+                    <CheckBoxesList>
+                      {!empty(categoriesFromWP) ? (
+                        <>
+                          {categoriesFromWP?.map(({ id, name }) => (
+                            <li key={id}>
+                              <label htmlFor={id} className="mb-0">
+                                <input
+                                  type="checkbox"
+                                  className="disclaimer-input"
+                                  id={id}
+                                  name="category"
+                                  value={name}
+                                  onChange={() => handleCheckCategory(id)}
+                                  checked={categoriesChosen.includes(id)}
+                                />
+                                <span className="disclaimer-checkbox" />
+                                <span className="checkbox-label">{name}</span>
+                              </label>
+                            </li>
+                          ))}
+                        </>
+                      ) : (
+                        <Loader />
+                      )}
+                    </CheckBoxesList>
+                  </fieldset>
+                  <StandardBlueButton
+                    disabled={empty(categoriesChosen)}
+                    type="submit"
+                  >
+                    Submit
+                  </StandardBlueButton>
+                </form>
+              </FormContainer>
             </>
           )}
         </FormSubscriptionContainer>

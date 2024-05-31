@@ -11,6 +11,8 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray130: '#4D4D4D',
+    gray120: '#666',
     gray110: '#6A6A6A',
     gray100: '#424242',
     gray90: '#4a4a4a',
@@ -68,6 +70,7 @@ export const globalColor = {
     darkUltramarine: '#162153',
     lightBlue: '#8AD',
     blue500: '#164587',
+    blue600: '#377EC4',
   },
 
   yellow: {
@@ -127,10 +130,6 @@ export const buttonHoverActive = (hoverColor, activeColor) => `
   }
 `;
 
-export const globalBackgroundImage = {
-  subHeader: '/images/skyscraper.png',
-};
-
 export const globalIndents = {
   attorneyProfilePaddings: '20px 30px',
 };
@@ -184,8 +183,11 @@ export const GlobalStyle = createGlobalStyle`
         border-radius: 8px;
       }
 
-      scrollbar-color: #162153 #cbcbcb;
-      scrollbar-width: thin;
+      // FireFox
+      @supports not selector(::-webkit-scrollbar-thumb) {
+        scrollbar-color: #162153 #cbcbcb;
+        scrollbar-width: thin;
+      }
     }
   }
 
@@ -211,6 +213,10 @@ body {
     ${media_breakpoint_down('md')} {
       scroll-margin-top: 200px;
     }
+  }
+
+  &:has(.modal-open) {
+    overflow: hidden;
   }
 }
 
@@ -368,6 +374,9 @@ button {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 80%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .aligncenter > figcaption {
@@ -383,7 +392,13 @@ button {
   flex-direction: column;
   float: left;
   margin-right: 24px;
-  width: min-content;
+  max-width: 50%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .alignright {
@@ -393,7 +408,13 @@ button {
   flex-direction: column;
   float: right;
   margin-left: 24px;
-  width: min-content;
+  max-width: 50%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .wp-block-columns {
@@ -402,6 +423,13 @@ button {
 
 .wp-block-column {
   flex: 1;
+}
+
+.wp-block-table {
+  td {
+    padding: 0 10px;
+    border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
+  }
 }
 
 .has-text-align-center {
@@ -543,6 +571,18 @@ footer .wrapper-section {
       ${paragraphStyles};
     }
   }
+  
+  .error-notify {
+    &.Toastify__toast--error {
+      border-radius: 0;
+      background-color: ${globalColor.red.darkRed};
+    }
+  }
+  
+  .disclaimer {
+    font-size: 1rem;
+    font-weight: 700;
+  }
 `;
 
 export const ButtonLinkCss = `
@@ -613,7 +653,7 @@ export const attorneyCardForCannabis = `
     box-shadow: none;
   }
 
-  section {
+  > div {
     img {
       width: 166px;
       height: 166px;

@@ -94,10 +94,12 @@ const PracticePageNew = ({
         anchorId={anchorData.attorneys.id}
       />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-      <GoogleReviews
-        reviews={googleReviews}
-        anchorId={anchorData?.googleReviews?.id}
-      />
+      {!empty(googleReviews) && (
+        <GoogleReviews
+          reviews={googleReviews}
+          anchorId={anchorData?.googleReviews?.id}
+        />
+      )}
       <AnchorTop />
     </>
   );

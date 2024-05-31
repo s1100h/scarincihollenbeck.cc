@@ -6,7 +6,6 @@ import {
 import ProfileSidebarAwards from 'components/molecules/attorney/ProfileSidebarAwards';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import React from 'react';
-import renderAward from '../../atoms/micro-templates/Award';
 
 const ProfileSidebar = ({ services, awards }) => (
   <ProfileSidebarContainer>

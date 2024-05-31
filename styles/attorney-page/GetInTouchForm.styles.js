@@ -1,5 +1,3 @@
-import { THANKS_MESSAGE } from '../../utils/constants';
-
 export const FormContainer = styled.div`
   ${({ isPositionRelative }) => isPositionRelative && 'position: relative;'}
 
@@ -63,7 +61,7 @@ export const FormContainer = styled.div`
     }
 
     .kw-alert-success {
-      ${successMessage}
+      ${successMessage};
       margin: 0;
       background-color: ${globalColor.blue.blue500};
       border-radius: 0;
@@ -128,12 +126,12 @@ export const FormContainer = styled.div`
       .disclaimer-checkbox {
         display: flex;
         justify-content: center;
-        width: 23px;
-        height: 23px;
+        width: 24px;
+        height: 24px;
         margin-right: 8px;
         border-radius: 0;
         border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
-        border-radius: 2px;
+        flex-shrink: 0;
       }
 
       .disclaimer-input {
@@ -142,9 +140,15 @@ export const FormContainer = styled.div`
 
         &:checked {
           & + .disclaimer-checkbox {
-            background-color: ${globalColor.graySmoke.smoke};
-            &::before {
-              content: '✔';
+            background-color: ${globalColor.blue.dirtyBlue};
+            ::before {
+              content: '';
+              display: inline-block;
+              transform: rotate(45deg);
+              height: 15px;
+              width: 8px;
+              border-bottom: 2px solid ${globalColor.white};
+              border-right: 2px solid ${globalColor.white};
             }
           }
         }
@@ -206,9 +210,25 @@ export const FormLabelStyled = styled(Form.Label)`
 
 export const TwoColumnsForm = styled.form`
   .career-form-wrapper {
+    margin-bottom: 8px;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px 30px;
+
+    .input-group {
+      width: 100%;
+      height: auto;
+      margin: 0;
+
+      &:last-of-type {
+        margin: 0;
+      }
+
+      input {
+        height: 37px;
+      }
+    }
 
     @media (max-width: 992px) {
       grid-template-columns: 1fr;

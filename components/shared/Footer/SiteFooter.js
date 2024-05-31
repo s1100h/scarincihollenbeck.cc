@@ -4,6 +4,7 @@ import {
   Advertising,
   BottomLinks,
   FooterContainer,
+  FooterWrapper,
   LinksSEOBox,
 } from 'styles/Footer.style';
 import { useRouter } from 'next/router';
@@ -33,43 +34,52 @@ export default function Footer() {
   const backgroundFooterColor = setFooterBackgroundColor(slug);
 
   return (
-    <FooterContainer backgroundFooterColor={backgroundFooterColor}>
-      <NavigationAndSubscription />
-      <div className="footer-wrapper">
-        <LinksSEOBox>
-          <LinksBox title="Core Practices" linksArr={colOnePractices} />
-          <LinksBox classList="list-without-title" linksArr={colTwoPractices} />
-          <LinksBox title="Firm Pages" linksArr={FIRM_PAGES} />
-          <LinksBox title="Office Locations" linksArr={OFFICE_LOCATIONS} />
-        </LinksSEOBox>
-        <FooterDetails />
-        <Advertising>
-          <Image
-            src="/images/sh-mini-diamond-PNG.svg"
-            alt="sh diamond logo favicon"
-            width={110}
-            height={100}
-          />
-          <section>
-            <p>ATTORNEY ADVERTISING</p>
-            <p>
-              Prior results do not guarantee a similar outcome. @
-              {currentYear}
-              ,
-              Scarinci Hollenbeck, LLC, all rights reserved
-            </p>
-            <BottomLinks>
-              <li>
-                <Link href="/privacy-policy">Privacy policy</Link>
-              </li>
-              <li className="list-inline-item">
-                <Link href="/terms-of-use">Terms of use</Link>
-              </li>
-            </BottomLinks>
-          </section>
-        </Advertising>
-      </div>
-      <CookieConsentMessage />
-    </FooterContainer>
+    <FooterWrapper>
+      <FooterContainer backgroundFooterColor={backgroundFooterColor}>
+        <NavigationAndSubscription />
+        <div className="footer-wrapper">
+          <LinksSEOBox>
+            <LinksBox title="Core Practices" linksArr={colOnePractices} />
+            <LinksBox
+              classList="list-without-title"
+              linksArr={colTwoPractices}
+            />
+            <LinksBox title="Firm Pages" linksArr={FIRM_PAGES} />
+            <LinksBox title="Office Locations" linksArr={OFFICE_LOCATIONS} />
+          </LinksSEOBox>
+          <FooterDetails />
+          <Advertising>
+            <Image
+              src="/images/sh-mini-diamond-PNG.svg"
+              alt="sh diamond logo favicon"
+              width={110}
+              height={100}
+            />
+            <section>
+              <p>ATTORNEY ADVERTISING</p>
+              <p>
+                No Aspect of the advertisement on this website or any of its
+                pages, including awards and accolades, has been approved by the
+                Supreme Court of NJ or NY.
+              </p>
+              <p>
+                Prior results do not guarantee a similar outcome. @
+                {currentYear}
+                , Scarinci Hollenbeck, LLC, all rights reserved
+              </p>
+              <BottomLinks>
+                <li>
+                  <Link href="/privacy-policy">Privacy policy</Link>
+                </li>
+                <li className="list-inline-item">
+                  <Link href="/terms-of-use">Terms of use</Link>
+                </li>
+              </BottomLinks>
+            </section>
+          </Advertising>
+        </div>
+        <CookieConsentMessage />
+      </FooterContainer>
+    </FooterWrapper>
   );
 }

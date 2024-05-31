@@ -57,7 +57,8 @@ export const InfoContainer = styled.section`
       padding: 20px 20px 0 20px;
       height: inherit;
 
-      p {
+      > div {
+        margin-bottom: 12px;
         overflow-y: auto;
       }
 
@@ -261,7 +262,7 @@ export const ArticleLocationBox = styled.article`
     flex-direction: column;
     align-items: flex-start;
     padding: 32px;
-    padding-right: 0;
+    padding-right: 20px;
     background-color: ${globalColor.blue.darkBlue};
 
     p {

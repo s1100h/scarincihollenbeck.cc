@@ -4,6 +4,7 @@ import * as ImageLegacy from 'next/legacy/image';
 import Image from 'next/image';
 import empty from 'is-empty';
 import {
+  BASE_API_URL,
   HTTP_PRODUCTION_URL,
   HTTP_WWW_PRODUCTION_URL,
   PRODUCTION_URL,
@@ -13,6 +14,29 @@ import {
   getCloudinaryImageUrl,
 } from '../../../utils/helpers';
 
+const createImageSrc = (attribs) => {
+  if (
+    empty(attribs?.['data-srcset'])
+    && !empty(attribs?.['data-version'])
+    && !empty(attribs?.['data-public-id'])
+  ) {
+    return getCloudinaryImageUrl(
+      attribs?.['data-version'],
+      attribs?.['data-public-id'],
+    );
+  }
+  return attribs?.['data-srcset'] || attribs?.src;
+};
+
+const getWikiLink = (href) => {
+  if (!empty(href) && !href.includes('http')) {
+    return href?.replace(
+      '//upload.wikimedia.org/',
+      'https://upload.wikimedia.org/',
+    );
+  }
+  return href;
+};
 // Parsing HTML and replace a hardcode-domain to dynamic href for <Link/>. This function returns React jsx components.
 export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
   replace: (domNode) => {
@@ -23,20 +47,25 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
       PRODUCTION_URL,
       HTTP_PRODUCTION_URL,
       HTTP_WWW_PRODUCTION_URL,
+      BASE_API_URL,
     ];
     if (
       domNode.type === 'tag'
         && domNode.name === 'a'
         && productionUrls.some((url) => domNode.attribs.href?.includes(url))
+        && !domNode.attribs.href.includes('/wp-content/')
     ) {
       const uri = domNode.attribs.href?.split('/');
       const uriSliced = `/${uri.slice(3).join('/')}`;
       const urlCutPossibleSlash = cutSlashFromTheEnd(uriSliced);
+      const href = !urlCutPossibleSlash ? '/' : urlCutPossibleSlash;
+      // Using default tag <a> because with Next component <Link> don't work redirects from next config.
+      // Example redirect - from /practices/sports-and-entertainment-law to /practices/entertainment-and-media
       return (
-        <Link href={!urlCutPossibleSlash ? '/' : urlCutPossibleSlash}>
+        <a href={href}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
-        </Link>
+        </a>
       );
     }
     if (
@@ -52,92 +81,53 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
           && modifiedAlienUrl.endsWith('/')
         ? cutSlashFromTheEnd(modifiedAlienUrl)
         : modifiedAlienUrl;
+      const hrefTarget = modifiedAlienUrlCutSlash.includes('http')
+          && !modifiedAlienUrlCutSlash.includes('scarincihollenbeck.com')
+        ? '_blank'
+        : domNode.attribs?.target;
+      const imageSrc = createImageSrc(domNode?.children[0]?.attribs);
+
       return (
-        <Link href={modifiedAlienUrlCutSlash} target="_blank">
+        <Link href={modifiedAlienUrlCutSlash} target={hrefTarget}>
           {domNode.children[0]?.data
               || domNode.children[0]?.children[0]?.data}
-          {domNode.children[0].name === 'img' && (
+          {domNode.children[0]?.name === 'img' && (
           <ImageLegacy
-            src={domNode.children[0]?.attribs['data-srcset']}
+            src={getWikiLink(imageSrc)}
             alt={domNode.children[0]?.attribs?.alt}
-            width={domNode.children[0]?.attribs?.width}
-            height={domNode.children[0]?.attribs?.height}
+            width={domNode.children[0]?.attribs?.width || 750}
+            height={domNode.children[0]?.attribs?.height || 350}
           />
           )}
         </Link>
       );
     }
     if (domNode.type === 'tag' && domNode.name === 'img') {
+      const imageSrc = createImageSrc(domNode?.attribs);
       if (print) {
         return (
         // eslint-disable-next-line @next/next/no-img-element
           <img
               // blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
-            src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            src={getWikiLink(imageSrc)}
             alt={domNode.attribs.alt}
-            width={domNode.attribs.width || 500}
-            height={domNode.attribs.height || 300}
+            width={domNode.attribs.width || 750}
+            height={domNode.attribs.height || 350}
           />
         );
       }
-      if (domNode.parent?.parent?.attribs?.class === 'wp-block-image') {
-        if (
-          !domNode.attribs['data-srcset']?.length
-            && domNode.attribs['data-version']
-            && domNode.attribs['data-public-id']
-        ) {
-          const imageUrl = getCloudinaryImageUrl(
-            domNode.attribs['data-version'],
-            domNode.attribs['data-public-id'],
-          );
-          return (
-            <Image
-              className="floated-image"
-              placeholder="blur"
-              blurDataURL={imageUrl}
-              loading="lazy"
-              src={imageUrl}
-              alt={domNode.attribs.alt}
-              width={domNode.attribs?.width || 500}
-              height={domNode.attribs?.height || 300}
-            />
-          );
-        }
+
+      if (domNode.parent?.parent?.attribs?.class.includes('wp-block-image')) {
         return (
           <Image
             className="floated-image"
             placeholder="blur"
-            blurDataURL={
-                domNode.attribs['data-srcset'] || domNode.attribs.src
-              }
+            blurDataURL={imageSrc}
             loading="lazy"
-            src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+            src={getWikiLink(imageSrc)}
             alt={domNode.attribs.alt}
-            width={domNode.attribs?.width || 500}
-            height={domNode.attribs?.height || 300}
-          />
-        );
-      }
-      if (
-        !domNode.attribs['data-srcset']?.length
-          && domNode.attribs['data-version']
-          && domNode.attribs['data-public-id']
-      ) {
-        const imageUrl = getCloudinaryImageUrl(
-          domNode.attribs['data-version'],
-          domNode.attribs['data-public-id'],
-        );
-
-        return (
-          <ImageLegacy
-            placeholder="blur"
-            blurDataURL={imageUrl}
-            loading="lazy"
-            src={imageUrl}
-            alt={domNode.attribs.alt}
-            width={domNode.attribs.width || 500}
-            height={domNode.attribs.height || 300}
-            layout={isHoliday ? '' : 'responsive'}
+            width={domNode.attribs?.width || 750}
+            height={domNode.attribs?.height || 350}
           />
         );
       }
@@ -145,13 +135,13 @@ export const JSXWithDynamicLinks = ({ HTML, print, isHoliday }) => parse(HTML, {
       return (
         <ImageLegacy
           placeholder="blur"
-          blurDataURL={domNode.attribs['data-srcset'] || domNode.attribs.src}
+          blurDataURL={imageSrc}
           loading="lazy"
-          src={domNode.attribs['data-srcset'] || domNode.attribs.src}
+          src={getWikiLink(imageSrc)}
           alt={domNode.attribs.alt}
-          width={domNode.attribs.width || 500}
-          height={domNode.attribs.height || 300}
-          layout="responsive"
+          width={domNode.attribs.width || 750}
+          height={domNode.attribs.height || 350}
+          layout={isHoliday ? '' : 'responsive'}
         />
       );
     }

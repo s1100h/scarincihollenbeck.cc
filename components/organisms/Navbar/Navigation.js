@@ -6,9 +6,11 @@ import {
   DropdownFirstLvl,
   DropdownSecondLvl,
   NavbarStyled,
+  TitleBlock,
 } from 'styles/Navigation.style';
 import { SITE_NAVIGATION } from 'utils/constants';
 import empty from 'is-empty';
+import { BsChevronDown } from 'react-icons/bs';
 import CurrentOfficeCard from '../../molecules/location/CurrentOfficeCard';
 import { globalColor } from '../../../styles/global_styles/Global.styles';
 import DropdownMenu from '../../common/DropdownMenu';
@@ -23,7 +25,12 @@ const renderLocationCardMemu = (locationData) => (
     </CurrentOfficeCard>
   </div>
 );
-
+const renderTitle = (title) => (
+  <TitleBlock>
+    <span>{title}</span>
+    <BsChevronDown className="chevron" />
+  </TitleBlock>
+);
 const Navigation = ({ isHidden, practices, locations }) => {
   const [isSecondLvl, setIsSecondLvl] = useState(false);
   const [secondLvlData, setSecondLvlData] = useState([]);
@@ -39,14 +46,19 @@ const Navigation = ({ isHidden, practices, locations }) => {
     }
   };
 
-  const hideSecondLvl = () => {
+  const hideSecondLvl = (title) => {
     setIsSecondLvl(false);
     setSecondLvlData([]);
   };
+
   return (
     <NavbarStyled className={`${isHidden && 'd-none'} navContainer`}>
       <Nav className="navContainerWrapper">
-        <NavDropdown title="Practices" id={3} onClick={() => hideSecondLvl()}>
+        <NavDropdown
+          title={renderTitle('Practices')}
+          id={3}
+          onClick={() => hideSecondLvl()}
+        >
           <DropdownMenu
             practices={practices}
             handleClickOnMouseEnter={handleClickFirstLvl}
@@ -57,9 +69,9 @@ const Navigation = ({ isHidden, practices, locations }) => {
         {SITE_NAVIGATION.map((nav) => (nav?.children ? (
           <NavDropdown
             key={nav?.id}
-            title={`${nav?.label}`}
+            title={renderTitle(`${nav?.label}`)}
             id={nav?.menuId}
-            onClick={() => hideSecondLvl()}
+            onClick={() => hideSecondLvl(`${nav?.label}`)}
           >
             <DropdownFirstLvl>
               {nav?.children?.map((child) => (child?.children ? (
@@ -122,13 +134,14 @@ const Navigation = ({ isHidden, practices, locations }) => {
             </Link>
           </Nav.Item>
         )))}
-        {!empty(locations) && (
-          <NavDropdown
-            className="locations-dropdown"
-            title="Locations"
-            id={3}
-            onClick={() => hideSecondLvl()}
-          >
+
+        <NavDropdown
+          className="locations-dropdown"
+          title={renderTitle('Locations')}
+          id={3}
+          onClick={() => hideSecondLvl()}
+        >
+          {!empty(locations) && (
             <DropdownFirstLvl className="dropdown-location">
               {locations.map((office) => (
                 <Link
@@ -143,8 +156,8 @@ const Navigation = ({ isHidden, practices, locations }) => {
                 </Link>
               ))}
             </DropdownFirstLvl>
-          </NavDropdown>
-        )}
+          )}
+        </NavDropdown>
       </Nav>
     </NavbarStyled>
   );

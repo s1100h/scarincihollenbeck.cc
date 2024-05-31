@@ -4,12 +4,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import {
-  authorPostsByIdQuery,
-  categoryPostsByIdQuery,
-} from 'requests/graphql-queries';
-import useApolloQuery from 'hooks/useApolloQuery';
 import { useContext, useEffect, useMemo } from 'react';
+import {
+  postsForPaginationByAuthorIdQuery,
+  postsForPaginationByCategoryIdQuery,
+} from 'requests/graphql-queries';
+import { getPaginationData } from 'requests/getPaginationData';
+import empty from 'is-empty';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
 import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
@@ -35,25 +36,23 @@ const LibraryDirectory = ({
   const isAuthor = router.asPath.includes('author');
 
   useEffect(() => {
-    if (authors.length === 0) {
+    if (empty(authors)) {
       getAsyncAuthors();
     }
   }, [authors]);
 
-  /** Handle Article Archive Query */
   const params = {
-    first: 6,
-    last: null,
-    after: null,
-    before: null,
-    author: isAuthor ? categoryId : null,
     id: null,
+    authorId: isAuthor ? categoryId : null,
     categoryId: !isAuthor ? categoryId : null,
+    currentPage: router?.query?.page || 1,
+    itemsPerPage: 6,
   };
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(
-    isAuthor ? authorPostsByIdQuery : categoryPostsByIdQuery,
+
+  const paginationData = getPaginationData(
+    isAuthor
+      ? postsForPaginationByAuthorIdQuery
+      : postsForPaginationByCategoryIdQuery,
     params,
   );
 
@@ -63,7 +62,7 @@ const LibraryDirectory = ({
         <BasicSiteHead
           title={seo.title}
           metaDescription={seo.metaDescription}
-          canonical={seo.canonicalUrl}
+          canonicalUrl={seo.canonicalUrl}
         />
       ) : (
         <BasicSiteHead title={categoryName} metaDescription={description} />
@@ -87,15 +86,7 @@ const LibraryDirectory = ({
               </Col>
             )}
             <div className="pt-4 mb-5">
-              <PostList
-                content={{
-                  handleNextPagination,
-                  handlePrevPagination,
-                  data,
-                  loading,
-                  error,
-                }}
-              />
+              <PostList content={paginationData} />
             </div>
           </Col>
           <Col

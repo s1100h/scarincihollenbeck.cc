@@ -185,7 +185,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
 }`;
 
 export const attorneysQuery = `query FirmPageQuery {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
     nodes {
       databaseId
       slug
@@ -308,41 +308,42 @@ export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: Stri
       }
     }`;
 
-export const attorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
-  $categoryId: [ID]
-  $slug: String
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
-        edges {
-      node {
-        date
-        featuredImage {
-          node {
-            sourceUrl
-          }
+export const attorneyPostsQueryByIdAndSlug = `
+  query AttorneyPostsById(
+    $categoryId: [ID],
+    $slug: String,
+    $offsetPosts: Int,
+    $postsPerPage: Int
+    ) {
+    posts(where: {categoryIn: $categoryId, search: $slug, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
         }
-        uri
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            url
+      }
+      edges {
+        node {
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
           }
         }
       }
     }
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }}
+  }
 `;
 
 export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
@@ -362,9 +363,10 @@ export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
     }
   }}
 `;
-export const postQuery = `query FirmPageQuery($id: ID!) {
+export const postQuery = `
+query FirmPageQuery($id: ID!) {
   post(id: $id, idType: SLUG) {
-      categories {
+    categories {
       nodes {
         databaseId
         name
@@ -389,6 +391,7 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
     title
     link
     date
+    status
     seo {
       opengraphDescription
       title
@@ -437,7 +440,11 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
       }
     }
   }
-    practices(first: 200) {
+}`;
+
+export const getPracticesForPostQuery = `
+query getPracticesForPostQuery {
+  practices(first: 200) {
     nodes {
       title
       uri
@@ -447,6 +454,10 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
       }
     }
   }
+}`;
+
+export const getThreePostsQuery = `
+query getThreePostsQuery {
   posts(first: 3, where: {categoryId: 98}) {
     nodes {
       databaseId
@@ -467,129 +478,84 @@ export const postQuery = `query FirmPageQuery($id: ID!) {
   }
 }`;
 
-export const getClientsQuery = `query FirmPageQuery(
-  $after: String, 
-  $before: String, 
-  $first: Int, 
-  $last: Int
-) {
-  clients(after: $after, before: $before, first: $first, last: $last) {
-     edges {
-      node {
-        databaseId
-        title
-        clientsFields {
-          clientImage {
-            sourceUrl
-            title
-          }
-          entertainmentSubcategory
-          lineColor
-          proffesion
-        }
-      }
-    }
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }
-}`;
-
 // , order by: {field: DATE, order: DESC}
-export const categoryPostsByIdQuery = `query categoryPostsById(
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  $id: Int
-  $categoryId: Int
-) {
-  posts(where: {categoryId: $categoryId, id: $id}, first: $first, last: $last, after: $after, before: $before) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    edges {
-    node {
-      date
-      featuredImage {
-        node {
-          sourceUrl
+export const postsForPaginationByCategoryIdQuery = `
+  query postsForPaginationByCategoryId(
+    $categoryId: Int, 
+    $offsetPosts: Int, 
+    $postsPerPage: Int
+  ) {
+    posts(
+      where: {categoryId: $categoryId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+    ) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
         }
       }
-      uri
-      title(format: RENDERED)
-      excerpt(format: RENDERED)
-      author {
+      edges {
         node {
-          name
-          url
-        }
-      }
-    }
-  }
-  }
-}`;
-
-export const homePageAwardsQuery = `query HomePageAwardsQuery {
-  homePageAwards {
-    edges {
-      node {
-        title
-        homePageAwards {
-          label
-          image {
-            sourceUrl(size: LARGE)
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
           }
-          appearanceOrder
-          imageWidth
-          imageHeight
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
+          }
         }
       }
     }
   }
-}`;
+`;
 
-export const authorPostsByIdQuery = `query authorPostsById(
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  $author: Int
-) {
-  posts(where: {author: $author},  first: $first, last: $last, after: $after, before: $before) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    edges {
-    node {
-      date
-      featuredImage {
-        node {
-          sourceUrl
+export const postsForPaginationByAuthorIdQuery = `
+  query postsForPaginationByAuthorId(
+    $authorId: Int, 
+    $offsetPosts: Int, 
+    $postsPerPage: Int
+  ) {
+    posts(
+      where: {author: $authorId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+    ) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
         }
       }
-      uri
-      title(format: RENDERED)
-      excerpt(format: RENDERED)
-      author {
+      edges {
         node {
-          name
-          url
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
+          }
         }
       }
     }
   }
-  }
-}`;
+`;
 
 // Category Landing Page Query
 export const categoryPostQuery = `query CategoryPosts($name:String) {
@@ -758,24 +724,6 @@ export const homePageQuery = `query HomePageQuery {
 }
 `;
 
-/** home page locations query */
-export const homePageLocationsQuery = `query LocationPagesQuery {
-  officeLocations {
-    edges {
-      node {
-        id
-        slug
-        title
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}`;
-
 /** attorneys landing page query */
 export const attorneysPageQuery = `query AttorneysPagesQuery {
   pageBy(pageId: 46642) {
@@ -796,7 +744,7 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
 
 /** attorneys landing page query */
 export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
-  attorneyProfiles(first: 200) {
+  attorneyProfiles(first: 200, where: {status: PUBLISH}) {
     nodes {
       databaseId
       uri
@@ -925,25 +873,6 @@ export const careersQuery = `query BasicPageQuery {
   }
 }`;
 
-export const covid19CrisisManagement = `query CareersPagesQuery {
-  page(id: 32495, idType: DATABASE_ID) {
-    title
-    seo {
-      metaDesc
-      title
-    }
-    COVID19CrisisManagement {
-      article
-      banner {
-        link
-      }
-      listLinks
-      subtitle
-    }
-  }
-}
-`;
-
 export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
   attorneyProfile(id: $id, idType: SLUG) {
     status
@@ -951,7 +880,7 @@ export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
 }`;
 
 export const authorsPostQuery = `query FirmPageQuery {
-  attorneyProfiles(first: 100) {
+  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
     nodes {
       attorneyAuthorId {
         authorId {
@@ -1272,49 +1201,6 @@ export const firmOverviewQuery = `query FirmOverviewQuery {
   }
 }`;
 
-export const attorneysAndAdminsQuery = `query AttorneysAndAdminsQuery {
-  attorneyProfiles(first: 30) {
-    edges {
-      node {
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        uri
-        title
-        attorneyMainInformation {
-          phoneNumber
-          email
-          designation
-          lastName
-        }
-      }
-    }
-  }
-  administrations {
-    edges {
-      node {
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title
-        uri
-        administration {
-          title
-          phoneExtension
-          email
-          lastname
-          order
-        }
-      }
-    }
-  }
-}
-`;
-
 export const adminsQuery = `query AttorneyPostsById {
   administrations {
     nodes {
@@ -1454,20 +1340,6 @@ export const getOffices = `query FirmPageQuery {
   }
 }`;
 
-export const getIdDirectionPdfLittleFallsQuery = `query CareersPagesQuery {
-  officeLocationBy(officeLocationId: 29436) {
-    officeMainInformation {
-      autoMap {
-        link
-      }
-      trainStationsMap {
-        link
-      }
-    }
-  }
-}
-`;
-
 export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
   user(id: $id, idType: DATABASE_ID) {
     seo {
@@ -1478,15 +1350,13 @@ export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
   }
 }`;
 
-export const getAuthorsQuery = `query FirmPageQuery {
-  users(first: 100) {
+export const getCategoriesQuery = `query subscriptions {
+  subscriptions {
     nodes {
-      databaseId
-      uri
-      lastName
-      firstName
-      description
+      categories {
+        name
+        databaseId
+      }
     }
   }
-}
-`;
+}`;

@@ -30,6 +30,11 @@ export const ColStyled = styled(Col)`
   position: relative;
   top: ${({ top }) => (top ? top : 'none')};
   bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
+
+  .disclaimer {
+    margin: 30px 0;
+    text-align: center;
+  }
 `;
 
 export const ColForSidebar = styled(ColStyled)`

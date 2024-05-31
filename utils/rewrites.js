@@ -1,8 +1,8 @@
 // redirects for change url naming
 const POST_TYPE_REWRITES = [
   // {
-  //   source: '/attorneys/:path*',
-  //   destination: '/attorney/:path*',
+  //   source: '/attorney/:path*',
+  //   destination: '/attorneys/:path*',
   // },
   // {
   //   source: '/practices/:path*',
@@ -84,6 +84,14 @@ const POST_CATEGORY_REWRITES = [
     source: '/mandarin/:slug*',
     destination: '/post/:slug*?category=mandarin',
   },
+  {
+    source: '/women-lead',
+    destination: '/firm-page/women-lead',
+  },
+  {
+    source: '/women-lead/:slug*',
+    destination: '/post/:slug*?category=women-lead',
+  },
 ];
 
 const SITE_PAGES_REWRITES = [
@@ -131,6 +139,10 @@ const SITE_PAGES_REWRITES = [
   {
     source: '/diversity',
     destination: '/firm-page/diversity',
+  },
+  {
+    source: '/diversity/:slug*',
+    destination: '/post/:slug*?category=diversity',
   },
   {
     source: '/community-involvement',

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import {
   ButtonBox,
@@ -6,16 +6,17 @@ import {
   MoreTabContainer,
 } from 'styles/attorney-page/MoreTab.style';
 import { ButtonTab } from 'styles/ButtonsMenu.style';
-import useApolloQuery from 'hooks/useApolloQuery';
 import { attorneyPostsQueryByIdAndSlug } from 'requests/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import { useRouter } from 'next/router';
+import { getPaginationData } from 'requests/getPaginationData';
 import BlogList from './BlogList';
 import Videos from './Videos';
 import Table from './Table';
 import { ArticleBody } from '../../../styles/Article.style';
 import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
 import Images from '../../organisms/attorney/Images';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const renderContent = (contentItem) => {
   const contentMap = {
@@ -40,24 +41,32 @@ const cutTitles = (title) => {
 
 const MoreTab = ({ content }) => {
   const [activeSubTab, setActiveSubTab] = useState(content[0]);
-  const { query } = useRouter();
+  const { query, push, asPath } = useRouter();
+  const isMattersInMore = activeSubTab.title === 'Representative Matters';
+  const categoryIdMap = useMemo(
+    () => ({
+      Blogs: 599,
+      'News Press Releases': 98,
+      Events: 99,
+    }),
+    [],
+  );
 
-  const categoryIdMap = {
-    Blogs: 599,
-    'News Press Releases': 98,
-    Events: 99,
+  useEffect(() => {
+    push(asPath.split('?')[0], undefined, { shallow: true });
+  }, [activeSubTab]);
+
+  const params = {
+    categoryId: categoryIdMap[activeSubTab.title],
+    currentPage: query.page,
+    itemsPerPage: 3,
+    slug: query.slug,
   };
 
-  const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
-  } = useApolloQuery(attorneyPostsQueryByIdAndSlug, {
-    first: 3,
-    last: null,
-    after: '3',
-    before: null,
-    slug: query.slug,
-    categoryId: categoryIdMap[activeSubTab.title],
-  });
+  const paginationData = getPaginationData(
+    attorneyPostsQueryByIdAndSlug,
+    params,
+  );
 
   return (
     <MoreTabContainer>
@@ -79,21 +88,18 @@ const MoreTab = ({ content }) => {
         {typeof activeSubTab.content === 'string' ? (
           <ArticleBody>
             <JSXWithDynamicLinks HTML={activeSubTab.content} />
+            {isMattersInMore && (
+              <DisclaimerText
+                text="* Results may vary depending on your particular facts and legal
+                circumstances."
+              />
+            )}
           </ArticleBody>
         ) : (
           renderContent(activeSubTab)
         )}
         {activeSubTab.content?.id && (
-          <ArticleContent
-            content={{
-              handleNextPagination,
-              handlePrevPagination,
-              data,
-              loading,
-              error,
-              isProfile: 'true',
-            }}
-          />
+          <ArticleContent content={paginationData} isProfile />
         )}
       </ContentBox>
     </MoreTabContainer>

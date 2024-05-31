@@ -1,7 +1,7 @@
 import { formatDate } from 'utils/helpers';
 
 const BlogList = ({ content }) => {
-  const baseUrl = `${content.posts[0].link.split('.com')[0]}.com`;
+  const baseUrl = `${content.posts[0]?.link.split('.com')[0]}.com`;
   const isConLaw = baseUrl.includes('constitution');
   const isGovLaw = baseUrl.includes('lawyer');
 

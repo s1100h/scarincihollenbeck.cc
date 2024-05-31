@@ -29,6 +29,25 @@ export const PostsBox = styled.div`
     }
   }
 
+  &.cannabis-law-posts {
+    .pagination {
+      --bs-pagination-color: ${cannabisLawColors.cannabisColorGray};
+      --bs-pagination-active-bg: transparent;
+      --bs-pagination-active-border-color: ${cannabisLawColors.cannabisColorGray};
+      --bs-pagination-disabled-bg: ${cannabisLawColors.cannabisTransparentBlack};
+      --bs-pagination-disabled-border-color: transparent;
+      --bs-pagination-hover-bg: ${cannabisLawColors.cannabisColorDarkGrayLight};
+      --bs-pagination-hover-border-color: ${cannabisLawColors.cannabisColorDarkGrayLight};
+      --bs-pagination-hover-color: ${cannabisLawColors.cannabisColorGray};
+      --bs-pagination-focus-color: ${cannabisLawColors.cannabisColorGray};
+      --bs-pagination-focus-bg: ${cannabisLawColors.cannabisTransparentBlack};
+    }
+
+    .pagination-icon {
+      color: ${cannabisLawColors.cannabisColorGray};
+    }
+  }
+
   .cannabis-law-news {
     width: 32%;
     background-color: ${cannabisLawColors.cannabisColorGray};

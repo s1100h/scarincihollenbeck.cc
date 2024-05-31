@@ -6,9 +6,11 @@ import {
 } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { firmOverviewQuery } from 'requests/graphql-queries';
-import { AttorneysContext } from 'contexts/AttorneysContext';
-import { useContext, useEffect } from 'react';
-import { getSubTitleFromHTML } from 'utils/helpers';
+import {
+  getSubTitleFromHTML,
+  sortAttorneysByCategory,
+  sortByKey,
+} from 'utils/helpers';
 
 /** Fetch the firm overview page content WP GRAPHQL API */
 export async function getFirmOverviewContent() {
@@ -52,18 +54,25 @@ export const getServerSideProps = async () => {
     directors,
     firmLeaders,
   } = firmOverviewTabs;
+  const restFirmMembers = [
+    ...sanitizeMembers(firmLeaders),
+    // this was committed(2.02.2022). it need for /firm-overview.
+    // ...sanitizeMembers(firmChairsCochairs),
+    ...sanitizeMembers(directors),
+  ];
+  const sortedTitlesByOrder = sortByKey(firmOverViewTitles, 'order');
+  const sorteredFirmMembers = sortAttorneysByCategory(
+    restFirmMembers,
+    sortedTitlesByOrder,
+  );
+
   return {
     props: {
       title,
       seo,
       content,
       firmOverviewTabs,
-      FirmMembers: [
-        ...sanitizeMembers(firmLeaders),
-        // this was committed(2.02.2022). it need for /firm-overview.
-        // ...sanitizeMembers(firmChairsCochairs),
-        ...sanitizeMembers(directors),
-      ],
+      FirmMembers: sorteredFirmMembers,
     },
   };
 };
@@ -77,17 +86,8 @@ const FirmOverview = ({
   administration,
   FirmMembers,
 }) => {
-  const { firmOverviewTitles, setFirmOverviewTitles } = useContext(AttorneysContext);
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${PRODUCTION_URL}/firm-overview`;
-
-  /** set section titles to context provider */
-  useEffect(() => {
-    if (!firmOverviewTitles) {
-      const orderedTitles = firmOverViewTitles.sort((a, b) => (a.order > b.order ? 1 : -1));
-      setFirmOverviewTitles(orderedTitles);
-    }
-  }, [firmOverviewTitles]);
 
   const firmOverviewProps = {
     title,

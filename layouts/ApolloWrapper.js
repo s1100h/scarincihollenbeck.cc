@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import { GRAPHQL_API_URL } from 'utils/constants';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: new HttpLink({
     uri: GRAPHQL_API_URL,
   }),

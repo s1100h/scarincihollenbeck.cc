@@ -6,24 +6,17 @@ import {
   getPracticeAttorneys,
   headMetaData,
 } from '../../../requests/practices/practice-default';
-import { getSlugFromUrl } from '../../../utils/helpers';
 import ApolloWrapper from '../../../layouts/ApolloWrapper';
 
 /** Set single practice data to page props */
-export const getServerSideProps = async ({ res, resolvedUrl }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
-  const slug = getSlugFromUrl(resolvedUrl);
-
+export const getStaticProps = async () => {
   const {
     practice,
     includeAttorney,
     practiceChief,
     keyContactsList,
     corePractices,
-  } = await getPracticeAttorneys(resolvedUrl);
+  } = await getPracticeAttorneys('/practices/new-jersey-cannabis-law');
 
   if (typeof practice === 'undefined') {
     return {
@@ -34,22 +27,22 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
   return {
     props: {
       practice,
-      cannabisLawData: practice.practiceContentForeCannabisLaw.cannabisLaw,
+      cannabisLawData: practice?.practiceContentForeCannabisLaw?.cannabisLaw,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
       keyContactsList,
       attorneysSchemaData: headMetaData(practiceChief, includeAttorney),
       corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
-      slug,
     },
+    revalidate: 86400,
   };
 };
+
 const CannabisLaw = ({
   practice,
   corePractices,
   practiceChildren,
-  slug,
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
@@ -90,7 +83,6 @@ const CannabisLaw = ({
     practiceUrl,
     canonicalUrl,
     tabs: fullTabs,
-    slug,
     chairPractice,
     attorneyListPractice,
     keyContactsList,

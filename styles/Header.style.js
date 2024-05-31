@@ -12,8 +12,6 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-left: 1.5%;
-  padding-right: 1.5%;
   height: fit-content;
   width: 100%;
   background: ${globalColor.white};
@@ -30,28 +28,29 @@ export const HeaderContainer = styled.header`
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 100%;
-  margin-top: 50px;
-  padding-bottom: 10px;
+  width: min(100%, 2184px);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px 132px;
   justify-content: space-between;
   align-items: center;
   column-gap: 20px;
   flex-wrap: wrap;
 
   ${NavbarStyled} {
-    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '0' : '100%')};
-    overflow: ${({ isOpenBlock }) => (isOpenBlock ? 'hidden' : 'unset')};
+    max-width: ${({ isOpenBlock }) => (isOpenBlock ? '0' : '925px')};
+    pointer-events: ${({ isOpenBlock }) => (isOpenBlock ? 'none' : 'auto')};
     opacity: ${({ isOpenBlock }) => (isOpenBlock ? '0' : '1')};
   }
 
-  ${media_breakpoint_range('sm', 'lg')} {
-    margin-top: 54px;
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 10px 1.5%;
   }
 
   ${media_breakpoint_down('md')} {
-    margin-top: 0;
-    padding: 8px 0;
+    padding: 8px 1.5%;
   }
+
   ${media_breakpoint_exactly_down(640)} {
     > :nth-child(1) {
       order: 1;
@@ -213,14 +212,20 @@ export const LinksBox = styled.div`
   }
 `;
 
+export const AddressSubscriptionWrapper = styled.div`
+  background-color: ${globalColor.blue.darkBlue};
+  width: 100%;
+`;
+
 export const AddressSubscriptionContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: min(100%, 2188px);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   justify-content: flex-end;
   align-items: center;
-  background-color: ${globalColor.blue.darkBlue};
-  padding: 8px 2%;
-  position: absolute;
+  padding: 8px 134px;
 
   address {
     flex-direction: row;
@@ -249,6 +254,16 @@ export const AddressSubscriptionContainer = styled.div`
     gap: 8px;
     align-items: center;
     font-weight: 600;
+  }
+
+  .top-header-name {
+    margin: 0 auto 0 0;
+    color: ${globalColor.white};
+    font-weight: 500;
+  }
+
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 8px 2%;
   }
 
   ${media_breakpoint_exactly_down(564)} {

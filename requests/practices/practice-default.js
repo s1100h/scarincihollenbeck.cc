@@ -1,15 +1,16 @@
 import empty from 'is-empty';
+import { checkOnPublish } from 'utils/helpers';
 import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
 import { practicesQueryGenerator } from './practicesQueryGenerator';
 
-export const postsSanitize = (posts) => posts.map((post) => {
+const postsSanitize = (posts) => posts.map((post) => {
   post.featuredImage = post.featuredImage?.node.sourceUrl
       || '/images/no-image-found-diamond-750x350.png';
   return post;
 });
 
-export const attorneysSanitize = (attorneysArr) => {
+const attorneysSanitize = (attorneysArr) => {
   const designationOrder = [
     'Firm Managing Partner',
     'Deputy Managing Partner',
@@ -31,6 +32,7 @@ export const attorneysSanitize = (attorneysArr) => {
         databaseId: attorney.databaseId,
         link: attorney.uri,
         title: attorney.title,
+        status: attorney.status,
         ...attorney.attorneyMainInformation,
         ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
       };
@@ -104,13 +106,13 @@ export const getPracticeAttorneys = async (uri) => {
 
   const concatAttorneys = [...practiceChief, ...keyContactsArr];
   const keyContacts = concatAttorneys.length > 0
-    ? concatAttorneys
+    ? checkOnPublish(concatAttorneys)
     : [ScarinciHollenbeckKeyContact];
 
   return {
     practice: data.practice,
-    includeAttorney,
-    practiceChief,
+    includeAttorney: checkOnPublish(includeAttorney),
+    practiceChief: checkOnPublish(practiceChief),
     keyContactsList: keyContacts,
     corePractices,
     posts: postsForSidebar,

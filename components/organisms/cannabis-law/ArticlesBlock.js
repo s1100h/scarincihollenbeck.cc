@@ -18,13 +18,12 @@ const ArticlesBlock = ({ paginationData }) => (
           Read more
         </LinkToCategory>
       </TitleButtonBox>
-      <PostsBox>
+      <PostsBox className="cannabis-law-posts">
         <PostList
-          classNameForCard="cannabis-law-news"
+          postsClassName="cannabis-law-news"
           content={paginationData}
           isProfile="true"
           isVertical="true"
-          justArrow
         />
       </PostsBox>
     </FullHDContainer>

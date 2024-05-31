@@ -7,7 +7,7 @@ export const NavbarStyled = styled(Navbar)`
   display: flex;
   margin: 0 auto;
   flex: 4;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s linear;
 
   & ::-webkit-scrollbar-track {
     background-color: #0b1136;
@@ -34,6 +34,11 @@ export const NavbarStyled = styled(Navbar)`
     justify-content: center;
 
     .nav-item {
+      .dropdown-toggle {
+        :after {
+          display: none;
+        }
+      }
       &.show {
         .dropdown-menu {
           display: flex;
@@ -41,6 +46,10 @@ export const NavbarStyled = styled(Navbar)`
 
         > a {
           color: ${globalColor.blue.blue500};
+        }
+
+        .chevron {
+          rotate: 180deg;
         }
       }
 
@@ -56,7 +65,7 @@ export const NavbarStyled = styled(Navbar)`
     .dropdown-menu {
       padding: 16px 40px;
       background-color: ${globalColor.blue.darkBlue};
-      box-shadow: 2px 8px 20px 0px rgba(6, 11, 42, 0.52);
+      box-shadow: 2px 8px 20px 0 rgba(6, 11, 42, 0.52);
       column-gap: 32px;
     }
   }
@@ -66,6 +75,7 @@ export const NavbarStyled = styled(Navbar)`
       width: 1140px;
       min-width: 800px;
       left: -600%;
+      overflow: auto;
 
       .dropdown-location {
         display: flex;
@@ -74,6 +84,8 @@ export const NavbarStyled = styled(Navbar)`
         justify-content: center;
         gap: 20px;
         padding-right: 0;
+        flex-direction: row;
+        overflow: unset;
 
         .dropdown-item {
           padding: 0;
@@ -257,5 +269,16 @@ export const DropdownSecondLvl = styled.div`
         }
       }
     }
+  }
+`;
+
+export const TitleBlock = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .chevron {
+    transition: 0.3s;
+    rotate: 0deg;
   }
 `;

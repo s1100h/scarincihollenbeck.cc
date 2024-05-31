@@ -19,7 +19,11 @@ const ModalWindow = ({ children, isOpen, setOpenModal }) => {
 
   return (
     <ModalContainer isOpen={isOpen} onClick={handleCloseModal}>
-      <ModalContent isOpen={isOpen} onClick={autoStopPropagation}>
+      <ModalContent
+        isOpen={isOpen}
+        className={isOpen ? 'modal-open' : ''}
+        onClick={autoStopPropagation}
+      >
         <Button variant="light" onClick={handleCloseModal}>
           <strong>╳</strong>
         </Button>

@@ -4,9 +4,16 @@ import { BsCalendar2Minus, BsPersonFill } from 'react-icons/bs';
 import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
 import { changeTitle } from '../../../utils/helpers';
 
-export default function Hit({ hit }) {
+export default function Hit({ hit, setIsOpenSearch, handleClear }) {
+  const handleClickItem = (e) => {
+    e.stopPropagation();
+    if (setIsOpenSearch) {
+      setIsOpenSearch(false);
+    }
+    handleClear();
+  };
   return (
-    <SearchedItem>
+    <SearchedItem onClick={handleClickItem}>
       <Link
         href={
           hit.post_type_label === 'Posts'

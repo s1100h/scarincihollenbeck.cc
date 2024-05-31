@@ -6,6 +6,7 @@ import { PRODUCTION_URL, BASE_API_URL, headers } from 'utils/constants';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { fetchAPI } from 'requests/api';
 import { categoryPostQuery } from 'requests/graphql-queries';
+import useNotFoundNotification from 'hooks/useNotFoundNotification';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -33,11 +34,31 @@ async function categoryPosts(variables) {
   return data.categories?.edges;
 }
 
-export const getServerSideProps = async ({ params, res }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
+const categoriesSlugsQuery = `
+query categoriesSlugs {
+  categories(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`;
+
+export const getStaticPaths = async () => {
+  const listId = await fetchAPI(categoriesSlugsQuery);
+
+  const paths = [];
+
+  listId.categories.nodes.forEach((node) => {
+    paths.push(`/library/category/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
   const [popularCategories] = await getLibraryCategoryContent();
   const pageContent = await categoryPosts({
     variables: {
@@ -47,7 +68,10 @@ export const getServerSideProps = async ({ params, res }) => {
 
   if (pageContent.length <= 0) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/library/category/client-alert?notFound=true',
+        permanent: true,
+      },
     };
   }
   const content = pageContent[0].node;
@@ -89,12 +113,13 @@ export const getServerSideProps = async ({ params, res }) => {
       description: content.description,
       name: content.name,
       pageTitle: params.slug,
-      categoryId: content.databaseId,
       seo: {
         title: content.seo.title,
         metaDescription: content.seo.metaDesc,
       },
+      categoryId: content.databaseId,
     },
+    revalidate: 3600,
   };
 };
 
@@ -106,8 +131,8 @@ const LibraryCategory = ({
   popularCategories,
   news,
   name,
-  categoryId,
   seo,
+  categoryId,
 }) => {
   const router = useRouter();
 
@@ -135,6 +160,8 @@ const LibraryCategory = ({
     description,
     categoryId,
   };
+
+  useNotFoundNotification("Category doesn't exist!");
 
   return (
     <ApolloWrapper>

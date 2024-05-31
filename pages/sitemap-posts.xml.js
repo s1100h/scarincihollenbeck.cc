@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { changePostLink } from 'utils/helpers';
 import { BASE_API_URL, headers, PRODUCTION_URL } from '../utils/constants';
 import { convertUnixTimestampToISO } from '../utils/helpers';
 
@@ -23,16 +24,16 @@ export const getServerSideProps = async ({ res }) => {
   }));
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-       ${postsDateConverted
+      ${postsDateConverted
     .map(
       (url) => `
-                                  <url>
-                                    <loc>${url.link}</loc>
-                                    <lastmod>${url.modify_date}</lastmod>
-                                    <changefreq>daily</changefreq>
-                                    <priority>0.9</priority>
-                                  </url>
-                                `,
+      <url>
+        <loc>${`${PRODUCTION_URL}${changePostLink(url.link)}`}</loc>
+        <lastmod>${url.modify_date}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+      </url>
+    `,
     )
     .join('')}}
 		</urlset>

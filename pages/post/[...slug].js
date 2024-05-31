@@ -7,7 +7,11 @@ import {
 } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'requests/api';
-import { postQuery } from 'requests/graphql-queries';
+import {
+  getPracticesForPostQuery,
+  getThreePostsQuery,
+  postQuery,
+} from 'requests/graphql-queries';
 import empty from 'is-empty';
 import parse from 'html-react-parser';
 import {
@@ -41,9 +45,13 @@ const getPostContentData = async (slug) => {
     variables: { id: slug },
   });
 
+  const { practices } = await fetchAPI(getPracticesForPostQuery);
+  const { posts } = await fetchAPI(getThreePostsQuery);
+
   if (empty(data.post)) {
     return undefined;
   }
+
   if (
     !data.post.selectAuthors.authorDisplayOrder
     || data.post.selectAuthors.authorDisplayOrder.length === 0
@@ -87,19 +95,21 @@ const getPostContentData = async (slug) => {
 
   const corePractices = [];
 
-  data.practices.nodes.forEach((practice) => {
-    if (
-      Array.isArray(
-        practice.practicePortalPageContent.practicePortalCategories,
-      )
-      && practice.practicePortalPageContent.practicePortalCategories[0]
-        === 'Core Practices'
-    ) {
-      corePractices.push(practice);
-    }
-  });
+  if (!empty(practices)) {
+    practices?.nodes?.forEach((practice) => {
+      if (
+        Array.isArray(
+          practice.practicePortalPageContent.practicePortalCategories,
+        )
+        && practice.practicePortalPageContent.practicePortalCategories[0]
+          === 'Core Practices'
+      ) {
+        corePractices.push(practice);
+      }
+    });
+  }
 
-  data.post.categories.nodes.forEach(({ contentNodes }) => {
+  data.post?.categories?.nodes.forEach(({ contentNodes }) => {
     if (contentNodes.length > 1) {
       contentNodes.splice(0, 1);
     }
@@ -107,8 +117,8 @@ const getPostContentData = async (slug) => {
 
   const relatedPosts = [];
 
-  if (data.post.categories.nodes.length === 1) {
-    data.post.categories.nodes.forEach(({ contentNodes }) => {
+  if (data.post?.categories?.nodes.length === 1) {
+    data.post?.categories?.nodes.forEach(({ contentNodes }) => {
       contentNodes.nodes.forEach((contentNodesItem) => {
         relatedPosts.push({
           title: contentNodesItem.title,
@@ -121,8 +131,8 @@ const getPostContentData = async (slug) => {
       });
     });
   }
-  if (data.post.categories.nodes.length === 2) {
-    data.post.categories.nodes.forEach(({ contentNodes }, idx) => {
+  if (data.post?.categories?.nodes.length === 2) {
+    data.post?.categories?.nodes.forEach(({ contentNodes }, idx) => {
       if (idx === 0 && !empty(contentNodes.nodes[0]?.title)) {
         relatedPosts.push({
           title: contentNodes.nodes[0]?.title,
@@ -154,9 +164,8 @@ const getPostContentData = async (slug) => {
       }
     });
   }
-
-  if (data.post.categories.nodes.length >= 3) {
-    data.post.categories.nodes.forEach(({ contentNodes }, idx) => {
+  if (data.post?.categories?.nodes.length >= 3) {
+    data.post?.categories?.nodes.forEach(({ contentNodes }, idx) => {
       if (idx <= 2 && contentNodes.nodes[idx]?.title) {
         relatedPosts.push({
           title: contentNodes.nodes[idx]?.title,
@@ -170,19 +179,22 @@ const getPostContentData = async (slug) => {
     });
   }
 
-  data.posts.nodes.map((post) => {
-    post.featuredImage = post.featuredImage?.node.sourceUrl
-      || '/images/no-image-found-diamond-750x350.png';
-    post.uri = cutDomain(post.uri);
-    post.author = post.author.node.username;
-    return post;
-  });
+  if (!empty(posts)) {
+    posts?.nodes?.map((post) => {
+      post.featuredImage = post.featuredImage?.node.sourceUrl
+        || '/images/no-image-found-diamond-750x350.png';
+      post.uri = cutDomain(post.uri);
+      post.author = post.author.node.username;
+      return post;
+    });
+  }
 
   return {
     postContent: data.post,
     corePractices: sortByKey(corePractices, 'title'),
     relatedPosts,
-    posts: data.posts.nodes,
+    posts: posts?.nodes,
+    status: data.post.status,
   };
 };
 
@@ -196,7 +208,7 @@ export const getServerSideProps = async ({ params, res, query }) => {
 
   const postData = await getPostContentData(postSlug);
 
-  if (empty(postData)) {
+  if (empty(postData) || postData.status.toLowerCase() !== 'publish') {
     res.statusCode = 404;
     return {
       notFound: true,
@@ -221,10 +233,10 @@ export const getServerSideProps = async ({ params, res, query }) => {
     props: {
       post,
       seo: postData.postContent.seo,
-      categories: postData.postContent.categories.nodes,
+      categories: postData?.postContent?.categories?.nodes,
       authors,
       keyContacts: postData.postContent.keyContacts || authors,
-      category,
+      category: category || '',
       corePractices: postData.corePractices,
       relatedPosts: postData.relatedPosts,
       posts: postData.posts,

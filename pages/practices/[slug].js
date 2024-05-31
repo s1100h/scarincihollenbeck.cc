@@ -1,18 +1,16 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { PRODUCTION_URL, googleLocationIds } from 'utils/constants';
+import { PRODUCTION_URL } from 'utils/constants';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
-import { getGoogleReviewsForPalaces } from 'requests/getGoogleReviews';
 import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
-import { deleteReviewsWithoutComment } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
-export const postsSanitize = (posts) => posts.map((post) => {
+const postsSanitize = (posts) => posts.map((post) => {
   post.featuredImage = post.featuredImage?.node.sourceUrl
       || '/images/no-image-found-diamond-750x350.png';
   return post;
@@ -28,12 +26,40 @@ const getClientAlertPost = async () => {
   return postsSanitize(data.posts.nodes);
 };
 
+const practicesSlugsQuery = `
+query practicesSlugs {
+  practices(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`;
+
+const excludedSlugs = [
+  'new-jersey-cannabis-law',
+  'entertainment-and-media-pause',
+];
+
 /** Set single practice data to page props */
-export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
+export const getStaticPaths = async () => {
+  const listId = await fetchAPI(practicesSlugsQuery);
+
+  const paths = [];
+
+  listId?.practices?.nodes?.forEach((node) => {
+    if (excludedSlugs.includes(node?.slug)) {
+      return;
+    }
+    paths.push(`/practices/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
   const {
     practice,
     includeAttorney,
@@ -42,18 +68,21 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
     corePractices,
     posts,
     faq,
-  } = await getPracticeAttorneys(resolvedUrl);
+  } = await getPracticeAttorneys(`/practices/${params.slug}`);
   const clientAlertPost = await getClientAlertPost();
 
-  const googleReviews = await getGoogleReviewsForPalaces(
-    Object.values(googleLocationIds),
-  );
+  // 04.04.2024 Google reviews temporarily disabled
+  // const googleReviews = await getGoogleReviewsForPalaces(
+  //   Object.values(googleLocationIds),
+  // );
 
   const latestFromTheFirm = [...posts, ...clientAlertPost];
-
   if (empty(practice)) {
     return {
-      notFound: true,
+      redirect: {
+        destination: '/practices?notFound=true',
+        permanent: true,
+      },
     };
   }
 
@@ -96,8 +125,9 @@ export const getServerSideProps = async ({ params, res, resolvedUrl }) => {
       latestFromTheFirm,
       slug: params.slug,
       faq,
-      googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
+      // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
+    revalidate: 8600,
   };
 };
 

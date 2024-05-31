@@ -5,6 +5,7 @@ import {
 import PhotoCardPolaroid from '../../atoms/PhotoCardPolaroid';
 import ArticleCannabis from '../../molecules/cannabis-law/ArticleCannabis';
 import { FullHDContainer } from '../../../styles/practices-special-style/commonForSpecial.style';
+import DisclaimerText from '../../atoms/DisclaimerText';
 
 const NewsPaperBlock = ({ newsPepperArticle, article }) => (
   <NewsPaperContainer>
@@ -25,6 +26,7 @@ const NewsPaperBlock = ({ newsPepperArticle, article }) => (
         />
       </NewsPaperBox>
     </FullHDContainer>
+    <DisclaimerText text="No Aspect of the advertisement has been approved by the Supreme Court." />
   </NewsPaperContainer>
 );
 

@@ -19,12 +19,20 @@ function MySearchBox(props) {
     });
   };
 
+  const CustomHit = ({ hit }) => (
+    <Hit
+      hit={hit}
+      setIsOpenSearch={props.setIsOpenSearch}
+      handleClear={handleClear}
+    />
+  );
+
   const RenderSearchResults = connectStateResults(({ searchResults }) => (
     <>
       {searchResults?.query.length > 0 && searchResults?.hits.length > 0 && (
         <ResultsContainer className="search-result-container">
           <ResultBox onClick={handleClear} className="results-container">
-            <HitsStyled hitComponent={Hit} />
+            <HitsStyled hitComponent={CustomHit} />
           </ResultBox>
           <Pagination totalPages={10} />
         </ResultsContainer>

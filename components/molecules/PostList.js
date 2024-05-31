@@ -1,56 +1,48 @@
-import React, { Fragment, useMemo } from 'react';
-import Loader from 'components/atoms/Loader';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-import PaginationButtons from 'components/atoms/PaginationButtons';
+import React, { useMemo } from 'react';
+import { changePostLink, formatSrcToCloudinaryUrl } from 'utils/helpers';
 import NewsCard from 'components/organisms/home/FirmNews/NewsCard';
+import CustomPagination from 'components/atoms/CustomPagination';
+import Loader from 'components/atoms/Loader';
 
 const PostList = ({
-  content, isProfile, classNameForCard, justArrow,
+  content, isProfile, postsClassName, queryParam,
 }) => {
   const {
-    handleNextPagination, handlePrevPagination, data, loading, error,
+    loading, error, page, limit, posts,
   } = content;
-  const disablePrevBtn = !data?.posts?.pageInfo.hasPreviousPage;
-  const disableNextBtn = !data?.posts?.pageInfo.hasNextPage;
 
-  const memoData = useMemo(() => data?.posts?.edges, [data]);
+  if (error) {
+    return null;
+  }
+
+  const memoData = useMemo(() => posts?.edges, [content]);
+
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          {!loading
-            && memoData.map(({ node }) => (
-              <Fragment key={node.title}>
-                <NewsCard
-                  postSlug={node.uri.replace(
-                    'https://scarincihollenbeck.com/',
-                    '/',
-                  )}
-                  postImage={formatSrcToCloudinaryUrl(
-                    node.featuredImage?.node?.sourceUrl,
-                  )}
-                  postTitle={node.title}
-                  postDate={node.date}
-                  postExcerpt={isProfile ? null : node.excerpt}
-                  postAuthor={node.author}
-                  isProfile={isProfile}
-                  isVertical={isProfile}
-                  classNameProp={classNameForCard}
-                />
-              </Fragment>
-            ))}
-          <PaginationButtons
-            justArrow={justArrow}
-            handleNextPagination={handleNextPagination}
-            handlePrevPagination={handlePrevPagination}
-            countOfArticles={(isProfile && 3) || 6}
-            disablePrevBtn={disablePrevBtn}
-            disabledNextBtn={disableNextBtn}
+      {loading && <Loader />}
+      {!loading
+        && memoData?.map(({ node }) => (
+          <NewsCard
+            key={node.title}
+            postSlug={changePostLink(node.uri)}
+            postImage={formatSrcToCloudinaryUrl(
+              node.featuredImage?.node?.sourceUrl,
+            )}
+            postTitle={node.title}
+            postDate={node.date}
+            postExcerpt={isProfile ? null : node.excerpt}
+            postAuthor={node.author}
+            isProfile={isProfile}
+            isVertical={isProfile}
+            classNameProp={postsClassName}
           />
-        </>
-      )}
+        ))}
+      <CustomPagination
+        totalItems={posts?.pageInfo?.offsetPagination?.total}
+        currentPage={page}
+        limit={limit}
+        queryParam={queryParam}
+      />
     </>
   );
 };
