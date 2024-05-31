@@ -16,7 +16,6 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging()
 messaging.onBackgroundMessage((payload) => {
-  console.log("MESSAGE", payload)
   if (!payload.notification) {
     // Customize notification here
     const notificationTitle = payload?.data?.title

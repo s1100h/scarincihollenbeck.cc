@@ -27,7 +27,7 @@ export default function handler(req, res) {
         console.error('Error subscribing to topic:', error);
       });
 
-    return res.status(200);
+    return res.status(200).json({ success: true });
   }
   return res.status(500).json({ message: 'The wrong request method.' });
 }

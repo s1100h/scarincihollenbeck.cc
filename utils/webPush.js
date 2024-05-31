@@ -21,7 +21,6 @@ const firebaseCloudMessaging = {
             const token = await messaging.getToken({
               vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
             });
-
             if (token && tokenInLocalForage !== token) {
               await localforage.setItem('fcm_token', token);
               await fetch('/api/fcm', {
@@ -31,7 +30,6 @@ const firebaseCloudMessaging = {
                 },
                 body: JSON.stringify({ token }),
               });
-
               return token;
             }
             return tokenInLocalForage;
