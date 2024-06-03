@@ -23,11 +23,22 @@ import 'animate.css/animate.min.css';
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import { PracticesContextProvider } from 'contexts/PracticesContext';
-import { ToastContainer } from 'react-toastify';
+import {
+  carilo,
+  licorice,
+  montserrat,
+  poppins,
+  rajdhani,
+  roboto,
+} from 'public/fonts/fonts';
 import { FormContextProvider } from '../contexts/FormsContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
+const ToastContainer = dynamic(
+  () => import('react-toastify').then((mod) => mod.ToastContainer),
+  { ssr: false },
+);
 
 /**
  *  Add page transition loader
@@ -44,14 +55,18 @@ const SHSite = ({ Component, pageProps }) => (
           <PracticesContextProvider>
             <GlobalStyle />
             <MainSiteHead />
-            <ToastContainer />
-            <Header />
-            {/* <!-- Google tag (gtag.js) --> */}
-            <GoogleTagManager gtmId="GTM-PBD4BN" />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <SiteFooter />
+            <div
+              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
+            >
+              <ToastContainer />
+              <Header />
+              {/* <!-- Google tag (gtag.js) --> */}
+              <GoogleTagManager gtmId="GTM-PBD4BN" />
+              <main>
+                <Component {...pageProps} />
+              </main>
+              <SiteFooter />
+            </div>
           </PracticesContextProvider>
         </FormContextProvider>
       </LocationProvider>

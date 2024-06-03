@@ -39,6 +39,7 @@ export const NavbarStyled = styled(Navbar)`
           display: none;
         }
       }
+
       &.show {
         .dropdown-menu {
           display: flex;
@@ -180,7 +181,7 @@ export const DropdownFirstLvl = styled.div`
     font-size: ${rem(14)};
     font-weight: 700;
     line-height: 13px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-out;
     position: relative;
     display: flex;
     align-items: center;
@@ -190,8 +191,7 @@ export const DropdownFirstLvl = styled.div`
     ::after {
       content: '';
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-      transition-delay: 0.1s;
+      transition: opacity 0.3s ease-out;
     }
 
     :hover {
@@ -206,7 +206,7 @@ export const DropdownFirstLvl = styled.div`
       ::after {
         content: '';
         position: absolute;
-        right: -12px;
+        right: -11px;
         top: 50%;
         transform: translateY(-50%);
         width: 12px;
@@ -259,6 +259,11 @@ export const DropdownSecondLvl = styled.div`
         font-weight: 400;
         color: #e6e6e6;
         line-height: 28px;
+
+        &:hover {
+          color: #608ed2;
+          background-color: transparent;
+        }
       }
 
       .active {

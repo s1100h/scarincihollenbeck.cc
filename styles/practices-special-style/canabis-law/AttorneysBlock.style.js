@@ -50,13 +50,22 @@ export const AttorneysCannabisContainer = styled.section`
     }
 
     p {
+      margin: 0;
       color: ${cannabisLawColors.cannabisColorGray};
       font-size: ${rem(20)};
       line-height: 30px;
       font-weight: 500;
+      width: 100%;
+      max-width: 725px;
+    }
+
+    ${media_breakpoint_down('xxl')} {
+      margin-bottom: 120px;
     }
 
     ${media_breakpoint_down('xl')} {
+      margin-bottom: 100px;
+
       .cannabis-big-leaf {
         right: 0;
         bottom: 0;
@@ -81,6 +90,7 @@ export const AttorneysCannabisContainer = styled.section`
     }
 
     ${media_breakpoint_down('md')} {
+      margin-bottom: 80px;
       .cannabis-big-leaf {
         width: 300px;
         height: 345px;
@@ -94,6 +104,7 @@ export const AttorneysCannabisContainer = styled.section`
       p {
         font-size: 1.1rem;
         line-height: 24px;
+        max-width: 525px;
       }
     }
 

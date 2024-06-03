@@ -2,14 +2,6 @@ import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import {
-  carilo,
-  licorice,
-  montserrat,
-  poppins,
-  rajdhani,
-  roboto,
-} from '../public/fonts/fonts';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -41,9 +33,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body
-          className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
-        >
+        <body>
           <Main />
           <NextScript />
         </body>
