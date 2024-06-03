@@ -10,6 +10,7 @@ import {
 } from '../../mediaBreakpoints.style';
 import { BsSearch } from 'react-icons/bs';
 import { LinksBox } from '../../Header.style';
+import { DropdownSecondLvl } from 'styles/Navigation.style';
 
 export const SpecialHeaderContainer = styled.header`
   padding: 20px 1.5%;
@@ -26,33 +27,97 @@ export const SpecialHeaderContainer = styled.header`
   column-gap: 20px;
   flex-wrap: wrap;
 
-  ${({ headerType }) =>
-    headerType === 'entAndMedia' &&
-    `
+  &.entertainment-header {
     background: rgba(34, 26, 20, 0.40);
     border-bottom: none;
-  `}
-
-  .nav-item > a {
-    color: ${cannabisLawColors.cannabisColorGray};
   }
 
-  .navbar-nav .show > .nav-link {
-    color: ${globalColor.white};
-  }
+  &.cannabis-header {
+    .navContainerWrapper {
+      .dropdown-menu {
+        background-color: ${cannabisLawColors.cannabisColorGray};
 
-  .dropdown-menu {
-    background-color: ${cannabisLawColors.cannabisColorGray};
+        .dropdown-item {
+          :hover {
+            color: ${cannabisLawColors.cannabisColorGray};
+            background-color: ${cannabisLawColors.cannabisColorDarkGray};
+          }
 
-    a {
-      :hover {
+          &.with-child {
+            &:hover {
+              &::after {
+                background-color: ${cannabisLawColors.cannabisColorDarkGray};
+              }
+            }
+          }
+        }
+
+        ${DropdownSecondLvl} {
+          ul {
+            li {
+              &.active {
+                color: ${globalColor.black};
+
+                .dropdown-item {
+                  background-color: transparent;
+                  color: ${globalColor.black};
+                }
+              }
+
+              &:hover {
+                color: ${globalColor.black};
+
+                .dropdown-item {
+                  background-color: transparent;
+                  color: ${globalColor.black};
+                }
+              }
+
+              .dropdown-item {
+                &:hover {
+                  background-color: transparent;
+                  color: ${globalColor.black};
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dropdown-item {
+        color: ${cannabisLawColors.cannabisColorDarkGray};
+      }
+    }
+
+    .nav-item {
+      &.show {
+        .nav-link {
+          color: ${cannabisLawColors.cannabisColorGray};
+          > div {
+            color: ${cannabisLawColors.cannabisColorGray};
+          }
+        }
+      }
+
+      > a {
         color: ${cannabisLawColors.cannabisColorGray};
+      }
+    }
+
+    .locations-dropdown .dropdown-menu .dropdown-location .dropdown-item .location-card-menu {
+      > div {
         background-color: ${cannabisLawColors.cannabisColorDarkGray};
       }
+
+      h3 {
+        color: ${cannabisLawColors.cannabisColorGray};
+      }
+      
     }
   }
 
   ${media_breakpoint_down('xl')} {
+    padding: 4px 1.5%;
     a.link-btn-header {
       width: 50px;
       height: 50px;

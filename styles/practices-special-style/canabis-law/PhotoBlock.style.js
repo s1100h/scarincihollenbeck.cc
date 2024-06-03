@@ -80,13 +80,17 @@ export const PhotoCannabisBox = styled.div`
 
   ${PhotoCardFigure} {
     margin: 0;
-    height: 100%;
     width: 100%;
 
     img {
       border: 1px solid rgba(0, 0, 0, 0.38);
       width: 100%;
       height: 100%;
+      max-height: 410px;
+
+      ${media_breakpoint_down('md')} {
+        max-height: 260px;
+      }
     }
 
     figcaption {
@@ -96,6 +100,10 @@ export const PhotoCannabisBox = styled.div`
       color: ${cannabisLawColors.cannabisColorDarkGray};
       line-height: 52px;
       letter-spacing: 2.6px;
+    }
+
+    ${media_breakpoint_down('lg')} {
+      height: 100%;
     }
   }
 
@@ -122,7 +130,6 @@ export const PhotoCannabisBox = styled.div`
   }
 
   ${media_breakpoint_down('md')} {
-    margin-bottom: 32px;
     grid-template-columns: repeat(3, 100px);
     gap: 8px;
     justify-items: center;
@@ -187,7 +194,7 @@ export const PhotoClient = styled.div`
 `;
 
 export const ArticlePhotoContainer = styled.div`
-  width: 36%;
+  flex: 1;
 
   article {
     > :first-child {
@@ -241,8 +248,8 @@ export const ArticlePhotoContainer = styled.div`
     }
   }
 
-  ${media_breakpoint_exactly_down(685)} {
-    margin-top: auto;
+  ${media_breakpoint_down('md')} {
+    margin-top: 32px;
   }
 
   ${media_breakpoint_down('sm')} {

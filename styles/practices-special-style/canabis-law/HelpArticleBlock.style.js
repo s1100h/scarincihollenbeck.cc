@@ -38,6 +38,8 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
       font-weight: 500;
       line-height: 30px;
       color: ${cannabisLawColors.cannabisColorGray};
+      width: 100%;
+      max-width: 725px;
 
       ${media_breakpoint_down('xxl')} {
         margin: 0 0 24px 0;
@@ -70,6 +72,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
       p {
         font-size: 1rem;
+        max-width: 525px;
       }
     }
   }

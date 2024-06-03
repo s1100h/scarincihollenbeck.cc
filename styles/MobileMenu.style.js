@@ -43,6 +43,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
           .mobile-item__with-child {
             &.active {
               color: ${cannabisLawColors.cannabisColorGray};
+              background-color: ${cannabisLawColors.cannabisColorDarkGray};
             }
           }
         }
@@ -67,6 +68,12 @@ export const OffcanvasContainer = styled(Offcanvas)`
 
     &.menu-entertainment {
       margin-top: 92px;
+    }
+  }
+
+  ${media_breakpoint_down('xl')} {
+    &.menu-cannabis {
+      margin-top: 101px;
     }
   }
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { globalColor } from './global_styles/Global.styles';
-import Button from 'react-bootstrap/Button';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 

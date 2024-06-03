@@ -16,9 +16,10 @@ import {
   VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
 
-const headerType = (pageSlug) => {
+const className = (pageSlug) => {
   const pagesMap = {
-    // 'entertainment-and-media': 'entAndMedia', // page ready for deploy in prod but paused, commit 26.12.2023
+    'new-jersey-cannabis-law': 'cannabis-header',
+    // 'entertainment-and-media': 'entertainment-header', // page ready for deploy in prod but paused, commit 26.12.2023
   };
 
   return pagesMap[pageSlug] || '';
@@ -47,7 +48,7 @@ const SpecialHeader = ({ practices, locations }) => {
       <SpecialHeaderContainer
         isChangeOrder={isOpenSearch}
         scrollDown={scrollTop}
-        headerType={headerType(slug)}
+        className={className(slug)}
       >
         <LogoBox>
           <Logo whiteVariant />
