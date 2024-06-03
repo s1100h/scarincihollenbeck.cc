@@ -34,8 +34,8 @@ export default function Footer() {
   const backgroundFooterColor = setFooterBackgroundColor(slug);
 
   return (
-    <FooterWrapper>
-      <FooterContainer backgroundFooterColor={backgroundFooterColor}>
+    <FooterWrapper backgroundFooterColor={backgroundFooterColor}>
+      <FooterContainer>
         <NavigationAndSubscription />
         <div className="footer-wrapper">
           <LinksSEOBox>
