@@ -4,18 +4,34 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { firebaseCloudMessaging } from '../utils/webPush';
 import 'react-toastify/dist/ReactToastify.css';
+import NotificationMessage from '../components/atoms/NotificationMessage';
 
 function getMessage(handleClickPushNotification) {
   const messaging = firebase.messaging();
   messaging.onMessage((message) => {
     toast(
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-      <div onClick={() => handleClickPushNotification(message?.data?.url)}>
-        <h5>{message?.notification?.title || message?.data?.title}</h5>
-        <p>{message?.notification?.body || message?.data?.body}</p>
-      </div>,
+      <NotificationMessage
+        message={{
+          title: message?.notification?.title || message?.data?.title || ' ',
+          description:
+            message?.notification?.body || message?.data?.body || ' ',
+          link:
+            message?.notification?.url
+            || message?.data?.url
+            || '/library/category/firm-news',
+          image:
+            message?.notification?.image
+            || message?.data?.image
+            || '/images/lettarsLogoblack.png',
+          logo:
+            message?.notification?.icon
+            || message?.data?.icon
+            || '/images/sh-mini-diamond-PNG.svg',
+          goTo: handleClickPushNotification,
+        }}
+      />,
       {
-        closeOnClick: false,
+        className: 'tostify-custom',
       },
     );
   });
