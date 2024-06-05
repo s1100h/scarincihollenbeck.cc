@@ -50,7 +50,7 @@ export const NavbarStyled = styled(Navbar)`
         }
 
         .chevron {
-          rotate: 180deg;
+          transform: rotate(180deg);
         }
       }
 
@@ -106,7 +106,7 @@ export const NavbarStyled = styled(Navbar)`
               }
 
               h3 {
-                font-size: rem(20);
+                font-size: ${rem(20)};
                 line-height: 24px;
                 color: ${globalColor.blue.skyBlue};
               }
@@ -283,7 +283,7 @@ export const TitleBlock = styled.div`
   gap: 5px;
 
   .chevron {
-    transition: 0.3s;
-    rotate: 0deg;
+    transition: rotate 0.3s;
+    transform: rotate(0deg);
   }
 `;

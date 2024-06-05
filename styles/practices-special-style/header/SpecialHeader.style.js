@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   buttonHoverActive,
   cannabisLawColors,
+  entAndMediaColors,
   globalColor,
 } from '../../global_styles/Global.styles';
 import {
@@ -12,24 +13,127 @@ import { BsSearch } from 'react-icons/bs';
 import { LinksBox } from '../../Header.style';
 import { DropdownSecondLvl } from 'styles/Navigation.style';
 
-export const SpecialHeaderContainer = styled.header`
-  padding: 20px 1.5%;
+export const SpecialHeaderWrapper = styled.header`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: fit-content;
-  width: 100%;
-  filter: blur(10%);
+  backdrop-filter: blur(5px);
   background-color: ${cannabisLawColors.cannabisTransparentBlack};
-  position: fixed;
-  z-index: 1041;
   border-bottom: 4px solid ${cannabisLawColors.cannabisColorGray};
-  column-gap: 20px;
-  flex-wrap: wrap;
+  width: 100%;
+  position: fixed;
+  z-index: 1020;
 
   &.entertainment-header {
     background: rgba(34, 26, 20, 0.40);
     border-bottom: none;
+
+    > div {
+      padding: 12px 1.5%;
+    }
+
+    .navContainerWrapper {
+      .dropdown-menu {
+        background-color: ${entAndMediaColors.entAndMediaColorGray};
+
+        .dropdown-item {
+          :hover {
+            color: ${globalColor.white};
+            background-color: ${globalColor.black};
+          }
+
+          &.with-child {
+            &:hover {
+              &::after {
+                background-color: ${globalColor.black};
+              }
+            }
+          }
+        }
+
+        ${DropdownSecondLvl} {
+          ul {
+            li {
+              &.active {
+                color: ${entAndMediaColors.entAndMediaColorGold};
+
+                .dropdown-item {
+                  background-color: transparent;
+                  color: ${entAndMediaColors.entAndMediaColorGold};
+                }
+              }
+
+              &:hover {
+                color: ${entAndMediaColors.entAndMediaColorGold};
+
+                .dropdown-item {
+                  background-color: transparent;
+                  color: ${entAndMediaColors.entAndMediaColorGold};
+                }
+              }
+
+              .dropdown-item {
+                &:hover {
+                  background-color: transparent;
+                  color: ${entAndMediaColors.entAndMediaColorGold};
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dropdown-item {
+        color: ${globalColor.white};
+      }
+    }
+
+    .nav-item {
+      &.show {
+        .nav-link {
+          color: ${globalColor.white};
+          > div {
+            color: ${globalColor.white};
+          }
+        }
+      }
+
+      > a {
+        font-weight: 600;
+        color: ${globalColor.white};
+      }
+    }
+
+    .locations-dropdown .dropdown-menu .dropdown-location .dropdown-item .location-card-menu {
+      > div {
+        background-color: ${entAndMediaColors.entAndMediaColorGray};
+      }
+
+      h3 {
+        color: ${entAndMediaColors.entAndMediaColorGold};
+      }
+    }
+
+    .search-result-container {
+      background-color: ${globalColor.white};
+    }
+
+    form {
+      .form-control {
+        background-color: ${globalColor.white};
+        box-shadow: none;
+
+        &:focus-visible,
+        &:focus,
+        &:active {
+          background-color: ${globalColor.white};
+        }
+      }
+    }
+
+    ${media_breakpoint_down('xxl')} {
+      > div {
+        padding: 5px 1.5%;
+      }
+    }
   }
 
   &.cannabis-header {
@@ -115,9 +219,27 @@ export const SpecialHeaderContainer = styled.header`
       
     }
   }
+`;
+
+export const SpecialHeaderContainer = styled.div`
+  padding: 20px 132px;
+  width: min(100%, 2184px);
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  column-gap: 20px;
+  flex-wrap: wrap;
+
+  ${media_breakpoint_exactly_down(1850)} {
+    padding: 20px 1.5%;
+  }
 
   ${media_breakpoint_down('xl')} {
     padding: 4px 1.5%;
+
     a.link-btn-header {
       width: 50px;
       height: 50px;
@@ -162,11 +284,13 @@ export const SpecialHeaderContainer = styled.header`
 
   ${media_breakpoint_exactly_down(530)} {
     justify-content: space-between;
+
     > :nth-child(1) {
       order: 1;
       width: 20%;
       justify-content: flex-start;
     }
+
     > :nth-child(3) {
       order: 5;
       width: 85vw;
@@ -181,6 +305,7 @@ export const SpecialHeaderContainer = styled.header`
         margin-top: 23px;
       }
     }
+
     > :nth-child(4) {
       order: 2;
       svg {
@@ -188,6 +313,7 @@ export const SpecialHeaderContainer = styled.header`
         height: 24px;
       }
     }
+    
     > :nth-child(5) {
       order: 3;
       button {
@@ -199,6 +325,7 @@ export const SpecialHeaderContainer = styled.header`
     }
   }
 `;
+
 export const SearchBoxContainer = styled.div`
   display: ${({ isOpenSearch }) => (isOpenSearch ? 'none' : 'flex')};
   align-items: center;
@@ -235,22 +362,32 @@ export const VisibleHiddenSearch = styled.div`
   justify-content: end;
   width: 90%;
 
+  &:has(.search-result-container) {
+    > form {
+      .form-control {
+        border-radius: 25px 25px 0 0!important;
+      }
+    }
+  }
+
   .search-result-container {
+    padding-top: 10px;
     width: inherit;
     background-color: ${globalColor.graySmoke.smoke};
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    margin-top: 25px;
+    margin-top: 40px;
   }
 
-  form {
+  > form {
     width: inherit;
+
     .form-control {
       display: ${({ isOpenBlock }) => (isOpenBlock ? 'flex' : 'none')};
       padding: 6px 12px;
       background-color: ${globalColor.graySmoke.smoke};
       color: ${globalColor.black};
-      border-radius: 25px !important;
+      border-radius: 25px!important;
       position: relative;
       z-index: 100;
       box-shadow: inset 200px 200px ${globalColor.graySmoke.smoke},

@@ -35,10 +35,7 @@ query practicesSlugs {
   }
 }`;
 
-const excludedSlugs = [
-  'new-jersey-cannabis-law',
-  'entertainment-and-media-pause',
-];
+const excludedSlugs = ['new-jersey-cannabis-law', 'entertainment-and-media'];
 
 /** Set single practice data to page props */
 export const getStaticPaths = async () => {

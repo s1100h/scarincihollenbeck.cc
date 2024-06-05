@@ -29,7 +29,6 @@ import {
   SliderSubHeaderContainer,
 } from '../../styles/practices-special-style/SpecialSubHeader.style';
 import { EntertainmentInfoContext } from '../../contexts/EntertainmentInfoContext';
-import useAnchorLink from '../../hooks/useAnchorLink';
 
 const arrowUp = '/images/arrow-up.svg';
 const arrowDown = '/images/arrow-down.svg';
@@ -53,6 +52,7 @@ const SliderSubHeader = ({
   const isNextBtnDisabled = activeSlideIndex === slidesData?.length - 1;
   const titleRef = useRef(null);
   const [titleHeight, setTitleHeight] = useState(0);
+  const currentYear = new Date().getFullYear();
   const goToPrevSlide = () => {
     if (activeSlideIndex > 0) {
       setActiveSlideIndex(activeSlideIndex - 1);
@@ -123,7 +123,9 @@ const SliderSubHeader = ({
               <SlideDarkText className="slide__company">
                 Scarinci Hollenbeck’s, LLC
               </SlideDarkText>
-              <SlideDarkText className="slide__date">2023</SlideDarkText>
+              <SlideDarkText className="slide__date">
+                {currentYear}
+              </SlideDarkText>
             </SlideSidebar>
 
             <SlideContent>

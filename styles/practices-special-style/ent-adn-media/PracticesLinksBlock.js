@@ -39,7 +39,7 @@ export const PracticesContent = styled.div`
   }
 `;
 export const PracticesPreview = styled.div`
-  width: 40%;
+  width: 32%;
   display: flex;
   flex-direction: column;
   row-gap: 8px;
@@ -78,7 +78,7 @@ export const PracticesTitle = styled.h2`
   }
 `;
 export const PracticesImage = styled.div`
-  margin-left: 100px;
+  margin-left: auto;
   width: 428px;
   height: 98px;
 
@@ -100,14 +100,13 @@ export const PracticesImage = styled.div`
 export const PracticesLinks = styled.ul`
   margin: 0;
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(min-content, max-content));
-  justify-content: space-between;
   column-gap: 5%;
+  column-count: 3;
 
   li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    break-inside: avoid;
 
     ::before {
       content: '•';
@@ -136,6 +135,6 @@ export const PracticesLinks = styled.ul`
   }
 
   ${media_breakpoint_down('md')} {
-    grid-template-columns: 1fr;
+    column-count: 1;
   }
 `;

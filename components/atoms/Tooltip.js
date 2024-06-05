@@ -9,14 +9,16 @@ const Tooltip = ({ children, textTooltip }) => {
       setIsHovered(true);
     }, 500);
   };
-  const handleMouseLeave = () => {
+  const hideTooltip = () => {
     setIsHovered(false);
     clearInterval(timeoutId);
   };
+
   return (
     <TooltipWrapper
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave={hideTooltip}
+      onClick={hideTooltip}
     >
       {children}
       {isHovered && <ContentTooltip>{textTooltip}</ContentTooltip>}

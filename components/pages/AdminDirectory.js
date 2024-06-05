@@ -9,7 +9,7 @@ const AdministrationPage = ({
   <>
     <BasicSiteHead
       title={seo.title}
-      metaDescription={seo.metaDescription}
+      metaDescription={seo.metaDesc}
       canonicalUrl={canonicalUrl}
     />
     <SubHeader

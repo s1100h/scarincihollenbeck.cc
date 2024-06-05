@@ -27,14 +27,20 @@ import {
   BsFillTelephoneFill,
   BsFillEnvelopeFill,
 } from 'react-icons/bs';
-import { cannabisLawColors } from '../../../../styles/global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  entAndMediaColors,
+} from '../../../../styles/global_styles/Global.styles';
 
 const specialPageClass = {
   'new-jersey-cannabis-law': {
     className: 'menu-cannabis',
     color: cannabisLawColors.cannabisColorGray,
   },
-  // 'entertainment-and-media': 'menu-entertainment', // page ready for deploy in prod but paused, commit 26.12.2023
+  'entertainment-and-media': {
+    className: 'menu-entertainment',
+    color: entAndMediaColors.entAndMediaColorGray,
+  },
 };
 
 const renderAccordionTemplate = (

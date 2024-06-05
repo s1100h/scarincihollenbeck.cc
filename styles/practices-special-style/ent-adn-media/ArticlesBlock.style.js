@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { cannabisLawColors, entAndMediaColors, globalColor, rem } from 'styles/global_styles/Global.styles';
 import { LinkToCategory, TitleButtonBox } from '../ArticlesBlock.style';
-import { PaginationBtn } from 'styles/PaginationBtn.style';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -77,12 +76,6 @@ export const ArticlesSection = styled.section`
     }
   }
 
-  ${PaginationBtn} {
-    svg {
-      color: ${globalColor.black};
-    }
-  }
-
   .entertainment-news {
     padding: 0;
     width: 32%;
@@ -151,6 +144,30 @@ export const ArticlesSection = styled.section`
           font-size: ${rem(16)};
           line-height: 24px;
         }
+      }
+    }
+  }
+
+  .pagination {
+    --bs-pagination-color: ${globalColor.black};
+    --bs-pagination-active-bg: ${entAndMediaColors.entAndMediaColorGold};
+    --bs-pagination-active-border-color: ${entAndMediaColors.entAndMediaColorGold};
+    --bs-pagination-border-color: ${entAndMediaColors.entAndMediaColorGold};
+    --bs-pagination-hover-bg: ${entAndMediaColors.entAndMediaColorGray};
+    --bs-pagination-hover-border-color: ${entAndMediaColors.entAndMediaColorGold};
+    --bs-pagination-hover-color: ${entAndMediaColors.entAndMediaColorGold};
+    --bs-pagination-focus-color: ${entAndMediaColors.entAndMediaColorGold};
+    --bs-pagination-focus-bg: ${entAndMediaColors.entAndMediaColorGray};
+  }
+
+  .pagination-icon {
+    color: ${globalColor.black};
+  }
+
+  .page-link {
+    &:focus, &:hover {
+      .pagination-icon {
+        color: ${entAndMediaColors.entAndMediaColorGold};
       }
     }
   }

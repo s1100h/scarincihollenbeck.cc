@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { PaginationBtn, PaginationContainer } from 'styles/PaginationBtn.style';
 import { ContentTooltip } from 'styles/Tooltip.style';
 import {
   entAndMediaColors,
@@ -113,40 +112,6 @@ export const EntertainmentClientsDescription = styled.p`
   }
 `;
 export const EntertainmentClientsList = styled.div`
-  ${PaginationContainer} {
-    left: auto;
-  }
-
-  ${PaginationBtn} {
-    padding: 4px 14.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
-    border-radius: 20px;
-
-    svg {
-      color: ${entAndMediaColors.entAndMediaColorGold};
-      font-size: 15px;
-      transition: all 0.15s linear;
-      stroke-width: 1px;
-    }
-
-    :first-child {
-      :hover {
-        svg {
-          transform: translateX(-3px);
-        }
-      }
-    }
-
-    :hover {
-      svg {
-        transform: translateX(3px);
-      }
-    }
-  }
-
   .pagination {
     margin: 0 0 20px 0;
     column-gap: 16px;
@@ -154,37 +119,53 @@ export const EntertainmentClientsList = styled.div`
 
   .page-item {
     width: 43px;
-    height: 12px;
-    border-radius: 20px;
+    height: 43px;
+    border-radius: 50px;
     border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
     background-color: transparent;
     overflow: hidden;
+    a,
+    span {
+      color: ${entAndMediaColors.entAndMediaColorGold};
+    }
 
     &.active {
       background-color: ${entAndMediaColors.entAndMediaColorGold};
+      span {
+        color: ${globalColor.gray.gray130};
+      }
+    }
+    &.disabled {
+      .pagination-icon {
+        color: ${globalColor.gray.gray130};
+      }
+    }
+
+    &:hover {
+      a,
+      span,
+      svg {
+        color: ${globalColor.white};
+      }
     }
   }
 
   .page-link {
-    width: 100%;
-    height: 100%;
     padding: 0;
-    color: transparent;
     background-color: transparent;
     border: 0;
-  }
 
-  ${media_breakpoint_exactly_down(1850)} {
-    .page-item {
-      width: 30px;
-      height: 10px;
+    span {
+      svg {
+        color: ${entAndMediaColors.entAndMediaColorGold};
+      }
     }
-  }
 
-  ${media_breakpoint_exactly_down(1440)} {
-    .page-item {
-      width: 35px;
-      height: 12px;
+    &:hover, &:focus {
+      color: ${globalColor.white};
+      svg {
+        color: ${globalColor.white};
+      }
     }
   }
 `;

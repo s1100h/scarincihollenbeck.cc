@@ -29,7 +29,7 @@ const FormPageContent = ({
     <>
       <BasicSiteHead
         title={seo.title}
-        metaDescription={seo.metaDescription}
+        metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
       <SubHeader title={site.title} subtitle={site.description} />

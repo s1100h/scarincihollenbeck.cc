@@ -2,11 +2,12 @@ import { useRouter } from 'next/router';
 import SpecialSubHeader from './SpecialSubHeader';
 import DefaultSubHeader from './DefaultSubHeader';
 import { getSlugFromUrl } from '../../utils/helpers';
+import SliderSubHeader from './SliderSubHeader';
 
 const renderSubHeader = (pageSlug, props) => {
   const pagesMap = {
     'new-jersey-cannabis-law': <SpecialSubHeader {...props} />,
-    // 'entertainment-and-media': <SliderSubHeader {...props} />, // page ready for deploy in prod but paused, commit 26.12.2023
+    'entertainment-and-media': <SliderSubHeader {...props} />,
   };
 
   return pagesMap[pageSlug] || <DefaultSubHeader {...props} />;

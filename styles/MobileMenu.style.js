@@ -3,6 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {
   cannabisLawColors,
+  entAndMediaColors,
   globalColor,
   rem,
 } from './global_styles/Global.styles';
@@ -60,15 +61,112 @@ export const OffcanvasContainer = styled(Offcanvas)`
   }
 
   &.menu-entertainment {
-    margin-top: 96px;
+    margin-top: 99px;
+
+    .accordion-item {
+      .accordion-button {
+          color: ${globalColor.white};
+          border-color: ${globalColor.white};
+        }
+      .accordion-collapse {
+        &.show {
+          .accordion-body {
+            border-color: ${globalColor.white};
+          }
+        }
+      }
+      .accordion-body {
+        .mobile-menu__first-lvl {
+          li {
+            a, .mobile-item__with-child {
+              color: ${globalColor.white};
+
+              &:hover {
+                color: ${entAndMediaColors.entAndMediaColorGold};
+              }
+            }
+          }
+          .mobile-item__with-child {
+            &.active {
+              color: ${globalColor.white};
+              background-color: ${globalColor.black};
+            }
+          }
+
+          .mobile-menu__second-accordion  {
+            .accordion-button {
+              color: ${globalColor.white};
+            }
+
+            .accordion-body {
+              ul {
+                li {
+                  color: ${globalColor.white};
+
+                  > a {
+                    color: ${globalColor.white};
+                  }
+                }
+              }
+            }
+          }
+        }
+        .mobile-menu__second-lvl {
+          li {
+            color: ${globalColor.white};
+
+            a {
+              color: ${globalColor.white};
+            }
+            
+            &:hover {
+              color: ${entAndMediaColors.entAndMediaColorGold};
+
+              > a {
+                color: ${entAndMediaColors.entAndMediaColorGold};
+              }
+            }
+
+            &.active {
+              color: ${entAndMediaColors.entAndMediaColorGold};
+
+              > a {
+                color: ${entAndMediaColors.entAndMediaColorGold};
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .menu-item {
+      color: ${globalColor.white};
+      border-color: ${globalColor.white};
+    }
+
+    .link-btn-header {
+      border-color: ${globalColor.white};
+      
+      &:hover {
+        border-color: ${globalColor.black};
+      }
+
+      > span {
+        color: ${globalColor.white};
+      }
+    }
+
+    .communication-link {
+      color: ${globalColor.white};
+
+      svg {
+        fill: ${globalColor.white};
+      }
+    }
   }
 
   ${media_breakpoint_exactly_down(1439)} {
     margin-top: 149px;
-
-    &.menu-entertainment {
-      margin-top: 92px;
-    }
   }
 
   ${media_breakpoint_down('xl')} {
@@ -85,7 +183,7 @@ export const OffcanvasContainer = styled(Offcanvas)`
     }
 
     &.menu-entertainment {
-      margin-top: 72px;
+      margin-top: 60px;
     }
   }
 

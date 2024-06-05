@@ -46,7 +46,7 @@ const CannabisLawPage = ({
     <>
       <BasicSiteHead
         title={practice.seo.title}
-        metaDescription={practice.seo.metaDescription}
+        metaDescription={practice.seo.metaDesc}
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />

@@ -107,7 +107,7 @@ export const PostsBox = styled.div`
     }
 
     :hover {
-      box-shadow: -2px 0 10px rgb(white / 13%);
+      box-shadow: -2px 0 10px rgba(255, 255, 255, 0.13);
     }
   }
 

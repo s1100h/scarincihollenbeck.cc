@@ -22,8 +22,8 @@ import {
   EntertainmentClientsSubtitle,
   EntertainmentClientsTitle,
 } from 'styles/practices-special-style/ent-adn-media/EntertainmentClientsBlock.style';
-import PaginationButtons from '../../atoms/PaginationButtons';
 import Loader from '../../atoms/Loader';
+import CustomPagination from '../../atoms/CustomPagination';
 
 const cuttingColor = (colorString) => {
   const regex = /#[A-Fa-f0-9]{6}(?:[A-Fa-f0-9]{2})?/g;
@@ -32,7 +32,7 @@ const cuttingColor = (colorString) => {
 const EntertainmentClientsBlock = ({
   title,
   description,
-  clientsApolloProps,
+  clientsPaginationData,
 }) => {
   const [openItemId, setOpenItemId] = useState(null);
 
@@ -45,17 +45,10 @@ const EntertainmentClientsBlock = ({
   };
 
   const {
-    handleClientsPrevPagination,
-    handleClientsNextPagination,
-    data,
-    loading,
-    error,
-  } = clientsApolloProps;
+    clients, loading, error, page, limit,
+  } = clientsPaginationData;
 
-  const disablePrevBtn = !data?.clients?.pageInfo.hasPreviousPage;
-  const disableNextBtn = !data?.clients?.pageInfo.hasNextPage;
-
-  const memoData = useMemo(() => data?.clients?.edges, [data]);
+  const memoData = useMemo(() => clients?.edges, [clientsPaginationData]);
   return (
     <EntertainmentClientsSection>
       <ContainerContent>
@@ -67,18 +60,18 @@ const EntertainmentClientsBlock = ({
           {description}
         </EntertainmentClientsDescription>
         <EntertainmentClientsList>
-          <PaginationButtons
-            justArrow
-            handleNextPagination={handleClientsNextPagination}
-            handlePrevPagination={handleClientsPrevPagination}
-            countOfArticles={10}
-            disablePrevBtn={disablePrevBtn}
-            disabledNextBtn={disableNextBtn}
+          <CustomPagination
+            totalItems={clients?.pageInfo?.offsetPagination?.total}
+            currentPage={page}
+            limit={limit}
+            queryParam="client-page"
+            between={3}
+            ellipsis={1}
           />
           <EntertainmentClientsListItems>
             {!loading ? (
               <>
-                {memoData.map(({ node }) => (
+                {memoData?.map(({ node }) => (
                   <EntertainmentClientsItem
                     onClick={() => handleShowContent(node.databaseId)}
                     key={node.databaseId}

@@ -13,13 +13,14 @@ import {
   SearchBoxContainer,
   SearchOpenBtn,
   SpecialHeaderContainer,
+  SpecialHeaderWrapper,
   VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
 
 const className = (pageSlug) => {
   const pagesMap = {
     'new-jersey-cannabis-law': 'cannabis-header',
-    // 'entertainment-and-media': 'entertainment-header', // page ready for deploy in prod but paused, commit 26.12.2023
+    'entertainment-and-media': 'entertainment-header',
   };
 
   return pagesMap[pageSlug] || '';
@@ -44,12 +45,12 @@ const SpecialHeader = ({ practices, locations }) => {
   const handleShowMenu = () => setShowMenu(true);
 
   return (
-    <>
-      <SpecialHeaderContainer
-        isChangeOrder={isOpenSearch}
-        scrollDown={scrollTop}
-        className={className(slug)}
-      >
+    <SpecialHeaderWrapper
+      isChangeOrder={isOpenSearch}
+      scrollDown={scrollTop}
+      className={className(slug)}
+    >
+      <SpecialHeaderContainer>
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
@@ -75,7 +76,7 @@ const SpecialHeader = ({ practices, locations }) => {
           />
         </LinksBoxSpecial>
       </SpecialHeaderContainer>
-    </>
+    </SpecialHeaderWrapper>
   );
 };
 
