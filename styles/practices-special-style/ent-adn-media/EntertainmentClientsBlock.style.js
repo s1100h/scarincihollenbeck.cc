@@ -114,58 +114,76 @@ export const EntertainmentClientsDescription = styled.p`
 export const EntertainmentClientsList = styled.div`
   .pagination {
     margin: 0 0 20px 0;
-    column-gap: 16px;
-  }
+    gap: 16px;
 
-  .page-item {
-    width: 43px;
-    height: 43px;
-    border-radius: 50px;
-    border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
-    background-color: transparent;
-    overflow: hidden;
-    a,
-    span {
-      color: ${entAndMediaColors.entAndMediaColorGold};
-    }
-
-    &.active {
-      background-color: ${entAndMediaColors.entAndMediaColorGold};
-      span {
-        color: ${globalColor.gray.gray130};
-      }
-    }
-    &.disabled {
-      .pagination-icon {
-        color: ${globalColor.gray.gray130};
-      }
-    }
-
-    &:hover {
+    .page-item {
+      width: 43px;
+      height: 43px;
+      border-radius: 50px;
+      border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
+      background-color: transparent;
+      overflow: hidden;
       a,
-      span,
-      svg {
-        color: ${globalColor.white};
-      }
-    }
-  }
-
-  .page-link {
-    padding: 0;
-    background-color: transparent;
-    border: 0;
-
-    span {
-      svg {
+      span {
         color: ${entAndMediaColors.entAndMediaColorGold};
       }
+
+      &.active {
+        background-color: ${entAndMediaColors.entAndMediaColorGold};
+        span {
+          color: ${globalColor.gray.gray130};
+        }
+      }
+
+      &.disabled {
+        .pagination-icon {
+          color: ${globalColor.gray.gray130};
+        }
+      }
+
+      &:hover {
+        a,
+        span,
+        svg {
+          color: ${globalColor.white};
+        }
+      }
     }
 
-    &:hover, &:focus {
-      color: ${globalColor.white};
-      svg {
-        color: ${globalColor.white};
+    .page-link {
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+
+      span {
+        svg {
+          color: ${entAndMediaColors.entAndMediaColorGold};
+        }
       }
+
+      &:hover, &:focus {
+        color: ${globalColor.white};
+        svg {
+          color: ${globalColor.white};
+        }
+      }
+    }
+
+    ${media_breakpoint_down('md')} {
+      gap: 8px;
+
+      .page-item {
+        width: 28px;
+        height: 28px;
+      }
+
+      .page-link {
+        font-size: ${rem(14)};
+      }
+    }
+
+    ${media_breakpoint_down('sm')} {
+      gap: 4px;
     }
   }
 `;

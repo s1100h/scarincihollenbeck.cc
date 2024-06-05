@@ -23,15 +23,22 @@ import Loader from '../../atoms/Loader';
 import decodeResponse from '../../../utils/decodeResponse';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
+
 const isArraysIdentical = (chosenIds, originalIds) => {
   if (chosenIds.length !== originalIds.length) {
     return false;
   }
   return chosenIds.every((element, index) => element === originalIds[index]);
 };
+
 const originalCategoriesIds = (categoryArr) => categoryArr.map((category) => category.id);
+
 const SubscriptionModal = ({ children, customClass }) => {
   const [categoriesFromWP, setCategoriesFromWP] = useState();
+  const [show, setShow] = useState(false);
+  const [categoriesChosen, setCategories] = useState([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -43,13 +50,12 @@ const SubscriptionModal = ({ children, customClass }) => {
     })();
   }, []);
 
-  const [show, setShow] = useState(false);
-  const [categoriesChosen, setCategories] = useState([]);
-
-  const router = useRouter();
   useEffect(() => {
-    kwesforms.init();
+    if (show) {
+      kwesforms.init();
+    }
   }, [show]);
+
   const handleCheckCategory = (categoryId) => {
     if (categoriesChosen.includes(categoryId)) {
       setCategories(
@@ -61,6 +67,7 @@ const SubscriptionModal = ({ children, customClass }) => {
       setCategories([...categoriesChosen, categoryId]);
     }
   };
+
   const handleChooseAllClearAll = (isAllChosen) => {
     if (isAllChosen) {
       setCategories(originalCategoriesIds(categoriesFromWP));
