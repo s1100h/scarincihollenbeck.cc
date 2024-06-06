@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { Container, Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import kwesforms from 'kwesforms';
+import { RECAPTCHA_SITE_KEY } from 'utils/constants';
 
 const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 const CurrentAttorneyNameForm = dynamic(() => import('components/organisms/site-form/CurrentAttorney'));
@@ -69,7 +70,7 @@ const SiteFormPage = ({
           className="mt-2 kwes-form"
           action="https://kwes.io/api/foreign/forms/JuFmpokXEypi5BKw2mXO"
           has-recaptcha-v3="true"
-          recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
+          recaptcha-site-key={RECAPTCHA_SITE_KEY}
         >
           {isNewAttorney ? (
             <NewAttorneyNameForm
