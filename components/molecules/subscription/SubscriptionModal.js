@@ -3,6 +3,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import {
+  RECAPTCHA_SITE_KEY,
   SITE_TITLE,
   subscriptionInputs,
   THANKS_MESSAGE,
@@ -107,7 +108,7 @@ const SubscriptionModal = ({ children, customClass }) => {
                   className="kwes-form"
                   action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
                   has-recaptcha-v3="true"
-                  recaptcha-site-key="6LeuFw8TAAAAAERdYOpu1cVVC-vum-6Ie-oU_8SA"
+                  recaptcha-site-key={RECAPTCHA_SITE_KEY}
                   success-message={THANKS_MESSAGE.title}
                 >
                   <RenderInputs
