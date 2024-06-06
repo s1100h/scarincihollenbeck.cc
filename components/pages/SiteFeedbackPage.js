@@ -69,7 +69,7 @@ const SiteFormPage = ({
           className="mt-2 kwes-form"
           action="https://kwes.io/api/foreign/forms/JuFmpokXEypi5BKw2mXO"
           has-recaptcha-v3="true"
-          recaptcha-site-key="6LeC96QZAAAAACJ64-6i0e-wibaQpwEpRPcnWNdY"
+          recaptcha-site-key="6LeuFw8TAAAAAERdYOpu1cVVC-vum-6Ie-oU_8SA"
         >
           {isNewAttorney ? (
             <NewAttorneyNameForm
