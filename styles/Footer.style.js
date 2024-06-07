@@ -162,7 +162,8 @@ export const ContactsBox = styled.div`
   }
 `;
 
-export const LinkTitle = styled.h5`
+export const LinkTitle = styled.h3`
+  color: ${globalColor.white};
   font-size: 1rem;
   margin-bottom: 8px;
   font-weight: 800;

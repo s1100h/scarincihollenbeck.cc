@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
-export const LocationTitle = styled.h3`
+export const LocationTitle = styled.h2`
   font-family: var(--font-poppins);
   font-weight: 400;
   font-size: 72px;

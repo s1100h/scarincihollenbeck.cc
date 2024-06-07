@@ -71,6 +71,7 @@ export default function GlobalSearch({
   filterByPostType,
 }) {
   const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
+
   return (
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
       <Configure filters={filters} />

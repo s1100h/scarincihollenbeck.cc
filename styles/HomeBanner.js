@@ -46,6 +46,11 @@ export const BannerContainer = styled.div`
     font-size: ${rem(165)};
     line-height: 151px;
     color: ${globalColor.black};
+
+    > span {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
 
   .text:first-child {
