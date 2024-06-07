@@ -120,12 +120,13 @@ export const SubHeaderContent = styled(Container)`
   }
 `;
 
-export const Description = styled.div`
+export const Description = styled.h2`
   width: 50vw;
   color: ${({ whiteVariant }) =>
     whiteVariant ? globalColor.white : globalColor.gray.gray80};
   margin-bottom: 0;
   font-size: ${rem(20)};
+  line-height: 1.5;
 
   ${media_breakpoint_down('xl')} {
     width: 60vw;

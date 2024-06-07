@@ -57,7 +57,7 @@ const NewsCard = ({
     isVertical={isVertical?.length > 0 && isVertical}
     className={classNameProp}
   >
-    <NewsLink href={postSlug} passHref />
+    <NewsLink aria-label={postTitle} href={postSlug} passHref />
     <div className="link-wrapper">
       <Image
         src={
@@ -71,7 +71,7 @@ const NewsCard = ({
         layout="intrinsic"
       />
       <TextNews>
-        <h2>{postTitle}</h2>
+        <h3>{postTitle}</h3>
         {postExcerpt?.length > 0 && (
           <ArticleDescription
             dangerouslySetInnerHTML={createMarkup(postExcerpt)}
