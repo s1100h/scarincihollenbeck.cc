@@ -43,7 +43,7 @@ const AttorneyPracticeCard = ({
       className={`${classNameProp} ${isActive ? 'active' : ''}`}
       ref={cardRef}
     >
-      <Link href={link} className="attorney__link" />
+      <Link href={link} className="attorney__link" aria-label={name} />
       <div className="attorney__image">
         <Image
           src={image}

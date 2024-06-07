@@ -11,9 +11,9 @@ const HomeBanner = ({ lineOne, lineTwo, quote }) => (
             {lineOne}
           </p>
           {!empty(lineTwo) && (
-            <div className="text animate__animated animate__fadeInDown animate__slow">
+            <h1 className="text animate__animated animate__fadeInDown animate__slow">
               <JSXWithDynamicLinks HTML={lineTwo} />
-            </div>
+            </h1>
           )}
           <span className="quote">{quote}</span>
         </div>
