@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { initialAdminFCM } from '../../../utils/constants';
 
 export default function handler(req, res) {
+  res.setHeader('Allow', ['POST']);
   if (req.method === 'POST') {
     if (!admin.apps.length) {
       try {
@@ -26,6 +27,7 @@ export default function handler(req, res) {
       .catch((error) => {
         console.error('Error subscribing to topic:', error);
       });
+    res.setHeader('Allow', ['POST']);
     res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({ success: true });
   }
