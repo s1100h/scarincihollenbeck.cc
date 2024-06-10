@@ -2,15 +2,11 @@ import * as admin from 'firebase-admin';
 import { initialAdminFCM } from '../../../utils/constants';
 
 export default function handler(req, res) {
-  if (req.method === 'GET') {
+  try {
     if (!admin.apps.length) {
-      try {
-        admin.initializeApp({
-          credential: admin.credential.cert(initialAdminFCM),
-        });
-      } catch (e) {
-        console.error(`Failed to initialize App: ${e}`);
-      }
+      admin.initializeApp({
+        credential: admin.credential.cert(initialAdminFCM),
+      });
     }
 
     const token = req.query.token;
@@ -27,8 +23,9 @@ export default function handler(req, res) {
       .catch((error) => {
         console.error('Error subscribing to topic:', error);
       });
-    res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json(error);
   }
-  return res.status(500).json({ message: 'The wrong request method.' });
 }
