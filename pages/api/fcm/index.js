@@ -26,7 +26,7 @@ export default function handler(req, res) {
       .catch((error) => {
         console.error('Error subscribing to topic:', error);
       });
-
+    res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({ success: true });
   }
   return res.status(500).json({ message: 'The wrong request method.' });
