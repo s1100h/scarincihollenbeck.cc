@@ -68,7 +68,7 @@ export default function AttorneyCard({
 }) {
   return (
     <AttorneyCardBox className="attorney-card-box">
-      <Link href={link} className="attorney-card-link" />
+      <Link href={link} className="attorney-card-link" aria-label={name} />
       <LinkBox>
         <Image
           placeholder="blur"

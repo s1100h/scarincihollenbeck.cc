@@ -42,9 +42,10 @@ export const NewsContainer = styled.section`
   }
 `;
 
-export const TitleNews = styled.h1`
+export const TitleNews = styled.h2`
   font-style: normal;
   font-weight: 400;
+  font-family: var(--font-poppins);
   font-size: 72px;
   line-height: 1.2;
   color: ${globalColor.black};
@@ -168,7 +169,7 @@ export const OtherNews = styled.article`
       }
     `}
 
-    h2 {
+    h3 {
       font-size: ${(props) => (props?.isVertical ? rem(20) : rem(18))};
       ${threeDots(3)};
       margin-top: 10px;
@@ -208,7 +209,7 @@ export const TextNews = styled.section`
   flex-flow: column;
   justify-content: space-between;
 
-  h2 {
+  h3 {
     font-weight: 600;
     color: ${globalColor.black};
     margin-bottom: 0;
@@ -284,9 +285,10 @@ export const LinkContainer = styled.a`
   flex-direction: column;
   height: 100%;
 `;
-export const ArticleNewsTitle = styled.h1`
+export const ArticleNewsTitle = styled.h3`
   font-weight: 600;
   font-size: ${rem(27)};
+  font-family: var(--font-poppins);
   line-height: 1.3;
   color: ${globalColor.black};
   margin-top: 27px;
