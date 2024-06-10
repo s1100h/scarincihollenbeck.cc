@@ -2,8 +2,7 @@ import * as admin from 'firebase-admin';
 import { initialAdminFCM } from '../../../utils/constants';
 
 export default function handler(req, res) {
-  res.setHeader('Allow', ['POST']);
-  if (req.method === 'POST') {
+  if (req.method === 'GET') {
     if (!admin.apps.length) {
       try {
         admin.initializeApp({
@@ -13,11 +12,12 @@ export default function handler(req, res) {
         console.error(`Failed to initialize App: ${e}`);
       }
     }
-    const body = req.body;
+
+    const token = req.query.token;
 
     admin
       .messaging()
-      .subscribeToTopic(body?.token, 'users')
+      .subscribeToTopic(token, 'users')
       .then((response) => {
         // See the MessagingTopicManagementResponse reference documentation
         // for the contents of response.
@@ -27,7 +27,6 @@ export default function handler(req, res) {
       .catch((error) => {
         console.error('Error subscribing to topic:', error);
       });
-    res.setHeader('Allow', ['POST']);
     res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({ success: true });
   }
