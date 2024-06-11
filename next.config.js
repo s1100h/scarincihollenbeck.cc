@@ -92,7 +92,7 @@ const nextConfig = {
     NEXT_PUBLIC_FIREBASE_VAPID_KEY: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
     NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL:
       process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
-    NEXT_PUBLIC_FIREBASE_PRIVAT_KEY: process.env.FIREBASE_PRIVAT_KEY,
+    FIREBASE_PRIVAT_KEY: process.env.FIREBASE_PRIVAT_KEY,
   },
   compiler: {
     styledComponents: true,

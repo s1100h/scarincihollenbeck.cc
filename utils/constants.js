@@ -802,7 +802,7 @@ export const firebaseConfig = {
 
 export const initialAdminFCM = {
   clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
-  privateKey: process.env.NEXT_PUBLIC_FIREBASE_PRIVAT_KEY,
+  privateKey: process.env.FIREBASE_PRIVAT_KEY,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
 };
 
