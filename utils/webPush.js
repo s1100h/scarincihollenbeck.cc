@@ -23,12 +23,8 @@ const firebaseCloudMessaging = {
             });
             if (token && tokenInLocalForage !== token) {
               await localforage.setItem('fcm_token', token);
-              await fetch('/api/fcm', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ token }),
+              await fetch(`/api/fcm?token=${token}`, {
+                method: 'GET',
               });
               return token;
             }
