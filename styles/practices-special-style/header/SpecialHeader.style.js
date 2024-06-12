@@ -28,7 +28,7 @@ export const SpecialHeaderContainer = styled.header`
   flex-wrap: wrap;
 
   &.entertainment-header {
-    background: rgba(34, 26, 20, 0.40);
+    background: rgba(34, 26, 20, 0.4);
     border-bottom: none;
   }
 
@@ -104,7 +104,11 @@ export const SpecialHeaderContainer = styled.header`
       }
     }
 
-    .locations-dropdown .dropdown-menu .dropdown-location .dropdown-item .location-card-menu {
+    .locations-dropdown
+      .dropdown-menu
+      .dropdown-location
+      .dropdown-item
+      .location-card-menu {
       > div {
         background-color: ${cannabisLawColors.cannabisColorDarkGray};
       }
@@ -112,7 +116,6 @@ export const SpecialHeaderContainer = styled.header`
       h3 {
         color: ${cannabisLawColors.cannabisColorGray};
       }
-      
     }
   }
 
