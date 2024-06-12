@@ -3,6 +3,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_up,
 } from '../mediaBreakpoints.style';
+import 'react-toastify/dist/ReactToastify.css';
 
 const mainFontSize = 16;
 
@@ -587,6 +588,34 @@ footer .wrapper-section {
   .disclaimer {
     font-size: 1rem;
     font-weight: 700;
+  }
+  
+  .tostify-custom {
+    position: relative;
+    border-radius: 0;
+    padding: 0;
+
+    .Toastify__progress-bar--wrp {
+      position: absolute;
+      bottom: auto;
+    }
+    
+    .Toastify__toast-body {
+      padding: 0;
+    }
+
+    .Toastify__progress-bar-theme--light {
+      background: ${globalColor.blue.dirtyBlue};
+    }
+    .Toastify__progress-bar {
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .Toastify__close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 `;
 

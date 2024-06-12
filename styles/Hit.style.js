@@ -30,7 +30,6 @@ export const SearchedItem = styled.section`
           color: ${globalColor.black};
           width: 100%;
           font-weight: bolder;
-          
 
           .ais-Highlight-highlighted {
             -webkit-text-stroke: 0.5px ${globalColor.red.ultraLiteRed};
