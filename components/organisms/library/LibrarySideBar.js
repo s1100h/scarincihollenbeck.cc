@@ -31,7 +31,7 @@ const LibrarySideBar = ({
         <BsLinkedin className="linkedIn" />
       </LinkedinShareButton>
     </ShareSocialBox>
-    {isAuthor && (
+    {isAuthor && profileUrl && (
       <Link className="mb-3" href={profileUrl} passHref>
         <strong>
           <u>Visit Attorney&apos;s Profile</u>
