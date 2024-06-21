@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
+import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 import { GradientPracticeBox } from './Post/PostSideBar.style';
 import {
   media_breakpoint_down,
@@ -12,6 +12,13 @@ export const ArticleBox = styled.article`
     font-weight: 600;
     margin-bottom: 30px;
   }
+  .error-subtitle {
+    font-size: ${rem(32)};
+    font-weight: 700;
+  }
+  .error-message {
+    font-size: 1rem;
+  }
 `;
 
 export const TilesBox = styled.div`
@@ -20,7 +27,19 @@ export const TilesBox = styled.div`
 
   article {
     flex-basis: auto;
-
+    box-shadow: ${globalShadow.allSideShadow};
+    div {
+      border: none;
+      span {
+        margin-bottom: 10px;
+      }
+      p {
+        a {
+          font-size: ${({ isErrorContent }) =>
+            isErrorContent ? rem(32) : '1rem'};
+        }
+      }
+    }
     &:first-child,
     &:nth-child(2) {
       flex-basis: auto;
@@ -40,14 +59,18 @@ export const LinkListBox404 = styled(GradientPracticeBox)`
   padding-right: 0;
 
   h3 {
-    font-size: 1.2rem;
-    color: ${globalColor.gray.gray80};
+    font-size: 1.1rem;
+    color: ${globalColor.black};
+    font-weight: 400;
   }
 
   ul {
     height: fit-content;
+    column-count: 2;
+    column-gap: 32px;
 
     li {
+      margin-bottom: 8px;
       a {
         color: ${globalColor.blue.dirtyBlue};
 

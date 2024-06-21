@@ -19,7 +19,7 @@ const TileContacts = ({
     ) : (
       <div>
         <span>{icon}</span>
-        <h4>{title}</h4>
+        {title && <h4>{title}</h4>}
         <p>
           <JSXWithDynamicLinks HTML={textContent} />
         </p>
