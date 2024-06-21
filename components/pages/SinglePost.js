@@ -32,7 +32,7 @@ const PostPage = ({
 
   return (
     <>
-      {empty(post?.content) ? (
+      {!empty(post?.content) ? (
         <>
           <PostSiteHead
             seo={seo}
