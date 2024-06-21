@@ -4,6 +4,7 @@ import {
   BsPeopleFill,
   BsPersonPlusFill,
 } from 'react-icons/bs';
+import { GiBookCover } from 'react-icons/gi';
 
 export const tileContentArr = [
   {
@@ -67,5 +68,14 @@ export const tile404ContentArr = [
    `,
     icon: <BsFillBriefcaseFill />,
     id: 1,
+  },
+];
+
+export const tilesErrorContentArr = [
+  {
+    title: '',
+    textContent: '<a href=\'/library/category/firm-news\'>The posts Library</a>',
+    icon: <GiBookCover />,
+    id: 0,
   },
 ];
