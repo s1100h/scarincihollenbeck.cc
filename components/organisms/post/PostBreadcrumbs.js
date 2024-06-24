@@ -61,7 +61,13 @@ const delegatePathFunc = (list, router, data) => {
           <BsChevronRight />
         </li>
         <li>
-          <span>{`Author - ${data?.title.replace(/\sArticles$/, '')}`}</span>
+          <span>
+            {`Author - ${
+              !empty(data?.title.replace(/\sArticles$/, ''))
+                ? data?.title.replace(/\sArticles$/, '')
+                : 'no longer'
+            }`}
+          </span>
         </li>
       </>
     );

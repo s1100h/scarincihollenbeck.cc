@@ -26,6 +26,7 @@ import { PracticesContextProvider } from 'contexts/PracticesContext';
 import InitFonts from 'components/common/InitFonts';
 import { FormContextProvider } from '../contexts/FormsContext';
 import 'react-toastify/dist/ReactToastify.css';
+import Notifications from '../hoks/notifications';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 const ToastContainer = dynamic(
@@ -48,15 +49,17 @@ const SHSite = ({ Component, pageProps }) => (
           <PracticesContextProvider>
             <GlobalStyle />
             <InitFonts />
-            <MainSiteHead />
-            <ToastContainer />
-            <Header />
-            {/* <!-- Google tag (gtag.js) --> */}
-            <GoogleTagManager gtmId="GTM-PBD4BN" />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <SiteFooter />
+            <Notifications>
+              <MainSiteHead />
+              <ToastContainer />
+              <Header />
+              {/* <!-- Google tag (gtag.js) --> */}
+              <GoogleTagManager gtmId="GTM-PBD4BN" />
+              <main>
+                <Component {...pageProps} />
+              </main>
+              <SiteFooter />
+            </Notifications>
           </PracticesContextProvider>
         </FormContextProvider>
       </LocationProvider>
