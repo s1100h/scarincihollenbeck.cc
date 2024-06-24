@@ -25,7 +25,7 @@ export const FormContainer = styled.div`
       border-bottom: 1px solid rgba(22, 58, 107, 0.37);
       background-color: ${globalColor.white};
       transition: all 0.5s ease-in-out;
-      font-family: var(--font-roboto);
+      font-family: var(--font-poppins);
       font-size: ${rem(14)};
       line-height: 20px;
       font-weight: 400;
@@ -47,7 +47,7 @@ export const FormContainer = styled.div`
         font-size: ${rem(14)};
         font-weight: 400;
         line-height: 20px;
-        font-family: var(--font-roboto);
+        font-family: var(--font-poppins);
       }
 
       &.kw-border-success {
@@ -72,7 +72,7 @@ export const FormContainer = styled.div`
       order: 1;
       text-transform: uppercase;
       font-size: ${rem(57)};
-      font-family: var(--font-roboto);
+      font-family: var(--font-poppins);
       line-height: 64px;
       font-weight: 400;
 
@@ -83,7 +83,7 @@ export const FormContainer = styled.div`
         width: auto;
         height: auto;
         color: ${globalColor.white};
-        font-family: var(--font-roboto);
+        font-family: var(--font-poppins);
         font-size: ${rem(22)};
         line-height: 28px;
         font-weight: 400;
@@ -97,7 +97,7 @@ export const FormContainer = styled.div`
         font-size: ${rem(28)};
         line-height: 36px;
         font-weight: 400;
-        font-family: var(--font-roboto);
+        font-family: var(--font-poppins);
         order: 3;
         text-transform: none;
       }

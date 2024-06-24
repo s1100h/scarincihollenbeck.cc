@@ -67,7 +67,7 @@ export const GetInTouchFormWrapper = styled.div`
     font-size: ${rem(24)};
     line-height: 32px;
     font-weight: 400;
-    font-family: var(--font-roboto);
+    font-family: var(--font-poppins);
   }
 
   p {
@@ -75,7 +75,7 @@ export const GetInTouchFormWrapper = styled.div`
     font-size: ${rem(12)};
     line-height: 16px;
     font-weight: 400;
-    font-family: var(--font-roboto);
+    font-family: var(--font-poppins);
   }
 
   &:has(.kw-alert-success:not([style='display: none;'])) {
@@ -126,7 +126,7 @@ export const GetInTouchMobileBtn = styled.div`
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     color: ${globalColor.blue.blue500};
-    font-family: var(--font-roboto);
+    font-family: var(--font-poppins);
     font-size: ${rem(24)};
     line-height: 32px;
     font-weight: 400;

@@ -23,14 +23,7 @@ import 'animate.css/animate.min.css';
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import { PracticesContextProvider } from 'contexts/PracticesContext';
-import {
-  carilo,
-  licorice,
-  montserrat,
-  poppins,
-  rajdhani,
-  roboto,
-} from 'public/fonts/fonts';
+import InitFonts from 'components/common/InitFonts';
 import { FormContextProvider } from '../contexts/FormsContext';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -54,19 +47,16 @@ const SHSite = ({ Component, pageProps }) => (
         <FormContextProvider>
           <PracticesContextProvider>
             <GlobalStyle />
+            <InitFonts />
             <MainSiteHead />
-            <div
-              className={`${poppins.variable} ${montserrat.variable} ${rajdhani.variable} ${licorice.variable} ${carilo.variable} ${roboto.variable}`}
-            >
-              <ToastContainer />
-              <Header />
-              {/* <!-- Google tag (gtag.js) --> */}
-              <GoogleTagManager gtmId="GTM-PBD4BN" />
-              <main>
-                <Component {...pageProps} />
-              </main>
-              <SiteFooter />
-            </div>
+            <ToastContainer />
+            <Header />
+            {/* <!-- Google tag (gtag.js) --> */}
+            <GoogleTagManager gtmId="GTM-PBD4BN" />
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <SiteFooter />
           </PracticesContextProvider>
         </FormContextProvider>
       </LocationProvider>

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { rajdhani } from 'public/fonts/fonts';
 import CannabisLawPage from '../../../components/practices-special/cannabis-law/CannabisLawPage';
 import { PRODUCTION_URL } from '../../../utils/constants';
 import SiteLoader from '../../../components/shared/SiteLoader';
@@ -90,6 +91,13 @@ const CannabisLaw = ({
   };
   return (
     <ApolloWrapper>
+      <style jsx global>
+        {`
+          :root {
+            --font-rajdhani: ${rajdhani.style.fontFamily};
+          }
+        `}
+      </style>
       <CannabisLawPage {...propsPage} />
     </ApolloWrapper>
   );

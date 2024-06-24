@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { fetchAPI } from 'requests/api';
 import { getPracticesQuery } from 'requests/graphql-queries';
+import { carilo } from 'public/fonts/fonts';
 import EntertainmentAndMediaPage from '../../../components/practices-special/entertainment-and-media/EntertainmentAndMediaPage';
 import { PRODUCTION_URL } from '../../../utils/constants';
 import SiteLoader from '../../../components/shared/SiteLoader';
@@ -122,6 +123,13 @@ const EnterteimentAndMedia = ({
   return (
     <ApolloWrapper>
       <EntertainmentInfoProvider>
+        <style jsx global>
+          {`
+            :root {
+              --font-carilo: ${carilo.style.fontFamily};
+            }
+          `}
+        </style>
         <EntertainmentAndMediaPage {...propsPage} />
       </EntertainmentInfoProvider>
     </ApolloWrapper>

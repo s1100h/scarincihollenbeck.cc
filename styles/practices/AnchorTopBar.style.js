@@ -88,18 +88,18 @@ export const AnchorsTopBarItem = styled.a`
   font-size: ${rem(14)};
   line-height: 20px;
   font-weight: 400;
-  font-family: var(--font-roboto);
+  font-family: var(--font-poppins);
   color: ${globalColor.blue.lightBlue};
   cursor: pointer;
   border-bottom: 1px solid transparent;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease, font-weight 0s;
 
   &:hover {
     color: ${globalColor.blue.lightBlue};
   }
 
   &.active {
-    font-weight: 900;
+    font-weight: 700;
     color: ${globalColor.white};
     border-bottom: 1px solid ${globalColor.white};
   }
@@ -107,7 +107,7 @@ export const AnchorsTopBarItem = styled.a`
   @media (hover: hover) {
     &:hover {
       color: ${globalColor.white};
-      font-weight: 900;
+      font-weight: 700;
     }
   }
 `;

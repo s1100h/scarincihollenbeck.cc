@@ -32,8 +32,8 @@ export const CollapseButton = styled.button`
   color: #377ec4;
   font-size: ${rem(16)};
   line-height: 24px;
-  font-weight: 700;
-  font-family: var(--font-roboto);
+  font-weight: 600;
+  font-family: var(--font-poppins);
   transition: all 0.2s ease-in-out;
 
   &:hover {

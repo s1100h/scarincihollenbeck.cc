@@ -5,10 +5,10 @@ export default function Error({ statusCode }) {
   const title = `${statusCode} Error`;
   const { subTitle, mainMessage } = ERROR_PAGE_CONTENT;
 
-  return (
-    statusCode && (
-      <ErrorPage title={title} subTitle={subTitle} mainMessage={mainMessage} />
-    )
+  return statusCode ? (
+    <ErrorPage title={title} subTitle={subTitle} mainMessage={mainMessage} />
+  ) : (
+    <ErrorPage title="An error occurred on client" mainMessage={mainMessage} />
   );
 }
 
