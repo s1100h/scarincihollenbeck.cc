@@ -23,7 +23,7 @@ import 'animate.css/animate.min.css';
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import { PracticesContextProvider } from 'contexts/PracticesContext';
-import InitFonts from 'components/common/InitFonts';
+import InitFonts from 'styles/global_styles/InitFonts';
 import { FormContextProvider } from '../contexts/FormsContext';
 import 'react-toastify/dist/ReactToastify.css';
 import Notifications from '../hoks/notifications';

@@ -3,12 +3,17 @@ import { ERROR_PAGE_CONTENT } from 'utils/constants';
 
 export default function Error({ statusCode }) {
   const title = `${statusCode} Error`;
-  const { subTitle, mainMessage } = ERROR_PAGE_CONTENT;
+  const subTitle = 'Something went wrong on the server.';
+  const { mainMessage } = ERROR_PAGE_CONTENT;
 
   return statusCode ? (
     <ErrorPage title={title} subTitle={subTitle} mainMessage={mainMessage} />
   ) : (
-    <ErrorPage title="An error occurred on client" mainMessage={mainMessage} />
+    <ErrorPage
+      title="Oops!"
+      subTitle="Something went wrong on the client."
+      mainMessage={mainMessage}
+    />
   );
 }
 

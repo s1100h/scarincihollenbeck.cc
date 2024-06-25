@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
-import { globalColor, globalShadow } from './global_styles/Global.styles';
+import { globalColor, globalShadow, globalTransition, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { GradientWrapper } from './SingleSubHeader.style';
 
@@ -10,6 +10,7 @@ const linearGradientPosition = (position) => `
     #fafafa ${position}%,
     rgba(255, 255, 255, 0) 100%
 `;
+
 export const OfficeBtn = styled(Button)`
   display: flex;
   padding: 20px 25px;
@@ -149,109 +150,167 @@ export const CardListBox = styled.div`
   }
 `;
 
-export const TileBox = styled.article`
-  flex-basis: calc(50% - 10px);
-  margin-bottom: 20px;
+export const TileContactWrapper = styled.article`
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  border-radius: 8px;
+  background-color: ${globalColor.white};
+  box-shadow: ${globalShadow.shadowM};
+  transition: ${globalTransition.default};
+  overflow: hidden;
 
   &:hover {
-    transition: 0.8s;
     box-shadow: ${globalShadow.hoveredShadow};
   }
 
-  ${media_breakpoint_down('sm')} {
-    flex-basis: 100%;
+  &:has(img) {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+`;
+
+export const TileContactHeader = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+
+  &:empty {
+    display: none;
+  }
+`;
+
+export const TileContactIcon = styled.span`
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: ${globalColor.blue.blue400};
+  color: ${globalColor.white};
+
+  ${media_breakpoint_down('md')} {
+    width: 32px;
+    height: 32px;
   }
 
-  &:first-child,
-  &:nth-child(2) {
-    flex-basis: calc(25% - 15px);
-
-    ${media_breakpoint_down('xl')} {
-      flex-basis: calc(50% - 10px);
-    }
-
-    ${media_breakpoint_down('sm')} {
-      flex-basis: 100%;
-    }
-  }
-
-  &:nth-child(3) {
-    div {
-      padding: 0;
-      border: none;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    ${media_breakpoint_down('xl')} {
-      flex-basis: 100%;
-      order: -1;
-    }
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    border: 1px solid ${globalColor.grayExtraLite.grayExtraLite40};
+  > svg {
+    width: 100%;
     height: 100%;
+  }
+`
 
-    ${media_breakpoint_down('lg')} {
-      padding: 16px;
+export const TileContactTitle = styled.h4`
+  margin: 0;
+  color: ${globalColor.blue.blue500};
+  font-size: ${rem(32)};
+  line-height: 1.5;
+  font-weight: 600;
+  font-family: var(--font-poppins);
+  text-transform: capitalize;
+
+  ${media_breakpoint_down('lg')} {
+    font-weight: 500;
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(24)};
+  line-height: 1.33;
+  }
+`
+
+export const TileContactBody = styled.div`
+  flex: 1;
+  > p {
+    margin: 0;
+    font-family: var(--font-poppins);
+    color: ${globalColor.gray.gray110};
+
+    strong {
+      color: ${globalColor.black};
     }
 
-    h4 {
-      font-size: 32px;
-      font-weight: 500;
-      margin-bottom: 15px;
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+      line-height: 1.42;
     }
 
-    p {
-      margin-bottom: 0;
-    }
+    > a {
+      color: ${globalColor.blue.blue400};
+      transition: ${globalTransition.default};
 
-    a {
-      font-weight: 500;
-      color: ${globalColor.blue.ultramarine};
-      cursor: pointer;
-
-      :hover {
+      &:hover {
         color: ${globalColor.red.darkRed};
       }
     }
   }
 
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: ${globalColor.blue.ultramarine};
-    border-radius: 4px;
-    margin-bottom: 20px;
-
-    svg {
-      color: ${globalColor.white};
-      width: 25px;
-      height: 26px;
-    }
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-`;
+`
 
 export const PuzzleContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 20px;
   margin-top: 80px;
   margin-bottom: 130px;
 
   ${media_breakpoint_down('xl')} {
     margin-top: 40px;
     margin-bottom: 70px;
+  }
+
+  ${TileContactWrapper} {
+    width: calc((100% - 20px) / 2);
+    padding: 28px;
+    border: 2px solid ${globalColor.gray.gray10};
+
+    &:nth-child(1), &:nth-child(2) {
+      width: calc(25% - 15px);
+
+      ${media_breakpoint_down('xl')} {
+        width: calc((100% - 20px) / 2);
+      }
+
+      ${media_breakpoint_down('sm')} {
+        width: 100%;
+      }
+    }
+
+    &:has(img) {
+      ${media_breakpoint_down('xl')} {
+        width: 100%;
+        order: -1;
+      }
+    }
+
+    ${media_breakpoint_down('lg')} {
+      padding: 16px;
+    }
+
+    ${media_breakpoint_down('sm')} {
+      width: 100%;
+    }
+  }
+
+  ${TileContactHeader} {
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  ${TileContactIcon} {
+    background-color: ${globalColor.blue.ultramarine};
+  }
+
+  ${TileContactTitle} {
+    color: ${globalColor.black};
   }
 `;

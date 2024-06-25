@@ -54,7 +54,7 @@ export const BannerContainer = styled.div`
   }
 
   .text:first-child {
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-poppins), sans-serif;
     font-size: 45px;
     line-height: 1;
     color: ${globalColor.gray.gray80};

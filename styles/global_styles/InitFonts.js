@@ -1,4 +1,4 @@
-import { montserrat, poppins } from 'public/fonts/fonts';
+import { poppins } from 'public/fonts/fonts';
 import React from 'react';
 
 const InitFonts = (fonts) => (
@@ -6,7 +6,6 @@ const InitFonts = (fonts) => (
     {`
       :root {
         --font-poppins: ${poppins.style.fontFamily};
-        --font-montserrat: ${montserrat.style.fontFamily};
       }
     `}
   </style>

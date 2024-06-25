@@ -1,9 +1,12 @@
 import Link from 'next/link';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Image from 'next/image';
+import TileContact from 'components/molecules/contact-us/TileContact';
 import {
   ArticleBox,
-  ImageAttorneysGroup,
+  ErrorContent,
+  ErrorHolder,
+  ErrorWrapper,
   ImageBlindLady,
   LinkListBox404,
   TilesBox,
@@ -13,7 +16,6 @@ import {
   tile404ContentArr,
   tilesErrorContentArr,
 } from '../../utils/tileContent';
-import TileContacts from '../molecules/contact-us/TileContacts';
 import { Links404NavArr } from '../../utils/constants';
 
 const ErrorPage = ({
@@ -22,13 +24,12 @@ const ErrorPage = ({
   const linkTiles = !isErrorContent ? tile404ContentArr : tilesErrorContentArr;
   const isErrorContentStyled = isErrorContent ? 'true' : '';
   return (
-    <>
+    <ErrorWrapper>
       <Container>
-        <div className="mt-5 mb-5">
-          <PostBreadcrumbs />
-        </div>
-        <Row>
-          <Col sm={12} lg={6}>
+        <PostBreadcrumbs />
+
+        <ErrorHolder>
+          <ErrorContent>
             <ArticleBox>
               <h1>{title}</h1>
               <p className="error-subtitle">{subTitle}</p>
@@ -36,7 +37,7 @@ const ErrorPage = ({
             </ArticleBox>
             <TilesBox isErrorContent={isErrorContentStyled}>
               {linkTiles.map((tile) => (
-                <TileContacts
+                <TileContact
                   key={tile.id}
                   title={tile.title}
                   textContent={tile.textContent}
@@ -46,10 +47,10 @@ const ErrorPage = ({
               ))}
             </TilesBox>
             <LinkListBox404>
-              <h3>
+              <p>
                 Or try visiting one of these pages on our site to narrow your
                 search.
-              </h3>
+              </p>
               <ul>
                 {Links404NavArr.map((link) => (
                   <li key={link.id}>
@@ -58,22 +59,19 @@ const ErrorPage = ({
                 ))}
               </ul>
             </LinkListBox404>
-            <ImageAttorneysGroup>
-              <Image
-                src="/images/group-attorneys.webp"
-                fill
-                alt="Group of attorneys"
-              />
-            </ImageAttorneysGroup>
-          </Col>
-          <Col sm={12} lg={6}>
-            <ImageBlindLady>
-              <Image src="/images/404.webp" fill alt="Attorneys near work." />
-            </ImageBlindLady>
-          </Col>
-        </Row>
+          </ErrorContent>
+
+          <ImageBlindLady>
+            <Image
+              src="/images/404.webp"
+              width={700}
+              height={600}
+              alt="Attorneys near work."
+            />
+          </ImageBlindLady>
+        </ErrorHolder>
       </Container>
-    </>
+    </ErrorWrapper>
   );
 };
 

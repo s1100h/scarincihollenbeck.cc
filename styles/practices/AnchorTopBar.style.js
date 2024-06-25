@@ -37,7 +37,7 @@ export const AnchorsTopBarWrapper = styled.div`
     font-size: ${rem(14)};
     line-height: 16px;
     font-weight: 400;
-    font-family: var(--font-montserrat);
+    font-family: var(--font-poppins);
     letter-spacing: normal;
     max-width: 210px;
     border-right: 1px solid #295491;

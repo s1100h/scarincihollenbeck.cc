@@ -3,7 +3,6 @@ import Image from 'next/image';
 import empty from 'is-empty';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
-import { licorice } from 'public/fonts/fonts';
 import {
   PhotoBlockContainer,
   PhotoCannabisBox,
@@ -43,7 +42,7 @@ const PhotoBlock = ({ photoBlockData, anchorIdBlock }) => {
   const { clientLink, clientLogo, clientTitle } = activeClient;
 
   return (
-    <PhotoBlockContainer id={anchorIdBlock} className={`${licorice.variable}`}>
+    <PhotoBlockContainer id={anchorIdBlock}>
       <FullHDContainer>
         <div className="photo-article-box">
           <PhotoCannabisBox>
