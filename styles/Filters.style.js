@@ -4,7 +4,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import styled from 'styled-components';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import empty from 'is-empty';
 
 export const DropDownItemSelector = styled(Dropdown.Item)`
   margin-top: 5px;
@@ -170,12 +169,24 @@ export const DropdownSelectorBtn = styled(DropdownButton)`
   }
 `;
 
+export const FiltersWrapper = styled.div`
+  background-color: transparent;
+  position: sticky;
+  top: ${({ headerHeight }) => headerHeight};
+  left: 0;
+  z-index: 10;
+
+  ${media_breakpoint_down('md')} {
+    position: static;
+  }
+`;
+
 export const ContainerFilters = styled(Container)`
   min-width: 86vw;
   padding: 22px 20px !important;
-  background-color: ${({ props }) =>
-    !empty(props?.isWhite) ? globalColor.white : '#495057'};
+  background-color: ${globalColor.white};
   box-shadow: ${globalShadow.allSideShadow};
+  
 
   #siteSearch {
     height: 48px !important;

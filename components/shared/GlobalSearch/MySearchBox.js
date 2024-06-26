@@ -8,15 +8,18 @@ import {
   ResultBox,
 } from 'styles/GlobalSearch.style';
 import { connectStateResults, Pagination } from 'react-instantsearch-dom';
+import { useRef } from 'react';
 import Hit from './Hit';
 
 function MySearchBox(props) {
+  const searchInputRef = useRef(null);
   const handleClear = () => {
     props.refine({
       currentTarget: {
         value: '',
       },
     });
+    searchInputRef?.current?.focus();
   };
 
   const CustomHit = ({ hit }) => (
@@ -54,6 +57,7 @@ function MySearchBox(props) {
             value={props.currentRefinement}
             onChange={props.refine}
             placeholder={props.placeholder}
+            ref={searchInputRef}
           />
         </Form.Group>
       </SearchForm>
