@@ -28,12 +28,12 @@ export const PracticeAttorneysSection = styled.section`
       height: 100%;
       display: flex;
       color: #377ec4;
-      font-family: var(--font-roboto);
+      font-family: var(--font-poppins);
       font-size: ${rem(16)};
       line-height: 24px;
       font-weight: 700;
       text-decoration: underline;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-out;
       text-transform: uppercase;
 
       &:hover {
@@ -295,13 +295,13 @@ export const PracticeAttorneysCard = styled.div`
         line-height: 14px;
         font-weight: 500;
         color: ${globalColor.blue.darkBlue};
-        font-family: var(--font-roboto);
+        font-family: var(--font-poppins);
       }
 
       > p {
         margin: 0;
         color: ${globalColor.blue.darkBlue};
-        font-family: var(--font-roboto);
+        font-family: var(--font-poppins);
         font-size: ${rem(10)};
         line-height: 12px;
         font-weight: 400;

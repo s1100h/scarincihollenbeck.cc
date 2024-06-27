@@ -1,6 +1,7 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import decodeResponse from 'utils/decodeResponse';
 import empty from 'is-empty';
+import { HeaderSizeContext } from './HeaderSizeContext';
 
 export const AttorneysContext = createContext(null);
 
@@ -14,6 +15,15 @@ export const AttorneysProvider = ({ children }) => {
     designations: '',
   });
   const [authors, setAuthors] = useState([]);
+  const [containerRefer, setContainerRefer] = useState(null);
+  const { headerSize } = useContext(HeaderSizeContext);
+
+  function scrollToRef() {
+    if (containerRefer) {
+      const offsetTop = containerRefer.offsetTop - headerSize?.height;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+  }
 
   /* Handle User Input Event */
   function handleChange(e) {
@@ -29,6 +39,7 @@ export const AttorneysProvider = ({ children }) => {
       setUserInput(input);
       setSelect(concatResults);
     }
+    scrollToRef();
   }
 
   /* Click Events */
@@ -38,6 +49,7 @@ export const AttorneysProvider = ({ children }) => {
       key: e.target.name,
     };
     setSelect(select.filter((a) => a.key !== results.key).concat(results));
+    scrollToRef();
   }
 
   /* Click Events */
@@ -47,6 +59,7 @@ export const AttorneysProvider = ({ children }) => {
       .filter((el) => el.key !== 'letterInLastName')
       .concat(results);
     setSelect(concatResults);
+    scrollToRef();
   }
 
   /** Clear user query */
@@ -54,11 +67,17 @@ export const AttorneysProvider = ({ children }) => {
     const rQuery = select.filter((a) => a.key !== key);
     if (key === 'query') setUserInput('');
     setSelect(rQuery);
+    scrollToRef();
   }
 
   function clearAll() {
     setUserInput('');
     setSelect([]);
+    scrollToRef();
+  }
+
+  function setReference(ref) {
+    setContainerRefer(ref);
   }
 
   async function getAsyncAuthors() {
@@ -86,6 +105,7 @@ export const AttorneysProvider = ({ children }) => {
     authors,
     getAsyncAuthors,
     onSelectLetter,
+    setReference,
   };
 
   return (

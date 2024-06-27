@@ -24,11 +24,12 @@ export const tileContentArr = [
     id: 2,
   },
   {
-    title: 'phone',
+    title: '',
     textContent: '',
     icon: '',
     image: '/images/hands.webp',
     id: 3,
+    alt: 'phone with hands',
   },
   {
     title: 'For clients',
@@ -44,7 +45,7 @@ export const tileContentArr = [
     textContent: `
       If you are looking to get in touch with an attorney in regard to becoming a new client, please   
       call <a href='tel:201-896-4100'>201-896-4100.</a>
-   `,
+    `,
     icon: <BsPersonPlusFill />,
     id: 5,
   },
@@ -65,7 +66,7 @@ export const tile404ContentArr = [
     textContent: `
       <strong>Scarinci Hollenbeck, LLC</strong> attorneys routinely represent corporate,
       governmental, and individual clients in a wide range of <a href='/practices'>practices</a>.
-   `,
+    `,
     icon: <BsFillBriefcaseFill />,
     id: 1,
   },
@@ -74,7 +75,7 @@ export const tile404ContentArr = [
 export const tilesErrorContentArr = [
   {
     title: '',
-    textContent: '<a href=\'/library/category/firm-news\'>The posts Library</a>',
+    textContent: "<a href='/library/category/firm-news'>The posts Library</a>",
     icon: <GiBookCover />,
     id: 0,
   },

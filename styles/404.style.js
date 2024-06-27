@@ -1,117 +1,250 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
-import { GradientPracticeBox } from './Post/PostSideBar.style';
+import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
+import { TileContactBody, TileContactWrapper } from './ContactUs.style';
+
+export const ErrorWrapper = styled.section`
+  margin-bottom: 60px;
+
+  ${media_breakpoint_down('lg')} {
+    margin-bottom: 40px;
+  }
+
+  .breadcrumb-container {
+    margin: 32px 0;
+    padding: 0;
+
+    ${media_breakpoint_down('md')} {
+      margin: 20px 0;
+    }
+
+    > li {
+      > a, > span {
+        font-family: var(--font-poppins);
+        font-size: ${rem(14)};
+      }
+
+      > a {
+        color: ${globalColor.grayExtraLite.grayExtraLite50};
+        transition: all 0.3s ease-out;
+
+        &:hover {
+          color: ${globalColor.blue.lightBlue};
+        }
+      }
+
+      > span {
+        color: ${globalColor.gray.gray40};
+      }
+    }
+  }
+`
+
+export const ErrorHolder = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 32px;
+  row-gap: 24px;
+
+  ${media_breakpoint_down('lg')} {
+    flex-wrap: wrap;
+  }
+`;
+
+export const ErrorContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  ${media_breakpoint_down('lg')} {
+    display: contents;
+  }
+`;
 
 export const ArticleBox = styled.article`
+  ${media_breakpoint_down('lg')} {
+    order: -2;
+    width: calc(50% - 32px);
+  }
+
+  ${media_breakpoint_down('md')} {
+    width: 100%;
+  }
+
   h1 {
+    margin-bottom: 12px;
+    font-family: var(--font-poppins);
+    color: ${globalColor.blue.darkBlue};
     font-size: ${rem(64)};
-    font-weight: 600;
-    margin-bottom: 30px;
-  }
-  .error-subtitle {
-    font-size: ${rem(32)};
+    line-height: 1.5;
     font-weight: 700;
+    
+    ${media_breakpoint_down('lg')} {
+      margin-bottom: 8px;
+      font-size: ${rem(44)};
+      line-height: 1.5;
+    }
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(36)};
+    }
   }
+
+  .error-subtitle {
+    margin: 0 0 20px 0;
+    font-family: var(--font-poppins);
+    color: ${globalColor.blue.darkBlue};
+    font-size: ${rem(32)};
+    line-height: 1.37;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    ${media_breakpoint_down('lg')} {
+      margin-bottom: 12px;
+      font-size: ${rem(20)};
+      line-height: 1.5;
+      font-weight: 700;
+    }
+  }
+
   .error-message {
+    font-family: var(--font-poppins);
+    color: ${globalColor.gray.gray110};
     font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 0;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+      line-height: 1.42;
+    }
   }
 `;
 
 export const TilesBox = styled.div`
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 24px;
 
-  article {
-    flex-basis: auto;
-    box-shadow: ${globalShadow.allSideShadow};
-    div {
-      border: none;
-      span {
-        margin-bottom: 10px;
+  ${TileContactWrapper} {
+    ${({isErrorContent}) => {
+      if (isErrorContent) {
+        return `
+          width: max-content;
+        `;
       }
-      p {
-        a {
-          font-size: ${({ isErrorContent }) =>
-            isErrorContent ? rem(32) : '1rem'};
-        }
+    }}
+  }
+
+  ${TileContactBody} {
+    > p {
+      > a {
+        ${({isErrorContent}) => {
+          if (isErrorContent) {
+            return `
+              color: ${globalColor.blue.blue500};
+              font-size: ${rem(32)};
+              font-weight: 600;
+              line-height: 1.37;
+
+              ${media_breakpoint_down('lg')} {
+                font-size: ${rem(24)};
+                line-height: 2;
+                font-weight: 500;
+              }
+
+              ${media_breakpoint_down('md')} {
+                font-size: ${rem(20)};
+                line-height: 1.6;
+                font-weight: 500;
+              }
+
+              &:hover {
+                color: ${globalColor.red.darkRed};
+              }
+            `;
+          }
+        }}
       }
-    }
-    &:first-child,
-    &:nth-child(2) {
-      flex-basis: auto;
     }
   }
 
-  ${media_breakpoint_down('sm')} {
-    flex-direction: column;
+  ${media_breakpoint_down('lg')} {
+    width: 100%;
   }
 `;
 
-export const LinkListBox404 = styled(GradientPracticeBox)`
+export const LinkListBox404 = styled.div`
   display: flex;
-  justify-content: space-between;
-  background: none;
-  padding-left: 0;
-  padding-right: 0;
+  flex-direction: column;
 
-  h3 {
-    font-size: 1.1rem;
-    color: ${globalColor.black};
-    font-weight: 400;
+  ${media_breakpoint_down('lg')} {
+    width: 100%;
+  }
+
+  > p {
+    font-family: var(--font-poppins);
+    margin: 0 0 8px 0;
+    color: ${globalColor.gray.gray110};
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+      line-height: 1.42;
+    }
   }
 
   ul {
+    width: max-content;
+    margin: 0;
     height: fit-content;
     column-count: 2;
     column-gap: 32px;
+    list-style: disc;
 
     li {
-      margin-bottom: 8px;
-      a {
-        color: ${globalColor.blue.dirtyBlue};
+      margin: 0 0 8px 24px;
+      break-inside: avoid;
+      color: ${globalColor.blue.darkBlue};
+      text-transform: capitalize;
+      transition: ${globalTransition.default};
 
-        :hover {
-          color: ${globalColor.red.darkRed};
-        }
+      :hover {
+        color: ${globalColor.red.darkRed};
+      }
+
+      a {
+        color: inherit;
+        font-family: var(--font-poppins);
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: 600;
       }
     }
   }
 `;
 
 export const ImageBlindLady = styled.div`
-  display: flex;
-  width: 90%;
-  height: 550px;
-  position: relative;
-
-  ${media_breakpoint_down('xl')} {
-    height: 450px;
-  }
+  order: 2;
+  width: 50%;
+  height: 600px;
 
   ${media_breakpoint_down('lg')} {
-    display: none;
-  }
-`;
-
-export const ImageAttorneysGroup = styled.div`
-  display: none;
-
-  ${media_breakpoint_down('lg')} {
-    display: flex;
-    width: 350px;
-    height: 150px;
-    position: relative;
-    bottom: 20%;
-    margin-right: 0;
-    margin-left: auto;
+    height: 300px;
+    order: -1;
   }
 
-  ${media_breakpoint_exactly_down(485)} {
-    width: 55vw;
-    bottom: 21vh;
+  ${media_breakpoint_down('md')} {
+    width: 100%;
+    order: 3;
+  }
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;

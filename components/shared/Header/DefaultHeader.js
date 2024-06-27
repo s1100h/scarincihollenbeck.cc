@@ -1,5 +1,6 @@
-import { useContext, useState } from 'react';
+import { useRef, useState } from 'react';
 import Logo from 'components/organisms/Navbar/Logo';
+import useHeaderSize from 'hooks/useHeaderSize';
 import {
   DefaultHeaderSearchContainer,
   HeaderContainer,
@@ -11,31 +12,13 @@ import GlobalSearch from '../GlobalSearch/GlobalSearch';
 import LinkButtons from '../../organisms/Navbar/LinkButtons';
 import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
 import Navigation from '../../organisms/Navbar/Navigation';
-import Filters from '../../organisms/attorneys/Filters';
-import Selection from '../../organisms/attorneys/Selection';
-import { AttorneysContext } from '../../../contexts/AttorneysContext';
-import useStateScreen from '../../../hooks/useStateScreen';
 import AddressSubscription from './AddressSubscription';
 
-const DefaultHeader = ({
-  scrollTop, pathname, practices, locations,
-}) => {
-  const {
-    dataForFilter,
-    userInput,
-    select,
-    handleChange,
-    onSelect,
-    clearQuery,
-    clearAll,
-    onSelectLetter,
-    attorneysContext,
-  } = useContext(AttorneysContext);
-  const { isTabletScreen } = useStateScreen();
-  const { sPractices, designations } = dataForFilter;
-  const isAttorneysPage = pathname === '/attorneys';
+const DefaultHeader = ({ scrollTop, practices, locations }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const headerRef = useRef();
+  useHeaderSize(headerRef);
 
   const handleOpenSearch = () => {
     setIsOpenSearch(true);
@@ -54,7 +37,7 @@ const DefaultHeader = ({
   const handleShowMenu = () => setShowMenu(true);
 
   return (
-    <HeaderContainer scrollDown={scrollTop}>
+    <HeaderContainer scrollDown={scrollTop} ref={headerRef}>
       <AddressSubscription />
       <Wrapper isOpenBlock={isOpenSearch}>
         <LogoBox>
@@ -92,28 +75,6 @@ const DefaultHeader = ({
           locations={locations}
         />
       </Wrapper>
-      {scrollTop && isAttorneysPage && !isTabletScreen && (
-        <Filters
-          practices={sPractices}
-          locations={locations}
-          designation={designations}
-          userInput={userInput}
-          handleChange={handleChange}
-          onSelect={onSelect}
-          attorneysContext={attorneysContext}
-          onSelectLetter={onSelectLetter}
-          select={select}
-        >
-          {(userInput.length > 0 || select.length > 0) && (
-            <Selection
-              select={select}
-              clearQuery={clearQuery}
-              userInput={userInput}
-              clearAll={clearAll}
-            />
-          )}
-        </Filters>
-      )}
     </HeaderContainer>
   );
 };
