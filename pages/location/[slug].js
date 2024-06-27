@@ -9,6 +9,7 @@ import {
 } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { getOfficeAndMoreData } from 'requests/graphql-queries';
+import empty from 'is-empty';
 import { getAttorneys } from '../attorneys';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
@@ -20,6 +21,9 @@ const getOfficeData = async (slug) => {
       variables: { id: slug },
     },
   );
+
+  if (empty(officeLocation)) return null;
+
   if (
     officeLocation?.officeMainInformation?.autoMap?.mediaItemUrl?.length > 0
   ) {
@@ -89,7 +93,15 @@ export const getStaticProps = async ({ params }) => {
       notFound: true,
     };
   }
-  const { currentOffice, offices } = await getOfficeData(slug);
+  const officesData = await getOfficeData(slug);
+
+  if (empty(officesData)) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { currentOffice, offices } = officesData;
   const attorneys = await getAttorneys();
   attorneys.sort((a, b) => {
     const aLoc = a.location_array.find((loc) => loc.officeMainInformation);

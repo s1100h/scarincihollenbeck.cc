@@ -96,7 +96,7 @@ export const StandardBlueButton = styled(Button)`
   color: ${globalColor.white};
   font-size: ${rem(16)};
   line-height: 24px;
-  font-family: var(--font-roboto);
+  font-family: var(--font-poppins);
   font-weight: 500;
   position: relative;
   z-index: 0;

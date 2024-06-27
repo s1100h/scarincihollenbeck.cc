@@ -102,6 +102,6 @@ export const CustomPaginationWrapper = styled.div`
 
 export const CustomPaginationItemsCount = styled.span`
   align-self: flex-start;
-  font-family: var(--font-roboto);
+  font-family: var(--font-poppins);
   color: ${globalColor.gray.gray120};
 `;

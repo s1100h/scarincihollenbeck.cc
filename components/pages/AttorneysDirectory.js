@@ -4,12 +4,11 @@ import Results from 'components/organisms/attorneys/Results';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
-import useIsScroll from 'hooks/useIsScroll';
-import useStateScreen from 'hooks/useStateScreen';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
+import { HeaderSizeContext } from 'contexts/HeaderSizeContext';
 
 const AttorneysPage = ({
   sPractices,
@@ -21,8 +20,6 @@ const AttorneysPage = ({
   attorneys,
   sortedAttorneys,
 }) => {
-  const { isTabletScreen, isDesktopScreen } = useStateScreen();
-  const { scrollTop } = useIsScroll();
   const {
     handleChange,
     select,
@@ -31,7 +28,17 @@ const AttorneysPage = ({
     clearQuery,
     clearAll,
     onSelectLetter,
+    setReference,
   } = useContext(AttorneysContext);
+
+  const containerRef = useRef();
+  const { headerSize } = useContext(HeaderSizeContext);
+
+  useEffect(() => {
+    if (containerRef && containerRef.current) {
+      setReference(containerRef.current);
+    }
+  }, [containerRef.current]);
 
   return (
     <>
@@ -41,29 +48,28 @@ const AttorneysPage = ({
         canonicalUrl={canonicalUrl}
       />
       <SubHeader isFilter title={site.title} subtitle={site.description} />
-      <MainAttorneysContainer>
+      <MainAttorneysContainer ref={containerRef}>
         {/** Filters */}
-        {(isTabletScreen || (!scrollTop && isDesktopScreen)) && (
-          <Filters
-            practices={sPractices}
-            locations={locations}
-            designation={designations}
-            userInput={userInput}
-            handleChange={handleChange}
-            onSelect={onSelect}
-            onSelectLetter={onSelectLetter}
-            select={select}
-          >
-            {(userInput.length > 0 || select.length > 0) && (
-              <Selection
-                select={select}
-                clearQuery={clearQuery}
-                userInput={userInput}
-                clearAll={clearAll}
-              />
-            )}
-          </Filters>
-        )}
+        <Filters
+          practices={sPractices}
+          locations={locations}
+          designation={designations}
+          userInput={userInput}
+          handleChange={handleChange}
+          onSelect={onSelect}
+          onSelectLetter={onSelectLetter}
+          select={select}
+          headerSize={headerSize}
+        >
+          {(userInput.length > 0 || select.length > 0) && (
+            <Selection
+              select={select}
+              clearQuery={clearQuery}
+              userInput={userInput}
+              clearAll={clearAll}
+            />
+          )}
+        </Filters>
         {/** End of Filters */}
         {/** Results */}
         <div className="w-100 mt-5">

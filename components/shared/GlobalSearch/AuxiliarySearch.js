@@ -10,8 +10,12 @@ const AuxiliarySearch = (props) => {
       },
     });
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
-    <SearchForm>
+    <SearchForm onSubmit={handleSubmit}>
       <Form.Group className="form-group" controlId="siteSearch">
         {!props.currentRefinement ? (
           <BsSearch />

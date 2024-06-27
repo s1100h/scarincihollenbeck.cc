@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import InitCannabisFonts from 'styles/practices-special-style/canabis-law/InitCannabisFonts';
 import CannabisLawPage from '../../../components/practices-special/cannabis-law/CannabisLawPage';
 import { PRODUCTION_URL } from '../../../utils/constants';
 import SiteLoader from '../../../components/shared/SiteLoader';
@@ -90,6 +91,7 @@ const CannabisLaw = ({
   };
   return (
     <ApolloWrapper>
+      <InitCannabisFonts />
       <CannabisLawPage {...propsPage} />
     </ApolloWrapper>
   );
