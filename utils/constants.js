@@ -199,7 +199,7 @@ export const sitemapAddon = [
 /** Header navigation links */
 export const SITE_NAVIGATION = [
   {
-    id: 1,
+    id: 2,
     label: 'The Firm',
     menuId: 'the-firm',
     slug: '',
@@ -242,7 +242,7 @@ export const SITE_NAVIGATION = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     label: 'Attorneys',
     slug: '/attorneys',
     children: undefined,
@@ -252,6 +252,34 @@ export const SITE_NAVIGATION = [
     id: 4,
     label: 'Library',
     menuId: 'library',
+    slug: '',
+    children: [
+      {
+        databaseId: 401,
+        title: 'Client Alerts',
+        uri: '/library/category/client-alert',
+      },
+      {
+        databaseId: 402,
+        title: 'Firm News',
+        uri: '/library/category/firm-news',
+      },
+      {
+        databaseId: 403,
+        title: 'Firm Events',
+        uri: '/library/category/firm-events',
+      },
+      {
+        databaseId: 404,
+        title: 'Firm Insights',
+        uri: '/library/category/law-firm-insights',
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: 'Industries',
+    menuId: 'industries',
     slug: '',
     children: [
       {
@@ -814,3 +842,18 @@ export const googleLocationIds = {
   'washington-dc': 'ChIJMxTvAVS3t4kRnkctX9qxKtc',
   'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
 };
+
+export const SIDEBAR_POLITIC_LINKS = [
+  {
+    title: 'Privacy policy',
+    link: '/privacy-policy',
+  },
+  {
+    title: 'Terms of use',
+    link: '/terms-of-use',
+  },
+  {
+    title: 'Awards Methodology',
+    link: '/awards',
+  },
+];

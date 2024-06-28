@@ -11,6 +11,8 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray500: '#929292',
+    gray300: '#E4E4E5',
     gray130: '#4D4D4D',
     gray120: '#666',
     gray110: '#6A6A6A',
@@ -59,6 +61,8 @@ export const globalColor = {
     burgundy: '#60191B',
     darkBurgundy: '#381314',
     ultraLiteRed: '#F6A2A2',
+    newRed: "#8F1B11",
+    сoffee: "#450A05",
   },
 
   blue: {
@@ -72,6 +76,7 @@ export const globalColor = {
     blue400: '#568EDC',
     blue500: '#164587',
     blue600: '#377EC4',
+    blue6002: '#242944',
   },
 
   yellow: {
@@ -198,12 +203,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 body {
+  --bs-body-font-family: var(--font-poppins);
   font-weight: 400;
   background-color: ${globalColor.graySmoke.extraLiteWhiteSmoke};
-  
-  * {
-    letter-spacing: .02rem;
-  }
 
   &.modal-open {
     padding-right: 0 !important;
@@ -222,6 +224,10 @@ body {
   }
 
   &:has(.modal-open) {
+    overflow: hidden;
+  }
+
+  &:has(.sidebar-open) {
     overflow: hidden;
   }
 }
@@ -278,6 +284,7 @@ input {
   border-radius: 0;
   border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
   background-color: ${globalColor.graySmoke.liteWhiteSmoke};
+
   ::placeholder {
     color: ${globalColor.grayExtraLite.grayExtraLite80};
   }
@@ -288,7 +295,6 @@ input {
 
   :focus-visible {
     border: 1px solid ${globalColor.blue.ultramarine};
-    border-radius: 0 !important;
   }
 }
 

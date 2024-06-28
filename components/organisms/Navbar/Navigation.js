@@ -25,6 +25,7 @@ const renderLocationCardMemu = (locationData) => (
     </CurrentOfficeCard>
   </div>
 );
+
 const renderTitle = (title) => (
   <TitleBlock>
     <span>{title}</span>
@@ -138,7 +139,7 @@ const Navigation = ({ isHidden, practices, locations }) => {
         <NavDropdown
           className="locations-dropdown"
           title={renderTitle('Locations')}
-          id={3}
+          id={5}
           onClick={() => hideSecondLvl()}
         >
           {!empty(locations) && (

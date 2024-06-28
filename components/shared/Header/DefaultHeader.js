@@ -12,7 +12,7 @@ import GlobalSearch from '../GlobalSearch/GlobalSearch';
 import LinkButtons from '../../organisms/Navbar/LinkButtons';
 import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
 import Navigation from '../../organisms/Navbar/Navigation';
-import AddressSubscription from './AddressSubscription';
+import HeaderTopLine from './HeaderTopLine';
 
 const DefaultHeader = ({ scrollTop, practices, locations }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
@@ -38,7 +38,7 @@ const DefaultHeader = ({ scrollTop, practices, locations }) => {
 
   return (
     <HeaderContainer scrollDown={scrollTop} ref={headerRef}>
-      <AddressSubscription />
+      <HeaderTopLine />
       <Wrapper isOpenBlock={isOpenSearch}>
         <LogoBox>
           <Logo />

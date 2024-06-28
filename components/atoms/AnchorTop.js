@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 import { AnchorTopBtn } from 'styles/AnchorTop.style';
+import { debounce } from 'utils/helpers';
 
 const AnchorTop = () => {
   const [showScroll, setShowScroll] = useState(false);
@@ -15,16 +16,6 @@ const AnchorTop = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return (...args) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
   };
 
   useEffect(() => {

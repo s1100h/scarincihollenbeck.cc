@@ -59,7 +59,7 @@ const SpecialHeader = ({ practices, locations }) => {
           locations={locations}
         />
         <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
-          <GlobalSearch onHandleClickSearch={handleOpenSearch} />
+          <GlobalSearch />
         </VisibleHiddenSearch>
         <SearchBoxContainer isOpenSearch={isOpenSearch ? 'true' : ''}>
           <SearchOpenBtn onClick={handleOpenSearch} />

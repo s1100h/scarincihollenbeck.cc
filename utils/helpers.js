@@ -1,4 +1,12 @@
 import empty from 'is-empty';
+import FirmIcon from 'components/common/icons/FirmIcon';
+import LibraryIcon from 'components/common/icons/LibraryIcon';
+import LocationsIcon from 'components/common/icons/LocationsIcon';
+import IndustriesIcon from 'components/common/icons/IndustriesIcon';
+import PracticesIcon from 'components/common/icons/PracticesIcon';
+import AttorneysIcon from 'components/common/icons/AttorneysIcon';
+import HomeIcon from 'components/common/icons/HomeIcon';
+import CareersIcon from 'components/common/icons/CareersIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -410,3 +418,133 @@ export const setResponseHeaders = (res, revalidateTime, cacheStatus) => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('X-Cache-Status', cacheStatus);
 };
+
+export const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};
+
+export const createMenuData = (practices, locations) => [
+  {
+    databaseId: 'menu-01',
+    title: 'Homepage',
+    icon: <HomeIcon />,
+    href: '/',
+  },
+  {
+    databaseId: 'menu-02',
+    title: 'Attorneys',
+    icon: <AttorneysIcon />,
+    href: '/attorneys',
+  },
+  {
+    databaseId: 'menu-03',
+    title: 'Legal Practices',
+    icon: <PracticesIcon />,
+    href: '/practices',
+    list: [
+      {
+        databaseId: 'menu-all-practices',
+        uri: '/practices',
+        title: 'View all practices',
+        isStrong: true,
+      },
+      ...practices,
+    ],
+  },
+  {
+    databaseId: 'menu-04',
+    title: 'Industries',
+    icon: <IndustriesIcon />,
+    href: '/',
+  },
+  {
+    databaseId: 'menu-05',
+    title: 'Locations',
+    icon: <LocationsIcon />,
+    href: '/location/new-york',
+    list: [...locations],
+  },
+  {
+    databaseId: 'menu-06',
+    title: 'Library',
+    icon: <LibraryIcon />,
+    href: '/',
+    list: [
+      {
+        databaseId: 'menu-lib-01',
+        title: 'Client Alerts',
+        uri: '/library/category/client-alert',
+      },
+      {
+        databaseId: 'menu-lib-02',
+        title: 'Firm News',
+        uri: '/library/category/firm-news',
+      },
+      {
+        databaseId: 'menu-lib-03',
+        title: 'Firm Events',
+        uri: '/library/category/firm-events',
+      },
+      {
+        databaseId: 'menu-lib-04',
+        title: 'Firm Insights',
+        uri: '/library/category/law-firm-insights',
+      },
+    ],
+  },
+  {
+    databaseId: 'menu-07',
+    title: 'The Firm',
+    icon: <FirmIcon />,
+    href: '/',
+    list: [
+      {
+        databaseId: 'menu-firm-01',
+        title: 'Administration',
+        uri: '/administration',
+      },
+      {
+        databaseId: 'menu-firm-02',
+        title: 'Careers',
+        uri: '/careers',
+      },
+      {
+        databaseId: 'menu-firm-03',
+        title: 'Community Involvement',
+        uri: '/community-involvement',
+      },
+      {
+        databaseId: 'menu-firm-04',
+        title: 'Diversity',
+        uri: '/diversity',
+      },
+      {
+        databaseId: 'menu-firm-05',
+        title: 'Firm Overview',
+        uri: '/firm-overview',
+      },
+      {
+        databaseId: 'menu-firm-06',
+        title: 'Pro Bono',
+        uri: '/pro-bono',
+      },
+      {
+        databaseId: 'menu-firm-07',
+        title: 'Women Lead',
+        uri: '/women-lead',
+      },
+    ],
+  },
+  {
+    databaseId: 'menu-08',
+    title: 'Careers',
+    icon: <CareersIcon />,
+    href: '/careers',
+  },
+];

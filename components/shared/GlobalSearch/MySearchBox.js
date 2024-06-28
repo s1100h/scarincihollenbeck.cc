@@ -8,19 +8,29 @@ import {
   ResultBox,
 } from 'styles/GlobalSearch.style';
 import { connectStateResults, Pagination } from 'react-instantsearch-dom';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Hit from './Hit';
 
 function MySearchBox(props) {
   const searchInputRef = useRef(null);
-  const handleClear = () => {
+  const handleClear = (e) => {
     props.refine({
       currentTarget: {
         value: '',
       },
     });
     searchInputRef?.current?.focus();
+
+    if (props.handleHideSearch) {
+      props.handleHideSearch();
+    }
   };
+
+  useEffect(() => {
+    if (props.inputFocus) {
+      searchInputRef?.current?.focus();
+    }
+  }, [props.inputFocus]);
 
   const CustomHit = ({ hit }) => (
     <Hit
@@ -47,8 +57,10 @@ function MySearchBox(props) {
     <>
       <SearchForm>
         <Form.Group className="form-group" controlId="siteSearch">
-          {!props.currentRefinement ? (
-            <BsSearch onClick={props.isOpenCloseSearch} />
+          {props?.handleHideSearch ? (
+            <BsXLg role="button" onClick={handleClear} />
+          ) : !props.currentRefinement ? (
+            <BsSearch />
           ) : (
             <BsXLg role="button" onClick={handleClear} />
           )}

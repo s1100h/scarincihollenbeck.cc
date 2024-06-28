@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Navbar } from 'react-bootstrap';
-import { media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
 import { globalColor, rem } from './global_styles/Global.styles';
 
 export const NavbarStyled = styled(Navbar)`
@@ -287,3 +287,29 @@ export const TitleBlock = styled.div`
     rotate: 0deg;
   }
 `;
+
+
+export const NavbarWrapper = styled.nav`
+  margin: 0 auto;
+
+  ${media_breakpoint_down('xl')} {
+    display: none;
+  }
+`;
+
+export const NavbarList = styled.ul`
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+`;
+export const NavbarItem = styled.li`
+
+`;
+export const NavbarOpener= styled.button`
+  font-size: ${rem(18)};
+  line-height: 1.55;
+  font-weight: 500;
+  color: ${globalColor.blue.darkBlue};
+`;
+
