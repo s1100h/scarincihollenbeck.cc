@@ -617,6 +617,10 @@ footer .wrapper-section {
     top: 10px;
     right: 10px;
   }
+
+  .tag-two::before {
+    content: ' - ';
+  }
 `;
 
 export const ButtonLinkCss = `
