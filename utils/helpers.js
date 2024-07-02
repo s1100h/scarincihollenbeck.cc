@@ -468,7 +468,7 @@ export const createMenuData = (practices, locations) => [
     title: 'Locations',
     icon: <LocationsIcon />,
     href: '/location/new-york',
-    list: [...locations],
+    list: !empty(locations) ? [...locations] : [],
   },
   {
     databaseId: 'menu-06',
@@ -548,3 +548,24 @@ export const createMenuData = (practices, locations) => [
     href: '/careers',
   },
 ];
+
+export const createOverviewLinks = (practices, isAllLinks) => {
+  if (empty(practices)) return null;
+
+  return practices.map((practice) => {
+    if (empty(practice?.childPractice) && !isAllLinks) return practice;
+
+    const overviewChild = {
+      databaseId: `${practice.databaseId}_${practice.title}`,
+      title: `${practice.title} overview`,
+      uri: practice.uri,
+    };
+
+    const updatedChildPractice = [overviewChild, ...practice.childPractice];
+
+    return {
+      ...practice,
+      childPractice: updatedChildPractice,
+    };
+  });
+};

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   SidebarMenuBackdrop,
   SidebarMenuButton,
@@ -9,32 +9,28 @@ import {
   SidebarMenuLink,
   SidebarMenuLinks,
   SidebarMenuList,
+  SidebarMenuSocial,
+  SidebarMenuSocialIcon,
+  SidebarMenuSocials,
   SidebarMenuWrapper,
-} from 'styles/Header.style';
+} from 'styles/Sidebar.style';
 import { HeaderSizeContext } from 'contexts/HeaderSizeContext';
-import empty from 'is-empty';
-import { createMenuData } from 'utils/helpers';
-import { MAKE_A_PAYMENT, SIDEBAR_POLITIC_LINKS } from 'utils/constants';
+import {
+  MAKE_A_PAYMENT,
+  SIDEBAR_POLITIC_LINKS,
+  SIDEBAR_SOCIAL_LINKS,
+} from 'utils/constants';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
 import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
 import { ButtonRed } from 'styles/Buttons.style';
+import Navigation from 'components/organisms/Navbar/Navigation';
 import MenuItem from './SidebarMenuItem';
-
-const sanitizeMenuData = (data) => {
-  if (!data) return [];
-
-  return data?.map((item) => ({
-    databaseId: item?.databaseId,
-    uri: item?.uri,
-    title: item?.title,
-    list: item?.childPractice || [],
-  }));
-};
 
 const SidebarMenu = ({
   practices,
   locations,
+  menuData,
   isSidebarOpen,
   setIsSidebarOpen,
 }) => {
@@ -44,33 +40,6 @@ const SidebarMenu = ({
   const handleItemClick = (index) => {
     setOpenItemIndex(openItemIndex === index ? null : index);
   };
-
-  const sanitizedLocations = sanitizeMenuData(locations);
-
-  const practiceWithOverview = useMemo(() => {
-    if (empty(practices)) return null;
-
-    return practices.map((practice) => {
-      if (empty(practice?.childPractice)) return practice;
-
-      const overviewChild = {
-        databaseId: `${practice.databaseId}_${practice.title}`,
-        title: `${practice.title} overview`,
-        uri: practice.uri,
-      };
-
-      const updatedChildPractice = [overviewChild, ...practice.childPractice];
-
-      return {
-        ...practice,
-        childPractice: updatedChildPractice,
-      };
-    });
-  }, [practices]);
-
-  const sanitizedPractices = sanitizeMenuData(practiceWithOverview);
-
-  const menuData = createMenuData(sanitizedPractices, sanitizedLocations);
 
   const menuHeight = isSidebarOpen
     ? `calc(100dvh - ${headerSize.height}px)`
@@ -84,6 +53,13 @@ const SidebarMenu = ({
         className={isSidebarOpen ? 'sidebar-open' : ''}
       >
         <SidebarMenuContainer>
+          <Navigation
+            key="header-navigation"
+            practices={practices}
+            locations={locations}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+
           <SidebarMenuList>
             {menuData.map((item, index) => (
               <MenuItem
@@ -138,11 +114,19 @@ const SidebarMenu = ({
               </SidebarMenuButton>
             </SidebarMenuButtons>
 
-            {/* <SidebarMenuSocials>
-              <SidebarMenuSocial>
-
-              </SidebarMenuSocial>
-            </SidebarMenuSocials> */}
+            <SidebarMenuSocials>
+              {SIDEBAR_SOCIAL_LINKS.map((item) => (
+                <SidebarMenuSocial
+                  key={item?.id}
+                  href={item?.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <SidebarMenuSocialIcon>{item?.icon}</SidebarMenuSocialIcon>
+                  {item?.title}
+                </SidebarMenuSocial>
+              ))}
+            </SidebarMenuSocials>
           </SidebarMenuContainer>
         </SidebarMenuFooter>
       </SidebarMenuWrapper>

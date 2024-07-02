@@ -117,8 +117,11 @@ export const globalShadow = {
   shadowM: '0px 4px 12px 0px rgba(10, 62, 108, 0.06)',
 };
 
+const transitionDuration = 300;
+
 export const globalTransition = {
-  default: 'all 0.3s ease-out',
+  transitionDuration,
+  default: `all ${transitionDuration}ms ease-out`,
 };
 
 export const buttonsHoverActive = `

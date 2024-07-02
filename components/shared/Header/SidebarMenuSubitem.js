@@ -8,7 +8,8 @@ import {
   SidebarMenuSubitemContentLink,
   SidebarMenuSubitemIcon,
   SidebarMenuSubitemOpener,
-} from 'styles/Header.style';
+} from 'styles/Sidebar.style';
+import { globalTransition } from 'styles/global_styles/Global.styles';
 
 const MenuSubitem = ({
   title,
@@ -22,8 +23,19 @@ const MenuSubitem = ({
   const handleClickItem = (e) => {
     if (!empty(list)) {
       e.preventDefault();
+      const scrollContainer = e.target.closest('.sidebar-open');
+      if (scrollContainer) {
+        setTimeout(
+          () => scrollContainer.scrollTo({
+            top: e?.target?.offsetTop,
+            behavior: 'smooth',
+          }),
+          globalTransition?.transitionDuration,
+        );
+      }
+
       onClick();
-    } else {
+    } else if (setIsSidebarOpen) {
       setIsSidebarOpen(false);
     }
   };
@@ -47,7 +59,7 @@ const MenuSubitem = ({
               <SidebarMenuSubitemContentItem key={item.databaseId}>
                 <SidebarMenuSubitemContentLink
                   href={item?.uri}
-                  onClick={() => setIsSidebarOpen(false)}
+                  onClick={() => setIsSidebarOpen && setIsSidebarOpen(false)}
                 >
                   {item?.title}
                 </SidebarMenuSubitemContentLink>

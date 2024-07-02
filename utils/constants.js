@@ -10,6 +10,8 @@ import {
   WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
 
 export const LETTERS_LIST = [
@@ -843,6 +845,13 @@ export const googleLocationIds = {
   'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
 };
 
+export const NAVIGATION_OPENERS = [
+  'Attorneys',
+  'Practices',
+  'Industries',
+  'Locations',
+];
+
 export const SIDEBAR_POLITIC_LINKS = [
   {
     title: 'Privacy policy',
@@ -855,5 +864,26 @@ export const SIDEBAR_POLITIC_LINKS = [
   {
     title: 'Awards Methodology',
     link: '/awards',
+  },
+];
+
+export const SIDEBAR_SOCIAL_LINKS = [
+  {
+    id: 'sidebar-linkedin',
+    title: 'LinkedIn',
+    icon: <FaLinkedin />,
+    url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
+  },
+  {
+    id: 'sidebar-facebook',
+    title: 'Facebook',
+    icon: <FaFacebookSquare />,
+    url: 'https://www.facebook.com/ScarinciHollenbeck',
+  },
+  {
+    id: 'sidebar-twitter',
+    title: 'Twitter',
+    icon: <FaSquareXTwitter />,
+    url: 'https://twitter.com/S_H_Law',
   },
 ];

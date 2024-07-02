@@ -9,7 +9,6 @@ import {
   media_breakpoint_exactly_down,
 } from '../../mediaBreakpoints.style';
 import { BsSearch } from 'react-icons/bs';
-import { LinksBox } from '../../Header.style';
 import { DropdownSecondLvl } from 'styles/Navigation.style';
 
 export const SpecialHeaderContainer = styled.header`
@@ -281,39 +280,3 @@ export const VisibleHiddenSearch = styled.div`
   }
 `;
 
-export const LinksBoxSpecial = styled(LinksBox)`
-  display: flex;
-  align-items: center;
-  gap: 32px;
-
-  .link-btn-header {
-    height: 50px;
-  }
-
-  button {
-    .icon {
-      color: ${globalColor.white};
-    }
-  }
-
-  ${media_breakpoint_down('xl')} {
-    margin-left: 10px;
-    margin-right: 10px;
-
-    .link-btn-header {
-      width: 34px;
-      height: 34px;
-    }
-
-    button {
-      .icon {
-        width: 40px;
-        height: 40px;
-      }
-    }
-  }
-
-  ${media_breakpoint_down('lg')} {
-    margin-left: 0;
-  }
-`;

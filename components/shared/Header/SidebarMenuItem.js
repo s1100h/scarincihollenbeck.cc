@@ -7,7 +7,7 @@ import {
   SidebarMenuItemContentList,
   SidebarMenuItemIcon,
   SidebarMenuItemOpener,
-} from 'styles/Header.style';
+} from 'styles/Sidebar.style';
 import { BsChevronDown } from 'react-icons/bs';
 import MenuSubitem from './SidebarMenuSubitem';
 

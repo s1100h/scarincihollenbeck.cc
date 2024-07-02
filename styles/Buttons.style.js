@@ -150,6 +150,7 @@ export const ButtonRed = styled(Link)`
   overflow: hidden;
   position: relative;
   z-index: 0;
+  transition: ${globalTransition.default};
 
   &::after {
     content: '';

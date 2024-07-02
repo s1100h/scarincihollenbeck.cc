@@ -1,159 +1,11 @@
 import styled from 'styled-components';
 import { Navbar } from 'react-bootstrap';
 import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
-import { globalColor, rem } from './global_styles/Global.styles';
+import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { SidebarMenuItemOpener, SidebarMenuSubitemOpener } from './Sidebar.style';
 
-export const NavbarStyled = styled(Navbar)`
-  display: flex;
-  margin: 0 auto;
-  flex: 4;
-  transition: all 0.3s linear;
-
-  & ::-webkit-scrollbar-track {
-    background-color: #0b1136;
-    border-radius: 8px;
-    opacity: 0;
-  }
-
-  & ::-webkit-scrollbar {
-    width: 2px;
-    height: 4px;
-    background-color: #0b1136;
-  }
-
-  & ::-webkit-scrollbar-thumb {
-    background-color: ${globalColor.blue.darkUltramarine};
-    border-radius: 8px;
-  }
-
-  .navContainerWrapper {
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-
-    .nav-item {
-      .dropdown-toggle {
-        :after {
-          display: none;
-        }
-      }
-
-      &.show {
-        .dropdown-menu {
-          display: flex;
-        }
-
-        > a {
-          color: ${globalColor.blue.blue500};
-        }
-
-        .chevron {
-          rotate: 180deg;
-        }
-      }
-
-      > a {
-        transition: all 0.5s ease;
-
-        &:hover {
-          color: ${globalColor.blue.skyBlue};
-        }
-      }
-    }
-
-    .dropdown-menu {
-      padding: 16px 40px;
-      background-color: ${globalColor.blue.darkBlue};
-      box-shadow: 2px 8px 20px 0 rgba(6, 11, 42, 0.52);
-      column-gap: 32px;
-    }
-  }
-
-  .locations-dropdown {
-    .dropdown-menu {
-      width: 1140px;
-      min-width: 800px;
-      left: -600%;
-      overflow: auto;
-
-      .dropdown-location {
-        display: flex;
-        width: inherit;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        padding-right: 0;
-        flex-direction: row;
-        overflow: unset;
-
-        .dropdown-item {
-          padding: 0;
-          max-width: 504px;
-          min-width: 306px;
-
-          .location-card-menu {
-            width: inherit;
-            background-color: ${globalColor.blue.darkUltramarine};
-
-            div {
-              padding: 24px;
-              transition: 0.5s transform;
-
-              :hover {
-                transform: scale(1.04);
-              }
-
-              h3 {
-                font-size: rem(20);
-                line-height: 24px;
-                color: ${globalColor.blue.skyBlue};
-              }
-
-              address {
-                display: flex;
-                width: 354px;
-                flex-wrap: wrap;
-                font-size: 1rem;
-                font-weight: 400;
-                gap: 12px;
-                margin-bottom: 0;
-
-                span {
-                  white-space: normal;
-                  line-height: 24px;
-                }
-
-                a,
-                * {
-                  color: ${globalColor.white};
-                  pointer-events: none;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  a {
-    color: ${globalColor.black};
-  }
-
-  ${media_breakpoint_exactly_down(1480)} {
-    justify-content: center;
-
-    .navContainerWrapper {
-      width: 90%;
-    }
-  }
-
-  ${media_breakpoint_exactly_down(1439)} {
-    display: none;
-  }
-`;
 
 export const DropdownFirstLvl = styled.div`
   width: 20vw;
@@ -277,24 +129,9 @@ export const DropdownSecondLvl = styled.div`
   }
 `;
 
-export const TitleBlock = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  .chevron {
-    transition: 0.3s;
-    rotate: 0deg;
-  }
-`;
-
-
+//New styles for Navigation in Header
 export const NavbarWrapper = styled.nav`
   margin: 0 auto;
-
-  ${media_breakpoint_down('xl')} {
-    display: none;
-  }
 `;
 
 export const NavbarList = styled.ul`
@@ -302,14 +139,228 @@ export const NavbarList = styled.ul`
   display: flex;
   align-items: center;
   gap: 32px;
-`;
-export const NavbarItem = styled.li`
 
+  ${media_breakpoint_down('xl')} {
+    gap: 24px;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    gap: 32px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    gap: 12px;
+  }
 `;
-export const NavbarOpener= styled.button`
+
+export const NavbarItem = styled.li``;
+
+export const NavbarItemOpener = styled.button`
+  padding: 4px 0 2px;
+  border-bottom: 2px solid transparent;
+  color: ${globalColor.blue.darkBlue};
   font-size: ${rem(18)};
   line-height: 1.55;
   font-weight: 500;
-  color: ${globalColor.blue.darkBlue};
+  transition: ${globalTransition.default};
+
+  &.active {
+    color: ${globalColor.blue.blue400};
+    border-color: currentColor;
+  }
+
+  ${media_breakpoint_down('xl')} {
+    font-size: ${rem(16)};
+    line-height: 1.5;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    font-size: ${rem(18)};
+    line-height: 1.55;
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(16)};
+    line-height: 1.5;
+  }
 `;
 
+export const NavbarItemContent = styled(motion.div)`
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: ${globalColor.blue.darkBlue};
+  z-index: 0;
+
+  &.practices-split {
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-color: ${globalColor.blue.blue6002};
+      z-index: -1;
+
+      ${media_breakpoint_down('lg')} {
+        display: none;
+      }
+    }
+  }
+
+  .navbar-container {
+    display: flex;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    position: static;
+  }
+
+  .practices-list {
+    padding: 20px 0 40px 0;
+    width: 100%;
+
+    ${media_breakpoint_down('md')} {
+      padding: 16px 0 24px 0;
+    }
+
+    ${SidebarMenuItemOpener} {
+      color: ${globalColor.white};
+    }
+
+    ${SidebarMenuSubitemOpener} {
+      > span {
+        &::after, &::before {
+          background-color: ${globalColor.white};
+        }
+      }
+    }
+  }
+
+`;
+
+export const NavbarLeftBlock = styled.div`
+  padding: 20px 0;
+  width: 50%;
+  max-height: calc(80dvh - 120px);
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NavbarLeftList = styled.ul`
+  padding-right: 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  overflow-y: auto;
+`;
+
+export const NavbarLeftItem = styled.li``;
+
+export const NavbarLeftItemOpener = styled(Link)`
+  padding: 8px 12px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  color: ${globalColor.white};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: ${globalTransition.default};
+
+  &:hover {
+    background-color: ${globalColor.blue.blue6002};
+    color: ${globalColor.white};
+
+    > .item-icon {
+      transform: translate(0);
+      opacity: 1;
+    }
+  }
+
+  &.active {
+    background-color: ${globalColor.blue.blue6002};
+    color: ${globalColor.white};
+
+    > .item-icon {
+      transform: translate(0);
+      opacity: 1;
+    }
+  }
+`;
+
+export const NavbarLeftItemOpenerIcon = styled.span`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${globalColor.blue.skyBlue};
+  transform: translateX(-25%);
+  opacity: 0;
+  transition: ${globalTransition.default};
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const NavbarRightBlock = styled.div`
+  padding: 20px 0 20px 16px;
+  width: 50%;
+  max-height: calc(80dvh - 120px);
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+`;
+
+export const NavbarRightTitle = styled.p`
+  margin: 0;
+  color: ${globalColor.white};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  text-decoration: underline;
+`;
+
+export const NavbarRightList = styled.ul`
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  list-style: disc;
+  overflow-y: auto;
+`;
+
+export const NavbarRightItem = styled.li`
+  margin: 0 0 0 24px;
+  color: ${globalColor.gray.gray300};
+
+  &::marker {
+    font-size: 15px;
+  }
+`;
+
+export const NavbarRightItemLink = styled(Link)`
+  color: ${globalColor.gray.gray300};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  transition: ${globalTransition.default};
+
+  &:hover {
+    color: inherit;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: ${globalColor.blue.skyBlue};
+    }
+  }
+  
+`;
