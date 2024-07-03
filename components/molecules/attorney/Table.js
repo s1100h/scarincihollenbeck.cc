@@ -70,13 +70,6 @@ const Table = ({ content }) => {
             ))}
           </div>
         </div>
-        <style jsx>
-          {`
-            .tag-two::before {
-              content: ' - ';
-            }
-          `}
-        </style>
       </Col>
     </Row>
   );
