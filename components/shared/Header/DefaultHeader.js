@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 
 import Logo from 'components/organisms/Navbar/Logo';
-import Navigation from 'components/organisms/Navbar/Navigation';
 import { ButtonRed } from 'styles/Buttons.style';
 import useHeaderSize from 'hooks/useHeaderSize';
 import { useResize } from 'hooks/useResize';
@@ -13,6 +12,7 @@ import {
   LogoBox,
 } from 'styles/Header.style';
 import { SidebarOpener } from 'styles/Sidebar.style';
+import Navigation from 'components/organisms/Navbar/Navigation';
 import HeaderTopLine from './HeaderTopLine';
 import HeaderSearch from './HeaderSearch';
 import SidebarMenu from './SidebarMenu';

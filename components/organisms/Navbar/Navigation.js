@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { NAVIGATION_OPENERS } from 'utils/constants';
 import NavbarPractices from './NavbarPractices';
 import NavbarLocations from './NavbarLocations';
+import NavbarAttorneys from './NavbarAttorneys';
 
 const Navigation = ({
   practices, locations, isScreenLg, setIsSidebarOpen,
@@ -83,6 +84,14 @@ const Navigation = ({
         setShowNavContent={setShowNavContent}
         setIsSidebarOpen={setIsSidebarOpen}
         locations={locations}
+      />
+
+      <NavbarAttorneys
+        practices={practices}
+        locations={locations}
+        showNavContent={showNavContent === 0}
+        setShowNavContent={setShowNavContent}
+        setIsSidebarOpen={setIsSidebarOpen}
       />
     </NavbarWrapper>
   );

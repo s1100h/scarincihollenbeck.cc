@@ -5,7 +5,7 @@ import { globalColor, globalTransition, rem } from './global_styles/Global.style
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { SidebarMenuItemOpener, SidebarMenuSubitemOpener } from './Sidebar.style';
-
+import { FiltersHolder } from './Filters.style';
 
 export const DropdownFirstLvl = styled.div`
   width: 20vw;
@@ -237,6 +237,10 @@ export const NavbarItemContent = styled(motion.div)`
         }
       }
     }
+  }
+
+  ${FiltersHolder} {
+    padding: 20px 0 40px 0;
   }
 
 `;

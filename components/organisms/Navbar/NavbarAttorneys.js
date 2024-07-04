@@ -2,20 +2,22 @@ import React from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import { NavbarItemContent } from 'styles/Navigation.style';
 import empty from 'is-empty';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { LocationCards } from 'styles/LocationCard.style';
 import LocationCard from './LocationCard';
+import AttorneyFilters from '../attorneys/AttorneyFilters';
 
-const NavbarLocations = ({
+const NavbarAttorneys = ({
+  practices,
   locations,
   showNavContent,
   setShowNavContent,
   setIsSidebarOpen,
 }) => (
   <AnimatePresence>
-    {showNavContent && !empty(locations) && (
+    {showNavContent && (
       <NavbarItemContent
-        key="locations-navbar-content"
+        key="attorneys-navbar-content"
         initial={{ opacity: 0, height: 0, overflow: 'hidden' }}
         animate={{
           opacity: 1,
@@ -26,28 +28,13 @@ const NavbarLocations = ({
         }}
         exit={{ opacity: 0, height: 0, overflow: 'hidden' }}
         transition={{ ease: 'easeOut', duration: 0.3 }}
-        onClick={(event) => event.stopPropagation()}
       >
         <ContainerDefault className="navbar-container">
-          <LocationCards
-            as={motion.div}
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            exit={{ y: -100 }}
-          >
-            {locations?.map((location) => (
-              <LocationCard
-                key={location.databaseId}
-                {...location}
-                setIsSidebarOpen={setIsSidebarOpen}
-                setShowNavContent={setShowNavContent}
-              />
-            ))}
-          </LocationCards>
+          <AttorneyFilters practices={practices} locations={locations} />
         </ContainerDefault>
       </NavbarItemContent>
     )}
   </AnimatePresence>
 );
 
-export default NavbarLocations;
+export default NavbarAttorneys;
