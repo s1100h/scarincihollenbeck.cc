@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
@@ -135,11 +139,12 @@ export const LocationCardWrapper = styled.address`
   row-gap: 20px;
   border-radius: 12px;
   background-color: ${globalColor.blue.blue6002};
-  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06), -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
   border: 2px solid transparent;
   position: relative;
   transition: ${globalTransition.default};
-  
+
   &:hover {
     border-color: ${globalColor.blue.blue400};
 
@@ -178,7 +183,8 @@ export const LocationCardList = styled.ul`
   flex-direction: column;
   row-gap: 12px;
 
-  .location-card-item, .location-card-link {
+  .location-card-item,
+  .location-card-link {
     display: flex;
     column-gap: 8px;
     color: ${globalColor.white};
@@ -193,8 +199,7 @@ export const LocationCardList = styled.ul`
   }
 `;
 
-export const LocationCardItem = styled.li`
-`;
+export const LocationCardItem = styled.li``;
 
 export const LocationCardItemIcon = styled.span`
   width: 28px;

@@ -126,7 +126,7 @@ export const ContainerDefault = styled.div`
   margin: 0 auto;
   padding: 0 80px;
 
-	${media_breakpoint_down('xl')} {
+  ${media_breakpoint_down('xl')} {
     padding: 0 32px;
   }
 

@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 import { Navbar } from 'react-bootstrap';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { SidebarMenuItemOpener, SidebarMenuSubitemOpener } from './Sidebar.style';
+import {
+  SidebarMenuItemOpener,
+  SidebarMenuSubitemOpener,
+} from './Sidebar.style';
 import { FiltersHolder } from './Filters.style';
 
 export const DropdownFirstLvl = styled.div`
@@ -232,7 +242,8 @@ export const NavbarItemContent = styled(motion.div)`
 
     ${SidebarMenuSubitemOpener} {
       > span {
-        &::after, &::before {
+        &::after,
+        &::before {
           background-color: ${globalColor.white};
         }
       }
@@ -242,7 +253,6 @@ export const NavbarItemContent = styled(motion.div)`
   ${FiltersHolder} {
     padding: 20px 0 40px 0;
   }
-
 `;
 
 export const NavbarLeftBlock = styled.div`
@@ -366,5 +376,4 @@ export const NavbarRightItemLink = styled(Link)`
       color: ${globalColor.blue.skyBlue};
     }
   }
-  
 `;

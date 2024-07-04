@@ -3,7 +3,11 @@ import {
   media_breakpoint_down,
   media_breakpoint_up,
 } from './mediaBreakpoints.style';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import Link from 'next/link';
 import { ButtonRed } from './Buttons.style';
 import { motion } from 'framer-motion';
@@ -126,7 +130,6 @@ export const HeaderTopLineItem = styled(motion.li)`
 
 export const HeaderTopLineLink = styled(Link)`
   ${HeaderTopLineItemStyles}
-
 `;
 
 export const HeaderTopLineIcon = styled.span`

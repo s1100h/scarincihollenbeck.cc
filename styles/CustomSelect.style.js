@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { globalColor, globalTransition } from "./global_styles/Global.styles";
-import { motion } from "framer-motion";
+import styled from 'styled-components';
+import { globalColor, globalTransition } from './global_styles/Global.styles';
+import { motion } from 'framer-motion';
 
 export const SelectWrapper = styled.div`
   display: flex;
@@ -26,7 +26,8 @@ export const SelectInput = styled.input`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  border-radius: ${({ $selectActive }) => ($selectActive ? '4px 4px 0 0' : '4px')};
+  border-radius: ${({ $selectActive }) =>
+    $selectActive ? '4px 4px 0 0' : '4px'};
   cursor: pointer;
   transition: ${globalTransition.default};
 
@@ -80,4 +81,3 @@ export const SelectOption = styled.li`
   cursor: pointer;
   transition: ${globalTransition.default};
 `;
-

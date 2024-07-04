@@ -186,7 +186,6 @@ export const ContainerFilters = styled(Container)`
   padding: 22px 20px !important;
   background-color: ${globalColor.white};
   box-shadow: ${globalShadow.allSideShadow};
-  
 
   #siteSearch {
     height: 48px !important;
@@ -327,7 +326,6 @@ export const FilterBox = styled.div`
     width: 100%;
   }
 `;
-
 
 //Styles for new Filters in Header Navbar
 

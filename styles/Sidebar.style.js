@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalShadow,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
@@ -78,7 +83,6 @@ export const SideBarContainer = styled.div`
   }
 `;
 
-
 //Styles for sidebar menu in Header
 export const SidebarOpener = styled.button`
   display: flex;
@@ -99,7 +103,7 @@ export const SidebarOpener = styled.button`
 
   &:before,
   &:after {
-    content: "";
+    content: '';
   }
 
   &:before,
@@ -118,18 +122,22 @@ export const SidebarOpener = styled.button`
   }
 
   &:before {
-    top: ${({$isSidebarOpen}) => $isSidebarOpen ? '50%' : 'calc(50% - 8px)'};
-    transform: ${({$isSidebarOpen}) => $isSidebarOpen ? 'rotate(45deg)' : ''};
+    top: ${({ $isSidebarOpen }) =>
+      $isSidebarOpen ? '50%' : 'calc(50% - 8px)'};
+    transform: ${({ $isSidebarOpen }) =>
+      $isSidebarOpen ? 'rotate(45deg)' : ''};
   }
 
   .burger-line {
     top: 50%;
-    transform: ${({$isSidebarOpen}) => $isSidebarOpen ? 'scale(0, 1)' : ''};
+    transform: ${({ $isSidebarOpen }) => ($isSidebarOpen ? 'scale(0, 1)' : '')};
   }
 
   &:after {
-    top: ${({$isSidebarOpen}) => $isSidebarOpen ? '50%' : 'calc(50% + 8px)'};
-    transform: ${({$isSidebarOpen}) => $isSidebarOpen ? 'rotate(-45deg)' : ''};
+    top: ${({ $isSidebarOpen }) =>
+      $isSidebarOpen ? '50%' : 'calc(50% + 8px)'};
+    transform: ${({ $isSidebarOpen }) =>
+      $isSidebarOpen ? 'rotate(-45deg)' : ''};
   }
 `;
 
@@ -144,7 +152,8 @@ export const SidebarMenuWrapper = styled.div`
   background-color: ${globalColor.white};
   z-index: 2;
   transition: ${globalTransition.default};
-  pointer-events: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'none'}`};
+  pointer-events: ${({ $isSidebarOpen }) =>
+    `${$isSidebarOpen ? 'auto' : 'none'}`};
   opacity: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 1 : 0}`};
   overflow: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'hidden'}`};
 
@@ -217,7 +226,8 @@ export const SidebarMenuBackdrop = styled.div`
   background-color: rgba(1, 2, 10, 0.68);
   z-index: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 1 : -1}`};
   opacity: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 1 : 0}`};
-  pointer-events: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'none'}`};
+  pointer-events: ${({ $isSidebarOpen }) =>
+    `${$isSidebarOpen ? 'auto' : 'none'}`};
   transition: ${globalTransition.default};
 
   ${media_breakpoint_down('lg')} {
@@ -240,17 +250,18 @@ export const SidebarMenuList = styled.ul`
 export const SidebarMenuItem = styled.li`
   border-bottom: 1px solid ${globalColor.gray.gray10};
   transition: ${globalTransition.default};
-  padding-bottom: ${({ $open }) => $open ? '10px' : '0'};
-  overflow: ${({ $open }) => $open ? 'hidden' : ''};
+  padding-bottom: ${({ $open }) => ($open ? '10px' : '0')};
+  overflow: ${({ $open }) => ($open ? 'hidden' : '')};
 `;
 
 export const SidebarMenuItemOpener = styled(Link)`
   padding-top: 16px;
-  padding-bottom: ${({ $open }) => $open ? '18px' : '16px'};
+  padding-bottom: ${({ $open }) => ($open ? '18px' : '16px')};
   display: flex;
   align-items: center;
   column-gap: 12px;
-  color: ${({ $open }) => $open ? globalColor.blue.blue400 : globalColor.blue.darkBlue};
+  color: ${({ $open }) =>
+    $open ? globalColor.blue.blue400 : globalColor.blue.darkBlue};
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
@@ -284,16 +295,16 @@ export const SidebarMenuItemIcon = styled.span`
 export const SidebarMenuItemArrow = styled.span`
   margin-left: auto;
   transition: ${globalTransition.default};
-  rotate: ${({ $open }) => $open ? '180deg' : '0deg'};
-  color: ${({ $open }) => $open ? globalColor.blue.blue400 : ''};
+  rotate: ${({ $open }) => ($open ? '180deg' : '0deg')};
+  color: ${({ $open }) => ($open ? globalColor.blue.blue400 : '')};
 `;
 
 export const SidebarMenuItemContent = styled.div`
   display: grid;
-  grid-template-rows: ${({ $open }) => $open ? '1fr' : '0fr'};
-  opacity: ${({ $open }) => $open ? '1' : '0'};;
-  overflow: ${({ $open }) => $open ? '' : 'hidden'};;
-  pointer-events: ${({ $open }) => $open ? '' : 'none'};;
+  grid-template-rows: ${({ $open }) => ($open ? '1fr' : '0fr')};
+  opacity: ${({ $open }) => ($open ? '1' : '0')};
+  overflow: ${({ $open }) => ($open ? '' : 'hidden')};
+  pointer-events: ${({ $open }) => ($open ? '' : 'none')};
   transition: ${globalTransition.default};
 `;
 
@@ -304,15 +315,16 @@ export const SidebarMenuItemContentList = styled.ul`
 
 export const SidebarMenuSubitem = styled.li`
   transition: ${globalTransition.default};
-  padding-bottom: ${({ $open }) => $open ? '6px' : '0'};
-  overflow: ${({ $open }) => $open ? 'hidden' : ''};
+  padding-bottom: ${({ $open }) => ($open ? '6px' : '0')};
+  overflow: ${({ $open }) => ($open ? 'hidden' : '')};
 `;
 
 export const SidebarMenuSubitemOpener = styled(SidebarMenuItemOpener)`
   padding: 6px 0;
   column-gap: 4px;
-  color: ${({ $open }) => $open ? globalColor.blue.darkBlue : globalColor.gray.gray110};
-  font-weight: ${({ $isStrong }) => $isStrong ? 600 : 400};
+  color: ${({ $open }) =>
+    $open ? globalColor.blue.darkBlue : globalColor.gray.gray110};
+  font-weight: ${({ $isStrong }) => ($isStrong ? 600 : 400)};
 
   &:hover {
     color: ${globalColor.blue.darkBlue};
@@ -347,10 +359,9 @@ export const SidebarMenuSubitemIcon = styled.span`
     width: 2px;
     height: 12px;
     background-color: ${globalColor.gray.gray110};
-    translate: ${({ $open }) => $open ? '0 100%' : ''};
-    opacity: ${({ $open }) => $open ? '0' : '1'};;
+    translate: ${({ $open }) => ($open ? '0 100%' : '')};
+    opacity: ${({ $open }) => ($open ? '0' : '1')};
     transition: ${globalTransition.default};
-    
   }
 `;
 
@@ -473,7 +484,7 @@ export const SidebarMenuSocial = styled(Link)`
   line-height: 1.5;
   transition: ${globalTransition.default};
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     &:hover {
       color: ${globalColor.blue.darkBlue};
 
