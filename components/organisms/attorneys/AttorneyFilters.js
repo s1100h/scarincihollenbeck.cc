@@ -25,11 +25,11 @@ const AttorneyFilters = ({ practices, locations, attorneys }) => {
   } = useContext(AttorneysContext);
 
   const handleChangePracticesSelect = (e) => {
-    console.log(e);
+    // console.info(e);
   };
 
   const handleChangeLocationsSelect = (e) => {
-    console.log(e);
+    // console.info(e);
   };
 
   return (
