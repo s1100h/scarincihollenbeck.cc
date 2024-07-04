@@ -327,3 +327,24 @@ export const FilterBox = styled.div`
     width: 100%;
   }
 `;
+
+
+//Styles for new Filters in Header Navbar
+
+export const FiltersHolder = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+export const FiltersLeftColumn = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+`;
+export const FiltersRightColumn = styled.div`
+  width: 50%;
+`;
+
+export const FiltersResults = styled.div`
+  width: 100%;
+`;

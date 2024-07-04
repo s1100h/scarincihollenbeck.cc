@@ -1,8 +1,9 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { commonBtnStyle } from './ButtonsMenu.style';
-import { globalColor, rem } from './global_styles/Global.styles';
+import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import Link from 'next/link';
 
 export const RedButtonLink = styled.a`
   padding: 15px 40px;
@@ -131,5 +132,60 @@ export const StandardBlueButton = styled(Button)`
     background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
     opacity: 0;
     transition: opacity 0.3s ease;
+  }
+`;
+
+export const ButtonRed = styled(Link)`
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 40px;
+  border-radius: 4px;
+  background-color: ${globalColor.red.newRed};
+  color: ${globalColor.white};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  transition: ${globalTransition.default};
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(88deg, #8F1B11 -16.23%, #3D0804 102.61%);
+    z-index: -1;
+    opacity: 0;
+    transition: ${globalTransition.default};
+  }
+
+  @media (hover:hover) {
+    &:hover {
+      box-shadow: 0px 2px 8px 0px rgba(64, 64, 64, 0.39);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    color: ${globalColor.white};
+  }
+
+  &:active {
+    background-color: ${globalColor.red.сoffee};
+  }
+
+  ${media_breakpoint_down('sm')} {
+    padding: 10px 40px;
+    font-size: ${rem(14)};
+    line-height: 1.43;
   }
 `;

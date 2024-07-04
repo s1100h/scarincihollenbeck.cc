@@ -10,6 +10,8 @@ import {
   WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
 
 export const LETTERS_LIST = [
@@ -199,7 +201,7 @@ export const sitemapAddon = [
 /** Header navigation links */
 export const SITE_NAVIGATION = [
   {
-    id: 1,
+    id: 2,
     label: 'The Firm',
     menuId: 'the-firm',
     slug: '',
@@ -242,7 +244,7 @@ export const SITE_NAVIGATION = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     label: 'Attorneys',
     slug: '/attorneys',
     children: undefined,
@@ -252,6 +254,34 @@ export const SITE_NAVIGATION = [
     id: 4,
     label: 'Library',
     menuId: 'library',
+    slug: '',
+    children: [
+      {
+        databaseId: 401,
+        title: 'Client Alerts',
+        uri: '/library/category/client-alert',
+      },
+      {
+        databaseId: 402,
+        title: 'Firm News',
+        uri: '/library/category/firm-news',
+      },
+      {
+        databaseId: 403,
+        title: 'Firm Events',
+        uri: '/library/category/firm-events',
+      },
+      {
+        databaseId: 404,
+        title: 'Firm Insights',
+        uri: '/library/category/law-firm-insights',
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: 'Industries',
+    menuId: 'industries',
     slug: '',
     children: [
       {
@@ -814,3 +844,46 @@ export const googleLocationIds = {
   'washington-dc': 'ChIJMxTvAVS3t4kRnkctX9qxKtc',
   'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
 };
+
+export const NAVIGATION_OPENERS = [
+  'Attorneys',
+  'Practices',
+  'Industries',
+  'Locations',
+];
+
+export const SIDEBAR_POLITIC_LINKS = [
+  {
+    title: 'Privacy policy',
+    link: '/privacy-policy',
+  },
+  {
+    title: 'Terms of use',
+    link: '/terms-of-use',
+  },
+  {
+    title: 'Awards Methodology',
+    link: '/awards',
+  },
+];
+
+export const SIDEBAR_SOCIAL_LINKS = [
+  {
+    id: 'sidebar-linkedin',
+    title: 'LinkedIn',
+    icon: <FaLinkedin />,
+    url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
+  },
+  {
+    id: 'sidebar-facebook',
+    title: 'Facebook',
+    icon: <FaFacebookSquare />,
+    url: 'https://www.facebook.com/ScarinciHollenbeck',
+  },
+  {
+    id: 'sidebar-twitter',
+    title: 'Twitter',
+    icon: <FaSquareXTwitter />,
+    url: 'https://twitter.com/S_H_Law',
+  },
+];

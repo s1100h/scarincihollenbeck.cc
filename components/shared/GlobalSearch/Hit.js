@@ -1,10 +1,36 @@
-import { SearchedItem } from 'styles/Hit.style';
-import Link from 'next/link';
-import { BsCalendar2Minus, BsPersonFill } from 'react-icons/bs';
+import {
+  SearchableItemFooter,
+  SearchableItemLabel,
+  SearchableItemText,
+  SearchableItemTitle,
+  SearchedItem,
+  SearchedItemContent,
+  SearchedItemIcon,
+  SearchedItemLink,
+} from 'styles/Hit.style';
 import { Highlight } from 'react-instantsearch-dom';
 import empty from 'is-empty';
-import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
+import PracticesIcon from 'components/common/icons/PracticesIcon';
+import PostsIcon from 'components/common/icons/PostsIcon';
+import AttorneysIcon from 'components/common/icons/AttorneysIcon';
+import CareersIcon from 'components/common/icons/CareersIcon';
 import { changeTitle } from '../../../utils/helpers';
+import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
+
+const getItemIcon = (type) => {
+  const icons = {
+    Posts: <PostsIcon />,
+    Attorneys: <AttorneysIcon />,
+    Practices: <PracticesIcon />,
+    Careers: <CareersIcon />,
+  };
+
+  if (!icons[type]) {
+    return <PracticesIcon />;
+  }
+
+  return icons[type];
+};
 
 export default function Hit({ hit, setIsOpenSearch, handleClear }) {
   // eslint-disable-next-line no-underscore-dangle
@@ -25,7 +51,7 @@ export default function Hit({ hit, setIsOpenSearch, handleClear }) {
   };
   return (
     <SearchedItem onClick={handleClickItem}>
-      <Link
+      <SearchedItemLink
         href={
           hit.post_type_label === 'Posts'
             ? hit.permalink.replace(PRODUCTION_URL, '')
@@ -33,29 +59,25 @@ export default function Hit({ hit, setIsOpenSearch, handleClear }) {
         }
         passHref
       >
-        <article>
-          <p>{hit.post_type_label}</p>
-          <h4>
-            {hit.post_type_label === 'Posts' ? (
-              <BsCalendar2Minus />
-            ) : (
-              <BsPersonFill />
-            )}
+        <SearchedItemIcon>{getItemIcon(hit.post_type_label)}</SearchedItemIcon>
+        <SearchedItemContent>
+          <SearchableItemTitle>
             <Highlight hit={hit} attribute="post_title" />
-          </h4>
-          <p>
-            {hit.post_type === 'post' && (
-              <strong>{hit.post_author.display_name}</strong>
-            )}
-            {hit.post_type === 'post' && (
-              <>
-                <span> - </span>
+          </SearchableItemTitle>
+          {hit.post_type === 'post' && (
+            <SearchableItemFooter>
+              <SearchableItemLabel>
+                Author:
+                {' '}
+                {hit.post_author.display_name}
+              </SearchableItemLabel>
+              <SearchableItemText>
                 {changeTitle(hit.post_date_formatted)}
-              </>
-            )}
-          </p>
-        </article>
-      </Link>
+              </SearchableItemText>
+            </SearchableItemFooter>
+          )}
+        </SearchedItemContent>
+      </SearchedItemLink>
     </SearchedItem>
   );
 }

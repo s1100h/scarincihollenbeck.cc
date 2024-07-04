@@ -1,4 +1,4 @@
-import { Licorice, Poppins, Rajdhani } from "next/font/google";
+import { Lato, Licorice, Poppins, Rajdhani } from "next/font/google";
 import localFont from "next/font/local"
 
 export const poppins = Poppins({
@@ -21,6 +21,14 @@ export const licorice = Licorice({
 	weight: ['400'],
 	subsets: ['latin'],
 	variable: '--font-licorice',
+	preload: true,
+	display: 'swap',
+});
+
+export const lato = Lato({
+	weight: ['100', '300', '400', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-lato',
 	preload: true,
 	display: 'swap',
 });

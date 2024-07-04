@@ -66,9 +66,10 @@ const ConnectedSearchBox = connectWithQuery(MySearchBox);
 connectWithQuery(AuxiliarySearch);
 
 export default function GlobalSearch({
-  onHandleClickSearch,
   setIsOpenSearch,
   filterByPostType,
+  handleHideSearch,
+  inputFocus,
 }) {
   const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
 
@@ -76,9 +77,10 @@ export default function GlobalSearch({
     <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
       <Configure filters={filters} />
       <ConnectedSearchBox
-        isOpenCloseSearch={onHandleClickSearch}
         placeholder="Search"
         setIsOpenSearch={setIsOpenSearch}
+        handleHideSearch={handleHideSearch}
+        inputFocus={inputFocus}
       />
     </InstantSearch>
   );

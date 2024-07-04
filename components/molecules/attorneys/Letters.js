@@ -20,13 +20,17 @@ const LetterSelector = ({ onSelectLetter, select, userInput }) => {
     (attorney) => attorney.lastName?.split('')[0] === letter.toUpperCase(),
   );
 
+  const handleClickLetter = (letter) => {
+    onSelectLetter(letter);
+  };
+
   return (
     <LetterSelectorContainer>
       {LETTERS_LIST.map((letter) => (
         <LetterSelectorBtn
           disabled={currentAttorneyList?.length > 0 ? isDisabled(letter) : true}
           key={letter}
-          onClick={() => onSelectLetter(letter)}
+          onClick={() => handleClickLetter(letter)}
         >
           {letter.toUpperCase()}
         </LetterSelectorBtn>
