@@ -23,42 +23,30 @@ export const RedButtonBootstrap = styled(RedButtonLink)`
   margin-left: 20px;
 `;
 
-export const ButtonStandardWidth = styled(Button)`
-  width: 200px;
-  border-radius: 5px;
-`;
-
-export const ClearButton = styled(ButtonStandardWidth)`
-  margin-right: 12px;
-  margin-left: auto;
-  border-radius: 0;
-  width: 130px;
-  height: 33px;
-  padding: 5px 22px;
+export const ClearButton = styled(Button)`
+  margin: 0;
+  padding: 3px 15px;
   border: 1px solid ${globalColor.blue.dirtyBlue};
+  border-radius: 4px;
   color: ${globalColor.blue.dirtyBlue};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  overflow: hidden;
 
   :hover {
-    border: 1px solid ${globalColor.blue.dirtyBlue};
+    border: 1px solid ${globalColor.blue.blue500};
     color: ${globalColor.blue.dirtyBlue};
   }
 
   :focus {
-    border: 1px solid ${globalColor.blue.dirtyBlue};
+    border: 1px solid ${globalColor.blue.blue500};
     color: ${globalColor.blue.dirtyBlue};
   }
 
   :active {
-    border: 1px solid ${globalColor.blue.dirtyBlue};
+    border: 1px solid ${globalColor.blue.blue500};
     color: ${globalColor.blue.dirtyBlue} !important;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    margin-bottom: 0 !important;
-  }
-
-  ${media_breakpoint_down('sm')} {
-    margin-right: 7px;
   }
 `;
 

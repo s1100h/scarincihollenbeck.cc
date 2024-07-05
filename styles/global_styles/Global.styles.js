@@ -16,6 +16,7 @@ export const globalColor = {
     gray130: '#4D4D4D',
     gray120: '#666',
     gray110: '#6A6A6A',
+    gray1002: '#FBFBFB',
     gray100: '#424242',
     gray90: '#4a4a4a',
     gray80: '#5E5E5E',

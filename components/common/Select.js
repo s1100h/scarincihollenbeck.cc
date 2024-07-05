@@ -1,5 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import {
   SelectIcon,
@@ -36,79 +42,90 @@ const optionVariants = {
   },
 };
 
-const CustomSelect = ({
-  placeHolder, onChange, inputValue, options,
-}) => {
-  const [selectActive, setSelectActive] = useState(false);
-  const selectRef = useRef(null);
-  const inputRef = useRef(null);
+const CustomSelect = forwardRef(
+  ({
+    placeHolder, onChange, inputValue, options,
+  }, ref) => {
+    const [selectActive, setSelectActive] = useState(false);
+    const selectRef = useRef(null);
+    const inputRef = useRef(null);
 
-  const handleClickOpener = () => {
-    setSelectActive(!selectActive);
-  };
-
-  const handleClickOption = (value) => {
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = value;
-    }
-    onChange(value);
-    setSelectActive(false);
-  };
-
-  const handleDocumentClick = (e) => {
-    if (selectRef.current && !selectRef.current.contains(e.target)) {
-      setSelectActive(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', handleDocumentClick);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
+    const handleClickOpener = () => {
+      setSelectActive(!selectActive);
     };
-  }, []);
 
-  return (
-    <SelectWrapper ref={selectRef}>
-      <SelectOpener onClick={handleClickOpener}>
-        <SelectInput
-          type="text"
-          value={inputValue}
-          readOnly
-          placeholder={placeHolder}
-          $selectActive={selectActive}
-          ref={inputRef}
-        />
-        <SelectIcon $selectActive={selectActive}>
-          <BsChevronDown size={24} />
-        </SelectIcon>
-      </SelectOpener>
+    const handleClickOption = (value) => {
+      if (inputRef && inputRef.current) {
+        inputRef.current.value = value;
+      }
+      onChange(value);
+      setSelectActive(false);
+    };
 
-      <AnimatePresence>
-        {selectActive && (
-          <SelectOptions
-            as={motion.ul}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={optionsVariants}
-          >
-            {options?.map((item, index) => (
-              <SelectOption
-                as={motion.li}
-                key={item?.databaseId}
-                variants={optionVariants}
-                onClick={() => handleClickOption(item?.title)}
-              >
-                {item?.title}
-              </SelectOption>
-            ))}
-          </SelectOptions>
-        )}
-      </AnimatePresence>
-    </SelectWrapper>
-  );
-};
+    const handleDocumentClick = (e) => {
+      if (selectRef.current && !selectRef.current.contains(e.target)) {
+        setSelectActive(false);
+      }
+    };
+
+    useEffect(() => {
+      document.addEventListener('click', handleDocumentClick);
+
+      return () => {
+        document.removeEventListener('click', handleDocumentClick);
+      };
+    }, []);
+
+    useImperativeHandle(ref, () => ({
+      clearSelect() {
+        if (inputRef && inputRef.current) {
+          inputRef.current.value = '';
+        }
+        setSelectActive(false);
+      },
+    }));
+
+    return (
+      <SelectWrapper ref={selectRef}>
+        <SelectOpener onClick={handleClickOpener} $selectActive={selectActive}>
+          <SelectInput
+            type="text"
+            value={inputValue}
+            readOnly
+            placeholder={placeHolder}
+            $selectActive={selectActive}
+            ref={inputRef}
+          />
+          <SelectIcon $selectActive={selectActive}>
+            <BsChevronDown size={24} />
+          </SelectIcon>
+        </SelectOpener>
+
+        <AnimatePresence>
+          {selectActive && (
+            <SelectOptions
+              as={motion.ul}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={optionsVariants}
+            >
+              {options?.map((item) => (
+                <SelectOption
+                  as={motion.li}
+                  key={item?.databaseId}
+                  variants={optionVariants}
+                  onClick={() => handleClickOption(item?.title)}
+                >
+                  {item?.title}
+                </SelectOption>
+              ))}
+            </SelectOptions>
+          )}
+        </AnimatePresence>
+      </SelectWrapper>
+    );
+  },
+);
 
 export default CustomSelect;

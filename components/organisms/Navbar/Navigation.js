@@ -6,6 +6,7 @@ import {
 } from 'styles/Navigation.style';
 import { useEffect, useRef, useState } from 'react';
 import { NAVIGATION_OPENERS } from 'utils/constants';
+import { useRouter } from 'next/router';
 import NavbarPractices from './NavbarPractices';
 import NavbarLocations from './NavbarLocations';
 import NavbarAttorneys from './NavbarAttorneys';
@@ -15,6 +16,7 @@ const Navigation = ({
 }) => {
   const [showNavContent, setShowNavContent] = useState(null);
   const navRef = useRef(null);
+  const { pathname } = useRouter();
 
   const handleEvent = (e, index) => {
     e.preventDefault();
@@ -59,11 +61,9 @@ const Navigation = ({
             onClick={(e) => handleEvent(e, index)}
           >
             <NavbarItemOpener
-              className={
-                showNavContent === index
-                  ? 'navbar-opener active'
-                  : 'navbar-opener'
-              }
+              className={`navbar-opener 
+                ${showNavContent === index ? 'active' : ''} 
+                ${pathname === '/attorneys' && index === 0 ? 'active' : ''}`}
             >
               {item}
             </NavbarItemOpener>
@@ -86,13 +86,15 @@ const Navigation = ({
         locations={locations}
       />
 
-      <NavbarAttorneys
-        practices={practices}
-        locations={locations}
-        showNavContent={showNavContent === 0}
-        setShowNavContent={setShowNavContent}
-        setIsSidebarOpen={setIsSidebarOpen}
-      />
+      {pathname !== '/attorneys' && (
+        <NavbarAttorneys
+          practices={practices}
+          locations={locations}
+          showNavContent={showNavContent === 0}
+          setShowNavContent={setShowNavContent}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+      )}
     </NavbarWrapper>
   );
 };
