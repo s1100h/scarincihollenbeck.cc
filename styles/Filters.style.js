@@ -186,7 +186,6 @@ export const ContainerFilters = styled(Container)`
   padding: 22px 20px !important;
   background-color: ${globalColor.white};
   box-shadow: ${globalShadow.allSideShadow};
-  
 
   #siteSearch {
     height: 48px !important;
