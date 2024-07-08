@@ -69,36 +69,12 @@ export const getStaticProps = async () => {
     aboutFirm2,
     awards,
     bannerLineOne,
-    serviceOne,
-    serviceTwo,
     bannerLineTwo,
     quote,
     mainTag,
     subMainTag,
-    leadership,
     isHoliday,
   } = homePage;
-
-  const modLeadership = leadership.map(
-    ({
-      title,
-      uri,
-      featuredImage,
-      administration,
-      attorneyMainInformation,
-      attorneyChairCoChair,
-    }) => ({
-      title,
-      slug: uri,
-      featuredImage: formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl),
-      designation: administration
-        ? administration?.title
-        : attorneyMainInformation?.designation,
-      chair: attorneyChairCoChair
-        ? extractChair(attorneyChairCoChair?.chair)
-        : null,
-    }),
-  );
 
   /** get firm locations */
   // const offices = await homePageLocations();
@@ -120,9 +96,6 @@ export const getStaticProps = async () => {
         mainTag,
         subMainTag,
       },
-      serviceOne,
-      serviceTwo,
-      leadership: modLeadership,
       offices: sanitizeOffices(sortedOffices),
       isHoliday,
     },
@@ -138,10 +111,7 @@ const Home = ({
   awards,
   banner,
   intro,
-  leadership,
   offices,
-  serviceOne,
-  serviceTwo,
   isHoliday,
   firmNewsArticles,
 }) => {
@@ -152,10 +122,7 @@ const Home = ({
     awards,
     banner,
     intro,
-    leadership,
     offices,
-    serviceOne,
-    serviceTwo,
     isHoliday,
     firmNewsArticles,
   };
