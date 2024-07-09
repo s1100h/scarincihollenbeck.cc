@@ -659,61 +659,7 @@ export const homePageQuery = `query HomePageQuery {
       bannerLineTwo
       quote
       mainTag
-      serviceOne {
-        description
-        linkLabel
-        linkUrl
-        title
-        serviceImage {
-          sourceUrl
-        }
-      }
-      serviceTwo {
-        description
-        linkLabel
-        linkUrl
-        serviceImage {
-          sourceUrl
-        }
-        title
-      }
       subMainTag
-      leadership {
-        ... on Administration {
-          id
-          uri
-          title
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          administration {
-            title
-          }
-        }
-        ... on AttorneyProfile {
-          id
-          uri
-          title
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          attorneyMainInformation {
-            designation
-          }
-          attorneyChairCoChair {
-            chair {
-              ... on Practice {
-                id
-                title
-              }
-            }
-          }
-        }
-      }
       isHoliday
     }
     seo {

@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
-import { globalColor, globalShadow, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalShadow,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { GradientWrapper } from './SingleSubHeader.style';
 
@@ -201,7 +206,7 @@ export const TileContactIcon = styled.span`
     width: 100%;
     height: 100%;
   }
-`
+`;
 
 export const TileContactTitle = styled.h4`
   margin: 0;
@@ -218,9 +223,9 @@ export const TileContactTitle = styled.h4`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(24)};
-  line-height: 1.33;
+    line-height: 1.33;
   }
-`
+`;
 
 export const TileContactBody = styled.div`
   flex: 1;
@@ -253,7 +258,7 @@ export const TileContactBody = styled.div`
     height: 100%;
     object-fit: cover;
   }
-`
+`;
 
 export const PuzzleContainer = styled.section`
   display: flex;
@@ -272,7 +277,8 @@ export const PuzzleContainer = styled.section`
     padding: 28px;
     border: 2px solid ${globalColor.gray.gray10};
 
-    &:nth-child(1), &:nth-child(2) {
+    &:nth-child(1),
+    &:nth-child(2) {
       width: calc(25% - 15px);
 
       ${media_breakpoint_down('xl')} {
