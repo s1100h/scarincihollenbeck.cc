@@ -26,6 +26,8 @@ const Awards = dynamic(() => import('components/organisms/home/Awards'), {
   ssr: true,
 });
 
+const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
+
 const HomePage = ({
   seo,
   aboutFirm,
@@ -72,6 +74,7 @@ const HomePage = ({
       {isHoliday && <HappyHolidayLink />}
       {/* <InfoModal /> */}
       <AboutFirmSection {...aboutFirmProps} />
+      <HomeContactForm />
       <AllOfficeLocations offices={offices} />
       <FirmNews firmNews={firmNewsArticles} />
       <Awards awards={awards} />
