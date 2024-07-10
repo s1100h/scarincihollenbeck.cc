@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import {
   globalColor,
+  globalTransition,
   rem,
 } from './global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
+import Link from 'next/link';
 
 
 export const AboutSection = styled.section`
@@ -52,38 +54,6 @@ export const AboutBlock = styled.div`
   }
 `;
 
-export const AboutSeparator = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-
-  &::before, &::after {
-    content: '';
-    width: 1px;
-    height: 100%;
-    background-color: ${globalColor.blue.blue400};
-
-    ${media_breakpoint_down('xl')} {
-      width: 100%;
-      height: 1px;
-    }
-  }
-
-  img {
-    margin: auto 0;
-
-    ${media_breakpoint_down('md')} {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  ${media_breakpoint_down('xl')} {
-    flex-direction: row;
-  }
-`;
-
 export const AboutTitle = styled.h2`
   margin: 0;
   font-size: ${rem(32)};
@@ -123,6 +93,15 @@ export const AboutDescription = styled.div`
       &::marker {
         font-size: 12px;
       }
+    }
+  }
+
+  .bullets-li {
+    padding-left: 0;
+    position: static;
+
+    &::before {
+      content: none;
     }
   }
 
@@ -220,9 +199,14 @@ export const AboutCardDescription = styled.div`
   }
 `;
 
-export const AboutCardTitle = styled.h3`
+export const AboutCardTitle = styled(Link)`
   color: ${globalColor.white};
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
+  transition: ${globalTransition.default};
+
+  &:hover {
+    color: ${globalColor.blue.skyBlue};
+  }
 `;

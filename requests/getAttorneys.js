@@ -24,6 +24,7 @@ export const getAttorneys = async () => {
       databaseId,
       attorneyMainInformation,
       attorneyPrimaryRelatedPracticesLocationsGroups,
+      attorneyBiography,
     }) => {
       attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
         ({
@@ -53,6 +54,7 @@ export const getAttorneys = async () => {
         link: uri,
         better_featured_image: attorneyMainInformation.profileImage.sourceUrl,
         profileImage: attorneyMainInformation.profileImage.sourceUrl,
+        miniBio: attorneyBiography?.miniBio || '',
       };
     },
   );
@@ -81,6 +83,7 @@ export const getKaterinTraugh = async () => {
       phoneExtension,
       location,
       featuredImage: { sourceUrl },
+      biography,
     },
     uri,
   } = data.administration;
@@ -103,5 +106,6 @@ export const getKaterinTraugh = async () => {
     ),
     uri,
     better_featured_image: sourceUrl,
+    biography,
   };
 };

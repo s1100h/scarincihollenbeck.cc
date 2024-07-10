@@ -12,7 +12,7 @@ const HomeContactForm = () => (
     <ContainerDefault>
       <ContactFormHolder>
         <ContactFormTitle>Let’s get in touch!</ContactFormTitle>
-        <ContactForm blockName="homepage-contact-form" />
+        <ContactForm buttonText="Send" blockName="homepage-contact-form" />
       </ContactFormHolder>
     </ContainerDefault>
   </ContactFormWrapper>

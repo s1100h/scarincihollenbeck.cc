@@ -75,31 +75,6 @@ export const BannerSlogan = styled.li`
   line-height: 1.5;
   text-transform: uppercase;
 
-  &.slogan-separator {
-    --size: 6px;
-    width: 0; 
-    height: 0;
-    border: var(--size) solid transparent;
-    border-bottom-color: ${globalColor.blue.blue400};
-    position: relative; 
-    top: calc(var(--size) * -1);
-
-    &:after {
-      content: "";
-      width: 0; 
-      height: 0;
-      position: absolute; 
-      left: calc(var(--size) * -1);
-      top: var(--size);
-      border: var(--size) solid transparent;
-      border-top-color: ${globalColor.blue.blue400};
-    }
-
-    ${media_breakpoint_down('md')} {
-      --size: 4px;
-    }
-  }
-
   ${media_breakpoint_down('md')} {
     font-size: 1rem;
     line-height: 1.5;
@@ -245,55 +220,21 @@ export const BannerCardTitle = styled.h2`
   }
 `;
 
-export const BannerCardContent = styled.div`
+export const BannerCardContent = styled.p`
   margin: 0 0 12px 0;
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  white-space: pre-wrap;
+  color: ${globalColor.gray.gray110};
 
-  p, ul {
-    margin: 0;
-    color: ${globalColor.gray.gray110};
-
-    ${media_breakpoint_down('sm')} {
-      font-size: 0.875rem;
-      line-height: 1.43;
-    }
-  }
-
-  ul {
-    list-style: disc;
-
-    li {
-      margin-left: 24px;
-      &::marker {
-        font-size: 12px;
-      }
-    }
+  ${media_breakpoint_down('sm')} {
+    font-size: 0.875rem;
+    line-height: 1.43;
   }
 
   ${media_breakpoint_down('sm')} {
     margin-bottom: 8px;
     row-gap: 12px;
-  }
-`;
-
-export const BannerCardLink = styled(Link)`
-  width: max-content;
-  padding: 4px 0 2px;
-  margin-top: auto;
-  color: ${globalColor.blue.darkBlue};
-  font-weight: 600;
-  border-bottom: 2px solid ${globalColor.blue.skyBlue};
-  transition: ${globalTransition.default};
-
-  &:hover {
-    color: ${globalColor.blue.blue400};
-    border-color: ${globalColor.blue.blue400};
-  }
-
-  ${media_breakpoint_down('sm')} {
-    font-size: 0.875rem;
-    line-height: 1.43;
   }
 `;

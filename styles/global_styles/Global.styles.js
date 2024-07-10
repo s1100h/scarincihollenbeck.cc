@@ -681,15 +681,15 @@ export const ButtonLinkCss = `
 
 export const beforeDoteStyledList = `
 :before {
-	 content: '';
-	 width: 3px;
-	 height: 5px;
-	 margin-right: 5px;
-	 background-color: ${globalColor.black};
-	 position: absolute;
-	 left: -10px;
-	 top: 12px;
-	 border-radius: 1px;
+  content: '';
+  width: 3px;
+  height: 5px;
+  margin-right: 5px;
+  background-color: ${globalColor.black};
+  position: absolute;
+  left: -10px;
+  top: 12px;
+  border-radius: 1px;
 }
 `;
 
