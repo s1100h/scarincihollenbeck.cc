@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext, useContext, useEffect, useState,
+} from 'react';
 import decodeResponse from 'utils/decodeResponse';
 import empty from 'is-empty';
 import { HeaderSizeContext } from './HeaderSizeContext';
@@ -9,37 +11,18 @@ export const AttorneysProvider = ({ children }) => {
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
   const [attorneysContext, setAttorneysContext] = useState([]);
-  const [dataForFilter, setDataForFilter] = useState({
-    sPractices: [],
-    locations: [],
-    designations: '',
-  });
   const [authors, setAuthors] = useState([]);
   const [containerRefer, setContainerRefer] = useState(null);
   const { headerSize } = useContext(HeaderSizeContext);
 
+  // Scroll to ref container when selected filters
   function scrollToRef() {
     if (containerRefer) {
-      const offsetTop = containerRefer.offsetTop - headerSize?.height;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      setTimeout(() => {
+        const offsetTop = containerRefer.offsetTop - headerSize?.height;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      });
     }
-  }
-
-  /* Handle User Input Event */
-  function handleChange(e) {
-    if (e.currentTarget && e.currentTarget.value.length === 0) {
-      setUserInput('');
-    } else {
-      const input = e.target.value.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
-      );
-      const results = { selected: userInput, key: 'query' };
-      const concatResults = select.concat(results);
-      setUserInput(input);
-      setSelect(concatResults);
-    }
-    scrollToRef();
   }
 
   /* Click Events */
@@ -70,6 +53,25 @@ export const AttorneysProvider = ({ children }) => {
     scrollToRef();
   }
 
+  /* Handle User Input Event */
+  function handleChange(e) {
+    if (e.currentTarget && e.currentTarget.value.length === 0) {
+      setUserInput('');
+      clearQuery('query');
+    } else {
+      const input = e.target.value.replace(
+        /\w\S*/g,
+        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
+      );
+      const results = { selected: userInput, key: 'query' };
+      const concatResults = select.concat(results);
+      setUserInput(input);
+      setSelect(concatResults);
+
+      scrollToRef();
+    }
+  }
+
   function clearAll() {
     setUserInput('');
     setSelect([]);
@@ -89,9 +91,21 @@ export const AttorneysProvider = ({ children }) => {
     }
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const attorneys = await fetch('/api/revalidate-attorneys');
+      const resDecoded = await decodeResponse(attorneys);
+      if (!empty(resDecoded?.data)) {
+        setAttorneysContext(resDecoded?.data);
+      }
+    };
+
+    if (empty(attorneysContext)) {
+      fetchData();
+    }
+  }, []);
+
   const values = {
-    dataForFilter,
-    setDataForFilter,
     userInput,
     setUserInput,
     select,

@@ -5,7 +5,6 @@ import {
   homePageQuery,
   officeLocationQuery,
 } from 'requests/graphql-queries';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 /** pull out the attorney chair data from attorney response */
 const extractChair = (chair) => {
@@ -65,15 +64,14 @@ export const getStaticProps = async () => {
   const request = await homePageContent();
   const { seo, homePage } = request;
   const {
-    aboutFirm,
-    aboutFirm2,
     awards,
-    bannerLineOne,
-    bannerLineTwo,
-    quote,
     mainTag,
     subMainTag,
     isHoliday,
+    firstSection,
+    whoWeAre,
+    industryWeWorkWith,
+    whatWeDo,
   } = homePage;
 
   /** get firm locations */
@@ -83,21 +81,14 @@ export const getStaticProps = async () => {
   return {
     props: {
       seo,
-      aboutFirm,
-      aboutFirm2,
       awards,
       firmNewsArticles,
-      banner: {
-        lineOne: bannerLineOne,
-        lineTwo: bannerLineTwo,
-        quote,
-      },
-      intro: {
-        mainTag,
-        subMainTag,
-      },
       offices: sanitizeOffices(sortedOffices),
       isHoliday,
+      firstSection,
+      whoWeAre,
+      industryWeWorkWith,
+      whatWeDo,
     },
     revalidate: 86400,
   };
@@ -106,25 +97,25 @@ export const getStaticProps = async () => {
 /** The home page component */
 const Home = ({
   seo,
-  aboutFirm,
-  aboutFirm2,
   awards,
-  banner,
-  intro,
+  firmNewsArticles,
   offices,
   isHoliday,
-  firmNewsArticles,
+  firstSection,
+  whoWeAre,
+  industryWeWorkWith,
+  whatWeDo,
 }) => {
   const homePageProps = {
     seo,
-    aboutFirm,
-    aboutFirm2,
     awards,
-    banner,
-    intro,
+    firmNewsArticles,
     offices,
     isHoliday,
-    firmNewsArticles,
+    firstSection,
+    whoWeAre,
+    industryWeWorkWith,
+    whatWeDo,
   };
   return <HomePage {...homePageProps} />;
 };

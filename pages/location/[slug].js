@@ -10,7 +10,7 @@ import {
 import { fetchAPI } from 'requests/api';
 import { getOfficeAndMoreData } from 'requests/graphql-queries';
 import empty from 'is-empty';
-import { getAttorneys } from '../attorneys';
+import { getAttorneys } from 'requests/getAttorneys';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 

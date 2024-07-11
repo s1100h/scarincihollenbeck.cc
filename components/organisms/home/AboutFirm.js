@@ -1,35 +1,65 @@
 import {
-  AboutArticle,
-  AboutBox,
-  AboutContainer,
-  LinkButtonAbout,
-  SubTitleAbout,
+  AboutBlock,
+  AboutBlocks,
+  AboutCard,
+  AboutCardContent,
+  AboutCardDescription,
+  AboutCardImage,
+  AboutCardTitle,
+  AboutDescription,
+  AboutSection,
+  AboutTitle,
 } from 'styles/AboutFirm.style';
-import { useId, useMemo } from 'react';
-import { JSXWithDynamicLinks } from '../../atoms/micro-templates/JSXWithDynamicLinks';
+import { useMemo } from 'react';
+import { ContainerDefault } from 'styles/Containers.style';
+import Image from 'next/image';
+import LogoSeparator from 'components/common/LogoSeparator';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 
-const AboutFirm = ({ infos, linksBtn }) => {
-  const content = useMemo(() => ({ infos, linksBtn }), [infos, linksBtn]);
-  return (
-    <AboutContainer>
-      <div className="links-box">
-        {content.linksBtn.map((link) => (
-          <LinkButtonAbout key={useId()} href={link.linkUrl}>
-            {link.linkLabel}
-          </LinkButtonAbout>
-        ))}
-      </div>
-      <AboutBox>
-        {content.infos.map((info) => (
-          <AboutArticle key={info.title}>
-            <SubTitleAbout>{info.subTitle}</SubTitleAbout>
-            <h3>{info.title}</h3>
-            <JSXWithDynamicLinks HTML={info.description} />
-          </AboutArticle>
-        ))}
-      </AboutBox>
-    </AboutContainer>
-  );
-};
+const AboutFirm = ({
+  title,
+  heroProfileLink,
+  aboutHero,
+  arcticle,
+  heroPhoto,
+}) => (
+  <AboutSection>
+    <ContainerDefault>
+      <AboutBlocks>
+        <AboutBlock>
+          <AboutTitle>{title}</AboutTitle>
+          <AboutDescription>
+            <JSXWithDynamicLinks HTML={arcticle} />
+          </AboutDescription>
+        </AboutBlock>
+        <LogoSeparator />
+        <AboutBlock>
+          <AboutCard>
+            <AboutCardImage>
+              <Image
+                src={heroPhoto?.sourceUrl}
+                width={280}
+                height={374}
+                alt={heroPhoto?.altText}
+              />
+            </AboutCardImage>
+            <AboutCardContent>
+              <AboutCardDescription>
+                {aboutHero.split('\n').map((paragraph, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <p key={`${aboutHero}-${index}`}>{paragraph}</p>
+                ))}
+              </AboutCardDescription>
+
+              <AboutCardTitle href={heroProfileLink?.url}>
+                {heroProfileLink?.title}
+              </AboutCardTitle>
+            </AboutCardContent>
+          </AboutCard>
+        </AboutBlock>
+      </AboutBlocks>
+    </ContainerDefault>
+  </AboutSection>
+);
 
 export default AboutFirm;

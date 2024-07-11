@@ -11,7 +11,7 @@ import {
 import { LocationContext } from '../../../contexts/LocationContext';
 import DefaultHeader from './DefaultHeader';
 
-const sanitizeMenuData = (data) => {
+const sanitizePractices = (data) => {
   if (!data) return [];
 
   return data?.map((item) => ({
@@ -41,7 +41,7 @@ export default function Header() {
     [practices],
   );
 
-  const sanitizedPractices = sanitizeMenuData(practiceWithOverview);
+  const sanitizedPractices = sanitizePractices(practiceWithOverview);
 
   const menuData = createMenuData(sanitizedPractices, locations);
 

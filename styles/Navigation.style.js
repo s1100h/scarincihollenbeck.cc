@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import { Navbar } from 'react-bootstrap';
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 import {
   globalColor,
   globalTransition,
@@ -15,7 +11,8 @@ import {
   SidebarMenuItemOpener,
   SidebarMenuSubitemOpener,
 } from './Sidebar.style';
-import { FiltersHolder } from './Filters.style';
+import { LetterSelectorBtn } from './Filters.style';
+import { ClearButton } from './Buttons.style';
 
 export const DropdownFirstLvl = styled.div`
   width: 20vw;
@@ -202,6 +199,8 @@ export const NavbarItemContent = styled(motion.div)`
   width: 100%;
   background-color: ${globalColor.blue.darkBlue};
   z-index: 0;
+  max-height: calc(80dvh - 115px);
+  display: flex;
 
   &.practices-split {
     &::after {
@@ -222,19 +221,17 @@ export const NavbarItemContent = styled(motion.div)`
 
   .navbar-container {
     display: flex;
-  }
+    padding-top: 20px;
+    padding-bottom: 40px;
 
-  ${media_breakpoint_down('lg')} {
-    position: static;
+    ${media_breakpoint_down('md')} {
+      padding-top: 16px;
+      padding-bottom: 24px;
+    }
   }
 
   .practices-list {
-    padding: 20px 0 40px 0;
     width: 100%;
-
-    ${media_breakpoint_down('md')} {
-      padding: 16px 0 24px 0;
-    }
 
     ${SidebarMenuItemOpener} {
       color: ${globalColor.white};
@@ -250,15 +247,42 @@ export const NavbarItemContent = styled(motion.div)`
     }
   }
 
-  ${FiltersHolder} {
-    padding: 20px 0 40px 0;
+  ${LetterSelectorBtn} {
+    color: ${globalColor.white};
+
+    &:disabled {
+      color: ${globalColor.gray.gray110};
+    }
+  }
+
+  ${ClearButton} {
+    border: 1px solid ${globalColor.gray.gray500};
+    color: ${globalColor.gray.gray1002};
+
+    :hover {
+      border: 1px solid ${globalColor.blue.blue500};
+      color: ${globalColor.gray.gray1002};
+    }
+
+    :focus {
+      border: 1px solid ${globalColor.blue.blue500};
+      color: ${globalColor.gray.gray1002};
+    }
+
+    :active {
+      border: 1px solid ${globalColor.blue.blue500};
+      color: ${globalColor.gray.gray1002} !important;
+    }
+  }
+
+  ${media_breakpoint_down('lg')} {
+    position: static;
+    max-height: 100%;
   }
 `;
 
 export const NavbarLeftBlock = styled.div`
-  padding: 20px 0;
   width: 50%;
-  max-height: calc(80dvh - 120px);
   display: flex;
   flex-direction: column;
 `;
@@ -325,9 +349,8 @@ export const NavbarLeftItemOpenerIcon = styled.span`
 `;
 
 export const NavbarRightBlock = styled.div`
-  padding: 20px 0 20px 16px;
+  padding-left: 16px;
   width: 50%;
-  max-height: calc(80dvh - 120px);
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -375,5 +398,25 @@ export const NavbarRightItemLink = styled(Link)`
     &:hover {
       color: ${globalColor.blue.skyBlue};
     }
+  }
+`;
+
+export const NavbarLink = styled(Link)`
+  padding: 10px 0 8px 0;
+  color: ${globalColor.white};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  border-bottom: 2px solid ${globalColor.blue.skyBlue};
+  transition: ${globalTransition.default};
+
+  &:hover {
+    color: ${globalColor.blue.skyBlue};
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(14)};
+    line-height: 1.43;
+    padding: 4px 0 2px 0;
   }
 `;

@@ -7,6 +7,15 @@ import PracticesIcon from 'components/common/icons/PracticesIcon';
 import AttorneysIcon from 'components/common/icons/AttorneysIcon';
 import HomeIcon from 'components/common/icons/HomeIcon';
 import CareersIcon from 'components/common/icons/CareersIcon';
+import CannabisIcon from 'components/common/icons/CannabisIcon';
+import FoodIcon from 'components/common/icons/FoodIcon';
+import MailingListIcon from 'components/common/icons/MailingListIcon';
+import MediaIcon from 'components/common/icons/MediaIcon';
+import PaymentIcon from 'components/common/icons/PaymentIcon';
+import PostsIcon from 'components/common/icons/PostsIcon';
+import RealEstateIcon from 'components/common/icons/RealEstateIcon';
+import TransportationIcon from 'components/common/icons/TransportationIcon';
+import BankingIcon from 'components/common/icons/BankingIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -568,4 +577,28 @@ export const createOverviewLinks = (practices, isAllLinks) => {
       childPractice: updatedChildPractice,
     };
   });
+};
+
+export const getIcon = (name) => {
+  const icons = {
+    Attorneys: <AttorneysIcon />,
+    Banking: <BankingIcon />,
+    Cannabis: <CannabisIcon />,
+    Careers: <CareersIcon />,
+    Firm: <FirmIcon />,
+    Food: <FoodIcon />,
+    Home: <HomeIcon />,
+    Industries: <IndustriesIcon />,
+    'News paper': <LibraryIcon />,
+    Locations: <LocationsIcon />,
+    MailingList: <MailingListIcon />,
+    Media: <MediaIcon />,
+    Payment: <PaymentIcon />,
+    Posts: <PostsIcon />,
+    Practices: <PracticesIcon />,
+    'Real Estate': <RealEstateIcon />,
+    Transportation: <TransportationIcon />,
+  };
+
+  return icons[name];
 };

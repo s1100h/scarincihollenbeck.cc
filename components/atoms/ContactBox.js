@@ -20,7 +20,7 @@ const ContactBoxTemplate = ({
             <a
               onClick={(e) => e.stopPropagation()}
               href={office.uri}
-              key={office.databaseId}
+              key={office?.databaseId || office?.id}
             >
               <span>{office.title}</span>
             </a>

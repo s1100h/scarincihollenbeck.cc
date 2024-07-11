@@ -1,265 +1,40 @@
-import { Button, Container } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { globalColor, globalShadow } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { SelectWrapper } from './CustomSelect.style';
+import { SearchInput } from './GlobalSearch.style';
+import Link from 'next/link';
 
-export const DropDownItemSelector = styled(Dropdown.Item)`
-  margin-top: 5px;
-  font-weight: 600;
+export const SelectionWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 `;
 
-export const DropdownSelectorBtn = styled(DropdownButton)`
-  .show {
-    display: ${({ props }) => (props?.bigMenu ? 'flex' : 'block')};
-    background-color: ${globalColor.blue.darkBlue};
-    height: ${({ props }) => (props?.bigMenu ? '600px' : 'auto')};
-
-    ${({ props }) =>
-      props?.bigMenu
-        ? `
-      min-width: 60vw;
-      
-      ${media_breakpoint_down('xl')} {
-         min-width: 80vw;
-       }
-       
-       ${media_breakpoint_down('lg')} {
-         min-width: 87vw;
-         
-         .active {
-            &::after {
-              content: '';
-              position: absolute;
-              right: -12px;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 12px;
-              height: 20px;
-              background-color: ${globalColor.white};
-              clip-path: polygon(100% 50%, 0 0, 0% 100%);
-              opacity: 1;
-            }
-         }
-       }
-       
-       ${media_breakpoint_down('md')} {
-          min-width: 100%;
-       }
-      `
-        : ''};
-
-    .mobile-filter {
-      width: 100%;
-      margin-bottom: 5px;
-      background-color: ${globalColor.blue.darkUltramarine};
-
-      .accordion-item {
-        background-color: ${globalColor.blue.darkUltramarine};
-        border: none;
-      }
-      .collapsed {
-        :after {
-          background-image: var(--bs-accordion-btn-active-icon);
-        }
-      }
-      .show {
-        height: auto;
-
-        .accordion-body {
-          width: 100%;
-        }
-      }
-      .accordion-button {
-        background-color: ${globalColor.blue.darkUltramarine};
-        border-radius: 0;
-        width: 100%;
-
-        //:after {
-        //  display: none;
-        //}
-
-        :focus {
-          border: none;
-          box-shadow: none;
-        }
-      }
-    }
-
-    .dropdown-item {
-      color: ${globalColor.white};
-
-      :hover {
-        background-color: ${globalColor.blue.darkUltramarine};
-      }
-    }
-
-    .active {
-      :hover {
-        &::after {
-          content: '';
-          position: absolute;
-          right: -12px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 12px;
-          height: 20px;
-          background-color: ${globalColor.blue.darkUltramarine};
-          clip-path: polygon(100% 50%, 0 0, 0% 100%);
-          opacity: 1;
-        }
-      }
-    }
-
-    button {
-      color: ${globalColor.white};
-      font-weight: 700;
-      padding: 7px;
-      width: 95%;
-      text-align: start;
-      position: relative;
-
-      :hover {
-        background-color: ${globalColor.blue.darkUltramarine};
-      }
-
-      ${media_breakpoint_down('lg')} {
-        width: 92%;
-      }
-    }
-  }
-  > {
-    button {
-      width: 100%;
-      height: 47px;
-      padding: 0 23px;
-      text-align: left;
-      background-color: #fff;
-      color: ${globalColor.grayExtraLite.grayExtraLite80};
-      transition: all 200ms linear;
-      border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
-      border-radius: 0;
-      text-decoration: none;
-
-      &::after {
-        float: right;
-        margin-top: 8px;
-        margin-bottom: 8px;
-      }
-
-      &:focus {
-        text-decoration: none;
-      }
-
-      &:hover {
-        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
-        color: ${globalColor.black};
-        text-decoration: none;
-      }
-    }
-
-    .btn-link {
-      &:active {
-        border: 1px solid ${globalColor.grayExtraLite.grayExtraLite100};
-        color: ${globalColor.black};
-        text-decoration: none;
-      }
-    }
-  }
+export const SelectionList = styled.ul`
+  margin: 0;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 `;
 
-export const FiltersWrapper = styled.div`
-  background-color: transparent;
-  position: sticky;
-  top: ${({ headerHeight }) => headerHeight};
-  left: 0;
-  z-index: 10;
+export const SelectionItem = styled.li``;
 
-  ${media_breakpoint_down('md')} {
-    position: static;
-  }
-`;
-
-export const ContainerFilters = styled(Container)`
-  min-width: 86vw;
-  padding: 22px 20px !important;
-  background-color: ${globalColor.white};
-  box-shadow: ${globalShadow.allSideShadow};
-
-  #siteSearch {
-    height: 48px !important;
-    margin-left: 0;
-    margin-right: 50px;
-  }
-
-  ${media_breakpoint_down('xl')} {
-    .row {
-      > :nth-child(-n + 2) {
-        margin-bottom: 20px;
-      }
-    }
-  }
-
-  ${media_breakpoint_down('md')} {
-    .row {
-      > :nth-child(-n + 2) {
-        margin-bottom: 0;
-      }
-
-      > :nth-child(3) {
-        margin-bottom: 10px;
-      }
-
-      form {
-        width: 100%;
-      }
-    }
-  }
-`;
-
-export const DropDownItemTitle = styled(Dropdown.Item)`
-  font-weight: bold;
-  color: #fff;
-  background-color: #444;
-  text-shadow: 1px 2px 1px #000;
-  text-transform: uppercase;
-  transition: all 200ms linear;
-  white-space: pre-line;
-  margin-bottom: 10px;
-  padding: 0;
-  padding-left: 8px;
-  padding-top: 5px;
-  padding-bottom: 3px;
-
-  &:hover {
-    font-weight: bold;
-    color: #fff;
-    background-color: #444;
-    text-shadow: 1px 2px 1px #000;
-    text-transform: uppercase;
-    border-bottom: 3px solid #db2220;
-  }
-`;
-
-export const ChildPracticeLink = styled(Dropdown.Item)`
-  padding: 0;
-  padding-right: 8px;
-  padding-left: 5px;
-  padding-bottom: 10px;
-  white-space: pre-line;
-  font-weight: bold;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const ResultButton = styled(Button)`
+export const SelectionButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
   color: ${globalColor.white};
-  background-color: ${globalColor.blue.dirtyBlue};
-  border-radius: 0;
-  padding: 5px 22px;
+  background-color: ${globalColor.blue.blue500};
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 4px 16px;
 
   :hover {
     color: ${globalColor.white};
@@ -276,50 +51,148 @@ export const ResultButton = styled(Button)`
     background-color: ${globalColor.blue.dirtyBlue};
   }
 
-  svg {
-    margin-left: 12px;
+  > svg {
+    flex-shrink: 0;
   }
 `;
 
 export const LetterSelectorContainer = styled.div`
+  max-width: 500px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 4px;
+
+  ${media_breakpoint_down('lg')} {
+    max-width: 100%;
+  }
 `;
 
 export const LetterSelectorBtn = styled.button`
   display: flex;
-  width: 7.69%;
-  justify-content: center;
+  align-items: center;
+  width: 20px;
   color: ${globalColor.blue.ultramarine};
-  text-decoration: underline;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  text-decoration: none;
 
   :disabled {
-    color: #b3b3b3;
+    color: ${globalColor.gray.gray110};
     background: transparent;
     text-decoration: none;
   }
 `;
 
-export const FilterBox = styled.div`
+//Styles for new Filters in Header Navbar
+
+export const FiltersHolder = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 50%;
-  box-shadow: ${globalShadow.allSideShadow};
-  overflow-y: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  row-gap: 16px;
+`;
 
-  h6 {
-    margin-left: auto;
-    margin-right: auto;
-    color: ${globalColor.white};
-    width: 80%;
-    text-align: center;
-    padding: 7px;
-    border-radius: 5px;
-    text-decoration: 1px solid black;
-    background-color: ${globalColor.blue.darkUltramarine};
+export const FiltersItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+
+  ${media_breakpoint_down('lg')} {
+    row-gap: 24px;
+  }
+`;
+
+export const FiltersColumns = styled.div`
+  display: flex;
+  gap: 20px;
+
+  ${media_breakpoint_down('lg')} {
+    flex-direction: column;
+  }
+`;
+
+export const FiltersLeftColumn = styled.div`
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 12px;
+  padding-right: 20px;
+  border-right: 1px solid ${globalColor.gray.gray500};
+
+  ${SelectWrapper} {
+    width: calc(50% - 8px);
+
+    ${media_breakpoint_down('lg')} {
+      width: 100%;
+    }
+  }
+
+  ${SearchInput} {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  ${media_breakpoint_down('lg')} {
+    width: 100%;
+    padding-right: 0;
+    border-right: 0;
+  }
+`;
+
+export const FiltersRightColumn = styled.div`
+  width: calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  row-gap: 20px;
+
+  ${media_breakpoint_down('lg')} {
+    width: 100%;
+    row-gap: 12px;
+  }
+`;
+
+export const FiltersResults = styled.div`
+  min-height: 76px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  overflow-y: auto;
+
+  ${media_breakpoint_down('lg')} {
+    min-height: unset;
+  }
+`;
+
+export const ResultCard = styled(Link)`
+  width: calc((100% - 48px) / 4);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  border-radius: 4px;
+  background-color: ${globalColor.blue.blue6002};
+  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    > span {
+      color: ${globalColor.white};
+    }
+  }
+
+  ${media_breakpoint_down('xxl')} {
+    width: calc((100% - 32px) / 3);
+  }
+
+  ${media_breakpoint_down('lg')} {
+    width: calc((100% - 16px) / 2);
   }
 
   ${media_breakpoint_down('md')} {
@@ -327,22 +200,50 @@ export const FilterBox = styled.div`
   }
 `;
 
-//Styles for new Filters in Header Navbar
-
-export const FiltersHolder = styled.div`
+export const ResultCardIcon = styled.span`
+  width: 28px;
+  height: 28px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: ${globalColor.gray.gray500};
+  transition: ${globalTransition.default};
+
+  ${media_breakpoint_down('md')} {
+    width: 24px;
+    height: 24px;
+  }
 `;
-export const FiltersLeftColumn = styled.div`
-  width: 50%;
+
+export const ResultCardContent = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
-`;
-export const FiltersRightColumn = styled.div`
-  width: 50%;
+  row-gap: 4px;
 `;
 
-export const FiltersResults = styled.div`
-  width: 100%;
+export const ResultCardTitle = styled.h4`
+  margin: 0;
+  color: ${globalColor.white};
+  font-size: ${rem(18)};
+  line-height: 1.55;
+  font-weight: 500;
+
+  .highlight {
+    color: ${globalColor.blue.blue400};
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+`;
+
+export const ResultCardSubtitle = styled.p`
+  margin: 0;
+  color: ${globalColor.gray.gray500};
+  font-family: var(--font-lato);
+  font-size: ${rem(12)};
+  line-height: 1.67;
+  font-weight: 400;
+  text-transform: uppercase;
 `;
