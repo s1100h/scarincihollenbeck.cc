@@ -23,6 +23,22 @@ export const IndustriesHeader = styled.div`
   justify-content: space-between;
   gap: 24px;
 
+  .separated-title {
+    width: calc(33.33% - 12px);
+
+    .title-text {
+      max-width: 211px;
+
+      ${media_breakpoint_down('lg')} {
+        max-width: 100%;
+      }
+    }
+
+    ${media_breakpoint_down('lg')} {
+      width: 100%;
+    }
+  }
+
   > p {
     margin: 0;
     flex: 1;
@@ -45,36 +61,6 @@ export const IndustriesHeader = styled.div`
 
   ${media_breakpoint_down('md')} {
     row-gap: 8px;
-  }
-`;
-
-export const IndustriesTitle = styled.h2`
-  width: calc(33.33% - 12px);
-  margin: 0;
-  display: flex;
-  align-items: flex-start;
-  column-gap: 4px;
-  color: ${globalColor.blue.darkBlue};
-  font-size: ${rem(32)};
-  line-height: 1.38;
-  font-weight: 600;
-
-  > span {
-    margin: 10px;
-
-    ${media_breakpoint_down('md')} {
-      margin: 6px;
-      --size: 8px;
-    }
-  }
-
-  ${media_breakpoint_down('lg')} {
-    width: 100%;
-  }
-
-  ${media_breakpoint_down('md')} {
-    font-size: ${rem(20)};
-    line-height: 1.4;
   }
 `;
 

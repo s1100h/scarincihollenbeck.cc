@@ -28,7 +28,8 @@ const Awards = dynamic(() => import('components/organisms/home/Awards'), {
 
 const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
 const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
-const RandomBio = dynamic(() => import('components/organisms/home/RandomBio'));
+const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
+const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
 
 const HomePage = ({
   seo,
@@ -53,7 +54,8 @@ const HomePage = ({
     <AboutFirmSection {...whoWeAre} />
     <HomeContactForm />
     <IndustriesSection {...industryWeWorkWith} />
-    <RandomBio />
+    <RandomBioSection />
+    <WhatWeDoSection {...whatWeDo} />
     <AllOfficeLocations offices={offices} />
     <FirmNews firmNews={firmNewsArticles} />
     <Awards awards={awards} />

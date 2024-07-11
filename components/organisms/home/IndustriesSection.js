@@ -3,13 +3,13 @@ import {
   IndustriesCards,
   IndustriesHeader,
   IndustriesHolder,
-  IndustriesTitle,
+  IndustriesTitleHolder,
   IndustriesWrapper,
 } from 'styles/Industries.style';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import { UnderlinedLink } from 'styles/Buttons.style';
 import { ContainerDefault } from 'styles/Containers.style';
-import { DiamondSeparator } from '../../../styles/Separators.style';
+import SeparatedTitle from 'components/common/SeparatedTitle';
 import IndustriesCard from './IndustriesCard';
 
 const IndustriesSection = ({
@@ -19,10 +19,11 @@ const IndustriesSection = ({
     <ContainerDefault>
       <IndustriesHolder>
         <IndustriesHeader>
-          <IndustriesTitle>
-            <DiamondSeparator $size={24} $color={globalColor.blue.skyBlue} />
-            {title}
-          </IndustriesTitle>
+          <SeparatedTitle
+            separatorSize={24}
+            separatorColor={globalColor.blue.skyBlue}
+            title={title}
+          />
 
           <p>{subtitle}</p>
         </IndustriesHeader>

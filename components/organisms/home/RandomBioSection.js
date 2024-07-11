@@ -51,7 +51,7 @@ const getRandomIndex = (min, max) => {
   return randomIndex;
 };
 
-const RandomBio = () => {
+const RandomBioSection = () => {
   const { attorneysContext } = useContext(AttorneysContext);
   const [randomIndex, setRandomIndex] = useState(0);
   const interval = 20;
@@ -288,4 +288,4 @@ const RandomBio = () => {
   );
 };
 
-export default RandomBio;
+export default RandomBioSection;
