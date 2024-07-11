@@ -26,57 +26,40 @@ const Awards = dynamic(() => import('components/organisms/home/Awards'), {
   ssr: true,
 });
 
+const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
+const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
+const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
+const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+
 const HomePage = ({
   seo,
-  aboutFirm,
-  aboutFirm2,
   awards,
-  banner,
-  isHoliday,
-  offices,
   firmNewsArticles,
-}) => {
-  const aboutFirmProps = {
-    infos: [
-      {
-        description: aboutFirm.description,
-        title: aboutFirm.title,
-        subTitle: aboutFirm.subTitle,
-      },
-      {
-        description: aboutFirm2.description,
-        title: aboutFirm2.title,
-        subTitle: aboutFirm2.subTitle,
-      },
-    ],
-    linksBtn: [
-      {
-        linkLabel: aboutFirm.linkLabel,
-        linkUrl: aboutFirm.linkUrl,
-      },
-      {
-        linkLabel: aboutFirm2.linkLabel,
-        linkUrl: aboutFirm2.linkUrl,
-      },
-    ],
-  };
-
-  return (
-    <>
-      <HomeSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDesc}
-        canonicalUrl={CURRENT_DOMAIN}
-      />
-      <HomeBanner {...banner} />
-      {isHoliday && <HappyHolidayLink />}
-      {/* <InfoModal /> */}
-      <AboutFirmSection {...aboutFirmProps} />
-      <AllOfficeLocations offices={offices} />
-      <FirmNews firmNews={firmNewsArticles} />
-      <Awards awards={awards} />
-    </>
-  );
-};
+  offices,
+  isHoliday,
+  firstSection,
+  whoWeAre,
+  industryWeWorkWith,
+  whatWeDo,
+}) => (
+  <>
+    <HomeSiteHead
+      title={seo.title}
+      metaDescription={seo.metaDesc}
+      canonicalUrl={CURRENT_DOMAIN}
+    />
+    <HomeBanner {...firstSection} />
+    {isHoliday && <HappyHolidayLink />}
+    {/* <InfoModal /> */}
+    <AboutFirmSection {...whoWeAre} />
+    <HomeContactForm />
+    <IndustriesSection {...industryWeWorkWith} />
+    <RandomBioSection />
+    <WhatWeDoSection {...whatWeDo} />
+    <AllOfficeLocations offices={offices} />
+    <FirmNews firmNews={firmNewsArticles} />
+    <Awards awards={awards} />
+  </>
+);
 
 export default HomePage;

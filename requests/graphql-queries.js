@@ -217,6 +217,9 @@ export const attorneysQuery = `query FirmPageQuery {
           }
         }
       }
+      attorneyBiography {
+        miniBio
+      }
     }
   }
 }`;
@@ -632,20 +635,6 @@ export const homePageQuery = `query HomePageQuery {
   pageBy(uri: "front-page") {
     title
     homePage {
-      aboutFirm {
-        description
-        linkLabel
-        linkUrl
-        title
-        subTitle
-      }
-      aboutFirm2 {
-        description
-        linkLabel
-        linkUrl
-        title
-        subTitle
-      }
       awards {
         appearanceOrder
         imageHeight
@@ -655,66 +644,76 @@ export const homePageQuery = `query HomePageQuery {
           sourceUrl
         }
       }
-      bannerLineOne
-      bannerLineTwo
-      quote
-      mainTag
-      serviceOne {
-        description
-        linkLabel
-        linkUrl
+      isHoliday
+      firstSection {
         title
-        serviceImage {
-          sourceUrl
-        }
-      }
-      serviceTwo {
-        description
-        linkLabel
-        linkUrl
-        serviceImage {
-          sourceUrl
-        }
-        title
-      }
-      subMainTag
-      leadership {
-        ... on Administration {
-          id
-          uri
+        subtitle
+        infoCards {
+          cardsText
+          fieldGroupName
+          icon
           title
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          administration {
+          link {
+            target
             title
+            url
           }
         }
-        ... on AttorneyProfile {
-          id
-          uri
+      }
+      whoWeAre {
+        aboutHero
+        arcticle
+        heroPhoto {
+          altText
+          sourceUrl
+        }
+        title
+        heroProfileLink {
           title
-          featuredImage {
-            node {
-              sourceUrl
-            }
+          target
+          url
+        }
+      }
+      industryWeWorkWith {
+        title
+        subtitle
+        link {
+          target
+          title
+          url
+        }
+        industryCards {
+          icon
+          text
+          title
+          link {
+            target
+            title
+            url
           }
-          attorneyMainInformation {
-            designation
-          }
-          attorneyChairCoChair {
-            chair {
-              ... on Practice {
-                id
-                title
+        }
+      }
+      whatWeDo {
+        groupsPractices {
+          groupPractices
+          practices {
+            ... on Practice {
+              databaseId
+              uri
+              title
+              practicesIncluded {
+                childPractice {
+                  ... on Practice {
+                    databaseId
+                    title
+                    uri
+                  }
+                }
               }
             }
           }
         }
       }
-      isHoliday
     }
     seo {
       metaDesc
@@ -974,6 +973,7 @@ export const adminKaterinTraughQuery = `query AttorneyPostsById {
       featuredImage {
         sourceUrl(size: CATEGORY_THUMB)
       }
+      biography
     }
   }
 }`;

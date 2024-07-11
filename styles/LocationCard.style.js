@@ -113,17 +113,12 @@ export const Contact = styled.div`
 
 // New cards for Navigation in Header
 export const LocationCards = styled.div`
-  padding: 20px 0 40px 0;
   margin: 0 auto;
   max-width: 1280px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-
-  ${media_breakpoint_down('md')} {
-    padding: 16px 0 24px 0;
-  }
 `;
 
 export const LocationCardWrapper = styled.address`

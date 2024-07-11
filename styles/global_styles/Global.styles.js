@@ -11,11 +11,13 @@ export const globalColor = {
   white: 'white',
   black: 'black',
   gray: {
+    gray700: '#414141',
     gray500: '#929292',
     gray300: '#E4E4E5',
     gray130: '#4D4D4D',
     gray120: '#666',
     gray110: '#6A6A6A',
+    gray1002: '#FBFBFB',
     gray100: '#424242',
     gray90: '#4a4a4a',
     gray80: '#5E5E5E',
@@ -679,15 +681,15 @@ export const ButtonLinkCss = `
 
 export const beforeDoteStyledList = `
 :before {
-	 content: '';
-	 width: 3px;
-	 height: 5px;
-	 margin-right: 5px;
-	 background-color: ${globalColor.black};
-	 position: absolute;
-	 left: -10px;
-	 top: 12px;
-	 border-radius: 1px;
+  content: '';
+  width: 3px;
+  height: 5px;
+  margin-right: 5px;
+  background-color: ${globalColor.black};
+  position: absolute;
+  left: -10px;
+  top: 12px;
+  border-radius: 1px;
 }
 `;
 

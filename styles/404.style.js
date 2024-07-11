@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
 import {
-  media_breakpoint_down,
-} from './mediaBreakpoints.style';
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { TileContactBody, TileContactWrapper } from './ContactUs.style';
 
 export const ErrorWrapper = styled.section`
@@ -21,7 +23,8 @@ export const ErrorWrapper = styled.section`
     }
 
     > li {
-      > a, > span {
+      > a,
+      > span {
         font-family: var(--font-poppins);
         font-size: ${rem(14)};
       }
@@ -40,7 +43,7 @@ export const ErrorWrapper = styled.section`
       }
     }
   }
-`
+`;
 
 export const ErrorHolder = styled.div`
   display: flex;
@@ -81,7 +84,7 @@ export const ArticleBox = styled.article`
     font-size: ${rem(64)};
     line-height: 1.5;
     font-weight: 700;
-    
+
     ${media_breakpoint_down('lg')} {
       margin-bottom: 8px;
       font-size: ${rem(44)};
@@ -131,7 +134,7 @@ export const TilesBox = styled.div`
   gap: 24px;
 
   ${TileContactWrapper} {
-    ${({isErrorContent}) => {
+    ${({ isErrorContent }) => {
       if (isErrorContent) {
         return `
           width: max-content;
@@ -143,7 +146,7 @@ export const TilesBox = styled.div`
   ${TileContactBody} {
     > p {
       > a {
-        ${({isErrorContent}) => {
+        ${({ isErrorContent }) => {
           if (isErrorContent) {
             return `
               color: ${globalColor.blue.blue500};

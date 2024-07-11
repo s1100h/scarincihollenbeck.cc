@@ -887,3 +887,5 @@ export const SIDEBAR_SOCIAL_LINKS = [
     url: 'https://twitter.com/S_H_Law',
   },
 ];
+
+export const slogans = ['Since 1988', 'Distinct Vision', 'Real Impact'];

@@ -5,12 +5,151 @@ import {
 } from 'styles/AboutAuthorFormCard.style';
 import { ContactBox, InfoBox, LinkBox } from 'styles/AttorneyCard.style';
 import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 import { OfficeCardContainer } from '../Locations.style';
+
+export const attorneyCardForPractices = `
+  .attorney-card-box {
+    flex: 1;
+    padding: 0;
+    border: none;
+    min-width: auto;
+    flex-basis: unset;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+
+      > div {
+        h3 {
+          color: ${globalColor.white};
+        }
+      }
+
+      ${LinkBox} {
+        img {
+          filter: grayscale(0%);
+        }
+      }
+    }
+
+    ${LinkBox} {
+      gap: 8px;
+
+      img {
+        width: 164px;
+        height: 172px;
+        filter: grayscale(100%);
+        object-fit: cover;
+        transition: ${globalTransition.default};
+
+        ${media_breakpoint_down('sm')} {
+          width: 126px;
+          height: 132px;
+        }
+      }
+    }
+
+    ${InfoBox} {
+      h3,
+      p {
+        font-family: var(--font-poppins);
+      }
+
+      h3 {
+        margin: 0 0 4px 0;
+        color: ${globalColor.white};
+        font-size: ${rem(16)};
+        line-height: 24px;
+        font-weight: 500;
+        transition: ${globalTransition.default};
+
+        ${media_breakpoint_down('sm')} {
+          font-size: ${rem(14)};
+          line-height: 20px;
+        }
+      }
+
+      p {
+        margin: 0 0 auto 0;
+        color: #b3b3b3;
+        font-size: ${rem(12)};
+        line-height: 16px;
+        font-weight: 400;
+
+        ${media_breakpoint_down('sm')} {
+          font-size: ${rem(8)};
+          line-height: 12px;
+        }
+      }
+    }
+
+    ${ContactBox} {
+      margin: 0;
+      row-gap: 8px;
+
+      .contact-offices,
+      a {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+
+        span {
+          font-family: var(--font-poppins);
+          color: ${globalColor.white};
+          font-size: ${rem(14)};
+          line-height: 20px;
+          font-weight: 500;
+          transition: ${globalTransition.default};
+          text-decoration: none;
+
+          ${media_breakpoint_down('sm')} {
+            font-size: ${rem(12)};
+            line-height: 16px;
+          }
+        }
+
+        svg {
+          fill: #afdcf5;
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
+          transition: ${globalTransition.default};
+
+          ${media_breakpoint_down('sm')} {
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+
+      .contact-offices {
+        &:hover {
+          svg {
+            fill: ${globalColor.blue.skyBlue};
+          }
+        }
+      }
+
+      a {
+        &:hover {
+          span {
+            color: ${globalColor.blue.skyBlue};
+          }
+
+          svg {
+            fill: ${globalColor.blue.skyBlue};
+          }
+        }
+      }
+    }
+  }
+`;
 
 export const DefaultSubHeaderHolder = styled.div`
   background-color: ${globalColor.gray.gray10};
@@ -262,7 +401,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
       z-index: -1;
       opacity: 0;
       background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
-      transition: all 0.5s ease;
+      transition: ${globalTransition.default};
     }
   }
 
@@ -289,140 +428,7 @@ export const DefaultSubHeaderKeyContactsCards = styled.div`
   flex-direction: column;
   gap: 24px;
 
-  .attorney-card-box {
-    flex: 1;
-    padding: 0;
-    border: none;
-    min-width: auto;
-    flex-basis: unset;
-    box-shadow: none;
-
-    &:hover {
-      box-shadow: none;
-
-      > div {
-        h3 {
-          color: ${globalColor.white};
-        }
-      }
-
-      ${LinkBox} {
-        img {
-          filter: grayscale(0%);
-        }
-      }
-    }
-
-    ${LinkBox} {
-      gap: 8px;
-
-      img {
-        width: 164px;
-        height: 172px;
-        filter: grayscale(100%);
-        object-fit: cover;
-        transition: all 0.5s ease;
-
-        ${media_breakpoint_down('sm')} {
-          width: 126px;
-          height: 132px;
-        }
-      }
-    }
-
-    ${InfoBox} {
-      h3,
-      p {
-        font-family: var(--font-poppins);
-      }
-
-      h3 {
-        margin: 0 0 4px 0;
-        color: ${globalColor.white};
-        font-size: ${rem(16)};
-        line-height: 24px;
-        font-weight: 500;
-
-        ${media_breakpoint_down('sm')} {
-          font-size: ${rem(14)};
-          line-height: 20px;
-        }
-      }
-
-      p {
-        margin: 0 0 auto 0;
-        color: #b3b3b3;
-        font-size: ${rem(12)};
-        line-height: 16px;
-        font-weight: 400;
-
-        ${media_breakpoint_down('sm')} {
-          font-size: ${rem(8)};
-          line-height: 12px;
-        }
-      }
-    }
-
-    ${ContactBox} {
-      margin: 0;
-      row-gap: 8px;
-
-      .contact-offices,
-      a {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        column-gap: 8px;
-
-        span {
-          font-family: var(--font-poppins);
-          color: ${globalColor.white};
-          font-size: ${rem(14)};
-          line-height: 20px;
-          font-weight: 500;
-          transition: all 0.5s ease;
-          text-decoration: none;
-
-          ${media_breakpoint_down('sm')} {
-            font-size: ${rem(12)};
-            line-height: 16px;
-          }
-        }
-
-        svg {
-          fill: #afdcf5;
-          width: 16px;
-          height: 16px;
-          transition: all 0.5s ease;
-
-          ${media_breakpoint_down('sm')} {
-            width: 12px;
-            height: 12px;
-          }
-        }
-      }
-
-      .contact-offices {
-        &:hover {
-          svg {
-            fill: ${globalColor.blue.skyBlue};
-          }
-        }
-      }
-
-      a {
-        &:hover {
-          span {
-            color: ${globalColor.blue.skyBlue};
-          }
-
-          svg {
-            fill: ${globalColor.blue.skyBlue};
-          }
-        }
-      }
-    }
-  }
+  ${attorneyCardForPractices}
 
   ${media_breakpoint_exactly_down(1439)} {
     column-gap: 40px;

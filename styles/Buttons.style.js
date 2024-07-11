@@ -23,42 +23,30 @@ export const RedButtonBootstrap = styled(RedButtonLink)`
   margin-left: 20px;
 `;
 
-export const ButtonStandardWidth = styled(Button)`
-  width: 200px;
-  border-radius: 5px;
-`;
-
-export const ClearButton = styled(ButtonStandardWidth)`
-  margin-right: 12px;
-  margin-left: auto;
-  border-radius: 0;
-  width: 130px;
-  height: 33px;
-  padding: 5px 22px;
+export const ClearButton = styled(Button)`
+  margin: 0;
+  padding: 3px 15px;
   border: 1px solid ${globalColor.blue.dirtyBlue};
+  border-radius: 4px;
   color: ${globalColor.blue.dirtyBlue};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  overflow: hidden;
 
   :hover {
-    border: 1px solid ${globalColor.blue.dirtyBlue};
+    border: 1px solid ${globalColor.blue.blue500};
     color: ${globalColor.blue.dirtyBlue};
   }
 
   :focus {
-    border: 1px solid ${globalColor.blue.dirtyBlue};
+    border: 1px solid ${globalColor.blue.blue500};
     color: ${globalColor.blue.dirtyBlue};
   }
 
   :active {
-    border: 1px solid ${globalColor.blue.dirtyBlue};
+    border: 1px solid ${globalColor.blue.blue500};
     color: ${globalColor.blue.dirtyBlue} !important;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    margin-bottom: 0 !important;
-  }
-
-  ${media_breakpoint_down('sm')} {
-    margin-right: 7px;
   }
 `;
 
@@ -92,13 +80,13 @@ export const StandardBlueButton = styled(Button)`
   padding: 10px 18px;
   width: 100%;
   border: none;
-  border-radius: 0;
+  border-radius: 4px;
   background-color: ${globalColor.blue.blue500};
   color: ${globalColor.white};
-  font-size: ${rem(16)};
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5;
   font-family: var(--font-poppins);
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   z-index: 0;
 
@@ -109,7 +97,7 @@ export const StandardBlueButton = styled(Button)`
   }
 
   :active {
-    background-color: ${globalColor.red.burgundy} !important;
+    background-color: ${globalColor.blue.darkBlue} !important;
   }
 
   :focus-visible {
@@ -128,8 +116,9 @@ export const StandardBlueButton = styled(Button)`
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 4px;
     z-index: -1;
-    background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
+    background-image: linear-gradient(87deg, #164587 -9.15%, #060B2A 100%);;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -186,6 +175,26 @@ export const ButtonRed = styled(Link)`
   ${media_breakpoint_down('sm')} {
     padding: 10px 40px;
     font-size: ${rem(14)};
+    line-height: 1.43;
+  }
+`;
+
+export const UnderlinedLink = styled(Link)`
+  width: max-content;
+  padding: 4px 0 2px;
+  margin-top: auto;
+  color: ${globalColor.blue.darkBlue};
+  font-weight: 600;
+  border-bottom: 2px solid ${globalColor.blue.skyBlue};
+  transition: ${globalTransition.default};
+
+  &:hover {
+    color: ${globalColor.blue.blue400};
+    border-color: ${globalColor.blue.blue400};
+  }
+
+  ${media_breakpoint_down('sm')} {
+    font-size: 0.875rem;
     line-height: 1.43;
   }
 `;

@@ -5,7 +5,6 @@ import {
   homePageQuery,
   officeLocationQuery,
 } from 'requests/graphql-queries';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 
 /** pull out the attorney chair data from attorney response */
 const extractChair = (chair) => {
@@ -65,40 +64,15 @@ export const getStaticProps = async () => {
   const request = await homePageContent();
   const { seo, homePage } = request;
   const {
-    aboutFirm,
-    aboutFirm2,
     awards,
-    bannerLineOne,
-    serviceOne,
-    serviceTwo,
-    bannerLineTwo,
-    quote,
     mainTag,
     subMainTag,
-    leadership,
     isHoliday,
+    firstSection,
+    whoWeAre,
+    industryWeWorkWith,
+    whatWeDo,
   } = homePage;
-
-  const modLeadership = leadership.map(
-    ({
-      title,
-      uri,
-      featuredImage,
-      administration,
-      attorneyMainInformation,
-      attorneyChairCoChair,
-    }) => ({
-      title,
-      slug: uri,
-      featuredImage: formatSrcToCloudinaryUrl(featuredImage?.node?.sourceUrl),
-      designation: administration
-        ? administration?.title
-        : attorneyMainInformation?.designation,
-      chair: attorneyChairCoChair
-        ? extractChair(attorneyChairCoChair?.chair)
-        : null,
-    }),
-  );
 
   /** get firm locations */
   // const offices = await homePageLocations();
@@ -107,24 +81,14 @@ export const getStaticProps = async () => {
   return {
     props: {
       seo,
-      aboutFirm,
-      aboutFirm2,
       awards,
       firmNewsArticles,
-      banner: {
-        lineOne: bannerLineOne,
-        lineTwo: bannerLineTwo,
-        quote,
-      },
-      intro: {
-        mainTag,
-        subMainTag,
-      },
-      serviceOne,
-      serviceTwo,
-      leadership: modLeadership,
       offices: sanitizeOffices(sortedOffices),
       isHoliday,
+      firstSection,
+      whoWeAre,
+      industryWeWorkWith,
+      whatWeDo,
     },
     revalidate: 86400,
   };
@@ -133,31 +97,25 @@ export const getStaticProps = async () => {
 /** The home page component */
 const Home = ({
   seo,
-  aboutFirm,
-  aboutFirm2,
   awards,
-  banner,
-  intro,
-  leadership,
-  offices,
-  serviceOne,
-  serviceTwo,
-  isHoliday,
   firmNewsArticles,
+  offices,
+  isHoliday,
+  firstSection,
+  whoWeAre,
+  industryWeWorkWith,
+  whatWeDo,
 }) => {
   const homePageProps = {
     seo,
-    aboutFirm,
-    aboutFirm2,
     awards,
-    banner,
-    intro,
-    leadership,
-    offices,
-    serviceOne,
-    serviceTwo,
-    isHoliday,
     firmNewsArticles,
+    offices,
+    isHoliday,
+    firstSection,
+    whoWeAre,
+    industryWeWorkWith,
+    whatWeDo,
   };
   return <HomePage {...homePageProps} />;
 };

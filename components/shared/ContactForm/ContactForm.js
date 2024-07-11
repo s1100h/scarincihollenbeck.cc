@@ -21,6 +21,7 @@ const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 export default function ContactForm({
   isPositionRelativeProp,
   blockName = 'default',
+  buttonText = 'Submit form',
 }) {
   const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
 
@@ -87,7 +88,7 @@ export default function ContactForm({
           className="mt-2"
           type="submit"
         >
-          Submit form
+          {buttonText}
         </StandardBlueButton>
       </form>
     </FormContainer>
