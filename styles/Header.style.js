@@ -70,30 +70,6 @@ export const HeaderWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 1020;
-
-  * {
-    &::-webkit-scrollbar-track {
-      background-color: ${globalColor.blue.blue6002};
-      border-radius: 8px;
-      opacity: 0;
-    }
-
-    &::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: ${globalColor.blue.blue400};
-      border-radius: 8px;
-    }
-
-    // FireFox
-    @supports not selector(::-webkit-scrollbar-thumb) {
-      scrollbar-color: ${globalColor.blue.blue400} ${globalColor.blue.blue6002};
-      scrollbar-width: thin;
-    }
-  }
 `;
 
 export const HeaderTopLineWrapper = styled.div`

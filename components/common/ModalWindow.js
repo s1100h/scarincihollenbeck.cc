@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { useContext } from 'react';
 import {
   ChildrenBox,
+  ModalCloser,
   ModalContainer,
   ModalContent,
 } from '../../styles/ModalWindow.style';
@@ -24,9 +25,7 @@ const ModalWindow = ({ children, isOpen, setOpenModal }) => {
         className={isOpen ? 'modal-open' : ''}
         onClick={autoStopPropagation}
       >
-        <Button variant="light" onClick={handleCloseModal}>
-          <strong>╳</strong>
-        </Button>
+        <ModalCloser onClick={handleCloseModal} className="modal-closer" />
         <ChildrenBox>{children}</ChildrenBox>
       </ModalContent>
     </ModalContainer>

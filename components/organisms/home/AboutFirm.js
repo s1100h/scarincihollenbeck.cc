@@ -44,10 +44,7 @@ const AboutFirm = ({
             </AboutCardImage>
             <AboutCardContent>
               <AboutCardDescription>
-                {aboutHero.split('\n').map((paragraph, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <p key={`${aboutHero}-${index}`}>{paragraph}</p>
-                ))}
+                <JSXWithDynamicLinks HTML={aboutHero} />
               </AboutCardDescription>
 
               <AboutCardTitle href={heroProfileLink?.url}>

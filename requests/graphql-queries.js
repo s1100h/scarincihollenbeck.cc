@@ -711,6 +711,7 @@ export const homePageQuery = `query HomePageQuery {
                     uri
                   }
                 }
+                description
               }
             }
           }

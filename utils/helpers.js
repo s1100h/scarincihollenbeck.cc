@@ -16,6 +16,11 @@ import PostsIcon from 'components/common/icons/PostsIcon';
 import RealEstateIcon from 'components/common/icons/RealEstateIcon';
 import TransportationIcon from 'components/common/icons/TransportationIcon';
 import BankingIcon from 'components/common/icons/BankingIcon';
+import BrainIcon from 'components/common/icons/BrainIcon';
+import BriefcaseIcon from 'components/common/icons/BriefcaseIcon';
+import DocumentsIcon from 'components/common/icons/DocumentsIcon';
+import EnvironmentalIcon from 'components/common/icons/EnvironmentalIcon';
+import TaxIcon from 'components/common/icons/TaxIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -599,8 +604,18 @@ export const getIcon = (name) => {
     Practices: <PracticesIcon />,
     'Real Estate': <RealEstateIcon />,
     Transportation: <TransportationIcon />,
+    Brain: <BrainIcon />,
+    Briefcase: <BriefcaseIcon />,
+    Documents: <DocumentsIcon />,
+    Environmental: <EnvironmentalIcon />,
+    Tax: <TaxIcon />,
     Check: <CheckIcon />,
   };
 
   return icons[name];
+};
+
+export const filterAttorneysByDesignation = (attorneys) => {
+  if (empty(attorneys)) return [];
+  return attorneys.filter((attorney) => attorney.designation.includes('Partner'));
 };
