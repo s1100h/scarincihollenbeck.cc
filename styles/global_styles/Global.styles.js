@@ -77,6 +77,7 @@ export const globalColor = {
     lightBlue: '#8AD',
     blue400: '#568EDC',
     blue500: '#164587',
+    blue550: '#31364F',
     blue600: '#377EC4',
     blue6002: '#242944',
   },
@@ -361,6 +362,32 @@ button {
 
 .redTitle {
   color: ${globalColor.red.darkRed};
+}
+
+.light-scrollbar {
+  * {
+    &::-webkit-scrollbar-track {
+      background-color: ${globalColor.blue.blue6002};
+      border-radius: 8px;
+      opacity: 0;
+    }
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: ${globalColor.blue.blue400};
+      border-radius: 8px;
+    }
+
+    // FireFox
+    @supports not selector(::-webkit-scrollbar-thumb) {
+      scrollbar-color: ${globalColor.blue.blue400} ${globalColor.blue.blue6002};
+      scrollbar-width: thin;
+    }
+  }
 }
 
 /** Button Styling **/

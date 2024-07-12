@@ -3,6 +3,9 @@ import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
+import { useContext } from 'react';
+import { AttorneysContext } from 'contexts/AttorneysContext';
+import { filterAttorneysByDesignation } from 'utils/helpers';
 // import InfoModal from '../atoms/InfoModal';
 
 // !! Attention the modal window was turned off. 12/31/2022
@@ -41,25 +44,30 @@ const HomePage = ({
   whoWeAre,
   industryWeWorkWith,
   whatWeDo,
-}) => (
-  <>
-    <HomeSiteHead
-      title={seo.title}
-      metaDescription={seo.metaDesc}
-      canonicalUrl={CURRENT_DOMAIN}
-    />
-    <HomeBanner {...firstSection} />
-    {isHoliday && <HappyHolidayLink />}
-    {/* <InfoModal /> */}
-    <AboutFirmSection {...whoWeAre} />
-    <HomeContactForm />
-    <IndustriesSection {...industryWeWorkWith} />
-    <RandomBioSection />
-    <WhatWeDoSection {...whatWeDo} />
-    <AllOfficeLocations offices={offices} />
-    <FirmNews firmNews={firmNewsArticles} />
-    <Awards awards={awards} />
-  </>
-);
+}) => {
+  const { attorneysContext } = useContext(AttorneysContext);
+  const filteredAttorneysByDesignation = filterAttorneysByDesignation(attorneysContext);
+
+  return (
+    <>
+      <HomeSiteHead
+        title={seo.title}
+        metaDescription={seo.metaDesc}
+        canonicalUrl={CURRENT_DOMAIN}
+      />
+      <HomeBanner {...firstSection} />
+      {isHoliday && <HappyHolidayLink />}
+      {/* <InfoModal /> */}
+      <AboutFirmSection {...whoWeAre} />
+      <HomeContactForm />
+      <IndustriesSection {...industryWeWorkWith} />
+      <RandomBioSection attorneys={filteredAttorneysByDesignation} />
+      <WhatWeDoSection {...whatWeDo} />
+      <AllOfficeLocations offices={offices} />
+      <FirmNews firmNews={firmNewsArticles} />
+      <Awards awards={awards} />
+    </>
+  );
+};
 
 export default HomePage;

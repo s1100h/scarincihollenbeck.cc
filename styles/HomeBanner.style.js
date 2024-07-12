@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const Banner = styled.section`
   padding: 60px 0;
@@ -220,17 +219,40 @@ export const BannerCardTitle = styled.h2`
   }
 `;
 
-export const BannerCardContent = styled.p`
+export const BannerCardContent = styled.div`
   margin: 0 0 12px 0;
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  white-space: pre-wrap;
-  color: ${globalColor.gray.gray110};
 
-  ${media_breakpoint_down('sm')} {
-    font-size: 0.875rem;
-    line-height: 1.43;
+  p, ul {
+    margin: 0;
+    color: ${globalColor.gray.gray110};
+
+    ${media_breakpoint_down('sm')} {
+      font-size: 0.875rem;
+      line-height: 1.43;
+    }
+  }
+
+  ul {
+    list-style: disc;
+
+    li {
+      margin-left: 24px;
+      &::marker {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .bullets-li {
+    padding-left: 0;
+    position: static;
+
+    &::before {
+      content: none;
+    }
   }
 
   ${media_breakpoint_down('sm')} {
