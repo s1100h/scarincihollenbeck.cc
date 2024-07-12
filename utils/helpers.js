@@ -28,6 +28,8 @@ import {
   PRODUCTION_URL,
 } from './constants';
 import CheckIcon from '../components/common/icons/CheckIcon';
+import MapIcon from '../components/common/icons/MapIcon';
+import ScopeIcon from '../components/common/icons/ScopeIcon';
 
 // this is HTML checker
 export function isHTML(text) {
@@ -610,6 +612,8 @@ export const getIcon = (name) => {
     Environmental: <EnvironmentalIcon />,
     Tax: <TaxIcon />,
     Check: <CheckIcon />,
+    Map: <MapIcon />,
+    Scope: <ScopeIcon />,
   };
 
   return icons[name];
