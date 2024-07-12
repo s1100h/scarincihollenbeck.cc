@@ -1,3 +1,9 @@
+import { ContainerDefault } from 'styles/Containers.style';
+import { Fragment } from 'react';
+import { UnderlinedLink } from 'styles/Buttons.style';
+import { slogans } from 'utils/constants';
+import { getIcon } from 'utils/helpers';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import {
   Banner,
   BannerCard,
@@ -10,12 +16,7 @@ import {
   BannerSlogans,
   BannerText,
   BannerTitle,
-} from 'styles/HomeBanner';
-import { ContainerDefault } from 'styles/Containers.style';
-import { Fragment } from 'react';
-import { UnderlinedLink } from 'styles/Buttons.style';
-import { slogans } from 'utils/constants';
-import { getIcon } from 'utils/helpers';
+} from 'styles/HomeBanner.style';
 import { DiamondSeparator } from '../../../styles/Separators.style';
 
 const HomeBanner = ({ title, subtitle, infoCards }) => (
@@ -55,7 +56,9 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
               <BannerCardTitle>{title}</BannerCardTitle>
             </BannerCardHeader>
 
-            <BannerCardContent>{cardsText}</BannerCardContent>
+            <BannerCardContent>
+              <JSXWithDynamicLinks HTML={cardsText} />
+            </BannerCardContent>
 
             <UnderlinedLink href={link?.url} className="link">
               {link?.title}

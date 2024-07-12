@@ -30,7 +30,7 @@ const DefaultHeader = ({ practices, locations, menuData }) => {
   };
 
   return (
-    <HeaderWrapper ref={headerRef}>
+    <HeaderWrapper ref={headerRef} className="light-scrollbar">
       <HeaderTopLine
         isOpenSearch={isOpenSearch}
         setIsOpenSearch={setIsOpenSearch}

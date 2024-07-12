@@ -1,9 +1,6 @@
 import LogoSeparator from 'components/common/LogoSeparator';
 import AttorneyCard from 'components/shared/AttorneyCard';
-import { AttorneysContext } from 'contexts/AttorneysContext';
-import React, {
-  useContext, useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { ContainerDefault } from 'styles/Containers.style';
@@ -12,7 +9,6 @@ import {
   RandomBioControlButton,
   RandomBioControlPanel,
   RandomBioControlProgress,
-  RandomBioControlProgressBar,
   RandomBioDescription,
   RandomBioDescriptionText,
   RandomBioFooter,
@@ -26,8 +22,8 @@ import Loader from 'components/atoms/Loader';
 import Link from 'next/link';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import { FaArrowRotateLeft, FaArrowRotateRight } from 'react-icons/fa6';
-import { globalColor } from 'styles/global_styles/Global.styles';
 import { AnimatePresence, motion } from 'framer-motion';
+import CircledProgressBar from './CircledProgressBar';
 
 const usedIndices = new Set();
 const indexSequence = [];
@@ -51,18 +47,14 @@ const getRandomIndex = (min, max) => {
   return randomIndex;
 };
 
-const RandomBioSection = () => {
-  const { attorneysContext } = useContext(AttorneysContext);
+const RandomBioSection = ({ attorneys }) => {
   const [randomIndex, setRandomIndex] = useState(0);
   const interval = 20;
   const [timeLeft, setTimeLeft] = useState(interval);
   const [isTimerStopped, setIsTimerStopped] = useState(false);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const timerRef = useRef(null);
-  const displayedCard = attorneysContext[randomIndex];
-  const radius = 18;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (timeLeft / interval) * circumference;
+  const displayedCard = attorneys[randomIndex];
   const [initialized, setInitialized] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef(null);
@@ -91,8 +83,8 @@ const RandomBioSection = () => {
   }, []);
 
   useEffect(() => {
-    if (!empty(attorneysContext) && !initialized) {
-      setRandomIndex(getRandomIndex(0, attorneysContext.length));
+    if (!empty(attorneys) && !initialized) {
+      setRandomIndex(getRandomIndex(0, attorneys.length));
       setInitialized(true);
     }
 
@@ -101,11 +93,11 @@ const RandomBioSection = () => {
     } else {
       setIsTimerStopped(false);
     }
-  }, [attorneysContext, initialized, isVisible]);
+  }, [attorneys, initialized, isVisible]);
 
   const nextSlide = () => {
     if (currentIndex === indexSequence.length - 1) {
-      setRandomIndex(getRandomIndex(0, attorneysContext.length));
+      setRandomIndex(getRandomIndex(0, attorneys.length));
     } else {
       currentIndex += 1;
       setRandomIndex(indexSequence[currentIndex]);
@@ -132,14 +124,14 @@ const RandomBioSection = () => {
   };
 
   useEffect(() => {
-    if (!empty(attorneysContext) && !isTimerStopped) {
+    if (!empty(attorneys) && !isTimerStopped) {
       startTimer();
     } else {
       clearInterval(timerRef.current);
     }
 
     return () => clearInterval(timerRef.current);
-  }, [isTimerStopped, attorneysContext.length]);
+  }, [isTimerStopped, attorneys.length]);
 
   const handleCircleClick = () => {
     setIsTimerStopped(!isTimerStopped);
@@ -148,7 +140,7 @@ const RandomBioSection = () => {
   const handleNextClick = () => {
     nextSlide();
 
-    if (!empty(attorneysContext) && !isTimerStopped) {
+    if (!empty(attorneys) && !isTimerStopped) {
       restartTimer();
     }
   };
@@ -160,7 +152,7 @@ const RandomBioSection = () => {
     }
     setIsPrevDisabled(currentIndex <= 0);
 
-    if (!empty(attorneysContext) && !isTimerStopped) {
+    if (!empty(attorneys) && !isTimerStopped) {
       restartTimer();
     }
   };
@@ -237,30 +229,12 @@ const RandomBioSection = () => {
           <RandomBioFooter>
             <RandomBioControlPanel>
               <RandomBioControlProgress>
-                <RandomBioControlProgressBar
-                  onClick={handleCircleClick}
-                  $isPaused={isTimerStopped}
-                >
-                  <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    className="circle"
-                  >
-                    <circle
-                      cx="20"
-                      cy="20"
-                      r={radius}
-                      stroke={globalColor.blue.skyBlue}
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeDasharray={circumference}
-                      strokeDashoffset={strokeDashoffset}
-                      transform="rotate(-90, 20, 20)"
-                    />
-                  </svg>
-                  <span className="time">{timeLeft}</span>
-                </RandomBioControlProgressBar>
+                <CircledProgressBar
+                  isTimerStopped={isTimerStopped}
+                  timeLeft={timeLeft}
+                  interval={interval}
+                  clickHandler={handleCircleClick}
+                />
 
                 <span className="label">next Attorney</span>
               </RandomBioControlProgress>
