@@ -30,6 +30,7 @@ const HomeContactForm = dynamic(() => import('components/organisms/home/HomeCont
 const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
 const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
 const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+const WhyChooseUs = dynamic(() => import('components/organisms/home/WhyChooseUs'));
 
 const HomePage = ({
   seo,
@@ -41,6 +42,7 @@ const HomePage = ({
   whoWeAre,
   industryWeWorkWith,
   whatWeDo,
+  whyChooseUs,
 }) => (
   <>
     <HomeSiteHead
@@ -59,6 +61,7 @@ const HomePage = ({
     <AllOfficeLocations offices={offices} />
     <FirmNews firmNews={firmNewsArticles} />
     <Awards awards={awards} />
+    <WhyChooseUs content={whyChooseUs} />
   </>
 );
 

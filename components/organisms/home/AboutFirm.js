@@ -10,7 +10,6 @@ import {
   AboutSection,
   AboutTitle,
 } from 'styles/AboutFirm.style';
-import { useMemo } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import Image from 'next/image';
 import LogoSeparator from 'components/common/LogoSeparator';

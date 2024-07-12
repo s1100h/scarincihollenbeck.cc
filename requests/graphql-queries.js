@@ -643,6 +643,7 @@ export const homePageQuery = `query HomePageQuery {
         awardImage {
           sourceUrl
         }
+        year
       }
       isHoliday
       firstSection {
@@ -693,9 +694,10 @@ export const homePageQuery = `query HomePageQuery {
           }
         }
       }
-      whatWeDo {
+			whatWeDo {
         groupsPractices {
           groupPractices
+          groupIcon
           practices {
             ... on Practice {
               databaseId
@@ -712,6 +714,18 @@ export const homePageQuery = `query HomePageQuery {
               }
             }
           }
+        }
+      }
+      whyChooseUs {
+        title
+        article
+        serviceList {
+          service
+        }
+        focusedServicesCards {
+          title
+          text
+          icon
         }
       }
     }

@@ -22,6 +22,7 @@ import {
   OFFICE_LOCATIONS,
   PRODUCTION_URL,
 } from './constants';
+import CheckIcon from '../components/common/icons/CheckIcon';
 
 // this is HTML checker
 export function isHTML(text) {
@@ -598,6 +599,7 @@ export const getIcon = (name) => {
     Practices: <PracticesIcon />,
     'Real Estate': <RealEstateIcon />,
     Transportation: <TransportationIcon />,
+    Check: <CheckIcon />,
   };
 
   return icons[name];

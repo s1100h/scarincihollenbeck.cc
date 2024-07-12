@@ -72,6 +72,7 @@ export const getStaticProps = async () => {
     whoWeAre,
     industryWeWorkWith,
     whatWeDo,
+    whyChooseUs,
   } = homePage;
 
   /** get firm locations */
@@ -89,6 +90,7 @@ export const getStaticProps = async () => {
       whoWeAre,
       industryWeWorkWith,
       whatWeDo,
+      whyChooseUs,
     },
     revalidate: 86400,
   };
@@ -105,6 +107,7 @@ const Home = ({
   whoWeAre,
   industryWeWorkWith,
   whatWeDo,
+  whyChooseUs,
 }) => {
   const homePageProps = {
     seo,
@@ -116,6 +119,7 @@ const Home = ({
     whoWeAre,
     industryWeWorkWith,
     whatWeDo,
+    whyChooseUs,
   };
   return <HomePage {...homePageProps} />;
 };
