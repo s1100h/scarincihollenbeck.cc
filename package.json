@@ -70,6 +70,7 @@
     "sharp": "^0.33.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.0",
+    "swiper": "^11.1.4",
     "swr": "^0.4.1",
     "universal-cookie": "^4.0.4"
   },

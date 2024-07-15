@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 
 import {
   PracticeCardButton,
-  PracticeCardContactModal,
   PracticeCardContent,
   PracticeCardDescription,
   PracticeCardFooter,
@@ -22,7 +21,7 @@ import ContactForm from 'components/shared/ContactForm/ContactForm';
 import PracticeCardModal from './PracticeCardModal';
 
 const PracticeCard = ({
-  icon, title, text, link = '#', list,
+  icon, title, text, link = '#', list, databaseId,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [childShowModal, setChildShowModal] = useState(false);
@@ -53,7 +52,7 @@ const PracticeCard = ({
       <PracticeCardFooter>
         <PracticeCardFooterItem>
           <PracticeCardButton href={link} as={Link} className="footer-action">
-            View practice area
+            View practice
           </PracticeCardButton>
         </PracticeCardFooterItem>
 
@@ -70,7 +69,7 @@ const PracticeCard = ({
               className="footer-action"
               onClick={handleChildModalOpener}
             >
-              Book free consultation
+              Free consultation
             </PracticeCardButton>
           )}
         </PracticeCardFooterItem>
@@ -92,7 +91,7 @@ const PracticeCard = ({
                 <PracticeCardTitle>Let`s get in touch!</PracticeCardTitle>
               </PracticeCardHeader>
 
-              <ContactForm blockName="practice-card-modal-contact-form" />
+              <ContactForm blockName={databaseId} />
             </PracticeCardContent>
           </ModalWindow>
         </PracticeCardModalsWrapper>

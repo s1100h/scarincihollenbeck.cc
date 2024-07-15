@@ -92,7 +92,7 @@ export const globalColor = {
     twitter: '#1DA1F2',
   },
   transparentBlack: {
-    modal: 'rgba(0,0,0,.175)',
+    modal: 'rgba(0,0,0,.75)',
   },
 };
 

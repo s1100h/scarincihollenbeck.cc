@@ -61,29 +61,34 @@ export const footerNavList = [
     id: 1,
   },
   {
+    linkTitle: 'Practices',
+    link: '/practices',
+    id: 2,
+  },
+  {
+    linkTitle: 'Industries',
+    link: '/industries',
+    id: 3,
+  },
+  {
     linkTitle: 'Careers',
     link: '/careers',
-    id: 2,
+    id: 4,
   },
   {
     linkTitle: 'Firm Overview',
     link: '/firm-overview',
-    id: 3,
-  },
-  {
-    linkTitle: 'Legal practices',
-    link: '/practices',
-    id: 4,
-  },
-  {
-    linkTitle: 'Locations',
-    link: '/location/little-falls',
     id: 5,
+  },
+  {
+    linkTitle: 'Library',
+    link: '/library/category/client-alert',
+    id: 6,
   },
   {
     linkTitle: 'Awards Methodology',
     link: '/awards',
-    id: 6,
+    id: 7,
   },
 ];
 /** List of firm blog category links found in the sidebar */
@@ -889,3 +894,22 @@ export const SIDEBAR_SOCIAL_LINKS = [
 ];
 
 export const slogans = ['Since 1988', 'Distinct Vision', 'Real Impact'];
+
+export const latestPostTabs = [
+  {
+    id: 'allPosts',
+    label: 'All Posts',
+  },
+  {
+    id: 'clientAlertsPosts',
+    label: 'Client Alerts',
+  },
+  {
+    id: 'firmNewsPosts',
+    label: 'News',
+  },
+  {
+    id: 'firmInsightsPosts',
+    label: 'Insights',
+  },
+];
