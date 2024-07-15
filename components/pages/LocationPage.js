@@ -5,15 +5,11 @@ import { buildLocationSchema } from 'utils/json-ld-schemas';
 import { ATTORNEYS_FAQ, locationInfoBlockArticles } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
-import { BsDownload } from 'react-icons/bs';
 import { useEffect, useMemo, useState } from 'react';
 import empty from 'is-empty';
 import { sanitizePracticesByChildren, sortByKey } from '../../utils/helpers';
 import {
-  DownloadTheMap,
-  LinkMapBox,
   LocationPageContainer,
-  MediaBr,
   OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
 import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
@@ -22,6 +18,7 @@ import GetInTouchForm from '../organisms/practices/GetInTouchForm';
 import InfoBlockLocation from '../organisms/location/InfoBlockLocation';
 import WhyChooseUs from '../organisms/practices/WhyChooseUs';
 import GoogleReviews from '../organisms/common/GoogleReviews';
+import DirectionsFilesLink from '../common/DirectionsFilesLink';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
@@ -130,34 +127,7 @@ const LocationPage = ({
               anchorIdMap={anchorData.map.id}
               height={600}
             />
-            {(currentOffice.autoMap?.length > 0
-              || currentOffice.trainStationsMap?.length > 0) && (
-              <LinkMapBox>
-                {currentOffice?.trainStationsMap.length > 0 && (
-                  <DownloadTheMap
-                    href={currentOffice.trainStationsMap}
-                    target="_blank"
-                    download
-                  >
-                    NJ Transit Rail System Map
-                    <BsDownload />
-                  </DownloadTheMap>
-                )}
-                {currentOffice?.autoMap.length > 0 && (
-                  <DownloadTheMap
-                    href={currentOffice.autoMap}
-                    target="_blank"
-                    download
-                  >
-                    Directions to the Overlook
-                    {' '}
-                    <MediaBr />
-                    Corporate Center
-                    <BsDownload />
-                  </DownloadTheMap>
-                )}
-              </LinkMapBox>
-            )}
+            <DirectionsFilesLink currentOffice={currentOffice} />
             <FAQ
               anchorId={anchorData.faq.id}
               faqArrContent={ATTORNEYS_FAQ}

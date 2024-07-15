@@ -239,6 +239,14 @@ export const officeLocationQuery = `query BasicPageQuery {
         fax
         floor
         postCode
+        autoMap {
+					mediaItemUrl
+					databaseId
+      	}
+      	trainStationsMap {
+					mediaItemUrl
+					databaseId
+      	}
       }
     }
   }

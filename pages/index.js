@@ -34,12 +34,20 @@ const getFirmNewsArticles = async () => {
 
 export const sanitizeOffices = (offices) => offices.map(({
   databaseId, slug, title, officeMainInformation,
-}) => ({
-  databaseId,
-  slug,
-  title,
-  ...officeMainInformation,
-}));
+}) => {
+  if (officeMainInformation?.autoMap?.mediaItemUrl?.length > 0) {
+    officeMainInformation.autoMap = officeMainInformation.autoMap.mediaItemUrl;
+  }
+  if (officeMainInformation?.trainStationsMap?.mediaItemUrl?.length > 0) {
+    officeMainInformation.trainStationsMap = officeMainInformation.trainStationsMap.mediaItemUrl;
+  }
+  return {
+    databaseId,
+    slug,
+    title,
+    ...officeMainInformation,
+  };
+});
 
 const sanitizeFirmNews = (news) => news.map(
   ({

@@ -66,9 +66,9 @@ const HomePage = ({
       <RandomBioSection attorneys={filteredAttorneysByDesignation} />
       <WhatWeDoSection {...whatWeDo} />
       <WhyChooseUs content={whyChooseUs} />
-      <AllOfficeLocations offices={offices} />
       <FirmNews firmNews={firmNewsArticles} />
       <Awards awards={awards} />
+      <AllOfficeLocations offices={offices} />
     </>
   );
 };

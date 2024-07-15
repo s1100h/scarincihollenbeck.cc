@@ -1,6 +1,10 @@
 import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
-import { globalColor, globalGradient } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalGradient,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 const common = `
@@ -25,9 +29,8 @@ export const TitleBlock = styled.div`
   h2 {
     font-family: var(--font-poppins);
     font-style: normal;
-    font-size: 4.5rem;
+    font-size: ${rem(32)};
     color: ${globalColor.black};
-    text-transform: uppercase;
     margin-bottom: 0;
   }
 
@@ -113,4 +116,9 @@ export const CarouselStyled = styled(Carousel)`
       display: block !important;
     }
   }
+`;
+
+export const AwardsSection = styled.section`
+  padding-top: 60px;
+  padding-bottom: 60px;
 `;

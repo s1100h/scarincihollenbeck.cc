@@ -120,6 +120,12 @@ export const globalShadow = {
   shadowM: '0px 4px 12px 0px rgba(10, 62, 108, 0.06)',
 };
 
+export const globalBorderRadius = {
+  big: '16px',
+  middle: '12px',
+  small: '8px',
+};
+
 const transitionDuration = 300;
 
 export const globalTransition = {
