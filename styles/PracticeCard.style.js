@@ -310,6 +310,7 @@ export const PracticeCardModalsWrapper = styled.div`
     }
 
     > fieldset {
+      order: 2;
       height: 100%;
       align-self: center;
       margin: 0 0 0 -40px!important;
@@ -345,6 +346,7 @@ export const PracticeCardModalsWrapper = styled.div`
       }
 
       + .kw-field-error-message {
+        width: 100%;
         order: 1;
       }
 
@@ -363,6 +365,7 @@ export const PracticeCardModalsWrapper = styled.div`
     }
 
     > button {
+      order: 3;
       padding: 16px 40px 16px;
       margin: 0 -40px 0 -16px!important;
       width: calc(50% + 48px);
