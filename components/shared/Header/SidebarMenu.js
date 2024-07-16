@@ -18,7 +18,7 @@ import { HeaderSizeContext } from 'contexts/HeaderSizeContext';
 import {
   MAKE_A_PAYMENT,
   SIDEBAR_POLITIC_LINKS,
-  SIDEBAR_SOCIAL_LINKS,
+  SOCIAL_LINKS,
 } from 'utils/constants';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
@@ -115,7 +115,7 @@ const SidebarMenu = ({
             </SidebarMenuButtons>
 
             <SidebarMenuSocials>
-              {SIDEBAR_SOCIAL_LINKS.map((item) => (
+              {SOCIAL_LINKS.map((item) => (
                 <SidebarMenuSocial
                   key={item?.id}
                   href={item?.url}

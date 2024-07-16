@@ -872,7 +872,7 @@ export const SIDEBAR_POLITIC_LINKS = [
   },
 ];
 
-export const SIDEBAR_SOCIAL_LINKS = [
+export const SOCIAL_LINKS = [
   {
     id: 'sidebar-linkedin',
     title: 'LinkedIn',
