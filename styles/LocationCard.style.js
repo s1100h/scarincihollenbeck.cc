@@ -115,9 +115,10 @@ export const ContactInfoContent = styled.address`
   margin-top: ${(props) => (props.isOpen ? '20px' : '0')};
   margin-bottom: 0;
 
-  gap: 12px;
-
   .address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin: 0;
     min-height: 0;
   }
