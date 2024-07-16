@@ -91,7 +91,7 @@ const PracticeCard = ({
                 <PracticeCardTitle>Let`s get in touch!</PracticeCardTitle>
               </PracticeCardHeader>
 
-              <ContactForm blockName={databaseId} />
+              <ContactForm blockName={`${databaseId}-contact-form`} />
             </PracticeCardContent>
           </ModalWindow>
         </PracticeCardModalsWrapper>
