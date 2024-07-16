@@ -9,7 +9,6 @@ import {
   rem,
 } from './global_styles/Global.styles';
 import Link from 'next/link';
-import { ButtonRed } from './Buttons.style';
 import { motion } from 'framer-motion';
 
 const HeaderTopLineItemStyles = `
@@ -191,7 +190,7 @@ export const HeaderMainButtons = styled.div`
     }
   }
 
-  > ${ButtonRed} {
+  .contact-header-btn {
     ${media_breakpoint_down('md')} {
       display: none;
     }

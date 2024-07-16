@@ -623,3 +623,11 @@ export const filterAttorneysByDesignation = (attorneys) => {
   if (empty(attorneys)) return [];
   return attorneys.filter((attorney) => attorney.designation.includes('Partner'));
 };
+
+export const chunkArray = (array, chunkSize) => {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+};

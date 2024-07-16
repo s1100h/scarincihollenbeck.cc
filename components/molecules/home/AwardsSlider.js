@@ -1,45 +1,87 @@
-import { CarouselStyled } from 'styles/Awards.style';
-import Accolade from './Accolade';
-import 'react-multi-carousel/lib/styles.css';
+import SliderNavigation from 'components/common/SliderNavigation';
+import React, { useEffect, useRef, useState } from 'react';
+import { SliderWrapper } from 'styles/Slider.style';
+import AwardCard from './AwardCard';
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 1200 },
-    items: 4,
+const breakpoints = {
+  1440: {
+    slidesPerView: 5,
+    spaceBetween: 32,
   },
-  desktop: {
-    breakpoint: { max: 1200, min: 768 },
-    items: 3,
+  1280: {
+    slidesPerView: 4,
   },
-  tablet: {
-    breakpoint: { max: 992, min: 576 },
-    items: 2,
+  768: {
+    spaceBetween: 20,
+    slidesPerView: 3,
   },
-  mobile: {
-    breakpoint: { max: 576, min: 0 },
-    items: 1,
+  375: {
+    spaceBetween: 12,
+    slidesPerView: 2,
   },
 };
 
-export default function AwardsSlider({ images }) {
+const AwardsSlider = ({ images }) => {
+  const swiperRef = useRef();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isEnd, setIsEnd] = useState(false);
+  const loop = false;
+
+  const handleClickBtnNext = () => {
+    swiperRef.current.swiper.slideNext();
+  };
+
+  const handleClickBtnPrev = () => {
+    swiperRef.current.swiper.slidePrev();
+  };
+
+  useEffect(() => {
+    const slider = {
+      grabCursor: true,
+      breakpoints,
+    };
+
+    Object.assign(swiperRef.current, slider);
+    swiperRef.current.initialize();
+
+    swiperRef.current.addEventListener('swiperslidechange', (e) => {
+      setCurrentIndex(swiperRef.current?.swiper.realIndex);
+      setIsEnd(swiperRef.current?.swiper.isEnd);
+    });
+  }, []);
+
   return (
-    <CarouselStyled
-      ssr
-      aria-label="carousel"
-      responsive={responsive}
-      infinite
-      arrows
-      swipeable
-      showDots
-      renderButtonGroupOutside
-      renderDotsOutside
-    >
-      {images.map((slide) => (
-        <div key={slide.id} className="px-4">
-          <Accolade image={slide.image} />
-        </div>
-      ))}
-    </CarouselStyled>
+    <SliderWrapper>
+      <swiper-container
+        pagination="true"
+        pagination-clickable="true"
+        class="slider-container"
+        ref={swiperRef}
+        loop={loop}
+        slides-per-view="5"
+        space-between={32}
+        lazy="true"
+      >
+        {images?.map((item) => (
+          <swiper-slide key={item?.id} class="slide">
+            <AwardCard
+              image={item?.image}
+              key={item?.id}
+              year={item?.year}
+              label={item?.label}
+            />
+          </swiper-slide>
+        ))}
+      </swiper-container>
+
+      <SliderNavigation
+        handleClickBtnNext={handleClickBtnNext}
+        handleClickBtnPrev={handleClickBtnPrev}
+        isEnd={!loop && isEnd}
+        currentIndex={!loop && currentIndex}
+      />
+    </SliderWrapper>
   );
-}
+};
+
+export default AwardsSlider;

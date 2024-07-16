@@ -1,72 +1,34 @@
 import styled from 'styled-components';
 import {
-  ButtonLinkCss,
-  buttonsHoverActive,
   globalColor,
+  globalTransition,
+  rem,
 } from './global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const FooterWrapper = styled.footer`
-  padding-top: 32px;
+  padding-top: 12px;
   background-color: ${({ backgroundFooterColor }) =>
     backgroundFooterColor ? backgroundFooterColor : globalColor.blue.darkBlue};
   color: ${globalColor.white};
 `;
 
-export const FooterContainer = styled.div`
+export const FooterHolder = styled.div`
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
-  width: min(100%, 2188px);
-  max-width: 100%;
-  margin: 0 auto;
+  row-gap: 60px;
 
   a {
     color: ${globalColor.white};
   }
+`;
 
-  .footer-wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px 134px 32px;
-    flex-wrap: wrap;
-    column-gap: 40px;
-    row-gap: 60px;
-
-    > :nth-child(1) {
-      padding-left: 110px;
-      order: 2;
-      flex: 1;
-
-      li {
-        width: max-content;
-      }
-    }
-    > :nth-child(2) {
-      order: 3;
-    }
-    > :nth-child(3) {
-      width: 100%;
-      order: 4;
-    }
-
-    ${media_breakpoint_down('xxl')} {
-      padding: 40px 120px 32px;
-      > :nth-child(1) {
-        padding-left: 0;
-      }
-    }
-
-    ${media_breakpoint_down('xl')} {
-      padding: 40px 32px 32px;
-    }
-
-    ${media_breakpoint_down('md')} {
-      row-gap: 40px;
-    }
-  }
+export const FooterContent = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 40px;
 `;
 
 export const DetailsContainer = styled.section`
@@ -162,33 +124,70 @@ export const ContactsBox = styled.div`
   }
 `;
 
+export const LinksSEOBox = styled.section`
+  display: flex;
+  gap: 40px;
+
+  @media print {
+    display: none;
+  }
+`;
+
+export const FooterDoubleColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+`;
+
+export const FooterColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+`;
+
 export const LinkTitle = styled.h3`
+  margin: 0;
   color: ${globalColor.white};
   font-size: 1rem;
-  margin-bottom: 8px;
-  font-weight: 800;
+  line-height: 1.5;
+  font-weight: 600;
 `;
+
 export const LinkList = styled.ul`
   margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  padding-left: 0;
-  list-style-type: none;
+  gap: 8px;
 
   > li {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 6px;
-    line-height: 24px;
-    font-weight: 400;
+    column-gap: 8px;
+
+    > a {
+      transition: ${globalTransition.default};
+
+      &:hover {
+        color: ${globalColor.blue.skyBlue};
+      }
+    }
+
+    > svg {
+      flex-shrink: 0;
+    }
   }
 
   .phone-mail-footer {
-    border-bottom: 1px solid ${globalColor.white};
+    display: inline-flex;
+    align-items: center;
+    column-gap: 8px;
+
+    > span {
+      border-bottom: 1px solid ${globalColor.white};
+    }
 
     :hover {
-      color: ${globalColor.blue.lightBlue};
+      color: ${globalColor.blue.skyBlue};
     }
   }
 `;
@@ -213,110 +212,84 @@ export const SocialLinks = styled(LinkList)`
   }
 `;
 
-export const LinksSEOBox = styled.section`
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
-  gap: 40px;
-
-  .list-without-title {
-    margin-top: 30px;
-  }
-
-  ${media_breakpoint_down('xxl')} {
-    > :nth-child(2) {
-      margin-top: -40px;
-      grid-column: 1 / 2;
-      grid-row: 2 / 3;
-    }
-    .list-without-title {
-      margin-top: 0;
-    }
-  }
-
-  ${media_breakpoint_down('md')} {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-
-  @media print {
-    display: none;
-  }
+export const NavWrapper = styled.div`
+  background-color: ${globalColor.white};
 `;
 
-export const NavContainer = styled.section`
+export const NavHolder = styled.section`
+  padding: 12px 0;
   display: flex;
-  padding: 12px 134px 12px 244px;
-  background-color: ${globalColor.white};
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 12px;
 
   > div {
     color: ${globalColor.black};
   }
 
   .footer-subscription-btn {
-    ${ButtonLinkCss};
-    ${buttonsHoverActive};
-    width: auto;
-    padding: 15px 40px;
     flex-shrink: 0;
 
+    > span {
+      padding: 8px 28px;
+    }
+
     svg {
+      width: 24px;
+      height: 24px;
       display: flex;
       fill: ${globalColor.white};
-      margin-right: 8px;
     }
 
-    ${media_breakpoint_exactly_down(992)} {
-      width: auto;
-      svg {
-        width: auto;
-        height: auto;
-      }
-    }
-  }
-
-  ${media_breakpoint_down('xxl')} {
-    padding: 12px 120px;
-  }
-
-  ${media_breakpoint_down('xl')} {
-    padding: 12px 32px;
-  }
-
-  ${media_breakpoint_exactly_down(855)} {
-    align-items: flex-start;
-  }
-`;
-export const FooterNavigation = styled.nav`
-  display: flex;
-  width: 782px;
-
-  ul {
-    display: flex;
-    gap: 5%;
-    width: 100%;
-    margin-bottom: 0;
-
-    li {
-      a {
-        color: ${globalColor.red.darkBurgundy};
-
-        :hover {
-          color: ${globalColor.blue.dirtyBlue};
-        }
-      }
+    ${media_breakpoint_down('md')} {
+      align-self: flex-start;
+      order: -1;
     }
   }
 
   ${media_breakpoint_down('md')} {
-    width: auto;
-    ul {
-      flex-wrap: wrap;
+    flex-direction: column;
+  }
+`;
 
-      li {
-        margin-bottom: 10px;
+export const FooterNavigation = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  ul {
+    width: 100%;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 32px;
+    row-gap: 16px;
+
+    ${media_breakpoint_down('md')} {
+      gap: 16px;
+    }
+
+    li {
+      a {
+        color: ${globalColor.blue.darkBlue};
+        font-size: ${rem(18)};
+        line-height: 1.56;
+        font-weight: 500;
+        transition: ${globalTransition.default};
+
+        :hover {
+          color: ${globalColor.blue.dirtyBlue};
+        }
+
+        ${media_breakpoint_down('md')} {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+      }
+
+      ${media_breakpoint_down('md')} {
+        width: calc((100% - 16px) / 2);
       }
     }
   }

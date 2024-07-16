@@ -55,6 +55,7 @@ const PracticesTabs = ({ groupsPractices }) => {
           >
             <PracticeCard
               key={practice?.databaseId}
+              databaseId={practice?.databaseId}
               icon={groupsWithChildren[activeTab]?.groupIcon}
               title={practice?.title}
               link={practice?.uri}

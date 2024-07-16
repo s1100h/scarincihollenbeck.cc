@@ -253,11 +253,84 @@ export const officeLocationQuery = `query BasicPageQuery {
 }
 `;
 
-export const firmNewsQuery = `query authorPostsById {
-  posts(first: 4, where: {categoryName: "Firm News"}) {
+export const latestAllPosts = `query latestAllPosts {
+  posts(first: 19) {
       nodes {
         date
         slug
+        uri
+        databaseId
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+  }
+}`;
+
+export const latestClientAlertsArticles = `query latestClientAlertsArticles {
+  posts(first: 19, where: {categoryName: "Client Alert"}) {
+      nodes {
+        date
+        slug
+        uri
+        databaseId
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+  }
+}`;
+
+export const latestFirmNewsArticles = `query latestFirmNewsArticles {
+  posts(first: 19, where: {categoryName: "Firm News"}) {
+      nodes {
+        date
+        slug
+        uri
+        databaseId
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+  }
+}`;
+
+export const latestFirmInsightsArticles = `query latestFirmInsightsArticles {
+  posts(first: 19, where: {categoryId: 599}) {
+      nodes {
+        date
+        slug
+        uri
         databaseId
         featuredImage {
           node {
@@ -648,10 +721,10 @@ export const homePageQuery = `query HomePageQuery {
         imageHeight
         imageWidth
         label
+        year
         awardImage {
           sourceUrl
         }
-        year
       }
       isHoliday
       firstSection {

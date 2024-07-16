@@ -6,7 +6,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
-import { BottomSection, TextNews } from 'styles/FirmNews.style';
+import { TextNews } from 'styles/FirmNews.style';
 
 export const ArticlesSection = styled.section`
   padding: 140px 0;

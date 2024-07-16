@@ -51,7 +51,9 @@ const DefaultHeader = ({ practices, locations, menuData }) => {
           />
 
           <HeaderMainButtons $wide={isOpenSearch}>
-            <ButtonRed href="/contact">Contact us</ButtonRed>
+            <ButtonRed href="/contact" className="contact-header-btn">
+              Contact us
+            </ButtonRed>
 
             <HeaderSearch
               key="header-search"

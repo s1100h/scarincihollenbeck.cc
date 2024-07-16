@@ -49,7 +49,7 @@ const getRandomIndex = (min, max) => {
 
 const RandomBioSection = ({ attorneys }) => {
   const [randomIndex, setRandomIndex] = useState(0);
-  const interval = 20;
+  const interval = 15;
   const [timeLeft, setTimeLeft] = useState(interval);
   const [isTimerStopped, setIsTimerStopped] = useState(false);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);

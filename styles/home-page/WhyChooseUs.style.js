@@ -88,9 +88,11 @@ export const ArticleList = styled.ul`
     column-count: 2;
   }
 
-  ${media_breakpoint_exactly_down(494)} {
+  ${media_breakpoint_exactly_down(880)} {
     column-count: initial;
+  }
 
+  ${media_breakpoint_exactly_down(494)} {
     p {
       font-size: 1rem;
     }
@@ -126,14 +128,10 @@ export const FocusedServicesCards = styled.ul`
 
   ${media_breakpoint_exactly_down(768)} {
     height: 776px;
-    margin-left: auto;
-    margin-right: auto;
-    li {
-      width: 260px;
-    }
+    width: 100%;
   }
 
-  ${media_breakpoint_exactly_down(576)} {
+  ${media_breakpoint_exactly_down(695)} {
     flex-wrap: nowrap;
     height: auto;
 

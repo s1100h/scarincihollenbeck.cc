@@ -21,30 +21,25 @@ const AboutFirmSection = dynamic(
     ssr: true,
   },
 );
-const FirmNews = dynamic(
-  () => import('components/organisms/home/FirmNews/FirmNews'),
-  { ssr: true },
-);
-const Awards = dynamic(() => import('components/organisms/home/Awards'), {
-  ssr: true,
-});
 
 const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
 const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
 const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
 const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
+const Awards = dynamic(() => import('components/organisms/home/Awards'));
 const WhyChooseUs = dynamic(() => import('components/organisms/home/WhyChooseUs'));
 
 const HomePage = ({
   seo,
   awards,
-  firmNewsArticles,
   offices,
   isHoliday,
   firstSection,
   whoWeAre,
   industryWeWorkWith,
   whatWeDo,
+  latestArticlesTabsData,
   whyChooseUs,
 }) => {
   const { attorneysContext } = useContext(AttorneysContext);
@@ -65,8 +60,8 @@ const HomePage = ({
       <IndustriesSection {...industryWeWorkWith} />
       <RandomBioSection attorneys={filteredAttorneysByDesignation} />
       <WhatWeDoSection {...whatWeDo} />
+      <LatestPostsSection tabsData={latestArticlesTabsData} />
       <WhyChooseUs content={whyChooseUs} />
-      <FirmNews firmNews={firmNewsArticles} />
       <Awards awards={awards} />
       <AllOfficeLocations offices={offices} />
     </>

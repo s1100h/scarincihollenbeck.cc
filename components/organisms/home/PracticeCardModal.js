@@ -48,7 +48,7 @@ const PracticeCardModal = ({
     <PracticeCardFooter>
       <PracticeCardFooterItem>
         <PracticeCardButton href={link} as={Link} className="footer-action">
-          View practice area
+          View practice
         </PracticeCardButton>
       </PracticeCardFooterItem>
       <PracticeCardFooterItem>
@@ -56,7 +56,7 @@ const PracticeCardModal = ({
           className="footer-action"
           onClick={handleModalOpener}
         >
-          Book free consultation
+          Free consultation
         </PracticeCardButton>
       </PracticeCardFooterItem>
     </PracticeCardFooter>
