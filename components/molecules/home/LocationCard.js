@@ -21,8 +21,13 @@ const colorInactiveIcons = globalColor.blue.blue500;
 
 const sizeIcons = 28;
 
-export default function LocationCard({ officesData }) {
+export default function LocationCard({ officesData, setTitle }) {
   const [cardIndex, setCardId] = useState(0);
+  const handleChangeTitle = (title, index) => {
+    setTitle(title);
+    setCardId(index);
+  };
+
   return (
     <LocationCardMain>
       <MapBox>
@@ -42,11 +47,12 @@ export default function LocationCard({ officesData }) {
       </MapBox>
       <LocationOffices>
         {officesData.map((office, idx) => (
-          <ContactInfoCard key={office.databaseId} openCard={cardIndex === idx}>
-            <LocationHeader
-              onClick={() => setCardId(idx)}
-              isActive={cardIndex === idx}
-            >
+          <ContactInfoCard
+            key={office.databaseId}
+            openCard={cardIndex === idx}
+            onClick={() => handleChangeTitle(office.title, idx)}
+          >
+            <LocationHeader isActive={cardIndex === idx}>
               <h5>{office.title}</h5>
               <BsChevronRight
                 color={

@@ -78,7 +78,6 @@ export const LocationHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
 
   svg {
     transition: ${globalTransition.default};
@@ -102,6 +101,7 @@ export const ContactInfoCard = styled.article`
   border: 1px solid ${globalColor.gray.gray300};
   padding: 24px;
   background-color: ${globalColor.white};
+  cursor: ${({ openCard }) => (openCard ? 'initial' : 'pointer')};
 `;
 
 export const ContactInfoContent = styled.address`
