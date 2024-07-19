@@ -5,9 +5,7 @@ import {
   globalShadow,
   threeDots,
 } from './global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
 const hoverLink = `
@@ -26,7 +24,6 @@ const newsCommonStyles = `
   box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
   margin-bottom: 20px;
 `;
-
 
 export const OtherNews = styled.article`
   ${newsCommonStyles};

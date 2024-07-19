@@ -1,24 +1,32 @@
 import styled from 'styled-components';
-import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalShadow,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
+export const LocationsHomeSection = styled.section`
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: ${globalColor.gray.gray10};
+`;
 export const LocationTitle = styled.h2`
   font-family: var(--font-poppins);
-  font-weight: 400;
-  font-size: 72px;
-  line-height: 1.2;
+  font-weight: 600;
+  font-size: ${rem(32)};
+  line-height: 44px;
   color: ${globalColor.black};
-  text-transform: uppercase;
-  margin-bottom: 30px;
 
-  ${media_breakpoint_down('md')} {
-    font-size: 38px;
-    text-align: center;
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(20)};
   }
 `;
 
-export const LocationCardMain = styled.section`
+export const LocationCardMain = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
@@ -33,30 +41,53 @@ export const LocationCardMain = styled.section`
 `;
 
 export const MapBox = styled.div`
-  height: 100%;
+  height: 84%;
   > div,
   iframe {
     height: 100%;
+  }
+
+  .link-map-box {
+    a {
+      font-size: 1rem;
+      line-height: 24px;
+      color: ${globalColor.blue.blue400};
+    }
+  }
+
+  ${media_breakpoint_down('md')} {
+    .link-map-box {
+      margin-bottom: 0;
+    }
+
+    > div,
+    iframe {
+      height: revert-layer;
+    }
   }
 `;
 
 export const LocationOffices = styled.div`
   display: flex;
   flex-flow: column;
-  gap: 2vh;
+  gap: 12px;
+  padding-bottom: 44px;
 `;
 
 export const LocationHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 27px;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.isActive ? 'whitesmoke' : 'transparent'};
+
+  svg {
+    transition: ${globalTransition.default};
+    transform: ${(props) =>
+      props.isActive ? 'rotate(-90deg)' : 'rotate(0deg)'};
+  }
 
   h5 {
-    color: ${globalColor.black};
+    color: ${(props) =>
+      props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
     font-weight: 700;
     font-size: 20px;
     line-height: 1;
@@ -64,50 +95,42 @@ export const LocationHeader = styled.div`
   }
 `;
 
-export const LocationFooter = styled.div`
-  justify-content: flex-end;
-  padding: 0 27px 27px 0;
-  display: ${(props) => (props.isActive ? 'flex' : 'none')};
-
-  ${media_breakpoint_down('xl')} {
-    margin-top: 20px;
-  }
-`;
-
 export const ContactInfoCard = styled.article`
-  box-shadow: -2px 0 10px rgb(0 0 0 / 13%);
+  box-shadow: ${globalShadow.shadowM};
+  border-radius: ${globalBorderRadius.middle};
+  border: 1px solid ${globalColor.gray.gray300};
+  padding: 24px;
+  background-color: ${globalColor.white};
+  cursor: ${({ openCard }) => (openCard ? 'initial' : 'pointer')};
 `;
 
-export const ContactInfoContent = styled.div`
-  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+export const ContactInfoContent = styled.address`
+  display: grid;
+  transition: ${globalTransition.default};
+  grid-template-rows: ${(props) => (props.isOpen ? '1fr' : '0fr')};
+  overflow: hidden;
+  opacity: ${(props) => (props.isOpen ? '1' : '0')};
   flex-direction: column;
   align-items: flex-start;
-  gap: 22px;
-  padding: 0 27px 0 27px;
-  margin-top: 20px;
-`;
+  margin-top: ${(props) => (props.isOpen ? '20px' : '0')};
+  margin-bottom: 0;
 
-export const LinkToAttorneys = styled.a`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1;
-  color: #a91110;
-  border-bottom: 1.5px solid #a91110;
-
-  :hover {
-    color: #a91110;
-    text-decoration: none;
+  .address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    min-height: 0;
   }
 `;
 
-export const Contact = styled.div`
+export const Contact = styled.li`
   display: flex;
-  gap: 21px;
+  gap: 12px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.8;
+  font-weight: 500;
+  font-size: ${rem(18)};
+  line-height: 28px;
   margin-bottom: 0;
 `;
 
@@ -130,11 +153,12 @@ export const LocationCardWrapper = styled.address`
   row-gap: 20px;
   border-radius: 12px;
   background-color: ${globalColor.blue.blue6002};
-  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06), -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
   border: 2px solid transparent;
   position: relative;
   transition: ${globalTransition.default};
-  
+
   &:hover {
     border-color: ${globalColor.blue.blue400};
 
@@ -173,7 +197,8 @@ export const LocationCardList = styled.ul`
   flex-direction: column;
   row-gap: 12px;
 
-  .location-card-item, .location-card-link {
+  .location-card-item,
+  .location-card-link {
     display: flex;
     column-gap: 8px;
     color: ${globalColor.white};
@@ -188,8 +213,7 @@ export const LocationCardList = styled.ul`
   }
 `;
 
-export const LocationCardItem = styled.li`
-`;
+export const LocationCardItem = styled.li``;
 
 export const LocationCardItemIcon = styled.span`
   width: 28px;

@@ -1,8 +1,12 @@
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
-import Link from "next/link";
-import { ChildrenBox } from "./ModalWindow.style";
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import Link from 'next/link';
+import { ChildrenBox } from './ModalWindow.style';
 
 export const PracticeCardWrapper = styled.article`
   height: 100%;
@@ -265,9 +269,9 @@ export const PracticeCardModalsWrapper = styled.div`
   .kwes-form {
     column-gap: 16px;
 
-    .input-group--0, 
-    .input-group--1, 
-    .input-group--2, 
+    .input-group--0,
+    .input-group--1,
+    .input-group--2,
     .input-group--3 {
       width: calc(50% - 8px);
 
@@ -276,7 +280,8 @@ export const PracticeCardModalsWrapper = styled.div`
       }
     }
 
-    .form-control, .form-control::placeholder {
+    .form-control,
+    .form-control::placeholder {
       font-size: 1rem;
       line-height: 1.5;
 
@@ -291,7 +296,8 @@ export const PracticeCardModalsWrapper = styled.div`
       border-color: ${globalColor.gray.gray500};
       color: ${globalColor.white};
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: ${globalColor.blue.blue550};
       }
     }
@@ -305,7 +311,7 @@ export const PracticeCardModalsWrapper = styled.div`
     }
 
     > p {
-      margin-bottom: 24px!important;
+      margin-bottom: 24px !important;
       color: ${globalColor.gray.gray300};
     }
 
@@ -313,7 +319,7 @@ export const PracticeCardModalsWrapper = styled.div`
       order: 2;
       height: 100%;
       align-self: center;
-      margin: 0 0 0 -40px!important;
+      margin: 0 0 0 -40px !important;
       width: calc(50% + 32px);
       position: relative;
 
@@ -338,7 +344,7 @@ export const PracticeCardModalsWrapper = styled.div`
           padding: 16px;
         }
       }
-      
+
       span {
         font-size: ${rem(14)};
         line-height: 1.43;
@@ -359,7 +365,7 @@ export const PracticeCardModalsWrapper = styled.div`
       }
 
       ${media_breakpoint_down('sm')} {
-        margin: 0 0 0 -16px!important;
+        margin: 0 0 0 -16px !important;
         width: calc(50% + 8px);
       }
     }
@@ -367,7 +373,7 @@ export const PracticeCardModalsWrapper = styled.div`
     > button {
       order: 3;
       padding: 16px 40px 16px;
-      margin: 0 -40px 0 -16px!important;
+      margin: 0 -40px 0 -16px !important;
       width: calc(50% + 48px);
       background-color: ${globalColor.blue.blue550};
       border-radius: 0;
@@ -400,7 +406,7 @@ export const PracticeCardModalsWrapper = styled.div`
 
       ${media_breakpoint_down('sm')} {
         padding: 16px;
-        margin: 0 -16px 0 -16px!important;
+        margin: 0 -16px 0 -16px !important;
         width: calc(50% + 24px);
       }
     }

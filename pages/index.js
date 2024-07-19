@@ -56,12 +56,20 @@ const getLatestArticlesTabsData = async () => {
 
 export const sanitizeOffices = (offices) => offices.map(({
   databaseId, slug, title, officeMainInformation,
-}) => ({
-  databaseId,
-  slug,
-  title,
-  ...officeMainInformation,
-}));
+}) => {
+  if (officeMainInformation?.autoMap?.mediaItemUrl?.length > 0) {
+    officeMainInformation.autoMap = officeMainInformation.autoMap.mediaItemUrl;
+  }
+  if (officeMainInformation?.trainStationsMap?.mediaItemUrl?.length > 0) {
+    officeMainInformation.trainStationsMap = officeMainInformation.trainStationsMap.mediaItemUrl;
+  }
+  return {
+    databaseId,
+    slug,
+    title,
+    ...officeMainInformation,
+  };
+});
 
 /** Map the home page query data to page props */
 export const getStaticProps = async () => {
@@ -78,6 +86,7 @@ export const getStaticProps = async () => {
     whoWeAre,
     industryWeWorkWith,
     whatWeDo,
+    whyChooseUs,
   } = homePage;
 
   /** get firm locations */
@@ -95,6 +104,7 @@ export const getStaticProps = async () => {
       industryWeWorkWith,
       whatWeDo,
       latestArticlesTabsData,
+      whyChooseUs,
     },
     revalidate: 86400,
   };
@@ -111,6 +121,7 @@ const Home = ({
   industryWeWorkWith,
   whatWeDo,
   latestArticlesTabsData,
+  whyChooseUs,
 }) => {
   const homePageProps = {
     seo,
@@ -122,6 +133,7 @@ const Home = ({
     industryWeWorkWith,
     whatWeDo,
     latestArticlesTabsData,
+    whyChooseUs,
   };
   return <HomePage {...homePageProps} />;
 };

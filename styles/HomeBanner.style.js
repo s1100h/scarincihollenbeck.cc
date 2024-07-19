@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import Image from 'next/image';
 
 export const Banner = styled.section`
@@ -17,7 +21,12 @@ export const Banner = styled.section`
     left: 0;
     width: 60%;
     height: 100%;
-    background: linear-gradient(270deg, rgba(255, 255, 255, 0.00) 0%, rgba(227, 238, 255, 0.60) 42.59%, #E3EEFF 100%);
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(227, 238, 255, 0.6) 42.59%,
+      #e3eeff 100%
+    );
     z-index: -1;
 
     ${media_breakpoint_down('lg')} {
@@ -153,7 +162,8 @@ export const BannerCard = styled.article`
     }
   }
 
-  &:last-child, &:nth-child(3) {
+  &:last-child,
+  &:nth-child(3) {
     padding-right: 0;
     border-right: 0;
   }
@@ -225,7 +235,8 @@ export const BannerCardContent = styled.div`
   flex-direction: column;
   row-gap: 16px;
 
-  p, ul {
+  p,
+  ul {
     margin: 0;
     color: ${globalColor.gray.gray110};
 

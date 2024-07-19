@@ -1,33 +1,32 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
 import {
   Contact,
   ContactInfoCard,
   ContactInfoContent,
-  LinkToAttorneys,
   LocationCardMain,
-  LocationFooter,
   LocationHeader,
   LocationOffices,
   MapBox,
 } from 'styles/LocationCard.style';
-import {
-  BsCaretDownFill,
-  BsFillPrinterFill,
-  BsFillSignpostFill,
-  BsFillTelephoneFill,
-} from 'react-icons/bs';
+import { BsChevronRight, BsFillGeoAltFill } from 'react-icons/bs';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import empty from 'is-empty';
+import { HiMiniPhone } from 'react-icons/hi2';
+import { HiPrinter } from 'react-icons/hi';
 import Map from '../location/Map';
+import DirectionsFilesLink from '../../common/DirectionsFilesLink';
 
-const colorActiveIcons = globalColor.red.darkRed;
-const colorInactiveIcons = globalColor.gray.gray90;
+const colorActiveIcons = globalColor.blue.blue400;
+const colorInactiveIcons = globalColor.blue.blue500;
 
-const sizeIcons = 30;
+const sizeIcons = 28;
 
-export default function LocationCard({ officesData }) {
+export default function LocationCard({ officesData, setTitle }) {
   const [cardIndex, setCardId] = useState(0);
+  const handleChangeTitle = (title, index) => {
+    setTitle(title);
+    setCardId(index);
+  };
 
   return (
     <LocationCardMain>
@@ -44,16 +43,18 @@ export default function LocationCard({ officesData }) {
               : officesData[`${cardIndex}`].mapLink
           }
         />
+        <DirectionsFilesLink currentOffice={officesData[`${cardIndex}`]} />
       </MapBox>
       <LocationOffices>
         {officesData.map((office, idx) => (
-          <ContactInfoCard key={office.databaseId} openCard={cardIndex === idx}>
-            <LocationHeader
-              onClick={() => setCardId(idx)}
-              isActive={cardIndex === idx}
-            >
+          <ContactInfoCard
+            key={office.databaseId}
+            openCard={cardIndex === idx}
+            onClick={() => handleChangeTitle(office.title, idx)}
+          >
+            <LocationHeader isActive={cardIndex === idx}>
               <h5>{office.title}</h5>
-              <BsCaretDownFill
+              <BsChevronRight
                 color={
                   cardIndex === idx ? colorActiveIcons : colorInactiveIcons
                 }
@@ -61,46 +62,40 @@ export default function LocationCard({ officesData }) {
               />
             </LocationHeader>
             <ContactInfoContent isOpen={cardIndex === idx}>
-              <Contact>
-                <div>
-                  <BsFillSignpostFill
-                    color={globalColor.red.darkRed}
+              <ul className="address-list">
+                <Contact>
+                  <div>
+                    <BsFillGeoAltFill
+                      color={globalColor.gray.gray500}
+                      size={sizeIcons}
+                    />
+                  </div>
+                  {office.streetAddress}
+                  {!empty(office.streetAddress) && ', '}
+                  {office.floor}
+                  {!empty(office?.floor) && ', '}
+                  {office.title.split(',')[0].trim()}
+                  {', '}
+                  {office.addressRegion}
+                  {' '}
+                  {office.postCode}
+                </Contact>
+                <Contact>
+                  <HiMiniPhone
+                    color={globalColor.gray.gray500}
                     size={sizeIcons}
                   />
-                </div>
-                {office.streetAddress}
-                {!empty(office.streetAddress) && ', '}
-                {office.floor}
-                {!empty(office?.floor) && ', '}
-                {office.title.split(',')[0].trim()}
-                {', '}
-                {office.addressRegion}
-                {' '}
-                {office.postCode}
-              </Contact>
-              <Contact>
-                <BsFillTelephoneFill
-                  color={colorActiveIcons}
-                  size={sizeIcons}
-                />
-                Phone:
-                {` ${office.phone}`}
-              </Contact>
-              <Contact>
-                <BsFillPrinterFill color={colorActiveIcons} size={sizeIcons} />
-                Fax:
-                {` ${office.fax}`}
-              </Contact>
+                  {` ${office.phone}`}
+                </Contact>
+                <Contact>
+                  <HiPrinter
+                    color={globalColor.gray.gray500}
+                    size={sizeIcons}
+                  />
+                  {` ${office.fax}`}
+                </Contact>
+              </ul>
             </ContactInfoContent>
-            <LocationFooter isActive={cardIndex === idx}>
-              <Link
-                href={office?.slug ? `location/${office.slug}` : '/location'}
-                passHref
-                legacyBehavior
-              >
-                <LinkToAttorneys>Attorneys</LinkToAttorneys>
-              </Link>
-            </LocationFooter>
           </ContactInfoCard>
         ))}
       </LocationOffices>

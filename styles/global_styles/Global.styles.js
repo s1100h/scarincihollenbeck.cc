@@ -63,8 +63,8 @@ export const globalColor = {
     burgundy: '#60191B',
     darkBurgundy: '#381314',
     ultraLiteRed: '#F6A2A2',
-    newRed: "#8F1B11",
-    сoffee: "#450A05",
+    newRed: '#8F1B11',
+    сoffee: '#450A05',
   },
 
   blue: {
@@ -118,6 +118,12 @@ export const globalShadow = {
   hoveredShadow: `-2px 0px 18px rgb(99 98 98 / 90%)`,
   blueShadow: `-2px 0px 18px ${globalColor.blue.ultramarine}`,
   shadowM: '0px 4px 12px 0px rgba(10, 62, 108, 0.06)',
+};
+
+export const globalBorderRadius = {
+  big: '16px',
+  middle: '12px',
+  small: '8px',
 };
 
 const transitionDuration = 300;

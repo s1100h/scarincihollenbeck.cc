@@ -1,8 +1,12 @@
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-import { attorneyCardForPractices } from "./practices/DefaultSubHeader.style";
-import { ContactBox, InfoBox, LinkBox } from "./AttorneyCard.style";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import { attorneyCardForPractices } from './practices/DefaultSubHeader.style';
+import { ContactBox, InfoBox, LinkBox } from './AttorneyCard.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const RandomBioWrapper = styled.section`
   padding: 60px 0 160px;
@@ -18,7 +22,12 @@ export const RandomBioWrapper = styled.section`
     width: 100%;
     height: 175px;
     z-index: -1;
-    background: linear-gradient(180deg, rgba(6, 11, 42, 0.00) 0%, rgba(6, 11, 42, 0.85) 53.37%, #060B2A 93.36%);
+    background: linear-gradient(
+      180deg,
+      rgba(6, 11, 42, 0) 0%,
+      rgba(6, 11, 42, 0.85) 53.37%,
+      #060b2a 93.36%
+    );
   }
 
   ${media_breakpoint_down('xl')} {
@@ -40,7 +49,7 @@ export const RandomBioHolder = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${media_breakpoint_down("xxl")} {
+  ${media_breakpoint_down('xxl')} {
     max-width: 1112px;
   }
 
@@ -96,7 +105,6 @@ export const RandomBioCard = styled.div`
     flex: unset;
 
     &:hover {
-
       > div {
         h3 {
           color: ${globalColor.blue.blue400};
@@ -178,7 +186,7 @@ export const RandomBioCard = styled.div`
     }
   }
 
-  ${media_breakpoint_down("xl")} {
+  ${media_breakpoint_down('xl')} {
     flex-direction: column;
   }
 `;
@@ -187,18 +195,18 @@ export const RandomBioDescription = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  
+
   .link-to-bio {
     margin: auto 0 0 auto;
     display: flex;
     text-transform: capitalize;
   }
 
-  ${media_breakpoint_down("xl")} {
+  ${media_breakpoint_down('xl')} {
     min-height: 120px;
   }
 
-  ${media_breakpoint_down("sm")} {
+  ${media_breakpoint_down('sm')} {
     min-height: 100px;
     font-size: ${rem(14)};
     line-height: 1.43;
@@ -219,7 +227,7 @@ export const RandomBioDescriptionText = styled.p`
     margin: 0;
   }
 
-  ${media_breakpoint_down("xl")} {
+  ${media_breakpoint_down('xl')} {
     -webkit-line-clamp: 4;
   }
 `;
@@ -227,7 +235,7 @@ export const RandomBioDescriptionText = styled.p`
 export const RandomBioFooter = styled.div`
   margin-top: 24px;
 
-  ${media_breakpoint_down("sm")} {
+  ${media_breakpoint_down('sm')} {
     margin-top: 12px;
   }
 `;
@@ -242,7 +250,8 @@ export const RandomBioControlPanel = styled.div`
   column-gap: 12px;
   border-radius: 4px;
   background-color: ${globalColor.blue.blue500};
-  box-shadow: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+  box-shadow: 0px 20px 24px -4px rgba(16, 24, 40, 0.08),
+    0px 8px 8px -4px rgba(16, 24, 40, 0.03);
   color: ${globalColor.white};
 
   ${media_breakpoint_down('lg')} {
@@ -317,13 +326,13 @@ export const RandomBioControlButton = styled.button`
     justify-content: center;
     transition: ${globalTransition.default};
 
-    ${media_breakpoint_down("sm")} {
+    ${media_breakpoint_down('sm')} {
       width: 20px;
       height: 20px;
     }
   }
 
-  ${media_breakpoint_down("sm")} {
+  ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
     line-height: 1.43;
   }

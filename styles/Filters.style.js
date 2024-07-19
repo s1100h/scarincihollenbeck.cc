@@ -1,6 +1,10 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { SelectWrapper } from './CustomSelect.style';
 import { SearchInput } from './GlobalSearch.style';
@@ -81,7 +85,6 @@ export const LetterSelectorBtn = styled.button`
     text-decoration: none;
   }
 `;
-
 
 //Styles for new Filters in Header Navbar
 
@@ -175,7 +178,8 @@ export const ResultCard = styled(Link)`
   column-gap: 12px;
   border-radius: 4px;
   background-color: ${globalColor.blue.blue6002};
-  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06), -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
 
   &:hover {
     > span {

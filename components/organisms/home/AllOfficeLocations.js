@@ -1,12 +1,19 @@
 import dynamic from 'next/dynamic';
-import { LocationTitle } from 'styles/LocationCard.style';
+import { LocationsHomeSection, LocationTitle } from 'styles/LocationCard.style';
+import { useState } from 'react';
+import { ContainerDefault } from '../../../styles/Containers.style';
 
 const LocationCard = dynamic(() => import('components/molecules/home/LocationCard'));
 
-const AllOfficeLocations = ({ offices }) => (
-  <div className="wrapper-section">
-    <LocationTitle>OFFICE LOCATIONS</LocationTitle>
-    <LocationCard officesData={offices} />
-  </div>
-);
+const AllOfficeLocations = ({ offices }) => {
+  const [officeTitle, setOfficeTitle] = useState(offices[0].title);
+  return (
+    <LocationsHomeSection>
+      <ContainerDefault>
+        <LocationTitle>{officeTitle}</LocationTitle>
+        <LocationCard setTitle={setOfficeTitle} officesData={offices} />
+      </ContainerDefault>
+    </LocationsHomeSection>
+  );
+};
 export default AllOfficeLocations;

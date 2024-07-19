@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { globalColor } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import { globalColor } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const WhatWeDoWrapper = styled.section`
   padding: 60px 0;

@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { media_breakpoint_down, media_breakpoint_exactly_down } from './mediaBreakpoints.style';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 import { FiltersItems } from './Filters.style';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
 import { SearchInput } from './GlobalSearch.style';
@@ -28,7 +31,6 @@ export const MainAttorneysContainer = styled.section`
   ${SearchInput} {
     background-color: ${globalColor.gray.gray10};
   }
-
 `;
 
 export const FaqBox = styled.div`

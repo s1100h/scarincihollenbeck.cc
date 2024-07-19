@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { globalColor, globalTransition } from "./global_styles/Global.styles";
+import styled from 'styled-components';
+import { globalColor, globalTransition } from './global_styles/Global.styles';
 
 export const SliderWrapper = styled.div`
   display: flex;

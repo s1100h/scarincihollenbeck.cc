@@ -239,6 +239,14 @@ export const officeLocationQuery = `query BasicPageQuery {
         fax
         floor
         postCode
+        autoMap {
+					mediaItemUrl
+					databaseId
+      	}
+      	trainStationsMap {
+					mediaItemUrl
+					databaseId
+      	}
       }
     }
   }
@@ -767,7 +775,7 @@ export const homePageQuery = `query HomePageQuery {
           }
         }
       }
-      whatWeDo {
+			whatWeDo {
         groupsPractices {
           groupPractices
           groupIcon

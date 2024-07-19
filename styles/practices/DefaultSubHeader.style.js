@@ -5,7 +5,11 @@ import {
 } from 'styles/AboutAuthorFormCard.style';
 import { ContactBox, InfoBox, LinkBox } from 'styles/AttorneyCard.style';
 import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
-import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,

@@ -1,7 +1,11 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import Link from 'next/link';
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const IndustriesWrapper = styled.section`
   padding: 60px 0;
@@ -94,7 +98,6 @@ export const IndustriesCardWrapper = styled.article`
     .title {
       color: ${globalColor.blue.blue400};
     }
-
   }
 
   ${media_breakpoint_down('lg')} {

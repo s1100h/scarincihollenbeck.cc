@@ -23,7 +23,8 @@ export const LogoSeparatorWrapper = styled.div`
   align-items: center;
   gap: 14px;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: '';
     width: 1px;
     height: 100%;

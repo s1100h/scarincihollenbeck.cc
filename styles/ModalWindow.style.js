@@ -51,7 +51,7 @@ export const ModalCloser = styled.button`
 
   &:before,
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     left: 50%;
     transform: scale(1, 1);

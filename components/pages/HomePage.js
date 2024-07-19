@@ -9,14 +9,26 @@ import { filterAttorneysByDesignation } from 'utils/helpers';
 // import InfoModal from '../atoms/InfoModal';
 
 // !! Attention the modal window was turned off. 12/31/2022
-const AboutFirmSection = dynamic(() => import('components/organisms/home/AboutFirm'));
+const AllOfficeLocations = dynamic(
+  () => import('components/organisms/home/AllOfficeLocations'),
+  {
+    ssr: true,
+  },
+);
+const AboutFirmSection = dynamic(
+  () => import('components/organisms/home/AboutFirm'),
+  {
+    ssr: true,
+  },
+);
+
 const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
 const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
 const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
 const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
 const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
 const Awards = dynamic(() => import('components/organisms/home/Awards'));
-const AllOfficeLocations = dynamic(() => import('components/organisms/home/AllOfficeLocations'));
+const WhyChooseUs = dynamic(() => import('components/organisms/home/WhyChooseUs'));
 
 const HomePage = ({
   seo,
@@ -28,6 +40,7 @@ const HomePage = ({
   industryWeWorkWith,
   whatWeDo,
   latestArticlesTabsData,
+  whyChooseUs,
 }) => {
   const { attorneysContext } = useContext(AttorneysContext);
   const filteredAttorneysByDesignation = filterAttorneysByDesignation(attorneysContext);
@@ -48,6 +61,7 @@ const HomePage = ({
       <RandomBioSection attorneys={filteredAttorneysByDesignation} />
       <WhatWeDoSection {...whatWeDo} />
       <LatestPostsSection tabsData={latestArticlesTabsData} />
+      <WhyChooseUs content={whyChooseUs} />
       <Awards awards={awards} />
       <AllOfficeLocations offices={offices} />
     </>

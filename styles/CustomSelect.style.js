@@ -1,6 +1,10 @@
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SelectWrapper = styled.div`
   width: 100%;
@@ -28,7 +32,8 @@ export const SelectInput = styled.input`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  border-radius: ${({ $selectActive }) => ($selectActive ? '4px 4px 0 0' : '4px')};
+  border-radius: ${({ $selectActive }) =>
+    $selectActive ? '4px 4px 0 0' : '4px'};
   cursor: pointer;
   transition: ${globalTransition.default};
 
@@ -79,7 +84,7 @@ export const SelectOptions = styled.ul`
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.22);
 
   &::-webkit-scrollbar-track {
-    background-color: #C5C5C5;
+    background-color: #c5c5c5;
     border-radius: 8px;
     opacity: 0;
   }
@@ -115,4 +120,3 @@ export const SelectOption = styled.li`
     line-height: 1.43;
   }
 `;
-

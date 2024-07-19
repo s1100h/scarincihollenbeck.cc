@@ -10,7 +10,6 @@ import {
 } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
-
 export const AboutSection = styled.section`
   padding: 60px 0;
   background-color: ${globalColor.blue.darkBlue};
@@ -71,7 +70,8 @@ export const AboutDescription = styled.div`
   flex-direction: column;
   row-gap: 16px;
 
-  p, ul {
+  p,
+  ul {
     margin: 0;
 
     strong {
@@ -111,7 +111,7 @@ export const AboutDescription = styled.div`
 `;
 
 export const AboutCard = styled.article`
-  /* max-height: 400px; */ 
+  /* max-height: 400px; */
   height: 100%;
   padding: 24px;
   margin-top: 48px;

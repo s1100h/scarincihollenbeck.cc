@@ -615,25 +615,25 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'FirstName',
-    placeholder: 'First name',
+    placeholder: 'First name *',
     rules: 'required|max:255',
   },
   {
     type: 'text',
     name: 'LastName',
-    placeholder: 'Last name',
+    placeholder: 'Last name *',
     rules: 'required|max:255',
   },
   {
     type: 'email',
     name: 'Email',
-    placeholder: 'Email address',
+    placeholder: 'Email address *',
     rules: 'required|max:255',
   },
   {
     type: 'tel',
     name: 'Phone',
-    placeholder: 'Phone number',
+    placeholder: 'Phone number *',
     rules:
       'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
     maxLength: 17,
@@ -649,14 +649,14 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'Subject',
-    placeholder: 'Subject',
+    placeholder: 'Subject *',
     rules: 'required|max:1000',
   },
   {
     type: 'textarea',
     name: 'Message',
     placeholder: 'Message',
-    rules: 'required|max:1000',
+    rules: 'max:1000',
     rows: 8,
     cols: 4,
   },

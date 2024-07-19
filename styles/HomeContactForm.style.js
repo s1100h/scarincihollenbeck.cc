@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { globalColor, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import { globalColor, rem } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const ContactFormWrapper = styled.section`
   position: relative;
@@ -62,7 +62,8 @@ export const ContactFormHolder = styled.div`
       }
     }
 
-    .form-control, .form-control::placeholder {
+    .form-control,
+    .form-control::placeholder {
       font-size: 1rem;
       line-height: 1.5;
 
@@ -85,23 +86,23 @@ export const ContactFormHolder = styled.div`
     }
 
     > p {
-      margin-bottom: 16px!important;
+      margin-bottom: 16px !important;
       max-width: 800px;
       color: ${globalColor.gray.gray110};
 
       ${media_breakpoint_down('sm')} {
-        margin-bottom: 8px!important;
+        margin-bottom: 8px !important;
       }
     }
 
     > fieldset {
       height: 100%;
       align-self: center;
-      margin: 0!important;
+      margin: 0 !important;
       width: calc(50% - 8px);
       display: flex;
       position: relative;
-      
+
       span {
         font-size: ${rem(14)};
         line-height: 1.43;
@@ -117,13 +118,13 @@ export const ContactFormHolder = styled.div`
       }
 
       ${media_breakpoint_down('sm')} {
-        margin-bottom: 12px!important;
+        margin-bottom: 12px !important;
         width: 100%;
       }
     }
 
     > button {
-      margin: 0!important;
+      margin: 0 !important;
       width: calc(50% - 8px);
 
       ${media_breakpoint_down('sm')} {

@@ -1,7 +1,12 @@
 import { Form } from 'react-bootstrap';
 import { Hits } from 'react-instantsearch-dom';
 import styled from 'styled-components';
-import { globalColor, globalShadow, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalShadow,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SearchForm = styled(Form)`
@@ -51,7 +56,6 @@ export const SearchInput = styled(Form.Control)`
     background-color: ${globalColor.gray.gray10};
     font-size: ${rem(14)};
     line-height: 1.42;
-    
 
     &:focus {
       background-color: ${globalColor.gray.gray10};
@@ -171,7 +175,9 @@ export const ResultsContainer = styled.div`
           content: '';
           width: 100%;
           height: 100%;
-          background: url("/icons/double-search-pagination-arrow-left.svg") no-repeat center/cover, ${globalColor.blue.darkBlue};
+          background: url('/icons/double-search-pagination-arrow-left.svg')
+              no-repeat center/cover,
+            ${globalColor.blue.darkBlue};
           position: absolute;
           top: 0;
           left: 0;
@@ -190,7 +196,9 @@ export const ResultsContainer = styled.div`
           content: '';
           width: 100%;
           height: 100%;
-          background: url("/icons/single-search-pagination-arrow-left.svg") no-repeat center/cover, ${globalColor.blue.darkBlue};
+          background: url('/icons/single-search-pagination-arrow-left.svg')
+              no-repeat center/cover,
+            ${globalColor.blue.darkBlue};
           position: absolute;
           top: 0;
           left: 0;
@@ -208,7 +216,9 @@ export const ResultsContainer = styled.div`
           content: '';
           width: 100%;
           height: 100%;
-          background: url("/icons/single-search-pagination-arrow-right.svg") no-repeat center/cover, ${globalColor.blue.darkBlue};
+          background: url('/icons/single-search-pagination-arrow-right.svg')
+              no-repeat center/cover,
+            ${globalColor.blue.darkBlue};
           position: absolute;
           top: 0;
           left: 0;

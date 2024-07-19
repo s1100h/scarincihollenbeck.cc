@@ -1,6 +1,11 @@
 import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
-import { globalColor, globalGradient, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalGradient,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const AwardsWrapper = styled.section`
@@ -17,7 +22,8 @@ export const AwardsHolder = styled.div`
   flex-direction: column;
   row-gap: 24px;
 
-  .custom-prev-button, .custom-next-button {
+  .custom-prev-button,
+  .custom-next-button {
     color: ${globalColor.white};
 
     &:disabled {

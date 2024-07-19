@@ -1,7 +1,11 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { commonBtnStyle } from './ButtonsMenu.style';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
@@ -125,7 +129,7 @@ export const StandardBlueButton = styled.button`
     height: 100%;
     border-radius: 4px;
     z-index: -1;
-    background-image: linear-gradient(87deg, #164587 -9.15%, #060B2A 100%);;
+    background-image: linear-gradient(87deg, #164587 -9.15%, #060b2a 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -165,13 +169,13 @@ export const ButtonRed = styled(Link)`
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(88deg, #8F1B11 -16.23%, #3D0804 102.61%);
+    background: linear-gradient(88deg, #8f1b11 -16.23%, #3d0804 102.61%);
     z-index: -1;
     opacity: 0;
     transition: ${globalTransition.default};
   }
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     &:hover {
       box-shadow: 0px 2px 8px 0px rgba(64, 64, 64, 0.39);
 

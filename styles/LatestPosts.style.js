@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
-import { globalColor, globalTransition, rem } from "./global_styles/Global.styles";
-import Link from "next/link";
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
+import Link from 'next/link';
 
 export const LatestPostsWrapper = styled.section`
   padding: 60px 0;
@@ -76,9 +80,7 @@ export const LatestPostsTab = styled.button`
   }
 `;
 
-export const LatestPostsContent = styled.div`
-
-`;
+export const LatestPostsContent = styled.div``;
 
 export const LatestsPostsCardImage = styled.div`
   max-height: 375px;
@@ -162,7 +164,7 @@ export const LatestsPostsCardAuthor = styled(Link)`
   margin: 0;
   color: ${globalColor.gray.gray110};
   font-weight: 300;
-  
+
   > strong {
     font-weight: 400;
   }
@@ -208,7 +210,8 @@ export const LatestsPostsCardWrapper = styled.article`
   border-bottom: 1px solid ${globalColor.gray.gray500};
   position: relative;
 
-  &:nth-child(3), &:last-child {
+  &:nth-child(3),
+  &:last-child {
     border-bottom: 0;
     padding-bottom: 0;
   }
@@ -220,7 +223,7 @@ export const LatestsPostsCardWrapper = styled.article`
     }
   }
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     &:hover {
       ${LatestsPostsCardTitle} {
         color: ${globalColor.blue.blue400};
@@ -293,8 +296,8 @@ export const LatestPostsCards = styled.div`
       &:not(.card-big) {
         ${LatestsPostsCardDescription} {
           ${media_breakpoint_down('xxl')} {
-              min-height: 48px;
-              -webkit-line-clamp: 2;
+            min-height: 48px;
+            -webkit-line-clamp: 2;
           }
 
           ${media_breakpoint_down('sm')} {

@@ -4,9 +4,7 @@ import {
   globalTransition,
   rem,
 } from './global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-} from './mediaBreakpoints.style';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const FooterWrapper = styled.footer`
   padding-top: 12px;
@@ -233,7 +231,7 @@ export const LinkList = styled.ul`
     display: inline-flex;
     align-items: center;
     column-gap: 8px;
-    
+
     .link-text {
       border-bottom: 1px solid ${globalColor.white};
     }
@@ -337,7 +335,7 @@ export const FooterNavigation = styled.nav`
     ${media_breakpoint_down('md')} {
       gap: 16px;
     }
-    
+
     li {
       a {
         color: ${globalColor.blue.darkBlue};

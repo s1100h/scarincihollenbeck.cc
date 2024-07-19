@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { SidebarMenuItemOpener, SidebarMenuSubitemOpener } from './Sidebar.style';
+import {
+  SidebarMenuItemOpener,
+  SidebarMenuSubitemOpener,
+} from './Sidebar.style';
 import { LetterSelectorBtn } from './Filters.style';
 import { ClearButton } from './Buttons.style';
 
@@ -232,7 +239,8 @@ export const NavbarItemContent = styled(motion.div)`
 
     ${SidebarMenuSubitemOpener} {
       > span {
-        &::after, &::before {
+        &::after,
+        &::before {
           background-color: ${globalColor.white};
         }
       }
@@ -391,7 +399,6 @@ export const NavbarRightItemLink = styled(Link)`
       color: ${globalColor.blue.skyBlue};
     }
   }
-  
 `;
 
 export const NavbarLink = styled(Link)`

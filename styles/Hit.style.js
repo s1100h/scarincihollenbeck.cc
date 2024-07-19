@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { globalColor, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import Link from 'next/link';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
@@ -102,5 +106,5 @@ export const SearchableItemText = styled.p`
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
     line-height: 1.42;
-  } 
+  }
 `;
