@@ -67,7 +67,7 @@ export default function Footer() {
                 {currentYear}
                 , Scarinci Hollenbeck, LLC, all rights reserved
               </p>
-              <BottomLinks>
+              <BottomLinks className="d-print-none">
                 <li>
                   <Link href="/privacy-policy">Privacy policy</Link>
                 </li>
