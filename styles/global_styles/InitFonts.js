@@ -1,7 +1,7 @@
 import { lato, poppins } from 'public/fonts/fonts';
 import React from 'react';
 
-const InitFonts = (fonts) => (
+const InitFonts = () => (
   <style jsx global>
     {`
       :root {

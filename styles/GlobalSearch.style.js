@@ -79,6 +79,21 @@ export const ResultsContainer = styled.div`
   left: 0;
   top: calc(100% + 8px);
   z-index: 99;
+  opacity: 1;
+  scale: 1;
+  transform: translate(0);
+  transition: ${globalTransition.default};
+
+  &:empty {
+    display: none;
+  }
+
+  &:not(:has(.results-container)) {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-50%);
+    scale: 0.3;
+  }
 
   &:not(:has(.ais-Pagination--noRefinement)) {
     padding-bottom: 0;
@@ -225,3 +240,68 @@ export const ResultsContainer = styled.div`
 `;
 
 export const ResultBox = styled.div``;
+
+export const ResultFilterList = styled.ul`
+  margin-bottom: 20px;
+  padding: 0 16px;
+  color: ${globalColor.white};
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
+
+export const ResultFilterItem = styled.li`
+
+`;
+
+export const ResultFilterToggle = styled.button`
+  padding: 3px 15px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 4px;
+  background-color: ${globalColor.blue.blue6002};
+  border: 1px solid transparent;
+  transition: ${globalTransition.default};
+
+  &.active {
+    border-color: ${globalColor.blue.blue400};
+    .search-filter-label {
+      color: ${globalColor.blue.blue400};
+    }
+
+    .search-filter-count {
+      color: ${globalColor.white};
+    }
+  }
+
+  &:hover {
+    border-color: ${globalColor.blue.blue400};
+  }
+  
+  .search-filter-label {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    color: ${globalColor.white};
+    transition: ${globalTransition.default};
+
+    &:not(.clear)::after {
+      content: '';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1px;
+      height: 16px;
+      background-color: currentColor;
+    }
+  }
+
+  .search-filter-count {
+    color: ${globalColor.gray.gray500};
+    font-size: ${rem(14)};
+    line-height: 1.43;
+    transition: ${globalTransition.default};
+  }
+`;

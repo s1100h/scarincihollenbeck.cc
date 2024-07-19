@@ -65,6 +65,20 @@ export const HeaderWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 1020;
+  box-shadow: 0px 2px 16px 0px rgba(10,62,108,0.22);
+  transition: transform 0.3s ease-in-out;
+
+  &.hide {
+    transform: translateY(-48px);
+
+    ${media_breakpoint_down('md')} {
+      transform: translateY(-38px);
+    }
+  }
+
+  &.show {
+    transform: translateY(0);
+  }
 `;
 
 export const HeaderTopLineWrapper = styled.div`

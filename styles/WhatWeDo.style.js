@@ -16,9 +16,12 @@ export const WhatWeDoHolder = styled.div`
   flex-direction: column;
   row-gap: 24px;
 
-  .title-text {
-    color: ${globalColor.white};
+  .separated-title {
+    .title-text {
+      color: ${globalColor.white};
+    }
   }
+  
 `;
 
 export const WhatWeDoTitle = styled.h2``;

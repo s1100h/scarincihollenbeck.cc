@@ -6,6 +6,7 @@ import {
   rem,
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { SearchableItemText, SearchableItemTitle, SearchedItem, SearchedItemIcon } from './Hit.style';
 
 export const BodyHeaderContainer = styled.nav`
 	display: flex;
@@ -25,12 +26,64 @@ export const BodyHeaderContainer = styled.nav`
 			height: 60px !important;
 		}
 	}
-	
-	> div {
-    top: 52px;
-    left: 0;
-    transform: none;
-	}
+
+  .search-result-container {
+    top: 100%;
+    background-color: #fcfaff;
+
+    ${SearchedItem} {
+      border-radius: 0;
+      border-color: ${globalColor.grayLite.grayLite40};
+
+      &:hover {
+        background-color: ${globalColor.gray.gray10};
+
+        ${SearchedItemIcon} {
+          color: ${globalColor.blue.darkBlue};
+        }
+      }
+    }
+
+    ${SearchableItemTitle} {
+      color: ${globalColor.blue.darkBlue};
+    }
+
+    ${SearchableItemText} {
+      color: ${globalColor.gray.gray500};
+    }
+
+    .ais-Pagination {
+      .ais-Pagination-item--nextPage {
+
+      }
+      .ais-Pagination-list {
+        .ais-Pagination-item {
+          a.ais-Pagination-link {
+
+            &:not(.ais-Pagination-link--selected) {
+              &:hover {
+                background-color: ${globalColor.gray.gray10};
+                color: ${globalColor.blue.blue600};
+
+                &::after {
+                  background-color: ${globalColor.gray.gray10};
+                  color: ${globalColor.blue.blue600};
+                }
+              }
+            }
+          }
+        }
+      } 
+      
+      .ais-Pagination-link {
+        &::after {
+          background-color: #fcfaff;
+          color: ${globalColor.gray.gray130};
+        }
+      }
+    } 
+  }
+
 	
 	${media_breakpoint_down('lg')} {
 		form {
@@ -48,7 +101,6 @@ export const BodyHeaderContainer = styled.nav`
       }
     }
 	}
-}
 
 ${media_breakpoint_down('md')} {
   flex-direction: column;
@@ -68,11 +120,11 @@ ${media_breakpoint_down('sm')} {
 			width: 49%;
 		}
 
-     > :nth-child(-n+2) {
+    > :nth-child(-n+2) {
       margin-bottom: 10px;
     }
+  }
 }
-
 `;
 
 export const CategoriesLinks = styled.ul`
@@ -86,6 +138,7 @@ export const CategoriesLinks = styled.ul`
 
 export const ButtonItem = styled.li`
   width: 80%;
+
   a {
     display: flex;
     justify-content: center;
@@ -96,15 +149,16 @@ export const ButtonItem = styled.li`
     border: 1px solid ${globalColor.grayLite.grayLite90};
     color: ${globalColor.grayLite.grayLite90};
     font-size: ${rem(20)};
-    ${({ page }) =>
-      page.currentPage.includes(page.btnSlug) &&
+    ${({ page }) => page.currentPage.includes(page.btnSlug) &&
       `
-      	background-color: ${globalColor.red.darkRed}; 
-      	color: ${globalColor.white};
-      	`}
-    ${buttonsHoverActive}
-      : hover {
+        background-color: ${globalColor.red.darkRed}; 
+        color: ${globalColor.white};
+      `};
+    
+    ${buttonsHoverActive} {
+      &:hover {
       color: white;
     }
   }
+}
 `;

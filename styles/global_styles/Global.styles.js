@@ -222,17 +222,10 @@ body {
   }
 
   .margin-scroll {
-    scroll-margin-top: 210px;
-
-    ${media_breakpoint_down('md')} {
-      scroll-margin-top: 200px;
-    }
+    scroll-margin-top: calc(var(--header-height) + 80px);
   }
 
-  &:has(.modal-open) {
-    overflow: hidden;
-  }
-
+  &:has(.modal-open), 
   &:has(.sidebar-open) {
     overflow: hidden;
   }

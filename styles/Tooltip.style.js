@@ -3,7 +3,7 @@ import { globalColor, rem } from './global_styles/Global.styles';
 
 export const ContentTooltip = styled.div`
   position: absolute;
-  bottom: 100%;
+  top: 100%;
   background-color: white;
   color: ${globalColor.black};
   padding: 3px;

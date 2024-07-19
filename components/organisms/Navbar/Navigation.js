@@ -52,6 +52,17 @@ const Navigation = ({
     };
   }, []);
 
+  const getActiveClass = (index, pathname) => {
+    const routes = {
+      '/attorneys': [0],
+      '/practices': [1],
+      '/industries': [2],
+      '/location/[slug]': [3],
+    };
+
+    return routes[pathname]?.includes(index) ? 'active' : '';
+  };
+
   return (
     <NavbarWrapper ref={navRef} className="navbar-wrapper">
       <NavbarList className="navbar-list">
@@ -63,7 +74,8 @@ const Navigation = ({
             <NavbarItemOpener
               className={`navbar-opener 
                 ${showNavContent === index ? 'active' : ''} 
-                ${pathname === '/attorneys' && index === 0 ? 'active' : ''}`}
+                ${getActiveClass(index, pathname)}
+              `}
             >
               {item}
             </NavbarItemOpener>
@@ -71,20 +83,24 @@ const Navigation = ({
         ))}
       </NavbarList>
 
-      <NavbarPractices
-        practices={practices}
-        showNavContent={showNavContent === 1}
-        setShowNavContent={setShowNavContent}
-        isScreenLg={isScreenLg}
-        setIsSidebarOpen={setIsSidebarOpen}
-      />
+      {pathname !== '/practices' && (
+        <NavbarPractices
+          practices={practices}
+          showNavContent={showNavContent === 1}
+          setShowNavContent={setShowNavContent}
+          isScreenLg={isScreenLg}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+      )}
 
-      <NavbarLocations
-        showNavContent={showNavContent === 3}
-        setShowNavContent={setShowNavContent}
-        setIsSidebarOpen={setIsSidebarOpen}
-        locations={locations}
-      />
+      {pathname !== '/location/[slug]' && (
+        <NavbarLocations
+          showNavContent={showNavContent === 3}
+          setShowNavContent={setShowNavContent}
+          setIsSidebarOpen={setIsSidebarOpen}
+          locations={locations}
+        />
+      )}
 
       {pathname !== '/attorneys' && (
         <NavbarAttorneys

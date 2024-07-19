@@ -25,7 +25,7 @@ export const SeparatedTitleWrapper = styled.h2`
 
     ${media_breakpoint_down('md')} {
       margin: 6px;
-      --size: 8px;
+      --size: 16px;
     }
   }
 `;

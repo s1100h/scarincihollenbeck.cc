@@ -21,8 +21,8 @@ export const AwardsHolder = styled.div`
     color: ${globalColor.white};
 
     &:disabled {
-      color: ${globalColor.grayExtraLite.grayExtraLite50};
-      background-color: ${globalColor.blue.blue550};
+      color: ${globalColor.blue.blue550};
+      background-color: transparent;
     }
   }
 
@@ -117,7 +117,11 @@ export const AwardCardContent = styled.div`
     font-size: ${rem(18)};
     line-height: 1.56;
     font-weight: 500;
-    
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     ${media_breakpoint_down('md')} {
       font-size: 1rem;

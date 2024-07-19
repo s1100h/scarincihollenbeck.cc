@@ -14,7 +14,7 @@ import {
   SidebarMenuSocials,
   SidebarMenuWrapper,
 } from 'styles/Sidebar.style';
-import { HeaderSizeContext } from 'contexts/HeaderSizeContext';
+import { SizesContext } from 'contexts/SizesContext';
 import {
   MAKE_A_PAYMENT,
   SIDEBAR_POLITIC_LINKS,
@@ -34,7 +34,7 @@ const SidebarMenu = ({
   isSidebarOpen,
   setIsSidebarOpen,
 }) => {
-  const { headerSize } = useContext(HeaderSizeContext);
+  const { headerSize } = useContext(SizesContext);
   const [openItemIndex, setOpenItemIndex] = useState(null);
 
   const handleItemClick = (index) => {

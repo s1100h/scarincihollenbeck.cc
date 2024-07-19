@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { HeaderSearchWrapper, SearchOpener } from 'styles/Header.style';
 import { AnimatePresence, motion } from 'framer-motion';
-import GlobalSearch from '../GlobalSearch/GlobalSearch';
+import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
 const HeaderSearch = ({ isOpenSearch, setIsOpenSearch }) => {
   const [inputFocus, setInputFocus] = useState(null);

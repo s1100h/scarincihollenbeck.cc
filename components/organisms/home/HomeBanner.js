@@ -17,6 +17,7 @@ import {
   BannerText,
   BannerTitle,
 } from 'styles/HomeBanner.style';
+import { FaDiamond } from 'react-icons/fa6';
 import { DiamondSeparator } from '../../../styles/Separators.style';
 
 const HomeBanner = ({ title, subtitle, infoCards }) => (
@@ -33,7 +34,9 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
                 key={`${slogan}-separator`}
                 as="li"
                 className="animate__animated animate__fadeInDown animate__slow"
-              />
+              >
+                <FaDiamond />
+              </DiamondSeparator>
             )}
           </Fragment>
         ))}
