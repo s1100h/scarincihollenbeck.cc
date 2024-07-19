@@ -5,7 +5,7 @@ import { footerNavList } from '../../../utils/constants';
 import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 
 const NavigationAndSubscription = () => (
-  <NavContainer>
+  <NavContainer className="d-print-none">
     <FooterNavigation>
       <ul>
         {footerNavList.map(({ linkTitle, link, id }) => (
