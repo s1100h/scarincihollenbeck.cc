@@ -47,7 +47,6 @@ export const PracticesTabsOpener = styled.button`
   ${media_breakpoint_down('sm')} {
     padding: 7px 11px;
     font-size: ${rem(14)};
-    line-height: 1.43;
     font-weight: 400;
   }
 `;

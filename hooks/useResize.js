@@ -1,3 +1,4 @@
+import throttle from 'lodash.throttle';
 import { useState, useEffect } from 'react';
 import { sizeWindow } from 'styles/sizeWindow.style';
 
@@ -9,9 +10,10 @@ export const useResize = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const handleResize = (event) => {
+    const handleResize = throttle((event) => {
       setWidth(event.target.innerWidth);
-    };
+    }, 200);
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);

@@ -3,7 +3,8 @@ import { MAKE_A_PAYMENT } from 'utils/constants';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import { AnimatePresence } from 'framer-motion';
-import { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
+import useOnClickOutside from 'hooks/useOnClickOutside';
 import {
   HeaderTopLineIcon,
   HeaderTopLineItem,
@@ -69,7 +70,6 @@ const HeaderTopLine = ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => (
 
           <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
             <HeaderSearch
-              key="header-search"
               isOpenSearch={isOpenSearch}
               setIsOpenSearch={setIsOpenSearch}
             />
@@ -79,5 +79,4 @@ const HeaderTopLine = ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => (
     </ContainerDefault>
   </HeaderTopLineWrapper>
 );
-
 export default HeaderTopLine;

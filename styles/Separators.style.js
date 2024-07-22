@@ -4,28 +4,16 @@ import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 import empty from 'is-empty';
 
 export const DiamondSeparator = styled.span`
-  --size: ${({ $size }) => (!empty($size) && `${$size / 2}px`) || '6px'};
-  width: 0;
-  height: 0;
-  border: var(--size) solid transparent;
-  border-bottom-color: ${({ $color }) => $color || globalColor.blue.blue400};
-  position: relative;
-  top: calc(var(--size) * -1);
+  --size: ${({ $size }) => (!empty($size) && `${$size}px`) || '12px'};;
+  width: var(--size);
+  height: var(--size);
   display: flex;
-
-  &:after {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: calc(var(--size) * -1);
-    top: var(--size);
-    border: var(--size) solid transparent;
-    border-top-color: ${({ $color }) => $color || globalColor.blue.blue400};
-  }
+  justify-content: center;
+  align-items: center;
+  color: ${({ $color }) => $color || globalColor.blue.blue400};
 
   ${media_breakpoint_down('md')} {
-    --size: 4px;
+    --size: 8px;
   }
 `;
 

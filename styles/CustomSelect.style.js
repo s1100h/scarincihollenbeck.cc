@@ -48,7 +48,6 @@ export const SelectInput = styled.input`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -117,6 +116,5 @@ export const SelectOption = styled.li`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;

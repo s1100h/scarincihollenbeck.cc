@@ -897,19 +897,26 @@ export const slogans = ['Since 1988', 'Distinct Vision', 'Real Impact'];
 
 export const latestPostTabs = [
   {
-    id: 'allPosts',
-    label: 'All Posts',
+    id: 'firmNewsPosts',
+    label: 'News',
   },
   {
     id: 'clientAlertsPosts',
     label: 'Client Alerts',
   },
   {
-    id: 'firmNewsPosts',
-    label: 'News',
-  },
-  {
     id: 'firmInsightsPosts',
     label: 'Insights',
   },
+  {
+    id: 'allPosts',
+    label: 'All Posts',
+  },
+];
+
+export const locationsOrderArray = [
+  'New York City',
+  'Little Falls, NJ',
+  'Red Bank, NJ',
+  'Washington, D.C.',
 ];

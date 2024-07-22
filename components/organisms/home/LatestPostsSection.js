@@ -20,7 +20,7 @@ const LatestPostsSlider = dynamic(() => import('./LatestPostsSlider'), {
 });
 
 const LatestPostsSection = ({ tabsData }) => {
-  const [activeTabId, setActiveTabId] = useState('allPosts');
+  const [activeTabId, setActiveTabId] = useState(latestPostTabs[0]?.id);
   const activeTabData = tabsData?.[activeTabId];
 
   return (

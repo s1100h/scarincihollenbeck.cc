@@ -5,7 +5,7 @@ import { useContext, useEffect, useRef } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
-import { HeaderSizeContext } from 'contexts/HeaderSizeContext';
+import { SizesContext } from 'contexts/SizesContext';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 import { PracticesContext } from 'contexts/PracticesContext';
 import { LocationContext } from 'contexts/LocationContext';
@@ -17,7 +17,7 @@ const AttorneysPage = ({
   const { setReference } = useContext(AttorneysContext);
 
   const containerRef = useRef();
-  const { headerSize } = useContext(HeaderSizeContext);
+  const { headerSize } = useContext(SizesContext);
   const { practices } = useContext(PracticesContext);
   const { locations } = useContext(LocationContext);
 

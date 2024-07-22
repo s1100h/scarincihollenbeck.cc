@@ -76,7 +76,6 @@ export const LatestPostsTab = styled.button`
   ${media_breakpoint_down('md')} {
     padding: 7px 11px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -132,7 +131,6 @@ export const LatestsPostsCardDescription = styled.div`
   ${media_breakpoint_down('sm')} {
     min-height: 80px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -179,7 +177,6 @@ export const LatestsPostsCardAuthor = styled(Link)`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -189,7 +186,6 @@ export const LatestsPostsCardDate = styled.time`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 

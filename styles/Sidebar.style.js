@@ -56,7 +56,6 @@ const sidebarBtnStyle = `
     padding: 9px 15px;
     max-width: 100%;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -274,7 +273,6 @@ export const SidebarMenuItemOpener = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -403,7 +401,6 @@ export const SidebarMenuLink = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -508,7 +505,6 @@ export const SidebarMenuSocial = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 

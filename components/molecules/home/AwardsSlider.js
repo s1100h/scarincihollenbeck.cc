@@ -58,7 +58,7 @@ const AwardsSlider = ({ images }) => {
         class="slider-container"
         ref={swiperRef}
         loop={loop}
-        slides-per-view="5"
+        slides-per-view="1"
         space-between={32}
         lazy="true"
       >

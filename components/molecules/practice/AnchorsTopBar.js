@@ -1,5 +1,6 @@
 import Tooltip from 'components/atoms/Tooltip';
 import empty from 'is-empty';
+import throttle from 'lodash.throttle';
 import React, { useEffect, useState } from 'react';
 import {
   AnchorsTopBarItem,
@@ -10,7 +11,7 @@ import {
 const AnchorsTopBar = ({ title, anchorData }) => {
   const [activeSection, setActiveSection] = useState(null);
 
-  const handleScroll = () => {
+  const handleScroll = throttle(() => {
     const scrollPosition = window.scrollY;
 
     const newActiveSection = Object.values(anchorData).find((item) => {
@@ -25,7 +26,7 @@ const AnchorsTopBar = ({ title, anchorData }) => {
     });
 
     setActiveSection(newActiveSection?.id);
-  };
+  }, 200);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

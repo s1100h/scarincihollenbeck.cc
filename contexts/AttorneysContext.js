@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import decodeResponse from 'utils/decodeResponse';
 import empty from 'is-empty';
-import { HeaderSizeContext } from './HeaderSizeContext';
+import { SizesContext } from './SizesContext';
 
 export const AttorneysContext = createContext(null);
 
@@ -13,7 +13,7 @@ export const AttorneysProvider = ({ children }) => {
   const [attorneysContext, setAttorneysContext] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [containerRefer, setContainerRefer] = useState(null);
-  const { headerSize } = useContext(HeaderSizeContext);
+  const { headerSize } = useContext(SizesContext);
 
   // Scroll to ref container when selected filters
   function scrollToRef() {
