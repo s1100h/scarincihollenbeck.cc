@@ -90,6 +90,10 @@ export const BottomLinks = styled.ul`
   ${media_breakpoint_down('sm')} {
     margin-top: 16px;
   }
+
+  @media print {
+    display: none;
+  }
 `;
 
 export const Advertising = styled.article`
@@ -110,7 +114,6 @@ export const Advertising = styled.article`
     margin: 0;
     color: ${globalColor.gray.gray300};
     font-size: ${rem(14)};
-    line-height: 1.43;
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(12)};
@@ -193,7 +196,6 @@ export const LinkTitle = styled.h3`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -223,7 +225,6 @@ export const LinkList = styled.ul`
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(14)};
-      line-height: 1.43;
     }
   }
 
@@ -280,6 +281,10 @@ export const SocialLinks = styled(LinkList)`
 
 export const NavWrapper = styled.div`
   background-color: ${globalColor.white};
+
+  @media print {
+    display: none;
+  }
 `;
 
 export const NavHolder = styled.section`

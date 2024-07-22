@@ -88,11 +88,7 @@ export const ResultsContainer = styled.div`
   transform: translate(0);
   transition: ${globalTransition.default};
 
-  &:empty {
-    display: none;
-  }
-
-  &:not(:has(.results-container)) {
+  &:not(:has(.results-container)), &:empty  {
     pointer-events: none;
     opacity: 0;
     transform: translateY(-50%);
@@ -247,6 +243,12 @@ export const ResultsContainer = styled.div`
   .ais-SearchBox-reset {
     display: none;
   }
+
+  ${media_breakpoint_down('sm')} {
+    border-radius: 0;
+    width: calc(100% + 24px);
+    margin-left: -12px;
+  }
 `;
 
 export const ResultBox = styled.div``;
@@ -258,6 +260,11 @@ export const ResultFilterList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  ${media_breakpoint_down('md')} {
+    margin-bottom: 16px;
+    padding: 0 12px;
+  }
 `;
 
 export const ResultFilterItem = styled.li`
@@ -311,7 +318,6 @@ export const ResultFilterToggle = styled.button`
   .search-filter-count {
     color: ${globalColor.gray.gray500};
     font-size: ${rem(14)};
-    line-height: 1.43;
     transition: ${globalTransition.default};
   }
 `;

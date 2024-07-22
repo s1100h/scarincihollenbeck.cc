@@ -70,7 +70,6 @@ export const PracticeCardTitle = styled.h3`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -201,7 +200,6 @@ export const PracticeCardButton = styled.button`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -287,7 +285,6 @@ export const PracticeCardModalsWrapper = styled.div`
 
       ${media_breakpoint_down('sm')} {
         font-size: 0.875rem;
-        line-height: 1.43;
       }
     }
 
@@ -347,7 +344,6 @@ export const PracticeCardModalsWrapper = styled.div`
 
       span {
         font-size: ${rem(14)};
-        line-height: 1.43;
         color: ${globalColor.gray.gray300};
       }
 

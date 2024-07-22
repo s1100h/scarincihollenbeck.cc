@@ -136,7 +136,6 @@ export const StandardBlueButton = styled.button`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -196,7 +195,6 @@ export const ButtonRed = styled(Link)`
   ${media_breakpoint_down('sm')} {
     padding: 10px 40px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -216,6 +214,5 @@ export const UnderlinedLink = styled(Link)`
 
   ${media_breakpoint_down('sm')} {
     font-size: 0.875rem;
-    line-height: 1.43;
   }
 `;

@@ -83,6 +83,10 @@ export const HeaderWrapper = styled.header`
   &.show {
     transform: translateY(0);
   }
+
+  @media print {
+    display: none;
+  }
 `;
 
 export const HeaderTopLineWrapper = styled.div`

@@ -20,7 +20,7 @@ import HeaderTopLine from './HeaderTopLine';
 import HeaderSearch from './HeaderSearch';
 import SidebarMenu from './SidebarMenu';
 
-const DefaultHeader = ({ practices, locations, menuData }) => {
+const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -67,12 +67,15 @@ const DefaultHeader = ({ practices, locations, menuData }) => {
             />
 
             <HeaderMainButtons $wide={isOpenSearch}>
-              <ButtonRed href="/contact" className="contact-header-btn">
+              <ButtonRed
+                href="/contact"
+                className="contact-header-btn"
+                onClick={() => setIsSidebarOpen(false)}
+              >
                 Contact us
               </ButtonRed>
 
               <HeaderSearch
-                key="header-search"
                 isOpenSearch={isOpenSearch}
                 setIsOpenSearch={setIsOpenSearch}
               />
@@ -99,6 +102,6 @@ const DefaultHeader = ({ practices, locations, menuData }) => {
       </HeaderWrapper>
     </>
   );
-};
+});
 
 export default DefaultHeader;

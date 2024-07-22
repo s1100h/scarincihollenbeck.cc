@@ -12,6 +12,7 @@ import {
 } from 'utils/constants';
 import empty from 'is-empty';
 import { ResultsContainer } from 'styles/GlobalSearch.style';
+import React from 'react';
 import AuxiliarySearch from './AuxiliarySearch';
 import MySearchResults from './MySearchResults';
 import MySearchFilters from './MySearchFilters';
@@ -60,32 +61,34 @@ const ConnectedSearchBox = connectWithQuery(MySearchBox);
 const ConnectedRefinementList = connectRefinementList(MySearchFilters);
 connectWithQuery(AuxiliarySearch);
 
-export const GlobalSearch = ({
-  setIsOpenSearch,
-  filterByPostType,
-  handleHideSearch,
-  inputFocus,
-}) => {
-  const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
+export const GlobalSearch = React.memo(
+  ({
+    setIsOpenSearch, filterByPostType, handleHideSearch, inputFocus,
+  }) => {
+    const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
 
-  return (
-    <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
-      <Configure filters={filters} />
-      <ConnectedSearchBox
-        placeholder="Search"
-        setIsOpenSearch={setIsOpenSearch}
-        handleHideSearch={handleHideSearch}
-        inputFocus={inputFocus}
-      />
-      <ResultsContainer className="search-result-container">
-        {!filterByPostType && (
-          <ConnectedRefinementList attribute="post_type_label" />
-        )}
-        <MySearchResults
+    return (
+      <InstantSearch
+        indexName={ALGOLIA_SEARCH_INDEX}
+        searchClient={searchClient}
+      >
+        <Configure filters={filters} />
+        <ConnectedSearchBox
+          placeholder="Search"
           setIsOpenSearch={setIsOpenSearch}
           handleHideSearch={handleHideSearch}
+          inputFocus={inputFocus}
         />
-      </ResultsContainer>
-    </InstantSearch>
-  );
-};
+        <ResultsContainer className="search-result-container">
+          {!filterByPostType && (
+            <ConnectedRefinementList attribute="post_type_label" />
+          )}
+          <MySearchResults
+            setIsOpenSearch={setIsOpenSearch}
+            handleHideSearch={handleHideSearch}
+          />
+        </ResultsContainer>
+      </InstantSearch>
+    );
+  },
+);

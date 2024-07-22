@@ -126,7 +126,6 @@ export const RandomBioCard = styled.div`
 
         ${media_breakpoint_down('sm')} {
           font-size: ${rem(14)};
-          line-height: 1.43;
         }
       }
 
@@ -209,7 +208,6 @@ export const RandomBioDescription = styled.div`
   ${media_breakpoint_down('sm')} {
     min-height: 100px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -334,6 +332,5 @@ export const RandomBioControlButton = styled.button`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;

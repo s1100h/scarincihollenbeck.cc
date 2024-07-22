@@ -16,7 +16,7 @@ const MySearchFilters = ({ items, refine, currentRefinement }) => {
   );
 
   const handleRefine = (item) => {
-    refine(item?.value);
+    refine(item?.label);
   };
   return (
     <ResultFilterList>
@@ -35,7 +35,7 @@ const MySearchFilters = ({ items, refine, currentRefinement }) => {
       {!empty(currentRefinement) && (
         <ResultFilterItem>
           <ResultFilterToggle onClick={() => refine({})}>
-            <p className="search-filter-label clear">Clear All</p>
+            <p className="search-filter-label clear">No filter</p>
           </ResultFilterToggle>
         </ResultFilterItem>
       )}

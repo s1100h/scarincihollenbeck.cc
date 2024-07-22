@@ -69,7 +69,6 @@ export const ContactFormHolder = styled.div`
 
       ${media_breakpoint_down('sm')} {
         font-size: 0.875rem;
-        line-height: 1.43;
       }
     }
 
@@ -105,7 +104,6 @@ export const ContactFormHolder = styled.div`
 
       span {
         font-size: ${rem(14)};
-        line-height: 1.43;
         color: ${globalColor.gray.gray110};
       }
 

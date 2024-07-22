@@ -4,28 +4,28 @@ import throttle from 'lodash.throttle';
 
 const useHeaderSize = (headerRef, scrollDirection, viewportWidth) => {
   const { setHeaderSize } = useContext(SizesContext);
+
+  const updateHeaderSize = () => {
+    if (headerRef && headerRef.current) {
+      const newHeight = scrollDirection === 'down'
+        ? viewportWidth >= 768
+          ? headerRef.current.offsetHeight - 48
+          : headerRef.current.offsetHeight - 38
+        : headerRef.current.offsetHeight;
+      setHeaderSize({
+        width: headerRef.current.offsetWidth,
+        height: newHeight,
+      });
+    }
+  };
+
   useEffect(() => {
-    const updateHeaderSize = throttle(() => {
-      if (headerRef && headerRef.current && scrollDirection === 'down') {
-        setHeaderSize({
-          width: headerRef.current.offsetWidth,
-          height:
-            viewportWidth >= 768
-              ? headerRef.current.offsetHeight - 48
-              : headerRef.current.offsetHeight - 38,
-        });
-      } else if (scrollDirection === 'up') {
-        setHeaderSize({
-          width: headerRef.current.offsetWidth,
-          height: headerRef.current.offsetHeight,
-        });
-      }
-    }, 200);
+    const throttledUpdateHeaderSize = throttle(updateHeaderSize, 200);
 
-    updateHeaderSize();
+    throttledUpdateHeaderSize();
 
-    window.addEventListener('resize', updateHeaderSize);
-    return () => window.removeEventListener('resize', updateHeaderSize);
+    window.addEventListener('resize', throttledUpdateHeaderSize);
+    return () => window.removeEventListener('resize', throttledUpdateHeaderSize);
   }, [scrollDirection]);
 };
 

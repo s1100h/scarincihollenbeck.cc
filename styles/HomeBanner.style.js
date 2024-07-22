@@ -242,7 +242,6 @@ export const BannerCardContent = styled.div`
 
     ${media_breakpoint_down('sm')} {
       font-size: 0.875rem;
-      line-height: 1.43;
     }
   }
 

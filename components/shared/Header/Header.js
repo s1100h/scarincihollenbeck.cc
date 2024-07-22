@@ -1,7 +1,7 @@
-import useIsScroll from 'hooks/useIsScroll';
 import { useRouter } from 'next/router';
 import { useContext, useMemo } from 'react';
 import { PracticesContext } from 'contexts/PracticesContext';
+import { locationsOrderArray } from 'utils/constants';
 import SpecialHeader from './SpecialHeader';
 import {
   createMenuData,
@@ -36,6 +36,12 @@ export default function Header() {
   const { practices } = useContext(PracticesContext);
   const { locations } = useContext(LocationContext);
 
+  const sortedLocations = locations?.sort((a, b) => {
+    const indexA = locationsOrderArray.indexOf(a.title);
+    const indexB = locationsOrderArray.indexOf(b.title);
+    return indexA - indexB;
+  });
+
   const practiceWithOverview = useMemo(
     () => createOverviewLinks(practices, false),
     [practices],
@@ -48,7 +54,7 @@ export default function Header() {
   const headerProps = {
     pathname,
     practices: sanitizedPractices,
-    locations,
+    locations: sortedLocations,
     menuData,
   };
 

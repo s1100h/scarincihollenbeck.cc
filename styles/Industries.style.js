@@ -50,7 +50,6 @@ export const IndustriesHeader = styled.div`
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(14)};
-      line-height: 1.43;
     }
   }
 
@@ -132,7 +131,6 @@ export const IndustriesCardTitle = styled.h3`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 

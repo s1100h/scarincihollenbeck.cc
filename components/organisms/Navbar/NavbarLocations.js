@@ -1,8 +1,6 @@
 import React from 'react';
-import { ContainerDefault } from 'styles/Containers.style';
-import { NavbarItemContent } from 'styles/Navigation.style';
 import empty from 'is-empty';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { LocationCards } from 'styles/LocationCard.style';
 import LocationCard from './LocationCard';
 import NavbarContentWrapper from './NavbarContentWrapper';
