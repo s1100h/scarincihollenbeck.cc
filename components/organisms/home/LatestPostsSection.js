@@ -1,3 +1,4 @@
+import DisclaimerText from 'components/atoms/DisclaimerText';
 import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -61,6 +62,8 @@ const LatestPostsSection = ({ tabsData }) => {
               />
             </LatestPostsContent>
           </AnimatePresence>
+
+          <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
         </LatestPostsHolder>
       </ContainerDefault>
     </LatestPostsWrapper>
