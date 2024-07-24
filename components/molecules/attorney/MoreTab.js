@@ -5,7 +5,6 @@ import {
   ContentBox,
   MoreTabContainer,
 } from 'styles/attorney-page/MoreTab.style';
-import { ButtonTab } from 'styles/ButtonsMenu.style';
 import { attorneyPostsQueryByIdAndSlug } from 'requests/graphql-queries';
 import ArticleContent from 'components/organisms/attorney/ArticleContent';
 import { useRouter } from 'next/router';
@@ -70,20 +69,7 @@ const MoreTab = ({ content }) => {
 
   return (
     <MoreTabContainer>
-      <ButtonBox>
-        <ButtonGroup vertical>
-          {content.map((tab) => (
-            <ButtonTab
-              key={tab.id}
-              active={activeSubTab.id === tab.id ? 'true' : undefined}
-              onClick={() => setActiveSubTab(tab)}
-              isMore="true"
-            >
-              {cutTitles(tab.title)}
-            </ButtonTab>
-          ))}
-        </ButtonGroup>
-      </ButtonBox>
+      <ButtonBox />
       <ContentBox>
         {typeof activeSubTab.content === 'string' ? (
           <ArticleBody>

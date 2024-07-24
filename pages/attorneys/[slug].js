@@ -13,8 +13,8 @@ import {
   sanitizeExternalArticles,
 } from 'utils/helpers';
 import { GOV_LAW_URL } from 'utils/constants';
-import AttorneyPage from 'components/pages/AttorneyProfile';
 import ApolloWrapper from 'layouts/ApolloWrapper';
+import AttorneyProfilePage from 'components/pages/AttorneyProfilePage';
 
 /** Get the attorneys bio database on their slug */
 export async function attorneyBySlug(slug) {
@@ -237,6 +237,18 @@ export const getStaticProps = async ({ params }) => {
       attorneyBio.attorneyMainInformation.forwardingEmailsForContactForm.map(
         ({ email }) => email,
       ),
+    attorneyBiography: attorneyBio?.attorneyBiography,
+    education:
+      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+        ?.education,
+    barAdmissions:
+      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+        ?.barAdmissions,
+  };
+
+  /** Accordion data */
+  const accordionData = {
+    clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
   };
 
   /** Tab list */
@@ -453,6 +465,7 @@ export const getStaticProps = async ({ params }) => {
       tabs: mainTabsMatched,
       additionalTabs,
       attorneyAwards,
+      accordionData,
     },
     revalidate: 3600,
   };
@@ -465,6 +478,7 @@ const AttorneyProfile = ({
   attorneyFooterNewsArticles,
   tabs,
   attorneyAwards,
+  accordionData,
 }) => {
   const attorneyPageProps = {
     seo,
@@ -472,11 +486,12 @@ const AttorneyProfile = ({
     attorneyFooterNewsArticles,
     tabs,
     attorneyAwards,
+    accordionData,
   };
 
   return (
     <ApolloWrapper>
-      <AttorneyPage {...attorneyPageProps} />
+      <AttorneyProfilePage {...attorneyPageProps} />
     </ApolloWrapper>
   );
 };

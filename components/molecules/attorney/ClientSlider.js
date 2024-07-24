@@ -1,92 +1,65 @@
 import Image from 'next/image';
-import { useId } from 'react';
-import { sizeWindow } from '../../../styles/sizeWindow.style';
-import { SliderStyled } from '../../../styles/Post/Slider.style';
+import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
+import {
+  ClientsSliderCard,
+  ClientsSliderTitle,
+  ClientsSliderWrapper,
+} from 'styles/attorney-page/ProfileAccordion.style';
+import empty from 'is-empty';
+import Link from 'next/link';
 
-const ClientSlider = ({
-  clients, imgSize, numbers, buttons,
-}) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: numbers || 4,
-    slidesToScroll: 3,
-    autoplay: true,
-    speed: 500,
-    easing: 'ease-in',
-    arrows: buttons || false,
-    responsive: [
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: sizeWindow.lg,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: sizeWindow.md,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: sizeWindow.sm,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 445,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
-        },
-      },
-    ],
-  };
+const breakpoints = {
+  1800: {
+    slidesPerView: 9,
+  },
+  1440: {
+    slidesPerView: 7,
+  },
+  1280: {
+    slidesPerView: 5,
+    spaceBetween: 24,
+  },
+  768: {
+    spaceBetween: 20,
+    slidesPerView: 4,
+  },
+  0: {
+    spaceBetween: 12,
+    slidesPerView: 2,
+  },
+};
 
-  return (
-    <>
-      <SliderStyled {...settings}>
-        {clients.map(({ clientImage, clientLink, clientTitle }) => (clientLink?.length > 0 ? (
-          <a
-            className="hovered-client"
-            key={useId()}
-            href={clientLink}
-            target="_blank"
-            rel="noreferrer"
+const ClientSlider = ({ clients }) => (
+  <ClientsSliderWrapper>
+    <ClientsSliderTitle>Clients</ClientsSliderTitle>
+    <SwiperWrapper
+      spaceBetween={24}
+      breakpoints={breakpoints}
+      grab-cursor="true"
+      autoplay="true"
+      speed="1000"
+      loop="true"
+      lazy="true"
+    >
+      {clients.map(({ clientImage, clientLink, clientTitle }) => (
+        <swiper-slide class="slide" key={`${clientTitle}-slide`}>
+          <ClientsSliderCard
+            as={!empty(clientLink) && Link}
+            href={!empty(clientLink) ? clientLink : undefined}
+            target={!empty(clientLink) ? '_blank' : undefined}
+            rel={!empty(clientLink) ? 'noreferrer' : undefined}
           >
             <Image
               src={clientImage.sourceUrl}
               alt={clientImage.mediaDetails.altText || clientTitle}
-              width={imgSize?.width || 150}
-              height={imgSize?.height || 150}
+              width={170}
+              height={170}
             />
-          </a>
-        ) : (
-          <div key={useId()}>
-            <Image
-              src={clientImage.sourceUrl}
-              alt={clientImage.mediaDetails.altText || clientTitle}
-              width={imgSize?.width || 150}
-              height={imgSize?.height || 150}
-            />
-          </div>
-        )))}
-      </SliderStyled>
-    </>
-  );
-};
+          </ClientsSliderCard>
+        </swiper-slide>
+      ))}
+    </SwiperWrapper>
+  </ClientsSliderWrapper>
+);
 
 export default ClientSlider;

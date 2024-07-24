@@ -1,4 +1,3 @@
-import Services from 'components/molecules/attorney/Services';
 import {
   ProfileSidebarContainer,
   SidebarTile,
@@ -6,10 +5,11 @@ import {
 import ProfileSidebarAwards from 'components/molecules/attorney/ProfileSidebarAwards';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import React from 'react';
+import ProfileServices from 'components/molecules/attorney/ProfileServices';
 
 const ProfileSidebar = ({ services, awards }) => (
   <ProfileSidebarContainer>
-    <Services services={services} />
+    <ProfileServices services={services} />
     {awards && <ProfileSidebarAwards awards={awards} />}
     <div>
       <SidebarTile indent="true" red="true">

@@ -14,25 +14,6 @@ export const ProfileSidebarContainer = styled.div`
   box-shadow: ${globalShadow.allSideShadow};
 `;
 
-// Services
-export const SidebarTile = styled.h3`
-  margin-right: 15px;
-  font-size: ${rem(30)};
-  font-weight: 400;
-  color: ${(props) =>
-    props?.red ? globalColor.red.darkRed : globalColor.black};
-  margin-bottom: ${(props) => (props?.indent ? '15px' : '0')};
-`;
-
-export const ServiceList = styled.ul`
-  padding: 0;
-  margin: 0;
-
-  li {
-    margin-bottom: 5px;
-  }
-`;
-
 // Awards
 export const AwardsBox = styled.div`
   display: flex;

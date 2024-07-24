@@ -1,19 +1,18 @@
-import Image from 'next/legacy/image';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import empty from 'is-empty';
+import ModalWindow from 'components/common/ModalWindow';
+import Image from 'next/image';
 import {
-  Back,
   CardImageVideoContainer,
-  Front,
+  CardImageWrapper,
+  CardVideoWrapper,
 } from '../../../styles/attorney-page/AttorneyProfile.style';
+import VideoButton from './VideoButton';
 
-const ProfileImage = ({
-  name,
-  profileImage,
-  isRotated,
-  representativeVideo,
-}) => {
+const ProfileImage = ({ name, profileImage, representativeVideo }) => {
   const videoRef = useRef(null);
+  const [isShowVideo, setIsShowVideo] = useState(false);
+
   const stopVideo = () => {
     if (videoRef.current) {
       videoRef.current.pause();
@@ -22,17 +21,25 @@ const ProfileImage = ({
   };
 
   useEffect(() => {
-    if (isRotated && videoRef) {
+    if (isShowVideo && videoRef) {
       videoRef.current.play();
     } else {
       stopVideo();
     }
-  }, [isRotated]);
+  }, [isShowVideo]);
 
-  const isRotateConvertToStr = isRotated ? 'true' : '';
+  const handleClickVideoOpener = () => {
+    setIsShowVideo(true);
+  };
+
+  // representativeVideo = {
+  //   mimeType: 'video/mp4',
+  //   link: 'https://res.cloudinary.com/scarinci-hollenbeck/video/upload/v1670960800/Holiday Video.mp4?_i=AA',
+  // };
+
   return (
-    <CardImageVideoContainer isRotateProp={isRotateConvertToStr}>
-      <Front isRotateProp={isRotateConvertToStr}>
+    <CardImageVideoContainer>
+      <CardImageWrapper>
         <Image
           src={profileImage}
           alt={name}
@@ -44,19 +51,29 @@ const ProfileImage = ({
           priority
           loading="eager"
         />
-      </Front>
+      </CardImageWrapper>
       {!empty(representativeVideo) && (
-        <Back isRotateProp={isRotateConvertToStr}>
-          {isRotated && (
-            /* eslint-disable-next-line jsx-a11y/media-has-caption */
+        <ModalWindow isOpen={isShowVideo} setOpenModal={setIsShowVideo}>
+          <CardVideoWrapper>
             <video ref={videoRef} preload="metadata" controls>
               <source
                 type={representativeVideo.mimeType}
                 src={representativeVideo.link}
               />
+              <track kind="captions" srcLang="en" label="English" />
+              Your browser does not support the video tag.
             </video>
-          )}
-        </Back>
+          </CardVideoWrapper>
+        </ModalWindow>
+      )}
+
+      {!empty(representativeVideo) && (
+        <div className="animate__animated animate__fadeInUp animate__slow">
+          <VideoButton
+            isShowVideo={isShowVideo}
+            onButtonClick={handleClickVideoOpener}
+          />
+        </div>
       )}
     </CardImageVideoContainer>
   );
