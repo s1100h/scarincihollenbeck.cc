@@ -44,7 +44,6 @@ const HomePage = ({
 }) => {
   const { attorneysContext } = useContext(AttorneysContext);
   const filteredAttorneysByDesignation = filterAttorneysByDesignation(attorneysContext);
-
   return (
     <>
       <HomeSiteHead
