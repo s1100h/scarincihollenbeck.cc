@@ -14,31 +14,27 @@ const SwiperWrapper = ({
   ...props
 }) => {
   const swiperRef = useRef();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isEnd, setIsEnd] = useState(false);
-
-  const handleClickBtnNext = () => {
-    swiperRef.current.swiper.slideNext();
-  };
-
-  const handleClickBtnPrev = () => {
-    swiperRef.current.swiper.slidePrev();
-  };
+  const [isInitialized, setIsInitialized] = useState(false);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   useEffect(() => {
-    if (!empty(breakpoints)) {
+    const swiper = swiperRef.current?.swiper;
+
+    if (!empty(breakpoints) && !isInitialized) {
       const slider = {
         breakpoints,
       };
 
       Object.assign(swiperRef.current, slider);
       swiperRef.current.initialize();
+      setIsInitialized(true);
     }
 
-    swiperRef.current.addEventListener('swiperslidechange', (e) => {
-      setCurrentIndex(swiperRef.current?.swiper.realIndex);
-      setIsEnd(swiperRef.current?.swiper.isEnd);
-    });
+    swiper.params.navigation.prevEl = prevRef.current;
+    swiper.params.navigation.nextEl = nextRef.current;
+    swiper.navigation.init();
+    swiper.navigation.update();
   }, []);
 
   return (
@@ -56,14 +52,7 @@ const SwiperWrapper = ({
         {children}
       </swiper-container>
 
-      {navigation && (
-        <SliderNavigation
-          handleClickBtnNext={handleClickBtnNext}
-          handleClickBtnPrev={handleClickBtnPrev}
-          isEnd={!loop && isEnd}
-          currentIndex={!loop && currentIndex}
-        />
-      )}
+      {navigation && <SliderNavigation prevRef={prevRef} nextRef={nextRef} />}
     </SliderWrapper>
   );
 };

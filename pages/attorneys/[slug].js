@@ -246,11 +246,6 @@ export const getStaticProps = async ({ params }) => {
         ?.barAdmissions,
   };
 
-  /** Accordion data */
-  const accordionData = {
-    clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
-  };
-
   /** Tab list */
   const mainTabs = attorneyBio.attorneyTabNavigation.mainMenu;
 
@@ -455,16 +450,23 @@ export const getStaticProps = async ({ params }) => {
     return tab;
   });
 
-  /** Awards */
-  const attorneyAwards = attorneyBio.attorneyAwardsClientsBlogsVideos?.awards;
+  /** Accordion data */
+  const accordionData = {
+    clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
+    awards: attorneyBio.attorneyAwardsClientsBlogsVideos?.awards,
+    attorneyBiography: attorneyBio?.attorneyBiography,
+    affiliations:
+      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+        ?.affiliations,
+    additionalTabs,
+  };
+
   return {
     props: {
       seo,
       profileHeader,
       attorneyFooterNewsArticles: newsPosts.filter((_, i) => i <= 2),
       tabs: mainTabsMatched,
-      additionalTabs,
-      attorneyAwards,
       accordionData,
     },
     revalidate: 3600,
@@ -477,7 +479,6 @@ const AttorneyProfile = ({
   profileHeader,
   attorneyFooterNewsArticles,
   tabs,
-  attorneyAwards,
   accordionData,
 }) => {
   const attorneyPageProps = {
@@ -485,7 +486,6 @@ const AttorneyProfile = ({
     profileHeader,
     attorneyFooterNewsArticles,
     tabs,
-    attorneyAwards,
     accordionData,
   };
 

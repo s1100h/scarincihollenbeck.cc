@@ -61,7 +61,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       tabContent5
     }
     attorneyAwardsClientsBlogsVideos {
-    	images {
+      images {
         caption
         image {
           sourceUrl
@@ -80,6 +80,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         }
         awardLink
         awardTitle
+        year
       }
       clients {
         clientImage {

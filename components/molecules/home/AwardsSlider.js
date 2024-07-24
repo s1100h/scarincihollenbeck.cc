@@ -1,5 +1,8 @@
 import React from 'react';
 import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
+import empty from 'is-empty';
+import DisclaimerText from 'components/atoms/DisclaimerText';
+import { AwardsSliderWrapper } from 'styles/Awards.style';
 import AwardCard from './AwardCard';
 
 const breakpoints = {
@@ -20,24 +23,32 @@ const breakpoints = {
   },
 };
 
-const AwardsSlider = ({ images }) => (
-  <SwiperWrapper
-    breakpoints={breakpoints}
-    spaceBetween={32}
-    lazy="true"
-    grab-cursor="true"
-  >
-    {images?.map((item) => (
-      <swiper-slide key={item?.id} class="slide">
-        <AwardCard
-          image={item?.image}
-          key={item?.id}
-          year={item?.year}
-          label={item?.label}
-        />
-      </swiper-slide>
-    ))}
-  </SwiperWrapper>
-);
+const AwardsSlider = ({ items, isLightVariant = false }) => {
+  if (empty(items)) return null;
+
+  return (
+    <AwardsSliderWrapper $isLightVariant={isLightVariant}>
+      <SwiperWrapper
+        breakpoints={breakpoints}
+        spaceBetween={32}
+        lazy="true"
+        grab-cursor="true"
+      >
+        {items?.map((item) => (
+          <swiper-slide key={item?.id} class="slide">
+            <AwardCard
+              image={item?.image}
+              year={item?.year}
+              label={item?.label}
+              link={item?.link}
+              isLightVariant={isLightVariant}
+            />
+          </swiper-slide>
+        ))}
+      </SwiperWrapper>
+      <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
+    </AwardsSliderWrapper>
+  );
+};
 
 export default AwardsSlider;

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { StandardLightBlueButton } from "styles/Buttons.style";
 import { globalBorderRadius, globalColor, globalShadow, globalTransition, rem } from "styles/global_styles/Global.styles";
 import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
 
@@ -76,6 +77,7 @@ export const ProfileAccordionHolder = styled.div`
 export const ProfileAccordionBody = styled.div`
 
   ul {
+    margin: 0 0 12px 0;
     list-style: disc;
     display: grid;
     row-gap: 8px;
@@ -85,6 +87,15 @@ export const ProfileAccordionBody = styled.div`
     li {
       margin: 0 0 0 20px;
       color: ${globalColor.blue.darkBlue};
+
+      &.bullets-li {
+        padding-left: 0;
+        position: static;
+
+        &::before {
+          content: none;
+        }
+      }
 
       &::marker {
         color: ${globalColor.blue.blue400};
@@ -105,6 +116,10 @@ export const ProfileAccordionBody = styled.div`
       }
     }
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
     ${media_breakpoint_down('lg')} {
       grid-template-columns: ${({ $columnsCount }) => `${$columnsCount > 0 ? `repeat(2, 1fr)` : '1fr'}`};
     }
@@ -112,6 +127,40 @@ export const ProfileAccordionBody = styled.div`
     ${media_breakpoint_down('sm')} {
       grid-template-columns: 1fr;
     }
+  }
+
+  p {
+    margin: 0 0 12px 0;
+    color: ${globalColor.blue.darkBlue};
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      transition: ${globalTransition.default};
+    }
+  }
+
+  h5 {
+    margin: 12px 0 4px 0;
+    color: ${globalColor.blue.darkBlue};
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ${StandardLightBlueButton} {
+    margin-bottom: 12px;
+    width: max-content;
   }
 `;
 
@@ -133,6 +182,11 @@ export const ClientsSliderTitle = styled.h2`
   font-size: ${rem(20)};
   line-height: 1.6;
   font-weight: 600;
+
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(18)};
+    line-height: 1.56;
+  }
 `;
 
 export const ClientsSliderCard = styled.div`
@@ -141,6 +195,16 @@ export const ClientsSliderCard = styled.div`
   background-color: ${globalColor.white};
   border-radius: ${globalBorderRadius.small};
   overflow: hidden;
+  border: 1px solid transparent;
+  transition: ${globalTransition.default};
+
+  ${({ $isLink }) =>
+    $isLink &&
+    css`
+      &:hover {
+        border-color: ${globalColor.blue.skyBlue};
+      }
+    `}
 
   img {
     width: 100%;

@@ -5,9 +5,19 @@ import {
   AwardCardImage,
   AwardCardWrapper,
 } from 'styles/Awards.style';
+import empty from 'is-empty';
+import Link from 'next/link';
 
-const AwardCard = ({ image, label, year }) => (
-  <AwardCardWrapper>
+const AwardCard = ({
+  image, label, year, link, isLightVariant,
+}) => (
+  <AwardCardWrapper
+    as={!empty(link) && Link}
+    href={!empty(link) ? link : undefined}
+    target={!empty(link) && link.includes('https') ? '_blank' : undefined}
+    $isLink={!empty(link)}
+    $isLightVariant={isLightVariant}
+  >
     <AwardCardImage>
       <Image
         src={image?.src}
@@ -18,7 +28,7 @@ const AwardCard = ({ image, label, year }) => (
       />
     </AwardCardImage>
 
-    <AwardCardContent>
+    <AwardCardContent $isLightVariant={isLightVariant}>
       <p title={label}>{label}</p>
       <span>{year}</span>
     </AwardCardContent>

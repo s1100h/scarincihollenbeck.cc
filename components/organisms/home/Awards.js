@@ -55,8 +55,7 @@ const Awards = ({ awards }) => {
             </StandardLightBlueButton>
           </AwardsHeader>
 
-          <AwardsSlider images={formattedAwards} />
-          <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
+          <AwardsSlider items={formattedAwards} />
         </AwardsHolder>
       </ContainerDefault>
     </AwardsWrapper>

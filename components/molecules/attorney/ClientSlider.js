@@ -48,6 +48,7 @@ const ClientSlider = ({ clients }) => (
             href={!empty(clientLink) ? clientLink : undefined}
             target={!empty(clientLink) ? '_blank' : undefined}
             rel={!empty(clientLink) ? 'noreferrer' : undefined}
+            $isLink={!empty(clientLink)}
           >
             <Image
               src={clientImage.sourceUrl}

@@ -32,6 +32,19 @@ export const SliderWrapper = styled.div`
     }
   }
 
+  &:has(.swiper-button-lock) {
+    
+    .navigation-container {
+      display: none;
+    }
+
+    .slider-container {
+      &::part(wrapper) {
+        padding-bottom: 0;
+      }
+    }
+  }
+
   .slide {
     height: auto;
     display: flex;

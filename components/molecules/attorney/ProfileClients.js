@@ -14,9 +14,9 @@ const ProfileClients = ({ clients }) => {
   if (empty(clients)) return null;
 
   return (
-    <ProfileClientsWrapper>
+    <ProfileClientsWrapper as="li">
       <ClientSlider clients={clients} />
-      <AccordionItem as="li" eventKey="0" title="Clients List">
+      <AccordionItem eventKey="0" title="Clients List">
         <ProfileAccordionBody $columnsCount={3}>
           <ul>
             {clients.map(({ clientImage, clientLink, clientTitle }) => (

@@ -8,7 +8,6 @@ const AttorneyProfilePage = ({
   profileHeader,
   attorneyFooterNewsArticles,
   tabs,
-  attorneyAwards,
   accordionData,
 }) => (
   <>
