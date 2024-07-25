@@ -11,14 +11,25 @@ import {
 } from 'styles/attorney-page/AttorneyProfile.style';
 import empty from 'is-empty';
 
-const ProfileServices = ({ services, coChairs, chairs }) => {
+const removeDuplicates = (chairs, coChairs, services) => {
+  if (empty(services)) return [];
+  if (empty(chairs) && empty(coChairs)) return services;
+
   const urisToRemove = new Set(
     [...coChairs, ...chairs].map((item) => item.link),
   );
 
-  const servicesWithoutDuplicates = services.filter(
-    (service) => !urisToRemove.has(service?.uri),
+  return services.filter((service) => !urisToRemove.has(service?.uri));
+};
+
+const ProfileServices = ({ services, coChairs, chairs }) => {
+  const servicesWithoutDuplicates = removeDuplicates(
+    chairs,
+    coChairs,
+    services,
   );
+
+  if (empty(servicesWithoutDuplicates)) return null;
 
   return (
     <ProfileServicesWrapper>
@@ -53,11 +64,12 @@ const ProfileServices = ({ services, coChairs, chairs }) => {
           </ProfileServicesChair>
         )}
 
-        {servicesWithoutDuplicates.map((service) => (
-          <ProfileServicesItem key={service.title}>
-            <Link href={service.uri}>{service.title}</Link>
-          </ProfileServicesItem>
-        ))}
+        {!empty(servicesWithoutDuplicates)
+          && servicesWithoutDuplicates.map((service) => (
+            <ProfileServicesItem key={service.title}>
+              <Link href={service.uri}>{service.title}</Link>
+            </ProfileServicesItem>
+          ))}
       </ProfileServicesContent>
     </ProfileServicesWrapper>
   );

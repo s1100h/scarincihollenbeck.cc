@@ -458,7 +458,17 @@ export const getStaticProps = async ({ params }) => {
     affiliations:
       attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
         ?.affiliations,
+    representativeMatters: attorneyBio.attorneyRepresentativeMatters.repMatters
+      ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
+      : [],
     additionalTabs,
+    mediaContent: {
+      header: attorneyBio.attorneyMedia.attorneyMedia.header,
+      body: attorneyBio.attorneyMedia.attorneyMedia.body,
+    },
+    gallery: attorneyBio.attorneyAwardsClientsBlogsVideos
+      ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
+      : [],
   };
 
   return {

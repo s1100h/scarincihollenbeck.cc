@@ -15,6 +15,9 @@ import dynamic from 'next/dynamic';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { StandardLightBlueButton } from 'styles/Buttons.style';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import AccordionDynamicItem from 'components/molecules/attorney/AccordionDynamicItem';
+import GallerySlider from 'components/molecules/attorney/GallerySlider';
+import MediaSlider from 'components/molecules/attorney/MediaSlider';
 
 const AwardsSlider = dynamic(
   () => import('components/molecules/home/AwardsSlider'),
@@ -52,10 +55,12 @@ const ProfileAccordion = ({
   attorneyBiography,
   affiliations,
   additionalTabs,
+  representativeMatters,
+  gallery,
+  mediaContent,
 }) => {
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
 
-  console.log(additionalTabs);
   return (
     <ProfileAccordionWrapper>
       <ContainerDefault>
@@ -65,48 +70,62 @@ const ProfileAccordion = ({
 
             {!empty(sanitizedAwardsForSlider) && (
               <AccordionItem eventKey="1" title="Awards">
-                <ProfileAccordionBody>
-                  <StandardLightBlueButton as={Link} href="/awards">
-                    Award Methodology
-                  </StandardLightBlueButton>
-                  <AwardsSlider
-                    items={sanitizedAwardsForSlider}
-                    isLightVariant
-                  />
-                </ProfileAccordionBody>
+                <StandardLightBlueButton as={Link} href="/awards">
+                  Award Methodology
+                </StandardLightBlueButton>
+                <AwardsSlider items={sanitizedAwardsForSlider} isLightVariant />
               </AccordionItem>
             )}
 
             {!empty(attorneyBiography?.biographyContent) && (
-              <AccordionItem eventKey="2" title="Full Biography">
-                <ProfileAccordionBody>
-                  <JSXWithDynamicLinks
-                    HTML={attorneyBiography?.biographyContent}
-                  />
-                </ProfileAccordionBody>
-              </AccordionItem>
+              <AccordionDynamicItem
+                eventKey="2"
+                title="Full Biography"
+                content={attorneyBiography?.biographyContent}
+              />
             )}
 
             {!empty(affiliations) && (
-              <AccordionItem eventKey="3" title="Affiliations Area">
-                <ProfileAccordionBody>
-                  <JSXWithDynamicLinks HTML={affiliations} />
-                </ProfileAccordionBody>
+              <AccordionDynamicItem
+                eventKey="3"
+                title="Affiliations Area"
+                content={affiliations}
+              />
+            )}
+
+            {!empty(representativeMatters) && (
+              <AccordionDynamicItem
+                eventKey="4"
+                title="Representative Matters"
+                ulProps={{ $columnsCountUl: 2, $columnGapUl: 40 }}
+                content={representativeMatters}
+                disclaimer="* Results may vary depending on your particular facts and legal circumstances."
+              />
+            )}
+
+            {!empty(gallery) && (
+              <AccordionItem eventKey="5" title="Gallery">
+                <GallerySlider items={gallery} />
+              </AccordionItem>
+            )}
+
+            {!empty(mediaContent) && (
+              <AccordionItem eventKey="6" title="Media">
+                <MediaSlider items={mediaContent?.body} />
               </AccordionItem>
             )}
 
             {!empty(additionalTabs)
-              && additionalTabs.map((tab) => (
-                <AccordionItem
+              && additionalTabs.map(
+                (tab) => !empty(tab?.content) && (
+                <AccordionDynamicItem
+                  key={`${tab?.id}additional-tab`}
                   eventKey={`additional-${tab?.id}`}
                   title={tab?.title}
-                  key={`${tab?.id}additional-tab`}
-                >
-                  <ProfileAccordionBody>
-                    <JSXWithDynamicLinks HTML={tab?.content} />
-                  </ProfileAccordionBody>
-                </AccordionItem>
-              ))}
+                  content={tab?.content}
+                />
+                ),
+              )}
           </Accordion>
 
           <DisclaimerText text="No Aspect of the advertisement has been approved by the Supreme Court. Results may vary depending on your particular facts and legal circumstances." />

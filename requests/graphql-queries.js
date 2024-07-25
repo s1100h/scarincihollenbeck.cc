@@ -34,6 +34,13 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         channel
       }
       vizibility
+      videoPresentation {
+        videoLink
+        uploadVideo {
+          sourceUrl
+          mediaType
+        }
+      }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
       additionalInformation {

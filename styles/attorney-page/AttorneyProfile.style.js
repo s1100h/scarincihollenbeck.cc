@@ -1,49 +1,44 @@
-import { Col } from 'react-bootstrap';
 import styled, { keyframes } from 'styled-components';
 import {
   globalBorderRadius,
   globalColor,
-  globalIndents,
-  globalShadow,
   globalTransition,
   rem,
 } from '../global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
 
-export const ColStyled = styled(Col)`
+export const Front = styled.div`
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   position: relative;
-  top: ${({ top }) => (top ? top : 'none')};
-  bottom: ${({ bottom }) => (bottom ? bottom : 'none')};
-
-  .disclaimer {
-    margin: 30px 0;
-    text-align: center;
-  }
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  transform: ${({ isRotateProp }) =>
+    isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)'};
 `;
 
-export const ColForSidebar = styled(ColStyled)`
-  margin-bottom: 80px;
-  top: ${({ top }) => (top ? top : 'none')};
+export const Back = styled.div`
+  background: black;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  transform: ${({ isRotateProp }) =>
+    isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)'};
+  position: absolute;
 
-  ${({ top }) => {
-    const topNum = top.slice(0, -2);
-    return top
-      ? `
-      ${media_breakpoint_exactly_down(1400)} {
-        top: ${topNum - 10}px;
-      }
-      ${media_breakpoint_down('lg')} {
-        top: 0;
-        margin-bottom: 25px;
-      }
-      `
-      : `border: none`;
-  }}
+  video {
+    width: inherit;
+    height: -webkit-fill-available;
+  }
 `;
 
 // Styles for new bio page
@@ -52,6 +47,7 @@ export const ProfileHeaderSection = styled.section`
 
   .breadcrumb-container {
     margin: 12px 0;
+    padding: 0;
 
     > li {
 
@@ -97,7 +93,6 @@ export const ProfileHeaderHolder = styled.div`
     row-gap: 20px;
   }
 `;
-
 
 //Left side styles
 export const ProfileHeaderLeft = styled.div`
@@ -312,7 +307,7 @@ export const ProfileButtons = styled.div`
   gap: 16px;
 
   .white-button {
-    width: 50%;
+    flex: 1 1 50%;
   }
 
   ${media_breakpoint_down('lg')} {
@@ -401,6 +396,7 @@ export const ProfileHeaderRight = styled.div`
 
 export const ProfileTitle = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   column-gap: 12px;
 `;
@@ -583,6 +579,12 @@ export const ProfileBioText = styled.p`
   color: ${globalColor.gray.gray110};
   font-size: 1rem;
   line-height: 1.5;
+
+  p {
+    &:last-child {
+      margin: 0;
+    }
+  }
 
   ${media_breakpoint_down('sm')} {
     font-size: 0.875rem;

@@ -28,10 +28,12 @@ const AwardCard = ({
       />
     </AwardCardImage>
 
-    <AwardCardContent $isLightVariant={isLightVariant}>
-      <p title={label}>{label}</p>
-      <span>{year}</span>
-    </AwardCardContent>
+    {(!empty(label) || !empty(year)) && (
+      <AwardCardContent $isLightVariant={isLightVariant}>
+        {!empty(label) && <p title={label}>{label}</p>}
+        {!empty(year) && <span>{year}</span>}
+      </AwardCardContent>
+    )}
   </AwardCardWrapper>
 );
 

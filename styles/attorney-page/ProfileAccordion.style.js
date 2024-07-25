@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { StandardLightBlueButton } from "styles/Buttons.style";
 import { globalBorderRadius, globalColor, globalShadow, globalTransition, rem } from "styles/global_styles/Global.styles";
 import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
@@ -72,6 +72,11 @@ export const ProfileAccordionHolder = styled.div`
       font-size: ${rem(14)};
     }
   }
+
+  ${StandardLightBlueButton} {
+    margin-bottom: 12px;
+    width: max-content;
+  }
 `;
 
 export const ProfileAccordionBody = styled.div`
@@ -81,8 +86,8 @@ export const ProfileAccordionBody = styled.div`
     list-style: disc;
     display: grid;
     row-gap: 8px;
-    column-gap: 24px;
-    grid-template-columns: ${({ $columnsCount = 1 }) => `repeat(${$columnsCount}, 1fr)`};
+    column-gap: ${({ $columnGapUl = 24 }) => `${$columnGapUl}px`};
+    grid-template-columns: ${({ $columnsCountUl = 1 }) => `repeat(${$columnsCountUl}, 1fr)`};
 
     li {
       margin: 0 0 0 20px;
@@ -121,10 +126,11 @@ export const ProfileAccordionBody = styled.div`
     }
 
     ${media_breakpoint_down('lg')} {
-      grid-template-columns: ${({ $columnsCount }) => `${$columnsCount > 0 ? `repeat(2, 1fr)` : '1fr'}`};
+      column-gap: 24px;
+      grid-template-columns: ${({ $columnsCountUl }) => `${$columnsCountUl > 0 ? `repeat(2, 1fr)` : '1fr'}`};
     }
 
-    ${media_breakpoint_down('sm')} {
+    ${media_breakpoint_down('md')} {
       grid-template-columns: 1fr;
     }
   }
@@ -139,6 +145,10 @@ export const ProfileAccordionBody = styled.div`
 
     a {
       transition: ${globalTransition.default};
+    }
+
+    ${media_breakpoint_down('sm')} {
+      font-size: ${rem(14)};
     }
   }
 
@@ -156,11 +166,33 @@ export const ProfileAccordionBody = styled.div`
     &:last-child {
       margin-bottom: 0;
     }
+
+    strong {
+      font-weight: inherit;
+    }
   }
 
-  ${StandardLightBlueButton} {
-    margin-bottom: 12px;
-    width: max-content;
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    color: ${globalColor.blue.darkBlue};
+    border-color: ${globalColor.blue.darkBlue};
+
+    ${media_breakpoint_down('sm')} {
+      font-size: ${rem(14)};
+    }
+  }
+
+  .disclaimer {
+    margin-top: 16px;
+
+    ${media_breakpoint_down('sm')} {
+      font-size: ${rem(14)};
+    }
   }
 `;
 
@@ -168,47 +200,4 @@ export const ProfileClientsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-`;
-
-export const ClientsSliderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-`;
-
-export const ClientsSliderTitle = styled.h2`
-  margin: 0;
-  color: ${globalColor.blue.darkBlue};
-  font-size: ${rem(20)};
-  line-height: 1.6;
-  font-weight: 600;
-
-  ${media_breakpoint_down('sm')} {
-    font-size: ${rem(18)};
-    line-height: 1.56;
-  }
-`;
-
-export const ClientsSliderCard = styled.div`
-  width: 162px;
-  height: 162px;
-  background-color: ${globalColor.white};
-  border-radius: ${globalBorderRadius.small};
-  overflow: hidden;
-  border: 1px solid transparent;
-  transition: ${globalTransition.default};
-
-  ${({ $isLink }) =>
-    $isLink &&
-    css`
-      &:hover {
-        border-color: ${globalColor.blue.skyBlue};
-      }
-    `}
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
 `;

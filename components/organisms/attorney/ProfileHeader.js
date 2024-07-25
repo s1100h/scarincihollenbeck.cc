@@ -64,6 +64,7 @@ const ProfileHeader = ({
   attorneyBiography,
   education,
   barAdmissions,
+  biography,
 }) => {
   const [designation] = useDesignationHook(title);
   const [isContactModal, setIsContactModal] = useState(false);
@@ -92,24 +93,31 @@ const ProfileHeader = ({
             <ProfileImage {...profileImageProps} />
 
             <ProfileActions>
-              <ProfileButtons>
-                <WhiteButton
-                  as={Link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href={contact?.pdf || '#'}
-                  text="Print Bio"
-                  icon={<PDFIcon />}
-                />
-                <WhiteButton
-                  as={Link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href={contact?.vizibility || '#'}
-                  text="Business Card"
-                  icon={<BusinessCard />}
-                />
-              </ProfileButtons>
+              {!empty(contact?.pdf)
+                || (!empty(contact?.vizibility) && (
+                  <ProfileButtons>
+                    {!empty(contact?.pdf) && (
+                      <WhiteButton
+                        as={Link}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        href={contact?.pdf}
+                        text="Print Bio"
+                        icon={<PDFIcon />}
+                      />
+                    )}
+                    {!empty(contact?.vizibility) && (
+                      <WhiteButton
+                        as={Link}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        href={contact?.vizibility}
+                        text="Business Card"
+                        icon={<BusinessCard />}
+                      />
+                    )}
+                  </ProfileButtons>
+                ))}
 
               <StandardBlueButton onClick={() => setIsContactModal(true)}>
                 Contact now
@@ -141,13 +149,16 @@ const ProfileHeader = ({
               services={practices}
             />
 
-            <ProfileBio>
-              <ProfileBioTitle>Bio Overview</ProfileBioTitle>
-
-              <ProfileBioText>
-                <JSXWithDynamicLinks HTML={attorneyBiography?.miniBio} />
-              </ProfileBioText>
-            </ProfileBio>
+            {(!empty(attorneyBiography?.miniBio) || !empty(biography)) && (
+              <ProfileBio>
+                <ProfileBioTitle>Bio Overview</ProfileBioTitle>
+                <ProfileBioText as={!empty(biography) && 'div'}>
+                  <JSXWithDynamicLinks
+                    HTML={attorneyBiography?.miniBio || biography}
+                  />
+                </ProfileBioText>
+              </ProfileBio>
+            )}
 
             {(!empty(education) || !empty(barAdmissions)) && (
               <ProfileBioListItems>
