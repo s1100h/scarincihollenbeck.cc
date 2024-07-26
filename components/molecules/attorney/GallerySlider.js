@@ -21,7 +21,12 @@ const GallerySlider = ({ items }) => {
         {items?.map((item) => (
           <swiper-slide key={item?.image?.databaseId} class="slide">
             <GallerySliderCard orientation={item?.orientationImage}>
-              <Image src={item?.image?.sourceUrl} alt={item?.caption} fill />
+              <Image
+                src={item?.image?.sourceUrl}
+                alt={item?.caption}
+                fill
+                loading="lazy"
+              />
             </GallerySliderCard>
           </swiper-slide>
         ))}

@@ -55,6 +55,7 @@ const ClientSlider = ({ clients }) => (
               alt={clientImage.mediaDetails.altText || clientTitle}
               width={170}
               height={170}
+              loading="lazy"
             />
           </ClientsSliderCard>
         </swiper-slide>

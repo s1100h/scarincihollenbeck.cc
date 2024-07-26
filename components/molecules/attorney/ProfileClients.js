@@ -19,7 +19,7 @@ const ProfileClients = ({ clients }) => {
       <AccordionItem eventKey="0" title="Clients List">
         <ProfileAccordionBody $columnsCountUl={3}>
           <ul>
-            {clients.map(({ clientImage, clientLink, clientTitle }) => (
+            {clients.map(({ clientLink, clientTitle }) => (
               <li key={clientTitle}>
                 {!empty(clientLink) ? (
                   <Link href={clientLink}>{clientTitle}</Link>
