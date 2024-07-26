@@ -55,7 +55,9 @@ const ProfileAccordion = ({
   additionalTabs,
   representativeMatters,
   gallery,
-  mediaContent,
+  mediaItems,
+  presentationsItems,
+  publicationsItems,
 }) => {
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
 
@@ -107,9 +109,21 @@ const ProfileAccordion = ({
               </AccordionItem>
             )}
 
-            {!empty(mediaContent) && (
+            {!empty(mediaItems) && (
               <AccordionItem eventKey="6" title="Media">
-                <MediaSlider items={mediaContent?.body} />
+                <MediaSlider items={mediaItems} />
+              </AccordionItem>
+            )}
+
+            {!empty(presentationsItems) && (
+              <AccordionItem eventKey="7" title="Presentations">
+                <MediaSlider items={presentationsItems} />
+              </AccordionItem>
+            )}
+
+            {!empty(publicationsItems) && (
+              <AccordionItem eventKey="8" title="Publications">
+                <MediaSlider items={publicationsItems} />
               </AccordionItem>
             )}
 

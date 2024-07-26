@@ -24,8 +24,8 @@ const MediaSlider = ({ items }) => {
     <MediaSliderWrapper>
       <SwiperWrapper breakpoints={breakpoints} grab-cursor="true">
         {items?.map((item) => (
-          <swiper-slide key={item?.id} class="slide">
-            <div>123</div>
+          <swiper-slide key={item?.title} class="slide">
+            <div>{item?.title}</div>
           </swiper-slide>
         ))}
       </SwiperWrapper>

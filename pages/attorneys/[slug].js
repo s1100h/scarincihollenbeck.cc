@@ -463,13 +463,14 @@ export const getStaticProps = async ({ params }) => {
       ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
       : [],
     additionalTabs,
-    mediaContent: {
-      header: attorneyBio.attorneyMedia.attorneyMedia.header,
-      body: attorneyBio.attorneyMedia.attorneyMedia.body,
-    },
     gallery: attorneyBio.attorneyAwardsClientsBlogsVideos
       ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
       : [],
+    mediaItems: attorneyBio?.attorneyMediaSecondType?.mediaItems,
+    presentationsItems:
+      attorneyBio?.attorneyPresentationsSecondType?.presentationsItems,
+    publicationsItems:
+      attorneyBio?.attorneyPublicationsSecondType?.publicationsItems,
   };
 
   return {
