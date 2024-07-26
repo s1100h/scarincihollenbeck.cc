@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 import {
+  globalBorderRadius,
   globalColor,
   globalShadow,
   globalTransition,
@@ -160,7 +161,7 @@ export const TileContactWrapper = styled.article`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
-  border-radius: 8px;
+  border-radius: ${globalBorderRadius.small};
   background-color: ${globalColor.white};
   box-shadow: ${globalShadow.shadowM};
   transition: ${globalTransition.default};

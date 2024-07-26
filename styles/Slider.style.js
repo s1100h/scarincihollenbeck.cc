@@ -8,26 +8,22 @@ export const SliderWrapper = styled.div`
   .slider-container {
     width: 100%;
 
-    &::part(wrapper) {
+    &::part(container) {
       padding-bottom: 64px;
+      transition: padding 0.3s ease-out;
     }
 
     &::part(pagination) {
       top: calc(100% - 24px);
       bottom: unset;
-      display: flex;
-      justify-content: center;
-      gap: 4px;
     }
 
     &::part(bullet) {
-      margin: 0;
       opacity: 1;
       background-color: rgba(146, 146, 146, 0.31);
     }
 
     &::part(bullet-active) {
-      margin: 0;
       background-color: ${globalColor.blue.blue400};
     }
   }
@@ -38,7 +34,7 @@ export const SliderWrapper = styled.div`
     }
 
     .slider-container {
-      &::part(wrapper) {
+      &::part(container) {
         padding-bottom: 0;
       }
     }

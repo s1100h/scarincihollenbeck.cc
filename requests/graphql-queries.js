@@ -34,6 +34,13 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         channel
       }
       vizibility
+      videoPresentation {
+        videoLink
+        uploadVideo {
+          link
+          mimeType
+        }
+      }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
       additionalInformation {
@@ -181,6 +188,42 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
     attorneyTabNavigation {
       mainMenu
       moreMenu
+    }
+    attorneyMediaSecondType {
+      mediaItems {
+        date
+        description
+        link {
+          target
+          url
+        }
+        publisher
+        title
+      }
+    }
+    attorneyPresentationsSecondType {
+      presentationsItems {
+        title
+        link {
+          url
+          target
+        }
+        label
+        description
+        date
+      }
+    }
+    attorneyPublicationsSecondType {
+      publicationsItems {
+        date
+        description
+        label
+        title
+        link {
+          target
+          url
+        }
+      }
     }
   }
 }`;

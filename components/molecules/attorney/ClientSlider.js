@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
+import empty from 'is-empty';
+import Link from 'next/link';
 import {
   ClientsSliderCard,
   ClientsSliderTitle,
   ClientsSliderWrapper,
-} from 'styles/attorney-page/ProfileAccordion.style';
-import empty from 'is-empty';
-import Link from 'next/link';
+} from 'styles/attorney-page/ClientsSlider.style';
 
 const breakpoints = {
   1800: {
@@ -55,6 +55,7 @@ const ClientSlider = ({ clients }) => (
               alt={clientImage.mediaDetails.altText || clientTitle}
               width={170}
               height={170}
+              loading="lazy"
             />
           </ClientsSliderCard>
         </swiper-slide>

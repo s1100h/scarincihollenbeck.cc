@@ -2,21 +2,22 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 
 const videoChecker = (videoArg) => {
   const substrings = ['youtube.com', 'youtu.be'];
-  const containsAny = substrings.some((substring) => videoArg.includes(substring));
+  const containsAny = typeof videoArg === 'string'
+    && substrings.some((substring) => videoArg.includes(substring));
 
   if (containsAny) {
     return 'iframe';
   }
-  if (videoArg.includes('iframe')) {
+  if (typeof videoArg === 'string' && videoArg.includes('iframe')) {
     return 'children';
   }
   return 'video';
 };
 
-export const videoRender = (video, title) => {
-  let newVideo = video.replace('watch?v=', 'embed/');
+export const videoRender = (video, title, videoRef) => {
+  let newVideo = typeof video === 'string' ? video.replace('watch?v=', 'embed/') : video;
 
-  if (video.includes('youtu.be')) {
+  if (typeof video === 'string' && video.includes('youtu.be')) {
     newVideo = video.split('/');
     newVideo = newVideo[newVideo.length - 1];
     newVideo = `https://www.youtube.com/embed/${newVideo}`;
@@ -35,8 +36,8 @@ export const videoRender = (video, title) => {
       />
     ),
     video: (
-      <video preload="metadata" controls>
-        <source type={video?.type} src={video?.scr} />
+      <video preload="metadata" controls ref={videoRef}>
+        <source type={newVideo?.type} src={newVideo?.scr} />
         <track kind="captions" srcLang="en" label="English" />
         Your browser does not support the video tag.
       </video>

@@ -178,7 +178,8 @@ export const getStaticProps = async ({ params }) => {
       attorneyBio.attorneyMainInformation.profileImage?.sourceUrl,
     ),
     representativeVideo:
-      attorneyBio.attorneyMainInformation.representativeVideo,
+      attorneyBio?.attorneyMainInformation?.videoPresentation?.videoLink
+      || attorneyBio?.attorneyMainInformation?.videoPresentation?.uploadVideo,
     title: attorneyBio.attorneyMainInformation?.designation,
     contact: {
       phoneNumber: attorneyBio.attorneyMainInformation?.phoneNumber,
@@ -458,8 +459,19 @@ export const getStaticProps = async ({ params }) => {
     affiliations:
       attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
         ?.affiliations,
+    representativeMatters: attorneyBio.attorneyRepresentativeMatters.repMatters
+      ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
+      : [],
     additionalTabs,
     attorneyNewsAndArticles: newsPosts,
+    gallery: attorneyBio.attorneyAwardsClientsBlogsVideos
+      ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
+      : [],
+    mediaItems: attorneyBio?.attorneyMediaSecondType?.mediaItems,
+    presentationsItems:
+      attorneyBio?.attorneyPresentationsSecondType?.presentationsItems,
+    publicationsItems:
+      attorneyBio?.attorneyPublicationsSecondType?.publicationsItems,
   };
 
   return {

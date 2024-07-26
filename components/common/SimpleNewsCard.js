@@ -17,14 +17,13 @@ const SimpleNewsCard = ({
   return (
     <NewsCardBlock>
       <Component {...conditionLayoutProps}>
-        {!empty(video) ? (
-          videoRender(video, author)
-        ) : (
-          <div className="article-box">
-            <h6 className="news-card-title">{title}</h6>
-            {!empty(textPost) && <p className="news-card-text">{textPost}</p>}
-          </div>
-        )}
+        <div className="article-box">
+          {!empty(video) && videoRender(video, author)}
+          <h6 className="news-card-title">{title}</h6>
+          {!empty(textPost) && empty(video) && (
+            <p className="news-card-text">{textPost}</p>
+          )}
+        </div>
         <CardFooterBox>
           <p className="author-name">{author}</p>
           <time dateTime={date} className="post-date">

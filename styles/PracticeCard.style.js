@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -13,7 +14,7 @@ export const PracticeCardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-  border-radius: 12px;
+  border-radius: ${globalBorderRadius.middle};
   background-color: ${globalColor.blue.blue6002};
   box-shadow: 0px 2px 12px 0px rgba(10, 62, 108, 0.12);
   overflow: hidden;
@@ -208,7 +209,7 @@ export const PracticeCardModalsWrapper = styled.div`
     max-width: 720px;
     width: 100%;
     padding: 0;
-    border-radius: 12px;
+    border-radius: ${globalBorderRadius.middle};
     background-color: ${globalColor.blue.blue6002};
     transition: all 0.8s, background-color 0s;
 

@@ -191,7 +191,7 @@ export const GlobalStyle = createGlobalStyle`
     ${media_breakpoint_up('lg')} {
       &::-webkit-scrollbar-track {
         background-color: #cbcbcb;
-        border-radius: 8px;
+        border-radius: ${globalBorderRadius.small};
         opacity: 0;
       }
 
@@ -203,7 +203,7 @@ export const GlobalStyle = createGlobalStyle`
 
       &::-webkit-scrollbar-thumb {
         background-color: #162153;
-        border-radius: 8px;
+        border-radius: ${globalBorderRadius.small};
       }
 
       // FireFox
@@ -367,7 +367,7 @@ button {
   * {
     &::-webkit-scrollbar-track {
       background-color: ${globalColor.blue.blue6002};
-      border-radius: 8px;
+      border-radius: ${globalBorderRadius.small};
       opacity: 0;
     }
 
@@ -378,7 +378,7 @@ button {
 
     &::-webkit-scrollbar-thumb {
       background-color: ${globalColor.blue.blue400};
-      border-radius: 8px;
+      border-radius: ${globalBorderRadius.small};
     }
 
     // FireFox

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -43,7 +44,7 @@ export const RandomBioHolder = styled.div`
   max-width: 1240px;
   margin: 0 auto;
   padding: 32px 80px;
-  border-radius: 16px;
+  border-radius: ${globalBorderRadius.big};
   background-color: ${globalColor.gray.gray1002};
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
   display: flex;

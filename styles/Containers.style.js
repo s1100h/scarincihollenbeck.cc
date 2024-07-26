@@ -108,18 +108,6 @@ export const BottomContainer = styled.section`
   grid-area: 3/2/3/4;
 `;
 
-export const CustomContainer = styled(Container)`
-  .breadcrumb-container {
-    margin-bottom: 0;
-    margin-top: 20px;
-    padding-left: 3%;
-  }
-
-  ${media_breakpoint_down('xl')} {
-    max-width: 1200px;
-  }
-`;
-
 export const ContainerDefault = styled.div`
   width: min(100%, 1816px);
   max-width: 100%;
