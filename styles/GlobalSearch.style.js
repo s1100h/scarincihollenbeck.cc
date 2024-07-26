@@ -88,7 +88,8 @@ export const ResultsContainer = styled.div`
   transform: translate(0);
   transition: ${globalTransition.default};
 
-  &:not(:has(.results-container)), &:empty  {
+  &:not(:has(.results-container)),
+  &:empty {
     pointer-events: none;
     opacity: 0;
     transform: translateY(-50%);
@@ -267,9 +268,7 @@ export const ResultFilterList = styled.ul`
   }
 `;
 
-export const ResultFilterItem = styled.li`
-
-`;
+export const ResultFilterItem = styled.li``;
 
 export const ResultFilterToggle = styled.button`
   padding: 3px 15px;
@@ -295,7 +294,7 @@ export const ResultFilterToggle = styled.button`
   &:hover {
     border-color: ${globalColor.blue.blue400};
   }
-  
+
   .search-filter-label {
     margin: 0;
     display: flex;

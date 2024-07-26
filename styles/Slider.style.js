@@ -33,7 +33,6 @@ export const SliderWrapper = styled.div`
   }
 
   &:has(.swiper-button-lock) {
-    
     .navigation-container {
       display: none;
     }

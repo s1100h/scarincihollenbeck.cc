@@ -4,7 +4,7 @@ import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 import empty from 'is-empty';
 
 export const DiamondSeparator = styled.span`
-  --size: ${({ $size }) => (!empty($size) && `${$size}px`) || '12px'};;
+  --size: ${({ $size }) => (!empty($size) && `${$size}px`) || '12px'};
   width: var(--size);
   height: var(--size);
   display: flex;

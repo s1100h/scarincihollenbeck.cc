@@ -59,10 +59,11 @@ export const AwardsSliderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
-  
+
   .disclaimer {
     margin: 0;
-    color: ${({ $isLightVariant}) => $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
+    color: ${({ $isLightVariant }) =>
+      $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
     font-weight: 600;
     text-align: center;
 
@@ -75,13 +76,14 @@ export const AwardsSliderWrapper = styled.div`
 export const AwardCardWrapper = styled.div`
   height: 100%;
   width: 100%;
-  padding-top: ${({ $isLightVariant}) => $isLightVariant ? "12px" : "16px"};
+  padding-top: ${({ $isLightVariant }) => ($isLightVariant ? '12px' : '16px')};
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
   border-radius: 12px;
-  background-color: ${({ $isLightVariant}) => $isLightVariant ? globalColor.gray.gray1002 : globalColor.blue.blue6002};
+  background-color: ${({ $isLightVariant }) =>
+    $isLightVariant ? globalColor.gray.gray1002 : globalColor.blue.blue6002};
   overflow: hidden;
   border: 1px solid transparent;
   transition: ${globalTransition.default};
@@ -117,19 +119,22 @@ export const AwardCardImage = styled.div`
 export const AwardCardContent = styled.div`
   flex: 1;
   width: 100%;
-  padding: ${({ $isLightVariant}) => $isLightVariant ? "8px 12px" : "12px 20px"};
+  padding: ${({ $isLightVariant }) =>
+    $isLightVariant ? '8px 12px' : '12px 20px'};
   display: flex;
   flex-direction: column;
   row-gap: 4px;
   align-self: flex-start;
-  background-color: ${({ $isLightVariant}) => $isLightVariant ? globalColor.gray.gray10 : globalColor.blue.blue550};
+  background-color: ${({ $isLightVariant }) =>
+    $isLightVariant ? globalColor.gray.gray10 : globalColor.blue.blue550};
 
   > p {
     margin: 0;
-    color: ${({ $isLightVariant}) => $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
-    font-size: ${({ $isLightVariant}) => $isLightVariant ? "1rem" : rem(18)};
-    line-height: ${({ $isLightVariant}) => $isLightVariant ? 1.5 : 1.56};
-    font-weight: ${({ $isLightVariant}) => $isLightVariant ? 700 : 500};
+    color: ${({ $isLightVariant }) =>
+      $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
+    font-size: ${({ $isLightVariant }) => ($isLightVariant ? '1rem' : rem(18))};
+    line-height: ${({ $isLightVariant }) => ($isLightVariant ? 1.5 : 1.56)};
+    font-weight: ${({ $isLightVariant }) => ($isLightVariant ? 700 : 500)};
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -144,7 +149,8 @@ export const AwardCardContent = styled.div`
 
   > span {
     margin-top: auto;
-    color: ${({ $isLightVariant}) => $isLightVariant ? globalColor.blue.blue500 : globalColor.blue.skyBlue};
+    color: ${({ $isLightVariant }) =>
+      $isLightVariant ? globalColor.blue.blue500 : globalColor.blue.skyBlue};
     font-size: ${rem(20)};
     line-height: 1.6;
     font-weight: 600;

@@ -6,26 +6,31 @@ import {
   rem,
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { SearchableItemText, SearchableItemTitle, SearchedItem, SearchedItemIcon } from './Hit.style';
+import {
+  SearchableItemText,
+  SearchableItemTitle,
+  SearchedItem,
+  SearchedItemIcon,
+} from './Hit.style';
 
 export const BodyHeaderContainer = styled.nav`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 15px;
-	background-color: ${globalColor.white};
-	box-shadow: ${globalShadow.allSideShadow};
-	gap: 3%;
-	position: relative;
-	top: -100px;
-	
-	form {
-		margin: 0;
-		width: 40%;
-		input {
-			height: 60px !important;
-		}
-	}
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 15px;
+  background-color: ${globalColor.white};
+  box-shadow: ${globalShadow.allSideShadow};
+  gap: 3%;
+  position: relative;
+  top: -100px;
+
+  form {
+    margin: 0;
+    width: 40%;
+    input {
+      height: 60px !important;
+    }
+  }
 
   .search-result-container {
     top: 100%;
@@ -54,12 +59,10 @@ export const BodyHeaderContainer = styled.nav`
 
     .ais-Pagination {
       .ais-Pagination-item--nextPage {
-
       }
       .ais-Pagination-list {
         .ais-Pagination-item {
           a.ais-Pagination-link {
-
             &:not(.ais-Pagination-link--selected) {
               &:hover {
                 background-color: ${globalColor.gray.gray10};
@@ -73,8 +76,8 @@ export const BodyHeaderContainer = styled.nav`
             }
           }
         }
-      } 
-      
+      }
+
       .ais-Pagination-link {
         &::after {
           background-color: #fcfaff;
@@ -90,14 +93,13 @@ export const BodyHeaderContainer = styled.nav`
     }
   }
 
-	
-	${media_breakpoint_down('lg')} {
-		form {
+  ${media_breakpoint_down('lg')} {
+    form {
       input {
         height: 50px !important;
       }
-		}
-	}
+    }
+  }
 
   ${media_breakpoint_down('md')} {
     flex-direction: column;
@@ -136,12 +138,13 @@ export const ButtonItem = styled.li`
     border: 1px solid ${globalColor.grayLite.grayLite90};
     color: ${globalColor.grayLite.grayLite90};
     font-size: ${rem(20)};
-    ${({ page }) => page.currentPage.includes(page.btnSlug) &&
+    ${({ page }) =>
+      page.currentPage.includes(page.btnSlug) &&
       `
         background-color: ${globalColor.red.darkRed}; 
         color: ${globalColor.white};
       `};
-    
+
     ${buttonsHoverActive} {
       &:hover {
         color: white;
@@ -157,7 +160,7 @@ export const ButtonItem = styled.li`
   ${media_breakpoint_down('sm')} {
     width: 49%;
 
-    > :nth-child(-n+2) {
+    > :nth-child(-n + 2) {
       margin-bottom: 10px;
     }
   }

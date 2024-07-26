@@ -10,8 +10,7 @@ export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: ${({ props }) =>
-    props?.isBlog ? 'flex-start' : 'center'};
+  justify-content: ${({ props }) => (props?.isBlog ? 'flex-start' : 'center')};
   background: no-repeat
     url(${({ props }) =>
       props?.isHoliday

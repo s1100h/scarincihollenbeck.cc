@@ -21,7 +21,6 @@ export const WhatWeDoHolder = styled.div`
       color: ${globalColor.white};
     }
   }
-  
 `;
 
 export const WhatWeDoTitle = styled.h2``;
