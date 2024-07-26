@@ -3,6 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {
   cannabisLawColors,
+  globalBorderRadius,
   globalColor,
   rem,
 } from './global_styles/Global.styles';
@@ -112,7 +113,7 @@ export const NavList = styled.div`
 
   & ::-webkit-scrollbar-track {
     background-color: #0b1136;
-    border-radius: 8px;
+    border-radius: ${globalBorderRadius.small};
     opacity: 0;
   }
 
@@ -124,7 +125,7 @@ export const NavList = styled.div`
 
   & ::-webkit-scrollbar-thumb {
     background-color: ${globalColor.blue.darkUltramarine};
-    border-radius: 8px;
+    border-radius: ${globalBorderRadius.small};
   }
 
   scrollbar-color: ${globalColor.blue.darkUltramarine} #0b1136;

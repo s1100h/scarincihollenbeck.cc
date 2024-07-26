@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -80,7 +81,7 @@ export const AwardCardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
-  border-radius: 12px;
+  border-radius: ${globalBorderRadius.middle};
   background-color: ${({ $isLightVariant}) => $isLightVariant ? globalColor.gray.gray1002 : globalColor.blue.blue6002};
   overflow: hidden;
   border: 1px solid transparent;

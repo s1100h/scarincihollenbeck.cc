@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
+import { globalBorderRadius, globalColor, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const ContactFormWrapper = styled.section`
@@ -38,7 +38,7 @@ export const ContactFormHolder = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  border-radius: 16px;
+  border-radius: ${globalBorderRadius.big};
   background-color: ${globalColor.gray.gray1002};
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
 

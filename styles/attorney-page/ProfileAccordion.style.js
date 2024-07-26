@@ -38,7 +38,7 @@ export const ProfileAccordionHolder = styled.div`
     font-size: ${rem(20)};
     line-height: 1.6;
     font-weight: 600;
-    border-radius: ${globalBorderRadius.small};
+    border-radius: ${globalBorderRadius.small} !important;
     border: none;
     box-shadow: ${globalShadow.shadowM};
 

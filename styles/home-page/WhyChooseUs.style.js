@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow, rem } from '../global_styles/Global.styles';
+import { globalBorderRadius, globalColor, globalShadow, rem } from '../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -148,7 +148,7 @@ export const FocusedCardBox = styled.article`
   flex-direction: column;
   padding: 24px;
   align-items: center;
-  border-radius: 12px;
+  border-radius: ${globalBorderRadius.middle};
   box-shadow: ${globalShadow.shadowM};
   background-color: ${globalColor.white};
 

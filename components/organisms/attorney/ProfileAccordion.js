@@ -3,7 +3,6 @@ import AccordionItem from 'components/molecules/attorney/AccordionItem';
 import React from 'react';
 import { Accordion } from 'react-bootstrap';
 import {
-  ProfileAccordionBody,
   ProfileAccordionHolder,
   ProfileAccordionWrapper,
 } from 'styles/attorney-page/ProfileAccordion.style';
@@ -14,7 +13,6 @@ import ProfileClients from 'components/molecules/attorney/ProfileClients';
 import dynamic from 'next/dynamic';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { StandardLightBlueButton } from 'styles/Buttons.style';
-import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import AccordionDynamicItem from 'components/molecules/attorney/AccordionDynamicItem';
 import GallerySlider from 'components/molecules/attorney/GallerySlider';
 import MediaSlider from 'components/molecules/attorney/MediaSlider';
@@ -65,7 +63,7 @@ const ProfileAccordion = ({
     <ProfileAccordionWrapper>
       <ContainerDefault>
         <ProfileAccordionHolder>
-          <Accordion as="ul">
+          <Accordion as="ul" alwaysOpen>
             <ProfileClients clients={clients} />
 
             {!empty(sanitizedAwardsForSlider) && (

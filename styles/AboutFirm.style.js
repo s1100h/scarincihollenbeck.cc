@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -118,7 +119,7 @@ export const AboutCard = styled.article`
   align-items: flex-end;
   column-gap: 20px;
   row-gap: 16px;
-  border-radius: 16px;
+  border-radius: ${globalBorderRadius.big};
   background-color: ${globalColor.blue.blue6002};
 
   ${media_breakpoint_down('xl')} {
@@ -137,7 +138,7 @@ export const AboutCard = styled.article`
 export const AboutCardImage = styled.div`
   width: 280px;
   height: calc(100% + 72px);
-  border-radius: 8px;
+  border-radius: ${globalBorderRadius.small};
   box-shadow: 0px 1px 12px 0px rgba(255, 255, 255, 0.12);
   overflow: hidden;
   position: relative;

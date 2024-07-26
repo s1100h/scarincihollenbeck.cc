@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -92,7 +93,7 @@ export const LatestPostsContent = styled.div``;
 
 export const LatestsPostsCardImage = styled.div`
   max-height: 375px;
-  border-radius: 12px;
+  border-radius: ${globalBorderRadius.middle};
   overflow: hidden;
 
   img {

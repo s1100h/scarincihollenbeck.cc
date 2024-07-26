@@ -37,8 +37,8 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       videoPresentation {
         videoLink
         uploadVideo {
-          sourceUrl
-          mediaType
+          link
+          mimeType
         }
       }
     }

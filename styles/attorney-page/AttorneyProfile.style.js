@@ -269,6 +269,11 @@ export const VideoButtonStyled = styled.button`
       width: 100%;
       height: 100%;
     }
+
+    ${media_breakpoint_down('md')} {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   @media (hover:hover) {
@@ -288,6 +293,10 @@ export const VideoButtonStyled = styled.button`
     .button-label {
       color: ${globalColor.blue.blue500};
     }
+  }
+
+  ${media_breakpoint_down('md')} {
+    padding: 12px 16px;
   }
 `;
 

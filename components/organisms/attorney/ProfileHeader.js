@@ -93,31 +93,30 @@ const ProfileHeader = ({
             <ProfileImage {...profileImageProps} />
 
             <ProfileActions>
-              {!empty(contact?.pdf)
-                || (!empty(contact?.vizibility) && (
-                  <ProfileButtons>
-                    {!empty(contact?.pdf) && (
-                      <WhiteButton
-                        as={Link}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        href={contact?.pdf}
-                        text="Print Bio"
-                        icon={<PDFIcon />}
-                      />
-                    )}
-                    {!empty(contact?.vizibility) && (
-                      <WhiteButton
-                        as={Link}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        href={contact?.vizibility}
-                        text="Business Card"
-                        icon={<BusinessCard />}
-                      />
-                    )}
-                  </ProfileButtons>
-                ))}
+              {!empty(contact?.pdf) && !empty(contact?.vizibility) && (
+                <ProfileButtons>
+                  {!empty(contact?.pdf) && (
+                    <WhiteButton
+                      as={Link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={contact?.pdf}
+                      text="Print Bio"
+                      icon={<PDFIcon />}
+                    />
+                  )}
+                  {!empty(contact?.vizibility) && (
+                    <WhiteButton
+                      as={Link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={contact?.vizibility}
+                      text="Business Card"
+                      icon={<BusinessCard />}
+                    />
+                  )}
+                </ProfileButtons>
+              )}
 
               <StandardBlueButton onClick={() => setIsContactModal(true)}>
                 Contact now

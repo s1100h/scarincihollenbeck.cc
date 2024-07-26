@@ -37,11 +37,27 @@ const SwiperWrapper = ({
     swiper.navigation.update();
   }, []);
 
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      const swiper = swiperRef.current.swiper;
+      swiper.update();
+      if (swiper.params.navigation && swiper.navigation) {
+        swiper.navigation.update();
+      }
+      if (swiper.params.pagination && swiper.pagination) {
+        swiper.pagination.render();
+        swiper.pagination.update();
+      }
+    }
+  }, [children]);
+
   return (
     <SliderWrapper>
       <swiper-container
         pagination={pagination}
         pagination-clickable={pagination}
+        pagination-dynamic-bullets="true"
+        pagination-dynamic-main-bullets="3"
         class="slider-container"
         ref={swiperRef}
         loop={loop}

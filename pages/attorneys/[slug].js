@@ -178,7 +178,8 @@ export const getStaticProps = async ({ params }) => {
       attorneyBio.attorneyMainInformation.profileImage?.sourceUrl,
     ),
     representativeVideo:
-      attorneyBio.attorneyMainInformation.representativeVideo,
+      attorneyBio?.attorneyMainInformation?.videoPresentation?.videoLink
+      || attorneyBio?.attorneyMainInformation?.videoPresentation?.uploadVideo,
     title: attorneyBio.attorneyMainInformation?.designation,
     contact: {
       phoneNumber: attorneyBio.attorneyMainInformation?.phoneNumber,

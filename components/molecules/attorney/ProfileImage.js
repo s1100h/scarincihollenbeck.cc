@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import empty from 'is-empty';
 import ModalWindow from 'components/common/ModalWindow';
 import Image from 'next/image';
+import { videoRender } from 'utils/videoRender';
 import {
   CardImageVideoContainer,
   CardImageWrapper,
@@ -12,6 +13,12 @@ import VideoButton from './VideoButton';
 const ProfileImage = ({ name, profileImage, representativeVideo }) => {
   const videoRef = useRef(null);
   const [isShowVideo, setIsShowVideo] = useState(false);
+  const videoData = typeof representativeVideo === 'string'
+    ? representativeVideo
+    : {
+      type: representativeVideo?.mimeType,
+      scr: representativeVideo?.link,
+    };
 
   const stopVideo = () => {
     if (videoRef.current) {
@@ -21,7 +28,7 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
   };
 
   useEffect(() => {
-    if (isShowVideo && videoRef) {
+    if (isShowVideo && videoRef.current) {
       videoRef.current.play();
     } else {
       stopVideo();
@@ -31,11 +38,6 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
   const handleClickVideoOpener = () => {
     setIsShowVideo(true);
   };
-
-  // representativeVideo = {
-  //   mimeType: 'video/mp4',
-  //   link: 'https://res.cloudinary.com/scarinci-hollenbeck/video/upload/v1670960800/Holiday Video.mp4?_i=AA',
-  // };
 
   return (
     <CardImageVideoContainer>
@@ -55,14 +57,7 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
       {!empty(representativeVideo) && (
         <ModalWindow isOpen={isShowVideo} setOpenModal={setIsShowVideo}>
           <CardVideoWrapper>
-            <video ref={videoRef} preload="metadata" controls>
-              <source
-                type={representativeVideo.mimeType}
-                src={representativeVideo.link}
-              />
-              <track kind="captions" srcLang="en" label="English" />
-              Your browser does not support the video tag.
-            </video>
+            {videoRender(videoData, `${name}'s representative video`, videoRef)}
           </CardVideoWrapper>
         </ModalWindow>
       )}
