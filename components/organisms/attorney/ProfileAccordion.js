@@ -1,8 +1,9 @@
 import DisclaimerText from 'components/atoms/DisclaimerText';
 import AccordionItem from 'components/molecules/attorney/AccordionItem';
-import React from 'react';
+import { Fragment } from 'react';
 import { Accordion } from 'react-bootstrap';
 import {
+  AccordionNewsList,
   ProfileAccordionBody,
   ProfileAccordionHolder,
   ProfileAccordionWrapper,
@@ -15,6 +16,7 @@ import dynamic from 'next/dynamic';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { StandardLightBlueButton } from 'styles/Buttons.style';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import SimpleNewsCard from '../../common/SimpleNewsCard';
 
 const AwardsSlider = dynamic(
   () => import('components/molecules/home/AwardsSlider'),
@@ -52,10 +54,9 @@ const ProfileAccordion = ({
   attorneyBiography,
   affiliations,
   additionalTabs,
+  attorneyNewsAndArticles,
 }) => {
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
-
-  console.log(additionalTabs);
   return (
     <ProfileAccordionWrapper>
       <ContainerDefault>
@@ -94,19 +95,25 @@ const ProfileAccordion = ({
                 </ProfileAccordionBody>
               </AccordionItem>
             )}
-
-            {!empty(additionalTabs)
-              && additionalTabs.map((tab) => (
-                <AccordionItem
-                  eventKey={`additional-${tab?.id}`}
-                  title={tab?.title}
-                  key={`${tab?.id}additional-tab`}
-                >
-                  <ProfileAccordionBody>
-                    <JSXWithDynamicLinks HTML={tab?.content} />
-                  </ProfileAccordionBody>
-                </AccordionItem>
-              ))}
+            {!empty(attorneyNewsAndArticles) && (
+              <AccordionItem
+                eventKey="news-and-press"
+                title="News & Press Releases"
+              >
+                <AccordionNewsList>
+                  {attorneyNewsAndArticles.map((article) => (
+                    <Fragment key={article.databaseId}>
+                      <SimpleNewsCard
+                        link={article.uri}
+                        title={article.title}
+                        author={article.author}
+                        date={article.date}
+                      />
+                    </Fragment>
+                  ))}
+                </AccordionNewsList>
+              </AccordionItem>
+            )}
           </Accordion>
 
           <DisclaimerText text="No Aspect of the advertisement has been approved by the Supreme Court. Results may vary depending on your particular facts and legal circumstances." />

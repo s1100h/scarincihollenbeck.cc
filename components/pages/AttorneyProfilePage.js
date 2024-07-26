@@ -4,11 +4,7 @@ import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 
 const AttorneyProfilePage = ({
-  seo,
-  profileHeader,
-  attorneyFooterNewsArticles,
-  tabs,
-  accordionData,
+  seo, profileHeader, tabs, accordionData,
 }) => (
   <>
     <PersonSiteHead
@@ -21,7 +17,6 @@ const AttorneyProfilePage = ({
       socialMediaLinks={seo.socialMediaLinks}
     />
     <ProfileHeader {...profileHeader} />
-
     <ProfileAccordion {...accordionData} />
   </>
 );

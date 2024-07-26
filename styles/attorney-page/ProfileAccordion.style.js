@@ -1,7 +1,16 @@
-import styled, { css } from "styled-components";
-import { StandardLightBlueButton } from "styles/Buttons.style";
-import { globalBorderRadius, globalColor, globalShadow, globalTransition, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
+import styled, { css } from 'styled-components';
+import { StandardLightBlueButton } from 'styles/Buttons.style';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalShadow,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from 'styles/mediaBreakpoints.style';
 
 export const ProfileAccordionWrapper = styled.section`
   padding: 60px 0;
@@ -75,14 +84,14 @@ export const ProfileAccordionHolder = styled.div`
 `;
 
 export const ProfileAccordionBody = styled.div`
-
   ul {
     margin: 0 0 12px 0;
     list-style: disc;
     display: grid;
     row-gap: 8px;
     column-gap: 24px;
-    grid-template-columns: ${({ $columnsCount = 1 }) => `repeat(${$columnsCount}, 1fr)`};
+    grid-template-columns: ${({ $columnsCount = 1 }) =>
+      `repeat(${$columnsCount}, 1fr)`};
 
     li {
       margin: 0 0 0 20px;
@@ -121,7 +130,8 @@ export const ProfileAccordionBody = styled.div`
     }
 
     ${media_breakpoint_down('lg')} {
-      grid-template-columns: ${({ $columnsCount }) => `${$columnsCount > 0 ? `repeat(2, 1fr)` : '1fr'}`};
+      grid-template-columns: ${({ $columnsCount }) =>
+        `${$columnsCount > 0 ? `repeat(2, 1fr)` : '1fr'}`};
     }
 
     ${media_breakpoint_down('sm')} {
@@ -210,5 +220,19 @@ export const ClientsSliderCard = styled.div`
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+`;
+
+export const AccordionNewsList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  ${media_breakpoint_exactly_down(1440)} {
+    gap: 24px;
+  }
+
+  ${media_breakpoint_down('xl')} {
+    gap: 12px;
   }
 `;

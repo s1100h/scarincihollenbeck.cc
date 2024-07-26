@@ -365,7 +365,7 @@ export const miniOfficeLocationQuery = `query BasicPageQuery {
 `;
 
 export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: String) {
-      posts(where: {search: $name}, first: 3) {
+      posts(where: {search: $name}, first: 6) {
         edges {
           node {
             date

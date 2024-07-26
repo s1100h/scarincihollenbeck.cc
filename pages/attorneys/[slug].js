@@ -459,13 +459,13 @@ export const getStaticProps = async ({ params }) => {
       attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
         ?.affiliations,
     additionalTabs,
+    attorneyNewsAndArticles: newsPosts,
   };
 
   return {
     props: {
       seo,
       profileHeader,
-      attorneyFooterNewsArticles: newsPosts.filter((_, i) => i <= 2),
       tabs: mainTabsMatched,
       accordionData,
     },

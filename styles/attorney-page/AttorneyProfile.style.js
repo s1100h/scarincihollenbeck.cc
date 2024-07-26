@@ -3,8 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import {
   globalBorderRadius,
   globalColor,
-  globalIndents,
-  globalShadow,
   globalTransition,
   rem,
 } from '../global_styles/Global.styles';
@@ -54,7 +52,6 @@ export const ProfileHeaderSection = styled.section`
     margin: 12px 0;
 
     > li {
-
       > a {
         font-size: ${rem(14)};
         color: ${globalColor.gray.gray500};
@@ -70,7 +67,7 @@ export const ProfileHeaderSection = styled.section`
       }
     }
   }
-  
+
   ${media_breakpoint_down('md')} {
     padding-bottom: 40px;
   }
@@ -97,7 +94,6 @@ export const ProfileHeaderHolder = styled.div`
     row-gap: 20px;
   }
 `;
-
 
 //Left side styles
 export const ProfileHeaderLeft = styled.div`
@@ -246,7 +242,12 @@ export const VideoButtonStyled = styled.button`
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.70) 47.26%, rgba(255, 255, 255, 0.88) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 47.26%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
   background-size: 200% 100%;
   z-index: 4;
   transition: ${globalTransition.default};
@@ -265,7 +266,7 @@ export const VideoButtonStyled = styled.button`
     align-items: center;
     justify-content: center;
     animation: ${({ $isShowVideo }) => !$isShowVideo && shake} 10s
-    cubic-bezier(0.36, 0.07, 0.19, 0.97) both 4s infinite;
+      cubic-bezier(0.36, 0.07, 0.19, 0.97) both 4s infinite;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
@@ -276,7 +277,7 @@ export const VideoButtonStyled = styled.button`
     }
   }
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     :hover {
       background-color: rgba(255, 255, 255, 0.88);
 
@@ -285,7 +286,6 @@ export const VideoButtonStyled = styled.button`
       }
     }
   }
-
 
   :active {
     background-color: rgba(255, 255, 255, 0.88);
@@ -332,7 +332,8 @@ export const AddressBox = styled.address`
   gap: 8px;
   border-radius: ${globalBorderRadius.small};
   background-color: ${globalColor.blue.blue6002};
-  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06), -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
 
   .contacts-title {
     margin: 0;
@@ -351,7 +352,8 @@ export const AddressBox = styled.address`
     row-gap: 12px;
   }
 
-  .contacts-item, .contacts-link {
+  .contacts-item,
+  .contacts-link {
     margin: 0;
     display: flex;
     align-items: center;
@@ -503,7 +505,7 @@ export const ProfileServicesChairTitle = styled.h3`
   text-transform: uppercase;
   font-weight: 400;
   writing-mode: vertical-lr;
-  transform:rotate(180deg);
+  transform: rotate(180deg);
   border-left: 1px solid ${globalColor.blue.blue400};
 `;
 
@@ -627,7 +629,33 @@ const profileBioListTitleStyles = `
 export const ProfileBioListTitle = styled.h2`
   ${profileBioListTitleStyles};
 `;
-
+export const Front = styled.div`
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  transform: ${({ isRotateProp }) =>
+    isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)'};
+`;
+export const Back = styled.div`
+  background: black;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  transform: ${({ isRotateProp }) =>
+    isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)'};
+  position: absolute;
+  video {
+    width: inherit;
+    height: -webkit-fill-available;
+  }
+`;
 export const ProfileBioListContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -663,7 +691,7 @@ export const ProfileBioListContent = styled.div`
   p {
     ${profileBioListTitleStyles};
     margin-top: 4px;
-    
+
     * {
       text-decoration: none !important;
       font-weight: 400 !important;
@@ -674,5 +702,80 @@ export const ProfileBioListContent = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: inherit;
+  }
+`;
+
+export const NewsCardBlock = styled.li`
+  padding: 8px;
+  width: 400px;
+  background-color: ${globalColor.gray.gray10};
+
+  a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    row-gap: 24px;
+    color: ${globalColor.gray.gray110};
+    :hover {
+      color: ${globalColor.gray.gray110};
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  //.video-box {
+  //  width: 100%;
+  //}
+  .video-render {
+    width: 100%;
+  }
+
+  .news-card-title {
+    font-size: ${rem(20)};
+    line-height: 32px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .news-card-text {
+    overflow: hidden;
+    color: ${globalColor.black};
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .article-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    width: 100%;
+  }
+`;
+const footerLetterStyles = `
+    color: ${globalColor.gray.gray110};
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+`;
+export const CardFooterBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 96%;
+  margin-top: auto;
+
+  .author-name {
+    ${footerLetterStyles};
+  }
+
+  .post-date {
+    ${footerLetterStyles};
+    font-weight: 600;
   }
 `;

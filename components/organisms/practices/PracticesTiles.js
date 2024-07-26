@@ -8,11 +8,15 @@ import {
   PracticeTile,
   ShowMoreBtn,
 } from '../../../styles/Practices.style';
+// import {
+//   Back,
+//   Front,
+// } from '../../../styles/attorney-page/AttorneyProfile.style';
+import useStateScreen from '../../../hooks/useStateScreen';
 import {
   Back,
   Front,
 } from '../../../styles/attorney-page/AttorneyProfile.style';
-import useStateScreen from '../../../hooks/useStateScreen';
 
 const renderPracticesList = (
   practices,
