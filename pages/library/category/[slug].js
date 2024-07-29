@@ -144,7 +144,7 @@ const LibraryCategory = ({
     );
   }
 
-  const canonicalUrl = `${PRODUCTION_URL}/library/${pageTitle}`;
+  const canonicalUrl = `${PRODUCTION_URL}/library/category/${pageTitle}`;
 
   const libraryProps = {
     seo: {

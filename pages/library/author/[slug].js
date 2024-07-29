@@ -115,7 +115,7 @@ const LibraryAuthor = ({
   currentPage,
 }) => {
   const router = useRouter();
-  const canonicalUrl = `${PRODUCTION_URL}/library/author${pageTitle}`;
+  const canonicalUrl = `${PRODUCTION_URL}/library/author/${pageTitle}`;
   const { title, metaDescription } = seo;
 
   const authorProps = {
