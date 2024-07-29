@@ -110,6 +110,8 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
     attorneyAuthorId {
       authorId {
         userId
+        databaseId
+        username
       }
     }
     attorneyChairCoChair {
@@ -407,35 +409,6 @@ export const miniOfficeLocationQuery = `query BasicPageQuery {
 }
 `;
 
-export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: String) {
-      posts(where: {search: $name}, first: 6) {
-        edges {
-          node {
-            date
-            featuredImage {
-              node {
-                sourceUrl(size: LARGE)
-              }
-            }
-            title(format: RENDERED)
-            categories {
-              nodes {
-                slug
-              }
-            }
-            slug
-            databaseId
-            author {
-              node {
-                name
-              }
-            }
-            uri
-          }
-        }
-      }
-    }`;
-
 export const attorneyPostsQueryByIdAndSlug = `
   query AttorneyPostsById(
     $categoryId: [ID],
@@ -648,8 +621,8 @@ export const postsForPaginationByCategoryIdQuery = `
 
 export const postsForPaginationByAuthorIdQuery = `
   query postsForPaginationByAuthorId(
-    $authorId: Int, 
-    $offsetPosts: Int, 
+    $authorId: Int,
+    $offsetPosts: Int,
     $postsPerPage: Int
   ) {
     posts(
@@ -684,7 +657,45 @@ export const postsForPaginationByAuthorIdQuery = `
     }
   }
 `;
-
+export const postsForPaginationByAuthorNameQuery = `
+  query postsForPaginationByAuthorId(
+    $authorName: String!,
+    $offsetPosts: Int,
+    $postsPerPage: Int
+  ) {
+    posts(
+     where: {
+      authorName: $authorName, 
+      offsetPagination: {	
+      	offset: $offsetPosts, 
+      	size: $postsPerPage
+      }
+     }
+    ) {
+      pageInfo {
+        offsetPagination {
+          total
+          hasPrevious
+          hasMore
+        }
+      }
+      edges {
+        node {
+          date
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 // Category Landing Page Query
 export const categoryPostQuery = `query CategoryPosts($name:String) {
   categories(where: {slug: [$name]}) {

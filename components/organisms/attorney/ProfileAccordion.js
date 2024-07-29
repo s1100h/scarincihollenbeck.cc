@@ -1,10 +1,7 @@
 import DisclaimerText from 'components/atoms/DisclaimerText';
 import AccordionItem from 'components/molecules/attorney/AccordionItem';
-import { Fragment } from 'react';
 import { Accordion } from 'react-bootstrap';
 import {
-  AccordionNewsList,
-  ProfileAccordionBody,
   ProfileAccordionHolder,
   ProfileAccordionWrapper,
 } from 'styles/attorney-page/ProfileAccordion.style';
@@ -18,7 +15,10 @@ import { StandardLightBlueButton } from 'styles/Buttons.style';
 import AccordionDynamicItem from 'components/molecules/attorney/AccordionDynamicItem';
 import GallerySlider from 'components/molecules/attorney/GallerySlider';
 import MediaSlider from 'components/molecules/attorney/MediaSlider';
-import SimpleNewsCard from '../../common/SimpleNewsCard';
+import { useRouter } from 'next/router';
+import BlogsBox from '../../molecules/attorney/BlogsBox';
+import { getPaginationData } from '../../../requests/getPaginationData';
+import { postsForPaginationByAuthorIdQuery } from '../../../requests/graphql-queries';
 
 const AwardsSlider = dynamic(
   () => import('components/molecules/home/AwardsSlider'),
@@ -56,14 +56,35 @@ const ProfileAccordion = ({
   attorneyBiography,
   affiliations,
   additionalTabs,
-  attorneyNewsAndArticles,
   representativeMatters,
   gallery,
   mediaItems,
   presentationsItems,
   publicationsItems,
+  blogs,
+  attorneyAuthorId,
 }) => {
+  const router = useRouter();
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
+
+  // News Press Releases section START
+  const newsPressReleases = {
+    title: 'News Press Releases',
+    queryParams: 'news-press-releases-page',
+    actionKey: 'news-and-press',
+    params: {
+      id: null,
+      authorId: attorneyAuthorId,
+      categoryId: null,
+      currentPage: router?.query?.['news-press-releases-page'] || 1,
+      itemsPerPage: 6,
+    },
+  };
+  const newsPressReleasesPaginationData = getPaginationData(
+    postsForPaginationByAuthorIdQuery,
+    newsPressReleases.params,
+  );
+  // News Press Releases section END
 
   return (
     <ProfileAccordionWrapper>
@@ -130,25 +151,15 @@ const ProfileAccordion = ({
                 <MediaSlider items={publicationsItems} />
               </AccordionItem>
             )}
-            {!empty(attorneyNewsAndArticles) && (
-              <AccordionItem
-                eventKey="news-and-press"
-                title="News & Press Releases"
-              >
-                <AccordionNewsList>
-                  {attorneyNewsAndArticles.map((article) => (
-                    <Fragment key={article.databaseId}>
-                      <SimpleNewsCard
-                        link={article.uri}
-                        title={article.title}
-                        author={article.author}
-                        date={article.date}
-                      />
-                    </Fragment>
-                  ))}
-                </AccordionNewsList>
-              </AccordionItem>
-            )}
+            <AccordionItem
+              eventKey={newsPressReleases.actionKey}
+              title={newsPressReleases.title}
+            >
+              <BlogsBox
+                queryParamsForPagination={newsPressReleases.queryParams}
+                paginationData={newsPressReleasesPaginationData}
+              />
+            </AccordionItem>
             {!empty(additionalTabs)
               && additionalTabs.map(
                 (tab) => !empty(tab?.content) && (
@@ -161,7 +172,6 @@ const ProfileAccordion = ({
                 ),
               )}
           </Accordion>
-
           <DisclaimerText text="No Aspect of the advertisement has been approved by the Supreme Court. Results may vary depending on your particular facts and legal circumstances." />
         </ProfileAccordionHolder>
       </ContainerDefault>

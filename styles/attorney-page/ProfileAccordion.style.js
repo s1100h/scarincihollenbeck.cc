@@ -216,6 +216,7 @@ export const AccordionNewsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+  margin-bottom: 24px;
 
   ${media_breakpoint_exactly_down(1440)} {
     gap: 24px;

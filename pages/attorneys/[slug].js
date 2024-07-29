@@ -2,7 +2,6 @@ import React from 'react';
 import { fetchAPI } from 'requests/api';
 import {
   attorneyBySlugQuery,
-  attorneyNewsEventsQuery,
   checkAttorneyPostsQueryByIdAndSlug,
 } from 'requests/graphql-queries';
 import {
@@ -24,14 +23,6 @@ export async function attorneyBySlug(slug) {
   return data.attorneyProfileBy;
 }
 
-/** Get all the news/events based on the attorneys name */
-export async function attorneyNewsEvents(name) {
-  const data = await fetchAPI(attorneyNewsEventsQuery, {
-    variables: { name },
-  });
-  return data?.posts?.edges;
-}
-
 /** Get all the attorneys blog posts using GraphQL */
 export async function attorneyFirmNewsBlogEvents(slug) {
   const blogs = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
@@ -43,36 +34,21 @@ export async function attorneyFirmNewsBlogEvents(slug) {
   const releases = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
     variables: { categoryId: 98, slug },
   });
-  return [
-    {
+  return {
+    Blogs: {
       postLabel: 'Blogs',
       cursorStart: blogs.posts.pageInfo.startCursor,
     },
-    {
+    'News Press Releases': {
       postLabel: 'News Press Releases',
       cursorStart: releases.posts.pageInfo.startCursor,
     },
-    {
+    Events: {
       postLabel: 'Events',
       cursorStart: events.posts.pageInfo.startCursor,
     },
-  ];
-}
-
-const newsSanitize = (newsArr) => newsArr.map(({ node }) => {
-  node.featuredImage = node.featuredImage?.node?.sourceUrl
-    ? node.featuredImage?.node?.sourceUrl
-    : '/images/no-image-found-diamond.png';
-  node.slug = `/${node.categories.nodes[0].slug}/${node.slug}`;
-  let uri = node.uri;
-  uri = uri.split('/');
-  uri = `/${uri.slice(3).join('/')}`;
-  node.uri = uri;
-  node.author = node.author.node.name;
-  return {
-    ...node,
   };
-});
+}
 
 const attorneysSlugsQuery = `
 query attorneysSlugs {
@@ -127,9 +103,6 @@ export const getStaticProps = async ({ params }) => {
   /** Create new tabs for Government and Law & Con Law  & Drop Music esq */
   /** Get Attorney/Author Internal Posts */
   const authorId = attorneyBio.attorneyMainInformation.profileImage.authorDatabaseId;
-
-  /** Get Firm News/Events About Attorney */
-  const newsPosts = newsSanitize(await attorneyNewsEvents(slug));
 
   /** Get Attorney External Blog Posts */
   const govLawPosts = {};
@@ -271,11 +244,11 @@ export const getStaticProps = async ({ params }) => {
 
   const moreTabs = [];
 
-  isContentArr?.forEach(({ postLabel, cursorStart }) => {
-    if (cursorStart?.length > 0) {
-      moreTabs.push(postLabel);
-    }
-  });
+  // isContentArr?.forEach(({ postLabel, cursorStart }) => {
+  //   if (cursorStart?.length > 0) {
+  //     moreTabs.push(postLabel);
+  //   }
+  // });
 
   /** Tab content  -- Biography, Media, Presentations, Publications, Representative Matters, Representative Clients, Videos, Additional Tabs */
   const additionalTabs = [1, 2, 3, 4, 5]
@@ -450,9 +423,9 @@ export const getStaticProps = async ({ params }) => {
     }
     return tab;
   });
-
   /** Accordion data */
   const accordionData = {
+    attorneyAuthorId: attorneyBio.attorneyAuthorId.authorId.databaseId,
     clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
     awards: attorneyBio.attorneyAwardsClientsBlogsVideos?.awards,
     attorneyBiography: attorneyBio?.attorneyBiography,
@@ -463,7 +436,6 @@ export const getStaticProps = async ({ params }) => {
       ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
       : [],
     additionalTabs,
-    attorneyNewsAndArticles: newsPosts,
     gallery: attorneyBio.attorneyAwardsClientsBlogsVideos
       ? attorneyBio.attorneyAwardsClientsBlogsVideos.images
       : [],
@@ -472,6 +444,7 @@ export const getStaticProps = async ({ params }) => {
       attorneyBio?.attorneyPresentationsSecondType?.presentationsItems,
     publicationsItems:
       attorneyBio?.attorneyPublicationsSecondType?.publicationsItems,
+    blogs: isContentArr,
   };
 
   return {
