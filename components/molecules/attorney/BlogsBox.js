@@ -1,8 +1,12 @@
-import { Fragment } from 'react';
+import { changePostLink } from 'utils/helpers';
+import { useMemo } from 'react';
 import SimpleNewsCard from '../../common/SimpleNewsCard';
 import CustomPagination from '../../atoms/CustomPagination';
 import Loader from '../../atoms/Loader';
-import { AccordionNewsList } from '../../../styles/attorney-page/ProfileAccordion.style';
+import {
+  AccordionNewsList,
+  BlogsWrapper,
+} from '../../../styles/attorney-page/ProfileAccordion.style';
 
 const sanitizePosts = (postsArg) => postsArg?.edges.map(({ node }) => {
   if (typeof node.author !== 'string') {
@@ -12,25 +16,39 @@ const sanitizePosts = (postsArg) => postsArg?.edges.map(({ node }) => {
     ...node,
   };
 });
-const BlogsBox = ({ paginationData, queryParamsForPagination }) => {
+const BlogsBox = ({
+  paginationData,
+  queryParamsForPagination,
+  isWideCards,
+}) => {
   const {
-    posts, limit, page, loading,
+    posts, limit, page, loading, error,
   } = paginationData;
+
+  if (error) {
+    return null;
+  }
+
+  const memoData = useMemo(() => sanitizePosts(posts), [paginationData]);
+
   return (
     <>
       {loading && <Loader />}
       {!loading && (
-        <>
+        <BlogsWrapper>
           <AccordionNewsList>
-            {sanitizePosts(posts).map((article) => (
-              <Fragment key={article.databaseId}>
-                <SimpleNewsCard
-                  link={article.uri}
-                  title={article.title}
-                  author={article.author}
-                  date={article.date}
-                />
-              </Fragment>
+            {memoData.map((article) => (
+              <SimpleNewsCard
+                key={article?.title}
+                link={{ url: changePostLink(article?.uri) }}
+                textPost={article?.excerpt}
+                title={article?.title}
+                label={article?.author}
+                date={article?.date}
+                isJSXDescription
+                isAuthor
+                isWide={isWideCards}
+              />
             ))}
           </AccordionNewsList>
           <CustomPagination
@@ -39,7 +57,7 @@ const BlogsBox = ({ paginationData, queryParamsForPagination }) => {
             limit={limit}
             queryParam={queryParamsForPagination}
           />
-        </>
+        </BlogsWrapper>
       )}
     </>
   );

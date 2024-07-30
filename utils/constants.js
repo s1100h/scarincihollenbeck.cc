@@ -920,3 +920,19 @@ export const locationsOrderArray = [
   'Red Bank, NJ',
   'Washington, D.C.',
 ];
+
+export const reservedAccordionTitles = [
+  'Clients List',
+  'Awards',
+  'Full Biography',
+  'Affiliations Area',
+  'Representative Matters',
+  'Gallery',
+  'Media',
+  'Presentations',
+  'Publications',
+  'Videos',
+  'News & Press Releases',
+  'Blog',
+  'Events',
+];

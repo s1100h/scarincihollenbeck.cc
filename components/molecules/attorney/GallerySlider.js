@@ -13,8 +13,8 @@ const GallerySlider = ({ items }) => {
   return (
     <GallerySliderWrapper>
       <SwiperWrapper
-        slidesPerView="auto"
-        spaceBetween={32}
+        slides-per-view="auto"
+        space-between={32}
         lazy="true"
         grab-cursor="true"
       >

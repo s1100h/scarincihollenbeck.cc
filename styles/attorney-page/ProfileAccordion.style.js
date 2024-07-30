@@ -62,6 +62,12 @@ export const ProfileAccordionHolder = styled.div`
     }
   }
 
+  .accordion-collapse {
+    &.collapsing {
+      transition: ${globalTransition.default};
+    }
+  }
+
   .accordion-body {
     padding: 12px 16px;
     border-radius: 0 0 ${globalBorderRadius.small} ${globalBorderRadius.small};
@@ -212,17 +218,19 @@ export const ProfileClientsWrapper = styled.div`
   row-gap: 20px;
 `;
 
-export const AccordionNewsList = styled.ul`
+export const BlogsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+`;
+
+export const AccordionNewsList = styled.div`
+  --news-list-gap: 24px;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 24px;
-
-  ${media_breakpoint_exactly_down(1440)} {
-    gap: 24px;
-  }
+  gap: var(--news-list-gap);
 
   ${media_breakpoint_down('xl')} {
-    gap: 12px;
+    --news-list-gap: 12px;
   }
 `;

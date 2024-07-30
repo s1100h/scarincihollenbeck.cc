@@ -37,7 +37,7 @@ export const videoRender = (video, title, videoRef) => {
     ),
     video: (
       <video preload="metadata" controls ref={videoRef}>
-        <source type={newVideo?.type} src={newVideo?.scr} />
+        <source type={newVideo?.type} src={newVideo?.src} />
         <track kind="captions" srcLang="en" label="English" />
         Your browser does not support the video tag.
       </video>

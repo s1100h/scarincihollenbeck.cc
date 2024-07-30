@@ -17,7 +17,7 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
     ? representativeVideo
     : {
       type: representativeVideo?.mimeType,
-      scr: representativeVideo?.link,
+      src: representativeVideo?.mediaItemUrl,
     };
 
   const stopVideo = () => {

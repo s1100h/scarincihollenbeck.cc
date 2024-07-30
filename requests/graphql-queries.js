@@ -1,6 +1,5 @@
 export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
   attorneyProfileBy(slug: $slug) {
-    attorneyProfileId
     seo {
       title
       metaDesc
@@ -9,17 +8,10 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       designation
       email
       faxNumber
-      firstName
-      lastName
       abbreviation
-      representativeVideo {
-        link
-        mimeType
-      }
       forwardingEmailsForContactForm {
         email
       }
-      middleInitial
       pdfBio {
         sourceUrl
         mediaItemUrl
@@ -37,16 +29,12 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       videoPresentation {
         videoLink
         uploadVideo {
-          link
+          mediaItemUrl
           mimeType
         }
       }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
-      additionalInformation {
-        title
-        content
-      }
       affiliations
       barAdmissions
       education
@@ -78,8 +66,14 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       }
       attorneyVideos {
         date
-        embedVideo
         title
+        video {
+          videoLink
+          uploadVideo {
+            mediaItemUrl
+            mimeType
+          }
+        }
       }
       awards {
         awardImage {
@@ -107,13 +101,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         musicEsq
       }
     }
-    attorneyAuthorId {
-      authorId {
-        userId
-        databaseId
-        username
-      }
-    }
     attorneyChairCoChair {
       chair {
         ... on Practice {
@@ -128,18 +115,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
           title
           uri
         }
-      }
-    }
-    attorneyMedia {
-      attorneyMedia {
-        header
-        body
-      }
-    }
-    attorneyPresentations {
-      attorneyPresentations {
-        body
-        header
       }
     }
     attorneyPrimaryRelatedPracticesLocationsGroups {
@@ -168,18 +143,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         }
       }
     }
-    attorneyPublications {
-      attorneyPublications {
-        body
-        header
-      }
-    }
-    attorneyRepresentativeClients {
-      repClients {
-        content
-        title
-      }
-    }
     attorneyRepresentativeMatters {
       repMatters {
         content
@@ -187,10 +150,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       }
     }
     title(format: RENDERED)
-    attorneyTabNavigation {
-      mainMenu
-      moreMenu
-    }
     attorneyMediaSecondType {
       mediaItems {
         date
@@ -447,23 +406,6 @@ export const attorneyPostsQueryByIdAndSlug = `
   }
 `;
 
-export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
-  $categoryId: [ID]
-  $slug: String
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }}
-`;
 export const postQuery = `
 query FirmPageQuery($id: ID!) {
   post(id: $id, idType: SLUG) {
@@ -621,12 +563,13 @@ export const postsForPaginationByCategoryIdQuery = `
 
 export const postsForPaginationByAuthorIdQuery = `
   query postsForPaginationByAuthorId(
-    $authorId: Int,
+    $categoryId: [ID],
+    $slug: String,
     $offsetPosts: Int,
     $postsPerPage: Int
   ) {
     posts(
-      where: {author: $authorId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+      where: {categoryIn: $categoryId, search: $slug, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
     ) {
       pageInfo {
         offsetPagination {

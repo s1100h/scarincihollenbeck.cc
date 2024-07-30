@@ -6,6 +6,7 @@ export const SliderWrapper = styled.div`
   flex-direction: column;
 
   .slider-container {
+    max-width: 100%;
     width: 100%;
 
     &::part(container) {

@@ -2,6 +2,7 @@ import React from 'react';
 import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
 import empty from 'is-empty';
 import { MediaSliderWrapper } from 'styles/attorney-page/MediaSlider.style';
+import SimpleNewsCard from 'components/common/SimpleNewsCard';
 
 const breakpoints = {
   1440: {
@@ -25,7 +26,15 @@ const MediaSlider = ({ items }) => {
       <SwiperWrapper breakpoints={breakpoints} grab-cursor="true">
         {items?.map((item) => (
           <swiper-slide key={item?.title} class="slide">
-            <div>{item?.title}</div>
+            <SimpleNewsCard
+              title={item?.title}
+              label={item?.label || item?.publisher}
+              date={item?.date}
+              video={item?.video?.videoLink || item?.video?.uploadVideo}
+              link={item?.link}
+              textPost={item?.description}
+              isFull
+            />
           </swiper-slide>
         ))}
       </SwiperWrapper>

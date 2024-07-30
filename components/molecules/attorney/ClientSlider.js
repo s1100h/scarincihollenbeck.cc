@@ -33,7 +33,7 @@ const ClientSlider = ({ clients }) => (
   <ClientsSliderWrapper>
     <ClientsSliderTitle>Clients</ClientsSliderTitle>
     <SwiperWrapper
-      spaceBetween={24}
+      space-between={24}
       breakpoints={breakpoints}
       grab-cursor="true"
       autoplay="true"

@@ -1,5 +1,5 @@
 import SliderNavigation from 'components/common/SliderNavigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SliderWrapper } from 'styles/Slider.style';
 import empty from 'is-empty';
 
@@ -8,27 +8,31 @@ const SwiperWrapper = ({
   children,
   pagination = 'true',
   navigation = 'true',
-  slidesPerView = '1',
-  loop = false,
-  spaceBetween = 20,
   ...props
 }) => {
   const swiperRef = useRef();
-  const [isInitialized, setIsInitialized] = useState(false);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const paginationConfig = pagination === 'true'
+    ? {
+      pagination: 'true',
+      'pagination-clickable': 'true',
+      'pagination-dynamic-bullets': 'true',
+      'pagination-dynamic-main-bullets': '3',
+    }
+    : {
+      pagination: 'false',
+    };
 
   useEffect(() => {
     const swiper = swiperRef.current?.swiper;
 
-    if (!empty(breakpoints) && !isInitialized) {
+    if (!empty(breakpoints)) {
       const slider = {
         breakpoints,
       };
 
       Object.assign(swiperRef.current, slider);
-      swiperRef.current.initialize();
-      setIsInitialized(true);
     }
 
     swiper.params.navigation.prevEl = prevRef.current;
@@ -54,15 +58,9 @@ const SwiperWrapper = ({
   return (
     <SliderWrapper>
       <swiper-container
-        pagination={pagination}
-        pagination-clickable={pagination}
-        pagination-dynamic-bullets="true"
-        pagination-dynamic-main-bullets="3"
-        class="slider-container"
         ref={swiperRef}
-        loop={loop}
-        slides-per-view={slidesPerView}
-        space-between={spaceBetween}
+        class="slider-container"
+        {...paginationConfig}
         {...props}
       >
         {children}

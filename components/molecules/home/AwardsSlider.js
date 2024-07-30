@@ -30,7 +30,7 @@ const AwardsSlider = ({ items, isLightVariant = false }) => {
     <AwardsSliderWrapper $isLightVariant={isLightVariant}>
       <SwiperWrapper
         breakpoints={breakpoints}
-        spaceBetween={32}
+        space-between={32}
         lazy="true"
         grab-cursor="true"
       >
