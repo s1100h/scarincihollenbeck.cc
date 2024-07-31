@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor, globalShadow, rem } from '../global_styles/Global.styles';
+import { globalColor, globalShadow, globalTransition, rem } from '../global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -146,11 +146,13 @@ export const FocusedServicesCards = styled.ul`
 export const FocusedCardBox = styled.article`
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 23px;
   align-items: center;
   border-radius: 12px;
   box-shadow: ${globalShadow.shadowM};
   background-color: ${globalColor.white};
+  border: 1px solid transparent;
+  transition: ${globalTransition.default};
 
   & > :first-child {
     width: 60px;
@@ -159,6 +161,7 @@ export const FocusedCardBox = styled.article`
   }
 
   .focused-card-title {
+    color: ${globalColor.blue.darkBlue};
     font-size: ${rem(20)};
     font-weight: 600;
   }
@@ -168,5 +171,20 @@ export const FocusedCardBox = styled.article`
     font-weight: 400;
     font-style: normal;
     line-height: 24px;
+  }
+
+  svg {
+    color: ${globalColor.blue.darkBlue};
+    transition: ${globalTransition.default};
+  }
+
+  @media (hover:hover) {
+    &:hover {
+      border-color: ${globalColor.blue.blue400};
+
+      svg {
+        color: ${globalColor.blue.blue400};
+      }
+    }
   }
 `;

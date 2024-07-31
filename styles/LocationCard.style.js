@@ -42,6 +42,7 @@ export const LocationCardMain = styled.div`
 
 export const MapBox = styled.div`
   height: 84%;
+  
   > div,
   iframe {
     height: 100%;
