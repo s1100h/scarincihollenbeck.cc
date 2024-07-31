@@ -786,6 +786,11 @@ export const NewsCardBlock = styled.article`
 
   .news-card-title {
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-bottom: 0;
     color: ${globalColor.blue.darkBlue};
     font-size: ${rem(20)};
