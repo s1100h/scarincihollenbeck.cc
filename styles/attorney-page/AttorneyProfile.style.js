@@ -97,6 +97,31 @@ export const ProfileHeaderLeft = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -48px;
+    /* left: -35vw;
+    width: calc(100% + 35vw); */
+    left: -132px;
+    width: calc(100% + 132px);
+    height: calc(100% + 48px);
+    background: url('/images/profile-attorney-bg.png') center/cover;
+    z-index: -1;
+    opacity: 0.1;
+
+    ${media_breakpoint_down('lg')} {
+      width: calc(100% + 64px);
+      left: -32px;
+    }
+
+    ${media_breakpoint_down('md')} {
+      width: calc(100% + 24px);
+      left: -12px;
+    }
+  }
 
   ${StandardBlueButton} {
     border-radius: ${globalBorderRadius.small};
@@ -127,19 +152,21 @@ export const CardImageVideoContainer = styled.div`
     padding: 0;
     background-color: ${globalColor.blue.darkBlue};
     border-radius: ${globalBorderRadius.small};
+    overflow: unset;
   }
 
   .modal-closer {
     color: ${globalColor.white};
     position: absolute;
-    right: 16px;
-    top: 16px;
+    right: -4px;
+    top: -40px;
     z-index: 1;
   }
 
   ${ChildrenBox} {
     margin: 0;
     padding: 0;
+    border-radius: inherit;
   }
 
   ${media_breakpoint_down('lg')} {
@@ -190,6 +217,7 @@ export const CardImageWrapper = styled.div`
 
 export const CardVideoWrapper = styled.div`
   max-width: 90dvw;
+  max-height: 90dvh;
   width: 100%;
   height: 100%;
   display: flex;
@@ -199,6 +227,16 @@ export const CardVideoWrapper = styled.div`
   video {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+  }
+
+  iframe {
+    height: 591px;
+    width: 1050px;
+
+    ${media_breakpoint_down('md')} {
+      height: 300px;
+    }
   }
 `;
 
