@@ -153,6 +153,7 @@ export const CardImageVideoContainer = styled.div`
     background-color: ${globalColor.blue.darkBlue};
     border-radius: ${globalBorderRadius.small};
     overflow: unset;
+    max-height: calc(100dvh - 100px);
   }
 
   .modal-closer {
@@ -216,13 +217,12 @@ export const CardImageWrapper = styled.div`
 `;
 
 export const CardVideoWrapper = styled.div`
-  max-width: 90dvw;
-  max-height: 90dvh;
-  width: 100%;
+  width: 80dvw;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 16 / 9;
 
   video {
     width: 100%;
@@ -231,12 +231,12 @@ export const CardVideoWrapper = styled.div`
   }
 
   iframe {
-    height: 591px;
-    width: 1050px;
+    width: 100%;
+    height: 100%;
+  }
 
-    ${media_breakpoint_down('md')} {
-      height: 300px;
-    }
+  ${media_breakpoint_down('md')} {
+    width: 95dvw;
   }
 `;
 
