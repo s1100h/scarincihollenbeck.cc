@@ -38,6 +38,13 @@ export const ProfileAccordionHolder = styled.div`
   .accordion-item {
     border-radius: 0;
     border: none;
+
+    .duplicate {
+      margin-left: 8px;
+      margin-top: auto;
+      font-size: ${rem(10)};
+      line-height: 10px;
+    }
   }
 
   .accordion-button {
@@ -59,12 +66,6 @@ export const ProfileAccordionHolder = styled.div`
       padding: 12px;
       font-size: ${rem(18)};
       line-height: 1.56;
-    }
-  }
-
-  .accordion-collapse {
-    &.collapsing {
-      transition: ${globalTransition.default};
     }
   }
 

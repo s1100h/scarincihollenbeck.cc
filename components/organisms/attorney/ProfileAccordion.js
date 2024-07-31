@@ -52,7 +52,7 @@ const sanitizeAwardsForSlider = (awards) => {
   return formattedAwards;
 };
 
-const renderBlogPosts = (data, config, isWide) => data?.posts?.edges?.length > 0 && (
+const renderBlogPosts = (data, config, blogTitles, isWide) => blogTitles?.includes(config?.title) && (
 <AccordionItem eventKey={config?.actionKey} title={config?.title}>
   <BlogsBox
     queryParamsForPagination={config?.queryParams}
@@ -62,11 +62,25 @@ const renderBlogPosts = (data, config, isWide) => data?.posts?.edges?.length > 0
 </AccordionItem>
 );
 
+const checkOnDuplicate = (title) => {
+  if (reservedAccordionTitles.includes(title)) {
+    return (
+      <>
+        {title}
+        <span className="duplicate">Duplicate</span>
+      </>
+    );
+  }
+
+  return title;
+};
+
 const ProfileAccordion = ({
   clients,
   awards,
   attorneyBiography,
   affiliations,
+  additionalInfo,
   additionalTabs,
   representativeMatters,
   gallery,
@@ -74,6 +88,8 @@ const ProfileAccordion = ({
   presentationsItems,
   publicationsItems,
   videos,
+  govLawPosts,
+  blogTitles,
 }) => {
   const router = useRouter();
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
@@ -143,7 +159,7 @@ const ProfileAccordion = ({
             <ProfileClients clients={clients} />
 
             {!empty(sanitizedAwardsForSlider) && (
-              <AccordionItem eventKey="1" title="Awards">
+              <AccordionItem eventKey="profile-awards" title="Awards">
                 <StandardLightBlueButton as={Link} href="/awards">
                   Award Methodology
                 </StandardLightBlueButton>
@@ -153,7 +169,7 @@ const ProfileAccordion = ({
 
             {!empty(attorneyBiography?.biographyContent) && (
               <AccordionDynamicItem
-                eventKey="2"
+                eventKey="profile-biography"
                 title="Full Biography"
                 content={attorneyBiography?.biographyContent}
               />
@@ -161,7 +177,7 @@ const ProfileAccordion = ({
 
             {!empty(affiliations) && (
               <AccordionDynamicItem
-                eventKey="3"
+                eventKey="profile-affiliations"
                 title="Affiliations Area"
                 content={affiliations}
               />
@@ -169,7 +185,7 @@ const ProfileAccordion = ({
 
             {!empty(representativeMatters) && (
               <AccordionDynamicItem
-                eventKey="4"
+                eventKey="profile-representative-matters"
                 title="Representative Matters"
                 ulProps={{ $columnsCountUl: 2, $columnGapUl: 40 }}
                 content={representativeMatters}
@@ -178,54 +194,83 @@ const ProfileAccordion = ({
             )}
 
             {!empty(gallery) && (
-              <AccordionItem eventKey="5" title="Gallery">
+              <AccordionItem eventKey="profile-gallery" title="Gallery">
                 <GallerySlider items={gallery} />
               </AccordionItem>
             )}
 
             {!empty(mediaItems) && (
-              <AccordionItem eventKey="6" title="Media">
+              <AccordionItem eventKey="profile-media" title="Media">
                 <MediaSlider items={mediaItems} />
               </AccordionItem>
             )}
 
             {!empty(presentationsItems) && (
-              <AccordionItem eventKey="7" title="Presentations">
+              <AccordionItem
+                eventKey="profile-presentations"
+                title="Presentations"
+              >
                 <MediaSlider items={presentationsItems} />
               </AccordionItem>
             )}
 
             {!empty(publicationsItems) && (
-              <AccordionItem eventKey="8" title="Publications">
+              <AccordionItem
+                eventKey="profile-publications"
+                title="Publications"
+              >
                 <MediaSlider items={publicationsItems} />
               </AccordionItem>
             )}
 
             {!empty(videos) && (
-              <AccordionItem eventKey="9" title="Video">
+              <AccordionItem eventKey="profile-videos" title="Video">
                 <MediaSlider items={videos} />
+              </AccordionItem>
+            )}
+
+            {!empty(govLawPosts?.posts) && (
+              <AccordionItem
+                eventKey="profile-gov-law"
+                title="Government & Law"
+              >
+                <MediaSlider items={govLawPosts?.posts} />
               </AccordionItem>
             )}
 
             {renderBlogPosts(
               newsPressReleasesPaginationData,
               newsPressReleasesConfig,
+              blogTitles,
             )}
-            {renderBlogPosts(blogPostsPaginationData, blogConfig)}
-            {renderBlogPosts(eventsPostsPaginationData, eventsConfig, true)}
+            {renderBlogPosts(blogPostsPaginationData, blogConfig, blogTitles)}
+            {renderBlogPosts(
+              eventsPostsPaginationData,
+              eventsConfig,
+              blogTitles,
+              true,
+            )}
 
             {!empty(additionalTabs)
               && additionalTabs.map(
                 (tab) => !empty(tab?.content) && (
                 <AccordionDynamicItem
-                  key={`${tab?.id}additional-tab`}
-                  eventKey={`additional-${tab?.id}`}
-                  title={
-                        reservedAccordionTitles.includes(tab?.title)
-                          ? `${tab?.title} - Copy`
-                          : tab?.title
-                      }
+                  key={`${tab?.id}-additional-tab`}
+                  eventKey={`profile-additional-${tab?.id}`}
+                  title={checkOnDuplicate(tab?.title)}
                   content={tab?.content}
+                />
+                ),
+              )}
+
+            {!empty(additionalInfo)
+              && additionalInfo.map(
+                (item) => !empty(item?.content) && (
+                <AccordionDynamicItem
+                  key={`${item?.title}-additional-info-tab`}
+                  eventKey={`profile-additional-info-${item?.title}`}
+                  title={checkOnDuplicate(item?.title)}
+                  content={item?.content}
                 />
                 ),
               )}

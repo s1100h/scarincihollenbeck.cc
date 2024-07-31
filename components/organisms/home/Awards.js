@@ -9,7 +9,7 @@ import { StandardLightBlueButton } from 'styles/Buttons.style';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { ContainerDefault } from 'styles/Containers.style';
 import dynamic from 'next/dynamic';
-import DisclaimerText from '../../atoms/DisclaimerText';
+import React from 'react';
 
 const AwardsSlider = dynamic(
   () => import('components/molecules/home/AwardsSlider'),
@@ -18,7 +18,7 @@ const AwardsSlider = dynamic(
   },
 );
 
-const Awards = ({ awards }) => {
+const Awards = React.memo(({ awards }) => {
   const formattedAwards = awards
     .map(
       ({
@@ -60,6 +60,6 @@ const Awards = ({ awards }) => {
       </ContainerDefault>
     </AwardsWrapper>
   );
-};
+});
 
 export default Awards;

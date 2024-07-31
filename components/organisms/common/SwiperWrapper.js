@@ -70,5 +70,4 @@ const SwiperWrapper = ({
     </SliderWrapper>
   );
 };
-
 export default SwiperWrapper;

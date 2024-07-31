@@ -9,9 +9,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       email
       faxNumber
       abbreviation
-      forwardingEmailsForContactForm {
-        email
-      }
       pdfBio {
         sourceUrl
         mediaItemUrl
@@ -35,6 +32,10 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
+      additionalInformation {
+        title
+        content
+      }
       affiliations
       barAdmissions
       education
@@ -128,13 +129,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
           }
         }
       }
-      primaryPractice {
-        ... on Practice {
-          id
-          title(format: RENDERED)
-          uri
-        }
-      }
       relatedPractices {
         ... on Practice {
           id
@@ -188,6 +182,24 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
     }
   }
 }`;
+
+export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
+  $categoryId: [ID]
+  $slug: String
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  ) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }}
+`;
 
 export const attorneysQuery = `query FirmPageQuery {
   attorneyProfiles(first: 100, where: {status: PUBLISH}) {

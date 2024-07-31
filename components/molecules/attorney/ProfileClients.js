@@ -16,7 +16,7 @@ const ProfileClients = ({ clients }) => {
   return (
     <ProfileClientsWrapper as="li">
       <ClientSlider clients={clients} />
-      <AccordionItem eventKey="0" title="Clients List">
+      <AccordionItem eventKey="profile-clients-list" title="Clients List">
         <ProfileAccordionBody $columnsCountUl={3}>
           <ul>
             {clients.map(({ clientLink, clientTitle }) => (

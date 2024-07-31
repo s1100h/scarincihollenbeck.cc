@@ -935,4 +935,5 @@ export const reservedAccordionTitles = [
   'News & Press Releases',
   'Blog',
   'Events',
+  'Government & Law',
 ];

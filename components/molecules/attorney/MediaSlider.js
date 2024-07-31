@@ -23,9 +23,13 @@ const MediaSlider = ({ items }) => {
 
   return (
     <MediaSliderWrapper>
-      <SwiperWrapper breakpoints={breakpoints} grab-cursor="true">
-        {items?.map((item) => (
-          <swiper-slide key={item?.title} class="slide">
+      <SwiperWrapper
+        breakpoints={breakpoints}
+        grab-cursor="true"
+        slides-per-view="3"
+      >
+        {items?.map((item, index) => (
+          <swiper-slide key={`${item?.title}-${index + 1}`} class="slide">
             <SimpleNewsCard
               title={item?.title}
               label={item?.label || item?.publisher}

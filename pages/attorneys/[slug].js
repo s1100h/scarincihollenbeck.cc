@@ -1,6 +1,9 @@
 import React from 'react';
 import { fetchAPI } from 'requests/api';
-import { attorneyBySlugQuery } from 'requests/graphql-queries';
+import {
+  attorneyBySlugQuery,
+  checkAttorneyPostsQueryByIdAndSlug,
+} from 'requests/graphql-queries';
 import {
   concatNameUser,
   fetchExternalPosts,
@@ -28,6 +31,33 @@ query attorneysSlugs {
     }
   }
 }`;
+
+async function attorneyFirmNewsBlogEvents(slug) {
+  const blogTitles = [];
+  const blogs = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
+    variables: { categoryId: 599, slug },
+  });
+  const events = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
+    variables: { categoryId: 99, slug },
+  });
+  const releases = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
+    variables: { categoryId: 98, slug },
+  });
+
+  if (blogs.posts.pageInfo.startCursor) {
+    blogTitles.push('Blog');
+  }
+
+  if (events.posts.pageInfo.startCursor) {
+    blogTitles.push('Events');
+  }
+
+  if (releases.posts.pageInfo.startCursor) {
+    blogTitles.push('News & Press Releases');
+  }
+
+  return blogTitles;
+}
 
 const excludedSlugs = ['scarinci-hollenbeck'];
 
@@ -80,7 +110,7 @@ export const getStaticProps = async ({ params }) => {
       const authorId = availBlogs[i][1];
 
       if (site.includes('governmentLaw')) {
-        const posts = await fetchExternalPosts(GOV_LAW_URL, authorId, 14);
+        const posts = await fetchExternalPosts(GOV_LAW_URL, authorId, 6);
         govLawPosts.id = authorId;
 
         if (posts?.length > 0) {
@@ -136,10 +166,7 @@ export const getStaticProps = async ({ params }) => {
           title,
         }),
       )
-      : [
-        ...attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups
-          ?.primaryPractice,
-      ],
+      : [],
     offices:
       attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
         ({ uri, id, officeMainInformation }) => ({
@@ -160,10 +187,6 @@ export const getStaticProps = async ({ params }) => {
         link: uri,
       }))
       : [],
-    // emailForwarding:
-    //   attorneyBio.attorneyMainInformation.forwardingEmailsForContactForm.map(
-    //     ({ email }) => email,
-    //   ),
     attorneyBiography: attorneyBio?.attorneyBiography,
     education:
       attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
@@ -173,16 +196,8 @@ export const getStaticProps = async ({ params }) => {
         ?.barAdmissions,
   };
 
-  const externalBlogTabs = [];
-  if (Object.keys(govLawPosts).includes('posts')) {
-    externalBlogTabs.push({
-      id: 17,
-      title: 'Government & Law',
-      content: govLawPosts,
-    });
-  }
-
   /** Accordion data */
+  const blogTitles = await attorneyFirmNewsBlogEvents(slug);
   const additionalTabs = [1, 2, 3, 4, 5]
     .map((i) => ({
       id: i,
@@ -198,6 +213,9 @@ export const getStaticProps = async ({ params }) => {
     affiliations:
       attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
         ?.affiliations,
+    additionalInfo:
+      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+        ?.additionalInformation,
     representativeMatters: attorneyBio.attorneyRepresentativeMatters.repMatters
       ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
       : [],
@@ -211,6 +229,8 @@ export const getStaticProps = async ({ params }) => {
     publicationsItems:
       attorneyBio?.attorneyPublicationsSecondType?.publicationsItems,
     videos: attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos || [],
+    govLawPosts,
+    blogTitles: blogTitles || [],
   };
 
   return {

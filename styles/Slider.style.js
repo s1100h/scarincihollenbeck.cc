@@ -46,6 +46,7 @@ export const SliderWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease-out;
   }
 `;
 

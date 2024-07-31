@@ -5,7 +5,7 @@ import Link from 'next/link';
 import LatestPostsCard from './LatestPostsCard';
 import SwiperWrapper from '../common/SwiperWrapper';
 
-const LatestPostsSlider = ({ activeTabData, activeTabId }) => (
+const LatestPostsSlider = React.memo(({ activeTabData, activeTabId }) => (
   <SwiperWrapper space-between={24} slides-per-view="1">
     {activeTabData?.articles?.map((chunk, indexChunk) => (
       // eslint-disable-next-line react/no-array-index-key
@@ -33,6 +33,6 @@ const LatestPostsSlider = ({ activeTabData, activeTabId }) => (
       </swiper-slide>
     ))}
   </SwiperWrapper>
-);
+));
 
 export default LatestPostsSlider;

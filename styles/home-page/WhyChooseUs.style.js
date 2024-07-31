@@ -174,4 +174,8 @@ export const FocusedCardBox = styled.article`
     font-style: normal;
     line-height: 24px;
   }
+
+  svg {
+    color: ${globalColor.blue.darkBlue};
+  }
 `;
