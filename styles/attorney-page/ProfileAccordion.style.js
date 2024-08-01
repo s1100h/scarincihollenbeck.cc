@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { StandardLightBlueButton } from 'styles/Buttons.style';
 import {
   globalBorderRadius,
@@ -9,14 +9,13 @@ import {
 } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 
 export const ProfileAccordionWrapper = styled.section`
-  padding: 60px 0;
+  padding-bottom: 60px;
 
   ${media_breakpoint_down('md')} {
-    padding: 40px 0;
+    padding-bottom: 40px;
   }
 `;
 
@@ -33,6 +32,7 @@ export const ProfileAccordionHolder = styled.div`
     --bs-accordion-btn-icon: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath d='M6 9L12 15L18 9' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
     --bs-accordion-btn-active-icon: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath d='M6 9L12 15L18 9' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
     --bs-accordion-btn-icon-width: 24px;
+    --bs-accordion-inner-border-radius: ${globalBorderRadius.small};
   }
 
   .accordion-item {
@@ -54,9 +54,10 @@ export const ProfileAccordionHolder = styled.div`
     font-size: ${rem(20)};
     line-height: 1.6;
     font-weight: 600;
-    border-radius: ${globalBorderRadius.small} !important;
+    border-radius: ${globalBorderRadius.small};
     border: none;
     box-shadow: ${globalShadow.shadowM};
+    transition: ${globalTransition.default};
 
     &:not(.collapsed) {
       border-radius: ${globalBorderRadius.small} ${globalBorderRadius.small} 0 0;
@@ -120,16 +121,6 @@ export const ProfileAccordionBody = styled.div`
 
       &::marker {
         color: ${globalColor.blue.blue400};
-      }
-
-      a {
-        color: inherit;
-        font-weight: 500;
-        transition: ${globalTransition.default};
-
-        &:hover {
-          color: ${globalColor.blue.skyBlue};
-        }
       }
 
       ${media_breakpoint_down('sm')} {
@@ -217,6 +208,23 @@ export const ProfileClientsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+
+  .accordion-body {
+    ul {
+      li {
+        text-transform: capitalize;
+        a {
+          color: inherit;
+          font-weight: 500;
+          transition: ${globalTransition.default};
+
+          &:hover {
+            color: ${globalColor.blue.skyBlue};
+          }
+        }
+      }
+    }
+  }
 `;
 
 export const BlogsWrapper = styled.div`

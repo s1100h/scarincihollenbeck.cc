@@ -40,15 +40,6 @@ export const Banner = styled.section`
   }
 `;
 
-export const BannerImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  z-index: -1;
-`;
-
 export const BannerSlogans = styled.ul`
   margin: 0 0 16px 140px;
   display: flex;

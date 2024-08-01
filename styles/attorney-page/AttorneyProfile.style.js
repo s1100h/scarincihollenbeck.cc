@@ -643,7 +643,12 @@ export const ProfileBioText = styled.p`
 
 export const ProfileBioListItems = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
+
+  &:empty {
+    display: none;
+  }
 
   ${media_breakpoint_down('sm')} {
     flex-direction: column;
@@ -652,7 +657,7 @@ export const ProfileBioListItems = styled.div`
 `;
 
 export const ProfileBioListItem = styled.div`
-  width: 50%;
+  flex: 1 1 calc((100% - 24px) / 2);
   padding: 8px 16px;
   border-radius: ${globalBorderRadius.middle};
   background-color: ${globalColor.gray.gray1002};
@@ -662,7 +667,7 @@ export const ProfileBioListItem = styled.div`
   row-gap: 8px;
 
   ${media_breakpoint_down('sm')} {
-    width: 100%;
+    flex-shrink: 100%;
   }
 `;
 

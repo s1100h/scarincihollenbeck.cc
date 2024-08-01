@@ -12,7 +12,11 @@ import { LocationContext } from 'contexts/LocationContext';
 import { ContainerDefault } from 'styles/Containers.style';
 
 const AttorneysPage = ({
-  seo, site, canonicalUrl, attorneyArchives,
+  seo,
+  site,
+  canonicalUrl,
+  attorneyArchives,
+  seoAttorneys,
 }) => {
   const { setReference } = useContext(AttorneysContext);
 
@@ -44,6 +48,7 @@ const AttorneysPage = ({
             practices={practices}
             locations={locations}
             attorneyArchives={attorneyArchives}
+            seoAttorneys={seoAttorneys}
           />
         </ContainerDefault>
 

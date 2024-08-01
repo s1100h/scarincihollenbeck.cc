@@ -194,6 +194,12 @@ export const getStaticProps = async ({ params }) => {
     barAdmissions:
       attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
         ?.barAdmissions,
+    affiliations:
+      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+        ?.affiliations,
+    additionalInfo:
+      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
+        ?.additionalInformation,
   };
 
   /** Accordion data */
@@ -210,12 +216,6 @@ export const getStaticProps = async ({ params }) => {
     clients: attorneyBio.attorneyAwardsClientsBlogsVideos?.clients,
     awards: attorneyBio.attorneyAwardsClientsBlogsVideos?.awards,
     attorneyBiography: attorneyBio?.attorneyBiography,
-    affiliations:
-      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
-        ?.affiliations,
-    additionalInfo:
-      attorneyBio?.attorneyAdditionalInformationEducationAdmissionsAffiliations
-        ?.additionalInformation,
     representativeMatters: attorneyBio.attorneyRepresentativeMatters.repMatters
       ? attorneyBio.attorneyRepresentativeMatters.repMatters[0].content
       : [],

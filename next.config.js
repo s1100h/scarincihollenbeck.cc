@@ -54,6 +54,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'upload.wikimedia.org',
       },
+      {
+        protocol: 'https',
+        hostname: 'scarincihollenbeck.com',
+      },
     ],
     minimumCacheTTL: 60,
     deviceSizes: [576, 768, 992, 1200, 1456],

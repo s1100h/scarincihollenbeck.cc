@@ -22,5 +22,3 @@ export const WhatWeDoHolder = styled.div`
     }
   }
 `;
-
-export const WhatWeDoTitle = styled.h2``;

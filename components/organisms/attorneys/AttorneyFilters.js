@@ -16,6 +16,7 @@ import empty from 'is-empty';
 import { NavbarLink } from 'styles/Navigation.style';
 import { useRouter } from 'next/router';
 import { ResultsWrapper } from 'styles/Attornyes.style';
+import NonFiltered from 'components/molecules/attorneys/NonFiltered';
 import Selection from './Selection';
 import FilterResult from './FilterResult';
 import Results from './Results';
@@ -27,6 +28,7 @@ const AttorneyFilters = ({
   setIsSidebarOpen,
   isNavbar,
   attorneyArchives,
+  seoAttorneys,
 }) => {
   const practicesSelectRef = useRef();
   const locationsSelectRef = useRef();
@@ -167,17 +169,23 @@ const AttorneyFilters = ({
           </FiltersResults>
       )}
 
-      <ResultsWrapper>
-        {!isNavbar && attorneysContext.length > 0 && (
-          <Results
-            attorneys={attorneysFiltered}
-            attorneysContext={attorneysContext}
-            userInput={userInput}
-            select={select}
-            attorneyArchives={attorneyArchives}
-          />
-        )}
-      </ResultsWrapper>
+      {!isNavbar && (
+        <ResultsWrapper>
+          {attorneysContext.length > 0 ? (
+            <Results
+              attorneys={attorneysFiltered}
+              attorneysContext={attorneysContext}
+              userInput={userInput}
+              select={select}
+              attorneyArchives={attorneyArchives}
+            />
+          ) : (
+            attorneysContext.length <= 0 && (
+              <NonFiltered attorneys={seoAttorneys} />
+            )
+          )}
+        </ResultsWrapper>
+      )}
     </FiltersHolder>
   );
 };

@@ -52,8 +52,11 @@ const sanitizeAwardsForSlider = (awards) => {
   return formattedAwards;
 };
 
-const renderBlogPosts = (data, config, blogTitles, isWide) => blogTitles?.includes(config?.title) && (
-<AccordionItem eventKey={config?.actionKey} title={config?.title}>
+const renderBlogPosts = (data, config, blogTitles, isWide, name) => blogTitles?.includes(config?.title) && (
+<AccordionItem
+  eventKey={`${config?.actionKey}-${name}`}
+  title={config?.title}
+>
   <BlogsBox
     queryParamsForPagination={config?.queryParams}
     paginationData={data}
@@ -79,8 +82,6 @@ const ProfileAccordion = ({
   clients,
   awards,
   attorneyBiography,
-  affiliations,
-  additionalInfo,
   additionalTabs,
   representativeMatters,
   gallery,
@@ -90,6 +91,7 @@ const ProfileAccordion = ({
   videos,
   govLawPosts,
   blogTitles,
+  name,
 }) => {
   const router = useRouter();
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
@@ -156,10 +158,10 @@ const ProfileAccordion = ({
       <ContainerDefault>
         <ProfileAccordionHolder>
           <Accordion as="ul" alwaysOpen>
-            <ProfileClients clients={clients} />
+            <ProfileClients clients={clients} name={name} />
 
             {!empty(sanitizedAwardsForSlider) && (
-              <AccordionItem eventKey="profile-awards" title="Awards">
+              <AccordionItem eventKey={`profile-awards-${name}`} title="Awards">
                 <StandardLightBlueButton as={Link} href="/awards">
                   Award Methodology
                 </StandardLightBlueButton>
@@ -169,23 +171,15 @@ const ProfileAccordion = ({
 
             {!empty(attorneyBiography?.biographyContent) && (
               <AccordionDynamicItem
-                eventKey="profile-biography"
+                eventKey={`profile-biography-${name}`}
                 title="Full Biography"
                 content={attorneyBiography?.biographyContent}
               />
             )}
 
-            {!empty(affiliations) && (
-              <AccordionDynamicItem
-                eventKey="profile-affiliations"
-                title="Affiliations Area"
-                content={affiliations}
-              />
-            )}
-
             {!empty(representativeMatters) && (
               <AccordionDynamicItem
-                eventKey="profile-representative-matters"
+                eventKey={`profile-representative-matters-${name}`}
                 title="Representative Matters"
                 ulProps={{ $columnsCountUl: 2, $columnGapUl: 40 }}
                 content={representativeMatters}
@@ -194,20 +188,23 @@ const ProfileAccordion = ({
             )}
 
             {!empty(gallery) && (
-              <AccordionItem eventKey="profile-gallery" title="Gallery">
+              <AccordionItem
+                eventKey={`profile-gallery-${name}`}
+                title="Gallery"
+              >
                 <GallerySlider items={gallery} />
               </AccordionItem>
             )}
 
             {!empty(mediaItems) && (
-              <AccordionItem eventKey="profile-media" title="Media">
+              <AccordionItem eventKey={`profile-media-${name}`} title="Media">
                 <MediaSlider items={mediaItems} />
               </AccordionItem>
             )}
 
             {!empty(presentationsItems) && (
               <AccordionItem
-                eventKey="profile-presentations"
+                eventKey={`profile-presentations-${name}`}
                 title="Presentations"
               >
                 <MediaSlider items={presentationsItems} />
@@ -216,7 +213,7 @@ const ProfileAccordion = ({
 
             {!empty(publicationsItems) && (
               <AccordionItem
-                eventKey="profile-publications"
+                eventKey={`profile-publications-${name}`}
                 title="Publications"
               >
                 <MediaSlider items={publicationsItems} />
@@ -224,14 +221,14 @@ const ProfileAccordion = ({
             )}
 
             {!empty(videos) && (
-              <AccordionItem eventKey="profile-videos" title="Video">
+              <AccordionItem eventKey={`profile-videos-${name}`} title="Video">
                 <MediaSlider items={videos} />
               </AccordionItem>
             )}
 
             {!empty(govLawPosts?.posts) && (
               <AccordionItem
-                eventKey="profile-gov-law"
+                eventKey={`profile-gov-law-${name}`}
                 title="Government & Law"
               >
                 <MediaSlider items={govLawPosts?.posts} />
@@ -242,13 +239,22 @@ const ProfileAccordion = ({
               newsPressReleasesPaginationData,
               newsPressReleasesConfig,
               blogTitles,
+              false,
+              name,
             )}
-            {renderBlogPosts(blogPostsPaginationData, blogConfig, blogTitles)}
+            {renderBlogPosts(
+              blogPostsPaginationData,
+              blogConfig,
+              blogTitles,
+              false,
+              name,
+            )}
             {renderBlogPosts(
               eventsPostsPaginationData,
               eventsConfig,
               blogTitles,
               true,
+              name,
             )}
 
             {!empty(additionalTabs)
@@ -256,21 +262,9 @@ const ProfileAccordion = ({
                 (tab) => !empty(tab?.content) && (
                 <AccordionDynamicItem
                   key={`${tab?.id}-additional-tab`}
-                  eventKey={`profile-additional-${tab?.id}`}
+                  eventKey={`profile-additional-${tab?.id}-${name}`}
                   title={checkOnDuplicate(tab?.title)}
                   content={tab?.content}
-                />
-                ),
-              )}
-
-            {!empty(additionalInfo)
-              && additionalInfo.map(
-                (item) => !empty(item?.content) && (
-                <AccordionDynamicItem
-                  key={`${item?.title}-additional-info-tab`}
-                  eventKey={`profile-additional-info-${item?.title}`}
-                  title={checkOnDuplicate(item?.title)}
-                  content={item?.content}
                 />
                 ),
               )}

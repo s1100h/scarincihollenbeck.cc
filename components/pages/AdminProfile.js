@@ -12,9 +12,7 @@ const AdminProfile = ({ seo, profile, canonicalUrl }) => (
       featuredImage={profile.profileImage}
       designation={profile.designation}
     />
-    <ContainerDefault>
-      <ProfileHeader {...profile} />
-    </ContainerDefault>
+    <ProfileHeader {...profile} />
   </>
 );
 

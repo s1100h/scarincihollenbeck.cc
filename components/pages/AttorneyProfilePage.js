@@ -17,7 +17,7 @@ const AttorneyProfilePage = ({
       socialMediaLinks={seo.socialMediaLinks}
     />
     <ProfileHeader {...profileHeader} />
-    <ProfileAccordion {...accordionData} />
+    <ProfileAccordion {...accordionData} name={profileHeader?.name} />
   </>
 );
 

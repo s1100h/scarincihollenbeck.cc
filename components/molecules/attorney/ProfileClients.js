@@ -10,13 +10,16 @@ import AccordionItem from './AccordionItem';
 
 const ClientSlider = dynamic(() => import('./ClientSlider'), { ssr: false });
 
-const ProfileClients = ({ clients }) => {
+const ProfileClients = ({ clients, name }) => {
   if (empty(clients)) return null;
 
   return (
     <ProfileClientsWrapper as="li">
       <ClientSlider clients={clients} />
-      <AccordionItem eventKey="profile-clients-list" title="Clients List">
+      <AccordionItem
+        eventKey={`profile-clients-list-${name}`}
+        title="Clients List"
+      >
         <ProfileAccordionBody $columnsCountUl={3}>
           <ul>
             {clients.map(({ clientLink, clientTitle }) => (

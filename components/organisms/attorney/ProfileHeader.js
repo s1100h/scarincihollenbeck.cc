@@ -65,6 +65,8 @@ const ProfileHeader = ({
   education,
   barAdmissions,
   biography,
+  affiliations,
+  additionalInfo,
 }) => {
   const [designation] = useDesignationHook(title);
   const [isContactModal, setIsContactModal] = useState(false);
@@ -159,16 +161,27 @@ const ProfileHeader = ({
               </ProfileBio>
             )}
 
-            {(!empty(education) || !empty(barAdmissions)) && (
-              <ProfileBioListItems>
-                {!empty(education) && (
-                  <ProfileBioList title="Education" content={education} />
+            <ProfileBioListItems>
+              {!empty(education) && (
+                <ProfileBioList title="Education" content={education} />
+              )}
+              {!empty(barAdmissions) && (
+                <ProfileBioList title="Admissions" content={barAdmissions} />
+              )}
+              {!empty(affiliations) && (
+                <ProfileBioList title="Affiliations" content={affiliations} />
+              )}
+              {!empty(additionalInfo)
+                && additionalInfo.map(
+                  (item) => !empty(item?.content) && (
+                  <ProfileBioList
+                    key={`${item?.title}-additional-info`}
+                    title={item?.title}
+                    content={item?.content}
+                  />
+                  ),
                 )}
-                {!empty(education) && (
-                  <ProfileBioList title="Admissions" content={barAdmissions} />
-                )}
-              </ProfileBioListItems>
-            )}
+            </ProfileBioListItems>
           </ProfileHeaderRight>
         </ProfileHeaderHolder>
       </ContainerDefault>
