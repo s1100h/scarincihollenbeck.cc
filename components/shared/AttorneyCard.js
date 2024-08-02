@@ -24,7 +24,7 @@ export const renderLinkToLocationPractice = (locationsOrPractice) => {
     }
   }
   return (
-    <div className="d-flex flex-column gap-1">
+    <li className="d-flex flex-column gap-1">
       {locationsOrPractice.chair?.length > 0 && (
         <div className="d-flx">
           Chair:
@@ -47,7 +47,7 @@ export const renderLinkToLocationPractice = (locationsOrPractice) => {
           ))}
         </div>
       )}
-    </div>
+    </li>
   );
 };
 

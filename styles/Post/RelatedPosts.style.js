@@ -4,8 +4,10 @@ import { globalColor, globalShadow } from '../global_styles/Global.styles';
 export const RelatedPostsContainer = styled.div`
   padding-top: 60px;
 
-  h5 {
+  h3 {
     font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
   }
 `;
 export const RelatedPostsList = styled.ul`

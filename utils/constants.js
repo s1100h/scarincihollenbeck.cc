@@ -814,3 +814,5 @@ export const googleLocationIds = {
   'washington-dc': 'ChIJMxTvAVS3t4kRnkctX9qxKtc',
   'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
 };
+
+export const ALT_PREFIX = 'Image showing the text: ';

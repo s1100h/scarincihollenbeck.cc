@@ -38,7 +38,7 @@ const SocialShare = ({ title, isPractice }) => {
         </ShareSocialBox>
       ) : (
         <ShareSocialBox>
-          <h4>Share:</h4>
+          <h3>Share:</h3>
           <hr className="second-hr" />
           <FacebookShareButton url={postUrl} quote={title}>
             <BsFacebook className="faceBookBtn" />

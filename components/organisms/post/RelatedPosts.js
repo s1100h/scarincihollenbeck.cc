@@ -6,11 +6,11 @@ import {
   RelatedPostsContainer,
   RelatedPostsList,
 } from '../../../styles/Post/RelatedPosts.style';
-import { PRODUCTION_URL } from '../../../utils/constants';
+import { ALT_PREFIX, PRODUCTION_URL } from '../../../utils/constants';
 
 const RelatedPosts = ({ posts, title }) => (
   <RelatedPostsContainer>
-    <h5>{!empty(title) ? title : 'Related Posts'}</h5>
+    <h3>{!empty(title) ? title : 'Related Posts'}</h3>
     <RelatedPostsList>
       {posts.map((post) => (
         <RelatedPostItem key={post.databaseId}>
@@ -19,7 +19,7 @@ const RelatedPosts = ({ posts, title }) => (
               src={post.featuredImage}
               width={160}
               height={80}
-              alt={post.title}
+              alt={`${ALT_PREFIX}${post.title}`}
             />
             <h6>{post.title}</h6>
           </Link>
