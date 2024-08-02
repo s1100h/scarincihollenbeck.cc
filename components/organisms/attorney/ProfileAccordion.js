@@ -54,6 +54,7 @@ const sanitizeAwardsForSlider = (awards) => {
 
 const renderBlogPosts = (data, config, blogTitles, isWide, name) => blogTitles?.includes(config?.title) && (
 <AccordionItem
+  as="li"
   eventKey={`${config?.actionKey}-${name}`}
   title={config?.title}
 >
@@ -161,7 +162,11 @@ const ProfileAccordion = ({
             <ProfileClients clients={clients} name={name} />
 
             {!empty(sanitizedAwardsForSlider) && (
-              <AccordionItem eventKey={`profile-awards-${name}`} title="Awards">
+              <AccordionItem
+                as="li"
+                eventKey={`profile-awards-${name}`}
+                title="Awards"
+              >
                 <StandardLightBlueButton as={Link} href="/awards">
                   Award Methodology
                 </StandardLightBlueButton>
@@ -171,6 +176,7 @@ const ProfileAccordion = ({
 
             {!empty(attorneyBiography?.biographyContent) && (
               <AccordionDynamicItem
+                tag="li"
                 eventKey={`profile-biography-${name}`}
                 title="Full Biography"
                 content={attorneyBiography?.biographyContent}
@@ -179,6 +185,7 @@ const ProfileAccordion = ({
 
             {!empty(representativeMatters) && (
               <AccordionDynamicItem
+                tag="li"
                 eventKey={`profile-representative-matters-${name}`}
                 title="Representative Matters"
                 ulProps={{ $columnsCountUl: 2, $columnGapUl: 40 }}
@@ -189,6 +196,7 @@ const ProfileAccordion = ({
 
             {!empty(gallery) && (
               <AccordionItem
+                as="li"
                 eventKey={`profile-gallery-${name}`}
                 title="Gallery"
               >
@@ -197,13 +205,18 @@ const ProfileAccordion = ({
             )}
 
             {!empty(mediaItems) && (
-              <AccordionItem eventKey={`profile-media-${name}`} title="Media">
+              <AccordionItem
+                as="li"
+                eventKey={`profile-media-${name}`}
+                title="Media"
+              >
                 <MediaSlider items={mediaItems} />
               </AccordionItem>
             )}
 
             {!empty(presentationsItems) && (
               <AccordionItem
+                as="li"
                 eventKey={`profile-presentations-${name}`}
                 title="Presentations"
               >
@@ -213,6 +226,7 @@ const ProfileAccordion = ({
 
             {!empty(publicationsItems) && (
               <AccordionItem
+                as="li"
                 eventKey={`profile-publications-${name}`}
                 title="Publications"
               >
@@ -221,13 +235,18 @@ const ProfileAccordion = ({
             )}
 
             {!empty(videos) && (
-              <AccordionItem eventKey={`profile-videos-${name}`} title="Video">
+              <AccordionItem
+                as="li"
+                eventKey={`profile-videos-${name}`}
+                title="Video"
+              >
                 <MediaSlider items={videos} />
               </AccordionItem>
             )}
 
             {!empty(govLawPosts?.posts) && (
               <AccordionItem
+                as="li"
                 eventKey={`profile-gov-law-${name}`}
                 title="Government & Law"
               >
@@ -261,6 +280,7 @@ const ProfileAccordion = ({
               && additionalTabs.map(
                 (tab) => !empty(tab?.content) && (
                 <AccordionDynamicItem
+                  tag="li"
                   key={`${tab?.id}-additional-tab`}
                   eventKey={`profile-additional-${tab?.id}-${name}`}
                   title={checkOnDuplicate(tab?.title)}

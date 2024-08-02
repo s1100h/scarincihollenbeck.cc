@@ -45,9 +45,10 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
         <Image
           src={profileImage}
           alt={name}
-          width={743}
-          height={795}
+          width={500}
+          height={535}
           quality={100}
+          sizes="(max-width: 576px) 100vw, (max-width: 992px) 324px, (max-width: 1680px) 400px, 500px"
           className="animate__animated animate__fadeInUp animate__fast"
           priority
           loading="eager"

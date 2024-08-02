@@ -50,7 +50,7 @@ export const ProfileHeaderSection = styled.section`
     > li {
       > a {
         font-size: ${rem(14)};
-        color: ${globalColor.gray.gray500};
+        color: ${globalColor.gray.gray140};
 
         &:hover {
           color: ${globalColor.gray.gray110};
@@ -108,7 +108,7 @@ export const ProfileHeaderLeft = styled.div`
     left: -132px;
     width: calc(100% + 132px);
     height: calc(100% + 48px);
-    background: url('/images/profile-attorney-bg.png') center/cover;
+    background: url('/images/profile-attorney-bg.webp') center/cover;
     z-index: -1;
     opacity: 0.1;
 
