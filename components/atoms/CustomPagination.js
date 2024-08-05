@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import empty from 'is-empty';
-import Link from 'next/link';
 import {
   CustomPaginationWrapper,
   CustomPaginationItemsCount,

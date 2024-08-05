@@ -183,37 +183,37 @@ export const paragraphStyles = `
   width: 40%;
 `;
 export const GlobalStyle = createGlobalStyle`
-  html {
-    font-size: ${mainFontSize}px;
-    scroll-behavior: smooth;
-  }
+html {
+  font-size: ${mainFontSize}px;
+  scroll-behavior: smooth;
+}
 
-  * {
-    ${media_breakpoint_up('lg')} {
-      &::-webkit-scrollbar-track {
-        background-color: #cbcbcb;
-        border-radius: ${globalBorderRadius.small};
-        opacity: 0;
-      }
+* {
+  ${media_breakpoint_up('lg')} {
+    &::-webkit-scrollbar-track {
+      background-color: #cbcbcb;
+      border-radius: ${globalBorderRadius.small};
+      opacity: 0;
+    }
 
-      &::-webkit-scrollbar {
-        width: 4px;
-        height: 4px;
-        background-color: #0B1136;
-      }
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      background-color: #0B1136;
+    }
 
-      &::-webkit-scrollbar-thumb {
-        background-color: #162153;
-        border-radius: ${globalBorderRadius.small};
-      }
+    &::-webkit-scrollbar-thumb {
+      background-color: #162153;
+      border-radius: ${globalBorderRadius.small};
+    }
 
-      // FireFox
-      @supports not selector(::-webkit-scrollbar-thumb) {
-        scrollbar-color: #162153 #cbcbcb;
-        scrollbar-width: thin;
-      }
+    // FireFox
+    @supports not selector(::-webkit-scrollbar-thumb) {
+      scrollbar-color: #162153 #cbcbcb;
+      scrollbar-width: thin;
     }
   }
+}
 
 body {
   --bs-body-font-family: var(--font-poppins);

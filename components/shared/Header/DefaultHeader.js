@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
-
 import Logo from 'components/organisms/Navbar/Logo';
 import { ButtonRed } from 'styles/Buttons.style';
 import useHeaderSize from 'hooks/useHeaderSize';
