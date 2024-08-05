@@ -1,6 +1,8 @@
-import SliderNavigation from 'components/common/SliderNavigation';
-import React, { useEffect, useRef, useState } from 'react';
-import { SliderWrapper } from 'styles/Slider.style';
+import React from 'react';
+import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
+import empty from 'is-empty';
+import DisclaimerText from 'components/atoms/DisclaimerText';
+import { AwardsSliderWrapper } from 'styles/Awards.style';
 import AwardCard from './AwardCard';
 
 const breakpoints = {
@@ -21,66 +23,31 @@ const breakpoints = {
   },
 };
 
-const AwardsSlider = ({ images }) => {
-  const swiperRef = useRef();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isEnd, setIsEnd] = useState(false);
-  const loop = false;
-
-  const handleClickBtnNext = () => {
-    swiperRef.current.swiper.slideNext();
-  };
-
-  const handleClickBtnPrev = () => {
-    swiperRef.current.swiper.slidePrev();
-  };
-
-  useEffect(() => {
-    const slider = {
-      grabCursor: true,
-      breakpoints,
-    };
-
-    Object.assign(swiperRef.current, slider);
-    swiperRef.current.initialize();
-
-    swiperRef.current.addEventListener('swiperslidechange', (e) => {
-      setCurrentIndex(swiperRef.current?.swiper.realIndex);
-      setIsEnd(swiperRef.current?.swiper.isEnd);
-    });
-  }, []);
+const AwardsSlider = ({ items, isLightVariant = false }) => {
+  if (empty(items)) return null;
 
   return (
-    <SliderWrapper>
-      <swiper-container
-        pagination="true"
-        pagination-clickable="true"
-        class="slider-container"
-        ref={swiperRef}
-        loop={loop}
-        slides-per-view="5"
+    <AwardsSliderWrapper $isLightVariant={isLightVariant}>
+      <SwiperWrapper
+        breakpoints={breakpoints}
         space-between={32}
         lazy="true"
+        grab-cursor="true"
       >
-        {images?.map((item) => (
+        {items?.map((item) => (
           <swiper-slide key={item?.id} class="slide">
             <AwardCard
               image={item?.image}
-              key={item?.id}
               year={item?.year}
               label={item?.label}
+              link={item?.link}
+              isLightVariant={isLightVariant}
             />
           </swiper-slide>
         ))}
-      </swiper-container>
-
-      <SliderNavigation
-        handleClickBtnNext={handleClickBtnNext}
-        handleClickBtnPrev={handleClickBtnPrev}
-        isEnd={!loop && isEnd}
-        currentIndex={!loop && currentIndex}
-      />
-    </SliderWrapper>
+      </SwiperWrapper>
+      <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
+    </AwardsSliderWrapper>
   );
 };
 

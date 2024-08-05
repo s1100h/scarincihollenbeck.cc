@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -19,6 +20,15 @@ export const LatestPostsHolder = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+
+  .disclaimer {
+    margin: 0;
+    text-align: center;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+    }
+  }
 `;
 
 export const LatestPostsHeader = styled.div`
@@ -76,7 +86,6 @@ export const LatestPostsTab = styled.button`
   ${media_breakpoint_down('md')} {
     padding: 7px 11px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -84,7 +93,7 @@ export const LatestPostsContent = styled.div``;
 
 export const LatestsPostsCardImage = styled.div`
   max-height: 375px;
-  border-radius: 12px;
+  border-radius: ${globalBorderRadius.middle};
   overflow: hidden;
 
   img {
@@ -132,7 +141,6 @@ export const LatestsPostsCardDescription = styled.div`
   ${media_breakpoint_down('sm')} {
     min-height: 80px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -179,7 +187,6 @@ export const LatestsPostsCardAuthor = styled(Link)`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -189,7 +196,6 @@ export const LatestsPostsCardDate = styled.time`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 

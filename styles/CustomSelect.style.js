@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -48,7 +49,6 @@ export const SelectInput = styled.input`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -85,7 +85,7 @@ export const SelectOptions = styled.ul`
 
   &::-webkit-scrollbar-track {
     background-color: #c5c5c5;
-    border-radius: 8px;
+    border-radius: ${globalBorderRadius.small};
     opacity: 0;
   }
 
@@ -96,7 +96,7 @@ export const SelectOptions = styled.ul`
 
   &::-webkit-scrollbar-thumb {
     background-color: ${globalColor.gray.gray500};
-    border-radius: 8px;
+    border-radius: ${globalBorderRadius.small};
   }
 
   // FireFox
@@ -117,6 +117,5 @@ export const SelectOption = styled.li`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;

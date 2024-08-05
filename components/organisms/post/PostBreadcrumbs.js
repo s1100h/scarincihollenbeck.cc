@@ -146,7 +146,7 @@ const PostBreadCrumbs = ({ data }) => {
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">
       <li>
-        <Link href="/">Home</Link>
+        <ButtonBreadcrumb href="/">Home</ButtonBreadcrumb>
         <BsChevronRight />
       </li>
       {delegatePathFunc(slug, router, data)}

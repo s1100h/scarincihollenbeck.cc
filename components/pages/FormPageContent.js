@@ -6,7 +6,6 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import React, {
   useContext, useEffect, useRef, useState,
 } from 'react';
-import { SidebarTile } from '../../styles/attorney-page/ProfileSidebar.style';
 import Surface from '../atoms/micro-templates/surface';
 import SubHeader from '../../layouts/SubHeader/SubHeader';
 import { FormsContext } from '../../contexts/FormsContext';
@@ -37,9 +36,7 @@ const FormPageContent = ({
         <Row>
           <Col sm={12} lg={6} xl={4} ref={formWrapper}>
             <Surface unscrollable="unscrollable">
-              <SidebarTile indent="true" red="true">
-                {site.formLabel}
-              </SidebarTile>
+              <h3 className="red-title">{site.formLabel}</h3>
               <ContactForm isPositionRelativeProp />
             </Surface>
           </Col>

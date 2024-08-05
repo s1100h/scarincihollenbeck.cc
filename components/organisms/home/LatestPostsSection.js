@@ -1,3 +1,4 @@
+import DisclaimerText from 'components/atoms/DisclaimerText';
 import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ const LatestPostsSlider = dynamic(() => import('./LatestPostsSlider'), {
 });
 
 const LatestPostsSection = ({ tabsData }) => {
-  const [activeTabId, setActiveTabId] = useState('allPosts');
+  const [activeTabId, setActiveTabId] = useState(latestPostTabs[0]?.id);
   const activeTabData = tabsData?.[activeTabId];
 
   return (
@@ -61,6 +62,8 @@ const LatestPostsSection = ({ tabsData }) => {
               />
             </LatestPostsContent>
           </AnimatePresence>
+
+          <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
         </LatestPostsHolder>
       </ContainerDefault>
     </LatestPostsWrapper>

@@ -199,8 +199,9 @@ export const NavbarItemContent = styled(motion.div)`
   width: 100%;
   background-color: ${globalColor.blue.darkBlue};
   z-index: 0;
-  max-height: calc(80dvh - 115px);
+  max-height: calc(95dvh - var(--header-height));
   display: flex;
+  transition: max-height 0.3s ease-in-out;
 
   &.practices-split {
     &::after {

@@ -56,7 +56,6 @@ const sidebarBtnStyle = `
     padding: 9px 15px;
     max-width: 100%;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -154,7 +153,8 @@ export const SidebarMenuWrapper = styled.div`
   transition: ${globalTransition.default};
   pointer-events: ${({ $isSidebarOpen }) =>
     `${$isSidebarOpen ? 'auto' : 'none'}`};
-  opacity: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 1 : 0}`};
+  visibility: ${({ $isSidebarOpen }) =>
+    `${$isSidebarOpen ? 'visible' : 'hidden'}`};
   overflow: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'hidden'}`};
 
   ${media_breakpoint_down('lg')} {
@@ -274,7 +274,6 @@ export const SidebarMenuItemOpener = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -403,7 +402,6 @@ export const SidebarMenuLink = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -508,7 +506,6 @@ export const SidebarMenuSocial = styled(Link)`
 
   ${media_breakpoint_down('md')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 

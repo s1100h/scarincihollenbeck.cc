@@ -5,20 +5,24 @@ import { useContext, useEffect, useRef } from 'react';
 import { AttorneysContext } from 'contexts/AttorneysContext';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
-// import { HeaderSizeContext } from 'contexts/HeaderSizeContext';
+import { SizesContext } from 'contexts/SizesContext';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 import { PracticesContext } from 'contexts/PracticesContext';
-// import { LocationContext } from 'contexts/LocationContext';
+import { LocationContext } from 'contexts/LocationContext';
 import { ContainerDefault } from 'styles/Containers.style';
 import { useGetAppApiQuery } from '../../redux/services/project-api';
 
 const AttorneysPage = ({
-  seo, site, canonicalUrl, attorneyArchives,
+  seo,
+  site,
+  canonicalUrl,
+  attorneyArchives,
+  seoAttorneys,
 }) => {
   const { setReference } = useContext(AttorneysContext);
 
   const containerRef = useRef();
-  // const { headerSize } = useContext(HeaderSizeContext);
+  const { headerSize } = useContext(SizesContext);
   const { practices } = useContext(PracticesContext);
   // const { locations } = useContext(LocationContext);
   const {
@@ -42,13 +46,14 @@ const AttorneysPage = ({
       <SubHeader isFilter title={site.title} subtitle={site.description} />
       <MainAttorneysContainer
         ref={containerRef}
-        // $headerHeight={`${headerSize?.height}px`}
+        $headerHeight={`${headerSize?.height}px`}
       >
         <ContainerDefault>
           <AttorneyFilters
             practices={practices}
             locations={locations}
             attorneyArchives={attorneyArchives}
+            seoAttorneys={seoAttorneys}
           />
         </ContainerDefault>
 

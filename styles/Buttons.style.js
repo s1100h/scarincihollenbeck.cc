@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { commonBtnStyle } from './ButtonsMenu.style';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -55,7 +55,6 @@ export const ClearButton = styled(Button)`
 `;
 
 export const StandardRedButton = styled(Button)`
-  ${commonBtnStyle};
   border: none;
   border-radius: 0;
   background-color: ${globalColor.red.darkRed};
@@ -96,6 +95,7 @@ export const StandardBlueButton = styled.button`
   font-weight: 600;
   position: relative;
   z-index: 0;
+  overflow: hidden;
 
   @media (hover: hover) {
     :hover {
@@ -127,7 +127,6 @@ export const StandardBlueButton = styled.button`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 4px;
     z-index: -1;
     background-image: linear-gradient(87deg, #164587 -9.15%, #060b2a 100%);
     opacity: 0;
@@ -136,7 +135,6 @@ export const StandardBlueButton = styled.button`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -196,7 +194,6 @@ export const ButtonRed = styled(Link)`
   ${media_breakpoint_down('sm')} {
     padding: 10px 40px;
     font-size: ${rem(14)};
-    line-height: 1.43;
   }
 `;
 
@@ -216,6 +213,39 @@ export const UnderlinedLink = styled(Link)`
 
   ${media_breakpoint_down('sm')} {
     font-size: 0.875rem;
-    line-height: 1.43;
+  }
+`;
+
+export const WhiteButtonWrapper = styled.button`
+  width: max-content;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: ${globalBorderRadius.small};
+  background-color: ${globalColor.white};
+  box-shadow: 0px 4px 12px 0px rgba(10, 62, 108, 0.06);
+  color: ${globalColor.gray.gray110};
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: ${globalTransition.default};
+
+  &:hover {
+    color: ${globalColor.gray.gray110};
+    box-shadow: 0px 4px 12px 0px rgba(10, 62, 108, 0.26);
+  }
+
+  > .button-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${globalColor.blue.blue500};
+  }
+
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(14)};
   }
 `;

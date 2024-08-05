@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -37,15 +38,6 @@ export const Banner = styled.section`
   ${media_breakpoint_down('md')} {
     padding: 40px 0;
   }
-`;
-
-export const BannerImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  z-index: -1;
 `;
 
 export const BannerSlogans = styled.ul`
@@ -124,7 +116,7 @@ export const BannerCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
-  border-radius: 16px;
+  border-radius: ${globalBorderRadius.big};
   background-color: rgba(255, 255, 255, 0.84);
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.22);
   backdrop-filter: blur(4px);
@@ -138,7 +130,7 @@ export const BannerCards = styled.div`
   }
 
   ${media_breakpoint_down('sm')} {
-    border-radius: 12px;
+    border-radius: ${globalBorderRadius.middle};
     padding: 12px;
     gap: 16px;
   }
@@ -242,7 +234,6 @@ export const BannerCardContent = styled.div`
 
     ${media_breakpoint_down('sm')} {
       font-size: 0.875rem;
-      line-height: 1.43;
     }
   }
 

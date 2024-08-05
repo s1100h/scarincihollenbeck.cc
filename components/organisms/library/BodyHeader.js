@@ -1,5 +1,5 @@
 import FeaturedLinks from 'components/molecules/library/FeaturedLinks';
-import GlobalSearch from '../../shared/GlobalSearch/GlobalSearch';
+import { GlobalSearch } from 'components/shared/GlobalSearch/GlobalSearch';
 import { BodyHeaderContainer } from '../../../styles/BodyHeader.style';
 
 export default function BodyHeader() {

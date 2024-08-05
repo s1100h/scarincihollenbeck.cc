@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from './global_styles/Global.styles';
+import { globalColor, globalTransition } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
@@ -48,6 +48,7 @@ export const ButtonBreadcrumb = styled(Link)`
   color: ${globalColor.blue.dirtyBlue};
   text-transform: capitalize;
   padding: 0;
+  transition: ${globalTransition.default};
 
   :hover {
     color: ${globalColor.red.darkRed};

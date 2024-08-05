@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { getSlugFromUrl } from 'utils/helpers';
 import { LogoBox } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
-import GlobalSearch from '../GlobalSearch/GlobalSearch';
 import LinkButtons from '../../organisms/Navbar/LinkButtons';
 import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
 import useIsScroll from '../../../hooks/useIsScroll';
@@ -13,6 +12,7 @@ import {
   SpecialHeaderContainer,
   VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
+import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
 const className = (pageSlug) => {
   const pagesMap = {

@@ -10,8 +10,7 @@ export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: ${({ props }) =>
-    props?.isTabs || props?.isBlog ? 'flex-start' : 'center'};
+  justify-content: ${({ props }) => (props?.isBlog ? 'flex-start' : 'center')};
   background: no-repeat
     url(${({ props }) =>
       props?.isHoliday
@@ -27,7 +26,7 @@ export const BackgroundContainer = styled.section`
   padding-top: 3.5em;
   padding-bottom: ${({ props }) => {
     if (props?.isFilter) return '6.5em';
-    if (props?.isTabs || props?.isBlog) return '1.5em';
+    if (props?.isBlog) return '1.5em';
     return '4em';
   }};
   margin-bottom: 50px;

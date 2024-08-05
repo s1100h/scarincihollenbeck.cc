@@ -21,6 +21,7 @@ export const MainAttorneysContainer = styled.section`
     z-index: 10;
     background-color: ${globalColor.white};
     box-shadow: ${globalShadow.allSideShadow};
+    transition: all 0.3s ease-in-out;
 
     ${media_breakpoint_down('lg')} {
       position: static;

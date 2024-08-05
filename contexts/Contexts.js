@@ -3,10 +3,10 @@ import { AttorneysProvider } from './AttorneysContext';
 import { LocationProvider } from './LocationContext';
 import { FormContextProvider } from './FormsContext';
 import { PracticesContextProvider } from './PracticesContext';
-import { HeaderSizeProvider } from './HeaderSizeContext';
+import { SizesProvider } from './SizesContext';
 
 const Contexts = ({ children }) => (
-  <HeaderSizeProvider>
+  <SizesProvider>
     <AttorneysProvider>
       <LocationProvider>
         <FormContextProvider>
@@ -14,7 +14,7 @@ const Contexts = ({ children }) => (
         </FormContextProvider>
       </LocationProvider>
     </AttorneysProvider>
-  </HeaderSizeProvider>
+  </SizesProvider>
 );
 
 export default Contexts;

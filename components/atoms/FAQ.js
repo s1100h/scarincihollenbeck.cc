@@ -3,7 +3,6 @@ import { Title } from 'styles/Article.style';
 import { FaqWrapper } from 'styles/Faq.style';
 import { createMarkup } from 'utils/helpers';
 import empty from 'is-empty';
-import { useId } from 'react';
 import { JSXWithDynamicLinks } from './micro-templates/JSXWithDynamicLinks';
 
 export default function FAQ({

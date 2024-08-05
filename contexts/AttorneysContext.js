@@ -1,9 +1,6 @@
-import React, {
-  createContext, useContext, useEffect, useState,
-} from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import decodeResponse from 'utils/decodeResponse';
 import empty from 'is-empty';
-import { HeaderSizeContext } from './HeaderSizeContext';
 
 export const AttorneysContext = createContext(null);
 
@@ -13,13 +10,12 @@ export const AttorneysProvider = ({ children }) => {
   const [attorneysContext, setAttorneysContext] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [containerRefer, setContainerRefer] = useState(null);
-  const { headerSize } = useContext(HeaderSizeContext);
 
   // Scroll to ref container when selected filters
   function scrollToRef() {
     if (containerRefer) {
       setTimeout(() => {
-        const offsetTop = containerRefer.offsetTop - headerSize?.height;
+        const offsetTop = containerRefer.offsetTop - 120;
         window.scrollTo({ top: offsetTop, behavior: 'smooth' });
       });
     }

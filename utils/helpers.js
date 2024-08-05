@@ -219,7 +219,10 @@ export const sanitizeExternalArticles = (arr) => arr.map(({
   id, link, title, date,
 }) => ({
   id,
-  link,
+  link: {
+    url: link,
+    target: '_blank',
+  },
   title: title.rendered,
   date,
 }));

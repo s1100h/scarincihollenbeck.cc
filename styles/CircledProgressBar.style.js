@@ -44,7 +44,6 @@ export const CircledProgressBarWrapper = styled.button`
     color: ${globalColor.white};
     font-weight: 600;
     font-size: ${rem(14)};
-    line-height: 1.43;
     opacity: ${({ $isPaused }) => ($isPaused ? '0' : '1')};
     transition: ${globalTransition.default};
   }

@@ -151,7 +151,7 @@ export const LocationCardWrapper = styled.address`
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-  border-radius: 12px;
+  border-radius: ${globalBorderRadius.middle};
   background-color: ${globalColor.blue.blue6002};
   box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
     -10px 10px 19px 0px rgba(0, 0, 0, 0.06);

@@ -10,6 +10,7 @@ export const getPaginationData = (query, params) => {
     currentPage: tempCurrentPage,
     itemsPerPage,
     slug,
+    authorName,
   } = params;
 
   const currentPage = Number(tempCurrentPage);
@@ -17,9 +18,9 @@ export const getPaginationData = (query, params) => {
   const offsetPosts = !empty(currentPage) && currentPage > 0
     ? Math.floor(currentPage - 1) * itemsPerPage
     : 0;
-
   const variables = {
     id: !empty(id) ? id : null,
+    authorName: authorName || null,
     authorId: !empty(authorId) ? authorId : null,
     categoryId: !empty(categoryId) ? categoryId : null,
     offsetPosts,
