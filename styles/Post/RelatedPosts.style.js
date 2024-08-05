@@ -32,7 +32,7 @@ export const RelatedPostItem = styled.li`
       box-shadow: ${globalShadow.hoveredShadow};
     }
 
-    h6 {
+    h4 {
       font-size: 1rem;
       margin-bottom: 0;
     }

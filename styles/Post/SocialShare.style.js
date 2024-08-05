@@ -8,7 +8,7 @@ export const ShareSocialBox = styled.nav`
   width: 100%;
   margin-bottom: 40px;
 
-  h3 {
+  > h3 {
     font-size: 1.1rem;
     margin-right: 5%;
     margin-bottom: 0;

@@ -21,7 +21,7 @@ const RelatedPosts = ({ posts, title }) => (
               height={80}
               alt={`${ALT_PREFIX}${post.title}`}
             />
-            <h6>{post.title}</h6>
+            <h4>{post.title}</h4>
           </Link>
         </RelatedPostItem>
       ))}

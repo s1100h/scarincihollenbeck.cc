@@ -582,18 +582,24 @@ export const inputsGetInTouchAttributes = [
     name: 'FirstName',
     placeholder: 'First name',
     rules: 'required|max:255',
+    'aria-label': 'First name',
+    title: 'First name',
   },
   {
     type: 'text',
     name: 'LastName',
     placeholder: 'Last name',
     rules: 'required|max:255',
+    'aria-label': 'Last name',
+    title: 'Last name',
   },
   {
     type: 'email',
     name: 'Email',
     placeholder: 'Email address',
     rules: 'required|max:255',
+    'aria-label': 'Email address',
+    title: 'Email address',
   },
   {
     type: 'tel',
@@ -610,12 +616,15 @@ export const inputsGetInTouchAttributes = [
     +1 123-456-7890
     +1 (123) 456-7890
     `,
+    'aria-label': 'Phone number',
   },
   {
     type: 'text',
     name: 'Subject',
     placeholder: 'Subject',
     rules: 'required|max:1000',
+    'aria-label': 'Subject',
+    title: 'Subject',
   },
   {
     type: 'textarea',
@@ -624,6 +633,8 @@ export const inputsGetInTouchAttributes = [
     rules: 'required|max:1000',
     rows: 8,
     cols: 4,
+    'aria-label': 'Message',
+    title: 'Message',
   },
 ];
 

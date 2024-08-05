@@ -10,7 +10,7 @@ export const ContactLinksBox = styled.section`
   flex-direction: column;
   padding: 8%;
 
-  h3 {
+  > h3 {
     font-weight: 400;
   }
 
