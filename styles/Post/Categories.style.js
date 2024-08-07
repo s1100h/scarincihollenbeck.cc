@@ -11,8 +11,11 @@ export const CategoriesNavContainer = styled.nav`
   border-left: 5px solid ${globalColor.blue.ultramarine};
   box-shadow: ${globalShadow.allSideShadow};
 
-  h5 {
+  h3 {
     margin-bottom: 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.2;
   }
 
   ul {
