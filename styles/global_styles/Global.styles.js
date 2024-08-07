@@ -238,7 +238,7 @@ main {
 
 a {
   text-decoration: none;
-  color: ${globalColor.blue.dirtyBlue};
+  color: ${globalColor.blue.ultramarine};
 
   :hover {
     color: ${globalColor.red.darkRed};
