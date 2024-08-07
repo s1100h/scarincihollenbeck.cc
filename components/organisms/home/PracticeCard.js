@@ -1,7 +1,6 @@
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import Link from 'next/link';
 import React, { useState } from 'react';
-
 import {
   PracticeCardButton,
   PracticeCardContent,
@@ -10,27 +9,30 @@ import {
   PracticeCardFooterItem,
   PracticeCardHeader,
   PracticeCardIcon,
-  PracticeCardModalsWrapper,
   PracticeCardTitle,
   PracticeCardWrapper,
 } from 'styles/PracticeCard.style';
 import { getIcon } from 'utils/helpers';
 import empty from 'is-empty';
 import ModalWindow from 'components/common/ModalWindow';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
+import { PracticesTabsModalWrapper } from 'styles/PracticesTabs.style';
 import PracticeCardModal from './PracticeCardModal';
 
 const PracticeCard = ({
-  icon, title, text, link = '#', list, databaseId,
+  icon,
+  title,
+  text,
+  link = '#',
+  list,
+  setIsShowContactModal,
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [childShowModal, setChildShowModal] = useState(false);
 
-  const handleChildModalOpener = () => {
+  const handleContactModalOpener = () => {
     if (showModal) {
       setShowModal(false);
     }
-    setChildShowModal(true);
+    setIsShowContactModal(true);
   };
 
   return (
@@ -67,34 +69,24 @@ const PracticeCard = ({
           ) : (
             <PracticeCardButton
               className="footer-action"
-              onClick={handleChildModalOpener}
+              onClick={handleContactModalOpener}
             >
               Free consultation
             </PracticeCardButton>
           )}
         </PracticeCardFooterItem>
 
-        <PracticeCardModalsWrapper>
+        <PracticesTabsModalWrapper>
           <ModalWindow isOpen={showModal} setOpenModal={setShowModal}>
             <PracticeCardModal
               icon={icon}
               title={title}
               list={list}
               link={link}
-              handleModalOpener={handleChildModalOpener}
+              handleModalOpener={handleContactModalOpener}
             />
           </ModalWindow>
-
-          <ModalWindow isOpen={childShowModal} setOpenModal={setChildShowModal}>
-            <PracticeCardContent className="contact-form-container">
-              <PracticeCardHeader>
-                <PracticeCardTitle>Let`s get in touch!</PracticeCardTitle>
-              </PracticeCardHeader>
-
-              <ContactForm blockName={`${databaseId}-contact-form`} />
-            </PracticeCardContent>
-          </ModalWindow>
-        </PracticeCardModalsWrapper>
+        </PracticesTabsModalWrapper>
       </PracticeCardFooter>
     </PracticeCardWrapper>
   );

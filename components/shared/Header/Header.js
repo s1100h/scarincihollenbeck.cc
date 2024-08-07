@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useContext, useMemo } from 'react';
 import { PracticesContext } from 'contexts/PracticesContext';
 import { locationsOrderArray } from 'utils/constants';
-import SpecialHeader from './SpecialHeader';
 import {
   createMenuData,
   createOverviewLinks,
