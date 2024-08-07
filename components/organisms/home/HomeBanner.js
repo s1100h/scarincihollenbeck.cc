@@ -12,6 +12,7 @@ import {
   BannerCardIcon,
   BannerCards,
   BannerCardTitle,
+  BannerImage,
   BannerSlogan,
   BannerSlogans,
   BannerText,
@@ -22,6 +23,14 @@ import { DiamondSeparator } from '../../../styles/Separators.style';
 
 const HomeBanner = ({ title, subtitle, infoCards }) => (
   <Banner>
+    <BannerImage
+      src="/images/home-page-banner.webp"
+      alt="Building on the background"
+      fill
+      priority
+      loading="eager"
+      quality={100}
+    />
     <ContainerDefault>
       <BannerSlogans>
         {slogans?.map((slogan, index) => (

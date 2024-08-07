@@ -14,7 +14,9 @@ const Logo = ({ whiteVariant }) => (
         width={170}
         height={147}
         priority
+        quality={100}
         src={SHDiamond}
+        loading="eager"
       />
       {whiteVariant ? (
         <Image
@@ -23,7 +25,9 @@ const Logo = ({ whiteVariant }) => (
           width={320}
           height={50}
           priority
+          quality={100}
           src={LogoLetters}
+          loading="eager"
         />
       ) : (
         <Image
@@ -32,7 +36,9 @@ const Logo = ({ whiteVariant }) => (
           width={320}
           height={50}
           priority
+          quality={100}
           src={LogoLettersBlack}
+          loading="eager"
         />
       )}
     </CombinedLogo>

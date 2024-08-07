@@ -64,7 +64,7 @@ const nextConfig = {
       },
     ],
     minimumCacheTTL: 60,
-    deviceSizes: [576, 768, 992, 1200, 1456],
+    deviceSizes: [576, 768, 992, 1200, 1456, 1920],
   },
   experimental: {
     scrollRestoration: true,

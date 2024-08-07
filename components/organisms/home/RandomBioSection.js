@@ -5,6 +5,7 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { ContainerDefault } from 'styles/Containers.style';
 import {
+  RandomBioBg,
   RandomBioCard,
   RandomBioControlButton,
   RandomBioControlPanel,
@@ -159,6 +160,12 @@ const RandomBioSection = ({ attorneys }) => {
 
   return (
     <RandomBioWrapper ref={containerRef}>
+      <RandomBioBg
+        src="/images/random-bio-bg.webp"
+        fill
+        alt="Background for we can help section"
+        loading="lazy"
+      />
       <ContainerDefault>
         <RandomBioHolder>
           <RandomBioTitle>We can help!</RandomBioTitle>
