@@ -230,9 +230,15 @@ export const CardVideoWrapper = styled.div`
     object-fit: cover;
   }
 
-  iframe {
+  > div {
+    width: 100%!important;
+    height: 100%!important;
+  }
+
+  lite-youtube {
     width: 100%;
     height: 100%;
+    max-width: 100%;
   }
 
   ${media_breakpoint_down('md')} {
@@ -770,8 +776,9 @@ export const NewsCardBlock = styled.article`
     height: 208px;
     width: 100%;
 
-    .video-render, video {
+    .video-render, video, lite-youtube {
       border-radius: 4px 4px 0 0;
+      max-width: 100%;
       width: 100%;
       height: 100%;
     }

@@ -57,7 +57,7 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
       {!empty(representativeVideo) && (
         <ModalWindow isOpen={isShowVideo} setOpenModal={setIsShowVideo}>
           <CardVideoWrapper>
-            {videoRender(videoData, `${name}'s representative video`, videoRef)}
+            {videoRender(videoData, videoRef)}
           </CardVideoWrapper>
         </ModalWindow>
       )}

@@ -7,10 +7,18 @@ import {
 
 const SliderNavigation = forwardRef(({ prevRef, nextRef }, ref) => (
   <SliderNavigationWrapper className="navigation-container">
-    <SliderNavigationButton className="custom-prev-button" ref={prevRef}>
+    <SliderNavigationButton
+      className="custom-prev-button"
+      ref={prevRef}
+      aria-label="previous slide"
+    >
       <IoIosArrowBack />
     </SliderNavigationButton>
-    <SliderNavigationButton className="custom-next-button" ref={nextRef}>
+    <SliderNavigationButton
+      className="custom-next-button"
+      ref={nextRef}
+      aria-label="next slide"
+    >
       <IoIosArrowForward />
     </SliderNavigationButton>
   </SliderNavigationWrapper>

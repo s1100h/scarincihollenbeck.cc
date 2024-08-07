@@ -250,7 +250,8 @@ main {
 
 a {
   text-decoration: none;
-  color: ${globalColor.blue.dirtyBlue};
+  color: ${globalColor.blue.ultramarine};
+  transition: ${globalTransition.default};
 
   :hover {
     color: ${globalColor.red.darkRed};

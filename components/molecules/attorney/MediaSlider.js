@@ -27,6 +27,7 @@ const MediaSlider = ({ items }) => {
         breakpoints={breakpoints}
         grab-cursor="true"
         slides-per-view="3"
+        watch-slides-progress="true"
       >
         {items?.map((item, index) => (
           <swiper-slide key={`${item?.title}-${index + 1}`} class="slide">

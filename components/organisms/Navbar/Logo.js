@@ -13,6 +13,7 @@ const Logo = ({ whiteVariant }) => (
         alt={`${SITE_TITLE}, LLC`}
         width={170}
         height={147}
+        priority
         src={SHDiamond}
       />
       {whiteVariant ? (
@@ -21,6 +22,7 @@ const Logo = ({ whiteVariant }) => (
           alt={`${SITE_TITLE}, LLC`}
           width={320}
           height={50}
+          priority
           src={LogoLetters}
         />
       ) : (
@@ -29,6 +31,7 @@ const Logo = ({ whiteVariant }) => (
           alt={`${SITE_TITLE}, LLC`}
           width={320}
           height={50}
+          priority
           src={LogoLettersBlack}
         />
       )}

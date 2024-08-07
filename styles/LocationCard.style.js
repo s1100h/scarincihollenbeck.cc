@@ -51,7 +51,6 @@ export const MapBox = styled.div`
     a {
       font-size: 1rem;
       line-height: 24px;
-      color: ${globalColor.blue.blue400};
     }
   }
 
@@ -85,7 +84,7 @@ export const LocationHeader = styled.div`
       props.isActive ? 'rotate(-90deg)' : 'rotate(0deg)'};
   }
 
-  h5 {
+  h3 {
     color: ${(props) =>
       props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
     font-weight: 700;

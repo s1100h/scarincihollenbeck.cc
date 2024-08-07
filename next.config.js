@@ -58,13 +58,17 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'scarincihollenbeck.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
     ],
     minimumCacheTTL: 60,
     deviceSizes: [576, 768, 992, 1200, 1456],
   },
   experimental: {
     scrollRestoration: true,
-    nextScriptWorkers: true,
+    // nextScriptWorkers: true,
   },
   logging: {
     fetches: {

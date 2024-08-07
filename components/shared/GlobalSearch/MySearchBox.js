@@ -41,6 +41,8 @@ export const MySearchBox = (props) => {
           placeholder={props.placeholder}
           ref={searchInputRef}
           autoComplete="off"
+          aria-label={props.label || 'Site search'}
+          title={props.label || 'Site search'}
         />
       </Form.Group>
     </SearchForm>

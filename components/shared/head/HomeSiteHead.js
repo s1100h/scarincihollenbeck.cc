@@ -42,6 +42,7 @@ const HomeSiteHead = ({ title, metaDescription, canonicalUrl }) => {
         name="google-site-verification"
         content="Vb4fICdLxnhQzqJEDL11a-Tk0X5f4XhW35pA0qoeh1E"
       />
+      <link rel="preload" as="image" href="/images/home-page-banner.jfif" />
     </Head>
   );
 };

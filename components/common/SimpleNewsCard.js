@@ -42,7 +42,9 @@ const SimpleNewsCard = ({
     <NewsCardBlock $isWide={isWide} $isFull={isFull}>
       <Component {...conditionLayoutProps} className="news-card-wrapper">
         {!empty(video) && (
-          <div className="news-card-video">{videoRender(videoData, label)}</div>
+          <div className="news-card-video">
+            {videoRender(videoData, null, { height: 208 })}
+          </div>
         )}
 
         <div className="news-card-content">

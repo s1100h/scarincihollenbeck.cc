@@ -53,7 +53,7 @@ export default function LocationCard({ officesData, setTitle }) {
             onClick={() => handleChangeTitle(office.title, idx)}
           >
             <LocationHeader isActive={cardIndex === idx}>
-              <h5>{office.title}</h5>
+              <h3>{office.title}</h3>
               <BsChevronRight
                 color={
                   cardIndex === idx ? colorActiveIcons : colorInactiveIcons
