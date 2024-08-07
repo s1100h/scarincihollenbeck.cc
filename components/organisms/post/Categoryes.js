@@ -3,7 +3,7 @@ import { CategoriesNavContainer } from '../../../styles/Post/Categories.style';
 
 const CategoriesPost = ({ categories }) => (
   <CategoriesNavContainer>
-    <h5>Categories:</h5>
+    <h3>Categories:</h3>
     <ul>
       {categories.map((category, index) => (
         <li key={category.databaseId} className="list-inline-item">

@@ -45,7 +45,7 @@ export const BreadcrumbsListContainer = styled.ul`
 
 export const ButtonBreadcrumb = styled(Link)`
   text-decoration: none;
-  color: ${globalColor.blue.dirtyBlue};
+  color: ${globalColor.blue.ultramarine};
   text-transform: capitalize;
   padding: 0;
 
