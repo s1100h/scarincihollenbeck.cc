@@ -39,11 +39,10 @@ export default function LocationCard({ officesData, setTitle }) {
           }
           map={
             !cardIndex
-              ? officesData[0].mapLink
-              : officesData[`${cardIndex}`].mapLink
+              ? officesData[0]?.mapAddress
+              : officesData[`${cardIndex}`]?.mapAddress
           }
         />
-        <DirectionsFilesLink currentOffice={officesData[`${cardIndex}`]} />
       </MapBox>
       <LocationOffices>
         {officesData.map((office, idx) => (
@@ -99,6 +98,8 @@ export default function LocationCard({ officesData, setTitle }) {
           </ContactInfoCard>
         ))}
       </LocationOffices>
+
+      <DirectionsFilesLink currentOffice={officesData[`${cardIndex}`]} />
     </LocationCardMain>
   );
 }

@@ -14,6 +14,7 @@ export const LocationsHomeSection = styled.section`
   padding-bottom: 60px;
   background-color: ${globalColor.gray.gray10};
 `;
+
 export const LocationTitle = styled.h2`
   font-family: var(--font-poppins);
   font-weight: 600;
@@ -29,39 +30,53 @@ export const LocationTitle = styled.h2`
 export const LocationCardMain = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
   gap: 20px;
 
-  ${media_breakpoint_down('xl')} {
-    grid-template-columns: 2fr 1.5fr;
-  }
-
-  ${media_breakpoint_down('md')} {
-    grid-template-columns: auto;
-  }
-`;
-
-export const MapBox = styled.div`
-  height: 84%;
-  > div,
-  iframe {
-    height: 100%;
-  }
-
   .link-map-box {
+    row-gap: 12px;
+
     a {
       font-size: 1rem;
       line-height: 24px;
     }
   }
 
-  ${media_breakpoint_down('md')} {
-    .link-map-box {
-      margin-bottom: 0;
-    }
+  ${media_breakpoint_down('xl')} {
+    grid-template-columns: 2fr 1.5fr;
+  }
 
-    > div,
+  ${media_breakpoint_down('md')} {
+    grid-template-columns: 1fr;
+
+    .link-map-box {
+      order: 2;
+    }
+  }
+`;
+
+export const MapBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  
+  ${media_breakpoint_down('md')} {
+    order: 1;
+    height: 365px;
+  }
+`;
+
+export const MapWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  > div {
+    flex: 1;
+
     iframe {
-      height: revert-layer;
+      height: 100%;
+      width: 100%;
     }
   }
 `;
@@ -70,7 +85,10 @@ export const LocationOffices = styled.div`
   display: flex;
   flex-flow: column;
   gap: 12px;
-  padding-bottom: 44px;
+
+  ${media_breakpoint_down('md')} {
+    order: 3;
+  }
 `;
 
 export const LocationHeader = styled.div`

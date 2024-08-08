@@ -79,7 +79,11 @@ export const OfficeBtnGradientWrapper = styled(GradientWrapper)`
   }
 `;
 
-export const LocationsOfficesContainer = styled.section``;
+export const LocationsOfficesContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+`;
 
 export const CardListBox = styled.div`
   display: flex;

@@ -21,7 +21,7 @@ const OfficeList = ({ officesArr, formHeight = 600 }) => {
   return (
     <LocationsOfficesContainer>
       <Map
-        map={chosenOffice.mapLink}
+        map={chosenOffice?.mapAddress}
         height={formHeight - locationHeight - 60}
       />
       <CardListBox ref={locationWrapper}>

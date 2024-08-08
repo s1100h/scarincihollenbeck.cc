@@ -110,7 +110,7 @@ export const buildLocationSchema = (location) => ({
     telephone: location.telephone,
   },
   openingHours: ['Mo-Fr 08:00-18:00'],
-  hasmap: location.mapLink,
+  hasmap: location.mapAddress,
   geo: {
     '@type': 'GeoCoordinates',
     latitude: location.latitude,
