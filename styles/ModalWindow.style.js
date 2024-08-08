@@ -75,7 +75,7 @@ export const ModalCloser = styled.button`
   }
 
   &:hover {
-    rotate: 90deg;
+    transform: rotate(90deg);
   }
 `;
 

@@ -886,8 +886,8 @@ export const SOCIAL_LINKS = [
     url: 'https://www.facebook.com/ScarinciHollenbeck',
   },
   {
-    id: 'sidebar-twitter',
-    title: 'Twitter',
+    id: 'sidebar-x',
+    title: 'X',
     icon: <FaSquareXTwitter />,
     url: 'https://twitter.com/S_H_Law',
   },
