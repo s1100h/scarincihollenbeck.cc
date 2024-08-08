@@ -76,17 +76,19 @@ const PracticeCard = ({
           )}
         </PracticeCardFooterItem>
 
-        <PracticesTabsModalWrapper>
-          <ModalWindow isOpen={showModal} setOpenModal={setShowModal}>
-            <PracticeCardModal
-              icon={icon}
-              title={title}
-              list={list}
-              link={link}
-              handleModalOpener={handleContactModalOpener}
-            />
-          </ModalWindow>
-        </PracticesTabsModalWrapper>
+        {!empty(list) && (
+          <PracticesTabsModalWrapper>
+            <ModalWindow isOpen={showModal} setOpenModal={setShowModal}>
+              <PracticeCardModal
+                icon={icon}
+                title={title}
+                list={list}
+                link={link}
+                handleModalOpener={handleContactModalOpener}
+              />
+            </ModalWindow>
+          </PracticesTabsModalWrapper>
+        )}
       </PracticeCardFooter>
     </PracticeCardWrapper>
   );

@@ -29,7 +29,7 @@ const PracticeCardModal = ({
       <PracticeCardHeader>
         <PracticeCardIcon className="icon">{getIcon(icon)}</PracticeCardIcon>
 
-        <PracticeCardTitle>{title}</PracticeCardTitle>
+        <PracticeCardTitle as="p">{title}</PracticeCardTitle>
       </PracticeCardHeader>
 
       {!empty(list) && (

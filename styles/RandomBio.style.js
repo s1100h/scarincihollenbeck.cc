@@ -81,7 +81,7 @@ export const RandomBioTitle = styled.h2`
   }
 `;
 
-export const RandomBioSubtitle = styled.h3`
+export const RandomBioSubtitle = styled.p`
   margin: 0 0 16px 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(24)};

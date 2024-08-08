@@ -82,7 +82,7 @@ const PracticesTabs = ({ groupsPractices }) => {
         >
           <PracticeCardContent className="contact-form-container">
             <PracticeCardHeader>
-              <PracticeCardTitle>Let`s get in touch!</PracticeCardTitle>
+              <PracticeCardTitle as="p">Let`s get in touch!</PracticeCardTitle>
             </PracticeCardHeader>
 
             <ContactForm blockName="tabs-contact-form" />

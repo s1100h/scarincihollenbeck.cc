@@ -63,6 +63,7 @@ export const PracticeCardIcon = styled.span`
 `;
 
 export const PracticeCardTitle = styled.h3`
+  margin: 0;
   color: ${globalColor.white};
   font-size: 1rem;
   line-height: 1.5;
