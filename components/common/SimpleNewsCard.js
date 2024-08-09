@@ -49,9 +49,9 @@ const SimpleNewsCard = ({
 
         <div className="news-card-content">
           <div className="news-card-info">
-            <h6 className="news-card-title" title={title}>
+            <h4 className="news-card-title" title={title}>
               {title}
-            </h6>
+            </h4>
             {!empty(textPost) && (
               <DescriptionComponent
                 className="news-card-text"

@@ -60,8 +60,8 @@ const HomePage = ({
       <IndustriesSection {...industryWeWorkWith} />
       <RandomBioSection attorneys={filteredAttorneysByDesignation} />
       <WhatWeDoSection {...whatWeDo} />
-      <LatestPostsSection tabsData={latestArticlesTabsData} />
       <WhyChooseUs content={whyChooseUs} />
+      <LatestPostsSection tabsData={latestArticlesTabsData} />
       <Awards awards={awards} />
       <AllOfficeLocations offices={offices} />
     </>

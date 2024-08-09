@@ -101,15 +101,15 @@ export const LocationHeader = styled.div`
     transform: ${(props) =>
       props.isActive ? 'rotate(-90deg)' : 'rotate(0deg)'};
   }
+`;
 
-  h3 {
-    color: ${(props) =>
-      props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1;
-    margin-bottom: 0;
-  }
+export const LocationHeaderTitle = styled.p`
+  margin-bottom: 0;
+  color: ${(props) =>
+    props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
 `;
 
 export const ContactInfoCard = styled.article`

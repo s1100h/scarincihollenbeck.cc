@@ -129,7 +129,7 @@ const ProfileHeader = ({
                 setOpenModal={setIsContactModal}
               >
                 <FormBox>
-                  <h4>Let`s get in touch!</h4>
+                  <p className="contact-form-title">Let`s get in touch!</p>
                   <ContactForm blockName="profile-contact-form" />
                 </FormBox>
               </ModalWindow>

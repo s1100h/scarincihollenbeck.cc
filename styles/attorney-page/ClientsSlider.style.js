@@ -13,7 +13,7 @@ export const ClientsSliderWrapper = styled.div`
   row-gap: 12px;
 `;
 
-export const ClientsSliderTitle = styled.h2`
+export const ClientsSliderTitle = styled.h3`
   margin: 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(20)};

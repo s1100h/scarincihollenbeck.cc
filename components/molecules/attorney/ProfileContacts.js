@@ -12,7 +12,7 @@ const ProfileContacts = ({
 
   return (
     <AddressBox>
-      <h3 className="contacts-title">Contacts</h3>
+      <p className="contacts-title">Contacts</p>
 
       <ul className="contacts-list">
         <li className="contacts-item">

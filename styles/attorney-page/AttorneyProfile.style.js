@@ -507,7 +507,7 @@ export const ProfileServicesWrapper = styled.div`
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
 `;
 
-export const ProfileServicesTitle = styled.h2`
+export const ProfileServicesTitle = styled.p`
   margin: 0;
   color: ${globalColor.blue.blue500};
   font-family: var(--font-lato);
@@ -546,7 +546,7 @@ export const ProfileServicesChair = styled.div`
   }
 `;
 
-export const ProfileServicesChairTitle = styled.h3`
+export const ProfileServicesChairTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
   font-family: var(--font-lato);
@@ -687,7 +687,7 @@ const profileBioListTitleStyles = `
   font-weight: 400;
 `;
 
-export const ProfileBioListTitle = styled.h2`
+export const ProfileBioListTitle = styled.h3`
   ${profileBioListTitleStyles};
 `;
 
@@ -797,7 +797,6 @@ export const NewsCardBlock = styled.article`
   }
 
   .news-card-title {
-    flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -816,6 +815,7 @@ export const NewsCardBlock = styled.article`
   }
 
   .news-card-text {
+    margin-top: auto;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

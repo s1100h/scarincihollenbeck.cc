@@ -5,6 +5,7 @@ import {
   ContactInfoContent,
   LocationCardMain,
   LocationHeader,
+  LocationHeaderTitle,
   LocationOffices,
   MapBox,
 } from 'styles/LocationCard.style';
@@ -52,7 +53,9 @@ export default function LocationCard({ officesData, setTitle }) {
             onClick={() => handleChangeTitle(office.title, idx)}
           >
             <LocationHeader isActive={cardIndex === idx}>
-              <h3>{office.title}</h3>
+              <LocationHeaderTitle isActive={cardIndex === idx}>
+                {office.title}
+              </LocationHeaderTitle>
               <BsChevronRight
                 color={
                   cardIndex === idx ? colorActiveIcons : colorInactiveIcons
