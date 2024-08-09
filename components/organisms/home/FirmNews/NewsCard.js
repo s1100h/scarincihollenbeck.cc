@@ -57,7 +57,9 @@ const NewsCard = ({
     isVertical={isVertical?.length > 0 && isVertical}
     className={classNameProp}
   >
-    <NewsLink aria-label={postTitle} href={postSlug} passHref />
+    <NewsLink href={postSlug} passHref title={postTitle}>
+      <span className="sr-only">{`Link to post with title - "${postTitle}"`}</span>
+    </NewsLink>
     <div className="link-wrapper">
       <Image
         src={

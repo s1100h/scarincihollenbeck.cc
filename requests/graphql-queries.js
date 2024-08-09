@@ -474,7 +474,7 @@ query getThreePostsQuery {
       }
       author {
         node {
-          username
+          name
         }
       }
     }
