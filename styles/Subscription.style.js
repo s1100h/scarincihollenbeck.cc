@@ -39,7 +39,7 @@ export const GradientSubscriptionBox = styled.article`
   justify-content: center;
   width: 100%;
 
-  h3 {
+  .subscription-title {
     font-weight: bold;
     font-size: ${rem(28)};
     text-align: start;
