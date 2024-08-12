@@ -39,16 +39,15 @@ export const GradientSubscriptionBox = styled.article`
   justify-content: center;
   width: 100%;
 
-  h5 {
+  h3 {
     font-weight: bold;
     font-size: ${rem(28)};
     text-align: start;
   }
 
-    ${media_breakpoint_down('lg')} {
-      span {
-        display: flex;
-      }
+  ${media_breakpoint_down('lg')} {
+    span {
+      display: flex;
     }
   }
 `;

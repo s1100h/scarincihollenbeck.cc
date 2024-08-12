@@ -184,7 +184,7 @@ const getPostContentData = async (slug) => {
       post.featuredImage = post.featuredImage?.node.sourceUrl
         || '/images/no-image-found-diamond-750x350.png';
       post.uri = cutDomain(post.uri);
-      post.author = post.author.node.username;
+      post.author = post.author.node.name;
       return post;
     });
   }

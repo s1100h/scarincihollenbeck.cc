@@ -24,7 +24,7 @@ export const renderLinkToLocationPractice = (locationsOrPractice) => {
     }
   }
   return (
-    <div className="d-flex flex-column gap-1">
+    <li className="d-flex flex-column gap-1">
       {locationsOrPractice.chair?.length > 0 && (
         <div className="d-flx">
           Chair:
@@ -47,7 +47,7 @@ export const renderLinkToLocationPractice = (locationsOrPractice) => {
           ))}
         </div>
       )}
-    </div>
+    </li>
   );
 };
 
@@ -68,7 +68,9 @@ export default function AttorneyCard({
 }) {
   return (
     <AttorneyCardBox className="attorney-card-box">
-      <Link href={link} className="attorney-card-link" aria-label={name} />
+      <Link href={link} className="attorney-card-link" title={name} passHref>
+        <span className="sr-only">{`Link to profile of ${name}`}</span>
+      </Link>
       <LinkBox>
         <Image
           placeholder="blur"
