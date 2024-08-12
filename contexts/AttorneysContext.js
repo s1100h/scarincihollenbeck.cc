@@ -7,10 +7,10 @@ export const AttorneysContext = createContext(null);
 export const AttorneysProvider = ({ children }) => {
   const [userInput, setUserInput] = useState('');
   const [select, setSelect] = useState([]);
-  const [attorneysContext, setAttorneysContext] = useState([]);
-  const [authors, setAuthors] = useState([]);
   const [containerRefer, setContainerRefer] = useState(null);
 
+  const [attorneysContext, setAttorneysContext] = useState([]);
+  const [authors, setAuthors] = useState([]);
   // Scroll to ref container when selected filters
   function scrollToRef() {
     if (containerRefer) {

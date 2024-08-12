@@ -23,14 +23,15 @@ const NavbarLocations = ({
     }}
     exit={{ y: -100, overflow: 'hidden' }}
   >
-    {locations?.map((location) => (
-      <LocationCard
-        key={location.databaseId}
-        {...location}
-        setIsSidebarOpen={setIsSidebarOpen}
-        setShowNavContent={setShowNavContent}
-      />
-    ))}
+    {locations.length > 0
+          && locations?.map((location) => (
+            <LocationCard
+              key={location.databaseId}
+              {...location}
+              setIsSidebarOpen={setIsSidebarOpen}
+              setShowNavContent={setShowNavContent}
+            />
+          ))}
   </LocationCards>
 </NavbarContentWrapper>
 );

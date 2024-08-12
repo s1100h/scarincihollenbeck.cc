@@ -5,8 +5,14 @@ export const appApi = createApi({
   reducerPath: 'appApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
   endpoints: (builder) => ({
-    getAppApi: builder.query({
-      query: (slug) => `${slug}`,
+    getLocations: builder.query({
+      query: () => 'revalidate-locations',
+    }),
+    getPractices: builder.query({
+      query: () => 'revalidate-practices',
+    }),
+    getAttorneys: builder.query({
+      query: () => 'revalidate-attorneys',
     }),
     appApi: builder.mutation({
       query: (request) => ({
@@ -20,4 +26,8 @@ export const appApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAppApiQuery, useAppApiMutation } = appApi;
+export const {
+  useGetLocationsQuery,
+  useGetPracticesQuery,
+  useGetAttorneysQuery,
+} = appApi;

@@ -7,20 +7,22 @@ import {
   SelectionWrapper,
 } from 'styles/Filters.style';
 import { createMarkup } from 'utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearQuery } from '../../../redux/slices/attorneys.slice';
 
-const Selection = ({
-  select, userInput, clearQuery, clearAll,
-}) => {
-  const nonUserInputResults = select.filter((a) => a.key !== 'query');
+const Selection = ({ clearAll }) => {
+  const { userInput, select } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const nonUserInputResults = select?.filter((a) => a.key !== 'query');
   return (
     <SelectionWrapper>
       <SelectionList>
-        {userInput.length > 0 && (
+        {userInput?.length > 0 && (
           <SelectionItem>
             <SelectionButton
               variant="Primary"
               id={userInput}
-              onClick={() => clearQuery('query')}
+              onClick={() => dispatch(clearQuery('query'))}
               data-toggle="tooltip"
               data-placement="top"
               title="Click on link to remove filter"
@@ -30,24 +32,24 @@ const Selection = ({
             </SelectionButton>
           </SelectionItem>
         )}
-        {nonUserInputResults.map((selection) => (
+        {nonUserInputResults?.map((selection) => (
           <SelectionItem key={selection.key}>
             <SelectionButton
               variant="Primary"
               id={selection.selected}
-              onClick={() => clearQuery(selection.key)}
+              onClick={() => dispatch(clearQuery(selection.key))}
               data-toggle="tooltip"
               data-placement="top"
               data-html="true"
               title="Click on link to remove filter"
             >
-              {selection.selected}
+              {selection?.selected}
               <BsXLg />
             </SelectionButton>
           </SelectionItem>
         ))}
       </SelectionList>
-      {select.length > 0 && (
+      {select?.length > 0 && (
         <ClearButton variant="Primary" onClick={clearAll}>
           Clear All
         </ClearButton>

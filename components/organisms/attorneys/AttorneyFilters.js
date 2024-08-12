@@ -17,9 +17,12 @@ import { NavbarLink } from 'styles/Navigation.style';
 import { useRouter } from 'next/router';
 import { ResultsWrapper } from 'styles/Attornyes.style';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
+import { useDispatch, useSelector } from 'react-redux';
 import Selection from './Selection';
 import FilterResult from './FilterResult';
 import Results from './Results';
+import { handleChange } from '../../../redux/slices/attorneys.slice';
+import { useGetAttorneysQuery } from '../../../redux/services/project-api';
 
 const AttorneyFilters = ({
   practices,
@@ -33,23 +36,20 @@ const AttorneyFilters = ({
   const practicesSelectRef = useRef();
   const locationsSelectRef = useRef();
   const {
-    handleChange,
-    select,
-    onSelect,
-    userInput,
-    clearQuery,
-    clearAll,
-    onSelectLetter,
-    attorneysContext,
+    onSelect, clearQuery, clearAll, onSelectLetter, attorneysContext,
   } = useContext(AttorneysContext);
-  const { pathname } = useRouter();
+  const { data: attorneys } = useGetAttorneysQuery();
+  const { userInput, select } = useSelector((state) => state.attorneys);
+  const dispatch = useDispatch();
 
+  const { pathname } = useRouter();
+  const attorneysCondition = attorneys?.data || [];
   const { attorneysFiltered } = useAttorneysSearch(
     select,
     userInput,
-    attorneysContext,
+    attorneysCondition,
   );
-
+  const handleChangeDispatch = (e) => dispatch(handleChange(e));
   const handleChangePracticesSelect = (value) => {
     onSelect({ target: { name: 'practices' } }, value);
   };
@@ -103,7 +103,7 @@ const AttorneyFilters = ({
           <FiltersLeftColumn>
             <AuxiliarySearch
               currentRefinement={userInput}
-              refine={handleChange}
+              refine={handleChangeDispatch}
               placeholder="Search by Attorney name"
             />
 

@@ -2,15 +2,17 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
 import { useContext, useEffect, useRef } from 'react';
-import { AttorneysContext } from 'contexts/AttorneysContext';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
 import { SizesContext } from 'contexts/SizesContext';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
-import { PracticesContext } from 'contexts/PracticesContext';
-import { LocationContext } from 'contexts/LocationContext';
 import { ContainerDefault } from 'styles/Containers.style';
-import { useGetAppApiQuery } from '../../redux/services/project-api';
+import { useDispatch } from 'react-redux';
+import {
+  useGetLocationsQuery,
+  useGetPracticesQuery,
+} from '../../redux/services/project-api';
+import { setReference } from '../../redux/slices/attorneys.slice';
 
 const AttorneysPage = ({
   seo,
@@ -19,20 +21,15 @@ const AttorneysPage = ({
   attorneyArchives,
   seoAttorneys,
 }) => {
-  const { setReference } = useContext(AttorneysContext);
-
   const containerRef = useRef();
   const { headerSize } = useContext(SizesContext);
-  const { practices } = useContext(PracticesContext);
-  // const { locations } = useContext(LocationContext);
-  const {
-    data: locations,
-    error,
-    isLoading,
-  } = useGetAppApiQuery('revalidate-locations');
+  const dispatch = useDispatch();
+  const { data: locations } = useGetLocationsQuery();
+  const { data: practices } = useGetPracticesQuery();
+
   useEffect(() => {
     if (containerRef && containerRef.current) {
-      setReference(containerRef.current);
+      dispatch(setReference(containerRef.current));
     }
   }, [containerRef.current]);
 
@@ -50,8 +47,8 @@ const AttorneysPage = ({
       >
         <ContainerDefault>
           <AttorneyFilters
-            practices={practices}
-            locations={locations}
+            practices={practices?.data}
+            locations={locations?.data}
             attorneyArchives={attorneyArchives}
             seoAttorneys={seoAttorneys}
           />
