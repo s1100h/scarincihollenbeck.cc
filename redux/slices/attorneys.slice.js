@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
   userInput: '',
@@ -20,7 +20,9 @@ const attorneysSlice = createSlice({
   initialState,
   reducers: {
     clearQuery(state, action) {
-      const rQuery = state.select.filter((a) => a.key !== action.payload.key);
+      const rQuery = current(state).select.filter(
+        (a) => a.key !== action.payload,
+      );
       if (action.payload.key === 'query') {
         state.userInput = '';
       }
@@ -48,9 +50,42 @@ const attorneysSlice = createSlice({
     setReference(state, action) {
       state.containerRefer = action.payload.ref;
     },
+    onSelect(state, action) {
+      const results = {
+        selected: action.payload.input,
+        key: action.payload.target.name,
+      };
+      state.select = state.select
+        .filter((a) => a.key !== results.key)
+        .concat(results);
+      scrollToRef();
+    },
+    onSelectLetter(state, action) {
+      const results = {
+        selected: action.payload.toUpperCase(),
+        key: 'letterInLastName',
+      };
+      const concatResults = state.select
+        .filter((el) => el.key !== 'letterInLastName')
+        .concat(results);
+      state.select = concatResults;
+      scrollToRef();
+    },
+    clearAll(state) {
+      state.userInput = '';
+      state.select = [];
+      scrollToRef();
+    },
   },
   // extraReducers?: (builder) => void,
 });
 
-export const { clearQuery, handleChange, setReference } = attorneysSlice.actions;
+export const {
+  clearQuery,
+  handleChange,
+  setReference,
+  onSelect,
+  onSelectLetter,
+  clearAll,
+} = attorneysSlice.actions;
 export default attorneysSlice.reducer;

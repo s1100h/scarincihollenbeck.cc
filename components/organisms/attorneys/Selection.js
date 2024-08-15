@@ -7,12 +7,10 @@ import {
   SelectionWrapper,
 } from 'styles/Filters.style';
 import { createMarkup } from 'utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearQuery } from '../../../redux/slices/attorneys.slice';
+import { useSelector } from 'react-redux';
 
-const Selection = ({ clearAll }) => {
-  const { userInput, select } = useSelector((state) => state);
-  const dispatch = useDispatch();
+const Selection = ({ clearAll, clearQuery }) => {
+  const { userInput, select } = useSelector((state) => state.attorneys);
   const nonUserInputResults = select?.filter((a) => a.key !== 'query');
   return (
     <SelectionWrapper>
@@ -22,7 +20,7 @@ const Selection = ({ clearAll }) => {
             <SelectionButton
               variant="Primary"
               id={userInput}
-              onClick={() => dispatch(clearQuery('query'))}
+              onClick={() => clearQuery('query')}
               data-toggle="tooltip"
               data-placement="top"
               title="Click on link to remove filter"
@@ -37,7 +35,7 @@ const Selection = ({ clearAll }) => {
             <SelectionButton
               variant="Primary"
               id={selection.selected}
-              onClick={() => dispatch(clearQuery(selection.key))}
+              onClick={() => clearQuery(selection.key)}
               data-toggle="tooltip"
               data-placement="top"
               data-html="true"

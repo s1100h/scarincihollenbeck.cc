@@ -14,6 +14,9 @@ export const appApi = createApi({
     getAttorneys: builder.query({
       query: () => 'revalidate-attorneys',
     }),
+    getAuthors: builder.query({
+      query: () => 'revalidate-authors',
+    }),
     appApi: builder.mutation({
       query: (request) => ({
         url: `${request.route}`,
@@ -30,4 +33,5 @@ export const {
   useGetLocationsQuery,
   useGetPracticesQuery,
   useGetAttorneysQuery,
+  useGetAuthorsQuery,
 } = appApi;
