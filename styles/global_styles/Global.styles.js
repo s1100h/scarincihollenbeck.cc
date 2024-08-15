@@ -249,7 +249,7 @@ main {
 
 a {
   text-decoration: none;
-  color: ${globalColor.blue.dirtyBlue};
+  color: ${globalColor.blue.ultramarine};
 
   :hover {
     color: ${globalColor.red.darkRed};
@@ -395,12 +395,13 @@ button {
   background: linear-gradient(360deg, #901918 60%, #dd2624 100%), #333333;
 }
 
-  /** Hide captcha in print **/
-  @media print {
-    .grecaptcha-badge {
-      display: none !important;
-    }
+/** Hide captcha in print **/
+@media print {
+  .grecaptcha-badge {
+    display: none !important;
   }
+}
+
 .kw-border-success {
   margin-left: 0;
 }
@@ -508,6 +509,17 @@ footer .wrapper-section {
 
 .modal-title_my {
   font-weight: bold;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 @media (max-width: 992px) {

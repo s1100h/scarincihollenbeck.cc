@@ -40,29 +40,7 @@ const getLocationContent = async (slug) => {
   }
 };
 
-// Queries for pages/covid-19-crisis-management...
-const getCovid19BasedPages = async (slug, id) => {
-  try {
-    const [response, posts] = await Promise.all([
-      fetch(`${BASE_API_URL}/wp-json/single-page/page/${slug}`, { headers })
-        .then((data) => data.json())
-        .catch((err) => err),
-      fetch(
-        `${BASE_API_URL}/wp-json/wp/v2/posts?categories=${id}&per_page=100`,
-        { headers },
-      )
-        .then((data) => data.json())
-        .catch((err) => err),
-    ]);
-
-    return [response, posts];
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 module.exports = {
   getPageContent,
   getLocationContent,
-  getCovid19BasedPages,
 };

@@ -12,7 +12,7 @@ import { footerNavList } from '../../../utils/constants';
 import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 
 const NavigationAndSubscription = () => (
-  <NavWrapper>
+  <NavWrapper className="d-print-none">
     <ContainerDefault>
       <NavHolder>
         <FooterNavigation>
