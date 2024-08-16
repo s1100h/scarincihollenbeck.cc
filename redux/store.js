@@ -4,6 +4,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { wpGraphQl } from './services/wp-graphql';
 import { appApi } from './services/project-api';
 import attorneysReducer from './slices/attorneys.slice';
+import formsReducer from './slices/forms.slice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     [wpGraphQl.reducerPath]: wpGraphQl.reducer,
     [appApi.reducerPath]: appApi.reducer,
     attorneys: attorneysReducer,
+    forms: formsReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
