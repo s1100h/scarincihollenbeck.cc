@@ -63,7 +63,7 @@ export const FormSubscriptionContainer = styled.div`
     align-items: center;
     margin-bottom: 20px;
 
-    h4 {
+    > p {
       margin-bottom: 0;
       margin-left: 10px;
       font-size: ${rem(22)};

@@ -8,6 +8,7 @@ import {
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
+import Image from 'next/image';
 
 export const Front = styled.div`
   width: 100%;
@@ -99,30 +100,6 @@ export const ProfileHeaderLeft = styled.div`
   row-gap: 12px;
   position: relative;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -48px;
-    /* left: -35vw;
-    width: calc(100% + 35vw); */
-    left: -132px;
-    width: calc(100% + 132px);
-    height: calc(100% + 48px);
-    background: url('/images/profile-attorney-bg.webp') center/cover;
-    z-index: -1;
-    opacity: 0.1;
-
-    ${media_breakpoint_down('lg')} {
-      width: calc(100% + 64px);
-      left: -32px;
-    }
-
-    ${media_breakpoint_down('md')} {
-      width: calc(100% + 24px);
-      left: -12px;
-    }
-  }
-
   ${StandardBlueButton} {
     border-radius: ${globalBorderRadius.small};
   }
@@ -144,6 +121,29 @@ export const ProfileHeaderLeft = styled.div`
 `;
 
 //Image and Video styles
+export const ProfileBgImage = styled(Image)`
+  position: absolute;
+  top: -48px;
+  /* left: -35vw;
+  width: calc(100% + 35vw); */
+  left: -132px;
+  width: calc(100% + 132px);
+  height: calc(100% + 48px);
+  z-index: -1;
+  opacity: 0.1;
+  object-fit: cover;
+
+  ${media_breakpoint_down('lg')} {
+    width: calc(100% + 64px);
+    left: -32px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    width: calc(100% + 24px);
+    left: -12px;
+  }
+`;
+
 export const CardImageVideoContainer = styled.div`
   width: 100%;
   position: relative;

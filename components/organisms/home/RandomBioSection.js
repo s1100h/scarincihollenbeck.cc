@@ -165,6 +165,7 @@ const RandomBioSection = ({ attorneys }) => {
         fill
         alt="Background for we can help section"
         loading="lazy"
+        quality={70}
       />
       <ContainerDefault>
         <RandomBioHolder>

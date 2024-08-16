@@ -1,10 +1,8 @@
-import {
-  useContext, useEffect, useMemo, useState, useId,
-} from 'react';
-import dynamic from 'next/dynamic';
+import { useContext, useEffect } from 'react';
+// import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
-import { StandardBlueButton, StandardRedButton } from 'styles/Buttons.style';
+import { StandardBlueButton } from 'styles/Buttons.style';
 import {
   GET_IN_TOUCH_FORM_API,
   inputsGetInTouchAttributes,
@@ -16,7 +14,7 @@ import empty from 'is-empty';
 import RenderInputs from './RenderInputs';
 import { FormsContext } from '../../../contexts/FormsContext';
 
-const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
+// const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 export default function ContactForm({
   isPositionRelativeProp,
@@ -45,7 +43,7 @@ export default function ContactForm({
 
   return (
     <FormContainer isPositionRelative={isPositionRelativeProp && 'true'}>
-      <KwesScripts />
+      {/* <KwesScripts /> */}
       <form
         action={GET_IN_TOUCH_FORM_API}
         className="kwes-form d-print-none w-100"

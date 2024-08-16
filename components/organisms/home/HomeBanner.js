@@ -29,7 +29,7 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
       fill
       priority
       loading="eager"
-      quality={100}
+      quality={70}
     />
     <ContainerDefault>
       <BannerSlogans>

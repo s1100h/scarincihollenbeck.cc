@@ -12,6 +12,7 @@ const Map = ({
       mode="place"
       zoom="14"
       q={map || 'Scarinci+Hollenbeck+Clove+Road'}
+      title={title}
     />
   </MapWrapper>
 );

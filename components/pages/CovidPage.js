@@ -33,7 +33,7 @@ const CovidPage = ({
     const { article, banner, listLinks } = bodyContentArgs;
     return (
       <>
-        <Image src={banner.link} width={900} height={450} layout="intrinsic" />
+        <Image src={banner.link} width={900} height={450} />
         <ContentContainer>
           <JSXWithDynamicLinks HTML={article} />
           <JSXWithDynamicLinks HTML={listLinks} />

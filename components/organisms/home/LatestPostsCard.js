@@ -25,6 +25,7 @@ const LatestPostsCard = ({ article, isBig }) => (
           alt={article?.title}
           width={900}
           height={500}
+          sizes="100vw"
         />
       </LatestsPostsCardImage>
     )}

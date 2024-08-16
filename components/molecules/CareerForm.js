@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
@@ -16,7 +16,7 @@ import { CareerFormContainer } from '../../styles/Careers.style';
 import RenderInputs from '../shared/ContactForm/RenderInputs';
 import { TwoColumnsForm } from '../../styles/attorney-page/GetInTouchForm.styles';
 
-const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
+// const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const CareerForm = () => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const CareerForm = () => {
 
   return (
     <CareerFormContainer>
-      <KwesScripts />
+      {/* <KwesScripts /> */}
       <FormContainer isPositionRelative>
         <TwoColumnsForm
           action={GET_IN_TOUCH_FORM_API}

@@ -1,3 +1,4 @@
+import KwesScripts from 'components/shared/KwesScripts';
 import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
@@ -36,6 +37,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <KwesScripts />
         </body>
       </Html>
     );
