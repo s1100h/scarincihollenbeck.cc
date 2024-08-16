@@ -52,7 +52,7 @@ const SHSite = ({ Component, pageProps }) => {
           <ToastContainer />
           <Header />
           {/* <!-- Google tag (gtag.js) --> */}
-          <GoogleTagManager gtmId="GTM-PBD4BN" />
+          <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
           <main>
             <Component {...pageProps} />
           </main>
