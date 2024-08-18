@@ -178,6 +178,7 @@ const SubscriptionModal = ({ children, customClass }) => {
               </FormContainer>
             </>
           )}
+          <div className="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY} />
         </FormSubscriptionContainer>
       </ModalWindow>
     </>
