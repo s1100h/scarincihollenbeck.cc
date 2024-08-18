@@ -107,7 +107,7 @@ const SubscriptionModal = ({ children, customClass }) => {
                 <form
                   className="kwes-form"
                   action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
-                  has-recaptcha-v3="true"
+                  has-recaptcha-v3
                   recaptcha-site-key={RECAPTCHA_SITE_KEY}
                   success-message={THANKS_MESSAGE.title}
                 >
