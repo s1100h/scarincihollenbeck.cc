@@ -1,6 +1,12 @@
+import Image from 'next/image';
 import React from 'react';
-import { CircledProgressBarWrapper } from 'styles/CircledProgressBar.style';
+import {
+  CircledProgressBarIcon,
+  CircledProgressBarWrapper,
+} from 'styles/CircledProgressBar.style';
 import { globalColor } from 'styles/global_styles/Global.styles';
+import PauseIcon from '../../../public/icons/pause-icon.svg';
+import PlayIcon from '../../../public/icons/play-icon.svg';
 
 const CircledProgressBar = ({
   radius = 18,
@@ -40,6 +46,17 @@ const CircledProgressBar = ({
         />
       </svg>
       <span className="time">{timeLeft}</span>
+      <CircledProgressBarIcon
+        $isPaused={isTimerStopped}
+        className="circle-timer-icon"
+      >
+        <Image
+          src={isTimerStopped ? PlayIcon : PauseIcon}
+          width={12}
+          height={12}
+          alt={`${isTimerStopped} ? "Play" : "Pause"`}
+        />
+      </CircledProgressBarIcon>
     </CircledProgressBarWrapper>
   );
 };

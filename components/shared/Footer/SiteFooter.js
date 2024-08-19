@@ -18,6 +18,7 @@ import { cannabisLawColors } from '../../../styles/global_styles/Global.styles';
 import { getSlugFromUrl } from '../../../utils/helpers';
 import NavigationAndSubscription from './NavigationAndSubscription';
 import { FooterContent } from '../../../styles/Footer.style';
+import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
 
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
@@ -59,7 +60,7 @@ export default function Footer() {
 
           <Advertising>
             <Image
-              src="/images/sh-mini-diamond-PNG.svg"
+              src={SHDiamond}
               alt="sh diamond logo favicon"
               width={110}
               height={100}

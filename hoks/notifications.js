@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { firebaseCloudMessaging } from '../utils/webPush';
 import 'react-toastify/dist/ReactToastify.css';
 import NotificationMessage from '../components/atoms/NotificationMessage';
+import SHDiamond from '../public/images/sh-mini-diamond-PNG.svg';
 
 function getMessage(handleClickPushNotification) {
   const messaging = firebase.messaging();
@@ -23,10 +24,7 @@ function getMessage(handleClickPushNotification) {
             message?.notification?.image
             || message?.data?.image
             || '/images/lettarsLogoblack.png',
-          logo:
-            message?.notification?.icon
-            || message?.data?.icon
-            || '/images/sh-mini-diamond-PNG.svg',
+          logo: message?.notification?.icon || message?.data?.icon || SHDiamond,
           goTo: handleClickPushNotification,
         }}
       />,

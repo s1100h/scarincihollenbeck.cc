@@ -13,6 +13,7 @@ import { BsFacebook, BsLinkedin } from 'react-icons/bs';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
+import SHDiamond from '../public/images/sh-mini-diamond-PNG.svg';
 
 export const LETTERS_LIST = [
   'a',
@@ -117,7 +118,7 @@ export const ScarinciHollenbeckAuthor = [
     databaseId: 10000000000001,
     attorneyMainInformation: {
       profileImage: {
-        sourceUrl: '/images/sh-mini-diamond-PNG.svg',
+        sourceUrl: SHDiamond,
       },
       email: SITE_EMAIL,
       phoneNumber: SITE_PHONE,
@@ -140,7 +141,7 @@ export const ScarinciHollenbeckKeyContact = {
   link: '/attorneys',
   display_name: 'Scarinci Hollenbeck, LLC',
   keyContactsByPractice: null,
-  profileImage: '/images/sh-mini-diamond-PNG.svg',
+  profileImage: SHDiamond,
   designation: 'The Firm',
   phoneNumber: SITE_PHONE,
   email: SITE_EMAIL,
@@ -761,7 +762,7 @@ export const locationInfoBlockArticles = [
       Scarinci Hollenbeck, LLC is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
     </p>
     `,
-    image: '/images/sh-mini-diamond-PNG.svg',
+    image: SHDiamond,
     reactComponent: null,
   },
   {

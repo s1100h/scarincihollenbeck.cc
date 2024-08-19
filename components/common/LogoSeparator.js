@@ -6,7 +6,13 @@ import SHDiamond from '../../public/images/sh-mini-diamond-PNG.svg';
 
 const LogoSeparator = () => (
   <LogoSeparatorWrapper>
-    <Image alt={`${SITE_TITLE}, LLC`} width={40} height={40} src={SHDiamond} />
+    <Image
+      alt={`${SITE_TITLE}, LLC`}
+      width={40}
+      height={40}
+      src={SHDiamond}
+      loading="lazy"
+    />
   </LogoSeparatorWrapper>
 );
 

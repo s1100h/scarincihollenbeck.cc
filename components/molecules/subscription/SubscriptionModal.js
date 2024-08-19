@@ -22,6 +22,7 @@ import RenderInputs from '../../shared/ContactForm/RenderInputs';
 import { FormContainer } from '../../../styles/attorney-page/GetInTouchForm.styles';
 import Loader from '../../atoms/Loader';
 import decodeResponse from '../../../utils/decodeResponse';
+import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
 
 // const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 const isArraysIdentical = (chosenIds, originalIds) => {
@@ -91,10 +92,12 @@ const SubscriptionModal = ({ children, customClass }) => {
           <section>
             <Image
               className="modal-subscription-logo"
-              src="/images/sh-mini-diamond-PNG.svg"
+              src={SHDiamond}
               width={80}
               height={80}
               alt={`${SITE_TITLE} diamond`}
+              loading="lazy"
+              sizes="80px"
             />
             <p>
               Sign up to get the latest from the
