@@ -41,7 +41,7 @@ const AttorneyFilters = ({
   const { pathname } = useRouter();
   const practicesSelectRef = useRef();
   const locationsSelectRef = useRef();
-  const { data: attorneysData, isLoading: isAttorneysLoading } = useGetAttorneysQuery();
+  const { data: attorneysData } = useGetAttorneysQuery();
   const { userInput, select } = useSelector((state) => state.attorneys);
   const dispatch = useDispatch();
   const attorneys = attorneysData?.data;
@@ -51,7 +51,10 @@ const AttorneyFilters = ({
     userInput,
     attorneysCondition,
   );
-  const handleChangeDispatch = (e) => dispatch(handleChange(e));
+  const handleChangeDispatch = (e) => {
+    const { value } = e.currentTarget;
+    dispatch(handleChange({ value }));
+  };
   const handleChangePracticesSelect = (value) => {
     dispatch(onSelect({ target: { name: 'practices' }, input: value }));
   };
@@ -118,8 +121,6 @@ const AttorneyFilters = ({
               options={practices}
               placeHolder="Filter by Practice"
               onChange={(value) => handleChangePracticesSelect(value)}
-              isSearchable
-              isMulti
             />
 
             <CustomSelect
@@ -127,21 +128,18 @@ const AttorneyFilters = ({
               options={locations}
               placeHolder="Filter by Location"
               onChange={(value) => handleChangeLocationsSelect(value)}
-              isSearchable
-              isMulti
             />
           </FiltersLeftColumn>
 
           <FiltersRightColumn>
-            {!isAttorneysLoading && (
-              <LetterSelector
-                onSelectLetter={handleSelectLetter}
-                title="Filter by letters"
-                select={select}
-                userInput={userInput}
-                attorneys={attorneys}
-              />
-            )}
+            <LetterSelector
+              onSelectLetter={handleSelectLetter}
+              title="Filter by letters"
+              select={select}
+              userInput={userInput}
+              attorneys={attorneys}
+            />
+
             {pathname !== '/attorneys' && (
               <NavbarLink href="/attorneys" onClick={handleCloseModal}>
                 View all

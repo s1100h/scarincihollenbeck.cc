@@ -3,15 +3,16 @@ import { createSlice, current } from '@reduxjs/toolkit';
 const initialState = {
   userInput: '',
   select: [],
-  containerRefer: null,
+  containerReferID: null,
 };
 
-function scrollToRef(containerReferArg) {
+function scrollToRef(containerReferId) {
+  const containerReferArg = document.getElementById(containerReferId);
   if (containerReferArg) {
     setTimeout(() => {
       const offsetTop = containerReferArg.offsetTop - 120;
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-    });
+    }, 0);
   }
 }
 
@@ -23,20 +24,20 @@ const attorneysSlice = createSlice({
       const rQuery = current(state).select.filter(
         (a) => a.key !== action.payload,
       );
-      if (action.payload.key === 'query') {
+      if (action.payload === 'query') {
         state.userInput = '';
       }
       state.select = rQuery;
-      scrollToRef(state.containerRefer);
+      scrollToRef(state.containerReferID);
     },
     handleChange(state, action) {
-      if (
-        action.payload.currentTarget
-        && action.payload.currentTarget.value.length === 0
-      ) {
+      const { value } = action.payload;
+
+      if (value?.length === 0) {
         state.userInput = '';
+        state.select = current(state).select.filter((a) => a.key !== 'query');
       } else {
-        const input = action.payload.target.value.replace(
+        const input = value.replace(
           /\w\S*/g,
           (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
         );
@@ -44,11 +45,11 @@ const attorneysSlice = createSlice({
         const concatResults = state.select.concat(results);
         state.userInput = input;
         state.select = concatResults;
-        scrollToRef(state.containerRefer);
       }
+      scrollToRef(state.containerReferID);
     },
-    setReference(state, action) {
-      state.containerRefer = action.payload.ref;
+    setReferenceId(state, action) {
+      state.containerReferID = action.payload;
     },
     onSelect(state, action) {
       const results = {
@@ -58,7 +59,7 @@ const attorneysSlice = createSlice({
       state.select = state.select
         .filter((a) => a.key !== results.key)
         .concat(results);
-      scrollToRef();
+      scrollToRef(state.containerReferID);
     },
     onSelectLetter(state, action) {
       const results = {
@@ -69,12 +70,12 @@ const attorneysSlice = createSlice({
         .filter((el) => el.key !== 'letterInLastName')
         .concat(results);
       state.select = concatResults;
-      scrollToRef();
+      scrollToRef(state.containerReferID);
     },
     clearAll(state) {
       state.userInput = '';
       state.select = [];
-      scrollToRef();
+      scrollToRef(state.containerReferID);
     },
   },
   // extraReducers?: (builder) => void,
@@ -83,7 +84,7 @@ const attorneysSlice = createSlice({
 export const {
   clearQuery,
   handleChange,
-  setReference,
+  setReferenceId,
   onSelect,
   onSelectLetter,
   clearAll,

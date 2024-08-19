@@ -8,7 +8,7 @@ import {
 } from '../../../styles/LibraryArticles.style';
 import Loader from '../../atoms/Loader';
 
-export default function FirmAuthors({ authors }) {
+export default function FirmAuthors({ authors, authorsIsLoading }) {
   const parentRef = useRef();
   const rowVirtualizer = useVirtual({
     size: authors?.length,
@@ -22,7 +22,7 @@ export default function FirmAuthors({ authors }) {
       <h5 className="mb-0">
         <strong>Firm Authors</strong>
       </h5>
-      {authors?.length === 0 ? (
+      {authorsIsLoading ? (
         <Loader />
       ) : (
         <MainVirtualizeContainer ref={parentRef}>

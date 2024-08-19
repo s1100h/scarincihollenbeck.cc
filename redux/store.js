@@ -5,6 +5,7 @@ import { wpGraphQl } from './services/wp-graphql';
 import { appApi } from './services/project-api';
 import attorneysReducer from './slices/attorneys.slice';
 import formsReducer from './slices/forms.slice';
+import sizesReducer from './slices/sizes.slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     [appApi.reducerPath]: appApi.reducer,
     attorneys: attorneysReducer,
     forms: formsReducer,
+    sizes: sizesReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

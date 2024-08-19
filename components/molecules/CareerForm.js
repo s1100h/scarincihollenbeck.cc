@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { StandardRedButton } from '../../styles/Buttons.style';
-import { FormsContext } from '../../contexts/FormsContext';
 import {
   THANKS_MESSAGE,
   inputsCareerForm,
@@ -27,7 +26,7 @@ const CareerForm = () => {
   useEffect(() => {
     kwesforms.init();
   }, []);
-  const careerHandleCheckDisclaimer = (event) => dispatch(handleCheckDisclaimer(event));
+  const careerHandleCheckDisclaimer = () => dispatch(handleCheckDisclaimer(!isCheckedDisclaimer));
   const isDisabledSubmitButton = !isCheckedDisclaimer;
 
   return (

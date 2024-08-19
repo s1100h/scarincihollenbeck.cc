@@ -1,9 +1,10 @@
-import { useEffect, useContext } from 'react';
-import { SizesContext } from 'contexts/SizesContext';
+import { useEffect } from 'react';
 import throttle from 'lodash.throttle';
+import { useDispatch } from 'react-redux';
+import { setHeaderSize } from '../redux/slices/sizes.slice';
 
 const useHeaderSize = (headerRef, scrollDirection, viewportWidth) => {
-  const { setHeaderSize } = useContext(SizesContext);
+  const dispatch = useDispatch();
 
   const updateHeaderSize = () => {
     if (headerRef && headerRef.current) {
@@ -12,10 +13,12 @@ const useHeaderSize = (headerRef, scrollDirection, viewportWidth) => {
           ? headerRef.current.offsetHeight - 48
           : headerRef.current.offsetHeight - 38
         : headerRef.current.offsetHeight;
-      setHeaderSize({
-        width: headerRef.current.offsetWidth,
-        height: newHeight,
-      });
+      dispatch(
+        setHeaderSize({
+          width: headerRef.current.offsetWidth,
+          height: newHeight,
+        }),
+      );
     }
   };
 

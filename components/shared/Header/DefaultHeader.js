@@ -1,6 +1,5 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
-
 import Logo from 'components/organisms/Navbar/Logo';
 import { ButtonRed } from 'styles/Buttons.style';
 import useHeaderSize from 'hooks/useHeaderSize';
@@ -14,8 +13,8 @@ import {
 import { SidebarOpener } from 'styles/Sidebar.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
 import { useScrollDirection } from 'hooks/useScrollDirection';
-import { SizesContext } from 'contexts/SizesContext';
 import InitGlobalVariables from 'styles/global_styles/InitGlobalVariables';
+import { useSelector } from 'react-redux';
 import HeaderTopLine from './HeaderTopLine';
 import HeaderSearch from './HeaderSearch';
 import SidebarMenu from './SidebarMenu';
@@ -28,7 +27,7 @@ const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
   const { width: viewportWidth, isScreenLg } = useResize();
   const scrollDirection = useScrollDirection();
   useHeaderSize(headerRef, scrollDirection, viewportWidth);
-  const { headerSize } = useContext(SizesContext);
+  const { headerSize } = useSelector((state) => state.sizes);
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

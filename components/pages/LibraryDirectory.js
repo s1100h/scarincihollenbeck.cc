@@ -26,7 +26,7 @@ const LibraryDirectory = ({
   profileUrl,
   categoryId,
 }) => {
-  const { data: authorsData } = useGetAuthorsQuery();
+  const { data: authorsData, isLoading: authorsIsLoading } = useGetAuthorsQuery();
 
   const router = useRouter();
   const logoImage = '/images/no-image-found-diamond-750x350.png';
@@ -94,6 +94,7 @@ const LibraryDirectory = ({
               childrenOfCurrentCategory={childrenOfCurrentCategory}
               popularCategories={popularCategories}
               authors={authorsData?.data}
+              authorsIsLoading={authorsIsLoading}
             />
           </Col>
         </Row>

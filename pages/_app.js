@@ -24,7 +24,6 @@ import 'animate.css/animate.min.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import InitFonts from 'styles/global_styles/InitFonts';
 import 'react-toastify/dist/ReactToastify.css';
-import Contexts from 'contexts/Contexts';
 import { register } from 'swiper/element/bundle';
 import { store } from '../redux/store';
 import Notifications from '../hoks/notifications';
@@ -48,21 +47,19 @@ const SHSite = ({ Component, pageProps }) => {
   return (
     <SSRProvider>
       <Provider store={store}>
-        <Contexts>
-          <GlobalStyle />
-          <InitFonts />
-          <Notifications>
-            <MainSiteHead />
-            <ToastContainer />
-            <Header />
-            {/* <!-- Google tag (gtag.js) --> */}
-            <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <SiteFooter />
-          </Notifications>
-        </Contexts>
+        <GlobalStyle />
+        <InitFonts />
+        <Notifications>
+          <MainSiteHead />
+          <ToastContainer />
+          <Header />
+          {/* <!-- Google tag (gtag.js) --> */}
+          <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <SiteFooter />
+        </Notifications>
       </Provider>
     </SSRProvider>
   );

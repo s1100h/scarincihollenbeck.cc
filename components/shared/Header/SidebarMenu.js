@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   SidebarMenuBackdrop,
   SidebarMenuButton,
@@ -14,7 +14,6 @@ import {
   SidebarMenuSocials,
   SidebarMenuWrapper,
 } from 'styles/Sidebar.style';
-import { SizesContext } from 'contexts/SizesContext';
 import {
   MAKE_A_PAYMENT,
   SIDEBAR_POLITIC_LINKS,
@@ -25,13 +24,14 @@ import MailingListIcon from 'components/common/icons/MailingListIcon';
 import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
 import { ButtonRed } from 'styles/Buttons.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
+import { useSelector } from 'react-redux';
 import MenuItem from './SidebarMenuItem';
 
 const SidebarMenu = React.memo(
   ({
     practices, locations, menuData, isSidebarOpen, setIsSidebarOpen,
   }) => {
-    const { headerSize } = useContext(SizesContext);
+    const { headerSize } = useSelector((state) => state.sizes);
     const [openItemIndex, setOpenItemIndex] = useState(null);
 
     const handleItemClick = (index) => {

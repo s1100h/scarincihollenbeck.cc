@@ -1,18 +1,17 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
-import { SizesContext } from 'contexts/SizesContext';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 import { ContainerDefault } from 'styles/Containers.style';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   useGetLocationsQuery,
   useGetPracticesQuery,
 } from '../../redux/services/project-api';
-import { setReference } from '../../redux/slices/attorneys.slice';
+import { setReferenceId } from '../../redux/slices/attorneys.slice';
 
 const AttorneysPage = ({
   seo,
@@ -22,14 +21,14 @@ const AttorneysPage = ({
   seoAttorneys,
 }) => {
   const containerRef = useRef();
-  const { headerSize } = useContext(SizesContext);
   const dispatch = useDispatch();
   const { data: locations } = useGetLocationsQuery();
   const { data: practices } = useGetPracticesQuery();
+  const { headerSize } = useSelector((state) => state.sizes);
 
   useEffect(() => {
     if (containerRef && containerRef.current) {
-      dispatch(setReference(containerRef.current));
+      dispatch(setReferenceId(containerRef.current.id));
     }
   }, [containerRef.current]);
 
@@ -44,6 +43,7 @@ const AttorneysPage = ({
       <MainAttorneysContainer
         ref={containerRef}
         $headerHeight={`${headerSize?.height}px`}
+        id="attorneys-container"
       >
         <ContainerDefault>
           <AttorneyFilters

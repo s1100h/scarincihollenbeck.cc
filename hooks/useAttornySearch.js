@@ -63,12 +63,14 @@ export const useAttorneysSearch = (selectVariant, userInput, attorneysArr) => {
     return attorney;
   };
 
-  const attorneyFiltration = (attorneysArrArg) => attorneysArrArg
-    .filter(filterPractices)
-    .filter(filterDesignation)
-    .filter(filterLocation)
-    .filter(filterLikeSearch)
-    .filter(filterByLetterInLastName);
+  const attorneyFiltration = (attorneysArrArg) => (attorneysArrArg
+    ? attorneysArrArg
+      .filter(filterPractices)
+      .filter(filterDesignation)
+      .filter(filterLocation)
+      .filter(filterLikeSearch)
+      .filter(filterByLetterInLastName)
+    : []);
 
   const attorneysFiltered = useMemo(
     () => attorneyFiltration(attorneysArr),
