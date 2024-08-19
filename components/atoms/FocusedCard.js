@@ -5,7 +5,7 @@ import { JSXWithDynamicLinks } from './micro-templates/JSXWithDynamicLinks';
 const FocusedCard = ({ icon, title, text }) => (
   <FocusedCardBox>
     <>{getIcon(icon)}</>
-    <h5 className="focused-card-title">{title}</h5>
+    <h3 className="focused-card-title">{title}</h3>
     <JSXWithDynamicLinks HTML={text} />
   </FocusedCardBox>
 );

@@ -1,49 +1,30 @@
-import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
+import { YouTubeEmbed } from '@next/third-parties/google';
+import empty from 'is-empty';
 
-const videoChecker = (videoArg) => {
-  const substrings = ['youtube.com', 'youtu.be'];
-  const containsAny = typeof videoArg === 'string'
-    && substrings.some((substring) => videoArg.includes(substring));
-
-  if (containsAny) {
-    return 'iframe';
-  }
-  if (typeof videoArg === 'string' && videoArg.includes('iframe')) {
-    return 'children';
-  }
-  return 'video';
+const extractYouTubeID = (url) => {
+  const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+  const match = typeof url === 'string' && url.match(regex);
+  return match ? match[1] : null;
 };
 
-export const videoRender = (video, title, videoRef) => {
-  let newVideo = typeof video === 'string' ? video.replace('watch?v=', 'embed/') : video;
+export const videoRender = (video, videoRef, youtubeSizes) => {
+  const youtubeID = extractYouTubeID(video);
 
-  if (typeof video === 'string' && video.includes('youtu.be')) {
-    newVideo = video.split('/');
-    newVideo = newVideo[newVideo.length - 1];
-    newVideo = `https://www.youtube.com/embed/${newVideo}`;
+  if (!empty(youtubeID)) {
+    return (
+      <YouTubeEmbed
+        videoid={youtubeID}
+        height={youtubeSizes?.height}
+        width={youtubeSizes?.width}
+      />
+    );
   }
 
-  const componentsMap = {
-    iframe: (
-      <iframe
-        className="video-render"
-        src={newVideo}
-        title={title}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      />
-    ),
-    video: (
-      <video preload="metadata" controls ref={videoRef}>
-        <source type={newVideo?.type} src={newVideo?.src} />
-        <track kind="captions" srcLang="en" label="English" />
-        Your browser does not support the video tag.
-      </video>
-    ),
-    children: <JSXWithDynamicLinks HTML={newVideo} />,
-  };
-
-  return <>{componentsMap[videoChecker(newVideo)]}</>;
+  return (
+    <video preload="metadata" controls ref={videoRef}>
+      <source type={video?.type} src={video?.src} />
+      <track kind="captions" srcLang="en" label="English" />
+      Your browser does not support the video tag.
+    </video>
+  );
 };

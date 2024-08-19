@@ -5,7 +5,7 @@ import { BodyHeaderContainer } from '../../../styles/BodyHeader.style';
 export default function BodyHeader() {
   return (
     <BodyHeaderContainer>
-      <GlobalSearch filterByPostType />
+      <GlobalSearch filterByPostType label="Posts search" />
       <FeaturedLinks />
     </BodyHeaderContainer>
   );

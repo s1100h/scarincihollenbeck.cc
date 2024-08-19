@@ -22,6 +22,12 @@ const addressPointConst = `
 `;
 
 export const LocationPageContainer = styled.section`
+  .map-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+
   .form-column {
     margin-top: 60px;
     padding-bottom: 40px;
@@ -57,15 +63,15 @@ export const LinkMapBox = styled.div`
   display: flex;
   width: fit-content;
   flex-direction: column;
-  margin-bottom: 20px;
+  row-gap: 16px;
 `;
 
 export const DownloadTheMap = styled.a`
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 16px;
   color: ${globalColor.blue.ultramarine};
   width: fit-content;
-  margin-bottom: 15px;
   font-size: 1.2rem;
 `;
 
@@ -234,7 +240,7 @@ export const OfficeCardContainer = styled.div`
 `;
 
 export const OfficeLocationBoxTitle = styled.h4`
+  margin: 0;
   font-size: ${rem(32)};
   text-transform: uppercase;
-  margin-bottom: 24px;
 `;

@@ -187,7 +187,7 @@ export const FooterColumn = styled.div`
   row-gap: 4px;
 `;
 
-export const LinkTitle = styled.h3`
+export const LinkTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
   font-size: 1rem;

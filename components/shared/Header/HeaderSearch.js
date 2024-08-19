@@ -68,6 +68,7 @@ const HeaderSearch = React.memo(({ isOpenSearch, setIsOpenSearch }) => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '-100%' }}
+            aria-label="Search opener"
           >
             <IoSearchOutline />
           </SearchOpener>

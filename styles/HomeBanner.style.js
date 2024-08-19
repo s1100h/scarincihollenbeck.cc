@@ -11,8 +11,6 @@ import Image from 'next/image';
 export const Banner = styled.section`
   padding: 60px 0;
   position: relative;
-  background: url(/images/home-page-banner.jfif) no-repeat center/cover;
-  background-position: 77%;
   z-index: 0;
 
   &::before {
@@ -38,6 +36,17 @@ export const Banner = styled.section`
   ${media_breakpoint_down('md')} {
     padding: 40px 0;
   }
+`;
+
+export const BannerImage = styled(Image)`
+  z-index: -2;
+  object-fit: cover;
+  object-position: 77%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const BannerSlogans = styled.ul`

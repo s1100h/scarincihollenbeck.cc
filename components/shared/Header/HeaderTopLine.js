@@ -3,8 +3,7 @@ import { MAKE_A_PAYMENT } from 'utils/constants';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import { AnimatePresence } from 'framer-motion';
-import React, { Fragment, useRef } from 'react';
-import useOnClickOutside from 'hooks/useOnClickOutside';
+import React, { Fragment } from 'react';
 import {
   HeaderTopLineIcon,
   HeaderTopLineItem,

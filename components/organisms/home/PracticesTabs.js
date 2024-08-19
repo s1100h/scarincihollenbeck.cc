@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import {
   PracticesTabsCards,
+  PracticesTabsModalWrapper,
   PracticesTabsOpener,
   PracticesTabsOpeners,
   PracticesTabsWrapper,
 } from 'styles/PracticesTabs.style';
 import empty from 'is-empty';
 import { motion } from 'framer-motion';
+import ModalWindow from 'components/common/ModalWindow';
+import {
+  PracticeCardContent,
+  PracticeCardHeader,
+  PracticeCardTitle,
+} from 'styles/PracticeCard.style';
+import ContactForm from 'components/shared/ContactForm/ContactForm';
 import PracticeCard from './PracticeCard';
 
 const PracticesTabs = ({ groupsPractices }) => {
@@ -14,6 +22,7 @@ const PracticesTabs = ({ groupsPractices }) => {
     (group) => !empty(group?.practices),
   );
   const [activeTab, setActiveTab] = useState(0);
+  const [isShowContactModal, setIsShowContactModal] = useState(false);
 
   const handleClickTab = (index) => {
     setActiveTab(index);
@@ -55,16 +64,31 @@ const PracticesTabs = ({ groupsPractices }) => {
           >
             <PracticeCard
               key={practice?.databaseId}
-              databaseId={practice?.databaseId}
               icon={groupsWithChildren[activeTab]?.groupIcon}
               title={practice?.title}
               link={practice?.uri}
               text={practice?.practicesIncluded?.description}
               list={practice?.practicesIncluded?.childPractice}
+              setIsShowContactModal={setIsShowContactModal}
             />
           </motion.div>
         ))}
       </PracticesTabsCards>
+
+      <PracticesTabsModalWrapper>
+        <ModalWindow
+          isOpen={isShowContactModal}
+          setOpenModal={setIsShowContactModal}
+        >
+          <PracticeCardContent className="contact-form-container">
+            <PracticeCardHeader>
+              <PracticeCardTitle as="p">Let`s get in touch!</PracticeCardTitle>
+            </PracticeCardHeader>
+
+            <ContactForm blockName="tabs-contact-form" />
+          </PracticeCardContent>
+        </ModalWindow>
+      </PracticesTabsModalWrapper>
     </PracticesTabsWrapper>
   );
 };

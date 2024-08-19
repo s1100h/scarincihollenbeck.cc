@@ -24,7 +24,11 @@ const ModalWindow = ({ children, isOpen, setOpenModal }) => {
         className={isOpen ? 'modal-open' : ''}
         onClick={autoStopPropagation}
       >
-        <ModalCloser onClick={handleCloseModal} className="modal-closer" />
+        <ModalCloser
+          aria-label="Close modal"
+          onClick={handleCloseModal}
+          className="modal-closer"
+        />
         <ChildrenBox>{children}</ChildrenBox>
       </ModalContent>
     </ModalContainer>

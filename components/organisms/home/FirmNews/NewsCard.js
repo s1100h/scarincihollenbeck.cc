@@ -70,7 +70,6 @@ const NewsCard = ({
         alt={postTitle}
         width={750}
         height={350}
-        layout="intrinsic"
       />
       <TextNews>
         <h3>{postTitle}</h3>

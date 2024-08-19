@@ -8,10 +8,10 @@ import {
 import { attorneyCardForPractices } from './practices/DefaultSubHeader.style';
 import { ContactBox, InfoBox, LinkBox } from './AttorneyCard.style';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import Image from 'next/image';
 
 export const RandomBioWrapper = styled.section`
   padding: 60px 0 160px;
-  background: url('/images/random-bio-bg.png') center/cover no-repeat;
   position: relative;
   z-index: 0;
 
@@ -38,6 +38,10 @@ export const RandomBioWrapper = styled.section`
   ${media_breakpoint_down('md')} {
     padding: 40px 0;
   }
+`;
+
+export const RandomBioBg = styled(Image)`
+  z-index: -1;
 `;
 
 export const RandomBioHolder = styled.div`
@@ -77,7 +81,7 @@ export const RandomBioTitle = styled.h2`
   }
 `;
 
-export const RandomBioSubtitle = styled.h3`
+export const RandomBioSubtitle = styled.p`
   margin: 0 0 16px 0;
   color: ${globalColor.blue.darkBlue};
   font-size: ${rem(24)};

@@ -1,17 +1,20 @@
+import { GoogleMapsEmbed } from '@next/third-parties/google';
+import { MapWrapper } from 'styles/LocationCard.style';
+
 const Map = ({
-  map, title, anchorIdMap, height = 300,
+  map, title, anchorIdMap, height, width,
 }) => (
-  <div className="w-100 d-block mb-4 margin-scroll" id={anchorIdMap}>
-    <iframe
-      rel="preconnect"
-      title={`${title} map`}
-      src={map}
-      className="w-100"
+  <MapWrapper className="margin-scroll" id={anchorIdMap}>
+    <GoogleMapsEmbed
+      apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+      width={width}
       height={height}
-      allowFullScreen
-      style={{ border: 0 }}
+      mode="place"
+      zoom="14"
+      q={map || 'Scarinci+Hollenbeck+Clove+Road'}
+      title={title}
     />
-  </div>
+  </MapWrapper>
 );
 
 export default Map;

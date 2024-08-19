@@ -861,6 +861,8 @@ export const googleLocationIds = {
   'red-bank': 'ChIJ41CJnUMvwokR-JVUIXV0IMI',
 };
 
+export const ALT_PREFIX = 'Image showing the text: ';
+
 export const NAVIGATION_OPENERS = [
   'Attorneys',
   'Practices',
@@ -897,8 +899,8 @@ export const SOCIAL_LINKS = [
     url: 'https://www.facebook.com/ScarinciHollenbeck',
   },
   {
-    id: 'sidebar-twitter',
-    title: 'Twitter',
+    id: 'sidebar-x',
+    title: 'X',
     icon: <FaSquareXTwitter />,
     url: 'https://twitter.com/S_H_Law',
   },
@@ -948,5 +950,3 @@ export const reservedAccordionTitles = [
   'Events',
   'Government & Law',
 ];
-
-export const ALT_PREFIX = 'Image showing the text: ';

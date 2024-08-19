@@ -10,12 +10,12 @@ export const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: ${({ props }) => (props?.isBlog ? 'flex-start' : 'center')};
-  background: no-repeat
-    url(${({ props }) =>
-      props?.isHoliday
-        ? '/images/holiday-banner.webp'
-        : '/images/skyscraper2.webp'});
+  justify-content: ${({ props }) =>
+    props?.isTabs || props?.isBlog ? 'flex-start' : 'center'};
+  background: ${({ props }) => 
+    props?.isHoliday 
+    ? 'url(/images/holiday-banner.webp)' 
+    : 'url(/images/skyscraper2.webp)'} no-repeat;
   background-position: ${({ props }) =>
     props?.isHoliday?.length > 0
       ? 'right 1% bottom 31%'
@@ -46,7 +46,7 @@ export const BackgroundContainer = styled.section`
       background-position: right top 29%;
       
       ${media_breakpoint_down('lg')} {
-         background-size: 50%;
+          background-size: 50%;
         }
         
       ${media_breakpoint_down('md')}{
@@ -60,8 +60,8 @@ export const BackgroundContainer = styled.section`
   ${({ props }) => {
     return props?.isHoliday?.length > 0
       ? `${media_breakpoint_down('xl')} {
-             background-position: right;
-             padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
+            background-position: right;
+            padding-bottom: ${props?.isFilter ? '6.5em' : '2em'};
           }
           `
       : '';
@@ -119,7 +119,7 @@ export const SubHeaderContent = styled(Container)`
   }
 `;
 
-export const Description = styled.h2`
+export const Description = styled.div`
   width: 50vw;
   color: ${({ whiteVariant }) =>
     whiteVariant ? globalColor.white : globalColor.gray.gray80};

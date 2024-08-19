@@ -27,8 +27,14 @@ export const BodyHeaderContainer = styled.nav`
   form {
     margin: 0;
     width: 40%;
+
     input {
       height: 60px !important;
+      background-color: ${globalColor.gray.gray10};
+
+      &:focus {
+        background-color: ${globalColor.gray.gray10};
+      }
     }
   }
 

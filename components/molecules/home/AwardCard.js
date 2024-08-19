@@ -22,9 +22,11 @@ const AwardCard = ({
       <Image
         src={image?.src}
         alt={image?.alt}
-        width={image?.width}
-        height={image?.height}
+        width={200}
+        height={200}
         loading="lazy"
+        quality={60}
+        sizes="(max-width: 768px) 144px, 200px"
       />
     </AwardCardImage>
 

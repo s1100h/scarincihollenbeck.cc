@@ -3,6 +3,7 @@ import ProfileContacts from 'components/molecules/attorney/ProfileContacts';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
 import {
   ProfileActions,
+  ProfileBgImage,
   ProfileBio,
   ProfileBioListItems,
   ProfileBioText,
@@ -93,6 +94,15 @@ const ProfileHeader = ({
         <ProfileHeaderHolder>
           <ProfileHeaderLeft>
             <ProfileImage {...profileImageProps} />
+            <ProfileBgImage
+              src="/images/profile-attorney-bg.webp"
+              width={700}
+              height={900}
+              alt="Profile background"
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1680px) 480px, 700px"
+              loading="eager"
+            />
 
             <ProfileActions>
               {!empty(contact?.pdf) && !empty(contact?.vizibility) && (
@@ -129,7 +139,7 @@ const ProfileHeader = ({
                 setOpenModal={setIsContactModal}
               >
                 <FormBox>
-                  <h4>Let`s get in touch!</h4>
+                  <p className="contact-form-title">Let`s get in touch!</p>
                   <ContactForm blockName="profile-contact-form" />
                 </FormBox>
               </ModalWindow>

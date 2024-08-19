@@ -8,6 +8,7 @@ import {
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
+import Image from 'next/image';
 
 export const Front = styled.div`
   width: 100%;
@@ -50,7 +51,7 @@ export const ProfileHeaderSection = styled.section`
     > li {
       > a {
         font-size: ${rem(14)};
-        color: ${globalColor.gray.gray500};
+        color: ${globalColor.gray.gray140};
 
         &:hover {
           color: ${globalColor.gray.gray110};
@@ -99,30 +100,6 @@ export const ProfileHeaderLeft = styled.div`
   row-gap: 12px;
   position: relative;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -48px;
-    /* left: -35vw;
-    width: calc(100% + 35vw); */
-    left: -132px;
-    width: calc(100% + 132px);
-    height: calc(100% + 48px);
-    background: url('/images/profile-attorney-bg.png') center/cover;
-    z-index: -1;
-    opacity: 0.1;
-
-    ${media_breakpoint_down('lg')} {
-      width: calc(100% + 64px);
-      left: -32px;
-    }
-
-    ${media_breakpoint_down('md')} {
-      width: calc(100% + 24px);
-      left: -12px;
-    }
-  }
-
   ${StandardBlueButton} {
     border-radius: ${globalBorderRadius.small};
   }
@@ -144,6 +121,29 @@ export const ProfileHeaderLeft = styled.div`
 `;
 
 //Image and Video styles
+export const ProfileBgImage = styled(Image)`
+  position: absolute;
+  top: -48px;
+  /* left: -35vw;
+  width: calc(100% + 35vw); */
+  left: -132px;
+  width: calc(100% + 132px);
+  height: calc(100% + 48px);
+  z-index: -1;
+  opacity: 0.1;
+  object-fit: cover;
+
+  ${media_breakpoint_down('lg')} {
+    width: calc(100% + 64px);
+    left: -32px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    width: calc(100% + 24px);
+    left: -12px;
+  }
+`;
+
 export const CardImageVideoContainer = styled.div`
   width: 100%;
   position: relative;
@@ -230,9 +230,15 @@ export const CardVideoWrapper = styled.div`
     object-fit: cover;
   }
 
-  iframe {
+  > div {
+    width: 100%!important;
+    height: 100%!important;
+  }
+
+  lite-youtube {
     width: 100%;
     height: 100%;
+    max-width: 100%;
   }
 
   ${media_breakpoint_down('md')} {
@@ -501,7 +507,7 @@ export const ProfileServicesWrapper = styled.div`
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
 `;
 
-export const ProfileServicesTitle = styled.h2`
+export const ProfileServicesTitle = styled.p`
   margin: 0;
   color: ${globalColor.blue.blue500};
   font-family: var(--font-lato);
@@ -540,7 +546,7 @@ export const ProfileServicesChair = styled.div`
   }
 `;
 
-export const ProfileServicesChairTitle = styled.h3`
+export const ProfileServicesChairTitle = styled.p`
   margin: 0;
   color: ${globalColor.white};
   font-family: var(--font-lato);
@@ -681,7 +687,7 @@ const profileBioListTitleStyles = `
   font-weight: 400;
 `;
 
-export const ProfileBioListTitle = styled.h2`
+export const ProfileBioListTitle = styled.h3`
   ${profileBioListTitleStyles};
 `;
 
@@ -770,9 +776,9 @@ export const NewsCardBlock = styled.article`
     height: 208px;
     width: 100%;
 
-    .video-render,
-    video {
+    .video-render, video, lite-youtube {
       border-radius: 4px 4px 0 0;
+      max-width: 100%;
       width: 100%;
       height: 100%;
     }
@@ -791,7 +797,6 @@ export const NewsCardBlock = styled.article`
   }
 
   .news-card-title {
-    flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -810,6 +815,7 @@ export const NewsCardBlock = styled.article`
   }
 
   .news-card-text {
+    margin-top: auto;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

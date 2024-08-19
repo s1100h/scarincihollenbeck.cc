@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import empty from 'is-empty';
 import { AnimatePresence, motion } from 'framer-motion';

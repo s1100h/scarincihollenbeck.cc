@@ -14,6 +14,7 @@ export const LocationsHomeSection = styled.section`
   padding-bottom: 60px;
   background-color: ${globalColor.gray.gray10};
 `;
+
 export const LocationTitle = styled.h2`
   font-family: var(--font-poppins);
   font-weight: 600;
@@ -29,40 +30,53 @@ export const LocationTitle = styled.h2`
 export const LocationCardMain = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
   gap: 20px;
+
+  .link-map-box {
+    row-gap: 12px;
+
+    a {
+      font-size: 1rem;
+      line-height: 24px;
+    }
+  }
 
   ${media_breakpoint_down('xl')} {
     grid-template-columns: 2fr 1.5fr;
   }
 
   ${media_breakpoint_down('md')} {
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
+
+    .link-map-box {
+      order: 2;
+    }
   }
 `;
 
 export const MapBox = styled.div`
-  height: 84%;
-  > div,
-  iframe {
-    height: 100%;
-  }
-
-  .link-map-box {
-    a {
-      font-size: 1rem;
-      line-height: 24px;
-      color: ${globalColor.blue.blue400};
-    }
-  }
-
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  
   ${media_breakpoint_down('md')} {
-    .link-map-box {
-      margin-bottom: 0;
-    }
+    order: 1;
+    height: 365px;
+  }
+`;
 
-    > div,
+export const MapWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  > div {
+    flex: 1;
+
     iframe {
-      height: revert-layer;
+      height: 100%;
+      width: 100%;
     }
   }
 `;
@@ -71,7 +85,10 @@ export const LocationOffices = styled.div`
   display: flex;
   flex-flow: column;
   gap: 12px;
-  padding-bottom: 44px;
+
+  ${media_breakpoint_down('md')} {
+    order: 3;
+  }
 `;
 
 export const LocationHeader = styled.div`
@@ -84,15 +101,15 @@ export const LocationHeader = styled.div`
     transform: ${(props) =>
       props.isActive ? 'rotate(-90deg)' : 'rotate(0deg)'};
   }
+`;
 
-  h5 {
-    color: ${(props) =>
-      props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1;
-    margin-bottom: 0;
-  }
+export const LocationHeaderTitle = styled.p`
+  margin-bottom: 0;
+  color: ${(props) =>
+    props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
 `;
 
 export const ContactInfoCard = styled.article`

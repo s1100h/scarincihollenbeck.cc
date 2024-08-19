@@ -42,6 +42,7 @@ const DefaultSubHeaderNew = ({
         width={1400}
         height={900}
         priority
+        loading="eager"
       />
     </div>
 

@@ -63,7 +63,11 @@ connectWithQuery(AuxiliarySearch);
 
 export const GlobalSearch = React.memo(
   ({
-    setIsOpenSearch, filterByPostType, handleHideSearch, inputFocus,
+    setIsOpenSearch,
+    filterByPostType,
+    handleHideSearch,
+    inputFocus,
+    label,
   }) => {
     const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
 
@@ -78,6 +82,7 @@ export const GlobalSearch = React.memo(
           setIsOpenSearch={setIsOpenSearch}
           handleHideSearch={handleHideSearch}
           inputFocus={inputFocus}
+          label={label}
         />
         <ResultsContainer className="search-result-container">
           {!filterByPostType && (

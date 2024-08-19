@@ -5,6 +5,7 @@ import {
   ContactInfoContent,
   LocationCardMain,
   LocationHeader,
+  LocationHeaderTitle,
   LocationOffices,
   MapBox,
 } from 'styles/LocationCard.style';
@@ -39,11 +40,10 @@ export default function LocationCard({ officesData, setTitle }) {
           }
           map={
             !cardIndex
-              ? officesData[0].mapLink
-              : officesData[`${cardIndex}`].mapLink
+              ? officesData[0]?.mapAddress
+              : officesData[`${cardIndex}`]?.mapAddress
           }
         />
-        <DirectionsFilesLink currentOffice={officesData[`${cardIndex}`]} />
       </MapBox>
       <LocationOffices>
         {officesData.map((office, idx) => (
@@ -53,7 +53,9 @@ export default function LocationCard({ officesData, setTitle }) {
             onClick={() => handleChangeTitle(office.title, idx)}
           >
             <LocationHeader isActive={cardIndex === idx}>
-              <h5>{office.title}</h5>
+              <LocationHeaderTitle isActive={cardIndex === idx}>
+                {office.title}
+              </LocationHeaderTitle>
               <BsChevronRight
                 color={
                   cardIndex === idx ? colorActiveIcons : colorInactiveIcons
@@ -99,6 +101,8 @@ export default function LocationCard({ officesData, setTitle }) {
           </ContactInfoCard>
         ))}
       </LocationOffices>
+
+      <DirectionsFilesLink currentOffice={officesData[`${cardIndex}`]} />
     </LocationCardMain>
   );
 }

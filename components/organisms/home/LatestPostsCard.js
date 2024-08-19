@@ -25,6 +25,7 @@ const LatestPostsCard = ({ article, isBig }) => (
           alt={article?.title}
           width={900}
           height={500}
+          sizes="100vw"
         />
       </LatestsPostsCardImage>
     )}
@@ -57,7 +58,10 @@ const LatestPostsCard = ({ article, isBig }) => (
       </LatestsPostsCardFooter>
     </LatestsPostsCardContent>
 
-    <LatestPostsCardLink href={article?.uri.replace(PRODUCTION_URL, '')} />
+    <LatestPostsCardLink
+      href={article?.uri.replace(PRODUCTION_URL, '')}
+      aria-label={`Read more about ${article?.title}`}
+    />
   </LatestsPostsCardWrapper>
 );
 

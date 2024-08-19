@@ -101,9 +101,7 @@ const LocationPage = ({
           key={currentOffice.name}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              buildLocationSchema(seo, currentOffice.mapLink),
-            ),
+            __html: JSON.stringify(buildLocationSchema(seo)),
           }}
         />
       </Head>
@@ -117,13 +115,13 @@ const LocationPage = ({
       <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
       <LocationPageContainer className="mt-5">
         <Row className="row-content">
-          <Col xs={11} sm={11} md={11} lg={8} xl={8}>
+          <Col className="map-column" xs={11} sm={11} md={11} lg={8} xl={8}>
             <OfficeLocationBoxTitle>
               {changeTitle(currentOffice.title)}
             </OfficeLocationBoxTitle>
             <Map
               title={currentOffice.title}
-              map={currentOffice.mapLink}
+              map={currentOffice?.mapAddress}
               anchorIdMap={anchorData.map.id}
               height={600}
             />

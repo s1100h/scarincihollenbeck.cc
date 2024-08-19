@@ -250,7 +250,7 @@ export const officeLocationQuery = `query BasicPageQuery {
       officeMainInformation {
         addressLocality
         addressRegion
-        mapLink
+        mapAddress
         phone
         streetAddress
         fax
@@ -259,11 +259,11 @@ export const officeLocationQuery = `query BasicPageQuery {
         autoMap {
 					mediaItemUrl
 					databaseId
-      	}
-      	trainStationsMap {
+        }
+        trainStationsMap {
 					mediaItemUrl
 					databaseId
-      	}
+        }
       }
     }
   }
@@ -1256,7 +1256,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
       }
       fax
       floor
-      mapLink
+      mapAddress
       phone
       postCode
       streetAddress
@@ -1348,7 +1348,7 @@ export const getOffices = `query FirmPageQuery {
         phone
         streetAddress
         postCode
-        mapLink
+        mapAddress
       }
       uri
       slug

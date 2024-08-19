@@ -1,4 +1,3 @@
-import { BsFillPlayFill, BsFillStopFill } from 'react-icons/bs';
 import VideoIcon from 'components/common/icons/VideoIcon';
 import { VideoButtonStyled } from '../../../styles/attorney-page/AttorneyProfile.style';
 
