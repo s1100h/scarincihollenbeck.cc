@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import {
   RECAPTCHA_SITE_KEY,
@@ -23,7 +22,6 @@ import { FormContainer } from '../../../styles/attorney-page/GetInTouchForm.styl
 import Loader from '../../atoms/Loader';
 import decodeResponse from '../../../utils/decodeResponse';
 
-const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 const isArraysIdentical = (chosenIds, originalIds) => {
   if (chosenIds.length !== originalIds.length) {
     return false;
@@ -72,7 +70,7 @@ const SubscriptionModal = ({ children, customClass }) => {
 
   return (
     <>
-      <KwesScripts />
+      {/* <KwesScripts /> */}
       {!empty(children) ? (
         <button onClick={() => setShow(true)} className={customClass}>
           {children}
