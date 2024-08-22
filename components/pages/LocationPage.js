@@ -2,12 +2,12 @@ import Head from 'next/head';
 import { Row, Col } from 'react-bootstrap';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
-import { ATTORNEYS_FAQ, locationInfoBlockArticles } from 'utils/constants';
+import { ATTORNEYS_FAQ } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import empty from 'is-empty';
-import { sanitizePracticesByChildren, sortByKey } from '../../utils/helpers';
+import { sortByKey } from '../../utils/helpers';
 import {
   LocationPageContainer,
   OfficeLocationBoxTitle,
@@ -15,10 +15,10 @@ import {
 import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
 import GetInTouchForm from '../organisms/practices/GetInTouchForm';
-import InfoBlockLocation from '../organisms/location/InfoBlockLocation';
 import WhyChooseUs from '../organisms/practices/WhyChooseUs';
 import GoogleReviews from '../organisms/common/GoogleReviews';
 import DirectionsFilesLink from '../common/DirectionsFilesLink';
+import WhatWeDoSection from '../organisms/home/WhatWeDoSection';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
@@ -34,9 +34,9 @@ const anchorLocationsData = {
     id: 'faq-section',
     title: 'FAQs',
   },
-  howCanWeHelp: {
-    id: 'how-can-we-help',
-    title: 'How can we help?',
+  whatWeDo: {
+    id: 'What-we-do',
+    title: 'What we do',
   },
   attorneys: {
     id: 'attorneys-section',
@@ -58,6 +58,7 @@ const LocationPage = ({
   canonicalUrl,
   locations,
   googleReviews,
+  whatWeDo,
 }) => {
   const anchorData = useMemo(() => {
     if (empty(googleReviews)) {
@@ -66,10 +67,10 @@ const LocationPage = ({
     return anchorLocationsData;
   }, [googleReviews]);
 
-  const [articles, setArticles] = useState();
-  const practicesSorted = sanitizePracticesByChildren(
-    currentOffice.officePractices,
-  );
+  const whatWeDoAdditional = {
+    ...whatWeDo,
+    anchorId: anchorLocationsData.whatWeDo.id,
+  };
 
   const addressInfo = {
     phone: currentOffice.phone,
@@ -80,13 +81,6 @@ const LocationPage = ({
     postCode: currentOffice.postCode,
     addressLocality: currentOffice.addressLocality,
   };
-
-  useEffect(() => {
-    const clearId = setTimeout(() => {
-      setArticles(locationInfoBlockArticles);
-    }, 100);
-    return () => clearTimeout(clearId);
-  }, []);
 
   return (
     <>
@@ -136,13 +130,6 @@ const LocationPage = ({
             <GetInTouchForm />
           </Col>
         </Row>
-        {!empty(articles) && (
-          <InfoBlockLocation
-            anchorData={anchorData.howCanWeHelp.id}
-            articles={articles}
-            practices={practicesSorted}
-          />
-        )}
       </LocationPageContainer>
       {!empty(currentOffice?.attorneys) && (
         <PracticeAttorneys
@@ -150,6 +137,7 @@ const LocationPage = ({
           attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
         />
       )}
+      <WhatWeDoSection {...whatWeDoAdditional} />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       {!empty(googleReviews) && (
         <GoogleReviews

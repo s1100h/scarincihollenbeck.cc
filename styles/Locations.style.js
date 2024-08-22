@@ -33,12 +33,17 @@ export const LocationPageContainer = styled.section`
     padding-bottom: 40px;
   }
 
+  .practice-container {
+    padding: 0;
+  }
+
   .row-content {
     ${media_breakpoint_exactly_down(1080)} {
       margin-right: 3%;
       margin-left: 3%;
     }
   }
+
   ${media_breakpoint_up('fullHd')} {
     padding-right: 7%;
     padding-left: 7%;

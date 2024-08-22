@@ -65,7 +65,6 @@ const PracticePageNew = ({
       ...updatedAnchorData,
     };
   }, [googleReviews]);
-
   return (
     <>
       <BasicSiteHead

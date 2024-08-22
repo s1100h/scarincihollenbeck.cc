@@ -1376,3 +1376,33 @@ export const getCategoriesQuery = `query subscriptions {
     }
   }
 }`;
+
+export const getWhatWeDo = `query whatWeDoFromHome {
+  page(id: "front-page", idType: URI) {
+    homePage {
+      whatWeDo {
+        groupsPractices {
+          groupPractices
+          groupIcon
+          practices {
+            ... on Practice {
+              databaseId
+              uri
+              title
+              practicesIncluded {
+                childPractice {
+                  ... on Practice {
+                    databaseId
+                    title
+                    uri
+                  }
+                }
+                description
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;

@@ -67,6 +67,9 @@ export default function AttorneyCard({
   svgEmail,
   officeLocations,
 }) {
+  const placeholderProp = image?.src?.includes('next') || SHDiamond?.src?.includes('next')
+    ? 'empty'
+    : 'blur';
   return (
     <AttorneyCardBox className="attorney-card-box">
       <Link href={link} className="attorney-card-link" title={name} passHref>
@@ -74,7 +77,7 @@ export default function AttorneyCard({
       </Link>
       <LinkBox>
         <Image
-          placeholder="blur"
+          placeholder={placeholderProp}
           blurDataURL={image || SHDiamond}
           loading="lazy"
           src={image || SHDiamond}

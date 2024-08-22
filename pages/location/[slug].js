@@ -1,14 +1,9 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import LocationPage from 'components/pages/LocationPage';
-import {
-  BASE_API_URL,
-  googleLocationIds,
-  headers,
-  PRODUCTION_URL,
-} from 'utils/constants';
+import { BASE_API_URL, headers, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
-import { getOfficeAndMoreData } from 'requests/graphql-queries';
+import { getOfficeAndMoreData, getWhatWeDo } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import { getAttorneys } from 'requests/getAttorneys';
 
@@ -71,6 +66,11 @@ const getLocationPaths = async () => {
   }
 };
 
+const getWhatWeDoData = async () => {
+  const { page } = await fetchAPI(getWhatWeDo);
+  return page.homePage.whatWeDo;
+};
+
 /** fetch and build urls for static pages generation */
 export const getStaticPaths = async () => {
   const paths = await getLocationPaths();
@@ -94,7 +94,7 @@ export const getStaticProps = async ({ params }) => {
     };
   }
   const officesData = await getOfficeData(slug);
-
+  const whatWeDoSectionData = await getWhatWeDoData();
   if (empty(officesData)) {
     return {
       notFound: true,
@@ -144,6 +144,7 @@ export const getStaticProps = async ({ params }) => {
       posts: [],
       canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
+      whatWeDo: whatWeDoSectionData,
     },
     revalidate: 86400,
   };
@@ -158,6 +159,7 @@ const SingleLocation = ({
   attorneysSchemaData,
   canonicalUrl,
   googleReviews,
+  whatWeDo,
 }) => {
   const router = useRouter();
 
@@ -173,6 +175,7 @@ const SingleLocation = ({
     canonicalUrl,
     locations: offices,
     googleReviews,
+    whatWeDo,
   };
 
   return <LocationPage {...locationProps} />;

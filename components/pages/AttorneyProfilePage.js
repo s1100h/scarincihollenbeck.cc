@@ -3,9 +3,7 @@ import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 
-const AttorneyProfilePage = ({
-  seo, profileHeader, tabs, accordionData,
-}) => (
+const AttorneyProfilePage = ({ seo, profileHeader, accordionData }) => (
   <>
     <PersonSiteHead
       title={seo.title}
