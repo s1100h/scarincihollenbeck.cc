@@ -42,7 +42,8 @@ export const FormBox = styled.div`
   padding-left: 1px;
   height: content-box;
 
-  h4, .contact-form-title {
+  h4,
+  .contact-form-title {
     font-size: 1.2rem;
     line-height: 1.2;
     margin-bottom: 20px;

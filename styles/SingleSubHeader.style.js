@@ -12,10 +12,11 @@ export const BackgroundContainer = styled.section`
   width: 100%;
   justify-content: ${({ props }) =>
     props?.isTabs || props?.isBlog ? 'flex-start' : 'center'};
-  background: ${({ props }) => 
-    props?.isHoliday 
-    ? 'url(/images/holiday-banner.webp)' 
-    : 'url(/images/skyscraper2.webp)'} no-repeat;
+  background: ${({ props }) =>
+      props?.isHoliday
+        ? 'url(/images/holiday-banner.webp)'
+        : 'url(/images/skyscraper2.webp)'}
+    no-repeat;
   background-position: ${({ props }) =>
     props?.isHoliday?.length > 0
       ? 'right 1% bottom 31%'

@@ -3,12 +3,10 @@ import {
   globalBorderRadius,
   globalColor,
   globalShadow,
-  globalTransition, rem,
+  globalTransition,
+  rem,
 } from '../global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-  media_breakpoint_exactly_down,
-} from '../mediaBreakpoints.style';
+import { media_breakpoint_down } from '../mediaBreakpoints.style';
 
 export const WhyChooseUsSection = styled.section`
   padding: 60px 0;
@@ -139,7 +137,7 @@ export const FocusedServicesCards = styled.ul`
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--focused-cards-gap);
-  
+
   > :nth-child(even) {
     margin-top: var(--focused-cards-gap);
 
@@ -234,7 +232,7 @@ export const FocusedCardBox = styled.article`
     }
   }
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     &:hover {
       border-color: ${globalColor.blue.blue400};
 

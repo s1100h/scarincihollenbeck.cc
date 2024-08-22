@@ -7,7 +7,12 @@ import {
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { ChildrenBox } from './ModalWindow.style';
-import { PracticeCardContent, PracticeCardFooterItem, PracticeCardHeader, PracticeCardWrapper } from './PracticeCard.style';
+import {
+  PracticeCardContent,
+  PracticeCardFooterItem,
+  PracticeCardHeader,
+  PracticeCardWrapper,
+} from './PracticeCard.style';
 
 export const PracticesTabsWrapper = styled.div`
   display: flex;

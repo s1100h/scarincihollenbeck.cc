@@ -231,8 +231,8 @@ export const CardVideoWrapper = styled.div`
   }
 
   > div {
-    width: 100%!important;
-    height: 100%!important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   lite-youtube {
@@ -741,12 +741,12 @@ export const ProfileBioListContent = styled.div`
 `;
 
 export const NewsCardBlock = styled.article`
-  width: ${({ $isWide, $isFull }) => 
-    $isFull ? '100%' : 
-      ($isWide 
-          ? 'calc((100% - var(--news-list-gap)) / 2)' 
-          : 'calc((100% - var(--news-list-gap) * 2) / 3)'
-      )};
+  width: ${({ $isWide, $isFull }) =>
+    $isFull
+      ? '100%'
+      : $isWide
+      ? 'calc((100% - var(--news-list-gap)) / 2)'
+      : 'calc((100% - var(--news-list-gap) * 2) / 3)'};
   background-color: ${globalColor.gray.gray10};
   border-radius: 4px;
   overflow: hidden;
@@ -776,7 +776,9 @@ export const NewsCardBlock = styled.article`
     height: 208px;
     width: 100%;
 
-    .video-render, video, lite-youtube {
+    .video-render,
+    video,
+    lite-youtube {
       border-radius: 4px 4px 0 0;
       max-width: 100%;
       width: 100%;
@@ -839,7 +841,8 @@ export const NewsCardBlock = styled.article`
   }
 
   ${media_breakpoint_down('xl')} {
-    width: ${({ $isFull }) => $isFull ? '100%' : 'calc((100% - var(--news-list-gap)) / 2)'};
+    width: ${({ $isFull }) =>
+      $isFull ? '100%' : 'calc((100% - var(--news-list-gap)) / 2)'};
   }
 
   ${media_breakpoint_down('md')} {

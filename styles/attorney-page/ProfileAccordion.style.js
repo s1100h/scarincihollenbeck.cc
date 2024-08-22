@@ -7,9 +7,7 @@ import {
   globalTransition,
   rem,
 } from 'styles/global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-} from 'styles/mediaBreakpoints.style';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const ProfileAccordionWrapper = styled.section`
   padding-bottom: 60px;

@@ -385,7 +385,9 @@ a {
 
       // FireFox
       @supports not selector(::-webkit-scrollbar-thumb) {
-        scrollbar-color: ${globalColor.blue.blue400} ${globalColor.blue.blue6002};
+        scrollbar-color: ${globalColor.blue.blue400} ${
+  globalColor.blue.blue6002
+};
         scrollbar-width: thin;
       }
     }

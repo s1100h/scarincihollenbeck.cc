@@ -59,7 +59,7 @@ export const MapBox = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  
+
   ${media_breakpoint_down('md')} {
     order: 1;
     height: 365px;

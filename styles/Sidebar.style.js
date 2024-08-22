@@ -153,7 +153,8 @@ export const SidebarMenuWrapper = styled.div`
   transition: ${globalTransition.default};
   pointer-events: ${({ $isSidebarOpen }) =>
     `${$isSidebarOpen ? 'auto' : 'none'}`};
-  visibility: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'visible' : 'hidden'}`};
+  visibility: ${({ $isSidebarOpen }) =>
+    `${$isSidebarOpen ? 'visible' : 'hidden'}`};
   overflow: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'hidden'}`};
 
   ${media_breakpoint_down('lg')} {
