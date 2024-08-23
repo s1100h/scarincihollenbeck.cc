@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { OFFICE_LOCATIONS } from 'utils/constants';
-import { useContext } from 'react';
-import { PracticesContext } from '../../../contexts/PracticesContext';
+import { useGetPracticesQuery } from '../../../redux/services/project-api';
 
 export const HawCanIGet = () => (
   <>
@@ -43,14 +42,14 @@ export const WhereIsYheFirmLocated = () => (
 );
 
 export const WhatAreTheFirms = () => {
-  const { practices } = useContext(PracticesContext);
+  const { data: practices } = useGetPracticesQuery();
   return (
     <>
       <ul className="p-0">
         <p className="mb-2">
           <strong>The firm`s core practices include:</strong>
         </p>
-        {practices.map((practice) => (
+        {practices?.data.map((practice) => (
           <li key={practice.databaseId}>
             <Link className="d-flex gap-2" href={practice.uri} passHref>
               <div>➢</div>

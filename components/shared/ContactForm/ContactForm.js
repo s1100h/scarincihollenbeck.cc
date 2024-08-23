@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 // import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
@@ -11,8 +11,9 @@ import {
 } from 'utils/constants';
 import kwesforms from 'kwesforms';
 import empty from 'is-empty';
+import { useDispatch, useSelector } from 'react-redux';
 import RenderInputs from './RenderInputs';
-import { FormsContext } from '../../../contexts/FormsContext';
+import { handleCheckDisclaimer } from '../../../redux/slices/forms.slice';
 
 // const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
@@ -21,7 +22,8 @@ export default function ContactForm({
   blockName = 'default',
   buttonText = 'Submit form',
 }) {
-  const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
+  const dispatch = useDispatch();
+  const { isCheckedDisclaimer } = useSelector((store) => store.forms);
 
   const handleCheck = (event) => {
     const target = event.target;
@@ -29,9 +31,9 @@ export default function ContactForm({
 
     if (blockName === target.dataset.id) {
       if (isChecked) {
-        handleCheckDisclaimer(blockName);
+        dispatch(handleCheckDisclaimer(blockName));
       } else {
-        handleCheckDisclaimer('');
+        dispatch(handleCheckDisclaimer(''));
       }
     }
   };

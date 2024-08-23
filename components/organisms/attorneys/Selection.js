@@ -7,15 +7,15 @@ import {
   SelectionWrapper,
 } from 'styles/Filters.style';
 import { createMarkup } from 'utils/helpers';
+import { useSelector } from 'react-redux';
 
-const Selection = ({
-  select, userInput, clearQuery, clearAll,
-}) => {
-  const nonUserInputResults = select.filter((a) => a.key !== 'query');
+const Selection = ({ clearAll, clearQuery }) => {
+  const { userInput, select } = useSelector((state) => state.attorneys);
+  const nonUserInputResults = select?.filter((a) => a.key !== 'query');
   return (
     <SelectionWrapper>
       <SelectionList>
-        {userInput.length > 0 && (
+        {userInput?.length > 0 && (
           <SelectionItem>
             <SelectionButton
               variant="Primary"
@@ -30,7 +30,7 @@ const Selection = ({
             </SelectionButton>
           </SelectionItem>
         )}
-        {nonUserInputResults.map((selection) => (
+        {nonUserInputResults?.map((selection) => (
           <SelectionItem key={selection.key}>
             <SelectionButton
               variant="Primary"
@@ -41,13 +41,13 @@ const Selection = ({
               data-html="true"
               title="Click on link to remove filter"
             >
-              {selection.selected}
+              {selection?.selected}
               <BsXLg />
             </SelectionButton>
           </SelectionItem>
         ))}
       </SelectionList>
-      {select.length > 0 && (
+      {select?.length > 0 && (
         <ClearButton variant="Primary" onClick={clearAll}>
           Clear All
         </ClearButton>

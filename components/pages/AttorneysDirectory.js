@@ -1,15 +1,17 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
-import { useContext, useEffect, useRef } from 'react';
-import { AttorneysContext } from 'contexts/AttorneysContext';
+import { useEffect, useRef } from 'react';
 import FAQ from 'components/atoms/FAQ';
 import { ATTORNEYS_FAQ } from 'utils/constants';
-import { SizesContext } from 'contexts/SizesContext';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
-import { PracticesContext } from 'contexts/PracticesContext';
-import { LocationContext } from 'contexts/LocationContext';
 import { ContainerDefault } from 'styles/Containers.style';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  useGetLocationsQuery,
+  useGetPracticesQuery,
+} from '../../redux/services/project-api';
+import { setReferenceId } from '../../redux/slices/attorneys.slice';
 
 const AttorneysPage = ({
   seo,
@@ -18,16 +20,15 @@ const AttorneysPage = ({
   attorneyArchives,
   seoAttorneys,
 }) => {
-  const { setReference } = useContext(AttorneysContext);
-
   const containerRef = useRef();
-  const { headerSize } = useContext(SizesContext);
-  const { practices } = useContext(PracticesContext);
-  const { locations } = useContext(LocationContext);
+  const dispatch = useDispatch();
+  const { data: locations } = useGetLocationsQuery();
+  const { data: practices } = useGetPracticesQuery();
+  const { headerSize } = useSelector((state) => state.sizes);
 
   useEffect(() => {
     if (containerRef && containerRef.current) {
-      setReference(containerRef.current);
+      dispatch(setReferenceId(containerRef.current.id));
     }
   }, [containerRef.current]);
 
@@ -42,11 +43,12 @@ const AttorneysPage = ({
       <MainAttorneysContainer
         ref={containerRef}
         $headerHeight={`${headerSize?.height}px`}
+        id="attorneys-container"
       >
         <ContainerDefault>
           <AttorneyFilters
-            practices={practices}
-            locations={locations}
+            practices={practices?.data}
+            locations={locations?.data}
             attorneyArchives={attorneyArchives}
             seoAttorneys={seoAttorneys}
           />

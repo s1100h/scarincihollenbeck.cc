@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router';
-import { useContext, useMemo } from 'react';
-import { PracticesContext } from 'contexts/PracticesContext';
+import { useMemo } from 'react';
 import { locationsOrderArray } from 'utils/constants';
 import {
   createMenuData,
   createOverviewLinks,
   getSlugFromUrl,
 } from '../../../utils/helpers';
-import { LocationContext } from '../../../contexts/LocationContext';
 import DefaultHeader from './DefaultHeader';
+import {
+  useGetLocationsQuery,
+  useGetPracticesQuery,
+} from '../../../redux/services/project-api';
 
 const sanitizePractices = (data) => {
   if (!data) return [];
@@ -32,23 +34,22 @@ const renderHeader = (pageSlug, props) => {
 export default function Header() {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
-  const { practices } = useContext(PracticesContext);
-  const { locations } = useContext(LocationContext);
-
-  const sortedLocations = locations?.sort((a, b) => {
-    const indexA = locationsOrderArray.indexOf(a.title);
-    const indexB = locationsOrderArray.indexOf(b.title);
-    return indexA - indexB;
-  });
-
+  const { data: locations, isLoading: locationsIsLoading } = useGetLocationsQuery();
+  const { data: practices } = useGetPracticesQuery();
+  const sortedLocations = !locationsIsLoading
+    && [...locations?.data]?.sort((a, b) => {
+      const indexA = locationsOrderArray.indexOf(a.title);
+      const indexB = locationsOrderArray.indexOf(b.title);
+      return indexA - indexB;
+    });
   const practiceWithOverview = useMemo(
-    () => createOverviewLinks(practices, false),
+    () => createOverviewLinks(practices?.data, false),
     [practices],
   );
 
   const sanitizedPractices = sanitizePractices(practiceWithOverview);
 
-  const menuData = createMenuData(sanitizedPractices, locations);
+  const menuData = createMenuData(sanitizedPractices, locations?.data);
 
   const headerProps = {
     pathname,

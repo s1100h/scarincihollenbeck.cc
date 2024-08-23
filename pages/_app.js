@@ -5,6 +5,8 @@ import NProgress from 'nprogress';
 import Header from 'components/shared/Header/Header';
 import MainSiteHead from 'components/shared/head/MainSiteHead';
 import SSRProvider from 'react-bootstrap/SSRProvider';
+import { Provider } from 'react-redux';
+
 /**
  *
  * 3rd Party Resources
@@ -17,13 +19,13 @@ import 'react-multi-carousel/lib/styles.css';
 import 'animate.css/animate.min.css';
 
 /**
- * Custom Style Sheets
+ * Custom Style Sheets and redux
  * */
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import InitFonts from 'styles/global_styles/InitFonts';
 import 'react-toastify/dist/ReactToastify.css';
-import Contexts from 'contexts/Contexts';
 import { register } from 'swiper/element/bundle';
+import { store } from '../redux/store';
 import Notifications from '../hoks/notifications';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
@@ -44,7 +46,7 @@ const SHSite = ({ Component, pageProps }) => {
 
   return (
     <SSRProvider>
-      <Contexts>
+      <Provider store={store}>
         <GlobalStyle />
         <InitFonts />
         <Notifications>
@@ -58,7 +60,7 @@ const SHSite = ({ Component, pageProps }) => {
           </main>
           <SiteFooter />
         </Notifications>
-      </Contexts>
+      </Provider>
     </SSRProvider>
   );
 };

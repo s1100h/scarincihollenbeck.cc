@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 // import dynamic from 'next/dynamic';
 import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
+import { useDispatch, useSelector } from 'react-redux';
 import { StandardRedButton } from '../../styles/Buttons.style';
-import { FormsContext } from '../../contexts/FormsContext';
 import {
   THANKS_MESSAGE,
   inputsCareerForm,
@@ -15,17 +15,18 @@ import {
 import { CareerFormContainer } from '../../styles/Careers.style';
 import RenderInputs from '../shared/ContactForm/RenderInputs';
 import { TwoColumnsForm } from '../../styles/attorney-page/GetInTouchForm.styles';
+import { handleCheckDisclaimer } from '../../redux/slices/forms.slice';
 
 // const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 
 const CareerForm = () => {
   const router = useRouter();
-  const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
-
+  const { isCheckedDisclaimer } = useSelector((store) => store.forms);
+  const dispatch = useDispatch();
   useEffect(() => {
     kwesforms.init();
   }, []);
-
+  const careerHandleCheckDisclaimer = () => dispatch(handleCheckDisclaimer(!isCheckedDisclaimer));
   const isDisabledSubmitButton = !isCheckedDisclaimer;
 
   return (
@@ -64,7 +65,7 @@ const CareerForm = () => {
                     id="disclaimer"
                     label="I have read the disclaimer"
                     checked={isCheckedDisclaimer}
-                    onChange={handleCheckDisclaimer}
+                    onChange={careerHandleCheckDisclaimer}
                   />
                   <span className="p-2">I have read the disclaimer</span>
                 </label>

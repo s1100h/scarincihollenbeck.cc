@@ -13,6 +13,7 @@ const LibrarySideBar = ({
   childrenOfCurrentCategory,
   popularCategories,
   authors,
+  authorsIsLoading,
 }) => (
   <SideBarContainer>
     <ShareSocialBox>
@@ -45,7 +46,7 @@ const LibrarySideBar = ({
     )}
     <PopularList term="Popular Categories" list={popularCategories} />
     <PopularList term="Client Alerts" list={CLIENT_ALERTS} />
-    <FirmAuthors authors={authors} />
+    <FirmAuthors authors={authors} authorsIsLoading={authorsIsLoading} />
   </SideBarContainer>
 );
 

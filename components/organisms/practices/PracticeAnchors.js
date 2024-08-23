@@ -1,11 +1,11 @@
 import AnchorsTopBar from 'components/molecules/practice/AnchorsTopBar';
-import { SizesContext } from 'contexts/SizesContext';
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import { PracticeAnchorsHolder } from 'styles/practices/PracticeAnchors.style';
 
 const PracticeAnchors = ({ handleClickAnchorLink, anchorData, title }) => {
-  const { headerSize } = useContext(SizesContext);
+  const { headerSize } = useSelector((state) => state.sizes);
 
   return (
     <PracticeAnchorsHolder $headerHeight={headerSize?.height}>

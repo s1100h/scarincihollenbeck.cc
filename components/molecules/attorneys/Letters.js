@@ -1,20 +1,19 @@
-import { useContext } from 'react';
 import {
   LetterSelectorBtn,
   LetterSelectorContainer,
 } from '../../../styles/Filters.style';
-import { AttorneysContext } from '../../../contexts/AttorneysContext';
 import { useAttorneysSearch } from '../../../hooks/useAttornySearch';
 import { LETTERS_LIST } from '../../../utils/constants';
 
-const LetterSelector = ({ onSelectLetter, select, userInput }) => {
-  const { attorneysContext } = useContext(AttorneysContext);
+const LetterSelector = ({
+  onSelectLetter, select, userInput, attorneys,
+}) => {
   const { attorneysFiltered } = useAttorneysSearch(
     select,
     userInput,
-    attorneysContext,
+    attorneys,
   );
-  const currentAttorneyList = attorneysFiltered?.length > 0 ? attorneysFiltered : attorneysContext;
+  const currentAttorneyList = attorneysFiltered?.length > 0 ? attorneysFiltered : attorneys;
 
   const isDisabled = (letter) => !currentAttorneyList.some(
     (attorney) => attorney.lastName?.split('')[0] === letter.toUpperCase(),

@@ -1,9 +1,8 @@
 import CustomSelect from 'components/common/Select';
 import LetterSelector from 'components/molecules/attorneys/Letters';
 import AuxiliarySearch from 'components/shared/GlobalSearch/AuxiliarySearch';
-import { AttorneysContext } from 'contexts/AttorneysContext';
 import { useAttorneysSearch } from 'hooks/useAttornySearch';
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
   FiltersColumns,
   FiltersHolder,
@@ -17,9 +16,18 @@ import { NavbarLink } from 'styles/Navigation.style';
 import { useRouter } from 'next/router';
 import { ResultsWrapper } from 'styles/Attornyes.style';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
+import { useDispatch, useSelector } from 'react-redux';
 import Selection from './Selection';
 import FilterResult from './FilterResult';
 import Results from './Results';
+import {
+  clearAll,
+  clearQuery,
+  handleChange,
+  onSelect,
+  onSelectLetter,
+} from '../../../redux/slices/attorneys.slice';
+import { useGetAttorneysQuery } from '../../../redux/services/project-api';
 
 const AttorneyFilters = ({
   practices,
@@ -30,32 +38,29 @@ const AttorneyFilters = ({
   attorneyArchives,
   seoAttorneys,
 }) => {
+  const { pathname } = useRouter();
   const practicesSelectRef = useRef();
   const locationsSelectRef = useRef();
-  const {
-    handleChange,
-    select,
-    onSelect,
-    userInput,
-    clearQuery,
-    clearAll,
-    onSelectLetter,
-    attorneysContext,
-  } = useContext(AttorneysContext);
-  const { pathname } = useRouter();
-
+  const { data: attorneysData } = useGetAttorneysQuery();
+  const { userInput, select } = useSelector((state) => state.attorneys);
+  const dispatch = useDispatch();
+  const attorneys = attorneysData?.data;
+  const attorneysCondition = attorneys || [];
   const { attorneysFiltered } = useAttorneysSearch(
     select,
     userInput,
-    attorneysContext,
+    attorneysCondition,
   );
-
+  const handleChangeDispatch = (e) => {
+    const { value } = e.currentTarget;
+    dispatch(handleChange({ value }));
+  };
   const handleChangePracticesSelect = (value) => {
-    onSelect({ target: { name: 'practices' } }, value);
+    dispatch(onSelect({ target: { name: 'practices' }, input: value }));
   };
 
   const handleChangeLocationsSelect = (value) => {
-    onSelect({ target: { name: 'location' } }, value);
+    dispatch(onSelect({ target: { name: 'location' }, input: value }));
   };
 
   const handleClearSelect = (ref) => {
@@ -78,12 +83,12 @@ const AttorneyFilters = ({
   const handleClearAll = () => {
     handleClearSelect(practicesSelectRef);
     handleClearSelect(locationsSelectRef);
-    clearAll();
+    dispatch(clearAll());
   };
 
   const handleClearQuery = (key) => {
     clearHandlers(key);
-    clearQuery(key);
+    dispatch(clearQuery(key));
   };
 
   const handleCloseModal = () => {
@@ -96,6 +101,10 @@ const AttorneyFilters = ({
     }
   };
 
+  const handleSelectLetter = (letter) => {
+    dispatch(onSelectLetter(letter));
+  };
+
   return (
     <FiltersHolder>
       <FiltersItems>
@@ -103,7 +112,7 @@ const AttorneyFilters = ({
           <FiltersLeftColumn>
             <AuxiliarySearch
               currentRefinement={userInput}
-              refine={handleChange}
+              refine={handleChangeDispatch}
               placeholder="Search by Attorney name"
             />
 
@@ -112,8 +121,6 @@ const AttorneyFilters = ({
               options={practices}
               placeHolder="Filter by Practice"
               onChange={(value) => handleChangePracticesSelect(value)}
-              isSearchable
-              isMulti
             />
 
             <CustomSelect
@@ -121,17 +128,16 @@ const AttorneyFilters = ({
               options={locations}
               placeHolder="Filter by Location"
               onChange={(value) => handleChangeLocationsSelect(value)}
-              isSearchable
-              isMulti
             />
           </FiltersLeftColumn>
 
           <FiltersRightColumn>
             <LetterSelector
-              onSelectLetter={onSelectLetter}
+              onSelectLetter={handleSelectLetter}
               title="Filter by letters"
               select={select}
               userInput={userInput}
+              attorneys={attorneys}
             />
 
             {pathname !== '/attorneys' && (
@@ -171,16 +177,16 @@ const AttorneyFilters = ({
 
       {!isNavbar && (
         <ResultsWrapper>
-          {attorneysContext.length > 0 ? (
+          {attorneysCondition.length > 0 ? (
             <Results
               attorneys={attorneysFiltered}
-              attorneysContext={attorneysContext}
+              attorneysContext={attorneysCondition}
               userInput={userInput}
               select={select}
               attorneyArchives={attorneyArchives}
             />
           ) : (
-            attorneysContext.length <= 0 && (
+            attorneysCondition.length <= 0 && (
               <NonFiltered attorneys={seoAttorneys} />
             )
           )}

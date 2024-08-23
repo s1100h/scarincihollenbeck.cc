@@ -3,9 +3,8 @@ import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
-import { useContext } from 'react';
-import { AttorneysContext } from 'contexts/AttorneysContext';
 import { filterAttorneysByDesignation } from 'utils/helpers';
+import { useGetAttorneysQuery } from '../../redux/services/project-api';
 // import InfoModal from '../atoms/InfoModal';
 
 // !! Attention the modal window was turned off. 12/31/2022
@@ -42,9 +41,10 @@ const HomePage = ({
   latestArticlesTabsData,
   whyChooseUs,
 }) => {
-  const { attorneysContext } = useContext(AttorneysContext);
-  const filteredAttorneysByDesignation = filterAttorneysByDesignation(attorneysContext);
-
+  const { data: attorneysData } = useGetAttorneysQuery();
+  const filteredAttorneysByDesignation = filterAttorneysByDesignation(
+    attorneysData?.data,
+  );
   return (
     <>
       <HomeSiteHead
