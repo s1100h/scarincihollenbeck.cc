@@ -7,6 +7,8 @@ import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { useMemo } from 'react';
 import empty from 'is-empty';
+import { ContainerDefault } from 'styles/Containers.style';
+import SplitInfo from 'components/common/SplitInfo';
 import { sortByKey } from '../../utils/helpers';
 import {
   LocationPageContainer,
@@ -108,28 +110,30 @@ const LocationPage = ({
       />
       <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
       <LocationPageContainer className="mt-5">
-        <Row className="row-content">
-          <Col className="map-column" xs={11} sm={11} md={11} lg={8} xl={8}>
-            <OfficeLocationBoxTitle>
-              {changeTitle(currentOffice.title)}
-            </OfficeLocationBoxTitle>
-            <Map
-              title={currentOffice.title}
-              map={currentOffice?.mapAddress}
-              anchorIdMap={anchorData.map.id}
-              height={600}
-            />
-            <DirectionsFilesLink currentOffice={currentOffice} />
-            <FAQ
-              anchorId={anchorData.faq.id}
-              faqArrContent={ATTORNEYS_FAQ}
-              faqData={currentOffice.faq}
-            />
-          </Col>
-          <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>
-            <GetInTouchForm />
-          </Col>
-        </Row>
+        <ContainerDefault>
+          <Row className="row-content">
+            <Col className="map-column" xs={11} sm={11} md={11} lg={8} xl={8}>
+              <OfficeLocationBoxTitle>
+                {changeTitle(currentOffice.title)}
+              </OfficeLocationBoxTitle>
+              <Map
+                title={currentOffice.title}
+                map={currentOffice?.mapAddress}
+                anchorIdMap={anchorData.map.id}
+                height={600}
+              />
+              <DirectionsFilesLink currentOffice={currentOffice} />
+              <FAQ
+                anchorId={anchorData.faq.id}
+                faqArrContent={ATTORNEYS_FAQ}
+                faqData={currentOffice.faq}
+              />
+            </Col>
+            <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>
+              <GetInTouchForm />
+            </Col>
+          </Row>
+        </ContainerDefault>
       </LocationPageContainer>
       {!empty(currentOffice?.attorneys) && (
         <PracticeAttorneys
@@ -137,6 +141,7 @@ const LocationPage = ({
           attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
         />
       )}
+      <SplitInfo />
       <WhatWeDoSection {...whatWeDoAdditional} />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       {!empty(googleReviews) && (

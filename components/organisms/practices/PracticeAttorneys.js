@@ -3,8 +3,9 @@ import empty from 'is-empty';
 import React, {
   useEffect, useMemo, useRef, useState,
 } from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
+import { ContainerDefault } from 'styles/Containers.style';
 import {
+  PracticeAttorneysBg,
   PracticeAttorneysSection,
   PracticeNoAttorneys,
 } from 'styles/practices/PracticeAttorneys';
@@ -61,10 +62,17 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   if (totalItems === 0) {
     return (
       <PracticeAttorneysSection id={anchorId} className="margin-scroll">
-        <ContainerContent className="practice-container">
+        <PracticeAttorneysBg
+          src="/images/profile-attorney-bg.webp"
+          fill
+          alt="Attorneys background"
+          sizes="100vw"
+          loading="lazy"
+        />
+        <ContainerDefault>
           <PracticeTitle>Practice Area Attorneys</PracticeTitle>
           <PracticeNoAttorneys>Attorneys will appear soon!</PracticeNoAttorneys>
-        </ContainerContent>
+        </ContainerDefault>
       </PracticeAttorneysSection>
     );
   }
@@ -72,10 +80,17 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   return (
     <PracticeAttorneysSection
       className={`margin-scroll ${isCollapsed ? 'collapsed' : ''}`}
-      minHeight={chairs.length > 0 ? cardHeight + 27 : cardHeight}
+      minHeight={chairs.length > 0 ? cardHeight + 34 : cardHeight}
       id={anchorId}
     >
-      <ContainerContent className="practice-container">
+      <PracticeAttorneysBg
+        src="/images/profile-attorney-bg.webp"
+        fill
+        alt="Attorneys background"
+        sizes="100vw"
+        loading="lazy"
+      />
+      <ContainerDefault>
         <div className="attorneys-practice__header">
           <PracticeTitle>Practice Area Attorneys</PracticeTitle>
           {totalItems > calculateItemsPerRow
@@ -97,7 +112,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
             />
           )}
         </div>
-      </ContainerContent>
+      </ContainerDefault>
     </PracticeAttorneysSection>
   );
 };

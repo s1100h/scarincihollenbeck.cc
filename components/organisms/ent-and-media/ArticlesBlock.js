@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import { ArticlesSection } from 'styles/practices-special-style/ent-adn-media/ArticlesBlock.style';
+import { ContainerDefault } from 'styles/Containers.style';
 import {
   LinkToCategory,
   PostsBox,
@@ -11,7 +11,7 @@ const PostList = dynamic(import('components/molecules/PostList'));
 
 const ArticlesBlock = ({ paginationData }) => (
   <ArticlesSection>
-    <ContainerContent>
+    <ContainerDefault>
       <TitleButtonBox>
         <h3>Related Articles</h3>
         <LinkToCategory href="/library/category/entertainment-and-sports">
@@ -26,7 +26,7 @@ const ArticlesBlock = ({ paginationData }) => (
           isVertical="true"
         />
       </PostsBox>
-    </ContainerContent>
+    </ContainerDefault>
   </ArticlesSection>
 );
 

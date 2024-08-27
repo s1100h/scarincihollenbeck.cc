@@ -1,7 +1,6 @@
 import WhyChooseUsCard from 'components/molecules/practice/WhyChooseUsCard';
 import React, { useId } from 'react';
-
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
+import { ContainerDefault } from 'styles/Containers.style';
 import { PracticeTitle } from 'styles/practices/PracticeCommon.style';
 import {
   WhyChooseUsCards,
@@ -51,14 +50,14 @@ const whyChooseUsData = {
 
 const WhyChooseUs = ({ anchorId }) => (
   <WhyChooseUsSection className="margin-scroll" id={anchorId}>
-    <ContainerContent className="practice-container">
+    <ContainerDefault>
       <PracticeTitle>Why Choose Us?</PracticeTitle>
       <WhyChooseUsCards>
         {whyChooseUsData.cards.map((card, index) => (
           <WhyChooseUsCard key={useId()} {...card} />
         ))}
       </WhyChooseUsCards>
-    </ContainerContent>
+    </ContainerDefault>
   </WhyChooseUsSection>
 );
 
