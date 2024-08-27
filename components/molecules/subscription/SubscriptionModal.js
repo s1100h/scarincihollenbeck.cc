@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import Image from 'next/image';
-// import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import {
   RECAPTCHA_SITE_KEY,
@@ -24,7 +23,6 @@ import Loader from '../../atoms/Loader';
 import decodeResponse from '../../../utils/decodeResponse';
 import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
 
-// const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 const isArraysIdentical = (chosenIds, originalIds) => {
   if (chosenIds.length !== originalIds?.length) {
     return false;
@@ -55,7 +53,7 @@ const SubscriptionModal = ({ children, customClass }) => {
   const [categoriesChosen, setCategories] = useState([]);
 
   const router = useRouter();
-
+  const useIdVar = useId();
   const handleCheckCategory = (categoryId) => {
     if (categoriesChosen.includes(categoryId)) {
       setCategories(
@@ -74,7 +72,6 @@ const SubscriptionModal = ({ children, customClass }) => {
       setCategories([]);
     }
   };
-
   return (
     <>
       {/* <KwesScripts /> */}
@@ -149,16 +146,16 @@ const SubscriptionModal = ({ children, customClass }) => {
                   {!empty(categoriesFromWP) ? (
                     <>
                       {categoriesFromWP?.map(({ id, name }) => (
-                        <li key={id}>
-                          <label htmlFor={id} className="mb-0">
+                        <li key={`${useIdVar}${id}`}>
+                          <label htmlFor={`${useIdVar}${id}`} className="mb-0">
                             <input
                               type="checkbox"
                               className="disclaimer-input"
-                              id={id}
+                              id={`${useIdVar}${id}`}
                               name="category"
                               value={name}
                               onChange={() => handleCheckCategory(id)}
-                              checked={categoriesChosen.includes(id)}
+                              checked={categoriesChosen?.includes(id)}
                             />
                             <span className="disclaimer-checkbox" />
                             <span className="checkbox-label">{name}</span>
