@@ -44,6 +44,8 @@ const SplitInfo = () => (
             Our experienced attorneys are ready to provide the quality
             representation you deserve.
           </p>
+
+          <p>Contact us today to learn more about how we can assist you.</p>
         </SplitInfoColumn>
       </SplitInfoHolder>
     </ContainerDefault>
