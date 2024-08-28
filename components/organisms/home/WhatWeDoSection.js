@@ -6,7 +6,7 @@ import { WhatWeDoHolder, WhatWeDoWrapper } from 'styles/WhatWeDo.style';
 import PracticesTabs from './PracticesTabs';
 
 const WhatWeDoSection = ({ groupsPractices, anchorId }) => (
-  <WhatWeDoWrapper id={anchorId}>
+  <WhatWeDoWrapper id={anchorId} className="margin-scroll">
     <ContainerDefault className="practice-container">
       <WhatWeDoHolder>
         <SeparatedTitle

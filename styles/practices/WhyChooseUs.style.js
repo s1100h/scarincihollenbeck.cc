@@ -7,7 +7,7 @@ import {
 } from 'styles/mediaBreakpoints.style';
 
 export const WhyChooseUsSection = styled.div`
-  margin: 0 0 40px 0;
+  padding: 40px 0;
 
   ${PracticeTitle} {
     margin: 0 0 12px 0;
