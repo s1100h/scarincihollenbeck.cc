@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import kwesforms from 'kwesforms';
 import { RECAPTCHA_SITE_KEY } from 'utils/constants';
 
-// const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
 const CurrentAttorneyNameForm = dynamic(() => import('components/organisms/site-form/CurrentAttorney'));
 const NewAttorneyNameForm = dynamic(() => import('components/organisms/site-form/NewAttorney'));
 
@@ -23,7 +22,6 @@ const SiteFormPage = ({
 
   return (
     <Container>
-      {/* <KwesScripts /> */}
       <Head>
         <title>Updating your website profile?</title>
         <meta name="googlebot" content="noindex" />

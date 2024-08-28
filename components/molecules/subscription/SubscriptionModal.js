@@ -76,7 +76,6 @@ const SubscriptionModal = ({ children, customClass }) => {
   };
   return (
     <>
-      {/* <KwesScripts /> */}
       {!empty(children) ? (
         <button onClick={() => setShow(true)} className={customClass}>
           {children}
