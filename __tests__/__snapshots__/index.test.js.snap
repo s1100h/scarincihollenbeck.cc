@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`HomePage The main title renders correctly 1`] = `
-<h1>
-  Decades of Legal Experience with Recognized Results
-</h1>
-`;
