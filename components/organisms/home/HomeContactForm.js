@@ -8,7 +8,7 @@ import {
 } from 'styles/HomeContactForm.style';
 
 const HomeContactForm = () => (
-  <ContactFormWrapper>
+  <ContactFormWrapper data-testid="ContactFormWrapper">
     <ContainerDefault>
       <ContactFormHolder>
         <ContactFormTitle>Let’s get in touch!</ContactFormTitle>

@@ -22,7 +22,7 @@ import { FaDiamond } from 'react-icons/fa6';
 import { DiamondSeparator } from '../../../styles/Separators.style';
 
 const HomeBanner = ({ title, subtitle, infoCards }) => (
-  <Banner>
+  <Banner data-testid="home-banner">
     <BannerImage
       src="/images/home-page-banner.webp"
       alt="Building on the background"
@@ -58,7 +58,7 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
         {subtitle}
       </BannerText>
 
-      <BannerCards>
+      <BannerCards data-testid="banner-cards">
         {infoCards?.map(({
           fieldGroupName, title, icon, cardsText, link,
         }) => (

@@ -17,12 +17,12 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 
 const AboutFirm = ({
   title,
-  heroProfileLink,
+  heroProfileLink = '/attorneys',
   aboutHero,
   arcticle,
   heroPhoto,
 }) => (
-  <AboutSection>
+  <AboutSection data-testid="who-we-are">
     <ContainerDefault>
       <AboutBlocks>
         <AboutBlock>
