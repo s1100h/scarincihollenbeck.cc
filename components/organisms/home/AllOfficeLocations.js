@@ -6,6 +6,7 @@ import { ContainerDefault } from '../../../styles/Containers.style';
 const LocationCard = dynamic(() => import('components/molecules/home/LocationCard'));
 
 const AllOfficeLocations = ({ offices }) => {
+  if (!offices) return null;
   const [officeTitle, setOfficeTitle] = useState(offices[0].title);
   return (
     <LocationsHomeSection>

@@ -20,7 +20,7 @@ const AwardsSlider = dynamic(
 
 const Awards = React.memo(({ awards }) => {
   const formattedAwards = awards
-    .map(
+    ?.map(
       ({
         appearanceOrder,
         imageHeight,
@@ -44,7 +44,7 @@ const Awards = React.memo(({ awards }) => {
     .sort((a, b) => (a.order > b.order ? 1 : -1));
 
   return (
-    <AwardsWrapper>
+    <AwardsWrapper data-testid="awards">
       <ContainerDefault>
         <AwardsHolder>
           <AwardsHeader>

@@ -15,7 +15,7 @@ import IndustriesCard from './IndustriesCard';
 const IndustriesSection = ({
   title, subtitle, link, industryCards,
 }) => (
-  <IndustriesWrapper>
+  <IndustriesWrapper data-testid="industries-wrapper">
     <ContainerDefault>
       <IndustriesHolder>
         <IndustriesHeader>
@@ -28,12 +28,14 @@ const IndustriesSection = ({
           <p>{subtitle}</p>
         </IndustriesHeader>
 
-        <IndustriesCards>
-          {industryCards.map((item, index) => (
-            <IndustriesCard key={`${item?.title}-industry-card`} {...item} />
-          ))}
-        </IndustriesCards>
-        <UnderlinedLink href={link?.url}>{link?.title}</UnderlinedLink>
+        {industryCards && (
+          <IndustriesCards>
+            {industryCards.map((item, index) => (
+              <IndustriesCard key={`${item?.title}-industry-card`} {...item} />
+            ))}
+          </IndustriesCards>
+        )}
+        <UnderlinedLink href={link?.url || '/'}>{link?.title}</UnderlinedLink>
       </IndustriesHolder>
     </ContainerDefault>
   </IndustriesWrapper>

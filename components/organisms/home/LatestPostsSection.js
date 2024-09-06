@@ -25,7 +25,7 @@ const LatestPostsSection = ({ tabsData }) => {
   const activeTabData = tabsData?.[activeTabId];
 
   return (
-    <LatestPostsWrapper>
+    <LatestPostsWrapper data-testid="latest-posts">
       <ContainerDefault>
         <LatestPostsHolder>
           <LatestPostsHeader>

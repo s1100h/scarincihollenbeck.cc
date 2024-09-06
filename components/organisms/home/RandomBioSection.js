@@ -159,7 +159,7 @@ const RandomBioSection = ({ attorneys }) => {
   };
 
   return (
-    <RandomBioWrapper ref={containerRef}>
+    <RandomBioWrapper ref={containerRef} data-testid="bio-autoplay">
       <RandomBioBg
         src="/images/random-bio-bg.webp"
         fill
