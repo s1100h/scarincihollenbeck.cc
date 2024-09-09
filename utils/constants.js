@@ -234,11 +234,12 @@ export const SITE_NAVIGATION = [
         title: 'Pro Bono',
         uri: '/pro-bono',
       },
-      {
-        databaseId: 108,
-        title: 'Women Lead',
-        uri: '/women-lead',
-      },
+      // the page in the Draft. 9.09.2024
+      // {
+      //   databaseId: 108,
+      //   title: 'Women Lead',
+      //   uri: '/women-lead',
+      // },
     ],
   },
   {

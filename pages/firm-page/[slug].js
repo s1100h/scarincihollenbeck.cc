@@ -4,6 +4,7 @@ import FirmPage from 'components/pages/FirmPage';
 import { FIRM_PAGES, PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { firmPagesQuery } from 'requests/graphql-queries';
+import empty from 'is-empty';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -41,6 +42,13 @@ export const getServerSideProps = async ({ params }) => {
     params.slug,
     diversityCategoryId(params.slug),
   );
+
+  if (empty(req)) {
+    return {
+      notFound: true,
+    };
+  }
+
   const {
     title,
     seo,
