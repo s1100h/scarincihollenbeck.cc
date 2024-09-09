@@ -93,6 +93,7 @@ const ProfileAccordion = ({
   govLawPosts,
   blogTitles,
   name,
+  authorId,
 }) => {
   const router = useRouter();
   const sanitizedAwardsForSlider = sanitizeAwardsForSlider(awards);
@@ -103,7 +104,7 @@ const ProfileAccordion = ({
     queryParams: 'news-press-releases-page',
     actionKey: 'news-and-press',
     params: {
-      slug: router?.query?.slug,
+      authorId,
       categoryId: 98,
       currentPage: router?.query?.['news-press-releases-page'] || 1,
       itemsPerPage: 6,
@@ -122,7 +123,7 @@ const ProfileAccordion = ({
     queryParams: 'blogs-page',
     actionKey: 'blogs',
     params: {
-      slug: router?.query?.slug,
+      authorId,
       categoryId: 599,
       currentPage: router?.query?.['blogs-page'] || 1,
       itemsPerPage: 3,
@@ -141,7 +142,7 @@ const ProfileAccordion = ({
     queryParams: 'events-page',
     actionKey: 'events',
     params: {
-      slug: router?.query?.slug,
+      authorId,
       categoryId: 99,
       currentPage: router?.query?.['events-page'] || 1,
       itemsPerPage: 6,
@@ -159,8 +160,6 @@ const ProfileAccordion = ({
       <ContainerDefault>
         <ProfileAccordionHolder>
           <Accordion as="ul" alwaysOpen>
-            <ProfileClients clients={clients} name={name} />
-
             {!empty(sanitizedAwardsForSlider) && (
               <AccordionItem
                 as="li"
@@ -194,14 +193,22 @@ const ProfileAccordion = ({
               />
             )}
 
-            {!empty(gallery) && (
-              <AccordionItem
-                as="li"
-                eventKey={`profile-gallery-${name}`}
-                title="Gallery"
-              >
-                <GallerySlider items={gallery} />
-              </AccordionItem>
+            <ProfileClients clients={clients} name={name} />
+
+            {renderBlogPosts(
+              newsPressReleasesPaginationData,
+              newsPressReleasesConfig,
+              blogTitles,
+              false,
+              name,
+            )}
+
+            {renderBlogPosts(
+              blogPostsPaginationData,
+              blogConfig,
+              blogTitles,
+              false,
+              name,
             )}
 
             {!empty(mediaItems) && (
@@ -224,14 +231,12 @@ const ProfileAccordion = ({
               </AccordionItem>
             )}
 
-            {!empty(publicationsItems) && (
-              <AccordionItem
-                as="li"
-                eventKey={`profile-publications-${name}`}
-                title="Publications"
-              >
-                <MediaSlider items={publicationsItems} />
-              </AccordionItem>
+            {renderBlogPosts(
+              eventsPostsPaginationData,
+              eventsConfig,
+              blogTitles,
+              true,
+              name,
             )}
 
             {!empty(videos) && (
@@ -244,6 +249,26 @@ const ProfileAccordion = ({
               </AccordionItem>
             )}
 
+            {!empty(gallery) && (
+              <AccordionItem
+                as="li"
+                eventKey={`profile-gallery-${name}`}
+                title="Gallery"
+              >
+                <GallerySlider items={gallery} />
+              </AccordionItem>
+            )}
+
+            {!empty(publicationsItems) && (
+              <AccordionItem
+                as="li"
+                eventKey={`profile-publications-${name}`}
+                title="Publications"
+              >
+                <MediaSlider items={publicationsItems} />
+              </AccordionItem>
+            )}
+
             {!empty(govLawPosts?.posts) && (
               <AccordionItem
                 as="li"
@@ -252,28 +277,6 @@ const ProfileAccordion = ({
               >
                 <MediaSlider items={govLawPosts?.posts} />
               </AccordionItem>
-            )}
-
-            {renderBlogPosts(
-              newsPressReleasesPaginationData,
-              newsPressReleasesConfig,
-              blogTitles,
-              false,
-              name,
-            )}
-            {renderBlogPosts(
-              blogPostsPaginationData,
-              blogConfig,
-              blogTitles,
-              false,
-              name,
-            )}
-            {renderBlogPosts(
-              eventsPostsPaginationData,
-              eventsConfig,
-              blogTitles,
-              true,
-              name,
             )}
 
             {!empty(additionalTabs)

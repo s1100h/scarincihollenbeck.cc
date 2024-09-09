@@ -51,7 +51,7 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
         ))}
       </BannerSlogans>
       <BannerTitle className="animate__animated animate__fadeInDown animate__slow">
-        {title}
+        <JSXWithDynamicLinks HTML={title} />
       </BannerTitle>
 
       <BannerText className="animate__animated animate__fadeInDown animate__slow">

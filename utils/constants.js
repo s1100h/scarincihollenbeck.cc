@@ -907,7 +907,7 @@ export const SOCIAL_LINKS = [
   },
 ];
 
-export const slogans = ['Since 1988', 'Distinct Vision', 'Real Impact'];
+export const slogans = ['Distinct Vision', 'Real Impact'];
 
 export const latestPostTabs = [
   {
