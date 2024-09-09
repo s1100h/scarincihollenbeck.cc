@@ -1,7 +1,6 @@
 import CustomSelect from 'components/common/Select';
 import LetterSelector from 'components/molecules/attorneys/Letters';
 import AuxiliarySearch from 'components/shared/GlobalSearch/AuxiliarySearch';
-import { useAttorneysSearch } from 'hooks/useAttornySearch';
 import React, { useRef } from 'react';
 import {
   FiltersColumns,
@@ -28,6 +27,7 @@ import {
   onSelectLetter,
 } from '../../../redux/slices/attorneys.slice';
 import { useGetAttorneysQuery } from '../../../redux/services/project-api';
+import { useAttorneysSearch } from '../../../hooks/useAttornySearch';
 
 const AttorneyFilters = ({
   practices,
@@ -106,7 +106,7 @@ const AttorneyFilters = ({
   };
 
   return (
-    <FiltersHolder>
+    <FiltersHolder data-testid="attorneys-filter">
       <FiltersItems>
         <FiltersColumns>
           <FiltersLeftColumn>
