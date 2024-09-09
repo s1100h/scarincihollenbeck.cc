@@ -137,7 +137,7 @@ export const AboutCard = styled.article`
 
 export const AboutCardImage = styled.div`
   width: 280px;
-  min-height: 300px;
+  min-height: 284px;
   height: calc(100% + 72px);
   border-radius: ${globalBorderRadius.small};
   box-shadow: 0px 1px 12px 0px rgba(255, 255, 255, 0.12);
