@@ -1,29 +1,16 @@
 import '@testing-library/jest-dom';
 import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
+  fireEvent, render, screen, within,
 } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
-import mockRouter from 'next-router-mock';
 import AboutFirm from 'components/organisms/home/AboutFirm';
 import preloadAll from 'jest-next-dynamic';
 import PracticeCard from 'components/organisms/home/PracticeCard';
 import PracticesTabs from 'components/organisms/home/PracticesTabs';
-import renderer from 'react-test-renderer';
 import Awards from 'components/organisms/home/Awards';
 import LatestPostsSection from 'components/organisms/home/LatestPostsSection';
 import AllOfficeLocations from 'components/organisms/home/AllOfficeLocations';
-import HomePage from '../components/pages/HomePage';
-import { wpGraphQl } from '../redux/services/wp-graphql';
-import { appApi } from '../redux/services/project-api';
-import attorneysReducer from '../redux/slices/attorneys.slice';
-import formsReducer from '../redux/slices/forms.slice';
-import sizesReducer from '../redux/slices/sizes.slice';
+import HomePage from '../../../components/pages/HomePage';
+import ReduxProvider from '../../../hoks/reduxTestHoc';
 
 beforeAll(async () => {
   await preloadAll();
@@ -39,26 +26,6 @@ beforeEach(() => {
   });
   window.IntersectionObserver = mockIntersectionObserver;
 });
-
-// Set up the store
-const store = configureStore({
-  reducer: {
-    [wpGraphQl.reducerPath]: wpGraphQl.reducer,
-    [appApi.reducerPath]: appApi.reducer,
-    attorneys: attorneysReducer,
-    forms: formsReducer,
-    sizes: sizesReducer,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(appApi.middleware),
-});
-
-const ReduxProvider = ({ children }) => (
-  <Provider store={store}>
-    <RouterContext.Provider value={mockRouter}>
-      {children}
-    </RouterContext.Provider>
-  </Provider>
-);
 
 const renderHomePage = (props) => render(
   <ReduxProvider>
