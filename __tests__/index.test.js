@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom';
 import {
-  fireEvent, render, screen, within,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
 } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
@@ -13,6 +17,7 @@ import PracticesTabs from 'components/organisms/home/PracticesTabs';
 import renderer from 'react-test-renderer';
 import Awards from 'components/organisms/home/Awards';
 import LatestPostsSection from 'components/organisms/home/LatestPostsSection';
+import AllOfficeLocations from 'components/organisms/home/AllOfficeLocations';
 import HomePage from '../components/pages/HomePage';
 import { wpGraphQl } from '../redux/services/wp-graphql';
 import { appApi } from '../redux/services/project-api';
@@ -60,6 +65,10 @@ const renderHomePage = (props) => render(
     <HomePage {...props} />
   </ReduxProvider>,
 );
+
+jest.mock('@next/third-parties/google', () => ({
+  GoogleMapsEmbed: () => <div>Mocked Google Maps Embed</div>,
+}));
 
 // Tests
 describe('HomePage', () => {
@@ -519,5 +528,86 @@ describe('HomePage', () => {
     expect(awardsMethodologyButton).toBeInTheDocument();
 
     expect(awardsMethodologyButton).toHaveAttribute('href', '/awards');
+  });
+
+  it('Offices locations component render', async () => {
+    const offices = [
+      {
+        databaseId: 29436,
+        slug: 'little-falls',
+        title: 'Little Falls, NJ',
+        addressLocality: 'Little Falls',
+        addressRegion: 'NJ',
+        mapAddress: 'Scarinci+Hollenbeck+Clove+Road',
+        phone: '201-896-4100',
+        streetAddress: '150 Clove Road',
+        fax: '201-896-8660',
+        floor: '9th Floor',
+        postCode: '07424',
+        autoMap:
+          'https://res.cloudinary.com/scarinci-hollenbeck/images/v1667410295/wp.scarincihollenbeck/automap/automap.pdf?_i=AA',
+        trainStationsMap:
+          'https://res.cloudinary.com/scarinci-hollenbeck/images/v1666334530/wp.scarincihollenbeck/NJ-TRANSIT-Rail-System-Map-–-October-2021/NJ-TRANSIT-Rail-System-Map-–-October-2021.pdf?_i=AA',
+      },
+      {
+        databaseId: 294368,
+        slug: 'new-york',
+        title: 'New Yogrk City',
+        addressLocality: 'New York',
+        addressRegion: 'NY',
+        mapAddress: 'Scarinci+Hollenbeck+New-York',
+        phone: '212-286-0747',
+        streetAddress: '519 8th Avenue',
+        fax: '212-808-4155',
+        floor: '25th Floor',
+        postCode: '10018',
+        autoMap: null,
+        trainStationsMap: null,
+      },
+    ];
+
+    render(
+      <ReduxProvider>
+        <AllOfficeLocations offices={offices} />
+      </ReduxProvider>,
+    );
+
+    const mapSection = screen.getByTestId('offices-map');
+    expect(mapSection).toBeInTheDocument();
+
+    const locationsTabs = within(mapSection).getByTestId('locations-tabs');
+    expect(locationsTabs).toBeInTheDocument();
+
+    const allTexts = within(locationsTabs).getAllByText('Little Falls, NJ');
+    const littleFallsTab = allTexts[0];
+    expect(littleFallsTab).toBeInTheDocument();
+
+    fireEvent.click(littleFallsTab);
+
+    const littleFallsHeading = screen.getByRole('heading', {
+      name: /Little Falls, NJ/i,
+    });
+    expect(littleFallsHeading).toBeInTheDocument();
+
+    const littleFallsOffice = offices.find(
+      (office) => office.title === 'Little Falls, NJ',
+    );
+    expect(littleFallsOffice).toBeDefined();
+
+    expect(littleFallsOffice.autoMap).toBeDefined();
+    expect(littleFallsOffice.trainStationsMap).toBeDefined();
+
+    const trainMapLink = screen.getByRole('link', {
+      name: /NJ Transit Rail System Map/i,
+    });
+    const autoMapLink = screen.getByRole('link', {
+      name: /Directions to the Overlook Corporate Center/i,
+    });
+
+    expect(autoMapLink).toHaveAttribute('href', littleFallsOffice.autoMap);
+    expect(trainMapLink).toHaveAttribute(
+      'href',
+      littleFallsOffice.trainStationsMap,
+    );
   });
 });
