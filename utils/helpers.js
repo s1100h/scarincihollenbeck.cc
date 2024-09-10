@@ -21,6 +21,8 @@ import BriefcaseIcon from 'components/common/icons/BriefcaseIcon';
 import DocumentsIcon from 'components/common/icons/DocumentsIcon';
 import EnvironmentalIcon from 'components/common/icons/EnvironmentalIcon';
 import TaxIcon from 'components/common/icons/TaxIcon';
+import GlobeIcon from 'components/common/icons/GlobeIcon';
+import BulbIcon from 'components/common/icons/BulbIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -433,7 +435,7 @@ export const sortAttorneysByCategory = (attorneys, titles) => {
 export const setResponseHeaders = (res, revalidateTime, cacheStatus) => {
   res.setHeader(
     'Cache-Control',
-    `s-maxage=${revalidateTime}, stale-while-revalidate`,
+    `public, max-age=${revalidateTime}, s-maxage=${revalidateTime}, stale-while-revalidate=${revalidateTime}`,
   );
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('X-Cache-Status', cacheStatus);
@@ -618,6 +620,8 @@ export const getIcon = (name) => {
     Check: <CheckIcon />,
     Map: <MapIcon />,
     Scope: <ScopeIcon />,
+    Globe: <GlobeIcon />,
+    Bulb: <BulbIcon />,
   };
 
   return icons[name];

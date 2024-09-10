@@ -32,16 +32,16 @@ query attorneysSlugs {
   }
 }`;
 
-async function attorneyFirmNewsBlogEvents(slug) {
+async function attorneyFirmNewsBlogEvents(authorId) {
   const blogTitles = [];
   const blogs = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
-    variables: { categoryId: 599, slug },
+    variables: { categoryId: 599, authorId },
   });
   const events = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
-    variables: { categoryId: 99, slug },
+    variables: { categoryId: 99, authorId },
   });
   const releases = await fetchAPI(checkAttorneyPostsQueryByIdAndSlug, {
-    variables: { categoryId: 98, slug },
+    variables: { categoryId: 98, authorId },
   });
 
   if (blogs.posts.pageInfo.startCursor) {
@@ -98,6 +98,8 @@ export const getStaticProps = async ({ params }) => {
       },
     };
   }
+
+  const authorId = attorneyBio?.attorneyAuthorId?.authorId?.databaseId;
 
   /** Create new tabs for Government and Law & Con Law  & Drop Music esq */
   /** Get Attorney External Blog Posts */
@@ -203,7 +205,7 @@ export const getStaticProps = async ({ params }) => {
   };
 
   /** Accordion data */
-  const blogTitles = await attorneyFirmNewsBlogEvents(slug);
+  const blogTitles = await attorneyFirmNewsBlogEvents(authorId);
   const additionalTabs = [1, 2, 3, 4, 5]
     .map((i) => ({
       id: i,
@@ -231,6 +233,7 @@ export const getStaticProps = async ({ params }) => {
     videos: attorneyBio.attorneyAwardsClientsBlogsVideos.attorneyVideos || [],
     govLawPosts,
     blogTitles: blogTitles || [],
+    authorId,
   };
 
   return {

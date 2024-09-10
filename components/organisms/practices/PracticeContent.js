@@ -2,7 +2,6 @@ import FAQ from 'components/atoms/FAQ';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import CollapseContent from 'components/molecules/practice/CollapseContent';
 import React from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
   PracticeContentSection,
   PracticeDescription,
@@ -10,13 +9,14 @@ import {
   PractiseContentHolder,
 } from 'styles/practices/PracticeContent.style';
 import { ATTORNEYS_FAQ } from 'utils/constants';
+import { ContainerDefault } from 'styles/Containers.style';
 import GetInTouchForm from './GetInTouchForm';
 
 const PracticeContent = ({
   data, title, anchorId, anchorIdFaq, faqData,
 }) => (
   <PracticeContentSection id={anchorId} className="margin-scroll">
-    <ContainerContent className="practice-container">
+    <ContainerDefault>
       <PractiseContentHolder>
         <PracticeDescription>
           {data?.map((item) => (
@@ -37,7 +37,7 @@ const PracticeContent = ({
           <GetInTouchForm />
         </PracticeSidebar>
       </PractiseContentHolder>
-    </ContainerContent>
+    </ContainerDefault>
   </PracticeContentSection>
 );
 

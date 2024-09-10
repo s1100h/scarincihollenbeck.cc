@@ -1,16 +1,16 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { ContactBox } from 'styles/AttorneyCard.style';
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { globalBorderRadius, globalColor, rem } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 
 export const PracticeAttorneysSection = styled.section`
-  margin-bottom: 40px;
   padding: 24px 0;
-  background: url('/images/attorneys-bg.png');
+  position: relative;
 
   &.collapsed {
     .attorneys-practice__wrapper {
@@ -79,15 +79,16 @@ export const PracticeAttorneysSection = styled.section`
       height: 100%;
       margin: 0;
       background-color: ${globalColor.blue.blue500};
+      border-radius: ${globalBorderRadius.extraSmall};
 
       > h3 {
-        padding: 8px 4px 0 4px;
+        padding: 2px 4px 0;
         margin: 0;
         color: ${globalColor.gray.gray10};
         font-family: var(--font-poppins);
         font-size: ${rem(20)};
-        line-height: 19px;
-        font-weight: 700;
+        line-height: 32px;
+        font-weight: 600;
       }
     }
 
@@ -149,6 +150,12 @@ export const PracticeAttorneysSection = styled.section`
   }
 `;
 
+export const PracticeAttorneysBg = styled(Image)`
+  z-index: -1;
+  opacity: 0.1;
+  object-fit: cover;
+`;
+
 export const PracticeAttorneysCard = styled.div`
   padding: 4px;
   position: relative;
@@ -208,6 +215,8 @@ export const PracticeAttorneysCard = styled.div`
     &__image {
       height: 100%;
       filter: grayscale(100%);
+      border-radius: 2px;
+      overflow: hidden;
       transition: all 0.3s linear;
 
       img {
@@ -231,6 +240,7 @@ export const PracticeAttorneysCard = styled.div`
       flex-direction: column;
       z-index: 2;
       text-align: start;
+      border-radius: 2px;
 
       &::after {
         content: '';

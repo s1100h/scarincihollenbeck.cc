@@ -106,7 +106,7 @@ export const BannerTitle = styled.h1`
 `;
 
 export const BannerText = styled.p`
-  max-width: 525px;
+  max-width: 752px;
   margin: 0;
   color: ${globalColor.gray.gray700};
   font-size: ${rem(20)};

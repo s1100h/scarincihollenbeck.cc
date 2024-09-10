@@ -9,7 +9,7 @@ import PracticesTabs from 'components/organisms/home/PracticesTabs';
 import Awards from 'components/organisms/home/Awards';
 import LatestPostsSection from 'components/organisms/home/LatestPostsSection';
 import AllOfficeLocations from 'components/organisms/home/AllOfficeLocations';
-import HomePage from '../../../components/pages/HomePage';
+import HomePage from 'components/pages/HomePage';
 import ReduxProvider from '../../../hoks/reduxTestHoc';
 
 beforeAll(async () => {
