@@ -18,7 +18,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   const [cardHeight, setCardHeight] = useState(0);
   const [cardGap, setCardGap] = useState(0);
   const containerRef = useRef();
-  const totalItems = attorneys.length + chairs.length;
+  const totalItems = attorneys?.length + chairs.length;
 
   useEffect(() => {
     let timeoutId;
@@ -59,9 +59,13 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
     setIsCollapsed(!isCollapsed);
   };
 
-  if (totalItems === 0) {
+  if (totalItems === 0 || Number.isNaN(totalItems)) {
     return (
-      <PracticeAttorneysSection id={anchorId} className="margin-scroll">
+      <PracticeAttorneysSection
+        id={anchorId}
+        className="margin-scroll"
+        data-testid="collapse-attorneys"
+      >
         <PracticeAttorneysBg
           src="/images/profile-attorney-bg.webp"
           fill
@@ -82,6 +86,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
       className={`margin-scroll ${isCollapsed ? 'collapsed' : ''}`}
       minHeight={chairs.length > 0 ? cardHeight + 34 : cardHeight}
       id={anchorId}
+      data-testid="collapse-attorneys"
     >
       <PracticeAttorneysBg
         src="/images/profile-attorney-bg.webp"

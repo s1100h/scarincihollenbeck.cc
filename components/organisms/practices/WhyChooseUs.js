@@ -49,7 +49,11 @@ const whyChooseUsData = {
 };
 
 const WhyChooseUs = ({ anchorId }) => (
-  <WhyChooseUsSection className="margin-scroll" id={anchorId}>
+  <WhyChooseUsSection
+    className="margin-scroll"
+    id={anchorId}
+    data-testid="why-choose-us"
+  >
     <ContainerDefault>
       <PracticeTitle>Why Choose Us?</PracticeTitle>
       <WhyChooseUsCards>

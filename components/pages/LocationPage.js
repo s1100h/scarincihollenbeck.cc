@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { Row, Col } from 'react-bootstrap';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
-import { ATTORNEYS_FAQ } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
 import { useMemo } from 'react';
@@ -125,8 +124,7 @@ const LocationPage = ({
               <DirectionsFilesLink currentOffice={currentOffice} />
               <FAQ
                 anchorId={anchorData.faq.id}
-                faqArrContent={ATTORNEYS_FAQ}
-                faqData={currentOffice.faq}
+                faqArrContent={currentOffice.faq}
               />
             </Col>
             <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>

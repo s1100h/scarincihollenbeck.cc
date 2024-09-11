@@ -11,9 +11,6 @@ const config = {
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  // moduleNameMapper: {
-  //   '^styles/(.*)$': '<rootDir>/styles/$1',
-  // },
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
@@ -40,6 +37,8 @@ const config = {
     '^utils/(.*)$': '<rootDir>/utils/$1',
     '^redux/(.*)$': '<rootDir>/redux/$1',
     '^hoks/(.*)$': '<rootDir>/hoks/$1',
+    '^layouts/(.*)$': '<rootDir>/layouts/$1',
+    '^hooks/(.*)$': '<rootDir>/hooks/$1',
     // Handle @next/font
     '@next/font/(.*)': '<rootDir>/__mocks__/nextFontMock.js',
     // Handle next/font

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { globalColor } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
-import { poppins } from '../public/fonts/fonts';
 
 export const ArticleContainer = styled.article`
   display: flex;
@@ -16,7 +15,6 @@ export const Title = styled.h3`
   font-size: ${({ props }) => (props?.size ? props.size : '1.5rem')};
   font-weight: 600;
   margin-bottom: 10px;
-  font-family: var(--font-poppins), sans-serif;
 
   ${media_breakpoint_down('sm')} {
     text-align: center;
