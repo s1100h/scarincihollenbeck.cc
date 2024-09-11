@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
+import { ContainerDefault } from 'styles/Containers.style';
 import {
   PracticesContent,
   PracticesImage,
@@ -17,7 +17,7 @@ const PracticesLinksBlock = ({
   practicesListTitle,
 }) => (
   <PracticesSection>
-    <ContainerContent>
+    <ContainerDefault>
       <PracticesContent>
         <PracticesPreview>
           <PracticesTitle>{practicesListTitle}</PracticesTitle>
@@ -38,7 +38,7 @@ const PracticesLinksBlock = ({
           ))}
         </PracticesLinks>
       </PracticesContent>
-    </ContainerContent>
+    </ContainerDefault>
   </PracticesSection>
 );
 

@@ -125,6 +125,7 @@ export const globalBorderRadius = {
   big: '16px',
   middle: '12px',
   small: '8px',
+  extraSmall: '4px',
 };
 
 const transitionDuration = 300;
@@ -692,7 +693,7 @@ export const ButtonLinkCss = `
   line-height: 1;
   color: ${globalColor.white};
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: ${globalBorderRadius.small};
 
   span {
     display: flex;

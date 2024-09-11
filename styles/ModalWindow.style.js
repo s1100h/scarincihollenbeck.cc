@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { globalColor, globalTransition } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
-export const ModalContainer = styled.div.attrs({ 'data-testid': 'modal-container' })`
+export const ModalContainer = styled.div.attrs({
+  'data-testid': 'modal-container',
+})`
   display: flex;
   justify-content: center;
   align-items: center;

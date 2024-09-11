@@ -77,7 +77,7 @@ describe('Attorneys page', () => {
     const faqBox = screen.getByTestId('FAQ-container');
 
     // Use within() to query the elements inside the FaqBox container
-    const faq = within(faqBox).getByTestId('FAQ');
+    const faq = within(faqBox).getByTestId('faq-wrapper');
     expect(faq).toBeInTheDocument();
   });
 });

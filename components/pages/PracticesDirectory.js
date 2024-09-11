@@ -5,7 +5,6 @@ import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import Article from 'components/atoms/Article';
 import dynamic from 'next/dynamic';
 import SearchPractices from 'components/molecules/practice/SearchPractices';
-import { ATTORNEYS_FAQ } from 'utils/constants';
 import { Title } from '../../styles/Article.style';
 import { ArticleSearchBox } from '../../styles/Practices.style';
 import SubHeader from '../../layouts/SubHeader/SubHeader';
@@ -41,7 +40,7 @@ const PracticesDirectory = ({
         <SearchPractices practicesAll={practices} />
       </ArticleSearchBox>
       <ListWrapper list={practices} isBlock />
-      <FAQ faqArrContent={ATTORNEYS_FAQ} />
+      <FAQ />
     </FullWidth>
   </>
 );

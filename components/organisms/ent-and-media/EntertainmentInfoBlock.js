@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
   EnterntainmentTabBtn,
   EnterntainmentTabBtns,
@@ -30,6 +29,7 @@ import {
   EntertainmentModalListNumber,
 } from 'styles/practices-special-style/ent-adn-media/EntertainmentModal.style';
 import empty from 'is-empty';
+import { ContainerDefault } from 'styles/Containers.style';
 import { EntertainmentInfoContext } from '../../../contexts/EntertainmentInfoContext';
 
 const openTabByAnchorLink = (practiceInfoTabs, titleFromSlider) => practiceInfoTabs.findIndex(({ title }) => title.includes(titleFromSlider));
@@ -70,7 +70,7 @@ const EntertainmentInfoBlock = ({
 
   return (
     <EntertainmentInfoSection id={hrefToId}>
-      <ContainerContent>
+      <ContainerDefault>
         <EnterntainmentTabNumber>
           {activeTabIndex < 9 ? `0${activeTabIndex + 1}` : activeTabIndex + 1}
         </EnterntainmentTabNumber>
@@ -152,7 +152,7 @@ const EntertainmentInfoBlock = ({
             </EnterntainmentTabContent>
           </motion.div>
         </AnimatePresence>
-      </ContainerContent>
+      </ContainerDefault>
 
       <AnimatePresence>
         {isShowModal && (

@@ -477,28 +477,28 @@ export const ATTORNEYS_FAQ = [
   {
     id: 1,
     title: 'How can I get in touch with an attorney?',
-    body: <HawCanIGet />,
+    description: <HawCanIGet />,
   },
   {
     id: 2,
     title: 'How do I know which attorney to contact?',
-    body: <HawDoIKnow />,
+    description: <HawDoIKnow />,
   },
   {
     id: 3,
     title: 'What are the firm`s main practice areas?',
-    body: <WhatAreTheFirms />,
+    description: <WhatAreTheFirms />,
   },
   {
     id: 4,
     title: 'Where is the firm located?',
-    body: <WhereIsYheFirmLocated />,
+    description: <WhereIsYheFirmLocated />,
   },
   {
     id: 5,
     title:
       'I am located outside of New Jersey and New York. Can you still help me?',
-    body: `
+    description: `
     It depends on the nature of the matter. <strong>Scarinci Hollenbeck, LLC</strong> represents clients around the world.
     We service our clients in a large variety of matters. In areas such as Intellectual Property,
     including trademark, copyright, or patent-related matters, we can service these requests regardless
@@ -512,13 +512,13 @@ export const ATTORNEYS_FAQ = [
   {
     id: 6,
     title: 'What kind of clients does your firm service?',
-    body: `Scarinci Hollenbeck, LLC routinely serves business owners, corporate entities, leaders, and operators
-     of small businesses and Fortune 500 companies alike.`,
+    description: `Scarinci Hollenbeck, LLC routinely serves business owners, corporate entities, leaders, and operators
+    of small businesses and Fortune 500 companies alike.`,
   },
   {
     id: 7,
     title: 'I am not a business owner. Could your firm still help me?',
-    body: `We are a general practice law firm that services businesses, corporations, and entities.
+    description: `We are a general practice law firm that services businesses, corporations, and entities.
     We typically only represent people who own and operate these organizations. However, you are free to call 
     our business development group at <a href="tel:201-806-3364"> 201-806-3364</a> or email us at 
     <a href="mailto:info@sh-law.com">info@sh-law.com</a> A member of our group can direct you to an 
@@ -528,7 +528,7 @@ export const ATTORNEYS_FAQ = [
   {
     id: 8,
     title: 'How do you pronounce "Scarinci Hollenbeck, LLC"?',
-    body: 'SCUH-RIN-SEE HALL-EN-BEK',
+    description: 'SCUH-RIN-SEE HALL-EN-BEK',
   },
 ];
 
@@ -907,7 +907,7 @@ export const SOCIAL_LINKS = [
   },
 ];
 
-export const slogans = ['Since 1988', 'Distinct Vision', 'Real Impact'];
+export const slogans = ['Distinct Vision', 'Real Impact'];
 
 export const latestPostTabs = [
   {

@@ -6,6 +6,7 @@ import {
 import { ContactBox, InfoBox, LinkBox } from 'styles/AttorneyCard.style';
 import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -50,6 +51,7 @@ export const attorneyCardForPractices = `
         filter: grayscale(100%);
         object-fit: cover;
         transition: ${globalTransition.default};
+        border-radius: ${globalBorderRadius.extraSmall};
 
         ${media_breakpoint_down('sm')} {
           width: 126px;
@@ -67,9 +69,9 @@ export const attorneyCardForPractices = `
       h3 {
         margin: 0 0 4px 0;
         color: ${globalColor.white};
-        font-size: ${rem(16)};
-        line-height: 24px;
-        font-weight: 500;
+        font-size: ${rem(20)};
+        line-height: 32px;
+        font-weight: 600;
         transition: ${globalTransition.default};
 
         ${media_breakpoint_down('sm')} {
@@ -80,10 +82,12 @@ export const attorneyCardForPractices = `
 
       p {
         margin: 0 0 auto 0;
-        color: #b3b3b3;
+        color: ${globalColor.gray.gray10};
         font-size: ${rem(12)};
-        line-height: 16px;
+        line-height: 20px;
         font-weight: 400;
+        text-transform: uppercase;
+        font-family: var(--font-lato);
 
         ${media_breakpoint_down('sm')} {
           font-size: ${rem(8)};
@@ -249,8 +253,8 @@ export const DefaultSubHeaderContent = styled.div`
 
     h1 {
       margin: 0;
-      text-transform: uppercase;
-      font-weight: 400;
+      text-transform: capitalize;
+      font-weight: 500;
 
       ${media_breakpoint_exactly_down(1439)} {
         font-size: ${rem(32)};
@@ -289,7 +293,7 @@ export const DefaultSubHeaderContent = styled.div`
 export const DefaultSubHeaderDescription = styled.div`
   p {
     margin: 0;
-    color: ${globalColor.gray.gray80};
+    color: ${globalColor.gray.gray700};
     line-height: 29.5px;
 
     ${media_breakpoint_down('md')} {
@@ -311,10 +315,9 @@ export const DefaultSubHeaderKeyContacts = styled.div`
   row-gap: 12px;
 
   > h3 {
-    font-family: var(--font-poppins);
     color: ${globalColor.white};
-    font-size: ${rem(20)};
-    line-height: 24px;
+    font-size: ${rem(18)};
+    line-height: 28px;
     font-weight: 500;
 
     ${media_breakpoint_down('md')} {
@@ -387,7 +390,6 @@ export const DefaultSubHeaderKeyContacts = styled.div`
     background-color: ${globalColor.blue.blue500};
     position: relative;
     z-index: 0;
-    border-radius: 2px;
 
     &:hover {
       &::after {
@@ -406,6 +408,7 @@ export const DefaultSubHeaderKeyContacts = styled.div`
       opacity: 0;
       background-image: linear-gradient(89deg, #377ec4 2.36%, #afdcf5 107.09%);
       transition: ${globalTransition.default};
+      border-radius: inherit;
     }
   }
 

@@ -180,18 +180,23 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         }
       }
     }
+    attorneyAuthorId {
+      authorId {
+        databaseId
+      }
+    }
   }
 }`;
 
 export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
   $categoryId: [ID]
-  $slug: String
+  $authorId: Int
   $first: Int
   $last: Int
   $after: String
   $before: String
   ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, author: $authorId}) {
     pageInfo {
       endCursor
       startCursor
@@ -524,12 +529,12 @@ export const postsForPaginationByCategoryIdQuery = `
 export const postsForPaginationByAuthorIdQuery = `
   query postsForPaginationByAuthorId(
     $categoryId: [ID],
-    $slug: String,
+    $authorId: Int,
     $offsetPosts: Int,
     $postsPerPage: Int
   ) {
     posts(
-      where: {categoryIn: $categoryId, search: $slug, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+      where: {categoryIn: $categoryId, author: $authorId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
     ) {
       pageInfo {
         offsetPagination {
