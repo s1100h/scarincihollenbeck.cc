@@ -35,10 +35,12 @@ const SwiperWrapper = ({
       Object.assign(swiperRef.current, slider);
     }
 
-    swiper.params.navigation.prevEl = prevRef.current;
-    swiper.params.navigation.nextEl = nextRef.current;
-    swiper.navigation.init();
-    swiper.navigation.update();
+    if (swiper) {
+      swiper.params.navigation.prevEl = prevRef.current;
+      swiper.params.navigation.nextEl = nextRef.current;
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
   }, []);
 
   useEffect(() => {

@@ -17,15 +17,15 @@ import { ContainerDefault } from '../../../styles/Containers.style';
 const WhyChooseUs = ({ content }) => {
   const {
     title, article, serviceList, focusedServicesCards,
-  } = content;
+  } = content || {};
   return (
-    <WhyChooseUsSection>
+    <WhyChooseUsSection data-testid="why-choose-us">
       <ContainerDefault className="d-flex">
         <WhyChooseUsHolder>
           <ArticleBlock>
             <ArticleBoxSimple>
               <WhyChooseUsTitle>{title}</WhyChooseUsTitle>
-              <JSXWithDynamicLinks HTML={article} />
+              {!empty(article) && <JSXWithDynamicLinks HTML={article} />}
             </ArticleBoxSimple>
             {!empty(serviceList) && (
               <ArticleList>

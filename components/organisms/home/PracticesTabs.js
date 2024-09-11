@@ -40,7 +40,7 @@ const PracticesTabs = ({ groupsPractices }) => {
   };
 
   return (
-    <PracticesTabsWrapper>
+    <PracticesTabsWrapper data-testid="practices-tabs">
       <PracticesTabsOpeners>
         {groupsWithChildren?.map((group, index) => (
           <PracticesTabsOpener
@@ -54,7 +54,7 @@ const PracticesTabs = ({ groupsPractices }) => {
       </PracticesTabsOpeners>
 
       <PracticesTabsCards>
-        {groupsWithChildren[activeTab]?.practices?.map((practice, index) => (
+        {groupsWithChildren?.[activeTab]?.practices?.map((practice, index) => (
           <motion.div
             key={practice?.databaseId}
             custom={index}
@@ -64,7 +64,7 @@ const PracticesTabs = ({ groupsPractices }) => {
           >
             <PracticeCard
               key={practice?.databaseId}
-              icon={groupsWithChildren[activeTab]?.groupIcon}
+              icon={groupsWithChildren?.[activeTab]?.groupIcon}
               title={practice?.title}
               link={practice?.uri}
               text={practice?.practicesIncluded?.description}

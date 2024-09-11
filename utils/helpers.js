@@ -556,11 +556,12 @@ export const createMenuData = (practices, locations) => [
         title: 'Pro Bono',
         uri: '/pro-bono',
       },
-      {
-        databaseId: 'menu-firm-07',
-        title: 'Women Lead',
-        uri: '/women-lead',
-      },
+      // this page went to the Draft status.
+      // {
+      //   databaseId: 'menu-firm-07',
+      //   title: 'Women Lead',
+      //   uri: '/women-lead',
+      // },
     ],
   },
   {

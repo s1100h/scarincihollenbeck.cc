@@ -10,17 +10,12 @@ import { useGetAttorneysQuery } from '../../redux/services/project-api';
 // !! Attention the modal window was turned off. 12/31/2022
 const AllOfficeLocations = dynamic(
   () => import('components/organisms/home/AllOfficeLocations'),
-  {
-    ssr: true,
-  },
+  { ssr: true },
 );
 const AboutFirmSection = dynamic(
   () => import('components/organisms/home/AboutFirm'),
-  {
-    ssr: true,
-  },
+  { ssr: true },
 );
-
 const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
 const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
 const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
@@ -48,8 +43,8 @@ const HomePage = ({
   return (
     <>
       <HomeSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDesc}
+        title={seo?.title || ''}
+        metaDescription={seo?.metaDesc || ''}
         canonicalUrl={CURRENT_DOMAIN}
       />
       <HomeBanner {...firstSection} />

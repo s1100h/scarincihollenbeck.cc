@@ -1,6 +1,11 @@
-import styled from "styled-components";
-import { globalBorderRadius, globalColor, globalShadow, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalShadow,
+  rem,
+} from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const SplitInfoSection = styled.section`
   padding: 60px 0;

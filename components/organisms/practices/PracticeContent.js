@@ -8,14 +8,17 @@ import {
   PracticeSidebar,
   PractiseContentHolder,
 } from 'styles/practices/PracticeContent.style';
-import { ATTORNEYS_FAQ } from 'utils/constants';
 import { ContainerDefault } from 'styles/Containers.style';
 import GetInTouchForm from './GetInTouchForm';
 
 const PracticeContent = ({
   data, title, anchorId, anchorIdFaq, faqData,
 }) => (
-  <PracticeContentSection id={anchorId} className="margin-scroll">
+  <PracticeContentSection
+    id={anchorId}
+    className="margin-scroll"
+    data-testid="practice-content"
+  >
     <ContainerDefault>
       <PractiseContentHolder>
         <PracticeDescription>
@@ -26,12 +29,7 @@ const PracticeContent = ({
               id={item.id}
             />
           ))}
-          <FAQ
-            faqArrContent={ATTORNEYS_FAQ}
-            title={title}
-            anchorId={anchorIdFaq}
-            faqData={faqData}
-          />
+          <FAQ title={title} anchorId={anchorIdFaq} faqArrContent={faqData} />
         </PracticeDescription>
         <PracticeSidebar>
           <GetInTouchForm />
