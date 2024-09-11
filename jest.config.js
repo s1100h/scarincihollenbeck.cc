@@ -38,10 +38,12 @@ const config = {
     // Handle module aliases
     '^components/(.*)$': '<rootDir>/components/$1',
     '^utils/(.*)$': '<rootDir>/utils/$1',
+    '^redux/(.*)$': '<rootDir>/redux/$1',
+    '^layouts/(.*)$': '<rootDir>/layouts/$1',
     // Handle @next/font
     '@next/font/(.*)': '<rootDir>/__mocks__/nextFontMock.js',
     // Handle next/font
-    'next/font/(.*)': '<rootDir>/__mocks__/nextFontMock.js',
+    // 'next/font/(.*)': '<rootDir>/__mocks__/nextFontMock.js',
     // Disable server-only
     'server-only': '<rootDir>/__mocks__/empty.js',
   },

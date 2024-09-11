@@ -7,11 +7,11 @@ import { ATTORNEYS_FAQ } from 'utils/constants';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 import { ContainerDefault } from 'styles/Containers.style';
 import { useDispatch, useSelector } from 'react-redux';
+import { setReferenceId } from '../../redux/slices/attorneys.slice';
 import {
   useGetLocationsQuery,
   useGetPracticesQuery,
 } from '../../redux/services/project-api';
-import { setReferenceId } from '../../redux/slices/attorneys.slice';
 
 const AttorneysPage = ({
   seo,
@@ -25,7 +25,6 @@ const AttorneysPage = ({
   const { data: locations } = useGetLocationsQuery();
   const { data: practices } = useGetPracticesQuery();
   const { headerSize } = useSelector((state) => state.sizes);
-
   useEffect(() => {
     if (containerRef && containerRef.current) {
       dispatch(setReferenceId(containerRef.current.id));
@@ -54,7 +53,7 @@ const AttorneysPage = ({
           />
         </ContainerDefault>
 
-        <FaqBox>
+        <FaqBox data-testid="FAQ-container">
           <FAQ faqArrContent={ATTORNEYS_FAQ} />
         </FaqBox>
       </MainAttorneysContainer>

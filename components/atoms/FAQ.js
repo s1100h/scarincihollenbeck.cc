@@ -10,7 +10,7 @@ export default function FAQ({
 }) {
   if (!faqData) {
     return (
-      <FaqWrapper className="margin-scroll" id={anchorId}>
+      <FaqWrapper data-testid="FAQ" className="margin-scroll" id={anchorId}>
         <Title>FAQ</Title>
         <Accordion defaultActiveKey={['0']} alwaysOpen>
           {faqArrContent.map(({ id, title, body }) => (
@@ -28,7 +28,7 @@ export default function FAQ({
     );
   }
   return (
-    <FaqWrapper className="margin-scroll" id={anchorId}>
+    <FaqWrapper data-testid="FAQ" className="margin-scroll" id={anchorId}>
       <Title>{`${!empty(title) ? `FAQ about ${title}` : 'FAQ'}`}</Title>
       <Accordion defaultActiveKey={['0']} alwaysOpen>
         {faqData.map(({ title, description }) => (
