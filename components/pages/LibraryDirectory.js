@@ -49,7 +49,6 @@ const LibraryDirectory = ({
       : postsForPaginationByCategoryIdQuery,
     params,
   );
-
   return (
     <>
       {Object.keys(seo).length > 0 ? (

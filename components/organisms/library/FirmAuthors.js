@@ -25,8 +25,11 @@ export default function FirmAuthors({ authors, authorsIsLoading }) {
       {authorsIsLoading ? (
         <Loader />
       ) : (
-        <MainVirtualizeContainer ref={parentRef}>
-          <VirtualizeListBox height={rowVirtualizer.totalSize}>
+        <MainVirtualizeContainer data-testid="authors-nav" ref={parentRef}>
+          <VirtualizeListBox
+            data-testid="authors-list"
+            height={rowVirtualizer.totalSize}
+          >
             {rowVirtualizer.virtualItems.map((virtualRow) => (
               <VirtualListItem
                 key={virtualRow.key}
