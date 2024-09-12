@@ -33,15 +33,16 @@ const DefaultSubHeaderNew = ({
       isBlog,
       isFilter,
     }}
+    data-testid="default-sub-header"
   >
-    {/* изменить на данные которые будут приходить с бэка */}
     <div className="sub-header__image">
       <Image
         src={backgroundImage || '/images/no-image-found-diamond-750x350.png'}
-        alt={title}
+        alt={title || 'practice image'}
         width={1400}
         height={900}
         priority
+        loading="eager"
       />
     </div>
 
@@ -49,7 +50,7 @@ const DefaultSubHeaderNew = ({
       <PostBreadCrumbs />
 
       <div className="sub-header__text">
-        <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
+        {title && <JSXWithDynamicLinks HTML={changeTitle(title, true)} />}
 
         {subtitle?.length > 0 && (
           <DefaultSubHeaderDescription className="animate__animated animate__fadeInUp animate__fast sub-title">

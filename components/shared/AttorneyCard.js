@@ -8,6 +8,7 @@ import {
 } from 'styles/AttorneyCard.style';
 import { useId } from 'react';
 import ContactBoxTemplate from '../atoms/ContactBox';
+import SHDiamond from '../../public/images/sh-mini-diamond-PNG.svg';
 
 export const renderLinkToLocationPractice = (locationsOrPractice) => {
   if (Array.isArray(locationsOrPractice)) {
@@ -66,6 +67,9 @@ export default function AttorneyCard({
   svgEmail,
   officeLocations,
 }) {
+  const placeholderProp = image?.src?.includes('next') || SHDiamond?.src?.includes('next')
+    ? 'empty'
+    : 'blur';
   return (
     <AttorneyCardBox className="attorney-card-box">
       <Link href={link} className="attorney-card-link" title={name} passHref>
@@ -73,10 +77,10 @@ export default function AttorneyCard({
       </Link>
       <LinkBox>
         <Image
-          placeholder="blur"
-          blurDataURL={image || '/images/sh-mini-diamond-PNG.svg'}
+          placeholder={placeholderProp}
+          blurDataURL={image || SHDiamond}
           loading="lazy"
-          src={image || '/images/sh-mini-diamond-PNG.svg'}
+          src={image || SHDiamond}
           alt={name}
           width={
             width

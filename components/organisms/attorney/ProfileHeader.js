@@ -1,17 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { Row, Col } from 'react-bootstrap';
-import ProfileTitle from 'components/molecules/attorney/ProfileTitle';
 import ProfileContacts from 'components/molecules/attorney/ProfileContacts';
 import ProfileImage from 'components/molecules/attorney/ProfileImage';
-import ContactIcons from 'components/molecules/attorney/ContactIcons';
 import {
-  DetailsBox,
-  ProfileHeaderContainer,
+  ProfileActions,
+  ProfileBgImage,
+  ProfileBio,
+  ProfileBioListItems,
+  ProfileBioText,
+  ProfileBioTitle,
+  ProfileButtons,
+  ProfileDesignation,
+  ProfileHeaderHolder,
+  ProfileHeaderLeft,
+  ProfileHeaderRight,
+  ProfileHeaderSection,
+  ProfileName,
+  ProfileTitle,
 } from 'styles/attorney-page/AttorneyProfile.style';
-import ButtonGroupMenu from 'components/molecules/attorney/ButtonGroupMenu';
+import { ContainerDefault } from 'styles/Containers.style';
+import PDFIcon from 'components/common/icons/PDFIcon';
+import BusinessCard from 'components/common/icons/BusinessCard';
+import Link from 'next/link';
+import { StandardBlueButton } from 'styles/Buttons.style';
+import ModalWindow from 'components/common/ModalWindow';
+import { FormBox } from 'styles/AboutAuthorFormCard.style';
+import ContactForm from 'components/shared/ContactForm/ContactForm';
+import ProfileServices from 'components/molecules/attorney/ProfileServices';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import empty from 'is-empty';
-import VideoButton from '../../molecules/attorney/VideoButton';
+import WhiteButton from 'components/molecules/attorney/WhiteButton';
+import ProfileBioList from 'components/molecules/attorney/ProfileBioList';
+import PostBreadCrumbs from '../post/PostBreadcrumbs';
 
 const useDesignationHook = (title) => {
   const [designation, setDesignation] = useState(title);
@@ -40,77 +59,143 @@ const ProfileHeader = ({
   offices,
   coChair: coChairs,
   chair: chairs,
-  primaryPractices,
   contact,
-  setActiveTab,
-  activeTab,
-  tabs,
   representativeVideo,
+  practices,
+  attorneyBiography,
+  education,
+  barAdmissions,
+  biography,
+  affiliations,
+  additionalInfo,
 }) => {
   const [designation] = useDesignationHook(title);
-  const router = useRouter();
-  const slug = router.asPath;
+  const [isContactModal, setIsContactModal] = useState(false);
   const linkedIn = contact.socialMediaLinks.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
-  const [isRotated, setIsRotated] = useState(false);
-  const handelRotate = () => setIsRotated(!isRotated);
   const profileImageProps = {
     name,
     profileImage,
-    isRotated,
     representativeVideo,
   };
 
-  const profileTitleProps = {
-    name,
-    designation,
-    coChairs,
-    chairs,
-    primaryPractices,
-  };
   const profileDetailsProps = {
     offices,
     fax: contact.fax,
     contact,
-  };
-  const contactProps = {
-    slug,
-    pdf: contact.pdf,
-    vizibility: contact.vizibility,
     linkedIn,
   };
-  const buttonGroupProps = {
-    setActiveTab,
-    activeTab,
-    tabs,
-  };
+
   return (
-    <ProfileHeaderContainer>
-      <Row>
-        <Col sm={12} lg={12}>
-          <Row className="align-items-start">
-            <Col sm={12} md={4} lg={4} className="position-relative">
-              <ProfileImage {...profileImageProps} />
-              {!empty(representativeVideo) && (
-                <VideoButton
-                  onVideoClick={handelRotate}
-                  isRotated={isRotated}
-                />
+    <ProfileHeaderSection>
+      <ContainerDefault>
+        <PostBreadCrumbs />
+        <ProfileHeaderHolder>
+          <ProfileHeaderLeft>
+            <ProfileImage {...profileImageProps} />
+            <ProfileBgImage
+              src="/images/profile-attorney-bg.webp"
+              width={700}
+              height={900}
+              alt="Profile background"
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1680px) 480px, 700px"
+              loading="eager"
+            />
+
+            <ProfileActions>
+              {!empty(contact?.pdf) && !empty(contact?.vizibility) && (
+                <ProfileButtons>
+                  {!empty(contact?.pdf) && (
+                    <WhiteButton
+                      as={Link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={contact?.pdf}
+                      text="Print Bio"
+                      icon={<PDFIcon />}
+                    />
+                  )}
+                  {!empty(contact?.vizibility) && (
+                    <WhiteButton
+                      as={Link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={contact?.vizibility}
+                      text="Business Card"
+                      icon={<BusinessCard />}
+                    />
+                  )}
+                </ProfileButtons>
               )}
-            </Col>
-            <Col sm={12} md={8} lg={8}>
-              <ProfileTitle {...profileTitleProps} />
-              <DetailsBox>
-                <ProfileContacts {...profileDetailsProps} />
-                <ContactIcons {...contactProps} />
-              </DetailsBox>
-            </Col>
-            {tabs?.length > 0 && <ButtonGroupMenu {...buttonGroupProps} />}
-          </Row>
-        </Col>
-      </Row>
-    </ProfileHeaderContainer>
+
+              <StandardBlueButton onClick={() => setIsContactModal(true)}>
+                Contact now
+              </StandardBlueButton>
+
+              <ModalWindow
+                isOpen={isContactModal}
+                setOpenModal={setIsContactModal}
+              >
+                <FormBox>
+                  <p className="contact-form-title">Let`s get in touch!</p>
+                  <ContactForm blockName="profile-contact-form" />
+                </FormBox>
+              </ModalWindow>
+
+              <ProfileContacts {...profileDetailsProps} />
+            </ProfileActions>
+          </ProfileHeaderLeft>
+
+          <ProfileHeaderRight>
+            <ProfileTitle>
+              <ProfileName>{name}</ProfileName>
+              <ProfileDesignation>{designation}</ProfileDesignation>
+            </ProfileTitle>
+
+            <ProfileServices
+              coChairs={coChairs}
+              chairs={chairs}
+              services={practices}
+            />
+
+            {(!empty(attorneyBiography?.miniBio) || !empty(biography)) && (
+              <ProfileBio>
+                <ProfileBioTitle>Bio Overview</ProfileBioTitle>
+                <ProfileBioText as={!empty(biography) && 'div'}>
+                  <JSXWithDynamicLinks
+                    HTML={attorneyBiography?.miniBio || biography}
+                  />
+                </ProfileBioText>
+              </ProfileBio>
+            )}
+
+            <ProfileBioListItems>
+              {!empty(education) && (
+                <ProfileBioList title="Education" content={education} />
+              )}
+              {!empty(barAdmissions) && (
+                <ProfileBioList title="Admissions" content={barAdmissions} />
+              )}
+              {!empty(affiliations) && (
+                <ProfileBioList title="Affiliations" content={affiliations} />
+              )}
+              {!empty(additionalInfo)
+                && additionalInfo.map(
+                  (item) => !empty(item?.content) && (
+                  <ProfileBioList
+                    key={`${item?.title}-additional-info`}
+                    title={item?.title}
+                    content={item?.content}
+                  />
+                  ),
+                )}
+            </ProfileBioListItems>
+          </ProfileHeaderRight>
+        </ProfileHeaderHolder>
+      </ContainerDefault>
+    </ProfileHeaderSection>
   );
 };
 

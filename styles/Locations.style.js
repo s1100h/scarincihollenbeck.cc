@@ -22,50 +22,30 @@ const addressPointConst = `
 `;
 
 export const LocationPageContainer = styled.section`
+  .map-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+
   .form-column {
     margin-top: 60px;
     padding-bottom: 40px;
-  }
-
-  .row-content {
-    ${media_breakpoint_exactly_down(1080)} {
-      margin-right: 3%;
-      margin-left: 3%;
-    }
-  }
-  ${media_breakpoint_up('fullHd')} {
-    padding-right: 7%;
-    padding-left: 7%;
-  }
-
-  ${media_breakpoint_down('fullHd')} {
-    padding-right: 7%;
-    padding-left: 7%;
-  }
-
-  ${media_breakpoint_exactly_down(1440)} {
-    padding-right: 3%;
-    padding-left: 3%;
-  }
-
-  ${media_breakpoint_exactly_down(1080)} {
-    padding-right: 0;
-    padding-left: 0;
   }
 `;
 export const LinkMapBox = styled.div`
   display: flex;
   width: fit-content;
   flex-direction: column;
-  margin-bottom: 20px;
+  row-gap: 16px;
 `;
 
 export const DownloadTheMap = styled.a`
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 16px;
   color: ${globalColor.blue.ultramarine};
   width: fit-content;
-  margin-bottom: 15px;
   font-size: 1.2rem;
 `;
 
@@ -234,7 +214,7 @@ export const OfficeCardContainer = styled.div`
 `;
 
 export const OfficeLocationBoxTitle = styled.h4`
+  margin: 0;
   font-size: ${rem(32)};
   text-transform: uppercase;
-  margin-bottom: 24px;
 `;

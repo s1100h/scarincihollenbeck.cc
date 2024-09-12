@@ -2,21 +2,24 @@ import FAQ from 'components/atoms/FAQ';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import CollapseContent from 'components/molecules/practice/CollapseContent';
 import React from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
   PracticeContentSection,
   PracticeDescription,
   PracticeSidebar,
   PractiseContentHolder,
 } from 'styles/practices/PracticeContent.style';
-import { ATTORNEYS_FAQ } from 'utils/constants';
+import { ContainerDefault } from 'styles/Containers.style';
 import GetInTouchForm from './GetInTouchForm';
 
 const PracticeContent = ({
   data, title, anchorId, anchorIdFaq, faqData,
 }) => (
-  <PracticeContentSection id={anchorId} className="margin-scroll">
-    <ContainerContent className="practice-container">
+  <PracticeContentSection
+    id={anchorId}
+    className="margin-scroll"
+    data-testid="practice-content"
+  >
+    <ContainerDefault>
       <PractiseContentHolder>
         <PracticeDescription>
           {data?.map((item) => (
@@ -26,18 +29,13 @@ const PracticeContent = ({
               id={item.id}
             />
           ))}
-          <FAQ
-            faqArrContent={ATTORNEYS_FAQ}
-            title={title}
-            anchorId={anchorIdFaq}
-            faqData={faqData}
-          />
+          <FAQ title={title} anchorId={anchorIdFaq} faqArrContent={faqData} />
         </PracticeDescription>
         <PracticeSidebar>
           <GetInTouchForm />
         </PracticeSidebar>
       </PractiseContentHolder>
-    </ContainerContent>
+    </ContainerDefault>
   </PracticeContentSection>
 );
 

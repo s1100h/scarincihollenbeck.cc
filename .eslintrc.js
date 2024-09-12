@@ -2,6 +2,8 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
+    node: true,
   },
   extends: [
     'plugin:react/recommended',

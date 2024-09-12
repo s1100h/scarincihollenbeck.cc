@@ -3,19 +3,17 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import OfficeList from 'components/organisms/contact-us/OfficeList';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import React, {
-  useContext, useEffect, useRef, useState,
-} from 'react';
-import { SidebarTile } from '../../styles/attorney-page/ProfileSidebar.style';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Surface from '../atoms/micro-templates/surface';
 import SubHeader from '../../layouts/SubHeader/SubHeader';
-import { FormsContext } from '../../contexts/FormsContext';
+import { handleCheckDisclaimer } from '../../redux/slices/forms.slice';
 
 const TilePuzzle = dynamic(() => import('../organisms/contact-us/TilePuzzle'));
 const FormPageContent = ({
   canonicalUrl, seo, site, offices,
 }) => {
-  const { handleCheckDisclaimer } = useContext(FormsContext);
+  const dispatch = useDispatch();
   const formWrapper = useRef();
   const [formHeight, setFormHeight] = useState();
 
@@ -23,7 +21,7 @@ const FormPageContent = ({
     setFormHeight(formWrapper.current.clientHeight);
   }, [formWrapper]);
 
-  useEffect(() => () => handleCheckDisclaimer(false), []);
+  useEffect(() => () => dispatch(handleCheckDisclaimer(false)), []);
 
   return (
     <>
@@ -37,9 +35,7 @@ const FormPageContent = ({
         <Row>
           <Col sm={12} lg={6} xl={4} ref={formWrapper}>
             <Surface unscrollable="unscrollable">
-              <SidebarTile indent="true" red="true">
-                {site.formLabel}
-              </SidebarTile>
+              <h3 className="red-title">{site.formLabel}</h3>
               <ContactForm isPositionRelativeProp />
             </Surface>
           </Col>

@@ -8,12 +8,7 @@ const HappyHolidayLink = () => (
       <h5>Happy Holidays!</h5>
     </Link>
     <Link href="/happy-holidays" passHref>
-      <Image
-        height={200}
-        width={200}
-        src="/images/holiday-branch.svg"
-        layout="responsive"
-      />
+      <Image height={200} width={200} src="/images/holiday-branch.svg" />
     </Link>
   </HolidayLinkBox>
 );

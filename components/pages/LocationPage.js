@@ -2,26 +2,24 @@ import Head from 'next/head';
 import { Row, Col } from 'react-bootstrap';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { buildLocationSchema } from 'utils/json-ld-schemas';
-import { ATTORNEYS_FAQ, locationInfoBlockArticles } from 'utils/constants';
 import dynamic from 'next/dynamic';
 import Map from 'components/molecules/location/Map';
-import { BsDownload } from 'react-icons/bs';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import empty from 'is-empty';
-import { sanitizePracticesByChildren, sortByKey } from '../../utils/helpers';
+import { ContainerDefault } from 'styles/Containers.style';
+import SplitInfo from 'components/common/SplitInfo';
+import { sortByKey } from '../../utils/helpers';
 import {
-  DownloadTheMap,
-  LinkMapBox,
   LocationPageContainer,
-  MediaBr,
   OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
 import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
 import GetInTouchForm from '../organisms/practices/GetInTouchForm';
-import InfoBlockLocation from '../organisms/location/InfoBlockLocation';
 import WhyChooseUs from '../organisms/practices/WhyChooseUs';
 import GoogleReviews from '../organisms/common/GoogleReviews';
+import DirectionsFilesLink from '../common/DirectionsFilesLink';
+import WhatWeDoSection from '../organisms/home/WhatWeDoSection';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
@@ -37,9 +35,9 @@ const anchorLocationsData = {
     id: 'faq-section',
     title: 'FAQs',
   },
-  howCanWeHelp: {
-    id: 'how-can-we-help',
-    title: 'How can we help?',
+  whatWeDo: {
+    id: 'What-we-do',
+    title: 'What we do',
   },
   attorneys: {
     id: 'attorneys-section',
@@ -61,6 +59,7 @@ const LocationPage = ({
   canonicalUrl,
   locations,
   googleReviews,
+  whatWeDo,
 }) => {
   const anchorData = useMemo(() => {
     if (empty(googleReviews)) {
@@ -69,10 +68,10 @@ const LocationPage = ({
     return anchorLocationsData;
   }, [googleReviews]);
 
-  const [articles, setArticles] = useState();
-  const practicesSorted = sanitizePracticesByChildren(
-    currentOffice.officePractices,
-  );
+  const whatWeDoAdditional = {
+    ...whatWeDo,
+    anchorId: anchorLocationsData.whatWeDo.id,
+  };
 
   const addressInfo = {
     phone: currentOffice.phone,
@@ -83,13 +82,6 @@ const LocationPage = ({
     postCode: currentOffice.postCode,
     addressLocality: currentOffice.addressLocality,
   };
-
-  useEffect(() => {
-    const clearId = setTimeout(() => {
-      setArticles(locationInfoBlockArticles);
-    }, 100);
-    return () => clearTimeout(clearId);
-  }, []);
 
   return (
     <>
@@ -104,9 +96,7 @@ const LocationPage = ({
           key={currentOffice.name}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              buildLocationSchema(seo, currentOffice.mapLink),
-            ),
+            __html: JSON.stringify(buildLocationSchema(seo)),
           }}
         />
       </Head>
@@ -119,62 +109,29 @@ const LocationPage = ({
       />
       <PracticeAnchors anchorData={anchorData} title={currentOffice.title} />
       <LocationPageContainer className="mt-5">
-        <Row className="row-content">
-          <Col xs={11} sm={11} md={11} lg={8} xl={8}>
-            <OfficeLocationBoxTitle>
-              {changeTitle(currentOffice.title)}
-            </OfficeLocationBoxTitle>
-            <Map
-              title={currentOffice.title}
-              map={currentOffice.mapLink}
-              anchorIdMap={anchorData.map.id}
-              height={600}
-            />
-            {(currentOffice.autoMap?.length > 0
-              || currentOffice.trainStationsMap?.length > 0) && (
-              <LinkMapBox>
-                {currentOffice?.trainStationsMap.length > 0 && (
-                  <DownloadTheMap
-                    href={currentOffice.trainStationsMap}
-                    target="_blank"
-                    download
-                  >
-                    NJ Transit Rail System Map
-                    <BsDownload />
-                  </DownloadTheMap>
-                )}
-                {currentOffice?.autoMap.length > 0 && (
-                  <DownloadTheMap
-                    href={currentOffice.autoMap}
-                    target="_blank"
-                    download
-                  >
-                    Directions to the Overlook
-                    {' '}
-                    <MediaBr />
-                    Corporate Center
-                    <BsDownload />
-                  </DownloadTheMap>
-                )}
-              </LinkMapBox>
-            )}
-            <FAQ
-              anchorId={anchorData.faq.id}
-              faqArrContent={ATTORNEYS_FAQ}
-              faqData={currentOffice.faq}
-            />
-          </Col>
-          <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>
-            <GetInTouchForm />
-          </Col>
-        </Row>
-        {!empty(articles) && (
-          <InfoBlockLocation
-            anchorData={anchorData.howCanWeHelp.id}
-            articles={articles}
-            practices={practicesSorted}
-          />
-        )}
+        <ContainerDefault>
+          <Row className="row-content">
+            <Col className="map-column" xs={11} sm={11} md={11} lg={8} xl={8}>
+              <OfficeLocationBoxTitle>
+                {changeTitle(currentOffice.title)}
+              </OfficeLocationBoxTitle>
+              <Map
+                title={currentOffice.title}
+                map={currentOffice?.mapAddress}
+                anchorIdMap={anchorData.map.id}
+                height={600}
+              />
+              <DirectionsFilesLink currentOffice={currentOffice} />
+              <FAQ
+                anchorId={anchorData.faq.id}
+                faqArrContent={currentOffice.faq}
+              />
+            </Col>
+            <Col className="form-column" xs={1} sm={1} md={1} lg={4} xl={4}>
+              <GetInTouchForm />
+            </Col>
+          </Row>
+        </ContainerDefault>
       </LocationPageContainer>
       {!empty(currentOffice?.attorneys) && (
         <PracticeAttorneys
@@ -182,6 +139,8 @@ const LocationPage = ({
           attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
         />
       )}
+      <SplitInfo />
+      <WhatWeDoSection {...whatWeDoAdditional} />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       {!empty(googleReviews) && (
         <GoogleReviews

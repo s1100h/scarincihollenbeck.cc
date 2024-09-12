@@ -1,10 +1,37 @@
 import empty from 'is-empty';
+import FirmIcon from 'components/common/icons/FirmIcon';
+import LibraryIcon from 'components/common/icons/LibraryIcon';
+import LocationsIcon from 'components/common/icons/LocationsIcon';
+import IndustriesIcon from 'components/common/icons/IndustriesIcon';
+import PracticesIcon from 'components/common/icons/PracticesIcon';
+import AttorneysIcon from 'components/common/icons/AttorneysIcon';
+import HomeIcon from 'components/common/icons/HomeIcon';
+import CareersIcon from 'components/common/icons/CareersIcon';
+import CannabisIcon from 'components/common/icons/CannabisIcon';
+import FoodIcon from 'components/common/icons/FoodIcon';
+import MailingListIcon from 'components/common/icons/MailingListIcon';
+import MediaIcon from 'components/common/icons/MediaIcon';
+import PaymentIcon from 'components/common/icons/PaymentIcon';
+import PostsIcon from 'components/common/icons/PostsIcon';
+import RealEstateIcon from 'components/common/icons/RealEstateIcon';
+import TransportationIcon from 'components/common/icons/TransportationIcon';
+import BankingIcon from 'components/common/icons/BankingIcon';
+import BrainIcon from 'components/common/icons/BrainIcon';
+import BriefcaseIcon from 'components/common/icons/BriefcaseIcon';
+import DocumentsIcon from 'components/common/icons/DocumentsIcon';
+import EnvironmentalIcon from 'components/common/icons/EnvironmentalIcon';
+import TaxIcon from 'components/common/icons/TaxIcon';
+import GlobeIcon from 'components/common/icons/GlobeIcon';
+import BulbIcon from 'components/common/icons/BulbIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
   OFFICE_LOCATIONS,
   PRODUCTION_URL,
 } from './constants';
+import CheckIcon from '../components/common/icons/CheckIcon';
+import MapIcon from '../components/common/icons/MapIcon';
+import ScopeIcon from '../components/common/icons/ScopeIcon';
 
 // this is HTML checker
 export function isHTML(text) {
@@ -194,7 +221,10 @@ export const sanitizeExternalArticles = (arr) => arr.map(({
   id, link, title, date,
 }) => ({
   id,
-  link,
+  link: {
+    url: link,
+    target: '_blank',
+  },
   title: title.rendered,
   date,
 }));
@@ -405,8 +435,207 @@ export const sortAttorneysByCategory = (attorneys, titles) => {
 export const setResponseHeaders = (res, revalidateTime, cacheStatus) => {
   res.setHeader(
     'Cache-Control',
-    `s-maxage=${revalidateTime}, stale-while-revalidate`,
+    `public, max-age=${revalidateTime}, s-maxage=${revalidateTime}, stale-while-revalidate=${revalidateTime}`,
   );
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('X-Cache-Status', cacheStatus);
+};
+
+export const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};
+
+export const createMenuData = (practices, locations) => [
+  {
+    databaseId: 'menu-01',
+    title: 'Homepage',
+    icon: <HomeIcon />,
+    href: '/',
+  },
+  {
+    databaseId: 'menu-02',
+    title: 'Attorneys',
+    icon: <AttorneysIcon />,
+    href: '/attorneys',
+  },
+  {
+    databaseId: 'menu-03',
+    title: 'Legal Practices',
+    icon: <PracticesIcon />,
+    href: '/practices',
+    list: [
+      {
+        databaseId: 'menu-all-practices',
+        uri: '/practices',
+        title: 'View all practices',
+        isStrong: true,
+      },
+      ...practices,
+    ],
+  },
+  {
+    databaseId: 'menu-04',
+    title: 'Industries',
+    icon: <IndustriesIcon />,
+    href: '/',
+  },
+  {
+    databaseId: 'menu-05',
+    title: 'Locations',
+    icon: <LocationsIcon />,
+    href: '/location/new-york',
+    list: !empty(locations) ? [...locations] : [],
+  },
+  {
+    databaseId: 'menu-06',
+    title: 'Library',
+    icon: <LibraryIcon />,
+    href: '/',
+    list: [
+      {
+        databaseId: 'menu-lib-01',
+        title: 'Client Alerts',
+        uri: '/library/category/client-alert',
+      },
+      {
+        databaseId: 'menu-lib-02',
+        title: 'Firm News',
+        uri: '/library/category/firm-news',
+      },
+      {
+        databaseId: 'menu-lib-03',
+        title: 'Firm Events',
+        uri: '/library/category/firm-events',
+      },
+      {
+        databaseId: 'menu-lib-04',
+        title: 'Firm Insights',
+        uri: '/library/category/law-firm-insights',
+      },
+    ],
+  },
+  {
+    databaseId: 'menu-07',
+    title: 'The Firm',
+    icon: <FirmIcon />,
+    href: '/',
+    list: [
+      {
+        databaseId: 'menu-firm-01',
+        title: 'Administration',
+        uri: '/administration',
+      },
+      {
+        databaseId: 'menu-firm-02',
+        title: 'Careers',
+        uri: '/careers',
+      },
+      {
+        databaseId: 'menu-firm-03',
+        title: 'Community Involvement',
+        uri: '/community-involvement',
+      },
+      {
+        databaseId: 'menu-firm-04',
+        title: 'Diversity',
+        uri: '/diversity',
+      },
+      {
+        databaseId: 'menu-firm-05',
+        title: 'Firm Overview',
+        uri: '/firm-overview',
+      },
+      {
+        databaseId: 'menu-firm-06',
+        title: 'Pro Bono',
+        uri: '/pro-bono',
+      },
+      // this page went to the Draft status.
+      // {
+      //   databaseId: 'menu-firm-07',
+      //   title: 'Women Lead',
+      //   uri: '/women-lead',
+      // },
+    ],
+  },
+  {
+    databaseId: 'menu-08',
+    title: 'Careers',
+    icon: <CareersIcon />,
+    href: '/careers',
+  },
+];
+
+export const createOverviewLinks = (practices, isAllLinks) => {
+  if (empty(practices)) return null;
+
+  return practices.map((practice) => {
+    if (empty(practice?.childPractice) && !isAllLinks) return practice;
+
+    const overviewChild = {
+      databaseId: `${practice.databaseId}_${practice.title}`,
+      title: `${practice.title} overview`,
+      uri: practice.uri,
+    };
+
+    const updatedChildPractice = [overviewChild, ...practice.childPractice];
+
+    return {
+      ...practice,
+      childPractice: updatedChildPractice,
+    };
+  });
+};
+
+export const getIcon = (name) => {
+  const icons = {
+    Attorneys: <AttorneysIcon />,
+    Banking: <BankingIcon />,
+    Cannabis: <CannabisIcon />,
+    Careers: <CareersIcon />,
+    Firm: <FirmIcon />,
+    Food: <FoodIcon />,
+    Home: <HomeIcon />,
+    Industries: <IndustriesIcon />,
+    'News paper': <LibraryIcon />,
+    Locations: <LocationsIcon />,
+    MailingList: <MailingListIcon />,
+    Media: <MediaIcon />,
+    Payment: <PaymentIcon />,
+    Posts: <PostsIcon />,
+    Practices: <PracticesIcon />,
+    'Real Estate': <RealEstateIcon />,
+    Transportation: <TransportationIcon />,
+    Brain: <BrainIcon />,
+    Briefcase: <BriefcaseIcon />,
+    Documents: <DocumentsIcon />,
+    Environmental: <EnvironmentalIcon />,
+    Tax: <TaxIcon />,
+    Check: <CheckIcon />,
+    Map: <MapIcon />,
+    Scope: <ScopeIcon />,
+    Globe: <GlobeIcon />,
+    Bulb: <BulbIcon />,
+  };
+
+  return icons[name];
+};
+
+export const filterAttorneysByDesignation = (attorneys) => {
+  if (empty(attorneys)) return [];
+  return attorneys.filter((attorney) => attorney.designation.includes('Partner'));
+};
+
+export const chunkArray = (array, chunkSize) => {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
 };

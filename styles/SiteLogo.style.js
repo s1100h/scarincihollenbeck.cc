@@ -6,11 +6,11 @@ import {
 import Link from 'next/link';
 
 export const CombinedLogo = styled(Link)`
-  /* max-width: 293px; */
-  height: 89px;
+  max-width: 256px;
+  height: 52px;
   display: flex;
   align-items: center;
-  column-gap: 9px;
+  column-gap: 4px;
 
   img {
     width: 100%;
@@ -23,20 +23,15 @@ export const CombinedLogo = styled(Link)`
   }
 
   .logo-letters {
-    max-width: 250px;
+    max-width: 200px;
   }
 
-  ${media_breakpoint_down('lg')} {
-    max-width: 253px;
-    height: 52px;
+  ${media_breakpoint_down('md')} {
+    max-width: 158px;
+    height: 32px;
 
     .logo-letters {
-      max-width: 190px;
-    }
-  }
-  ${media_breakpoint_exactly_down(320)} {
-    .logo-letters {
-      display: none;
+      max-width: 120px;
     }
   }
 `;

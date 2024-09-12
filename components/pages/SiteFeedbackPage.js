@@ -22,7 +22,6 @@ const SiteFormPage = ({
 
   return (
     <Container>
-      {/* <KwesScripts /> */}
       <Head>
         <title>Updating your website profile?</title>
         <meta name="googlebot" content="noindex" />
@@ -209,7 +208,6 @@ const SiteFormPage = ({
             </strong>
           </h3>
           <textarea
-            type="textarea"
             rows="20"
             cols="120"
             className="d-block p-2 mb-3"

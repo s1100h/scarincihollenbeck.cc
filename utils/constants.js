@@ -10,7 +10,10 @@ import {
   WhereIsYheFirmLocated,
 } from 'components/atoms/micro-templates/Faq-templates';
 import { BsFacebook, BsLinkedin } from 'react-icons/bs';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 import AboutAuthorFormCard from '../components/organisms/post/AboutAuthorFormCard';
+import SHDiamond from '../public/images/sh-mini-diamond-PNG.svg';
 
 export const LETTERS_LIST = [
   'a',
@@ -59,29 +62,34 @@ export const footerNavList = [
     id: 1,
   },
   {
+    linkTitle: 'Practices',
+    link: '/practices',
+    id: 2,
+  },
+  {
+    linkTitle: 'Industries',
+    link: '/industries',
+    id: 3,
+  },
+  {
     linkTitle: 'Careers',
     link: '/careers',
-    id: 2,
+    id: 4,
   },
   {
     linkTitle: 'Firm Overview',
     link: '/firm-overview',
-    id: 3,
-  },
-  {
-    linkTitle: 'Legal practices',
-    link: '/practices',
-    id: 4,
-  },
-  {
-    linkTitle: 'Locations',
-    link: '/location/little-falls',
     id: 5,
+  },
+  {
+    linkTitle: 'Library',
+    link: '/library/category/client-alert',
+    id: 6,
   },
   {
     linkTitle: 'Awards Methodology',
     link: '/awards',
-    id: 6,
+    id: 7,
   },
 ];
 /** List of firm blog category links found in the sidebar */
@@ -110,7 +118,7 @@ export const ScarinciHollenbeckAuthor = [
     databaseId: 10000000000001,
     attorneyMainInformation: {
       profileImage: {
-        sourceUrl: '/images/sh-mini-diamond-PNG.svg',
+        sourceUrl: SHDiamond,
       },
       email: SITE_EMAIL,
       phoneNumber: SITE_PHONE,
@@ -133,7 +141,7 @@ export const ScarinciHollenbeckKeyContact = {
   link: '/attorneys',
   display_name: 'Scarinci Hollenbeck, LLC',
   keyContactsByPractice: null,
-  profileImage: '/images/sh-mini-diamond-PNG.svg',
+  profileImage: SHDiamond,
   designation: 'The Firm',
   phoneNumber: SITE_PHONE,
   email: SITE_EMAIL,
@@ -199,7 +207,7 @@ export const sitemapAddon = [
 /** Header navigation links */
 export const SITE_NAVIGATION = [
   {
-    id: 1,
+    id: 2,
     label: 'The Firm',
     menuId: 'the-firm',
     slug: '',
@@ -243,7 +251,7 @@ export const SITE_NAVIGATION = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     label: 'Attorneys',
     slug: '/attorneys',
     children: undefined,
@@ -253,6 +261,34 @@ export const SITE_NAVIGATION = [
     id: 4,
     label: 'Library',
     menuId: 'library',
+    slug: '',
+    children: [
+      {
+        databaseId: 401,
+        title: 'Client Alerts',
+        uri: '/library/category/client-alert',
+      },
+      {
+        databaseId: 402,
+        title: 'Firm News',
+        uri: '/library/category/firm-news',
+      },
+      {
+        databaseId: 403,
+        title: 'Firm Events',
+        uri: '/library/category/firm-events',
+      },
+      {
+        databaseId: 404,
+        title: 'Firm Insights',
+        uri: '/library/category/law-firm-insights',
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: 'Industries',
+    menuId: 'industries',
     slug: '',
     children: [
       {
@@ -442,28 +478,28 @@ export const ATTORNEYS_FAQ = [
   {
     id: 1,
     title: 'How can I get in touch with an attorney?',
-    body: <HawCanIGet />,
+    description: <HawCanIGet />,
   },
   {
     id: 2,
     title: 'How do I know which attorney to contact?',
-    body: <HawDoIKnow />,
+    description: <HawDoIKnow />,
   },
   {
     id: 3,
     title: 'What are the firm`s main practice areas?',
-    body: <WhatAreTheFirms />,
+    description: <WhatAreTheFirms />,
   },
   {
     id: 4,
     title: 'Where is the firm located?',
-    body: <WhereIsYheFirmLocated />,
+    description: <WhereIsYheFirmLocated />,
   },
   {
     id: 5,
     title:
       'I am located outside of New Jersey and New York. Can you still help me?',
-    body: `
+    description: `
     It depends on the nature of the matter. <strong>Scarinci Hollenbeck, LLC</strong> represents clients around the world.
     We service our clients in a large variety of matters. In areas such as Intellectual Property,
     including trademark, copyright, or patent-related matters, we can service these requests regardless
@@ -477,13 +513,13 @@ export const ATTORNEYS_FAQ = [
   {
     id: 6,
     title: 'What kind of clients does your firm service?',
-    body: `Scarinci Hollenbeck, LLC routinely serves business owners, corporate entities, leaders, and operators
-     of small businesses and Fortune 500 companies alike.`,
+    description: `Scarinci Hollenbeck, LLC routinely serves business owners, corporate entities, leaders, and operators
+    of small businesses and Fortune 500 companies alike.`,
   },
   {
     id: 7,
     title: 'I am not a business owner. Could your firm still help me?',
-    body: `We are a general practice law firm that services businesses, corporations, and entities.
+    description: `We are a general practice law firm that services businesses, corporations, and entities.
     We typically only represent people who own and operate these organizations. However, you are free to call 
     our business development group at <a href="tel:201-806-3364"> 201-806-3364</a> or email us at 
     <a href="mailto:info@sh-law.com">info@sh-law.com</a> A member of our group can direct you to an 
@@ -493,7 +529,7 @@ export const ATTORNEYS_FAQ = [
   {
     id: 8,
     title: 'How do you pronounce "Scarinci Hollenbeck, LLC"?',
-    body: 'SCUH-RIN-SEE HALL-EN-BEK',
+    description: 'SCUH-RIN-SEE HALL-EN-BEK',
   },
 ];
 
@@ -581,7 +617,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'FirstName',
-    placeholder: 'First name',
+    placeholder: 'First name *',
     rules: 'required|max:255',
     'aria-label': 'First name',
     title: 'First name',
@@ -589,7 +625,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'LastName',
-    placeholder: 'Last name',
+    placeholder: 'Last name *',
     rules: 'required|max:255',
     'aria-label': 'Last name',
     title: 'Last name',
@@ -597,7 +633,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'email',
     name: 'Email',
-    placeholder: 'Email address',
+    placeholder: 'Email address *',
     rules: 'required|max:255',
     'aria-label': 'Email address',
     title: 'Email address',
@@ -605,7 +641,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'tel',
     name: 'Phone',
-    placeholder: 'Phone number',
+    placeholder: 'Phone number *',
     rules:
       'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
     maxLength: 17,
@@ -622,7 +658,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'Subject',
-    placeholder: 'Subject',
+    placeholder: 'Subject *',
     rules: 'required|max:1000',
     'aria-label': 'Subject',
     title: 'Subject',
@@ -631,7 +667,7 @@ export const inputsGetInTouchAttributes = [
     type: 'textarea',
     name: 'Message',
     placeholder: 'Message',
-    rules: 'required|max:1000',
+    rules: 'max:1000',
     rows: 8,
     cols: 4,
     'aria-label': 'Message',
@@ -727,7 +763,7 @@ export const locationInfoBlockArticles = [
       Scarinci Hollenbeck, LLC is a business law firm based in New Jersey, New York, and Washington, D.C servicing clients worldwide.
     </p>
     `,
-    image: '/images/sh-mini-diamond-PNG.svg',
+    image: SHDiamond,
     reactComponent: null,
   },
   {
@@ -828,3 +864,91 @@ export const googleLocationIds = {
 };
 
 export const ALT_PREFIX = 'Image showing the text: ';
+
+export const NAVIGATION_OPENERS = [
+  'Attorneys',
+  'Practices',
+  'Industries',
+  'Locations',
+];
+
+export const SIDEBAR_POLITIC_LINKS = [
+  {
+    title: 'Privacy policy',
+    link: '/privacy-policy',
+  },
+  {
+    title: 'Terms of use',
+    link: '/terms-of-use',
+  },
+  {
+    title: 'Awards Methodology',
+    link: '/awards',
+  },
+];
+
+export const SOCIAL_LINKS = [
+  {
+    id: 'sidebar-linkedin',
+    title: 'LinkedIn',
+    icon: <FaLinkedin />,
+    url: 'https://www.linkedin.com/company/scarinci-hollenbeck-llc/',
+  },
+  {
+    id: 'sidebar-facebook',
+    title: 'Facebook',
+    icon: <FaFacebookSquare />,
+    url: 'https://www.facebook.com/ScarinciHollenbeck',
+  },
+  {
+    id: 'sidebar-x',
+    title: 'X',
+    icon: <FaSquareXTwitter />,
+    url: 'https://twitter.com/S_H_Law',
+  },
+];
+
+export const slogans = ['Distinct Vision', 'Real Impact'];
+
+export const latestPostTabs = [
+  {
+    id: 'firmNewsPosts',
+    label: 'News',
+  },
+  {
+    id: 'clientAlertsPosts',
+    label: 'Client Alerts',
+  },
+  {
+    id: 'firmInsightsPosts',
+    label: 'Insights',
+  },
+  {
+    id: 'allPosts',
+    label: 'All Posts',
+  },
+];
+
+export const locationsOrderArray = [
+  'New York City',
+  'Little Falls, NJ',
+  'Red Bank, NJ',
+  'Washington, D.C.',
+];
+
+export const reservedAccordionTitles = [
+  'Clients List',
+  'Awards',
+  'Full Biography',
+  'Affiliations Area',
+  'Representative Matters',
+  'Gallery',
+  'Media',
+  'Presentations',
+  'Publications',
+  'Videos',
+  'News & Press Releases',
+  'Blog',
+  'Events',
+  'Government & Law',
+];

@@ -29,7 +29,9 @@ const AttorneyCards = ({ title, content, pathname }) => {
           <BoxTitle
             isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}
           >
-            <strong>{renderTitle(title, pathname)}</strong>
+            <strong data-testid="firm-management">
+              {renderTitle(title, pathname)}
+            </strong>
           </BoxTitle>
         )}
         <RowSpecial>

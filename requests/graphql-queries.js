@@ -1,6 +1,5 @@
 export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
   attorneyProfileBy(slug: $slug) {
-    attorneyProfileId
     seo {
       title
       metaDesc
@@ -9,17 +8,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       designation
       email
       faxNumber
-      firstName
-      lastName
       abbreviation
-      representativeVideo {
-        link
-        mimeType
-      }
-      forwardingEmailsForContactForm {
-        email
-      }
-      middleInitial
       pdfBio {
         sourceUrl
         mediaItemUrl
@@ -34,10 +23,17 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         channel
       }
       vizibility
+      videoPresentation {
+        videoLink
+        uploadVideo {
+          mediaItemUrl
+          mimeType
+        }
+      }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
       additionalInformation {
-      	title
+        title
         content
       }
       affiliations
@@ -61,7 +57,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       tabContent5
     }
     attorneyAwardsClientsBlogsVideos {
-    	images {
+      images {
         caption
         image {
           sourceUrl
@@ -71,8 +67,14 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       }
       attorneyVideos {
         date
-        embedVideo
         title
+        video {
+          videoLink
+          uploadVideo {
+            mediaItemUrl
+            mimeType
+          }
+        }
       }
       awards {
         awardImage {
@@ -80,6 +82,7 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         }
         awardLink
         awardTitle
+        year
       }
       clients {
         clientImage {
@@ -99,11 +102,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         musicEsq
       }
     }
-    attorneyAuthorId {
-      authorId {
-        userId
-      }
-    }
     attorneyChairCoChair {
       chair {
         ... on Practice {
@@ -120,18 +118,6 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
         }
       }
     }
-    attorneyMedia {
-      attorneyMedia {
-        header
-        body
-      }
-    }
-    attorneyPresentations {
-      attorneyPresentations {
-        body
-        header
-      }
-    }
     attorneyPrimaryRelatedPracticesLocationsGroups {
       officeLocation {
         ... on OfficeLocation {
@@ -143,31 +129,12 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
           }
         }
       }
-      primaryPractice {
-        ... on Practice {
-          id
-          title(format: RENDERED)
-          uri
-        }
-      }
       relatedPractices {
         ... on Practice {
           id
           uri
           title(format: RENDERED)
         }
-      }
-    }
-    attorneyPublications {
-      attorneyPublications {
-        body
-        header
-      }
-    }
-    attorneyRepresentativeClients {
-      repClients {
-        content
-        title
       }
     }
     attorneyRepresentativeMatters {
@@ -177,12 +144,67 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
       }
     }
     title(format: RENDERED)
-    attorneyTabNavigation {
-      mainMenu
-      moreMenu
+    attorneyMediaSecondType {
+      mediaItems {
+        date
+        description
+        link {
+          target
+          url
+        }
+        publisher
+        title
+      }
+    }
+    attorneyPresentationsSecondType {
+      presentationsItems {
+        title
+        link {
+          url
+          target
+        }
+        label
+        description
+        date
+      }
+    }
+    attorneyPublicationsSecondType {
+      publicationsItems {
+        date
+        description
+        label
+        title
+        link {
+          target
+          url
+        }
+      }
+    }
+    attorneyAuthorId {
+      authorId {
+        databaseId
+      }
     }
   }
 }`;
+
+export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
+  $categoryId: [ID]
+  $authorId: Int
+  $first: Int
+  $last: Int
+  $after: String
+  $before: String
+  ) {
+  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, author: $authorId}) {
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }}
+`;
 
 export const attorneysQuery = `query FirmPageQuery {
   attorneyProfiles(first: 100, where: {status: PUBLISH}) {
@@ -217,6 +239,9 @@ export const attorneysQuery = `query FirmPageQuery {
           }
         }
       }
+      attorneyBiography {
+        miniBio
+      }
     }
   }
 }`;
@@ -230,23 +255,32 @@ export const officeLocationQuery = `query BasicPageQuery {
       officeMainInformation {
         addressLocality
         addressRegion
-        mapLink
+        mapAddress
         phone
         streetAddress
         fax
         floor
         postCode
+        autoMap {
+					mediaItemUrl
+					databaseId
+        }
+        trainStationsMap {
+					mediaItemUrl
+					databaseId
+        }
       }
     }
   }
 }
 `;
 
-export const firmNewsQuery = `query authorPostsById {
-  posts(first: 4, where: {categoryName: "Firm News"}) {
+export const latestAllPosts = `query latestAllPosts {
+  posts(first: 19) {
       nodes {
         date
         slug
+        uri
         databaseId
         featuredImage {
           node {
@@ -265,104 +299,78 @@ export const firmNewsQuery = `query authorPostsById {
   }
 }`;
 
-export const miniOfficeLocationQuery = `query BasicPageQuery {
-  officeLocations {
-    nodes {
-      databaseId
-      slug
-      title
-      officeMainInformation {
-        addressLocality
-      }
-    }
-  }
-}
-`;
-
-export const attorneyNewsEventsQuery = `query AttorneyNewsEventPosts($name: String) {
-      posts(where: {search: $name}, first: 3) {
-        edges {
+export const latestClientAlertsArticles = `query latestClientAlertsArticles {
+  posts(first: 19, where: {categoryName: "Client Alert"}) {
+      nodes {
+        date
+        slug
+        uri
+        databaseId
+        featuredImage {
           node {
-            date
-            featuredImage {
-              node {
-                sourceUrl(size: LARGE)
-              }
-            }
-            title(format: RENDERED)
-            categories {
-              nodes {
-                slug
-              }
-            }
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
             slug
-            databaseId
-            author {
-              node {
-                name
-              }
-            }
-            uri
           }
         }
       }
-    }`;
-
-export const attorneyPostsQueryByIdAndSlug = `
-  query AttorneyPostsById(
-    $categoryId: [ID],
-    $slug: String,
-    $offsetPosts: Int,
-    $postsPerPage: Int
-    ) {
-    posts(where: {categoryIn: $categoryId, search: $slug, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}) {
-      pageInfo {
-        offsetPagination {
-          total
-          hasPrevious
-          hasMore
-        }
-      }
-      edges {
-        node {
-          date
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          uri
-          title(format: RENDERED)
-          excerpt(format: RENDERED)
-          author {
-            node {
-              name
-              url
-            }
-          }
-        }
-      }
-    }
   }
-`;
+}`;
 
-export const checkAttorneyPostsQueryByIdAndSlug = `query AttorneyPostsById(
-  $categoryId: [ID]
-  $slug: String
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
-  ) {
-  posts(first: $first, last: $last, after: $after, before: $before, where: {categoryIn: $categoryId, search: $slug}) {
-    pageInfo {
-      endCursor
-      startCursor
-      hasNextPage
-      hasPreviousPage
-    }
-  }}
-`;
+export const latestFirmNewsArticles = `query latestFirmNewsArticles {
+  posts(first: 19, where: {categoryName: "Firm News"}) {
+      nodes {
+        date
+        slug
+        uri
+        databaseId
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+  }
+}`;
+
+export const latestFirmInsightsArticles = `query latestFirmInsightsArticles {
+  posts(first: 19, where: {categoryId: 599}) {
+      nodes {
+        date
+        slug
+        uri
+        databaseId
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+  }
+}`;
+
 export const postQuery = `
 query FirmPageQuery($id: ID!) {
   post(id: $id, idType: SLUG) {
@@ -520,12 +528,13 @@ export const postsForPaginationByCategoryIdQuery = `
 
 export const postsForPaginationByAuthorIdQuery = `
   query postsForPaginationByAuthorId(
-    $authorId: Int, 
-    $offsetPosts: Int, 
+    $categoryId: [ID],
+    $authorId: Int,
+    $offsetPosts: Int,
     $postsPerPage: Int
   ) {
     posts(
-      where: {author: $authorId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+      where: {categoryIn: $categoryId, author: $authorId, offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
     ) {
       pageInfo {
         offsetPagination {
@@ -632,35 +641,100 @@ export const homePageQuery = `query HomePageQuery {
   pageBy(uri: "front-page") {
     title
     homePage {
-      aboutFirm {
-        description
-        linkLabel
-        linkUrl
-        title
-        subTitle
-      }
-      aboutFirm2 {
-        description
-        linkLabel
-        linkUrl
-        title
-        subTitle
-      }
       awards {
         appearanceOrder
         imageHeight
         imageWidth
         label
+        year
         awardImage {
           sourceUrl
         }
       }
-      bannerLineOne
-      bannerLineTwo
-      quote
-      mainTag
-      subMainTag
       isHoliday
+      firstSection {
+        title
+        subtitle
+        infoCards {
+          cardsText
+          fieldGroupName
+          icon
+          title
+          link {
+            target
+            title
+            url
+          }
+        }
+      }
+      whoWeAre {
+        aboutHero
+        arcticle
+        heroPhoto {
+          altText
+          sourceUrl
+        }
+        title
+        heroProfileLink {
+          title
+          target
+          url
+        }
+      }
+      industryWeWorkWith {
+        title
+        subtitle
+        link {
+          target
+          title
+          url
+        }
+        industryCards {
+          icon
+          text
+          title
+          link {
+            target
+            title
+            url
+          }
+        }
+      }
+			whatWeDo {
+        groupsPractices {
+          groupPractices
+          groupIcon
+          practices {
+            ... on Practice {
+              databaseId
+              uri
+              title
+              practicesIncluded {
+                childPractice {
+                  ... on Practice {
+                    databaseId
+                    title
+                    uri
+                  }
+                }
+                description
+              }
+            }
+          }
+        }
+      }
+      whyChooseUs {
+        title
+        article
+        serviceList {
+          service
+        }
+        focusedServicesCards {
+          title
+          text
+          icon
+        }
+      }
     }
     seo {
       metaDesc
@@ -920,6 +994,7 @@ export const adminKaterinTraughQuery = `query AttorneyPostsById {
       featuredImage {
         sourceUrl(size: CATEGORY_THUMB)
       }
+      biography
     }
   }
 }`;
@@ -1186,7 +1261,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
       }
       fax
       floor
-      mapLink
+      mapAddress
       phone
       postCode
       streetAddress
@@ -1278,7 +1353,7 @@ export const getOffices = `query FirmPageQuery {
         phone
         streetAddress
         postCode
-        mapLink
+        mapAddress
       }
       uri
       slug
@@ -1302,6 +1377,36 @@ export const getCategoriesQuery = `query subscriptions {
       categories {
         name
         databaseId
+      }
+    }
+  }
+}`;
+
+export const getWhatWeDo = `query whatWeDoFromHome {
+  page(id: "front-page", idType: URI) {
+    homePage {
+      whatWeDo {
+        groupsPractices {
+          groupPractices
+          groupIcon
+          practices {
+            ... on Practice {
+              databaseId
+              uri
+              title
+              practicesIncluded {
+                childPractice {
+                  ... on Practice {
+                    databaseId
+                    title
+                    uri
+                  }
+                }
+                description
+              }
+            }
+          }
+        }
       }
     }
   }

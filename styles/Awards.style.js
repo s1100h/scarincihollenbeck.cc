@@ -1,116 +1,168 @@
-import Carousel from 'react-multi-carousel';
-import styled from 'styled-components';
-import { globalColor, globalGradient } from './global_styles/Global.styles';
+import styled, { css } from 'styled-components';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 
-const common = `
-  background: none;
-    :hover {
-      background: none;
-    }
-    :before {
-      color: black;
-    }
+export const AwardsWrapper = styled.section`
+  padding: 60px 0;
+  background-color: ${globalColor.blue.darkBlue};
+
+  ${media_breakpoint_down('md')} {
+    padding: 40px 0;
+  }
 `;
 
-export const TitleBlock = styled.div`
+export const AwardsHolder = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 0 25px;
-  margin: 0 0 16px 0;
+  flex-direction: column;
+  row-gap: 24px;
 
-  h2 {
-    font-family: var(--font-poppins);
-    font-style: normal;
-    font-size: 4.5rem;
-    color: ${globalColor.black};
-    text-transform: uppercase;
-    margin-bottom: 0;
+  .custom-prev-button,
+  .custom-next-button {
+    color: ${globalColor.white};
+
+    &:disabled {
+      color: ${globalColor.blue.blue550};
+      background-color: transparent;
+    }
+  }
+`;
+
+export const AwardsHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > a {
+    flex-shrink: 0;
+    width: max-content;
+  }
+`;
+
+export const AwardsTitle = styled.h2`
+  margin: 0;
+  color: ${globalColor.white};
+  font-size: ${rem(32)};
+  line-height: 1.38;
+  font-weight: 600;
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(20)};
+    line-height: 1.4;
+  }
+`;
+
+export const AwardsSliderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+
+  .disclaimer {
+    margin: 0;
+    color: ${({ $isLightVariant }) =>
+      $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
+    font-weight: 600;
+    text-align: center;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
+    }
+  }
+`;
+
+export const AwardCardWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  padding-top: ${({ $isLightVariant }) => ($isLightVariant ? '12px' : '16px')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 12px;
+  border-radius: ${globalBorderRadius.middle};
+  background-color: ${({ $isLightVariant }) =>
+    $isLightVariant ? globalColor.gray.gray1002 : globalColor.blue.blue6002};
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: ${globalTransition.default};
+
+  ${({ $isLink }) =>
+    $isLink &&
+    css`
+      &:hover {
+        border-color: ${globalColor.blue.skyBlue};
+      }
+    `}
+`;
+
+export const AwardCardImage = styled.div`
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
-  ${media_breakpoint_down('xl')} {
-    h2 {
-      font-size: 3.5rem;
+  ${media_breakpoint_down('md')} {
+    width: 144px;
+    height: 144px;
+  }
+`;
+
+export const AwardCardContent = styled.div`
+  flex: 1;
+  width: 100%;
+  padding: ${({ $isLightVariant }) =>
+    $isLightVariant ? '8px 12px' : '12px 20px'};
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  align-self: flex-start;
+  background-color: ${({ $isLightVariant }) =>
+    $isLightVariant ? globalColor.gray.gray10 : globalColor.blue.blue550};
+
+  > p {
+    margin: 0;
+    color: ${({ $isLightVariant }) =>
+      $isLightVariant ? globalColor.blue.darkBlue : globalColor.white};
+    font-size: ${({ $isLightVariant }) => ($isLightVariant ? '1rem' : rem(18))};
+    line-height: ${({ $isLightVariant }) => ($isLightVariant ? 1.5 : 1.56)};
+    font-weight: ${({ $isLightVariant }) => ($isLightVariant ? 700 : 500)};
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    ${media_breakpoint_down('md')} {
+      font-size: 1rem;
+      line-height: 1.5;
     }
   }
 
-  ${media_breakpoint_down('lg')} {
-    h2 {
-      font-size: 2.5rem;
+  > span {
+    margin-top: auto;
+    color: ${({ $isLightVariant }) =>
+      $isLightVariant ? globalColor.blue.blue500 : globalColor.blue.skyBlue};
+    font-size: ${rem(20)};
+    line-height: 1.6;
+    font-weight: 600;
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(18)};
+      line-height: 1.56;
     }
   }
 
   ${media_breakpoint_down('md')} {
-    flex-direction: column;
-    align-items: flex-start;
-
-    h2 {
-      font-size: 3rem;
-    }
-  }
-
-  ${media_breakpoint_down('sm')} {
-    align-items: center;
-
-    h2 {
-      font-size: 2rem;
-    }
-  }
-`;
-
-export const Award = styled.div`
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  background: ${globalGradient.award};
-`;
-
-export const AwardsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  row-gap: 16px;
-
-  > div {
-    width: 90%;
-  }
-
-  .disclaimer {
-    text-align: center;
-    margin: 0;
-  }
-
-  .react-multi-carousel-dot-list {
-    position: static;
-    order: 3;
-  }
-
-  ${media_breakpoint_down('xs')} {
-    padding: 0 50px;
-  }
-`;
-
-export const CarouselStyled = styled(Carousel)`
-  .react-multiple-carousel__arrow--right {
-    right: -17px !important;
-    ${common};
-  }
-
-  .react-multiple-carousel__arrow--left {
-    left: -17px !important;
-    ${common};
-  }
-
-  ${media_breakpoint_down('sm')} {
-    .react-multiple-carousel__arrow {
-      display: block !important;
-    }
+    padding: 8px 12px;
   }
 `;

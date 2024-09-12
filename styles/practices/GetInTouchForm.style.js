@@ -12,14 +12,10 @@ export const GetInTouchFormWrapper = styled.div`
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
   ${({ isSticky }) =>
     isSticky &&
-    `position: sticky; top: 210px; overflow: auto; max-height: calc(100vh - 230px);
-
-    ${media_breakpoint_exactly_down(1439)} {
-      top: 225px;
-    }
+    `position: sticky; top: calc(var(--header-height) + 70px); overflow: auto; max-height: calc(100vh - 230px);
     `}
   border: 1px solid transparent;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     border: 1px solid ${globalColor.blue.blue500};
@@ -114,13 +110,14 @@ export const GetInTouchFormWrapper = styled.div`
 
 export const GetInTouchMobileBtn = styled.div`
   position: sticky;
-  top: 180px;
+  top: calc(var(--header-height) + 70px);
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 16px;
   padding: 20px 12px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
   span {
     writing-mode: vertical-rl;
@@ -147,14 +144,6 @@ export const GetInTouchMobileBtn = styled.div`
       width: 24px;
       height: 24px;
     }
-  }
-
-  ${media_breakpoint_down('lg')} {
-    top: 220px;
-  }
-
-  ${media_breakpoint_down('md')} {
-    top: 190px;
   }
 
   ${media_breakpoint_down('sm')} {

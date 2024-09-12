@@ -4,16 +4,15 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SubHeader from 'layouts/SubHeader/SubHeader';
 import BodyHeader from 'components/organisms/library/BodyHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { useContext, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   postsForPaginationByAuthorIdQuery,
   postsForPaginationByCategoryIdQuery,
 } from 'requests/graphql-queries';
 import { getPaginationData } from 'requests/getPaginationData';
-import empty from 'is-empty';
 import NewsCard from '../organisms/home/FirmNews/NewsCard';
-import { AttorneysContext } from '../../contexts/AttorneysContext';
 import LibrarySideBar from '../organisms/library/LibrarySideBar';
+import { useGetAuthorsQuery } from '../../redux/services/project-api';
 
 const PostList = dynamic(import('components/molecules/PostList'));
 
@@ -27,19 +26,14 @@ const LibraryDirectory = ({
   profileUrl,
   categoryId,
 }) => {
-  const { getAsyncAuthors, authors } = useContext(AttorneysContext);
+  const { data: authorsData, isLoading: authorsIsLoading } = useGetAuthorsQuery();
+
   const router = useRouter();
   const logoImage = '/images/no-image-found-diamond-750x350.png';
   const memoDataPosts = useMemo(() => news, [news]);
   const mainNews = memoDataPosts[0];
 
   const isAuthor = router.asPath.includes('author');
-
-  useEffect(() => {
-    if (empty(authors)) {
-      getAsyncAuthors();
-    }
-  }, [authors]);
 
   const params = {
     id: null,
@@ -99,7 +93,8 @@ const LibraryDirectory = ({
               profileUrl={profileUrl}
               childrenOfCurrentCategory={childrenOfCurrentCategory}
               popularCategories={popularCategories}
-              authors={authors}
+              authors={authorsData?.data}
+              authorsIsLoading={authorsIsLoading}
             />
           </Col>
         </Row>

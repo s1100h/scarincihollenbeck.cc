@@ -1,20 +1,14 @@
 import HomePage from 'components/pages/HomePage';
 import { fetchAPI } from 'requests/api';
 import {
-  firmNewsQuery,
   homePageQuery,
+  latestAllPosts,
+  latestClientAlertsArticles,
+  latestFirmInsightsArticles,
+  latestFirmNewsArticles,
   officeLocationQuery,
 } from 'requests/graphql-queries';
-import { formatSrcToCloudinaryUrl } from 'utils/helpers';
-
-/** pull out the attorney chair data from attorney response */
-const extractChair = (chair) => {
-  if (chair) {
-    return chair.map((c) => c.title).join(', ');
-  }
-
-  return null;
-};
+import { chunkArray } from 'utils/helpers';
 
 /** Get homepage content WP GRAPHQL API */
 export async function homePageContent() {
@@ -28,52 +22,71 @@ const getMapDataFrmLocations = async () => {
   return officeLocations?.nodes;
 };
 
-const getFirmNewsArticles = async () => {
-  const { posts } = await fetchAPI(firmNewsQuery, {});
-  return posts?.nodes;
+const getLatestArticlesTabsData = async () => {
+  const { posts } = await fetchAPI(latestAllPosts, {});
+  const { posts: clientAlertsPosts } = await fetchAPI(
+    latestClientAlertsArticles,
+    {},
+  );
+  const { posts: firmNewsPosts } = await fetchAPI(latestFirmNewsArticles, {});
+  const { posts: firmInsightsPosts } = await fetchAPI(
+    latestFirmInsightsArticles,
+    {},
+  );
+
+  return {
+    allPosts: {
+      categoryLink: '/library/category/client-alert',
+      articles: [...chunkArray(posts.nodes, 4)],
+    },
+    clientAlertsPosts: {
+      categoryLink: '/library/category/client-alert',
+      articles: [...chunkArray(clientAlertsPosts.nodes, 4)],
+    },
+    firmNewsPosts: {
+      categoryLink: '/library/category/firm-news',
+      articles: [...chunkArray(firmNewsPosts.nodes, 4)],
+    },
+    firmInsightsPosts: {
+      categoryLink: '/library/category/law-firm-insights',
+      articles: [...chunkArray(firmInsightsPosts.nodes, 4)],
+    },
+  };
 };
 
 export const sanitizeOffices = (offices) => offices.map(({
   databaseId, slug, title, officeMainInformation,
-}) => ({
-  databaseId,
-  slug,
-  title,
-  ...officeMainInformation,
-}));
-
-const sanitizeFirmNews = (news) => news.map(
-  ({
-    date, databaseId, slug, featuredImage, title, excerpt, author,
-  }) => ({
-    date,
+}) => {
+  if (officeMainInformation?.autoMap?.mediaItemUrl?.length > 0) {
+    officeMainInformation.autoMap = officeMainInformation.autoMap.mediaItemUrl;
+  }
+  if (officeMainInformation?.trainStationsMap?.mediaItemUrl?.length > 0) {
+    officeMainInformation.trainStationsMap = officeMainInformation.trainStationsMap.mediaItemUrl;
+  }
+  return {
     databaseId,
-    slug: `/firm-news/${slug}`,
-    featuredImage: featuredImage.node,
+    slug,
     title,
-    excerpt,
-    author: author.node.name,
-  }),
-);
+    ...officeMainInformation,
+  };
+});
 
 /** Map the home page query data to page props */
 export const getStaticProps = async () => {
   /** get page content */
-  const firmNewsArticles = sanitizeFirmNews(await getFirmNewsArticles());
+  const latestArticlesTabsData = await getLatestArticlesTabsData();
 
   const offices = await getMapDataFrmLocations();
   const request = await homePageContent();
   const { seo, homePage } = request;
   const {
-    aboutFirm,
-    aboutFirm2,
     awards,
-    bannerLineOne,
-    bannerLineTwo,
-    quote,
-    mainTag,
-    subMainTag,
     isHoliday,
+    firstSection,
+    whoWeAre,
+    industryWeWorkWith,
+    whatWeDo,
+    whyChooseUs,
   } = homePage;
 
   /** get firm locations */
@@ -83,21 +96,15 @@ export const getStaticProps = async () => {
   return {
     props: {
       seo,
-      aboutFirm,
-      aboutFirm2,
       awards,
-      firmNewsArticles,
-      banner: {
-        lineOne: bannerLineOne,
-        lineTwo: bannerLineTwo,
-        quote,
-      },
-      intro: {
-        mainTag,
-        subMainTag,
-      },
       offices: sanitizeOffices(sortedOffices),
       isHoliday,
+      firstSection,
+      whoWeAre,
+      industryWeWorkWith,
+      whatWeDo,
+      latestArticlesTabsData,
+      whyChooseUs,
     },
     revalidate: 86400,
   };
@@ -106,25 +113,27 @@ export const getStaticProps = async () => {
 /** The home page component */
 const Home = ({
   seo,
-  aboutFirm,
-  aboutFirm2,
   awards,
-  banner,
-  intro,
   offices,
   isHoliday,
-  firmNewsArticles,
+  firstSection,
+  whoWeAre,
+  industryWeWorkWith,
+  whatWeDo,
+  latestArticlesTabsData,
+  whyChooseUs,
 }) => {
   const homePageProps = {
     seo,
-    aboutFirm,
-    aboutFirm2,
     awards,
-    banner,
-    intro,
     offices,
     isHoliday,
-    firmNewsArticles,
+    firstSection,
+    whoWeAre,
+    industryWeWorkWith,
+    whatWeDo,
+    latestArticlesTabsData,
+    whyChooseUs,
   };
   return <HomePage {...homePageProps} />;
 };

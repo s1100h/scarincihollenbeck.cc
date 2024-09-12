@@ -5,15 +5,16 @@ import Subscription from 'components/molecules/subscription/Subscription';
 import CommonSidebarLinks from 'components/molecules/CommonSidebarLinks';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { SITE_TITLE } from 'utils/constants';
-import { useContext, useEffect } from 'react';
-import { FormsContext } from '../../contexts/FormsContext';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { handleCheckDisclaimer } from '../../redux/slices/forms.slice';
 
 const CareerProfile = ({ career, canonicalUrl }) => {
-  const { handleCheckDisclaimer } = useContext(FormsContext);
+  const dispatch = useDispatch();
   const { seo } = career;
   const title = `${seo.title} | Career at ${SITE_TITLE}`;
 
-  useEffect(() => () => handleCheckDisclaimer(false), []);
+  useEffect(() => () => dispatch(handleCheckDisclaimer(false)), []);
 
   return (
     <>
