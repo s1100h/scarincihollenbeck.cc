@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import ReduxProvider from '../../../hoks/reduxTestHoc';
-import SubHeader from '../../../layouts/SubHeader/SubHeader';
-import AttorneyFilters from '../../../components/organisms/attorneys/AttorneyFilters';
+import ReduxProvider from 'hoks/reduxTestHoc';
+import SubHeader from 'layouts/SubHeader/SubHeader';
+import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 
 const renderAttorneyPage = (props) => render(
   <ReduxProvider>

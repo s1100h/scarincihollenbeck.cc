@@ -156,7 +156,7 @@ const ProfileAccordion = ({
   // Events section END
 
   return (
-    <ProfileAccordionWrapper>
+    <ProfileAccordionWrapper data-testid="profile-accordion">
       <ContainerDefault>
         <ProfileAccordionHolder>
           <Accordion as="ul" alwaysOpen>

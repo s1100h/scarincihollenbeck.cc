@@ -10,7 +10,7 @@ import Awards from 'components/organisms/home/Awards';
 import LatestPostsSection from 'components/organisms/home/LatestPostsSection';
 import AllOfficeLocations from 'components/organisms/home/AllOfficeLocations';
 import HomePage from 'components/pages/HomePage';
-import ReduxProvider from '../../../hoks/reduxTestHoc';
+import ReduxProvider from 'hoks/reduxTestHoc';
 
 beforeAll(async () => {
   await preloadAll();
@@ -40,6 +40,129 @@ jest.mock('@next/third-parties/google', () => ({
 // Tests
 describe('HomePage', () => {
   const mockSetIsShowContactModal = jest.fn();
+
+  const props = {
+    whatWeDo: {
+      groupsPractices: [
+        {
+          groupPractices: 'Corporate Transactions & Business',
+          groupIcon: 'Briefcase',
+          practices: [
+            {
+              databaseId: 165922,
+              uri: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
+              title: 'Corporate Governance Lawyers and Regulatory Compliance',
+              practicesIncluded: {
+                childPractice: null,
+                description:
+                  '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
+              },
+            },
+            {
+              databaseId: 28270,
+              uri: '/practices/corporate-transactions-business',
+              title: 'Corporate Transactions & Business',
+              practicesIncluded: {
+                childPractice: [
+                  {
+                    databaseId: 28282,
+                    title: 'Financing Group',
+                    uri: '/practices/financing-group',
+                  },
+                  {
+                    databaseId: 28283,
+                    title: 'Healthcare & Hospital Law',
+                    uri: '/practices/health-and-hospital-law',
+                  },
+                ],
+                description:
+                  '<p>Our clients rely on us to help resolve impediments, take advantage of opportunities, anticipate problems, and minimize surprises down the road regarding their business.</p>\n',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    industryWeWorkWith: {
+      title: 'title',
+      subtitle: 'subtitle',
+      link: { title: 'title', url: 'url' },
+      industryCards: [
+        {
+          title: 'title',
+          icon: 'Cannabis',
+          text: 'text',
+          link: { url: '/url' },
+        },
+      ],
+    },
+    whyChooseUs: {
+      title: 'Why choose us?',
+      article:
+        '<p>At Scarinci Hollenbeck, our dedicated attorneys boast multiple decades of extensive experience handling cases tied to securities investigations.</p>\n<p>Whether you’re dealing with SEC compliance, DOJ inquiries, AG investigations, or related matters, you can count on our unwavering legal support to help you navigate the process and achieve the best possible outcome.</p>\n',
+      serviceList: [
+        {
+          service: 'Dedicated attorneys ',
+        },
+        {
+          service: 'We offer strategic',
+        },
+        {
+          service: 'Unwavering legal support',
+        },
+        {
+          service: 'Customer focus',
+        },
+      ],
+      focusedServicesCards: [
+        {
+          title: 'Dedicated attorneys ',
+          text: '<p>When your livelihood is on the line, an attorney who is well-versed in securities law and the ever-changing regulatory environment is paramount.</p>\n',
+          icon: 'Practices',
+        },
+        {
+          title: 'We offer strategic',
+          text: '<p>We offer strategic legal counsel that acknowledges the distinct challenges faced by officers, directors, and companies embroiled in SEC, DOJ, or AG investigations.</p>\n',
+          icon: 'Map',
+        },
+        {
+          title: 'Unwavering legal support',
+          text: '<p>You can count on our unwavering legal support to help you navigate the process and achieve the best possible outcome.</p>\n',
+          icon: 'Documents',
+        },
+        {
+          title: 'Customer focus',
+          text: '<p>Collaboratively, we work with you to grasp the unique intricacies of your circumstances, adapting our legal strategies to align with your goals.</p>\n',
+          icon: 'Scope',
+        },
+      ],
+    },
+    awards: [
+      {
+        appearanceOrder: 1,
+        imageHeight: '149',
+        imageWidth: '179',
+        label: '2024 NJ Super Lawyers',
+        year: 2024,
+        awardImage: {
+          sourceUrl:
+            'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1712090898/wp.scarincihollenbeck/sl-badge-l-w-2024/sl-badge-l-w-2024.png?_i=AA',
+        },
+      },
+      {
+        appearanceOrder: 2,
+        imageHeight: '190',
+        imageWidth: '190',
+        label:
+          'US News & World Report - Best Companies to Work For - Law Firms 2024',
+        year: 2024,
+        awardImage: {
+          sourceUrl:
+            'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1708360623/wp.scarincihollenbeck/Companies-BestCompaniesLawFirms/Companies-BestCompaniesLawFirms.png?_i=AA',
+        },
+      },
+    ],
+  };
 
   it('The Home banner renders', () => {
     renderHomePage();
@@ -101,19 +224,7 @@ describe('HomePage', () => {
 
   it('IndustriesSection render with props in Home Page', () => {
     renderHomePage({
-      industryWeWorkWith: {
-        title: 'title',
-        subtitle: 'subtitle',
-        link: { title: 'title', url: 'url' },
-        industryCards: [
-          {
-            title: 'title',
-            icon: 'Cannabis',
-            text: 'text',
-            link: { url: '/url' },
-          },
-        ],
-      },
+      industryWeWorkWith: props?.industryWeWorkWith,
     });
 
     const industriesSection = screen.getByTestId('industries-wrapper');
@@ -146,47 +257,7 @@ describe('HomePage', () => {
 
   it('What we do section render with props in Home Page', () => {
     renderHomePage({
-      whatWeDo: {
-        groupsPractices: [
-          {
-            groupPractices: 'Corporate Transactions & Business',
-            groupIcon: 'Briefcase',
-            practices: [
-              {
-                databaseId: 165922,
-                uri: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
-                title: 'Corporate Governance Lawyers and Regulatory Compliance',
-                practicesIncluded: {
-                  childPractice: null,
-                  description:
-                    '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
-                },
-              },
-              {
-                databaseId: 28270,
-                uri: '/practices/corporate-transactions-business',
-                title: 'Corporate Transactions & Business',
-                practicesIncluded: {
-                  childPractice: [
-                    {
-                      databaseId: 28282,
-                      title: 'Financing Group',
-                      uri: '/practices/financing-group',
-                    },
-                    {
-                      databaseId: 28283,
-                      title: 'Healthcare & Hospital Law',
-                      uri: '/practices/health-and-hospital-law',
-                    },
-                  ],
-                  description:
-                    '<p>Our clients rely on us to help resolve impediments, take advantage of opportunities, anticipate problems, and minimize surprises down the road regarding their business.</p>\n',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      whatWeDo: props?.whatWeDo,
     });
 
     const whatWeDoSection = screen.getByTestId('what-we-do');
@@ -207,48 +278,7 @@ describe('HomePage', () => {
   it('What we do tabs component render with props', () => {
     render(
       <ReduxProvider>
-        <PracticesTabs
-          groupsPractices={[
-            {
-              groupPractices: 'Corporate Transactions & Business',
-              groupIcon: 'Briefcase',
-              practices: [
-                {
-                  databaseId: 165922,
-                  uri: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
-                  title:
-                    'Corporate Governance Lawyers and Regulatory Compliance',
-                  practicesIncluded: {
-                    childPractice: null,
-                    description:
-                      '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
-                  },
-                },
-                {
-                  databaseId: 28270,
-                  uri: '/practices/corporate-transactions-business',
-                  title: 'Corporate Transactions & Business',
-                  practicesIncluded: {
-                    childPractice: [
-                      {
-                        databaseId: 28282,
-                        title: 'Financing Group',
-                        uri: '/practices/financing-group',
-                      },
-                      {
-                        databaseId: 28283,
-                        title: 'Healthcare & Hospital Law',
-                        uri: '/practices/health-and-hospital-law',
-                      },
-                    ],
-                    description:
-                      '<p>Our clients rely on us to help resolve impediments, take advantage of opportunities, anticipate problems, and minimize surprises down the road regarding their business.</p>\n',
-                  },
-                },
-              ],
-            },
-          ]}
-        />
+        <PracticesTabs groupsPractices={props?.whatWeDo?.groupsPractices} />
       </ReduxProvider>,
     );
 
@@ -257,17 +287,16 @@ describe('HomePage', () => {
   });
 
   it('What we do practice card component render without child list', () => {
-    render(
-      <PracticeCard
-        key={165922}
-        icon="Briefcase"
-        title="Corporate Governance Lawyers and Regulatory Compliance"
-        link="/practices/corporate-governance-lawyers-and-regulatory-compliance"
-        text='<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n'
-        list={null}
-        setIsShowContactModal={mockSetIsShowContactModal}
-      />,
-    );
+    const props = {
+      icon: 'Briefcase',
+      title: 'Corporate Governance Lawyers and Regulatory Compliance',
+      link: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
+      text: '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
+      list: null,
+      setIsShowContactModal: mockSetIsShowContactModal,
+    };
+
+    render(<PracticeCard {...props} />);
 
     const consultationButton = screen.getByText(/Free consultation/i);
 
@@ -277,49 +306,17 @@ describe('HomePage', () => {
   });
 
   it('What we do practice card component render with child list', () => {
+    const practiceCardProps = {
+      icon: 'Briefcase',
+      title: 'Corporate Governance Lawyers and Regulatory Compliance',
+      link: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
+      text: '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
+      list: props?.whatWeDo?.groupsPractices[0]?.practices,
+      setIsShowContactModal: mockSetIsShowContactModal,
+    };
     render(
       <ReduxProvider>
-        <PracticeCard
-          key={165922}
-          icon="Briefcase"
-          title="Corporate Governance Lawyers and Regulatory Compliance"
-          link="/practices/corporate-governance-lawyers-and-regulatory-compliance"
-          text='<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n'
-          list={[
-            {
-              databaseId: 165922,
-              uri: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
-              title: 'Corporate Governance Lawyers and Regulatory Compliance',
-              practicesIncluded: {
-                childPractice: null,
-                description:
-                  '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
-              },
-            },
-            {
-              databaseId: 28270,
-              uri: '/practices/corporate-transactions-business',
-              title: 'Corporate Transactions & Business',
-              practicesIncluded: {
-                childPractice: [
-                  {
-                    databaseId: 28282,
-                    title: 'Financing Group',
-                    uri: '/practices/financing-group',
-                  },
-                  {
-                    databaseId: 28283,
-                    title: 'Healthcare & Hospital Law',
-                    uri: '/practices/health-and-hospital-law',
-                  },
-                ],
-                description:
-                  '<p>Our clients rely on us to help resolve impediments, take advantage of opportunities, anticipate problems, and minimize surprises down the road regarding their business.</p>\n',
-              },
-            },
-          ]}
-          setIsShowContactModal={mockSetIsShowContactModal}
-        />
+        <PracticeCard {...practiceCardProps} />
       </ReduxProvider>,
     );
 
@@ -347,47 +344,7 @@ describe('HomePage', () => {
 
   it('Why choose us section render with props in Home Page', () => {
     renderHomePage({
-      whyChooseUs: {
-        title: 'Why choose us?',
-        article:
-          '<p>At Scarinci Hollenbeck, our dedicated attorneys boast multiple decades of extensive experience handling cases tied to securities investigations.</p>\n<p>Whether you’re dealing with SEC compliance, DOJ inquiries, AG investigations, or related matters, you can count on our unwavering legal support to help you navigate the process and achieve the best possible outcome.</p>\n',
-        serviceList: [
-          {
-            service: 'Dedicated attorneys ',
-          },
-          {
-            service: 'We offer strategic',
-          },
-          {
-            service: 'Unwavering legal support',
-          },
-          {
-            service: 'Customer focus',
-          },
-        ],
-        focusedServicesCards: [
-          {
-            title: 'Dedicated attorneys ',
-            text: '<p>When your livelihood is on the line, an attorney who is well-versed in securities law and the ever-changing regulatory environment is paramount.</p>\n',
-            icon: 'Practices',
-          },
-          {
-            title: 'We offer strategic',
-            text: '<p>We offer strategic legal counsel that acknowledges the distinct challenges faced by officers, directors, and companies embroiled in SEC, DOJ, or AG investigations.</p>\n',
-            icon: 'Map',
-          },
-          {
-            title: 'Unwavering legal support',
-            text: '<p>You can count on our unwavering legal support to help you navigate the process and achieve the best possible outcome.</p>\n',
-            icon: 'Documents',
-          },
-          {
-            title: 'Customer focus',
-            text: '<p>Collaboratively, we work with you to grasp the unique intricacies of your circumstances, adapting our legal strategies to align with your goals.</p>\n',
-            icon: 'Scope',
-          },
-        ],
-      },
+      whyChooseUs: props?.whyChooseUs,
     });
 
     const whyChooseUsSection = screen.getByTestId('why-choose-us');
@@ -420,31 +377,7 @@ describe('HomePage', () => {
 
   it('Awards section render with props in Home Page', () => {
     renderHomePage({
-      awards: [
-        {
-          appearanceOrder: 1,
-          imageHeight: '149',
-          imageWidth: '179',
-          label: '2024 NJ Super Lawyers',
-          year: 2024,
-          awardImage: {
-            sourceUrl:
-              'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1712090898/wp.scarincihollenbeck/sl-badge-l-w-2024/sl-badge-l-w-2024.png?_i=AA',
-          },
-        },
-        {
-          appearanceOrder: 2,
-          imageHeight: '190',
-          imageWidth: '190',
-          label:
-            'US News & World Report - Best Companies to Work For - Law Firms 2024',
-          year: 2024,
-          awardImage: {
-            sourceUrl:
-              'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1708360623/wp.scarincihollenbeck/Companies-BestCompaniesLawFirms/Companies-BestCompaniesLawFirms.png?_i=AA',
-          },
-        },
-      ],
+      awards: props?.awards,
     });
 
     const awardsSection = screen.getByTestId('awards');
@@ -452,35 +385,7 @@ describe('HomePage', () => {
   });
 
   it('Awards component render', () => {
-    render(
-      <Awards
-        awards={[
-          {
-            appearanceOrder: 1,
-            imageHeight: '149',
-            imageWidth: '179',
-            label: '2024 NJ Super Lawyers',
-            year: 2024,
-            awardImage: {
-              sourceUrl:
-                'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1712090898/wp.scarincihollenbeck/sl-badge-l-w-2024/sl-badge-l-w-2024.png?_i=AA',
-            },
-          },
-          {
-            appearanceOrder: 2,
-            imageHeight: '190',
-            imageWidth: '190',
-            label:
-              'US News & World Report - Best Companies to Work For - Law Firms 2024',
-            year: 2024,
-            awardImage: {
-              sourceUrl:
-                'https://res.cloudinary.com/scarinci-hollenbeck/images/f_auto,q_auto/v1708360623/wp.scarincihollenbeck/Companies-BestCompaniesLawFirms/Companies-BestCompaniesLawFirms.png?_i=AA',
-            },
-          },
-        ]}
-      />,
-    );
+    render(<Awards awards={props?.awards} />);
 
     const disclaimerElement = screen.getByText(
       'No aspect of the advertisement has been approved by the Supreme Court.',

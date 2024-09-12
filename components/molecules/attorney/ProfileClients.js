@@ -14,7 +14,7 @@ const ProfileClients = ({ clients, name }) => {
   if (empty(clients)) return null;
 
   return (
-    <ProfileClientsWrapper as="li">
+    <ProfileClientsWrapper as="li" data-testid="profile-clients-list">
       <ClientSlider clients={clients} />
       <AccordionItem
         eventKey={`profile-clients-list-${name}`}
