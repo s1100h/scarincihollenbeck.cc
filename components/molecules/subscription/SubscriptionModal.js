@@ -32,6 +32,7 @@ const isArraysIdentical = (chosenIds, originalIds) => {
 const originalCategoriesIds = (categoryArr) => categoryArr?.map((category) => category.id);
 const SubscriptionModal = ({ children, customClass }) => {
   const [categoriesFromWP, setCategoriesFromWP] = useState();
+  const [isKwesInit, setIsKwesInit] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -44,8 +45,9 @@ const SubscriptionModal = ({ children, customClass }) => {
   }, []);
 
   useEffect(() => {
-    if (categoriesFromWP) {
+    if (categoriesFromWP && !isKwesInit) {
       kwesforms.init();
+      setIsKwesInit(true);
     }
   }, [categoriesFromWP]);
 
@@ -74,7 +76,6 @@ const SubscriptionModal = ({ children, customClass }) => {
   };
   return (
     <>
-      {/* <KwesScripts /> */}
       {!empty(children) ? (
         <button onClick={() => setShow(true)} className={customClass}>
           {children}

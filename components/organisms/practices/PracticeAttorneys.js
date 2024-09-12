@@ -3,8 +3,9 @@ import empty from 'is-empty';
 import React, {
   useEffect, useMemo, useRef, useState,
 } from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
+import { ContainerDefault } from 'styles/Containers.style';
 import {
+  PracticeAttorneysBg,
   PracticeAttorneysSection,
   PracticeNoAttorneys,
 } from 'styles/practices/PracticeAttorneys';
@@ -17,7 +18,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   const [cardHeight, setCardHeight] = useState(0);
   const [cardGap, setCardGap] = useState(0);
   const containerRef = useRef();
-  const totalItems = attorneys.length + chairs.length;
+  const totalItems = attorneys?.length + chairs.length;
 
   useEffect(() => {
     let timeoutId;
@@ -58,13 +59,24 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
     setIsCollapsed(!isCollapsed);
   };
 
-  if (totalItems === 0) {
+  if (totalItems === 0 || Number.isNaN(totalItems)) {
     return (
-      <PracticeAttorneysSection id={anchorId} className="margin-scroll">
-        <ContainerContent className="practice-container">
+      <PracticeAttorneysSection
+        id={anchorId}
+        className="margin-scroll"
+        data-testid="collapse-attorneys"
+      >
+        <PracticeAttorneysBg
+          src="/images/profile-attorney-bg.webp"
+          fill
+          alt="Attorneys background"
+          sizes="100vw"
+          loading="lazy"
+        />
+        <ContainerDefault>
           <PracticeTitle>Practice Area Attorneys</PracticeTitle>
           <PracticeNoAttorneys>Attorneys will appear soon!</PracticeNoAttorneys>
-        </ContainerContent>
+        </ContainerDefault>
       </PracticeAttorneysSection>
     );
   }
@@ -72,10 +84,18 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   return (
     <PracticeAttorneysSection
       className={`margin-scroll ${isCollapsed ? 'collapsed' : ''}`}
-      minHeight={chairs.length > 0 ? cardHeight + 27 : cardHeight}
+      minHeight={chairs.length > 0 ? cardHeight + 34 : cardHeight}
       id={anchorId}
+      data-testid="collapse-attorneys"
     >
-      <ContainerContent className="practice-container">
+      <PracticeAttorneysBg
+        src="/images/profile-attorney-bg.webp"
+        fill
+        alt="Attorneys background"
+        sizes="100vw"
+        loading="lazy"
+      />
+      <ContainerDefault>
         <div className="attorneys-practice__header">
           <PracticeTitle>Practice Area Attorneys</PracticeTitle>
           {totalItems > calculateItemsPerRow
@@ -97,7 +117,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
             />
           )}
         </div>
-      </ContainerContent>
+      </ContainerDefault>
     </PracticeAttorneysSection>
   );
 };

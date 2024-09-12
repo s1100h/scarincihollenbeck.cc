@@ -32,37 +32,6 @@ export const LocationPageContainer = styled.section`
     margin-top: 60px;
     padding-bottom: 40px;
   }
-
-  .practice-container {
-    padding: 0;
-  }
-
-  .row-content {
-    ${media_breakpoint_exactly_down(1080)} {
-      margin-right: 3%;
-      margin-left: 3%;
-    }
-  }
-
-  ${media_breakpoint_up('fullHd')} {
-    padding-right: 7%;
-    padding-left: 7%;
-  }
-
-  ${media_breakpoint_down('fullHd')} {
-    padding-right: 7%;
-    padding-left: 7%;
-  }
-
-  ${media_breakpoint_exactly_down(1440)} {
-    padding-right: 3%;
-    padding-left: 3%;
-  }
-
-  ${media_breakpoint_exactly_down(1080)} {
-    padding-right: 0;
-    padding-left: 0;
-  }
 `;
 export const LinkMapBox = styled.div`
   display: flex;

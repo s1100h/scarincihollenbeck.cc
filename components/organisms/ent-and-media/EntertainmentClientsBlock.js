@@ -1,7 +1,6 @@
 import Tooltip from 'components/atoms/Tooltip';
 import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import {
   EntertainmentActionBlockContentImage,
   EntertainmentClientsDescription,
@@ -22,6 +21,7 @@ import {
   EntertainmentClientsSubtitle,
   EntertainmentClientsTitle,
 } from 'styles/practices-special-style/ent-adn-media/EntertainmentClientsBlock.style';
+import { ContainerDefault } from 'styles/Containers.style';
 import PaginationButtons from '../../atoms/PaginationButtons';
 import Loader from '../../atoms/Loader';
 
@@ -58,7 +58,7 @@ const EntertainmentClientsBlock = ({
   const memoData = useMemo(() => data?.clients?.edges, [data]);
   return (
     <EntertainmentClientsSection>
-      <ContainerContent>
+      <ContainerDefault>
         <EntertainmentClientsSubtitle>
           Representative Clients
         </EntertainmentClientsSubtitle>
@@ -145,7 +145,7 @@ const EntertainmentClientsBlock = ({
             )}
           </EntertainmentClientsListItems>
         </EntertainmentClientsList>
-      </ContainerContent>
+      </ContainerDefault>
     </EntertainmentClientsSection>
   );
 };

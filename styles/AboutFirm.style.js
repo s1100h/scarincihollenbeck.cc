@@ -137,6 +137,7 @@ export const AboutCard = styled.article`
 
 export const AboutCardImage = styled.div`
   width: 280px;
+  min-height: 284px;
   height: calc(100% + 72px);
   border-radius: ${globalBorderRadius.small};
   box-shadow: 0px 1px 12px 0px rgba(255, 255, 255, 0.12);
@@ -162,8 +163,10 @@ export const AboutCardImage = styled.div`
 
   ${media_breakpoint_down('sm')} {
     height: 327px;
+    max-width: 330px;
     width: calc(100% - 24px);
-    left: 12px;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: calc(100% - 223px);
   }
 `;
@@ -174,9 +177,18 @@ export const AboutCardContent = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 4px;
+
+  ${media_breakpoint_down('xl')} {
+    min-height: 180px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    min-height: auto;
+  }
 `;
 
 export const AboutCardDescription = styled.div`
+  margin-top: auto;
   margin-right: -20px;
   padding-right: 20px;
   display: flex;
@@ -194,6 +206,7 @@ export const AboutCardDescription = styled.div`
   }
 
   ${media_breakpoint_down('sm')} {
+    margin-top: unset;
     row-gap: 12px;
   }
 `;

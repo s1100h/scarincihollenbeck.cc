@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-// import dynamic from 'next/dynamic';
 import { Col, Row } from 'react-bootstrap';
 import kwesforms from 'kwesforms';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
@@ -17,8 +16,6 @@ import RenderInputs from '../shared/ContactForm/RenderInputs';
 import { TwoColumnsForm } from '../../styles/attorney-page/GetInTouchForm.styles';
 import { handleCheckDisclaimer } from '../../redux/slices/forms.slice';
 
-// const KwesScripts = dynamic(() => import('components/shared/KwesScripts'));
-
 const CareerForm = () => {
   const router = useRouter();
   const { isCheckedDisclaimer } = useSelector((store) => store.forms);
@@ -31,7 +28,6 @@ const CareerForm = () => {
 
   return (
     <CareerFormContainer>
-      {/* <KwesScripts /> */}
       <FormContainer isPositionRelative>
         <TwoColumnsForm
           action={GET_IN_TOUCH_FORM_API}

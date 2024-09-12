@@ -86,7 +86,7 @@ export const StandardBlueButton = styled.button`
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 4px;
+  border-radius: ${globalBorderRadius.small};
   background-color: ${globalColor.blue.blue500};
   color: ${globalColor.white};
   font-size: 1rem;

@@ -19,10 +19,11 @@ import {
   BannerTitle,
 } from 'styles/HomeBanner.style';
 import { FaDiamond } from 'react-icons/fa6';
+import empty from 'is-empty';
 import { DiamondSeparator } from '../../../styles/Separators.style';
 
 const HomeBanner = ({ title, subtitle, infoCards }) => (
-  <Banner>
+  <Banner data-testid="home-banner">
     <BannerImage
       src="/images/home-page-banner.webp"
       alt="Building on the background"
@@ -50,15 +51,17 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
           </Fragment>
         ))}
       </BannerSlogans>
-      <BannerTitle className="animate__animated animate__fadeInDown animate__slow">
-        {title}
-      </BannerTitle>
+      {!empty(title) && (
+        <BannerTitle className="animate__animated animate__fadeInDown animate__slow">
+          <JSXWithDynamicLinks HTML={title} />
+        </BannerTitle>
+      )}
 
       <BannerText className="animate__animated animate__fadeInDown animate__slow">
         {subtitle}
       </BannerText>
 
-      <BannerCards>
+      <BannerCards data-testid="banner-cards">
         {infoCards?.map(({
           fieldGroupName, title, icon, cardsText, link,
         }) => (

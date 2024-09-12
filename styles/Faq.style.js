@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from './global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
@@ -37,7 +41,7 @@ export const FaqWrapper = styled.section`
     &-item {
       padding-bottom: 8px;
       background-color: #afdcf5;
-      border-radius: 0;
+      border-radius: ${globalBorderRadius.small};
       border: none;
       transition: all 0.3s ease-in-out;
 
