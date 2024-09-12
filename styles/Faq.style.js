@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { globalBorderRadius, globalColor, rem } from './global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from './global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,

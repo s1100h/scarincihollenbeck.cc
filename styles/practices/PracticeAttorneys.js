@@ -2,7 +2,11 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { ContactBox } from 'styles/AttorneyCard.style';
 import { AttorneysContainer } from 'styles/AttorneysListBox.style';
-import { globalBorderRadius, globalColor, rem } from 'styles/global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
