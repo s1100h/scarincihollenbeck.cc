@@ -136,6 +136,10 @@ export const StandardBlueButton = styled.button`
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
   }
+
+  @media print {
+    display: none;
+  }
 `;
 
 export const StandardLightBlueButton = styled(StandardBlueButton)`
@@ -247,5 +251,9 @@ export const WhiteButtonWrapper = styled.button`
 
   ${media_breakpoint_down('sm')} {
     font-size: ${rem(14)};
+  }
+
+  @media print {
+    display: none;
   }
 `;

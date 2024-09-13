@@ -79,6 +79,12 @@ export const ProfileAccordionHolder = styled.div`
     }
   }
 
+  @media print {
+    .accordion-collapse {
+      display: block !important;
+    }
+  }
+
   .disclaimer {
     margin: 0;
     text-align: center;

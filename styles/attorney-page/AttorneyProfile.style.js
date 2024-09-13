@@ -411,7 +411,10 @@ export const AddressBox = styled.address`
     color: ${globalColor.white};
     transition: ${globalTransition.default};
   }
-
+  @media print {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   .contacts-item {
     &:has(.contacts-link:hover) {
       svg {
