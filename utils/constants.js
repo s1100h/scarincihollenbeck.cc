@@ -867,7 +867,8 @@ export const ALT_PREFIX = 'Image showing the text: ';
 export const NAVIGATION_OPENERS = [
   'Attorneys',
   'Practices',
-  'Industries',
+  // turned off till new pages for this position.
+  // 'Industries',
   'Locations',
 ];
 
