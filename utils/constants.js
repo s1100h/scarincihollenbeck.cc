@@ -178,11 +178,12 @@ export const FIRM_PAGES = [
     label: 'Pro Bono',
     slug: '/pro-bono',
   },
-  {
-    id: 'women-lead',
-    label: 'Women Lead',
-    slug: '/women-lead',
-  },
+  // conserved
+  // {
+  //   id: 'women-lead',
+  //   label: 'Women Lead',
+  //   slug: '/women-lead',
+  // },
 ];
 
 export const sitemapAddon = [
