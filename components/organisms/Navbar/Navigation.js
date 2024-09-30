@@ -11,6 +11,8 @@ import NavbarPractices from './NavbarPractices';
 import NavbarLocations from './NavbarLocations';
 import NavbarAttorneys from './NavbarAttorneys';
 
+const getIndexNavbarItem = (name) => NAVIGATION_OPENERS.indexOf(name);
+
 const Navigation = React.memo(
   ({
     practices, locations, isScreenLg, setIsSidebarOpen,
@@ -55,10 +57,10 @@ const Navigation = React.memo(
 
     const getActiveClass = (index, pathname) => {
       const routes = {
-        '/attorneys': [0],
-        '/practices': [1],
-        '/industries': [2],
-        '/location/[slug]': [3],
+        '/attorneys': [getIndexNavbarItem('Attorneys')],
+        '/practices': [getIndexNavbarItem('Practices')],
+        '/industries': [getIndexNavbarItem('Industries')],
+        '/location/[slug]': [getIndexNavbarItem('Locations')],
       };
 
       return routes[pathname]?.includes(index) ? 'active' : '';
@@ -87,7 +89,7 @@ const Navigation = React.memo(
         {pathname !== '/practices' && (
           <NavbarPractices
             practices={practices}
-            showNavContent={showNavContent === 1}
+            showNavContent={showNavContent === getIndexNavbarItem('Practices')}
             setShowNavContent={setShowNavContent}
             isScreenLg={isScreenLg}
             setIsSidebarOpen={setIsSidebarOpen}
@@ -96,7 +98,7 @@ const Navigation = React.memo(
 
         {pathname !== '/location/[slug]' && (
           <NavbarLocations
-            showNavContent={showNavContent === 3}
+            showNavContent={showNavContent === getIndexNavbarItem('Locations')}
             setShowNavContent={setShowNavContent}
             setIsSidebarOpen={setIsSidebarOpen}
             locations={locations}
@@ -107,7 +109,7 @@ const Navigation = React.memo(
           <NavbarAttorneys
             practices={practices}
             locations={locations}
-            showNavContent={showNavContent === 0}
+            showNavContent={showNavContent === getIndexNavbarItem('Attorneys')}
             setShowNavContent={setShowNavContent}
             setIsSidebarOpen={setIsSidebarOpen}
           />
