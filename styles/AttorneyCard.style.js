@@ -45,6 +45,11 @@ export const LinkBox = styled.div`
   color: black;
   gap: 20px;
 
+  > img {
+    object-fit: cover;
+    object-position: top;
+  }
+
   ${media_breakpoint_exactly_down(612)} {
     gap: 10px;
   }
