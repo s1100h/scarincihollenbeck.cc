@@ -2,7 +2,7 @@ import {
   CURRENT_DOMAIN,
   BASE_API_URL,
   headers,
-  sitemapAddon,
+  NEXT_PUBLIC_WP_REST_KEY,
 } from 'utils/constants';
 import fetch from 'node-fetch';
 import { attorneysSiteMapQuery } from '../requests/graphql-queries';
@@ -30,11 +30,13 @@ const getAttorneyPaths = async () => {
 
 /** get all the careers urls */
 const getCareersPaths = async () => {
-  const url = `${BASE_API_URL}/wp-json/career-portal/careers`;
+  const url = `${BASE_API_URL}/wp-json/wcra/v1/careers/?secret_key=${NEXT_PUBLIC_WP_REST_KEY}`;
   try {
     const res = await fetch(url, { headers });
+
     const resToJson = await res.json();
-    return resToJson.careers.map((c) => `/careers${c.slug}`);
+
+    return resToJson.data.map(({ slug }) => `/careers${slug}`);
   } catch (error) {
     console.error(error);
   }
@@ -107,12 +109,12 @@ const getCurrentPublishedPages = async () => {
   const clearArrPages = [];
   try {
     const response = await (
-      await fetch(`${BASE_API_URL}/wp-json/wp/v2/pages?per_page=100`)
+      await fetch(
+        `${BASE_API_URL}/wp-json/wcra/v1/pages/?secret_key=${NEXT_PUBLIC_WP_REST_KEY}`,
+      )
     ).json();
 
-    const publishedPages = response
-      .filter((page) => page.status === 'publish')
-      .map((page) => page.slug);
+    const publishedPages = response.data.map((page) => page.slug);
     const withoutExceptions = publishedPages.filter(
       (pageSlag) => pageSlag !== exception1
         && pageSlag !== exception2
@@ -142,10 +144,10 @@ export const getServerSideProps = async ({ res }) => {
   attorneyPaths.unshift({ databaseId: 16581501, uri: '/attorneys' });
   careerPaths.unshift('/careers');
   practicePaths.unshift('/practices');
-
   const modAttorneyPaths = attorneyPaths.map(
     ({ uri }) => `${uri[uri.length - 1] === '/' ? uri.slice(0, -1) : uri}`,
   );
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
@@ -250,16 +252,6 @@ export const getServerSideProps = async ({ res }) => {
                         `,
     )
     .join('')}
-    ${sitemapAddon.map(
-    (url) => `
-                          <url>
-                            <loc>${baseUrl}/${url}</loc>
-                            <lastmod>${new Date().toISOString()}</lastmod>
-                            <changefreq>daily</changefreq>
-                            <priority>0.9</priority>
-                          </url>
-    `,
-  )}
     </urlset>
   `;
   res.setHeader(

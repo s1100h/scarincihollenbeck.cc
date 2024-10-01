@@ -11,13 +11,16 @@ const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 /** Fetch page data from WP GRAPHQL API */
 const getBasicPageContent = async () => {
   const data = await fetchAPI(holidayPageQuery);
+  if (data.page.status !== 'publish') {
+    return null;
+  }
+
   return data?.page;
 };
 
 /** Set holiday page data to props */
 export const getServerSideProps = async ({ params }) => {
   const request = await getBasicPageContent();
-
   if (!request) {
     return {
       notFound: true,

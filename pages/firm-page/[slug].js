@@ -25,6 +25,10 @@ export async function getFirmPageContent(slug, relatedPostsCategoryId) {
   const data = await fetchAPI(firmPagesQuery, {
     variables: { slug, categoryId: relatedPostsCategoryId },
   });
+  if (data.page.status !== 'publish') {
+    return null;
+  }
+
   return data?.page;
 }
 
