@@ -78,6 +78,7 @@ export default function AttorneyCard({
           loading="lazy"
           src={image || '/images/sh-mini-diamond-PNG.svg'}
           alt={name}
+          quality={100}
           width={
             width
             || (!Array.isArray(locations) && typeof locations !== 'undefined'
@@ -85,6 +86,7 @@ export default function AttorneyCard({
               : 125)
           }
           height={height || 150}
+          sizes="130px"
         />
         <InfoBox>
           <UserName>{name}</UserName>
