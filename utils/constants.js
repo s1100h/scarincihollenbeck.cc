@@ -803,6 +803,8 @@ export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
 export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';
 export const PROJECT_MODE = process.env.NEXT_PUBLIC_PROJECT_MODE;
 
+export const NEXT_PUBLIC_WP_REST_KEY = process.env.NEXT_PUBLIC_WP_REST_KEY;
+
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,

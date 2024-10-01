@@ -944,6 +944,7 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
 export const holidayPageQuery = `query BasicPageQuery {
   page(id: 155709, idType: DATABASE_ID) {
     title
+    status
     seo {
       metaDesc
       title
@@ -964,6 +965,7 @@ export const firmPagesQuery = `query FirmPageQuery(
   ) {
   page(idType: URI, id: $slug) {
     title
+    status
     seo {
       metaDesc
       title
