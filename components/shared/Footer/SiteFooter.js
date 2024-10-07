@@ -36,7 +36,10 @@ export default function Footer() {
   const backgroundFooterColor = setFooterBackgroundColor(slug);
 
   return (
-    <FooterWrapper backgroundFooterColor={backgroundFooterColor}>
+    <FooterWrapper
+      backgroundFooterColor={backgroundFooterColor}
+      data-testid="footer"
+    >
       <NavigationAndSubscription />
 
       <ContainerDefault>

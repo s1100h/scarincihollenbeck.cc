@@ -255,6 +255,7 @@ export const correctAttorneyLink = (link) => {
 };
 
 export const changeTitle = (title, isH1) => {
+  if (!title) return '';
   const symbolCheckObject = {
     '&#8220;': '"',
     '&#8221;': '"',
