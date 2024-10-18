@@ -38,13 +38,17 @@ const getCurrentPublishedPages = async () => {
             return page;
           });
           if (key === 'categories') {
+            value.map((category) => {
+              category.slug = `/library/category/${category.slug}`;
+              return category;
+            });
             value = [
               ...value,
               {
                 id: value.length,
                 title: 'Categories',
                 date_modified: new Date().toISOString(),
-                slug: '/categories',
+                slug: '/library/category/firm-news',
               },
             ];
           }
