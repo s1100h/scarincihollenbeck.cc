@@ -688,16 +688,6 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
-/** attorneys landing page query */
-export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
-  attorneyProfiles(first: 200, where: {status: PUBLISH}) {
-    nodes {
-      databaseId
-      uri
-    }
-  }
-}`;
-
 /** practices landing page query */
 export const practicePageQuery = `query PracticesPagesQuery {
   page(id: 46644, idType: DATABASE_ID) {
