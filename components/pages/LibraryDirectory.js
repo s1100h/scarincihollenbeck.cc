@@ -76,7 +76,7 @@ const LibraryDirectory = ({
               <Col sm={12} xl={8} className="m-auto">
                 <NewsCard
                   postSlug={mainNews.link}
-                  postImage={mainNews.image ? mainNews.image : logoImage}
+                  postImage={mainNews.image || logoImage}
                   postTitle={mainNews.title}
                   postDate={mainNews.date}
                   postAuthor={mainNews.author}
