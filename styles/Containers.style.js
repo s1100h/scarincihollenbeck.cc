@@ -48,6 +48,7 @@ export const CentralizedBox = styled.div`
     ${(props) => props?.notSurface && 'padding: 0 30px;'};
   }
 `;
+
 export const BoxTitle = styled.h2`
   display: flex;
   width: 100%;
@@ -81,6 +82,7 @@ export const TwoColumnsContainer = styled.section`
     grid-template-columns: 0.22fr 1.8fr 0.7fr 0.22fr;
   }
 `;
+
 export const FirstColumn = styled.div`
   grid-area: 2/2;
   padding-right: 4vw;
@@ -106,14 +108,17 @@ export const BottomContainer = styled.section`
   grid-area: 3/2/3/4;
 `;
 
-export const CustomContainer = styled(Container)`
-  .breadcrumb-container {
-    margin-bottom: 0;
-    margin-top: 20px;
-    padding-left: 3%;
-  }
+export const ContainerDefault = styled.div`
+  width: min(100%, 1816px);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
 
   ${media_breakpoint_down('xl')} {
-    max-width: 1200px;
+    padding: 0 32px;
+  }
+
+  ${media_breakpoint_down('md')} {
+    padding: 0 12px;
   }
 `;

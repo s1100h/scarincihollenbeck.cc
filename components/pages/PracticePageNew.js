@@ -69,21 +69,21 @@ const PracticePageNew = ({
   return (
     <>
       <BasicSiteHead
-        title={practice.seo.title}
-        metaDescription={practice.seo.metaDescription}
+        title={practice?.seo?.title}
+        metaDescription={practice?.seo?.metaDescription}
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
       <DefaultSubHeaderNew
-        title={practice.title}
-        subtitle={practice.practicesIncluded.description}
+        title={practice?.title}
+        subtitle={practice?.practicesIncluded.description}
         keyContacts={keyContactsList}
-        backgroundImage={practice.practicesIncluded?.practiceImage?.sourceUrl}
+        backgroundImage={practice?.practicesIncluded?.practiceImage?.sourceUrl}
       />
-      <PracticeAnchors anchorData={anchorData} title={practice.title} />
+      <PracticeAnchors anchorData={anchorData} title={practice?.title} />
       <PracticeContent
         data={tabs}
-        title={practice.title}
+        title={practice?.title}
         anchorId={anchorData.overview?.id}
         anchorIdFaq={anchorData.faq.id}
         faqData={faq}

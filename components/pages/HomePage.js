@@ -3,78 +3,62 @@ import HomeBanner from 'components/organisms/home/HomeBanner';
 import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
+import { filterAttorneysByDesignation } from 'utils/helpers';
+import { useGetAttorneysQuery } from '../../redux/services/project-api';
 // import InfoModal from '../atoms/InfoModal';
 
 // !! Attention the modal window was turned off. 12/31/2022
 const AllOfficeLocations = dynamic(
   () => import('components/organisms/home/AllOfficeLocations'),
-  {
-    ssr: true,
-  },
+  { ssr: true },
 );
 const AboutFirmSection = dynamic(
   () => import('components/organisms/home/AboutFirm'),
-  {
-    ssr: true,
-  },
-);
-const FirmNews = dynamic(
-  () => import('components/organisms/home/FirmNews/FirmNews'),
   { ssr: true },
 );
-const Awards = dynamic(() => import('components/organisms/home/Awards'), {
-  ssr: true,
-});
+const HomeContactForm = dynamic(() => import('components/organisms/home/HomeContactForm'));
+const IndustriesSection = dynamic(() => import('components/organisms/home/IndustriesSection'));
+const RandomBioSection = dynamic(() => import('components/organisms/home/RandomBioSection'));
+const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
+const Awards = dynamic(() => import('components/organisms/home/Awards'));
+const WhyChooseUs = dynamic(() => import('components/organisms/home/WhyChooseUs'));
 
 const HomePage = ({
   seo,
-  aboutFirm,
-  aboutFirm2,
   awards,
-  banner,
-  isHoliday,
   offices,
-  firmNewsArticles,
+  isHoliday,
+  firstSection,
+  whoWeAre,
+  industryWeWorkWith,
+  whatWeDo,
+  latestArticlesTabsData,
+  whyChooseUs,
 }) => {
-  const aboutFirmProps = {
-    infos: [
-      {
-        description: aboutFirm.description,
-        title: aboutFirm.title,
-        subTitle: aboutFirm.subTitle,
-      },
-      {
-        description: aboutFirm2.description,
-        title: aboutFirm2.title,
-        subTitle: aboutFirm2.subTitle,
-      },
-    ],
-    linksBtn: [
-      {
-        linkLabel: aboutFirm.linkLabel,
-        linkUrl: aboutFirm.linkUrl,
-      },
-      {
-        linkLabel: aboutFirm2.linkLabel,
-        linkUrl: aboutFirm2.linkUrl,
-      },
-    ],
-  };
-
+  const { data: attorneysData } = useGetAttorneysQuery();
+  const filteredAttorneysByDesignation = filterAttorneysByDesignation(
+    attorneysData?.data,
+  );
   return (
     <>
       <HomeSiteHead
-        title={seo.title}
-        metaDescription={seo.metaDesc}
+        title={seo?.title || ''}
+        metaDescription={seo?.metaDesc || ''}
         canonicalUrl={CURRENT_DOMAIN}
       />
-      <HomeBanner {...banner} />
+      <HomeBanner {...firstSection} />
       {isHoliday && <HappyHolidayLink />}
       {/* <InfoModal /> */}
-      <AboutFirmSection {...aboutFirmProps} />
-      <AllOfficeLocations offices={offices} />
-      <FirmNews firmNews={firmNewsArticles} />
+      <AboutFirmSection {...whoWeAre} />
+      <HomeContactForm />
+      <IndustriesSection {...industryWeWorkWith} />
+      <RandomBioSection attorneys={filteredAttorneysByDesignation} />
+      <WhatWeDoSection {...whatWeDo} />
+      <WhyChooseUs content={whyChooseUs} />
+      <LatestPostsSection tabsData={latestArticlesTabsData} />
       <Awards awards={awards} />
+      <AllOfficeLocations offices={offices} />
     </>
   );
 };

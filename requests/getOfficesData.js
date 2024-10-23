@@ -9,7 +9,6 @@ export const getOfficesData = async () => {
     featuredImage: office.featuredImage.node.sourceUrl,
     uri: office.uri,
     slug: office.slug,
-    mapLink: office.mapLink,
     title: office.title,
     ...office.officeMainInformation,
   }));

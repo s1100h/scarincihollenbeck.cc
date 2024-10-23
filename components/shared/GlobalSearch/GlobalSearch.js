@@ -3,6 +3,7 @@ import {
   InstantSearch,
   createConnector,
   Configure,
+  connectRefinementList,
 } from 'react-instantsearch-dom';
 import {
   ALGOLIA_PUBLIC_API,
@@ -10,28 +11,22 @@ import {
   ALGOLIA_SEARCH_INDEX,
 } from 'utils/constants';
 import empty from 'is-empty';
-import MySearchBox from './MySearchBox';
+import { ResultsContainer } from 'styles/GlobalSearch.style';
+import React from 'react';
 import AuxiliarySearch from './AuxiliarySearch';
+import MySearchResults from './MySearchResults';
+import MySearchFilters from './MySearchFilters';
+import { MySearchBox } from './MySearchBox';
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_PUBLIC_API);
 
-function customSortByPost_type(a, b) {
-  const order = {
-    attorneys: 0,
-    practices: 1,
-    post: 2,
-    client: 3,
-  };
-  return order[a.post_type] - order[b.post_type];
-}
-
 const connectWithQuery = createConnector({
   displayName: 'WidgetWithQuery',
-  getProvidedProps(props, searchState, searchResults) {
+  getProvidedProps(props, searchState, searchResults, resultsFacetValues) {
     if (!empty(searchResults.results?.hits)) {
-      searchResults.results.hits = searchResults.results.hits
-        .filter(({ post_type }) => post_type !== 'client')
-        .sort(customSortByPost_type);
+      searchResults.results.hits = searchResults.results.hits.filter(
+        ({ post_type }) => post_type !== 'client',
+      );
     }
 
     searchResults = {
@@ -63,23 +58,42 @@ const connectWithQuery = createConnector({
 });
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
+const ConnectedRefinementList = connectRefinementList(MySearchFilters);
 connectWithQuery(AuxiliarySearch);
 
-export default function GlobalSearch({
-  onHandleClickSearch,
-  setIsOpenSearch,
-  filterByPostType,
-}) {
-  const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
+export const GlobalSearch = React.memo(
+  ({
+    setIsOpenSearch,
+    filterByPostType,
+    handleHideSearch,
+    inputFocus,
+    label,
+  }) => {
+    const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
 
-  return (
-    <InstantSearch indexName={ALGOLIA_SEARCH_INDEX} searchClient={searchClient}>
-      <Configure filters={filters} />
-      <ConnectedSearchBox
-        isOpenCloseSearch={onHandleClickSearch}
-        placeholder="Search"
-        setIsOpenSearch={setIsOpenSearch}
-      />
-    </InstantSearch>
-  );
-}
+    return (
+      <InstantSearch
+        indexName={ALGOLIA_SEARCH_INDEX}
+        searchClient={searchClient}
+      >
+        <Configure filters={filters} />
+        <ConnectedSearchBox
+          placeholder="Search"
+          setIsOpenSearch={setIsOpenSearch}
+          handleHideSearch={handleHideSearch}
+          inputFocus={inputFocus}
+          label={label}
+        />
+        <ResultsContainer className="search-result-container">
+          {!filterByPostType && (
+            <ConnectedRefinementList attribute="post_type_label" />
+          )}
+          <MySearchResults
+            setIsOpenSearch={setIsOpenSearch}
+            handleHideSearch={handleHideSearch}
+          />
+        </ResultsContainer>
+      </InstantSearch>
+    );
+  },
+);

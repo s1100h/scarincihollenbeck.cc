@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { StandardBlueButton } from 'styles/Buttons.style';
@@ -10,14 +10,17 @@ import {
 } from 'utils/constants';
 import kwesforms from 'kwesforms';
 import empty from 'is-empty';
+import { useDispatch, useSelector } from 'react-redux';
 import RenderInputs from './RenderInputs';
-import { FormsContext } from '../../../contexts/FormsContext';
+import { handleCheckDisclaimer } from '../../../redux/slices/forms.slice';
 
 export default function ContactForm({
   isPositionRelativeProp,
   blockName = 'default',
+  buttonText = 'Submit form',
 }) {
-  const { handleCheckDisclaimer, isCheckedDisclaimer } = useContext(FormsContext);
+  const dispatch = useDispatch();
+  const { isCheckedDisclaimer } = useSelector((store) => store.forms);
 
   const handleCheck = (event) => {
     const target = event.target;
@@ -25,9 +28,9 @@ export default function ContactForm({
 
     if (blockName === target.dataset.id) {
       if (isChecked) {
-        handleCheckDisclaimer(blockName);
+        dispatch(handleCheckDisclaimer(blockName));
       } else {
-        handleCheckDisclaimer('');
+        dispatch(handleCheckDisclaimer(''));
       }
     }
   };
@@ -39,7 +42,6 @@ export default function ContactForm({
 
   return (
     <FormContainer isPositionRelative={isPositionRelativeProp && 'true'}>
-      {/* <KwesScripts /> */}
       <form
         action={GET_IN_TOUCH_FORM_API}
         className="kwes-form d-print-none w-100"
@@ -82,7 +84,7 @@ export default function ContactForm({
           className="mt-2"
           type="submit"
         >
-          Submit form
+          {buttonText}
         </StandardBlueButton>
       </form>
     </FormContainer>

@@ -1,4 +1,4 @@
-import { ClockLoader } from 'react-spinners';
+import ClockLoader from 'react-spinners/ClockLoader';
 import { globalColor } from 'styles/global_styles/Global.styles';
 
 const Loader = () => (

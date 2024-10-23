@@ -5,11 +5,11 @@ import {
   GoogleReviewsHolder,
   GoogleReviewsSection,
 } from 'styles/GoogleReviews.style';
-import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
 import GoogleLogo from 'components/atoms/GoogleLogo';
 import { BsStarFill } from 'react-icons/bs';
 import Slider from 'react-slick';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { ContainerDefault } from 'styles/Containers.style';
 
 function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -57,7 +57,7 @@ const GoogleReviews = ({ reviews, anchorId }) => {
   };
   return (
     <GoogleReviewsSection className="margin-scroll" id={anchorId}>
-      <ContainerContent className="practice-container">
+      <ContainerDefault>
         <GoogleReviewsHolder>
           <Slider {...settings}>
             {!empty(reviews)
@@ -90,7 +90,7 @@ const GoogleReviews = ({ reviews, anchorId }) => {
               ))}
           </Slider>
         </GoogleReviewsHolder>
-      </ContainerContent>
+      </ContainerDefault>
     </GoogleReviewsSection>
   );
 };

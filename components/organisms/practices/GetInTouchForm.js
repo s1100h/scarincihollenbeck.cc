@@ -32,7 +32,11 @@ const GetInTouchForm = ({ isMobileBtn = true, isSticky = true }) => {
   }
 
   return (
-    <GetInTouchFormWrapper isMobileBtn={isMobileBtn} isSticky={isSticky}>
+    <GetInTouchFormWrapper
+      isMobileBtn={isMobileBtn}
+      isSticky={isSticky}
+      data-testid="get-in-touch-form"
+    >
       <SocialShare isPractice />
       <h3>Let&apos;s get in touch</h3>
       <p>

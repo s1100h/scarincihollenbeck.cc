@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { globalColor } from './global_styles/Global.styles';
+import { globalColor, globalTransition } from './global_styles/Global.styles';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div.attrs({
+  'data-testid': 'modal-container',
+})`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,16 +30,54 @@ export const ModalContent = styled.div`
   transform: ${({ isOpen }) => (isOpen ? 'scale(1)' : 'scale(0)')};
   overflow: auto;
   max-height: calc(100dvh - 50px);
+`;
 
-  .btn-light {
-    margin-left: auto;
-    margin-right: 0;
-    background-color: ${globalColor.white};
-    font-family: var(--font-poppins), sans-serif;
-    font-weight: bold;
-    :hover {
-      border: 1px solid ${globalColor.white};
-    }
+export const ModalCloser = styled.button`
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  transition: ${globalTransition.default};
+  color: ${globalColor.blue.darkBlue};
+
+  ${media_breakpoint_down('md')} {
+    width: 36px;
+    height: 36px;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: scale(1, 1);
+    margin-left: -12.5px;
+    background-color: currentColor;
+    border-radius: 2px;
+    height: 3px;
+    width: 24px;
+    transition: all 0.15s linear;
+    transform: translateY(-50%);
+  }
+
+  &:before {
+    top: 50%;
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    top: 50%;
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    transform: rotate(90deg);
   }
 `;
 

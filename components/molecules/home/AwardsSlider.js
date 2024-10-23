@@ -1,45 +1,54 @@
-import { CarouselStyled } from 'styles/Awards.style';
-import Accolade from './Accolade';
-import 'react-multi-carousel/lib/styles.css';
+import React from 'react';
+import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
+import empty from 'is-empty';
+import DisclaimerText from 'components/atoms/DisclaimerText';
+import { AwardsSliderWrapper } from 'styles/Awards.style';
+import AwardCard from './AwardCard';
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 1200 },
-    items: 4,
+const breakpoints = {
+  1440: {
+    slidesPerView: 5,
+    spaceBetween: 32,
   },
-  desktop: {
-    breakpoint: { max: 1200, min: 768 },
-    items: 3,
+  1280: {
+    slidesPerView: 4,
   },
-  tablet: {
-    breakpoint: { max: 992, min: 576 },
-    items: 2,
+  768: {
+    spaceBetween: 20,
+    slidesPerView: 3,
   },
-  mobile: {
-    breakpoint: { max: 576, min: 0 },
-    items: 1,
+  0: {
+    spaceBetween: 12,
+    slidesPerView: 2,
   },
 };
 
-export default function AwardsSlider({ images }) {
+const AwardsSlider = ({ items, isLightVariant = false }) => {
+  if (empty(items)) return null;
+
   return (
-    <CarouselStyled
-      ssr
-      aria-label="carousel"
-      responsive={responsive}
-      infinite
-      arrows
-      swipeable
-      showDots
-      renderButtonGroupOutside
-      renderDotsOutside
-    >
-      {images.map((slide) => (
-        <div key={slide.id} className="px-4">
-          <Accolade image={slide.image} />
-        </div>
-      ))}
-    </CarouselStyled>
+    <AwardsSliderWrapper $isLightVariant={isLightVariant}>
+      <SwiperWrapper
+        breakpoints={breakpoints}
+        space-between={32}
+        lazy="true"
+        grab-cursor="true"
+      >
+        {items?.map((item) => (
+          <swiper-slide key={item?.id} class="slide">
+            <AwardCard
+              image={item?.image}
+              year={item?.year}
+              label={item?.label}
+              link={item?.link}
+              isLightVariant={isLightVariant}
+            />
+          </swiper-slide>
+        ))}
+      </SwiperWrapper>
+      <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
+    </AwardsSliderWrapper>
   );
-}
+};
+
+export default AwardsSlider;

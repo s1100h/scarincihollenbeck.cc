@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LinkTitle, LinkList } from 'styles/Footer.style';
+import { LinkTitle, LinkList, FooterColumn } from 'styles/Footer.style';
 import empty from 'is-empty';
 
 const linkTemplate = (is_target_blank, slugLink, label) => {
@@ -21,7 +21,7 @@ export default function LinksBox({
   classList,
 }) {
   return (
-    <div>
+    <FooterColumn>
       {title && <LinkTitle>{title}</LinkTitle>}
       <LinkList className={!empty(classList) ? classList : ''}>
         {linksArr.map((link) => (
@@ -34,6 +34,6 @@ export default function LinksBox({
           </li>
         ))}
       </LinkList>
-    </div>
+    </FooterColumn>
   );
 }

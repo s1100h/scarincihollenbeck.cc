@@ -8,7 +8,6 @@ import {
 import PostBreadcrumbs from '../../components/organisms/post/PostBreadcrumbs';
 import { changeTitle, formatDate } from '../../utils/helpers';
 import { JSXWithDynamicLinks } from '../../components/atoms/micro-templates/JSXWithDynamicLinks';
-import ButtonsMenu from '../../components/organisms/practice/ButtonsMenu';
 
 const DefaultSubHeader = ({
   title,
@@ -18,7 +17,6 @@ const DefaultSubHeader = ({
   isFilter,
   authors,
   date,
-  tabs,
   setActiveTab,
   activeTab,
   backgroundImage,
@@ -26,7 +24,6 @@ const DefaultSubHeader = ({
   <BackgroundContainer
     props={{
       isHoliday,
-      isTabs: tabs?.length > 0 && 'true',
       isBlog,
       isFilter,
       backgroundImage,
@@ -65,15 +62,6 @@ const DefaultSubHeader = ({
         <Description className="animate__animated animate__fadeInUp animate__fast sub-title">
           <JSXWithDynamicLinks HTML={subtitle} />
         </Description>
-      )}
-
-      {tabs?.length > 0 && (
-        <ButtonsMenu
-          marTop="0"
-          tabs={tabs}
-          setActiveTab={setActiveTab}
-          activeTab={activeTab}
-        />
       )}
     </SubHeaderContent>
   </BackgroundContainer>

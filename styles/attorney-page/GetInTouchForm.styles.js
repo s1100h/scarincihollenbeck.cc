@@ -7,6 +7,7 @@ export const FormContainer = styled.div`
     column-gap: 8px;
 
     .input-group {
+      height: 100%;
       &--0,
       &--1 {
         height: 100%;

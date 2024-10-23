@@ -3,18 +3,16 @@ import { useRouter } from 'next/router';
 import { getSlugFromUrl } from 'utils/helpers';
 import { LogoBox } from '../../../styles/Header.style';
 import Logo from '../../organisms/Navbar/Logo';
-import GlobalSearch from '../GlobalSearch/GlobalSearch';
 import LinkButtons from '../../organisms/Navbar/LinkButtons';
 import MobileMenu from '../../organisms/Navbar/MobileMenu/MobileMenu';
-import Navigation from '../../organisms/Navbar/Navigation';
 import useIsScroll from '../../../hooks/useIsScroll';
 import {
-  LinksBoxSpecial,
   SearchBoxContainer,
   SearchOpenBtn,
   SpecialHeaderContainer,
   VisibleHiddenSearch,
 } from '../../../styles/practices-special-style/header/SpecialHeader.style';
+import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
 const className = (pageSlug) => {
   const pagesMap = {
@@ -53,27 +51,21 @@ const SpecialHeader = ({ practices, locations }) => {
         <LogoBox>
           <Logo whiteVariant />
         </LogoBox>
-        <Navigation
-          isHidden={isOpenSearch}
-          practices={practices}
-          locations={locations}
-        />
         <VisibleHiddenSearch isOpenBlock={isOpenSearch}>
-          <GlobalSearch onHandleClickSearch={handleOpenSearch} />
+          <GlobalSearch />
         </VisibleHiddenSearch>
         <SearchBoxContainer isOpenSearch={isOpenSearch ? 'true' : ''}>
           <SearchOpenBtn onClick={handleOpenSearch} />
         </SearchBoxContainer>
-        <LinksBoxSpecial>
-          <LinkButtons variant="special" />
-          <MobileMenu
-            show={showMenu}
-            handleShow={handleShowMenu}
-            handleClose={handleCloseMenu}
-            practices={practices}
-            locations={locations}
-          />
-        </LinksBoxSpecial>
+
+        <LinkButtons variant="special" />
+        <MobileMenu
+          show={showMenu}
+          handleShow={handleShowMenu}
+          handleClose={handleCloseMenu}
+          practices={practices}
+          locations={locations}
+        />
       </SpecialHeaderContainer>
     </>
   );

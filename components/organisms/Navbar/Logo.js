@@ -13,7 +13,10 @@ const Logo = ({ whiteVariant }) => (
         alt={`${SITE_TITLE}, LLC`}
         width={170}
         height={147}
+        priority
+        quality={100}
         src={SHDiamond}
+        loading="eager"
       />
       {whiteVariant ? (
         <Image
@@ -21,7 +24,10 @@ const Logo = ({ whiteVariant }) => (
           alt={`${SITE_TITLE}, LLC`}
           width={320}
           height={50}
+          priority
+          quality={100}
           src={LogoLetters}
+          loading="eager"
         />
       ) : (
         <Image
@@ -29,7 +35,10 @@ const Logo = ({ whiteVariant }) => (
           alt={`${SITE_TITLE}, LLC`}
           width={320}
           height={50}
+          priority
+          quality={100}
           src={LogoLettersBlack}
+          loading="eager"
         />
       )}
     </CombinedLogo>
