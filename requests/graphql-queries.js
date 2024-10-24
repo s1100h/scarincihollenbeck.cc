@@ -889,27 +889,6 @@ export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
   }
 }`;
 
-export const authorsPostQuery = `query FirmPageQuery {
-  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
-    nodes {
-      attorneyAuthorId {
-        authorId {
-          uri
-          name
-          databaseId
-          lastName
-          firstName
-          posts(first: 1) {
-            nodes {
-              databaseId
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
-
 /** administration landing page query */
 export const administrationPageQuery = `query AdministrationPagesQuery {
   pageBy(pageId: 46670) {

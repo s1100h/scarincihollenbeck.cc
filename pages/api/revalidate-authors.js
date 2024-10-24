@@ -1,9 +1,13 @@
-import { fetchAPI } from 'requests/api';
-import { authorsPostQuery } from 'requests/graphql-queries';
 import { setResponseHeaders, sortByKey } from 'utils/helpers';
+import {
+  BASE_API_URL,
+  headers,
+  NEXT_PUBLIC_WP_REST_KEY,
+} from '../../utils/constants';
+import decodeResponse from '../../utils/decodeResponse';
 
-let lastFetchTime = 0;
-let data = [];
+const lastFetchTime = 0;
+const data = [];
 
 export default async function handler(req, res) {
   const currentTime = Date.now();
@@ -19,36 +23,14 @@ export default async function handler(req, res) {
 
   // Fetch new data
   try {
-    const authors = await fetchAPI(authorsPostQuery);
-    const filteredAttorneys = authors.attorneyProfiles?.nodes.reduce(
-      (acc, attorney) => {
-        if (
-          !(
-            !attorney.attorneyAuthorId.authorId
-            || attorney.attorneyAuthorId.authorId.posts.nodes.length === 0
-          )
-        ) {
-          acc.push(attorney);
-        }
-        return acc;
-      },
-      [],
+    const authorsRes = await fetch(
+      `${BASE_API_URL}/wp-json/wcra/v1/authors/?secret_key=${NEXT_PUBLIC_WP_REST_KEY}`,
+      headers,
     );
-
-    const sanitizedAuthors = filteredAttorneys.map((attorney) => ({
-      lastName: attorney.attorneyAuthorId?.authorId?.lastName,
-      databaseId: attorney.attorneyAuthorId?.authorId?.databaseId,
-      username: attorney.attorneyAuthorId.authorId.firstName,
-      link: attorney.attorneyAuthorId.authorId.uri,
-      fullName: attorney.attorneyAuthorId.authorId.name,
-      firstName: attorney.attorneyAuthorId.authorId.firstName,
-    }));
-
-    data = sortByKey(sanitizedAuthors, 'firstName');
-    lastFetchTime = currentTime;
-    // Return new data with headers
-    setResponseHeaders(res, cacheDurationSeconds, 'MISS');
-    return res.status(200).json({ data });
+    const decodedAuthorsRes = await decodeResponse(authorsRes);
+    return res
+      .status(200)
+      .json({ data: sortByKey(decodedAuthorsRes.data.authors, 'title') });
   } catch (err) {
     if (data?.length > 0) {
       // Return cached data if fetch fails

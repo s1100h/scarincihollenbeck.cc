@@ -34,10 +34,10 @@ export default function FirmAuthors({ authors, authorsIsLoading }) {
                 transform={`translateY(${virtualRow.start}px)`}
               >
                 <LinkWithEllipsis
-                  href={`/library${authors[virtualRow.index].link}`}
-                  title={authors[virtualRow.index].fullName}
+                  href={`/library${authors[virtualRow.index].slug}`}
+                  title={authors[virtualRow.index].title}
                 >
-                  {`☞ ${authors[virtualRow.index].fullName}`}
+                  {`☞ ${authors[virtualRow.index].title}`}
                 </LinkWithEllipsis>
               </VirtualListItem>
             ))}

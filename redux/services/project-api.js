@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BASE_API_URL, NEXT_PUBLIC_WP_REST_KEY } from '../../utils/constants';
 
 // Define a service using a base URL and expected endpoints
 export const appApi = createApi({

@@ -63,7 +63,7 @@ const LatestPostsSection = ({ tabsData }) => {
             </LatestPostsContent>
           </AnimatePresence>
 
-          <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />
+          <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court. Results may vary depending on your particular facts and legal circumstances." />
         </LatestPostsHolder>
       </ContainerDefault>
     </LatestPostsWrapper>
