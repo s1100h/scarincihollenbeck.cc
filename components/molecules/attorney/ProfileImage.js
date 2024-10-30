@@ -44,7 +44,7 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
       <CardImageWrapper>
         <Image
           src={profileImage}
-          alt={name}
+          alt={name || 'Profile avatar'}
           width={500}
           height={535}
           quality={100}

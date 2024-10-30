@@ -47,6 +47,3 @@ sw.js.map
 swe-worker-*.js
 workbox-*.js
 workbox-*.js.map
-
-#jest
-__snapshots__/

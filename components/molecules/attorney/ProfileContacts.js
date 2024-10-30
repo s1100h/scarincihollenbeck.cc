@@ -8,7 +8,7 @@ import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
 const ProfileContacts = ({
   contact, offices, fax, linkedIn,
 }) => {
-  const { phoneNumber, email } = contact;
+  const { phoneNumber, email } = contact || {};
 
   return (
     <AddressBox>
@@ -17,7 +17,7 @@ const ProfileContacts = ({
       <ul className="contacts-list">
         <li className="contacts-item">
           <MdLocationPin />
-          {offices.map((office, idx) => (
+          {offices?.map((office, idx) => (
             <Link
               className="contacts-link"
               href={office.uri || office.link}

@@ -71,7 +71,7 @@ const ProfileHeader = ({
 }) => {
   const [designation] = useDesignationHook(title);
   const [isContactModal, setIsContactModal] = useState(false);
-  const linkedIn = contact.socialMediaLinks.filter(
+  const linkedIn = contact?.socialMediaLinks?.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
   const profileImageProps = {
@@ -82,13 +82,13 @@ const ProfileHeader = ({
 
   const profileDetailsProps = {
     offices,
-    fax: contact.fax,
+    fax: contact?.fax,
     contact,
     linkedIn,
   };
 
   return (
-    <ProfileHeaderSection>
+    <ProfileHeaderSection data-testid="profile-header">
       <ContainerDefault>
         <PostBreadCrumbs />
         <ProfileHeaderHolder>

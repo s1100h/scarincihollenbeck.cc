@@ -1,6 +1,4 @@
-import {
-  fireEvent, render, screen, within,
-} from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { act } from 'react-test-renderer';
 import ReduxProvider from '../../../hoks/reduxTestHoc';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';

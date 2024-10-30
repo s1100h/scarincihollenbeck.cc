@@ -28,6 +28,7 @@ const DefaultSubHeader = ({
       isFilter,
       backgroundImage,
     }}
+    data-testid="default-sub-header"
   >
     {backgroundImage?.length > 0 && <GradientWrapper />}
     <SubHeaderContent>
