@@ -186,11 +186,12 @@ export const FIRM_PAGES = [
     label: 'Pro Bono',
     slug: '/pro-bono',
   },
-  {
-    id: 'women-lead',
-    label: 'Women Lead',
-    slug: '/women-lead',
-  },
+  // conserved
+  // {
+  //   id: 'women-lead',
+  //   label: 'Women Lead',
+  //   slug: '/women-lead',
+  // },
 ];
 
 export const sitemapAddon = [
@@ -242,11 +243,12 @@ export const SITE_NAVIGATION = [
         title: 'Pro Bono',
         uri: '/pro-bono',
       },
-      {
-        databaseId: 108,
-        title: 'Women Lead',
-        uri: '/women-lead',
-      },
+      // the page in the Draft. 9.09.2024
+      // {
+      //   databaseId: 108,
+      //   title: 'Women Lead',
+      //   uri: '/women-lead',
+      // },
     ],
   },
   {
@@ -836,6 +838,8 @@ export const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 export const HTTP_PRODUCTION_URL = 'http://scarincihollenbeck.com';
 export const HTTP_WWW_PRODUCTION_URL = 'http://www.scarincihollenbeck.com';
 export const PROJECT_MODE = process.env.NEXT_PUBLIC_PROJECT_MODE;
+
+export const NEXT_PUBLIC_WP_REST_KEY = process.env.NEXT_PUBLIC_WP_REST_KEY;
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

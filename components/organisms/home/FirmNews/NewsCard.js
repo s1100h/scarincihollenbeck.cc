@@ -29,9 +29,13 @@ const renderAuthors = (authorItem) => {
       <ul className="d-flex gap-1 w-100 p-0">
         {authorItem.map((author, idx) => (
           <li key={author.t} className="d-flex ">
-            <Link href={cutAllBeforeAttorneys(author.link)} passHref>
+            {!empty(author.link) ? (
+              <Link href={cutAllBeforeAttorneys(author.link)} passHref>
+                <div>{author.name}</div>
+              </Link>
+            ) : (
               <div>{author.name}</div>
-            </Link>
+            )}
             {authorItem.length > 1 && idx !== authorItem.length - 1 && ','}
           </li>
         ))}

@@ -762,16 +762,6 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
-/** attorneys landing page query */
-export const attorneysSiteMapQuery = `query AttorneyProfileBySlug {
-  attorneyProfiles(first: 200, where: {status: PUBLISH}) {
-    nodes {
-      databaseId
-      uri
-    }
-  }
-}`;
-
 /** practices landing page query */
 export const practicePageQuery = `query PracticesPagesQuery {
   page(id: 46644, idType: DATABASE_ID) {
@@ -899,27 +889,6 @@ export const profileStatusQuery = `query BasicPageQuery($id: ID!) {
   }
 }`;
 
-export const authorsPostQuery = `query FirmPageQuery {
-  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
-    nodes {
-      attorneyAuthorId {
-        authorId {
-          uri
-          name
-          databaseId
-          lastName
-          firstName
-          posts(first: 1) {
-            nodes {
-              databaseId
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
-
 /** administration landing page query */
 export const administrationPageQuery = `query AdministrationPagesQuery {
   pageBy(pageId: 46670) {
@@ -1019,6 +988,7 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
 export const holidayPageQuery = `query BasicPageQuery {
   page(id: 155709, idType: DATABASE_ID) {
     title
+    status
     seo {
       metaDesc
       title
@@ -1039,6 +1009,7 @@ export const firmPagesQuery = `query FirmPageQuery(
   ) {
   page(idType: URI, id: $slug) {
     title
+    status
     seo {
       metaDesc
       title
