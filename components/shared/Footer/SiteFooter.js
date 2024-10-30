@@ -1,5 +1,10 @@
 import CookieConsentMessage from 'components/shared/CookieConsentMessage';
-import { FIRM_PAGES, OFFICE_LOCATIONS, CORE_PRACTICES } from 'utils/constants';
+import {
+  FIRM_PAGES,
+  OFFICE_LOCATIONS,
+  CORE_PRACTICES,
+  MOCK_INDUSTRIES,
+} from 'utils/constants';
 import {
   Advertising,
   BottomLinks,
@@ -19,6 +24,16 @@ import { getSlugFromUrl } from '../../../utils/helpers';
 import NavigationAndSubscription from './NavigationAndSubscription';
 import { FooterContent } from '../../../styles/Footer.style';
 import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
+
+const sanitizeIndustries = (industries) => {
+  if (!industries) return [];
+
+  return industries.map((industry) => ({
+    id: industry?.databaseId,
+    label: industry?.title,
+    url: industry?.uri,
+  }));
+};
 
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
@@ -44,7 +59,10 @@ export default function Footer() {
           <FooterContent>
             <LinksSEOBox>
               <LinksBox title="Core Practices" linksArr={CORE_PRACTICES} />
-              <LinksBox title="Industries" linksArr={CORE_PRACTICES} />
+              <LinksBox
+                title="Industries"
+                linksArr={sanitizeIndustries(MOCK_INDUSTRIES)}
+              />
 
               <FooterDoubleColumn>
                 <LinksBox title="Firm Pages" linksArr={FIRM_PAGES} />

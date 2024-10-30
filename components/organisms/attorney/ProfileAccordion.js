@@ -179,6 +179,7 @@ const ProfileAccordion = ({
                 eventKey={`profile-biography-${name}`}
                 title="Full Biography"
                 content={attorneyBiography?.biographyContent}
+                isTwoColumns
               />
             )}
 

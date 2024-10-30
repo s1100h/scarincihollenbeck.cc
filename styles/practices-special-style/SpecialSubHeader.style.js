@@ -160,7 +160,7 @@ export const SliderSubHeaderContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   background: url(${({ backgroundImage }) => backgroundImage}) no-repeat center /
     cover;
   position: relative;

@@ -864,13 +864,7 @@ export const googleLocationIds = {
 
 export const ALT_PREFIX = 'Image showing the text: ';
 
-export const NAVIGATION_OPENERS = [
-  'Attorneys',
-  'Practices',
-  // turned off till new pages for this position.
-  // 'Industries',
-  'Locations',
-];
+export const NAVIGATION_OPENERS = ['Attorneys', 'Services', 'Locations'];
 
 export const SIDEBAR_POLITIC_LINKS = [
   {
@@ -951,4 +945,73 @@ export const reservedAccordionTitles = [
   'Blog',
   'Events',
   'Government & Law',
+];
+
+export const NAVBAR_SERVICES_TABS = ['Practices', 'Industries'];
+
+export const MOCK_INDUSTRIES = [
+  {
+    databaseId: 'industry-01',
+    icon: 'Cannabis',
+    title: 'Cannabis',
+    uri: '/practices/new-jersey-cannabis-law',
+    description:
+      'As the landscape of cannabis legalization evolves, businesses in this sector face unique legal challenges due to the divergence',
+  },
+  {
+    databaseId: 'industry-02',
+    icon: 'Banking',
+    title: 'Banking & Finance',
+    uri: '/services',
+    description:
+      'We deliver a solution-oriented approach to the banking and finance industry, addressing challenges from anti-money laundering compliance and economic sanctions to credit financing and dispute',
+  },
+  {
+    databaseId: 'industry-03',
+    icon: 'Media',
+    title: 'Entertainment & Media',
+    uri: '/practices/entertainment-and-media',
+    description:
+      'the ever-evolving realms of entertainment, media, and sports, our dedicated group is adept at navigating the distinctive challenges',
+  },
+  {
+    databaseId: 'industry-04',
+    icon: 'Real Estate',
+    title: 'Real Estate',
+    uri: '/services',
+    description:
+      'Our commercial real estate lawyers leverage extensive knowledge and experience to help you seize opportunities while mitigating',
+  },
+  {
+    databaseId: 'industry-05',
+    icon: 'Globe',
+    title: 'Emerging Technologies',
+    uri: '/services',
+    description:
+      'In the rapidly advancing fields of AI, blockchain, and other emerging technologies, staying ahead requires more than just innovation; it demands strategic legal foresight. Our team is at the forefront of these technological advancements',
+  },
+  {
+    databaseId: 'industry-06',
+    icon: 'Transportation',
+    title: 'Transportation & Infrastructure',
+    uri: '/services',
+    description:
+      'With deep-rooted experience supporting transportation and infrastructure projects across New York and New Jersey, we provide comprehensive legal services covering regulatory compliance, transactional support, and',
+  },
+  {
+    databaseId: 'industry-07',
+    icon: 'Government',
+    title: 'Government Strategies',
+    uri: '/services',
+    description:
+      'The attorneys of Scarinci Hollenbeck’s Government Strategies practice group understand the complex role of governmental entities in an ever-changing economic and political landscape as well as their',
+  },
+  {
+    databaseId: 'industry-08',
+    icon: 'Gaming',
+    title: 'Gaming',
+    uri: '/services',
+    description:
+      'WHILE THE NUMBER OF STATES LEGALIZING CANNABIS FOR MEDICAL AND ADULT USE CONTINUES TO GROW, BUSINESSES OPERATING IN THE CANNABIS INDUSTRY STILL FACE LEGAL UNCERTAINTY DUE TO THE ONGOING DICHOTOMY BETWEEN STATE AND FEDERAL CANNABIS LAW.',
+  },
 ];

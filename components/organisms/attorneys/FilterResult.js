@@ -1,7 +1,9 @@
 import AttorneysIcon from 'components/common/icons/AttorneysIcon';
+import DiagonalArrowIcon from 'components/common/icons/DiagonalArrowIcon';
 import React from 'react';
 import {
   ResultCard,
+  ResultCardArrow,
   ResultCardContent,
   ResultCardIcon,
   ResultCardSubtitle,
@@ -12,8 +14,9 @@ const FilterResult = ({
   name,
   designation,
   link,
-  userInput,
+  userInput = null,
   handleCloseModal,
+  icon = <AttorneysIcon />,
 }) => {
   const getHighlightedText = (text, highlight) => {
     if (!highlight) return text;
@@ -31,13 +34,14 @@ const FilterResult = ({
 
   return (
     <ResultCard href={link} onClick={handleCloseModal}>
-      <ResultCardIcon>
-        <AttorneysIcon />
-      </ResultCardIcon>
+      <ResultCardIcon>{icon}</ResultCardIcon>
       <ResultCardContent>
         <ResultCardTitle>{getHighlightedText(name, userInput)}</ResultCardTitle>
         <ResultCardSubtitle>{designation}</ResultCardSubtitle>
       </ResultCardContent>
+      <ResultCardArrow>
+        <DiagonalArrowIcon />
+      </ResultCardArrow>
     </ResultCard>
   );
 };

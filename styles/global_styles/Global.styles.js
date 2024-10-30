@@ -234,15 +234,22 @@ html {
     }
 
     &:has(.modal-open), 
-    &:has(.sidebar-open) {
+    &:has(.sidebar-open),
+    &:has(.navbar-content) {
       overflow: hidden;
+    }
+
+    &:has(.navbar-content) {
+      ${media_breakpoint_down('lg')} {
+        overflow: unset;
+      }
     }
   }
 
   #__next {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   main {

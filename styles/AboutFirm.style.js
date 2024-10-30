@@ -173,6 +173,7 @@ export const AboutCardImage = styled.div`
 
 export const AboutCardContent = styled.div`
   max-height: 100%;
+  height: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -188,7 +189,7 @@ export const AboutCardContent = styled.div`
 `;
 
 export const AboutCardDescription = styled.div`
-  margin-top: auto;
+  margin-block: auto;
   margin-right: -20px;
   padding-right: 20px;
   display: flex;

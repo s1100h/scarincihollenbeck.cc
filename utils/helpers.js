@@ -23,6 +23,8 @@ import EnvironmentalIcon from 'components/common/icons/EnvironmentalIcon';
 import TaxIcon from 'components/common/icons/TaxIcon';
 import GlobeIcon from 'components/common/icons/GlobeIcon';
 import BulbIcon from 'components/common/icons/BulbIcon';
+import GovernmentIcon from 'components/common/icons/GovernmentIcon';
+import GamingIcon from 'components/common/icons/GamingIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
@@ -451,7 +453,7 @@ export const debounce = (func, delay) => {
   };
 };
 
-export const createMenuData = (practices, locations) => [
+export const createMenuData = (practices, locations, industries) => [
   {
     databaseId: 'menu-01',
     title: 'Homepage',
@@ -468,13 +470,13 @@ export const createMenuData = (practices, locations) => [
     databaseId: 'menu-03',
     title: 'Legal Practices',
     icon: <PracticesIcon />,
-    href: '/practices',
+    href: '/services',
     list: [
       {
         databaseId: 'menu-all-practices',
-        uri: '/practices',
-        title: 'View all practices',
-        isStrong: true,
+        uri: '/services',
+        title: 'View all services',
+        additionalClass: 'main-link',
       },
       ...practices,
     ],
@@ -483,7 +485,16 @@ export const createMenuData = (practices, locations) => [
     databaseId: 'menu-04',
     title: 'Industries',
     icon: <IndustriesIcon />,
-    href: '/',
+    href: '/services',
+    list: [
+      {
+        databaseId: 'menu-all-industries',
+        uri: '/services',
+        title: 'View all services',
+        additionalClass: 'main-link',
+      },
+      ...industries,
+    ],
   },
   {
     databaseId: 'menu-05',
@@ -622,6 +633,8 @@ export const getIcon = (name) => {
     Scope: <ScopeIcon />,
     Globe: <GlobeIcon />,
     Bulb: <BulbIcon />,
+    Government: <GovernmentIcon />,
+    Gaming: <GamingIcon />,
   };
 
   return icons[name];

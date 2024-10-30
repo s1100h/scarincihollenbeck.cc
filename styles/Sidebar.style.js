@@ -156,6 +156,7 @@ export const SidebarMenuWrapper = styled.div`
   visibility: ${({ $isSidebarOpen }) =>
     `${$isSidebarOpen ? 'visible' : 'hidden'}`};
   overflow: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'hidden'}`};
+  overscroll-behavior: contain;
 
   ${media_breakpoint_down('lg')} {
     width: 100%;
@@ -310,6 +311,10 @@ export const SidebarMenuItemContent = styled.div`
 export const SidebarMenuItemContentList = styled.ul`
   margin: 0;
   min-height: 0;
+
+  .main-link {
+    font-weight: 600;
+  }
 `;
 
 export const SidebarMenuSubitem = styled.li`
@@ -323,7 +328,7 @@ export const SidebarMenuSubitemOpener = styled(SidebarMenuItemOpener)`
   column-gap: 4px;
   color: ${({ $open }) =>
     $open ? globalColor.blue.darkBlue : globalColor.gray.gray110};
-  font-weight: ${({ $isStrong }) => ($isStrong ? 600 : 400)};
+  font-weight: 400;
 
   &:hover {
     color: ${globalColor.blue.darkBlue};

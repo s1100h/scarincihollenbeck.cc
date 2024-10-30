@@ -8,7 +8,8 @@ const NavbarContentWrapper = ({
   id,
   showNavContent,
   handlerContainer,
-  customClass,
+  customClass = '',
+  isHideContainer = false,
 }) => (
   <AnimatePresence>
     {showNavContent && (
@@ -25,11 +26,15 @@ const NavbarContentWrapper = ({
         exit={{ opacity: 0, height: 0, overflow: 'hidden' }}
         transition={{ ease: 'easeOut', duration: 0.3 }}
         onClick={(e) => handlerContainer && handlerContainer(e)}
-        className={customClass}
+        className={`navbar-content ${customClass}`}
       >
-        <ContainerDefault className="navbar-container">
-          {children}
-        </ContainerDefault>
+        {isHideContainer ? (
+          children
+        ) : (
+          <ContainerDefault className="navbar-container">
+            {children}
+          </ContainerDefault>
+        )}
       </NavbarItemContent>
     )}
   </AnimatePresence>

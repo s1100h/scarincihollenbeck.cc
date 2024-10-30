@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import {
   SidebarMenuBackdrop,
   SidebarMenuButton,
@@ -27,9 +27,14 @@ import Navigation from 'components/organisms/Navbar/Navigation';
 import { useSelector } from 'react-redux';
 import MenuItem from './SidebarMenuItem';
 
-const SidebarMenu = React.memo(
+const SidebarMenu = memo(
   ({
-    practices, locations, menuData, isSidebarOpen, setIsSidebarOpen,
+    practices,
+    locations,
+    industries,
+    menuData,
+    isSidebarOpen,
+    setIsSidebarOpen,
   }) => {
     const { headerSize } = useSelector((state) => state.sizes);
     const [openItemIndex, setOpenItemIndex] = useState(null);
@@ -48,12 +53,14 @@ const SidebarMenu = React.memo(
           $headerHeight={menuHeight}
           $isSidebarOpen={isSidebarOpen}
           className={isSidebarOpen ? 'sidebar-open' : ''}
+          inert={isSidebarOpen ? undefined : ''}
         >
           <SidebarMenuContainer>
             <Navigation
               key="header-navigation"
               practices={practices}
               locations={locations}
+              industries={industries}
               setIsSidebarOpen={setIsSidebarOpen}
             />
 

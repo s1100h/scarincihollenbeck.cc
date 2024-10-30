@@ -1,12 +1,12 @@
 import React, {
-  useEffect, useRef, useState, useCallback,
+  useEffect, useRef, useState, useCallback, memo,
 } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { HeaderSearchWrapper, SearchOpener } from 'styles/Header.style';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
-const HeaderSearch = React.memo(({ isOpenSearch, setIsOpenSearch }) => {
+const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
   const [inputFocus, setInputFocus] = useState(null);
   const containerRef = useRef(null);
 

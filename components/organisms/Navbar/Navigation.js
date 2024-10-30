@@ -4,18 +4,20 @@ import {
   NavbarList,
   NavbarWrapper,
 } from 'styles/Navigation.style';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  memo, useEffect, useRef, useState,
+} from 'react';
 import { NAVIGATION_OPENERS } from 'utils/constants';
 import { useRouter } from 'next/router';
-import NavbarPractices from './NavbarPractices';
 import NavbarLocations from './NavbarLocations';
 import NavbarAttorneys from './NavbarAttorneys';
+import NavbarServices from './NavbarServices';
 
 const getIndexNavbarItem = (name) => NAVIGATION_OPENERS.indexOf(name);
 
-const Navigation = React.memo(
+const Navigation = memo(
   ({
-    practices, locations, isScreenLg, setIsSidebarOpen,
+    practices, locations, industries, isScreenLg, setIsSidebarOpen,
   }) => {
     const [showNavContent, setShowNavContent] = useState(null);
     const navRef = useRef(null);
@@ -58,8 +60,7 @@ const Navigation = React.memo(
     const getActiveClass = (index, pathname) => {
       const routes = {
         '/attorneys': [getIndexNavbarItem('Attorneys')],
-        '/practices': [getIndexNavbarItem('Practices')],
-        '/industries': [getIndexNavbarItem('Industries')],
+        '/services': [getIndexNavbarItem('Services')],
         '/location/[slug]': [getIndexNavbarItem('Locations')],
       };
 
@@ -75,10 +76,9 @@ const Navigation = React.memo(
               onClick={(e) => handleEvent(e, index)}
             >
               <NavbarItemOpener
-                className={`navbar-opener 
-                ${showNavContent === index ? 'active' : ''} 
-                ${getActiveClass(index, pathname)}
-              `}
+                className={`navbar-opener ${
+                  showNavContent === index ? 'active' : ''
+                } ${getActiveClass(index, pathname)}`}
               >
                 {item}
               </NavbarItemOpener>
@@ -86,10 +86,11 @@ const Navigation = React.memo(
           ))}
         </NavbarList>
 
-        {pathname !== '/practices' && (
-          <NavbarPractices
+        {pathname !== '/services' && (
+          <NavbarServices
             practices={practices}
-            showNavContent={showNavContent === getIndexNavbarItem('Practices')}
+            industries={industries}
+            showNavContent={showNavContent === getIndexNavbarItem('Services')}
             setShowNavContent={setShowNavContent}
             isScreenLg={isScreenLg}
             setIsSidebarOpen={setIsSidebarOpen}

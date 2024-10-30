@@ -10,6 +10,7 @@ import {
 } from './global_styles/Global.styles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ModalContainer } from './ModalWindow.style';
 
 const HeaderTopLineItemStyles = `
   padding: 4px 4px 2px;
@@ -75,8 +76,16 @@ export const HeaderWrapper = styled.header`
   &.hide {
     transform: translateY(-48px);
 
+    ${ModalContainer} {
+      transform: translateY(48px);
+    }
+
     ${media_breakpoint_down('md')} {
       transform: translateY(-38px);
+
+      ${ModalContainer} {
+        transform: translateY(38px);
+      }
     }
   }
 

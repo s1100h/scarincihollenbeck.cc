@@ -11,7 +11,7 @@ import {
   SidebarMenuItemOpener,
   SidebarMenuSubitemOpener,
 } from './Sidebar.style';
-import { LetterSelectorBtn } from './Filters.style';
+import { FiltersResults, LetterSelectorBtn } from './Filters.style';
 import { ClearButton } from './Buttons.style';
 
 export const DropdownSecondLvl = styled.div`
@@ -21,7 +21,7 @@ export const DropdownSecondLvl = styled.div`
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  max-height: 70vh;
+  max-height: 70dvh;
 
   ul {
     padding-right: 20px;
@@ -112,6 +112,13 @@ export const NavbarItemOpener = styled.button`
     border-color: currentColor;
   }
 
+  @media (hover: hover) {
+    &:hover {
+      color: ${globalColor.blue.blue400};
+      border-color: currentColor;
+    }
+  }
+
   ${media_breakpoint_down('xl')} {
     font-size: ${rem(16)};
     line-height: 1.5;
@@ -139,7 +146,30 @@ export const NavbarItemContent = styled(motion.div)`
   display: flex;
   transition: max-height 0.3s ease-in-out;
 
-  &.practices-split {
+  .navbar-container {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    ${media_breakpoint_down('md')} {
+      padding-top: 16px;
+      padding-bottom: 24px;
+    }
+  }
+
+  .services-tabs {
+    background-color: ${globalColor.blue.blue500};
+  }
+
+  &.navbar-services {
+    flex-direction: column;
+
+    .navbar-container {
+      overflow: hidden;
+    }
+  }
+
+  .practices-split {
     &::after {
       content: '';
       position: absolute;
@@ -153,17 +183,6 @@ export const NavbarItemContent = styled(motion.div)`
       ${media_breakpoint_down('lg')} {
         display: none;
       }
-    }
-  }
-
-  .navbar-container {
-    display: flex;
-    padding-top: 20px;
-    padding-bottom: 40px;
-
-    ${media_breakpoint_down('md')} {
-      padding-top: 16px;
-      padding-bottom: 24px;
     }
   }
 
@@ -181,6 +200,31 @@ export const NavbarItemContent = styled(motion.div)`
           background-color: ${globalColor.white};
         }
       }
+    }
+  }
+
+  .main-link {
+    margin: 4px 0 4px 12px;
+    padding: 4px 0 2px;
+    display: inline-flex;
+    width: fit-content;
+    color: ${globalColor.white};
+    font-weight: 600;
+    border-bottom: 2px solid ${globalColor.blue.skyBlue};
+    border-radius: 0;
+    text-transform: unset;
+
+    &:hover {
+      background-color: transparent;
+      border-color: ${globalColor.white};
+    }
+
+    ${media_breakpoint_down('lg')} {
+      margin: 0 0 6px;
+    }
+
+    ${media_breakpoint_down('md')} {
+      font-size: ${rem(14)};
     }
   }
 
@@ -218,6 +262,11 @@ export const NavbarItemContent = styled(motion.div)`
   }
 `;
 
+export const NavbarPracticesHolder = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
 export const NavbarLeftBlock = styled.div`
   width: 50%;
   display: flex;
@@ -231,6 +280,7 @@ export const NavbarLeftList = styled.ul`
   flex-direction: column;
   row-gap: 4px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 `;
 
 export const NavbarLeftItem = styled.li``;
@@ -309,6 +359,7 @@ export const NavbarRightList = styled.ul`
   row-gap: 4px;
   list-style: disc;
   overflow-y: auto;
+  overscroll-behavior: contain;
 `;
 
 export const NavbarRightItem = styled.li`
@@ -355,5 +406,48 @@ export const NavbarLink = styled(Link)`
     font-size: ${rem(14)};
     line-height: 1.43;
     padding: 4px 0 2px 0;
+  }
+`;
+
+export const NavbarServicesTabs = styled.ul`
+  padding: 20px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  margin: 0;
+
+  ${media_breakpoint_down('md')} {
+    padding: 12px 0;
+  }
+`;
+
+export const NavbarServicesTabsButton = styled.button`
+  color: ${globalColor.white};
+  font-size: ${rem(24)};
+  line-height: 1.5;
+  font-family: var(--font-lato);
+  font-weight: ${({ isActive }) => (isActive ? '700' : '400')};
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  border-color: ${({ isActive }) => (isActive ? 'currentColor' : 'transparent')};
+  transition: ${globalTransition.default};
+
+  &:hover {
+    border-color: currentColor;
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: 1rem;
+  }
+`;
+
+export const NavbarIndustriesHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  ${FiltersResults} {
+    min-height: auto;
   }
 `;

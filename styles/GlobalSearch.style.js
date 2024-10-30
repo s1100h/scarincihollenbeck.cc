@@ -68,6 +68,7 @@ export const HitsStyled = styled(Hits)`
     margin-bottom: 0;
     padding: 0 10px 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
     max-height: 50dvh;
   }
 `;

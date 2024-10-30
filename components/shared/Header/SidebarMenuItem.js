@@ -60,7 +60,7 @@ const MenuItem = ({
                 title={item?.title}
                 href={item?.uri}
                 list={item?.list}
-                isStrong={item?.isStrong}
+                additionalClass={item?.additionalClass}
                 isOpen={openItemIndex === index}
                 onClick={() => handleItemClick(index)}
                 setIsSidebarOpen={setIsSidebarOpen}

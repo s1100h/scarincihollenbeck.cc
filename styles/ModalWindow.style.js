@@ -8,8 +8,8 @@ export const ModalContainer = styled.div.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   background-color: ${globalColor.transparentBlack.modal};
   position: fixed;
   z-index: ${({ isOpen }) => (isOpen ? 1055 : -1)};

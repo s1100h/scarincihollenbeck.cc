@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import Logo from 'components/organisms/Navbar/Logo';
 import { ButtonRed } from 'styles/Buttons.style';
@@ -19,7 +19,9 @@ import HeaderTopLine from './HeaderTopLine';
 import HeaderSearch from './HeaderSearch';
 import SidebarMenu from './SidebarMenu';
 
-const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
+const DefaultHeader = memo(({
+  practices, locations, industries, menuData,
+}) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -61,6 +63,7 @@ const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
               key="header-navigation"
               practices={practices}
               locations={locations}
+              industries={industries}
               isScreenLg={isScreenLg}
               setIsSidebarOpen={setIsSidebarOpen}
             />
@@ -92,6 +95,7 @@ const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
                 practices={practices}
                 locations={locations}
                 menuData={menuData}
+                industries={industries}
                 isSidebarOpen={isSidebarOpen}
                 setIsSidebarOpen={setIsSidebarOpen}
               />

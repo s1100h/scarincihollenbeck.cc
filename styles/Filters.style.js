@@ -164,9 +164,11 @@ export const FiltersResults = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 
   ${media_breakpoint_down('lg')} {
     min-height: unset;
+    overflow-y: unset;
   }
 `;
 
@@ -181,9 +183,23 @@ export const ResultCard = styled(Link)`
   box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
     -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
 
-  &:hover {
+  @media (hover: hover) {
+    &:hover {
+      > span {
+        color: ${globalColor.white};
+        opacity: 1;
+      }
+    }
+  }
+
+  &:active {
     > span {
-      color: ${globalColor.white};
+      color: ${globalColor.blue.blue400};
+      opacity: 1;
+    }
+
+    h4 {
+      color: ${globalColor.blue.blue400};
     }
   }
 
@@ -227,6 +243,7 @@ export const ResultCardTitle = styled.h4`
   font-size: ${rem(18)};
   line-height: 1.55;
   font-weight: 500;
+  transition: ${globalTransition.default};
 
   .highlight {
     color: ${globalColor.blue.blue400};
@@ -246,4 +263,27 @@ export const ResultCardSubtitle = styled.p`
   line-height: 1.67;
   font-weight: 400;
   text-transform: uppercase;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
+
+export const ResultCardArrow = styled.span`
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${globalColor.white};
+  opacity: 0;
+  transition: ${globalTransition.default};
+
+  svg, img {
+    width: 100%;
+    height: 100%;
+  }
+`

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { locationsOrderArray } from 'utils/constants';
+import { locationsOrderArray, MOCK_INDUSTRIES } from 'utils/constants';
 import {
   createMenuData,
   createOverviewLinks,
@@ -49,13 +49,18 @@ export default function Header() {
 
   const sanitizedPractices = sanitizePractices(practiceWithOverview);
 
-  const menuData = createMenuData(sanitizedPractices, locations?.data);
+  const menuData = createMenuData(
+    sanitizedPractices,
+    locations?.data,
+    MOCK_INDUSTRIES,
+  );
 
   const headerProps = {
     pathname,
     practices: sanitizedPractices,
     locations: sortedLocations,
     menuData,
+    industries: MOCK_INDUSTRIES,
   };
 
   return <>{renderHeader(slug, headerProps)}</>;

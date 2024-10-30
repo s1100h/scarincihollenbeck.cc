@@ -15,7 +15,7 @@ const MenuSubitem = ({
   title,
   href = '/',
   list,
-  isStrong,
+  additionalClass,
   isOpen,
   onClick,
   setIsSidebarOpen,
@@ -46,7 +46,7 @@ const MenuSubitem = ({
         href={href}
         onClick={handleClickItem}
         $open={isOpen}
-        $isStrong={isStrong}
+        className={additionalClass || ''}
       >
         {!empty(list) && <SidebarMenuSubitemIcon $open={isOpen} />}
         {title}

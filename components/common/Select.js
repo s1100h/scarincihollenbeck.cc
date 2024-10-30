@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, {
   forwardRef,
+  memo,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -50,23 +52,29 @@ const CustomSelect = forwardRef(
     const selectRef = useRef(null);
     const inputRef = useRef(null);
 
-    const handleClickOpener = () => {
+    const handleClickOpener = useCallback(() => {
       setSelectActive(!selectActive);
-    };
+    }, [setSelectActive]);
 
-    const handleClickOption = (value) => {
-      if (inputRef && inputRef.current) {
-        inputRef.current.value = value;
-      }
-      onChange(value);
-      setSelectActive(false);
-    };
-
-    const handleDocumentClick = (e) => {
-      if (selectRef.current && !selectRef.current.contains(e.target)) {
+    const handleClickOption = useCallback(
+      (value) => {
+        if (inputRef && inputRef.current) {
+          inputRef.current.value = value;
+        }
+        onChange(value);
         setSelectActive(false);
-      }
-    };
+      },
+      [onChange, setSelectActive],
+    );
+
+    const handleDocumentClick = useCallback(
+      (e) => {
+        if (selectRef.current && !selectRef.current.contains(e.target)) {
+          setSelectActive(false);
+        }
+      },
+      [setSelectActive],
+    );
 
     useEffect(() => {
       document.addEventListener('click', handleDocumentClick);
@@ -128,4 +136,4 @@ const CustomSelect = forwardRef(
   },
 );
 
-export default CustomSelect;
+export default memo(CustomSelect);

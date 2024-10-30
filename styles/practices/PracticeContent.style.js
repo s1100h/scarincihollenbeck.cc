@@ -14,7 +14,7 @@ export const PracticeContentSection = styled.section`
   }
 `;
 
-export const PractiseContentHolder = styled.div`
+export const PracticeContentHolder = styled.div`
   display: flex;
   column-gap: 60px;
 
@@ -33,6 +33,7 @@ export const PractiseContentHolder = styled.div`
 
 export const PracticeDescription = styled.div`
   flex: 1;
+  max-width: 100%;
 
   .content-block {
     margin-bottom: 40px;
@@ -133,6 +134,24 @@ export const PracticeDescription = styled.div`
     &:last-child {
       margin: 0;
     }
+  }
+
+  .table-wrapper {
+    
+    width: 100%;
+    overflow-x: auto;
+
+    table {
+      min-width: 500px;
+    }
+  }
+
+  ${media_breakpoint_down('lg')} {
+    max-width: calc(100% - 56px);
+  }
+
+  ${media_breakpoint_down('sm')} {
+    max-width: calc(100% - 40px);
   }
 `;
 
