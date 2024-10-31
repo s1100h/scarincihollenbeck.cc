@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
 export const CombinedLogo = styled(Link)`
+  --logo-diamond-size: 52px;
   max-width: 256px;
-  height: 52px;
+  height: var(--logo-diamond-size);
   display: flex;
   align-items: center;
   column-gap: 4px;
@@ -20,6 +20,7 @@ export const CombinedLogo = styled(Link)`
 
   .logo-diamond {
     aspect-ratio: 1;
+    width: var(--logo-diamond-size);
   }
 
   .logo-letters {
@@ -27,8 +28,8 @@ export const CombinedLogo = styled(Link)`
   }
 
   ${media_breakpoint_down('md')} {
+    --logo-diamond-size: 32px;
     max-width: 158px;
-    height: 32px;
 
     .logo-letters {
       max-width: 120px;
