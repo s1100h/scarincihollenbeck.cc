@@ -1,15 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { sizeWindow } from 'styles/sizeWindow.style';
 
 const initialState = {
   headerSize: { width: 0, height: 0 },
   viewportSize: {
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
     height: typeof window !== 'undefined' ? window.innerHeight : 0,
-    isScreenSm: false,
-    isScreenMd: false,
-    isScreenLg: false,
-    isScreenXl: false,
-    isScreenXxl: false,
+    isScreenSm:
+      typeof window !== 'undefined'
+        ? window.innerWidth >= sizeWindow.sm
+        : false,
+    isScreenMd:
+      typeof window !== 'undefined'
+        ? window.innerWidth >= sizeWindow.md
+        : false,
+    isScreenLg:
+      typeof window !== 'undefined'
+        ? window.innerWidth >= sizeWindow.lg
+        : false,
+    isScreenXl:
+      typeof window !== 'undefined'
+        ? window.innerWidth >= sizeWindow.xl
+        : false,
+    isScreenXxl:
+      typeof window !== 'undefined'
+        ? window.innerWidth >= sizeWindow.xxl
+        : false,
   },
 };
 
