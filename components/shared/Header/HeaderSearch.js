@@ -10,15 +10,18 @@ const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
   const [inputFocus, setInputFocus] = useState(null);
   const containerRef = useRef(null);
 
-  const handleOpenSearch = (e) => {
-    e.preventDefault();
-    setIsOpenSearch(true);
-    setInputFocus(true);
-  };
+  const handleOpenSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      setIsOpenSearch(true);
+      setInputFocus(true);
+    },
+    [setIsOpenSearch, setInputFocus],
+  );
 
-  const handleHideSearch = () => {
+  const handleHideSearch = useCallback(() => {
     setIsOpenSearch(false);
-  };
+  }, [setIsOpenSearch]);
 
   const handleDocumentClick = useCallback(
     (e) => {
@@ -26,7 +29,7 @@ const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
         handleHideSearch();
       }
     },
-    [setIsOpenSearch],
+    [setIsOpenSearch, handleHideSearch],
   );
 
   useEffect(() => {
@@ -37,9 +40,9 @@ const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
     };
   }, [handleDocumentClick]);
 
-  const handleContainerClick = (e) => {
+  const handleContainerClick = useCallback((e) => {
     e.stopPropagation();
-  };
+  }, []);
 
   return (
     <HeaderSearchWrapper

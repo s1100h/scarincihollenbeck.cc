@@ -12,7 +12,7 @@ import {
 } from 'utils/constants';
 import empty from 'is-empty';
 import { ResultsContainer } from 'styles/GlobalSearch.style';
-import React from 'react';
+import React, { memo } from 'react';
 import AuxiliarySearch from './AuxiliarySearch';
 import MySearchResults from './MySearchResults';
 import MySearchFilters from './MySearchFilters';
@@ -61,7 +61,7 @@ const ConnectedSearchBox = connectWithQuery(MySearchBox);
 const ConnectedRefinementList = connectRefinementList(MySearchFilters);
 connectWithQuery(AuxiliarySearch);
 
-export const GlobalSearch = React.memo(
+export const GlobalSearch = memo(
   ({
     setIsOpenSearch,
     filterByPostType,

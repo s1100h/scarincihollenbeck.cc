@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import {
   SidebarMenuBackdrop,
   SidebarMenuButton,
@@ -8,7 +8,6 @@ import {
   SidebarMenuFooter,
   SidebarMenuLink,
   SidebarMenuLinks,
-  SidebarMenuList,
   SidebarMenuSocial,
   SidebarMenuSocialIcon,
   SidebarMenuSocials,
@@ -25,7 +24,7 @@ import SubscriptionModal from 'components/molecules/subscription/SubscriptionMod
 import { ButtonRed } from 'styles/Buttons.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
 import { useSelector } from 'react-redux';
-import MenuItem from './SidebarMenuItem';
+import SidebarMenuItems from './SidebarMenuItems';
 
 const SidebarMenu = memo(
   ({
@@ -37,11 +36,6 @@ const SidebarMenu = memo(
     setIsSidebarOpen,
   }) => {
     const { headerSize } = useSelector((state) => state.sizes);
-    const [openItemIndex, setOpenItemIndex] = useState(null);
-
-    const handleItemClick = (index) => {
-      setOpenItemIndex(openItemIndex === index ? null : index);
-    };
 
     const menuHeight = isSidebarOpen
       ? `calc(100dvh - ${headerSize.height}px)`
@@ -64,20 +58,10 @@ const SidebarMenu = memo(
               setIsSidebarOpen={setIsSidebarOpen}
             />
 
-            <SidebarMenuList>
-              {menuData.map((item, index) => (
-                <MenuItem
-                  key={item?.databaseId}
-                  icon={item?.icon}
-                  title={item?.title}
-                  href={item?.href}
-                  list={item?.list}
-                  isOpen={openItemIndex === index}
-                  onClick={() => handleItemClick(index)}
-                  setIsSidebarOpen={setIsSidebarOpen}
-                />
-              ))}
-            </SidebarMenuList>
+            <SidebarMenuItems
+              menuData={menuData}
+              setIsSidebarOpen={setIsSidebarOpen}
+            />
 
             <SidebarMenuLinks>
               {SIDEBAR_POLITIC_LINKS?.map((item) => (

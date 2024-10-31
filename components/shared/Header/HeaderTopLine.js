@@ -3,7 +3,7 @@ import { MAKE_A_PAYMENT } from 'utils/constants';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import { AnimatePresence } from 'framer-motion';
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import {
   HeaderTopLineIcon,
   HeaderTopLineItem,
@@ -58,24 +58,24 @@ const twoButtons = () => (
   </Fragment>
 );
 
-const HeaderTopLine = ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => (
-  <HeaderTopLineWrapper>
-    <ContainerDefault>
-      <AnimatePresence>
-        <HeaderTopLineItems>
-          {!isOpenSearch && viewportWidth >= 768 && twoButtons()}
-
-          {viewportWidth < 768 && twoButtons()}
-
-          <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
-            <HeaderSearch
-              isOpenSearch={isOpenSearch}
-              setIsOpenSearch={setIsOpenSearch}
-            />
-          </HeaderTopLineItem>
-        </HeaderTopLineItems>
-      </AnimatePresence>
-    </ContainerDefault>
-  </HeaderTopLineWrapper>
+const HeaderTopLine = memo(
+  ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => (
+    <HeaderTopLineWrapper>
+      <ContainerDefault>
+        <AnimatePresence>
+          <HeaderTopLineItems>
+            {!isOpenSearch && viewportWidth >= 768 && twoButtons()}
+            {viewportWidth < 768 && twoButtons()}
+            <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
+              <HeaderSearch
+                isOpenSearch={isOpenSearch}
+                setIsOpenSearch={setIsOpenSearch}
+              />
+            </HeaderTopLineItem>
+          </HeaderTopLineItems>
+        </AnimatePresence>
+      </ContainerDefault>
+    </HeaderTopLineWrapper>
+  ),
 );
 export default HeaderTopLine;

@@ -1,31 +1,29 @@
-import throttle from 'lodash.throttle';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { debounce } from 'utils/helpers';
 import { sizeWindow } from 'styles/sizeWindow.style';
+import { setWindowSize } from '../redux/slices/sizes.slice';
 
 export const useResize = () => {
-  const [width, setWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 0,
-  );
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    const handleResize = debounce(() => {
+      const viewportWidth = window.innerWidth;
+      dispatch(
+        setWindowSize({
+          width: viewportWidth,
+          height: window.innerHeight,
+          isScreenSm: viewportWidth >= sizeWindow.sm,
+          isScreenMd: viewportWidth >= sizeWindow.md,
+          isScreenLg: viewportWidth >= sizeWindow.lg,
+          isScreenXl: viewportWidth >= sizeWindow.xl,
+          isScreenXxl: viewportWidth >= sizeWindow.xxl,
+        }),
+      );
+    }, 300);
 
-    const handleResize = throttle((event) => {
-      setWidth(event.target.innerWidth);
-    }, 200);
-
+    handleResize();
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  return {
-    width,
-    isScreenSm: width >= sizeWindow.sm,
-    isScreenMd: width >= sizeWindow.md,
-    isScreenLg: width >= sizeWindow.lg,
-    isScreenXl: width >= sizeWindow.xl,
-    isScreenXxl: width >= sizeWindow.xxl,
-  };
 };

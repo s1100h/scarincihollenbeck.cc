@@ -1,8 +1,10 @@
-import React, { memo, useRef, useState } from 'react';
+import React, {
+  memo, useCallback, useRef, useState,
+} from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import Logo from 'components/organisms/Navbar/Logo';
 import { ButtonRed } from 'styles/Buttons.style';
-import useHeaderSize from 'hooks/useHeaderSize';
+import useResponsiveHeader from 'hooks/useResponsiveHeader';
 import { useResize } from 'hooks/useResize';
 import {
   HeaderMain,
@@ -24,16 +26,18 @@ const DefaultHeader = memo(({
 }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const headerRef = useRef();
-  const { width: viewportWidth, isScreenLg } = useResize();
-  const scrollDirection = useScrollDirection();
-  useHeaderSize(headerRef, scrollDirection, viewportWidth);
+  const { width: viewportWidth, isScreenLg } = useSelector(
+    (state) => state.sizes.viewportSize,
+  );
   const { headerSize } = useSelector((state) => state.sizes);
+  const scrollDirection = useScrollDirection();
+  useResize();
+  useResponsiveHeader(headerRef, scrollDirection);
 
-  const handleToggleSidebar = () => {
+  const handleToggleSidebar = useCallback(() => {
     setIsSidebarOpen(!isSidebarOpen);
-  };
+  }, [setIsSidebarOpen, isSidebarOpen]);
 
   return (
     <>
