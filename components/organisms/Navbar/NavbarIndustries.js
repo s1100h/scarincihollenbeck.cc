@@ -23,7 +23,7 @@ const NavbarIndustries = ({
 
   return (
     <NavbarIndustriesHolder>
-      <Link href="/practices" className="main-link" onClick={handleCloseModal}>
+      <Link href="/practices" className="underlined" onClick={handleCloseModal}>
         Open industries page
       </Link>
 

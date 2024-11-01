@@ -9,13 +9,14 @@ import {
   ResultCardSubtitle,
   ResultCardTitle,
 } from 'styles/Filters.style';
+import empty from 'is-empty';
 
 const FilterResult = ({
   name,
   designation,
   link,
   userInput = null,
-  handleCloseModal,
+  handleCloseModal = () => {},
   icon = <AttorneysIcon />,
 }) => {
   const getHighlightedText = (text, highlight) => {
@@ -37,7 +38,9 @@ const FilterResult = ({
       <ResultCardIcon>{icon}</ResultCardIcon>
       <ResultCardContent>
         <ResultCardTitle>{getHighlightedText(name, userInput)}</ResultCardTitle>
-        <ResultCardSubtitle>{designation}</ResultCardSubtitle>
+        {!empty(designation) && (
+          <ResultCardSubtitle>{designation}</ResultCardSubtitle>
+        )}
       </ResultCardContent>
       <ResultCardArrow>
         <DiagonalArrowIcon />

@@ -312,7 +312,7 @@ export const SidebarMenuItemContentList = styled.ul`
   margin: 0;
   min-height: 0;
 
-  .main-link {
+  .bolder {
     font-weight: 600;
   }
 `;

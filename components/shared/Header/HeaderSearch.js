@@ -25,11 +25,18 @@ const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
 
   const handleDocumentClick = useCallback(
     (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
+      const selection = window.getSelection();
+      const isTextSelected = selection && selection.toString().length > 0;
+
+      if (
+        containerRef.current
+        && !containerRef.current.contains(e.target)
+        && !isTextSelected
+      ) {
         handleHideSearch();
       }
     },
-    [setIsOpenSearch, handleHideSearch],
+    [handleHideSearch],
   );
 
   useEffect(() => {

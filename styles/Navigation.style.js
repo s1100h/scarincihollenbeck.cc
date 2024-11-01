@@ -4,6 +4,7 @@ import {
   globalColor,
   globalTransition,
   rem,
+  UnderlinedLinkCss,
 } from './global_styles/Global.styles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -167,6 +168,20 @@ export const NavbarItemContent = styled(motion.div)`
     .navbar-container {
       overflow: hidden;
     }
+
+    .underlined {
+      ${UnderlinedLinkCss};
+      margin: 4px 0 4px 12px;
+      border-radius: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      ${media_breakpoint_down('lg')} {
+        margin: 0 0 6px;
+      }
+    }
   }
 
   .practices-split {
@@ -200,31 +215,6 @@ export const NavbarItemContent = styled(motion.div)`
           background-color: ${globalColor.white};
         }
       }
-    }
-  }
-
-  .main-link {
-    margin: 4px 0 4px 12px;
-    padding: 4px 0 2px;
-    display: inline-flex;
-    width: fit-content;
-    color: ${globalColor.white};
-    font-weight: 600;
-    border-bottom: 2px solid ${globalColor.blue.skyBlue};
-    border-radius: 0;
-    text-transform: unset;
-
-    &:hover {
-      background-color: transparent;
-      border-color: ${globalColor.white};
-    }
-
-    ${media_breakpoint_down('lg')} {
-      margin: 0 0 6px;
-    }
-
-    ${media_breakpoint_down('md')} {
-      font-size: ${rem(14)};
     }
   }
 
@@ -386,26 +376,6 @@ export const NavbarRightItemLink = styled(Link)`
     &:hover {
       color: ${globalColor.blue.skyBlue};
     }
-  }
-`;
-
-export const NavbarLink = styled(Link)`
-  padding: 10px 0 8px 0;
-  color: ${globalColor.white};
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 600;
-  border-bottom: 2px solid ${globalColor.blue.skyBlue};
-  transition: ${globalTransition.default};
-
-  &:hover {
-    color: ${globalColor.blue.skyBlue};
-  }
-
-  ${media_breakpoint_down('md')} {
-    font-size: ${rem(14)};
-    line-height: 1.43;
-    padding: 4px 0 2px 0;
   }
 `;
 

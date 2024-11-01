@@ -183,38 +183,63 @@ export const paragraphStyles = `
 	text-transform: uppercase;
   width: 40%;
 `;
-export const GlobalStyle = createGlobalStyle`
-html {
-  font-size: ${mainFontSize}px;
-  scroll-behavior: smooth;
-}
 
-* {
-  ${media_breakpoint_up('lg')} {
-    &::-webkit-scrollbar-track {
-      background-color: #cbcbcb;
-      border-radius: ${globalBorderRadius.small};
-      opacity: 0;
-    }
+export const UnderlinedLinkCss = `
+  padding: 4px 0 2px;
+  display: inline-flex;
+  width: fit-content;
+  color: ${globalColor.white};
+  font-weight: 600;
+  border-bottom: 2px solid ${globalColor.blue.skyBlue};
+  text-transform: unset;
 
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-      background-color: #0B1136;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #162153;
-      border-radius: ${globalBorderRadius.small};
-    }
-
-    // FireFox
-    @supports not selector(::-webkit-scrollbar-thumb) {
-      scrollbar-color: #162153 #cbcbcb;
-      scrollbar-width: thin;
+  @media (hover: hover) {
+    &:hover {
+      color: ${globalColor.blue.skyBlue};
     }
   }
-}
+  
+  &:active {
+    color: ${globalColor.blue.skyBlue};
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(14)};
+  }
+`;
+
+export const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: ${mainFontSize}px;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    ${media_breakpoint_up('lg')} {
+      &::-webkit-scrollbar-track {
+        background-color: #cbcbcb;
+        border-radius: ${globalBorderRadius.small};
+        opacity: 0;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+        background-color: #0B1136;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #162153;
+        border-radius: ${globalBorderRadius.small};
+      }
+
+      // FireFox
+      @supports not selector(::-webkit-scrollbar-thumb) {
+        scrollbar-color: #162153 #cbcbcb;
+        scrollbar-width: thin;
+      }
+    }
+  }
 
   body {
     --bs-body-font-family: var(--font-poppins);
@@ -256,15 +281,15 @@ html {
     flex: 1;
   }
 
-a {
-  text-decoration: none;
-  color: ${globalColor.blue.ultramarine};
-  transition: ${globalTransition.default};
+  a {
+    text-decoration: none;
+    color: ${globalColor.blue.ultramarine};
+    transition: ${globalTransition.default};
 
-    :hover {
-      color: ${globalColor.red.darkRed};
+      :hover {
+        color: ${globalColor.red.darkRed};
+      }
     }
-  }
 
   ul {
     list-style: none;
@@ -373,29 +398,27 @@ a {
     color: ${globalColor.red.darkRed};
   }
 
-.light-scrollbar {
-  * {
-    &::-webkit-scrollbar-track {
-      background-color: ${globalColor.blue.blue6002};
-      border-radius: ${globalBorderRadius.small};
-      opacity: 0;
-    }
+  .light-scrollbar {
+    * {
+      &::-webkit-scrollbar-track {
+        background-color: ${globalColor.blue.blue6002};
+        border-radius: ${globalBorderRadius.small};
+        opacity: 0;
+      }
 
       &::-webkit-scrollbar {
         width: 3px;
         height: 3px;
       }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: ${globalColor.blue.blue400};
-      border-radius: ${globalBorderRadius.small};
-    }
+      &::-webkit-scrollbar-thumb {
+        background-color: ${globalColor.blue.blue400};
+        border-radius: ${globalBorderRadius.small};
+      }
 
       // FireFox
       @supports not selector(::-webkit-scrollbar-thumb) {
-        scrollbar-color: ${globalColor.blue.blue400} ${
-  globalColor.blue.blue6002
-};
+        scrollbar-color: ${globalColor.blue.blue400} ${globalColor.blue.blue6002};
         scrollbar-width: thin;
       }
     }
@@ -519,20 +542,20 @@ a {
     text-align: center;
   }
 
-.modal-title_my {
-  font-weight: bold;
-}
+  .modal-title_my {
+    font-weight: bold;
+  }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
 
   @media (max-width: 992px) {
     .wp-block-columns {
@@ -682,6 +705,10 @@ a {
 
   .tag-two::before {
     content: ' - ';
+  }
+
+  .underlined-link {
+    ${UnderlinedLinkCss};
   }
 `;
 

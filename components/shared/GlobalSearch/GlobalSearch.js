@@ -22,20 +22,7 @@ const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_PUBLIC_API);
 
 const connectWithQuery = createConnector({
   displayName: 'WidgetWithQuery',
-  getProvidedProps(props, searchState, searchResults, resultsFacetValues) {
-    if (!empty(searchResults.results?.hits)) {
-      searchResults.results.hits = searchResults.results.hits.filter(
-        ({ post_type }) => post_type !== 'client',
-      );
-    }
-
-    searchResults = {
-      ...searchResults,
-      results: {
-        ...searchResults.results,
-      },
-    };
-
+  getProvidedProps(props, searchState) {
     const currentRefinement = searchState.attributeForMyQuery || '';
     return { currentRefinement, ...props };
   },
@@ -69,14 +56,24 @@ export const GlobalSearch = memo(
     inputFocus,
     label,
   }) => {
-    const filters = filterByPostType ? 'post_type_label:Posts' : undefined;
+    const filters = filterByPostType
+      ? 'post_type_label:Posts'
+      : 'NOT post_type_label:Clients AND NOT post_type_label:"Home Page Awards"';
+
+    const optionalFilters = [
+      'post_type_label:Attorneys<score=5>',
+      'post_type_label:Practices<score=4>',
+      'post_type_label:Careers<score=3>',
+      'post_type_label:Pages<score=2>',
+      'post_type_label:-Posts',
+    ];
 
     return (
       <InstantSearch
         indexName={ALGOLIA_SEARCH_INDEX}
         searchClient={searchClient}
       >
-        <Configure filters={filters} />
+        <Configure filters={filters} optionalFilters={optionalFilters} />
         <ConnectedSearchBox
           placeholder="Search"
           setIsOpenSearch={setIsOpenSearch}

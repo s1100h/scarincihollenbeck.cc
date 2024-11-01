@@ -29,7 +29,7 @@ const NavbarPractices = ({
         databaseId: 'view-all-practices-nav',
         uri: '/services',
         title: 'Open practices page',
-        additionalClass: 'main-link',
+        additionalClass: 'underlined',
       },
       ...practices,
     ],
