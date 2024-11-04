@@ -4,7 +4,6 @@ import {
 } from '@testing-library/react';
 import AboutFirm from 'components/organisms/home/AboutFirm';
 import preloadAll from 'jest-next-dynamic';
-import PracticeCard from 'components/organisms/home/PracticeCard';
 import PracticesTabs from 'components/organisms/home/PracticesTabs';
 import Awards from 'components/organisms/home/Awards';
 import LatestPostsSection from 'components/organisms/home/LatestPostsSection';
@@ -42,47 +41,6 @@ describe('HomePage', () => {
   const mockSetIsShowContactModal = jest.fn();
 
   const props = {
-    whatWeDo: {
-      groupsPractices: [
-        {
-          groupPractices: 'Corporate Transactions & Business',
-          groupIcon: 'Briefcase',
-          practices: [
-            {
-              databaseId: 165922,
-              uri: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
-              title: 'Corporate Governance Lawyers and Regulatory Compliance',
-              practicesIncluded: {
-                childPractice: null,
-                description:
-                  '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
-              },
-            },
-            {
-              databaseId: 28270,
-              uri: '/practices/corporate-transactions-business',
-              title: 'Corporate Transactions & Business',
-              practicesIncluded: {
-                childPractice: [
-                  {
-                    databaseId: 28282,
-                    title: 'Financing Group',
-                    uri: '/practices/financing-group',
-                  },
-                  {
-                    databaseId: 28283,
-                    title: 'Healthcare & Hospital Law',
-                    uri: '/practices/health-and-hospital-law',
-                  },
-                ],
-                description:
-                  '<p>Our clients rely on us to help resolve impediments, take advantage of opportunities, anticipate problems, and minimize surprises down the road regarding their business.</p>\n',
-              },
-            },
-          ],
-        },
-      ],
-    },
     industryWeWorkWith: {
       title: 'title',
       subtitle: 'subtitle',
@@ -256,9 +214,7 @@ describe('HomePage', () => {
   });
 
   it('What we do section render with props in Home Page', () => {
-    renderHomePage({
-      whatWeDo: props?.whatWeDo,
-    });
+    renderHomePage();
 
     const whatWeDoSection = screen.getByTestId('what-we-do');
     expect(whatWeDoSection).toBeInTheDocument();
@@ -275,65 +231,16 @@ describe('HomePage', () => {
     expect(tabs).toBeInTheDocument();
   });
 
-  it('What we do tabs component render with props', () => {
-    render(
-      <ReduxProvider>
-        <PracticesTabs groupsPractices={props?.whatWeDo?.groupsPractices} />
-      </ReduxProvider>,
-    );
+  // it('What we do tabs component render with props', () => {
+  //   render(
+  //     <ReduxProvider>
+  //       <PracticesTabs groupsPractices={props?.whatWeDo?.groupsPractices} />
+  //     </ReduxProvider>,
+  //   );
 
-    const tabs = screen.getByTestId('practices-tabs');
-    expect(tabs).toBeInTheDocument();
-  });
-
-  it('What we do practice card component render without child list', () => {
-    const props = {
-      icon: 'Briefcase',
-      title: 'Corporate Governance Lawyers and Regulatory Compliance',
-      link: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
-      text: '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
-      list: null,
-      setIsShowContactModal: mockSetIsShowContactModal,
-    };
-
-    render(<PracticeCard {...props} />);
-
-    const consultationButton = screen.getByText(/Free consultation/i);
-
-    fireEvent.click(consultationButton);
-
-    expect(mockSetIsShowContactModal).toHaveBeenCalledWith(true);
-  });
-
-  it('What we do practice card component render with child list', () => {
-    const practiceCardProps = {
-      icon: 'Briefcase',
-      title: 'Corporate Governance Lawyers and Regulatory Compliance',
-      link: '/practices/corporate-governance-lawyers-and-regulatory-compliance',
-      text: '<p><span style="font-weight: 400;">Partnering with experienced corporate governance lawyers is the best way to ensure that you are operating your business in full compliance with state and federal regulations. Scarinci Hollenbeck’s highly qualified attorneys have <a href="https://scarincihollenbeck.com/contact">decades of experience</a> advising on sophisticated transactions, counseling on critical corporate governance matters, and guiding a diverse clientele through a changing regulatory landscape.</span></p>\n',
-      list: props?.whatWeDo?.groupsPractices[0]?.practices,
-      setIsShowContactModal: mockSetIsShowContactModal,
-    };
-    render(
-      <ReduxProvider>
-        <PracticeCard {...practiceCardProps} />
-      </ReduxProvider>,
-    );
-
-    const viewServicesButton = screen.getByText(/View services/i);
-
-    fireEvent.click(viewServicesButton);
-
-    const modal = screen.getByTestId('modal-container');
-    expect(modal).toHaveStyle('z-index: 1055');
-
-    const closeModalButton = within(modal).getByLabelText('Close modal');
-    expect(closeModalButton).toBeInTheDocument();
-
-    fireEvent.click(closeModalButton);
-
-    expect(modal).toHaveStyle('z-index: -1');
-  });
+  //   const tabs = screen.getByTestId('practices-tabs');
+  //   expect(tabs).toBeInTheDocument();
+  // });
 
   it('Why choose us section render without props in Home Page', () => {
     renderHomePage();

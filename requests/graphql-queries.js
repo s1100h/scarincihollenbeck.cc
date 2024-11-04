@@ -700,29 +700,6 @@ export const homePageQuery = `query HomePageQuery {
           }
         }
       }
-			whatWeDo {
-        groupsPractices {
-          groupPractices
-          groupIcon
-          practices {
-            ... on Practice {
-              databaseId
-              uri
-              title
-              practicesIncluded {
-                childPractice {
-                  ... on Practice {
-                    databaseId
-                    title
-                    uri
-                  }
-                }
-                description
-              }
-            }
-          }
-        }
-      }
       whyChooseUs {
         title
         article
@@ -797,6 +774,9 @@ export const getPracticesQuery = `query NewQuery {
           }
         }
         practiceImage {
+          sourceUrl
+        }
+        practiceIcon {
           sourceUrl
         }
       }
@@ -1348,36 +1328,6 @@ export const getCategoriesQuery = `query subscriptions {
       categories {
         name
         databaseId
-      }
-    }
-  }
-}`;
-
-export const getWhatWeDo = `query whatWeDoFromHome {
-  page(id: "front-page", idType: URI) {
-    homePage {
-      whatWeDo {
-        groupsPractices {
-          groupPractices
-          groupIcon
-          practices {
-            ... on Practice {
-              databaseId
-              uri
-              title
-              practicesIncluded {
-                childPractice {
-                  ... on Practice {
-                    databaseId
-                    title
-                    uri
-                  }
-                }
-                description
-              }
-            }
-          }
-        }
       }
     }
   }

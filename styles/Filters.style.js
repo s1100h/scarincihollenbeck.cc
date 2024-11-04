@@ -160,8 +160,8 @@ export const FiltersRightColumn = styled.div`
 export const FiltersResults = styled.div`
   min-height: 76px;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 16px;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -172,51 +172,8 @@ export const FiltersResults = styled.div`
   }
 `;
 
-export const ResultCard = styled(Link)`
-  width: calc((100% - 48px) / 4);
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  column-gap: 12px;
-  border-radius: 4px;
-  background-color: ${globalColor.blue.blue6002};
-  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
-    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
-
-  @media (hover: hover) {
-    &:hover {
-      > span {
-        color: ${globalColor.white};
-        opacity: 1;
-      }
-    }
-  }
-
-  &:active {
-    > span {
-      color: ${globalColor.blue.blue400};
-      opacity: 1;
-    }
-
-    h4 {
-      color: ${globalColor.blue.blue400};
-    }
-  }
-
-  ${media_breakpoint_down('xxl')} {
-    width: calc((100% - 32px) / 3);
-  }
-
-  ${media_breakpoint_down('lg')} {
-    width: calc((100% - 16px) / 2);
-  }
-
-  ${media_breakpoint_down('md')} {
-    width: 100%;
-  }
-`;
-
 export const ResultCardIcon = styled.span`
+  flex-shrink: 0;
   width: 28px;
   height: 28px;
   display: flex;
@@ -229,6 +186,11 @@ export const ResultCardIcon = styled.span`
     width: 24px;
     height: 24px;
   }
+`;
+
+export const ResultCardImage = styled(ResultCardIcon)`
+  mask: ${({image}) => image && `url(${image})`} center/cover no-repeat;
+  background-color: currentColor;
 `;
 
 export const ResultCardContent = styled.div`
@@ -244,6 +206,7 @@ export const ResultCardTitle = styled.h4`
   line-height: 1.55;
   font-weight: 500;
   transition: ${globalTransition.default};
+  text-wrap: balance;
 
   .highlight {
     color: ${globalColor.blue.blue400};
@@ -287,3 +250,34 @@ export const ResultCardArrow = styled.span`
     height: 100%;
   }
 `
+
+export const ResultCard = styled(Link)`
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  border-radius: 4px;
+  background-color: ${globalColor.blue.blue6002};
+  box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
+    -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+
+  @media (hover: hover) {
+    &:hover {
+      > span {
+        color: ${globalColor.white};
+        opacity: 1;
+      }
+    }
+  }
+
+  &:active {
+    > span {
+      color: ${globalColor.blue.blue400};
+      opacity: 1;
+    }
+
+    ${ResultCardTitle} {
+      color: ${globalColor.blue.blue400};
+    }
+  }
+`;

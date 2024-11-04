@@ -167,6 +167,10 @@ const SITE_PAGES_REWRITES = [
     destination: '/contact-us/subscribe',
   },
   /** End of form pages */
+  {
+    source: '/proxy-image/:path*',
+    destination: 'https://wp.scarincihollenbeck.com/:path*',
+  },
 ];
 
 module.exports = {

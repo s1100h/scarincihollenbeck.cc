@@ -3,7 +3,6 @@ import React from 'react';
 import { FiltersResults } from 'styles/Filters.style';
 import { NavbarIndustriesHolder } from 'styles/Navigation.style';
 import empty from 'is-empty';
-import { getIcon } from 'utils/helpers';
 import FilterResult from '../attorneys/FilterResult';
 
 const NavbarIndustries = ({
@@ -35,7 +34,7 @@ const NavbarIndustries = ({
               link={industry?.uri}
               name={industry?.title}
               designation={industry?.description}
-              icon={getIcon(industry?.icon)}
+              icon={industry?.icon}
               handleCloseModal={handleCloseModal}
             />
           ))}

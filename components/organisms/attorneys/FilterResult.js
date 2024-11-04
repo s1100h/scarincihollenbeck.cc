@@ -1,4 +1,3 @@
-import AttorneysIcon from 'components/common/icons/AttorneysIcon';
 import DiagonalArrowIcon from 'components/common/icons/DiagonalArrowIcon';
 import React from 'react';
 import {
@@ -6,10 +5,12 @@ import {
   ResultCardArrow,
   ResultCardContent,
   ResultCardIcon,
+  ResultCardImage,
   ResultCardSubtitle,
   ResultCardTitle,
 } from 'styles/Filters.style';
 import empty from 'is-empty';
+import { getIcon } from 'utils/helpers';
 
 const FilterResult = ({
   name,
@@ -17,7 +18,9 @@ const FilterResult = ({
   link,
   userInput = null,
   handleCloseModal = () => {},
-  icon = <AttorneysIcon />,
+  icon = 'Attorneys',
+  image = null,
+  titleTag = 'h4',
 }) => {
   const getHighlightedText = (text, highlight) => {
     if (!highlight) return text;
@@ -35,9 +38,15 @@ const FilterResult = ({
 
   return (
     <ResultCard href={link} onClick={handleCloseModal}>
-      <ResultCardIcon>{icon}</ResultCardIcon>
+      {!empty(image) ? (
+        <ResultCardImage image={image} />
+      ) : (
+        <ResultCardIcon>{getIcon(icon)}</ResultCardIcon>
+      )}
       <ResultCardContent>
-        <ResultCardTitle>{getHighlightedText(name, userInput)}</ResultCardTitle>
+        <ResultCardTitle as={titleTag}>
+          {getHighlightedText(name, userInput)}
+        </ResultCardTitle>
         {!empty(designation) && (
           <ResultCardSubtitle>{designation}</ResultCardSubtitle>
         )}

@@ -15,13 +15,13 @@ import {
 } from '../../styles/Locations.style';
 import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
-import GetInTouchForm from '../organisms/practices/GetInTouchForm';
-import WhyChooseUs from '../organisms/practices/WhyChooseUs';
-import GoogleReviews from '../organisms/common/GoogleReviews';
-import DirectionsFilesLink from '../common/DirectionsFilesLink';
-import WhatWeDoSection from '../organisms/home/WhatWeDoSection';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
+const GetInTouchForm = dynamic(() => import('../organisms/practices/GetInTouchForm'));
+const DirectionsFilesLink = dynamic(() => import('../common/DirectionsFilesLink'));
+const WhatWeDoSection = dynamic(() => import('../organisms/home/WhatWeDoSection'));
+const WhyChooseUs = dynamic(() => import('../organisms/practices/WhyChooseUs'));
+const GoogleReviews = dynamic(() => import('../organisms/common/GoogleReviews'));
 const FAQ = dynamic(() => import('../atoms/FAQ'));
 
 const changeTitle = (title) => title.replace(/(^|\s+)Lawyers(\s+|$)/g, ' ');
@@ -52,6 +52,7 @@ const anchorLocationsData = {
     title: 'Reviews',
   },
 };
+
 const LocationPage = ({
   seo,
   currentOffice,
@@ -59,7 +60,6 @@ const LocationPage = ({
   canonicalUrl,
   locations,
   googleReviews,
-  whatWeDo,
 }) => {
   const anchorData = useMemo(() => {
     if (empty(googleReviews)) {
@@ -67,11 +67,6 @@ const LocationPage = ({
     }
     return anchorLocationsData;
   }, [googleReviews]);
-
-  const whatWeDoAdditional = {
-    ...whatWeDo,
-    anchorId: anchorLocationsData.whatWeDo.id,
-  };
 
   const addressInfo = {
     phone: currentOffice.phone,
@@ -140,7 +135,7 @@ const LocationPage = ({
         />
       )}
       <SplitInfo />
-      <WhatWeDoSection {...whatWeDoAdditional} />
+      <WhatWeDoSection anchorId={anchorLocationsData.whatWeDo.id} />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       {!empty(googleReviews) && (
         <GoogleReviews

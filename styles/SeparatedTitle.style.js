@@ -5,8 +5,9 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 export const SeparatedTitleWrapper = styled.h2`
   margin: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   column-gap: 4px;
+  text-wrap: balance;
 
   .title-text {
     color: ${globalColor.blue.darkBlue};

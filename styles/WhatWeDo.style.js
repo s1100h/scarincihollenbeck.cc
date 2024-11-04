@@ -22,3 +22,15 @@ export const WhatWeDoHolder = styled.div`
     }
   }
 `;
+
+export const WhatWeDoHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  > button {
+    flex-shrink: 0;
+    width: max-content;
+  }
+`;

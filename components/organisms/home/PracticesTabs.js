@@ -1,94 +1,87 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   PracticesTabsCards,
-  PracticesTabsModalWrapper,
   PracticesTabsOpener,
   PracticesTabsOpeners,
   PracticesTabsWrapper,
 } from 'styles/PracticesTabs.style';
 import empty from 'is-empty';
 import { motion } from 'framer-motion';
-import ModalWindow from 'components/common/ModalWindow';
-import {
-  PracticeCardContent,
-  PracticeCardHeader,
-  PracticeCardTitle,
-} from 'styles/PracticeCard.style';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
-import PracticeCard from './PracticeCard';
+import Loader from 'components/atoms/Loader';
+import { createOverviewLinks } from 'utils/helpers';
+import { BASE_API_URL } from 'utils/constants';
+import FilterResult from '../attorneys/FilterResult';
 
-const PracticesTabs = ({ groupsPractices }) => {
-  const groupsWithChildren = groupsPractices?.filter(
-    (group) => !empty(group?.practices),
-  );
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+    },
+  }),
+};
+
+const PracticesTabs = ({ practices, isLoadingPractices }) => {
+  if (empty(practices) && !isLoadingPractices) return null;
   const [activeTab, setActiveTab] = useState(0);
-  const [isShowContactModal, setIsShowContactModal] = useState(false);
+  const practicesWithChildren = createOverviewLinks(practices?.data, true);
+  const activeTabData = practicesWithChildren?.[activeTab];
+  const activeTabItems = activeTabData?.childPractice;
+  const activeTabIcon = activeTabData?.practiceIcon?.sourceUrl.replace(
+    BASE_API_URL,
+    '/proxy-image',
+  );
 
-  const handleClickTab = (index) => {
-    setActiveTab(index);
-  };
+  const handleClickTab = useCallback(
+    (index) => {
+      setActiveTab(index);
+    },
+    [setActiveTab],
+  );
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-      },
-    }),
-  };
+  if (isLoadingPractices) {
+    return <Loader />;
+  }
 
   return (
-    <PracticesTabsWrapper data-testid="practices-tabs">
+    <PracticesTabsWrapper
+      data-testid="practices-tabs"
+      className="light-scrollbar"
+    >
       <PracticesTabsOpeners>
-        {groupsWithChildren?.map((group, index) => (
+        {practicesWithChildren?.map((group, index) => (
           <PracticesTabsOpener
-            key={`${group?.groupPractices}-group-practices`}
+            key={`${group?.title}-group-practice`}
             className={activeTab === index ? 'active' : ''}
             onClick={() => handleClickTab(index)}
           >
-            {group?.groupPractices}
+            {group?.title}
           </PracticesTabsOpener>
         ))}
       </PracticesTabsOpeners>
 
-      <PracticesTabsCards>
-        {groupsWithChildren?.[activeTab]?.practices?.map((practice, index) => (
-          <motion.div
-            key={practice?.databaseId}
-            custom={index}
-            initial="hidden"
-            animate="visible"
-            variants={cardVariants}
-          >
-            <PracticeCard
-              key={practice?.databaseId}
-              icon={groupsWithChildren?.[activeTab]?.groupIcon}
-              title={practice?.title}
-              link={practice?.uri}
-              text={practice?.practicesIncluded?.description}
-              list={practice?.practicesIncluded?.childPractice}
-              setIsShowContactModal={setIsShowContactModal}
-            />
-          </motion.div>
-        ))}
-      </PracticesTabsCards>
-
-      <PracticesTabsModalWrapper>
-        <ModalWindow
-          isOpen={isShowContactModal}
-          setOpenModal={setIsShowContactModal}
-        >
-          <PracticeCardContent className="contact-form-container">
-            <PracticeCardHeader>
-              <PracticeCardTitle as="p">Let`s get in touch!</PracticeCardTitle>
-            </PracticeCardHeader>
-
-            <ContactForm blockName="tabs-contact-form" />
-          </PracticeCardContent>
-        </ModalWindow>
-      </PracticesTabsModalWrapper>
+      {!empty(activeTabItems) && (
+        <PracticesTabsCards>
+          {activeTabItems?.map((practice, index) => (
+            <motion.div
+              key={`${practice?.databaseId}-${activeTab}`}
+              custom={index}
+              initial="hidden"
+              animate="visible"
+              variants={cardVariants}
+            >
+              <FilterResult
+                link={practice?.uri}
+                name={practice?.title}
+                titleTag="h3"
+                image={activeTabIcon}
+              />
+            </motion.div>
+          ))}
+        </PracticesTabsCards>
+      )}
     </PracticesTabsWrapper>
   );
 };

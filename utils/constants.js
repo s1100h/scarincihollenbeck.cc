@@ -900,7 +900,7 @@ export const SOCIAL_LINKS = [
   },
   {
     id: 'sidebar-x',
-    title: 'X',
+    title: 'X/Twitter',
     icon: <FaSquareXTwitter />,
     url: 'https://twitter.com/S_H_Law',
   },
