@@ -1332,3 +1332,30 @@ export const getCategoriesQuery = `query subscriptions {
     }
   }
 }`;
+
+export const getIndustriesQuery = `
+query ServicesFromServicesPageSection {
+  page(id: "/services", idType: URI) {
+    servicesPage {
+      industries {
+        description
+        icon {
+          selectedIcon
+          uploadedIcon {
+            sourceUrl
+          }
+        }
+        image {
+          sourceUrl
+          altText
+        }
+        link {
+          target
+          title
+          url
+        }
+        title
+      }
+    }
+  }
+}`;

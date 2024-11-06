@@ -145,16 +145,6 @@ export const buttonsHoverActive = `
   }
 `;
 
-export const buttonHoverActive = (hoverColor, activeColor) => `
-    &:hover {
-    background-color: ${hoverColor};
-  }
-
-  &:active {
-    background-color: ${activeColor};
-  }
-`;
-
 export const globalIndents = {
   attorneyProfilePaddings: '20px 30px',
 };

@@ -1,10 +1,5 @@
 import CookieConsentMessage from 'components/shared/CookieConsentMessage';
-import {
-  FIRM_PAGES,
-  OFFICE_LOCATIONS,
-  CORE_PRACTICES,
-  MOCK_INDUSTRIES,
-} from 'utils/constants';
+import { FIRM_PAGES, OFFICE_LOCATIONS, CORE_PRACTICES } from 'utils/constants';
 import {
   Advertising,
   BottomLinks,
@@ -17,6 +12,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ContainerDefault } from 'styles/Containers.style';
+import { useGetIndustriesQuery } from '../../../redux/services/project-api';
 import LinksBox from './LinksBox';
 import FooterDetails from './FooterDetails';
 import { cannabisLawColors } from '../../../styles/global_styles/Global.styles';
@@ -31,24 +27,23 @@ const sanitizeIndustries = (industries) => {
   return industries.map((industry) => ({
     id: industry?.databaseId,
     label: industry?.title,
-    url: industry?.uri,
+    url: industry?.link?.url,
   }));
 };
 
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
-    'new-jersey-cannabis-law': cannabisLawColors.cannabisColorDarkGray,
+    cannabis: cannabisLawColors.cannabisColorDarkGray,
     // 'entertainment-and-media': globalColor.black, // page ready for deploy in prod but paused, commit 26.12.2023
   };
   return footerColorsMap[page];
 };
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
-
   const backgroundFooterColor = setFooterBackgroundColor(slug);
+  const { data: industries } = useGetIndustriesQuery();
 
   return (
     <FooterWrapper
@@ -64,7 +59,7 @@ export default function Footer() {
               <LinksBox title="Core Practices" linksArr={CORE_PRACTICES} />
               <LinksBox
                 title="Industries"
-                linksArr={sanitizeIndustries(MOCK_INDUSTRIES)}
+                linksArr={sanitizeIndustries(industries?.data)}
               />
 
               <FooterDoubleColumn>

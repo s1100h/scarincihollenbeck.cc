@@ -77,7 +77,7 @@ const CustomPagination = ({
   const linkQueryParam = `?${queryParam}=`;
   const router = useRouter();
   const { slug, ...routerQueries } = router.query;
-  const pageRoute = router.asPath.split('?')[0];
+  const pageRoute = router.asPath.split('?')[0].split('#')[0];
   between = calculateBeetween(between, isMobileScreen);
   ellipsis = calculateEllipsis(ellipsis, between);
   currentPage = Number(currentPage);

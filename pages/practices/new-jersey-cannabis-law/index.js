@@ -77,15 +77,12 @@ const CannabisLaw = ({
   ];
 
   const propsPage = {
-    corePractices,
-    practice,
-    practiceChildren,
-    attorneysSchemaData,
-    practiceUrl,
+    industry: practice,
     canonicalUrl,
-    tabs: fullTabs,
-    chairPractice,
-    attorneyListPractice,
+    attorneysSchemaData,
+    corePractices,
+    chairIndustry: chairPractice,
+    attorneyListIndustry: attorneyListPractice,
     keyContactsList,
     cannabisLawData,
   };

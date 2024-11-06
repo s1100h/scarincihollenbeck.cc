@@ -15,64 +15,6 @@ import {
 import { FiltersResults, LetterSelectorBtn } from './Filters.style';
 import { ClearButton } from './Buttons.style';
 
-export const DropdownSecondLvl = styled.div`
-  flex: 1;
-  width: 30vw;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  max-height: 70dvh;
-
-  ul {
-    padding-right: 20px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    row-gap: 4px;
-    list-style: disc;
-
-    li {
-      margin-left: 20px;
-      color: ${globalColor.white};
-
-      ::marker {
-        font-size: ${rem(12)};
-        transition: all 0.5s ease;
-      }
-
-      :hover {
-        color: #608ed2;
-        .dropdown-item {
-          background-color: transparent;
-          color: #608ed2;
-        }
-      }
-
-      .dropdown-item {
-        padding: 0;
-        font-size: ${rem(14)};
-        font-weight: 400;
-        color: #e6e6e6;
-        line-height: 28px;
-
-        &:hover {
-          color: #608ed2;
-          background-color: transparent;
-        }
-      }
-
-      .active {
-        color: #afdcf5;
-
-        .dropdown-item {
-          color: #afdcf5;
-        }
-      }
-    }
-  }
-`;
-
 //New styles for Navigation in Header
 export const NavbarWrapper = styled.nav`
   margin: 0 auto;

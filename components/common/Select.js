@@ -54,7 +54,7 @@ const CustomSelect = forwardRef(
 
     const handleClickOpener = useCallback(() => {
       setSelectActive(!selectActive);
-    }, [setSelectActive]);
+    }, [setSelectActive, selectActive]);
 
     const handleClickOption = useCallback(
       (value) => {

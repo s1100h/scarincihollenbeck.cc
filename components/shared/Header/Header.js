@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { locationsOrderArray, MOCK_INDUSTRIES } from 'utils/constants';
+import { locationsOrderArray } from 'utils/constants';
 import {
   createMenuData,
   createOverviewLinks,
@@ -8,6 +8,7 @@ import {
 } from '../../../utils/helpers';
 import DefaultHeader from './DefaultHeader';
 import {
+  useGetIndustriesQuery,
   useGetLocationsQuery,
   useGetPracticesQuery,
 } from '../../../redux/services/project-api';
@@ -23,36 +24,46 @@ const sanitizePractices = (data) => {
   }));
 };
 
-const renderHeader = (pageSlug, props) => {
-  const pagesMap = {
-    // 'new-jersey-cannabis-law': <SpecialHeader {...props} />,
-    // 'entertainment-and-media': <SpecialHeader {...props} />, // page ready for deploy in prod but paused, commit 26.12.2023
-  };
+const sanitizeIndustries = (data) => {
+  if (!data) return [];
 
-  return pagesMap[pageSlug] || <DefaultHeader {...props} />;
+  return data?.map((item) => ({
+    databaseId: item?.databaseId,
+    uri: item?.link?.url,
+    title: item?.title,
+  }));
 };
+
+const sortLocations = (locations) => {
+  if (!locations) return [];
+
+  return [...locations].sort((a, b) => {
+    const indexA = locationsOrderArray.indexOf(a.title);
+    const indexB = locationsOrderArray.indexOf(b.title);
+    return indexA - indexB;
+  });
+};
+
 export default function Header() {
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
   const { data: locations, isLoading: locationsIsLoading } = useGetLocationsQuery();
   const { data: practices } = useGetPracticesQuery();
-  const sortedLocations = !locationsIsLoading
-    && [...locations?.data]?.sort((a, b) => {
-      const indexA = locationsOrderArray.indexOf(a.title);
-      const indexB = locationsOrderArray.indexOf(b.title);
-      return indexA - indexB;
-    });
-  const practiceWithOverview = useMemo(
-    () => createOverviewLinks(practices?.data, false),
-    [practices],
-  );
+  const { data: industries } = useGetIndustriesQuery();
+  const sortedLocations = !locationsIsLoading && sortLocations(locations?.data);
 
-  const sanitizedPractices = sanitizePractices(practiceWithOverview);
+  const sanitizedPractices = useMemo(() => {
+    const practiceWithOverview = createOverviewLinks(practices?.data, false);
+    return sanitizePractices(practiceWithOverview);
+  }, [practices]);
 
-  const menuData = createMenuData(
-    sanitizedPractices,
-    locations?.data,
-    MOCK_INDUSTRIES,
+  const menuData = useMemo(
+    () => createMenuData(
+      sanitizedPractices,
+      locations?.data,
+      sanitizeIndustries(industries?.data),
+    ),
+    [sanitizedPractices, locations, industries],
   );
 
   const headerProps = {
@@ -60,8 +71,8 @@ export default function Header() {
     practices: sanitizedPractices,
     locations: sortedLocations,
     menuData,
-    industries: MOCK_INDUSTRIES,
+    industries: industries?.data,
   };
 
-  return <>{renderHeader(slug, headerProps)}</>;
+  return <DefaultHeader {...headerProps} />;
 }

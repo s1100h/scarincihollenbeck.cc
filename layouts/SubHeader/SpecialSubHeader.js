@@ -8,10 +8,7 @@ import {
 } from '../../styles/practices-special-style/SpecialSubHeader.style';
 import ScrollDownArrow from '../../components/common/ScrollDownArrow';
 import DescriptionPlusBtn from '../../components/organisms/cannabis-law/DescriptionPlusBtn';
-import {
-  CannabisSubTitle,
-  CannabisTitle,
-} from '../../styles/practices-special-style/canabis-law/CannabisSubHeader';
+import { CannabisTitles } from '../../styles/practices-special-style/canabis-law/CannabisSubHeader';
 import { FullHDContainer } from '../../styles/practices-special-style/commonForSpecial.style';
 
 const SpecialSubHeader = ({
@@ -41,14 +38,11 @@ const SpecialSubHeader = ({
         />
         <DescriptionPlusBtn labelForBtn="See attorneys" text={article} />
       </MiddleContainer>
-      <CannabisTitle>
+
+      <CannabisTitles>
         <JSXWithDynamicLinks HTML={changeTitle(title, true)} />
-        {!empty(subtitle) && (
-          <CannabisSubTitle>
-            <p>{subtitle}</p>
-          </CannabisSubTitle>
-        )}
-      </CannabisTitle>
+        {!empty(subtitle) && <p>{subtitle}</p>}
+      </CannabisTitles>
     </FullHDContainer>
   </SpecialSubHeaderContainer>
 );

@@ -13,9 +13,10 @@ import { BreadcrumbsListContainer } from 'styles/Breadcrumbs.style';
 import Link from 'next/link';
 
 export const SpecialSubHeaderContainer = styled.section`
+  --description-width: 380px;
   display: flex;
   flex-direction: column;
-  padding: 155px 0 50px;
+  padding: 50px 0 50px;
   background: url(${({ backgroundImage }) => backgroundImage}) no-repeat;
   background-size: cover;
   position: relative;
@@ -60,11 +61,34 @@ export const SpecialSubHeaderContainer = styled.section`
   }
 
   h1 {
-    width: 400px;
+    margin: 0;
     font-size: 12rem;
     font-weight: 300;
-    line-height: 170px;
+    line-height: 1;
     color: ${globalColor.white};
+
+    ${media_breakpoint_down('xl')} {
+      font-size: 10rem;
+    }
+
+    ${media_breakpoint_down('lg')} {
+      font-size: 8rem;
+    }
+
+    ${media_breakpoint_exactly_down(630)} {
+      font-size: 6rem;
+      line-height: 100px;
+    }
+
+    ${media_breakpoint_down('sm')} {
+      font-size: 5rem;
+      line-height: 69px;
+    }
+
+    ${media_breakpoint_exactly_down(396)} {
+      font-size: 4rem;
+      line-height: 56px;
+    }
   }
 
   ${BreadcrumbsListContainer} {
@@ -85,54 +109,6 @@ export const SpecialSubHeaderContainer = styled.section`
           color: ${globalColor.white};
         }
       }
-    }
-  }
-
-  ${media_breakpoint_down('xl')} {
-    padding: 155px 0 50px;
-
-    h1 {
-      width: 350px;
-      font-size: 10rem;
-    }
-  }
-
-  ${media_breakpoint_down('lg')} {
-    padding: 112px 0 50px;
-    h1 {
-      width: 300px;
-      font-size: 8rem;
-      line-height: 112px;
-    }
-  }
-
-  ${media_breakpoint_down('md')} {
-    padding: 95px 0 50px;
-    h1 {
-      font-size: 8rem;
-    }
-  }
-
-  ${media_breakpoint_exactly_down(630)} {
-    h1 {
-      width: 220px;
-      font-size: 6rem;
-      line-height: 100px;
-    }
-  }
-
-  ${media_breakpoint_down('sm')} {
-    padding: 95px 0 50px;
-    h1 {
-      font-size: 5rem;
-      line-height: 69px;
-    }
-  }
-
-  ${media_breakpoint_exactly_down(396)} {
-    h1 {
-      font-size: 4rem;
-      line-height: 56px;
     }
   }
 `;

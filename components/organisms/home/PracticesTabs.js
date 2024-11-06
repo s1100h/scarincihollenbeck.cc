@@ -9,7 +9,6 @@ import empty from 'is-empty';
 import { motion } from 'framer-motion';
 import Loader from 'components/atoms/Loader';
 import { createOverviewLinks } from 'utils/helpers';
-import { BASE_API_URL } from 'utils/constants';
 import FilterResult from '../attorneys/FilterResult';
 
 const cardVariants = {
@@ -29,10 +28,7 @@ const PracticesTabs = ({ practices, isLoadingPractices }) => {
   const practicesWithChildren = createOverviewLinks(practices?.data, true);
   const activeTabData = practicesWithChildren?.[activeTab];
   const activeTabItems = activeTabData?.childPractice;
-  const activeTabIcon = activeTabData?.practiceIcon?.sourceUrl.replace(
-    BASE_API_URL,
-    '/proxy-image',
-  );
+  const activeTabIcon = activeTabData?.practiceIcon?.sourceUrl;
 
   const handleClickTab = useCallback(
     (index) => {

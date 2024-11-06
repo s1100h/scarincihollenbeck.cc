@@ -42,6 +42,8 @@ export default async function handler(req, res) {
     // Return error if no cached data available
     return res
       .status(500)
-      .json({ error: 'Failed to fetch data and no cached data available' });
+      .json({
+        error: `Failed to fetch data and no cached data available; ${err}`,
+      });
   }
 }

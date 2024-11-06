@@ -653,3 +653,41 @@ export const chunkArray = (array, chunkSize) => {
   }
   return chunks;
 };
+
+export const attorneysSanitize = (attorneysArr) => {
+  const designationOrder = [
+    'Firm Managing Partner',
+    'Deputy Managing Partner',
+    'Partner',
+    'Counsel',
+    'Of Counsel',
+    'Senior Associate',
+    'Associate',
+  ];
+
+  return attorneysArr
+    .map((attorney) => {
+      attorney.attorneyMainInformation.profileImage = !empty(
+        attorney.attorneyMainInformation?.profileImage?.sourceUrl,
+      )
+        ? attorney.attorneyMainInformation.profileImage.sourceUrl
+        : '/images/no-image-found-diamond-750x350.png';
+      return {
+        databaseId: attorney.databaseId,
+        link: attorney.uri,
+        title: attorney.title,
+        status: attorney.status,
+        ...attorney.attorneyMainInformation,
+        ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
+      };
+    })
+    .sort((a, b) => {
+      const indexA = designationOrder.indexOf(a.designation);
+      const indexB = designationOrder.indexOf(b.designation);
+
+      if (indexA !== indexB) {
+        return indexA - indexB; // Sort by designation order first
+      }
+      return a.lastName?.localeCompare(b.lastName); // If designations are the same, sort by last name
+    });
+};
