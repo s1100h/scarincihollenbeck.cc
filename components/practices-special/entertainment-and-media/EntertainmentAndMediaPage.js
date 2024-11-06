@@ -3,7 +3,10 @@ import { useRouter } from 'next/router';
 import { getPaginationData } from 'requests/getPaginationData';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import SubHeader from '../../../layouts/SubHeader/SubHeader';
-import { postsForPaginationByCategoryIdQuery } from '../../../requests/graphql-queries';
+import {
+  getClientsQuery,
+  postsForPaginationByCategoryIdQuery,
+} from '../../../requests/graphql-queries';
 import useAnchorLink from '../../../hooks/useAnchorLink';
 
 const AttorneysBlock = dynamic(() => import('../../organisms/ent-and-media/AttorneysBlock'));
@@ -37,6 +40,11 @@ const EntertainmentAndMediaPage = ({
     params,
   );
 
+  const clientsPaginationData = getPaginationData(getClientsQuery, {
+    currentPage: query?.['client-page'] || 1,
+    itemsPerPage: 10,
+  });
+
   const sliderCfg = {
     isSlidesAutoPlay: true,
     autoPlaySpeed: 3000,
@@ -46,7 +54,7 @@ const EntertainmentAndMediaPage = ({
     <>
       <BasicSiteHead
         title={practice.seo.title}
-        metaDescription={practice.seo.metaDescription}
+        metaDescription={practice.seo.metaDesc}
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
@@ -69,11 +77,11 @@ const EntertainmentAndMediaPage = ({
         anchorToAttorneysBlock={anchorIdToAttorneys}
         tabs={entertainmentAndMediaData.entertainmentInfoBlock.tabs}
       />
-      {/* <EntertainmentClientsBlock
+      <EntertainmentClientsBlock
         title={entertainmentAndMediaData.clientsBlock.title}
         description={entertainmentAndMediaData.clientsBlock.description}
-        clientsApolloProps={clientsPaginationProps}
-      /> */}
+        clientsPaginationData={clientsPaginationData}
+      />
       <ArticlesBlock paginationData={paginationData} />
       <PracticesLinksBlock
         practicesListTitle={entertainmentAndMediaData.practicesList.title}

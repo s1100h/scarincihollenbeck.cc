@@ -9,7 +9,7 @@ import {
   getPracticeAttorneys,
   headMetaData,
 } from '../../../requests/practices/practice-default';
-import { getSlugFromUrl, sortByKey } from '../../../utils/helpers';
+import { sortByKey } from '../../../utils/helpers';
 import ApolloWrapper from '../../../layouts/ApolloWrapper';
 import { EntertainmentInfoProvider } from '../../../contexts/EntertainmentInfoContext';
 
@@ -27,20 +27,14 @@ const getPractices = async () => {
 };
 
 /** Set single practice data to page props */
-export const getServerSideProps = async ({ res, resolvedUrl }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
-  const slug = getSlugFromUrl(resolvedUrl);
-
+export const getStaticProps = async () => {
   const {
     practice,
     includeAttorney,
     practiceChief,
     keyContactsList,
     corePractices,
-  } = await getPracticeAttorneys(resolvedUrl);
+  } = await getPracticeAttorneys('/practices/entertainment-and-media');
 
   const practices = await getPractices();
 
@@ -61,7 +55,6 @@ export const getServerSideProps = async ({ res, resolvedUrl }) => {
       attorneysSchemaData: headMetaData(practiceChief, includeAttorney),
       corePractices,
       practiceChildren: practice?.practicesIncluded?.childPractice,
-      slug,
       practices: sortByKey(practices, 'title'),
     },
   };
@@ -71,7 +64,6 @@ const EnterteimentAndMedia = ({
   practice,
   corePractices,
   practiceChildren,
-  slug,
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
@@ -113,7 +105,6 @@ const EnterteimentAndMedia = ({
     practiceUrl,
     canonicalUrl,
     tabs: fullTabs,
-    slug,
     chairPractice,
     attorneyListPractice,
     keyContactsList,

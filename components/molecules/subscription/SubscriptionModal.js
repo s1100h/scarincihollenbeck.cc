@@ -67,6 +67,7 @@ const SubscriptionModal = ({ children, customClass }) => {
       setCategories([...categoriesChosen, categoryId]);
     }
   };
+
   const handleChooseAllClearAll = (isAllChosen) => {
     if (isAllChosen) {
       setCategories(originalCategoriesIds(categoriesFromWP));

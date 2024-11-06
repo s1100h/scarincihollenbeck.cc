@@ -486,6 +486,38 @@ query getThreePostsQuery {
   }
 }`;
 
+export const getClientsQuery = `query FirmPageQuery(
+  $offsetPosts: Int, 
+  $postsPerPage: Int
+  ) {
+  clients(
+    where: {offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+  ) {
+    edges {
+      node {
+        databaseId
+        title
+        clientsFields {
+          clientImage {
+            sourceUrl
+            title
+          }
+          entertainmentSubcategory
+          lineColor
+          proffesion
+        }
+      }
+    }
+    pageInfo {
+      offsetPagination {
+        total
+        hasPrevious
+        hasMore
+      }
+    }
+  }
+}`;
+
 // , order by: {field: DATE, order: DESC}
 export const postsForPaginationByCategoryIdQuery = `
   query postsForPaginationByCategoryId(

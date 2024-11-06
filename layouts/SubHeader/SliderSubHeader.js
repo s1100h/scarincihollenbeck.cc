@@ -1,10 +1,16 @@
 import empty from 'is-empty';
 import Image from 'next/image';
 import {
-  useContext, useEffect, useRef, useState,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ContainerContent } from 'styles/practices-special-style/commonForSpecial.style';
+import { useSwipeable } from 'react-swipeable';
 import PostBreadcrumbs from '../../components/organisms/post/PostBreadcrumbs';
 import {
   AnimateTitleWrapper,
@@ -29,7 +35,6 @@ import {
   SliderSubHeaderContainer,
 } from '../../styles/practices-special-style/SpecialSubHeader.style';
 import { EntertainmentInfoContext } from '../../contexts/EntertainmentInfoContext';
-import useAnchorLink from '../../hooks/useAnchorLink';
 
 const arrowUp = '/images/arrow-up.svg';
 const arrowDown = '/images/arrow-down.svg';
@@ -53,31 +58,34 @@ const SliderSubHeader = ({
   const isNextBtnDisabled = activeSlideIndex === slidesData?.length - 1;
   const titleRef = useRef(null);
   const [titleHeight, setTitleHeight] = useState(0);
-  const goToPrevSlide = () => {
+  const currentYear = new Date().getFullYear();
+
+  const goToPrevSlide = useCallback(() => {
     if (activeSlideIndex > 0) {
       setActiveSlideIndex(activeSlideIndex - 1);
     }
-  };
-  const goToNextSlide = () => {
+  }, [activeSlideIndex]);
+
+  const goToNextSlide = useCallback(() => {
     if (activeSlideIndex < slidesData.length - 1) {
       setActiveSlideIndex(activeSlideIndex + 1);
     }
-  };
+  }, [activeSlideIndex, slidesData.length]);
 
-  const autoPlaySlides = () => {
+  const autoPlaySlides = useCallback(() => {
     if (activeSlideIndex < slidesData.length - 1) {
       setActiveSlideIndex(activeSlideIndex + 1);
     } else {
       setActiveSlideIndex(0);
     }
-  };
+  }, [activeSlideIndex, slidesData.length]);
 
   useEffect(() => {
     if (titleRef.current) {
       const height = titleRef.current.clientHeight;
       setTitleHeight(height);
     }
-  }, []);
+  }, [titleRef?.current?.clientHeight]);
 
   useEffect(() => {
     if (sliderCfg.isSlidesAutoPlay) {
@@ -86,9 +94,17 @@ const SliderSubHeader = ({
         clearInterval(intervalId);
       };
     }
-  }, [activeSlideIndex]);
+  }, [
+    activeSlideIndex,
+    autoPlaySlides,
+    sliderCfg.isSlidesAutoPlay,
+    sliderCfg.autoPlaySpeed,
+  ]);
 
-  const activeSlide = slidesData[activeSlideIndex];
+  const activeSlide = useMemo(
+    () => slidesData[activeSlideIndex],
+    [slidesData, activeSlideIndex],
+  );
 
   const handleClickToEntertainmentInfo = () => {
     clickByAnchorToEntertainmentInfoAndOpenPractice(
@@ -96,8 +112,13 @@ const SliderSubHeader = ({
     );
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => goToNextSlide(),
+    onSwipedRight: () => goToPrevSlide(),
+  });
+
   return (
-    <SliderSubHeaderContainer>
+    <SliderSubHeaderContainer {...swipeHandlers}>
       <ContainerContent>
         <PostBreadcrumbs />
         {!empty(slidesData) && (
@@ -123,7 +144,9 @@ const SliderSubHeader = ({
               <SlideDarkText className="slide__company">
                 Scarinci Hollenbeck’s, LLC
               </SlideDarkText>
-              <SlideDarkText className="slide__date">2023</SlideDarkText>
+              <SlideDarkText className="slide__date">
+                {currentYear}
+              </SlideDarkText>
             </SlideSidebar>
 
             <SlideContent>

@@ -69,7 +69,7 @@ const EntertainmentInfoBlock = ({
   const activeTab = tabs[activeTabIndex];
 
   return (
-    <EntertainmentInfoSection id={hrefToId}>
+    <EntertainmentInfoSection id={hrefToId || undefined}>
       <ContainerDefault>
         <EnterntainmentTabNumber>
           {activeTabIndex < 9 ? `0${activeTabIndex + 1}` : activeTabIndex + 1}

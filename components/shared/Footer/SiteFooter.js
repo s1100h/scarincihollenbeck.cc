@@ -15,7 +15,10 @@ import { ContainerDefault } from 'styles/Containers.style';
 import { useGetIndustriesQuery } from '../../../redux/services/project-api';
 import LinksBox from './LinksBox';
 import FooterDetails from './FooterDetails';
-import { cannabisLawColors } from '../../../styles/global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  globalColor,
+} from '../../../styles/global_styles/Global.styles';
 import { getSlugFromUrl } from '../../../utils/helpers';
 import NavigationAndSubscription from './NavigationAndSubscription';
 import { FooterContent } from '../../../styles/Footer.style';
@@ -34,7 +37,7 @@ const sanitizeIndustries = (industries) => {
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
     cannabis: cannabisLawColors.cannabisColorDarkGray,
-    // 'entertainment-and-media': globalColor.black, // page ready for deploy in prod but paused, commit 26.12.2023
+    'entertainment-and-media': globalColor.black,
   };
   return footerColorsMap[page];
 };
