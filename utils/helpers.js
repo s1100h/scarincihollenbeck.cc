@@ -30,6 +30,7 @@ import {
   EMAGE_UPLOAD_CLOUDINARY,
   OFFICE_LOCATIONS,
   PRODUCTION_URL,
+  readyIndustriesUrls,
 } from './constants';
 import CheckIcon from '../components/common/icons/CheckIcon';
 import MapIcon from '../components/common/icons/MapIcon';
@@ -691,3 +692,5 @@ export const attorneysSanitize = (attorneysArr) => {
       return a.lastName?.localeCompare(b.lastName); // If designations are the same, sort by last name
     });
 };
+
+export const getIndustryLink = (uri, defaultUri = '/services#industries') => (readyIndustriesUrls.includes(uri) ? uri : defaultUri);

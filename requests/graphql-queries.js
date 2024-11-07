@@ -721,14 +721,20 @@ export const homePageQuery = `query HomePageQuery {
           title
           url
         }
-        industryCards {
-          icon
-          text
-          title
-          link {
-            target
+        industries {
+          ... on Industry {
+            industryContent {
+              industryIcon {
+                selectedIcon
+                uploadedIcon {
+                  sourceUrl
+                }
+              }
+              description
+            }
             title
-            url
+            databaseId
+            uri
           }
         }
       }
@@ -1346,28 +1352,25 @@ export const getCategoriesQuery = `query subscriptions {
 }`;
 
 export const getIndustriesQuery = `
-query ServicesFromServicesPageSection {
-  page(id: "/services", idType: URI) {
-    servicesPage {
-      industries {
+query IndustriesQuery {
+  industries {
+    nodes {
+      industryContent {
         description
-        icon {
+        industryIcon {
           selectedIcon
           uploadedIcon {
             sourceUrl
           }
         }
-        image {
-          sourceUrl
+        industryImage {
           altText
+          sourceUrl
         }
-        link {
-          target
-          title
-          url
-        }
-        title
       }
+      uri
+      title
+      databaseId
     }
   }
 }`;

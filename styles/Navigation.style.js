@@ -221,12 +221,14 @@ export const NavbarLeftItemOpener = styled(Link)`
   padding: 8px 12px;
   width: 100%;
   display: inline-flex;
+  align-items: center;
   justify-content: space-between;
   color: ${globalColor.white};
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
   border-radius: 4px;
+  text-align: left;
   transition: ${globalTransition.default};
 
   &:hover {

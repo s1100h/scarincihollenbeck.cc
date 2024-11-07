@@ -30,7 +30,7 @@ const sanitizeIndustries = (industries) => {
   return industries.map((industry) => ({
     id: industry?.databaseId,
     label: industry?.title,
-    url: industry?.link?.url,
+    url: industry?.uri,
   }));
 };
 

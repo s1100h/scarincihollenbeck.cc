@@ -1,11 +1,7 @@
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import { locationsOrderArray } from 'utils/constants';
-import {
-  createMenuData,
-  createOverviewLinks,
-  getSlugFromUrl,
-} from '../../../utils/helpers';
+import { createMenuData, createOverviewLinks } from '../../../utils/helpers';
 import DefaultHeader from './DefaultHeader';
 import {
   useGetIndustriesQuery,
@@ -29,7 +25,7 @@ const sanitizeIndustries = (data) => {
 
   return data?.map((item) => ({
     databaseId: item?.databaseId,
-    uri: item?.link?.url,
+    uri: item?.uri,
     title: item?.title,
   }));
 };
@@ -46,7 +42,6 @@ const sortLocations = (locations) => {
 
 export default function Header() {
   const { pathname } = useRouter();
-  const slug = getSlugFromUrl(pathname);
   const { data: locations, isLoading: locationsIsLoading } = useGetLocationsQuery();
   const { data: practices } = useGetPracticesQuery();
   const { data: industries } = useGetIndustriesQuery();

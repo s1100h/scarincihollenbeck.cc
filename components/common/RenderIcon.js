@@ -19,9 +19,14 @@ const RenderIcon = ({
       $sizes={sizes}
       $mobileSizes={mobileSizes}
       image={proxyImage}
+      className="hovered-icon"
     />
   ) : (
-    <RenderSelectedIcon $sizes={sizes} $mobileSizes={mobileSizes}>
+    <RenderSelectedIcon
+      $sizes={sizes}
+      $mobileSizes={mobileSizes}
+      className="hovered-icon"
+    >
       {getIcon(icon)}
     </RenderSelectedIcon>
   );

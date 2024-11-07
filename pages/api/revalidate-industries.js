@@ -7,7 +7,7 @@ let data = [];
 export default async function handler(req, res) {
   const currentTime = Date.now();
   const timeSinceLastFetch = currentTime - lastFetchTime;
-  const cacheDurationSeconds = 8;
+  const cacheDurationSeconds = 8600;
   const cacheDuration = cacheDurationSeconds * 1000; // 8600 seconds in milliseconds
 
   if (timeSinceLastFetch < cacheDuration && data?.length > 0) {
@@ -31,10 +31,8 @@ export default async function handler(req, res) {
       return res.status(200).json({ data });
     }
     // Return error if no cached data available
-    return res
-      .status(500)
-      .json({
-        error: `Failed to fetch data and no cached data available; ${err}`,
-      });
+    return res.status(500).json({
+      error: `Failed to fetch data and no cached data available; ${err}`,
+    });
   }
 }

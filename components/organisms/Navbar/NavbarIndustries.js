@@ -35,13 +35,16 @@ const NavbarIndustries = ({
           {industries.map((industry) => (
             <FilterResult
               key={industry?.databaseId}
-              link={industry?.link?.url}
+              link={industry?.uri}
               name={industry?.title}
-              designation={industry?.description}
-              icon={industry?.icon?.selectedIcon}
-              image={industry?.icon?.uploadedIcon?.sourceUrl}
+              designation={industry?.industryContent?.description}
+              icon={industry?.industryContent?.industryIcon?.selectedIcon}
+              image={
+                industry?.industryContent?.industryIcon?.uploadedIcon?.sourceUrl
+              }
               handleCloseModal={handleCloseModal}
               titleTag="p"
+              descriptionTag="div"
             />
           ))}
         </FiltersResults>

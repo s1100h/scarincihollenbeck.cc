@@ -9,6 +9,7 @@ import {
 } from 'styles/Filters.style';
 import empty from 'is-empty';
 import RenderIcon from 'components/common/RenderIcon';
+import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 
 const getHighlightedText = (text, highlight) => {
   if (!highlight) return text;
@@ -33,6 +34,7 @@ const FilterResult = ({
   icon,
   image,
   titleTag = 'h4',
+  descriptionTag = 'p',
 }) => (
   <ResultCard href={link} onClick={handleCloseModal}>
     <RenderIcon image={image} icon={icon} />
@@ -41,7 +43,9 @@ const FilterResult = ({
         {getHighlightedText(name, userInput)}
       </ResultCardTitle>
       {!empty(designation) && (
-        <ResultCardSubtitle>{designation}</ResultCardSubtitle>
+        <ResultCardSubtitle as={descriptionTag}>
+          <JSXWithDynamicLinks HTML={designation} />
+        </ResultCardSubtitle>
       )}
     </ResultCardContent>
     <ResultCardArrow>

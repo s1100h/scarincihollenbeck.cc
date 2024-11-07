@@ -218,7 +218,7 @@ export const ResultCardTitle = styled.h4`
   }
 `;
 
-export const ResultCardSubtitle = styled.p`
+export const ResultCardSubtitle = styled.div`
   margin: 0;
   color: ${globalColor.gray.gray500};
   font-family: var(--font-lato);
@@ -231,6 +231,10 @@ export const ResultCardSubtitle = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  p {
+    margin: 0;
+  }
 `;
 
 export const ResultCardArrow = styled.span`

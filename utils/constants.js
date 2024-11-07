@@ -831,3 +831,8 @@ export const reservedAccordionTitles = [
 ];
 
 export const NAVBAR_SERVICES_TABS = ['Practices', 'Industries'];
+
+export const readyIndustriesUrls = [
+  '/industries/cannabis',
+  '/industries/entertainment-and-media',
+];
