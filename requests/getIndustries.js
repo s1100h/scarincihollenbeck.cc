@@ -8,7 +8,7 @@ const sanitizeIndustries = (data) => {
     databaseId: `${item?.title}-industry-${index}`,
     ...item,
     link: {
-      url: item?.link?.url || '/services',
+      url: item?.link?.url || '/services#industries',
       title: item?.link?.title || 'About Industry',
     },
   }));

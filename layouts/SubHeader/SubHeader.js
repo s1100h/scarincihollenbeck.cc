@@ -9,15 +9,6 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 import Link from 'next/link';
 import { changeTitle, formatDate } from '../../utils/helpers';
 
-// const renderSubHeader = (pageSlug, props) => {
-//   const pagesMap = {
-//     'new-jersey-cannabis-law': <SpecialSubHeader {...props} />,
-//     // 'entertainment-and-media': <SliderSubHeader {...props} />, // page ready for deploy in prod but paused, commit 26.12.2023
-//   };
-
-//   return pagesMap[pageSlug] || <DefaultSubHeader {...props} />;
-// };
-
 const SubHeader = ({
   title,
   subtitle,

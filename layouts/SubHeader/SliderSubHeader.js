@@ -137,6 +137,8 @@ const SliderSubHeader = ({
                   alt={activeSlide.backgroundImage.title}
                   width={1920}
                   height={1080}
+                  priority={activeSlideIndex === 0}
+                  loading={activeSlideIndex === 0 ? 'eager' : 'lazy'}
                 />
               </motion.div>
             </AnimatePresence>

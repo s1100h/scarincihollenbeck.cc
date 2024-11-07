@@ -1,10 +1,12 @@
-import InitCannabisFonts from 'styles/practices-special-style/canabis-law/InitCannabisFonts';
-import { cannabisIndustryQuery } from 'requests/industries/industry-queries';
+import InitEntertainmentFonts from 'styles/practices-special-style/ent-adn-media/InitEntertainmentFonts';
 import { getIndustryContent } from 'requests/industries/industry-default';
+import { entertainmentAndMediaIndustryQuery } from 'requests/industries/industry-queries';
 import { headMetaData } from 'requests/practices/practice-default';
-import CannabisLawPage from '../../../components/practices-special/cannabis-law/CannabisLawPage';
+import EntertainmentAndMediaPage from '../../../components/practices-special/entertainment-and-media/EntertainmentAndMediaPage';
 import { PRODUCTION_URL } from '../../../utils/constants';
+import { sortByKey } from '../../../utils/helpers';
 import ApolloWrapper from '../../../layouts/ApolloWrapper';
+import { EntertainmentInfoProvider } from '../../../contexts/EntertainmentInfoContext';
 
 export const getStaticProps = async () => {
   const {
@@ -13,7 +15,7 @@ export const getStaticProps = async () => {
     industryChief,
     keyContactsList,
     corePractices,
-  } = await getIndustryContent(cannabisIndustryQuery);
+  } = await getIndustryContent(entertainmentAndMediaIndustryQuery);
 
   if (typeof industry === 'undefined') {
     return {
@@ -24,25 +26,23 @@ export const getStaticProps = async () => {
   return {
     props: {
       industry,
-      cannabisLawData: industry?.cannabisLawIndustry,
+      entertainmentAndMediaData: industry?.entertainmentAndMediaIndustry,
       chairIndustry: industryChief || [],
       attorneyListIndustry: includeAttorney || [],
       keyContactsList,
       attorneysSchemaData: headMetaData(industryChief, includeAttorney),
-      corePractices,
+      practices: sortByKey(corePractices, 'title'),
     },
-    revalidate: 86400,
   };
 };
 
-const CannabisLaw = ({
+const EnterteimentAndMedia = ({
   industry,
-  cannabisLawData,
+  entertainmentAndMediaData,
   chairIndustry,
   attorneyListIndustry,
-  keyContactsList,
   attorneysSchemaData,
-  corePractices,
+  practices,
 }) => {
   const canonicalUrl = `${PRODUCTION_URL}/industries/${industry.slug}`;
 
@@ -50,18 +50,19 @@ const CannabisLaw = ({
     industry,
     canonicalUrl,
     attorneysSchemaData,
-    corePractices,
     chairIndustry,
     attorneyListIndustry,
-    keyContactsList,
-    cannabisLawData,
+    entertainmentAndMediaData,
+    practices,
   };
   return (
     <ApolloWrapper>
-      <InitCannabisFonts />
-      <CannabisLawPage {...propsPage} />
+      <EntertainmentInfoProvider>
+        <InitEntertainmentFonts />
+        <EntertainmentAndMediaPage {...propsPage} />
+      </EntertainmentInfoProvider>
     </ApolloWrapper>
   );
 };
 
-export default CannabisLaw;
+export default EnterteimentAndMedia;

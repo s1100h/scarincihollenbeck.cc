@@ -476,7 +476,7 @@ export const createMenuData = (practices, locations, industries) => [
       {
         databaseId: 'menu-all-practices',
         uri: '/services',
-        title: 'View all services',
+        title: 'View all practices',
         additionalClass: 'bolder',
       },
       ...practices,
@@ -490,8 +490,8 @@ export const createMenuData = (practices, locations, industries) => [
     list: [
       {
         databaseId: 'menu-all-industries',
-        uri: '/services',
-        title: 'View all services',
+        uri: '/services#industries',
+        title: 'View all industries',
         additionalClass: 'bolder',
       },
       ...industries,

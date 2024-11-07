@@ -570,10 +570,6 @@ export const GlobalStyle = createGlobalStyle`
       max-width: 1440px;
       padding: 0 5%;
     }
-
-    .container--practises {
-      padding: 0 70px;
-    }
   }
 
   @media only screen and (max-width: 768px) {

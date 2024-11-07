@@ -242,6 +242,26 @@ const PERMANENT_REDIRECTS = [
     destination: '/firm-news/nj-and-nyc-law-firms-unite',
     permanent: true,
   },
+  {
+    source: '/practices/new-jersey-cannabis-law',
+    destination: '/industries/cannabis',
+    permanent: true,
+  },
+  {
+    source: '/practices/entertainment-and-media',
+    destination: '/industries/entertainment-and-media',
+    permanent: true,
+  },
+  {
+    source: '/practices',
+    destination: '/services',
+    permanent: true,
+  },
+  {
+    source: '/industries',
+    destination: '/services#industries',
+    permanent: true,
+  },
 ];
 
 module.exports = {

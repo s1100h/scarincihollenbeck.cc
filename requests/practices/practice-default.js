@@ -2,7 +2,7 @@ import empty from 'is-empty';
 import { attorneysSanitize, checkOnPublish } from 'utils/helpers';
 import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
-import { practicesQueryGenerator } from './practicesQueryGenerator';
+import { practicesQuery } from './practicesQueryGenerator';
 
 const postsSanitize = (posts) => posts.map((post) => {
   post.featuredImage = post.featuredImage?.node.sourceUrl
@@ -11,7 +11,7 @@ const postsSanitize = (posts) => posts.map((post) => {
 });
 
 export const getPracticeAttorneys = async (uri) => {
-  const data = await fetchAPI(practicesQueryGenerator(uri), {
+  const data = await fetchAPI(practicesQuery, {
     variables: {
       id: uri,
     },

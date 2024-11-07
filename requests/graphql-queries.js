@@ -771,26 +771,6 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
-/** practices landing page query */
-export const practicePageQuery = `query PracticesPagesQuery {
-  page(id: 46644, idType: DATABASE_ID) {
-    title
-    seo {
-      metaDesc
-      title
-    }
-    practiceArchives {
-      description
-      mainTag
-    }
-    featuredImage {
-      node {
-        sourceUrl
-      }
-    }
-  }
-}`;
-
 export const getPracticesQuery = `query NewQuery {
   practices(first: 100) {
     nodes {

@@ -133,7 +133,7 @@ const EntertainmentInfoBlock = ({
               <EnterntainmentTabImage>
                 <Image
                   src={activeTab.imageBackground.sourceUrl}
-                  alt={activeTab.imageBackground.title}
+                  alt={`${activeTab.title} Law`}
                   width={activeTab.imageBackground.mediaDetails.width}
                   height={activeTab.imageBackground.mediaDetails.height}
                   loading="lazy"

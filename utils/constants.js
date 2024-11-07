@@ -63,12 +63,12 @@ export const footerNavList = [
   },
   {
     linkTitle: 'Practices',
-    link: '/practices',
+    link: '/services',
     id: 2,
   },
   {
     linkTitle: 'Industries',
-    link: '/industries',
+    link: '/services#industries',
     id: 3,
   },
   {
@@ -327,11 +327,6 @@ export const CORE_PRACTICES = [
     id: 11,
     slug: '/practices/tax-trusts-estates',
     label: 'Tax, Trusts & Estates',
-  },
-  {
-    id: 12,
-    slug: '/practices/entertainment-and-media',
-    label: 'Entertainment & Media',
   },
 ];
 

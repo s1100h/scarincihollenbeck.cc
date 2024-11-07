@@ -132,7 +132,7 @@ export const MiddleContainer = styled.div`
 `;
 
 export const SliderSubHeaderContainer = styled.section`
-  padding: 113px 0;
+  padding-bottom: 113px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -177,7 +177,7 @@ export const SliderSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('xxl')} {
-    padding: 99px 0;
+    padding-bottom: 99px;
 
     .breadcrumb-container {
       margin: 32px 0 48px;
@@ -185,7 +185,6 @@ export const SliderSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_exactly_down(1439)} {
-    padding: 99px 0;
 
     .breadcrumb-container {
       margin: 24px 0 32px;
@@ -193,7 +192,7 @@ export const SliderSubHeaderContainer = styled.section`
   }
 
   ${media_breakpoint_down('lg')} {
-    padding: 62px 0;
+    padding-bottom: 62px;
   }
 
   ${media_breakpoint_down('md')} {

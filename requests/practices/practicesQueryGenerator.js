@@ -1,128 +1,4 @@
-export const practicesQueryGenerator = (uri) => {
-  const practiceMap = {
-    '/practices/entertainment-and-media': `practiceContentForEntertainmentLaw {
-      entertainmentMedia {
-        subTitle
-        attorneysTitleBox
-        sliderBackgrounds {
-          backgroundImage {
-            sourceUrl
-            title
-            databaseId
-          }
-          title
-        }
-        entertainmentInfoBlock {
-          tabs {
-            imageBackground {
-              databaseId
-              sourceUrl
-              title
-              mediaDetails {
-                height
-                width
-              }
-            }
-            imagePosition
-            lawInfo {
-              description
-              servicesList {
-                title
-              }
-            }
-            modalData {
-              modalServicesDescription
-              moreServicesList {
-                title
-              }
-            }
-            title
-          }
-        }
-        clientsBlock {
-          description
-          title
-        }
-        practicesList {
-          imageUnderTitle {
-            sourceUrl
-            title
-            mediaDetails {
-              height
-              width
-            }
-          }
-          title
-        }
-      }
-    }
-		`,
-    '/practices/new-jersey-cannabis-law': `practiceContentForeCannabisLaw {
-				cannabisLaw {
-					cardsInfo {
-						cards {
-							title
-							paragraph
-						}
-					}
-					descriptionSubheader
-					subTitle
-					attorneysArticleBlock {
-						paragraph
-						title
-					}
-					keycontactsblock {
-						article
-						listOfLegalGuidanceRegarding {
-							issue
-						}
-					}
-					helpArticleBlock {
-						title
-						paragraphs {
-							paragraph
-						}
-					}
-					newspaperBlock {
-						article {
-							paragraph
-							title
-						}
-						newspaperBox {
-							newspaperArticle
-							newspaperPhotoBox {
-								altText
-								sourceUrl
-								caption
-							}
-						}
-					}
-					subheaderBackgroundVideo {
-						link
-					}
-					photoBlock {
-						articleBox {
-							paragraph
-							title
-						}
-						cannabisClients {
-							clientLink {
-								title
-								url
-							}
-							clientLogo {
-								databaseId
-								sourceUrl
-								title
-							}
-							clientTitle
-						}
-					}
-				}
-			}
-		`,
-  };
-  return `query FirmPageQuery($id: ID!) {
+export const practicesQuery = `query FirmPageQuery($id: ID!) {
   practice(id: $id, idType: URI) {
     databaseId
     slug
@@ -232,7 +108,6 @@ export const practicesQueryGenerator = (uri) => {
       title
       metaDesc
     }
-    ${practiceMap[uri] ? practiceMap[uri] : ''}
   }
   practices(first: 100) {
     nodes {
@@ -261,4 +136,3 @@ export const practicesQueryGenerator = (uri) => {
     }
   }
 }`;
-};

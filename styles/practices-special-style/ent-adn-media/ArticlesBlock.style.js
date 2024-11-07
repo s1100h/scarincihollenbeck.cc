@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { cannabisLawColors, entAndMediaColors, globalColor, rem } from 'styles/global_styles/Global.styles';
+import { entAndMediaColors, globalColor, rem } from 'styles/global_styles/Global.styles';
 import { LinkToCategory, TitleButtonBox } from '../ArticlesBlock.style';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
-import { TextNews } from 'styles/FirmNews.style';
+import { BottomSection, TextNews } from 'styles/FirmNews.style';
 
 export const ArticlesSection = styled.section`
   padding: 140px 0;
@@ -83,33 +83,9 @@ export const ArticlesSection = styled.section`
     background-color: transparent;
 
     .link-wrapper {
+      gap: 0;
       img {
         transition: all 0.3s ease;
-      }
-    }
-
-    ${media_breakpoint_down('lg')} {
-      h2 {
-        font-size: 1rem;
-      }
-
-      section {
-        flex-direction: column;
-        gap: 3px;
-      }
-    }
-
-    ${media_breakpoint_down('md')} {
-      width: 100%;
-    }
-
-    ${media_breakpoint_exactly_down(633)} {
-      .link-wrapper {
-        flex-direction: column;
-      }
-
-      .news-card-footer {
-        display: flex;
       }
     }
 
@@ -123,7 +99,10 @@ export const ArticlesSection = styled.section`
     }
 
     ${TextNews} {
-      h2 {
+      flex: 1;
+      row-gap: 24px;
+
+      h3 {
         font-size: ${rem(24)};
         font-family: var(--font-poppins), sans-serif;
         line-height: 36px;
@@ -144,6 +123,41 @@ export const ArticlesSection = styled.section`
           font-size: ${rem(16)};
           line-height: 24px;
         }
+      }
+    }
+
+    ${BottomSection} {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      > span {
+        margin-left: auto;
+      }
+    }
+
+    ${media_breakpoint_down('lg')} {
+      h3 {
+        font-size: 1rem;
+      }
+
+      section {
+        flex-direction: column;
+        gap: 3px;
+      }
+    }
+
+    ${media_breakpoint_down('md')} {
+      width: 100%;
+
+      .link-wrapper {
+        flex-direction: column;
+      }
+    }
+
+    ${media_breakpoint_exactly_down(633)} {
+      .news-card-footer {
+        display: flex;
       }
     }
   }

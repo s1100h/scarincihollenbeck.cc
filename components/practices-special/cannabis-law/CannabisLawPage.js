@@ -70,9 +70,7 @@ const CannabisLawPage = ({
         chairPractice={chairIndustry}
       />
       <KeyContactsBlock
-        keyContactsData={
-          cannabisLawData.keyContactsBlock || cannabisLawData.keycontactsblock
-        }
+        keyContactsData={cannabisLawData.keyContactsBlock}
         keyContacts={keyContactsList}
       />
       {(!empty(cannabisLawData.helpArticleBlock.title)

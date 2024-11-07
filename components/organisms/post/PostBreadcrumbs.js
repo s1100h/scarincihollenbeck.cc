@@ -114,6 +114,38 @@ const delegatePathFunc = (list, router, data) => {
     );
   }
 
+  if (router.pathname.includes('/industries')) {
+    return (
+      <>
+        <li>
+          <ButtonBreadcrumb href="/services#industries">
+            {convertPath(list[0])}
+          </ButtonBreadcrumb>
+          <BsChevronRight />
+        </li>
+        <li className="active">
+          <span>{convertPath(list[list.length - 1])}</span>
+        </li>
+      </>
+    );
+  }
+
+  if (router.pathname.includes('/practices')) {
+    return (
+      <>
+        <li>
+          <ButtonBreadcrumb href="/services">
+            {convertPath(list[0])}
+          </ButtonBreadcrumb>
+          <BsChevronRight />
+        </li>
+        <li className="active">
+          <span>{convertPath(list[list.length - 1])}</span>
+        </li>
+      </>
+    );
+  }
+
   return (
     <>
       {list?.slice(0, -1)?.map((item, index) => (
