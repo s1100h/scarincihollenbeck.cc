@@ -371,7 +371,8 @@ export const sortAttorneysByCategory = (attorneys, titles) => {
       && !attorney.designation.includes('Firm Managing Partner')
       && !attorney.designation.includes('Deputy Managing Partner')
       && !attorney.designation.includes('Chief Executive Officer')
-      && !attorney.designation.includes('NYC Managing Partner')
+      // In a pause. That code is adding mr.Warren to Firm Managing Partner section.
+      // && !attorney.designation.includes('NYC Managing Partner')
       && attorney.designation.includes(' Managing Partner')
     ) {
       results.Partners?.attorneys.push(attorney);
@@ -388,10 +389,11 @@ export const sortAttorneysByCategory = (attorneys, titles) => {
       results['Firm Managing Partner']?.attorneys.push(attorney);
       results['Firm management']?.attorneys.push(attorney);
     }
-    if (attorney.designation === 'NYC Managing Partner') {
-      results['Firm Managing Partner']?.attorneys.push(attorney);
-      results['Firm management']?.attorneys.push(attorney);
-    }
+    // In a pause. That code is adding mr.Warren to Firm Managing Partner section.
+    // if (attorney.designation === 'NYC Managing Partner') {
+    //   results['Firm Managing Partner']?.attorneys.push(attorney);
+    //   results.Partners?.attorneys.push(attorney);
+    // }
     if (attorney.designation === 'Chief Growth Officer') {
       results['Administrative Management']?.attorneys.push(attorney);
       results.Directors?.attorneys.push(attorney);
