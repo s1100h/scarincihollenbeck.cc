@@ -241,17 +241,27 @@ export const getStaticProps = async ({ params }) => {
       seo,
       profileHeader,
       accordionData,
+      qrCodeBioPage: attorneyBio.attorneyMainInformation.qrCodeBioPage,
+      qrCodeLinkedin: attorneyBio.attorneyMainInformation.qrCodeBioPage,
     },
     revalidate: 3600,
   };
 };
 
 /** Attorney profile page component */
-const AttorneyProfile = ({ seo, profileHeader, accordionData }) => {
+const AttorneyProfile = ({
+  seo,
+  profileHeader,
+  accordionData,
+  qrCodeBioPage,
+  qrCodeLinkedin,
+}) => {
   const attorneyPageProps = {
     seo,
     profileHeader,
     accordionData,
+    qrCodeBioPage,
+    qrCodeLinkedin,
   };
 
   return (

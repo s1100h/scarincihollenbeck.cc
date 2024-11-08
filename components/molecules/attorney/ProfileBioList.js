@@ -7,7 +7,7 @@ import {
 } from 'styles/attorney-page/AttorneyProfile.style';
 
 const ProfileBioList = ({ title, content }) => (
-  <ProfileBioListItem>
+  <ProfileBioListItem className="item-info-box">
     <ProfileBioListTitle>{title}</ProfileBioListTitle>
     <ProfileBioListContent>
       <JSXWithDynamicLinks HTML={content} />

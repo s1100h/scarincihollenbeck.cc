@@ -4,14 +4,23 @@ import { FaLinkedin } from 'react-icons/fa';
 import { IoPrintSharp } from 'react-icons/io5';
 import { MdLocalPhone, MdLocationPin } from 'react-icons/md';
 import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
+import Image from 'next/image';
+import React from 'react';
+import empty from 'is-empty';
+import { QRCodesBoxForPDF } from '../../../styles/attorney-page/AttorneyPrintPage.style';
 
 const ProfileContacts = ({
-  contact, offices, fax, linkedIn,
+  contact,
+  offices,
+  fax,
+  linkedIn,
+  qrCodeLinkedin,
+  qrCodeBioPage,
 }) => {
   const { phoneNumber, email } = contact;
 
   return (
-    <AddressBox>
+    <AddressBox className="address-box">
       <p className="contacts-title">Contacts</p>
 
       <ul className="contacts-list">
@@ -62,6 +71,22 @@ const ProfileContacts = ({
           </a>
         </li>
       </ul>
+      {(!empty(qrCodeLinkedin) || !empty(qrCodeBioPage)) && (
+        <QRCodesBoxForPDF>
+          <Image
+            src={qrCodeLinkedin?.sourceUrl}
+            alt="LinkedIn"
+            width={60}
+            height={50}
+          />
+          <Image
+            src={qrCodeBioPage?.sourceUrl}
+            alt="The bio page"
+            width={60}
+            height={50}
+          />
+        </QRCodesBoxForPDF>
+      )}
     </AddressBox>
   );
 };

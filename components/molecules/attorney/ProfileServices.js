@@ -32,7 +32,7 @@ const ProfileServices = ({ services, coChairs, chairs }) => {
   if (empty(servicesWithoutDuplicates)) return null;
 
   return (
-    <ProfileServicesWrapper>
+    <ProfileServicesWrapper className="profile-services-wrapper">
       <ProfileServicesTitle indent="true">How I can help</ProfileServicesTitle>
 
       <ProfileServicesContent>

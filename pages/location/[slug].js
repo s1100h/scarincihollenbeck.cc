@@ -95,6 +95,7 @@ export const getStaticProps = async ({ params }) => {
   }
   const officesData = await getOfficeData(slug);
   const whatWeDoSectionData = await getWhatWeDoData();
+
   if (empty(officesData)) {
     return {
       notFound: true,

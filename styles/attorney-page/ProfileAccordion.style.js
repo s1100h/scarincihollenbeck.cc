@@ -10,6 +10,9 @@ import {
 import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const ProfileAccordionWrapper = styled.section`
+  @media print {
+    display: none;
+  }
   padding-bottom: 60px;
 
   ${media_breakpoint_down('md')} {

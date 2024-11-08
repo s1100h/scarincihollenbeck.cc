@@ -32,7 +32,7 @@ import WhiteButton from 'components/molecules/attorney/WhiteButton';
 import ProfileBioList from 'components/molecules/attorney/ProfileBioList';
 import PostBreadCrumbs from '../post/PostBreadcrumbs';
 
-const useDesignationHook = (title) => {
+export const useDesignationHook = (title) => {
   const [designation, setDesignation] = useState(title);
   useEffect(() => {
     if (title === 'Red Bank, NJ Managing Partner') {
@@ -87,6 +87,12 @@ const ProfileHeader = ({
     linkedIn,
   };
 
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
+
   return (
     <ProfileHeaderSection>
       <ContainerDefault>
@@ -109,10 +115,7 @@ const ProfileHeader = ({
                 <ProfileButtons>
                   {!empty(contact?.pdf) && (
                     <WhiteButton
-                      as={Link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href={contact?.pdf}
+                      onClick={handlePrint}
                       text="Print Bio"
                       icon={<PDFIcon />}
                     />

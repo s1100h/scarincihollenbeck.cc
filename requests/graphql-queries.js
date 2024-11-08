@@ -30,6 +30,12 @@ export const attorneyBySlugQuery = `query AttorneyProfileBySlug($slug: String) {
           mimeType
         }
       }
+      qrCodeBioPage {
+        sourceUrl
+      }
+      qrCodeLinkedin {
+        sourceUrl
+      }
     }
     attorneyAdditionalInformationEducationAdmissionsAffiliations {
       additionalInformation {

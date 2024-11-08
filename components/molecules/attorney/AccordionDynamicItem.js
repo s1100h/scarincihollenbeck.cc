@@ -16,7 +16,6 @@ const AccordionDynamicItem = ({
   <AccordionItem as={tag} eventKey={eventKey} title={title}>
     <ProfileAccordionBody {...ulProps}>
       <JSXWithDynamicLinks HTML={content} />
-
       {!empty(disclaimer) && <DisclaimerText text={disclaimer} />}
     </ProfileAccordionBody>
   </AccordionItem>

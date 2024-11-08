@@ -34,13 +34,13 @@ export default function Footer() {
   const slug = getSlugFromUrl(pathname);
 
   const backgroundFooterColor = setFooterBackgroundColor(slug);
-
+  const conditionForPrintFooter = !pathname.includes('attorneys') ? 'true' : '';
   return (
     <FooterWrapper backgroundFooterColor={backgroundFooterColor}>
       <NavigationAndSubscription />
 
       <ContainerDefault>
-        <FooterHolder>
+        <FooterHolder $isPrint={conditionForPrintFooter}>
           <FooterContent>
             <LinksSEOBox>
               <LinksBox title="Core Practices" linksArr={CORE_PRACTICES} />

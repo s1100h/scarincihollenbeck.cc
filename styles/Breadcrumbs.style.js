@@ -4,6 +4,10 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
 
 export const BreadcrumbsListContainer = styled.ul`
+  @media print {
+    display: none;
+  }
+
   display: flex;
   flex-wrap: wrap;
   gap: 5px;

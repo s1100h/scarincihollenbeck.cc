@@ -42,6 +42,10 @@ export const Back = styled.div`
 
 // Styles for new bio page
 export const ProfileHeaderSection = styled.section`
+  @media print {
+    display: none;
+  }
+
   padding-bottom: 60px;
 
   .breadcrumb-container {
@@ -383,6 +387,7 @@ export const AddressBox = styled.address`
   background-color: ${globalColor.blue.blue6002};
   box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
     -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+  position: relative;
 
   .contacts-title {
     margin: 0;
@@ -535,7 +540,7 @@ export const ProfileServicesChair = styled.div`
   margin: 0 0 4px -16px;
   padding: 4px 12px;
   background-color: ${globalColor.blue.blue500};
-  border-radius: 0px ${globalBorderRadius.small} ${globalBorderRadius.small} 0px;
+  border-radius: 0 ${globalBorderRadius.small} ${globalBorderRadius.small} 0px;
   display: flex;
   align-items: center;
   column-gap: 8px;
@@ -667,7 +672,7 @@ export const ProfileBioListItem = styled.div`
   padding: 8px 16px;
   border-radius: ${globalBorderRadius.middle};
   background-color: ${globalColor.gray.gray1002};
-  box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
+  box-shadow: 0 2px 16px 0 rgba(10, 62, 108, 0.08);
   display: flex;
   flex-direction: column;
   row-gap: 8px;

@@ -31,6 +31,10 @@ export const FooterHolder = styled.div`
   ${media_breakpoint_down('md')} {
     padding: 12px 0 40px;
   }
+
+  @media print {
+    display: ${({ $isPrint }) => (!$isPrint ? 'none' : 'flex')};
+  }
 `;
 
 export const FooterContent = styled.div`
