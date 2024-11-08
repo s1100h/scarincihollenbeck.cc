@@ -4,7 +4,7 @@ import KeyContactsBlock from 'components/organisms/cannabis-law/KeyContactsBlock
 import { getPaginationData } from 'requests/getPaginationData';
 import { postsForPaginationByCategoryIdQuery } from 'requests/graphql-queries';
 import { useRouter } from 'next/router';
-import SpecialSubHeader from 'layouts/SubHeader/SpecialSubHeader';
+import SubHeaderSpecial from 'layouts/SubHeader/SubHeaderSpecial';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
 import useAnchorLink from '../../../hooks/useAnchorLink';
@@ -50,7 +50,7 @@ const CannabisLawPage = ({
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <SpecialSubHeader
+      <SubHeaderSpecial
         title={industry.title}
         subtitle={cannabisLawData.subTitle}
         anchorId={anchorIdBlock}

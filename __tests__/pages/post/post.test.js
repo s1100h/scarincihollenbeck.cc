@@ -167,31 +167,6 @@ describe('Post', () => {
     ],
   };
 
-  // it('Default sub header', () => {
-  //   render(<DefaultSubHeader {...subHeaderProps} />);
-
-  //   const container = screen.getByTestId('default-sub-header');
-  //   expect(container).toBeInTheDocument();
-
-  //   const titles = within(container).getAllByRole('heading', {
-  //     level: 1,
-  //   });
-
-  //   const subHeaderTitle = titles.find(
-  //     (title) => title.textContent === subHeaderProps?.title,
-  //   );
-  //   expect(subHeaderTitle).toBeInTheDocument();
-
-  //   const authorElement = within(container).getByText(/Author:/i);
-  //   expect(authorElement).toBeInTheDocument();
-
-  //   const authorName = within(container).getByRole('link', {
-  //     name: RegExp(subHeaderProps?.authors[0]?.display_name, 'i'),
-  //   });
-  //   expect(authorName).toBeInTheDocument();
-  //   expect(authorName).not.toBeEmptyDOMElement();
-  // });
-
   it('Post Sidebar', async () => {
     await act(async () => {
       render(

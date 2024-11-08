@@ -1380,3 +1380,17 @@ query IndustriesQuery {
     }
   }
 }`;
+
+export const getServicesQuery = `
+query ServicesQuery {
+  page(id: "/services", idType: URI) {
+    title
+    servicesPage {
+      description
+      pageImage {
+        sourceUrl
+      }
+    }
+  }
+}
+`;

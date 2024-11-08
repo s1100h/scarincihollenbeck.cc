@@ -11,7 +11,7 @@ import DescriptionPlusBtn from '../../components/organisms/cannabis-law/Descript
 import { CannabisTitles } from '../../styles/practices-special-style/canabis-law/CannabisSubHeader';
 import { FullHDContainer } from '../../styles/practices-special-style/commonForSpecial.style';
 
-const SpecialSubHeader = ({
+const SubHeaderSpecial = ({
   title,
   subtitle,
   backgroundImage = '/images/smoke.png',
@@ -47,4 +47,4 @@ const SpecialSubHeader = ({
   </SpecialSubHeaderContainer>
 );
 
-export default SpecialSubHeader;
+export default SubHeaderSpecial;
