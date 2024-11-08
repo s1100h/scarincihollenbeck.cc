@@ -184,7 +184,12 @@ const EntertainmentInfoBlock = ({
                 </EntertainmentModalDescription>
               </EntertainmentModalContent>
               <EntertainmentModalFooter>
-                <EnterntainmentTabBtn>See attorneys</EnterntainmentTabBtn>
+                <EnterntainmentTabBtn
+                  onClick={handleClickForAnchor}
+                  href={`#${anchorToAttorneysBlock}`}
+                >
+                  See attorneys
+                </EnterntainmentTabBtn>
               </EntertainmentModalFooter>
             </EntertainmentModal>
           </>

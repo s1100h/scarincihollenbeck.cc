@@ -5,7 +5,7 @@ import {
   globalTransition,
   rem,
 } from './global_styles/Global.styles';
-import { attorneyCardForPractices } from './practices/DefaultSubHeader.style';
+import { attorneyCardForPractices } from './practices/SubHeader.style';
 import { ContactBox, InfoBox, LinkBox } from './AttorneyCard.style';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Image from 'next/image';

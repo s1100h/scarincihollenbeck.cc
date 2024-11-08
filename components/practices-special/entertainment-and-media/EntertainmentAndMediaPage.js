@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { getPaginationData } from 'requests/getPaginationData';
-import SliderSubHeader from 'layouts/SubHeader/SliderSubHeader';
+import SubHeaderSlider from 'layouts/SubHeader/SubHeaderSlider';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
 import {
   getClientsQuery,
@@ -59,7 +59,7 @@ const EntertainmentAndMediaPage = ({
         personDataForSchema={attorneysSchemaData}
       />
 
-      <SliderSubHeader
+      <SubHeaderSlider
         slidesData={entertainmentAndMediaData.sliderBackgrounds}
         subtitle={entertainmentAndMediaData.subTitle}
         title={industry.title}

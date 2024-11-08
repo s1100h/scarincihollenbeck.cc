@@ -2,7 +2,7 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { useMemo } from 'react';
 import empty from 'is-empty';
 import dynamic from 'next/dynamic';
-import DefaultSubHeaderNew from 'layouts/SubHeader/DefaultSubHeaderNew';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import PracticeContent from 'components/organisms/practices/PracticeContent';
 import AnchorTop from 'components/atoms/AnchorTop';
 import GoogleReviews from 'components/organisms/common/GoogleReviews';
@@ -74,7 +74,7 @@ const PracticePageNew = ({
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <DefaultSubHeaderNew
+      <SubHeaderDefault
         title={practice?.title}
         subtitle={practice?.practicesIncluded.description}
         keyContacts={keyContactsList}

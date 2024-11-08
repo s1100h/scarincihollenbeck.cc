@@ -13,7 +13,7 @@ import {
   LocationPageContainer,
   OfficeLocationBoxTitle,
 } from '../../styles/Locations.style';
-import DefaultSubHeaderNew from '../../layouts/SubHeader/DefaultSubHeaderNew';
+import SubHeaderDefault from '../../layouts/SubHeader/SubHeaderDefault';
 import PracticeAnchors from '../organisms/practices/PracticeAnchors';
 
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
@@ -95,7 +95,7 @@ const LocationPage = ({
           }}
         />
       </Head>
-      <DefaultSubHeaderNew
+      <SubHeaderDefault
         title={currentOffice.title}
         subtitle={seo.metaDesc}
         backgroundImage={currentOffice.featuredImage}

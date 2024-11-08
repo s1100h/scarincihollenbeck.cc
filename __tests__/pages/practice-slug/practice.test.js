@@ -10,7 +10,7 @@ import GetInTouchForm from 'components/organisms/practices/GetInTouchForm';
 import PracticeAttorneys from 'components/organisms/practices/PracticeAttorneys';
 import PracticePageNew from 'components/pages/PracticePageNew';
 import ReduxProvider from 'hoks/reduxTestHoc';
-import DefaultSubHeaderNew from 'layouts/SubHeader/DefaultSubHeaderNew';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { useRouter } from 'next/router';
 
 jest.mock('next/router', () => ({
@@ -126,7 +126,7 @@ describe('Practice page', () => {
 
     render(
       <ReduxProvider>
-        <DefaultSubHeaderNew {...props} />
+        <SubHeaderDefault {...props} />
       </ReduxProvider>,
     );
 

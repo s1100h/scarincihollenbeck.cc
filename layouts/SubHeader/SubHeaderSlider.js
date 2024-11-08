@@ -41,7 +41,7 @@ const arrowDown = '/images/arrow-down.svg';
 const arrowUpDisabled = '/images/arrow-up-disabled.svg';
 const arrowDownDisabled = '/images/arrow-down-disabled.svg';
 
-const SliderSubHeader = ({
+const SubHeaderSlider = ({
   subtitle,
   slidesData,
   sliderCfg,
@@ -226,4 +226,4 @@ const SliderSubHeader = ({
   );
 };
 
-export default SliderSubHeader;
+export default SubHeaderSlider;

@@ -14,6 +14,7 @@ export const globalColor = {
     gray700: '#414141',
     gray500: '#929292',
     gray300: '#E4E4E5',
+    gray150: '#B3B3B3',
     gray140: '#555555',
     gray130: '#4D4D4D',
     gray120: '#666',
@@ -182,6 +183,7 @@ export const UnderlinedLinkCss = `
   font-weight: 600;
   border-bottom: 2px solid ${globalColor.blue.skyBlue};
   text-transform: unset;
+  transition: ${globalTransition.default};
 
   @media (hover: hover) {
     &:hover {
