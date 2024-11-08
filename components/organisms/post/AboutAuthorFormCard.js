@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import ContactForm from '../../shared/ContactForm/ContactForm';
+import ModalWindow from 'components/common/ModalWindow';
 import {
   AboutAuthorFormCardContainer,
   ContactNowBtn,
   FormBox,
-} from '../../../styles/AboutAuthorFormCard.style';
-import ModalWindow from '../../common/ModalWindow';
+} from 'styles/AboutAuthorFormCard.style';
+import ContactForm from 'components/shared/ContactForm/ContactForm';
 
 const AboutAuthorFormCard = ({ blockName }) => {
   const [show, setShow] = useState(false);

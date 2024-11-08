@@ -11,11 +11,11 @@ import {
   FiltersRightColumn,
 } from 'styles/Filters.style';
 import empty from 'is-empty';
-import { NavbarLink } from 'styles/Navigation.style';
 import { useRouter } from 'next/router';
 import { ResultsWrapper } from 'styles/Attornyes.style';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
 import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link';
 import Selection from './Selection';
 import FilterResult from './FilterResult';
 import Results from './Results';
@@ -141,9 +141,13 @@ const AttorneyFilters = ({
             />
 
             {pathname !== '/attorneys' && (
-              <NavbarLink href="/attorneys" onClick={handleCloseModal}>
+              <Link
+                href="/attorneys"
+                onClick={handleCloseModal}
+                className="underlined-link"
+              >
                 View all
-              </NavbarLink>
+              </Link>
             )}
           </FiltersRightColumn>
         </FiltersColumns>

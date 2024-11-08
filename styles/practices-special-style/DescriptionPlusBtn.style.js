@@ -14,10 +14,10 @@ import { ModalContent } from 'styles/ModalWindow.style';
 export const DescrBtnContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: var(--description-width);
   gap: 32px;
 
-  p {
+  > p {
     font-family: var(--font-rajdhani), sans-serif;
     margin-bottom: 0;
     color: ${globalColor.white};
@@ -116,7 +116,7 @@ export const DescrBtnContainer = styled.div`
   }
 
   ${media_breakpoint_down('lg')} {
-    p {
+    > p {
       font-size: 1rem;
       line-height: 24px;
     }
@@ -127,7 +127,7 @@ export const DescrBtnContainer = styled.div`
   }
 
   ${media_breakpoint_exactly_down(378)} {
-    p {
+    > p {
       width: 300px;
     }
   }

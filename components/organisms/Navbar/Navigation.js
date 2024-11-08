@@ -4,45 +4,68 @@ import {
   NavbarList,
   NavbarWrapper,
 } from 'styles/Navigation.style';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  memo, useCallback, useEffect, useRef, useState,
+} from 'react';
 import { NAVIGATION_OPENERS } from 'utils/constants';
 import { useRouter } from 'next/router';
-import NavbarPractices from './NavbarPractices';
 import NavbarLocations from './NavbarLocations';
 import NavbarAttorneys from './NavbarAttorneys';
+import NavbarServices from './NavbarServices';
 
-const Navigation = React.memo(
+const getIndexNavbarItem = (name) => NAVIGATION_OPENERS.indexOf(name);
+
+const getActiveClass = (index, pathname) => {
+  const routes = {
+    '/attorneys': [getIndexNavbarItem('Attorneys')],
+    '/services': [getIndexNavbarItem('Services')],
+    '/location/[slug]': [getIndexNavbarItem('Locations')],
+  };
+
+  return routes[pathname]?.includes(index) ? 'active' : '';
+};
+
+const Navigation = memo(
   ({
-    practices, locations, isScreenLg, setIsSidebarOpen,
+    practices, locations, industries, isScreenLg, setIsSidebarOpen,
   }) => {
     const [showNavContent, setShowNavContent] = useState(null);
     const navRef = useRef(null);
     const { pathname } = useRouter();
 
-    const handleEvent = (e, index) => {
-      e.preventDefault();
-      setShowNavContent((prevIndex) => (prevIndex === index ? null : index));
+    const handleEvent = useCallback(
+      (e, index) => {
+        e.preventDefault();
+        setShowNavContent((prevIndex) => (prevIndex === index ? null : index));
 
-      if (setIsSidebarOpen && isScreenLg) {
-        setIsSidebarOpen(false);
-      }
-    };
+        if (setIsSidebarOpen && isScreenLg) {
+          setIsSidebarOpen(false);
+        }
+      },
+      [setShowNavContent, setIsSidebarOpen, isScreenLg],
+    );
 
-    const handleEventOutside = (event) => {
-      if (
-        navRef.current
-        && !navRef.current.contains(event.target)
-        && isScreenLg
-      ) {
-        setShowNavContent(null);
-      }
-    };
+    const handleEventOutside = useCallback(
+      (event) => {
+        if (
+          navRef.current
+          && !navRef.current.contains(event.target)
+          && isScreenLg
+        ) {
+          setShowNavContent(null);
+        }
+      },
+      [isScreenLg, setShowNavContent],
+    );
 
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape' && isScreenLg) {
-        setShowNavContent(null);
-      }
-    };
+    const handleKeyDown = useCallback(
+      (event) => {
+        if (event.key === 'Escape' && isScreenLg) {
+          setShowNavContent(null);
+        }
+      },
+      [setShowNavContent, isScreenLg],
+    );
 
     useEffect(() => {
       document.addEventListener('mousedown', handleEventOutside);
@@ -53,17 +76,6 @@ const Navigation = React.memo(
       };
     }, []);
 
-    const getActiveClass = (index, pathname) => {
-      const routes = {
-        '/attorneys': [0],
-        '/practices': [1],
-        '/industries': [2],
-        '/location/[slug]': [3],
-      };
-
-      return routes[pathname]?.includes(index) ? 'active' : '';
-    };
-
     return (
       <NavbarWrapper ref={navRef} className="navbar-wrapper">
         <NavbarList className="navbar-list">
@@ -73,10 +85,9 @@ const Navigation = React.memo(
               onClick={(e) => handleEvent(e, index)}
             >
               <NavbarItemOpener
-                className={`navbar-opener 
-                ${showNavContent === index ? 'active' : ''} 
-                ${getActiveClass(index, pathname)}
-              `}
+                className={`navbar-opener ${
+                  showNavContent === index ? 'active' : ''
+                } ${getActiveClass(index, pathname)}`}
               >
                 {item}
               </NavbarItemOpener>
@@ -84,10 +95,11 @@ const Navigation = React.memo(
           ))}
         </NavbarList>
 
-        {pathname !== '/practices' && (
-          <NavbarPractices
+        {pathname !== '/services' && (
+          <NavbarServices
             practices={practices}
-            showNavContent={showNavContent === 1}
+            industries={industries}
+            showNavContent={showNavContent === getIndexNavbarItem('Services')}
             setShowNavContent={setShowNavContent}
             isScreenLg={isScreenLg}
             setIsSidebarOpen={setIsSidebarOpen}
@@ -96,7 +108,7 @@ const Navigation = React.memo(
 
         {pathname !== '/location/[slug]' && (
           <NavbarLocations
-            showNavContent={showNavContent === 3}
+            showNavContent={showNavContent === getIndexNavbarItem('Locations')}
             setShowNavContent={setShowNavContent}
             setIsSidebarOpen={setIsSidebarOpen}
             locations={locations}
@@ -107,7 +119,7 @@ const Navigation = React.memo(
           <NavbarAttorneys
             practices={practices}
             locations={locations}
-            showNavContent={showNavContent === 0}
+            showNavContent={showNavContent === getIndexNavbarItem('Attorneys')}
             setShowNavContent={setShowNavContent}
             setIsSidebarOpen={setIsSidebarOpen}
           />

@@ -20,7 +20,7 @@ export const HolidayLinkBox = styled.div`
   width: 200px;
   height: 200px;
   position: fixed;
-  top: 70vh;
+  top: 70dvh;
   right: -5px;
 
   h5 {
@@ -58,7 +58,7 @@ export const HolidayLinkBox = styled.div`
   ${media_breakpoint_down('lg')} {
     width: 150px;
     height: 150px;
-    top: 55vh;
+    top: 55dvh;
     right: -5px;
 
     :hover {
@@ -73,7 +73,7 @@ export const HolidayLinkBox = styled.div`
   ${media_breakpoint_down('sm')} {
     width: 120px;
     height: 120px;
-    top: 55vh;
+    top: 55dvh;
     right: -5px;
 
     :hover {

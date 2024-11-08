@@ -32,11 +32,11 @@ const HomePage = ({
   firstSection,
   whoWeAre,
   industryWeWorkWith,
-  whatWeDo,
   latestArticlesTabsData,
   whyChooseUs,
 }) => {
   const { data: attorneysData } = useGetAttorneysQuery();
+
   const filteredAttorneysByDesignation = filterAttorneysByDesignation(
     attorneysData?.data,
   );
@@ -54,7 +54,7 @@ const HomePage = ({
       <HomeContactForm />
       <IndustriesSection {...industryWeWorkWith} />
       <RandomBioSection attorneys={filteredAttorneysByDesignation} />
-      <WhatWeDoSection {...whatWeDo} />
+      <WhatWeDoSection />
       <WhyChooseUs content={whyChooseUs} />
       <LatestPostsSection tabsData={latestArticlesTabsData} />
       <Awards awards={awards} />

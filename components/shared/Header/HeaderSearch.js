@@ -1,32 +1,42 @@
 import React, {
-  useEffect, useRef, useState, useCallback,
+  useEffect, useRef, useState, useCallback, memo,
 } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { HeaderSearchWrapper, SearchOpener } from 'styles/Header.style';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
-const HeaderSearch = React.memo(({ isOpenSearch, setIsOpenSearch }) => {
+const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
   const [inputFocus, setInputFocus] = useState(null);
   const containerRef = useRef(null);
 
-  const handleOpenSearch = (e) => {
-    e.preventDefault();
-    setIsOpenSearch(true);
-    setInputFocus(true);
-  };
+  const handleOpenSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      setIsOpenSearch(true);
+      setInputFocus(true);
+    },
+    [setIsOpenSearch, setInputFocus],
+  );
 
-  const handleHideSearch = () => {
+  const handleHideSearch = useCallback(() => {
     setIsOpenSearch(false);
-  };
+  }, [setIsOpenSearch]);
 
   const handleDocumentClick = useCallback(
     (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
+      const selection = window.getSelection();
+      const isTextSelected = selection && selection.toString().length > 0;
+
+      if (
+        containerRef.current
+        && !containerRef.current.contains(e.target)
+        && !isTextSelected
+      ) {
         handleHideSearch();
       }
     },
-    [setIsOpenSearch],
+    [handleHideSearch],
   );
 
   useEffect(() => {
@@ -37,9 +47,9 @@ const HeaderSearch = React.memo(({ isOpenSearch, setIsOpenSearch }) => {
     };
   }, [handleDocumentClick]);
 
-  const handleContainerClick = (e) => {
+  const handleContainerClick = useCallback((e) => {
     e.stopPropagation();
-  };
+  }, []);
 
   return (
     <HeaderSearchWrapper

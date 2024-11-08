@@ -4,8 +4,8 @@ import KeyContactsBlock from 'components/organisms/cannabis-law/KeyContactsBlock
 import { getPaginationData } from 'requests/getPaginationData';
 import { postsForPaginationByCategoryIdQuery } from 'requests/graphql-queries';
 import { useRouter } from 'next/router';
+import SpecialSubHeader from 'layouts/SubHeader/SpecialSubHeader';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
-import SubHeader from '../../../layouts/SubHeader/SubHeader';
 import ArticlesBlock from '../../organisms/cannabis-law/ArticlesBlock';
 import useAnchorLink from '../../../hooks/useAnchorLink';
 
@@ -17,12 +17,12 @@ const NewsPaperBlock = dynamic(() => import('../../organisms/cannabis-law/NewsPa
 const PracticesListBlock = dynamic(() => import('../../organisms/cannabis-law/PracticesListBlock'));
 
 const CannabisLawPage = ({
-  practice,
+  industry,
   canonicalUrl,
   attorneysSchemaData,
   corePractices,
-  chairPractice,
-  attorneyListPractice,
+  chairIndustry,
+  attorneyListIndustry,
   keyContactsList,
   cannabisLawData,
 }) => {
@@ -45,19 +45,20 @@ const CannabisLawPage = ({
   return (
     <>
       <BasicSiteHead
-        title={practice.seo.title}
-        metaDescription={practice.seo.metaDescription}
+        title={industry.seo.title}
+        metaDescription={industry.seo.metaDescription}
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <SubHeader
-        handleClickAnchor={handleClickByAnchorToPhotoBlock}
-        backgroundVideo={cannabisLawData.subheaderBackgroundVideo.link}
-        anchorId={anchorIdBlock}
-        title={practice.title}
+      <SpecialSubHeader
+        title={industry.title}
         subtitle={cannabisLawData.subTitle}
+        anchorId={anchorIdBlock}
         article={cannabisLawData.descriptionSubheader}
+        backgroundVideo={cannabisLawData.subheaderBackgroundVideo.link}
+        handleClickAnchor={handleClickByAnchorToPhotoBlock}
       />
+
       <PhotoBlock
         anchorIdBlock={hrefToId}
         photoBlockData={cannabisLawData.photoBlock}
@@ -65,11 +66,11 @@ const CannabisLawPage = ({
       <CardsBlock cardsBlockData={cannabisLawData.cardsInfo.cards} />
       <AttorneysBlock
         attorneysBlockArticle={cannabisLawData.attorneysArticleBlock}
-        attorneyListPractice={attorneyListPractice}
-        chairPractice={chairPractice}
+        attorneyListPractice={attorneyListIndustry}
+        chairPractice={chairIndustry}
       />
       <KeyContactsBlock
-        keyContactsData={cannabisLawData.keycontactsblock}
+        keyContactsData={cannabisLawData.keyContactsBlock}
         keyContacts={keyContactsList}
       />
       {(!empty(cannabisLawData.helpArticleBlock.title)

@@ -63,12 +63,12 @@ export const footerNavList = [
   },
   {
     linkTitle: 'Practices',
-    link: '/practices',
+    link: '/services',
     id: 2,
   },
   {
     linkTitle: 'Industries',
-    link: '/industries',
+    link: '/services#industries',
     id: 3,
   },
   {
@@ -205,117 +205,6 @@ export const sitemapAddon = [
   'awards',
 ];
 
-/** Header navigation links */
-export const SITE_NAVIGATION = [
-  {
-    id: 2,
-    label: 'The Firm',
-    menuId: 'the-firm',
-    slug: '',
-    children: [
-      {
-        databaseId: 101,
-        title: 'Administration',
-        uri: '/administration',
-      },
-      {
-        databaseId: 102,
-        title: 'Careers',
-        uri: '/careers',
-      },
-      {
-        databaseId: 103,
-        title: 'Community Involvement',
-        uri: '/community-involvement',
-      },
-      {
-        databaseId: 105,
-        title: 'Diversity',
-        uri: '/diversity',
-      },
-      {
-        databaseId: 106,
-        title: 'Firm Overview',
-        uri: '/firm-overview',
-      },
-      {
-        databaseId: 107,
-        title: 'Pro Bono',
-        uri: '/pro-bono',
-      },
-      // the page in the Draft. 9.09.2024
-      // {
-      //   databaseId: 108,
-      //   title: 'Women Lead',
-      //   uri: '/women-lead',
-      // },
-    ],
-  },
-  {
-    id: 3,
-    label: 'Attorneys',
-    slug: '/attorneys',
-    children: undefined,
-    menuId: 'attorneys',
-  },
-  {
-    id: 4,
-    label: 'Library',
-    menuId: 'library',
-    slug: '',
-    children: [
-      {
-        databaseId: 401,
-        title: 'Client Alerts',
-        uri: '/library/category/client-alert',
-      },
-      {
-        databaseId: 402,
-        title: 'Firm News',
-        uri: '/library/category/firm-news',
-      },
-      {
-        databaseId: 403,
-        title: 'Firm Events',
-        uri: '/library/category/firm-events',
-      },
-      {
-        databaseId: 404,
-        title: 'Firm Insights',
-        uri: '/library/category/law-firm-insights',
-      },
-    ],
-  },
-  {
-    id: 5,
-    label: 'Industries',
-    menuId: 'industries',
-    slug: '',
-    children: [
-      {
-        databaseId: 401,
-        title: 'Client Alerts',
-        uri: '/library/category/client-alert',
-      },
-      {
-        databaseId: 402,
-        title: 'Firm News',
-        uri: '/library/category/firm-news',
-      },
-      {
-        databaseId: 403,
-        title: 'Firm Events',
-        uri: '/library/category/firm-events',
-      },
-      {
-        databaseId: 404,
-        title: 'Firm Insights',
-        uri: '/library/category/law-firm-insights',
-      },
-    ],
-  },
-];
-
 /** List of Client Alert links on the covid pages and category landing pages */
 export const CLIENT_ALERTS = [
   {
@@ -438,16 +327,6 @@ export const CORE_PRACTICES = [
     id: 11,
     slug: '/practices/tax-trusts-estates',
     label: 'Tax, Trusts & Estates',
-  },
-  {
-    id: 12,
-    slug: '/practices/entertainment-and-media',
-    label: 'Entertainment & Media',
-  },
-  {
-    id: 13,
-    slug: '/practices/new-jersey-cannabis-law',
-    label: 'Cannabis Law',
   },
 ];
 
@@ -868,12 +747,7 @@ export const googleLocationIds = {
 
 export const ALT_PREFIX = 'Image showing the text: ';
 
-export const NAVIGATION_OPENERS = [
-  'Attorneys',
-  'Practices',
-  'Industries',
-  'Locations',
-];
+export const NAVIGATION_OPENERS = ['Attorneys', 'Services', 'Locations'];
 
 export const SIDEBAR_POLITIC_LINKS = [
   {
@@ -905,7 +779,7 @@ export const SOCIAL_LINKS = [
   },
   {
     id: 'sidebar-x',
-    title: 'X',
+    title: 'X/Twitter',
     icon: <FaSquareXTwitter />,
     url: 'https://twitter.com/S_H_Law',
   },
@@ -954,4 +828,11 @@ export const reservedAccordionTitles = [
   'Blog',
   'Events',
   'Government & Law',
+];
+
+export const NAVBAR_SERVICES_TABS = ['Practices', 'Industries'];
+
+export const readyIndustriesUrls = [
+  '/industries/cannabis',
+  '/industries/entertainment-and-media',
 ];

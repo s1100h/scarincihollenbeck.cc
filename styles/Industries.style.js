@@ -90,13 +90,18 @@ export const IndustriesCardWrapper = styled.article`
   &:hover {
     border-color: ${globalColor.blue.blue400};
     background-color: ${globalColor.gray.gray1002};
-    .icon {
+
+    .hovered-icon {
       color: ${globalColor.blue.blue400};
     }
 
     .title {
       color: ${globalColor.blue.blue400};
     }
+  }
+
+  .hovered-icon {
+    color: ${globalColor.blue.darkBlue};
   }
 
   ${media_breakpoint_down('lg')} {
@@ -112,16 +117,6 @@ export const IndustriesCardWrapper = styled.article`
   }
 `;
 
-export const IndustriesCardIcon = styled.span`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: ${globalTransition.default};
-  color: ${globalColor.blue.darkBlue};
-`;
-
 export const IndustriesCardTitle = styled.h3`
   color: ${globalColor.blue.darkBlue};
   font-size: 1rem;
@@ -134,7 +129,7 @@ export const IndustriesCardTitle = styled.h3`
   }
 `;
 
-export const IndustriesCardText = styled.p`
+export const IndustriesCardText = styled.div`
   margin: 0;
   color: ${globalColor.gray.gray110};
   font-size: ${rem(12)};
@@ -142,4 +137,8 @@ export const IndustriesCardText = styled.p`
   font-family: var(--font-lato);
   text-transform: uppercase;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+
+  p {
+    margin: 0;
+  }
 `;

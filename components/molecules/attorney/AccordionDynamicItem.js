@@ -12,9 +12,10 @@ const AccordionDynamicItem = ({
   disclaimer,
   eventKey,
   tag,
+  isTwoColumns = false,
 }) => (
   <AccordionItem as={tag} eventKey={eventKey} title={title}>
-    <ProfileAccordionBody {...ulProps}>
+    <ProfileAccordionBody $isTwoColumns={isTwoColumns} {...ulProps}>
       <JSXWithDynamicLinks HTML={content} />
       {!empty(disclaimer) && <DisclaimerText text={disclaimer} />}
     </ProfileAccordionBody>

@@ -1,8 +1,8 @@
 import empty from 'is-empty';
-import { checkOnPublish } from 'utils/helpers';
+import { attorneysSanitize, checkOnPublish } from 'utils/helpers';
 import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
-import { practicesQueryGenerator } from './practicesQueryGenerator';
+import { practicesQuery } from './practicesQueryGenerator';
 
 const postsSanitize = (posts) => posts.map((post) => {
   post.featuredImage = post.featuredImage?.node.sourceUrl
@@ -10,46 +10,8 @@ const postsSanitize = (posts) => posts.map((post) => {
   return post;
 });
 
-const attorneysSanitize = (attorneysArr) => {
-  const designationOrder = [
-    'Firm Managing Partner',
-    'Deputy Managing Partner',
-    'Partner',
-    'Counsel',
-    'Of Counsel',
-    'Senior Associate',
-    'Associate',
-  ];
-
-  return attorneysArr
-    .map((attorney) => {
-      attorney.attorneyMainInformation.profileImage = !empty(
-        attorney.attorneyMainInformation?.profileImage?.sourceUrl,
-      )
-        ? attorney.attorneyMainInformation.profileImage.sourceUrl
-        : '/images/no-image-found-diamond-750x350.png';
-      return {
-        databaseId: attorney.databaseId,
-        link: attorney.uri,
-        title: attorney.title,
-        status: attorney.status,
-        ...attorney.attorneyMainInformation,
-        ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
-      };
-    })
-    .sort((a, b) => {
-      const indexA = designationOrder.indexOf(a.designation);
-      const indexB = designationOrder.indexOf(b.designation);
-
-      if (indexA !== indexB) {
-        return indexA - indexB; // Sort by designation order first
-      }
-      return a.lastName?.localeCompare(b.lastName); // If designations are the same, sort by last name
-    });
-};
-
 export const getPracticeAttorneys = async (uri) => {
-  const data = await fetchAPI(practicesQueryGenerator(uri), {
+  const data = await fetchAPI(practicesQuery, {
     variables: {
       id: uri,
     },

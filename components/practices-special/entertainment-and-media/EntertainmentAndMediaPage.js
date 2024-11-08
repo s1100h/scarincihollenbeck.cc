@@ -1,9 +1,12 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { getPaginationData } from 'requests/getPaginationData';
+import SliderSubHeader from 'layouts/SubHeader/SliderSubHeader';
 import BasicSiteHead from '../../shared/head/BasicSiteHead';
-import SubHeader from '../../../layouts/SubHeader/SubHeader';
-import { postsForPaginationByCategoryIdQuery } from '../../../requests/graphql-queries';
+import {
+  getClientsQuery,
+  postsForPaginationByCategoryIdQuery,
+} from '../../../requests/graphql-queries';
 import useAnchorLink from '../../../hooks/useAnchorLink';
 
 const AttorneysBlock = dynamic(() => import('../../organisms/ent-and-media/AttorneysBlock'));
@@ -13,11 +16,11 @@ const ArticlesBlock = dynamic(() => import('../../organisms/ent-and-media/Articl
 const PracticesLinksBlock = dynamic(() => import('../../organisms/ent-and-media/PracticesLinksBlock'));
 
 const EntertainmentAndMediaPage = ({
-  practice,
+  industry,
   canonicalUrl,
   attorneysSchemaData,
-  chairPractice,
-  attorneyListPractice,
+  chairIndustry,
+  attorneyListIndustry,
   entertainmentAndMediaData,
   practices,
 }) => {
@@ -37,30 +40,36 @@ const EntertainmentAndMediaPage = ({
     params,
   );
 
+  const clientsPaginationData = getPaginationData(getClientsQuery, {
+    currentPage: query?.['client-page'] || 1,
+    itemsPerPage: 10,
+  });
+
   const sliderCfg = {
     isSlidesAutoPlay: true,
-    autoPlaySpeed: 3000,
+    autoPlaySpeed: 10000,
   };
 
   return (
     <>
       <BasicSiteHead
-        title={practice.seo.title}
-        metaDescription={practice.seo.metaDescription}
+        title={industry.seo.title}
+        metaDescription={industry.seo.metaDesc}
         canonicalUrl={canonicalUrl}
         personDataForSchema={attorneysSchemaData}
       />
-      <SubHeader
+
+      <SliderSubHeader
         slidesData={entertainmentAndMediaData.sliderBackgrounds}
         subtitle={entertainmentAndMediaData.subTitle}
-        title={practice.title}
+        title={industry.title}
         sliderCfg={sliderCfg}
         handleClickAnchor={handleClickByAnchorToAttorneys}
         anchorId={anchorIdToAttorneys}
       />
       <AttorneysBlock
-        attorneyListPractice={attorneyListPractice}
-        chairPractice={chairPractice}
+        attorneyListPractice={attorneyListIndustry}
+        chairPractice={chairIndustry}
         title={entertainmentAndMediaData.attorneysTitleBox}
         anchorLinkToAttorneys={hrefToId}
       />
@@ -69,11 +78,11 @@ const EntertainmentAndMediaPage = ({
         anchorToAttorneysBlock={anchorIdToAttorneys}
         tabs={entertainmentAndMediaData.entertainmentInfoBlock.tabs}
       />
-      {/* <EntertainmentClientsBlock
+      <EntertainmentClientsBlock
         title={entertainmentAndMediaData.clientsBlock.title}
         description={entertainmentAndMediaData.clientsBlock.description}
-        clientsApolloProps={clientsPaginationProps}
-      /> */}
+        clientsPaginationData={clientsPaginationData}
+      />
       <ArticlesBlock paginationData={paginationData} />
       <PracticesLinksBlock
         practicesListTitle={entertainmentAndMediaData.practicesList.title}

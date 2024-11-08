@@ -5,7 +5,8 @@ import {
   BsFillGeoAltFill,
 } from 'react-icons/bs';
 
-const checkAllOffices = (location) => {
+export const checkAllOffices = (location) => {
+  if (!location) return null;
   const splitLocs = location.split(',').filter((i) => i.trim() !== 'NJ');
 
   if (splitLocs.length > 1) {
@@ -27,28 +28,42 @@ export default function PositionCard({
 }) {
   return (
     <CareerCard onClick={() => handleClickToCareer(slug)}>
-      <h3 title={title}>{title}</h3>
+      {title && <h3 title={title}>{title}</h3>}
+
       <div className="position-location-box">
+        {positionType && (
         <div className="position-type">
           #
           {positionType}
         </div>
-        <p className="icon-and-info">
-          <BsFillGeoAltFill />
-          {checkAllOffices(positionLocation)}
-        </p>
+        )}
+        {positionLocation && (
+          <p className="icon-and-info">
+            <BsFillGeoAltFill />
+            {checkAllOffices(positionLocation)}
+          </p>
+        )}
       </div>
-      <p className="job-mini-description">{miniDescription}</p>
-      <div className="d-flex gap-4">
-        <p className="icon-and-info">
-          <BsFillClockFill />
-          {startDate}
-        </p>
-        <p className="icon-and-info">
-          <BsFillBriefcaseFill />
-          {duration}
-        </p>
-      </div>
+      {miniDescription && (
+        <p className="job-mini-description">{miniDescription}</p>
+      )}
+
+      {(startDate || duration) && (
+        <div className="d-flex gap-4 mt-auto">
+          {startDate && (
+            <p className="icon-and-info">
+              <BsFillClockFill />
+              {startDate}
+            </p>
+          )}
+          {duration && (
+            <p className="icon-and-info">
+              <BsFillBriefcaseFill />
+              {duration}
+            </p>
+          )}
+        </div>
+      )}
     </CareerCard>
   );
 }

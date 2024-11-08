@@ -18,7 +18,7 @@ export const HawDoIKnow = () => (
   <>
     Different kinds of legal matters require attention from specialized areas of
     law. You can discover the firm`s practice groups or click
-    <Link href="/practices"> here.</Link>
+    <Link href="/services"> here.</Link>
     or if you have no idea where to begin, call
     {' '}
     <a href="tel:201-806-3364"> 201-806-3364</a>
@@ -61,7 +61,7 @@ export const WhatAreTheFirms = () => {
       <>
         In addition, Scarinci Hollenbeck, LLC offers a variety of niche,
         sub-practice groups you can learn more about
-        <Link href="/practices"> here.</Link>
+        <Link href="/services"> here.</Link>
       </>
     </>
   );

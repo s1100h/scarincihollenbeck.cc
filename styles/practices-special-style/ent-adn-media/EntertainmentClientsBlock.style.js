@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { PaginationBtn, PaginationContainer } from 'styles/PaginationBtn.style';
 import { ContentTooltip } from 'styles/Tooltip.style';
 import {
   entAndMediaColors,
@@ -113,78 +112,79 @@ export const EntertainmentClientsDescription = styled.p`
   }
 `;
 export const EntertainmentClientsList = styled.div`
-  ${PaginationContainer} {
-    left: auto;
-  }
+  .pagination {
+    margin: 0 0 20px 0;
+    gap: 16px;
 
-  ${PaginationBtn} {
-    padding: 4px 14.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
-    border-radius: 20px;
+    .page-item {
+      width: 43px;
+      height: 43px;
+      border-radius: 50px;
+      border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
+      background-color: transparent;
+      overflow: hidden;
+      a,
+      span {
+        color: ${entAndMediaColors.entAndMediaColorGold};
+      }
 
-    svg {
-      color: ${entAndMediaColors.entAndMediaColorGold};
-      font-size: 15px;
-      transition: all 0.15s linear;
-      stroke-width: 1px;
-    }
+      &.active {
+        background-color: ${entAndMediaColors.entAndMediaColorGold};
+        span {
+          color: ${globalColor.gray.gray130};
+        }
+      }
 
-    :first-child {
-      :hover {
+      &.disabled {
+        .pagination-icon {
+          color: ${globalColor.gray.gray130};
+        }
+      }
+
+      &:hover {
+        a,
+        span,
         svg {
-          transform: translateX(-3px);
+          color: ${globalColor.white};
         }
       }
     }
 
-    :hover {
-      svg {
-        transform: translateX(3px);
+    .page-link {
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+
+      span {
+        svg {
+          color: ${entAndMediaColors.entAndMediaColorGold};
+        }
+      }
+
+      &:hover,
+      &:focus {
+        color: ${globalColor.white};
+        svg {
+          color: ${globalColor.white};
+        }
       }
     }
-  }
 
-  .pagination {
-    margin: 0 0 20px 0;
-    column-gap: 16px;
-  }
+    ${media_breakpoint_down('md')} {
+      gap: 8px;
 
-  .page-item {
-    width: 43px;
-    height: 12px;
-    border-radius: 20px;
-    border: 1px solid ${entAndMediaColors.entAndMediaColorGold};
-    background-color: transparent;
-    overflow: hidden;
+      .page-item {
+        width: 28px;
+        height: 28px;
+      }
 
-    &.active {
-      background-color: ${entAndMediaColors.entAndMediaColorGold};
+      .page-link {
+        font-size: ${rem(14)};
+      }
     }
-  }
 
-  .page-link {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    color: transparent;
-    background-color: transparent;
-    border: 0;
-  }
-
-  ${media_breakpoint_exactly_down(1850)} {
-    .page-item {
-      width: 30px;
-      height: 10px;
-    }
-  }
-
-  ${media_breakpoint_exactly_down(1440)} {
-    .page-item {
-      width: 35px;
-      height: 12px;
+    ${media_breakpoint_down('sm')} {
+      gap: 4px;
     }
   }
 `;

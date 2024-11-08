@@ -10,36 +10,6 @@ import { StandardBlueButton } from 'styles/Buttons.style';
 import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
 import Image from 'next/image';
 
-export const Front = styled.div`
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  position: relative;
-  top: 0;
-  left: 0;
-  transition: 0.5s;
-  transform: ${({ isRotateProp }) =>
-    isRotateProp ? 'rotateY(180deg)' : 'rotateY(0deg)'};
-`;
-
-export const Back = styled.div`
-  background: black;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  top: 0;
-  left: 0;
-  transition: 0.5s;
-  transform: ${({ isRotateProp }) =>
-    isRotateProp ? 'rotateY(360deg)' : 'rotateY(180deg)'};
-  position: absolute;
-
-  video {
-    width: inherit;
-    height: -webkit-fill-available;
-  }
-`;
-
 // Styles for new bio page
 export const ProfileHeaderSection = styled.section`
   @media print {
@@ -416,7 +386,10 @@ export const AddressBox = styled.address`
     color: ${globalColor.white};
     transition: ${globalTransition.default};
   }
-
+  @media print {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   .contacts-item {
     &:has(.contacts-link:hover) {
       svg {

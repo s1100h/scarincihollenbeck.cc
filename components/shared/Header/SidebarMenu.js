@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
 import {
   SidebarMenuBackdrop,
   SidebarMenuButton,
@@ -8,7 +8,6 @@ import {
   SidebarMenuFooter,
   SidebarMenuLink,
   SidebarMenuLinks,
-  SidebarMenuList,
   SidebarMenuSocial,
   SidebarMenuSocialIcon,
   SidebarMenuSocials,
@@ -25,18 +24,18 @@ import SubscriptionModal from 'components/molecules/subscription/SubscriptionMod
 import { ButtonRed } from 'styles/Buttons.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
 import { useSelector } from 'react-redux';
-import MenuItem from './SidebarMenuItem';
+import SidebarMenuItems from './SidebarMenuItems';
 
-const SidebarMenu = React.memo(
+const SidebarMenu = memo(
   ({
-    practices, locations, menuData, isSidebarOpen, setIsSidebarOpen,
+    practices,
+    locations,
+    industries,
+    menuData,
+    isSidebarOpen,
+    setIsSidebarOpen,
   }) => {
     const { headerSize } = useSelector((state) => state.sizes);
-    const [openItemIndex, setOpenItemIndex] = useState(null);
-
-    const handleItemClick = (index) => {
-      setOpenItemIndex(openItemIndex === index ? null : index);
-    };
 
     const menuHeight = isSidebarOpen
       ? `calc(100dvh - ${headerSize.height}px)`
@@ -48,29 +47,21 @@ const SidebarMenu = React.memo(
           $headerHeight={menuHeight}
           $isSidebarOpen={isSidebarOpen}
           className={isSidebarOpen ? 'sidebar-open' : ''}
+          inert={isSidebarOpen ? undefined : ''}
         >
           <SidebarMenuContainer>
             <Navigation
               key="header-navigation"
               practices={practices}
               locations={locations}
+              industries={industries}
               setIsSidebarOpen={setIsSidebarOpen}
             />
 
-            <SidebarMenuList>
-              {menuData.map((item, index) => (
-                <MenuItem
-                  key={item?.databaseId}
-                  icon={item?.icon}
-                  title={item?.title}
-                  href={item?.href}
-                  list={item?.list}
-                  isOpen={openItemIndex === index}
-                  onClick={() => handleItemClick(index)}
-                  setIsSidebarOpen={setIsSidebarOpen}
-                />
-              ))}
-            </SidebarMenuList>
+            <SidebarMenuItems
+              menuData={menuData}
+              setIsSidebarOpen={setIsSidebarOpen}
+            />
 
             <SidebarMenuLinks>
               {SIDEBAR_POLITIC_LINKS?.map((item) => (

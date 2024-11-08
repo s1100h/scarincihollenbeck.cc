@@ -6,19 +6,12 @@ import {
 } from '../../global_styles/Global.styles';
 import { media_breakpoint_down } from '../../mediaBreakpoints.style';
 
-export const CannabisTitle = styled.div`
-  margin: auto 0 0 0;
+export const CannabisTitles = styled.div`
+  max-width: 940px;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-`;
-
-export const CannabisSubTitle = styled.div`
-  margin-bottom: 75px;
-  margin-left: 20px;
 
   p {
-    margin: 0;
+    margin: 40px 0 0 auto;
     ${paragraphStyles};
     text-align: start;
     font-size: ${rem(20)};
@@ -28,33 +21,19 @@ export const CannabisSubTitle = styled.div`
     width: 100%;
   }
 
-  ${media_breakpoint_down('xxl')} {
-    margin-bottom: 50px;
-  }
-
   ${media_breakpoint_down('xl')} {
-    margin-left: 0;
+    max-width: 790px;
+
     p {
       font-size: 1rem;
     }
   }
 
   ${media_breakpoint_down('lg')} {
-    margin-bottom: 10px;
+    max-width: 620px;
 
     p {
-      max-width: 505px;
       font-size: 0.8rem;
     }
-  }
-
-  ${media_breakpoint_down('md')} {
-    p {
-      max-width: 364px;
-    }
-  }
-
-  ${media_breakpoint_down('sm')} {
-    display: none;
   }
 `;

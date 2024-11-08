@@ -70,6 +70,9 @@ const CustomPagination = ({
   ellipsis = 1,
   limit,
   queryParam = 'page',
+  showFirstAndLastButtons = true,
+  showPreviousAndNextButtons = true,
+  showCount = true,
 }) => {
   const totalPages = Math.ceil(totalItems / limit);
   if (empty(totalPages) || totalPages < 2) return null;
@@ -77,7 +80,7 @@ const CustomPagination = ({
   const linkQueryParam = `?${queryParam}=`;
   const router = useRouter();
   const { slug, ...routerQueries } = router.query;
-  const pageRoute = router.asPath.split('?')[0];
+  const pageRoute = router.asPath.split('?')[0].split('#')[0];
   between = calculateBeetween(between, isMobileScreen);
   ellipsis = calculateEllipsis(ellipsis, between);
   currentPage = Number(currentPage);
@@ -208,61 +211,73 @@ const CustomPagination = ({
 
   return (
     <CustomPaginationWrapper>
-      <CustomPaginationItemsCount>
-        {`Showing ${minShowingRows}-${maxShowingRows} of ${
-          totalItems || 'Loading...'
-        }`}
-      </CustomPaginationItemsCount>
+      {showCount && (
+        <CustomPaginationItemsCount>
+          {`Showing ${minShowingRows}-${maxShowingRows} of ${
+            totalItems || 'Loading...'
+          }`}
+        </CustomPaginationItemsCount>
+      )}
       <Pagination>
-        <Pagination.First
-          href={currentPage > 1 ? pageRoute : null}
-          disabled={currentPage <= 1}
-          className="pagination-first"
-          onClick={(e) => (currentPage > 1 ? handleChangePage(e, null) : {})}
-        >
-          <MdKeyboardDoubleArrowLeft className="pagination-icon" />
-        </Pagination.First>
-        <Pagination.Prev
-          href={
-            currentPage > 1
-              ? `${pageRoute}${linkQueryParam}${currentPage - 1}`
-              : null
-          }
-          disabled={currentPage <= 1}
-          className="pagination-prev"
-          onClick={(e) => (currentPage > 1 ? handleChangePage(e, currentPage - 1) : {})}
-        >
-          <MdKeyboardArrowLeft className="pagination-icon" />
-        </Pagination.Prev>
+        {showFirstAndLastButtons && (
+          <Pagination.First
+            href={currentPage > 1 ? pageRoute : null}
+            disabled={currentPage <= 1}
+            className="pagination-first"
+            onClick={(e) => (currentPage > 1 ? handleChangePage(e, null) : {})}
+          >
+            <MdKeyboardDoubleArrowLeft className="pagination-icon" />
+          </Pagination.First>
+        )}
+        {showPreviousAndNextButtons && (
+          <Pagination.Prev
+            href={
+              currentPage > 1
+                ? `${pageRoute}${linkQueryParam}${currentPage - 1}`
+                : null
+            }
+            disabled={currentPage <= 1}
+            className="pagination-prev"
+            onClick={(e) => (currentPage > 1 ? handleChangePage(e, currentPage - 1) : {})}
+          >
+            <MdKeyboardArrowLeft className="pagination-icon" />
+          </Pagination.Prev>
+        )}
         {renderItemsBeforeEllipsis()}
         {renderLeftEllipsis()}
         {renderVisiblePages()}
         {renderRightEllipsis()}
         {renderItemsAfterEllipsis()}
-        <Pagination.Next
-          href={
-            currentPage < totalPages
-              ? `${pageRoute}${linkQueryParam}${currentPage + 1}`
-              : null
-          }
-          disabled={currentPage >= totalPages}
-          className="pagination-next"
-          onClick={(e) => (currentPage < totalPages ? handleChangePage(e, currentPage + 1) : {})}
-        >
-          <MdKeyboardArrowRight className="pagination-icon" />
-        </Pagination.Next>
-        <Pagination.Last
-          href={
-            currentPage < totalPages
-              ? `${pageRoute}${linkQueryParam}${totalPages}`
-              : null
-          }
-          disabled={currentPage >= totalPages}
-          className="pagination-last"
-          onClick={(e) => (currentPage < totalPages ? handleChangePage(e, totalPages) : {})}
-        >
-          <MdKeyboardDoubleArrowRight className="pagination-icon" />
-        </Pagination.Last>
+        {showPreviousAndNextButtons && (
+          <Pagination.Next
+            href={
+              currentPage < totalPages
+                ? `${pageRoute}${linkQueryParam}${currentPage + 1}`
+                : null
+            }
+            disabled={currentPage >= totalPages}
+            className="pagination-next"
+            onClick={(e) => (currentPage < totalPages
+              ? handleChangePage(e, currentPage + 1)
+              : {})}
+          >
+            <MdKeyboardArrowRight className="pagination-icon" />
+          </Pagination.Next>
+        )}
+        {showFirstAndLastButtons && (
+          <Pagination.Last
+            href={
+              currentPage < totalPages
+                ? `${pageRoute}${linkQueryParam}${totalPages}`
+                : null
+            }
+            disabled={currentPage >= totalPages}
+            className="pagination-last"
+            onClick={(e) => (currentPage < totalPages ? handleChangePage(e, totalPages) : {})}
+          >
+            <MdKeyboardDoubleArrowRight className="pagination-icon" />
+          </Pagination.Last>
+        )}
       </Pagination>
     </CustomPaginationWrapper>
   );

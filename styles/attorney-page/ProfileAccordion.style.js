@@ -82,6 +82,12 @@ export const ProfileAccordionHolder = styled.div`
     }
   }
 
+  @media print {
+    .accordion-collapse {
+      display: block !important;
+    }
+  }
+
   .disclaimer {
     margin: 0;
     text-align: center;
@@ -98,6 +104,13 @@ export const ProfileAccordionHolder = styled.div`
 `;
 
 export const ProfileAccordionBody = styled.div`
+  columns: ${({ $isTwoColumns }) => ($isTwoColumns ? 2 : undefined)};
+  gap: 40px;
+
+  ${media_breakpoint_down('xl')} {
+    columns: unset;
+  }
+
   ul {
     margin: 0 0 12px 0;
     list-style: disc;

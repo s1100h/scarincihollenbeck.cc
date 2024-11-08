@@ -34,7 +34,7 @@ const getItemIcon = (type) => {
 
 export default function Hit({ hit, setIsOpenSearch, handleClear }) {
   // eslint-disable-next-line no-underscore-dangle
-  if (!empty(hit._highlightResult.post_title.value)) {
+  if (!empty(hit._highlightResult?.post_title?.value)) {
     // eslint-disable-next-line no-underscore-dangle
     hit._highlightResult.post_title.value = changeTitle(
       // eslint-disable-next-line no-underscore-dangle
@@ -54,8 +54,8 @@ export default function Hit({ hit, setIsOpenSearch, handleClear }) {
       <SearchedItemLink
         href={
           hit.post_type_label === 'Posts'
-            ? hit.permalink.replace(PRODUCTION_URL, '')
-            : hit.permalink.replace(BASE_API_URL, '')
+            ? hit.permalink?.replace(PRODUCTION_URL, '')
+            : hit.permalink?.replace(BASE_API_URL, '')
         }
         passHref
       >

@@ -7,12 +7,7 @@ import {
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import { ChildrenBox } from './ModalWindow.style';
-import {
-  PracticeCardContent,
-  PracticeCardFooterItem,
-  PracticeCardHeader,
-  PracticeCardWrapper,
-} from './PracticeCard.style';
+import { ResultCard, ResultCardTitle } from './Filters.style';
 
 export const PracticesTabsWrapper = styled.div`
   display: flex;
@@ -25,12 +20,20 @@ export const PracticesTabsOpeners = styled.div`
   flex-wrap: wrap;
   gap: 24px;
 
+  ${media_breakpoint_down('xl')} {
+    padding-bottom: 4px;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
   ${media_breakpoint_down('md')} {
     gap: 16px;
   }
 `;
 
 export const PracticesTabsOpener = styled.button`
+  flex-shrink: 0;
   padding: 7px 15px;
   border: 1px solid ${globalColor.gray.gray110};
   border-radius: 4px;
@@ -60,28 +63,21 @@ export const PracticesTabsOpener = styled.button`
 `;
 
 export const PracticesTabsCards = styled.div`
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
 
-  ${media_breakpoint_down('xl')} {
-    gap: 24px;
+  ${ResultCard} {
+    height: 100%;
   }
 
-  > div {
-    width: calc((100% - 80px) / 3);
-
-    ${media_breakpoint_down('xl')} {
-      width: calc((100% - 24px) / 2);
-    }
-
-    ${media_breakpoint_down('md')} {
-      width: 100%;
-    }
+  ${ResultCardTitle} {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 `;
 
-export const PracticesTabsModalWrapper = styled.div`
+export const PracticesTabsModal = styled.div`
   .modal-open {
     max-width: 720px;
     width: 100%;
@@ -105,42 +101,6 @@ export const PracticesTabsModalWrapper = styled.div`
     ${ChildrenBox} {
       padding: 0;
       margin: 0;
-    }
-
-    ${PracticeCardWrapper} {
-      max-height: 100%;
-      gap: 0;
-    }
-
-    ${PracticeCardContent} {
-      overflow: auto;
-      padding: 16px 40px 24px;
-      row-gap: 12px;
-
-      &.contact-form-container {
-        padding-bottom: 0;
-      }
-
-      ${media_breakpoint_down('sm')} {
-        padding: 12px 16px 16px;
-      }
-    }
-
-    ${PracticeCardHeader} {
-      min-height: 60px;
-      padding-right: 44px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid ${globalColor.blue.blue550};
-
-      ${media_breakpoint_down('sm')} {
-        padding-right: 40px;
-      }
-    }
-
-    ${PracticeCardFooterItem} {
-      .footer-action {
-        justify-content: center;
-      }
     }
   }
 
@@ -286,5 +246,45 @@ export const PracticesTabsModalWrapper = styled.div`
         width: calc(50% + 24px);
       }
     }
+  }
+`;
+
+export const PracticesTabsModalContent = styled.div`
+  flex: 1;
+  padding: 16px 40px 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  overflow: auto;
+  border-bottom: 1px solid ${globalColor.blue.blue550};
+
+  ${media_breakpoint_down('sm')} {
+    padding: 12px 16px 0;
+  }
+`;
+
+export const PracticesTabsModalHeader = styled.div`
+  min-height: 60px;
+  padding-right: 44px;
+  padding-bottom: 12px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+
+  ${media_breakpoint_down('sm')} {
+    padding-right: 40px;
+  }
+`;
+
+export const PracticesTabsModalTitle = styled.h3`
+  margin: 0;
+  color: ${globalColor.white};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+
+  ${media_breakpoint_down('sm')} {
+    font-size: ${rem(14)};
   }
 `;

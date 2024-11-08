@@ -1,12 +1,12 @@
-import AboutAuthorFormCard from './AboutAuthorFormCard';
-import SocialShare from './SocialShare';
 import {
   ContactLinksBox,
   SubscriptionPart,
-} from '../../../styles/Post/PostSideBar.style';
-import AttorneyCard from '../../shared/AttorneyCard';
+} from 'styles/Post/PostSideBar.style';
+import AttorneyCard from 'components/shared/AttorneyCard';
+import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
+import SocialShare from './SocialShare';
+import AboutAuthorFormCard from './AboutAuthorFormCard';
 import PracticesList from './PracticesList';
-import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 
 const PostSidebar = ({ keyContacts, corePractices, isPracticeVariant }) => (
   <div>

@@ -95,6 +95,13 @@ export const AttorneySection = styled.section`
       ${LinkBox} {
         column-gap: 8px;
         align-items: center;
+
+        ${media_breakpoint_down('md')} {
+          > img {
+            width: 139px;
+            height: 150px;
+          }
+        }
       }
 
       ${UserName} {
@@ -120,7 +127,8 @@ export const AttorneySection = styled.section`
       ${ContactBox} {
         margin: 0;
         row-gap: 4px;
-        a {
+        a,
+        .contact-offices {
           column-gap: 8px;
           span {
             color: ${globalColor.black};

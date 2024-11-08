@@ -167,6 +167,26 @@ const SITE_PAGES_REWRITES = [
     destination: '/contact-us/subscribe',
   },
   /** End of form pages */
+  {
+    source: '/proxy-image/:path*',
+    destination: 'https://wp.scarincihollenbeck.com/:path*',
+  },
+  {
+    source: '/practices',
+    destination: '/services',
+  },
+  {
+    source: '/industries',
+    destination: '/services#industries',
+  },
+  {
+    source: '/practices/new-jersey-cannabis-law',
+    destination: '/industries/cannabis',
+  },
+  {
+    source: '/practices/entertainment-and-media',
+    destination: '/industries/entertainment-and-media',
+  },
 ];
 
 module.exports = {

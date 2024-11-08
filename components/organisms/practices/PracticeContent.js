@@ -6,7 +6,7 @@ import {
   PracticeContentSection,
   PracticeDescription,
   PracticeSidebar,
-  PractiseContentHolder,
+  PracticeContentHolder,
 } from 'styles/practices/PracticeContent.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import GetInTouchForm from './GetInTouchForm';
@@ -20,7 +20,7 @@ const PracticeContent = ({
     data-testid="practice-content"
   >
     <ContainerDefault>
-      <PractiseContentHolder>
+      <PracticeContentHolder>
         <PracticeDescription>
           {data?.map((item) => (
             <CollapseContent
@@ -34,7 +34,7 @@ const PracticeContent = ({
         <PracticeSidebar>
           <GetInTouchForm />
         </PracticeSidebar>
-      </PractiseContentHolder>
+      </PracticeContentHolder>
     </ContainerDefault>
   </PracticeContentSection>
 );

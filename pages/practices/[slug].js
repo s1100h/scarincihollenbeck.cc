@@ -35,21 +35,12 @@ query practicesSlugs {
   }
 }`;
 
-const excludedSlugs = [
-  'new-jersey-cannabis-law',
-  'entertainment-and-media-pause',
-];
-
 /** Set single practice data to page props */
 export const getStaticPaths = async () => {
   const listId = await fetchAPI(practicesSlugsQuery);
-
   const paths = [];
 
   listId?.practices?.nodes?.forEach((node) => {
-    if (excludedSlugs.includes(node?.slug)) {
-      return;
-    }
     paths.push(`/practices/${node?.slug}`);
   });
 
@@ -80,7 +71,7 @@ export const getStaticProps = async ({ params }) => {
   if (empty(practice)) {
     return {
       redirect: {
-        destination: '/practices?notFound=true',
+        destination: '/services?notFound=true',
         permanent: true,
       },
     };
@@ -146,9 +137,6 @@ const SinglePractice = ({
   googleReviews,
 }) => {
   const router = useRouter();
-  const practiceUrl = router.asPath
-    .replace('/practices/', '')
-    .replace('/practice/', '');
   const canonicalUrl = `${PRODUCTION_URL}/practices/${practice.slug}`;
 
   if (router.isFallback) {
@@ -173,21 +161,17 @@ const SinglePractice = ({
   ];
 
   const practiceProps = {
-    corePractices,
     practice,
-    practiceChildren,
-    attorneysSchemaData,
-    practiceUrl,
     canonicalUrl,
+    attorneysSchemaData,
+    keyContactsList,
     tabs: fullTabs,
-    slug,
     chairPractice,
     attorneyListPractice,
-    keyContactsList,
-    latestFromTheFirm,
     faq,
     googleReviews,
   };
+
   return (
     <ApolloWrapper>
       <PracticePageNew {...practiceProps} />

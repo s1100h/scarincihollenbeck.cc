@@ -156,7 +156,7 @@ const ProfileAccordion = ({
   // Events section END
 
   return (
-    <ProfileAccordionWrapper>
+    <ProfileAccordionWrapper data-testid="profile-accordion">
       <ContainerDefault>
         <ProfileAccordionHolder>
           <Accordion as="ul" alwaysOpen>
@@ -179,6 +179,7 @@ const ProfileAccordion = ({
                 eventKey={`profile-biography-${name}`}
                 title="Full Biography"
                 content={attorneyBiography?.biographyContent}
+                isTwoColumns
               />
             )}
 

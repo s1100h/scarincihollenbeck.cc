@@ -16,7 +16,7 @@ export const ImageWrapper = styled.div`
     height: 280px;
   }
 
-  ${media_breakpoint_exactly_down(1440)} {
+  ${media_breakpoint_exactly_down(1439)} {
     margin-bottom: 0;
     width: 140px;
     min-width: 140px;
@@ -34,6 +34,7 @@ export const CardEntAndMediaAttorney = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     ${ImageWrapper} {
@@ -46,6 +47,10 @@ export const CardEntAndMediaAttorney = styled.div`
     flex-direction: column;
     flex: 1;
     height: 100%;
+
+    ${media_breakpoint_exactly_down(1439)} {
+      height: auto;
+    }
   }
 
   .attorney-name {
@@ -100,11 +105,20 @@ export const CardEntAndMediaAttorney = styled.div`
     }
   }
 
+  .attorney-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
   ${media_breakpoint_exactly_down(1850)} {
     width: 228px;
   }
 
-  ${media_breakpoint_exactly_down(1440)} {
+  ${media_breakpoint_exactly_down(1439)} {
     flex-direction: row;
     align-items: center;
     column-gap: 8px;

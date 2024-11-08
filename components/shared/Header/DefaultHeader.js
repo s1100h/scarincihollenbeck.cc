@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, {
+  memo, useCallback, useRef, useState,
+} from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import Logo from 'components/organisms/Navbar/Logo';
 import { ButtonRed } from 'styles/Buttons.style';
-import useHeaderSize from 'hooks/useHeaderSize';
+import useResponsiveHeader from 'hooks/useResponsiveHeader';
 import { useResize } from 'hooks/useResize';
 import {
   HeaderMain,
@@ -19,19 +21,23 @@ import HeaderTopLine from './HeaderTopLine';
 import HeaderSearch from './HeaderSearch';
 import SidebarMenu from './SidebarMenu';
 
-const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
+const DefaultHeader = memo(({
+  practices, locations, industries, menuData,
+}) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const headerRef = useRef();
-  const { width: viewportWidth, isScreenLg } = useResize();
-  const scrollDirection = useScrollDirection();
-  useHeaderSize(headerRef, scrollDirection, viewportWidth);
+  const { width: viewportWidth, isScreenLg } = useSelector(
+    (state) => state.sizes.viewportSize,
+  );
   const { headerSize } = useSelector((state) => state.sizes);
+  const scrollDirection = useScrollDirection();
+  useResize();
+  useResponsiveHeader(headerRef, scrollDirection);
 
-  const handleToggleSidebar = () => {
+  const handleToggleSidebar = useCallback(() => {
     setIsSidebarOpen(!isSidebarOpen);
-  };
+  }, [setIsSidebarOpen, isSidebarOpen]);
 
   return (
     <>
@@ -61,6 +67,7 @@ const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
               key="header-navigation"
               practices={practices}
               locations={locations}
+              industries={industries}
               isScreenLg={isScreenLg}
               setIsSidebarOpen={setIsSidebarOpen}
             />
@@ -92,6 +99,7 @@ const DefaultHeader = React.memo(({ practices, locations, menuData }) => {
                 practices={practices}
                 locations={locations}
                 menuData={menuData}
+                industries={industries}
                 isSidebarOpen={isSidebarOpen}
                 setIsSidebarOpen={setIsSidebarOpen}
               />

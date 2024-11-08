@@ -4,6 +4,7 @@ import {
   globalColor,
   globalTransition,
   rem,
+  UnderlinedLinkCss,
 } from './global_styles/Global.styles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -11,66 +12,8 @@ import {
   SidebarMenuItemOpener,
   SidebarMenuSubitemOpener,
 } from './Sidebar.style';
-import { LetterSelectorBtn } from './Filters.style';
+import { FiltersResults, LetterSelectorBtn } from './Filters.style';
 import { ClearButton } from './Buttons.style';
-
-export const DropdownSecondLvl = styled.div`
-  flex: 1;
-  width: 30vw;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  max-height: 70vh;
-
-  ul {
-    padding-right: 20px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    row-gap: 4px;
-    list-style: disc;
-
-    li {
-      margin-left: 20px;
-      color: ${globalColor.white};
-
-      ::marker {
-        font-size: ${rem(12)};
-        transition: all 0.5s ease;
-      }
-
-      :hover {
-        color: #608ed2;
-        .dropdown-item {
-          background-color: transparent;
-          color: #608ed2;
-        }
-      }
-
-      .dropdown-item {
-        padding: 0;
-        font-size: ${rem(14)};
-        font-weight: 400;
-        color: #e6e6e6;
-        line-height: 28px;
-
-        &:hover {
-          color: #608ed2;
-          background-color: transparent;
-        }
-      }
-
-      .active {
-        color: #afdcf5;
-
-        .dropdown-item {
-          color: #afdcf5;
-        }
-      }
-    }
-  }
-`;
 
 //New styles for Navigation in Header
 export const NavbarWrapper = styled.nav`
@@ -112,6 +55,13 @@ export const NavbarItemOpener = styled.button`
     border-color: currentColor;
   }
 
+  @media (hover: hover) {
+    &:hover {
+      color: ${globalColor.blue.blue400};
+      border-color: currentColor;
+    }
+  }
+
   ${media_breakpoint_down('xl')} {
     font-size: ${rem(16)};
     line-height: 1.5;
@@ -139,7 +89,44 @@ export const NavbarItemContent = styled(motion.div)`
   display: flex;
   transition: max-height 0.3s ease-in-out;
 
-  &.practices-split {
+  .navbar-container {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    ${media_breakpoint_down('md')} {
+      padding-top: 16px;
+      padding-bottom: 24px;
+    }
+  }
+
+  .services-tabs {
+    background-color: ${globalColor.blue.blue500};
+  }
+
+  &.navbar-services {
+    flex-direction: column;
+
+    .navbar-container {
+      overflow: hidden;
+    }
+
+    .underlined {
+      ${UnderlinedLinkCss};
+      margin: 4px 0 4px 12px;
+      border-radius: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      ${media_breakpoint_down('lg')} {
+        margin: 0 0 6px;
+      }
+    }
+  }
+
+  .practices-split {
     &::after {
       content: '';
       position: absolute;
@@ -153,17 +140,6 @@ export const NavbarItemContent = styled(motion.div)`
       ${media_breakpoint_down('lg')} {
         display: none;
       }
-    }
-  }
-
-  .navbar-container {
-    display: flex;
-    padding-top: 20px;
-    padding-bottom: 40px;
-
-    ${media_breakpoint_down('md')} {
-      padding-top: 16px;
-      padding-bottom: 24px;
     }
   }
 
@@ -218,6 +194,11 @@ export const NavbarItemContent = styled(motion.div)`
   }
 `;
 
+export const NavbarPracticesHolder = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
 export const NavbarLeftBlock = styled.div`
   width: 50%;
   display: flex;
@@ -231,6 +212,7 @@ export const NavbarLeftList = styled.ul`
   flex-direction: column;
   row-gap: 4px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 `;
 
 export const NavbarLeftItem = styled.li``;
@@ -239,12 +221,14 @@ export const NavbarLeftItemOpener = styled(Link)`
   padding: 8px 12px;
   width: 100%;
   display: inline-flex;
+  align-items: center;
   justify-content: space-between;
   color: ${globalColor.white};
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
   border-radius: 4px;
+  text-align: left;
   transition: ${globalTransition.default};
 
   &:hover {
@@ -309,6 +293,7 @@ export const NavbarRightList = styled.ul`
   row-gap: 4px;
   list-style: disc;
   overflow-y: auto;
+  overscroll-behavior: contain;
 `;
 
 export const NavbarRightItem = styled.li`
@@ -338,22 +323,46 @@ export const NavbarRightItemLink = styled(Link)`
   }
 `;
 
-export const NavbarLink = styled(Link)`
-  padding: 10px 0 8px 0;
+export const NavbarServicesTabs = styled.ul`
+  padding: 20px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  margin: 0;
+
+  ${media_breakpoint_down('md')} {
+    padding: 12px 0;
+  }
+`;
+
+export const NavbarServicesTabsButton = styled.button`
   color: ${globalColor.white};
-  font-size: 1rem;
+  font-size: ${rem(24)};
   line-height: 1.5;
-  font-weight: 600;
-  border-bottom: 2px solid ${globalColor.blue.skyBlue};
+  font-family: var(--font-lato);
+  font-weight: ${({ isActive }) => (isActive ? '700' : '400')};
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  border-color: ${({ isActive }) =>
+    isActive ? 'currentColor' : 'transparent'};
   transition: ${globalTransition.default};
 
   &:hover {
-    color: ${globalColor.blue.skyBlue};
+    border-color: currentColor;
   }
 
   ${media_breakpoint_down('md')} {
-    font-size: ${rem(14)};
-    line-height: 1.43;
-    padding: 4px 0 2px 0;
+    font-size: 1rem;
+  }
+`;
+
+export const NavbarIndustriesHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  ${FiltersResults} {
+    min-height: auto;
   }
 `;

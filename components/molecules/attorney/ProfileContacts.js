@@ -17,7 +17,7 @@ const ProfileContacts = ({
   qrCodeLinkedin,
   qrCodeBioPage,
 }) => {
-  const { phoneNumber, email } = contact;
+  const { phoneNumber, email } = contact || {};
 
   return (
     <AddressBox className="address-box">
@@ -26,7 +26,7 @@ const ProfileContacts = ({
       <ul className="contacts-list">
         <li className="contacts-item">
           <MdLocationPin />
-          {offices.map((office, idx) => (
+          {offices?.map((office, idx) => (
             <Link
               className="contacts-link"
               href={office.uri || office.link}

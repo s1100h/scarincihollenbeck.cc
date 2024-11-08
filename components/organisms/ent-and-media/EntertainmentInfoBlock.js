@@ -69,7 +69,7 @@ const EntertainmentInfoBlock = ({
   const activeTab = tabs[activeTabIndex];
 
   return (
-    <EntertainmentInfoSection id={hrefToId}>
+    <EntertainmentInfoSection id={hrefToId || undefined}>
       <ContainerDefault>
         <EnterntainmentTabNumber>
           {activeTabIndex < 9 ? `0${activeTabIndex + 1}` : activeTabIndex + 1}
@@ -133,7 +133,7 @@ const EntertainmentInfoBlock = ({
               <EnterntainmentTabImage>
                 <Image
                   src={activeTab.imageBackground.sourceUrl}
-                  alt={activeTab.imageBackground.title}
+                  alt={`${activeTab.title} Law`}
                   width={activeTab.imageBackground.mediaDetails.width}
                   height={activeTab.imageBackground.mediaDetails.height}
                   loading="lazy"

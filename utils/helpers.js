@@ -23,11 +23,14 @@ import EnvironmentalIcon from 'components/common/icons/EnvironmentalIcon';
 import TaxIcon from 'components/common/icons/TaxIcon';
 import GlobeIcon from 'components/common/icons/GlobeIcon';
 import BulbIcon from 'components/common/icons/BulbIcon';
+import GovernmentIcon from 'components/common/icons/GovernmentIcon';
+import GamingIcon from 'components/common/icons/GamingIcon';
 import {
   CLOUDINARY_BASE_URL,
   EMAGE_UPLOAD_CLOUDINARY,
   OFFICE_LOCATIONS,
   PRODUCTION_URL,
+  readyIndustriesUrls,
 } from './constants';
 import CheckIcon from '../components/common/icons/CheckIcon';
 import MapIcon from '../components/common/icons/MapIcon';
@@ -255,6 +258,7 @@ export const correctAttorneyLink = (link) => {
 };
 
 export const changeTitle = (title, isH1) => {
+  if (!title) return '';
   const symbolCheckObject = {
     '&#8220;': '"',
     '&#8221;': '"',
@@ -453,7 +457,7 @@ export const debounce = (func, delay) => {
   };
 };
 
-export const createMenuData = (practices, locations) => [
+export const createMenuData = (practices, locations, industries) => [
   {
     databaseId: 'menu-01',
     title: 'Homepage',
@@ -470,13 +474,13 @@ export const createMenuData = (practices, locations) => [
     databaseId: 'menu-03',
     title: 'Legal Practices',
     icon: <PracticesIcon />,
-    href: '/practices',
+    href: '/services',
     list: [
       {
         databaseId: 'menu-all-practices',
-        uri: '/practices',
+        uri: '/services',
         title: 'View all practices',
-        isStrong: true,
+        additionalClass: 'bolder',
       },
       ...practices,
     ],
@@ -485,7 +489,16 @@ export const createMenuData = (practices, locations) => [
     databaseId: 'menu-04',
     title: 'Industries',
     icon: <IndustriesIcon />,
-    href: '/',
+    href: '/services',
+    list: [
+      {
+        databaseId: 'menu-all-industries',
+        uri: '/services#industries',
+        title: 'View all industries',
+        additionalClass: 'bolder',
+      },
+      ...industries,
+    ],
   },
   {
     databaseId: 'menu-05',
@@ -624,6 +637,8 @@ export const getIcon = (name) => {
     Scope: <ScopeIcon />,
     Globe: <GlobeIcon />,
     Bulb: <BulbIcon />,
+    Government: <GovernmentIcon />,
+    Gaming: <GamingIcon />,
   };
 
   return icons[name];
@@ -641,3 +656,43 @@ export const chunkArray = (array, chunkSize) => {
   }
   return chunks;
 };
+
+export const attorneysSanitize = (attorneysArr) => {
+  const designationOrder = [
+    'Firm Managing Partner',
+    'Deputy Managing Partner',
+    'Partner',
+    'Counsel',
+    'Of Counsel',
+    'Senior Associate',
+    'Associate',
+  ];
+
+  return attorneysArr
+    .map((attorney) => {
+      attorney.attorneyMainInformation.profileImage = !empty(
+        attorney.attorneyMainInformation?.profileImage?.sourceUrl,
+      )
+        ? attorney.attorneyMainInformation.profileImage.sourceUrl
+        : '/images/no-image-found-diamond-750x350.png';
+      return {
+        databaseId: attorney.databaseId,
+        link: attorney.uri,
+        title: attorney.title,
+        status: attorney.status,
+        ...attorney.attorneyMainInformation,
+        ...attorney.attorneyPrimaryRelatedPracticesLocationsGroups,
+      };
+    })
+    .sort((a, b) => {
+      const indexA = designationOrder.indexOf(a.designation);
+      const indexB = designationOrder.indexOf(b.designation);
+
+      if (indexA !== indexB) {
+        return indexA - indexB; // Sort by designation order first
+      }
+      return a.lastName?.localeCompare(b.lastName); // If designations are the same, sort by last name
+    });
+};
+
+export const getIndustryLink = (uri, defaultUri = '/services#industries') => (readyIndustriesUrls.includes(uri) ? uri : defaultUri);

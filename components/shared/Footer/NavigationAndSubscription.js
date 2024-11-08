@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { BsFillEnvelopePlusFill } from 'react-icons/bs';
 import { ContainerDefault } from 'styles/Containers.style';
 import { ButtonRed } from 'styles/Buttons.style';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
@@ -12,7 +11,7 @@ import { footerNavList } from '../../../utils/constants';
 import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 
 const NavigationAndSubscription = () => (
-  <NavWrapper className="d-print-none">
+  <NavWrapper className="d-print-none" data-testid="footer-nav">
     <ContainerDefault>
       <NavHolder>
         <FooterNavigation>

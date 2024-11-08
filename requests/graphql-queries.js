@@ -492,6 +492,38 @@ query getThreePostsQuery {
   }
 }`;
 
+export const getClientsQuery = `query FirmPageQuery(
+  $offsetPosts: Int, 
+  $postsPerPage: Int
+  ) {
+  clients(
+    where: {offsetPagination: {offset: $offsetPosts, size: $postsPerPage}}
+  ) {
+    edges {
+      node {
+        databaseId
+        title
+        clientsFields {
+          clientImage {
+            sourceUrl
+            title
+          }
+          entertainmentSubcategory
+          lineColor
+          proffesion
+        }
+      }
+    }
+    pageInfo {
+      offsetPagination {
+        total
+        hasPrevious
+        hasMore
+      }
+    }
+  }
+}`;
+
 // , order by: {field: DATE, order: DESC}
 export const postsForPaginationByCategoryIdQuery = `
   query postsForPaginationByCategoryId(
@@ -695,37 +727,20 @@ export const homePageQuery = `query HomePageQuery {
           title
           url
         }
-        industryCards {
-          icon
-          text
-          title
-          link {
-            target
-            title
-            url
-          }
-        }
-      }
-			whatWeDo {
-        groupsPractices {
-          groupPractices
-          groupIcon
-          practices {
-            ... on Practice {
-              databaseId
-              uri
-              title
-              practicesIncluded {
-                childPractice {
-                  ... on Practice {
-                    databaseId
-                    title
-                    uri
-                  }
+        industries {
+          ... on Industry {
+            industryContent {
+              industryIcon {
+                selectedIcon
+                uploadedIcon {
+                  sourceUrl
                 }
-                description
               }
+              description
             }
+            title
+            databaseId
+            uri
           }
         }
       }
@@ -768,26 +783,6 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
-/** practices landing page query */
-export const practicePageQuery = `query PracticesPagesQuery {
-  page(id: 46644, idType: DATABASE_ID) {
-    title
-    seo {
-      metaDesc
-      title
-    }
-    practiceArchives {
-      description
-      mainTag
-    }
-    featuredImage {
-      node {
-        sourceUrl
-      }
-    }
-  }
-}`;
-
 export const getPracticesQuery = `query NewQuery {
   practices(first: 100) {
     nodes {
@@ -803,6 +798,9 @@ export const getPracticesQuery = `query NewQuery {
           }
         }
         practiceImage {
+          sourceUrl
+        }
+        practiceIcon {
           sourceUrl
         }
       }
@@ -1359,32 +1357,26 @@ export const getCategoriesQuery = `query subscriptions {
   }
 }`;
 
-export const getWhatWeDo = `query whatWeDoFromHome {
-  page(id: "front-page", idType: URI) {
-    homePage {
-      whatWeDo {
-        groupsPractices {
-          groupPractices
-          groupIcon
-          practices {
-            ... on Practice {
-              databaseId
-              uri
-              title
-              practicesIncluded {
-                childPractice {
-                  ... on Practice {
-                    databaseId
-                    title
-                    uri
-                  }
-                }
-                description
-              }
-            }
+export const getIndustriesQuery = `
+query IndustriesQuery {
+  industries {
+    nodes {
+      industryContent {
+        description
+        industryIcon {
+          selectedIcon
+          uploadedIcon {
+            sourceUrl
           }
         }
+        industryImage {
+          altText
+          sourceUrl
+        }
       }
+      uri
+      title
+      databaseId
     }
   }
 }`;

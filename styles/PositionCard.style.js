@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
 
 export const CareerCard = styled.div`
+  height: 100%;
   display: flex;
   padding: 20px;
   flex-direction: column;

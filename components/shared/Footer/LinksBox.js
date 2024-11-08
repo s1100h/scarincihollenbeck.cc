@@ -25,11 +25,11 @@ export default function LinksBox({
       {title && <LinkTitle>{title}</LinkTitle>}
       <LinkList className={!empty(classList) ? classList : ''}>
         {linksArr.map((link) => (
-          <li key={link.id}>
+          <li key={link?.id}>
             {linkTemplate(
               isTargetBlank,
-              link.slug ? link.slug : link.url,
-              link.label,
+              link?.slug ? link?.slug : link?.url,
+              link?.label,
             )}
           </li>
         ))}

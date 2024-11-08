@@ -9,7 +9,7 @@ const AttorneysBlock = ({
   title,
   anchorLinkToAttorneys,
 }) => (
-  <AttorneySection id={anchorLinkToAttorneys}>
+  <AttorneySection id={anchorLinkToAttorneys || undefined}>
     <ContainerContent>
       <h2 className="attorney-title">{title}</h2>
       {(!empty(chairPractice) || !empty(attorneyListPractice)) && (

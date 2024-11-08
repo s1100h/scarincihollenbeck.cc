@@ -85,7 +85,6 @@ export const getStaticProps = async () => {
     firstSection,
     whoWeAre,
     industryWeWorkWith,
-    whatWeDo,
     whyChooseUs,
   } = homePage;
 
@@ -102,7 +101,6 @@ export const getStaticProps = async () => {
       firstSection,
       whoWeAre,
       industryWeWorkWith,
-      whatWeDo,
       latestArticlesTabsData,
       whyChooseUs,
     },
@@ -119,7 +117,6 @@ const Home = ({
   firstSection,
   whoWeAre,
   industryWeWorkWith,
-  whatWeDo,
   latestArticlesTabsData,
   whyChooseUs,
 }) => {
@@ -131,7 +128,6 @@ const Home = ({
     firstSection,
     whoWeAre,
     industryWeWorkWith,
-    whatWeDo,
     latestArticlesTabsData,
     whyChooseUs,
   };

@@ -24,8 +24,8 @@ const LatestPostsCard = ({ article, isBig }) => (
           src={article?.featuredImage?.node?.sourceUrl}
           alt={article?.title}
           width={900}
-          height={500}
-          sizes="100vw"
+          height={375}
+          sizes="(max-width: 768px) 100%, 900px"
         />
       </LatestsPostsCardImage>
     )}

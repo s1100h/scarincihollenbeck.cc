@@ -12,31 +12,48 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ContainerDefault } from 'styles/Containers.style';
+import { useGetIndustriesQuery } from '../../../redux/services/project-api';
 import LinksBox from './LinksBox';
 import FooterDetails from './FooterDetails';
-import { cannabisLawColors } from '../../../styles/global_styles/Global.styles';
+import {
+  cannabisLawColors,
+  globalColor,
+} from '../../../styles/global_styles/Global.styles';
 import { getSlugFromUrl } from '../../../utils/helpers';
 import NavigationAndSubscription from './NavigationAndSubscription';
 import { FooterContent } from '../../../styles/Footer.style';
 import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
 
+const sanitizeIndustries = (industries) => {
+  if (!industries) return [];
+
+  return industries.map((industry) => ({
+    id: industry?.databaseId,
+    label: industry?.title,
+    url: industry?.uri,
+  }));
+};
+
 const setFooterBackgroundColor = (page) => {
   const footerColorsMap = {
-    'new-jersey-cannabis-law': cannabisLawColors.cannabisColorDarkGray,
-    // 'entertainment-and-media': globalColor.black, // page ready for deploy in prod but paused, commit 26.12.2023
+    cannabis: cannabisLawColors.cannabisColorDarkGray,
+    'entertainment-and-media': globalColor.black,
   };
   return footerColorsMap[page];
 };
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
-
   const backgroundFooterColor = setFooterBackgroundColor(slug);
   const conditionForPrintFooter = !pathname.includes('attorneys') ? 'true' : '';
+  const { data: industries } = useGetIndustriesQuery();
+
   return (
-    <FooterWrapper backgroundFooterColor={backgroundFooterColor}>
+    <FooterWrapper
+      backgroundFooterColor={backgroundFooterColor}
+      data-testid="footer"
+    >
       <NavigationAndSubscription />
 
       <ContainerDefault>
@@ -44,7 +61,10 @@ export default function Footer() {
           <FooterContent>
             <LinksSEOBox>
               <LinksBox title="Core Practices" linksArr={CORE_PRACTICES} />
-              <LinksBox title="Industries" linksArr={CORE_PRACTICES} />
+              <LinksBox
+                title="Industries"
+                linksArr={sanitizeIndustries(industries?.data)}
+              />
 
               <FooterDoubleColumn>
                 <LinksBox title="Firm Pages" linksArr={FIRM_PAGES} />

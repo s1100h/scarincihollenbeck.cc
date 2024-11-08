@@ -108,8 +108,12 @@ export const LocationHeaderTitle = styled.p`
   color: ${(props) =>
     props.isActive ? globalColor.blue.blue400 : globalColor.blue.blue500};
   font-weight: 700;
-  font-size: 20px;
-  line-height: 1;
+  font-size: ${rem(20)};
+  line-height: 1.6;
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(18)};
+  }
 `;
 
 export const ContactInfoCard = styled.article`
@@ -119,6 +123,10 @@ export const ContactInfoCard = styled.article`
   padding: 24px;
   background-color: ${globalColor.white};
   cursor: ${({ openCard }) => (openCard ? 'initial' : 'pointer')};
+
+  ${media_breakpoint_down('lg')} {
+    padding: 16px;
+  }
 `;
 
 export const ContactInfoContent = styled.address`
@@ -147,8 +155,13 @@ export const Contact = styled.li`
   font-style: normal;
   font-weight: 500;
   font-size: ${rem(18)};
-  line-height: 28px;
+  line-height: 1.55;
   margin-bottom: 0;
+
+  ${media_breakpoint_down('md')} {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 `;
 
 // New cards for Navigation in Header

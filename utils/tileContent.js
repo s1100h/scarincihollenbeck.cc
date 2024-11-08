@@ -65,7 +65,7 @@ export const tile404ContentArr = [
     title: 'Practices',
     textContent: `
       <strong>Scarinci Hollenbeck, LLC</strong> attorneys routinely represent corporate,
-      governmental, and individual clients in a wide range of <a href='/practices'>practices</a>.
+      governmental, and individual clients in a wide range of <a href='/services'>practices</a>.
     `,
     icon: <BsFillBriefcaseFill />,
     id: 1,
