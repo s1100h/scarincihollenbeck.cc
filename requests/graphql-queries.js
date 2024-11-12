@@ -1391,6 +1391,10 @@ query ServicesQuery {
         sourceUrl
       }
     }
+    seo {
+      title
+      metaDesc
+    }
   }
 }
 `;

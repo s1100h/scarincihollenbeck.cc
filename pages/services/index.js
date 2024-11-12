@@ -7,6 +7,7 @@ import ServicesPage from 'components/pages/ServicesPage';
 import { getIndustries } from 'requests/getIndustries';
 import { filterTunePractices, sortByKey } from 'utils/helpers';
 import { getPractices } from 'requests/getPractices';
+import { PRODUCTION_URL } from 'utils/constants';
 
 const getServicesContent = async () => {
   const data = await fetchAPI(getServicesQuery);
@@ -38,22 +39,29 @@ export const getStaticProps = async () => {
       practices: sortByKey(practicesSorted, 'title').filter(
         filterTunePractices,
       ),
+      seo: data?.seo,
     },
     revalidate: 86400,
   };
 };
 
 const ServicesPageDirectory = ({
-  title, content, industries, practices,
+  title,
+  content,
+  industries,
+  practices,
+  seo,
 }) => {
+  useNotFoundNotification('The practice or industry no longer exists.');
+  const canonicalUrl = `${PRODUCTION_URL}/industries`;
   const propsPage = {
     title,
     content,
     industries,
     practices,
+    seo,
+    canonicalUrl,
   };
-
-  useNotFoundNotification('The practice or industry no longer exists.');
 
   return <ServicesPage {...propsPage} />;
 };
