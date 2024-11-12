@@ -68,6 +68,7 @@ const ProfileHeader = ({
   biography,
   affiliations,
   additionalInfo,
+  handlePrint,
 }) => {
   const [designation] = useDesignationHook(title);
   const [isContactModal, setIsContactModal] = useState(false);
@@ -80,12 +81,6 @@ const ProfileHeader = ({
     fax: contact?.fax,
     contact,
     linkedIn,
-  };
-
-  const handlePrint = () => {
-    if (typeof window !== 'undefined') {
-      window.print();
-    }
   };
 
   return (
@@ -110,27 +105,23 @@ const ProfileHeader = ({
             />
 
             <ProfileActions>
-              {!empty(contact?.pdf) && !empty(contact?.vizibility) && (
-                <ProfileButtons>
-                  {!empty(contact?.pdf) && (
-                    <WhiteButton
-                      onClick={handlePrint}
-                      text="Print Bio"
-                      icon={<PDFIcon />}
-                    />
-                  )}
-                  {!empty(contact?.vizibility) && (
-                    <WhiteButton
-                      as={Link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href={contact?.vizibility}
-                      text="Business Card"
-                      icon={<BusinessCard />}
-                    />
-                  )}
-                </ProfileButtons>
-              )}
+              <ProfileButtons>
+                <WhiteButton
+                  onClick={handlePrint}
+                  text="Print Bio"
+                  icon={<PDFIcon />}
+                />
+                {!empty(contact?.vizibility) && (
+                  <WhiteButton
+                    as={Link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={contact?.vizibility}
+                    text="Business Card"
+                    icon={<BusinessCard />}
+                  />
+                )}
+              </ProfileButtons>
 
               <StandardBlueButton onClick={() => setIsContactModal(true)}>
                 Contact now

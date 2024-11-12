@@ -106,48 +106,75 @@ export const FooterPrintVersionContainer = styled.div`
   display: none;
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
-  border-radius: 12px;
-  padding: 10px 20px;
+  padding: 12px 20px;
+  page-break-inside: avoid;
 
   @media print {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: ${globalColor.blue.darkBlue};
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 24px;
+    background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
+    border-radius: 8px;
     .advertising-title-print {
-      font-size: 12px;
-      margin-bottom: 0;
+      font-size: 10px;
+      margin-bottom: 4px;
     }
 
     .advertising-text-print {
-      font-size: 10px;
-      width: 300px;
+      font-size: 9px;
+      margin-bottom: 24px;
     }
   }
+`;
+
+export const ContactsWrapperPrintVersion = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
 `;
 
 export const ContactsPrintVersion = styled.div`
   .location-print-list {
     display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 
-    > :first-child {
-      :before {
-        content: '';
+    > :last-child {
+      :after {
+        display: none;
+      }
+    }
+
+    &:nth-of-type(1) {
+      flex-wrap: wrap;
+    }
+
+    &:nth-of-type(2) {
+      flex-direction: column;
+      align-items: flex-end;
+      font-weight: 700;
+      margin-top: 8px;
+
+      .location-print-item {
+        &:after {
+          display: none;
+        }
       }
     }
   }
 
   .location-print-item {
     color: ${globalColor.white};
-    font-size: 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    &:before {
+    &:after {
       content: '•';
-      margin-right: 5px;
-      margin-left: 5px;
-      width: 6px;
-      height: 6px;
       color: ${globalColor.white};
     }
   }
@@ -155,9 +182,5 @@ export const ContactsPrintVersion = styled.div`
 
 export const QRCodesBoxForPDF = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  gap: 24px;
 `;

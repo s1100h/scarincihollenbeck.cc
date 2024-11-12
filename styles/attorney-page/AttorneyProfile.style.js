@@ -390,10 +390,17 @@ export const AddressBox = styled.address`
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+
   .contacts-item {
     &:has(.contacts-link:hover) {
       svg {
         color: ${globalColor.white};
+      }
+    }
+
+    &.pdf-hidden {
+      @media print {
+        display: none;
       }
     }
   }

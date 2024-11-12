@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ProfileAccordion from 'components/organisms/attorney/ProfileAccordion';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
@@ -11,6 +12,26 @@ const AttorneyProfilePage = ({
   qrCodeBioPage,
   qrCodeLinkedin,
 }) => {
+  const [isPrintMode, setIsPrintMode] = useState(false);
+
+  const handlePrint = () => {
+    setIsPrintMode(true);
+
+    const afterPrint = () => {
+      setIsPrintMode(false);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('afterprint', afterPrint);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('afterprint', afterPrint);
+      setTimeout(() => {
+        window.print();
+      }, 0);
+    }
+  };
+
   const printPageProps = {
     ...profileHeader,
     ...accordionData,
@@ -28,9 +49,10 @@ const AttorneyProfilePage = ({
         designation={profileHeader.title}
         socialMediaLinks={seo.socialMediaLinks}
       />
-      <ProfileHeader {...profileHeader} />
+      <ProfileHeader {...profileHeader} handlePrint={handlePrint} />
       <ProfileAccordion {...accordionData} name={profileHeader?.name} />
-      <AttorneyPrintPage {...printPageProps} />
+
+      {isPrintMode && <AttorneyPrintPage {...printPageProps} />}
     </>
   );
 };
