@@ -7,6 +7,7 @@ import {
 } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const sidebarBtnStyle = `
   padding: 11px 15px;
@@ -140,22 +141,17 @@ export const SidebarOpener = styled.button`
   }
 `;
 
-export const SidebarMenuWrapper = styled.div`
+export const SidebarMenuWrapper = styled(motion.div)`
   position: absolute;
   width: 50vw;
-  height: ${({ $headerHeight }) => $headerHeight};
+  height: 100%;
   top: 100%;
   right: 0;
   display: flex;
   flex-direction: column;
   background-color: ${globalColor.white};
   z-index: 2;
-  transition: ${globalTransition.default};
-  pointer-events: ${({ $isSidebarOpen }) =>
-    `${$isSidebarOpen ? 'auto' : 'none'}`};
-  visibility: ${({ $isSidebarOpen }) =>
-    `${$isSidebarOpen ? 'visible' : 'hidden'}`};
-  overflow: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 'auto' : 'hidden'}`};
+  overflow: auto;
   overscroll-behavior: contain;
 
   ${media_breakpoint_down('lg')} {
@@ -218,18 +214,13 @@ export const SidebarMenuContainer = styled.div`
   }
 `;
 
-export const SidebarMenuBackdrop = styled.div`
+export const SidebarMenuBackdrop = styled(motion.div)`
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   height: ${({ $headerHeight }) => `calc(100dvh - ${$headerHeight}px)`};
   background-color: rgba(1, 2, 10, 0.68);
-  z-index: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 1 : -1}`};
-  opacity: ${({ $isSidebarOpen }) => `${$isSidebarOpen ? 1 : 0}`};
-  pointer-events: ${({ $isSidebarOpen }) =>
-    `${$isSidebarOpen ? 'auto' : 'none'}`};
-  transition: ${globalTransition.default};
 
   ${media_breakpoint_down('lg')} {
     display: none;

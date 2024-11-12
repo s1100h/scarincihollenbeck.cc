@@ -110,16 +110,20 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
   return (
     <SubHeaderSlider {...swipeHandlers}>
       <SubHeaderSlide ref={sliderRef}>
-        <SubHeaderSlideImage>
-          <Image
-            alt={`${activeSlide?.title} industry`}
-            src={activeSlide?.industryContent?.industryImage?.sourceUrl}
-            width={300}
-            height={350}
-            priority={activeSlideIndex === 0}
-            loading={activeSlideIndex === 0 ? 'eager' : 'lazy'}
-          />
-        </SubHeaderSlideImage>
+        {activeSlide?.industryContent?.industryImage?.sourceUrl && (
+          <SubHeaderSlideImage
+            key={activeSlide?.industryContent?.industryImage?.sourceUrl}
+          >
+            <Image
+              alt={`${activeSlide?.title} industry`}
+              src={activeSlide?.industryContent?.industryImage?.sourceUrl}
+              width={300}
+              height={350}
+              priority={activeSlideIndex === 0}
+              loading={activeSlideIndex === 0 ? 'eager' : 'lazy'}
+            />
+          </SubHeaderSlideImage>
+        )}
 
         <SubHeaderSlideContent>
           <SubHeaderSlideNavigationButton

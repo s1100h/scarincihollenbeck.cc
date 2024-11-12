@@ -24,6 +24,7 @@ import SubscriptionModal from 'components/molecules/subscription/SubscriptionMod
 import { ButtonRed } from 'styles/Buttons.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
 import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
 import SidebarMenuItems from './SidebarMenuItems';
 
 const SidebarMenu = memo(
@@ -37,94 +38,106 @@ const SidebarMenu = memo(
   }) => {
     const { headerSize } = useSelector((state) => state.sizes);
 
-    const menuHeight = isSidebarOpen
-      ? `calc(100dvh - ${headerSize.height}px)`
-      : '0';
-
     return (
-      <>
-        <SidebarMenuWrapper
-          $headerHeight={menuHeight}
-          $isSidebarOpen={isSidebarOpen}
-          className={isSidebarOpen ? 'sidebar-open' : ''}
-          inert={isSidebarOpen ? undefined : ''}
-        >
-          <SidebarMenuContainer>
-            <Navigation
-              key="header-navigation"
-              practices={practices}
-              locations={locations}
-              industries={industries}
-              setIsSidebarOpen={setIsSidebarOpen}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <>
+            <SidebarMenuWrapper
+              key="sidebar-menu-motion"
+              className={isSidebarOpen ? 'sidebar-open' : ''}
+              inert={isSidebarOpen ? undefined : ''}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{
+                opacity: 1,
+                height: `calc(100dvh - ${headerSize.height}px)`,
+              }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ ease: 'easeOut', duration: 0.3 }}
+            >
+              <SidebarMenuContainer>
+                <Navigation
+                  key="header-navigation"
+                  practices={practices}
+                  locations={locations}
+                  industries={industries}
+                  setIsSidebarOpen={setIsSidebarOpen}
+                />
+
+                <SidebarMenuItems
+                  menuData={menuData}
+                  setIsSidebarOpen={setIsSidebarOpen}
+                />
+
+                <SidebarMenuLinks>
+                  {SIDEBAR_POLITIC_LINKS?.map((item) => (
+                    <SidebarMenuLink
+                      key={item?.title}
+                      href={item?.link}
+                      onClick={() => setIsSidebarOpen(false)}
+                    >
+                      {item?.title}
+                    </SidebarMenuLink>
+                  ))}
+                </SidebarMenuLinks>
+              </SidebarMenuContainer>
+
+              <SidebarMenuFooter>
+                <SidebarMenuContainer>
+                  <SidebarMenuButtons>
+                    <ButtonRed href="/contact" className="sidebar-contact-btn">
+                      Contact us
+                    </ButtonRed>
+
+                    <SubscriptionModal customClass="sidebar-subscription-btn">
+                      <SidebarMenuButtonIcon>
+                        <MailingListIcon />
+                      </SidebarMenuButtonIcon>
+                      Join our mailing list
+                    </SubscriptionModal>
+
+                    <SidebarMenuButton
+                      href={MAKE_A_PAYMENT}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <SidebarMenuButtonIcon>
+                        <PaymentIcon />
+                      </SidebarMenuButtonIcon>
+                      Make payment
+                    </SidebarMenuButton>
+                  </SidebarMenuButtons>
+
+                  <SidebarMenuSocials>
+                    {SOCIAL_LINKS.map((item) => (
+                      <SidebarMenuSocial
+                        key={item?.id}
+                        href={item?.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <SidebarMenuSocialIcon>
+                          {item?.icon}
+                        </SidebarMenuSocialIcon>
+                        {item?.title}
+                      </SidebarMenuSocial>
+                    ))}
+                  </SidebarMenuSocials>
+                </SidebarMenuContainer>
+              </SidebarMenuFooter>
+            </SidebarMenuWrapper>
+
+            <SidebarMenuBackdrop
+              key="sidebar-menu-backdrop"
+              $headerHeight={headerSize.height}
+              onClick={() => setIsSidebarOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ ease: 'easeOut', duration: 0.2 }}
             />
-
-            <SidebarMenuItems
-              menuData={menuData}
-              setIsSidebarOpen={setIsSidebarOpen}
-            />
-
-            <SidebarMenuLinks>
-              {SIDEBAR_POLITIC_LINKS?.map((item) => (
-                <SidebarMenuLink
-                  key={item?.title}
-                  href={item?.link}
-                  onClick={() => setIsSidebarOpen(false)}
-                >
-                  {item?.title}
-                </SidebarMenuLink>
-              ))}
-            </SidebarMenuLinks>
-          </SidebarMenuContainer>
-
-          <SidebarMenuFooter>
-            <SidebarMenuContainer>
-              <SidebarMenuButtons>
-                <ButtonRed href="/contact" className="sidebar-contact-btn">
-                  Contact us
-                </ButtonRed>
-
-                <SubscriptionModal customClass="sidebar-subscription-btn">
-                  <SidebarMenuButtonIcon>
-                    <MailingListIcon />
-                  </SidebarMenuButtonIcon>
-                  Join our mailing list
-                </SubscriptionModal>
-
-                <SidebarMenuButton
-                  href={MAKE_A_PAYMENT}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <SidebarMenuButtonIcon>
-                    <PaymentIcon />
-                  </SidebarMenuButtonIcon>
-                  Make payment
-                </SidebarMenuButton>
-              </SidebarMenuButtons>
-
-              <SidebarMenuSocials>
-                {SOCIAL_LINKS.map((item) => (
-                  <SidebarMenuSocial
-                    key={item?.id}
-                    href={item?.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <SidebarMenuSocialIcon>{item?.icon}</SidebarMenuSocialIcon>
-                    {item?.title}
-                  </SidebarMenuSocial>
-                ))}
-              </SidebarMenuSocials>
-            </SidebarMenuContainer>
-          </SidebarMenuFooter>
-        </SidebarMenuWrapper>
-
-        <SidebarMenuBackdrop
-          $headerHeight={headerSize.height}
-          $isSidebarOpen={isSidebarOpen}
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      </>
+          </>
+        )}
+      </AnimatePresence>
     );
   },
 );

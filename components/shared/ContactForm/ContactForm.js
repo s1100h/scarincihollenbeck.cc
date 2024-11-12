@@ -73,6 +73,7 @@ export default function ContactForm({
                 data-id={blockName}
                 checked={isCheckedDisclaimer === blockName}
                 onChange={handleCheck}
+                required
               />
               <span className="disclaimer-checkbox" />
               <span className="ml-2">I have read the disclaimer</span>
