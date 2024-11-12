@@ -22,6 +22,7 @@ const AttorneysBlock = ({
           }}
         />
       )}
+
       {(!empty(attorneysBlockArticle.title)
         || !empty(attorneysBlockArticle.paragraph)) && (
         <article className="attorneys-article-box">

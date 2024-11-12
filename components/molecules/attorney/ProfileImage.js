@@ -43,6 +43,7 @@ const ProfileImage = ({ name, profileImage, representativeVideo }) => {
     <CardImageVideoContainer>
       <CardImageWrapper>
         <Image
+          key={profileImage}
           src={profileImage}
           alt={name || 'Profile avatar'}
           width={500}

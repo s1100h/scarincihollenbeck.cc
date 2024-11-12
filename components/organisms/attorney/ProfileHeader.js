@@ -74,11 +74,6 @@ const ProfileHeader = ({
   const linkedIn = contact?.socialMediaLinks?.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
-  const profileImageProps = {
-    name,
-    profileImage,
-    representativeVideo,
-  };
 
   const profileDetailsProps = {
     offices,
@@ -99,7 +94,11 @@ const ProfileHeader = ({
         <PostBreadCrumbs />
         <ProfileHeaderHolder>
           <ProfileHeaderLeft>
-            <ProfileImage {...profileImageProps} />
+            <ProfileImage
+              name={name}
+              profileImage={profileImage}
+              representativeVideo={representativeVideo}
+            />
             <ProfileBgImage
               src="/images/profile-attorney-bg.webp"
               width={700}

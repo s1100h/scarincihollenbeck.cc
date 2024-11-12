@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
 import empty from 'is-empty';
 
 export default function useNotFoundNotification(message) {
@@ -11,16 +10,18 @@ export default function useNotFoundNotification(message) {
   useEffect(() => {
     const notFound = searchParams.get('notFound');
     if (notFound) {
-      toast.error(message, {
-        position: 'bottom-right',
-        autoClose: notifyTime,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-        className: 'error-notify',
+      import('react-toastify').then(({ toast }) => {
+        toast.error(message, {
+          position: 'bottom-right',
+          autoClose: notifyTime,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+          className: 'error-notify',
+        });
       });
 
       searchParams.delete('notFound');
@@ -42,5 +43,5 @@ export default function useNotFoundNotification(message) {
         }
       }, notifyTime);
     }
-  }, [router]);
+  }, [router, message]);
 }

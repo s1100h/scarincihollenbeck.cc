@@ -27,7 +27,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { register } from 'swiper/element/bundle';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { store } from '../redux/store';
-import Notifications from '../hoks/notifications';
+// need update to new firebase version
+// import PushNotificationLayout from '../hoks/notifications';
 import { RECAPTCHA_SITE_KEY } from '../utils/constants';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
@@ -51,19 +52,19 @@ const SHSite = ({ Component, pageProps }) => {
       <Provider store={store}>
         <GlobalStyle />
         <InitFonts />
-        <Notifications>
-          <ReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
-            <MainSiteHead />
-            <ToastContainer />
-            <Header />
-            {/* <!-- Google tag (gtag.js) --> */}
-            <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <SiteFooter />
-          </ReCaptchaProvider>
-        </Notifications>
+        {/* <PushNotificationLayout> */}
+        <ReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
+          <MainSiteHead />
+          <ToastContainer />
+          <Header />
+          {/* <!-- Google tag (gtag.js) --> */}
+          <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <SiteFooter />
+        </ReCaptchaProvider>
+        {/* </PushNotificationLayout> */}
       </Provider>
     </SSRProvider>
   );
