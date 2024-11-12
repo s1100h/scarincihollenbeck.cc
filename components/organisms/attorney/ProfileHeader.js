@@ -111,27 +111,23 @@ const ProfileHeader = ({
             />
 
             <ProfileActions>
-              {!empty(contact?.pdf) && !empty(contact?.vizibility) && (
-                <ProfileButtons>
-                  {!empty(contact?.pdf) && (
-                    <WhiteButton
-                      onClick={handlePrint}
-                      text="Print Bio"
-                      icon={<PDFIcon />}
-                    />
-                  )}
-                  {!empty(contact?.vizibility) && (
-                    <WhiteButton
-                      as={Link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href={contact?.vizibility}
-                      text="Business Card"
-                      icon={<BusinessCard />}
-                    />
-                  )}
-                </ProfileButtons>
-              )}
+              <ProfileButtons>
+                <WhiteButton
+                  onClick={handlePrint}
+                  text="Print Bio"
+                  icon={<PDFIcon />}
+                />
+                {!empty(contact?.vizibility) && (
+                  <WhiteButton
+                    as={Link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={contact?.vizibility}
+                    text="Business Card"
+                    icon={<BusinessCard />}
+                  />
+                )}
+              </ProfileButtons>
 
               <StandardBlueButton onClick={() => setIsContactModal(true)}>
                 Contact now

@@ -348,10 +348,12 @@ export const ProfileButtons = styled.div`
 `;
 
 export const AddressBox = styled.address`
+  height: 186px;
   margin: 0;
   padding: 8px 12px;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   gap: 8px;
   border-radius: ${globalBorderRadius.small};
   background-color: ${globalColor.blue.blue6002};

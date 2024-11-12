@@ -106,48 +106,62 @@ export const FooterPrintVersionContainer = styled.div`
   display: none;
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
-  border-radius: 12px;
-  padding: 10px 20px;
+  padding: 12px 20px;
 
   @media print {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: ${globalColor.blue.darkBlue};
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 24px;
+    background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
     .advertising-title-print {
-      font-size: 12px;
-      margin-bottom: 0;
+      font-size: 10px;
+      margin-bottom: 4px;
     }
 
     .advertising-text-print {
-      font-size: 10px;
-      width: 300px;
+      font-size: 9px;
+      margin-bottom: 24px;
     }
   }
+`;
+
+export const ContactsWrapperPrintVersion = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
 `;
 
 export const ContactsPrintVersion = styled.div`
   .location-print-list {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
 
-    > :first-child {
-      :before {
+    > :last-child {
+      :after {
         content: '';
       }
+    }
+
+    &:nth-of-type(2) {
+      font-weight: 700;
+      margin-top: 8px;
     }
   }
 
   .location-print-item {
     color: ${globalColor.white};
-    font-size: 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    &:before {
+    &:after {
       content: '•';
-      margin-right: 5px;
-      margin-left: 5px;
-      width: 6px;
-      height: 6px;
       color: ${globalColor.white};
     }
   }

@@ -242,7 +242,7 @@ export const getStaticProps = async ({ params }) => {
       profileHeader,
       accordionData,
       qrCodeBioPage: attorneyBio.attorneyMainInformation.qrCodeBioPage,
-      qrCodeLinkedin: attorneyBio.attorneyMainInformation.qrCodeBioPage,
+      qrCodeLinkedin: attorneyBio.attorneyMainInformation.qrCodeLinkedin,
     },
     revalidate: 3600,
   };
