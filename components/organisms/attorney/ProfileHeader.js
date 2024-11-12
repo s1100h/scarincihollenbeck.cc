@@ -68,6 +68,7 @@ const ProfileHeader = ({
   biography,
   affiliations,
   additionalInfo,
+  handlePrint,
 }) => {
   const [designation] = useDesignationHook(title);
   const [isContactModal, setIsContactModal] = useState(false);
@@ -85,12 +86,6 @@ const ProfileHeader = ({
     fax: contact?.fax,
     contact,
     linkedIn,
-  };
-
-  const handlePrint = () => {
-    if (typeof window !== 'undefined') {
-      window.print();
-    }
   };
 
   return (

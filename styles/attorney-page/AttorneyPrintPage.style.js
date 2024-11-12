@@ -107,6 +107,7 @@ export const FooterPrintVersionContainer = styled.div`
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
   padding: 12px 20px;
+  page-break-inside: avoid;
 
   @media print {
     display: grid;
@@ -114,6 +115,7 @@ export const FooterPrintVersionContainer = styled.div`
     gap: 24px;
     background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
+    border-radius: 8px;
     .advertising-title-print {
       font-size: 10px;
       margin-bottom: 4px;
@@ -136,19 +138,30 @@ export const ContactsWrapperPrintVersion = styled.div`
 export const ContactsPrintVersion = styled.div`
   .location-print-list {
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-end;
     gap: 8px;
 
     > :last-child {
       :after {
-        content: '';
+        display: none;
       }
     }
 
+    &:nth-of-type(1) {
+      flex-wrap: wrap;
+    }
+
     &:nth-of-type(2) {
+      flex-direction: column;
+      align-items: flex-end;
       font-weight: 700;
       margin-top: 8px;
+
+      .location-print-item {
+        &:after {
+          display: none;
+        }
+      }
     }
   }
 
@@ -169,9 +182,5 @@ export const ContactsPrintVersion = styled.div`
 
 export const QRCodesBoxForPDF = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  gap: 24px;
 `;

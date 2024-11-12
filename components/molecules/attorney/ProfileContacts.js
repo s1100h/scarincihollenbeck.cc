@@ -45,12 +45,12 @@ const ProfileContacts = ({
           </a>
         </li>
 
-        {/* {fax && (
-          <li className="contacts-item">
+        {fax && (
+          <li className="contacts-item pdf-hidden">
             <IoPrintSharp />
             {fax}
           </li>
-        )} */}
+        )}
 
         <li className="contacts-item">
           <a href={`mailto:${email}`} className="contacts-link">
@@ -59,7 +59,7 @@ const ProfileContacts = ({
           </a>
         </li>
 
-        {/* <li className="contacts-item">
+        <li className="contacts-item pdf-hidden">
           <a
             href={linkedIn?.url}
             target="_blank"
@@ -69,22 +69,26 @@ const ProfileContacts = ({
             <FaLinkedin />
             <span>{linkedIn?.channel}</span>
           </a>
-        </li> */}
+        </li>
       </ul>
       {(!empty(qrCodeLinkedin) || !empty(qrCodeBioPage)) && (
         <QRCodesBoxForPDF>
-          <Image
-            src={qrCodeLinkedin?.sourceUrl}
-            alt="LinkedIn"
-            width={92}
-            height={80}
-          />
-          <Image
-            src={qrCodeBioPage?.sourceUrl}
-            alt="The bio page"
-            width={92}
-            height={80}
-          />
+          {!empty(qrCodeLinkedin) && (
+            <Image
+              src={qrCodeLinkedin?.sourceUrl}
+              alt="LinkedIn"
+              width={92}
+              height={80}
+            />
+          )}
+          {!empty(qrCodeBioPage) && (
+            <Image
+              src={qrCodeBioPage?.sourceUrl}
+              alt="The bio page"
+              width={92}
+              height={80}
+            />
+          )}
         </QRCodesBoxForPDF>
       )}
     </AddressBox>

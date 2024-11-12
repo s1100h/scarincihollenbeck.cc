@@ -8,7 +8,6 @@ import {
   concatNameUser,
   fetchExternalPosts,
   formatSrcToCloudinaryUrl,
-  formatSrcToCloudinaryUrlPdf,
   sanitizeExternalArticles,
 } from 'utils/helpers';
 import { GOV_LAW_URL } from 'utils/constants';
@@ -154,10 +153,6 @@ export const getStaticProps = async ({ params }) => {
       email: attorneyBio.attorneyMainInformation?.email,
       fax: attorneyBio.attorneyMainInformation?.faxNumber,
       vizibility: attorneyBio.attorneyMainInformation?.vizibility,
-      pdf:
-        formatSrcToCloudinaryUrlPdf(
-          attorneyBio.attorneyMainInformation?.pdfBio?.mediaItemUrl,
-        ) || null,
       socialMediaLinks: attorneyBio.attorneyMainInformation?.socialMediaLinks,
     },
     practices: attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups
