@@ -33,6 +33,7 @@ export const getStaticProps = async () => {
       attorneysSchemaData: headMetaData(industryChief, includeAttorney),
       practices: sortByKey(corePractices, 'title'),
     },
+    revalidate: 86400,
   };
 };
 

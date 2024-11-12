@@ -5,7 +5,7 @@ import { getServicesQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import ServicesPage from 'components/pages/ServicesPage';
 import { getIndustries } from 'requests/getIndustries';
-import { sortByKey } from 'utils/helpers';
+import { filterTunePractices, sortByKey } from 'utils/helpers';
 import { getPractices } from 'requests/getPractices';
 
 const getServicesContent = async () => {
@@ -35,7 +35,9 @@ export const getStaticProps = async () => {
       title: data?.title,
       content: data?.servicesPage,
       industries: sortByKey(industries, 'title'),
-      practices: sortByKey(practicesSorted, 'title'),
+      practices: sortByKey(practicesSorted, 'title').filter(
+        filterTunePractices,
+      ),
     },
     revalidate: 86400,
   };

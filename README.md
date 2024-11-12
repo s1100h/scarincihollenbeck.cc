@@ -30,7 +30,6 @@ This repository contains the code base for the frontend of scarincihollenbeck.co
 - [React Cookie-Consent](https://github.com/Mastermindzh/react-cookie-consent#readme)
 - [RSS Parser](https://github.com/rbren/rss-parser#readme)
 - [Styled Components](https://styled-components.com/)
-- [Slick Carousel](https://kenwheeler.github.io/slick/)
 
 ## Install
 

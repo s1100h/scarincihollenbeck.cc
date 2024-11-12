@@ -6,11 +6,11 @@ import {
   IndustriesWrapper,
 } from 'styles/Industries.style';
 import { globalColor } from 'styles/global_styles/Global.styles';
-import { UnderlinedLink } from 'styles/Buttons.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import SeparatedTitle from 'components/common/SeparatedTitle';
 import empty from 'is-empty';
 import { getIndustryLink } from 'utils/helpers';
+import { UnderlinedLink } from 'styles/common/Typography.style';
 import IndustriesCard from './IndustriesCard';
 
 const IndustriesSection = ({

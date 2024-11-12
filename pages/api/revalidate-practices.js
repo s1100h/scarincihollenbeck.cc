@@ -1,17 +1,12 @@
 import { getPractices } from 'requests/getPractices';
-import { setResponseHeaders, sortByKey } from 'utils/helpers';
+import {
+  filterTunePractices,
+  setResponseHeaders,
+  sortByKey,
+} from 'utils/helpers';
 
 let lastFetchTime = 0;
 let data = [];
-
-const filterTune = (practice) => {
-  const titleMap = {
-    'Employment Defense Attorney': true,
-    'Government Strategies': true,
-  };
-
-  return !titleMap[practice.title];
-};
 
 export default async function handler(req, res) {
   const currentTime = Date.now();
@@ -28,7 +23,7 @@ export default async function handler(req, res) {
   // Fetch new data
   try {
     const practices = await getPractices();
-    data = sortByKey(practices, 'title').filter(filterTune);
+    data = sortByKey(practices, 'title').filter(filterTunePractices);
     lastFetchTime = currentTime;
     // Return new data with headers
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');

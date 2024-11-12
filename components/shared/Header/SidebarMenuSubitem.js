@@ -41,7 +41,7 @@ const MenuSubitem = ({
   };
 
   return (
-    <SidebarMenuSubitem $open={isOpen}>
+    <SidebarMenuSubitem $open={isOpen} className={isOpen ? 'open' : ''}>
       <SidebarMenuSubitemOpener
         href={href}
         onClick={handleClickItem}

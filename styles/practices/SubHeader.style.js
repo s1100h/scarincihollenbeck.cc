@@ -509,10 +509,6 @@ export const SubHeaderSlider = styled.div`
   max-width: 100%;
   background-color: ${globalColor.blue.blue6002};
 
-  .underlined {
-    color: ${globalColor.gray.gray10};
-  }
-
   ${media_breakpoint_down('xl')} {
     padding-right: 32px;
   }

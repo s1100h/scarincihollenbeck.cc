@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import { ResultsWrapper } from 'styles/Attornyes.style';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
+import { UnderlinedLink } from 'styles/common/Typography.style';
 import Selection from './Selection';
 import FilterResult from './FilterResult';
 import Results from './Results';
@@ -141,13 +141,13 @@ const AttorneyFilters = ({
             />
 
             {pathname !== '/attorneys' && (
-              <Link
+              <UnderlinedLink
                 href="/attorneys"
                 onClick={handleCloseModal}
-                className="underlined-link"
+                $isWhite
               >
                 View all
-              </Link>
+              </UnderlinedLink>
             )}
           </FiltersRightColumn>
         </FiltersColumns>

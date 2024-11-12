@@ -7,6 +7,7 @@ import {
   rem,
 } from './global_styles/Global.styles';
 import Image from 'next/image';
+import { UnderlinedLink } from './common/Typography.style';
 
 export const Banner = styled.section`
   padding: 60px 0;
@@ -270,4 +271,8 @@ export const BannerCardContent = styled.div`
     margin-bottom: 8px;
     row-gap: 12px;
   }
+`;
+
+export const BannerCardLink = styled(UnderlinedLink)`
+  margin-top: auto;
 `;

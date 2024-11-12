@@ -13,6 +13,8 @@ export const appApi = createApi({
     }),
     getAttorneys: builder.query({
       query: () => 'revalidate-attorneys',
+      // Keep cached data for 300 seconds (5 minutes) after the last component using it is unmounted, ex. menu dropdown attorneys
+      keepUnusedDataFor: 300,
     }),
     getAuthors: builder.query({
       query: () => 'revalidate-authors',

@@ -696,3 +696,12 @@ export const attorneysSanitize = (attorneysArr) => {
 };
 
 export const getIndustryLink = (uri, defaultUri = '/services#industries') => (readyIndustriesUrls.includes(uri) ? uri : defaultUri);
+
+export const filterTunePractices = (practice) => {
+  const titleMap = {
+    'Employment Defense Attorney': true,
+    'Government Strategies': true,
+  };
+
+  return !titleMap[practice.title];
+};

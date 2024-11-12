@@ -175,31 +175,6 @@ export const paragraphStyles = `
   width: 40%;
 `;
 
-export const UnderlinedLinkCss = `
-  padding: 4px 0 2px;
-  display: inline-flex;
-  width: fit-content;
-  color: ${globalColor.white};
-  font-weight: 600;
-  border-bottom: 2px solid ${globalColor.blue.skyBlue};
-  text-transform: unset;
-  transition: ${globalTransition.default};
-
-  @media (hover: hover) {
-    &:hover {
-      color: ${globalColor.blue.skyBlue};
-    }
-  }
-  
-  &:active {
-    color: ${globalColor.blue.skyBlue};
-  }
-
-  ${media_breakpoint_down('md')} {
-    font-size: ${rem(14)};
-  }
-`;
-
 export const GlobalStyle = createGlobalStyle`
   html {
     font-size: ${mainFontSize}px;
@@ -695,10 +670,6 @@ export const GlobalStyle = createGlobalStyle`
 
   .tag-two::before {
     content: ' - ';
-  }
-
-  .underlined-link {
-    ${UnderlinedLinkCss};
   }
 `;
 

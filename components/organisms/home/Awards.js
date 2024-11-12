@@ -1,15 +1,11 @@
 import Link from 'next/link';
-import {
-  AwardsHeader,
-  AwardsHolder,
-  AwardsTitle,
-  AwardsWrapper,
-} from 'styles/Awards.style';
+import { AwardsHeader, AwardsHolder, AwardsWrapper } from 'styles/Awards.style';
 import { StandardLightBlueButton } from 'styles/Buttons.style';
 import { formatSrcToCloudinaryUrl } from 'utils/helpers';
 import { ContainerDefault } from 'styles/Containers.style';
 import dynamic from 'next/dynamic';
 import React from 'react';
+import { TitleH2 } from 'styles/common/Typography.style';
 
 const AwardsSlider = dynamic(
   () => import('components/molecules/home/AwardsSlider'),
@@ -48,7 +44,7 @@ const Awards = React.memo(({ awards }) => {
       <ContainerDefault>
         <AwardsHolder>
           <AwardsHeader>
-            <AwardsTitle>Awards / Accolades</AwardsTitle>
+            <TitleH2 $isWhite>Awards / Accolades</TitleH2>
 
             <StandardLightBlueButton as={Link} href="/awards">
               Award Methodology

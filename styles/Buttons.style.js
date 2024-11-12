@@ -201,25 +201,6 @@ export const ButtonRed = styled(Link)`
   }
 `;
 
-export const UnderlinedLink = styled(Link)`
-  width: max-content;
-  padding: 4px 0 2px;
-  margin-top: auto;
-  color: ${globalColor.blue.darkBlue};
-  font-weight: 600;
-  border-bottom: 2px solid ${globalColor.blue.skyBlue};
-  transition: ${globalTransition.default};
-
-  &:hover {
-    color: ${globalColor.blue.blue400};
-    border-color: ${globalColor.blue.blue400};
-  }
-
-  ${media_breakpoint_down('sm')} {
-    font-size: 0.875rem;
-  }
-`;
-
 export const WhiteButtonWrapper = styled.button`
   width: max-content;
   padding: 12px;

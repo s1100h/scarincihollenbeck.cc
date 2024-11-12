@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { globalColor, rem } from './global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { titleH2Styles } from './common/Typography.style';
 
 export const SeparatedTitleWrapper = styled.h2`
   margin: 0;
@@ -10,15 +10,7 @@ export const SeparatedTitleWrapper = styled.h2`
   text-wrap: balance;
 
   .title-text {
-    color: ${globalColor.blue.darkBlue};
-    font-size: ${rem(32)};
-    line-height: 1.38;
-    font-weight: 600;
-
-    ${media_breakpoint_down('md')} {
-      font-size: ${rem(20)};
-      line-height: 1.4;
-    }
+    ${titleH2Styles};
   }
 
   .title-separator {

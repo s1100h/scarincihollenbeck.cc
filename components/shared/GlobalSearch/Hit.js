@@ -14,6 +14,7 @@ import PracticesIcon from 'components/common/icons/PracticesIcon';
 import PostsIcon from 'components/common/icons/PostsIcon';
 import AttorneysIcon from 'components/common/icons/AttorneysIcon';
 import CareersIcon from 'components/common/icons/CareersIcon';
+import IndustriesIcon from 'components/common/icons/IndustriesIcon';
 import { changeTitle } from '../../../utils/helpers';
 import { BASE_API_URL, PRODUCTION_URL } from '../../../utils/constants';
 
@@ -23,6 +24,7 @@ const getItemIcon = (type) => {
     Attorneys: <AttorneysIcon />,
     Practices: <PracticesIcon />,
     Careers: <CareersIcon />,
+    Industries: <IndustriesIcon />,
   };
 
   if (!icons[type]) {

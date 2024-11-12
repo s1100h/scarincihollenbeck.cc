@@ -11,9 +11,9 @@ import {
   LatestPostsHolder,
   LatestPostsTab,
   LatestPostsTabs,
-  LatestPostsTitle,
   LatestPostsWrapper,
 } from 'styles/LatestPosts.style';
+import { TitleH2 } from 'styles/common/Typography.style';
 import { latestPostTabs } from 'utils/constants';
 
 const LatestPostsSlider = dynamic(() => import('./LatestPostsSlider'), {
@@ -29,7 +29,7 @@ const LatestPostsSection = ({ tabsData }) => {
       <ContainerDefault>
         <LatestPostsHolder>
           <LatestPostsHeader>
-            <LatestPostsTitle>Latest from the firm</LatestPostsTitle>
+            <TitleH2>Latest from the firm</TitleH2>
 
             <StandardBlueButton href="/library/category/client-alert" as={Link}>
               Open library

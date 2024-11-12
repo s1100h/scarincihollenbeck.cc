@@ -7,6 +7,7 @@ import {
   rem,
 } from '../global_styles/Global.styles';
 import { media_breakpoint_down } from '../mediaBreakpoints.style';
+import { TitleH2 } from 'styles/common/Typography.style';
 
 export const WhyChooseUsSection = styled.section`
   padding: 60px 0;
@@ -65,18 +66,8 @@ export const ArticleBoxSimple = styled.article`
   }
 `;
 
-export const WhyChooseUsTitle = styled.h2`
-  color: ${globalColor.blue.darkBlue};
-  font-size: ${rem(32)};
-  font-weight: 600;
-  line-height: 44px;
-  margin-bottom: 16px;
-
-  ${media_breakpoint_down('sm')} {
-    margin-bottom: 8px;
-    font-size: ${rem(20)};
-    line-height: 1.4;
-  }
+export const WhyChooseUsTitle = styled(TitleH2)`
+  margin-bottom: 16px !important;
 `;
 
 export const ArticleList = styled.ul`

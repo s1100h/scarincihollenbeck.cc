@@ -8,6 +8,7 @@ import {
 } from 'styles/global_styles/Global.styles';
 import { media_breakpoint_down } from './mediaBreakpoints.style';
 import Link from 'next/link';
+import { TitleH2 } from './common/Typography.style';
 
 export const LocationsHomeSection = styled.section`
   padding-top: 60px;
@@ -15,16 +16,8 @@ export const LocationsHomeSection = styled.section`
   background-color: ${globalColor.gray.gray10};
 `;
 
-export const LocationTitle = styled.h2`
-  font-family: var(--font-poppins);
-  font-weight: 600;
-  font-size: ${rem(32)};
-  line-height: 44px;
-  color: ${globalColor.black};
-
-  ${media_breakpoint_down('sm')} {
-    font-size: ${rem(20)};
-  }
+export const LocationTitle = styled(TitleH2)`
+  margin-bottom: 16px !important;
 `;
 
 export const LocationCardMain = styled.div`

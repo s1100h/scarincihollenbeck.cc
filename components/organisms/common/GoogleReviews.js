@@ -7,7 +7,7 @@ import {
 } from 'styles/GoogleReviews.style';
 import GoogleLogo from 'components/atoms/GoogleLogo';
 import { BsStarFill } from 'react-icons/bs';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { ContainerDefault } from 'styles/Containers.style';
 
@@ -59,36 +59,36 @@ const GoogleReviews = ({ reviews, anchorId }) => {
     <GoogleReviewsSection className="margin-scroll" id={anchorId}>
       <ContainerDefault>
         <GoogleReviewsHolder>
-          <Slider {...settings}>
-            {!empty(reviews)
-              && reviews.map((review) => (
-                <GoogleReviewsCard
-                  key={review.time}
-                  href={review.author_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="review__header">
-                    <div className="review__info">
-                      <h4>{review.author_name}</h4>
-                      <div className="review__rating">
-                        {Array(review.rating)
-                          .fill('')
-                          .map((_, i) => (
-                            <BsStarFill key={useId()} />
-                          ))}
-                      </div>
-                    </div>
-                    <div className="review__logo">
-                      <GoogleLogo />
+          {/* <Slider {...settings}> */}
+          {!empty(reviews)
+            && reviews.map((review) => (
+              <GoogleReviewsCard
+                key={review.time}
+                href={review.author_url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="review__header">
+                  <div className="review__info">
+                    <h4>{review.author_name}</h4>
+                    <div className="review__rating">
+                      {Array(review.rating)
+                        .fill('')
+                        .map((_, i) => (
+                          <BsStarFill key={useId()} />
+                        ))}
                     </div>
                   </div>
-                  <div className="review__description">
-                    <p>{review.text}</p>
+                  <div className="review__logo">
+                    <GoogleLogo />
                   </div>
-                </GoogleReviewsCard>
-              ))}
-          </Slider>
+                </div>
+                <div className="review__description">
+                  <p>{review.text}</p>
+                </div>
+              </GoogleReviewsCard>
+            ))}
+          {/* </Slider> */}
         </GoogleReviewsHolder>
       </ContainerDefault>
     </GoogleReviewsSection>

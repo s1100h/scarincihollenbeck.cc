@@ -4,7 +4,7 @@ import {
   globalColor,
   globalTransition,
   rem,
-  UnderlinedLinkCss,
+
 } from './global_styles/Global.styles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -14,6 +14,7 @@ import {
 } from './Sidebar.style';
 import { FiltersResults, LetterSelectorBtn } from './Filters.style';
 import { ClearButton } from './Buttons.style';
+import { underlinedLinkStyles } from './common/Typography.style';
 
 //New styles for Navigation in Header
 export const NavbarWrapper = styled.nav`
@@ -112,9 +113,10 @@ export const NavbarItemContent = styled(motion.div)`
     }
 
     .underlined {
-      ${UnderlinedLinkCss};
+      ${underlinedLinkStyles};
       margin: 4px 0 4px 12px;
       border-radius: 0;
+      color: ${globalColor.white};
 
       &:hover {
         background-color: transparent;

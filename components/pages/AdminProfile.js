@@ -1,6 +1,5 @@
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
-import { ContainerDefault } from 'styles/Containers.style';
 
 const AdminProfile = ({ seo, profile, canonicalUrl }) => (
   <>

@@ -1,6 +1,5 @@
 import { ContainerDefault } from 'styles/Containers.style';
 import { Fragment } from 'react';
-import { UnderlinedLink } from 'styles/Buttons.style';
 import { slogans } from 'utils/constants';
 import { getIcon } from 'utils/helpers';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
@@ -10,6 +9,7 @@ import {
   BannerCardContent,
   BannerCardHeader,
   BannerCardIcon,
+  BannerCardLink,
   BannerCards,
   BannerCardTitle,
   BannerImage,
@@ -75,9 +75,9 @@ const HomeBanner = ({ title, subtitle, infoCards }) => (
               <JSXWithDynamicLinks HTML={cardsText} />
             </BannerCardContent>
 
-            <UnderlinedLink href={link?.url} className="link">
+            <BannerCardLink href={link?.url} className="link">
               {link?.title}
-            </UnderlinedLink>
+            </BannerCardLink>
           </BannerCard>
         ))}
       </BannerCards>

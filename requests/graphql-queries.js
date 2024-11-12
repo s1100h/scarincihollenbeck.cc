@@ -1394,3 +1394,11 @@ query ServicesQuery {
   }
 }
 `;
+
+export const getIndustryQuery = `
+query IndustryQuery($id: ID! = "/cannabis") {
+  industry(id: $id, idType: SLUG) {
+    title
+  }
+}
+`;

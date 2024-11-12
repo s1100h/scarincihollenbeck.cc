@@ -54,18 +54,6 @@ export const AboutBlock = styled.div`
   }
 `;
 
-export const AboutTitle = styled.h2`
-  margin: 0;
-  font-size: ${rem(32)};
-  line-height: 1.38;
-  font-weight: 600;
-
-  ${media_breakpoint_down('md')} {
-    font-size: ${rem(20)};
-    line-height: 1.4;
-  }
-`;
-
 export const AboutDescription = styled.div`
   display: flex;
   flex-direction: column;

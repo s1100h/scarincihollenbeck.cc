@@ -20,6 +20,7 @@ import ContactForm from 'components/shared/ContactForm/ContactForm';
 import Image from 'next/image';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { useSwipeable } from 'react-swipeable';
+import { UnderlinedLink } from 'styles/common/Typography.style';
 
 const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
   const [isContactModal, setIsContactModal] = useState(false);
@@ -142,12 +143,13 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
             </SubHeaderSlideDescription>
           )}
 
-          <button
-            className="underlined-link"
+          <UnderlinedLink
+            as="button"
             onClick={() => setIsContactModal(true)}
+            $isWhite
           >
             Contact now
-          </button>
+          </UnderlinedLink>
 
           <SubHeaderSlideNavigationButton
             onClick={onClickNext}

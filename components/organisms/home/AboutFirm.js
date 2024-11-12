@@ -8,13 +8,13 @@ import {
   AboutCardTitle,
   AboutDescription,
   AboutSection,
-  AboutTitle,
 } from 'styles/AboutFirm.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import Image from 'next/image';
 import LogoSeparator from 'components/common/LogoSeparator';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import empty from 'is-empty';
+import { TitleH2 } from 'styles/common/Typography.style';
 
 const AboutFirm = ({
   title,
@@ -30,7 +30,7 @@ const AboutFirm = ({
     <ContainerDefault>
       <AboutBlocks>
         <AboutBlock>
-          <AboutTitle>{title}</AboutTitle>
+          <TitleH2 $isWhite>{title}</TitleH2>
           {!empty(arcticle) && (
             <AboutDescription>
               <JSXWithDynamicLinks HTML={arcticle} />

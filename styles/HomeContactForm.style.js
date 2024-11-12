@@ -22,19 +22,6 @@ export const ContactFormWrapper = styled.section`
   }
 `;
 
-export const ContactFormTitle = styled.h2`
-  margin: 0;
-  color: ${globalColor.blue.darkBlue};
-  font-size: ${rem(32)};
-  line-height: 1.38;
-  font-weight: 600;
-
-  ${media_breakpoint_down('sm')} {
-    font-size: ${rem(20)};
-    line-height: 1.4;
-  }
-`;
-
 export const ContactFormHolder = styled.div`
   margin: 0 auto;
   max-width: 1240px;

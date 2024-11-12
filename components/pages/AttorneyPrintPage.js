@@ -2,11 +2,11 @@ import React from 'react';
 import empty from 'is-empty';
 import Image from 'next/image';
 import Link from 'next/link';
+import { TitleH2 } from 'styles/common/Typography.style';
 import {
   CardImageWrapper,
   ProfileDesignation,
   ProfileHeaderRight,
-  ProfileName,
   ProfileTitle,
 } from '../../styles/attorney-page/AttorneyProfile.style';
 import {
@@ -87,7 +87,7 @@ const AttorneyPrintPage = ({
         </CardImageWrapper>
         <ProfileHeaderRight>
           <ProfileTitle className="profile-title">
-            <ProfileName>{name}</ProfileName>
+            <TitleH2>{name}</TitleH2>
             <ProfileDesignation>{designation}</ProfileDesignation>
           </ProfileTitle>
           <ProfileServices

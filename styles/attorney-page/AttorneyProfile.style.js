@@ -435,19 +435,6 @@ export const ProfileTitle = styled.div`
   column-gap: 12px;
 `;
 
-export const ProfileName = styled.h1`
-  margin: 0;
-  color: ${globalColor.blue.darkBlue};
-  font-size: ${rem(32)};
-  line-height: 1.38;
-  font-weight: 600;
-
-  ${media_breakpoint_down('sm')} {
-    font-size: ${rem(20)};
-    line-height: 1.4;
-  }
-`;
-
 export const ProfileDesignation = styled.span`
   margin: 4px 0 2px 0;
   color: ${globalColor.gray.gray110};

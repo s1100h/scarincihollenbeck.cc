@@ -43,19 +43,6 @@ export const AwardsHeader = styled.div`
   }
 `;
 
-export const AwardsTitle = styled.h2`
-  margin: 0;
-  color: ${globalColor.white};
-  font-size: ${rem(32)};
-  line-height: 1.38;
-  font-weight: 600;
-
-  ${media_breakpoint_down('md')} {
-    font-size: ${rem(20)};
-    line-height: 1.4;
-  }
-`;
-
 export const AwardsSliderWrapper = styled.div`
   display: flex;
   flex-direction: column;

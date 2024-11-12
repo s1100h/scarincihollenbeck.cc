@@ -14,7 +14,6 @@ import {
   ProfileHeaderLeft,
   ProfileHeaderRight,
   ProfileHeaderSection,
-  ProfileName,
   ProfileTitle,
 } from 'styles/attorney-page/AttorneyProfile.style';
 import { ContainerDefault } from 'styles/Containers.style';
@@ -30,6 +29,7 @@ import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDyn
 import empty from 'is-empty';
 import WhiteButton from 'components/molecules/attorney/WhiteButton';
 import ProfileBioList from 'components/molecules/attorney/ProfileBioList';
+import { TitleH2 } from 'styles/common/Typography.style';
 import PostBreadCrumbs from '../post/PostBreadcrumbs';
 
 export const useDesignationHook = (title) => {
@@ -153,7 +153,7 @@ const ProfileHeader = ({
 
           <ProfileHeaderRight>
             <ProfileTitle>
-              <ProfileName>{name}</ProfileName>
+              <TitleH2 as="h1">{name}</TitleH2>
               <ProfileDesignation>{designation}</ProfileDesignation>
             </ProfileTitle>
 
