@@ -612,7 +612,6 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 140px;
 
     h3 {
       font-size: ${rem(44)};
@@ -760,6 +759,7 @@ export const attorneyCardForCannabis = `
         font-size: ${rem(20)};
         font-weight: 700;
         line-height: 30px;
+        text-transform: uppercase;
 
         ${media_breakpoint_down('sm')} {
           font-size: ${rem(18)};
@@ -782,7 +782,9 @@ export const attorneyCardForCannabis = `
 
       address {
         row-gap: 8px;
-        a {
+        margin: 0;
+
+        a, .contact-offices {
           column-gap: 8px;
 
           svg {

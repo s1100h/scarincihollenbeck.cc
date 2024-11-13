@@ -8,22 +8,16 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from '../../mediaBreakpoints.style';
-import { AttorneysContainer } from 'styles/AttorneysListBox.style';
 
 export const AttorneysCannabisContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: ${cannabisLawColors.cannabisColorDarkGray};
-  padding-top: 140px;
+  padding: 140px 0;
   position: relative;
   align-items: center;
   overflow: hidden;
-
-  ${AttorneysContainer} {
-    padding: 0;
-    box-shadow: none;
-  }
 
   .cannabis-big-leaf {
     position: absolute;
@@ -59,19 +53,15 @@ export const AttorneysCannabisContainer = styled.section`
       max-width: 725px;
     }
 
-    ${media_breakpoint_down('xxl')} {
-      margin-bottom: 120px;
-    }
-
     ${media_breakpoint_down('xl')} {
-      margin-bottom: 100px;
+      position: initial;
 
       .cannabis-big-leaf {
         right: 0;
         bottom: 0;
         z-index: 0;
       }
-      position: initial;
+      
       p {
         width: 80%;
       }
@@ -90,13 +80,13 @@ export const AttorneysCannabisContainer = styled.section`
     }
 
     ${media_breakpoint_down('md')} {
-      margin-bottom: 80px;
       .cannabis-big-leaf {
         width: 300px;
         height: 345px;
         left: 0;
         bottom: 96px;
       }
+
       h3 {
         width: 80%;
       }
@@ -125,79 +115,34 @@ export const AttorneysCannabisContainer = styled.section`
     }
   }
 
-  .chair-box {
-    margin-right: 40px;
-
-    ${media_breakpoint_exactly_down(1040)} {
-      margin-right: 0;
-      margin-bottom: 60px;
-    }
-
-    > h3 {
-      margin: 0 0 48px 0;
-      color: ${cannabisLawColors.cannabisColorGray};
-      font-size: ${rem(54)};
-      line-height: 70px;
-      font-family: var(--font-poppins), sans-serif;
-      font-weight: 600;
-
-      ${media_breakpoint_down('xxl')} {
-        margin: 0 0 32px 0;
-        font-size: ${rem(36)};
-        line-height: 47px;
-      }
-
-      ${media_breakpoint_down('md')} {
-        font-size: ${rem(32)};
-        line-height: 42px;
-      }
-    }
-  }
-
-  .attorneys-list-box {
-    > div {
-      gap: 40px;
-
-      ${media_breakpoint_down('xxl')} {
-        gap: 32px;
-      }
-
-      ${media_breakpoint_down('md')} {
-        gap: 24px;
-        justify-content: flex-start;
-      }
-    }
-
-    > h3 {
-      margin: 0 0 48px 0;
-      color: ${cannabisLawColors.cannabisColorGray};
-      font-size: ${rem(54)};
-      line-height: 70px;
-      font-family: var(--font-poppins), sans-serif;
-      font-weight: 600;
-
-      ${media_breakpoint_down('xxl')} {
-        margin: 0 0 32px 0;
-        font-size: ${rem(36)};
-        line-height: 47px;
-      }
-
-      ${media_breakpoint_down('md')} {
-        font-size: ${rem(32)};
-        line-height: 42px;
-      }
-    }
-  }
 
   ${media_breakpoint_down('xxl')} {
-    padding-top: 120px;
+    padding: 120px 0;
   }
 
-  ${media_breakpoint_exactly_down(1040)} {
-    padding-top: 100px;
+  ${media_breakpoint_exactly_down('xl')} {
+    padding: 100px 0;
   }
 
   ${media_breakpoint_down('sm')} {
-    padding-top: 80px;
+    padding: 80px 0;
+  }
+`;
+
+export const AttorneysCannabisHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 140px;
+
+  ${media_breakpoint_down('xxl')} {
+    row-gap: 120px;
+  }
+
+  ${media_breakpoint_exactly_down('xl')} {
+    row-gap: 100px;
+  }
+
+  ${media_breakpoint_down('sm')} {
+    row-gap: 80px;
   }
 `;

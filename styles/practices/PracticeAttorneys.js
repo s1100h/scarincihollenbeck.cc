@@ -1,15 +1,12 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { ContactBox } from 'styles/AttorneyCard.style';
-import { AttorneysContainer } from 'styles/AttorneysListBox.style';
 import {
-  globalBorderRadius,
   globalColor,
   rem,
 } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 import { PracticeTitle } from './PracticeCommon.style';
 
@@ -72,88 +69,6 @@ export const PracticeAttorneysSection = styled.section`
     transition: all 0.5s linear;
   }
 
-  ${AttorneysContainer} {
-    ${({ minHeight }) => `
-      min-height: ${minHeight}px;
-    `}
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, 188px);
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-    align-items: end;
-
-    .chair-box {
-      height: 100%;
-      margin: 0;
-      background-color: ${globalColor.blue.blue500};
-      border-radius: ${globalBorderRadius.extraSmall};
-
-      > h3 {
-        padding: 2px 4px 0;
-        margin: 0;
-        color: ${globalColor.gray.gray10};
-        font-family: var(--font-poppins);
-        font-size: ${rem(20)};
-        line-height: 32px;
-        font-weight: 600;
-      }
-    }
-
-    .attorneys-list-box {
-      display: contents;
-
-      > h3 {
-        display: none;
-      }
-
-      > div {
-        display: contents;
-        margin: 0;
-        height: 100%;
-        align-items: flex-end;
-        gap: 20px;
-      }
-    }
-
-    .vertical-attorney-card {
-      margin: 0;
-      width: 100%;
-      height: 218px;
-
-      ${media_breakpoint_down('md')} {
-        padding: 4px;
-        height: 202px;
-
-        a {
-          display: flex;
-          white-space: normal;
-        }
-      }
-    }
-
-    ${media_breakpoint_exactly_down(1850)} {
-      gap: 12px;
-    }
-
-    ${media_breakpoint_exactly_down(1439)} {
-      gap: 20px;
-    }
-
-    ${media_breakpoint_down('md')} {
-      justify-content: flex-start;
-    }
-
-    ${media_breakpoint_down('sm')} {
-      gap: 0;
-      grid-template-columns: repeat(auto-fit, 175px);
-      ${({ minHeight }) => `
-        min-height: ${minHeight}px;
-      `}
-    }
-  }
-
   ${media_breakpoint_down('md')} {
     margin: 0 0 32px 0;
   }
@@ -166,21 +81,33 @@ export const PracticeAttorneysBg = styled(Image)`
 `;
 
 export const PracticeAttorneysCard = styled.div`
+  width: 100%;
+  height: 218px;
   padding: 4px;
   position: relative;
   cursor: pointer;
+  
+  ${media_breakpoint_down('md')} {
+    height: 202px;
+
+    a {
+      display: flex;
+      white-space: normal;
+    }
+  }
 
   @media (hover: hover) {
     &:hover {
       .attorney__image {
         filter: grayscale(0%);
       }
+
       .attorney__content {
         &::after {
           opacity: 1;
         }
 
-        p {
+        .attorney__designation {
           margin-bottom: 8px;
         }
       }
@@ -196,12 +123,13 @@ export const PracticeAttorneysCard = styled.div`
     .attorney__image {
       filter: grayscale(0%);
     }
+
     .attorney__content {
       &::after {
         opacity: 1;
       }
 
-      p {
+      .attorney__designation {
         margin-bottom: 8px;
       }
     }
@@ -269,6 +197,7 @@ export const PracticeAttorneysCard = styled.div`
       }
 
       ${ContactBox} {
+        margin: 0;
         row-gap: 4px;
         min-height: 0;
 
@@ -307,25 +236,16 @@ export const PracticeAttorneysCard = styled.div`
           }
         }
       }
+    }
 
-      > h3 {
-        margin: 0 0 2px 0;
-        font-size: ${rem(14)};
-        line-height: 14px;
-        font-weight: 500;
-        color: ${globalColor.blue.darkBlue};
-        font-family: var(--font-poppins);
-      }
-
-      > p {
-        margin: 0;
-        color: ${globalColor.blue.darkBlue};
-        font-family: var(--font-poppins);
-        font-size: ${rem(10)};
-        line-height: 12px;
-        font-weight: 400;
-        transition: all 0.125s linear;
-      }
+    &__designation {
+      margin: 0;
+      color: ${globalColor.blue.darkBlue};
+      font-family: var(--font-poppins);
+      font-size: ${rem(10)};
+      line-height: 12px;
+      font-weight: 400;
+      transition: all 0.125s linear;
     }
 
     &__contact {
@@ -336,6 +256,15 @@ export const PracticeAttorneysCard = styled.div`
       transition: all 0.3s linear;
     }
   }
+`;
+
+export const PracticeAttorneysCardName = styled.h3`
+  margin: 0 0 2px 0;
+  font-size: ${rem(14)};
+  line-height: 14px;
+  font-weight: 500;
+  color: ${globalColor.blue.darkBlue};
+  font-family: var(--font-poppins);
 `;
 
 export const PracticeNoAttorneys = styled.div`

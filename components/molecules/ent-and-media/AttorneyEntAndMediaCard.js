@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import {
   CardEntAndMediaAttorney,
   ImageWrapper,
@@ -7,8 +6,6 @@ import {
 import Link from 'next/link';
 import { renderLinkToLocationPractice } from '../../shared/AttorneyCard';
 import ContactBoxTemplate from '../../atoms/ContactBox';
-
-const adress = 'Little Falls, NJ, New York';
 
 const AttorneyEntAndMediaCard = ({
   link,

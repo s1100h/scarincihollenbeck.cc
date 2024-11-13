@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { PracticeAttorneysCard } from 'styles/practices/PracticeAttorneys';
+import {
+  PracticeAttorneysCard,
+  PracticeAttorneysCardName,
+} from 'styles/practices/PracticeAttorneys';
 import { useEffect, useRef, useState } from 'react';
 import useStateScreen from 'hooks/useStateScreen';
 import Link from 'next/link';
@@ -15,14 +17,14 @@ const AttorneyPracticeCard = ({
   email,
   width,
   height,
-  classNameProp,
-  handleCardParams,
+  handleSetCardParams,
   officeLocations,
+  cardTag = null,
 }) => {
-  const { push } = useRouter();
   const [isActive, setIsActive] = useState(false);
   const { isBigTabletScreen } = useStateScreen();
   const cardRef = useRef();
+  const ContentTag = isBigTabletScreen ? 'button' : 'div';
 
   const handleClickContent = (e) => {
     e.stopPropagation();
@@ -30,17 +32,17 @@ const AttorneyPracticeCard = ({
   };
 
   useEffect(() => {
-    if (handleCardParams && cardRef.current) {
-      handleCardParams(
+    if (handleSetCardParams && cardRef.current) {
+      handleSetCardParams(
         cardRef.current.clientWidth,
         cardRef.current.clientHeight,
       );
     }
-  }, [handleCardParams]);
+  }, [handleSetCardParams]);
 
   return (
     <PracticeAttorneysCard
-      className={`${classNameProp} ${isActive ? 'active' : ''}`}
+      className={`${isActive ? 'active' : ''}`}
       ref={cardRef}
     >
       <Link href={link} className="attorney__link" aria-label={name} />
@@ -52,34 +54,22 @@ const AttorneyPracticeCard = ({
           alt={`Attorney, ${name}`}
         />
       </div>
-      {isBigTabletScreen ? (
-        <button
-          className="attorney__content"
-          onClick={(e) => handleClickContent(e)}
-        >
-          <h3>{name}</h3>
-          <p>{designation}</p>
-          <div className="attorney__contact">
-            <ContactBoxTemplate
-              email={email}
-              number={number}
-              officeLocations={officeLocations}
-            />
-          </div>
-        </button>
-      ) : (
-        <div className="attorney__content">
-          <h3>{name}</h3>
-          <p>{designation}</p>
-          <div className="attorney__contact">
-            <ContactBoxTemplate
-              email={email}
-              number={number}
-              officeLocations={officeLocations}
-            />
-          </div>
+      <ContentTag
+        className="attorney__content"
+        onClick={(e) => handleClickContent(e)}
+      >
+        <PracticeAttorneysCardName as={cardTag && cardTag}>
+          {name}
+        </PracticeAttorneysCardName>
+        <p className="attorney__designation">{designation}</p>
+        <div className="attorney__contact">
+          <ContactBoxTemplate
+            email={email}
+            number={number}
+            officeLocations={officeLocations}
+          />
         </div>
-      )}
+      </ContentTag>
     </PracticeAttorneysCard>
   );
 };

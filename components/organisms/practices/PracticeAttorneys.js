@@ -1,4 +1,3 @@
-import AttorneysListBox from 'components/common/AttorneysListBox';
 import empty from 'is-empty';
 import React, {
   useEffect, useMemo, useRef, useState,
@@ -10,6 +9,8 @@ import {
   PracticeNoAttorneys,
 } from 'styles/practices/PracticeAttorneys';
 import { PracticeTitle } from 'styles/practices/PracticeCommon.style';
+import { useSelector } from 'react-redux';
+import AttorneysArea from '../attorneys/areas/AttorneysArea';
 
 const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   const [containerWidth, setContainerWidth] = useState(0);
@@ -19,39 +20,25 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   const [cardGap, setCardGap] = useState(0);
   const containerRef = useRef();
   const totalItems = attorneys?.length + chairs.length;
+  const { width } = useSelector((state) => state.sizes.viewportSize);
 
   useEffect(() => {
-    let timeoutId;
-
-    const handleResize = () => {
-      if (containerRef.current) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          setContainerWidth(containerRef.current.clientWidth);
-        }, 300);
-      }
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timeoutId);
-    };
-  }, [containerRef.current]);
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.clientWidth);
+    }
+  }, [containerRef.current, width]);
 
   const calculateItemsPerRow = useMemo(() => {
     const availableWidth = containerWidth + cardGap;
     return Math.floor(availableWidth / (cardWidth + cardGap)) || 0;
   }, [containerWidth, cardWidth, cardGap]);
 
-  const handleCardParams = (width, height) => {
+  const handleSetCardParams = (width, height) => {
     setCardWidth(width);
     setCardHeight(height);
   };
 
-  const handleCardGap = (gap) => {
+  const handleSetCardGap = (gap) => {
     setCardGap(gap);
   };
 
@@ -84,7 +71,6 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
   return (
     <PracticeAttorneysSection
       className={`margin-scroll ${isCollapsed ? 'collapsed' : ''}`}
-      minHeight={chairs.length > 0 ? cardHeight + 34 : cardHeight}
       id={anchorId}
       data-testid="collapse-attorneys"
     >
@@ -98,22 +84,22 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
       <ContainerDefault>
         <div className="attorneys-practice__header">
           <PracticeTitle>Practice Area Attorneys</PracticeTitle>
-          {totalItems > calculateItemsPerRow
-            && (!isCollapsed ? (
-              <button onClick={handleCollapse}>See all</button>
-            ) : (
-              <button onClick={handleCollapse}>HIDE</button>
-            ))}
+          {totalItems > calculateItemsPerRow && (
+            <button onClick={handleCollapse}>
+              {!isCollapsed ? 'See all' : 'HIDE'}
+            </button>
+          )}
         </div>
         <div className="attorneys-practice__wrapper" ref={containerRef}>
           {(!empty(chairs) || !empty(attorneys)) && (
-            <AttorneysListBox
+            <AttorneysArea
               attorneys={{
                 chairs,
                 attorneysList: attorneys,
               }}
-              handleCardParams={handleCardParams}
-              handleCardGap={handleCardGap}
+              handleSetCardParams={handleSetCardParams}
+              handleSetCardGap={handleSetCardGap}
+              minHeight={chairs.length > 0 ? cardHeight + 34 : cardHeight}
             />
           )}
         </div>
