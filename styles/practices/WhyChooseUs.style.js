@@ -66,12 +66,13 @@ export const WhyChooseUsCardContent = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  h4 {
+  h3 {
     margin: 0 0 4px 0;
     font-size: ${rem(24)};
     font-weight: 600;
     line-height: 30px;
     letter-spacing: 1px;
+    color: inherit;
 
     ${media_breakpoint_down('md')} {
       font-size: ${rem(16)};

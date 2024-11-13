@@ -11,7 +11,7 @@ const whyChooseUsData = {
   cards: [
     {
       title: 'Dedicated attorneys',
-      text: 'When your livelihood is on the line, having an SEC investigations attorney well-versed in securities law and the ever evolving regulatory landscape is paramount. At Scarinci Hollenbeck, LLC, our dedicated attorneys boast multiple decades of extensive experience handling cases tied to securities investigations.',
+      text: 'At Scarinci Hollenbeck, our attorneys are forward-thinking professionals dedicated to the ongoing enhancement of their legal expertise. They stay informed of legal developments, engage in professional bar associations, contribute to legislative initiatives, and actively engage in speaking opportunities—all to provide the highest quality service possible.',
       image: {
         src: '/images/whyChooseUs1.jpg',
         width: 1000,
@@ -19,8 +19,8 @@ const whyChooseUsData = {
       },
     },
     {
-      title: 'We offer strategic',
-      text: 'We offer strategic legal counsel that acknowledges the distinct challenges faced by officers, directors, and companies embroiled in SEC, DOJ, or AG investigations.',
+      title: 'Strategic Counsel',
+      text: "In today's dynamic economy, businesses face complex challenges. We understand that these challenges require innovative, multi-faceted solutions. Through a collaborative, cross-practice approach, our attorneys leverage a wealth of experience across various legal disciplines to devise effective strategies tailored to meet our clients’ needs.",
       image: {
         src: '/images/whyChooseUs2.jpg',
         width: 1000,
@@ -28,8 +28,8 @@ const whyChooseUsData = {
       },
     },
     {
-      title: 'Unwavering legal support',
-      text: 'Whether you’re dealing with SEC compliance, DOJ inquiries, AG investigations, or related matters, you can count on our unwavering legal support to help you navigate the process and achieve the best possible outcome.',
+      title: 'Proven Experience',
+      text: 'For over 35 years, Scarinci Hollenbeck has offered comprehensive legal services to businesses both locally and globally. Our attorneys draw on extensive industry knowledge, representing clients in sectors such as real estate, entertainment, technology, and energy. We take pride in the successful outcomes we consistently achieve.',
       image: {
         src: '/images/whyChooseUs3.jpg',
         width: 1000,
@@ -37,8 +37,8 @@ const whyChooseUsData = {
       },
     },
     {
-      title: 'Customer focus',
-      text: 'Collaboratively, we work with you to grasp the unique intricacies of your circumstances, adapting our legal strategies to align with your goals.',
+      title: 'Client-First Focus',
+      text: 'Our commitment to being a client-first law firm is rooted in open communication, meticulous attention to detail, and adaptability. We work closely with clients to ensure a transparent process, earning their trust through comprehensive guidance. This steadfast commitment is why clients continue to rely on us for their most complex legal challenges.',
       image: {
         src: '/images/whyChooseUs4.jpg',
         width: 1000,

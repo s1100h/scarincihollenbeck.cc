@@ -25,6 +25,7 @@ const PracticeContent = ({
           {data?.map((item) => (
             <CollapseContent
               key={item.id}
+              title={item.title}
               content={<JSXWithDynamicLinks HTML={item.content} />}
               id={item.id}
             />

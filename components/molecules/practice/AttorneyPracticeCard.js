@@ -57,7 +57,7 @@ const AttorneyPracticeCard = ({
           className="attorney__content"
           onClick={(e) => handleClickContent(e)}
         >
-          <h4>{name}</h4>
+          <h3>{name}</h3>
           <p>{designation}</p>
           <div className="attorney__contact">
             <ContactBoxTemplate
@@ -69,7 +69,7 @@ const AttorneyPracticeCard = ({
         </button>
       ) : (
         <div className="attorney__content">
-          <h4>{name}</h4>
+          <h3>{name}</h3>
           <p>{designation}</p>
           <div className="attorney__contact">
             <ContactBoxTemplate

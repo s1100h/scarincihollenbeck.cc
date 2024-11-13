@@ -14,7 +14,7 @@ export default function FAQ({ faqArrContent, title, anchorId }) {
       id={anchorId}
       data-testid="faq-wrapper"
     >
-      <Title>
+      <Title as="h2">
         {`${
           !empty(title) && !empty(faqArrContent) ? `FAQ about ${title}` : 'FAQ'
         }`}
@@ -22,7 +22,7 @@ export default function FAQ({ faqArrContent, title, anchorId }) {
       <Accordion defaultActiveKey={['0']} alwaysOpen>
         {faqItems.map(({ title, description }) => (
           <Accordion.Item key={title} eventKey={title}>
-            <Accordion.Header as="h4">{title}</Accordion.Header>
+            <Accordion.Header as="h3">{title}</Accordion.Header>
             <Accordion.Body>
               {typeof description !== 'string' ? (
                 description

@@ -5,7 +5,7 @@ import {
   CollapseContentWrapper,
 } from 'styles/CollapseContent.style';
 
-const CollapseContent = ({ content, id }) => {
+const CollapseContent = ({ title, content, id }) => {
   const [open, setOpen] = useState(false);
   const contentRef = useRef(null);
   const isContentShort = contentRef.current && contentRef.current.clientHeight < 500;
@@ -31,6 +31,7 @@ const CollapseContent = ({ content, id }) => {
         className="content-block margin-scroll"
         id={`${id}-section`}
       >
+        <h2>{title}</h2>
         {content}
       </div>
     );
@@ -40,6 +41,7 @@ const CollapseContent = ({ content, id }) => {
     <div className="content-block margin-scroll" id={`${id}-section`}>
       <Collapse in={open}>
         <CollapseContentWrapper>
+          <h2>{title}</h2>
           <div ref={contentRef}>{content}</div>
         </CollapseContentWrapper>
       </Collapse>

@@ -9,7 +9,7 @@ import {
 const WhyChooseUsCard = ({ title, text, image }) => (
   <WhyChooseUsCardWrapper>
     <WhyChooseUsCardContent>
-      <h4>{title}</h4>
+      <h3>{title}</h3>
       <p>{text}</p>
     </WhyChooseUsCardContent>
     <WhyChooseUsCardImage>
