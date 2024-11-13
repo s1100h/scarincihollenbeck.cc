@@ -6,6 +6,7 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
+import { PracticeTitle } from './PracticeCommon.style';
 
 export const PracticeAttorneysSection = styled.section`
   margin-bottom: 40px;
@@ -23,6 +24,10 @@ export const PracticeAttorneysSection = styled.section`
     display: flex;
     align-items: flex-end;
     column-gap: 16px;
+
+    ${PracticeTitle} {
+      margin: 0;
+    }
 
     > button {
       height: 100%;
@@ -289,7 +294,7 @@ export const PracticeAttorneysCard = styled.div`
         }
       }
 
-      > h4 {
+      > h3 {
         margin: 0 0 2px 0;
         font-size: ${rem(14)};
         line-height: 14px;

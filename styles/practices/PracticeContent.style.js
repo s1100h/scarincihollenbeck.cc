@@ -14,7 +14,7 @@ export const PracticeContentSection = styled.section`
   }
 `;
 
-export const PractiseContentHolder = styled.div`
+export const PracticeContentHolder = styled.div`
   display: flex;
   column-gap: 60px;
 

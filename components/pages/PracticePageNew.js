@@ -64,7 +64,7 @@ const PracticePageNew = ({
       ...anchorDataDefault,
       ...updatedAnchorData,
     };
-  }, [googleReviews]);
+  }, [googleReviews, tabs, anchorDataDefault]);
 
   return (
     <>

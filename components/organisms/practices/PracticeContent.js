@@ -7,7 +7,7 @@ import {
   PracticeContentSection,
   PracticeDescription,
   PracticeSidebar,
-  PractiseContentHolder,
+  PracticeContentHolder,
 } from 'styles/practices/PracticeContent.style';
 import { ATTORNEYS_FAQ } from 'utils/constants';
 import GetInTouchForm from './GetInTouchForm';
@@ -17,11 +17,12 @@ const PracticeContent = ({
 }) => (
   <PracticeContentSection id={anchorId} className="margin-scroll">
     <ContainerContent className="practice-container">
-      <PractiseContentHolder>
+      <PracticeContentHolder>
         <PracticeDescription>
           {data?.map((item) => (
             <CollapseContent
               key={item.id}
+              title={item.title}
               content={<JSXWithDynamicLinks HTML={item.content} />}
               id={item.id}
             />
@@ -36,7 +37,7 @@ const PracticeContent = ({
         <PracticeSidebar>
           <GetInTouchForm />
         </PracticeSidebar>
-      </PractiseContentHolder>
+      </PracticeContentHolder>
     </ContainerContent>
   </PracticeContentSection>
 );
