@@ -17,7 +17,7 @@ const AboutAuthorFormCard = ({ blockName }) => {
       </ContactNowBtn>
       <ModalWindow isOpen={show} setOpenModal={setShow}>
         <FormBox>
-          <h4>Let`s get in touch!</h4>
+          <div className="contact-form-title">Let`s get in touch!</div>
           <ContactForm blockName={blockName} />
         </FormBox>
       </ModalWindow>

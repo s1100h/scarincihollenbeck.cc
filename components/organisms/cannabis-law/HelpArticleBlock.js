@@ -15,7 +15,7 @@ const HelpArticleBlock = ({ helpArticleBlockData }) => (
         alt="cannabis leaf"
       />
       {!empty(helpArticleBlockData.title) && (
-        <h3>{helpArticleBlockData.title}</h3>
+        <h2>{helpArticleBlockData.title}</h2>
       )}
       {!empty(helpArticleBlockData.paragraphs) && (
         <>

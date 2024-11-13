@@ -174,11 +174,17 @@ const SubHeaderSlider = ({
                       }}
                       ref={titleRef}
                     >
-                      <SlideTitle>{activeSlide.title}</SlideTitle>
+                      <SlideTitle>
+                        {activeSlide.title}
+                        {' '}
+                        <span className="sr-only">In law</span>
+                      </SlideTitle>
                     </motion.div>
                   </AnimatePresence>
                 </AnimateTitleWrapper>
-                <SlideTitle className="slide__title-margin">In law</SlideTitle>
+                <SlideTitle as="p" className="slide__title-margin">
+                  In law
+                </SlideTitle>
                 <SlideSubTitle>{subtitle}</SlideSubTitle>
                 <SlideBtns>
                   <SlideBtn onClick={handleClickAnchor} href={`#${anchorId}`}>

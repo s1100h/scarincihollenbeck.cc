@@ -25,7 +25,7 @@ export const PracticesListContainer = styled.section`
     display: flex;
     justify-content: center;
 
-    h3 {
+    h2 {
       margin-left: 0;
       margin-right: auto;
       margin-bottom: 50px;
@@ -107,7 +107,7 @@ export const PracticesListContainer = styled.section`
     }
 
     ${media_breakpoint_down('sm')} {
-      h3 {
+      h2 {
         font-size: ${rem(24)};
         line-height: 32px;
       }

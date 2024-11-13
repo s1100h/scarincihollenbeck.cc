@@ -276,7 +276,7 @@ export const SlideBlock = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
-export const SlideSmallTitle = styled.h5`
+export const SlideSmallTitle = styled.div`
   margin: 0 0 24px 0;
   color: ${entAndMediaColors.entAndMediaColorGray};
   font-size: 1rem;

@@ -15,7 +15,7 @@ export const ArticlesSection = styled.section`
   padding: 140px 0;
 
   ${TitleButtonBox} {
-    h3 {
+    h2 {
       color: ${globalColor.black};
       font-family: var(--font-carilo);
       font-size: ${rem(84)};

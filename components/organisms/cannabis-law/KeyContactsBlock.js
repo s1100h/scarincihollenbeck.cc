@@ -22,7 +22,7 @@ const KeyContactsBlock = ({ keyContactsData, keyContacts }) => {
           </ul>
         </div>
         <KeyContactsWrapper>
-          <h3 className="key-contacts-title">Key Contacts</h3>
+          <h2 className="key-contacts-title">Key Contacts</h2>
           {keyContacts.map((author) => (
             <AttorneyCard
               key={author.databaseId}

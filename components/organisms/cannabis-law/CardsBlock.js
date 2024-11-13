@@ -5,6 +5,7 @@ import { FullHDContainer } from '../../../styles/practices-special-style/commonF
 
 const CardsBlock = ({ cardsBlockData }) => (
   <CardsBlockContainer>
+    <h2 className="sr-only">Why Choose Our Cannabis Law Services</h2>
     <FullHDContainer>
       <div className="list-card-box">
         <ul>
