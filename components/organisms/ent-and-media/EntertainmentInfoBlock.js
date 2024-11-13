@@ -76,9 +76,13 @@ const EntertainmentInfoBlock = ({
         </EnterntainmentTabNumber>
         <EnterntainmentTabHeader>
           <EnterntainmentTabTitleWrapper>
-            <EnterntainmentTabTitle>{activeTab.title}</EnterntainmentTabTitle>
+            <EnterntainmentTabTitle>
+              {activeTab.title}
+              {' '}
+              <span className="sr-only">law</span>
+            </EnterntainmentTabTitle>
 
-            <EnterntainmentTabTitle className="title-indent">
+            <EnterntainmentTabTitle as="p" className="title-indent">
               Law
             </EnterntainmentTabTitle>
           </EnterntainmentTabTitleWrapper>

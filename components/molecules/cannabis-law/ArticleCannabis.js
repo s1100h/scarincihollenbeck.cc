@@ -13,7 +13,7 @@ const ArticleCannabis = ({
       titleFontSize={titleSize}
     >
       <Image src={cannabisIcon} alt="cannabis leaf" />
-      <h3 className="article-common-title">{title}</h3>
+      <h2 className="article-common-title">{title}</h2>
       <p>{paragraph}</p>
     </ArticleCommonBox>
   </ArticlePhotoContainer>

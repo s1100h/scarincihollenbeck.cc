@@ -8,7 +8,7 @@ const PracticesListBlock = ({ practiceList }) => (
   <PracticesListContainer>
     <FullHDContainer>
       <div>
-        <h3 className="key-contacts-title">Practices</h3>
+        <h2 className="key-contacts-title">Practices</h2>
         <ul>
           {practiceList.map(({ databaseId, title, uri }) => (
             <li key={databaseId}>

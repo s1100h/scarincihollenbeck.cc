@@ -12,13 +12,14 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
   }
 
   .attorneys-article-box {
-    h3 {
+    h2 {
       margin: 0 0 48px 0;
       color: ${cannabisLawColors.cannabisColorGray};
       font-family: var(--font-poppins), sans-serif;
       font-size: ${rem(54)};
       line-height: 70px;
       font-weight: 600;
+      text-transform: uppercase;
 
       ${media_breakpoint_down('xxl')} {
         margin: 0 0 32px 0;
@@ -53,7 +54,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
     .attorneys-article-box {
       width: 80%;
 
-      h3 {
+      h2 {
         font-size: 2.3rem;
         text-align: center;
       }
@@ -66,7 +67,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
 
   ${media_breakpoint_down('md')} {
     .attorneys-article-box {
-      h3 {
+      h2 {
         font-size: 1.8rem;
       }
 
@@ -81,7 +82,7 @@ export const HelpArticleBlockContainer = styled(WeAdviseThisBlockContainer)`
     .attorneys-article-box {
       width: 100%;
       align-items: start;
-      h3 {
+      h2 {
         font-size: 1.5rem;
         text-align: start;
       }

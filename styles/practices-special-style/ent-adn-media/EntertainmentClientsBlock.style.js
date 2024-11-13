@@ -37,7 +37,7 @@ export const EntertainmentClientsSection = styled.section`
     padding: 80px 0;
   }
 `;
-export const EntertainmentClientsSubtitle = styled.h5`
+export const EntertainmentClientsSubtitle = styled.div`
   margin: 0 0 28px 0;
   color: ${entAndMediaColors.entAndMediaColorMediumGray};
   font-family: var(--font-poppins), sans-serif;

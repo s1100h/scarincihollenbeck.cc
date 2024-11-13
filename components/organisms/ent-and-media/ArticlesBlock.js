@@ -13,7 +13,7 @@ const ArticlesBlock = ({ paginationData }) => (
   <ArticlesSection>
     <ContainerDefault>
       <TitleButtonBox>
-        <h3>Related Articles</h3>
+        <h2>Related Articles</h2>
         <LinkToCategory href="/library/category/entertainment-and-sports">
           Read more
         </LinkToCategory>

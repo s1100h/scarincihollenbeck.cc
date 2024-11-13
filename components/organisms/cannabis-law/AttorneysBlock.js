@@ -12,6 +12,7 @@ const AttorneysBlock = ({
   attorneyListPractice,
 }) => (
   <AttorneysCannabisContainer>
+    <h2 className="sr-only">Team</h2>
     <FullHDContainer>
       {(!empty(chairPractice) || !empty(attorneyListPractice)) && (
         <AttorneysListBox

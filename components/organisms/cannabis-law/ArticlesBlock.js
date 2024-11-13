@@ -13,7 +13,7 @@ const ArticlesBlock = ({ paginationData }) => (
   <ArticlesContainer>
     <FullHDContainer>
       <TitleButtonBox>
-        <h3>Articles</h3>
+        <h2>Articles</h2>
         <LinkToCategory href="/library/category/cannabis-law">
           Read more
         </LinkToCategory>

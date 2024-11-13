@@ -122,7 +122,7 @@ export const TitleButtonBox = styled.div`
   margin-bottom: 36px;
   align-items: center;
 
-  h3 {
+  h2 {
     font-family: var(--font-poppins), sans-serif;
     color: ${cannabisLawColors.cannabisColorGray};
     font-size: ${rem(54)};
