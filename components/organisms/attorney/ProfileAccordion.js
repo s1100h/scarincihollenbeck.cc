@@ -20,12 +20,7 @@ import { reservedAccordionTitles } from 'utils/constants';
 import { getPaginationData } from '../../../requests/getPaginationData';
 import { postsForPaginationByAuthorIdQuery } from '../../../requests/graphql-queries';
 
-const AwardsSlider = dynamic(
-  () => import('components/molecules/home/AwardsSlider'),
-  {
-    ssr: false,
-  },
-);
+const AwardsSlider = dynamic(() => import('components/molecules/home/AwardsSlider'));
 
 const BlogsBox = dynamic(() => import('../../molecules/attorney/BlogsBox'));
 

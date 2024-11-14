@@ -2,6 +2,7 @@ import SliderNavigation from 'components/common/SliderNavigation';
 import React, { useEffect, useRef } from 'react';
 import { SliderWrapper } from 'styles/Slider.style';
 import empty from 'is-empty';
+import { register } from 'swiper/element/bundle';
 
 const SwiperWrapper = ({
   breakpoints,
@@ -25,6 +26,7 @@ const SwiperWrapper = ({
     };
 
   useEffect(() => {
+    register();
     const swiper = swiperRef.current?.swiper;
 
     if (!empty(breakpoints)) {

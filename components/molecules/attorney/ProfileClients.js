@@ -8,7 +8,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import AccordionItem from './AccordionItem';
 
-const ClientSlider = dynamic(() => import('./ClientSlider'), { ssr: false });
+const ClientSlider = dynamic(() => import('./ClientSlider'));
 
 const ProfileClients = ({ clients, name }) => {
   if (empty(clients)) return null;

@@ -6,6 +6,7 @@ import {
   GallerySliderWrapper,
 } from 'styles/attorney-page/GallerySlider.style';
 import Image from 'next/image';
+import SwiperSlide from 'components/organisms/common/SwiperSlide';
 
 const GallerySlider = ({ items }) => {
   if (empty(items)) return null;
@@ -19,7 +20,7 @@ const GallerySlider = ({ items }) => {
         grab-cursor="true"
       >
         {items?.map((item) => (
-          <swiper-slide key={item?.image?.databaseId} class="slide">
+          <SwiperSlide key={item?.image?.databaseId}>
             <GallerySliderCard orientation={item?.orientationImage}>
               <Image
                 src={item?.image?.sourceUrl}
@@ -28,7 +29,7 @@ const GallerySlider = ({ items }) => {
                 loading="lazy"
               />
             </GallerySliderCard>
-          </swiper-slide>
+          </SwiperSlide>
         ))}
       </SwiperWrapper>
     </GallerySliderWrapper>

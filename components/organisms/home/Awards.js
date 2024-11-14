@@ -7,14 +7,9 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 import { TitleH2 } from 'styles/common/Typography.style';
 
-const AwardsSlider = dynamic(
-  () => import('components/molecules/home/AwardsSlider'),
-  {
-    ssr: false,
-  },
-);
+const AwardsSlider = dynamic(() => import('components/molecules/home/AwardsSlider'));
 
-const Awards = React.memo(({ awards }) => {
+const Awards = ({ awards }) => {
   const formattedAwards = awards
     ?.map(
       ({
@@ -56,6 +51,6 @@ const Awards = React.memo(({ awards }) => {
       </ContainerDefault>
     </AwardsWrapper>
   );
-});
+};
 
 export default Awards;

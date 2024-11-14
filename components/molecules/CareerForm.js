@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import kwesforms from 'kwesforms';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { StandardRedButton } from '../../styles/Buttons.style';
@@ -20,9 +19,16 @@ const CareerForm = () => {
   const router = useRouter();
   const { isCheckedDisclaimer } = useSelector((store) => store.forms);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    kwesforms.init();
+    const loadKwesforms = async () => {
+      const kwesforms = await import('kwesforms');
+      kwesforms.init();
+    };
+
+    loadKwesforms();
   }, []);
+
   const careerHandleCheckDisclaimer = () => dispatch(handleCheckDisclaimer(!isCheckedDisclaimer));
   const isDisabledSubmitButton = !isCheckedDisclaimer;
 

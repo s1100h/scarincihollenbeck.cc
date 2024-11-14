@@ -1,16 +1,13 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { SidebarMenuList } from 'styles/Sidebar.style';
 import MenuItem from './SidebarMenuItem';
 
-const SidebarMenuItems = memo(({ menuData, setIsSidebarOpen }) => {
+const SidebarMenuItems = ({ menuData, setIsSidebarOpen }) => {
   const [openItemIndex, setOpenItemIndex] = useState(null);
 
-  const handleItemClick = useCallback(
-    (index) => {
-      setOpenItemIndex(openItemIndex === index ? null : index);
-    },
-    [setOpenItemIndex, openItemIndex],
-  );
+  const handleItemClick = (index) => {
+    setOpenItemIndex(openItemIndex === index ? null : index);
+  };
 
   return (
     <SidebarMenuList>
@@ -28,6 +25,6 @@ const SidebarMenuItems = memo(({ menuData, setIsSidebarOpen }) => {
       ))}
     </SidebarMenuList>
   );
-});
+};
 
 export default SidebarMenuItems;

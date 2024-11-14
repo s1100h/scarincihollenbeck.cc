@@ -4,12 +4,13 @@ import { StandardBlueButton } from 'styles/Buttons.style';
 import Link from 'next/link';
 import LatestPostsCard from './LatestPostsCard';
 import SwiperWrapper from '../common/SwiperWrapper';
+import SwiperSlide from '../common/SwiperSlide';
 
-const LatestPostsSlider = React.memo(({ activeTabData, activeTabId }) => (
+const LatestPostsSlider = ({ activeTabData, activeTabId }) => (
   <SwiperWrapper space-between={24} slides-per-view="1">
     {activeTabData?.articles?.map((chunk, indexChunk) => (
       // eslint-disable-next-line react/no-array-index-key
-      <swiper-slide key={`${activeTabId}-${indexChunk}`} class="slide">
+      <SwiperSlide key={`${activeTabId}-${indexChunk}`}>
         <LatestPostsCards>
           <>
             {chunk?.map((article, indexChunkArticle) => (
@@ -30,9 +31,9 @@ const LatestPostsSlider = React.memo(({ activeTabData, activeTabId }) => (
             )}
           </>
         </LatestPostsCards>
-      </swiper-slide>
+      </SwiperSlide>
     ))}
   </SwiperWrapper>
-));
+);
 
 export default LatestPostsSlider;

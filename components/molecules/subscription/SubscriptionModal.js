@@ -12,7 +12,6 @@ import {
   FormSubscriptionContainer,
   SubscribeBtn,
 } from 'styles/Subscription.style';
-import kwesforms from 'kwesforms';
 import empty from 'is-empty';
 import Button from 'react-bootstrap/Button';
 import ModalWindow from '../../common/ModalWindow';
@@ -30,6 +29,7 @@ const isArraysIdentical = (chosenIds, originalIds) => {
   return chosenIds.every((element, index) => element === originalIds[index]);
 };
 const originalCategoriesIds = (categoryArr) => categoryArr?.map((category) => category.id);
+
 const SubscriptionModal = ({ children, customClass }) => {
   const [categoriesFromWP, setCategoriesFromWP] = useState();
   const [isKwesInit, setIsKwesInit] = useState(false);
@@ -45,17 +45,23 @@ const SubscriptionModal = ({ children, customClass }) => {
   }, []);
 
   useEffect(() => {
-    if (categoriesFromWP && !isKwesInit) {
+    const loadKwesforms = async () => {
+      const kwesforms = await import('kwesforms');
       kwesforms.init();
       setIsKwesInit(true);
+    };
+
+    if (categoriesFromWP && !isKwesInit) {
+      loadKwesforms();
     }
-  }, [categoriesFromWP]);
+  }, [categoriesFromWP, isKwesInit]);
 
   const [show, setShow] = useState(false);
   const [categoriesChosen, setCategories] = useState([]);
 
   const router = useRouter();
   const useIdVar = useId();
+
   const handleCheckCategory = (categoryId) => {
     if (categoriesChosen.includes(categoryId)) {
       setCategories(
@@ -75,6 +81,7 @@ const SubscriptionModal = ({ children, customClass }) => {
       setCategories([]);
     }
   };
+
   return (
     <>
       {!empty(children) ? (

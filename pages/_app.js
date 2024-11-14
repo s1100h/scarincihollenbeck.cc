@@ -24,7 +24,6 @@ import 'animate.css/animate.min.css';
 import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import InitFonts from 'styles/global_styles/InitFonts';
 import 'react-toastify/dist/ReactToastify.css';
-import { register } from 'swiper/element/bundle';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { store } from '../redux/store';
 // need update to new firebase version
@@ -44,30 +43,24 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const SHSite = ({ Component, pageProps }) => {
-  register();
-
-  return (
-    <SSRProvider>
-      <Provider store={store}>
-        <GlobalStyle />
-        <InitFonts />
-        {/* <PushNotificationLayout> */}
-        <ReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
-          <MainSiteHead />
-          <ToastContainer />
-          <Header />
-          {/* <!-- Google tag (gtag.js) --> */}
-          <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
-          <main>
-            <Component {...pageProps} />
-          </main>
-          <SiteFooter />
-        </ReCaptchaProvider>
-        {/* </PushNotificationLayout> */}
-      </Provider>
-    </SSRProvider>
-  );
-};
-
+const SHSite = ({ Component, pageProps }) => (
+  <SSRProvider>
+    <Provider store={store}>
+      <GlobalStyle />
+      <InitFonts />
+      {/* <PushNotificationLayout> */}
+      <ReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
+        <MainSiteHead />
+        <ToastContainer />
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <SiteFooter />
+        <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
+      </ReCaptchaProvider>
+      {/* </PushNotificationLayout> */}
+    </Provider>
+  </SSRProvider>
+);
 export default SHSite;

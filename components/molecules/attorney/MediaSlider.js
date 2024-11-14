@@ -3,6 +3,7 @@ import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
 import empty from 'is-empty';
 import { MediaSliderWrapper } from 'styles/attorney-page/MediaSlider.style';
 import SimpleNewsCard from 'components/common/SimpleNewsCard';
+import SwiperSlide from 'components/organisms/common/SwiperSlide';
 
 const breakpoints = {
   1440: {
@@ -30,7 +31,7 @@ const MediaSlider = ({ items }) => {
         watch-slides-progress="true"
       >
         {items?.map((item, index) => (
-          <swiper-slide key={`${item?.title}-${index + 1}`} class="slide">
+          <SwiperSlide key={`${item?.title}-${index + 1}`}>
             <SimpleNewsCard
               title={item?.title}
               label={item?.label || item?.publisher}
@@ -40,7 +41,7 @@ const MediaSlider = ({ items }) => {
               textPost={item?.description}
               isFull
             />
-          </swiper-slide>
+          </SwiperSlide>
         ))}
       </SwiperWrapper>
     </MediaSliderWrapper>

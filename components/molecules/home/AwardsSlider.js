@@ -3,6 +3,7 @@ import SwiperWrapper from 'components/organisms/common/SwiperWrapper';
 import empty from 'is-empty';
 import DisclaimerText from 'components/atoms/DisclaimerText';
 import { AwardsSliderWrapper } from 'styles/Awards.style';
+import SwiperSlide from 'components/organisms/common/SwiperSlide';
 import AwardCard from './AwardCard';
 
 const breakpoints = {
@@ -35,7 +36,7 @@ const AwardsSlider = ({ items, isLightVariant = false }) => {
         grab-cursor="true"
       >
         {items?.map((item) => (
-          <swiper-slide key={item?.id} class="slide">
+          <SwiperSlide key={item?.id}>
             <AwardCard
               image={item?.image}
               year={item?.year}
@@ -43,7 +44,7 @@ const AwardsSlider = ({ items, isLightVariant = false }) => {
               link={item?.link}
               isLightVariant={isLightVariant}
             />
-          </swiper-slide>
+          </SwiperSlide>
         ))}
       </SwiperWrapper>
       <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court." />

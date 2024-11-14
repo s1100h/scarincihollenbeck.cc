@@ -3,7 +3,7 @@ import { connectStateResults, Pagination } from 'react-instantsearch-dom';
 import { HitsStyled, ResultBox } from 'styles/GlobalSearch.style';
 import Hit from './Hit';
 
-const MySearchResults = React.memo(({ setIsOpenSearch, handleHideSearch }) => {
+const MySearchResults = ({ setIsOpenSearch, handleHideSearch }) => {
   const handleClear = () => {
     if (handleHideSearch) {
       handleHideSearch();
@@ -31,5 +31,5 @@ const MySearchResults = React.memo(({ setIsOpenSearch, handleHideSearch }) => {
   );
 
   return <RenderSearchResults />;
-});
+};
 export default MySearchResults;

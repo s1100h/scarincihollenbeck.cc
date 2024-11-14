@@ -1,6 +1,4 @@
-import React, {
-  memo, useCallback, useRef, useState,
-} from 'react';
+import React, { useRef, useState } from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import Logo from 'components/organisms/Navbar/Logo';
 import { ButtonRed } from 'styles/Buttons.style';
@@ -23,7 +21,7 @@ import HeaderSearch from './HeaderSearch';
 
 const SidebarMenu = dynamic(() => import('./SidebarMenu'));
 
-const DefaultHeader = memo(({
+const DefaultHeader = ({
   practices, locations, industries, menuData,
 }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
@@ -37,9 +35,9 @@ const DefaultHeader = memo(({
   useResize();
   useResponsiveHeader(headerRef, scrollDirection);
 
-  const handleToggleSidebar = useCallback(() => {
+  const handleToggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
-  }, [setIsSidebarOpen, isSidebarOpen]);
+  };
 
   return (
     <>
@@ -111,6 +109,6 @@ const DefaultHeader = memo(({
       </HeaderWrapper>
     </>
   );
-});
+};
 
 export default DefaultHeader;

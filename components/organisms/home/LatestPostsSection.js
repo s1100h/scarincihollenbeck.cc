@@ -16,9 +16,7 @@ import {
 import { TitleH2 } from 'styles/common/Typography.style';
 import { latestPostTabs } from 'utils/constants';
 
-const LatestPostsSlider = dynamic(() => import('./LatestPostsSlider'), {
-  ssr: false,
-});
+const LatestPostsSlider = dynamic(() => import('./LatestPostsSlider'));
 
 const LatestPostsSection = ({ tabsData }) => {
   const [activeTabId, setActiveTabId] = useState(latestPostTabs[0]?.id);

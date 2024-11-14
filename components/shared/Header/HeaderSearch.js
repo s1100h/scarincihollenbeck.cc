@@ -1,43 +1,35 @@
-import React, {
-  useEffect, useRef, useState, useCallback, memo,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { HeaderSearchWrapper, SearchOpener } from 'styles/Header.style';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GlobalSearch } from '../GlobalSearch/GlobalSearch';
 
-const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
+const HeaderSearch = ({ isOpenSearch, setIsOpenSearch }) => {
   const [inputFocus, setInputFocus] = useState(null);
   const containerRef = useRef(null);
 
-  const handleOpenSearch = useCallback(
-    (e) => {
-      e.preventDefault();
-      setIsOpenSearch(true);
-      setInputFocus(true);
-    },
-    [setIsOpenSearch, setInputFocus],
-  );
+  const handleOpenSearch = (e) => {
+    e.preventDefault();
+    setIsOpenSearch(true);
+    setInputFocus(true);
+  };
 
-  const handleHideSearch = useCallback(() => {
+  const handleHideSearch = () => {
     setIsOpenSearch(false);
-  }, [setIsOpenSearch]);
+  };
 
-  const handleDocumentClick = useCallback(
-    (e) => {
-      const selection = window.getSelection();
-      const isTextSelected = selection && selection.toString().length > 0;
+  const handleDocumentClick = (e) => {
+    const selection = window.getSelection();
+    const isTextSelected = selection && selection.toString().length > 0;
 
-      if (
-        containerRef.current
-        && !containerRef.current.contains(e.target)
-        && !isTextSelected
-      ) {
-        handleHideSearch();
-      }
-    },
-    [handleHideSearch],
-  );
+    if (
+      containerRef.current
+      && !containerRef.current.contains(e.target)
+      && !isTextSelected
+    ) {
+      handleHideSearch();
+    }
+  };
 
   useEffect(() => {
     document.addEventListener('click', handleDocumentClick);
@@ -47,9 +39,9 @@ const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
     };
   }, [handleDocumentClick]);
 
-  const handleContainerClick = useCallback((e) => {
+  const handleContainerClick = (e) => {
     e.stopPropagation();
-  }, []);
+  };
 
   return (
     <HeaderSearchWrapper
@@ -86,6 +78,6 @@ const HeaderSearch = memo(({ isOpenSearch, setIsOpenSearch }) => {
       </AnimatePresence>
     </HeaderSearchWrapper>
   );
-});
+};
 
 export default HeaderSearch;

@@ -8,7 +8,6 @@ import {
   RECAPTCHA_SITE_KEY,
   THANKS_MESSAGE,
 } from 'utils/constants';
-import kwesforms from 'kwesforms';
 import empty from 'is-empty';
 import { useDispatch, useSelector } from 'react-redux';
 import RenderInputs from './RenderInputs';
@@ -36,8 +35,14 @@ export default function ContactForm({
   };
 
   const router = useRouter();
+
   useEffect(() => {
-    kwesforms.init();
+    const loadKwesforms = async () => {
+      const kwesforms = await import('kwesforms');
+      kwesforms.init();
+    };
+
+    loadKwesforms();
   }, []);
 
   return (

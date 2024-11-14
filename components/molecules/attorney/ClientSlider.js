@@ -7,6 +7,7 @@ import {
   ClientsSliderTitle,
   ClientsSliderWrapper,
 } from 'styles/attorney-page/ClientsSlider.style';
+import SwiperSlide from 'components/organisms/common/SwiperSlide';
 
 const breakpoints = {
   1800: {
@@ -42,7 +43,7 @@ const ClientSlider = ({ clients }) => (
       lazy="true"
     >
       {clients.map(({ clientImage, clientLink, clientTitle }) => (
-        <swiper-slide class="slide" key={`${clientTitle}-slide`}>
+        <SwiperSlide key={`${clientTitle}-slide`}>
           <ClientsSliderCard
             as={!empty(clientLink) && Link}
             href={!empty(clientLink) ? clientLink : undefined}
@@ -58,7 +59,7 @@ const ClientSlider = ({ clients }) => (
               loading="lazy"
             />
           </ClientsSliderCard>
-        </swiper-slide>
+        </SwiperSlide>
       ))}
     </SwiperWrapper>
   </ClientsSliderWrapper>
