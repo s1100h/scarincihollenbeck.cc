@@ -1,14 +1,13 @@
-// const withPWA = require('@ducanh2912/next-pwa').default({
-//   dest: 'public',
-//   cacheOnFrontEndNav: true,
-//   aggressiveFrontEndNavCaching: true,
-//   reloadOnOnline: true,
-//   disable: process.env.NEXT_PUBLIC_PROJECT_MODE === 'development',
-//   workboxOptions: {
-//     disableDevLogs: true,
-//   },
-// });
-
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  disable: process.env.NEXT_PUBLIC_PROJECT_MODE === 'development',
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
 const {
   SITE_PAGES_REWRITES,
   POST_TYPE_REWRITES,
@@ -127,4 +126,4 @@ const nextConfig = {
   },
 };
 // @ts-ignore
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);
