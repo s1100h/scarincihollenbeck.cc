@@ -17,9 +17,11 @@ import Navigation from 'components/organisms/Navbar/Navigation';
 import { useScrollDirection } from 'hooks/useScrollDirection';
 import InitGlobalVariables from 'styles/global_styles/InitGlobalVariables';
 import { useSelector } from 'react-redux';
+import dynamic from 'next/dynamic';
 import HeaderTopLine from './HeaderTopLine';
 import HeaderSearch from './HeaderSearch';
-import SidebarMenu from './SidebarMenu';
+
+const SidebarMenu = dynamic(() => import('./SidebarMenu'));
 
 const DefaultHeader = memo(({
   practices, locations, industries, menuData,

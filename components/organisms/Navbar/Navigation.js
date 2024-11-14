@@ -9,9 +9,11 @@ import React, {
 } from 'react';
 import { NAVIGATION_OPENERS } from 'utils/constants';
 import { useRouter } from 'next/router';
-import NavbarLocations from './NavbarLocations';
-import NavbarAttorneys from './NavbarAttorneys';
-import NavbarServices from './NavbarServices';
+import dynamic from 'next/dynamic';
+
+const NavbarLocations = dynamic(() => import('./NavbarLocations'));
+const NavbarAttorneys = dynamic(() => import('./NavbarAttorneys'));
+const NavbarServices = dynamic(() => import('./NavbarServices'));
 
 const getIndexNavbarItem = (name) => NAVIGATION_OPENERS.indexOf(name);
 

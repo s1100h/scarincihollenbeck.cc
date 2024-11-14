@@ -10,7 +10,6 @@ import {
   ALGOLIA_APP_ID,
   ALGOLIA_SEARCH_INDEX,
 } from 'utils/constants';
-import empty from 'is-empty';
 import { ResultsContainer } from 'styles/GlobalSearch.style';
 import React, { memo } from 'react';
 import AuxiliarySearch from './AuxiliarySearch';
