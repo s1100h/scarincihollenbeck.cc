@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
  * 3rd Party Resources
  *
  * */
-import { GoogleTagManager } from '@next/third-parties/google';
+// import { GoogleTagManager } from '@next/third-parties/google';
 import 'nprogress/nprogress.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -25,11 +25,11 @@ import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import InitFonts from 'styles/global_styles/InitFonts';
 import 'react-toastify/dist/ReactToastify.css';
 import { register } from 'swiper/element/bundle';
-import { ReCaptchaProvider } from 'next-recaptcha-v3';
+// import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { store } from '../redux/store';
 // need update to new firebase version
 // import PushNotificationLayout from '../hoks/notifications';
-import { RECAPTCHA_SITE_KEY } from '../utils/constants';
+// import { RECAPTCHA_SITE_KEY } from '../utils/constants';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
 const ToastContainer = dynamic(
@@ -53,17 +53,17 @@ const SHSite = ({ Component, pageProps }) => {
         <GlobalStyle />
         <InitFonts />
         {/* <PushNotificationLayout> */}
-        <ReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
-          <MainSiteHead />
-          <ToastContainer />
-          <Header />
-          {/* <!-- Google tag (gtag.js) --> */}
-          <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
-          <main>
-            <Component {...pageProps} />
-          </main>
-          <SiteFooter />
-        </ReCaptchaProvider>
+        {/* <ReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}> */}
+        <MainSiteHead />
+        <ToastContainer />
+        <Header />
+        {/* <!-- Google tag (gtag.js) --> */}
+        {/* <GoogleTagManager gtmId="GTM-PZ2XWLW4" /> */}
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <SiteFooter />
+        {/* </ReCaptchaProvider> */}
         {/* </PushNotificationLayout> */}
       </Provider>
     </SSRProvider>
