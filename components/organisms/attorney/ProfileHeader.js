@@ -67,7 +67,6 @@ const ProfileHeader = ({
   biography,
   affiliations,
   additionalInfo,
-  handlePrint,
   isAdmin = false,
 }) => {
   const dispatch = useDispatch();
@@ -75,6 +74,11 @@ const ProfileHeader = ({
   const linkedIn = contact?.socialMediaLinks?.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
 
   const profileDetailsProps = {
     offices,
