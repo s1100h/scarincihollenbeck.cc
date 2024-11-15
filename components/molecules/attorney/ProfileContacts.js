@@ -18,7 +18,6 @@ const ProfileContacts = ({
   qrCodeBioPage,
 }) => {
   const { phoneNumber, email } = contact || {};
-
   return (
     <AddressBox className="address-box">
       <p className="contacts-title">Contacts</p>

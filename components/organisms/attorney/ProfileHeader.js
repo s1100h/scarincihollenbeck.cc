@@ -68,13 +68,17 @@ const ProfileHeader = ({
   biography,
   affiliations,
   additionalInfo,
-  handlePrint,
 }) => {
   const [designation] = useDesignationHook(title);
   const [isContactModal, setIsContactModal] = useState(false);
   const linkedIn = contact?.socialMediaLinks?.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
   const profileImageProps = {
     name,
     profileImage,
