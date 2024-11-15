@@ -12,23 +12,29 @@ const AttorneyProfilePage = ({
   qrCodeBioPage,
   qrCodeLinkedin,
 }) => {
-  const [isPrintMode, setIsPrintMode] = useState(false);
+  // const [isPrintMode, setIsPrintMode] = useState(false);
+
+  // const handlePrint = () => {
+  //   setIsPrintMode(true);
+
+  //   const afterPrint = () => {
+  //     setIsPrintMode(false);
+  //     if (typeof window !== 'undefined') {
+  //       window.removeEventListener('afterprint', afterPrint);
+  //     }
+  //   };
+
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('afterprint', afterPrint);
+  //     setTimeout(() => {
+  //       window.print();
+  //     }, 0);
+  //   }
+  // };
 
   const handlePrint = () => {
-    setIsPrintMode(true);
-
-    const afterPrint = () => {
-      setIsPrintMode(false);
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('afterprint', afterPrint);
-      }
-    };
-
     if (typeof window !== 'undefined') {
-      window.addEventListener('afterprint', afterPrint);
-      setTimeout(() => {
-        window.print();
-      }, 0);
+      window.print();
     }
   };
 
@@ -52,7 +58,9 @@ const AttorneyProfilePage = ({
       <ProfileHeader {...profileHeader} handlePrint={handlePrint} />
       <ProfileAccordion {...accordionData} name={profileHeader?.name} />
 
-      {isPrintMode && <AttorneyPrintPage {...printPageProps} />}
+      {/* {isPrintMode && <AttorneyPrintPage {...printPageProps} />} */}
+
+      <AttorneyPrintPage {...printPageProps} />
     </>
   );
 };
