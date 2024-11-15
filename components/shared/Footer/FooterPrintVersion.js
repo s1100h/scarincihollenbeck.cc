@@ -48,8 +48,8 @@ const FooterPrintVersion = ({ locations }) => {
           <Image
             src={qrCodeProduction}
             alt="the Bio page"
-            width={140}
-            height={120}
+            width={120}
+            height={100}
           />
         </div>
       </ContactsWrapperPrintVersion>
