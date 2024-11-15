@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   GetInTouchFormWrapper,
   GetInTouchMobileBtn,
@@ -6,27 +6,23 @@ import {
 import ContactForm from 'components/shared/ContactForm/ContactForm';
 import useStateScreen from 'hooks/useStateScreen';
 import { MdTouchApp } from 'react-icons/md';
-import ModalWindow from 'components/common/ModalWindow';
-import { FormBox } from 'styles/AboutAuthorFormCard.style';
+import { useDispatch } from 'react-redux';
 import SocialShare from '../post/SocialShare';
+import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
 const GetInTouchForm = ({ isMobileBtn = true, isSticky = true }) => {
   const { isBigTabletScreen } = useStateScreen();
-  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
   if (isBigTabletScreen && isMobileBtn) {
     return (
       <>
-        <GetInTouchMobileBtn onClick={() => setShow(true)}>
+        <GetInTouchMobileBtn
+          onClick={() => dispatch(handleModalOpener({ active: true }))}
+        >
           <span>Click here to contact</span>
           <MdTouchApp />
         </GetInTouchMobileBtn>
-        <ModalWindow isOpen={show} setOpenModal={setShow}>
-          <FormBox>
-            <h4>Let`s get in touch!</h4>
-            <ContactForm blockName="sidebarmobile" />
-          </FormBox>
-        </ModalWindow>
       </>
     );
   }

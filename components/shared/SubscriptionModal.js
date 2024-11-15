@@ -1,26 +1,30 @@
-import { useEffect, useId, useState } from 'react';
+import ModalWindow from 'components/common/ModalWindow';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import React, {
+  useEffect, useId, useRef, useState,
+} from 'react';
+import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
+import {
+  CheckBoxesList,
+  FormSubscriptionContainer,
+} from 'styles/Subscription.style';
 import {
   RECAPTCHA_SITE_KEY,
   SITE_TITLE,
   subscriptionInputs,
   THANKS_MESSAGE,
 } from 'utils/constants';
-import {
-  CheckBoxesList,
-  FormSubscriptionContainer,
-  SubscribeBtn,
-} from 'styles/Subscription.style';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { Button } from 'react-bootstrap';
 import empty from 'is-empty';
-import Button from 'react-bootstrap/Button';
-import ModalWindow from '../../common/ModalWindow';
-import { StandardBlueButton } from '../../../styles/Buttons.style';
-import RenderInputs from '../../shared/ContactForm/RenderInputs';
-import { FormContainer } from '../../../styles/attorney-page/GetInTouchForm.styles';
-import Loader from '../../atoms/Loader';
-import decodeResponse from '../../../utils/decodeResponse';
-import SHDiamond from '../../../public/images/sh-mini-diamond-PNG.svg';
+import decodeResponse from 'utils/decodeResponse';
+import Loader from 'components/atoms/Loader';
+import { StandardBlueButton } from 'styles/Buttons.style';
+import { SubscriptionModalWrapper } from 'styles/ContactModal.style';
+import { handleSubscriptionModalOpener } from '../../redux/slices/modals.slice';
+import SHDiamond from '../../public/images/sh-mini-diamond-PNG.svg';
+import RenderInputs from './ContactForm/RenderInputs';
 
 const isArraysIdentical = (chosenIds, originalIds) => {
   if (chosenIds.length !== originalIds?.length) {
@@ -30,9 +34,16 @@ const isArraysIdentical = (chosenIds, originalIds) => {
 };
 const originalCategoriesIds = (categoryArr) => categoryArr?.map((category) => category.id);
 
-const SubscriptionModal = ({ children, customClass }) => {
+const SubscriptionModal = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const useIdVar = useId();
+  const subscriptionFormRef = useRef();
   const [categoriesFromWP, setCategoriesFromWP] = useState();
+  const [categoriesChosen, setCategories] = useState([]);
   const [isKwesInit, setIsKwesInit] = useState(false);
+  const { isActiveSubscriptionModal, customSubscriptionModalClassName } = useSelector((store) => store.modals);
+  const setIsShowContactModal = (value) => dispatch(handleSubscriptionModalOpener({ active: value }));
 
   useEffect(() => {
     (async () => {
@@ -49,18 +60,13 @@ const SubscriptionModal = ({ children, customClass }) => {
       const kwesforms = await import('kwesforms');
       kwesforms.init();
       setIsKwesInit(true);
+      subscriptionFormRef.current.className = 'kwes-form-init';
     };
 
     if (categoriesFromWP && !isKwesInit) {
       loadKwesforms();
     }
   }, [categoriesFromWP, isKwesInit]);
-
-  const [show, setShow] = useState(false);
-  const [categoriesChosen, setCategories] = useState([]);
-
-  const router = useRouter();
-  const useIdVar = useId();
 
   const handleCheckCategory = (categoryId) => {
     if (categoriesChosen.includes(categoryId)) {
@@ -81,19 +87,12 @@ const SubscriptionModal = ({ children, customClass }) => {
       setCategories([]);
     }
   };
-
   return (
-    <>
-      {!empty(children) ? (
-        <button onClick={() => setShow(true)} className={customClass}>
-          {children}
-        </button>
-      ) : (
-        <SubscribeBtn onClick={() => setShow(true)}>
-          <span>Subscribe Now!</span>
-        </SubscribeBtn>
-      )}
-      <ModalWindow isOpen={show} setOpenModal={setShow}>
+    <SubscriptionModalWrapper className={customSubscriptionModalClassName}>
+      <ModalWindow
+        isOpen={isActiveSubscriptionModal}
+        setOpenModal={setIsShowContactModal}
+      >
         <FormSubscriptionContainer>
           <section>
             <Image
@@ -119,6 +118,7 @@ const SubscriptionModal = ({ children, customClass }) => {
               has-recaptcha-v3="true"
               recaptcha-site-key={RECAPTCHA_SITE_KEY}
               success-message={THANKS_MESSAGE.title}
+              ref={subscriptionFormRef}
             >
               <RenderInputs
                 arrayOfAttributes={subscriptionInputs}
@@ -187,7 +187,7 @@ const SubscriptionModal = ({ children, customClass }) => {
           </FormContainer>
         </FormSubscriptionContainer>
       </ModalWindow>
-    </>
+    </SubscriptionModalWrapper>
   );
 };
 

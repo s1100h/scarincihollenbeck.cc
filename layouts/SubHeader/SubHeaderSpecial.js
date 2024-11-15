@@ -36,7 +36,7 @@ const SubHeaderSpecial = ({
           anchorId={anchorId}
           text="Learn more?"
         />
-        <DescriptionPlusBtn labelForBtn="See attorneys" text={article} />
+        <DescriptionPlusBtn modalClassName="cannabis-modal" text={article} />
       </MiddleContainer>
 
       <CannabisTitles>

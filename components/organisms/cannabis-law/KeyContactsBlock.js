@@ -34,7 +34,7 @@ const KeyContactsBlock = ({ keyContactsData, keyContacts }) => {
               email={author.email}
             />
           ))}
-          <AboutAuthorFormCard />
+          <AboutAuthorFormCard modalClassName="cannabis-modal" />
         </KeyContactsWrapper>
       </FullHDContainer>
     </KeyContactsBlockContainer>

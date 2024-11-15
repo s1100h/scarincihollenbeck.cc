@@ -1,7 +1,7 @@
 export const FormContainer = styled.div`
   ${({ isPositionRelative }) => isPositionRelative && 'position: relative;'}
 
-  .kwes-form {
+  .kwes-form, .kwes-form-init {
     display: flex;
     flex-wrap: wrap;
     column-gap: 8px;
@@ -52,7 +52,7 @@ export const FormContainer = styled.div`
       }
 
       &.kw-border-success {
-        border-color: #23d160;
+        border-color: #23d160 !important;
       }
     }
 

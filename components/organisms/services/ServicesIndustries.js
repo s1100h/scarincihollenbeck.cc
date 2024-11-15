@@ -1,7 +1,4 @@
-import ModalWindow from 'components/common/ModalWindow';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
-import React, { useState } from 'react';
-import { FormBox } from 'styles/AboutAuthorFormCard.style';
+import React from 'react';
 import { TitleH2 } from 'styles/common/Typography.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import {
@@ -11,14 +8,16 @@ import {
 } from 'styles/services/ServicesIndustries.style';
 import empty from 'is-empty';
 import { getIndustryLink } from 'utils/helpers';
+import { useDispatch } from 'react-redux';
 import ServicesIndustriesCard from './ServicesIndustriesCard';
+import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
 const ServicesIndustries = ({ industries }) => {
+  const dispatch = useDispatch();
   if (empty(industries)) return null;
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onClickModalOpener = () => {
-    setIsModalOpen(true);
+    dispatch(handleModalOpener({ active: true }));
   };
 
   return (
@@ -39,13 +38,6 @@ const ServicesIndustries = ({ industries }) => {
           </ServicesIndustriesCards>
         </ServicesIndustriesHolder>
       </ContainerDefault>
-
-      <ModalWindow isOpen={isModalOpen} setOpenModal={setIsModalOpen}>
-        <FormBox>
-          <p className="contact-form-title">Let`s get in touch!</p>
-          <ContactForm blockName="services-industries-cards" />
-        </FormBox>
-      </ModalWindow>
     </ServicesIndustriesSection>
   );
 };

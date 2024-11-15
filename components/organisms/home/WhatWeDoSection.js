@@ -1,5 +1,5 @@
 import SeparatedTitle from 'components/common/SeparatedTitle';
-import React, { useState } from 'react';
+import React from 'react';
 import { ContainerDefault } from 'styles/Containers.style';
 import { globalColor } from 'styles/global_styles/Global.styles';
 import {
@@ -8,21 +8,13 @@ import {
   WhatWeDoWrapper,
 } from 'styles/WhatWeDo.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
-import {
-  PracticesTabsModal,
-  PracticesTabsModalContent,
-  PracticesTabsModalHeader,
-  PracticesTabsModalTitle,
-} from 'styles/PracticesTabs.style';
-import ModalWindow from 'components/common/ModalWindow';
-import dynamic from 'next/dynamic';
+import { useDispatch } from 'react-redux';
 import { useGetPracticesQuery } from '../../../redux/services/project-api';
 import PracticesTabs from './PracticesTabs';
-
-const ContactForm = dynamic(() => import('components/shared/ContactForm/ContactForm'));
+import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
 const WhatWeDoSection = ({ anchorId }) => {
-  const [isShowContactModal, setIsShowContactModal] = useState(false);
+  const dispatch = useDispatch();
   const { data: practices, isLoading: isLoadingPractices } = useGetPracticesQuery();
 
   return (
@@ -40,7 +32,11 @@ const WhatWeDoSection = ({ anchorId }) => {
               title="What we do?"
             />
 
-            <StandardBlueButton onClick={() => setIsShowContactModal(true)}>
+            <StandardBlueButton
+              onClick={() => dispatch(
+                handleModalOpener({ active: true, className: 'blue-modal' }),
+              )}
+            >
               Free consultation
             </StandardBlueButton>
           </WhatWeDoHeader>
@@ -50,23 +46,6 @@ const WhatWeDoSection = ({ anchorId }) => {
           />
         </WhatWeDoHolder>
       </ContainerDefault>
-
-      <PracticesTabsModal>
-        <ModalWindow
-          isOpen={isShowContactModal}
-          setOpenModal={setIsShowContactModal}
-        >
-          <PracticesTabsModalContent>
-            <PracticesTabsModalHeader>
-              <PracticesTabsModalTitle as="p">
-                Let`s get in touch!
-              </PracticesTabsModalTitle>
-            </PracticesTabsModalHeader>
-
-            <ContactForm blockName="tabs-contact-form" />
-          </PracticesTabsModalContent>
-        </ModalWindow>
-      </PracticesTabsModal>
     </WhatWeDoWrapper>
   );
 };

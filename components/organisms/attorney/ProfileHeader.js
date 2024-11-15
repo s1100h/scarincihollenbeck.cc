@@ -21,16 +21,15 @@ import PDFIcon from 'components/common/icons/PDFIcon';
 import BusinessCard from 'components/common/icons/BusinessCard';
 import Link from 'next/link';
 import { StandardBlueButton } from 'styles/Buttons.style';
-import ModalWindow from 'components/common/ModalWindow';
-import { FormBox } from 'styles/AboutAuthorFormCard.style';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
 import ProfileServices from 'components/molecules/attorney/ProfileServices';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import empty from 'is-empty';
 import WhiteButton from 'components/molecules/attorney/WhiteButton';
 import ProfileBioList from 'components/molecules/attorney/ProfileBioList';
 import { TitleH2 } from 'styles/common/Typography.style';
+import { useDispatch } from 'react-redux';
 import PostBreadCrumbs from '../post/PostBreadcrumbs';
+import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
 export const useDesignationHook = (title) => {
   const [designation, setDesignation] = useState(title);
@@ -69,9 +68,10 @@ const ProfileHeader = ({
   affiliations,
   additionalInfo,
   handlePrint,
+  isAdmin = false,
 }) => {
+  const dispatch = useDispatch();
   const [designation] = useDesignationHook(title);
-  const [isContactModal, setIsContactModal] = useState(false);
   const linkedIn = contact?.socialMediaLinks?.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
@@ -106,11 +106,14 @@ const ProfileHeader = ({
 
             <ProfileActions>
               <ProfileButtons>
-                <WhiteButton
-                  onClick={handlePrint}
-                  text="Print Bio"
-                  icon={<PDFIcon />}
-                />
+                {!isAdmin && (
+                  <WhiteButton
+                    onClick={handlePrint}
+                    text="Print Bio"
+                    icon={<PDFIcon />}
+                  />
+                )}
+
                 {!empty(contact?.vizibility) && (
                   <WhiteButton
                     as={Link}
@@ -123,19 +126,11 @@ const ProfileHeader = ({
                 )}
               </ProfileButtons>
 
-              <StandardBlueButton onClick={() => setIsContactModal(true)}>
+              <StandardBlueButton
+                onClick={() => dispatch(handleModalOpener({ active: true }))}
+              >
                 Contact now
               </StandardBlueButton>
-
-              <ModalWindow
-                isOpen={isContactModal}
-                setOpenModal={setIsContactModal}
-              >
-                <FormBox>
-                  <p className="contact-form-title">Let`s get in touch!</p>
-                  <ContactForm blockName="profile-contact-form" />
-                </FormBox>
-              </ModalWindow>
 
               <ProfileContacts {...profileDetailsProps} />
             </ProfileActions>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { StandardBlueButton } from 'styles/Buttons.style';
@@ -20,6 +20,7 @@ export default function ContactForm({
 }) {
   const dispatch = useDispatch();
   const { isCheckedDisclaimer } = useSelector((store) => store.forms);
+  const formRef = useRef();
 
   const handleCheck = (event) => {
     const target = event.target;
@@ -39,7 +40,8 @@ export default function ContactForm({
   useEffect(() => {
     const loadKwesforms = async () => {
       const kwesforms = await import('kwesforms');
-      kwesforms.init();
+      await kwesforms.init();
+      formRef.current.className = 'kwes-form-init d-print-none w-100';
     };
 
     loadKwesforms();
@@ -53,6 +55,7 @@ export default function ContactForm({
         has-recaptcha-v3="true"
         recaptcha-site-key={RECAPTCHA_SITE_KEY}
         success-message={THANKS_MESSAGE.title}
+        ref={formRef}
       >
         <RenderInputs
           arrayOfAttributes={inputsGetInTouchAttributes}

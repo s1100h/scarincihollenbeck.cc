@@ -20,12 +20,12 @@ import {
 } from 'utils/constants';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import MailingListIcon from 'components/common/icons/MailingListIcon';
-import SubscriptionModal from 'components/molecules/subscription/SubscriptionModal';
 import { ButtonRed } from 'styles/Buttons.style';
 import Navigation from 'components/organisms/Navbar/Navigation';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import SidebarMenuItems from './SidebarMenuItems';
+import { handleSubscriptionModalOpener } from '../../../redux/slices/modals.slice';
 
 const SidebarMenu = memo(
   ({
@@ -36,6 +36,7 @@ const SidebarMenu = memo(
     isSidebarOpen,
     setIsSidebarOpen,
   }) => {
+    const dispatch = useDispatch();
     const { headerSize } = useSelector((state) => state.sizes);
 
     return (
@@ -87,13 +88,17 @@ const SidebarMenu = memo(
                     <ButtonRed href="/contact" className="sidebar-contact-btn">
                       Contact us
                     </ButtonRed>
-
-                    <SubscriptionModal customClass="sidebar-subscription-btn">
+                    <button
+                      onClick={() => dispatch(
+                        handleSubscriptionModalOpener({ active: true }),
+                      )}
+                      className="sidebar-subscription-btn"
+                    >
                       <SidebarMenuButtonIcon>
                         <MailingListIcon />
                       </SidebarMenuButtonIcon>
                       Join our mailing list
-                    </SubscriptionModal>
+                    </button>
 
                     <SidebarMenuButton
                       href={MAKE_A_PAYMENT}

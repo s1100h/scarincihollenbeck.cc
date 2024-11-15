@@ -41,6 +41,7 @@ const getAdminData = async (uriAdmin, canonicalUrl) => {
           name: officeMainInformation.addressLocality,
         }),
       ),
+      isAdmin: true,
     },
     seo: {
       canonicalLink: canonicalUrl,

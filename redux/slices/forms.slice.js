@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isCheckedDisclaimer: '',
@@ -9,11 +9,7 @@ const formSlice = createSlice({
   initialState,
   reducers: {
     handleCheckDisclaimer: (state, action) => {
-      if (typeof action.payload === 'boolean') {
-        state.isCheckedDisclaimer = action.payload;
-      } else {
-        state.isCheckedDisclaimer = action.payload;
-      }
+      state.isCheckedDisclaimer = action.payload;
     },
   },
 });

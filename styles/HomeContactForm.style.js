@@ -33,7 +33,7 @@ export const ContactFormHolder = styled.div`
   background-color: ${globalColor.gray.gray1002};
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.08);
 
-  .kwes-form {
+  .kwes-form, .kwes-form-init {
     column-gap: 16px;
 
     .input-group {

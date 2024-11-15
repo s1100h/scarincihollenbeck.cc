@@ -3,7 +3,6 @@ import {
   attorneyCardForCannabis,
   beforeDoteStyledList,
   cannabisLawColors,
-  globalColor,
   paragraphStyles,
   rem,
 } from '../../global_styles/Global.styles';
@@ -12,17 +11,9 @@ import {
   media_breakpoint_exactly_down,
 } from '../../mediaBreakpoints.style';
 import {
-  ContactBox,
-  InfoBox,
-  LinkBox,
-  UserName,
-} from 'styles/AttorneyCard.style';
-import {
   AboutAuthorFormCardContainer,
   ContactNowBtn,
-  FormBox,
 } from 'styles/AboutAuthorFormCard.style';
-import { ChildrenBox, ModalContent } from 'styles/ModalWindow.style';
 
 export const KeyContactsBlockContainer = styled.section`
   display: flex;
@@ -169,45 +160,6 @@ export const KeyContactsWrapper = styled.div`
         span {
           font-size: ${rem(16)};
           line-height: 24px;
-        }
-      }
-    }
-
-    ${ModalContent} {
-      max-width: 600px;
-      background-color: ${cannabisLawColors.cannabisColorGray};
-
-      ${FormBox} {
-        width: 100%;
-        button {
-          padding: 14px 24px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: ${cannabisLawColors.cannabisColorDarkGray};
-          border: 2px solid ${cannabisLawColors.cannabisColorDarkGray};
-          color: ${globalColor.white};
-          border-radius: 40px;
-          font-size: ${rem(18)};
-          line-height: 27px;
-          font-weight: 600;
-          font-family: var(--font-poppins), sans-serif;
-          transition: all 0.3s ease;
-
-          :hover {
-            color: ${cannabisLawColors.cannabisColorDarkGray};
-            background-color: transparent;
-
-            &::after {
-              display: none;
-            }
-          }
-
-          ${media_breakpoint_down('xxl')} {
-            padding: 10px 24px;
-            font-size: ${rem(16)};
-            line-height: 24px;
-          }
         }
       }
     }

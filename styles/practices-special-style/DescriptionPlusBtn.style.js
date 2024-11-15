@@ -9,7 +9,6 @@ import {
   media_breakpoint_exactly_down,
 } from '../mediaBreakpoints.style';
 import { SubscribeBtn } from 'styles/Subscription.style';
-import { ModalContent } from 'styles/ModalWindow.style';
 
 export const DescrBtnContainer = styled.div`
   display: flex;
@@ -56,59 +55,6 @@ export const DescrBtnContainer = styled.div`
       padding: 10px 24px;
 
       span {
-        font-size: ${rem(16)};
-        line-height: 24px;
-      }
-    }
-  }
-
-  ${ModalContent} {
-    background-color: ${cannabisLawColors.cannabisColorGray};
-    .form-control {
-      ::placeholder {
-        color: ${globalColor.gray.gray40};
-      }
-    }
-    .btn-link {
-      color: ${cannabisLawColors.cannabisColorDarkGray};
-    }
-    .disclaimer-input {
-      &:checked {
-        & + span.disclaimer-checkbox {
-          background-color: ${cannabisLawColors.cannabisTransparentBlack};
-        }
-      }
-    }
-
-    #field-error-category {
-      margin-bottom: 10px;
-    }
-
-    .btn-primary {
-      padding: 14px 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: ${cannabisLawColors.cannabisColorDarkGray};
-      border: 2px solid ${cannabisLawColors.cannabisColorDarkGray};
-      color: ${globalColor.white};
-      border-radius: 40px;
-      font-size: ${rem(18)};
-      line-height: 27px;
-      font-weight: 600;
-      font-family: var(--font-poppins), sans-serif;
-      transition: all 0.3s ease;
-
-      :hover {
-        color: ${cannabisLawColors.cannabisColorDarkGray};
-        background-color: transparent;
-        :after {
-          opacity: 0;
-        }
-      }
-
-      ${media_breakpoint_down('xxl')} {
-        padding: 10px 24px;
         font-size: ${rem(16)};
         line-height: 24px;
       }

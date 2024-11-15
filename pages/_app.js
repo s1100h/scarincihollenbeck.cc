@@ -31,6 +31,8 @@ import { store } from '../redux/store';
 import { RECAPTCHA_SITE_KEY } from '../utils/constants';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
+const ContactModal = dynamic(() => import('components/shared/ContactModal'));
+const SubscriptionModal = dynamic(() => import('components/shared/SubscriptionModal'));
 const ToastContainer = dynamic(
   () => import('react-toastify').then((mod) => mod.ToastContainer),
   { ssr: false },
@@ -57,6 +59,8 @@ const SHSite = ({ Component, pageProps }) => (
           <Component {...pageProps} />
         </main>
         <SiteFooter />
+        <ContactModal />
+        <SubscriptionModal />
         <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
       </ReCaptchaProvider>
       {/* </PushNotificationLayout> */}

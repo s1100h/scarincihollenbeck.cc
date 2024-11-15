@@ -4,6 +4,7 @@ import MailingListIcon from 'components/common/icons/MailingListIcon';
 import PaymentIcon from 'components/common/icons/PaymentIcon';
 import { AnimatePresence } from 'framer-motion';
 import React, { Fragment } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   HeaderTopLineIcon,
   HeaderTopLineItem,
@@ -11,10 +12,10 @@ import {
   HeaderTopLineLink,
   HeaderTopLineWrapper,
 } from '../../../styles/Header.style';
-import SubscriptionModal from '../../molecules/subscription/SubscriptionModal';
 import HeaderSearch from './HeaderSearch';
+import { handleSubscriptionModalOpener } from '../../../redux/slices/modals.slice';
 
-const twoButtons = () => (
+const twoButtons = (dispatch) => (
   <Fragment key="two-items">
     <HeaderTopLineItem
       initial={{ opacity: 0, y: '-100%' }}
@@ -28,12 +29,15 @@ const twoButtons = () => (
       }}
       exit={{ opacity: 0, y: '-100%' }}
     >
-      <SubscriptionModal customClass="header-subscription-btn">
+      <button
+        onClick={() => dispatch(handleSubscriptionModalOpener({ active: true }))}
+        className="header-subscription-btn"
+      >
         <HeaderTopLineIcon>
           <MailingListIcon />
         </HeaderTopLineIcon>
         Join our mailing list
-      </SubscriptionModal>
+      </button>
     </HeaderTopLineItem>
 
     <HeaderTopLineItem
@@ -58,22 +62,25 @@ const twoButtons = () => (
   </Fragment>
 );
 
-const HeaderTopLine = ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => (
-  <HeaderTopLineWrapper>
-    <ContainerDefault>
-      <AnimatePresence>
-        <HeaderTopLineItems>
-          {!isOpenSearch && viewportWidth >= 768 && twoButtons()}
-          {viewportWidth < 768 && twoButtons()}
-          <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
-            <HeaderSearch
-              isOpenSearch={isOpenSearch}
-              setIsOpenSearch={setIsOpenSearch}
-            />
-          </HeaderTopLineItem>
-        </HeaderTopLineItems>
-      </AnimatePresence>
-    </ContainerDefault>
-  </HeaderTopLineWrapper>
-);
+const HeaderTopLine = ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => {
+  const dispatch = useDispatch();
+  return (
+    <HeaderTopLineWrapper>
+      <ContainerDefault>
+        <AnimatePresence>
+          <HeaderTopLineItems>
+            {!isOpenSearch && viewportWidth >= 768 && twoButtons(dispatch)}
+            {viewportWidth < 768 && twoButtons(dispatch)}
+            <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
+              <HeaderSearch
+                isOpenSearch={isOpenSearch}
+                setIsOpenSearch={setIsOpenSearch}
+              />
+            </HeaderTopLineItem>
+          </HeaderTopLineItems>
+        </AnimatePresence>
+      </ContainerDefault>
+    </HeaderTopLineWrapper>
+  );
+};
 export default HeaderTopLine;

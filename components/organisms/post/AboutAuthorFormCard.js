@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import ModalWindow from 'components/common/ModalWindow';
 import {
   AboutAuthorFormCardContainer,
   ContactNowBtn,
-  FormBox,
 } from 'styles/AboutAuthorFormCard.style';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
+import { useDispatch } from 'react-redux';
+import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
-const AboutAuthorFormCard = ({ blockName }) => {
-  const [show, setShow] = useState(false);
+const AboutAuthorFormCard = ({ modalClassName = '' }) => {
+  const dispatch = useDispatch();
 
   return (
     <AboutAuthorFormCardContainer className="d-print-none mt-4">
-      <ContactNowBtn className="contact-now-btn" onClick={() => setShow(true)}>
+      <ContactNowBtn
+        className="contact-now-btn"
+        onClick={() => dispatch(
+          handleModalOpener({
+            active: true,
+            className: modalClassName,
+          }),
+        )}
+      >
         <span>Contact now</span>
       </ContactNowBtn>
-      <ModalWindow isOpen={show} setOpenModal={setShow}>
-        <FormBox>
-          <div className="contact-form-title">Let`s get in touch!</div>
-          <ContactForm blockName={blockName} />
-        </FormBox>
-      </ModalWindow>
     </AboutAuthorFormCardContainer>
   );
 };

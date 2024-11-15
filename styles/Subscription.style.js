@@ -118,7 +118,7 @@ export const FormSubscriptionContainer = styled.div`
       width: 52px;
       height: 52px;
     }
-    .kwes-form {
+    .kwes-form, .kwes-form-init {
       .input-group {
         width: 100%;
       }

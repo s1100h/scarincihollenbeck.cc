@@ -194,6 +194,8 @@ export const SubHeaderHolder = styled.div`
   }
 
   &.sub-header--slider {
+    background-color: ${globalColor.gray.gray1002};
+
     .sub-header__image {
       flex: 1;
       max-width: 20%;

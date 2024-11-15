@@ -14,16 +14,15 @@ import {
 } from 'styles/practices/SubHeader.style';
 import empty from 'is-empty';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
-import ModalWindow from 'components/common/ModalWindow';
-import { FormBox } from 'styles/AboutAuthorFormCard.style';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
 import Image from 'next/image';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { useSwipeable } from 'react-swipeable';
 import { UnderlinedLink } from 'styles/common/Typography.style';
+import { useDispatch } from 'react-redux';
+import { handleModalOpener } from '../../redux/slices/modals.slice';
 
 const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
-  const [isContactModal, setIsContactModal] = useState(false);
+  const dispatch = useDispatch();
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const intervalRef = useRef(null);
   const sliderRef = useRef(null);
@@ -149,7 +148,7 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
 
           <UnderlinedLink
             as="button"
-            onClick={() => setIsContactModal(true)}
+            onClick={() => dispatch(handleModalOpener({ active: true }))}
             $isWhite
           >
             Contact now
@@ -166,13 +165,6 @@ const SubHeaderIndustriesSlider = ({ slides, autoplayInterval = 10000 }) => {
           </SubHeaderSlideNavigationButton>
         </SubHeaderSlideContent>
       </SubHeaderSlide>
-
-      <ModalWindow isOpen={isContactModal} setOpenModal={setIsContactModal}>
-        <FormBox>
-          <p className="contact-form-title">Let`s get in touch!</p>
-          <ContactForm blockName="sub-header-industry-slider" />
-        </FormBox>
-      </ModalWindow>
     </SubHeaderSlider>
   );
 };
