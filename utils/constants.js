@@ -547,7 +547,6 @@ export const inputsGetInTouchAttributes = [
     type: 'textarea',
     name: 'Message',
     placeholder: 'Message',
-    rules: 'required|max:1000',
     rows: 8,
     cols: 4,
     'aria-label': 'Message',

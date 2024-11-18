@@ -76,13 +76,13 @@ const AttorneyPrintPage = ({
     <BioPagePrintContainer>
       <div className="wrapper-pdf">
         <CardImageWrapper className="card-image-wrapper">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={profileImage}
             alt={name}
             width={356}
             height={356}
             quality={100}
-            sizes="(max-width: 576px) 100vw, (max-width: 992px) 324px, (max-width: 1680px) 400px, 500px"
           />
         </CardImageWrapper>
         <ProfileHeaderRight>

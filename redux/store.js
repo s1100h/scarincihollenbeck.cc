@@ -4,7 +4,6 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { wpGraphQl } from './services/wp-graphql';
 import { appApi } from './services/project-api';
 import attorneysReducer from './slices/attorneys.slice';
-import formsReducer from './slices/forms.slice';
 import sizesReducer from './slices/sizes.slice';
 import modalsReducer from './slices/modals.slice';
 
@@ -14,7 +13,6 @@ export const store = configureStore({
     [wpGraphQl.reducerPath]: wpGraphQl.reducer,
     [appApi.reducerPath]: appApi.reducer,
     attorneys: attorneysReducer,
-    forms: formsReducer,
     sizes: sizesReducer,
     modals: modalsReducer,
   },

@@ -138,6 +138,7 @@ export const FormContainer = styled.div`
       .disclaimer-input {
         appearance: none;
         border: none;
+        display: none;
 
         &:checked {
           & + .disclaimer-checkbox {

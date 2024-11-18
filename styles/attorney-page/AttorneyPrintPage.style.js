@@ -110,12 +110,13 @@ export const FooterPrintVersionContainer = styled.div`
   page-break-inside: avoid;
 
   @media print {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    display: flex !important;
+    justify-content: space-between;
     gap: 24px;
     background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
     border-radius: 8px;
+    
     .advertising-title-print {
       font-size: 10px;
       margin-bottom: 4px;

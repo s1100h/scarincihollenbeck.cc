@@ -1,18 +1,13 @@
-import { useDispatch } from 'react-redux';
 import {
   ChildrenBox,
   ModalCloser,
   ModalContainer,
   ModalContent,
 } from '../../styles/ModalWindow.style';
-import { handleCheckDisclaimer } from '../../redux/slices/forms.slice';
 
 const ModalWindow = ({ children, isOpen, setOpenModal }) => {
-  const dispatch = useDispatch();
-
   const handleCloseModal = () => {
     setOpenModal(false);
-    dispatch(handleCheckDisclaimer(''));
   };
 
   const autoStopPropagation = (event) => event.stopPropagation();

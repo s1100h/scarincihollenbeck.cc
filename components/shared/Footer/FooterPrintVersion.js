@@ -44,6 +44,7 @@ const FooterPrintVersion = ({ locations }) => {
           </div>
         </ContactsPrintVersion>
         <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={qrCodeProduction}
             alt="the Bio page"

@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
-import { useDispatch, useSelector } from 'react-redux';
 import { StandardRedButton } from '../../styles/Buttons.style';
 import {
   THANKS_MESSAGE,
@@ -13,12 +12,10 @@ import {
 import { CareerFormContainer } from '../../styles/Careers.style';
 import RenderInputs from '../shared/ContactForm/RenderInputs';
 import { TwoColumnsForm } from '../../styles/attorney-page/GetInTouchForm.styles';
-import { handleCheckDisclaimer } from '../../redux/slices/forms.slice';
 
 const CareerForm = () => {
   const router = useRouter();
-  const { isCheckedDisclaimer } = useSelector((store) => store.forms);
-  const dispatch = useDispatch();
+  const [isCheckedDisclaimer, setIsCheckedDisclaimer] = useState('');
 
   useEffect(() => {
     const loadKwesforms = async () => {
@@ -29,7 +26,7 @@ const CareerForm = () => {
     loadKwesforms();
   }, []);
 
-  const careerHandleCheckDisclaimer = () => dispatch(handleCheckDisclaimer(!isCheckedDisclaimer));
+  const careerHandleCheckDisclaimer = () => setIsCheckedDisclaimer(!isCheckedDisclaimer);
   const isDisabledSubmitButton = !isCheckedDisclaimer;
 
   return (

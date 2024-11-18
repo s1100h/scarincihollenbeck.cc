@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { StandardBlueButton } from 'styles/Buttons.style';
@@ -9,17 +9,14 @@ import {
   THANKS_MESSAGE,
 } from 'utils/constants';
 import empty from 'is-empty';
-import { useDispatch, useSelector } from 'react-redux';
 import RenderInputs from './RenderInputs';
-import { handleCheckDisclaimer } from '../../../redux/slices/forms.slice';
 
 export default function ContactForm({
   isPositionRelativeProp,
   blockName = 'default',
   buttonText = 'Submit form',
 }) {
-  const dispatch = useDispatch();
-  const { isCheckedDisclaimer } = useSelector((store) => store.forms);
+  const [isCheckedDisclaimer, setIsCheckedDisclaimer] = useState('');
   const formRef = useRef();
 
   const handleCheck = (event) => {
@@ -27,11 +24,7 @@ export default function ContactForm({
     const isChecked = target.checked;
 
     if (blockName === target.dataset.id) {
-      if (isChecked) {
-        dispatch(handleCheckDisclaimer(blockName));
-      } else {
-        dispatch(handleCheckDisclaimer(''));
-      }
+      setIsCheckedDisclaimer(isChecked ? blockName : '');
     }
   };
 

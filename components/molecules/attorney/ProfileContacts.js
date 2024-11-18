@@ -72,6 +72,7 @@ const ProfileContacts = ({
       {(!empty(qrCodeLinkedin) || !empty(qrCodeBioPage)) && (
         <QRCodesBoxForPDF>
           {!empty(qrCodeLinkedin) && (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={qrCodeLinkedin?.sourceUrl}
               alt="LinkedIn"
@@ -80,6 +81,7 @@ const ProfileContacts = ({
             />
           )}
           {!empty(qrCodeBioPage) && (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={qrCodeBioPage?.sourceUrl}
               alt="The bio page"
