@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { StandardBlueButton } from 'styles/Buttons.style';
@@ -17,7 +17,6 @@ export default function ContactForm({
   buttonText = 'Submit form',
 }) {
   const [isCheckedDisclaimer, setIsCheckedDisclaimer] = useState('');
-  const formRef = useRef();
 
   const handleCheck = (event) => {
     const target = event.target;
@@ -30,16 +29,6 @@ export default function ContactForm({
 
   const router = useRouter();
 
-  useEffect(() => {
-    const loadKwesforms = async () => {
-      const kwesforms = await import('kwesforms');
-      await kwesforms.init();
-      formRef.current.className = 'kwes-form-init d-print-none w-100';
-    };
-
-    loadKwesforms();
-  }, []);
-
   return (
     <FormContainer isPositionRelative={isPositionRelativeProp && 'true'}>
       <form
@@ -48,7 +37,6 @@ export default function ContactForm({
         has-recaptcha-v3="true"
         recaptcha-site-key={RECAPTCHA_SITE_KEY}
         success-message={THANKS_MESSAGE.title}
-        ref={formRef}
       >
         <RenderInputs
           arrayOfAttributes={inputsGetInTouchAttributes}

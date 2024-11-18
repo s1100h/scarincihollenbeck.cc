@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import { StandardRedButton } from '../../styles/Buttons.style';
@@ -11,20 +11,10 @@ import {
 } from '../../utils/constants';
 import { CareerFormContainer } from '../../styles/Careers.style';
 import RenderInputs from '../shared/ContactForm/RenderInputs';
-import { TwoColumnsForm } from '../../styles/attorney-page/GetInTouchForm.styles';
 
 const CareerForm = () => {
   const router = useRouter();
   const [isCheckedDisclaimer, setIsCheckedDisclaimer] = useState('');
-
-  useEffect(() => {
-    const loadKwesforms = async () => {
-      const kwesforms = await import('kwesforms');
-      kwesforms.init();
-    };
-
-    loadKwesforms();
-  }, []);
 
   const careerHandleCheckDisclaimer = () => setIsCheckedDisclaimer(!isCheckedDisclaimer);
   const isDisabledSubmitButton = !isCheckedDisclaimer;
@@ -32,7 +22,7 @@ const CareerForm = () => {
   return (
     <CareerFormContainer>
       <FormContainer isPositionRelative>
-        <TwoColumnsForm
+        <form
           action={GET_IN_TOUCH_FORM_API}
           className="kwes-form d-print-none w-100"
           has-recaptcha-v3="true"
@@ -78,7 +68,7 @@ const CareerForm = () => {
           >
             Submit form
           </StandardRedButton>
-        </TwoColumnsForm>
+        </form>
       </FormContainer>
     </CareerFormContainer>
   );

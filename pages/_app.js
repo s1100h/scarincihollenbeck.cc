@@ -25,14 +25,14 @@ import { GlobalStyle } from 'styles/global_styles/Global.styles';
 import InitFonts from 'styles/global_styles/InitFonts';
 import 'react-toastify/dist/ReactToastify.css';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
+import CommonModals from 'components/shared/CommonModals';
 import { store } from '../redux/store';
 // need update to new firebase version
 // import PushNotificationLayout from '../hoks/notifications';
 import { RECAPTCHA_SITE_KEY } from '../utils/constants';
 
 const SiteFooter = dynamic(() => import('components/shared/Footer/SiteFooter'));
-const ContactModal = dynamic(() => import('components/shared/ContactModal'));
-const SubscriptionModal = dynamic(() => import('components/shared/SubscriptionModal'));
+
 const ToastContainer = dynamic(
   () => import('react-toastify').then((mod) => mod.ToastContainer),
   { ssr: false },
@@ -59,8 +59,7 @@ const SHSite = ({ Component, pageProps }) => (
           <Component {...pageProps} />
         </main>
         <SiteFooter />
-        <ContactModal />
-        <SubscriptionModal />
+        <CommonModals />
         <GoogleTagManager gtmId="GTM-PZ2XWLW4" />
       </ReCaptchaProvider>
       {/* </PushNotificationLayout> */}

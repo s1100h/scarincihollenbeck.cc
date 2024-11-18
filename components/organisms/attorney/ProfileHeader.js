@@ -68,13 +68,17 @@ const ProfileHeader = ({
   affiliations,
   additionalInfo,
   isAdmin = false,
-  handlePrint,
 }) => {
   const dispatch = useDispatch();
   const [designation] = useDesignationHook(title);
   const linkedIn = contact?.socialMediaLinks?.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
 
   const profileDetailsProps = {
     offices,

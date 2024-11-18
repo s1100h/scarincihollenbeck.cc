@@ -165,6 +165,32 @@ export const FormContainer = styled.div`
       }
     }
   }
+
+  .career-form-wrapper {
+    margin-bottom: 8px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 30px;
+
+    .input-group {
+      width: 100%;
+      height: auto;
+      margin: 0;
+
+      &:last-of-type {
+        margin: 0;
+      }
+
+      input {
+        height: 37px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 import { InputGroup, Form } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -208,32 +234,4 @@ export const FormLabelStyled = styled(Form.Label)`
   left: 12px;
   z-index: 5;
   color: ${globalColor.grayExtraLite.grayExtraLite80};
-`;
-
-export const TwoColumnsForm = styled.form`
-  .career-form-wrapper {
-    margin-bottom: 8px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 30px;
-
-    .input-group {
-      width: 100%;
-      height: auto;
-      margin: 0;
-
-      &:last-of-type {
-        margin: 0;
-      }
-
-      input {
-        height: 37px;
-      }
-    }
-
-    @media (max-width: 992px) {
-      grid-template-columns: 1fr;
-    }
-  }
 `;

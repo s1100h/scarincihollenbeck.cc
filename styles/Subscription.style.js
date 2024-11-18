@@ -17,7 +17,7 @@ export const CheckBoxesList = styled.ul`
     break-inside: avoid;
 
     span.checkbox-label {
-      font-size: 1rem;
+      font-size: 1rem !important;
     }
   }
 
@@ -26,7 +26,7 @@ export const CheckBoxesList = styled.ul`
 
     li {
       span.checkbox-label {
-        font-size: 0.8rem;
+        font-size: 0.8rem !important;
       }
     }
   }

@@ -1,8 +1,6 @@
 import ModalWindow from 'components/common/ModalWindow';
 import Image from 'next/image';
-import React, {
-  useEffect, useId, useRef, useState,
-} from 'react';
+import React, { useId, useState } from 'react';
 import { FormContainer } from 'styles/attorney-page/GetInTouchForm.styles';
 import {
   CheckBoxesList,
@@ -18,7 +16,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
 import empty from 'is-empty';
-import decodeResponse from 'utils/decodeResponse';
 import Loader from 'components/atoms/Loader';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { SubscriptionModalWrapper } from 'styles/ContactModal.style';
@@ -34,39 +31,13 @@ const isArraysIdentical = (chosenIds, originalIds) => {
 };
 const originalCategoriesIds = (categoryArr) => categoryArr?.map((category) => category.id);
 
-const SubscriptionModal = () => {
+const SubscriptionModal = ({ categoriesFromWP }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const useIdVar = useId();
-  const subscriptionFormRef = useRef();
-  const [categoriesFromWP, setCategoriesFromWP] = useState();
   const [categoriesChosen, setCategories] = useState([]);
-  const [isKwesInit, setIsKwesInit] = useState(false);
   const { isActiveSubscriptionModal, customSubscriptionModalClassName } = useSelector((store) => store.modals);
   const setIsShowContactModal = (value) => dispatch(handleSubscriptionModalOpener({ active: value }));
-
-  useEffect(() => {
-    (async () => {
-      const blogCategories = await fetch('/api/revalidate-categories');
-      const resDecoded = await decodeResponse(blogCategories);
-      if (!empty(resDecoded.data)) {
-        setCategoriesFromWP(resDecoded.data);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    const loadKwesforms = async () => {
-      const kwesforms = await import('kwesforms');
-      kwesforms.init();
-      setIsKwesInit(true);
-      subscriptionFormRef.current.className = 'kwes-form-init';
-    };
-
-    if (categoriesFromWP && !isKwesInit) {
-      loadKwesforms();
-    }
-  }, [categoriesFromWP, isKwesInit]);
 
   const handleCheckCategory = (categoryId) => {
     if (categoriesChosen.includes(categoryId)) {
@@ -118,7 +89,6 @@ const SubscriptionModal = () => {
               has-recaptcha-v3="true"
               recaptcha-site-key={RECAPTCHA_SITE_KEY}
               success-message={THANKS_MESSAGE.title}
-              ref={subscriptionFormRef}
             >
               <RenderInputs
                 arrayOfAttributes={subscriptionInputs}
