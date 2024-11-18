@@ -36,7 +36,7 @@ const AwardsSlider = ({ items, isLightVariant = false }) => {
         grab-cursor="true"
       >
         {items?.map((item) => (
-          <SwiperSlide key={item?.id}>
+          <SwiperSlide key={`${item?.id}-${item?.year}`}>
             <AwardCard
               image={item?.image}
               year={item?.year}
