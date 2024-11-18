@@ -431,7 +431,7 @@ export const sortAttorneysByCategory = (attorneys, titles) => {
 export const setResponseHeaders = (res, revalidateTime, cacheStatus) => {
   res.setHeader(
     'Cache-Control',
-    `public, max-age=${revalidateTime}, s-maxage=${revalidateTime}, stale-while-revalidate=${revalidateTime}`,
+    `public, s-maxage=${revalidateTime}, stale-while-revalidate`,
   );
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('X-Cache-Status', cacheStatus);

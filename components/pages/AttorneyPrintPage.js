@@ -87,7 +87,7 @@ const AttorneyPrintPage = ({
         </CardImageWrapper>
         <ProfileHeaderRight>
           <ProfileTitle className="profile-title">
-            <TitleH2>{name}</TitleH2>
+            <TitleH2 as="h1">{name}</TitleH2>
             <ProfileDesignation>{designation}</ProfileDesignation>
           </ProfileTitle>
           <ProfileServices
