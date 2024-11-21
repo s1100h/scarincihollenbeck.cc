@@ -39,7 +39,7 @@ const AnchorsTopBar = ({ title, anchorData }) => {
   return (
     <AnchorsTopBarWrapper>
       <Tooltip textTooltip={title}>
-        <h5>{title}</h5>
+        <p className="anchors-title">{title}</p>
       </Tooltip>
       <nav>
         <AnchorsTopBarItems>

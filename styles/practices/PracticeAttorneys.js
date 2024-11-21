@@ -8,7 +8,6 @@ import {
 import {
   media_breakpoint_down,
 } from 'styles/mediaBreakpoints.style';
-import { PracticeTitle } from './PracticeCommon.style';
 
 export const PracticeAttorneysSection = styled.section`
   padding: 24px 0;
@@ -21,14 +20,10 @@ export const PracticeAttorneysSection = styled.section`
   }
 
   .attorneys-practice__header {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     display: flex;
     align-items: flex-end;
     column-gap: 16px;
-
-    ${PracticeTitle} {
-      margin: 0;
-    }
 
     > button {
       height: 100%;
@@ -56,9 +51,8 @@ export const PracticeAttorneysSection = styled.section`
       }
     }
 
-    ${media_breakpoint_down('sm')} {
-      margin-bottom: 8px;
-      column-gap: 12px;
+    ${media_breakpoint_down('lg')} {
+      margin-bottom: 20px;
     }
   }
 

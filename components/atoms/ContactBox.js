@@ -1,6 +1,7 @@
 import { BsFillEnvelopeFill, BsFillTelephoneFill } from 'react-icons/bs';
 import empty from 'is-empty';
 import { FaLocationDot } from 'react-icons/fa6';
+import { MdLocalPhone } from 'react-icons/md';
 import { ContactBox } from '../../styles/AttorneyCard.style';
 
 const ContactBoxTemplate = ({
@@ -29,7 +30,7 @@ const ContactBoxTemplate = ({
       </div>
     )}
     <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
-      {svgPhone || <BsFillTelephoneFill />}
+      {svgPhone || <MdLocalPhone size={20} />}
       {' '}
       <span>{number}</span>
     </a>

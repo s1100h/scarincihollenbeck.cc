@@ -221,7 +221,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .margin-scroll {
-      scroll-margin-top: calc(var(--header-height) + 80px);
+      scroll-margin-top: calc(var(--header-height) + 65px);
     }
 
     &:has(.modal-open), 
@@ -630,6 +630,12 @@ export const GlobalStyle = createGlobalStyle`
     &.Toastify__toast--error {
       border-radius: 0;
       background-color: ${globalColor.red.darkRed};
+    }
+  }
+
+  .copy-notify {
+    &.Toastify__toast--info {
+      background-color: ${globalColor.blue.blue550};
     }
   }
   

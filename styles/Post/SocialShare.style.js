@@ -34,27 +34,64 @@ export const ShareSocialBox = styled.nav`
       font-size: 1.4rem;
       color: ${globalColor.grayLite.grayLite60};
 
-      :hover {
+      @media (hover:hover) {
+        &:hover {
+          color: ${globalColor.black};
+        }
+      }
+      
+      &:active {
         color: ${globalColor.black};
       }
     }
   }
 
   .faceBookBtn {
-    :hover {
+    @media (hover:hover) {
+      &:hover {
+        color: ${globalColor.socialNetworks.faceBook};
+      }
+    }
+
+    &:active {
       color: ${globalColor.socialNetworks.faceBook};
     }
   }
 
   .twitterBtn {
-    :hover {
+    @media (hover:hover) {
+      &:hover {
+        color: ${globalColor.socialNetworks.twitter};
+      }
+    }
+    &:active {
       color: ${globalColor.socialNetworks.twitter};
     }
   }
 
   .linkedIn {
-    :hover {
+    @media (hover:hover) {
+      &:hover {
+        color: ${globalColor.socialNetworks.linkedIn};
+      }
+    }
+
+    &:active {
       color: ${globalColor.socialNetworks.linkedIn};
+    }
+  }
+
+  .copy-button {
+    svg {
+      @media (hover:hover) {
+        &:hover {
+          color: ${globalColor.blue.skyBlue};
+        }
+      }
+
+      &:active {
+        color: ${globalColor.blue.skyBlue};
+      }
     }
   }
 `;

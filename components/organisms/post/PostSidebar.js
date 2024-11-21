@@ -10,12 +10,12 @@ import AboutAuthorFormCard from './AboutAuthorFormCard';
 import PracticesList from './PracticesList';
 import { handleSubscriptionModalOpener } from '../../../redux/slices/modals.slice';
 
-const PostSidebar = ({ keyContacts, corePractices, isPracticeVariant }) => {
+const PostSidebar = ({ keyContacts, corePractices }) => {
   const dispatch = useDispatch();
   return (
     <div>
       <ContactLinksBox>
-        <SocialShare isPractice={isPracticeVariant} />
+        <SocialShare />
         <h3>Key Contacts</h3>
         {keyContacts.map((author) => (
           <AttorneyCard

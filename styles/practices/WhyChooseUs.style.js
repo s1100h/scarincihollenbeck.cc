@@ -1,62 +1,60 @@
 import styled from 'styled-components';
-import { PracticeTitle } from './PracticeCommon.style';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { TitleH2 } from 'styles/common/Typography.style';
+import { globalBorderRadius, globalColor, rem } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 
 export const WhyChooseUsSection = styled.div`
   padding: 40px 0;
+  background-color: ${globalColor.white};
 
-  ${PracticeTitle} {
-    margin: 0 0 12px 0;
+  ${TitleH2} {
+    margin-bottom: 24px;
 
-    ${media_breakpoint_down('sm')} {
-      font-size: ${rem(28)};
-      font-weight: 600;
-      line-height: 36px;
-      color: #000;
+    ${media_breakpoint_down('xxl')} {
+      margin-bottom: 12px;
     }
   }
 
   ${media_breakpoint_down('md')} {
-    margin: 0 0 32px 0;
+    padding: 24px 0;
   }
 `;
 
 export const WhyChooseUsCards = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 32px;
 
-  ${media_breakpoint_exactly_down(1850)} {
-    gap: 20px;
-  }
-
   ${media_breakpoint_down('xl')} {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    row-gap: 32px;
-  }
-
-  ${media_breakpoint_down('md')} {
-    row-gap: 20px;
+    gap: 16px;
   }
 `;
+
 export const WhyChooseUsCardWrapper = styled.div`
-  width: 100%;
+  flex: 1 1 calc((100% - 32px) / 2);
+  min-height: 285px;
   display: flex;
   column-gap: 48px;
-  border-radius: 4px;
+  border-radius: ${globalBorderRadius.middle};
   background: linear-gradient(98deg, #060b2a -0.14%, #377ec4 108.53%);
   overflow: hidden;
 
-  ${media_breakpoint_exactly_down(1850)} {
+  ${media_breakpoint_down('xxl')} {
     column-gap: 16px;
   }
+
+  ${media_breakpoint_down('xl')} {
+    flex-direction: column;
+    flex-basis: calc((100% - 16px) / 2);
+  }
+
+  ${media_breakpoint_down('lg')} {
+    flex-basis: 100%;
+  }
 `;
+
 export const WhyChooseUsCardContent = styled.div`
   flex: 1;
   padding: 24px 0 24px 24px;
@@ -69,43 +67,72 @@ export const WhyChooseUsCardContent = styled.div`
   h3 {
     margin: 0 0 4px 0;
     font-size: ${rem(24)};
-    font-weight: 600;
-    line-height: 30px;
-    letter-spacing: 1px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-family: var(--font-lato);
     color: inherit;
 
     ${media_breakpoint_down('md')} {
-      font-size: ${rem(16)};
-      line-height: 20px;
-      letter-spacing: 0.64px;
+      font-size: 1rem;
+      line-height: 1.5;
     }
-  }
-
-  p {
-    margin: 0;
-    font-size: ${rem(16)};
-    line-height: 28px;
-    font-weight: 400;
-
-    ${media_breakpoint_down('md')} {
-      font-size: ${rem(14)};
-      line-height: 20px;
-    }
-  }
-
-  ${media_breakpoint_exactly_down(1850)} {
-    padding: 16px 0 16px 20px;
   }
 
   ${media_breakpoint_down('xl')} {
-    padding: 12px 0 12px 16px;
+    padding: 8px 16px 16px;
+    justify-content: flex-start;
   }
 
-  ${media_breakpoint_down('sm')} {
-    padding: 4px 8px;
+  ${media_breakpoint_down('md')} {
+    padding: 8px 12px 12px;
   }
 `;
-export const WhyChooseUsCardImage = styled.div`
+
+export const WhyChooseUsCardDescription = styled.div`
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+
+  p, ul {
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  a {
+    color: ${globalColor.white};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    li {
+      margin-left: 24px;
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
+
+      &::marker {
+        font-size: 14px;
+      }
+
+      list-style: disc;
+    }
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(14)};
+  }
+`;
+
+export const WhyChooseUsCardImage = styled.picture`
   width: 42%;
   height: 100%;
   position: relative;
@@ -120,15 +147,17 @@ export const WhyChooseUsCardImage = styled.div`
     left: 0;
   }
 
-  ${media_breakpoint_exactly_down(1850)} {
+  ${media_breakpoint_down('xxl')} {
     width: 34%;
   }
 
   ${media_breakpoint_down('xl')} {
-    width: 31%;
+    width: 100%;
+    height: 140px;
+    order: -1;
   }
 
   ${media_breakpoint_down('sm')} {
-    display: none;
+    height: 80px;
   }
 `;

@@ -780,7 +780,7 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
 }`;
 
 export const getPracticesQuery = `query NewQuery {
-  practices(first: 100) {
+  practices(first: 100, where: {status: PUBLISH}) {
     nodes {
       databaseId
       title
@@ -827,21 +827,6 @@ export const getPracticesWithAttorneysQuery = `query NewQuery {
       }
       practicePortalPageContent {
         practicePortalCategories
-      }
-    }
-  }
-}`;
-
-export const getJustClientAlertOnePost = `query FirmPageQuery {
-  posts(where: {categoryIn: [20098]}, first: 1) {
-    nodes {
-      uri
-      title
-      databaseId
-      featuredImage {
-        node {
-          sourceUrl
-        }
       }
     }
   }

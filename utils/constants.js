@@ -497,7 +497,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'FirstName',
-    placeholder: 'First name *',
+    placeholder: 'First name',
     rules: 'required|max:255',
     'aria-label': 'First name',
     title: 'First name',
@@ -505,7 +505,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'LastName',
-    placeholder: 'Last name *',
+    placeholder: 'Last name',
     rules: 'required|max:255',
     'aria-label': 'Last name',
     title: 'Last name',
@@ -513,7 +513,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'email',
     name: 'Email',
-    placeholder: 'Email address *',
+    placeholder: 'Email address',
     rules: 'required|max:255',
     'aria-label': 'Email address',
     title: 'Email address',
@@ -521,7 +521,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'tel',
     name: 'Phone',
-    placeholder: 'Phone number *',
+    placeholder: 'Phone number',
     rules:
       'required|regex:/^(\\+?1[-.\\s]?)?(\\()?\\d{3}(\\))?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/',
     maxLength: 17,
@@ -538,7 +538,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'text',
     name: 'Subject',
-    placeholder: 'Subject *',
+    placeholder: 'Subject',
     rules: 'required|max:1000',
     'aria-label': 'Subject',
     title: 'Subject',
@@ -546,7 +546,7 @@ export const inputsGetInTouchAttributes = [
   {
     type: 'textarea',
     name: 'Message',
-    placeholder: 'Message',
+    placeholder: 'Message (optional)',
     rows: 8,
     cols: 4,
     'aria-label': 'Message',
@@ -834,4 +834,27 @@ export const NAVBAR_SERVICES_TABS = ['Practices', 'Industries'];
 export const readyIndustriesUrls = [
   '/industries/cannabis',
   '/industries/entertainment-and-media',
+];
+
+export const defaultWhyChooseUsData = [
+  {
+    title: 'Dedicated attorneys',
+    description:
+      'At Scarinci Hollenbeck, our attorneys are forward-thinking professionals dedicated to the ongoing enhancement of their legal expertise. They stay informed of legal developments, engage in professional bar associations, contribute to legislative initiatives, and actively engage in speaking opportunities—all to provide the highest quality service possible.',
+  },
+  {
+    title: 'Strategic Counsel',
+    description:
+      "In today's dynamic economy, businesses face complex challenges. We understand that these challenges require innovative, multi-faceted solutions. Through a collaborative, cross-practice approach, our attorneys leverage a wealth of experience across various legal disciplines to devise effective strategies tailored to meet our clients’ needs.",
+  },
+  {
+    title: 'Proven Experience',
+    description:
+      'For over 35 years, Scarinci Hollenbeck has offered comprehensive legal services to businesses both locally and globally. Our attorneys draw on extensive industry knowledge, representing clients in sectors such as real estate, entertainment, technology, and energy. We take pride in the successful outcomes we consistently achieve.',
+  },
+  {
+    title: 'Client-First Focus',
+    description:
+      'Our commitment to being a client-first law firm is rooted in open communication, meticulous attention to detail, and adaptability. We work closely with clients to ensure a transparent process, earning their trust through comprehensive guidance. This steadfast commitment is why clients continue to rely on us for their most complex legal challenges.',
+  },
 ];

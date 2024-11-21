@@ -1,22 +1,18 @@
 import styled from 'styled-components';
 import { ContentTooltip, TooltipWrapper } from 'styles/Tooltip.style';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 
 export const AnchorsTopBarWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 32px;
-  border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: ${globalColor.blue.blue500};
-  box-shadow: 0px 0px 8px 0px rgba(22, 58, 107, 0.34);
   column-gap: 12px;
 
   ${TooltipWrapper} {
+    width: max-content;
+    max-width: 140px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -30,22 +26,16 @@ export const AnchorsTopBarWrapper = styled.div`
     }
   }
 
-  h5 {
+  .anchors-title {
     margin: 0;
-    padding-right: 12px;
-    color: ${globalColor.white};
+    color: ${globalColor.gray.gray300};
     font-size: ${rem(14)};
-    line-height: 16px;
     font-weight: 400;
     font-family: var(--font-poppins);
-    letter-spacing: normal;
     max-width: 210px;
-    border-right: 1px solid #295491;
-    border-radius: 4px;
 
     ${media_breakpoint_down('sm')} {
-      font-size: ${rem(10)};
-      line-height: 16px;
+      font-size: ${rem(12)};
     }
   }
 
@@ -53,27 +43,12 @@ export const AnchorsTopBarWrapper = styled.div`
     overflow: auto;
     padding: 12px 0;
   }
-
-  ${media_breakpoint_exactly_down(1439)} {
-    padding: 8px 24px;
-
-    > nav {
-      padding: 8px 0;
-    }
-  }
-
-  ${media_breakpoint_down('md')} {
-    padding: 4px 24px;
-    > nav {
-      padding: 11px 0;
-    }
-  }
 `;
+
 export const AnchorsTopBarItems = styled.ul`
   margin: 0;
   width: 100%;
   display: flex;
-  column-gap: 12px;
 
   li {
     min-width: max-content;
@@ -83,16 +58,15 @@ export const AnchorsTopBarItems = styled.ul`
 export const AnchorsTopBarItem = styled.a`
   width: 100%;
   height: 100%;
-  padding: 2px 16px;
+  padding: 6px 16px 8px;
   background-color: transparent;
   font-size: ${rem(14)};
-  line-height: 20px;
-  font-weight: 400;
+  font-weight: 500;
   font-family: var(--font-poppins);
-  color: ${globalColor.blue.lightBlue};
+  color: ${globalColor.white};
   cursor: pointer;
-  border-bottom: 1px solid transparent;
-  transition: all 0.5s ease, font-weight 0s;
+  border-left: 2px solid transparent;
+  transition: ${globalTransition.default}, font-weight 0s;
 
   &:hover {
     color: ${globalColor.blue.lightBlue};
@@ -101,7 +75,8 @@ export const AnchorsTopBarItem = styled.a`
   &.active {
     font-weight: 700;
     color: ${globalColor.white};
-    border-bottom: 1px solid ${globalColor.white};
+    border-color: ${globalColor.blue.skyBlue};
+    background-color: ${globalColor.blue.blue550};
   }
 
   @media (hover: hover) {

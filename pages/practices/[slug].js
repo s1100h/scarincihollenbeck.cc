@@ -4,27 +4,10 @@ import { PRODUCTION_URL } from 'utils/constants';
 import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
-import { getJustClientAlertOnePost } from '../../requests/graphql-queries';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
-
-const postsSanitize = (posts) => posts.map((post) => {
-  post.featuredImage = post.featuredImage?.node.sourceUrl
-      || '/images/no-image-found-diamond-750x350.png';
-  return post;
-});
-
-const getClientAlertPost = async () => {
-  const data = await fetchAPI(getJustClientAlertOnePost);
-
-  if (!data) {
-    return [];
-  }
-
-  return postsSanitize(data.posts.nodes);
-};
 
 const practicesSlugsQuery = `
 query practicesSlugs {
@@ -52,22 +35,14 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const {
-    practice,
-    includeAttorney,
-    practiceChief,
-    keyContactsList,
-    corePractices,
-    posts,
-    faq,
+    practice, includeAttorney, practiceChief, keyContactsList, faq,
   } = await getPracticeAttorneys(`/practices/${params.slug}`);
-  const clientAlertPost = await getClientAlertPost();
 
   // 04.04.2024 Google reviews temporarily disabled
   // const googleReviews = await getGoogleReviewsForPalaces(
   //   Object.values(googleLocationIds),
   // );
 
-  const latestFromTheFirm = [...posts, ...clientAlertPost];
   if (empty(practice)) {
     return {
       redirect: {
@@ -107,15 +82,12 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       practice,
+      attorneysSchemaData: attorneysSchemaAttorney,
       chairPractice: practiceChief || [],
       attorneyListPractice: includeAttorney || [],
       keyContactsList,
-      attorneysSchemaData: attorneysSchemaAttorney,
-      corePractices,
-      practiceChildren: practice?.practicesIncluded?.childPractice,
-      latestFromTheFirm,
-      slug: params.slug,
       faq,
+      whyChooseUsData: practice?.practicesIncluded?.whyChooseUs,
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 8600,
@@ -125,15 +97,12 @@ export const getStaticProps = async ({ params }) => {
 /** Single practice page component */
 const SinglePractice = ({
   practice,
-  corePractices,
-  practiceChildren,
-  slug,
   attorneysSchemaData,
   chairPractice,
   attorneyListPractice,
   keyContactsList,
-  latestFromTheFirm,
   faq,
+  whyChooseUsData,
   googleReviews,
 }) => {
   const router = useRouter();
@@ -169,6 +138,7 @@ const SinglePractice = ({
     chairPractice,
     attorneyListPractice,
     faq,
+    whyChooseUsData,
     googleReviews,
   };
 

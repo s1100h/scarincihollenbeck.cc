@@ -4,12 +4,13 @@ import CollapseContent from 'components/molecules/practice/CollapseContent';
 import React from 'react';
 import {
   PracticeContentSection,
-  PracticeDescription,
-  PracticeSidebar,
-  PracticeContentHolder,
+  SplitContentDescription,
+  SplitContentSidebar,
+  SplitContentHolder,
 } from 'styles/practices/PracticeContent.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import GetInTouchForm from './GetInTouchForm';
+import SocialShare from '../post/SocialShare';
 
 const PracticeContent = ({
   data, title, anchorId, anchorIdFaq, faqData,
@@ -20,8 +21,9 @@ const PracticeContent = ({
     data-testid="practice-content"
   >
     <ContainerDefault>
-      <PracticeContentHolder>
-        <PracticeDescription>
+      <SocialShare isPractice customClass="social-share" />
+      <SplitContentHolder>
+        <SplitContentDescription>
           {data?.map((item) => (
             <CollapseContent
               key={item.id}
@@ -31,11 +33,11 @@ const PracticeContent = ({
             />
           ))}
           <FAQ title={title} anchorId={anchorIdFaq} faqArrContent={faqData} />
-        </PracticeDescription>
-        <PracticeSidebar>
+        </SplitContentDescription>
+        <SplitContentSidebar>
           <GetInTouchForm />
-        </PracticeSidebar>
-      </PracticeContentHolder>
+        </SplitContentSidebar>
+      </SplitContentHolder>
     </ContainerDefault>
   </PracticeContentSection>
 );

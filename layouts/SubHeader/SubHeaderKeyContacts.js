@@ -6,11 +6,12 @@ import {
 import empty from 'is-empty';
 import AttorneyCard from 'components/shared/AttorneyCard';
 import AboutAuthorFormCard from 'components/organisms/post/AboutAuthorFormCard';
+import { globalColor } from 'styles/global_styles/Global.styles';
 
 const SubHeaderKeyContacts = ({ keyContacts }) => {
   if (empty(keyContacts)) return null;
   return (
-    <SubHeaderInteractive>
+    <SubHeaderInteractive $bg={globalColor.blue.blue6002}>
       <h3>Key Contacts</h3>
       <SubHeaderKeyContactsCards>
         {keyContacts?.slice(0, 2)?.map((keyContact) => (

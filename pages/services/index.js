@@ -18,6 +18,7 @@ export const getStaticProps = async () => {
   const data = await getServicesContent();
   const industries = await getIndustries();
   const practices = await getPractices();
+
   const practicesSorted = practices.map((practice) => {
     if (!empty(practice.childPractice)) {
       practice.childPractice = sortByKey(practice.childPractice, 'title');

@@ -8,8 +8,8 @@ import {
   PracticeAttorneysSection,
   PracticeNoAttorneys,
 } from 'styles/practices/PracticeAttorneys';
-import { PracticeTitle } from 'styles/practices/PracticeCommon.style';
 import { useSelector } from 'react-redux';
+import { TitleH2 } from 'styles/common/Typography.style';
 import AttorneysArea from '../attorneys/areas/AttorneysArea';
 
 const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
@@ -61,7 +61,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
           loading="lazy"
         />
         <ContainerDefault>
-          <PracticeTitle>Practice Area Attorneys</PracticeTitle>
+          <TitleH2>Practice Area Attorneys</TitleH2>
           <PracticeNoAttorneys>Attorneys will appear soon!</PracticeNoAttorneys>
         </ContainerDefault>
       </PracticeAttorneysSection>
@@ -83,7 +83,7 @@ const PracticeAttorneys = ({ attorneys, chairs = [], anchorId }) => {
       />
       <ContainerDefault>
         <div className="attorneys-practice__header">
-          <PracticeTitle>Practice Area Attorneys</PracticeTitle>
+          <TitleH2>Practice Area Attorneys</TitleH2>
           {totalItems > calculateItemsPerRow && (
             <button onClick={handleCollapse}>
               {!isCollapsed ? 'See all' : 'HIDE'}

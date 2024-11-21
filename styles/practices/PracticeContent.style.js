@@ -1,20 +1,74 @@
 import styled from 'styled-components';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { titleH2Styles } from 'styles/common/Typography.style';
+import { FaqWrapper } from 'styles/Faq.style';
+import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
+import { MapWrapper } from 'styles/LocationCard.style';
 import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 
 export const PracticeContentSection = styled.section`
-  padding-top: 40px;
+  padding: 40px 0;
   background-color: ${globalColor.white};
 
+  ${FaqWrapper} {
+    margin-bottom: 0;
+  }
+
+  .social-share {
+    display: none;
+    margin: 0 0 16px 0;
+    gap: 4px;
+    font-size: ${rem(14)};
+
+    .second-hr {
+      width: calc(100% + 32px);
+      color: ${globalColor.blue.darkBlue};
+      opacity: 1;
+      margin-right: -32px;
+      height: 1px;
+      order: 3;
+
+      ${media_breakpoint_down('md')} {
+        width: calc(100% + 12px);
+        margin-right: -12px;
+      }
+    }
+
+    .react-share__ShareButton, .copy-button {
+      margin: 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        color: ${globalColor.blue.darkBlue};
+        transition: ${globalTransition.default};
+        width: 20px;
+        height: 20px;
+      }
+
+      &:first-of-type {
+        margin-left: 8px;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    ${media_breakpoint_down('xl')} {
+      display: flex;
+    }
+  }
+
   ${media_breakpoint_exactly_down(1439)} {
-    padding-top: 32px;
+    padding: 32px 0;
   }
 `;
 
-export const PracticeContentHolder = styled.div`
+export const SplitContentHolder = styled.div`
   display: flex;
   column-gap: 60px;
 
@@ -31,35 +85,19 @@ export const PracticeContentHolder = styled.div`
   }
 `;
 
-export const PracticeDescription = styled.div`
+export const SplitContentDescription = styled.div`
   flex: 1;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
 
   .content-block {
-    margin-bottom: 40px;
-
-    ${media_breakpoint_exactly_down(1439)} {
-      margin-bottom: 16px;
-    }
-
-    &:last-of-type {
-      ${media_breakpoint_exactly_down(1439)} {
-        margin-bottom: 40px;
-      }
-      ${media_breakpoint_down('md')} {
-        margin-bottom: 32px;
-      }
-    }
-
     h2,
     h3,
     h4 {
+      ${titleH2Styles};
       margin: 0 0 8px 0;
-      color: #000;
-      font-family: var(--font-poppins);
-      font-size: ${rem(26)};
-      font-weight: 600;
-      line-height: 34px;
 
       & * {
         font-style: normal;
@@ -145,6 +183,10 @@ export const PracticeDescription = styled.div`
     }
   }
 
+  ${MapWrapper} {
+    height: auto;
+  }
+
   ${media_breakpoint_down('lg')} {
     max-width: calc(100% - 56px);
   }
@@ -154,19 +196,10 @@ export const PracticeDescription = styled.div`
   }
 `;
 
-export const PracticeSidebar = styled.div`
-  margin-bottom: 40px;
-  width: 25%;
+export const SplitContentSidebar = styled.div`
+  width: 420px;
 
-  ${media_breakpoint_exactly_down(1850)} {
-    width: 35.5%;
-  }
-
-  ${media_breakpoint_exactly_down(1439)} {
-    margin-bottom: 32px;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    width: auto;
+  ${media_breakpoint_down('xl')} {
+    width: max-content;
   }
 `;

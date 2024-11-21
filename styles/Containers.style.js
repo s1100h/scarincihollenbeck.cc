@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { globalColor, globalShadow } from './global_styles/Global.styles';
 import {

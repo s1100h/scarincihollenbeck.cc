@@ -1,4 +1,4 @@
-export const practicesQuery = `query FirmPageQuery($id: ID!) {
+export const practicesQuery = `query PracticeQuery($id: ID!) {
   practice(id: $id, idType: URI) {
     databaseId
     slug
@@ -68,13 +68,6 @@ export const practicesQuery = `query FirmPageQuery($id: ID!) {
           }
         }
       }
-      childPractice {
-        ... on Practice {
-          databaseId
-          title
-          slug
-        }
-      }
       relatedBlogCategory {
         databaseId
       }
@@ -103,36 +96,14 @@ export const practicesQuery = `query FirmPageQuery($id: ID!) {
           }
         }
       }
+      whyChooseUs {
+        description
+        title
+      }
     }
     seo {
       title
       metaDesc
-    }
-  }
-  practices(first: 100) {
-    nodes {
-      title
-      uri
-      databaseId
-      practicesIncluded {
-        childPractice {
-          ... on Practice {
-            databaseId
-          }
-        }
-      }
-    }
-  }
-  posts(where: {categoryIn: [99, 98]}, first: 2) {
-    nodes {
-      uri
-      title
-      databaseId
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
     }
   }
 }`;

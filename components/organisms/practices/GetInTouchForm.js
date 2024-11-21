@@ -1,45 +1,50 @@
 import React from 'react';
 import {
-  GetInTouchFormWrapper,
+  GetInTouchDescription,
+  GetInTouchHolder,
   GetInTouchMobileBtn,
+  GetInTouchQuote,
+  GetInTouchText,
 } from 'styles/practices/GetInTouchForm.style';
-import ContactForm from 'components/shared/ContactForm/ContactForm';
-import useStateScreen from 'hooks/useStateScreen';
 import { MdTouchApp } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import SocialShare from '../post/SocialShare';
 import { handleModalOpener } from '../../../redux/slices/modals.slice';
+import SocialShare from '../post/SocialShare';
 
-const GetInTouchForm = ({ isMobileBtn = true, isSticky = true }) => {
-  const { isBigTabletScreen } = useStateScreen();
+const GetInTouchForm = () => {
   const dispatch = useDispatch();
 
-  if (isBigTabletScreen && isMobileBtn) {
-    return (
-      <>
-        <GetInTouchMobileBtn
-          onClick={() => dispatch(handleModalOpener({ active: true }))}
-        >
-          <span>Click here to contact</span>
-          <MdTouchApp />
-        </GetInTouchMobileBtn>
-      </>
-    );
-  }
-
   return (
-    <GetInTouchFormWrapper
-      isMobileBtn={isMobileBtn}
-      isSticky={isSticky}
-      data-testid="get-in-touch-form"
-    >
-      <SocialShare isPractice />
-      <h3>Let&apos;s get in touch</h3>
-      <p>
-        Form instructions (Please feel free to contact us with any question.)
-      </p>
-      <ContactForm isPositionRelativeProp blockName="sidebar" />
-    </GetInTouchFormWrapper>
+    <GetInTouchHolder>
+      <GetInTouchDescription>
+        <GetInTouchText>
+          <p>
+            OUR commitment to excellence, combined with our mission to deliver
+            outstanding client service, has earned our firm a solid reputation.
+          </p>
+          <p>
+            Scarinci Hollenbeck is a business law firm based in New Jersey, New
+            York, and Washington, D.C servicing clients worldwide.
+          </p>
+        </GetInTouchText>
+
+        <GetInTouchQuote>
+          <p>
+            If you have a legal need that is not mentioned, please contact us to
+            discuss how we may help you.
+          </p>
+          <p>Contact us today to learn more about how we can assist you.</p>
+        </GetInTouchQuote>
+
+        <SocialShare isPractice />
+      </GetInTouchDescription>
+      <GetInTouchMobileBtn
+        onClick={() => dispatch(handleModalOpener({ active: true }))}
+      >
+        <span>Click here to contact</span>
+        <MdTouchApp />
+      </GetInTouchMobileBtn>
+    </GetInTouchHolder>
   );
 };
 export default GetInTouchForm;

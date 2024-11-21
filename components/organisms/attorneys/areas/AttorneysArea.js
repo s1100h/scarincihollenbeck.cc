@@ -72,7 +72,6 @@ const AttorneysArea = ({
               width={180}
               height={210}
               handleSetCardParams={handleSetCardParams}
-              cardTag="h4"
             />
           ),
         )}

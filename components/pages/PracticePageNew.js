@@ -5,24 +5,29 @@ import dynamic from 'next/dynamic';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import PracticeContent from 'components/organisms/practices/PracticeContent';
 import AnchorTop from 'components/atoms/AnchorTop';
-import GoogleReviews from 'components/organisms/common/GoogleReviews';
 
 const PracticeAnchors = dynamic(() => import('components/organisms/practices/PracticeAnchors'));
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
+const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+// const GoogleReviews = dynamic(() => import('components/organisms/common/GoogleReviews'));
 
 const anchorDataDefault = {
   faq: {
     id: 'faq-section',
     title: 'FAQs',
   },
+  whyChooseUs: {
+    id: 'why-choose-us-section',
+    title: 'Why choose us',
+  },
   attorneys: {
     id: 'attorneys-section',
     title: 'Attorneys',
   },
-  whyChooseUs: {
-    id: 'why-choose-us-section',
-    title: 'Why choose us',
+  whatWeDo: {
+    id: 'What-we-do',
+    title: 'What we do',
   },
   googleReviews: {
     id: 'reviews-section',
@@ -39,6 +44,7 @@ const PracticePageNew = ({
   chairPractice,
   attorneyListPractice,
   faq,
+  whyChooseUsData,
   googleReviews,
 }) => {
   const anchorData = useMemo(() => {
@@ -88,18 +94,22 @@ const PracticePageNew = ({
         anchorIdFaq={anchorData.faq.id}
         faqData={faq}
       />
+      <WhyChooseUs
+        anchorId={anchorData.whyChooseUs.id}
+        data={whyChooseUsData}
+      />
       <PracticeAttorneys
         attorneys={attorneyListPractice}
         chairs={chairPractice}
         anchorId={anchorData.attorneys.id}
       />
-      <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
-      {!empty(googleReviews) && (
+      <WhatWeDoSection anchorId={anchorData.whatWeDo.id} />
+      {/* {!empty(googleReviews) && (
         <GoogleReviews
           reviews={googleReviews}
           anchorId={anchorData?.googleReviews?.id}
         />
-      )}
+      )} */}
       <AnchorTop />
     </>
   );

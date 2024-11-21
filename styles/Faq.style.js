@@ -8,26 +8,13 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
 } from './mediaBreakpoints.style';
+import { TitleH2 } from './common/Typography.style';
 
 export const FaqWrapper = styled.section`
   margin-bottom: 40px;
 
-  h3 {
-    margin: 0 0 14px 0;
-    color: #000;
-    font-size: ${rem(28)};
-    font-family: var(--font-poppins);
-    font-weight: 600;
-    line-height: 36px;
-    text-align: start;
-
-    ${media_breakpoint_down('sm')} {
-      margin: 0 0 8px 0;
-      font-size: ${rem(16)};
-      line-height: 20px;
-      font-weight: 700;
-      color: #0d0d0d;
-    }
+  ${TitleH2} {
+    margin-bottom: 12px;
   }
 
   .accordion {

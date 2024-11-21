@@ -1,49 +1,45 @@
 import styled from 'styled-components';
 import { ShareSocialBox } from 'styles/Post/SocialShare.style';
-import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { globalBorderRadius, globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
 import {
   media_breakpoint_down,
-  media_breakpoint_exactly_down,
 } from 'styles/mediaBreakpoints.style';
 
-export const GetInTouchFormWrapper = styled.div`
-  padding: 12px 16px;
-  background-color: #fbfbfb;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
-  ${({ isSticky }) =>
-    isSticky &&
-    `position: sticky; top: calc(var(--header-height) + 70px); overflow: auto; max-height: calc(100dvh - 230px);
-    `}
-  border: 1px solid transparent;
+export const GetInTouchHolder = styled.div`
+  border-radius: ${globalBorderRadius.small};
+  background-color: ${globalColor.blue.blue6002};
+  color: ${globalColor.white};
+  display: flex;
+  overflow: hidden;
+  position: sticky;
+  top: calc(var(--header-height) + 70px);
+  max-height: calc(100dvh - 230px);
   transition: all 0.3s ease-in-out;
 
-  &:hover {
-    border: 1px solid ${globalColor.blue.blue500};
-    box-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.11),
-      0 0 8px 0px rgba(6, 11, 42, 0.09);
-  }
-
   ${ShareSocialBox} {
+    margin: 0;
+    width: 100%;
     padding: 8px 0;
-    margin: 0 0 12px 0;
+    gap: 4px;
   }
 
   .second-hr {
-    color: ${globalColor.blue.blue500};
+    color: ${globalColor.white};
     width: calc(100% + 16px);
     margin-left: -16px;
     height: 1px;
+    opacity: 1;
   }
 
-  .react-share__ShareButton {
-    margin: 0 6px;
+  .react-share__ShareButton, .copy-button {
+    margin: 0 4px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg {
-      color: ${globalColor.blue.blue500};
-      transition: all 0.3s ease;
+      color: ${globalColor.white};
+      transition: ${globalTransition.default};
       width: 20px;
       height: 20px;
     }
@@ -56,77 +52,86 @@ export const GetInTouchFormWrapper = styled.div`
       margin-right: 0;
     }
   }
+`;
 
-  > h3 {
-    margin: 0 0 4px 0;
-    color: #231e1e;
-    font-size: ${rem(24)};
-    line-height: 32px;
-    font-weight: 400;
-    font-family: var(--font-poppins);
-  }
+export const GetInTouchDescription = styled.div`
+  flex: 1;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 
   p {
-    color: #231e1e;
-    font-size: ${rem(12)};
-    line-height: 16px;
-    font-weight: 400;
-    font-family: var(--font-poppins);
+    margin: 0;
   }
 
-  &:has(.kw-alert-success:not([style='display: none;'])) {
-    background-color: ${globalColor.blue.blue500};
-
-    ${ShareSocialBox} {
-      margin: 0 0 28px 0;
-      .second-hr {
-        color: ${globalColor.white};
-      }
-
-      .react-share__ShareButton {
-        svg {
-          color: ${globalColor.white};
-        }
-      }
-    }
-
-    > h3 {
-      display: none;
-    }
-
-    > p {
-      display: none;
-    }
-
-    .kw-alert-success {
-      justify-content: flex-start;
-    }
-  }
-
-  ${media_breakpoint_down('lg')} {
-    ${({ isMobileBtn }) => isMobileBtn && `display: none;`}
+  ${media_breakpoint_down('xl')} {
+    display: none;
   }
 `;
 
-export const GetInTouchMobileBtn = styled.div`
-  position: sticky;
-  top: calc(var(--header-height) + 70px);
+export const GetInTouchText = styled.div`
+  font-size: ${rem(14)};
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+`;
+
+export const GetInTouchQuote = styled.div`
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  background-color: ${globalColor.blue.blue550};
+  border-radius: ${globalBorderRadius.middle};
+  box-shadow: 0px 4px 12px 0px rgba(10, 62, 108, 0.06);
+  font-style: italic;
+`;
+
+export const GetInTouchMobileBtn = styled.button`
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   row-gap: 16px;
   padding: 20px 12px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  background-color: ${globalColor.blue.blue550};
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.06);
+  transition: ${globalTransition.default};
+
+  @media (hover: hover) {
+    &:hover {
+      span {
+        color: ${globalColor.white};
+      }
+
+      svg {
+        color: ${globalColor.white};
+      }
+    }
+  }
+
+  &:active {
+    span {
+      color: ${globalColor.white};
+    }
+
+    svg {
+      color: ${globalColor.white};
+    }
+  }
 
   span {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    color: ${globalColor.blue.blue500};
+    color: ${globalColor.blue.skyBlue};
     font-family: var(--font-poppins);
     font-size: ${rem(24)};
-    line-height: 32px;
+    line-height: 1.34;
     font-weight: 400;
+    transition: ${globalTransition.default};
 
     ${media_breakpoint_down('sm')} {
       font-size: ${rem(16)};
@@ -138,7 +143,8 @@ export const GetInTouchMobileBtn = styled.div`
   svg {
     width: 32px;
     height: 32px;
-    color: ${globalColor.blue.blue500};
+    color: ${globalColor.blue.skyBlue};
+    transition: ${globalTransition.default};
 
     ${media_breakpoint_down('sm')} {
       width: 24px;

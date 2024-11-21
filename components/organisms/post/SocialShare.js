@@ -15,17 +15,39 @@ import {
   BsLinkedin,
   BsTwitterX,
 } from 'react-icons/bs';
+import { IoCopy } from 'react-icons/io5';
 import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
-const SocialShare = ({ title, isPractice }) => {
+const SocialShare = ({ title, isPractice = false, customClass }) => {
   const router = useRouter();
   const postUrl = `${PRODUCTION_URL}${router.asPath}`;
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(postUrl);
+    import('react-toastify').then(({ toast }) => {
+      toast.info('Copied to clipboard', {
+        position: 'bottom-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        className: 'copy-notify',
+      });
+    });
+  };
 
   return (
     <>
       {isPractice ? (
-        <ShareSocialBox isPracticeHr={isPractice ? 'true' : ''}>
+        <ShareSocialBox
+          isPracticeHr={isPractice ? 'true' : ''}
+          className={customClass}
+        >
           <hr className="second-hr" />
+          Share
           <FacebookShareButton url={postUrl} quote={title}>
             <BsFacebook className="faceBookBtn" />
           </FacebookShareButton>
@@ -35,6 +57,9 @@ const SocialShare = ({ title, isPractice }) => {
           <LinkedinShareButton url={postUrl} quote={title}>
             <BsLinkedin className="linkedIn" />
           </LinkedinShareButton>
+          <button onClick={handleCopyLink} className="copy-button">
+            <IoCopy />
+          </button>
         </ShareSocialBox>
       ) : (
         <ShareSocialBox>

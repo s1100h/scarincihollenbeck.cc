@@ -170,10 +170,10 @@ export const LocationCards = styled.div`
 export const LocationCardWrapper = styled.address`
   margin: 0;
   width: calc((100% - 24px) / 2);
-  padding: 22px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 12px;
   border-radius: ${globalBorderRadius.middle};
   background-color: ${globalColor.blue.blue6002};
   box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06),
@@ -192,7 +192,6 @@ export const LocationCardWrapper = styled.address`
 
   ${media_breakpoint_down('lg')} {
     padding: 10px 14px;
-    row-gap: 16px;
   }
 
   ${media_breakpoint_down('md')} {

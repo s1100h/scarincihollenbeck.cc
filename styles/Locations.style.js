@@ -4,35 +4,23 @@ import {
   media_breakpoint_down,
   media_breakpoint_exactly_down,
   media_breakpoint_range_exacly,
-  media_breakpoint_up,
 } from './mediaBreakpoints.style';
-import { globalColor, globalShadow, rem } from './global_styles/Global.styles';
-import empty from 'is-empty';
+import { globalBorderRadius, globalColor, globalShadow, globalTransition, rem } from './global_styles/Global.styles';
+import { PracticeContentSection } from './practices/PracticeContent.style';
+import { TitleH2 } from './common/Typography.style';
 
 const addressPointConst = `
       span {
         span {
           :first-child {
-            position: relative;
-            top: -18px;
-            margin-top: 0;
+            align-self: flex-start;
           }
         }
       }
 `;
 
-export const LocationPageContainer = styled.section`
-  .map-column {
-    display: flex;
-    flex-direction: column;
-    row-gap: 24px;
-  }
+export const LocationPageContainer = styled(PracticeContentSection)``;
 
-  .form-column {
-    margin-top: 60px;
-    padding-bottom: 40px;
-  }
-`;
 export const LinkMapBox = styled.div`
   display: flex;
   width: fit-content;
@@ -59,119 +47,69 @@ export const MediaBr = styled.br`
 
 export const OfficeTabs = styled.nav`
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  position: relative;
-  z-index: 20;
-  top: -50px;
-
-  ${({ isBlueVariant }) =>
-    !empty(isBlueVariant) &&
-    `
-    top: auto;
-    gap: 8px;
-    flex-direction: column;
-  `};
-
-  ${media_breakpoint_down('md')} {
-    gap: 10px;
-  }
+  flex-direction: column;
+  gap: 8px;
 
   ${media_breakpoint_down('sm')} {
-    top: ${({ isBlueVariant }) => (isBlueVariant ? '0' : '-20px')};
+    order: -1;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 
 export const BlueLinkTab = styled(Link)`
-  padding: 13px 8px;
+  padding: 7px 16px;
   color: ${globalColor.white};
-  font-size: ${rem(14)};
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 13px;
-  transition: all 0.5s ease-in-out;
+  line-height: 1.5;
   position: relative;
   display: flex;
   align-items: center;
   outline: none;
-  ${({ locationturned }) =>
-    !empty(locationturned) &&
+  transition: ${globalTransition.default};
+  border-radius: ${globalBorderRadius.extraSmall};
+  ${({ $isActiveLocation }) =>
+    $isActiveLocation &&
     `
-      background-color: #162153;
+      background-color: ${globalColor.blue.blue6002};
       pointer-events: none;
     `}
 
   :before {
-    transition-delay: 0.1s;
-    transition: all 0.5s ease-in-out;
     content: '';
     position: absolute;
-    left: -12px;
+    left: -10px;
     top: 50%;
     transform: translateY(-50%) rotate(180deg);
     width: 12px;
     height: 20px;
-    background-color: #162153;
+    background-color: ${globalColor.blue.blue6002};
     clip-path: polygon(100% 50%, 0 0, 0% 100%);
-    opacity: ${({ locationturned }) => (!empty(locationturned) ? '1' : '0')};
+    opacity: ${({ $isActiveLocation }) => $isActiveLocation ? '1' : '0'};
+    transition: ${globalTransition.default};
+
+    ${media_breakpoint_down('sm')} {
+      display: none;
+    }
   }
 
   :hover {
-    cursor: ${({ locationturned }) =>
-      !empty(locationturned) ? 'not-allowed' : 'pointer'};
-    border-radius: 4px;
-    background-color: #162153;
+    background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
 
     :before {
       opacity: 1;
     }
   }
-`;
-
-export const OfficeTab = styled(Link)`
-  display: flex;
-  justify-content: start;
-  width: 220px;
-  padding: 15px 10px;
-  box-shadow: ${globalShadow.allSideShadow};
-  text-transform: uppercase;
-  font-weight: 600;
-  position: relative;
-
-  > div {
-    width: 91%;
-  }
-
-  span {
-    z-index: 1;
-  }
-
-  ${(props) => {
-    return (
-      props?.imgurl?.length > 0 &&
-      `
-      background: no-repeat url(${props?.imgurl});
-      background-size: 50% 138%;
-      background-position: right top 29%;
-      color: ${globalColor.red.darkRed};
-      box-shadow: ${globalShadow.hoveredShadow};
-      cursor: default;
-      pointer-events: none;
-      `
-    );
-  }}
-
-  :hover {
-    box-shadow: ${globalShadow.hoveredShadow};
-  }
 
   ${media_breakpoint_down('sm')} {
-    width: 48%;
-  }
-
-  ${media_breakpoint_exactly_down(420)} {
-    transition: 0.7s;
-    width: ${(props) => (props?.imgurl?.length > 0 ? '76%' : '220px')};
+    padding: 8px 12px;
+    width: calc(50% - 4px);
+    justify-content: center;
+    font-size: ${rem(14)};
+    font-weight: ${({ $isActiveLocation }) => $isActiveLocation ? '700' : '400'};
   }
 `;
 
@@ -213,8 +151,12 @@ export const OfficeCardContainer = styled.div`
   }
 `;
 
-export const OfficeLocationBoxTitle = styled.h4`
-  margin: 0;
-  font-size: ${rem(32)};
+export const OfficeLocationBoxTitle = styled(TitleH2)`
+  margin: 0 0 24px 0;
   text-transform: uppercase;
+  font-weight: 500;
+
+  ${media_breakpoint_down('md')} {
+    margin: 0 0 12px 0;
+  }
 `;

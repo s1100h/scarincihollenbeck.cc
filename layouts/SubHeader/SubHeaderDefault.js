@@ -22,7 +22,6 @@ const SubHeaderDefault = ({
   industries,
   customClass = '',
 }) => (
-  // <ContainerDefault>
   <SubHeaderHolder className={customClass} data-testid="default-sub-header">
     <picture className="sub-header__image">
       <Image
@@ -58,7 +57,6 @@ const SubHeaderDefault = ({
     />
     {!empty(industries) && <SubHeaderIndustriesSlider slides={industries} />}
   </SubHeaderHolder>
-  // </ContainerDefault>
 );
 
 export default SubHeaderDefault;

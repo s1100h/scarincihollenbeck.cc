@@ -192,6 +192,7 @@ export const FormContainer = styled.div`
     }
   }
 `;
+
 import { InputGroup, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 
