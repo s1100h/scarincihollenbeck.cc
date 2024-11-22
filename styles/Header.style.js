@@ -212,9 +212,9 @@ export const HeaderMainButtons = styled.div`
       height: 36px;
     }
 
-    ${media_breakpoint_up('md')} {
+    /* ${media_breakpoint_up('md')} {
       display: none;
-    }
+    } */
   }
 
   .contact-header-btn {

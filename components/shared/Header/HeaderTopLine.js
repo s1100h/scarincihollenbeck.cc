@@ -69,14 +69,16 @@ const HeaderTopLine = ({ isOpenSearch, setIsOpenSearch, viewportWidth }) => {
       <ContainerDefault>
         <AnimatePresence>
           <HeaderTopLineItems>
-            {!isOpenSearch && viewportWidth >= 768 && twoButtons(dispatch)}
-            {viewportWidth < 768 && twoButtons(dispatch)}
-            <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
-              <HeaderSearch
-                isOpenSearch={isOpenSearch}
-                setIsOpenSearch={setIsOpenSearch}
-              />
-            </HeaderTopLineItem>
+            {!isOpenSearch && viewportWidth > 768 && twoButtons(dispatch)}
+            {viewportWidth <= 768 && twoButtons(dispatch)}
+            {viewportWidth > 768 && (
+              <HeaderTopLineItem className="mobile-hide" $open={isOpenSearch}>
+                <HeaderSearch
+                  isOpenSearch={isOpenSearch}
+                  setIsOpenSearch={setIsOpenSearch}
+                />
+              </HeaderTopLineItem>
+            )}
           </HeaderTopLineItems>
         </AnimatePresence>
       </ContainerDefault>

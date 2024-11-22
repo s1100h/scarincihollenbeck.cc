@@ -1,6 +1,6 @@
 import HomePage from 'components/pages/HomePage';
 import { fetchAPI } from 'requests/api';
-import { getAttorneysForRandomBio } from 'requests/getAttorneys';
+// import { getAttorneysForRandomBio } from 'requests/getAttorneys';
 import { getPractices } from 'requests/getPractices';
 import {
   homePageQuery,
@@ -85,13 +85,13 @@ export const getStaticProps = async () => {
 
   const offices = await getMapDataFrmLocations();
   const request = await homePageContent();
-  const attorneys = await getAttorneysForRandomBio();
+  // const attorneys = await getAttorneysForRandomBio();
   const practices = await getPractices();
   const filteredPractices = sortByKey(practices, 'title').filter(
     filterTunePractices,
   );
 
-  const filteredAttorneysByDesignation = filterAttorneysByDesignation(attorneys);
+  // const filteredAttorneysByDesignation = filterAttorneysByDesignation(attorneys);
 
   const { seo, homePage } = request;
   const {
@@ -118,7 +118,7 @@ export const getStaticProps = async () => {
       industryWeWorkWith,
       latestArticlesTabsData,
       whyChooseUs,
-      attorneys: filteredAttorneysByDesignation,
+      // attorneys: filteredAttorneysByDesignation,
       practices: filteredPractices,
     },
     revalidate: 86400,
