@@ -5,7 +5,6 @@ import {
   adminKaterinTraughQuery,
   attorneysPageQuery,
   attorneysQuery,
-  attorneysRandomBioQuery,
   getPracticesWithAttorneysQuery,
 } from './graphql-queries';
 
@@ -109,51 +108,4 @@ export const getKaterinTraugh = async () => {
     better_featured_image: sourceUrl,
     biography,
   };
-};
-
-export const getAttorneysForRandomBio = async () => {
-  const { attorneyProfiles } = await fetchAPI(attorneysRandomBioQuery, {});
-
-  attorneyProfiles.nodes.forEach((attorneyItem, idx) => {
-    if (attorneyItem.attorneyMainInformation.designation === 'The Firm') {
-      attorneyProfiles.nodes.splice(idx, 1);
-    }
-  });
-
-  const sanitaizedAttorneys = attorneyProfiles?.nodes.map(
-    ({
-      title,
-      uri,
-      databaseId,
-      attorneyMainInformation,
-      attorneyPrimaryRelatedPracticesLocationsGroups,
-      attorneyBiography,
-    }) => {
-      attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation = attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
-        ({
-          id, uri, title, officeMainInformation,
-        }) => ({
-          id,
-          uri,
-          title,
-          officeMainInformation: officeMainInformation.addressLocality,
-        }),
-      );
-
-      return {
-        id: databaseId,
-        title,
-        designation: attorneyMainInformation.designation,
-        email: attorneyMainInformation.email,
-        phone: attorneyMainInformation.phoneNumber,
-        location_array:
-          attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation,
-        link: uri,
-        profileImage: attorneyMainInformation.profileImage.sourceUrl,
-        miniBio: attorneyBiography?.miniBio || '',
-      };
-    },
-  );
-
-  return sortByKey(sanitaizedAttorneys, 'lastName');
 };

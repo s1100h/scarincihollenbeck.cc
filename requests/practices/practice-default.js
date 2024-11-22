@@ -1,4 +1,5 @@
 import { attorneysSanitize, checkOnPublish } from 'utils/helpers';
+import empty from 'is-empty';
 import { fetchAPI } from '../api';
 import { ScarinciHollenbeckKeyContact } from '../../utils/constants';
 import { practicesQuery } from './practicesQueryGenerator';
@@ -48,8 +49,11 @@ export const getPracticeAttorneys = async (uri) => {
   }
 
   const concatAttorneys = [...practiceChief, ...keyContactsArr];
-  const keyContacts = concatAttorneys.length > 0
-    ? checkOnPublish(concatAttorneys)
+
+  const publishedAttorneys = checkOnPublish(concatAttorneys);
+
+  const keyContacts = !empty(publishedAttorneys)
+    ? publishedAttorneys
     : [ScarinciHollenbeckKeyContact];
 
   return {

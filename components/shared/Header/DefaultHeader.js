@@ -11,25 +11,15 @@ import {
   LogoBox,
 } from 'styles/Header.style';
 import { SidebarOpener } from 'styles/Sidebar.style';
+import Navigation from 'components/organisms/Navbar/Navigation';
 import { useScrollDirection } from 'hooks/useScrollDirection';
 import InitGlobalVariables from 'styles/global_styles/InitGlobalVariables';
 import { useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
+import HeaderTopLine from './HeaderTopLine';
+import HeaderSearch from './HeaderSearch';
 
 const SidebarMenu = dynamic(() => import('./SidebarMenu'));
-
-const HeaderTopLine = dynamic(() => import('./HeaderTopLine'), {
-  ssr: false,
-});
-const Navigation = dynamic(
-  () => import('components/organisms/Navbar/Navigation'),
-  {
-    ssr: false,
-  },
-);
-const HeaderSearch = dynamic(() => import('./HeaderSearch'), {
-  ssr: false,
-});
 
 const DefaultHeader = ({
   practices, locations, industries, menuData,
@@ -73,16 +63,14 @@ const DefaultHeader = ({
               <Logo />
             </LogoBox>
 
-            {viewportWidth > 992 && (
-              <Navigation
-                key="header-navigation"
-                practices={practices}
-                locations={locations}
-                industries={industries}
-                isScreenLg={isScreenLg}
-                setIsSidebarOpen={setIsSidebarOpen}
-              />
-            )}
+            <Navigation
+              key="header-navigation"
+              practices={practices}
+              locations={locations}
+              industries={industries}
+              isScreenLg={isScreenLg}
+              setIsSidebarOpen={setIsSidebarOpen}
+            />
 
             <HeaderMainButtons $wide={isOpenSearch}>
               <ButtonRed
@@ -93,12 +81,10 @@ const DefaultHeader = ({
                 Contact us
               </ButtonRed>
 
-              {viewportWidth <= 768 && (
-                <HeaderSearch
-                  isOpenSearch={isOpenSearch}
-                  setIsOpenSearch={setIsOpenSearch}
-                />
-              )}
+              <HeaderSearch
+                isOpenSearch={isOpenSearch}
+                setIsOpenSearch={setIsOpenSearch}
+              />
 
               <SidebarOpener
                 aria-label="Sidebar opener"
