@@ -1,5 +1,6 @@
 import React from 'react';
 import empty from 'is-empty';
+import Image from 'next/image';
 import { CURRENT_DOMAIN, SITE_PHONE } from '../../../utils/constants';
 import {
   ContactsPrintVersion,
@@ -44,12 +45,12 @@ const FooterPrintVersion = ({ locations }) => {
           </div>
         </ContactsPrintVersion>
         <div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={qrCodeProduction}
             alt="the Bio page"
             width={120}
             height={100}
+            loading="eager"
           />
         </div>
       </ContactsWrapperPrintVersion>

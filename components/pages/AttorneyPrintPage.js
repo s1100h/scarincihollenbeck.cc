@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import empty from 'is-empty';
-import Image from 'next/image';
 import Link from 'next/link';
 import { TitleH2 } from 'styles/common/Typography.style';
+import Image from 'next/image';
 import {
   CardImageWrapper,
   ProfileDesignation,
@@ -57,9 +57,11 @@ const AttorneyPrintPage = ({
   representativeMatters,
   qrCodeBioPage,
   qrCodeLinkedin,
-  qrCodeProduction,
+  onReady,
 }) => {
   const [designation] = useDesignationHook(title);
+  const [areImagesLoaded, setAreImagesLoaded] = useState(false);
+  const containerRef = useRef();
   const linkedIn = contact.socialMediaLinks.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
@@ -72,17 +74,45 @@ const AttorneyPrintPage = ({
     qrCodeBioPage,
   };
   const isAwardsExist = additionalTabs.some(({ title }) => title.includes('Awards & Recognitions'));
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const container = containerRef.current;
+    const allImages = Array.from(container.querySelectorAll('img'));
+    const imageLoadPromises = allImages.map(
+      (img) => new Promise((resolve) => {
+        if (img.complete && img.naturalHeight !== 0) {
+          resolve();
+        } else {
+          img.onload = resolve;
+          img.onerror = resolve;
+        }
+      }),
+    );
+
+    Promise.all(imageLoadPromises).then(() => {
+      setAreImagesLoaded(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (areImagesLoaded) {
+      onReady();
+    }
+  }, [areImagesLoaded, onReady]);
+
   return (
-    <BioPagePrintContainer>
+    <BioPagePrintContainer ref={containerRef}>
       <div className="wrapper-pdf">
         <CardImageWrapper className="card-image-wrapper">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={profileImage}
             alt={name}
             width={356}
             height={356}
             quality={100}
+            loading="eager"
           />
         </CardImageWrapper>
         <ProfileHeaderRight>
@@ -160,10 +190,7 @@ const AttorneyPrintPage = ({
         </div>
       )}
       {isAwardsExist && renderAwardsAndRecognitions(additionalTabs)}
-      <FooterPrintVersion
-        locations={offices}
-        qrCodeProduction={qrCodeProduction}
-      />
+      <FooterPrintVersion locations={offices} />
     </BioPagePrintContainer>
   );
 };

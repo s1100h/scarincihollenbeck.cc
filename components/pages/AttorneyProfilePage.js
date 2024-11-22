@@ -2,6 +2,7 @@ import ProfileAccordion from 'components/organisms/attorney/ProfileAccordion';
 import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
+import { useEffect, useState } from 'react';
 import AttorneyPrintPage from './AttorneyPrintPage';
 
 const AttorneyProfilePage = ({
@@ -17,6 +18,38 @@ const AttorneyProfilePage = ({
     qrCodeBioPage,
     qrCodeLinkedin,
   };
+  const [isRenderPdf, setIsRenderPdf] = useState(false);
+  const [isPrintReady, setIsPrintReady] = useState(false);
+
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      setIsRenderPdf(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        handlePrint();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isRenderPdf && isPrintReady) {
+      window.print();
+      setIsRenderPdf(false);
+      setIsPrintReady(false);
+    }
+  }, [isRenderPdf, isPrintReady]);
+
   return (
     <>
       <PersonSiteHead
@@ -28,9 +61,14 @@ const AttorneyProfilePage = ({
         designation={profileHeader.title}
         socialMediaLinks={seo.socialMediaLinks}
       />
-      <ProfileHeader {...profileHeader} />
+      <ProfileHeader handlePrint={handlePrint} {...profileHeader} />
       <ProfileAccordion {...accordionData} name={profileHeader?.name} />
-      <AttorneyPrintPage {...printPageProps} />
+      {isRenderPdf && (
+        <AttorneyPrintPage
+          {...printPageProps}
+          onReady={() => setIsPrintReady(true)}
+        />
+      )}
     </>
   );
 };

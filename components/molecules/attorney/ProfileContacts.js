@@ -6,6 +6,7 @@ import { MdLocalPhone, MdLocationPin } from 'react-icons/md';
 import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
 import React from 'react';
 import empty from 'is-empty';
+import Image from 'next/image';
 import { QRCodesBoxForPDF } from '../../../styles/attorney-page/AttorneyPrintPage.style';
 
 const ProfileContacts = ({
@@ -72,21 +73,21 @@ const ProfileContacts = ({
       {(!empty(qrCodeLinkedin) || !empty(qrCodeBioPage)) && (
         <QRCodesBoxForPDF>
           {!empty(qrCodeLinkedin) && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={qrCodeLinkedin?.sourceUrl}
               alt="LinkedIn"
               width={92}
               height={80}
+              loading="eager"
             />
           )}
           {!empty(qrCodeBioPage) && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={qrCodeBioPage?.sourceUrl}
               alt="The bio page"
               width={92}
               height={80}
+              loading="eager"
             />
           )}
         </QRCodesBoxForPDF>

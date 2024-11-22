@@ -11,8 +11,7 @@ export const AnchorsTopBarWrapper = styled.div`
   column-gap: 12px;
 
   ${TooltipWrapper} {
-    width: max-content;
-    max-width: 140px;
+    min-width: min-content;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

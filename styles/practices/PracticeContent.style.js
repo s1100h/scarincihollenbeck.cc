@@ -18,7 +18,7 @@ export const PracticeContentSection = styled.section`
 
   .social-share {
     display: none;
-    margin: 0 0 16px 0;
+    margin: 0 0 32px 0;
     gap: 4px;
     font-size: ${rem(14)};
 
