@@ -248,6 +248,41 @@ export const attorneysQuery = `query FirmPageQuery {
   }
 }`;
 
+export const attorneysRandomBioQuery = `
+query AttorneysRandomBioQuery {
+  attorneyProfiles(first: 100, where: {status: PUBLISH}) {
+    nodes {
+      databaseId
+      uri
+      title
+      attorneyMainInformation {
+        designation
+        phoneNumber
+        email
+        profileImage {
+          sourceUrl
+        }
+      }
+      attorneyPrimaryRelatedPracticesLocationsGroups {
+        officeLocation {
+          ... on OfficeLocation {
+            id
+            uri
+            title
+            officeMainInformation {
+              addressLocality
+            }
+          }
+        }
+      }
+      attorneyBiography {
+        miniBio
+      }
+    }
+  }
+}
+`;
+
 export const officeLocationQuery = `query BasicPageQuery {
   officeLocations {
     nodes {

@@ -47,6 +47,7 @@ const LocationPage = ({
   attorneysSchemaData,
   canonicalUrl,
   locations,
+  practices,
   googleReviews,
 }) => {
   const anchorData = useMemo(() => {
@@ -105,7 +106,10 @@ const LocationPage = ({
           attorneys={sortByKey(currentOffice.attorneys, 'lastName')}
         />
       )}
-      <WhatWeDoSection anchorId={anchorLocationsData.whatWeDo.id} />
+      <WhatWeDoSection
+        practices={practices}
+        anchorId={anchorLocationsData.whatWeDo.id}
+      />
       <WhyChooseUs anchorId={anchorData.whyChooseUs.id} />
       {!empty(googleReviews) && (
         <GoogleReviews

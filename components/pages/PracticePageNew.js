@@ -45,6 +45,7 @@ const PracticePageNew = ({
   attorneyListPractice,
   faq,
   whyChooseUsData,
+  practices,
   googleReviews,
 }) => {
   const anchorData = useMemo(() => {
@@ -103,7 +104,10 @@ const PracticePageNew = ({
         chairs={chairPractice}
         anchorId={anchorData.attorneys.id}
       />
-      <WhatWeDoSection anchorId={anchorData.whatWeDo.id} />
+      <WhatWeDoSection
+        practices={practices}
+        anchorId={anchorData.whatWeDo.id}
+      />
       {/* {!empty(googleReviews) && (
         <GoogleReviews
           reviews={googleReviews}

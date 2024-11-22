@@ -9,13 +9,11 @@ import {
 } from 'styles/WhatWeDo.style';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { useDispatch } from 'react-redux';
-import { useGetPracticesQuery } from '../../../redux/services/project-api';
 import PracticesTabs from './PracticesTabs';
 import { handleModalOpener } from '../../../redux/slices/modals.slice';
 
-const WhatWeDoSection = ({ anchorId }) => {
+const WhatWeDoSection = ({ practices, anchorId }) => {
   const dispatch = useDispatch();
-  const { data: practices, isLoading: isLoadingPractices } = useGetPracticesQuery();
 
   return (
     <WhatWeDoWrapper
@@ -40,10 +38,7 @@ const WhatWeDoSection = ({ anchorId }) => {
               Free consultation
             </StandardBlueButton>
           </WhatWeDoHeader>
-          <PracticesTabs
-            practices={practices}
-            isLoadingPractices={isLoadingPractices}
-          />
+          <PracticesTabs practices={practices} />
         </WhatWeDoHolder>
       </ContainerDefault>
     </WhatWeDoWrapper>

@@ -22,10 +22,10 @@ const cardVariants = {
   }),
 };
 
-const PracticesTabs = ({ practices, isLoadingPractices }) => {
+const PracticesTabs = ({ practices, isLoadingPractices = false }) => {
   if (empty(practices) && !isLoadingPractices) return null;
   const [activeTab, setActiveTab] = useState(0);
-  const practicesWithChildren = createOverviewLinks(practices?.data, true);
+  const practicesWithChildren = createOverviewLinks(practices, true);
   const activeTabData = practicesWithChildren?.[activeTab];
   const activeTabItems = activeTabData?.childPractice;
   const activeTabIcon = activeTabData?.practiceIcon?.sourceUrl;
