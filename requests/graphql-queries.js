@@ -249,7 +249,7 @@ export const attorneysQuery = `query FirmPageQuery {
 }`;
 
 export const officeLocationQuery = `query BasicPageQuery {
-  officeLocations {
+  officeLocations(first: 50, where: {orderby: {field: MENU_ORDER, order: ASC}}) {
     nodes {
       databaseId
       title
@@ -1266,7 +1266,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
       title
     }
   }
-  officeLocations(first: 50) {
+  officeLocations(first: 50, where: {orderby: {field: MENU_ORDER, order: ASC}}) {
     nodes {
       databaseId
       featuredImage {
@@ -1291,7 +1291,7 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
 }`;
 
 export const getOffices = `query FirmPageQuery {
-  officeLocations(first: 50) {
+  officeLocations(first: 50, where: {orderby: {field: MENU_ORDER, order: ASC}}) {
     nodes {
       databaseId
       title

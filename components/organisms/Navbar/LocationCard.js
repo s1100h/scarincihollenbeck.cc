@@ -10,7 +10,7 @@ import {
 } from 'styles/LocationCard.style';
 import empty from 'is-empty';
 import { MdLocalPhone, MdLocationPin } from 'react-icons/md';
-import { IoPrint, IoPrintSharp } from 'react-icons/io5';
+import { IoPrintSharp } from 'react-icons/io5';
 
 const LocationCard = ({
   title,

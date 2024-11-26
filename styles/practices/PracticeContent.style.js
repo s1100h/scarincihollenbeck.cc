@@ -49,10 +49,6 @@ export const PracticeContentSection = styled.section`
         height: 20px;
       }
 
-      &:first-of-type {
-        margin-left: 8px;
-      }
-
       &:last-of-type {
         margin-right: 0;
       }

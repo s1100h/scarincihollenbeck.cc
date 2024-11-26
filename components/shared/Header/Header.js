@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { locationsOrderArray } from 'utils/constants';
 import { createMenuData, createOverviewLinks } from '../../../utils/helpers';
 import DefaultHeader from './DefaultHeader';
 import {
@@ -30,22 +29,11 @@ const sanitizeIndustries = (data) => {
   }));
 };
 
-const sortLocations = (locations) => {
-  if (!locations) return [];
-
-  return [...locations].sort((a, b) => {
-    const indexA = locationsOrderArray.indexOf(a.title);
-    const indexB = locationsOrderArray.indexOf(b.title);
-    return indexA - indexB;
-  });
-};
-
 export default function Header() {
   const { pathname } = useRouter();
-  const { data: locations, isLoading: locationsIsLoading } = useGetLocationsQuery();
+  const { data: locations } = useGetLocationsQuery();
   const { data: practices } = useGetPracticesQuery();
   const { data: industries } = useGetIndustriesQuery();
-  const sortedLocations = !locationsIsLoading && sortLocations(locations?.data);
 
   const sanitizedPractices = useMemo(() => {
     const practiceWithOverview = createOverviewLinks(practices?.data, false);
@@ -64,7 +52,7 @@ export default function Header() {
   const headerProps = {
     pathname,
     practices: sanitizedPractices,
-    locations: sortedLocations,
+    locations: locations?.data,
     menuData,
     industries: industries?.data,
   };

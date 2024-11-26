@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
   media_breakpoint_down,
+  media_breakpoint_exactly,
   media_breakpoint_up,
 } from './mediaBreakpoints.style';
 import {
@@ -212,9 +213,9 @@ export const HeaderMainButtons = styled.div`
       height: 36px;
     }
 
-    /* ${media_breakpoint_up('md')} {
+    ${media_breakpoint_exactly(769)} {
       display: none;
-    } */
+    }
   }
 
   .contact-header-btn {

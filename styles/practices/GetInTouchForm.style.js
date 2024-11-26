@@ -44,10 +44,6 @@ export const GetInTouchHolder = styled.div`
       height: 20px;
     }
 
-    &:first-of-type {
-      margin-left: 0;
-    }
-
     &:last-of-type {
       margin-right: 0;
     }

@@ -62,7 +62,6 @@ export const WhyChooseUsCardContent = styled.div`
   font-family: var(--font-poppins);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 
   h3 {
     margin: 0 0 4px 0;
@@ -81,7 +80,6 @@ export const WhyChooseUsCardContent = styled.div`
 
   ${media_breakpoint_down('xl')} {
     padding: 8px 16px 16px;
-    justify-content: flex-start;
   }
 
   ${media_breakpoint_down('md')} {

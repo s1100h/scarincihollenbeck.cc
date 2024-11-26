@@ -13,6 +13,20 @@ const ContactBoxTemplate = ({
   officeLocations,
 }) => (
   <ContactBox className={classes}>
+    <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
+      {svgPhone || <MdLocalPhone size={20} />}
+      {' '}
+      <span>{number}</span>
+    </a>
+    <a
+      title={`${email}`}
+      onClick={(e) => e.stopPropagation()}
+      href={`mailto:${email}`}
+    >
+      {svgEmail || <BsFillEnvelopeFill />}
+      {' '}
+      <span>{email}</span>
+    </a>
     {!empty(officeLocations) && (
       <div className="contact-offices">
         <FaLocationDot />
@@ -29,20 +43,6 @@ const ContactBoxTemplate = ({
         </div>
       </div>
     )}
-    <a onClick={(e) => e.stopPropagation()} href={`tel:${number}`}>
-      {svgPhone || <MdLocalPhone size={20} />}
-      {' '}
-      <span>{number}</span>
-    </a>
-    <a
-      title={`${email}`}
-      onClick={(e) => e.stopPropagation()}
-      href={`mailto:${email}`}
-    >
-      {svgEmail || <BsFillEnvelopeFill />}
-      {' '}
-      <span>{email}</span>
-    </a>
   </ContactBox>
 );
 
