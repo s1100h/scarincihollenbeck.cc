@@ -1,6 +1,10 @@
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const ServicesLinksSections = styled.div`
   flex: 1;
@@ -63,7 +67,7 @@ export const ServicesLinksListItem = styled.li`
     font-weight: 500;
     transition: ${globalTransition.default};
 
-    @media (hover:hover) {
+    @media (hover: hover) {
       &:hover {
         color: ${globalColor.blue.skyBlue};
       }

@@ -1,13 +1,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { ContactBox } from 'styles/AttorneyCard.style';
-import {
-  globalColor,
-  rem,
-} from 'styles/global_styles/Global.styles';
-import {
-  media_breakpoint_down,
-} from 'styles/mediaBreakpoints.style';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const PracticeAttorneysSection = styled.section`
   padding: 24px 0;
@@ -80,7 +75,7 @@ export const PracticeAttorneysCard = styled.div`
   padding: 4px;
   position: relative;
   cursor: pointer;
-  
+
   ${media_breakpoint_down('md')} {
     height: 202px;
 

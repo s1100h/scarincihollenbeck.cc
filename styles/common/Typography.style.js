@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import { globalColor, globalTransition, rem } from "../global_styles/Global.styles";
-import { media_breakpoint_down } from "../mediaBreakpoints.style";
-import Link from "next/link";
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from '../global_styles/Global.styles';
+import { media_breakpoint_down } from '../mediaBreakpoints.style';
+import Link from 'next/link';
 
 //Titles
 export const titleH2Styles = `
@@ -20,7 +24,7 @@ export const titleH2Styles = `
 
 export const TitleH2 = styled.h2`
   ${titleH2Styles};
-  color: ${({ $isWhite }) => !$isWhite ? undefined : globalColor.white};
+  color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
 `;
 
 //Links
@@ -53,5 +57,5 @@ export const underlinedLinkStyles = `
 
 export const UnderlinedLink = styled(Link)`
   ${underlinedLinkStyles};
-  color: ${({ $isWhite }) => !$isWhite ? undefined : globalColor.white};
+  color: ${({ $isWhite }) => (!$isWhite ? undefined : globalColor.white)};
 `;

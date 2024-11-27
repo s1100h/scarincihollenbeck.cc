@@ -1,7 +1,4 @@
-import {
-  globalColor,
-  rem,
-} from 'styles/global_styles/Global.styles';
+import { globalColor, rem } from 'styles/global_styles/Global.styles';
 import { ContainerContent } from '../commonForSpecial.style';
 import styled from 'styled-components';
 import {

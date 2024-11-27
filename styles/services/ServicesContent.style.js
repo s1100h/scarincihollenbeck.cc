@@ -1,7 +1,15 @@
-import styled from "styled-components";
-import { globalColor, globalShadow, globalTransition } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
-import { SidebarMenuSubitem, SidebarMenuSubitemContentLink, SidebarMenuSubitemOpener } from "styles/Sidebar.style";
+import styled from 'styled-components';
+import {
+  globalColor,
+  globalShadow,
+  globalTransition,
+} from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
+import {
+  SidebarMenuSubitem,
+  SidebarMenuSubitemContentLink,
+  SidebarMenuSubitemOpener,
+} from 'styles/Sidebar.style';
 
 export const ServicesContentWrapper = styled.section`
   padding: 60px 0;
@@ -33,7 +41,7 @@ export const ServicesAccordions = styled.ul`
   flex-direction: column;
   row-gap: 16px;
   position: sticky;
-  top: ${({$headerHeight}) => `${$headerHeight + 24}px` };
+  top: ${({ $headerHeight }) => `${$headerHeight + 24}px`};
   left: 0;
   transition: ${globalTransition.default};
 
@@ -84,7 +92,7 @@ export const ServicesAccordions = styled.ul`
     color: ${globalColor.gray.gray700};
     padding: 6px 20px;
 
-    @media (hover:hover) {
+    @media (hover: hover) {
       &:hover {
         color: ${globalColor.blue.darkBlue};
       }

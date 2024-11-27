@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { TitleH2 } from 'styles/common/Typography.style';
-import { globalBorderRadius, globalColor, rem } from 'styles/global_styles/Global.styles';
 import {
-  media_breakpoint_down,
-} from 'styles/mediaBreakpoints.style';
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const WhyChooseUsSection = styled.div`
   padding: 40px 0;
@@ -95,7 +97,8 @@ export const WhyChooseUsCardDescription = styled.div`
   line-height: 1.5;
   font-weight: 400;
 
-  p, ul {
+  p,
+  ul {
     &:last-of-type {
       margin: 0;
     }

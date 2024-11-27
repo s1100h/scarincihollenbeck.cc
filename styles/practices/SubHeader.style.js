@@ -312,7 +312,7 @@ export const SubHeaderInteractive = styled.div`
   flex: 1;
   display: flex;
   padding: 28px 32px;
-  background-color: ${({ $bg }) => $bg ? $bg : globalColor.blue.darkBlue};
+  background-color: ${({ $bg }) => ($bg ? $bg : globalColor.blue.darkBlue)};
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -388,7 +388,8 @@ export const SubHeaderInteractive = styled.div`
         }
       }
 
-      a, span {
+      a,
+      span {
         gap: 12px;
       }
 

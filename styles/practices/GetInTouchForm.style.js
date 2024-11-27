@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { ShareSocialBox } from 'styles/Post/SocialShare.style';
-import { globalBorderRadius, globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
 import {
-  media_breakpoint_down,
-} from 'styles/mediaBreakpoints.style';
+  globalBorderRadius,
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const GetInTouchHolder = styled.div`
   border-radius: ${globalBorderRadius.small};
@@ -31,7 +34,8 @@ export const GetInTouchHolder = styled.div`
     opacity: 1;
   }
 
-  .react-share__ShareButton, .copy-button {
+  .react-share__ShareButton,
+  .copy-button {
     margin: 0 4px;
     display: flex;
     align-items: center;
