@@ -1,63 +1,48 @@
-import { Fragment, useId } from 'react';
 import dynamic from 'next/dynamic';
+import empty from 'is-empty';
+import { useId } from 'react';
 import {
-  BoxTitle,
-  CentralizedBox,
-  ContainerXXL,
-  RowSpecial,
-} from 'styles/Containers.style';
+  AttorneyCardsHolder,
+  AttorneyCardsWrapper,
+} from 'styles/Attornyes.style';
+import { TitleH2 } from 'styles/common/Typography.style';
 
-const AttorneyCard = dynamic(() => import('components/shared/AttorneyCard'));
+const LawyerCard = dynamic(() => import('components/shared/LawyerCard'));
 
-const renderTitle = (titleArg, slugPath) => {
-  const theFirmManagePartner = 'Firm Managing Partner';
-
-  if (slugPath === '/administration') {
-    return '';
-  }
-
-  return titleArg === theFirmManagePartner ? 'Firm management' : titleArg;
-};
-
-const AttorneyCards = ({ title, content, pathname }) => {
-  const theFirmManagePartner = 'Firm Managing Partner';
+const AttorneyCards = ({
+  title, content, pathname, isHorizontal,
+}) => {
+  const componentId = useId();
+  const changedTitle = title?.replace(
+    'Firm Managing Partner',
+    'Firm management',
+  );
 
   return (
-    <ContainerXXL key={title}>
-      <CentralizedBox toColumn="true">
-        {renderTitle(title, pathname).length > 0 && (
-          <BoxTitle
-            isBigBoss={title === theFirmManagePartner ? 'true' : 'false'}
-          >
-            <strong data-testid="firm-management">
-              {renderTitle(title, pathname)}
-            </strong>
-          </BoxTitle>
-        )}
-        <RowSpecial>
-          {content.map((info) => (
-            <Fragment key={useId()}>
-              <AttorneyCard
-                key={info.id}
-                link={info.link ? `${info.link}` : info.uri}
-                image={info.better_featured_image || info.featuredImage}
-                name={info.title}
-                designation={
-                  typeof info.designation !== 'string' ? null : info.designation
-                }
-                locations={
-                  info.location_array ? info.location_array : info.designation
-                }
-                number={info.phone}
-                email={info.email}
-                width={130}
-                height={152}
-              />
-            </Fragment>
-          ))}
-        </RowSpecial>
-      </CentralizedBox>
-    </ContainerXXL>
+    <AttorneyCardsHolder>
+      {!empty(changedTitle) && pathname !== '/administration' && (
+        <TitleH2>{changedTitle}</TitleH2>
+      )}
+      <AttorneyCardsWrapper>
+        {content.map((info) => (
+          <LawyerCard
+            key={`${info.id || info.title}-${componentId}`}
+            link={info.link ? `${info.link}` : info.uri}
+            image={info.better_featured_image || info.featuredImage}
+            name={info.title}
+            designation={
+              typeof info.designation !== 'string' ? null : info.designation
+            }
+            locations={
+              info.location_array ? info.location_array : info.designation
+            }
+            number={info.phone}
+            email={info.email}
+            isHorizontal={isHorizontal}
+          />
+        ))}
+      </AttorneyCardsWrapper>
+    </AttorneyCardsHolder>
   );
 };
 

@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import {
+  globalBorderRadius,
   globalColor,
   globalTransition,
   rem,
@@ -73,7 +74,7 @@ export const LetterSelectorBtn = styled.button`
   display: flex;
   align-items: center;
   width: 20px;
-  color: ${globalColor.blue.ultramarine};
+  color: ${globalColor.white};
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
@@ -83,6 +84,7 @@ export const LetterSelectorBtn = styled.button`
     color: ${globalColor.gray.gray110};
     background: transparent;
     text-decoration: none;
+    cursor: default;
   }
 `;
 
@@ -92,7 +94,17 @@ export const FiltersHolder = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+`;
+
+export const FiltersSection = styled.section`
+  margin: 40px 0;
+  padding: 12px 0;
+  background-color: ${globalColor.blue.blue6002};
+  box-shadow: 0px 0px 12px 0px rgba(22, 58, 107, 0.08);
+
+  ${media_breakpoint_down('lg')} {
+    margin: 24px 0;
+  }
 `;
 
 export const FiltersItems = styled.div`
@@ -126,7 +138,7 @@ export const FiltersLeftColumn = styled.div`
   ${SelectWrapper} {
     width: calc(50% - 8px);
 
-    ${media_breakpoint_down('lg')} {
+    ${media_breakpoint_down('sm')} {
       width: 100%;
     }
   }
@@ -284,5 +296,55 @@ export const ResultCard = styled(Link)`
     ${ResultCardTitle} {
       color: ${globalColor.blue.blue400};
     }
+  }
+`;
+
+export const FiltersNotFound = styled.div`
+  padding: 22px 38px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  border-radius: ${globalBorderRadius.small};
+  border: 2px solid ${globalColor.red.newRed};
+  background-color: ${globalColor.red.light};
+
+  ${media_breakpoint_down('md')} {
+    padding: 10px 14px;
+  }
+`;
+
+export const FiltersNotFoundMessage = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: ${globalColor.gray.gray700};
+  font-size: ${rem(20)};
+  line-height: 1.6;
+  font-weight: 600;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: ${rem(18)};
+    line-height: 1.56;
+  }
+`;
+
+export const FiltersNotFoundButton = styled.button`
+  width: fit-content;
+  color: ${globalColor.blue.blue400};
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+  text-decoration: underline;
+
+  :hover {
+    text-decoration: none;
+  }
+
+  ${media_breakpoint_down('md')} {
+    font-size: 0.875rem;
   }
 `;

@@ -10,7 +10,7 @@ function scrollToRef(containerReferId) {
   const containerReferArg = document.getElementById(containerReferId);
   if (containerReferArg) {
     setTimeout(() => {
-      const offsetTop = containerReferArg.offsetTop - 120;
+      const offsetTop = containerReferArg.offsetTop - 85;
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
     }, 0);
   }

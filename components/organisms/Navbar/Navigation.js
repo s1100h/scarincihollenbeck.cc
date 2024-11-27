@@ -89,35 +89,29 @@ const Navigation = ({
         ))}
       </NavbarList>
 
-      {pathname !== '/services' && (
-        <NavbarServices
-          practices={practices}
-          industries={industries}
-          showNavContent={showNavContent === getIndexNavbarItem('Services')}
-          setShowNavContent={setShowNavContent}
-          isScreenLg={isScreenLg}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
-      )}
+      <NavbarServices
+        practices={practices}
+        industries={industries}
+        showNavContent={showNavContent === getIndexNavbarItem('Services')}
+        setShowNavContent={setShowNavContent}
+        isScreenLg={isScreenLg}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
 
-      {pathname !== '/location/[slug]' && (
-        <NavbarLocations
-          showNavContent={showNavContent === getIndexNavbarItem('Locations')}
-          setShowNavContent={setShowNavContent}
-          setIsSidebarOpen={setIsSidebarOpen}
-          locations={locations}
-        />
-      )}
+      <NavbarLocations
+        showNavContent={showNavContent === getIndexNavbarItem('Locations')}
+        setShowNavContent={setShowNavContent}
+        setIsSidebarOpen={setIsSidebarOpen}
+        locations={locations}
+      />
 
-      {pathname !== '/attorneys' && (
-        <NavbarAttorneys
-          practices={practices}
-          locations={locations}
-          showNavContent={showNavContent === getIndexNavbarItem('Attorneys')}
-          setShowNavContent={setShowNavContent}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
-      )}
+      <NavbarAttorneys
+        practices={practices}
+        locations={locations}
+        showNavContent={showNavContent === getIndexNavbarItem('Attorneys')}
+        setShowNavContent={setShowNavContent}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
     </NavbarWrapper>
   );
 };

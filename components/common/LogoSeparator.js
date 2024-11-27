@@ -4,8 +4,8 @@ import { LogoSeparatorWrapper } from 'styles/Separators.style';
 import { SITE_TITLE } from 'utils/constants';
 import SHDiamond from '../../public/images/sh-mini-diamond-PNG.svg';
 
-const LogoSeparator = () => (
-  <LogoSeparatorWrapper>
+const LogoSeparator = ({ direction }) => (
+  <LogoSeparatorWrapper $direction={direction}>
     <Image
       alt={`${SITE_TITLE}, LLC`}
       width={40}

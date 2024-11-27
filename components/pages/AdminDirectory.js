@@ -1,6 +1,8 @@
-import SubHeader from 'layouts/SubHeader/SubHeader';
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import { ContainerXXL } from 'styles/Containers.style';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import { ScarinciHollenbeckKeyContact } from 'utils/constants';
+import { ContainerDefault } from 'styles/Containers.style';
+import { AdministrationsHolder } from 'styles/Attornyes.style';
 import NonFiltered from '../molecules/attorneys/NonFiltered';
 
 const AdministrationPage = ({
@@ -12,15 +14,16 @@ const AdministrationPage = ({
       metaDescription={seo.metaDesc}
       canonicalUrl={canonicalUrl}
     />
-    <SubHeader
+    <SubHeaderDefault
       title={site.title}
       subtitle={site.description}
-      offset={2}
-      span={7}
+      keyContacts={[ScarinciHollenbeckKeyContact]}
     />
-    <ContainerXXL>
-      <NonFiltered attorneys={admins} />
-    </ContainerXXL>
+    <AdministrationsHolder>
+      <ContainerDefault>
+        <NonFiltered attorneys={admins} isVertical />
+      </ContainerDefault>
+    </AdministrationsHolder>
   </>
 );
 

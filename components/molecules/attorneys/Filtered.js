@@ -1,47 +1,51 @@
-import AttorneyCard from 'components/shared/AttorneyCard';
-import {
-  CentralizedBox,
-  ContainerXXL,
-  RowSpecial,
-} from 'styles/Containers.style';
+import LawyerCard from 'components/shared/LawyerCard';
 import { useAttorneysSearch } from 'hooks/useAttornySearch';
+import { BsExclamationTriangle } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { AttorneyCardsWrapper } from 'styles/Attornyes.style';
+import {
+  FiltersNotFound,
+  FiltersNotFoundButton,
+  FiltersNotFoundMessage,
+} from 'styles/Filters.style';
+import { clearAll } from '../../../redux/slices/attorneys.slice';
 
-const Filtered = ({
-  attorneys, userInput, select, offices,
-}) => {
+const Filtered = ({ attorneys, userInput, select }) => {
+  const dispatch = useDispatch();
   const { attorneysFiltered } = useAttorneysSearch(
     select,
     userInput,
     attorneys,
   );
+
   return (
     <>
       {attorneysFiltered?.length === 0 ? (
-        <h3 className="redTitle text-center d-block mx-auto my-4">
-          <strong>Sorry, no attorneys found according to this query.</strong>
-        </h3>
+        <FiltersNotFound>
+          <FiltersNotFoundMessage>
+            <BsExclamationTriangle size={24} />
+            <span>Sorry, no attorneys found according to this query.</span>
+          </FiltersNotFoundMessage>
+          <FiltersNotFoundButton onClick={() => dispatch(clearAll())}>
+            VIEW ALL
+          </FiltersNotFoundButton>
+        </FiltersNotFound>
       ) : (
-        <ContainerXXL>
-          <CentralizedBox>
-            <RowSpecial>
-              {attorneysFiltered.map((info) => (
-                <AttorneyCard
-                  key={info.id}
-                  link={info.link}
-                  image={info.better_featured_image}
-                  name={info.title}
-                  designation={info.designation}
-                  locations={info.location_array}
-                  number={info.phone}
-                  email={info.email}
-                  width={130}
-                  height={152}
-                  offices={offices}
-                />
-              ))}
-            </RowSpecial>
-          </CentralizedBox>
-        </ContainerXXL>
+        <AttorneyCardsWrapper>
+          {attorneysFiltered.map((info) => (
+            <LawyerCard
+              key={info.id}
+              link={info.link}
+              image={info.better_featured_image}
+              name={info.title}
+              designation={info.designation}
+              locations={info.location_array}
+              number={info.phone}
+              email={info.email}
+              isHorizontal
+            />
+          ))}
+        </AttorneyCardsWrapper>
       )}
     </>
   );

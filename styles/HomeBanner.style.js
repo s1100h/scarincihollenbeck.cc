@@ -129,7 +129,7 @@ export const BannerCards = styled.div`
   border-radius: ${globalBorderRadius.big};
   background-color: rgba(255, 255, 255, 0.84);
   box-shadow: 0px 2px 16px 0px rgba(10, 62, 108, 0.22);
-  backdrop-filter: blur(4px);
+  /* backdrop-filter: blur(4px); */
 
   ${media_breakpoint_down('lg')} {
     flex-direction: column;

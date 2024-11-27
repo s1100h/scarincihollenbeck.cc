@@ -3,7 +3,11 @@ import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { formatPageImageToCloudinaryUrl } from 'utils/helpers';
 import dynamic from 'next/dynamic';
 import NonFiltered from 'components/molecules/attorneys/NonFiltered';
-import { CentralizedBox, ContainerXXL } from 'styles/Containers.style';
+import {
+  CentralizedBox,
+  ContainerDefault,
+  ContainerXXL,
+} from 'styles/Containers.style';
 
 const AdditionalInformation = dynamic(() => import('components/atoms/Article'));
 const MainInformation = AdditionalInformation;
@@ -35,7 +39,9 @@ const FirmOverviewPage = ({
         ))}
       </CentralizedBox>
     </ContainerXXL>
-    <NonFiltered attorneys={FirmMembers} />
+    <ContainerDefault className="mt-5 mb-5">
+      <NonFiltered attorneys={FirmMembers} />
+    </ContainerDefault>
     <ContainerXXL>
       <CentralizedBox notSurface="true">
         {firmOverviewTabs.additionalContent.map(({ content, title }) => (

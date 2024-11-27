@@ -22,18 +22,23 @@ const SubHeaderDefault = ({
   industries,
   customClass = '',
 }) => (
-  <SubHeaderHolder className={customClass} data-testid="default-sub-header">
-    <picture className="sub-header__image">
-      <Image
-        src={backgroundImage || '/images/no-image-found-diamond-750x350.png'}
-        alt={title || 'practice image'}
-        width={400}
-        height={400}
-        priority
-        sizes="400px"
-        loading="eager"
-      />
-    </picture>
+  <SubHeaderHolder
+    className={`${customClass} ${!backgroundImage ? 'without-image' : ''}`}
+    data-testid="default-sub-header"
+  >
+    {backgroundImage && (
+      <picture className="sub-header__image">
+        <Image
+          src={backgroundImage}
+          alt={title || 'sub header image'}
+          width={400}
+          height={400}
+          priority
+          sizes="400px"
+          loading="eager"
+        />
+      </picture>
+    )}
 
     <SubHeaderContent className="sub-header__content">
       <PostBreadCrumbs />

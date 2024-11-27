@@ -1,11 +1,12 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
-import SubHeader from 'layouts/SubHeader/SubHeader';
-import { FaqBox, MainAttorneysContainer } from 'styles/Attornyes.style';
+import { MainAttorneysContainer } from 'styles/Attornyes.style';
 import { useEffect, useRef } from 'react';
 import FAQ from 'components/atoms/FAQ';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
-import { ContainerDefault } from 'styles/Containers.style';
 import { useDispatch, useSelector } from 'react-redux';
+import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
+import { ScarinciHollenbeckKeyContact } from 'utils/constants';
+import { ContainerDefault } from 'styles/Containers.style';
 import { setReferenceId } from '../../redux/slices/attorneys.slice';
 import {
   useGetLocationsQuery,
@@ -38,24 +39,26 @@ const AttorneysPage = ({
         metaDescription={seo.metaDesc}
         canonicalUrl={canonicalUrl}
       />
-      <SubHeader isFilter title={site.title} subtitle={site.description} />
+      <SubHeaderDefault
+        title={site.title}
+        subtitle={site.description}
+        keyContacts={[ScarinciHollenbeckKeyContact]}
+      />
       <MainAttorneysContainer
+        $headerHeight={`${headerSize?.height + 8}px`}
         ref={containerRef}
-        $headerHeight={`${headerSize?.height}px`}
         id="attorneys-container"
       >
-        <ContainerDefault>
-          <AttorneyFilters
-            practices={practices?.data}
-            locations={locations?.data}
-            attorneyArchives={attorneyArchives}
-            seoAttorneys={seoAttorneys}
-          />
-        </ContainerDefault>
+        <AttorneyFilters
+          practices={practices?.data}
+          locations={locations?.data}
+          attorneyArchives={attorneyArchives}
+          seoAttorneys={seoAttorneys}
+        />
 
-        <FaqBox data-testid="FAQ-container">
+        <ContainerDefault>
           <FAQ />
-        </FaqBox>
+        </ContainerDefault>
       </MainAttorneysContainer>
     </>
   );

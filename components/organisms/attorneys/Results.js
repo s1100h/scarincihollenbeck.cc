@@ -19,14 +19,10 @@ const Results = ({
     attorneysContext,
     sortedTitlesByOrder,
   );
-  return (
-    <>
-      {select.length > 0 || userInput.length > 0 ? (
-        <Filtered select={select} attorneys={attorneys} userInput={userInput} />
-      ) : (
-        <NonFiltered attorneys={sortedAttorneysByCategory} />
-      )}
-    </>
+  return select.length > 0 || userInput.length > 0 ? (
+    <Filtered select={select} attorneys={attorneys} userInput={userInput} />
+  ) : (
+    <NonFiltered attorneys={sortedAttorneysByCategory} />
   );
 };
 export default Results;

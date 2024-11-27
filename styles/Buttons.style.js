@@ -30,9 +30,9 @@ export const RedButtonBootstrap = styled(RedButtonLink)`
 export const ClearButton = styled(Button)`
   margin: 0;
   padding: 3px 15px;
-  border: 1px solid ${globalColor.blue.dirtyBlue};
+  border: 1px solid ${globalColor.gray.gray500};
   border-radius: 4px;
-  color: ${globalColor.blue.dirtyBlue};
+  color: ${globalColor.gray.gray1002};
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
@@ -40,17 +40,17 @@ export const ClearButton = styled(Button)`
 
   :hover {
     border: 1px solid ${globalColor.blue.blue500};
-    color: ${globalColor.blue.dirtyBlue};
+    color: ${globalColor.gray.gray1002};
   }
 
   :focus {
     border: 1px solid ${globalColor.blue.blue500};
-    color: ${globalColor.blue.dirtyBlue};
+    color: ${globalColor.gray.gray1002};
   }
 
   :active {
     border: 1px solid ${globalColor.blue.blue500};
-    color: ${globalColor.blue.dirtyBlue} !important;
+    color: ${globalColor.gray.gray1002} !important;
   }
 `;
 

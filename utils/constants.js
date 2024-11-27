@@ -138,7 +138,7 @@ export const ScarinciHollenbeckAuthor = [
 
 export const ScarinciHollenbeckKeyContact = {
   databaseId: 10000000000001,
-  link: '/attorneys',
+  link: '/firm-overview',
   display_name: 'Scarinci Hollenbeck, LLC',
   keyContactsByPractice: null,
   profileImage: SHDiamond,

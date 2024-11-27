@@ -48,31 +48,6 @@ export const CentralizedBox = styled.div`
   }
 `;
 
-export const BoxTitle = styled.h2`
-  display: flex;
-  width: 100%;
-  padding: 45px;
-  padding-bottom: 0;
-  justify-content: ${({ isBigBoss }) =>
-    isBigBoss === 'true' ? 'center' : 'flex-start'};
-  text-transform: uppercase;
-`;
-
-export const RowSpecial = styled.div`
-  display: flex;
-  gap: 20px;
-  margin: 20px;
-  flex-wrap: wrap;
-
-  ${media_breakpoint_exactly_down(1500)} {
-    justify-content: space-between;
-  }
-
-  ${media_breakpoint_down('lg')} {
-    justify-content: center;
-  }
-`;
-
 export const TwoColumnsContainer = styled.section`
   display: grid;
   grid-template-columns: 0.33fr 1.8fr 0.7fr 0.33fr;

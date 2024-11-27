@@ -66,6 +66,7 @@ export const globalColor = {
     ultraLiteRed: '#F6A2A2',
     newRed: '#8F1B11',
     сoffee: '#450A05',
+    light: "#FDEFEE",
   },
 
   blue: {
@@ -76,6 +77,7 @@ export const globalColor = {
     darkBlue: '#060B2A',
     darkUltramarine: '#162153',
     lightBlue: '#8AD',
+    blue200: '#AFDCF5',
     blue400: '#568EDC',
     blue500: '#164587',
     blue550: '#31364F',
@@ -252,7 +254,13 @@ export const GlobalStyle = createGlobalStyle`
     color: ${globalColor.blue.ultramarine};
     transition: ${globalTransition.default};
 
-      :hover {
+      @media(hover:hover) {
+        :hover {
+          color: ${globalColor.red.darkRed};
+        }
+      }
+
+      &:active {
         color: ${globalColor.red.darkRed};
       }
     }

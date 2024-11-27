@@ -98,7 +98,7 @@ const CustomSelect = forwardRef(
         <SelectOpener onClick={handleClickOpener} $selectActive={selectActive}>
           <SelectInput
             type="text"
-            value={inputValue}
+            value={inputValue || ''}
             readOnly
             placeholder={placeHolder}
             $selectActive={selectActive}

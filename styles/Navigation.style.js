@@ -12,8 +12,7 @@ import {
   SidebarMenuItemOpener,
   SidebarMenuSubitemOpener,
 } from './Sidebar.style';
-import { FiltersResults, LetterSelectorBtn } from './Filters.style';
-import { ClearButton } from './Buttons.style';
+import { FiltersHolder, FiltersResults } from './Filters.style';
 import { underlinedLinkStyles } from './common/Typography.style';
 
 //New styles for Navigation in Header
@@ -162,32 +161,8 @@ export const NavbarItemContent = styled(motion.div)`
     }
   }
 
-  ${LetterSelectorBtn} {
-    color: ${globalColor.white};
-
-    &:disabled {
-      color: ${globalColor.gray.gray110};
-    }
-  }
-
-  ${ClearButton} {
-    border: 1px solid ${globalColor.gray.gray500};
-    color: ${globalColor.gray.gray1002};
-
-    :hover {
-      border: 1px solid ${globalColor.blue.blue500};
-      color: ${globalColor.gray.gray1002};
-    }
-
-    :focus {
-      border: 1px solid ${globalColor.blue.blue500};
-      color: ${globalColor.gray.gray1002};
-    }
-
-    :active {
-      border: 1px solid ${globalColor.blue.blue500};
-      color: ${globalColor.gray.gray1002} !important;
-    }
+  ${FiltersHolder} {
+    row-gap: 16px;
   }
 
   ${media_breakpoint_down('lg')} {

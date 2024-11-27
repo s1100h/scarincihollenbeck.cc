@@ -1,0 +1,80 @@
+import Image from 'next/image';
+import React from 'react';
+import { BsFillEnvelopeFill } from 'react-icons/bs';
+import { MdLocalPhone } from 'react-icons/md';
+import {
+  LawyerCardContact,
+  LawyerCardContacts,
+  LawyerCardContent,
+  LawyerCardDescription,
+  LawyerCardDesignation,
+  LawyerCardHeader,
+  LawyerCardImage,
+  LawyerCardLocation,
+  LawyerCardLocations,
+  LawyerCardName,
+  LawyerCardWrapper,
+} from 'styles/LawyerCard.style';
+import empty from 'is-empty';
+import Link from 'next/link';
+import SHDiamond from '../../public/images/sh-mini-diamond-PNG.svg';
+
+const LawyerCard = ({
+  image,
+  link,
+  name,
+  designation,
+  locations,
+  number,
+  email,
+  isHorizontal,
+}) => (
+  <LawyerCardWrapper className={isHorizontal ? 'horizontal-card' : ''}>
+    <LawyerCardImage>
+      <Image
+        src={image || SHDiamond}
+        alt={`${name} photo`}
+        quality={100}
+        width={400}
+        height={350}
+        sizes="400px"
+      />
+    </LawyerCardImage>
+
+    <LawyerCardContent>
+      <LawyerCardHeader>
+        <LawyerCardDescription>
+          <LawyerCardName>{name}</LawyerCardName>
+          <LawyerCardDesignation>{designation}</LawyerCardDesignation>
+        </LawyerCardDescription>
+        <LawyerCardContacts>
+          <LawyerCardContact href={`tel:${number}`}>
+            <MdLocalPhone size={20} />
+          </LawyerCardContact>
+          <LawyerCardContact href={`mailto:${email}`}>
+            <BsFillEnvelopeFill />
+          </LawyerCardContact>
+        </LawyerCardContacts>
+      </LawyerCardHeader>
+      {!empty(locations) && Array.isArray(locations) && (
+        <LawyerCardLocations>
+          {locations.map((location, index) => (
+            <LawyerCardLocation key={location.id}>
+              {location.officeMainInformation.addressLocality
+                || location.officeMainInformation}
+              {index < locations.length - 1 && ','}
+            </LawyerCardLocation>
+          ))}
+        </LawyerCardLocations>
+      )}
+    </LawyerCardContent>
+
+    {!empty(link) && (
+      <Link href={link} className="attorney-card-link" title={name} passHref>
+        <span className="sr-only">{`Link to profile of ${name}`}</span>
+      </Link>
+    )}
+  </LawyerCardWrapper>
+);
+
+export default LawyerCard;

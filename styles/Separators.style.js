@@ -19,15 +19,15 @@ export const DiamondSeparator = styled.span`
 
 export const LogoSeparatorWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ $direction }) => $direction || 'column'};
   align-items: center;
   gap: 14px;
 
   &::before,
   &::after {
     content: '';
-    width: 1px;
-    height: 100%;
+    width: ${({ $direction }) => $direction === 'row' ? '100%' : '1px'};
+    height: ${({ $direction }) => $direction === 'row' ? '1px' : '100%'};
     background-color: ${globalColor.blue.blue400};
 
     ${media_breakpoint_down('xl')} {
