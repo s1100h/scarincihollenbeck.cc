@@ -106,10 +106,6 @@ export const BioPagePrintContainer = styled.div`
 export const InfoPrintBox = styled.div`
   column-count: 2;
   column-gap: 20px;
-
-  @media print and (max-width: 1200px) {
-    columns: 2 !important;
-  }
 `;
 
 export const FooterPrintVersionContainer = styled.div`
