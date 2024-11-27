@@ -34,12 +34,12 @@ export const ShareSocialBox = styled.nav`
       font-size: 1.4rem;
       color: ${globalColor.grayLite.grayLite60};
 
-      @media (hover:hover) {
+      @media (hover: hover) {
         &:hover {
           color: ${globalColor.black};
         }
       }
-      
+
       &:active {
         color: ${globalColor.black};
       }
@@ -47,7 +47,7 @@ export const ShareSocialBox = styled.nav`
   }
 
   .faceBookBtn {
-    @media (hover:hover) {
+    @media (hover: hover) {
       &:hover {
         color: ${globalColor.socialNetworks.faceBook};
       }
@@ -59,7 +59,7 @@ export const ShareSocialBox = styled.nav`
   }
 
   .twitterBtn {
-    @media (hover:hover) {
+    @media (hover: hover) {
       &:hover {
         color: ${globalColor.socialNetworks.twitter};
       }
@@ -70,7 +70,7 @@ export const ShareSocialBox = styled.nav`
   }
 
   .linkedIn {
-    @media (hover:hover) {
+    @media (hover: hover) {
       &:hover {
         color: ${globalColor.socialNetworks.linkedIn};
       }
@@ -83,7 +83,7 @@ export const ShareSocialBox = styled.nav`
 
   .copy-button {
     svg {
-      @media (hover:hover) {
+      @media (hover: hover) {
         &:hover {
           color: ${globalColor.blue.skyBlue};
         }

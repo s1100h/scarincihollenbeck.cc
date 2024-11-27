@@ -53,6 +53,7 @@ export const PracticesTabsOpener = styled.button`
     border-color: ${globalColor.blue.blue400};
     background-color: ${globalColor.blue.blue6002};
     font-weight: 600;
+    pointer-events: none;
   }
 
   ${media_breakpoint_down('sm')} {

@@ -3,6 +3,7 @@ import ProfileHeader from 'components/organisms/attorney/ProfileHeader';
 import PersonSiteHead from 'components/shared/head/PersonSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import { useEffect, useState } from 'react';
+import { isMobileCheck } from 'utils/helpers';
 import AttorneyPrintPage from './AttorneyPrintPage';
 
 const AttorneyProfilePage = ({
@@ -22,9 +23,7 @@ const AttorneyProfilePage = ({
   const [isPrintReady, setIsPrintReady] = useState(false);
 
   const handlePrint = () => {
-    if (typeof window !== 'undefined') {
-      setIsRenderPdf(true);
-    }
+    setIsRenderPdf(true);
   };
 
   useEffect(() => {
@@ -43,11 +42,37 @@ const AttorneyProfilePage = ({
   }, []);
 
   useEffect(() => {
-    if (isRenderPdf && isPrintReady) {
-      window.print();
+    const userAgent = navigator.userAgent;
+    const isChrome = /Chrome/.test(userAgent);
+
+    const cleanStates = () => {
       setIsRenderPdf(false);
       setIsPrintReady(false);
+    };
+
+    if (isRenderPdf && isPrintReady) {
+      window.print();
+
+      if (isMobileCheck()) {
+        if (isChrome) {
+          window.addEventListener('focus', cleanStates);
+        } else {
+          window.addEventListener('afterprint', cleanStates);
+        }
+      } else {
+        cleanStates();
+      }
     }
+
+    return () => {
+      if (isMobileCheck()) {
+        if (isChrome) {
+          window.removeEventListener('focus', cleanStates);
+        } else {
+          window.removeEventListener('afterprint', cleanStates);
+        }
+      }
+    };
   }, [isRenderPdf, isPrintReady]);
 
   return (

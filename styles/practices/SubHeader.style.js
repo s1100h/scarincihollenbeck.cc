@@ -329,7 +329,8 @@ export const SubHeaderInteractive = styled.div`
         }
       }
 
-      a, span {
+      a,
+      span {
         gap: 12px;
       }
 

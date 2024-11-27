@@ -1,9 +1,17 @@
-import styled from "styled-components";
-import { cannabisLawColors, globalBorderRadius, globalColor, rem } from "./global_styles/Global.styles";
-import { media_breakpoint_down, media_breakpoint_exactly_down } from "./mediaBreakpoints.style";
+import styled from 'styled-components';
+import {
+  cannabisLawColors,
+  globalBorderRadius,
+  globalColor,
+  rem,
+} from './global_styles/Global.styles';
+import {
+  media_breakpoint_down,
+  media_breakpoint_exactly_down,
+} from './mediaBreakpoints.style';
 
 export const AttorneysAreaContainer = styled.div`
-  min-height: ${({ minHeight }) => minHeight ? `${minHeight}px` : 'auto'};
+  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'auto')};
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, 188px);
@@ -59,7 +67,6 @@ export const AttorneysAreaCards = styled.div`
   flex-wrap: wrap;
   gap: var(--cards-gap);
 `;
-
 
 export const AttorneysCannabisAreaContainer = styled.div`
   --cards-gap: 40px;

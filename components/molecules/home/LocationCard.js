@@ -67,35 +67,35 @@ export default function LocationCard({ officesData, setTitle }) {
             <ContactInfoContent isOpen={cardIndex === idx}>
               <ul className="address-list">
                 <Contact>
-                  <div>
-                    <BsFillGeoAltFill
-                      color={globalColor.gray.gray500}
-                      size={sizeIcons}
-                    />
-                  </div>
-                  {office.streetAddress}
-                  {!empty(office.streetAddress) && ', '}
-                  {office.floor}
-                  {!empty(office?.floor) && ', '}
-                  {office.title.split(',')[0].trim()}
-                  {', '}
-                  {office.addressRegion}
-                  {' '}
-                  {office.postCode}
+                  <BsFillGeoAltFill
+                    color={globalColor.gray.gray500}
+                    size={sizeIcons}
+                  />
+                  <span>
+                    {office.streetAddress}
+                    {!empty(office.streetAddress) && ', '}
+                    {office.floor}
+                    {!empty(office?.floor) && ', '}
+                    {office.title.split(',')[0].trim()}
+                    {', '}
+                    {office.addressRegion}
+                    {' '}
+                    {office.postCode}
+                  </span>
                 </Contact>
                 <Contact>
                   <HiMiniPhone
                     color={globalColor.gray.gray500}
                     size={sizeIcons}
                   />
-                  {` ${office.phone}`}
+                  <span>{office.phone}</span>
                 </Contact>
                 <Contact>
                   <HiPrinter
                     color={globalColor.gray.gray500}
                     size={sizeIcons}
                   />
-                  {` ${office.fax}`}
+                  <span>{office.fax}</span>
                 </Contact>
               </ul>
             </ContactInfoContent>

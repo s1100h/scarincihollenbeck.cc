@@ -61,7 +61,7 @@ export const AttorneysCannabisContainer = styled.section`
         bottom: 0;
         z-index: 0;
       }
-      
+
       p {
         width: 80%;
       }
@@ -114,7 +114,6 @@ export const AttorneysCannabisContainer = styled.section`
       }
     }
   }
-
 
   ${media_breakpoint_down('xxl')} {
     padding: 120px 0;

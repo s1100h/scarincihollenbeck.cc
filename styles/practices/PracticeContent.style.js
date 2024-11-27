@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { titleH2Styles } from 'styles/common/Typography.style';
 import { FaqWrapper } from 'styles/Faq.style';
-import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
 import { MapWrapper } from 'styles/LocationCard.style';
 import {
   media_breakpoint_down,
@@ -36,7 +40,8 @@ export const PracticeContentSection = styled.section`
       }
     }
 
-    .react-share__ShareButton, .copy-button {
+    .react-share__ShareButton,
+    .copy-button {
       margin: 0 4px;
       display: flex;
       align-items: center;

@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import { UnderlinedLink } from "styles/common/Typography.style";
-import { globalColor, globalTransition, rem } from "styles/global_styles/Global.styles";
-import { media_breakpoint_down } from "styles/mediaBreakpoints.style";
+import styled from 'styled-components';
+import { UnderlinedLink } from 'styles/common/Typography.style';
+import {
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const ServicesIndustriesSection = styled.section`
   padding: 60px 0;
@@ -52,12 +56,12 @@ export const ServicesIndustriesCardWrapper = styled.div`
   ${UnderlinedLink} {
     margin-top: auto;
 
-    @media (hover:hover) {
+    @media (hover: hover) {
       &:hover {
         color: ${globalColor.blue.skyBlue};
       }
     }
-    
+
     &:active {
       color: ${globalColor.blue.skyBlue};
     }
@@ -71,4 +75,3 @@ export const ServicesIndustriesCarLabel = styled.span`
   line-height: 1.67;
   text-transform: uppercase;
 `;
-

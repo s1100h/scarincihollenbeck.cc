@@ -5,7 +5,13 @@ import {
   media_breakpoint_exactly_down,
   media_breakpoint_range_exacly,
 } from './mediaBreakpoints.style';
-import { globalBorderRadius, globalColor, globalShadow, globalTransition, rem } from './global_styles/Global.styles';
+import {
+  globalBorderRadius,
+  globalColor,
+  globalShadow,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 import { PracticeContentSection } from './practices/PracticeContent.style';
 import { TitleH2 } from './common/Typography.style';
 
@@ -87,7 +93,7 @@ export const BlueLinkTab = styled(Link)`
     height: 20px;
     background-color: ${globalColor.blue.blue6002};
     clip-path: polygon(100% 50%, 0 0, 0% 100%);
-    opacity: ${({ $isActiveLocation }) => $isActiveLocation ? '1' : '0'};
+    opacity: ${({ $isActiveLocation }) => ($isActiveLocation ? '1' : '0')};
     transition: ${globalTransition.default};
 
     ${media_breakpoint_down('sm')} {
@@ -109,7 +115,8 @@ export const BlueLinkTab = styled(Link)`
     width: calc(50% - 4px);
     justify-content: center;
     font-size: ${rem(14)};
-    font-weight: ${({ $isActiveLocation }) => $isActiveLocation ? '700' : '400'};
+    font-weight: ${({ $isActiveLocation }) =>
+      $isActiveLocation ? '700' : '400'};
   }
 `;
 

@@ -1,7 +1,13 @@
-import styled from "styled-components";
-import { media_breakpoint_down } from "./mediaBreakpoints.style";
-import { ChildrenBox } from "./ModalWindow.style";
-import { cannabisLawColors, globalBorderRadius, globalColor, globalTransition, rem } from "./global_styles/Global.styles";
+import styled from 'styled-components';
+import { media_breakpoint_down } from './mediaBreakpoints.style';
+import { ChildrenBox } from './ModalWindow.style';
+import {
+  cannabisLawColors,
+  globalBorderRadius,
+  globalColor,
+  globalTransition,
+  rem,
+} from './global_styles/Global.styles';
 
 export const ContactModalBox = styled.div`
   width: 500px;
@@ -27,7 +33,8 @@ export const ContactModalTitle = styled.p`
 
 export const ContactModalWrapper = styled.div`
   &.no-transition {
-    .kwes-form, .kwes-form-init {
+    .kwes-form,
+    .kwes-form-init {
       > button {
         transition: none !important;
       }
@@ -71,7 +78,8 @@ export const ContactModalWrapper = styled.div`
       }
     }
 
-    .kwes-form, .kwes-form-init {
+    .kwes-form,
+    .kwes-form-init {
       column-gap: 16px;
 
       .input-group--0,
@@ -262,7 +270,7 @@ export const ContactModalWrapper = styled.div`
 
     ${ContactModalBox} {
       width: 100%;
-      
+
       button {
         padding: 14px 24px;
         display: flex;
@@ -311,7 +319,7 @@ export const SubscriptionModalWrapper = styled.div`
       .btn-link {
         color: ${cannabisLawColors.cannabisColorDarkGray};
       }
-      
+
       .disclaimer-input {
         &:checked {
           & + span.disclaimer-checkbox {

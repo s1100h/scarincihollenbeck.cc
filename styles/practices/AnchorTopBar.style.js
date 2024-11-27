@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { ContentTooltip, TooltipWrapper } from 'styles/Tooltip.style';
-import { globalColor, globalTransition, rem } from 'styles/global_styles/Global.styles';
 import {
-  media_breakpoint_down,
-} from 'styles/mediaBreakpoints.style';
+  globalColor,
+  globalTransition,
+  rem,
+} from 'styles/global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const AnchorsTopBarWrapper = styled.div`
   display: flex;
