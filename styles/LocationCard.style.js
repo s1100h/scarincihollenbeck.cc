@@ -155,6 +155,10 @@ export const Contact = styled.li`
     font-size: 1rem;
     line-height: 1.5;
   }
+
+  svg {
+    flex-shrink: 0;
+  }
 `;
 
 // New cards for Navigation in Header

@@ -51,13 +51,14 @@ export default function Footer() {
 
   return (
     <FooterWrapper
-      backgroundFooterColor={backgroundFooterColor}
+      $backgroundFooterColor={backgroundFooterColor}
       data-testid="footer"
+      $isPrint={conditionForPrintFooter}
     >
       <NavigationAndSubscription />
 
       <ContainerDefault>
-        <FooterHolder $isPrint={conditionForPrintFooter}>
+        <FooterHolder>
           <FooterContent>
             <LinksSEOBox>
               <LinksBox title="Core Practices" linksArr={CORE_PRACTICES} />

@@ -235,6 +235,10 @@ export const GlobalStyle = createGlobalStyle`
         overflow: unset;
       }
     }
+
+    @media print {
+      background-color: ${globalColor.white};
+    }
   }
 
   #__next {

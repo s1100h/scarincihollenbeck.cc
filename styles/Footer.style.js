@@ -8,9 +8,15 @@ import { media_breakpoint_down } from './mediaBreakpoints.style';
 
 export const FooterWrapper = styled.footer`
   padding-top: 12px;
-  background-color: ${({ backgroundFooterColor }) =>
-    backgroundFooterColor ? backgroundFooterColor : globalColor.blue.darkBlue};
+  background-color: ${({ $backgroundFooterColor }) =>
+    $backgroundFooterColor
+      ? $backgroundFooterColor
+      : globalColor.blue.darkBlue};
   color: ${globalColor.white};
+
+  @media print {
+    display: ${({ $isPrint }) => (!$isPrint ? 'none' : 'flex')};
+  }
 `;
 
 export const FooterHolder = styled.div`
@@ -30,10 +36,6 @@ export const FooterHolder = styled.div`
 
   ${media_breakpoint_down('md')} {
     padding: 12px 0 40px;
-  }
-
-  @media print {
-    display: ${({ $isPrint }) => (!$isPrint ? 'none' : 'flex')};
   }
 `;
 
@@ -285,10 +287,6 @@ export const SocialLinks = styled(LinkList)`
 
 export const NavWrapper = styled.div`
   background-color: ${globalColor.white};
-
-  @media print {
-    display: none;
-  }
 `;
 
 export const NavHolder = styled.section`

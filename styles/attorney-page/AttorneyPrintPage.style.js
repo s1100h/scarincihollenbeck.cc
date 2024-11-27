@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 import { globalColor } from '../global_styles/Global.styles';
+import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const BioPagePrintContainer = styled.div`
   display: none;
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
+
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
 
   @media print {
     * {
@@ -100,6 +106,10 @@ export const BioPagePrintContainer = styled.div`
 export const InfoPrintBox = styled.div`
   column-count: 2;
   column-gap: 20px;
+
+  @media print and (max-width: 1200px) {
+    columns: 2 !important;
+  }
 `;
 
 export const FooterPrintVersionContainer = styled.div`
@@ -107,7 +117,7 @@ export const FooterPrintVersionContainer = styled.div`
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
   padding: 12px 20px;
-  page-break-inside: avoid;
+  break-inside: avoid;
 
   @media print {
     display: flex !important;
@@ -116,7 +126,9 @@ export const FooterPrintVersionContainer = styled.div`
     background-color: ${globalColor.blue.blue6002};
     color: ${globalColor.white};
     border-radius: 8px;
-    
+    break-inside: avoid;
+    page-break-inside: avoid;
+
     .advertising-title-print {
       font-size: 10px;
       margin-bottom: 4px;

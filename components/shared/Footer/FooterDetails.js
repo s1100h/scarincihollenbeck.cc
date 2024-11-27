@@ -27,7 +27,7 @@ export default function FooterDetails() {
           </li>
           <li>
             <IoPrintSharp size={20} />
-            {SITE_FAX}
+            <span>{SITE_FAX}</span>
           </li>
           <li>
             <a className="phone-mail-footer" href={`mailto:${SITE_EMAIL}`}>
