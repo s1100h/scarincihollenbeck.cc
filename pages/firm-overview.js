@@ -42,7 +42,7 @@ const sanitizeMembers = (members) => members.map((member) => ({
       || member.administration?.title,
 }));
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const pageRequest = await getFirmOverviewContent();
 
   const {
@@ -74,6 +74,7 @@ export const getServerSideProps = async () => {
       firmOverviewTabs,
       FirmMembers: sorteredFirmMembers,
     },
+    revalidate: 86400,
   };
 };
 

@@ -8,10 +8,12 @@ import {
   getPracticesWithAttorneys,
 } from 'requests/getAttorneys';
 import {
+  filterTunePractices,
   rebuildDataForAttorneysCards,
   sortAttorneysByCategory,
   sortByKey,
 } from 'utils/helpers';
+import { getPractices } from 'requests/getPractices';
 
 /** Map all the page data to component props */
 export async function getStaticProps() {
@@ -36,6 +38,11 @@ export async function getStaticProps() {
   const sortedAttorneysByCategory = sortAttorneysByCategory(
     attorneysWithKaterin,
     sortedTitlesByOrder,
+  );
+
+  const practices = await getPractices();
+  const filteredPractices = sortByKey(practices, 'title').filter(
+    filterTunePractices,
   );
 
   // it was done by request from the client as a temporary solution. 9 May 2024.
@@ -65,6 +72,7 @@ export async function getStaticProps() {
       },
       attorneyArchives,
       seoAttorneys: sortedAttorneysByCategory,
+      practices: filteredPractices,
     },
     revalidate: 86400,
   };
@@ -72,7 +80,11 @@ export async function getStaticProps() {
 
 /* Attorneys page component */
 const Attorneys = ({
-  seo, site, attorneyArchives, seoAttorneys,
+  seo,
+  site,
+  attorneyArchives,
+  seoAttorneys,
+  practices,
 }) => {
   const canonicalUrl = `${PRODUCTION_URL}/attorneys`;
 
@@ -84,6 +96,7 @@ const Attorneys = ({
     canonicalUrl,
     attorneyArchives,
     seoAttorneys,
+    practices,
   };
 
   return <AttorneysPage {...attorneysPageProps} />;

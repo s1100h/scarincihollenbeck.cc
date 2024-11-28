@@ -34,7 +34,6 @@ const HomePage = ({
   industryWeWorkWith,
   latestArticlesTabsData,
   whyChooseUs,
-  attorneys,
   practices,
 }) => {
   const { data: attorneysData } = useGetAttorneysQuery();

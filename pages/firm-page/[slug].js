@@ -25,7 +25,7 @@ export async function getFirmPageContent(slug, relatedPostsCategoryId) {
   const data = await fetchAPI(firmPagesQuery, {
     variables: { slug, categoryId: relatedPostsCategoryId },
   });
-  if (data.page.status !== 'publish') {
+  if (data.page?.status !== 'publish') {
     return null;
   }
 
@@ -40,8 +40,18 @@ const diversityCategoryId = (slug) => {
   return pagesMap[slug] || 98;
 };
 
+export async function getStaticPaths() {
+  const pages = ['diversity', 'community-involvement', 'pro-bono'];
+  const paths = pages.map((url) => `/firm-page/${url}`);
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
 /** Set firm page data to props */
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const req = await getFirmPageContent(
     params.slug,
     diversityCategoryId(params.slug),
@@ -115,6 +125,7 @@ export const getServerSideProps = async ({ params }) => {
       page,
       currentPage: params.slug,
     },
+    revalidate: 86400,
   };
 };
 

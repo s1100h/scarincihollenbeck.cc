@@ -889,8 +889,9 @@ export const administrationPageQuery = `query AdministrationPagesQuery {
 }
 `;
 
-export const administrationPersoneQuery = `query FirmPageQuery($id: ID!) {
-  administration(id: $id, idType: URI) {
+export const administrationPersoneQuery = `
+query FirmPageQuery($id: ID!) {
+  administration(id: $id, idType: SLUG) {
     databaseId
     uri
     administration {
@@ -924,8 +925,8 @@ export const administrationPersoneQuery = `query FirmPageQuery($id: ID!) {
       title
     }
   }
-}
-`;
+}`;
+
 export const adminKaterinTraughQuery = `query AttorneyPostsById {
   administration(id: "20875", idType: DATABASE_ID) {
     title
@@ -970,7 +971,8 @@ export const basicPagesQuery = `query BasicPageQuery($slug: String) {
 }`;
 
 /** Happy Holydays pages query  */
-export const holidayPageQuery = `query BasicPageQuery {
+export const holidayPageQuery = `
+query BasicPageQuery {
   page(id: 155709, idType: DATABASE_ID) {
     title
     status
@@ -984,8 +986,7 @@ export const holidayPageQuery = `query BasicPageQuery {
       formLabel
     }
   }
-}
-`;
+}`;
 
 /** querying firm pages content */
 export const firmPagesQuery = `query FirmPageQuery(

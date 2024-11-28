@@ -1,12 +1,8 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import BasicPageContent from 'components/pages/BasicPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { basicPagesQuery } from 'requests/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
-
-const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch page data from WP GRAPHQL API */
 const getBasicPageContent = async (slug) => {
@@ -16,8 +12,24 @@ const getBasicPageContent = async (slug) => {
   return data?.pageBy;
 };
 
+export async function getStaticPaths() {
+  const pages = [
+    'awards',
+    'terms-of-use',
+    'privacy-policy',
+    'disclaimer',
+    'work-life-balance',
+  ];
+  const paths = pages.map((url) => `/basic-page/${url}`);
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
 /** Set data from API response to page props */
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const slug = params?.slug;
 
   if (!slug) {
@@ -49,6 +61,7 @@ export const getServerSideProps = async ({ params }) => {
       },
       slug: params.slug,
     },
+    revalidate: 86400,
   };
 };
 
@@ -56,11 +69,6 @@ export const getServerSideProps = async ({ params }) => {
 const BasicPage = ({
   content, seo, slug, title, pageForm,
 }) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <SiteLoader />;
-  }
-
   const { clearBody, subTitle } = getSubTitleFromHTML(content);
   const canonicalUrl = `${PRODUCTION_URL}/${slug}`;
 

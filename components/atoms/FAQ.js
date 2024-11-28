@@ -5,12 +5,14 @@ import empty from 'is-empty';
 import { TitleH2 } from 'styles/common/Typography.style';
 import { JSXWithDynamicLinks } from './micro-templates/JSXWithDynamicLinks';
 
-export default function FAQ({ faqArrContent, title, anchorId }) {
+export default function FAQ({
+  faqArrContent, title, anchorId, isTwoColumns,
+}) {
   const faqItems = faqArrContent || ATTORNEYS_FAQ;
 
   return (
     <FaqWrapper
-      className="margin-scroll"
+      className={`margin-scroll ${isTwoColumns ? 'two-columns' : ''}`}
       id={anchorId}
       data-testid="faq-wrapper"
     >

@@ -9,12 +9,7 @@ import {
   latestFirmNewsArticles,
   officeLocationQuery,
 } from 'requests/graphql-queries';
-import {
-  chunkArray,
-  filterAttorneysByDesignation,
-  filterTunePractices,
-  sortByKey,
-} from 'utils/helpers';
+import { chunkArray, filterTunePractices, sortByKey } from 'utils/helpers';
 
 /** Get homepage content WP GRAPHQL API */
 export async function homePageContent() {
@@ -114,7 +109,6 @@ export const getStaticProps = async () => {
       industryWeWorkWith,
       latestArticlesTabsData,
       whyChooseUs,
-      // attorneys: filteredAttorneysByDesignation,
       practices: filteredPractices,
     },
     revalidate: 86400,
@@ -132,7 +126,6 @@ const Home = ({
   industryWeWorkWith,
   latestArticlesTabsData,
   whyChooseUs,
-  attorneys,
   practices,
 }) => {
   const homePageProps = {
@@ -145,7 +138,6 @@ const Home = ({
     industryWeWorkWith,
     latestArticlesTabsData,
     whyChooseUs,
-    attorneys,
     practices,
   };
   return <HomePage {...homePageProps} />;

@@ -1,17 +1,18 @@
 import BasicSiteHead from 'components/shared/head/BasicSiteHead';
 import { MainAttorneysContainer } from 'styles/Attornyes.style';
 import { useEffect, useRef } from 'react';
-import FAQ from 'components/atoms/FAQ';
 import AttorneyFilters from 'components/organisms/attorneys/AttorneyFilters';
 import { useDispatch, useSelector } from 'react-redux';
 import SubHeaderDefault from 'layouts/SubHeader/SubHeaderDefault';
 import { ScarinciHollenbeckKeyContact } from 'utils/constants';
 import { ContainerDefault } from 'styles/Containers.style';
+import dynamic from 'next/dynamic';
 import { setReferenceId } from '../../redux/slices/attorneys.slice';
-import {
-  useGetLocationsQuery,
-  useGetPracticesQuery,
-} from '../../redux/services/project-api';
+import { useGetLocationsQuery } from '../../redux/services/project-api';
+
+const FAQ = dynamic(() => import('components/atoms/FAQ'));
+const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
 
 const AttorneysPage = ({
   seo,
@@ -19,11 +20,11 @@ const AttorneysPage = ({
   canonicalUrl,
   attorneyArchives,
   seoAttorneys,
+  practices,
 }) => {
   const containerRef = useRef();
   const dispatch = useDispatch();
   const { data: locations } = useGetLocationsQuery();
-  const { data: practices } = useGetPracticesQuery();
   const { headerSize } = useSelector((state) => state.sizes);
 
   useEffect(() => {
@@ -50,15 +51,18 @@ const AttorneysPage = ({
         id="attorneys-container"
       >
         <AttorneyFilters
-          practices={practices?.data}
+          practices={practices}
           locations={locations?.data}
           attorneyArchives={attorneyArchives}
           seoAttorneys={seoAttorneys}
         />
 
         <ContainerDefault>
-          <FAQ />
+          <FAQ isTwoColumns />
         </ContainerDefault>
+
+        <WhatWeDoSection practices={practices} />
+        <WhyChooseUs />
       </MainAttorneysContainer>
     </>
   );

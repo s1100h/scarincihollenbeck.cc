@@ -117,4 +117,20 @@ export const FaqWrapper = styled.section`
       }
     }
   }
+
+  &.two-columns {
+    .accordion {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(550px, 100%), 1fr));
+      gap: 20px;
+
+      ${media_breakpoint_down('md')} {
+        gap: 16px;
+      }
+    }
+
+    .accordion-item {
+      height: fit-content;
+    }
+  }
 `;

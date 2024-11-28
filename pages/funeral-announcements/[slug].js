@@ -1,11 +1,7 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import SitePage from 'components/pages/BasicPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
 import { fetchAPI } from 'requests/api';
 import { basicPagesQuery } from 'requests/graphql-queries';
-
-const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
 /** Fetch page data from WP GRAPHQL API */
 const getBasicPageContent = async (slug) => {
@@ -15,8 +11,23 @@ const getBasicPageContent = async (slug) => {
   return data?.pageBy;
 };
 
+export async function getStaticPaths() {
+  const pages = [
+    'passing-attorney-harvey-r-poe',
+    'passing-attorney-david-a-einhorn',
+    'the-passing-of-harold-friedman',
+    'the-passing-of-peter-r-yarem',
+  ];
+  const paths = pages.map((url) => `/funeral-announcements/${url}`);
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
 /** Set funeral page data to props */
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const slug = params?.slug;
 
   if (!slug) {
@@ -42,6 +53,7 @@ export const getServerSideProps = async ({ params }) => {
       seo,
       slug: params.slug,
     },
+    revalidate: 86400,
   };
 };
 
@@ -49,11 +61,6 @@ export const getServerSideProps = async ({ params }) => {
 const FuneralAnnouncement = ({
   title, content, seo, slug,
 }) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <SiteLoader />;
-  }
-
   let extractSubTitle = '';
   let subTitle = '';
   let bodyContent = '';

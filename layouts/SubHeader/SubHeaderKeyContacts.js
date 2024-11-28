@@ -12,7 +12,7 @@ const SubHeaderKeyContacts = ({ keyContacts }) => {
   if (empty(keyContacts)) return null;
   return (
     <SubHeaderInteractive $bg={globalColor.blue.blue6002}>
-      <h3>Key Contacts</h3>
+      <h2>Key Contacts</h2>
       <SubHeaderKeyContactsCards>
         {keyContacts?.slice(0, 2)?.map((keyContact) => (
           <AttorneyCard

@@ -259,7 +259,8 @@ export const SubHeaderInteractive = styled.div`
   justify-content: center;
   row-gap: 12px;
 
-  > h3 {
+  > h2 {
+    margin: 0;
     color: ${globalColor.white};
     font-size: ${rem(18)};
     line-height: 28px;

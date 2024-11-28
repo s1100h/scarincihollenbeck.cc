@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import empty from 'is-empty';
 import Link from 'next/link';
 import { TitleH2 } from 'styles/common/Typography.style';
-import Image from 'next/image';
 import {
   CardImageWrapper,
   ProfileDesignation,
@@ -106,7 +105,7 @@ const AttorneyPrintPage = ({
     <BioPagePrintContainer ref={containerRef}>
       <div className="wrapper-pdf">
         <CardImageWrapper className="card-image-wrapper">
-          {/* // eslint-disable-next-line @next/next/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={profileImage}
             alt={name}

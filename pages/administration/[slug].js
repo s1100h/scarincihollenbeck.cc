@@ -1,18 +1,23 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import AdminProfile from 'components/pages/AdminProfile';
-import { SITE_PHONE } from 'utils/constants';
+import { CURRENT_DOMAIN, SITE_PHONE } from 'utils/constants';
 import { concatNameUser } from 'utils/helpers';
 import empty from 'is-empty';
 import { fetchAPI } from '../../requests/api';
 import { administrationPersoneQuery } from '../../requests/graphql-queries';
 
-const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
+const adminsSlugsQuery = `
+query attorneysSlugs {
+  administrations(first: 100) {
+    nodes {
+      slug
+    }
+  }
+}`;
 
-const getAdminData = async (uriAdmin, canonicalUrl) => {
+const getAdminData = async (slug) => {
   const data = await fetchAPI(administrationPersoneQuery, {
     variables: {
-      id: uriAdmin,
+      id: slug,
     },
   });
   const administration = data?.administration?.administration;
@@ -44,21 +49,31 @@ const getAdminData = async (uriAdmin, canonicalUrl) => {
       isAdmin: true,
     },
     seo: {
-      canonicalLink: canonicalUrl,
+      canonicalLink: `${CURRENT_DOMAIN}/administration/${slug}`,
       metaDescription: seo.metaDesc,
       title: seo.title,
     },
   };
 };
 
-/** Set data from API response to page props */
-export const getServerSideProps = async ({ res, req, resolvedUrl }) => {
-  res.setHeader(
-    'Cache-Control',
-    'max-age=0, s-maxage=60, stale-while-revalidate',
-  );
+export async function getStaticPaths() {
+  const listId = await fetchAPI(adminsSlugsQuery);
 
-  const dataAdmin = await getAdminData(resolvedUrl, req.headers.referer);
+  const paths = [];
+
+  listId.administrations.nodes.forEach((node) => {
+    paths.push(`/administration/${node?.slug}`);
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
+/** Set data from API response to page props */
+export const getStaticProps = async ({ params }) => {
+  const dataAdmin = await getAdminData(params?.slug);
 
   if (!dataAdmin) {
     return {
@@ -70,21 +85,12 @@ export const getServerSideProps = async ({ res, req, resolvedUrl }) => {
     props: {
       dataAdmin,
     },
+    revalidate: 86400,
   };
 };
 
 /** Administration profile component */
 const AdministrationProfile = ({ dataAdmin }) => {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return (
-      <div className="my-5 py-5">
-        <SiteLoader />
-      </div>
-    );
-  }
-
   const adminProps = {
     seo: dataAdmin.seo,
     profile: dataAdmin.profile,

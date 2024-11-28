@@ -9,6 +9,7 @@ import { SearchInput } from './GlobalSearch.style';
 import { ContainerDefault } from './Containers.style';
 import { LogoSeparatorWrapper } from './Separators.style';
 import { LawyerCardWrapper } from './LawyerCard.style';
+import { FaqWrapper } from './Faq.style';
 
 export const MainAttorneysContainer = styled.section`
   background-color: ${globalColor.gray.gray1002};
@@ -27,6 +28,14 @@ export const MainAttorneysContainer = styled.section`
 
   ${SearchInput} {
     background-color: ${globalColor.gray.gray10};
+  }
+
+  ${FaqWrapper} {
+    margin: 40px 0;
+
+    ${media_breakpoint_down('md')} {
+      margin: 24px 0;
+    }
   }
 `;
 

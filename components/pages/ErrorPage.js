@@ -67,6 +67,8 @@ const ErrorPage = ({
               width={700}
               height={600}
               alt="Attorneys near work."
+              priority
+              loading="eager"
             />
           </ImageBlindLady>
         </ErrorHolder>
