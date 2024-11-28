@@ -4,9 +4,9 @@ import {
   SubHeaderContent,
   Description,
 } from 'styles/SingleSubHeader.style';
-import PostBreadCrumbs from 'components/organisms/post/PostBreadcrumbs';
 import { JSXWithDynamicLinks } from 'components/atoms/micro-templates/JSXWithDynamicLinks';
 import Link from 'next/link';
+import PostBreadCrumbs from 'components/organisms/post/PostBreadcrumbs';
 import { changeTitle, formatDate } from '../../utils/helpers';
 
 const SubHeader = ({

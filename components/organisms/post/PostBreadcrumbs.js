@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { BsChevronRight } from 'react-icons/bs';
 import empty from 'is-empty';
 import { CategoriesButtonsStructure } from 'utils/constants';
+import { useEffect, useState } from 'react';
 import {
   BreadcrumbsListContainer,
   ButtonBreadcrumb,
@@ -165,15 +166,19 @@ const delegatePathFunc = (list, router, data) => {
 
 const PostBreadCrumbs = ({ data }) => {
   const router = useRouter();
-  let slug = convertSlug(router.asPath);
+  const [slug, setSlug] = useState([]);
 
-  if (slug.includes('contact')) {
-    slug = ['contact'];
-  }
+  useEffect(() => {
+    const initialSlug = convertSlug(router.asPath);
 
-  if (slug.includes('subscribe')) {
-    slug = ['subscribe'];
-  }
+    if (initialSlug.includes('contact')) {
+      setSlug(['contact']);
+    } else if (initialSlug.includes('subscribe')) {
+      setSlug(['subscribe']);
+    } else {
+      setSlug(initialSlug);
+    }
+  }, [router.asPath]);
 
   return (
     <BreadcrumbsListContainer className="breadcrumb-container">

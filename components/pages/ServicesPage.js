@@ -22,7 +22,6 @@ const ServicesPage = ({
     <SubHeaderDefault
       title={title}
       subtitle={content?.description}
-      backgroundImage={content?.pageImage?.sourceUrl}
       industries={industries}
       customClass="sub-header sub-header--slider"
     />
