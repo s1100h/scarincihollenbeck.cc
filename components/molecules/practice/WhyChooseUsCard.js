@@ -9,24 +9,31 @@ import {
 } from 'styles/practices/WhyChooseUs.style';
 
 const WhyChooseUsCard = ({
-  title, text, image, isJSXDescription,
-}) => (
-  <WhyChooseUsCardWrapper>
-    <WhyChooseUsCardContent>
-      {title && <h3>{title}</h3>}
-      <WhyChooseUsCardDescription as={isJSXDescription ? 'div' : 'p'}>
-        <JSXWithDynamicLinks HTML={text} />
-      </WhyChooseUsCardDescription>
-    </WhyChooseUsCardContent>
-    <WhyChooseUsCardImage>
-      <Image
-        src={image.src}
-        alt={title || 'Building'}
-        width={image.width}
-        height={image.height}
-      />
-    </WhyChooseUsCardImage>
-  </WhyChooseUsCardWrapper>
-);
+  title,
+  text,
+  image,
+  isJSXDescription,
+  isPrint = false,
+}) => {
+  const TagImage = isPrint ? 'img' : Image;
+  return (
+    <WhyChooseUsCardWrapper>
+      <WhyChooseUsCardContent>
+        {title && <h3>{title}</h3>}
+        <WhyChooseUsCardDescription as={isJSXDescription ? 'div' : 'p'}>
+          <JSXWithDynamicLinks HTML={text} />
+        </WhyChooseUsCardDescription>
+      </WhyChooseUsCardContent>
+      <WhyChooseUsCardImage>
+        <TagImage
+          src={image.src}
+          alt={title || 'Building'}
+          width={image.width}
+          height={image.height}
+        />
+      </WhyChooseUsCardImage>
+    </WhyChooseUsCardWrapper>
+  );
+};
 
 export default WhyChooseUsCard;

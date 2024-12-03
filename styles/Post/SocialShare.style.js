@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalColor } from '../global_styles/Global.styles';
+import { globalColor, globalTransition } from '../global_styles/Global.styles';
 
 export const ShareSocialBox = styled.nav`
   display: flex;
@@ -83,6 +83,26 @@ export const ShareSocialBox = styled.nav`
 
   .copy-button {
     svg {
+      @media (hover: hover) {
+        &:hover {
+          color: ${globalColor.blue.skyBlue};
+        }
+      }
+
+      &:active {
+        color: ${globalColor.blue.skyBlue};
+      }
+    }
+  }
+
+  .print-button {
+    margin: 0 4px;
+    svg {
+      color: white;
+      transition: ${globalTransition.default};
+      width: 20px;
+      height: 20px;
+
       @media (hover: hover) {
         &:hover {
           color: ${globalColor.blue.skyBlue};

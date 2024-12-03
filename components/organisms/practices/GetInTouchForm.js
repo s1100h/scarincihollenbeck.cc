@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { handleModalOpener } from '../../../redux/slices/modals.slice';
 import SocialShare from '../post/SocialShare';
 
-const GetInTouchForm = () => {
+const GetInTouchForm = ({ handlePrint }) => {
   const dispatch = useDispatch();
 
   return (
@@ -36,7 +36,7 @@ const GetInTouchForm = () => {
           <p>Contact us today to learn more about how we can assist you.</p>
         </GetInTouchQuote>
 
-        <SocialShare isPractice />
+        <SocialShare isPractice handlePrint={handlePrint} />
       </GetInTouchDescription>
       <GetInTouchMobileBtn
         onClick={() => dispatch(handleModalOpener({ active: true }))}

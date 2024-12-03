@@ -297,6 +297,15 @@ export const ResultCard = styled(Link)`
       color: ${globalColor.blue.blue400};
     }
   }
+
+  &.active {
+    pointer-events: none;
+    background-color: ${globalColor.blue.blue400};
+
+    > span {
+      color: ${globalColor.white};
+    }
+  }
 `;
 
 export const FiltersNotFound = styled.div`

@@ -35,8 +35,9 @@ const FilterResult = ({
   image,
   titleTag = 'h4',
   descriptionTag = 'p',
+  className,
 }) => (
-  <ResultCard href={link} onClick={handleCloseModal}>
+  <ResultCard href={link} onClick={handleCloseModal} className={className}>
     <RenderIcon image={image} icon={icon} />
     <ResultCardContent>
       <ResultCardTitle as={titleTag}>

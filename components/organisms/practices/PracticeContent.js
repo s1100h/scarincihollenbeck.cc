@@ -13,7 +13,12 @@ import GetInTouchForm from './GetInTouchForm';
 import SocialShare from '../post/SocialShare';
 
 const PracticeContent = ({
-  data, title, anchorId, anchorIdFaq, faqData,
+  data,
+  title,
+  anchorId,
+  anchorIdFaq,
+  faqData,
+  handlePrint,
 }) => (
   <PracticeContentSection
     id={anchorId}
@@ -21,7 +26,11 @@ const PracticeContent = ({
     data-testid="practice-content"
   >
     <ContainerDefault>
-      <SocialShare isPractice customClass="social-share" />
+      <SocialShare
+        isPractice
+        customClass="social-share"
+        handlePrint={handlePrint}
+      />
       <SplitContentHolder>
         <SplitContentDescription>
           {data?.map((item) => (
@@ -35,7 +44,7 @@ const PracticeContent = ({
           <FAQ title={title} anchorId={anchorIdFaq} faqArrContent={faqData} />
         </SplitContentDescription>
         <SplitContentSidebar>
-          <GetInTouchForm />
+          <GetInTouchForm handlePrint={handlePrint} />
         </SplitContentSidebar>
       </SplitContentHolder>
     </ContainerDefault>

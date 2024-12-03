@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
 import empty from 'is-empty';
 import Link from 'next/link';
 import { TitleH2 } from 'styles/common/Typography.style';
-import Image from 'next/image';
+import { useImagesLoad } from 'hooks/useImagesLoad';
+import { useRef } from 'react';
 import {
   CardImageWrapper,
   ProfileDesignation,
@@ -58,13 +58,17 @@ const AttorneyPrintPage = ({
   qrCodeBioPage,
   qrCodeLinkedin,
   onReady,
+  locations,
 }) => {
   const [designation] = useDesignationHook(title);
-  const [areImagesLoaded, setAreImagesLoaded] = useState(false);
+
   const containerRef = useRef();
+  useImagesLoad(onReady, containerRef);
+
   const linkedIn = contact.socialMediaLinks.filter(
     (a) => a.channel === 'LinkedIn',
   )[0];
+
   const profileDetailsProps = {
     offices,
     fax: contact.fax,
@@ -73,45 +77,20 @@ const AttorneyPrintPage = ({
     qrCodeLinkedin,
     qrCodeBioPage,
   };
+
   const isAwardsExist = additionalTabs.some(({ title }) => title.includes('Awards & Recognitions'));
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const container = containerRef.current;
-    const allImages = Array.from(container.querySelectorAll('img'));
-    const imageLoadPromises = allImages.map(
-      (img) => new Promise((resolve) => {
-        if (img.complete && img.naturalHeight !== 0) {
-          resolve();
-        } else {
-          img.onload = resolve;
-          img.onerror = resolve;
-        }
-      }),
-    );
-
-    Promise.all(imageLoadPromises).then(() => {
-      setAreImagesLoaded(true);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (areImagesLoaded) {
-      onReady();
-    }
-  }, [areImagesLoaded, onReady]);
 
   return (
     <BioPagePrintContainer ref={containerRef}>
       <div className="wrapper-pdf">
         <CardImageWrapper className="card-image-wrapper">
-          {/* // eslint-disable-next-line @next/next/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={profileImage}
             alt={name}
             width={356}
             height={356}
+            // eslint-disable-next-line react/no-unknown-property
             quality={100}
           />
         </CardImageWrapper>
@@ -190,7 +169,7 @@ const AttorneyPrintPage = ({
         </div>
       )}
       {isAwardsExist && renderAwardsAndRecognitions(additionalTabs)}
-      <FooterPrintVersion locations={offices} />
+      <FooterPrintVersion locations={locations} />
     </BioPagePrintContainer>
   );
 };

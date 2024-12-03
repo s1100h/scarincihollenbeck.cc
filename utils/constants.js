@@ -851,3 +851,5 @@ export const defaultWhyChooseUsData = [
       'Our commitment to being a client-first law firm is rooted in open communication, meticulous attention to detail, and adaptability. We work closely with clients to ensure a transparent process, earning their trust through comprehensive guidance. This steadfast commitment is why clients continue to rely on us for their most complex legal challenges.',
   },
 ];
+
+export const excludedPrintFooter = ['/attorneys/[slug]', '/practices/[slug]'];

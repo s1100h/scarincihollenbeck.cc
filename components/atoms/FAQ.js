@@ -5,8 +5,15 @@ import empty from 'is-empty';
 import { TitleH2 } from 'styles/common/Typography.style';
 import { JSXWithDynamicLinks } from './micro-templates/JSXWithDynamicLinks';
 
-export default function FAQ({ faqArrContent, title, anchorId }) {
+export default function FAQ({
+  faqArrContent,
+  title,
+  anchorId,
+  allOpen = false,
+}) {
   const faqItems = faqArrContent || ATTORNEYS_FAQ;
+
+  const activeKeys = allOpen ? faqItems.map(({ title }) => title) : ['0'];
 
   return (
     <FaqWrapper
@@ -19,7 +26,7 @@ export default function FAQ({ faqArrContent, title, anchorId }) {
           !empty(title) && !empty(faqArrContent) ? `FAQ about ${title}` : 'FAQ'
         }`}
       </TitleH2>
-      <Accordion defaultActiveKey={['0']} alwaysOpen>
+      <Accordion defaultActiveKey={activeKeys} alwaysOpen>
         {faqItems.map(({ title, description }) => (
           <Accordion.Item key={title} eventKey={title}>
             <Accordion.Header as="h3">{title}</Accordion.Header>

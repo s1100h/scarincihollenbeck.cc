@@ -41,7 +41,8 @@ export const PracticeContentSection = styled.section`
     }
 
     .react-share__ShareButton,
-    .copy-button {
+    .copy-button,
+    .print-button {
       margin: 0 4px;
       display: flex;
       align-items: center;

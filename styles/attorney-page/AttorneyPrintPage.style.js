@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { globalColor } from '../global_styles/Global.styles';
-import { media_breakpoint_down } from 'styles/mediaBreakpoints.style';
 
 export const BioPagePrintContainer = styled.div`
   display: none;
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
 
-  @page {
-    size: A4;
-    margin: 10mm;
+  @media print {
+    @page {
+      size: A3 !important;
+      margin: 10mm;
+    }
   }
 
   @media print {
@@ -112,7 +113,7 @@ export const FooterPrintVersionContainer = styled.div`
   display: none;
   -webkit-print-color-adjust: exact; /* For Chrome */
   color-adjust: exact; /* For Firefox */
-  padding: 12px 20px;
+  padding: 12px 24px;
   break-inside: avoid;
 
   @media print {
@@ -124,6 +125,10 @@ export const FooterPrintVersionContainer = styled.div`
     border-radius: 8px;
     break-inside: avoid;
     page-break-inside: avoid;
+
+    .advertising-block {
+      width: 396px;
+    }
 
     .advertising-title-print {
       font-size: 10px;
@@ -148,10 +153,11 @@ export const ContactsPrintVersion = styled.div`
   .location-print-list {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 0 8px;
 
-    > :last-child {
-      :after {
+    > :nth-child(1),
+    > :nth-child(3) {
+      :before {
         display: none;
       }
     }
@@ -167,7 +173,7 @@ export const ContactsPrintVersion = styled.div`
       margin-top: 8px;
 
       .location-print-item {
-        &:after {
+        &:before {
           display: none;
         }
       }
@@ -182,7 +188,7 @@ export const ContactsPrintVersion = styled.div`
     align-items: center;
     gap: 8px;
 
-    &:after {
+    &:before {
       content: '•';
       color: ${globalColor.white};
     }
@@ -190,6 +196,10 @@ export const ContactsPrintVersion = styled.div`
 `;
 
 export const QRCodesBoxForPDF = styled.div`
-  display: flex;
-  gap: 24px;
+  display: none;
+
+  @media print {
+    display: flex;
+    gap: 24px;
+  }
 `;

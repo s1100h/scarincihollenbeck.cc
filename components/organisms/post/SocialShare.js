@@ -15,10 +15,16 @@ import {
   BsLinkedin,
   BsTwitterX,
 } from 'react-icons/bs';
+import { FaFilePdf } from 'react-icons/fa6';
 import { IoCopy } from 'react-icons/io5';
 import { ShareSocialBox } from '../../../styles/Post/SocialShare.style';
 
-const SocialShare = ({ title, isPractice = false, customClass }) => {
+const SocialShare = ({
+  title,
+  isPractice = false,
+  customClass,
+  handlePrint,
+}) => {
   const router = useRouter();
   const postUrl = `${PRODUCTION_URL}${router.asPath}`;
 
@@ -57,7 +63,18 @@ const SocialShare = ({ title, isPractice = false, customClass }) => {
           <LinkedinShareButton url={postUrl} quote={title}>
             <BsLinkedin className="linkedIn" />
           </LinkedinShareButton>
-          <button onClick={handleCopyLink} className="copy-button">
+          <button
+            aria-label="print"
+            onClick={handlePrint}
+            className="print-button"
+          >
+            <FaFilePdf />
+          </button>
+          <button
+            aria-label="copy link"
+            onClick={handleCopyLink}
+            className="copy-button"
+          >
             <IoCopy />
           </button>
         </ShareSocialBox>

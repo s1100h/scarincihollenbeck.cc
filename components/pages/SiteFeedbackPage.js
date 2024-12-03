@@ -60,7 +60,9 @@ const SiteFormPage = ({
       <form
         className="mt-2 kwes-form"
         action="https://kwes.io/api/foreign/forms/JuFmpokXEypi5BKw2mXO"
+        // eslint-disable-next-line react/no-unknown-property
         has-recaptcha-v3="true"
+        // eslint-disable-next-line react/no-unknown-property
         recaptcha-site-key={RECAPTCHA_SITE_KEY}
       >
         {isNewAttorney ? (
@@ -106,6 +108,7 @@ const SiteFormPage = ({
             attorney profile?
           </strong>
         </h3>
+        {/* eslint-disable-next-line react/no-unknown-property  */}
         <fieldset data-kw-group="true" rules="required">
           <ul className="col-list list-unstyled mx-0 px-0 mt-2">
             {practices.map((practice) => (
@@ -133,6 +136,7 @@ const SiteFormPage = ({
             3. What practice pages would you like to be listed on?
           </strong>
         </h3>
+        {/* eslint-disable-next-line react/no-unknown-property  */}
         <fieldset data-kw-group="true" rules="required">
           <ul className="col-list list-unstyled mx-0 px-0 mt-2">
             {practices.map((practice) => (
@@ -208,6 +212,7 @@ const SiteFormPage = ({
         </Button>
       </form>
     </Row>
+    {/* eslint-disable-next-line react/no-unknown-property  */}
     <style jsx>
       {`
         p {

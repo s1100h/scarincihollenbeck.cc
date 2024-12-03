@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   PracticesTabsCards,
   PracticesTabsOpener,
@@ -9,6 +9,7 @@ import empty from 'is-empty';
 import { motion } from 'framer-motion';
 import Loader from 'components/atoms/Loader';
 import { createOverviewLinks } from 'utils/helpers';
+import { useRouter } from 'next/router';
 import FilterResult from '../attorneys/FilterResult';
 
 const cardVariants = {
@@ -25,7 +26,28 @@ const cardVariants = {
 const PracticesTabs = ({ practices, isLoadingPractices = false }) => {
   if (empty(practices) && !isLoadingPractices) return null;
   const [activeTab, setActiveTab] = useState(0);
+  const [activeChildPracticeUri, setActiveChildPracticeUri] = useState(null);
   const practicesWithChildren = createOverviewLinks(practices, true);
+  const { asPath } = useRouter();
+
+  useEffect(() => {
+    const matchedTabIndex = practicesWithChildren?.findIndex(
+      (practiceWithChildren) => practiceWithChildren?.childPractice?.some(
+        (childPractice) => childPractice?.uri === asPath,
+      ),
+    );
+
+    if (matchedTabIndex === -1) return null;
+
+    setActiveTab(matchedTabIndex);
+
+    const matchedChildPractice = practicesWithChildren[
+      matchedTabIndex
+    ]?.childPractice?.find((childPractice) => childPractice?.uri === asPath);
+
+    setActiveChildPracticeUri(matchedChildPractice?.uri || null);
+  }, [asPath]);
+
   const activeTabData = practicesWithChildren?.[activeTab];
   const activeTabItems = activeTabData?.childPractice;
   const activeTabIcon = activeTabData?.practiceIcon?.sourceUrl;
@@ -73,6 +95,9 @@ const PracticesTabs = ({ practices, isLoadingPractices = false }) => {
                 name={practice?.title}
                 titleTag="h3"
                 image={activeTabIcon}
+                className={
+                  activeChildPracticeUri === practice?.uri ? 'active' : ''
+                }
               />
             </motion.div>
           ))}

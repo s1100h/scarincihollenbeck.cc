@@ -34,8 +34,11 @@ export default function ContactForm({
       <form
         action={GET_IN_TOUCH_FORM_API}
         className="kwes-form d-print-none w-100"
+        // eslint-disable-next-line react/no-unknown-property
         has-recaptcha-v3="true"
+        // eslint-disable-next-line react/no-unknown-property
         recaptcha-site-key={RECAPTCHA_SITE_KEY}
+        // eslint-disable-next-line react/no-unknown-property
         success-message={THANKS_MESSAGE.title}
       >
         <RenderInputs
@@ -49,12 +52,14 @@ export default function ContactForm({
           information should not be sent through this form.
         </p>
         {!empty(blockName) && (
+          // eslint-disable-next-line react/no-unknown-property
           <fieldset data-kw-group="true" rules="required" className="mb-2">
             <label htmlFor={`disclaimer-${blockName}`}>
               <input
                 className="disclaimer-input"
                 type="checkbox"
                 name={`disclaimer-${blockName}`}
+                // eslint-disable-next-line react/no-unknown-property
                 feedback="You must agree before submitting."
                 value={`disclaimer-${blockName}`}
                 id={`disclaimer-${blockName}`}

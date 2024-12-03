@@ -56,6 +56,12 @@ export const practicesQuery = `query PracticeQuery($id: ID!) {
             profileImage {
               sourceUrl
             }
+            qrCodeBioPage {
+              sourceUrl
+            }
+            qrCodeLinkedin {
+              sourceUrl
+            }
           }
           attorneyPrimaryRelatedPracticesLocationsGroups {
             officeLocation {
@@ -82,6 +88,12 @@ export const practicesQuery = `query PracticeQuery($id: ID!) {
             email
             phoneNumber
             profileImage {
+              sourceUrl
+            }
+            qrCodeBioPage {
+              sourceUrl
+            }
+            qrCodeLinkedin {
               sourceUrl
             }
           }

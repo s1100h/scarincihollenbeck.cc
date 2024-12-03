@@ -86,8 +86,11 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
             <form
               className="kwes-form"
               action="https://kwes.io/api/foreign/forms/zkAM3capOgEtCtFB2fLD"
+              // eslint-disable-next-line react/no-unknown-property
               has-recaptcha-v3="true"
+              // eslint-disable-next-line react/no-unknown-property
               recaptcha-site-key={RECAPTCHA_SITE_KEY}
+              // eslint-disable-next-line react/no-unknown-property
               success-message={THANKS_MESSAGE.title}
             >
               <RenderInputs
@@ -97,6 +100,7 @@ const SubscriptionModal = ({ categoriesFromWP }) => {
               <fieldset
                 className="checkboxes-box"
                 data-kw-group="true"
+                // eslint-disable-next-line react/no-unknown-property
                 rules="required"
               >
                 <span className="smallExcerpt">

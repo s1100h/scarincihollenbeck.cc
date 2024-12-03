@@ -32,6 +32,12 @@ export const WhyChooseUsCards = styled.div`
   ${media_breakpoint_down('xl')} {
     gap: 16px;
   }
+
+  @media print {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
 `;
 
 export const WhyChooseUsCardWrapper = styled.div`
@@ -54,6 +60,13 @@ export const WhyChooseUsCardWrapper = styled.div`
 
   ${media_breakpoint_down('lg')} {
     flex-basis: 100%;
+  }
+
+  @media print {
+    width: 100%;
+    flex: 1;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 `;
 

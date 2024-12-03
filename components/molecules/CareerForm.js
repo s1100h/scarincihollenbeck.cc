@@ -25,8 +25,11 @@ const CareerForm = () => {
         <form
           action={GET_IN_TOUCH_FORM_API}
           className="kwes-form d-print-none w-100"
+          // eslint-disable-next-line react/no-unknown-property
           has-recaptcha-v3="true"
+          // eslint-disable-next-line react/no-unknown-property
           recaptcha-site-key={RECAPTCHA_SITE_KEY}
+          // eslint-disable-next-line react/no-unknown-property
           success-message={THANKS_MESSAGE.title}
         >
           <div className="career-form-wrapper">
@@ -44,11 +47,13 @@ const CareerForm = () => {
                 an attorney-client relationship. Confidential or time-sensitive
                 information should not be sent through this form.
               </p>
+              {/* eslint-disable-next-line react/no-unknown-property */}
               <fieldset data-kw-group="true" rules="required" className="mb-2">
                 <label htmlFor="disclaimer">
                   <input
                     type="checkbox"
                     name="disclaimer"
+                    // eslint-disable-next-line react/no-unknown-property
                     feedback="You must agree before submitting."
                     value="disclaimer"
                     id="disclaimer"

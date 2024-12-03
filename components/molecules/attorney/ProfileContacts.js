@@ -6,7 +6,6 @@ import { MdLocalPhone, MdLocationPin } from 'react-icons/md';
 import { AddressBox } from 'styles/attorney-page/AttorneyProfile.style';
 import React from 'react';
 import empty from 'is-empty';
-import Image from 'next/image';
 import { QRCodesBoxForPDF } from '../../../styles/attorney-page/AttorneyPrintPage.style';
 
 const ProfileContacts = ({
@@ -47,7 +46,7 @@ const ProfileContacts = ({
         {fax && (
           <li className="contacts-item pdf-hidden">
             <IoPrintSharp />
-            {fax}
+            <span>{fax}</span>
           </li>
         )}
 

@@ -1,5 +1,10 @@
 import CookieConsentMessage from 'components/shared/CookieConsentMessage';
-import { FIRM_PAGES, OFFICE_LOCATIONS, CORE_PRACTICES } from 'utils/constants';
+import {
+  FIRM_PAGES,
+  OFFICE_LOCATIONS,
+  CORE_PRACTICES,
+  excludedPrintFooter,
+} from 'utils/constants';
 import {
   Advertising,
   BottomLinks,
@@ -41,12 +46,13 @@ const setFooterBackgroundColor = (page) => {
   };
   return footerColorsMap[page];
 };
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { pathname } = useRouter();
   const slug = getSlugFromUrl(pathname);
   const backgroundFooterColor = setFooterBackgroundColor(slug);
-  const conditionForPrintFooter = !pathname.includes('attorneys') ? 'true' : '';
+  const conditionForPrintFooter = excludedPrintFooter.includes(pathname);
   const { data: industries } = useGetIndustriesQuery();
 
   return (
