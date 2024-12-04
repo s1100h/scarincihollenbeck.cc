@@ -1,12 +1,5 @@
-import {
-  getAttorneys,
-  getKaterinTraugh,
-  getPracticesWithAttorneys,
-} from 'requests/getAttorneys';
-import {
-  rebuildDataForAttorneysCards,
-  setResponseHeaders,
-} from 'utils/helpers';
+import { getAttorneysFromRestApi } from 'requests/getAttorneys';
+import { setResponseHeaders } from 'utils/helpers';
 
 global.cache = global.cache || {};
 global.cache.attorneys = global.cache.attorneys || {
@@ -28,24 +21,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const practicesWithAttorneys = await getPracticesWithAttorneys();
-    const attorneys = await getAttorneys();
-    const katerinTraugh = await getKaterinTraugh();
-
-    const attorneysRebuildData = rebuildDataForAttorneysCards(
-      practicesWithAttorneys,
-      attorneys,
-    );
-
-    const attorneysWithKaterin = [...attorneysRebuildData, katerinTraugh];
+    const attorneys = await getAttorneysFromRestApi();
 
     global.cache.attorneys = {
-      data: attorneysWithKaterin,
+      data: attorneys,
       lastFetchTime: currentTime,
     };
 
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');
-    return res.status(200).json({ data: attorneysWithKaterin });
+    return res.status(200).json({ data: attorneys });
   } catch (err) {
     if (data?.length > 0) {
       setResponseHeaders(res, cacheDurationSeconds, 'HIT');

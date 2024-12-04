@@ -7,18 +7,14 @@ import {
 } from 'utils/constants';
 import PostPage from 'components/pages/SinglePost';
 import { fetchAPI } from 'requests/api';
-import {
-  getPracticesForPostQuery,
-  getThreePostsQuery,
-  postQuery,
-} from 'requests/graphql-queries';
+import { getThreePostsQuery, postQuery } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import parse from 'html-react-parser';
+import { getPractices } from 'requests/getPractices';
 import {
   cutDomain,
   cutSlashFromTheEnd,
   getSubTitleFromHTML,
-  sortByKey,
 } from '../../utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
@@ -45,7 +41,7 @@ const getPostContentData = async (slug) => {
     variables: { id: slug },
   });
 
-  const { practices } = await fetchAPI(getPracticesForPostQuery);
+  const practices = await getPractices();
   const { posts } = await fetchAPI(getThreePostsQuery);
 
   if (empty(data.post)) {
@@ -92,22 +88,6 @@ const getPostContentData = async (slug) => {
       ? data.post.seo.opengraphImage?.sourceUrl
       : seoImageFromPostByParse,
   };
-
-  const corePractices = [];
-
-  if (!empty(practices)) {
-    practices?.nodes?.forEach((practice) => {
-      if (
-        Array.isArray(
-          practice.practicePortalPageContent.practicePortalCategories,
-        )
-        && practice.practicePortalPageContent.practicePortalCategories[0]
-          === 'Core Practices'
-      ) {
-        corePractices.push(practice);
-      }
-    });
-  }
 
   data.post?.categories?.nodes.forEach(({ contentNodes }) => {
     if (contentNodes.length > 1) {
@@ -191,7 +171,7 @@ const getPostContentData = async (slug) => {
 
   return {
     postContent: data.post,
-    corePractices: sortByKey(corePractices, 'title'),
+    corePractices: practices,
     relatedPosts,
     posts: posts?.nodes,
     status: data.post.status,

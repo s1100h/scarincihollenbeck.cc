@@ -197,6 +197,7 @@ export const SubHeaderContent = styled.div`
   }
 
   .sub-header__text {
+    max-width: 800px;
     margin: auto 0;
     padding: 54px 0;
     display: flex;
@@ -253,7 +254,7 @@ export const SubHeaderInteractive = styled.div`
   flex: 1;
   display: flex;
   padding: 28px 80px 28px 32px;
-  background-color: ${({ $bg }) => $bg ? $bg : globalColor.blue.darkBlue};
+  background-color: ${({ $bg }) => ($bg ? $bg : globalColor.blue.darkBlue)};
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -437,7 +438,7 @@ export const SubHeaderKeyContactsCards = styled.div`
 export const SubHeaderSlider = styled.div`
   padding-right: 80px;
   min-width: 600px;
-  width: 40%;
+  width: 45%;
   background-color: ${globalColor.blue.blue6002};
 
   ${media_breakpoint_exactly_down(1279)} {
@@ -452,7 +453,7 @@ export const SubHeaderSlider = styled.div`
 `;
 
 export const SubHeaderSlide = styled.div`
-  max-width: 710px;
+  max-width: 730px;
   height: 100%;
   display: flex;
   gap: 12px;
@@ -666,7 +667,7 @@ export const SubHeaderHolder = styled.div`
   &.without-image {
     .sub-header__content {
       margin-left: auto;
-      max-width: 1065px;
+      max-width: 965px;
       padding-left: 80px;
 
       ${media_breakpoint_exactly_down(1279)} {
@@ -683,7 +684,7 @@ export const SubHeaderHolder = styled.div`
     ${SubHeaderInteractive} {
       min-width: 540px;
       flex: unset;
-      width: 40%;
+      width: 45%;
 
       ${media_breakpoint_exactly_down(1279)} {
         width: 100%;

@@ -3,47 +3,28 @@ import AttorneysPage from 'components/pages/AttorneysDirectory';
 import useNotFoundNotification from 'hooks/useNotFoundNotification';
 import {
   attorneysPageContent,
-  getAttorneys,
-  getKaterinTraugh,
-  getPracticesWithAttorneys,
+  getAttorneysFromRestApi,
 } from 'requests/getAttorneys';
-import {
-  filterTunePractices,
-  rebuildDataForAttorneysCards,
-  sortAttorneysByCategory,
-  sortByKey,
-} from 'utils/helpers';
+import { sortAttorneysByCategory, sortByKey } from 'utils/helpers';
 import { getPractices } from 'requests/getPractices';
 
 /** Map all the page data to component props */
 export async function getStaticProps() {
   const page = await attorneysPageContent();
   const { title, seo, attorneyArchives } = page;
-
-  const practicesWithAttorneys = await getPracticesWithAttorneys();
-  const attorneys = await getAttorneys();
-  const katerinTraugh = await getKaterinTraugh();
-
-  const attorneysRebuildData = rebuildDataForAttorneysCards(
-    practicesWithAttorneys,
-    attorneys,
-  );
-
-  const attorneysWithKaterin = [...attorneysRebuildData, katerinTraugh];
+  const attorneys = await getAttorneysFromRestApi();
 
   const sortedTitlesByOrder = sortByKey(
     attorneyArchives?.designationSectionTitles,
     'order',
   );
+
   const sortedAttorneysByCategory = sortAttorneysByCategory(
-    attorneysWithKaterin,
+    attorneys,
     sortedTitlesByOrder,
   );
 
   const practices = await getPractices();
-  const filteredPractices = sortByKey(practices, 'title').filter(
-    filterTunePractices,
-  );
 
   // it was done by request from the client as a temporary solution. 9 May 2024.
   // If you want to delete it and revert the old solution,
@@ -72,7 +53,7 @@ export async function getStaticProps() {
       },
       attorneyArchives,
       seoAttorneys: sortedAttorneysByCategory,
-      practices: filteredPractices,
+      practices,
     },
     revalidate: 86400,
   };

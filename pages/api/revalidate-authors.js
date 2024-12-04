@@ -1,10 +1,5 @@
 import { setResponseHeaders, sortByKey } from 'utils/helpers';
-import {
-  BASE_API_URL,
-  headers,
-  NEXT_PUBLIC_WP_REST_KEY,
-} from '../../utils/constants';
-import decodeResponse from '../../utils/decodeResponse';
+import { fetchRestAPI } from 'requests/api';
 
 global.cache = global.cache || {};
 global.cache.authors = global.cache.authors || { data: [], lastFetchTime: 0 };
@@ -23,13 +18,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const authorsRes = await fetch(
-      `${BASE_API_URL}/wp-json/wcra/v1/authors/?secret_key=${NEXT_PUBLIC_WP_REST_KEY}`,
-      headers,
-    );
-    const decodedAuthorsRes = await decodeResponse(authorsRes);
-
-    const sortedAuthors = sortByKey(decodedAuthorsRes.data.authors, 'title');
+    const { authors } = await fetchRestAPI('authors');
+    const sortedAuthors = sortByKey(authors, 'title');
 
     global.cache.authors = {
       data: sortedAuthors,

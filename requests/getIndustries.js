@@ -1,6 +1,5 @@
 import { getIndustryLink } from 'utils/helpers';
-import { fetchAPI } from './api';
-import { getIndustriesQuery } from './graphql-queries';
+import { fetchRestAPI } from './api';
 
 const sanitizeIndustries = (data) => {
   if (!data) return [];
@@ -12,6 +11,7 @@ const sanitizeIndustries = (data) => {
 };
 
 export const getIndustries = async () => {
-  const data = await fetchAPI(getIndustriesQuery, {});
-  return sanitizeIndustries(data?.industries?.nodes);
+  const { industries } = await fetchRestAPI('industries');
+
+  return sanitizeIndustries(industries);
 };

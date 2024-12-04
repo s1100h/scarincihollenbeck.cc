@@ -1,9 +1,5 @@
 import { getPractices } from 'requests/getPractices';
-import {
-  filterTunePractices,
-  setResponseHeaders,
-  sortByKey,
-} from 'utils/helpers';
+import { setResponseHeaders } from 'utils/helpers';
 
 global.cache = global.cache || {};
 global.cache.practices = global.cache.practices || {
@@ -26,17 +22,14 @@ export default async function handler(req, res) {
 
   try {
     const practices = await getPractices();
-    const filteredPractices = sortByKey(practices, 'title').filter(
-      filterTunePractices,
-    );
 
     global.cache.practices = {
-      data: filteredPractices,
+      data: practices,
       lastFetchTime: currentTime,
     };
 
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');
-    return res.status(200).json({ data: filteredPractices });
+    return res.status(200).json({ data: practices });
   } catch (err) {
     if (data?.length > 0) {
       setResponseHeaders(res, cacheDurationSeconds, 'HIT');

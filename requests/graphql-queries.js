@@ -279,97 +279,97 @@ export const officeLocationQuery = `query BasicPageQuery {
 
 export const latestAllPosts = `query latestAllPosts {
   posts(first: 19) {
-      nodes {
-        date
-        slug
-        uri
-        databaseId
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            slug
-          }
+    nodes {
+      date
+      slug
+      uri
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
         }
       }
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          slug
+        }
+      }
+    }
   }
 }`;
 
 export const latestClientAlertsArticles = `query latestClientAlertsArticles {
   posts(first: 19, where: {categoryName: "Client Alert"}) {
-      nodes {
-        date
-        slug
-        uri
-        databaseId
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            slug
-          }
+    nodes {
+      date
+      slug
+      uri
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
         }
       }
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          slug
+        }
+      }
+    }
   }
 }`;
 
 export const latestFirmNewsArticles = `query latestFirmNewsArticles {
   posts(first: 19, where: {categoryName: "Firm News"}) {
-      nodes {
-        date
-        slug
-        uri
-        databaseId
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            slug
-          }
+    nodes {
+      date
+      slug
+      uri
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
         }
       }
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          slug
+        }
+      }
+    }
   }
 }`;
 
 export const latestFirmInsightsArticles = `query latestFirmInsightsArticles {
   posts(first: 19, where: {categoryId: 599}) {
-      nodes {
-        date
-        slug
-        uri
-        databaseId
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        title(format: RENDERED)
-        excerpt(format: RENDERED)
-        author {
-          node {
-            name
-            slug
-          }
+    nodes {
+      date
+      slug
+      uri
+      databaseId
+      featuredImage {
+        node {
+          sourceUrl
         }
       }
+      title(format: RENDERED)
+      excerpt(format: RENDERED)
+      author {
+        node {
+          name
+          slug
+        }
+      }
+    }
   }
 }`;
 
@@ -447,20 +447,6 @@ query FirmPageQuery($id: ID!) {
             miniBio
           }
         }
-      }
-    }
-  }
-}`;
-
-export const getPracticesForPostQuery = `
-query getPracticesForPostQuery {
-  practices(first: 200) {
-    nodes {
-      title
-      uri
-      databaseId
-      practicePortalPageContent {
-        practicePortalCategories
       }
     }
   }
@@ -779,59 +765,6 @@ export const attorneysPageQuery = `query AttorneysPagesQuery {
   }
 }`;
 
-export const getPracticesQuery = `query NewQuery {
-  practices(first: 100, where: {status: PUBLISH}) {
-    nodes {
-      databaseId
-      title
-      uri
-      practicesIncluded {
-        childPractice {
-          ... on Practice {
-            databaseId
-            title
-            uri
-          }
-        }
-        practiceImage {
-          sourceUrl
-        }
-        practiceIcon {
-          sourceUrl
-        }
-      }
-      practicePortalPageContent {
-        practicePortalCategories
-      }
-    }
-  }
-}`;
-
-export const getPracticesWithAttorneysQuery = `query NewQuery {
-  practices(first: 100) {
-    nodes {
-      databaseId
-      title
-      practicesIncluded {
-        childPractice {
-          ... on Practice {
-            databaseId
-            title
-          }
-        }
-        includeAttorney {
-        ... on AttorneyProfile {
-            databaseId
-          }
-        }
-      }
-      practicePortalPageContent {
-        practicePortalCategories
-      }
-    }
-  }
-}`;
-
 /** careers landing page query */
 export const careersPageQuery = `query CareersPagesQuery {
   pageBy(pageId: 46660) {
@@ -923,33 +856,6 @@ query FirmPageQuery($id: ID!) {
     seo {
       metaDesc
       title
-    }
-  }
-}`;
-
-export const adminKaterinTraughQuery = `query AttorneyPostsById {
-  administration(id: "20875", idType: DATABASE_ID) {
-    title
-    uri
-    databaseId
-    administration {
-      designation
-      email
-      phoneExtension
-      location {
-        ... on OfficeLocation {
-          id
-          title
-          uri
-          officeMainInformation {
-            addressLocality
-          }
-        }
-      }
-      featuredImage {
-        sourceUrl(size: CATEGORY_THUMB)
-      }
-      biography
     }
   }
 }`;
@@ -1291,74 +1197,12 @@ export const getOfficeAndMoreData = `query FirmPageQuery($id: ID!) {
   }
 }`;
 
-export const getOffices = `query FirmPageQuery {
-  officeLocations(first: 50, where: {orderby: {field: MENU_ORDER, order: ASC}}) {
-    nodes {
-      databaseId
-      title
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      officeMainInformation {
-        addressLocality
-        addressCountry
-        addressRegion
-        fax
-        floor
-        phone
-        streetAddress
-        postCode
-        mapAddress
-      }
-      uri
-      slug
-    }
-  }
-}`;
-
 export const getSEOforAuthorPosts = `query FirmOverviewQuery($id: ID!) {
   user(id: $id, idType: DATABASE_ID) {
     seo {
       title
       canonical
       metaDesc
-    }
-  }
-}`;
-
-export const getCategoriesQuery = `query subscriptions {
-  subscriptions {
-    nodes {
-      categories {
-        name
-        databaseId
-      }
-    }
-  }
-}`;
-
-export const getIndustriesQuery = `
-query IndustriesQuery {
-  industries {
-    nodes {
-      industryContent {
-        description
-        industryIcon {
-          selectedIcon
-          uploadedIcon {
-            sourceUrl
-          }
-        }
-        industryImage {
-          altText
-          sourceUrl
-        }
-      }
-      uri
-      title
-      databaseId
     }
   }
 }`;

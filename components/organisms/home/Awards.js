@@ -34,6 +34,8 @@ const Awards = ({ awards }) => {
     )
     .sort((a, b) => (a.order > b.order ? 1 : -1));
 
+  if (!formattedAwards) return null;
+
   return (
     <AwardsWrapper data-testid="awards">
       <ContainerDefault>

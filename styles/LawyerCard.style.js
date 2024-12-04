@@ -6,6 +6,8 @@ import { media_breakpoint_down, media_breakpoint_exactly_down } from "./mediaBre
 export const LawyerCardImage = styled.picture`
   height: 325px;
   width: 100%;
+  filter: grayscale(1);
+  transition: ${globalTransition.default};
 
   img {
     width: 100%;
@@ -16,6 +18,7 @@ export const LawyerCardImage = styled.picture`
 
   ${media_breakpoint_down('md')} {
     height: 280px;
+    filter: unset;
   }
 
   ${media_breakpoint_down('sm')} {
@@ -126,6 +129,10 @@ export const LawyerCardWrapper = styled.div`
 
   &:hover {
     box-shadow: 0px -7px 16px 0px rgba(0, 0, 0, 0.06), -10px 10px 19px 0px rgba(0, 0, 0, 0.06);
+
+    ${LawyerCardImage} {
+      filter: grayscale(0);
+    }
   }
 
   .attorney-card-link {

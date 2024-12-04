@@ -1,5 +1,5 @@
 import { getIndustries } from 'requests/getIndustries';
-import { setResponseHeaders, sortByKey } from 'utils/helpers';
+import { setResponseHeaders } from 'utils/helpers';
 
 global.cache = global.cache || {};
 global.cache.industries = global.cache.industries || {
@@ -22,15 +22,14 @@ export default async function handler(req, res) {
 
   try {
     const industries = await getIndustries();
-    const sortedIndustries = sortByKey(industries, 'title');
 
     global.cache.industries = {
-      data: sortedIndustries,
+      data: industries,
       lastFetchTime: currentTime,
     };
 
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');
-    return res.status(200).json({ data: sortedIndustries });
+    return res.status(200).json({ data: industries });
   } catch (err) {
     if (data?.length > 0) {
       setResponseHeaders(res, cacheDurationSeconds, 'HIT');

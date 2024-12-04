@@ -1,12 +1,7 @@
-import { SITE_PHONE } from 'utils/constants';
 import { sortByKey } from 'utils/helpers';
-import { fetchAPI } from './api';
-import {
-  adminKaterinTraughQuery,
-  attorneysPageQuery,
-  attorneysQuery,
-  getPracticesWithAttorneysQuery,
-} from './graphql-queries';
+import { SITE_PHONE } from 'utils/constants';
+import { fetchAPI, fetchRestAPI } from './api';
+import { attorneysPageQuery, attorneysQuery } from './graphql-queries';
 
 export const getAttorneys = async () => {
   const { attorneyProfiles } = await fetchAPI(attorneysQuery, {});
@@ -67,45 +62,14 @@ export const attorneysPageContent = async () => {
   return data?.pageBy;
 };
 
-export const getPracticesWithAttorneys = async () => {
-  const { practices: nodes } = await fetchAPI(getPracticesWithAttorneysQuery);
-  return nodes.nodes;
-};
+export const getAttorneysFromRestApi = async () => {
+  const { attorneys } = await fetchRestAPI('attorneys');
 
-export const getKaterinTraugh = async () => {
-  const data = await fetchAPI(adminKaterinTraughQuery);
-  const {
-    title,
-    databaseId,
-    administration: {
-      designation,
-      email,
-      phoneExtension,
-      location,
-      featuredImage: { sourceUrl },
-      biography,
-    },
-    uri,
-  } = data.administration;
+  const katerinData = attorneys.find((item) => item?.id === 20875);
 
-  return {
-    id: databaseId,
-    title,
-    designation,
-    email,
-    phone: `${SITE_PHONE} ${phoneExtension}`,
-    location_array: location.map(
-      ({
-        id, uri, title, officeMainInformation,
-      }) => ({
-        id,
-        uri,
-        title,
-        officeMainInformation: officeMainInformation.addressLocality,
-      }),
-    ),
-    uri,
-    better_featured_image: sourceUrl,
-    biography,
-  };
+  if (katerinData) {
+    katerinData.phone = `${SITE_PHONE} ${katerinData.phone}`;
+  }
+
+  return attorneys;
 };

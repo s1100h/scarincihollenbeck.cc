@@ -203,13 +203,12 @@ export const LatestsPostsCardWrapper = styled.article`
   border-bottom: 1px solid ${globalColor.gray.gray500};
   position: relative;
 
-  &:nth-child(3),
-  &:last-child {
+  &:nth-last-child(-n+2) {
     border-bottom: 0;
     padding-bottom: 0;
   }
 
-  &:nth-child(3) {
+  &:nth-last-child(2) {
     ${media_breakpoint_down('md')} {
       padding-bottom: 12px;
       border-bottom: 1px solid ${globalColor.gray.gray500};
@@ -268,7 +267,7 @@ export const LatestsPostsCardWrapper = styled.article`
   }
 `;
 
-export const LatestPostsCards = styled.div`
+export const LatestPostsCardsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(2, max-content);
@@ -281,7 +280,7 @@ export const LatestPostsCards = styled.div`
     grid-template-rows: repeat(3, max-content);
 
     ${LatestsPostsCardWrapper} {
-      &:nth-child(3) {
+      &:nth-last-child(2) {
         border-bottom: 1px solid ${globalColor.gray.gray500};
         padding-bottom: 12px;
       }

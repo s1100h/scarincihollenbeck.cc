@@ -7,7 +7,6 @@ import { getOfficeAndMoreData } from 'requests/graphql-queries';
 import empty from 'is-empty';
 import { getAttorneys } from 'requests/getAttorneys';
 import { getPractices } from 'requests/getPractices';
-import { filterTunePractices, sortByKey } from 'utils/helpers';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -122,9 +121,6 @@ export const getStaticProps = async ({ params }) => {
   }
 
   const practices = await getPractices();
-  const filteredPractices = sortByKey(practices, 'title').filter(
-    filterTunePractices,
-  );
 
   const attorneysSchema = currentOffice.attorneys.map((attorney) => ({
     '@type': 'Person',
@@ -144,7 +140,7 @@ export const getStaticProps = async ({ params }) => {
       attorneysSchemaData: attorneysSchema,
       posts: [],
       canonicalUrl: `${PRODUCTION_URL}/location/${slug}`,
-      practices: filteredPractices,
+      practices,
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 86400,

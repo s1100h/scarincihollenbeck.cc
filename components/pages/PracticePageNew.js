@@ -10,6 +10,8 @@ const PracticeAnchors = dynamic(() => import('components/organisms/practices/Pra
 const PracticeAttorneys = dynamic(() => import('components/organisms/practices/PracticeAttorneys'));
 const WhyChooseUs = dynamic(() => import('components/organisms/practices/WhyChooseUs'));
 const WhatWeDoSection = dynamic(() => import('components/organisms/home/WhatWeDoSection'));
+const Awards = dynamic(() => import('components/organisms/home/Awards'));
+const LatestPostsSection = dynamic(() => import('components/organisms/home/LatestPostsSection'));
 // const GoogleReviews = dynamic(() => import('components/organisms/common/GoogleReviews'));
 
 const anchorDataDefault = {
@@ -47,6 +49,8 @@ const PracticePageNew = ({
   whyChooseUsData,
   practices,
   googleReviews,
+  awards,
+  linkedPosts,
 }) => {
   const anchorData = useMemo(() => {
     let updatedAnchorData = {};
@@ -95,14 +99,17 @@ const PracticePageNew = ({
         anchorIdFaq={anchorData.faq.id}
         faqData={faq}
       />
-      <WhyChooseUs
-        anchorId={anchorData.whyChooseUs.id}
-        data={whyChooseUsData}
-      />
+      <Awards awards={awards} />
+
+      <LatestPostsSection posts={linkedPosts} />
       <PracticeAttorneys
         attorneys={attorneyListPractice}
         chairs={chairPractice}
         anchorId={anchorData.attorneys.id}
+      />
+      <WhyChooseUs
+        anchorId={anchorData.whyChooseUs.id}
+        data={whyChooseUsData}
       />
       <WhatWeDoSection
         practices={practices}

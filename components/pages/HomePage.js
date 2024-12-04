@@ -4,6 +4,7 @@ import HomeSiteHead from 'components/shared/head/HomeSiteHead';
 import { CURRENT_DOMAIN } from 'utils/constants';
 import HappyHolidayLink from 'components/molecules/home/HappyHolidayLink';
 import { filterAttorneysByDesignation } from 'utils/helpers';
+import { useMemo } from 'react';
 import { useGetAttorneysQuery } from '../../redux/services/project-api';
 // import InfoModal from '../atoms/InfoModal';
 
@@ -38,8 +39,9 @@ const HomePage = ({
 }) => {
   const { data: attorneysData } = useGetAttorneysQuery();
 
-  const filteredAttorneysByDesignation = filterAttorneysByDesignation(
-    attorneysData?.data,
+  const filteredAttorneysByDesignation = useMemo(
+    () => filterAttorneysByDesignation(attorneysData?.data),
+    [attorneysData?.data],
   );
 
   return (

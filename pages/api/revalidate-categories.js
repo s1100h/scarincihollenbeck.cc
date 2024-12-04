@@ -1,7 +1,6 @@
 import { setResponseHeaders } from 'utils/helpers';
 import empty from 'is-empty';
-import { fetchAPI } from '../../requests/api';
-import { getCategoriesQuery } from '../../requests/graphql-queries';
+import { fetchRestAPI } from 'requests/api';
 
 global.cache = global.cache || {};
 global.cache.categories = global.cache.categories || {
@@ -23,21 +22,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const categories = await fetchAPI(getCategoriesQuery);
-    const formattedData = categories.subscriptions.nodes?.categories?.map(
-      (category) => ({
-        id: category.databaseId,
-        name: category.name,
-      }),
-    );
+    const { categories } = await fetchRestAPI('subscriptions');
 
     global.cache.categories = {
-      data: formattedData,
+      data: categories,
       lastFetchTime: currentTime,
     };
 
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');
-    return res.status(200).json({ data: formattedData });
+    return res.status(200).json({ data: categories });
   } catch (err) {
     if (!empty(data)) {
       setResponseHeaders(res, cacheDurationSeconds, 'HIT');

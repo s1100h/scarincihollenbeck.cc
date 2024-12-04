@@ -1,8 +1,8 @@
-import { fetchAPI } from './api';
-import { getPracticesQuery } from './graphql-queries';
-import { sanitizePracticesByChildren } from '../utils/helpers';
+import { filterTunePractices } from 'utils/helpers';
+import { fetchRestAPI } from './api';
 
 export const getPractices = async () => {
-  const data = await fetchAPI(getPracticesQuery, {});
-  return sanitizePracticesByChildren(data.practices.nodes);
+  const { practices } = await fetchRestAPI('practices');
+  const filteredPractices = practices.filter(filterTunePractices);
+  return filteredPractices;
 };

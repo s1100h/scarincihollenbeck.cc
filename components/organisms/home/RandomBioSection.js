@@ -55,7 +55,7 @@ const RandomBioSection = ({ attorneys }) => {
   const [isTimerStopped, setIsTimerStopped] = useState(false);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const timerRef = useRef(null);
-  const displayedCard = attorneys[randomIndex];
+  const displayedCard = attorneys?.[randomIndex];
   const [initialized, setInitialized] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef(null);

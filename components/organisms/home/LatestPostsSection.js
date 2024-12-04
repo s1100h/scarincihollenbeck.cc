@@ -1,26 +1,22 @@
 import DisclaimerText from 'components/atoms/DisclaimerText';
-import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { StandardBlueButton } from 'styles/Buttons.style';
 import { ContainerDefault } from 'styles/Containers.style';
 import {
-  LatestPostsContent,
   LatestPostsHeader,
   LatestPostsHolder,
-  LatestPostsTab,
-  LatestPostsTabs,
   LatestPostsWrapper,
 } from 'styles/LatestPosts.style';
 import { TitleH2 } from 'styles/common/Typography.style';
-import { latestPostTabs } from 'utils/constants';
+import empty from 'is-empty';
 
-const LatestPostsSlider = dynamic(() => import('./LatestPostsSlider'));
+const LatestPostsTabsRender = dynamic(() => import('./LatestPostsTabsRender'));
+const LatestPostsCards = dynamic(() => import('components/common/LatestPostsCards'));
 
-const LatestPostsSection = ({ tabsData }) => {
-  const [activeTabId, setActiveTabId] = useState(latestPostTabs[0]?.id);
-  const activeTabData = tabsData?.[activeTabId];
+const LatestPostsSection = ({ tabsData, posts }) => {
+  if (empty(tabsData) && empty(posts)) return null;
 
   return (
     <LatestPostsWrapper data-testid="latest-posts">
@@ -34,32 +30,11 @@ const LatestPostsSection = ({ tabsData }) => {
             </StandardBlueButton>
           </LatestPostsHeader>
 
-          <LatestPostsTabs>
-            {latestPostTabs?.map((tab) => (
-              <LatestPostsTab
-                key={`${tab?.label}-latest-posts-tab`}
-                className={activeTabId === tab?.id ? 'active' : ''}
-                onClick={() => setActiveTabId(tab?.id)}
-              >
-                {tab?.label}
-              </LatestPostsTab>
-            ))}
-          </LatestPostsTabs>
-
-          <AnimatePresence exitBeforeEnter>
-            <LatestPostsContent
-              key={`${activeTabId}-slider`}
-              as={motion.div}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <LatestPostsSlider
-                activeTabData={activeTabData}
-                activeTabId={activeTabId}
-              />
-            </LatestPostsContent>
-          </AnimatePresence>
+          {!empty(tabsData) ? (
+            <LatestPostsTabsRender tabsData={tabsData} />
+          ) : (
+            <LatestPostsCards posts={posts} />
+          )}
 
           <DisclaimerText text="No aspect of the advertisement has been approved by the Supreme Court. Results may vary depending on your particular facts and legal circumstances." />
         </LatestPostsHolder>

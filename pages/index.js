@@ -9,7 +9,7 @@ import {
   latestFirmNewsArticles,
   officeLocationQuery,
 } from 'requests/graphql-queries';
-import { chunkArray, filterTunePractices, sortByKey } from 'utils/helpers';
+import { chunkArray } from 'utils/helpers';
 
 /** Get homepage content WP GRAPHQL API */
 export async function homePageContent() {
@@ -80,9 +80,6 @@ export const getStaticProps = async () => {
   const offices = await getMapDataFrmLocations();
   const request = await homePageContent();
   const practices = await getPractices();
-  const filteredPractices = sortByKey(practices, 'title').filter(
-    filterTunePractices,
-  );
 
   const { seo, homePage } = request;
   const {
@@ -109,7 +106,7 @@ export const getStaticProps = async () => {
       industryWeWorkWith,
       latestArticlesTabsData,
       whyChooseUs,
-      practices: filteredPractices,
+      practices,
     },
     revalidate: 86400,
   };

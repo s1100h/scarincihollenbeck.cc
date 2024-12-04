@@ -2,10 +2,9 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import FormPageContent from 'components/pages/FormPageContent';
 import { PRODUCTION_URL } from 'utils/constants';
-import { fetchAPI } from 'requests/api';
+import { fetchAPI, fetchRestAPI } from 'requests/api';
 import { contactSubscribePageQuery } from 'requests/graphql-queries';
 import { getSubTitleFromHTML } from 'utils/helpers';
-import { getOfficesData } from '../../requests/getOfficesData';
 
 const SiteLoader = dynamic(() => import('components/shared/SiteLoader'));
 
@@ -32,7 +31,7 @@ export const getStaticPaths = () => {
 export const getStaticProps = async ({ params }) => {
   const slug = params.slug;
   const request = await contactSubscribePage(slug);
-  const offices = await getOfficesData();
+  const { locations } = await fetchRestAPI('locations');
 
   const {
     seo, title, formPages, content,
@@ -45,7 +44,7 @@ export const getStaticProps = async ({ params }) => {
       seo,
       formLabel: formPages?.formLabel || '',
       slug,
-      offices: offices.length > 0 ? offices : null,
+      offices: locations.length > 0 ? locations : null,
     },
   };
 };

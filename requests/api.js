@@ -1,4 +1,10 @@
-import { GRAPHQL_API_URL } from 'utils/constants';
+import {
+  BASE_API_URL,
+  GRAPHQL_API_URL,
+  NEXT_PUBLIC_WP_REST_KEY,
+  headers as restApiHeaders,
+} from 'utils/constants';
+import decodeResponse from 'utils/decodeResponse';
 
 export const headers = {
   'Content-Type': 'application/json',
@@ -27,5 +33,20 @@ export async function fetchAPI(query, { variables } = {}) {
   } catch (error) {
     console.error(error);
     throw new Error('Failed to fetch API');
+  }
+}
+
+export async function fetchRestAPI(query) {
+  try {
+    const res = await fetch(
+      `${BASE_API_URL}/wp-json/wcra/v1/${query}/?secret_key=${NEXT_PUBLIC_WP_REST_KEY}`,
+      restApiHeaders,
+    );
+
+    const decodedRes = await decodeResponse(res);
+    return decodedRes?.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(`Failed to fetch from ${query} rest API`);
   }
 }

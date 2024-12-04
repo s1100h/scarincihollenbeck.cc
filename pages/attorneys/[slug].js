@@ -165,7 +165,7 @@ export const getStaticProps = async ({ params }) => {
       )
       : [],
     offices:
-      attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation.map(
+      attorneyBio.attorneyPrimaryRelatedPracticesLocationsGroups.officeLocation?.map(
         ({ uri, id, officeMainInformation }) => ({
           link: uri,
           name: officeMainInformation.addressLocality,

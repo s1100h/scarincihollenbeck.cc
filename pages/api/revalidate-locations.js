@@ -1,4 +1,4 @@
-import { getOfficesData } from 'requests/getOfficesData';
+import { fetchRestAPI } from 'requests/api';
 import { setResponseHeaders } from 'utils/helpers';
 
 global.cache = global.cache || {};
@@ -18,15 +18,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const officesData = await getOfficesData();
+    const { locations } = await fetchRestAPI('locations');
 
     global.cache.offices = {
-      data: officesData,
+      data: locations,
       lastFetchTime: currentTime,
     };
 
     setResponseHeaders(res, cacheDurationSeconds, 'MISS');
-    return res.status(200).json({ data: officesData });
+    return res.status(200).json({ data: locations });
   } catch (err) {
     if (data?.length > 0) {
       setResponseHeaders(res, cacheDurationSeconds, 'HIT');

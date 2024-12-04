@@ -100,6 +100,30 @@ export const practicesQuery = `query PracticeQuery($id: ID!) {
         description
         title
       }
+      awards {
+        appearanceOrder
+        awardImage {
+          sourceUrl
+        }
+        label
+        year
+      }
+      linkedPosts {
+        ... on Post {
+          databaseId
+          date
+          slug
+          uri
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          author {
+            node {
+              slug
+              name
+            }
+          }
+        }
+      }
     }
     seo {
       title

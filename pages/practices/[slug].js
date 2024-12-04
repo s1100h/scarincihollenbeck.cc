@@ -5,7 +5,6 @@ import ApolloWrapper from 'layouts/ApolloWrapper';
 import empty from 'is-empty';
 import PracticePageNew from 'components/pages/PracticePageNew';
 import { getPractices } from 'requests/getPractices';
-import { filterTunePractices, sortByKey } from 'utils/helpers';
 import { fetchAPI } from '../../requests/api';
 import { getPracticeAttorneys } from '../../requests/practices/practice-default';
 
@@ -40,9 +39,6 @@ export const getStaticProps = async ({ params }) => {
     practice, includeAttorney, practiceChief, keyContactsList, faq,
   } = await getPracticeAttorneys(`/practices/${params.slug}`);
   const practices = await getPractices();
-  const filteredPractices = sortByKey(practices, 'title').filter(
-    filterTunePractices,
-  );
 
   // 04.04.2024 Google reviews temporarily disabled
   // const googleReviews = await getGoogleReviewsForPalaces(
@@ -94,7 +90,9 @@ export const getStaticProps = async ({ params }) => {
       keyContactsList,
       faq,
       whyChooseUsData: practice?.practicesIncluded?.whyChooseUs,
-      practices: filteredPractices,
+      practices,
+      awards: practice?.practicesIncluded?.awards,
+      linkedPosts: practice?.practicesIncluded?.linkedPosts,
       // googleReviews: deleteReviewsWithoutComment(googleReviews.flat()),
     },
     revalidate: 8600,
@@ -112,6 +110,8 @@ const SinglePractice = ({
   whyChooseUsData,
   practices,
   googleReviews,
+  awards,
+  linkedPosts,
 }) => {
   const router = useRouter();
   const canonicalUrl = `${PRODUCTION_URL}/practices/${practice.slug}`;
@@ -149,6 +149,8 @@ const SinglePractice = ({
     whyChooseUsData,
     practices,
     googleReviews,
+    awards,
+    linkedPosts,
   };
 
   return (
